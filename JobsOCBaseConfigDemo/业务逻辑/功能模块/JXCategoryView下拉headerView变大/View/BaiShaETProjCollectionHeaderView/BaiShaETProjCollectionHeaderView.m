@@ -167,8 +167,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 make.width.mas_equalTo(JobsWidth(343));
                 make.centerX.equalTo(self);
                 make.top.equalTo(self.userHeaderBtn.mas_bottom).offset(JobsWidth(58));
-            }];
-            [progressView animateWithDuration:1 progress:0.8];
+            }];[progressView animateWithDuration:1 progress:0.8];
         });
     }return _progressView;
 }
@@ -207,8 +206,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UILabel *)leftLab{
     if (!_leftLab) {
+        @jobs_weakify(self)
         _leftLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-            label.text = JobsInternationalization(@"Lv 0");
+            @jobs_strongify(self)
+            label.text = JobsInternationalization(@"Lv").add(@" ").add(@"0");
             label.textColor = HEXCOLOR(0x757575);
             label.font = UIFontWeightRegularSize(12);
             label.textAlignment = NSTextAlignmentCenter;
@@ -224,7 +225,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UILabel *)rightLab{
     if (!_rightLab) {
+        @jobs_weakify(self)
         _rightLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
             label.text = JobsInternationalization(@"Lv").add(@" ").add(@"1");
             label.textColor = HEXCOLOR(0x757575);
             label.textAlignment = NSTextAlignmentCenter;
@@ -249,8 +252,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.scrollEnabled = YES;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
-        _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
+        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         [_tableView registerTableViewClass];
         if(@available(iOS 11.0, *)) {

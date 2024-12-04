@@ -8,8 +8,6 @@
 #import "JobsUserHeaderDataView.h"
 
 @interface JobsUserHeaderDataView ()
-/// UI
-//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -180,8 +178,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.scrollEnabled = NO;
         _tableView.dataLink(self);
-        _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
-        _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
+        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
 //        _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
 //        [_tableView registerTableViewClass];

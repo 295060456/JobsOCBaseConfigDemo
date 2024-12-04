@@ -219,6 +219,9 @@ typedef void(^jobsByCJTextField)(CJTextField *_Nullable textField);
 @class ZYTextField;
 typedef void(^jobsByZYTextFieldBlock)(ZYTextField *_Nullable textField);
 
+@class JobsStepView;
+typedef void(^jobsByStepViewBlock)(__kindof JobsStepView *_Nullable stepView);
+
 @class BaseLabel;
 typedef void(^jobsByBaseLabelBlock)(__kindof BaseLabel *_Nullable label);
 
@@ -471,6 +474,9 @@ typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullabl
 typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nullable data);
 
 #pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
+@class FMTableHeaderView1;
+typedef void(^jobsByTableHeaderView1Block)(__kindof FMTableHeaderView1 *_Nullable tableHeaderView);
+
 @class FMBannerAdsModel;
 @class WMZBannerParam;
 typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);

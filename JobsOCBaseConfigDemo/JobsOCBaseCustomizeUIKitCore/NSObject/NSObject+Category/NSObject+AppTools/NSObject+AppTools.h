@@ -24,10 +24,6 @@
 
 #import "NSString+Check.h"
 
-#ifndef PicSalt
-#define PicSalt @"RRU4JZTV5WZXPCVZ"
-#endif /*PicSalt*/
-
 #ifndef MakeCustomTabBarBy
 #define MakeCustomTabBarBy(view) NSObject.makeCustomTabBarBy(view)
 #endif /*MakeCustomTabBarBy*/
@@ -60,6 +56,8 @@ AppToolsProtocol
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
+/// 配置弹窗数据
+-(JobsReturnViewModelByStringBlock _Nonnull)configPopUpDataBy;
 /// 适配各种机型的开屏图片
 -(NSString * _Nullable)imageNameOrURLString;
 /// 适配各种机型的开屏视频

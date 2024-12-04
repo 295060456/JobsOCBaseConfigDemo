@@ -8,8 +8,6 @@
 #import "PicToStrStoreVC.h"
 
 @interface PicToStrStoreVC ()
-/// UI
-@property(nonatomic,strong)UILabel *tableFooterView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
 @property(nonatomic,strong)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
@@ -137,8 +135,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
             tableView.showsVerticalScrollIndicator = NO;
             tableView.dataLink(self);
-            tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
-            tableView.tableFooterView = self.tableFooterView;/// 这里接入的就是一个UIView的派生类
+            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.tableFooterView = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+                label.text = JobsInternationalization(@"- 没有更多的内容了 -");
+                label.font = UIFontWeightRegularSize(12);
+                label.textAlignment = NSTextAlignmentCenter;
+                label.textColor = HEXCOLOR(0xB0B0B0);
+        //        label.size = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48));
+                label.makeLabelByShowingType(UILabelShowingType_03);
+            });/// 这里接入的就是一个UIView的派生类
             tableView.separatorColor = HEXCOLOR(0xEEEEEE);
             tableView.contentInset = UIEdgeInsetsMake(JobsWidth(0),
                                                       JobsWidth(0),
@@ -187,19 +194,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             }];
         });
     }return _tableView;
-}
-
--(UILabel *)tableFooterView{
-    if (!_tableFooterView) {
-        _tableFooterView = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-            label.text = JobsInternationalization(@"- 没有更多的内容了 -");
-            label.font = UIFontWeightRegularSize(12);
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = HEXCOLOR(0xB0B0B0);
-    //        label.size = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48));
-            label.makeLabelByShowingType(UILabelShowingType_03);
-        });
-    }return _tableFooterView;
 }
 
 -(NSMutableArray<__kindof UITableViewCell *> *)tbvCellMutArr{

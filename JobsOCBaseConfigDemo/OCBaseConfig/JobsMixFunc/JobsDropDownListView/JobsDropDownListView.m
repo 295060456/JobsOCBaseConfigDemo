@@ -124,8 +124,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.dataLink(self);
-        _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
-        _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
+        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         [self addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {

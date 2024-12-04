@@ -187,8 +187,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.backgroundColor = JobsWhiteColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
-        _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
+        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
         {
             _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {

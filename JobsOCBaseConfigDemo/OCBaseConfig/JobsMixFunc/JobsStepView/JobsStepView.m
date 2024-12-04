@@ -77,7 +77,7 @@
             NSLog(@"");
             if(self.btnMutArr.count){
                 UIView *view = self.btnMutArr.lastObject;
-                CGFloat d = ((self.viewSizeByModel(nil).width - btn.width * self.btnModelMutArr.count) / (self.btnModelMutArr.count - 1));
+                CGFloat d = ((self.viewSizeByModel(nil).width - btn.width * self.btnModelMutArr.count - self.offset) / (self.btnModelMutArr.count - 1));
                 [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.equalTo(view.mas_right).offset(d);
                 }];

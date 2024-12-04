@@ -263,7 +263,9 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
         
         {
             // 用值

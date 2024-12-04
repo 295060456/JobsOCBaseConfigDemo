@@ -6,76 +6,82 @@
 //
 
 #import "BaseView.h"
+#import "JobsBlock.h"
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsStepView : BaseView
 
-@property(nonatomic,strong,null_resettable)UIColor *leftLabBgCor;
-@property(nonatomic,strong,null_resettable)UIColor *rightLabBgCor;
+Prop_strong(null_resettable)UIColor *leftLabBgCor;
+Prop_strong(null_resettable)UIColor *rightLabBgCor;
+Prop_assign()CGFloat offset;/// 值越大 = 按钮之间的距离越小
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsStepView *_Nonnull jobsMakeStepView(jobsByStepViewBlock _Nonnull block){
+    JobsStepView *data = JobsStepView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 /**
  
  -(JobsStepView *)stepView{
      if(!_stepView){
-         _stepView = JobsStepView.new;
-         _stepView.backgroundColor = JobsRedColor;
-         [self addSubview:_stepView];
-         [_stepView mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.center.equalTo(self);
-             make.size.mas_equalTo(_stepView.viewSizeByModel(nil)]);
-         }];
-        _stepView.jobsRichViewByModel(self.btnModelMutArr);
-     }return _stepView;
- }
-
- -(NSMutableArray<UIButtonModel *> *)btnModelMutArr{
-     if(!_btnModelMutArr){
-         _btnModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-             data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                 data1.title = JobsInternationalization(@"第一步");
-                 data1.titleCor = JobsWhiteColor;
-                 data1.titleFont = UIFontWeightRegularSize(14);
-                 data1.normalImage = JobsIMG(@"正在进行第一步");
-                 data1.imagePlacement = NSDirectionalRectEdgeTop;
-                 data1.imagePadding = JobsWidth(8);
-                 data1.roundingCorners = UIRectCornerAllCorners;
-                 data1.leftViewWidth = JobsWidth(80);
-                 data1.rightViewWidth = JobsWidth(80);
-                 data1.baseBackgroundColor = JobsClearColor;
-                 data1.selected = YES;
-             }));
-             data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                 data1.title = JobsInternationalization(@"第二步");
-                 data1.titleCor = JobsWhiteColor;
-                 data1.titleFont = UIFontWeightRegularSize(14);
-                 data1.normalImage = JobsIMG(@"还未进行第二步");
-                 data1.imagePlacement = NSDirectionalRectEdgeTop;
-                 data1.imagePadding = JobsWidth(8);
-                 data1.roundingCorners = UIRectCornerAllCorners;
-                 data1.leftViewWidth = JobsWidth(80);
-                 data1.rightViewWidth = JobsWidth(80);
-                 data1.baseBackgroundColor = JobsClearColor;
-                 data1.selected = YES;
-             }));
-             data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                 data1.title = JobsInternationalization(@"第三步");
-                 data1.titleCor = JobsWhiteColor;
-                 data1.titleFont = UIFontWeightRegularSize(14);
-                 data1.normalImage = JobsIMG(@"还未进行第三步");
-                 data1.imagePlacement = NSDirectionalRectEdgeTop;
-                 data1.imagePadding = JobsWidth(8);
-                 data1.roundingCorners = UIRectCornerAllCorners;
-                 data1.leftViewWidth = JobsWidth(80);
-                 data1.rightViewWidth = JobsWidth(80);
-                 data1.baseBackgroundColor = JobsClearColor;
-                 data1.selected = YES;
+         _stepView = jobsMakeStepView(^(__kindof JobsStepView * _Nullable stepView) {
+             stepView.backgroundColor = JobsClearColor;
+             stepView.offset = JobsWidth(10);
+             self.addSubview(stepView);
+             [stepView mas_makeConstraints:^(MASConstraintMaker *make) {
+                 make.top.equalTo(self).offset(JobsWidth(20));
+                 make.left.equalTo(self).offset(JobsWidth(10));
+                 make.size.mas_equalTo(stepView.viewSizeByModel(nil));
+             }];stepView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                     data1.title = JobsInternationalization(@"Unverified");
+                     data1.titleCor = JobsWhiteColor;
+                     data1.titleFont = UIFontWeightRegularSize(14);
+                     data1.normalImage = JobsIMG(@"正在进行第一步");
+                     data1.imagePlacement = NSDirectionalRectEdgeTop;
+                     data1.imagePadding = JobsWidth(8);
+                     data1.roundingCorners = UIRectCornerAllCorners;
+                     data1.leftViewWidth = JobsWidth(80);
+                     data1.rightViewWidth = JobsWidth(80);
+                     data1.baseBackgroundColor = JobsClearColor;
+                     data1.selected = YES;
+                 }));
+                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                     data1.title = JobsInternationalization(@"Verifiying");
+                     data1.titleCor = JobsWhiteColor;
+                     data1.titleFont = UIFontWeightRegularSize(14);
+                     data1.normalImage = JobsIMG(@"还未进行第二步");
+                     data1.imagePlacement = NSDirectionalRectEdgeTop;
+                     data1.imagePadding = JobsWidth(8);
+                     data1.roundingCorners = UIRectCornerAllCorners;
+                     data1.leftViewWidth = JobsWidth(80);
+                     data1.rightViewWidth = JobsWidth(80);
+                     data1.baseBackgroundColor = JobsClearColor;
+                     data1.selected = YES;
+                 }));
+                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                     data1.title = JobsInternationalization(@"Verified");
+                     data1.titleCor = JobsWhiteColor;
+                     data1.titleFont = UIFontWeightRegularSize(14);
+                     data1.normalImage = JobsIMG(@"还未进行第三步");
+                     data1.imagePlacement = NSDirectionalRectEdgeTop;
+                     data1.imagePadding = JobsWidth(8);
+                     data1.roundingCorners = UIRectCornerAllCorners;
+                     data1.leftViewWidth = JobsWidth(80);
+                     data1.rightViewWidth = JobsWidth(80);
+                     data1.baseBackgroundColor = JobsClearColor;
+                     data1.selected = YES;
+                 }));
              }));
          });
-     }return _btnModelMutArr;
+     }return _stepView;
  }
  
  */

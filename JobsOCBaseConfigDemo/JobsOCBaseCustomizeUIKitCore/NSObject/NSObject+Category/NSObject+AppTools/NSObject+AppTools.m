@@ -61,6 +61,20 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
+/// 配置弹窗数据
+-(JobsReturnViewModelByStringBlock _Nonnull)configPopUpDataBy{
+    return ^__kindof UIViewModel *_Nullable(NSString *_Nullable data){
+        return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.text = data;
+            viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
+            viewModel.textCor = JobsCor(@"#5D5D5D");
+            viewModel.selectedTextCor = JobsWhiteColor;
+            viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
+            viewModel.bgCor = JobsCor(@"#1F1F1F");
+            viewModel.textAlignment = NSTextAlignmentCenter;
+        });
+    };
+}
 /// 适配各种机型的开屏图片
 -(NSString * _Nullable)imageNameOrURLString{
     NSString *imgNameOrUrlStr = @"";

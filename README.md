@@ -7642,8 +7642,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    @property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*rowCellMutArr;
    // sectionView
    @property(nonatomic,strong)NSMutableArray <__kindof UITableViewHeaderFooterView *>*tbvHeaderFooterViewMutArr;
-   // HeaderView
-   @property(nonatomic,strong)FMTableHeaderView1 *tableHeaderView;
    #pragma mark —— Data
    // 分组的 Data
    @property(nonatomic,strong)NSMutableArray <NSMutableArray <UIViewModel *>*>*dataMutArr;
@@ -7652,92 +7650,65 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    ```
    
    ```objective-c
+   /// BaseViewProtocol
+   @synthesize tableView = _tableView;
    -(BaseTableView *)tableView{
        if (!_tableView) {
            @jobs_weakify(self)
-           _tableView = BaseTableView.initWithStyleGrouped;/// 一般用 initWithStylePlain。initWithStyleGrouped会自己预留一块空间
+           _tableView = BaseTableView.initWithStylePlain;
            _tableView.dataLink(self);
-           _tableView.backgroundColor = JobsCor(@"#FFFFFF");
+           _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
            _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-           _tableView.separatorColor = HEXCOLOR(0xEEE2C8);
+           _tableView.separatorColor = JobsClearColor;
            _tableView.showsVerticalScrollIndicator = NO;
            _tableView.scrollEnabled = YES;
-           _tableView.tableHeaderView = self.tableHeaderView;/// 这里接入的就是一个UIView的派生类
-           _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
-           _tableView.ww_foldable = YES;//设置可折叠 见 @interface UITableView (WWFoldableTableView)
-           _tableView.resetContentInsetOffsetBottom(200);/// 增加tableView的可滚动区域
-           _tableView.registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,@"");
+           _tableView.tableHeaderView = jobsMakeFMTableHeaderView1(^(__kindof FMTableHeaderView1 * _Nullable tableHeaderView) {
+               @jobs_strongify(self)
+               tableHeaderView.sizer = FMTableHeaderView1.viewSizeByModel(nil);
+               tableHeaderView.jobsRichViewByModel(@(self.kyc_State));
+           });/// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+           _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+               /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+           });
+           
            if(@available(iOS 11.0, *)) {
                _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-           }
-         
-           if(@available(iOS 11.0, *)) {
-               _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-           }else{
-               SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
            }
            
-   {
-               _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+           {
+               _tableView.mj_header = self.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                    data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
                    data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
                    data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
                    data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
                    data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                   data.loadBlock = ^id _Nullable(id _Nullable data) {
+                   data.loadBlock = ^id _Nullable(id  _Nullable data) {
                        @jobs_strongify(self)
-                       /// 下拉刷新
                        self.feedbackGenerator();//震动反馈
-                       self->_tableView.endRefreshing(YES);
                        return nil;
                    };
                }));
-               _tableView.mj_footer = self.view.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+               _tableView.mj_footer = self.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                    data.stateIdleTitle = JobsInternationalization(@"");
                    data.pullingTitle = JobsInternationalization(@"");
                    data.refreshingTitle = JobsInternationalization(@"");
                    data.willRefreshTitle = JobsInternationalization(@"");
                    data.noMoreDataTitle = JobsInternationalization(@"");
-                   data.loadBlock = ^id _Nullable(id _Nullable data){
-                       @jobs_strongify(self)
-                       self->_tableView.endRefreshing(YES);
+                   data.loadBlock = ^id _Nullable(id  _Nullable data) {
                        return nil;
                    };
                }));
            }
-         
-         	{
-               [_tableView xzm_addNormalHeaderWithTarget:self
-                                                  action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                      id _Nullable arg) {
-                   NSLog(@"SSSS加载新的数据，参数: %@", arg);
-                   @jobs_strongify(self)
-                   /// 在需要结束刷新的时候调用（只能调用一次）
-                   /// _tableView.endRefreshing();
-                   return nil;
-               }, MethodName(self), self)];
-   
-               [_tableView xzm_addNormalFooterWithTarget:self
-                                                  action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                      id _Nullable arg) {
-                   NSLog(@"SSSS加载新的数据，参数: %@", arg);
-                   @jobs_strongify(self)
-                   /// 在需要结束刷新的时候调用（只能调用一次）
-                   /// _tableView.endRefreshing();
-                   return nil;
-               }, MethodName(self), self)];
-               [_tableView.xzm_header beginRefreshing];
-           }
            
            {
-               _tableView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-                                                                   titleStr:JobsInternationalization(@"暂无数据")
-                                                                  detailStr:JobsInternationalization(@"")];
-               
-               _tableView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
-               _tableView.ly_emptyView.contentViewOffset = JobsWidth(-180);
-               _tableView.ly_emptyView.titleLabFont = UIFontWeightLightSize(16);
+               _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                   data.title = JobsInternationalization(@"NO DATA FOUND");
+                   data.titleCor = JobsWhiteColor;
+                   data.titleFont = bayonRegular(JobsWidth(30));
+                   data.normalImage = JobsIMG(@"暂无数据");
+                   data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+               });
            }
            
            {// 设置tabAnimated相关属性
@@ -7752,18 +7723,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    
            [self addSubview:_tableView];
            [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-               make.edges.equalTo(self);
+               make.top.equalTo(self.stepView.mas_bottom).offset(JobsWidth(5));
+               make.left.equalTo(self).offset(JobsWidth(10));
+               make.bottom.equalTo(self).offset(-JobsWidth(105));
+               make.width.mas_equalTo(JobsWidth(420));
            }];
    
        }return _tableView;
-   }
-   
-   -(FMTableHeaderView1 *)tableHeaderView{
-       if(!_tableHeaderView){
-           tableHeaderView = FMTableHeaderView1.new;
-           _tableHeaderView.size = [FMTableHeaderView1 viewSizeWithModel:nil];
-           _tableHeaderView.jobsRichElementsInViewWithModel(nil);
-       }return _tableHeaderView;
    }
    ```
    
@@ -8008,40 +7974,40 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      }return _rowDataMutArr;
    }
    ```
-  
-  ```objective-c
-  #pragma mark —— UITableViewDelegate,UITableViewDataSource
-  - (void)tableView:(UITableView *)tableView
-  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-  forRowAtIndexPath:(NSIndexPath *)indexPath{
-      
-  }
-  /// 编辑模式下，点击取消左边已选中的cell的按钮
-  - (void)tableView:(UITableView *)tableView
-  didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-      
-  }
-  
-  - (void)tableView:(UITableView *)tableView
-  didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-  		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-      for (UITableViewCell *visibleCell in tableView.visibleCells) {
-          
-      }
-  }
-  
-  - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-      return self.tbvSectionRowCellMutArr.count;
-  }
-  
-  - (CGFloat)tableView:(UITableView *)tableView
-  heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-      return JobsWidth(36);
-  }
-  
-  - (NSInteger)tableView:(UITableView *)tableView
-   numberOfRowsInSection:(NSInteger)section{
-      return self.tbvSectionRowCellMutArr[section].count;
+   
+   ```objective-c
+   #pragma mark —— UITableViewDelegate,UITableViewDataSource
+   - (void)tableView:(UITableView *)tableView
+   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+   forRowAtIndexPath:(NSIndexPath *)indexPath{
+       
+   }
+   /// 编辑模式下，点击取消左边已选中的cell的按钮
+   - (void)tableView:(UITableView *)tableView
+   didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+       
+   }
+   
+   - (void)tableView:(UITableView *)tableView
+   didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+   		UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+       for (UITableViewCell *visibleCell in tableView.visibleCells) {
+           
+       }
+   }
+   
+   - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+       return self.tbvSectionRowCellMutArr.count;
+   }
+   
+   - (CGFloat)tableView:(UITableView *)tableView
+   heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+       return JobsWidth(36);
+   }
+   
+   - (NSInteger)tableView:(UITableView *)tableView
+    numberOfRowsInSection:(NSInteger)section{
+       return self.tbvSectionRowCellMutArr[section].count;
   }
   
   - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
@@ -8752,73 +8718,60 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ![Xnip2024-08-01_15-38-18](./assets/Xnip2024-08-01_15-38-18.jpg)
 
-* ```objective-c
-  @property(nonatomic,strong)JobsStepView *stepView;
-  @property(nonatomic,strong)NSMutableArray <UIButtonModel *>*btnModelMutArr;
-  ```
-
   ```objective-c
   -(JobsStepView *)stepView{
       if(!_stepView){
-          _stepView = JobsStepView.new;
-          _stepView.backgroundColor = JobsRedColor;
-          [self addSubview:_stepView];
-          [_stepView mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.center.equalTo(self);
-              make.size.mas_equalTo([_stepView viewSizeWithModel:nil]);
-          }];
-          _stepView.jobsRichElementsInViewWithModel(self.btnModelMutArr);
+          _stepView = jobsMakeStepView(^(__kindof JobsStepView * _Nullable stepView) {
+              stepView.backgroundColor = JobsClearColor;
+              stepView.offset = JobsWidth(10);
+              self.addSubview(stepView);
+              [stepView mas_makeConstraints:^(MASConstraintMaker *make) {
+                  make.top.equalTo(self).offset(JobsWidth(20));
+                  make.left.equalTo(self).offset(JobsWidth(10));
+                  make.size.mas_equalTo(stepView.viewSizeByModel(nil));
+              }];stepView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+                  data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                      data1.title = JobsInternationalization(@"Unverified");
+                      data1.titleCor = JobsWhiteColor;
+                      data1.titleFont = UIFontWeightRegularSize(14);
+                      data1.normalImage = JobsIMG(@"正在进行第一步");
+                      data1.imagePlacement = NSDirectionalRectEdgeTop;
+                      data1.imagePadding = JobsWidth(8);
+                      data1.roundingCorners = UIRectCornerAllCorners;
+                      data1.leftViewWidth = JobsWidth(80);
+                      data1.rightViewWidth = JobsWidth(80);
+                      data1.baseBackgroundColor = JobsClearColor;
+                      data1.selected = YES;
+                  }));
+                  data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                      data1.title = JobsInternationalization(@"Verifiying");
+                      data1.titleCor = JobsWhiteColor;
+                      data1.titleFont = UIFontWeightRegularSize(14);
+                      data1.normalImage = JobsIMG(@"还未进行第二步");
+                      data1.imagePlacement = NSDirectionalRectEdgeTop;
+                      data1.imagePadding = JobsWidth(8);
+                      data1.roundingCorners = UIRectCornerAllCorners;
+                      data1.leftViewWidth = JobsWidth(80);
+                      data1.rightViewWidth = JobsWidth(80);
+                      data1.baseBackgroundColor = JobsClearColor;
+                      data1.selected = YES;
+                  }));
+                  data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                      data1.title = JobsInternationalization(@"Verified");
+                      data1.titleCor = JobsWhiteColor;
+                      data1.titleFont = UIFontWeightRegularSize(14);
+                      data1.normalImage = JobsIMG(@"还未进行第三步");
+                      data1.imagePlacement = NSDirectionalRectEdgeTop;
+                      data1.imagePadding = JobsWidth(8);
+                      data1.roundingCorners = UIRectCornerAllCorners;
+                      data1.leftViewWidth = JobsWidth(80);
+                      data1.rightViewWidth = JobsWidth(80);
+                      data1.baseBackgroundColor = JobsClearColor;
+                      data1.selected = YES;
+                  }));
+              }));
+          });
       }return _stepView;
-  }
-  
-  -(NSMutableArray<UIButtonModel *> *)btnModelMutArr{
-      if(!_btnModelMutArr){
-          _btnModelMutArr = NSMutableArray.array;
-          {
-              UIButtonModel *buttonModel = UIButtonModel.new;
-              buttonModel.title = JobsInternationalization(@"第一步");
-              buttonModel.titleCor = JobsWhiteColor;
-              buttonModel.titleFont = UIFontWeightRegularSize(14);
-              buttonModel.normalImage = JobsIMG(@"正在进行第一步");
-              buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
-              buttonModel.imagePadding = JobsWidth(10);
-              buttonModel.roundingCorners = UIRectCornerAllCorners;
-              buttonModel.leftViewWidth = JobsWidth(80);
-              buttonModel.rightViewWidth = JobsWidth(80);
-              buttonModel.selected = YES;
-              [_btnModelMutArr addObject:buttonModel];
-          }
-          
-          {
-              UIButtonModel *buttonModel = UIButtonModel.new;
-              buttonModel.title = JobsInternationalization(@"第二步");
-              buttonModel.titleCor = JobsWhiteColor;
-              buttonModel.titleFont = UIFontWeightRegularSize(14);
-              buttonModel.normalImage = JobsIMG(@"还未进行第二步");
-              buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
-              buttonModel.imagePadding = JobsWidth(10);
-              buttonModel.roundingCorners = UIRectCornerAllCorners;
-              buttonModel.leftViewWidth = JobsWidth(80);
-              buttonModel.rightViewWidth = JobsWidth(80);
-              buttonModel.selected = YES;
-              [_btnModelMutArr addObject:buttonModel];
-          }
-          
-          {
-              UIButtonModel *buttonModel = UIButtonModel.new;
-              buttonModel.title = JobsInternationalization(@"第三步");
-              buttonModel.titleCor = JobsWhiteColor;
-              buttonModel.titleFont = UIFontWeightRegularSize(14);
-              buttonModel.normalImage = JobsIMG(@"还未进行第三步");
-              buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
-              buttonModel.imagePadding = JobsWidth(10);
-              buttonModel.roundingCorners = UIRectCornerAllCorners;
-              buttonModel.leftViewWidth = JobsWidth(80);
-              buttonModel.rightViewWidth = JobsWidth(80);
-              buttonModel.selected = YES;
-              [_btnModelMutArr addObject:buttonModel];
-          }
-      }return _btnModelMutArr;
   }
   ```
 

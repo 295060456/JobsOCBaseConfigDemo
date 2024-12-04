@@ -8,8 +8,6 @@
 #import "JobsPageView.h"
 
 @interface JobsPageView ()
-/// UI
-//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSArray <UIViewModel *>*dataArr;
 
@@ -86,9 +84,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.dataLink(self);
-        _tableView.tableFooterView = UIView.new;
+        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        
         [self addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);

@@ -8,11 +8,10 @@
 #import "PopListBaseView.h"
 
 @interface PopListBaseView ()
-/// UI
-//@property(nonatomic,strong)UITableView *tableView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
 @property(nonatomic,strong)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof NSString *>*datas;
 
 @end
 
@@ -61,12 +60,10 @@
                 data1.jobsHeight = MIN(data.count * PopListBaseView.CellHeight,JobsWidth(259));/// 高度限制在 JobsWidth(259)
                 NSLog(@"KKK = %f-%f",data1.jobsWidth,data1.jobsHeight);
             });
-        }else{
-            return CGSizeMake(JobsWidth(300), JobsWidth(259));
-        }
+        }else return CGSizeMake(JobsWidth(300), JobsWidth(259));
     };
 }
-#pragma mark —— 一些私有方法
+
 -(void)layoutSubviews{
     [super layoutSubviews];
     /// 内部指定圆切角
@@ -84,8 +81,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsTextStyleTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.backgroundColor = cell.contentView.backgroundColor = viewModel.bgSelectedCor;
     cell.lab.textColor = viewModel.selectedTextCor;
-    id text = cell.viewModel.text;
-    id placeholder = cell.viewModel.placeholder;
+//    id text = cell.viewModel.text;
+//    id placeholder = cell.viewModel.placeholder;
     if (self.objectBlock) self.objectBlock(cell);/// 数据在cell.viewModel
     [self tf_hide:nil];
 }
@@ -124,8 +121,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.scrollEnabled = YES;
         _tableView.dataLink(self);
-        _tableView.tableHeaderView = UIView.new;/// 这里接入的就是一个UIView的派生类
-        _tableView.tableFooterView = UIView.new;/// 这里接入的就是一个UIView的派生类
+        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
+        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        });
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -141,6 +142,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tbvCellMutArr) {
         @jobs_weakify(self)
         _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UITableViewCell *>*_Nullable data) {
+            @jobs_strongify(self)
             for (int d = 0; d < self.dataMutArr.count; d++) {
                 @jobs_strongify(self)
                 data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
@@ -148,6 +150,17 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         });
     }return _tbvCellMutArr;
 }
+
+-(NSMutableArray<__kindof NSString *> *)datas{
+    if(!_datas){
+        _datas = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(JobsInternationalization(@"选项1"));
+            data.add(JobsInternationalization(@"选项2"));
+            data.add(JobsInternationalization(@"选项3"));
+        });
+    }return _datas;
+}
+
 @synthesize dataMutArr = _dataMutArr;
 -(void)setDataMutArr:(NSMutableArray <__kindof UIViewModel *>*)dataMutArr{
     _dataMutArr = dataMutArr;
@@ -156,34 +169,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
+        @jobs_weakify(self)
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>*_Nullable data) {
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable viewModel) {
-                viewModel.text = JobsInternationalization(@"选项1");
-                viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
-                viewModel.textCor = JobsCor(@"#5D5D5D");
-                viewModel.selectedTextCor = JobsWhiteColor;
-                viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
-                viewModel.bgCor = JobsCor(@"#1F1F1F");
-                viewModel.textAlignment = NSTextAlignmentCenter;
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable viewModel) {
-                viewModel.text = JobsInternationalization(@"选项2");
-                viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
-                viewModel.textCor = JobsCor(@"#5D5D5D");
-                viewModel.selectedTextCor = JobsWhiteColor;
-                viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
-                viewModel.bgCor = JobsCor(@"#1F1F1F");
-                viewModel.textAlignment = NSTextAlignmentCenter;
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable viewModel) {
-                viewModel.text = JobsInternationalization(@"选项3");
-                viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
-                viewModel.textCor = JobsCor(@"#5D5D5D");
-                viewModel.selectedTextCor = JobsWhiteColor;
-                viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
-                viewModel.bgCor = JobsCor(@"#1F1F1F");
-                viewModel.textAlignment = NSTextAlignmentCenter;
-            }));
+            @jobs_strongify(self)
+            for (NSString *t in self.datas) {
+                data.add(self.configPopUpDataBy(t));
+            }
         });
     }return _dataMutArr;
 }

@@ -883,7 +883,7 @@ JobsKey(_sizer)
 
 -(void)setSizer:(CGSize)sizer{
     CGSize size = self.isSizeZero(sizer) ? CGSizeMake(self.width, self.height) : sizer;
-    NSValue *sizeValue = [NSValue valueWithCGSize:size];
+    NSValue *sizeValue = NSValue.bySize(size);
     self.frame = self.resetSize(size);
     Jobs_setAssociatedRETAIN_NONATOMIC(_sizer, sizeValue);
 }
@@ -897,7 +897,7 @@ JobsKey(_Origin)
 
 -(void)setOrigin:(CGPoint)Origin{
     CGPoint point = self.isPointZero(Origin) ? self.frame.origin : Origin;
-    NSValue *pointValue = [NSValue valueWithCGPoint:point];
+    NSValue *pointValue = NSValue.byPoint(point);
     self.frame = self.resetOrigin(Origin);
     Jobs_setAssociatedRETAIN_NONATOMIC(_Origin, pointValue);
 }
