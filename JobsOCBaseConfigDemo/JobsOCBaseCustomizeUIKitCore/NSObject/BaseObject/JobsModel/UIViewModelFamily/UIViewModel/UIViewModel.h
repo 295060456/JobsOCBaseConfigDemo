@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "UITextModel.h"
+#import "MacroDef_Size.h"
 #import "UIViewModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN

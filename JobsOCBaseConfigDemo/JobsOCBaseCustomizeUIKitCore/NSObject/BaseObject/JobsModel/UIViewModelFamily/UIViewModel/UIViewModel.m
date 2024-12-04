@@ -82,13 +82,13 @@ UIViewModelProtocol_self_synthesize
 }
 
 -(CGFloat)width{
-    if (_jobsWidth == 0 && !CGSizeEqualToSize(self.jobsSize, CGSizeZero)) {
+    if (_jobsWidth == 0 && !jobsZeroSizeValue(self.jobsSize)) {
         _jobsWidth = self.jobsSize.width;
     }return _jobsWidth;
 }
 
 -(CGFloat)height{
-    if (_jobsHeight == 0 && !CGSizeEqualToSize(self.jobsSize, CGSizeZero)) {
+    if (_jobsHeight == 0 && !jobsZeroSizeValue(self.jobsSize)) {
         _jobsHeight = self.jobsSize.height;
     }return _jobsHeight;
 }

@@ -156,7 +156,7 @@
     @jobs_weakify(self)
     return ^(UIView *_Nonnull data) {
         @jobs_strongify(self)
-        self.popupParameter.popupSize = data.viewSizeByModel(nil);
+        self.popupParameter.popupSize = !jobsZeroSizeValue(data.sizer) ? data.sizer : data.viewSizeByModel(nil);
         self._showViewCore(data);
     };
 }
@@ -165,7 +165,7 @@
     @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable view,id _Nullable data) {
         @jobs_strongify(self)
-        self.popupParameter.popupSize = view.viewSizeByModel(data);
+        self.popupParameter.popupSize = data ? view.viewSizeByModel(data) : view.sizer;
         self._showViewCore(view);
     };
 }
@@ -174,7 +174,7 @@
     @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable view,id _Nullable data) {
         @jobs_strongify(self)
-        self.popupParameter.popupSize = view.viewSizeByModel(data);
+        self.popupParameter.popupSize = data ? view.viewSizeByModel(data) : view.sizer;
         self._showViewCore(view);
     };
 }
@@ -183,7 +183,7 @@
     @jobs_weakify(self)
     return ^(UIView *_Nonnull data) {
         @jobs_strongify(self)
-        self.popupParameter.popupSize = data.viewSizeByModel(nil);
+        self.popupParameter.popupSize = !jobsZeroSizeValue(data.sizer) ? data.sizer : data.viewSizeByModel(nil);
         self._showViewCore2(data);
     };
 }
@@ -192,7 +192,7 @@
     @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable view,id _Nullable data) {
         @jobs_strongify(self)
-        self.popupParameter.popupSize = view.viewSizeByModel(data);
+        self.popupParameter.popupSize = data ? view.viewSizeByModel(data) : view.sizer;
         self._showViewCore2(view);
     };
 }
@@ -201,7 +201,7 @@
     @jobs_weakify(self)
     return ^(UIView *_Nonnull data) {
         @jobs_strongify(self)
-        self.tipsParameter.popupSize = data.viewSizeByModel(nil);
+        self.tipsParameter.popupSize = !jobsZeroSizeValue(data.sizer) ? data.sizer : data.viewSizeByModel(nil);
         self._showTipsCore(data);
     };
 }
@@ -210,7 +210,7 @@
     @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable view,id _Nullable data) {
         @jobs_strongify(self)
-        self.tipsParameter.popupSize = view.viewSizeByModel(data);
+        self.tipsParameter.popupSize = data ? view.viewSizeByModel(data) : view.sizer;
         self._showTipsCore(view);
     };
 }

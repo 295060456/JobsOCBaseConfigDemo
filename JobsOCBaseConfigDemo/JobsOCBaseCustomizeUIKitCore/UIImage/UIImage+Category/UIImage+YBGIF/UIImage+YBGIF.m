@@ -92,7 +92,7 @@
 }
 /// 根据大小裁剪图片
 - (UIImage *)animatedImageByScalingAndCroppingToSize:(CGSize)size {
-    if (CGSizeEqualToSize(self.size, size) || CGSizeEqualToSize(size, CGSizeZero)) return self;
+    if (CGSizeEqualToSize(self.size, size) || jobsZeroSizeValue(size)) return self;
    
     CGSize scaledSize = size;
     CGPoint thumbnailPoint = CGPointZero;
@@ -105,8 +105,7 @@
 
     if (widthFactor > heightFactor) {
        thumbnailPoint.y = (size.height - scaledSize.height) * 0.5;
-    }
-    else if (widthFactor < heightFactor) {
+    }else if (widthFactor < heightFactor) {
        thumbnailPoint.x = (size.width - scaledSize.width) * 0.5;
     }
     @jobs_weakify(self)

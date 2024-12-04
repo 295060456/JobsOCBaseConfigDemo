@@ -15,7 +15,6 @@
     if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
         @jobs_weakify(self)
         BaseButton *btn = BaseButton.initByBackgroundImage(self.img)
-            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(__kindof UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
@@ -46,7 +45,7 @@ JobsKey(_arrows_size)
 @dynamic arrows_size;
 -(CGSize)arrows_size{
     CGSize Size = [Jobs_getAssociatedObject(_arrows_size) CGSizeValue];
-    if (CGSizeEqualToSize(Size, CGSizeZero)) {
+    if (jobsZeroSizeValue(Size)) {
         Size = CGSizeMake(JobsWidth(10), JobsWidth(18.3));//缺省值
         Jobs_setAssociatedRETAIN_NONATOMIC(_arrows_size, [NSValue valueWithCGSize:Size])
     }return Size;

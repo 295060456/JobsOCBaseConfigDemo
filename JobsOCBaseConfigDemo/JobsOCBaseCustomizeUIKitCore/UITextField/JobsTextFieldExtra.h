@@ -60,15 +60,14 @@
              isValue(text2)
          );
      }] subscribeNext:^(NSNumber *bothHaveText) {
-         @jobs_strongify(self);
- //        if (bothHaveText.boolValue) {
- //            self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT"));
- //            self.submitBtn.enabled = YES;
- //        } else {
- //            self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT（不可点击）"));
- //            self.submitBtn.enabled = NO;
- //        }
-     }];
+     @jobs_strongify(self)
+     self.submitBtn.enabled = bothHaveText.boolValue;
+      if (bothHaveText.boolValue) {
+          self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT"));
+      }else{
+          self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT（不可点击）"));
+      }
+    }];
  }
  
  */

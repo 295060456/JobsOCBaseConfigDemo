@@ -101,7 +101,7 @@ static const CGFloat OffsetBetweenStateLabelAndAnimationView = 5;//StateLabel å’
 }
 
 -(CGSize)lOTAnimationViewSize{
-    if (CGSizeEqualToSize(_lOTAnimationViewSize, CGSizeZero)) {
+    if (jobsZeroSizeValue(_lOTAnimationViewSize)) {
         _lOTAnimationViewSize = CGSizeMake(30, 30);
     }return _lOTAnimationViewSize;
 }

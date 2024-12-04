@@ -545,10 +545,9 @@ typedef NS_ENUM(NSInteger, FMLoginWork){
     FMLoginWork_MyBank
 };
 #endif /* FMLOGINWORK */
-
 #ifndef KYCSTATUS
 #define KYCSTATUS
-/// 跳转类型
+/// KYC状态
 typedef NS_ENUM(NSInteger, KYCStatus){
     KYCStatus_待审核 = 0,
     KYCStatus_通过,

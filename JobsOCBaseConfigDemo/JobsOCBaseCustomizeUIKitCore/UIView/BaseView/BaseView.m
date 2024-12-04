@@ -42,7 +42,7 @@ UIPictureAndBackGroundCorProtocol_synthesize
     [super layoutSubviews];
     /// 在这里设置这个View的size，外界设置的话，在某些情况下会因为内部生命周期的问题，导致异常
     // self.size = MSPayView.viewSizeByModel(nil);
-    if(!CGSizeEqualToSize(CGSizeZero, self.layoutSubviewsRectCornerSize)){
+    if(!jobsZeroSizeValue(self.layoutSubviewsRectCornerSize)){
         [self appointCornerCutToCircleByRoundingCorners:self.layoutSubviewsRectCorner
                                             cornerRadii:self.layoutSubviewsRectCornerSize];
     }

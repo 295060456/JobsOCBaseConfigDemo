@@ -616,21 +616,20 @@ JobsKey(_cornerRadii)
         @jobs_strongify(self)
         Jobs_setAssociatedRETAIN_NONATOMIC(_cornerRadii,[NSValue valueWithCGSize:cornerRadii])
         UIRectCorner corners = [Jobs_getAssociatedObject(_appointCorners) unsignedIntegerValue];
-        // 如果 cornerRadii 是 CGSizeZero，自动计算
-        if (CGSizeEqualToSize(cornerRadii, CGSizeZero)) {
+        /// 如果 cornerRadii 是 CGSizeZero，自动计算
+        if (jobsZeroSizeValue(cornerRadii)) {
             cornerRadii = CGSizeMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
         }
-        // 创建 UIBezierPath 遮罩路径
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+        /// 创建 UIBezierPath 遮罩路径
+        __block UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                        byRoundingCorners:corners
                                                              cornerRadii:cornerRadii];
-        // 创建 CAShapeLayer 并设置 path
-        CAShapeLayer *maskLayer = CAShapeLayer.layer;
-        maskLayer.frame = self.bounds;
-        maskLayer.path = maskPath.CGPath;
-         
-        self.layer.mask = maskLayer;
-        return self;
+        /// 创建 CAShapeLayer 并设置 path
+        self.layer.mask = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            @jobs_strongify(self)
+            layer.frame = self.bounds;
+            layer.path = maskPath.CGPath;
+        });return self;
     };
 }
 /// 指定圆切角
@@ -783,7 +782,7 @@ JobsKey(_cornerRadii)
     /// 检查视图的大小是否为有效值
     CGSize size = self.bounds.size;
     /// 如果 size 是 {0, 0}，直接返回 nil
-    if (CGSizeEqualToSize(size, CGSizeZero)) return nil;
+    if (jobsZeroSizeValue(size)) return nil;
     /// 使用 UIGraphicsImageRenderer 创建图像
     UIGraphicsImageRenderer *renderer = [UIGraphicsImageRenderer.alloc initWithSize:size];
     @jobs_weakify(self )

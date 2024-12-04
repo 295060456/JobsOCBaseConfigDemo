@@ -9,7 +9,6 @@
 #import "NSObject+Measure.h"
 
 @implementation NSObject (Measure)
-
 #pragma mark —— UIViewModelProtocol
 /// 方位
 @dynamic cornerRadius;
@@ -50,19 +49,19 @@
 /// 比较 size ？= CGSizeZero
 -(JobsReturnBOOLBySizeBlock _Nonnull)isSizeZero{
     return ^BOOL(CGSize size){
-        return CGSizeEqualToSize(size, CGSizeZero);
+        return jobsZeroSizeValue(size);
     };
 }
 /// 比较 point ？= CGPointZero
 -(JobsReturnBOOLByPointBlock _Nonnull)isPointZero{
     return ^BOOL(CGPoint point){
-        return CGPointEqualToPoint(point, CGPointZero);
+        return jobsZeroPointValue(point);
     };
 }
 /// 比较 rect ？= CGRectZero
 -(JobsReturnBOOLByFrameBlock _Nonnull)isRectZero{
     return ^(CGRect frame){
-        return CGRectEqualToRect(frame, CGRectZero);
+        return jobsEqualToZeroRect(frame);
     };
 }
 /// 比较 rect1 ？= rect2
