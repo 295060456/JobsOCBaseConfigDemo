@@ -10,7 +10,6 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
-
 /**
     全局的Block块定义
     基本数据类型尽量的用NSNumber进行二次封装成对象对外输出
@@ -182,7 +181,9 @@ typedef void(^jobsByTextFieldModelBlock)(__kindof UITextFieldModel *_Nullable mo
 typedef __kindof UITextFieldModel *_Nullable(^JobsReturnTextFieldModelByString)(__kindof NSString *_Nullable data);
 
 @class JobsFileModel;
+@class BaseUploadFileRequest;
 typedef void(^jobsByFileModelBlock)(__kindof JobsFileModel *_Nullable model);
+typedef __kindof BaseUploadFileRequest *_Nullable(^JobsReturnRequestByFileModelBlock)(__kindof JobsFileModel *_Nullable model);
 
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);

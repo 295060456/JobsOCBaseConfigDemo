@@ -45,8 +45,10 @@
 }
 /// 返回带时间格式的当前时间字符串
 -(JobsReturnStringByStringBlock _Nonnull)currentTimestampString{
+    @jobs_weakify(self)
     return ^ __kindof NSString *_Nullable(NSString *_Nullable data){
-        return self.dateFormatterBy(nil).date(self.currentDate);
+        @jobs_strongify(self)
+        return self.dateFormatterBy(data).date(self.currentDate);
     };
 }
 /// 获取某天前的时间。默认时间格式 yyyy-MM-dd HH:mm:ss

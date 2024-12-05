@@ -71,6 +71,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)sendBatchRequest:(jobsByYTKBatchRequestBlock _Nullable)successBlock;
 /// 多请求の链式请求。链式请求的结果集体现在<YTKChainRequestDelegate>
 -(void)sendChainRequest:(jobsByYTKChainRequestBlock _Nullable)successBlock;
+/// 上传KYC的图片@POST
+-(void)uploadKYCImage:(NSData *)image
+         successBlock:(jobsByResponseModelBlock _Nullable)successBlock;
 
 @end
 

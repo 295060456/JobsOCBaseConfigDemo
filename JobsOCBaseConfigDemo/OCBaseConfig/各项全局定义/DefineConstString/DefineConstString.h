@@ -7,6 +7,13 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXTERN NSString *_Nonnull const GET;
+FOUNDATION_EXTERN NSString *_Nonnull const POST;
+FOUNDATION_EXTERN NSString *_Nonnull const PUT;
+FOUNDATION_EXTERN NSString *_Nonnull const DELETE;
+FOUNDATION_EXTERN NSString *_Nonnull const PATCH;
+FOUNDATION_EXTERN NSString *_Nonnull const HEAD;
+
 FOUNDATION_EXTERN NSString *_Nonnull const ContentType;
 FOUNDATION_EXTERN NSString *_Nonnull const Authorization;
 

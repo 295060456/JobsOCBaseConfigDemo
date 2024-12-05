@@ -83,6 +83,11 @@
         @jobs_strongify(self)
         chainReq.delegate = self;
     }];
+    /// 上传KYC的图片@POST
+    [self uploadKYCImage:UIImagePNGRepresentation(JobsIMG(@"启动页SLOGAN"))
+            successBlock:^(JobsResponseModel * _Nullable responseModel) {
+        NSLog(@"");
+    }];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

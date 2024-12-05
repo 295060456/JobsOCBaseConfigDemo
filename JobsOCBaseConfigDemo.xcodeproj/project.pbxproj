@@ -90,6 +90,8 @@
 		8478D9022D01CC03004E8B90 /* NSDateFormatter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478D8FC2D01CC03004E8B90 /* NSDateFormatter+Extra.m */; };
 		8478D90B2D01CE0D004E8B90 /* BaseUploadFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478D9052D01CE0D004E8B90 /* BaseUploadFileRequest.m */; };
 		8478D90C2D01CE0D004E8B90 /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478D9082D01CE0D004E8B90 /* BaseRequest.m */; };
+		8478DA042D01E0AE004E8B90 /* FM_kyc_image_upload_api.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DA022D01E0AE004E8B90 /* FM_kyc_image_upload_api.m */; };
+		8478DA822D01E1F8004E8B90 /* NSObject+URLManager_7.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DA802D01E1F8004E8B90 /* NSObject+URLManager_7.m */; };
 		8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */ = {isa = PBXBuildFile; fileRef = 8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */; };
 		8489C9DD2CE622CC00BB5E83 /* UICollectionView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */; };
 		8489C9DE2CE622CC00BB5E83 /* UITableView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D72CE622CB00BB5E83 /* UITableView+JobsEmptyData.m */; };
@@ -1381,6 +1383,10 @@
 		8478D9052D01CE0D004E8B90 /* BaseUploadFileRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseUploadFileRequest.m; sourceTree = "<group>"; };
 		8478D9072D01CE0D004E8B90 /* BaseRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
 		8478D9082D01CE0D004E8B90 /* BaseRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseRequest.m; sourceTree = "<group>"; };
+		8478DA012D01E0AE004E8B90 /* FM_kyc_image_upload_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FM_kyc_image_upload_api.h; sourceTree = "<group>"; };
+		8478DA022D01E0AE004E8B90 /* FM_kyc_image_upload_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_kyc_image_upload_api.m; sourceTree = "<group>"; };
+		8478DA7F2D01E1F8004E8B90 /* NSObject+URLManager_7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_7.h"; sourceTree = "<group>"; };
+		8478DA802D01E1F8004E8B90 /* NSObject+URLManager_7.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_7.m"; sourceTree = "<group>"; };
 		8489C9D32CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+JobsEmptyData.h"; sourceTree = "<group>"; };
 		8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+JobsEmptyData.m"; sourceTree = "<group>"; };
 		8489C9D62CE622CB00BB5E83 /* UITableView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+JobsEmptyData.h"; sourceTree = "<group>"; };
@@ -4467,6 +4473,24 @@
 				8478D9092D01CE0D004E8B90 /* BaseRequest */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		8478DA032D01E0AE004E8B90 /* KYC身份证上传【POST】 */ = {
+			isa = PBXGroup;
+			children = (
+				8478DA012D01E0AE004E8B90 /* FM_kyc_image_upload_api.h */,
+				8478DA022D01E0AE004E8B90 /* FM_kyc_image_upload_api.m */,
+			);
+			path = "KYC身份证上传【POST】";
+			sourceTree = "<group>";
+		};
+		8478DA812D01E1F8004E8B90 /* URLManager@7 */ = {
+			isa = PBXGroup;
+			children = (
+				8478DA7F2D01E1F8004E8B90 /* NSObject+URLManager_7.h */,
+				8478DA802D01E1F8004E8B90 /* NSObject+URLManager_7.m */,
+			);
+			path = "URLManager@7";
 			sourceTree = "<group>";
 		};
 		8489C9D52CE622CB00BB5E83 /* UICollectionView+JobsEmptyData */ = {
@@ -13691,12 +13715,13 @@
 			isa = PBXGroup;
 			children = (
 				CE8C14632CB91ADE0056090E /* URLManager.h */,
-				CE8C146C2CB91ADE0056090E /* URLManager@2 */,
 				CE8C14692CB91ADE0056090E /* URLManager@1 */,
+				CE8C146C2CB91ADE0056090E /* URLManager@2 */,
 				CE8C14722CB927540056090E /* URLManager@3 */,
 				CE8C14752CB927540056090E /* URLManager@4 */,
 				CE8C14782CB927540056090E /* URLManager@5 */,
 				CE8C147B2CB927540056090E /* URLManager@6 */,
+				8478DA812D01E1F8004E8B90 /* URLManager@7 */,
 			);
 			path = URLManager;
 			sourceTree = "<group>";
@@ -13758,6 +13783,7 @@
 		CE61AD372C9EAB26002DF138 /* FM_Api */ = {
 			isa = PBXGroup;
 			children = (
+				8478DA032D01E0AE004E8B90 /* KYC身份证上传【POST】 */,
 				CEE6E7242CB7FF2E00B1BB60 /* 获取会员KYC信息【GET】 */,
 				CEDE33112CB797CA005256B2 /* 存款优惠活动信息【POST】 */,
 				CE61AD182C9EAB26002DF138 /* 查询广告列表-支持游客：APP首页右下3Banner【GET】 */,
@@ -16122,6 +16148,7 @@
 				CE5A65B02CA833A4006D67A7 /* JobsAppDoorContentView.m in Sources */,
 				CE4F27652CA825CD002AF25B /* JobsSearchTableViewHeaderView.m in Sources */,
 				CE4F27662CA825CD002AF25B /* ForgetCodeStep_01View.m in Sources */,
+				8478DA042D01E0AE004E8B90 /* FM_kyc_image_upload_api.m in Sources */,
 				CE4F27672CA825CD002AF25B /* HourCell.m in Sources */,
 				CE4F27682CA825CD002AF25B /* JobsIMShowVC.m in Sources */,
 				CE4F27692CA825CD002AF25B /* JobsDropDownListVC.m in Sources */,
@@ -16514,6 +16541,7 @@
 				CE4F27F02CA825CD002AF25B /* ZMJTaskView.m in Sources */,
 				CE5A64AE2CA82EA7006D67A7 /* CADisplayLink_TimerManager.m in Sources */,
 				CE4F27F12CA825CD002AF25B /* JobsShootingVC.m in Sources */,
+				8478DA822D01E1F8004E8B90 /* NSObject+URLManager_7.m in Sources */,
 				CE4F27F22CA825CD002AF25B /* NotifiOperation.m in Sources */,
 				CE5A66222CA83709006D67A7 /* JobsCalenderView.m in Sources */,
 				CE5A66232CA83709006D67A7 /* RSAUtil.m in Sources */,

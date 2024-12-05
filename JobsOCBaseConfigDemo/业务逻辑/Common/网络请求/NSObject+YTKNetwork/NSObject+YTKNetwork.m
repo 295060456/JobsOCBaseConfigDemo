@@ -299,5 +299,23 @@
     if(successBlock) successBlock(chainReq);
     [chainReq start];// start to send request
 }
+/// 上传KYC的图片@POST
+-(void)uploadKYCImage:(NSData *)image
+         successBlock:(jobsByResponseModelBlock _Nullable)successBlock{
+    FM_kyc_image_upload_api *api = FM_kyc_image_upload_api.new;
+    self.handleErr(api);
+    @jobs_weakify(self)
+    [api.initBy(jobsMakeFileModel(^(__kindof JobsFileModel * _Nullable model) {
+        model.file = image;
+    })) startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        @jobs_strongify(self)
+        JobsResponseModel *responseModel = JobsMapResponseModelBy(request);
+        NSLog(@"");
+        if(successBlock) successBlock(responseModel);
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        @jobs_strongify(self)
+        NSLog(@"");
+    }];
+}
 
 @end

@@ -60,5 +60,7 @@ NS_INLINE JobsNetworkingEnvir networkingEnvir(NSInteger data) {
 #import "NSObject+URLManager_3.h"
 #import "NSObject+URLManager_4.h"
 #import "NSObject+URLManager_5.h"
+#import "NSObject+URLManager_6.h"
+#import "NSObject+URLManager_7.h"
 
 #endif /* URLManager_h */

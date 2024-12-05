@@ -7,6 +7,13 @@
 
 #import "DefineConstString.h"
 
+NSString *const GET = @"GET";
+NSString *const POST = @"POST";
+NSString *const PUT = @"PUT";
+NSString *const DELETE = @"DELETE";
+NSString *const PATCH = @"PATCH";
+NSString *const HEAD = @"HEAD";
+
 NSString *const ContentType = @"Content-Type";
 NSString *const Authorization = @"Authorization";
 

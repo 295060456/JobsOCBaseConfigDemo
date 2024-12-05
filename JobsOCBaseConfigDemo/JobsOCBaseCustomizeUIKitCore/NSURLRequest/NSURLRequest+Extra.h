@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YTKNetworkToolsHeader.h"
+#import "DefineConstString.h"
 #import "JobsBlock.h"
 
 #define GETMethod httpMethod(YTKRequestMethodGET);
@@ -17,6 +18,7 @@
 #define HEADMethod httpMethod(YTKRequestMethodHEAD);
 
 NS_INLINE void JobsPrintURLRequest(NSURLRequest *_Nonnull request){
+    if (!request) return;
     // 请求URL
     NSLog(@"请求URL:%@\n",request.URL);
     // 请求方式
@@ -37,12 +39,12 @@ NS_INLINE void JobsPrintURLRequest(NSURLRequest *_Nonnull request){
 
 NS_INLINE NSString * _Nullable httpMethod(YTKRequestMethod method){
     switch (method) {
-        case YTKRequestMethodGET:return @"GET";break;
-        case YTKRequestMethodPOST:return @"POST";break;
-        case YTKRequestMethodPUT:return @"PUT";break;
-        case YTKRequestMethodDELETE:return @"DELETE";break;
-        case YTKRequestMethodPATCH: return @"PATCH";break;
-        case YTKRequestMethodHEAD:return @"HEAD";break;
+        case YTKRequestMethodGET:return GET;break;
+        case YTKRequestMethodPOST:return POST;break;
+        case YTKRequestMethodPUT:return PUT;break;
+        case YTKRequestMethodDELETE:return DELETE;break;
+        case YTKRequestMethodPATCH: return PATCH;break;
+        case YTKRequestMethodHEAD:return HEAD;break;
         default:
             return @"";
             break;
