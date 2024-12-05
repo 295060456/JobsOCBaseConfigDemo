@@ -26,13 +26,13 @@ NS_INLINE void JobsPrintURLRequest(NSURLRequest *_Nonnull request){
     // 请求正文信息
     NSLog(@"请求正文信息:%@\n",request.HTTPBody.stringByUTF8Encoding);
     // 请求响应时间
-    NSLog(@"请求响应时间:%@\n",request.currentTimestampString);
+    NSLog(@"请求响应时间:%@\n",request.currentTimestampString(nil));
     NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",
           request.URL,
           request.HTTPMethod,
           request.allHTTPHeaderFields,
           request.HTTPBody.stringByUTF8Encoding,
-          request.currentTimestampString);
+          request.currentTimestampString(nil));
 }
 
 NS_INLINE NSString * _Nullable httpMethod(YTKRequestMethod method){

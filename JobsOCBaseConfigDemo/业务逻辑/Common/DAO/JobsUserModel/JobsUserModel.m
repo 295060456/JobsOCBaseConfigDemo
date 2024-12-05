@@ -137,7 +137,7 @@ static dispatch_once_t static_userModelOnceToken;
 #pragma mark —— 自动补全
 -(void)setExpireTime:(NSString *)expireTime{
     _expireTime = expireTime;
-    if(_expireTime) self.tokenExpireTime = _expireTime.jobsTime();
+    if(_expireTime) self.tokenExpireTime = _expireTime.chinaTime(nil);
     NSLog(@"Token 的过期时间是:%@-%@",expireTime,self.tokenExpireTime);
 }
 #pragma mark —— 默认值设置

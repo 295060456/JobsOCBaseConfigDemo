@@ -7,6 +7,9 @@
 
 #import "DefineConstString.h"
 
+NSString *const ContentType = @"Content-Type";
+NSString *const Authorization = @"Authorization";
+
 NSString *const 回车符号转义字符 = @"\r";       /// 回车符号转义字符
 NSString *const 零宽转义字符 = @"\u200B";      /// 零宽转义字符
 NSString *const JobsSeparation = @"/";       /// 分隔符

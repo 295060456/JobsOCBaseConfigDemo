@@ -13,7 +13,7 @@
 @property(nonatomic,strong)UILabel *countdownTimeLab;
 /// Data
 @property(nonatomic,strong)NSTimerManager *nsTimerManager;
-@property(nonatomic,strong)JobsFormatTime *formatTime;
+@property(nonatomic,strong)JobsTimeModel *formatTime;
 @property(nonatomic,strong)UIButtonModel *timerProcessModel;
 @property(nonatomic,copy)NSString *minutesStr;
 @property(nonatomic,copy)NSString *secondStr;
@@ -111,9 +111,9 @@ static dispatch_once_t static_countdownViewOnceToken;
     }return _nsTimerManager;
 }
 
--(JobsFormatTime *)formatTime{
+-(JobsTimeModel *)formatTime{
     if (!_formatTime) {
-        _formatTime = jobsMakeFormatTime(^(__kindof JobsFormatTime * _Nullable data) {
+        _formatTime = jobsMakeTimeModel(^(__kindof JobsTimeModel * _Nullable data) {
             data.year = JobsInternationalization(@"");
             data.month = JobsInternationalization(@"");
             data.day = JobsInternationalization(@"");

@@ -23,7 +23,9 @@ NS_INLINE NSString *JobsFormattedString(NSString *format, ...) {
 @interface NSString (Time)
 /// 当前时间戳较之当前时间是否已过期【过期返回YES】
 -(JobsReturnBOOLByVoidBlock _Nonnull)isExpired;
--(JobsReturnStringByVoidBlock _Nonnull)jobsTime;
+-(JobsReturnStringByStringBlock _Nonnull)chinaTime;
+/// （字符串）时间戳 转换为可读时间（系统默认时区）
+-(JobsReturnStringByStringBlock _Nonnull)readableTimeByFormatter;
 /// 时间戳（字符串）依据某一规范，格式化为能一目了然的时间（字符串）
 /// - Parameters:
 ///   - timeFormatter: timeFormatter

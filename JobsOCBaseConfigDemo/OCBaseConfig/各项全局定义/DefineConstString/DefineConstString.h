@@ -7,6 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXTERN NSString *_Nonnull const ContentType;
+FOUNDATION_EXTERN NSString *_Nonnull const Authorization;
+
 FOUNDATION_EXTERN NSString *_Nonnull const 回车符号转义字符;       /// 回车符号转义字符
 FOUNDATION_EXTERN NSString *_Nonnull const 零宽转义字符;          /// 零宽转义字符
 FOUNDATION_EXTERN NSString *_Nonnull const JobsSeparation;      /// 分隔符

@@ -192,17 +192,14 @@
     };
 }
 /// 将 NSTimeInterval 按照 NSDateFormatter 转换输出成人类可读的时间
--(JobsReturnStringByDateModelBlock _Nonnull)toVisualTimeBy{
-    return ^__kindof NSString *_Nullable(JobsDateModel *_Nullable dateModel){
+-(JobsReturnStringByTimeModelBlock _Nonnull)toReadableTimeBy{
+    return ^__kindof NSString *_Nullable(JobsTimeModel *_Nullable dateModel){
         if(dateModel.date){
-            return [jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
+            return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
                 dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
                 dateFormatter.dateFormat = @"yyyy-MM-dd"; /// 格式化为日期字符串
-            }) stringFromDate:dateModel.date] ;
-            
-        }else{
-            return [dateModel.dateFormatter stringFromDate:NSDate.dateBy(dateModel.timeInterval)];
-        }
+            }).stringByDate(dateModel.date);
+        }else return dateModel.dateFormatter.stringByDate(NSDate.initDateBy(dateModel.timeInterval));
     };
 }
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
@@ -560,15 +557,15 @@
     }
 }
 
--(NSMutableArray <ImageModel *>*_Nonnull)changeGifToImage:(NSData *_Nonnull)gifData{
+-(NSMutableArray <JobsImageModel *>*_Nonnull)changeGifToImage:(NSData *_Nonnull)gifData{
     /// 通过文件的url来将gif文件读取为图片数据引用
     CFDataRef my_cfdata = CFBridgingRetain(gifData);
     CGImageSourceRef source = CGImageSourceCreateWithData(my_cfdata, NULL);
     /// 获取gif文件里图片的个数
     size_t count = CGImageSourceGetCount(source);
-    return jobsMakeMutArr(^(__kindof NSMutableArray <ImageModel *>*_Nullable data) {
+    return jobsMakeMutArr(^(__kindof NSMutableArray <JobsImageModel *>*_Nullable data) {
         for (size_t i = 0; i < count; i++) {
-            data.add(jobsMakeImageModel(^(__kindof ImageModel * _Nullable imageModel) {
+            data.add(jobsMakeImageModel(^(__kindof JobsImageModel * _Nullable imageModel) {
                 CGImageRef image = CGImageSourceCreateImageAtIndex(source, i, NULL);
                 imageModel.image = UIImage.imageWithCGImage(image);
                 CGImageRelease(image);

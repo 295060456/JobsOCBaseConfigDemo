@@ -14,11 +14,13 @@
 #import "NSString+Conversion.h"
 #import "NSMutableArray+Extra.h"
 #import "JobsTimeModel.h"
-#import "JobsFormatTime.h"
+#import "DefineConstString.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (Time)
+/// 获取当前时间
+-(NSDate *)currentDate;
 /// 获取当日零点的时间戳（秒级）
 -(NSTimeInterval)todayZeroTime;
 /// 获取某天前零点的时间戳（秒级）
@@ -28,14 +30,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 返回的是（uint64_t）时间戳
 -(uint64_t)currentUnixTimeStampInMilliseconds;
 /// 返回带时间格式的当前时间字符串
--(NSString *)currentTimestampString;
+-(JobsReturnStringByStringBlock _Nonnull)currentTimestampString;
 /// 获取某天前的时间。默认时间格式 yyyy-MM-dd HH:mm:ss
 -(NSString *)timeAgo:(NSInteger)timeAgo dateFormat:(NSString *_Nullable)dateFormat;
 /// 获取某天前的时间。时间格式 yyyy-MM-dd HH:mm:ss
--(JobsReturnStringByIntegerBlock _Nonnull)daysAgoBy;
+-(JobsReturnStringByIntegersBlock _Nonnull)daysAgoBy;
 /// 将时间戳按照 yyyy-MM-dd HH:mm:ss 的格式转化为人类可读的时间
 /// 入参不能是毫秒级的时间戳
--(JobsReturnStringByTimeIntervalBlock _Nonnull)readableTimeByStyle1;
+-(JobsReturnStringByTimeIntervalsBlock _Nonnull)readableTimeByStyle1;
 #pragma mark —— 时间格式转换
 /// 字符串转时间格式
 -(JobsReturnDateFormatterByStringBlock _Nonnull)dateFormatterBy;
@@ -44,8 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 将某个（NSDate *）时间 转换格式
 /// @param date 一个指定的时间，若未指定则为当前时间
 /// @param timeFormatStr 时间格式 缺省值 @"MMM dd,yyyy HH:mm tt"
--(JobsTimeFormatterModel *)timeFormatterWithDate:(NSDate *_Nullable)date
-                                   timeFormatStr:(NSString *_Nullable)timeFormatStr;
+-(JobsTimeModel *)timeFormatterWithDate:(NSDate *_Nullable)date
+                          timeFormatStr:(NSString *_Nullable)timeFormatStr;
 /// NSDate * ---> NSString *   (NSDate*)时间 转 (NSString*)时间戳（毫秒级）
 /// @param date 不传值则为当前时间
 -(NSString *)dateConversionTimeStamp:(NSDate *_Nullable)date
@@ -55,26 +57,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// NSString * ---> NSString *   格式转换为   小时：分钟：秒
 /// @param totalTime 传入 秒
 -(NSString *)getHHMMSSFromStr:(NSString *_Nonnull)totalTime
-                   formatTime:(JobsFormatTime *_Nullable)formatTime;
+                   formatTime:(JobsTimeModel *_Nullable)formatTime;
 /// NSString * ---> NSString * 格式转换为  分钟：秒
 /// @param totalTime 传入 秒
 -(NSString *)getMMSSFromStr:(NSString *_Nonnull)totalTime
-                 formatTime:(JobsFormatTime *_Nullable)formatTime;
+                 formatTime:(JobsTimeModel *_Nullable)formatTime;
 /// 要完全支持所有时区，可以参考完整的 IANA 时区数据库 来添加所有可能的时区。
 /// 由于时区信息和名称可能会根据地区变化和政策更新，因此在实际项目中应根据需求动态获取时区数据，或者使用系统 API 自动处理时区。
--(JobsReturnTimeZoneByTypeBlock)timeZone;
-/// 以当前手机系统时间（包含了时区）为基准，给定一个日期偏移值（正值代表未来，负值代表过去，0代表现在），返回字符串特定格式的“星期几”
--(JobsReturnStringByIntegerBlock)whatDayOfWeekDistanceNow;
-/// 获取一个格式化的字符串时间
-/// @param date 传空则是当前iOS系统时间
-/// @param dateFormatStr 传空则格式是@"yyyy-MM-dd HH:mm:ss zzz"
--(NSString *)getDayWithDate:(NSDate *_Nullable)date
-              dateFormatStr:(NSString *_Nullable)dateFormatStr;
-/// NSDate 和 NSString相互转换
--(NSString *)dateString:(NSDate *)date
-       dateFormatterStr:(NSString *)dateFormatterStr;
+-(JobsReturnTimeZoneByTypeBlock _Nonnull)timeZone;
 /// NSDate * ---> NSTimeInterval
--(JobsReturnTimeIntervalByDateBlock)timeIntervalByDate;
+-(JobsReturnTimeIntervalByDateBlock _Nonnull)timeIntervalByDate;
 /// NSString * ---> NSTimeInterval
 -(NSTimeInterval)timeIntervalByDateStr:(NSString *_Nullable)dateStr
                          timeFormatter:(NSString *_Nullable)timeFormatter
@@ -88,9 +80,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 各个具体时间的拆解
 -(JobsTimeModel *)makeSpecificTime;
 /// 获得当前时间
--(JobsTimeFormatterModel *)currentTime;
+-(JobsTimeModel *)currentTime;
 /// 获得今天的时间：年/月/日
--(JobsReturnTimeFormatterModelByStringBlock _Nonnull)getToday;
+-(JobsReturnTimeModelByStringBlock _Nonnull)getToday;
 /// 可以获得两个日期之间的时间间隔
 /// @param startTime （给定） 开始时间【字符串格式】
 /// @param endTime （可以不用给定）结束时间【字符串格式】
@@ -144,3 +136,27 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+/**
+ 时间为2024-12-05 15:30:00（北京时间，UTC+8）。
+ 秒级时间戳：1701761400
+ 毫秒级别时间戳：1701761400000
+ 其对应的 NSTimeInterval timeInterval : 1701761400.0
+ 
+ 无论是秒级还是毫秒级时间戳，经过必要的处理后，最终的 NSTimeInterval 都是相同的
+ 
+ ❤️字符串时间戳转化为可读❤️
+ @"1701761400000".readableTimeByFormatter(@"yyyy-MM-dd");
+ @"1701761400".readableTimeByFormatter(@"yyyy-MM-dd");
+ ❤️NSDate 类型的时间转化为可读❤️
+ NSDate.date.toReadableTime(jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
+               data.dateFormat = @"yyyy"
+                   .add(@"-")
+                   .add(@"MM");
+           }));
+
+ NSDate.date.toReadableTimeBy(@"yyyy".add(@"-").add(@"MM"));
+ ❤️NSTimeInterval 类型的时间转化为可读❤️
+ self.toReadableTimeBy(timeInterval);
+ 或者:
+ self.dateByTimeInterval(111).toReadableTime(nil);
+ */

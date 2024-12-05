@@ -6242,11 +6242,43 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }
       ```
 
-### 20、字符串定义 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 20、时间戳的处理 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+ 时间为2024-12-05 15:30:00（北京时间，UTC+8）。
+ 秒级时间戳：1701761400
+ 毫秒级别时间戳：1701761400000
+ 其对应的 NSTimeInterval timeInterval : 1701761400.0
+
+* 字符串时间戳转化为可读
+
+  ```objective-c
+    @"1701761400000".readableTimeByFormatter(@"yyyy-MM-dd");
+    @"1701761400".readableTimeByFormatter(@"yyyy-MM-dd");
+  ```
+* NSDate 类型的时间转化为可读
+
+  ```objective-c
+  NSDate.date.toReadableTime(jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
+                data.dateFormat = @"yyyy"
+                    .add(@"-")
+                    .add(@"MM");
+            }));
+
+  NSDate.date.toReadableTimeBy(@"yyyy".add(@"-").add(@"MM"));
+  ```
+* NSTimeInterval 类型的时间转化为可读（无论是秒级还是毫秒级时间戳，经过必要的处理后，最终的 NSTimeInterval 都是相同的）
+
+  ```objective-c
+  self.toReadableTimeBy(timeInterval);
+  或者:
+  self.dateByTimeInterval(111).toReadableTime(nil);
+  ```
+
+### 21、字符串定义 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 *  在`*.h`文件中定义
    
-   ```objective-c
+  ```objective-c
    FOUNDATION_EXTERN NSString *const 皇冠符号;
   ```
   
@@ -6268,7 +6300,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   NSString *const UserDefaultKey_AppLanguage = @"AppLanguage";
   ```
 
-### 21、<font color=red>**万物回调**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 22、<font color=red>**万物回调**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 产生背景：点击事件的带参回调
 
@@ -6288,7 +6320,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }];
   ```
 
-### 22、系统相机相册调取 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 23、系统相机相册调取 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 借助第三方[**`HXPhotoPicker`**](https://github.com/SilenceLove/HXPhotoPicker)
 
@@ -6358,7 +6390,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }];
   ```
 
-### 23、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 24、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 在 **OC**中，`static` 关键字用于声明静态变量。这些变量在整个应用程序的生命周期内只会被初始化一次，并且它们的作用域仅限于定义它们的文件
 
@@ -6443,7 +6475,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 24、打开`URL` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 25、打开`URL` <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**@interface NSObject (OpenURL)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+OpenURL)
 
@@ -6464,7 +6496,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               }];
   ```
 
-### 25、数据库 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 26、数据库 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * **FMDB**
 
@@ -6751,13 +6783,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     @end
     ```
 
-### 26、指纹识别 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 27、指纹识别 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 关注实现类：[**@interface  TouchID : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/TouchID)
 
-### 27、<font id=创建UICollectionView color=red>创建**`UICollectionView`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 28、<font id=创建UICollectionView color=red>创建**`UICollectionView`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 27.1、关于**`UICollectionView`**
+#### 28.1、关于**`UICollectionView`**
 
 * 设置为NO，使得`UICollectionView`只能上拉，不能下拉
 
@@ -7014,11 +7046,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```
 
 
-#### 27.2、关于**`UICollectionViewFlowLayout`**
+#### 28.2、关于**`UICollectionViewFlowLayout`**
 
   * `UICollectionView` 的一个布局对象，用于定义网格布局
   
-  * ```objective-c
+  * 
+  ```objective-c
     @jobs_weakify(self)
     _collectionView = BaseCollectionView.initByLayout(jobsMakeCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
         @jobs_strongify(self)
@@ -7029,16 +7062,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //  data.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
     }));
   ```
-  
-  * 在`UICollectionViewFlowLayout`和`UICollectionViewDelegateFlowLayout`协议方法中设置布局属性时，<font color=red>**`UICollectionViewDelegateFlowLayout`协议方法的优先级更高**</font>。也就是说，如果你同时在`UICollectionViewFlowLayout`对象和`UICollectionViewDelegateFlowLayout`方法中设置了布局属性，集合视图将优先使用`UICollectionViewDelegateFlowLayout`方法中提供的值
 
-#### 27.3、[<font color=red>**`UICollectionView`实现重叠的卡包效果**</font>](https://github.com/TMMMMMS/TMSWalletLayout)
+ *  在`UICollectionViewFlowLayout`和`UICollectionViewDelegateFlowLayout`协议方法中设置布局属性时，<font color=red>**`UICollectionViewDelegateFlowLayout`协议方法的优先级更高**</font>。也就是说，如果你同时在`UICollectionViewFlowLayout`对象和`UICollectionViewDelegateFlowLayout`方法中设置了布局属性，集合视图将优先使用`UICollectionViewDelegateFlowLayout`方法中提供的值
+
+#### 28.3、[<font color=red>**`UICollectionView`实现重叠的卡包效果**</font>](https://github.com/TMMMMMS/TMSWalletLayout)
 
 * [**@interface TMSCollectionViewLayout : UICollectionViewLayout**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/WalletLayout/TMSCollectionViewLayout)
 * [**@interface TMSWalletCollectionReusableView : UICollectionReusableView<BaseViewProtocol,BaseProtocol>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/WalletLayout/TMSWalletCollectionReusableView)
 * [**@interface TMSWalletCollectionViewCell : UICollectionViewCell<BaseViewProtocol>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/WalletLayout/TMSWalletCollectionViewCell)
 
-#### 27.4、<font color=red id=关于UICollectionView的注册机制>关于**`UICollectionView`**的注册机制</font>
+#### 28.4、<font color=red id=关于UICollectionView的注册机制>关于**`UICollectionView`**的注册机制</font>
 
 * 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
 
@@ -7075,7 +7108,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         });
     }
   ```
-
+  
     ```objective-c
     +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                              forIndexPath:(nonnull NSIndexPath *)indexPath{
@@ -7095,9 +7128,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         
         return cell;
     }
-    ```
+  ```
 
-#### 27.5、一些用做基类的**`UICollectionViewCell`**
+#### 28.5、一些用做基类的**`UICollectionViewCell`**
 
 * **`BaseCollectionViewCell`**
 * **`JobsBaseCollectionViewCell`**
@@ -7106,7 +7139,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * **`JobsImageViewStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`ImageView`**
 * **`JobsTextFieldStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`TextField`**
 
-#### 27.6、**`UICollectionView`**的完整调用
+#### 28.6、**`UICollectionView`**的完整调用
 
 * <details id="UICollectionView的完整调用">
    <summary><strong>点我查看</strong></summary>
@@ -7323,9 +7356,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    
    </details>
 
-### 28、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 29、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 28.1、关于<font color=red>**`UITableView`**</font>
+#### 29.1、关于<font color=red>**`UITableView`**</font>
 
 * <font color=red>**`UITableView`**的生命周期</font>
 
@@ -8075,7 +8108,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
   
   </details>
-#### 28.2、关于<font id=UITableViewHeaderFooterView color=red>**`UITableViewHeaderFooterView`**</font>（**`viewForHeaderInSection`**）
+#### 29.2、关于<font id=UITableViewHeaderFooterView color=red>**`UITableViewHeaderFooterView`**</font>（**`viewForHeaderInSection`**）
 
 * **`UICollectionView`**没有类型相关的东西，有如下替代方案
 
@@ -8440,7 +8473,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    @end
    ```
 
-#### 28.3、**`UITableViewCell`**
+#### 29.3、**`UITableViewCell`**
 
 * **`UITableViewCell`**的自带样式。关注实现类：[**@implementation UITableViewCell (UITableViewCellProtocol)**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UITableViewCell/UITableViewCell%2BCategory/UITableViewCell%2BUITableViewCellProtocol/UITableViewCell%2BUITableViewCellProtocoll.m)
 
@@ -8630,7 +8663,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   #endif
   ```
 
-#### 28.4、锚定点击的控件下方（动画）出现的下拉菜单[**`JobsDropDownListView`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsDropDownListView)
+#### 29.4、锚定点击的控件下方（动画）出现的下拉菜单[**`JobsDropDownListView`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsDropDownListView)
 
 ![image-20240803101851035](./assets/image-20240803101851035.png)
 
@@ -8714,7 +8747,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 29、**`JobsStepView`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 30、**`JobsStepView`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ![Xnip2024-08-01_15-38-18](./assets/Xnip2024-08-01_15-38-18.jpg)
 
@@ -8776,9 +8809,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   ```
 
 
-### 30、关于**`UITabBarController`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+### 31、关于**`UITabBarController`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 30.1、架构说明
+#### 31.1、架构说明
 
 * <font color=red>`JobsTabBarVC`</font>：**`UITabBarController`**
   * `JobsTabBarItemConfig`：**`NSObject`**
@@ -8798,653 +8831,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   * `LZTabBarConfig` ：**`NSObject`**
   * `LZTabBarItem`：**`UIView`**
 
-#### 30.2、[自定义 **`UITabBarController`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/UITabBarCtr/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md)
+#### 31.2、[自定义 **`UITabBarController`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/UITabBarCtr/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md)
 
-### 31、联动视图的解决方案 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
-
-#### 31.1、[**`JXCategoryView`**](https://github.com/pujiaxin33/JXCategoryView)
-
-* 评价
-
-  * 是一个针对`UIViewController`的视图联动，<font color=red>所属可滑动的子部是`UIViewController`的子类</font>
-  * <font color=red>**但是因为`View`上不能添加`UIViewController`，所以在某些场景的使用会有一定局限**</font>
-  * <font color=red>**垂直方向的使用会有局限。所以[`JXCategoryView`](https://github.com/pujiaxin33/JXCategoryView)是针对的水平场景**</font>
-  
-* 集成方式
-
-  ```ruby
-  pod 'JXCategoryView' # https://github.com/pujiaxin33/JXCategoryView NO_SMP
-  pod 'JXPagingView/Pager' # https://github.com/pujiaxin33/JXPagingView NO_SMP
-  # pod 'JXCategoryViewExt' # https://github.com/QuintGao/JXCategoryViewExt 来自于另外一个作者的优化
-  ```
-  
-  ```objective-c
-  #if __has_include(<JXCategoryView/JXCategoryView.h>)
-  #import <JXCategoryView/JXCategoryView.h>
-  #else
-  #import "JXCategoryView.h"
-  #endif
-  ```
-  
-  ```objective-c
-  <
-  JXCategoryTitleViewDataSource
-  ,JXCategoryListContainerViewDelegate
-  ,JXCategoryViewDelegate
-  >
-  ```
-  
-* 公共部分
-
-  * 定义高度
-
-    ```objective-c
-    #ifndef listContainerViewDefaultOffset
-    #define listContainerViewDefaultOffset JobsWidth(50)
-    #endif
-    ```
-
-  * UI部分
-
-    * ```objective-c
-      @property(nonatomic,strong)JXCategoryTitleView *categoryView;/// 文字
-      ```
-
-    * ```objective-c
-      @property(nonatomic,strong)JXCategoryDotView *categoryView;/// 右上角带红点
-      ```
-
-    * ```objective-c
-      @property(nonatomic,strong)JXCategoryImageView *categoryView;/// 纯图
-      ```
-
-    * ```objective-c
-      @property(nonatomic,strong)JXCategoryNumberView *categoryView;/// 右上角带文字
-      ```
-
-    * ```objective-c
-      @property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
-      @property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
-      @property(nonatomic,strong)JXCategoryIndicatorBackgroundView *categoryBgView;
-      ```
-
-  * Data部分
-
-    ```objective-c
-    @property(nonatomic,strong)NSMutableArray <NSString *>*titleMutArr;
-    @property(nonatomic,strong)NSMutableArray <NSString *>*imageNames;
-    @property(nonatomic,strong)NSMutableArray <NSString *>*selectedImageNames;
-    @property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
-    ```
-
-  * ```objective-c
-    -(JXCategoryIndicatorBackgroundView *)categoryBgView{
-        if (!_categoryBgView) {
-            _categoryBgView = JXCategoryIndicatorBackgroundView.new;
-            _categoryBgView.indicatorHeight = JobsWidth(30);
-            _categoryBgView.indicatorWidth = JobsWidth(76);
-            _categoryBgView.indicatorColor = HEXCOLOR(0xFFEABA);
-            _categoryBgView.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
-        }return _categoryBgView;
-    }
-    
-    -(JXCategoryIndicatorLineView *)lineView{
-        if (!_lineView) {
-            _lineView = JXCategoryIndicatorLineView.new;
-            _lineView.indicatorColor = HEXCOLOR(0xFFEABA);
-            _lineView.indicatorHeight = JobsWidth(4);
-            _lineView.indicatorWidthIncrement = JobsWidth(10);
-            _lineView.verticalMargin = 0;
-        }return _lineView;
-    }
-    /// 此属性决定依附于此的viewController
-    -(JXCategoryListContainerView *)listContainerView{
-        if (!_listContainerView) {
-            _listContainerView = [JXCategoryListContainerView.alloc initWithType:JXCategoryListContainerType_CollectionView
-                                                                        delegate:self];
-            _listContainerView.defaultSelectedIndex = 1;// 默认从第二个开始显示
-            [self.view addSubview:_listContainerView];
-            [_listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //            make.edges.equalTo(self.view);
-                make.top.equalTo(self.infoBoardView.mas_bottom).offset(listContainerViewDefaultOffset);
-                make.left.right.bottom.equalTo(self.view);
-                
-            }];
-            [self.view layoutIfNeeded];
-            
-            /// ❤️在需要的地方写❤️
-            NSNumber *currentIndex = [self.listContainerView valueForKey:@"currentIndex"];
-            NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
-            
-        }return _listContainerView;
-    }
-    
-    -(NSMutableArray<NSString *> *)titleMutArr{
-        if (!_titleMutArr) {
-            _titleMutArr = NSMutableArray.array;
-            [_titleMutArr addObject:JobsInternationalization(@"全部游戏")];
-            [_titleMutArr addObject:JobsInternationalization(@"真人")];
-            [_titleMutArr addObject:JobsInternationalization(@"体育")];
-            [_titleMutArr addObject:JobsInternationalization(@"电子")];
-            [_titleMutArr addObject:JobsInternationalization(@"棋牌")];
-            [_titleMutArr addObject:JobsInternationalization(@"彩票")];
-        }return _titleMutArr;
-    }
-    
-    -(NSMutableArray<__kindof UIViewController *> *)childVCMutArr{
-        if (!_childVCMutArr) {
-            _childVCMutArr = NSMutableArray.array;
-            [_childVCMutArr addObject:BaiShaETProjAllGameVC.new];// 全部游戏
-            [_childVCMutArr addObject:BaiShaETProjManVideoVC.new];// 真人
-            [_childVCMutArr addObject:BaiShaETProjSportVC.new];// 体育
-            [_childVCMutArr addObject:BaiShaETProjGameOnllineVC.new];// 电子
-            [_childVCMutArr addObject:BaiShaETProjChessPokerVC.new];// 棋牌
-            [_childVCMutArr addObject:BaiShaETProjLotteryVC.new];// 彩票
-        }return _childVCMutArr;
-    }
-    ```
-
-  * 协议部分，主要是以下3个协议
-
-    * **`JXCategoryTitleViewDataSource`**
-
-      ```objective-c
-      #pragma mark JXCategoryTitleViewDataSource
-      //// 如果将JXCategoryTitleView嵌套进UITableView的cell，每次重用的时候，JXCategoryTitleView进行reloadData时，会重新计算所有的title宽度。所以该应用场景，需要UITableView的cellModel缓存titles的文字宽度，再通过该代理方法返回给JXCategoryTitleView。
-      //// 如果实现了该方法就以该方法返回的宽度为准，不触发内部默认的文字宽度计算。
-      //- (CGFloat)categoryTitleView:(JXCategoryTitleView *)titleView
-      //               widthForTitle:(NSString *)title{
-      //
-      //    return 10;
-      //}
-      ```
-
-    * **`JXCategoryListContainerViewDelegate`**
-
-      ```objective-c
-      #pragma mark JXCategoryListContainerViewDelegate
-      /**
-       返回list的数量
-      
-       @param listContainerView 列表的容器视图
-       @return list的数量
-       */
-      - (NSInteger)numberOfListsInlistContainerView:(JXCategoryListContainerView *)listContainerView{
-          return self.titleMutArr.count;
-      }
-      /**
-       根据index初始化一个对应列表实例，需要是遵从`JXCategoryListContentViewDelegate`协议的对象。
-       如果列表是用自定义UIView封装的，就让自定义UIView遵从`JXCategoryListContentViewDelegate`协议，该方法返回自定义UIView即可。
-       如果列表是用自定义UIViewController封装的，就让自定义UIViewController遵从`JXCategoryListContentViewDelegate`协议，该方法返回自定义UIViewController即可。
-      
-       @param listContainerView 列表的容器视图
-       @param index 目标下标
-       @return 遵从JXCategoryListContentViewDelegate协议的list实例
-       */
-      - (id<JXCategoryListContentViewDelegate>)listContainerView:(JXCategoryListContainerView *)listContainerView
-                                                initListForIndex:(NSInteger)index{
-          return self.childVCMutArr[index];
-      }
-      ```
-
-    * **`JXCategoryViewDelegate`**
-
-      ```objective-c
-      #pragma mark JXCategoryViewDelegate
-      ///【点击的结果】点击选中的情况才会调用该方法。传递didClickSelectedItemAt事件给listContainerView
-      - (void)categoryView:(JXCategoryBaseView *)categoryView
-      didClickSelectedItemAtIndex:(NSInteger)index {
-          [self.listContainerView didClickSelectedItemAtIndex:index];
-      }
-      ///【点击选中或者滚动选中的结果】点击选中或者滚动选中都会调用该方法。适用于只关心选中事件，不关心具体是点击还是滚动选中的。
-      - (void)categoryView:(JXCategoryBaseView *)categoryView
-      didSelectedItemAtIndex:(NSInteger)index {
-          
-      }
-      ///【滚动选中的结果】滚动选中的情况才会调用该方法
-      - (void)categoryView:(JXCategoryBaseView *)categoryView 
-      didScrollSelectedItemAtIndex:(NSInteger)index{
-          
-      }
-      /// 传递scrolling事件给listContainerView，必须调用！！！
-      - (void)categoryView:(JXCategoryBaseView *)categoryView
-      scrollingFromLeftIndex:(NSInteger)leftIndex
-              toRightIndex:(NSInteger)rightIndex
-                     ratio:(CGFloat)ratio {
-          NSLog(@"");
-      //    [self.listContainerView scrollingFromLeftIndex:leftIndex
-      //                                      toRightIndex:rightIndex
-      //                                             ratio:ratio
-      //                                     selectedIndex:categoryView.selectedIndex];
-      }
-      ```
-
-* 手动跳转到某个指定的页面
-
-  ```objective-c
-  [self.categoryTitleView selectItemAtIndex:3];
-  ```
-
-* 不同风格的`JXCategory`的实现
-
-  * ```objective-c
-    -(JXCategoryTitleView *)categoryView{
-        if (!_categoryView) {
-            _categoryView = JXCategoryTitleView.new;
-            _categoryView.backgroundColor = UIColor.clearColor;
-            _categoryView.titleSelectedColor = UIColor.whiteColor;
-            _categoryView.titleColor = UIColor.whiteColor;
-            _categoryView.titleFont = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
-            _categoryView.titleSelectedFont = [UIFont systemFontOfSize:28 weight:UIFontWeightRegular];
-            _categoryView.delegate = self;
-            _categoryView.titles = self.titleMutArr;
-            _categoryView.titleColorGradientEnabled = YES;
-            _categoryView.indicators = @[self.lineView];//
-            _categoryView.defaultSelectedIndex = 1;// 默认从第二个开始显示
-            _categoryView.cellSpacing = JobsWidth(-20);
-            // 关联cotentScrollView，关联之后才可以互相联动！！！
-            _categoryView.contentScrollView = self.listContainerView.scrollView;//
-            _categoryView.indicators = @[self.categoryBgView];/// BackgroundView 椭圆形
-            [self.view addSubview:_categoryView];
-            [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.infoBoardView.mas_bottom).offset(0);
-                make.left.right.equalTo(self.view);
-                make.height.mas_equalTo(listContainerViewDefaultOffset);
-            }];
-            [self.view layoutIfNeeded];
-        }return _categoryView;
-    }
-    ```
-
-  * ```objective-c
-    -(JXCategoryImageView *)categoryView{
-        if (!_categoryView) {
-            _categoryView = JXCategoryImageView.new;
-            _categoryView.backgroundColor = UIColor.clearColor;
-            _categoryView.delegate = self;
-    
-            _categoryView.imageNames = @[@"彩票_已选择",@"电子_已选择",@"棋牌_已选择",@"全部游戏_已选择",@"体育_已选择",@"真人直播_已选择"];
-            _categoryView.selectedImageNames = @[@"彩票_已选择",@"电子_已选择",@"棋牌_已选择",@"全部游戏_已选择",@"体育_已选择",@"真人直播_已选择"];
-            
-            //_categoryView.imageInfoArray = @[@"彩票_已选择",@"电子_已选择",@"棋牌_已选择",@"全部游戏_已选择",@"体育_已选择",@"真人直播_已选择"];
-            //@[KIMG(@"彩票_已选择"),KIMG(@"电子_已选择"),KIMG(@"棋牌_已选择"),KIMG(@"全部游戏_已选择"),KIMG(@"体育_已选择"),KIMG(@"真人直播_已选择")];
-            //_categoryView.selectedImageInfoArray = @[@"彩票_已选择",@"电子_已选择",@"棋牌_已选择",@"全部游戏_已选择",@"体育_已选择",@"真人直播_已选择"];
-            
-            _categoryView.imageSize = CGSizeMake(JobsWidth(30), JobsWidth(30));
-            _categoryView.imageCornerRadius = JobsWidth(8);
-            _categoryView.imageZoomEnabled = YES;
-            _categoryView.imageZoomScale = 2;
-    
-            _categoryView.indicators = @[self.lineView];//
-            _categoryView.defaultSelectedIndex = 1;// 默认从第二个开始显示
-            _categoryView.cellSpacing = JobsWidth(-20);
-            // 关联cotentScrollView，关联之后才可以互相联动！！！
-            _categoryView.contentScrollView = self.listContainerView.scrollView;//
-            _categoryView.indicators = @[self.categoryBgView];/// BackgroundView 椭圆形
-            [self.view addSubview:_categoryView];
-            [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.infoBoardView.mas_bottom).offset(0);
-                make.left.right.equalTo(self.view);
-                make.height.mas_equalTo(listContainerViewDefaultOffset);
-            }];
-            [self.view layoutIfNeeded];
-        }return _categoryView;
-    }
-    ```
-
-  * ```objective-c
-    -(JXCategoryDotView *)categoryTitleView{
-        if (!_categoryTitleView) {
-            _categoryTitleView = JXCategoryDotView.new;
-            _categoryTitleView.delegate = self;
-            _categoryTitleView.dotStates = self.dotStatesMutArr;
-            _categoryTitleView.titles = self.titleMutArr;
-            _categoryTitleView.indicators = @[self.lineView];
-            _categoryTitleView.backgroundColor = HEXCOLOR(0xFCFBFB);
-            _categoryTitleView.titleSelectedColor = HEXCOLOR(0xAE8330);
-            _categoryTitleView.titleColor = HEXCOLOR(0xC4C4C4);
-            _categoryTitleView.titleFont = notoSansRegular(12);
-            _categoryTitleView.titleSelectedFont = notoSansRegular(12);
-            _categoryTitleView.defaultSelectedIndex = 1;//默认从第二个开始显示
-            _categoryTitleView.titleColorGradientEnabled = YES;
-    //        _categoryTitleView.titleLabelZoomEnabled = YES;//默认为NO。为YES时titleSelectedFont失效，以titleFont为准。这句话貌似有点问题，等作者回复
-            _categoryTitleView.listContainer = self.listContainerView;
-            _categoryView.indicators = @[self.categoryBgView];/// BackgroundView 椭圆形
-            _categoryTitleView.dotSize = CGSizeMake(JobsWidth(5), JobsWidth(5));
-            // 关联cotentScrollView，关联之后才可以互相联动！！！
-            _categoryTitleView.contentScrollView = self.listContainerView.scrollView;
-            [_categoryTitleView reloadDataWithoutListContainer];
-            [self.view addSubview:_categoryTitleView];
-            [_categoryTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.topLineLab.mas_bottom);
-                make.left.right.equalTo(self.view);
-                make.height.mas_equalTo(listContainerViewDefaultOffset);
-            }];
-        }return _categoryTitleView;
-    }
-    ```
-
-    ```objective-c
-    @property(nonatomic,strong)NSMutableArray <NSNumber *>*dotStatesMutArr;
-    -(NSMutableArray<NSNumber *> *)dotStatesMutArr{
-        if (!_dotStatesMutArr) {
-            _dotStatesMutArr = NSMutableArray.array;
-            [_dotStatesMutArr addObject:@YES];
-            [_dotStatesMutArr addObject:@NO];
-            [_dotStatesMutArr addObject:@YES];
-            [_dotStatesMutArr addObject:@NO];
-            [_dotStatesMutArr addObject:@YES];
-        }return _dotStatesMutArr;
-    }
-    
-    - (void)categoryView:(JXCategoryBaseView *)categoryView
-    didSelectedItemAtIndex:(NSInteger)index {
-        self.navigationController.interactivePopGestureRecognizer.enabled = (index == 0);
-        //点击以后红点消除
-        if ([self.dotStatesMutArr[index] boolValue]) {
-            self.dotStatesMutArr[index] = @(NO);
-            self.categoryTitleView.dotStates = self.dotStatesMutArr;
-            [categoryView reloadCellAtIndex:index];
-        }
-    }
-    ```
-    
-  * ```objective-c
-    -(JXCategoryNumberView *)categoryTitleView{
-        if (!_categoryTitleView) {
-            _categoryTitleView = JXCategoryNumberView.new;
-            _categoryTitleView.delegate = self;
-            _categoryTitleView.titles = self.titleMutArr;
-            _categoryTitleView.indicators = @[self.lineView];
-            _categoryTitleView.backgroundColor = HEXCOLOR(0xFCFBFB);
-            _categoryTitleView.titleSelectedColor = HEXCOLOR(0xAE8330);
-            _categoryTitleView.titleColor = HEXCOLOR(0xC4C4C4);
-            _categoryTitleView.titleFont = notoSansRegular(12);
-            _categoryTitleView.titleSelectedFont = notoSansRegular(12);
-            _categoryTitleView.defaultSelectedIndex = 1;//默认从第二个开始显示
-            _categoryTitleView.titleColorGradientEnabled = YES;
-    //        _categoryTitleView.titleLabelZoomEnabled = YES;//默认为NO。为YES时titleSelectedFont失效，以titleFont为准。这句话貌似有点问题，等作者回复
-            _categoryTitleView.listContainer = self.listContainerView;
-            _categoryTitleView.counts = self.numberMutArr;
-            _categoryTitleView.numberLabelOffset = CGPointMake(JobsWidth(5), JobsWidth(2));
-            /// 内部默认不会格式化数字，直接转成字符串显示。比如业务需要数字超过999显示999+，可以通过该block实现。
-            _categoryTitleView.numberStringFormatterBlock = ^NSString *(NSInteger number) {
-                if (number > 999) {
-                    return @"999+";
-                }
-                return [NSString stringWithFormat:@"%ld", (long)number];
-            };
-            /// 关联cotentScrollView，关联之后才可以互相联动！！！
-            _categoryTitleView.contentScrollView = self.listContainerView.scrollView;
-            _categoryView.indicators = @[self.categoryBgView];/// BackgroundView 椭圆形
-            [_categoryTitleView reloadDataWithoutListContainer];
-            [self.view addSubview:_categoryTitleView];
-            [_categoryTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.topLineLab.mas_bottom);
-                make.left.right.equalTo(self.view);
-                make.height.mas_equalTo(listContainerViewDefaultOffset);
-            }];
-        }return _categoryTitleView;
-    }
-    ```
-
-#### 31.2、[**`JobsToggleView`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/JobsToggleView)优化自[**`RPTaggedNavView`**](https://github.com/RollingPin/RPTaggedNavView)
-
-* `JobsToggleBaseView`
-  * <font color=red>**这是一个纯视图**</font> 对外调用这个视图容器
-  
-  * ```objective-c
-    @property(nonatomic,strong,readonly)JobsToggleNavView *taggedNavView;
-    @property(nonatomic,strong,readonly)UIScrollView *bgScroll;
-    ```
-  
-  * 点击了导航的按钮以后在`JobsToggleBaseView`的`scrollviewDelegate`实现滚动逻辑
-  
-  * <font color=red>点击和手动滑动最后都会触发`-(jobsByNSIntegerBlock _Nonnull)selectingOneTagWithIndex`</font>
-  
-  * 点击和手动滑动最后都会进入`- (void)scrollViewDidScroll:(UIScrollView *)scrollView`，但是，因为`- (void)scrollViewDidScroll:(UIScrollView *)scrollView`要反复调用，<u>所以将视图手动滚动逻辑的生命周期提前到`-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate`</u>
-  
-* `JobsToggleNavView`
-  * 上部的导航栏
-  * 可点击部分由`UIButton`构成，并匹配了系统最新的Api，丰富使用
-  * 每一个`Button`用`UIButtonModel`进行渲染
-  
-* 使用方式
-  
-  ```objective-c
-  @property(nonatomic,strong)JobsToggleBaseView *toggleBaseView;
-  @property(nonatomic,strong)Login_account_code_view *account_code_view;
-  @property(nonatomic,strong)Login_verification_code_view *verification_code_view;
-  ```
-  
-  ```objective-c
-  -(JobsToggleBaseView *)toggleBaseView{
-      if(!_toggleBaseView){
-          @jobs_weakify(self)
-          _toggleBaseView = JobsToggleBaseView.new;
-          _toggleBaseView.btn_each_offset = JobsWidth(8);
-          [self addSubview:_toggleBaseView];
-          [_toggleBaseView mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.size.mas_equalTo(JobsToggleBaseView.viewSizeByModel(nil));
-              make.top.equalTo(self.titleLab.mas_bottom);
-              make.centerX.equalTo(self);
-          }];
-          [self layoutIfNeeded];
-          _toggleBaseView.taggedNavView_width = JobsWidth(94 * 2);//LoginView.viewSizeByModel(nil).width / 2;
-          _toggleBaseView.taggedNavView_height = JobsWidth(24);
-          _toggleBaseView.taggedNavViewBgColor = JobsClearColor.colorWithAlphaComponent(0);
-          _toggleBaseView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
-              data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                  @jobs_strongify(self)
-                  data1.backgroundImage = JobsIMG(@"PHONE_NO_未点击");
-                  data1.selected_backgroundImage = JobsIMG(@"PHONE_NO_已点击");
-                  data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-                  data1.title = JobsInternationalization(@"PHONE NO.");
-                  data1.titleCor = JobsClearColor;
-                  data1.selected_titleCor = JobsClearColor;
-                  data1.roundingCorners = UIRectCornerAllCorners;
-                  data1.view = self.verification_code_view;
-                  data1.clickEventBlock = ^id _Nullable(__kindof UIButton *_Nullable x){
-                      @jobs_strongify(self)
-                      if(KindOfBaseButtonCls(x)){
-                          self.toggleBaseView.switchViewsBy(x.index);
-                      }return nil;
-                  };
-              }));
-              data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                  @jobs_strongify(self)
-                  data1.backgroundImage = JobsIMG(@"ACCOUNT_NAME_未点击");
-                  data1.selected_backgroundImage = JobsIMG(@"ACCOUNT_NAME_已点击");
-                  data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-                  data1.title = JobsInternationalization(@"ACCOUNT NAME");
-                  data1.titleCor = JobsClearColor;
-                  data1.selected_titleCor = JobsClearColor;
-                  data1.roundingCorners = UIRectCornerAllCorners;
-                  data1.view = self.account_code_view;
-                  data1.clickEventBlock = ^id _Nullable(__kindof UIButton *_Nullable x){
-                      @jobs_strongify(self)
-                      if(KindOfBaseButtonCls(x)){
-                          self.toggleBaseView.switchViewsBy(x.index);
-                      }return nil;
-                  };
-              }));
-          }));
-      }return _toggleBaseView;
-  }
-  
-  -(Login_verification_code_view *)verification_code_view{
-      if(!_verification_code_view){
-          _verification_code_view = Login_verification_code_view.new;
-          _verification_code_view.Size = _verification_code_view.viewSizeByModel(nil);
-          _verification_code_view.jobsRichViewByModel(nil);
-          @jobs_weakify(self)
-          [_verification_code_view actionObjectBlock:^(id  _Nullable data) {
-              if(KindOfBtnCls(data)){
-                  UIButton *btn = (UIButton *)data;
-                  @jobs_strongify(self)
-                  if(btn.titleForNormalState){
-                      if(btn.titleForNormalState.isEqualToString(JobsInternationalization(@"GET_CODE"))){
-                          if (self.objectBlock) self.objectBlock(JobsInternationalization(@"GET_CODE"));
-                      }
-                      if(btn.titleForNormalState.isEqualToString(JobsInternationalization(@"是否显示密码明文"))){
-                          if (self.objectBlock) self.objectBlock(JobsInternationalization(@"是否显示密码明文"));
-                      }
-                      if(btn.titleForNormalState.isEqualToString(JobsInternationalization(@"Forgot Password?"))){
-                          if (self.objectBlock) self.objectBlock(JobsInternationalization(@"Forgot Password?"));
-                      }
-                      if(btn.titleForNormalState.isEqualToString(JobsInternationalization(@"LOGIN"))){
-                          if (self.objectBlock) self.objectBlock(JobsInternationalization(@"LOGIN"));
-                      }
-                  }
-              }
-          }];
-      }return _verification_code_view;
-  }
-  
-  -(Login_account_code_view *)account_code_view{
-      if(!_account_code_view){
-          _account_code_view = Login_account_code_view.new;
-          _account_code_view.Size = _account_code_view.viewSizeByModel(nil);
-          _account_code_view.jobsRichViewByModel(nil);
-      }return _account_code_view;
-  }
-  ```
-
-#### 31.3、[**`JobsLinkageMenuView`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/JobsLinkageMenuView)优化自 [**`LinkageMenuView`**](https://github.com/EmotionV/LinkageMenu)
-
-* <font color=red>**这是一个纯视图**</font>
-
-* 可点击的部分是由`UIButton`实现的
-
-* 使用方式
-
-  ```objective-c
-  @property(nonatomic,strong)JobsLinkageMenuView *menuView;
-  ```
-
-  ```objective-c
-  -(JobsLinkageMenuView *)menuView{
-      if(!_menuView){
-          _menuView = [JobsLinkageMenuView.alloc initWithFrame:self.bounds 
-                                                     btnConfig:self.buttonModel];
-          @jobs_weakify(self)
-          [_menuView actionObjectBlock:^(id  _Nullable x) {
-              @jobs_strongify(self)
-              if (self.objectBlock) self.objectBlock(x);
-          }];
-          [self addSubview:_menuView];
-      }return _menuView;
-  }
-  
-  -(UIButtonModel *)buttonModel{
-      if(!_buttonModel){
-          _buttonModel = UIButtonModel.new;
-          _buttonModel.normal_titles = self.titleMutArr;
-          _buttonModel.titleCor = JobsClearColor;
-          _buttonModel.selected_titleCor = JobsClearColor;
-          _buttonModel.normal_backgroundImages = self.normal_titleBgImageMutArr;
-          _buttonModel.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
-          _buttonModel.data = self.subViewMutArr;
-      }return _buttonModel;
-  }
-  
-  -(NSMutableArray<NSString *> *)titleMutArr{
-      if(!_titleMutArr){
-          _titleMutArr = NSMutableArray.array;
-          _titleMutArr.add(JobsInternationalization(@"TOP GAMES").add(@"       "));
-          _titleMutArr.add(JobsInternationalization(@"SLOT GAMES").add(@"      "));
-          _titleMutArr.add(JobsInternationalization(@"LIVE CASINO".add(@"       ")));
-          _titleMutArr.add(JobsInternationalization(@"TABLE GAMES").add(@"     "));
-          _titleMutArr.add(JobsInternationalization(@"SPORTS").add(@"                   "));
-          _titleMutArr.add(JobsInternationalization(@"FISHING").add(@"                  "));
-      }return _titleMutArr;
-  }
-  
-  -(NSMutableArray<__kindof UIView *> *)subViewMutArr{
-      if(!_subViewMutArr){
-          _subViewMutArr = NSMutableArray.array;
-          _subViewMutArr.add(self.topGamesView);
-          _subViewMutArr.add(self.slotGamesView);
-          _subViewMutArr.add(self.liveCasinoView);
-          _subViewMutArr.add(self.tableGamesView);
-          _subViewMutArr.add(self.sportsView);
-          _subViewMutArr.add(self.fishingView);
-      }return _subViewMutArr;
-  }
-  
-  -(NSMutableArray<UIImage *> *)normal_titleBgImageMutArr{
-      if(!_normal_titleBgImageMutArr){
-          _normal_titleBgImageMutArr = NSMutableArray.array;
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Top_Games_menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Slot_Games_menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Live_Casino_menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Table_Games_menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Sport_Menu_未点击"));
-          _normal_titleBgImageMutArr.add(JobsIMG(@"Fishing_menu_未点击"));
-      }return _normal_titleBgImageMutArr;
-  }
-  
-  -(NSMutableArray<UIImage *> *)select_titleBgImageMutArr{
-      if(!_select_titleBgImageMutArr){
-          _select_titleBgImageMutArr = NSMutableArray.array;
-          _select_titleBgImageMutArr.add(JobsIMG(@"Top_Games_menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Slot_Games_menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Live_Casino_menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Table_Games_menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Sport_Menu_已点击"));
-          _select_titleBgImageMutArr.add(JobsIMG(@"Fishing_menu_已点击"));
-      }return _select_titleBgImageMutArr;
-  }
-  
-  -(TopGamesView *)topGamesView{
-      if(!_topGamesView){
-          _topGamesView = TopGamesView.new;
-          _topGamesView.frame = self.bounds;
-          _topGamesView.jobsRichElementsInViewWithModel(nil);
-      }return _topGamesView;
-  }
-  
-  -(SlotGamesView *)slotGamesView{
-      if(!_slotGamesView){
-          _slotGamesView = SlotGamesView.new;
-          _slotGamesView.frame = self.bounds;
-          _slotGamesView.jobsRichElementsInViewWithModel(nil);
-      }return _slotGamesView;
-  }
-  
-  -(LiveCasinoView *)liveCasinoView{
-      if(!_liveCasinoView){
-          _liveCasinoView = LiveCasinoView.new;
-          _liveCasinoView.frame = self.bounds;
-          _liveCasinoView.jobsRichElementsInViewWithModel(nil);
-      }return _liveCasinoView;
-  }
-  
-  -(TableGamesView *)tableGamesView{
-      if(!_tableGamesView){
-          _tableGamesView = TableGamesView.new;
-          _tableGamesView.frame = self.bounds;
-          _tableGamesView.jobsRichElementsInViewWithModel(nil);
-      }return _tableGamesView;
-  }
-  
-  -(SportsView *)sportsView{
-      if(!_sportsView){
-          _sportsView = SportsView.new;
-          _sportsView.frame = self.bounds;
-          _sportsView.jobsRichElementsInViewWithModel(nil);
-      }return _sportsView;
-  }
-  
-  -(FishingView *)fishingView{
-      if(!_fishingView){
-          _fishingView = FishingView.new;
-          _fishingView.frame = self.bounds;
-          _fishingView.jobsRichElementsInViewWithModel(nil);
-      }return _fishingView;
-  }
-  ```
-
+x
 ### 32、切角 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 切整个View的4个角为统一的切角参数

@@ -17,7 +17,7 @@
     NSLog(@"userInfo = %@",self.doorModel);
     NSLog(@"Token = %@",self.doorModel.token);
     if(isValue(self.doorModel.expireTime)){
-        NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.jobsTime());
+        NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.chinaTime(nil));
     }
     /// 模型都没有建立肯定是没有登录的
     if(!self.doorModel) return NO;

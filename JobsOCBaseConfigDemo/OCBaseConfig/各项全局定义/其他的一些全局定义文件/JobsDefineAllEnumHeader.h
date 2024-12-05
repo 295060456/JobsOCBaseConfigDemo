@@ -71,6 +71,13 @@ typedef NS_ENUM(NSInteger, AppLanguage) {
     AppLanguageTagalog            /// tl：菲律宾他加禄语
 };
 #endif/* APP_LANGUAGE_ENUM_DEFINED */
+#ifndef INTERVAL_STYLE_ENUM_DEFINED
+#define INTERVAL_STYLE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, IntervalStyle) {
+    intervalBySec = 0,      /// 单位：秒
+    intervalByMilliSec       /// 单位：毫秒
+};
+#endif /* INTERVAL_STYLE_ENUM_DEFINED */
 /// 屏幕方向
 #ifndef DeviceOrientation_typedef
 #define DeviceOrientation_typedef

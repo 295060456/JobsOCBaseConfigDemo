@@ -144,11 +144,6 @@ typedef __kindof UNNotificationRequest *_Nullable(^JobsReturnUNNotificationReque
 typedef void(^jobsByAlertModelBlock)(JobsAlertModel *_Nullable data);
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByAlertModelBlock)(JobsAlertModel *_Nullable data);
 
-@class JobsDateModel;
-typedef __kindof JobsDateModel *_Nullable(^JobsReturnDateModelByVoidBlock)(void);
-typedef void(^jobsByDateModelBlock)(JobsDateModel *_Nullable dateModel);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByDateModelBlock)(JobsDateModel *_Nullable dateModel);
-
 @class GoodsClassModel;
 typedef void(^jobsByGoodsClassModelBlock)(GoodsClassModel *_Nullable model);
 typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByIntBlock)(int data);
@@ -157,9 +152,6 @@ typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByIntBlock
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTextModelBlock)(UITextModel *_Nullable data);
 typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
-
-@class JobsTimeFormatterModel;
-typedef JobsTimeFormatterModel *_Nullable(^JobsReturnTimeFormatterModelByStringBlock)(NSString *_Nullable data);
 
 @class NSTimerManager;
 typedef void(^jobsByTimerManagerBlock)(NSTimerManager *_Nullable data);
@@ -189,6 +181,9 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryModelBlock)(__kindof 
 typedef void(^jobsByTextFieldModelBlock)(__kindof UITextFieldModel *_Nullable model);
 typedef __kindof UITextFieldModel *_Nullable(^JobsReturnTextFieldModelByString)(__kindof NSString *_Nullable data);
 
+@class JobsFileModel;
+typedef void(^jobsByFileModelBlock)(__kindof JobsFileModel *_Nullable model);
+
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelBlock)(UIButtonModel *_Nullable data);
@@ -201,8 +196,8 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Block)(jobsB
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerManagerBlock)(jobsByTimerManagerBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelArrayBlock)(__kindof NSArray <UIButtonModel *>*_Nullable arr);
 
-@class ImageModel;
-typedef void(^jobsByImageModelBlock)(__kindof ImageModel *_Nullable model);
+@class JobsImageModel;
+typedef void(^jobsByImageModelBlock)(__kindof JobsImageModel *_Nullable model);
 
 @class JobsNavBarConfig;
 typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
@@ -264,9 +259,6 @@ typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *
 typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
 
-@class JobsFormatTime;
-typedef void(^jobsByFormatTimeBlock)(__kindof JobsFormatTime *_Nullable data);
-
 @class GTCaptcha4Model;
 typedef void(^jobsByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
@@ -281,10 +273,9 @@ typedef void(^jobsByNameModelBlock)(__kindof FMNameModel *_Nullable model);
 
 @class JobsTimeModel;
 typedef void(^jobsByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);
+typedef NSString *_Nullable(^JobsReturnStringByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);
 typedef JobsTimeModel *_Nullable(^JobsReturnTimeModelByIntegerBlock)(NSInteger timeSec);
-
-@class JobsTimeFormatterModel;
-typedef void(^jobsByTimeFormatterModelBlock)(__kindof JobsTimeFormatterModel *_Nullable data);
+typedef JobsTimeModel *_Nullable(^JobsReturnTimeModelByStringBlock)(NSString *_Nullable dateFormat);
 
 @class VideoModel_Core;
 typedef void(^jobsByVideoModelCoreBlock)(__kindof VideoModel_Core *_Nullable data);

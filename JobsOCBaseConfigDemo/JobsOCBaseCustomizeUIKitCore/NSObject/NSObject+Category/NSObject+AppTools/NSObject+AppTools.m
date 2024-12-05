@@ -56,7 +56,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         JobsUserModel *doorModel= self.readUserInfoByUserName(JobsUserModel.class,用户信息);
         NSLog(@"Token = %@",doorModel.token);
         if(isValue(self.doorModel.expireTime)){
-            NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.jobsTime());
+            NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.chinaTime(nil));
         }
     };
 }

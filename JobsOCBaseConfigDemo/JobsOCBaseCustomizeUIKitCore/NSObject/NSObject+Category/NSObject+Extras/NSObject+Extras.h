@@ -179,7 +179,7 @@ BaseProtocol
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
 -(JobsReturnAlertControllerByAlertModelBlock _Nonnull)makeAlertControllerByAlertModel;
 /// 将 NSTimeInterval 按照 NSDateFormatter 转换输出成人类可读的时间
--(JobsReturnStringByDateModelBlock _Nonnull)toVisualTimeBy;
+-(JobsReturnStringByTimeModelBlock _Nonnull)toReadableTimeBy;
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
 /// data：包含 HTML 内容的字符串
 -(JobsReturnWKWebViewByStringBlock _Nonnull)makeWebViewByString;
@@ -247,7 +247,7 @@ BaseProtocol
 -(jobsByYTKBaseRequestBlock _Nonnull)checkRequest;
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环
 -(void)jobsSafetyCycleFunc:(int)ceiling cycleBlock:(jobsByIntBlock _Nullable)cycleBlock;
--(NSMutableArray <ImageModel *>*_Nonnull)changeGifToImage:(NSData *_Nonnull)gifData;
+-(NSMutableArray <JobsImageModel *>*_Nonnull)changeGifToImage:(NSData *_Nonnull)gifData;
 /**
  
  NSMutableArray <UIViewModel *>*dataMutArr = popupView.valueForKey(@"dataMutArr");

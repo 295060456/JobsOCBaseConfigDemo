@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSMutableSet *_Nullable)dimSearchWithData:(id _Nonnull)data
                              searchStrategy:(JobsSearchStrategy)searchStrategy
                                    keywords:(NSString *_Nonnull)keywords;
+/// 以当前手机系统时间（包含了时区）为基准，给定一个日期偏移值（正值代表未来，负值代表过去，0代表现在），返回字符串特定格式的“星期几”
+-(JobsReturnStringByIntegerBlock _Nonnull)whatDayOfWeekDistanceNow;
 
 @end
 

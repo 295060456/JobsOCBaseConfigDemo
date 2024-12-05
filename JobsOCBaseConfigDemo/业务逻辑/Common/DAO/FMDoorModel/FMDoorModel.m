@@ -184,7 +184,7 @@
 
 -(void)setExpireTime:(NSString *)expireTime{
     _expireTime = expireTime;
-    if(_expireTime) self.tokenExpireTime = _expireTime.jobsTime();
+    if(_expireTime) self.tokenExpireTime = _expireTime.chinaTime(nil);
     NSLog(@"Token 的过期时间是:%@-%@",expireTime,self.tokenExpireTime);
 }
 #pragma mark —— 一些公有方法

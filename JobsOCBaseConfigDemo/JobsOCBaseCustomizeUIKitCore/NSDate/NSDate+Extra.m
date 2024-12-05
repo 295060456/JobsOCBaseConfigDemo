@@ -12,7 +12,7 @@
 /// 创建一个基于 1970年1月1日00:00:00 UTC 时间 的 NSDate 对象
 /// 基准时间点：1970 年 1 月 1 日 00:00
 /// 入参data：秒数，计算距离 1970 的偏移量
-+(JobsReturnDateByTimeIntervalBlock _Nonnull)dateBy{
++(JobsReturnDateByTimeIntervalBlock _Nonnull)initDateBy{
     return ^NSDate *_Nullable(NSTimeInterval data){
         return [NSDate dateWithTimeIntervalSince1970:data];
     };
@@ -26,9 +26,25 @@
         return [NSDate dateWithTimeIntervalSinceNow:data];
     };
 }
+/// 对系统方法 dateByAddingTimeInterval 的二次封装
+-(JobsReturnDateByTimeIntervalBlock _Nonnull)byAddingTimeInterval API_AVAILABLE(macos(10.6), ios(2.0), watchos(2.0), tvos(9.0)){
+    @jobs_weakify(self)
+    return ^__kindof NSDate *_Nullable(NSTimeInterval data){
+        @jobs_strongify(self)
+        return [self dateByAddingTimeInterval:data];
+    };
+}
+/// 对系统方法 timeIntervalSinceDate 的二次封装
+-(JobsReturnTimeIntervalByDateBlock _Nonnull)timeIntervalSinceDate{
+    @jobs_weakify(self)
+    return ^NSTimeInterval(NSDate *_Nullable data){
+        @jobs_strongify(self)
+        return [self timeIntervalSinceDate:data];
+    };
+}
 #pragma mark —— Date 对象的转化
-/// 将NSDate转化为可视化的时间字符串（年/月/日）
--(JobsReturnStringByDateFormatterBlock _Nonnull)toVisualTime{
+/// 将NSDate（通过NSDateFormatter）转化为可视化的时间字符串（年/月/日）
+-(JobsReturnStringByDateFormatterBlock _Nonnull)toReadableTime{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSDateFormatter *_Nullable data){
         @jobs_strongify(self)
@@ -40,7 +56,22 @@
                     .add(@"-")
                     .add(@"dd");
             });
-        }return [data stringFromDate:self];
+        }return data.stringByDate(self);
+    };
+}
+/// 将NSDate（通过NSString）转化为可视化的时间字符串（年/月/日）
+-(JobsReturnStringByStringBlock _Nonnull)toReadableTimeBy{
+    @jobs_weakify(self)
+    return ^__kindof NSString *_Nullable(NSString *_Nullable data){
+        @jobs_strongify(self)
+        if(isNull(data)) data = @"yyyy"
+            .add(@"-")
+            .add(@"MM")
+            .add(@"-")
+            .add(@"dd");
+        return jobsMakeDateFormatter(^(__kindof NSDateFormatter *_Nullable dateFormatter) {
+            dateFormatter.dateFormat = data;
+        }).stringByDate(self);
     };
 }
 
