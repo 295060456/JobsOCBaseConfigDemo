@@ -39,19 +39,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-NS_INLINE __kindof UITableView *_Nonnull jobsMakePlainTableView(jobsByTableViewBlock _Nonnull block){
-    UITableView *data = UITableView.initWithStylePlain;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UITableView *_Nonnull jobsMakeGroupedTableView(jobsByTableViewBlock _Nonnull block){
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByGrouped(jobsByTableViewBlock _Nonnull block){
     UITableView *data = UITableView.initWithStyleGrouped;
     if (block) block(data);
     return data;
 }
 
-NS_INLINE __kindof UITableView *_Nonnull jobsMakeInsetGroupedTableView(jobsByTableViewBlock _Nonnull block){
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByPlain(jobsByTableViewBlock _Nonnull block){
+    UITableView *data = UITableView.initWithStylePlain;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(jobsByTableViewBlock _Nonnull block){
     UITableView *data = UITableView.initWithStyleInsetGrouped;
     if (block) block(data);
     return data;

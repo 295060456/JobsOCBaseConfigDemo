@@ -186,6 +186,12 @@ NS_INLINE __kindof NSMutableData *_Nonnull jobsMakeMutData(jobsByMutableDataBloc
     return data;
 }
 
+NS_INLINE __kindof NSMutableString *_Nonnull jobsMakeMutString(jobsByMutableStringBlock _Nonnull block){
+    NSMutableString *data = NSMutableString.string;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UIPasteboard *_Nonnull jobsMakePasteboard(jobsByPasteboardBlock _Nonnull block){
     UIPasteboard *data = UIPasteboard.generalPasteboard;
     if (block) block(data);
@@ -228,22 +234,6 @@ NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebView(jobsByWKWebViewBlock _N
     return data;
 }
 
-NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebViewByConfig(jobsByWKWebViewBlock _Nonnull block){
-    WKWebView *data = WKWebView.initBy(jobsMakeWKWebViewConfiguration(^(WKWebViewConfiguration * _Nullable config) {
-        /// 确保 WebView 的配置允许加载外部资源：
-        config.preferences.javaScriptEnabled = YES;
-        config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
-        config.allowsInlineMediaPlayback = YES;
-        config.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeNone; // 确保媒体资源可以自动播放
-        config.limitsNavigationsToAppBoundDomains = NO; // 禁止限制导航到受保护的域
-        config.websiteDataStore = WKWebsiteDataStore.defaultDataStore;
-    }));
-    // 确保加载基础页面
-    [data loadHTMLString:@"<html><head></head><body></body></html>" baseURL:nil];
-    if (block) block(data);
-    return data;
-}
-
 NS_INLINE __kindof JSContext *_Nonnull jobsMakeJSContext(jobsByJSContextBlock _Nonnull block){
     JSContext *data = JSContext.alloc.init;
     if (block) block(data);
@@ -264,30 +254,6 @@ NS_INLINE __kindof UIProgressView *_Nonnull jobsMakeProgressView(jobsByProgressV
 
 NS_INLINE __kindof UIScrollView *_Nonnull jobsMakeScrollView(jobsByScrollViewBlock _Nonnull block){
     UIScrollView *data = UIScrollView.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull block){
-    UIButton *data = UIButton.jobsInit();
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByGrouped(jobsByTableViewBlock _Nonnull block){
-    UITableView *data = UITableView.initWithStyleGrouped;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByPlain(jobsByTableViewBlock _Nonnull block){
-    UITableView *data = UITableView.initWithStylePlain;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(jobsByTableViewBlock _Nonnull block){
-    UITableView *data = UITableView.initWithStyleInsetGrouped;
     if (block) block(data);
     return data;
 }

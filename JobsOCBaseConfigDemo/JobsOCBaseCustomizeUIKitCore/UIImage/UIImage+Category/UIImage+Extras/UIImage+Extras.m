@@ -231,13 +231,13 @@
 }
 /// 对系统方法 initWithData 的二次封装
 +(JobsReturnImageByDataBlock _Nonnull)initByData{
-    return ^UIImage *_Nonnull(NSData *_Nullable data){
+    return ^UIImage *_Nonnull(__kindof NSData *_Nullable data){
         return [UIImage.alloc initWithData:data];
     };
 }
 /// 对系统方法 imageWithData 的二次封装
 +(JobsReturnImageByDataBlock _Nonnull)imageWithData{
-    return ^UIImage *_Nonnull(NSData *_Nullable data){
+    return ^UIImage *_Nonnull(__kindof NSData *_Nullable data){
         return [UIImage imageWithData:data];
     };
 }

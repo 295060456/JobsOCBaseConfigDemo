@@ -276,10 +276,10 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable da
 typedef __kindof NSString *_Nullable(^JobsReturnStringByURLBlock)(NSURL *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateBlock)(NSDate *_Nullable date);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByDataBlock)(NSData *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByDataBlock)(__kindof NSData *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByImageBlock)(UIImage *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByNumberBlock)(NSNumber *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByStringBlock)(NSString *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCorBlock)(UIColor *_Nullable data);
 /// 多参数
@@ -308,15 +308,15 @@ typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByVoidBlock)(void)
 typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByVoidBlock)(void);
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL *_Nullable url);
 typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByURLBlock)(NSURL *_Nullable url);
-typedef NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
-typedef NSData *_Nullable(^JobsReturnDataByIDBlock)(id _Nullable data);
-typedef NSData *_Nullable(^JobsReturnDataByDataBlock)(NSData *_Nullable data);
-typedef NSData *_Nullable(^JobsReturnDataByImageBlock)(UIImage *_Nullable data);
-typedef NSData *_Nullable(^JobsReturnDataByFloatBlock)(CGFloat data);
-typedef NSData *_Nullable(^JobsReturnDataByURLBlock)(NSURL *_Nullable data);
-typedef NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
-typedef NSData *_Nullable(^JobsReturnDataByStringBlock)(__kindof NSString *_Nullable data);
-typedef NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByIDBlock)(id _Nullable data);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByDataBlock)(__kindof NSData *_Nullable data);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByImageBlock)(UIImage *_Nullable data);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByFloatBlock)(CGFloat data);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByURLBlock)(NSURL *_Nullable data);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByStringBlock)(__kindof NSString *_Nullable data);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
 typedef NSURL *_Nullable(^JobsReturnURLByStringBlock)(NSString *_Nullable data);
 typedef NSURL *_Nullable(^JobsReturnURLByURLBlock)(NSURL *_Nullable data);
@@ -340,10 +340,10 @@ typedef UIImage *_Nonnull(^JobsReturnImageByAVURLAssetBlock)(AVURLAsset *_Nonnul
 typedef UIImage *_Nonnull(^JobsReturnImageByViewBlock)(__kindof UIView *_Nonnull data);
 typedef UIImage *_Nullable(^JobsReturnImageByImageBlock)(UIImage *_Nullable data);
 typedef UIImage *_Nullable(^JobsReturnImageByCorBlock)(UIColor *_Nullable data);
-typedef UIImage *_Nullable(^JobsReturnImageByDataBlock)(NSData *_Nullable data);
-typedef UIImage *_Nonnull(^JobsReturnImageByDataBlock)(NSData *_Nullable data);
+typedef UIImage *_Nullable(^JobsReturnImageByDataBlock)(__kindof NSData *_Nullable data);
+typedef UIImage *_Nonnull(^JobsReturnImageByDataBlock)(__kindof NSData *_Nullable data);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGImageRefBlock)(CGImageRef _Nullable data);
-typedef UIImage *_Nullable(^JobsReturnImageByStringBlock)(NSString *_Nullable data);
+typedef UIImage *_Nullable(^JobsReturnImageByStringBlock)(__kindof NSString *_Nullable data);
 #pragma mark —— 关于段落配置
 typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByVoidBlock)(void);
 typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByTextAlignmentBlock)(NSTextAlignment data);

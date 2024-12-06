@@ -12,7 +12,7 @@
 ///【类方法】以MIME编码的字符串数据 转换成 普通NSString对象
 +(JobsReturnStringByStringBlock _Nonnull)stringByMIMEData{
     return ^__kindof NSString *_Nullable(NSString *_Nullable MIMEString){
-        return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:MIMEString options:0]);
+        return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:MIMEString options:NSDataBase64DecodingIgnoreUnknownCharacters]);
     };
 }
 ///【实例方法】以MIME编码的字符串数据 转换成 普通NSString对象

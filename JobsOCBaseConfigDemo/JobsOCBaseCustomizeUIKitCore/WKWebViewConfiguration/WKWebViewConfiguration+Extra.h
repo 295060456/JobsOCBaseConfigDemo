@@ -6,6 +6,7 @@
 //
 
 #import <WebKit/WebKit.h>
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -190,7 +190,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = jobsMakePlainTableView(^(__kindof UITableView * _Nullable tableView) {
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             tableView.backgroundColor = JobsWhiteColor;
             tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
             tableView.showsVerticalScrollIndicator = NO;

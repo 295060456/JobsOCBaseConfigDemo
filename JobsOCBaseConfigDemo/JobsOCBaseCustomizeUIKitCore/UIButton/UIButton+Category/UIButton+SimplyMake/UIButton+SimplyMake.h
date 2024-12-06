@@ -70,6 +70,12 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull block){
+    UIButton *data = UIButton.jobsInit();
+    if (block) block(data);
+    return data;
+}
 /**
  
  _headBtn = BaseButton.jobsInit()

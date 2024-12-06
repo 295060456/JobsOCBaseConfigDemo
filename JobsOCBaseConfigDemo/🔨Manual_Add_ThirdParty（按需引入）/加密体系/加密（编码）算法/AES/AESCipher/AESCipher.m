@@ -14,9 +14,9 @@ NSString const *kInitVector = @"AESBytes16String";
 size_t const kKeySize = kCCKeySizeAES128;
 
 #pragma mark —— 公共私有方法
-NSData * cipherOperation(NSData *contentData,
-                         NSData *keyData,
-                         CCOperation operation) {
+NSData *cipherOperation(NSData *contentData,
+                        NSData *keyData,
+                        CCOperation operation) {
     NSUInteger dataLength = contentData.length;
     
     void const *initVectorBytes = kInitVector.UTF8Encoding.bytes;
@@ -43,14 +43,13 @@ NSData * cipherOperation(NSData *contentData,
                                           &actualOutSize);
     if (cryptStatus == kCCSuccess) {
         return [NSData dataWithBytesNoCopy:operationBytes length:actualOutSize];
-    }
-    free(operationBytes);
+    }free(operationBytes);
     operationBytes = NULL;
     return nil;
 }
 #pragma mark —— 异常提示
-NSData * aesEncryptData(NSData *contentData,
-                        NSData *keyData) {
+NSData *aesEncryptData(NSData *contentData,
+                       NSData *keyData) {
     NSCParameterAssert(contentData);
     NSCParameterAssert(keyData);
     
@@ -59,8 +58,8 @@ NSData * aesEncryptData(NSData *contentData,
     return cipherOperation(contentData, keyData, kCCEncrypt);
 }
 
-NSData * aesDecryptData(NSData *contentData,
-                        NSData *keyData) {
+NSData *aesDecryptData(NSData *contentData,
+                       NSData *keyData) {
     NSCParameterAssert(contentData);
     NSCParameterAssert(keyData);
     
@@ -69,8 +68,8 @@ NSData * aesDecryptData(NSData *contentData,
     return cipherOperation(contentData, keyData, kCCDecrypt);
 }
 #pragma mark —— 真正的加解密
-NSString * aesEncryptString(NSString *content,
-                            NSString *key) {
+NSString *aesEncryptString(NSString *content,
+                           NSString *key) {
     NSCParameterAssert(content);
     NSCParameterAssert(key);
     
@@ -80,13 +79,13 @@ NSString * aesEncryptString(NSString *content,
     return [encrptedData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
 }
 
-NSString * aesDecryptString(NSString *content,
-                            NSString *key) {
+NSString *aesDecryptString(NSString *content,
+                           NSString *key) {
     NSCParameterAssert(content);
     NSCParameterAssert(key);
     
-    NSData *contentData = [[NSData alloc] initWithBase64EncodedString:content
-                                                              options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSData *contentData = [NSData.alloc initWithBase64EncodedString:content
+                                                            options:NSDataBase64DecodingIgnoreUnknownCharacters];
     NSData *keyData = key.UTF8Encoding;
     NSData *decryptedData = aesDecryptData(contentData, keyData);
     return NSString.initByUTF8Data(decryptedData);
