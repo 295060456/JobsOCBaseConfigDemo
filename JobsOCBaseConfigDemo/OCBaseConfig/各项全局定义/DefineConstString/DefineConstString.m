@@ -46,6 +46,7 @@ NSString *const App当日首次进入 = @"App当日首次进入";
 NSString *const 获取极验验证码成功 = @"获取极验验证码成功";
 NSString *const 获取极验验证码失败 = @"获取极验验证码失败";
 NSString *const JobsLanguageKey = @"JobsLanguageKey";
+NSString *const KYC状态 = @"KYC状态";
 /*
  * 常用符号大全
  * 特殊符号 编号序号 数学符号 爱心符号 标点符号 单位符号 货币符号 箭头符号 符号图案 制表符 皇冠符号

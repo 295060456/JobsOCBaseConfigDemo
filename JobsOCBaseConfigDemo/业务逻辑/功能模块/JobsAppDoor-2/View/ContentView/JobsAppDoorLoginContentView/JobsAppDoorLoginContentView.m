@@ -31,17 +31,16 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = Cor1;
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         [self addNotificationName:@"textFieldTag"
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:UITextField.class]){
                 UITextField *b = notification.object;
                 NSLog(@"木头 = %@",b.requestParams);
-            }
-            NSLog(@"通知传递过来的 = %@",notification.object);
+            }NSLog(@"通知传递过来的 = %@",notification.object);
         }];
     }return self;
 }
@@ -106,7 +105,6 @@
                                                    UIFontWeightMediumSize(13),
                                                    nil,
                                                    JobsIMG(@"用户名称"),
-                                                   NSDirectionalRectEdgeNone,
                                                    JobsWidth(8))
         .bgColor(JobsBlackColor)
         .onClick(^(UIButton *x){
@@ -199,7 +197,6 @@
                              UIFontWeightRegularSize(12),
                              JobsWhiteColor,
                              JobsIMG(@"没有记住密码"),
-                             NSDirectionalRectEdgeNone,
                              JobsWidth(3))
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
@@ -247,26 +244,26 @@
     if (!_loginDoorInputViewBaseStyleModelMutArr) {
         _loginDoorInputViewBaseStyleModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             JobsAppDoorInputViewBaseStyleModel *用户名 = JobsAppDoorInputViewBaseStyleModel.new;
-            用户名.leftViewIMG = JobsIMG(@"用户名称");
-            用户名.placeholder = @"用户名";
-            用户名.isShowDelBtn = YES;
-            用户名.isShowSecurityBtn = NO;
-            用户名.returnKeyType = UIReturnKeyDone;
-            用户名.keyboardAppearance = UIKeyboardAppearanceAlert;
-            用户名.leftViewMode = UITextFieldViewModeAlways;
-            data.add(用户名);
-            
-            JobsAppDoorInputViewBaseStyleModel *密码 = JobsAppDoorInputViewBaseStyleModel.new;
-            密码.leftViewIMG = JobsIMG(@"Lock");
-            密码.placeholder = @"密码";
-            密码.isShowDelBtn = YES;
-            密码.isShowSecurityBtn = YES;
-            密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
-            密码.unSelectedSecurityBtnIMG =JobsIMG(@"codeDecode");//开眼
-            密码.returnKeyType = UIReturnKeyDone;
-            密码.keyboardAppearance = UIKeyboardAppearanceAlert;
-            密码.leftViewMode = UITextFieldViewModeAlways;
-            data.add(密码);
+            data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 用户名) {
+                用户名.leftViewIMG = JobsIMG(@"用户名称");
+                用户名.placeholder = @"用户名";
+                用户名.isShowDelBtn = YES;
+                用户名.isShowSecurityBtn = NO;
+                用户名.returnKeyType = UIReturnKeyDone;
+                用户名.keyboardAppearance = UIKeyboardAppearanceAlert;
+                用户名.leftViewMode = UITextFieldViewModeAlways;
+            }));
+            data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 密码) {
+                密码.leftViewIMG = JobsIMG(@"Lock");
+                密码.placeholder = @"密码";
+                密码.isShowDelBtn = YES;
+                密码.isShowSecurityBtn = YES;
+                密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
+                密码.unSelectedSecurityBtnIMG =JobsIMG(@"codeDecode");//开眼
+                密码.returnKeyType = UIReturnKeyDone;
+                密码.keyboardAppearance = UIKeyboardAppearanceAlert;
+                密码.leftViewMode = UITextFieldViewModeAlways;
+            }));
         });
     }return _loginDoorInputViewBaseStyleModelMutArr;
 }

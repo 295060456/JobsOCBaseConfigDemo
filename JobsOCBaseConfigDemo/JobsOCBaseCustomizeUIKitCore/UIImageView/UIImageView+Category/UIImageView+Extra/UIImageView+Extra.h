@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImageView (Extra)
 
 +(JobsReturnImageViewByImageBlock _Nonnull)initBy;
+-(JobsReturnImageViewByImageBlock _Nonnull)byImage;
 
 @end
 

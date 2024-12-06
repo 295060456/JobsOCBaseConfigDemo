@@ -291,6 +291,12 @@ NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(jobsByT
     if (block) block(data);
     return data;
 }
+#pragma mark —— 关于控制器的创建
+NS_INLINE __kindof UIImagePickerController *_Nonnull jobsMakeImagePickerController(jobsByImagePickerControllerBlock _Nonnull block){
+    UIImagePickerController *data = UIImagePickerController.alloc.init;
+    if (block) block(data);
+    return data;
+}
 #pragma mark —— 关于结构体的创建
 @class JobsLocationModel;
 #pragma mark —— NSIndexPath

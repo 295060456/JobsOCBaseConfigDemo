@@ -129,7 +129,6 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 UIFontWeightRegularSize(12),
                                                 JobsCor(@"#EA2918"),
                                                 JobsIMG(@"视频未点赞"),
-                                                NSDirectionalRectEdgeNone,
                                                 JobsWidth(5))
             .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(UIButton *x){
@@ -159,7 +158,6 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 UIFontWeightRegularSize(12),
                                                 JobsCor(@"#EA2918"),
                                                 JobsIMG(@"视频评论"),
-                                                NSDirectionalRectEdgeNone,
                                                 JobsWidth(5))
             .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(UIButton *x){
@@ -199,7 +197,6 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                  UIFontWeightRegularSize(12),
                                                  JobsCor(@"#EA2918"),
                                                  JobsIMG(@"分享"),
-                                                 NSDirectionalRectEdgeNone,
                                                  JobsWidth(5))
             .bgColor(JobsClearColor.colorWithAlphaComponent(0))
             .onClick(^(UIButton *x){

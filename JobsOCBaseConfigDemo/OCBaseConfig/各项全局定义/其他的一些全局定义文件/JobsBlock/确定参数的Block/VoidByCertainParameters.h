@@ -47,7 +47,9 @@ typedef void(^jobsByJSContextBlock)(__kindof JSContext *_Nullable context);
 typedef void(^jobsByProgressViewBlock)(__kindof UIProgressView *_Nullable progressView);
 typedef void(^jobsBySwitchBlock)(__kindof UISwitch *_Nullable Switch);
 typedef void(^jobsByTableViewBlock)(__kindof UITableView *_Nullable tableView);
+typedef void(^jobsByTableViewCellBlock)(__kindof UITableViewCell *_Nullable tableView);
 typedef void(^jobsByCollectionViewBlock)(__kindof UICollectionView *_Nullable collectionView);
+typedef void(^jobsByCollectionViewCellBlock)(__kindof UICollectionViewCell *_Nullable collectionView);
 typedef void(^jobsByTextFieldBlock)(__kindof UITextField *_Nullable textField);
 typedef void(^jobsByTextViewBlock)(__kindof UITextView *_Nullable textView);
 typedef void(^jobsByImageViewBlock)(__kindof UIImageView *_Nullable imageView);
@@ -60,6 +62,7 @@ typedef void(^jobsByViewAndDataBlock)(__kindof UIView *_Nullable view,id _Nullab
 typedef void(^jobsByView2Block)(__kindof UIView *_Nullable superview,UIView *_Nullable view);
 #pragma mark —— 关于 控制器
 typedef void(^jobsByMenuControllerBlock)(__kindof UIMenuController *_Nullable menuController);
+typedef void(^jobsByImagePickerControllerBlock)(__kindof UIImagePickerController *_Nullable imagePickerController);
 #pragma mark —— 关于数据容器
 typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);
 typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray *_Nullable arr);

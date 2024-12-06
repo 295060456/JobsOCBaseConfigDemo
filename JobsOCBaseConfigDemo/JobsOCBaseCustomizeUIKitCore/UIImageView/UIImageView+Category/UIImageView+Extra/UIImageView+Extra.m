@@ -15,4 +15,13 @@
     };
 }
 
+-(JobsReturnImageViewByImageBlock _Nonnull)byImage{
+    @jobs_weakify(self)
+    return ^__kindof UIImageView *_Nonnull(UIImage *_Nullable data){
+        @jobs_strongify(self)
+        self.image = data;
+        return self;
+    };
+}
+
 @end

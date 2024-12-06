@@ -195,7 +195,7 @@ NS_ASSUME_NONNULL_END
 @synthesize imageSize = _imageSize;\
 @synthesize contentHorizontalAlignment = _contentHorizontalAlignment;\
 @synthesize contentVerticalAlignment = _contentVerticalAlignment;\
-@synthesize directionalRectEdge = _directionalRectEdge;\
+@synthesize imagePlacement = _imagePlacement;\
 @synthesize contentEdgeInsets = _contentEdgeInsets;\
 @synthesize contentInsets = _contentInsets;\
 @synthesize contentSpacing = _contentSpacing;\

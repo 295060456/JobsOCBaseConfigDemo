@@ -46,6 +46,7 @@ FOUNDATION_EXTERN NSString *_Nonnull const App当日首次进入;
 FOUNDATION_EXTERN NSString *_Nonnull const 获取极验验证码成功;
 FOUNDATION_EXTERN NSString *_Nonnull const 获取极验验证码失败;
 FOUNDATION_EXTERN NSString *_Nonnull const JobsLanguageKey;
+FOUNDATION_EXTERN NSString *_Nonnull const KYC状态;
 
 FOUNDATION_EXTERN NSString *_Nonnull const 皇冠符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 数学符号;

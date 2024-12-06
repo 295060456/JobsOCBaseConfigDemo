@@ -191,6 +191,11 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle3Block)(NSString *_
                                                                      UIImage *_Nonnull image,/// 按钮图片
                                                                      NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
                                                                      CGFloat x);/// 图文距离
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle3_1Block)(NSString *_Nonnull title,/// 主文字内容
+                                                                       UIFont *_Nullable font,/// 字体大小
+                                                                       UIColor *_Nullable titleCor,/// 主文字颜色
+                                                                       UIImage *_Nonnull image,/// 按钮图片
+                                                                       CGFloat x);/// 图文距离
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle4Block)(NSString *_Nonnull title,/// 主文字内容
                                                                      UIFont *_Nullable font,/// 字体大小
                                                                      UIColor *_Nullable titleCor,/// 主文字颜色

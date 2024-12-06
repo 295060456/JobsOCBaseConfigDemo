@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 结合下列属性来实现改变Button文字位置
 @property(nonatomic,assign)UIControlContentHorizontalAlignment contentHorizontalAlignment;
 @property(nonatomic,assign)UIControlContentVerticalAlignment contentVerticalAlignment;
-@property(nonatomic,assign)NSDirectionalRectEdge directionalRectEdge;
+@property(nonatomic,assign)NSDirectionalRectEdge imagePlacement;/// ❤️图片和文字的位置关系❤️
 @property(nonatomic,assign)UIEdgeInsets contentEdgeInsets;/// iOS 15以前可以用
 @property(nonatomic,readwrite,assign)NSDirectionalEdgeInsets contentInsets;/// iOS 15以后 结合UIButtonConfiguration 以替换属性：UIEdgeInsets contentEdgeInsets;
 @property(nonatomic,assign)CGFloat contentSpacing;
@@ -133,7 +133,7 @@ NS_ASSUME_NONNULL_END
 @synthesize imageSize = _imageSize;\
 @synthesize contentHorizontalAlignment = _contentHorizontalAlignment;\
 @synthesize contentVerticalAlignment = _contentVerticalAlignment;\
-@synthesize directionalRectEdge = _directionalRectEdge;\
+@synthesize imagePlacement = _imagePlacement;\
 @synthesize contentEdgeInsets = _contentEdgeInsets;\
 @synthesize contentInsets = _contentInsets;\
 @synthesize contentSpacing = _contentSpacing;\
@@ -197,7 +197,7 @@ NS_ASSUME_NONNULL_END
 @dynamic imageSize;\
 @dynamic contentHorizontalAlignment;\
 @dynamic contentVerticalAlignment;\
-@dynamic directionalRectEdge;\
+@dynamic imagePlacement;\
 @dynamic contentEdgeInsets;\
 @dynamic contentInsets;\
 @dynamic contentSpacing;\

@@ -53,7 +53,8 @@
 /// 仅仅依靠（主/副）标题内容（普通文本）进行创建
 +(JobsReturnButtonByTitlesBlock _Nonnull)initByTitles{
     @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,NSString *_Nonnull subTitle){
+    return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
+                                         NSString *_Nonnull subTitle){
         @jobs_strongify(self)
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             data.title = title;
@@ -64,7 +65,8 @@
 /// 仅仅依靠（主标题+副标题）富文本内容进行创建
 +(JobsReturnButtonByAttributedStringsBlock _Nonnull)initByAttributedStrings{
     @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(NSAttributedString *_Nonnull title,NSAttributedString *_Nonnull subTitle){
+    return ^__kindof UIButton *_Nullable(NSAttributedString *_Nonnull title,
+                                         NSAttributedString *_Nonnull subTitle){
         @jobs_strongify(self)
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             data.attributedTitle = title;
@@ -170,57 +172,54 @@
             data.buttonModel.title = title;
             data.buttonModel.titleFont = font;
             data.buttonModel.titleCor = titleCor;
-            data.directionalRectEdge = directionalRectEdge;
+            data.buttonModel.imagePlacement = directionalRectEdge;
+            data.buttonModel.imagePadding = x;
         })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
     };
 }
 /// 图文混排（图片在上边 ）
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyleTop{
++(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleTop{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
                                          UIColor *_Nonnull titleCor,/// 主文字颜色
                                          UIImage *_Nonnull image,/// 按钮图片
-                                         NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
                                          CGFloat x){/// 图文距离
         @jobs_strongify(self)
         return self.initByStyle5(title,font,titleCor,image,NSDirectionalRectEdgeTop,x);
     };
 }
 /// 图文混排（图片在左边 ）
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyleLeft{
++(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleLeft{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
                                          UIColor *_Nonnull titleCor,/// 主文字颜色
                                          UIImage *_Nonnull image,/// 按钮图片
-                                         NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
                                          CGFloat x){/// 图文距离
         @jobs_strongify(self)
         return self.initByStyle5(title,font,titleCor,image,NSDirectionalRectEdgeLeading,x);
     };
 }
 /// 图文混排（图片在下边 ）
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyleBottom{
++(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleBottom{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
                                          UIColor *_Nonnull titleCor,/// 主文字颜色
                                          UIImage *_Nonnull image,/// 按钮图片
-                                         NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
                                          CGFloat x){/// 图文距离
         @jobs_strongify(self)
         return self.initByStyle5(title,font,titleCor,image,NSDirectionalRectEdgeBottom,x);
     };
 }
 /// 图文混排（图片在右边 ）
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyleRight{
++(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleRight{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
                                          UIColor *_Nonnull titleCor,/// 主文字颜色
                                          UIImage *_Nonnull image,/// 按钮图片
-                                         NSDirectionalRectEdge imagePlacement,/// 图片和文字的位置关系
                                          CGFloat x){/// 图文距离
         @jobs_strongify(self)
         return self.initByStyle5(title,font,titleCor,image,NSDirectionalRectEdgeTrailing,x);

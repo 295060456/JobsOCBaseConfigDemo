@@ -89,7 +89,6 @@ static dispatch_once_t static_mineView2OnceToken;
                                            UIFontWeightRegularSize(14),
                                            JobsBlackColor,
                                            JobsIMG(@"入职Mata"),
-                                           NSDirectionalRectEdgeNone,
                                            JobsWidth(10))
             .bgColor(JobsWhiteColor)
             .cornerRadiusValue(JobsWidth(8))

@@ -14,5 +14,6 @@
 #import "UIImageView+GIF.h"
 #import "UIImageView+SDWebImage.h"
 #import "UIImageView+Extra.h"
+#import "UIImageView+RAC.h"
 
 #endif /* JobsImageView_h */

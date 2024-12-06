@@ -15,5 +15,7 @@
 #import "CasinoCustomerContactModel.h"
 #import "CasinoGetiOSNewestVersionModel.h"
 #import "FMBannerAdsModel.h"
+#import "FMNameModel.h"
+
 
 #endif /* DAO_h */

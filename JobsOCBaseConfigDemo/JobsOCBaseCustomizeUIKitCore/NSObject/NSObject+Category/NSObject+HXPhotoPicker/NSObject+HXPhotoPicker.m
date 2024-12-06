@@ -36,21 +36,19 @@
                                                                              BOOL isOriginal,
                                                                              UIViewController *viewController,
                                                                              HXPhotoManager *manager) {
-//                    @jobs_strongify(self)
-                    HXPhotoPickerModel *photoPickerModel = HXPhotoPickerModel.new;
-                    photoPickerModel.allList = allList;
-                    photoPickerModel.photoList = photoList;
-                    photoPickerModel.videoList = videoList;
-                    photoPickerModel.isOriginal = isOriginal;
-                    photoPickerModel.vc = viewController;
-                    photoPickerModel.photoManager = manager;
-                    if (successBlock) successBlock(photoPickerModel);
+                    if (successBlock) successBlock(jobsMakeHXPhotoPickerModel(^(__kindof HXPhotoPickerModel * _Nullable model) {
+                        model.allList = allList;
+                        model.photoList = photoList;
+                        model.videoList = videoList;
+                        model.isOriginal = isOriginal;
+                        model.vc = viewController;
+                        model.photoManager = manager;
+                    }));
                 } cancel:^(UIViewController *viewController, HXPhotoManager *manager) {
-//                    @jobs_strongify(self)
-                    HXPhotoPickerModel *photoPickerModel = HXPhotoPickerModel.new;
-                    photoPickerModel.vc = viewController;
-                    photoPickerModel.photoManager = manager;
-                    if (failBlock) failBlock(photoPickerModel);
+                    if (failBlock) failBlock(jobsMakeHXPhotoPickerModel(^(__kindof HXPhotoPickerModel * _Nullable model) {
+                        model.vc = viewController;
+                        model.photoManager = manager;
+                    }));
                 }];
             }
         }else self.jobsToastMsg(@"保存图片需要过去您的相册权限,请前往设置打开");
@@ -77,19 +75,17 @@
                 
                 if(viewController){
                     [viewController hx_presentCustomCameraViewControllerWithManager:self.photoManager
-                                                                               done:^(HXPhotoModel *model,
+                                                                               done:^(HXPhotoModel *photoModel,
                                                                                       HXCustomCameraViewController *viewController) {
-//                        @jobs_strongify(self)
-                        HXPhotoPickerModel *photoPickerModel = HXPhotoPickerModel.new;
-                        photoPickerModel.customCameraVC = viewController;
-                        photoPickerModel.photoModel = model;
-                        if (successBlock) successBlock(photoPickerModel);
+                        if (successBlock) successBlock(jobsMakeHXPhotoPickerModel(^(__kindof HXPhotoPickerModel * _Nullable model) {
+                            model.customCameraVC = viewController;
+                            model.photoModel = photoModel;
+                        }));
                     } cancel:^(HXCustomCameraViewController *viewController) {
                         NSSLog(@"取消了");
-//                        @jobs_strongify(self)
-                        HXPhotoPickerModel *photoPickerModel = HXPhotoPickerModel.new;
-                        photoPickerModel.customCameraVC = viewController;
-                        if (failBlock) failBlock(photoPickerModel);
+                        if (failBlock) failBlock(jobsMakeHXPhotoPickerModel(^(__kindof HXPhotoPickerModel * _Nullable model) {
+                            model.customCameraVC = viewController;
+                        }));
                     }];
                 }
             }else self.jobsToastMsg(JobsInternationalization(@"授权失败,无法使用相机.请在设置-隐私-相机中允许访问相机"));
@@ -103,12 +99,13 @@
         @jobs_strongify(self)
         // 检查设备是否支持相机功能
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            UIImagePickerController *imagePickerController = UIImagePickerController.new;
-            imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-            imagePickerController.delegate = self;
-            imagePickerController.allowsEditing = YES;  // 如果需要用户可以编辑照片，设为YES
-            // 显示相机界面
-            self.comingToPresentVC(imagePickerController);
+            /// 显示相机界面
+            self.comingToPresentVC(jobsMakeImagePickerController(^(__kindof UIImagePickerController * _Nullable imagePickerController) {
+                @jobs_strongify(self)
+                imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                imagePickerController.delegate = self;
+                imagePickerController.allowsEditing = YES; /// 如果需要用户可以编辑照片，设为YES
+            }));
         } else self.jobsToastMsg(JobsInternationalization(@"此设备不支持相机!"));
     };
 }
@@ -205,9 +202,5 @@ JobsKey(_videosDataMutArr)
 -(void)setVideosDataMutArr:(NSMutableArray<HXPhotoModel *> *)videosDataMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_videosDataMutArr, videosDataMutArr)
 }
-
-@end
-
-@implementation HXPhotoPickerModel
 
 @end

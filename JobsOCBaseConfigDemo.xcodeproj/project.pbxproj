@@ -92,6 +92,9 @@
 		8478D90C2D01CE0D004E8B90 /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478D9082D01CE0D004E8B90 /* BaseRequest.m */; };
 		8478DA042D01E0AE004E8B90 /* FM_kyc_image_upload_api.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DA022D01E0AE004E8B90 /* FM_kyc_image_upload_api.m */; };
 		8478DA822D01E1F8004E8B90 /* NSObject+URLManager_7.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DA802D01E1F8004E8B90 /* NSObject+URLManager_7.m */; };
+		8478DBFC2D02ED74004E8B90 /* HXPhotoPickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DBFA2D02ED74004E8B90 /* HXPhotoPickerModel.m */; };
+		8478DC002D02EDD4004E8B90 /* UIImageView+RAC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DBFE2D02EDD4004E8B90 /* UIImageView+RAC.m */; };
+		8478DC042D02EE35004E8B90 /* FMNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DC022D02EE35004E8B90 /* FMNameModel.m */; };
 		8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */ = {isa = PBXBuildFile; fileRef = 8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */; };
 		8489C9DD2CE622CC00BB5E83 /* UICollectionView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */; };
 		8489C9DE2CE622CC00BB5E83 /* UITableView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D72CE622CB00BB5E83 /* UITableView+JobsEmptyData.m */; };
@@ -1387,6 +1390,12 @@
 		8478DA022D01E0AE004E8B90 /* FM_kyc_image_upload_api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FM_kyc_image_upload_api.m; sourceTree = "<group>"; };
 		8478DA7F2D01E1F8004E8B90 /* NSObject+URLManager_7.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+URLManager_7.h"; sourceTree = "<group>"; };
 		8478DA802D01E1F8004E8B90 /* NSObject+URLManager_7.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+URLManager_7.m"; sourceTree = "<group>"; };
+		8478DBF92D02ED74004E8B90 /* HXPhotoPickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HXPhotoPickerModel.h; sourceTree = "<group>"; };
+		8478DBFA2D02ED74004E8B90 /* HXPhotoPickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HXPhotoPickerModel.m; sourceTree = "<group>"; };
+		8478DBFD2D02EDD4004E8B90 /* UIImageView+RAC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+RAC.h"; sourceTree = "<group>"; };
+		8478DBFE2D02EDD4004E8B90 /* UIImageView+RAC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RAC.m"; sourceTree = "<group>"; };
+		8478DC012D02EE35004E8B90 /* FMNameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMNameModel.h; sourceTree = "<group>"; };
+		8478DC022D02EE35004E8B90 /* FMNameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMNameModel.m; sourceTree = "<group>"; };
 		8489C9D32CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+JobsEmptyData.h"; sourceTree = "<group>"; };
 		8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+JobsEmptyData.m"; sourceTree = "<group>"; };
 		8489C9D62CE622CB00BB5E83 /* UITableView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+JobsEmptyData.h"; sourceTree = "<group>"; };
@@ -4226,6 +4235,7 @@
 		8478D89F2D01CBE0004E8B90 /* 关于第三方 */ = {
 			isa = PBXGroup;
 			children = (
+				8478DBFB2D02ED74004E8B90 /* HXPhotoPickerModel */,
 				8478D8952D01CBE0004E8B90 /* MJRefreshConfigModel */,
 				8478D8982D01CBE0004E8B90 /* SDWebImageModel */,
 				8478D89B2D01CBE0004E8B90 /* GTCaptcha4Model */,
@@ -4491,6 +4501,33 @@
 				8478DA802D01E1F8004E8B90 /* NSObject+URLManager_7.m */,
 			);
 			path = "URLManager@7";
+			sourceTree = "<group>";
+		};
+		8478DBFB2D02ED74004E8B90 /* HXPhotoPickerModel */ = {
+			isa = PBXGroup;
+			children = (
+				8478DBF92D02ED74004E8B90 /* HXPhotoPickerModel.h */,
+				8478DBFA2D02ED74004E8B90 /* HXPhotoPickerModel.m */,
+			);
+			path = HXPhotoPickerModel;
+			sourceTree = "<group>";
+		};
+		8478DBFF2D02EDD4004E8B90 /* UIImageView+RAC */ = {
+			isa = PBXGroup;
+			children = (
+				8478DBFD2D02EDD4004E8B90 /* UIImageView+RAC.h */,
+				8478DBFE2D02EDD4004E8B90 /* UIImageView+RAC.m */,
+			);
+			path = "UIImageView+RAC";
+			sourceTree = "<group>";
+		};
+		8478DC032D02EE35004E8B90 /* FMNameModel */ = {
+			isa = PBXGroup;
+			children = (
+				8478DC012D02EE35004E8B90 /* FMNameModel.h */,
+				8478DC022D02EE35004E8B90 /* FMNameModel.m */,
+			);
+			path = FMNameModel;
 			sourceTree = "<group>";
 		};
 		8489C9D52CE622CB00BB5E83 /* UICollectionView+JobsEmptyData */ = {
@@ -12380,6 +12417,7 @@
 		CE5A63142CA82C2D006D67A7 /* UIImageView+Category */ = {
 			isa = PBXGroup;
 			children = (
+				8478DBFF2D02EDD4004E8B90 /* UIImageView+RAC */,
 				8439F62C2CD8E6F100319E4A /* UIImageView+Extra */,
 				8439F62F2CD8E6F100319E4A /* UIImageView+SDWebImage */,
 				CE5A63132CA82C2D006D67A7 /* UIImageView+GIF */,
@@ -14822,6 +14860,7 @@
 			isa = PBXGroup;
 			children = (
 				CECE7F1E2C4512BF00764AF5 /* DAO.h */,
+				8478DC032D02EE35004E8B90 /* FMNameModel */,
 				8464A5A32CDB74D20030409A /* FMDoorModel */,
 				84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */,
 				CECE7F142C4512BF00764AF5 /* CasinoCustomerContactModel */,
@@ -16144,6 +16183,7 @@
 				CECE7E892C450E5B00764AF5 /* HTTPDataResponse.m in Sources */,
 				CE4F27632CA825CD002AF25B /* LandscapeSwitchVC.m in Sources */,
 				CE4F27642CA825CD002AF25B /* CtrlClipboardCueVC.m in Sources */,
+				8478DC042D02EE35004E8B90 /* FMNameModel.m in Sources */,
 				CE5A65AF2CA833A4006D67A7 /* JobsAppDoorForgotCodeContentView.m in Sources */,
 				CE5A65B02CA833A4006D67A7 /* JobsAppDoorContentView.m in Sources */,
 				CE4F27652CA825CD002AF25B /* JobsSearchTableViewHeaderView.m in Sources */,
@@ -16253,6 +16293,7 @@
 				84E9992E2CEB2D1C00ABE463 /* NSObject+TEST.m in Sources */,
 				84B1BA212CEDCA4C0001562D /* FSCalendarCalculator.m in Sources */,
 				84B1BA222CEDCA4C0001562D /* FSCalendarCell.m in Sources */,
+				8478DC002D02EDD4004E8B90 /* UIImageView+RAC.m in Sources */,
 				84E9992F2CEB2D1C00ABE463 /* NSObject+DEV.m in Sources */,
 				84E999302CEB2D1C00ABE463 /* NSObject+Mock.m in Sources */,
 				84E999312CEB2D1C00ABE463 /* NSObject+UAT.m in Sources */,
@@ -16269,6 +16310,7 @@
 				CE5A65122CA830FE006D67A7 /* UICollectionViewCell+ShakeAnimation.m in Sources */,
 				CE4F27922CA825CD002AF25B /* ZMJTextCell.m in Sources */,
 				CE5A64882CA82DAC006D67A7 /* NSMutableArray+Extra.m in Sources */,
+				8478DBFC2D02ED74004E8B90 /* HXPhotoPickerModel.m in Sources */,
 				CE4F27932CA825CD002AF25B /* TransparentRegionVC.m in Sources */,
 				CE4F27942CA825CD002AF25B /* JobsTopViewItem.m in Sources */,
 				CE4F27952CA825CD002AF25B /* MyCollectionVC.m in Sources */,

@@ -45,13 +45,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
 +(JobsReturnButtonByStyle3Block _Nonnull)initByStyle5;
 /// 图文混排（图片在上边 ）
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyleTop;
++(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleTop;
 /// 图文混排（图片在左边 ）
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyleLeft;
++(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleLeft;
 /// 图文混排（图片在下边 ）
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyleBottom;
++(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleBottom;
 /// 图文混排（图片在右边 ）
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyleRight;
++(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleRight;
 #pragma mark —— 依靠数据束进行创建
 +(JobsReturnButtonByVoidBlock _Nonnull)jobsInit;
 /// 依靠UIViewModel进行创建

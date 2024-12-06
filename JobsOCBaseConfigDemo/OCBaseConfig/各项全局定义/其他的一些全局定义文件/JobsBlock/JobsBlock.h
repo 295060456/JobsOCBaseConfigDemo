@@ -251,21 +251,24 @@ typedef __kindof UITabBarItem *_Nullable(^JobsReturnTabBarItemByConfigBlock)(__k
 typedef void(^jobsByLZTabBarConfigBlock)(__kindof LZTabBarConfig *_Nullable data);
 
 @class MJRefreshConfigModel;
-typedef void(^jobsByRefreshConfigModelBlock)(__kindof MJRefreshConfigModel *_Nullable data);
+typedef void(^jobsByRefreshConfigModelBlock)(__kindof MJRefreshConfigModel *_Nullable model);
+
+@class HXPhotoPickerModel;
+typedef void(^jobsByHXPhotoPickerModelBlock)(__kindof HXPhotoPickerModel *_Nullable model);
 
 @class JobsParagraphStyleModel;
 typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *_Nullable data);
 
 @class JobsLocationModel;
-typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
+typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable model);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
 
 @class GTCaptcha4Model;
-typedef void(^jobsByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
+typedef void(^jobsByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable model);
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
 
 @class FMDoorModel;
-typedef void(^jobsByDoorModelBlock)(__kindof FMDoorModel *_Nullable data);
+typedef void(^jobsByDoorModelBlock)(__kindof FMDoorModel *_Nullable model);
 typedef __kindof FMDoorModel *_Nullable(^JobsDoorModelBlock)(__kindof FMDoorModel *_Nullable data);
 typedef __kindof FMDoorModel *_Nullable(^JobsReturnDoorModelByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
 
@@ -470,6 +473,9 @@ typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullabl
 typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nullable data);
 
 #pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
+@class KYCModel;
+typedef void(^jobsByKYCModelBlock)(__kindof KYCModel *_Nullable model);
+
 @class FMTableHeaderView1;
 typedef void(^jobsByTableHeaderView1Block)(__kindof FMTableHeaderView1 *_Nullable tableHeaderView);
 
