@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonDigest.h>
 #import "GTMBase64.h"
+#import "NSString+Conversion.h"
 
 /// SHA1 加密
 /// @param string 被加密的字符串
@@ -21,34 +22,27 @@ NS_INLINE NSString *sha_1(NSString *string,
                                     BOOL useBase64){
     if (bit == CC_SHA1_DIGEST_LENGTH ||
         bit == CC_SHA1_BLOCK_BYTES) {
-        const char *cStr = [string UTF8String];
+        const char *cStr = string.UTF8String;
         NSData *data = [NSData dataWithBytes:cStr length:string.length];
         uint8_t digest[bit];
         CC_SHA1(data.bytes, (CC_LONG)data.length, digest);
-
         NSString *output = nil;
         if (useBase64) {
-            NSData *base64 = [[NSData alloc]initWithBytes:digest
-                                                   length:bit];
-            base64 = [GTMBase64 encodeData:base64];
-            output = [[NSString alloc] initWithData:base64
-                                           encoding:NSUTF8StringEncoding];
+            NSData *base64 = [NSData.alloc initWithBytes:digest length:bit];
+            base64 = GTMBase64.encodeData(base64);
+            output = NSString.initByUTF8Data(base64);
         }else{
             NSMutableString *result = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
             for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++) {
                 [result appendFormat:@"%02x", digest[i]];
-            }
-            output = (NSString *)result;
+            }output = (NSString *)result;
         }
-        
         NSString *finalStr = Nil;
         if(isLowercase){
-            finalStr = [output lowercaseString];
+            finalStr = output.lowercaseString;
         }else{
-            finalStr = [output uppercaseString];
-        }
-        
-        return finalStr;
+            finalStr = output.uppercaseString;
+        }return finalStr;
     }else{
         return nil;
     }

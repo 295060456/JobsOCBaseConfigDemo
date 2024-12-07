@@ -9,10 +9,16 @@
 
 @implementation NSString (Conversion)
 #pragma mark —— 转化
-/// 对系统方法 initWithData 的二次封装
+/// 对系统方法 initWithData.NSUTF8StringEncoding 的二次封装
 +(JobsReturnStringByDataBlock _Nonnull)initByUTF8Data{
     return ^__kindof NSString *_Nullable(NSData *_Nullable data){
         return [NSString.alloc initWithData:data encoding:NSUTF8StringEncoding];
+    };
+}
+/// 对系统方法 initWithData.NSASCIIStringEncoding 的二次封装
++(JobsReturnStringByDataBlock _Nonnull)initByASCIIData{
+    return ^__kindof NSString *_Nullable(NSData *_Nullable data){
+        return [NSString.alloc initWithData:data encoding:NSASCIIStringEncoding];
     };
 }
 /// 转化为可变字符串
@@ -22,6 +28,10 @@
 
 -(NSData *_Nullable)UTF8Encoding{
     return [self dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+-(NSData *_Nullable)ASCIIEncoding{
+    return [self dataUsingEncoding:NSASCIIStringEncoding];
 }
 /// 字符串中取数字
 -(long long)getDigits{

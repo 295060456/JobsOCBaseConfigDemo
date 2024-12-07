@@ -37,11 +37,11 @@
         Boolean flignore, flendtext = false;
         const unsigned char *tempcstring;
         NSMutableData *theData;
-        if (!string) return [NSData data];
+        if (!string) return NSData.data;
         ixtext = 0;
         tempcstring = (const unsigned char *)string.UTF8String;
-        lentext = [string length];
-        theData = [NSMutableData dataWithCapacity: lentext];
+        lentext = string.length;
+        theData = NSMutableData.initByCapacity(lentext);
         ixinbuf = 0;
         while (true) {
             if (ixtext >= lentext) break;

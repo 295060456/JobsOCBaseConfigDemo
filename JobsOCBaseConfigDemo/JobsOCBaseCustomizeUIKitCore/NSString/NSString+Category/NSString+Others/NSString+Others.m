@@ -244,5 +244,11 @@
         return [self characterAtIndex:data];
     };
 }
+/// 对系统方法 stringWithCapacity 的二次封装
++(JobsReturnStringByUIntegerBlock _Nonnull)initByCapacity{
+    return ^NSMutableString *_Nullable(NSUInteger data){
+        return [NSMutableString stringWithCapacity:data];
+    };
+}
 
 @end

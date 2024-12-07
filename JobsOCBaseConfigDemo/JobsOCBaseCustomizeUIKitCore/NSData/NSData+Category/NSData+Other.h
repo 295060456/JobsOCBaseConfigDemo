@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 对系统初始化方法的封装
 -(JobsReturnDataByDataBlock _Nonnull)initWithData;
 
++(JobsReturnDataByNSUIntegerBlock _Nonnull)initByCapacity;
 +(JobsReturnDataByDataBlock _Nonnull)initByData;
 +(JobsReturnDataByURLBlock _Nonnull)initByURL;
 +(JobsReturnDataByStringBlock _Nonnull)dataByContentsOfFile;

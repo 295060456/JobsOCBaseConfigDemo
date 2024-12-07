@@ -21,29 +21,28 @@
          */
         NSUInteger length = data.length;
         const unsigned char *bytes = data.bytes;
-        NSMutableString *base85String = NSMutableString.string;
-        NSUInteger remainder = length % 4;
-        
-        NSUInteger i;
-        for (i = 0; i < length - remainder; i += 4) {
-            uint32_t value = (bytes[i] << 24) | (bytes[i + 1] << 16) | (bytes[i + 2] << 8) | bytes[i + 3];
-            [base85String appendFormat:@"%c%c%c%c%c",
-             (value / (85 * 85 * 85 * 85)) % 85 + 33,
-             (value / (85 * 85 * 85)) % 85 + 33,
-             (value / (85 * 85)) % 85 + 33,
-             (value / 85) % 85 + 33,
-             value % 85 + 33];
-        }
-        
-        if (remainder > 0) {
-            uint32_t value = 0;
-            for (NSUInteger j = 0; j < remainder; j++) {
-                value |= bytes[i + j] << (8 * (3 - j));
+        return jobsMakeMutString(^(__kindof NSMutableString * _Nullable base85String) {
+            NSUInteger remainder = length % 4;
+            NSUInteger i;
+            for (i = 0; i < length - remainder; i += 4) {
+                uint32_t value = (bytes[i] << 24) | (bytes[i + 1] << 16) | (bytes[i + 2] << 8) | bytes[i + 3];
+                [base85String appendFormat:@"%c%c%c%c%c",
+                 (value / (85 * 85 * 85 * 85)) % 85 + 33,
+                 (value / (85 * 85 * 85)) % 85 + 33,
+                 (value / (85 * 85)) % 85 + 33,
+                 (value / 85) % 85 + 33,
+                 value % 85 + 33];
             }
-            for (NSUInteger j = 0; j < remainder + 1; j++) {
-                [base85String appendFormat:@"%c", (value / (uint32_t)pow(85, 4 - j)) % 85 + 33];
+            if (remainder > 0) {
+                uint32_t value = 0;
+                for (NSUInteger j = 0; j < remainder; j++) {
+                    value |= bytes[i + j] << (8 * (3 - j));
+                }
+                for (NSUInteger j = 0; j < remainder + 1; j++) {
+                    [base85String appendFormat:@"%c", (value / (uint32_t)pow(85, 4 - j)) % 85 + 33];
+                }
             }
-        }return base85String;
+        });
     };
 }
 ///【实例方法】将NSData对象 转换为 以Base85编码的字符串

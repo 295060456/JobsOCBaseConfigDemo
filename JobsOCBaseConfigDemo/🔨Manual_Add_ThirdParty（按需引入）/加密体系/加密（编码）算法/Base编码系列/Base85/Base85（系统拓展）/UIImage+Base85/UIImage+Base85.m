@@ -70,9 +70,7 @@
             for (NSUInteger i = 0; i < length; i += 5) {
                 uint32_t value = 0;
                 for (NSUInteger j = 0; j < 5; j++) {
-                    if (i + j < length) {
-                        value = value * 85 + ([base85String characterAtIndex:i + j] - 33);
-                    }
+                    if (i + j < length) value = value * 85 + ([base85String characterAtIndex:i + j] - 33);
                 }
                 for (NSUInteger j = 0; j < 4 && i + j < length; j++) {
                     uint8_t byte = (value >> (8 * (3 - j))) & 0xFF;

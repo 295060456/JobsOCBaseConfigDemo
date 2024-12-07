@@ -17,6 +17,12 @@
     };
 }
 
++(JobsReturnDataByNSUIntegerBlock _Nonnull)initByCapacity{
+    return ^NSMutableData *_Nullable(NSUInteger data){
+        return [NSMutableData dataWithCapacity:data];
+    };
+}
+
 +(JobsReturnDataByDataBlock _Nonnull)initByData{
     return ^NSData *_Nullable(NSData *_Nullable data){
         return [NSData dataWithData:data];

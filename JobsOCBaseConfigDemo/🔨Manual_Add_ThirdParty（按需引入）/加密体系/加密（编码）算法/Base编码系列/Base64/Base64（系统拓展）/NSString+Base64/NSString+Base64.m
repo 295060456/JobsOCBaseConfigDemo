@@ -62,7 +62,7 @@
         ixtext = 0;
         tempcstring = (const unsigned char *)base64String.UTF8String;
         lentext = base64String.length;
-        theData = [NSMutableData dataWithCapacity: lentext];
+        theData = NSMutableData.initByCapacity(lentext);
         ixinbuf = 0;
         while (true) {
             if (ixtext >= lentext) break;

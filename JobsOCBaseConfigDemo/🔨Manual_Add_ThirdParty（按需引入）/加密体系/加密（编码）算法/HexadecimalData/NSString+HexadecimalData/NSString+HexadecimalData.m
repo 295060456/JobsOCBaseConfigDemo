@@ -31,7 +31,7 @@
 +(JobsReturnStringByStringBlock _Nonnull)hexStringByString{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable string){
         NSData *data = string.UTF8Encoding;
-        NSMutableString *hexString = [NSMutableString stringWithCapacity:data.length * 2];
+        NSMutableString *hexString = NSMutableString.initByCapacity(data.length * 2);
         const unsigned char *bytes = data.bytes;
         for (int i = 0; i < data.length; ++i) {
             [hexString appendFormat:@"%02x", bytes[i]];

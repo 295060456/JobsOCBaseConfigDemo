@@ -158,7 +158,7 @@
             //     7 H            16 Q            25 Z
             //     8 I            17 R            26 2
 
-            NSUInteger dataLength = [data length];
+            NSUInteger dataLength = data.length;
             NSUInteger encodedBlocks = dataLength / 5;
             if( (encodedBlocks + 1) >= (NSUIntegerMax / 8) ) return nil; // NSUInteger overflow check
             NSUInteger padding = paddingTable[dataLength % 5];
@@ -170,7 +170,7 @@
                 NSUInteger rawBytesToProcess = dataLength;
                 NSUInteger rawBaseIndex = 0;
                 NSUInteger encodingBaseIndex = 0;
-                unsigned char *rawBytes = (unsigned char *)[data bytes];
+                unsigned char *rawBytes = (unsigned char *)data.bytes;
                 unsigned char rawByte1, rawByte2, rawByte3, rawByte4, rawByte5;
                 while( rawBytesToProcess >= 5 ) {
                     rawByte1 = rawBytes[rawBaseIndex];
@@ -219,7 +219,9 @@
                 while( padding-- > 0 ) {
                     encodingBytes[encodingBaseIndex++] = '=';
                 }
-                encoding = [[NSString alloc] initWithBytes:encodingBytes length:encodedLength encoding:NSASCIIStringEncoding];
+                encoding = [NSString.alloc initWithBytes:encodingBytes
+                                                  length:encodedLength
+                                                encoding:NSASCIIStringEncoding];
             }
         }
         @catch (NSException *exception) {

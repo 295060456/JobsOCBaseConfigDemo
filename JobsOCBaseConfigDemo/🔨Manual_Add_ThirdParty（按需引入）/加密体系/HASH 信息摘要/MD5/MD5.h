@@ -16,18 +16,14 @@
 /// @param bit 加密长度
 /// @param useBase64 是否用Base64 进行二次加密
 NS_INLINE NSString *MD5_32bits(NSString *salt,
-                                   NSString *string,
-                                   BOOL isLowercase,
-                                   int bit,
-                                   BOOL useBase64){
+                               NSString *string,
+                               BOOL isLowercase,
+                               int bit,
+                               BOOL useBase64){
     if (bit == CC_MD5_DIGEST_LENGTH ||
         bit == 32 ||
         bit == CC_MD5_BLOCK_BYTES) {
-        
-        if (isValue(salt)) {
-            string = string.add(salt);
-        }
-        
+        if (isValue(salt)) string = string.add(salt);
         const char *original_str = string.UTF8String;
         unsigned char result[bit];
         
@@ -36,21 +32,15 @@ NS_INLINE NSString *MD5_32bits(NSString *salt,
                result);
         NSString *output = nil;
         if (useBase64) {
-            NSData * base64 = [NSData.alloc initWithBytes:result
-                                                   length:bit];
-            base64 = [GTMBase64 encodeData:base64];
-            
-            output = [NSString.alloc initWithData:base64 encoding:NSUTF8StringEncoding];
+            NSData * base64 = [NSData.alloc initWithBytes:result length:bit];
+            base64 = GTMBase64.encodeData(base64);
+            output = NSString.initByUTF8Data(base64);
         }else{
             NSMutableString *hash = NSMutableString.string;
-            
             for (int i = 0; i < bit; i++){
                 [hash appendFormat:@"%02X", result[i]];
-            }
-            
-            output = (NSString *)hash;
+            }output = (NSString *)hash;
         }
-        
         NSString *finalStr = Nil;
         finalStr = isLowercase ? output.lowercaseString : output.uppercaseString;
         return finalStr.copy;
@@ -58,9 +48,9 @@ NS_INLINE NSString *MD5_32bits(NSString *salt,
 }
 /// HmacMD5加密，使用秘钥
 NS_INLINE NSString *hMacMD5String(NSString *string,
-                                      NSString *keyStr,
-                                      BOOL isLowercase,
-                                      int bit){
+                                  NSString *keyStr,
+                                  BOOL isLowercase,
+                                  int bit){
     if (bit == CC_MD5_DIGEST_LENGTH ||
         bit == 32 ||
         bit == CC_MD5_BLOCK_BYTES) {
@@ -112,8 +102,7 @@ NS_INLINE NSString *hMacMD5String(NSString *string,
         }
         
         NSData *HMAC = [NSData.alloc initWithBytes:hex length:strlen(hex)];
-        NSString *hash = [NSString.alloc initWithData:HMAC encoding:NSUTF8StringEncoding];
-        
+        NSString *hash = NSString.initByUTF8Data(HMAC);
         NSString *finalStr = isLowercase ? hash.lowercaseString : hash.uppercaseString;
         return finalStr;
     } return nil;

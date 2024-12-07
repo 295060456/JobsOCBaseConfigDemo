@@ -131,6 +131,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnStringByCharacterSetBlock _Nonnull)byTrimmingCharactersInSet;
 /// 对系统方法 characterAtIndex 的二次封装
 -(JobsReturnUnsignedShortByNSUIntegerBlock _Nonnull)characterAtIndex;
+/// 对系统方法 stringWithCapacity 的二次封装
++(JobsReturnStringByUIntegerBlock _Nonnull)initByCapacity;
 
 @end
 

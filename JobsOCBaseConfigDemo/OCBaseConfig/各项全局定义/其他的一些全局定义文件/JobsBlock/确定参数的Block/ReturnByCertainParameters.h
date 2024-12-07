@@ -310,6 +310,7 @@ typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL 
 typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByURLBlock)(NSURL *_Nullable url);
 typedef __kindof NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
 typedef __kindof NSData *_Nullable(^JobsReturnDataByIDBlock)(id _Nullable data);
+typedef __kindof NSData *_Nullable(^JobsReturnDataByNSUIntegerBlock)(NSUInteger data);
 typedef __kindof NSData *_Nullable(^JobsReturnDataByDataBlock)(__kindof NSData *_Nullable data);
 typedef __kindof NSData *_Nullable(^JobsReturnDataByImageBlock)(UIImage *_Nullable data);
 typedef __kindof NSData *_Nullable(^JobsReturnDataByFloatBlock)(CGFloat data);

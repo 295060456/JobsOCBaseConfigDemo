@@ -13,7 +13,7 @@
 +(JobsReturnStringByImageBlock _Nonnull)hexStringByImage{
     return ^__kindof NSString *_Nullable(UIImage *_Nullable image){
         NSData *imageData = UIImagePNGRepresentation(image); // 或者 UIImageJPEGRepresentation(self, compressionQuality)
-        NSMutableString *hexString = [NSMutableString stringWithCapacity:imageData.length * 2];
+        NSMutableString *hexString = NSMutableString.initByCapacity(imageData.length * 2);
         const unsigned char *bytes = imageData.bytes;
         for (int i = 0; i < imageData.length; ++i) {
             [hexString appendFormat:@"%02X", bytes[i]];
@@ -30,7 +30,7 @@
     return ^UIImage *_Nullable(__kindof NSString *_Nullable hexString){
         return UIImage.initByData(jobsMakeMutData(^(__kindof NSMutableData * _Nullable imageData) {
             for (int i = 0; i + 1 < hexString.length; i += 2) {
-                NSString *hexByte = [hexString substringWithRange:NSMakeRange(i, 2)];
+                NSString *hexByte = hexString.substringWithRange(NSMakeRange(i, 2));
                 NSScanner *scanner = [NSScanner scannerWithString:hexByte];
                 unsigned int byteValue;
                 [scanner scanHexInt:&byteValue];

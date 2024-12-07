@@ -14,10 +14,8 @@
     return ^__kindof NSString *_Nullable(__kindof NSData *_Nullable data){
         const unsigned char *dataBuffer = (const unsigned char *)data.bytes;
         if (!dataBuffer) return JobsInternationalization(@"");
-
         NSUInteger dataLength = data.length;
-        NSMutableString *hexString = [NSMutableString stringWithCapacity:(dataLength * 2)];
-        
+        NSMutableString *hexString = NSMutableString.initByCapacity(dataLength * 2);
         for (int i = 0; i < dataLength; ++i) {
             [hexString appendFormat:@"%02X", (unsigned int)dataBuffer[i]];
         }return hexString;
