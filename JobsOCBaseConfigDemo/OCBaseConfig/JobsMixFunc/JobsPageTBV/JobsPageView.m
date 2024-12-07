@@ -64,7 +64,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsPageTBVCell *cell = JobsPageTBVCell.cellStyleSubtitleWithTableView(tableView);
-    cell.jobsRichElementsInCellWithModel(self.dataArr[indexPath.row]);
+    cell.jobsRichElementsCellBy(self.dataArr[indexPath.row]);
 #warning 这里需要被修改
 //    UIViewModel *viewModel = self.dataArr[indexPath.row];
 //    viewModel.jobsWidth = JobsPageTBVCell.cellHeightByModel(nil) ? : self.cellHeight;

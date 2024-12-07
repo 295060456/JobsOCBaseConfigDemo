@@ -118,7 +118,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
-    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.section][indexPath.row]);
+    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.section][indexPath.row]);
     return cell;
 }
 

@@ -221,7 +221,7 @@ numberOfRowsInSection:(NSInteger)section {
     JobsVideoTBVCell *cell = JobsVideoTBVCell.cellStyleValue1WithTableView(tableView);
     cell.delegate = self;
     cell.index = indexPath.row;
-    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 

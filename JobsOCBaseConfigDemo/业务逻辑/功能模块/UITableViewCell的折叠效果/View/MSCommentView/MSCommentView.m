@@ -120,7 +120,7 @@ numberOfRowsInSection:(NSInteger)section{
     MSCommentTBVCell *cell = MSCommentTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.indexPath = indexPath;
-    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]);
+    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]);
     
     CGRect cellFrame = cell.frame;
     cellFrame.size.width -= JobsWidth(15 * 2);

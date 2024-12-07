@@ -104,7 +104,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
-    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 

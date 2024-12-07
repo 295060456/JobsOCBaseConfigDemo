@@ -103,7 +103,7 @@ static dispatch_once_t static_shareViewOnceToken;
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MSMineView6CVCell *cell = [MSMineView6CVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 

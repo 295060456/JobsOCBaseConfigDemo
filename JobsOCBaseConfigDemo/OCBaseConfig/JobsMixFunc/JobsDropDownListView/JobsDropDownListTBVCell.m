@@ -29,7 +29,7 @@ UITableViewCell_UIViewModelProtocolSynthesize
               reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style
                     reuseIdentifier:reuseIdentifier]) {
-        self.jobsRichElementsInCellWithModel(nil);
+        self.jobsRichElementsCellBy(nil);
         self.selectionStyle = UITableViewCellSelectionStyleNone;// 取消点击效果 【不能在cellStyleValue1WithTableView里面写】
         self.backgroundColor = self.contentView.backgroundColor = HEXCOLOR(0xFBF7E3);
         self.selectedBackgroundView = [UIView.alloc initWithFrame:self.frame];// 这句不可省略
@@ -37,7 +37,7 @@ UITableViewCell_UIViewModelProtocolSynthesize
     }return self;
 }
 
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)

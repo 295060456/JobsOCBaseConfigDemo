@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 #ifndef ReturnRichJobsBaseCollectionViewCell
 #define ReturnRichJobsBaseCollectionViewCell \
     JobsBaseCollectionViewCell *cell = [JobsBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];\
-    cell.jobsRichElementsInCellWithModel(nil);\
+    cell.jobsRichElementsCellBy(nil);\
     return cell;
 #endif
 

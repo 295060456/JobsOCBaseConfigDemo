@@ -249,7 +249,7 @@ numberOfRowsInSection:(NSInteger)section{
     LeftCell *cell = LeftCell.cellStyleDefaultWithTableView(tableView);
     UIViewModel *viewModel = UIViewModel.new;
     viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
-    cell.jobsRichElementsInCellWithModel(viewModel);
+    cell.jobsRichElementsCellBy(viewModel);
     return cell;
 }
 
@@ -276,7 +276,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ThreeClassCell *cell = [ThreeClassCell cellWithCollectionView:collectionView forIndexPath:indexPath];
     self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(indexPath.section);
     cell.getCollectionHeight(self.rightViewCurrentSelectModel.childrenList);
-    cell.jobsRichElementsInCellWithModel(self.rightDataArray);
+    cell.jobsRichElementsCellBy(self.rightDataArray);
     [cell reloadData];
 //    @jobs_weakify(self)
     [cell actionObjectBlock:^(GoodsClassModel *model) {

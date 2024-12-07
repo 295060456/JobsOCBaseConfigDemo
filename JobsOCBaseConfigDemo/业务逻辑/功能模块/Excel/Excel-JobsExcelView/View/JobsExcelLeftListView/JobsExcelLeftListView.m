@@ -55,10 +55,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     TableViewOneCell *cell = TableViewOneCell.cellStyleValue1WithTableView(tableView);
     
     cell.backgroundColor = indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2;
-    cell.jobsRichElementsInCellWithModel(self.excelConfigureData);
+    cell.jobsRichElementsCellBy(self.excelConfigureData);
     
     UIButtonModel *model = (UIButtonModel *)self.excelConfigureData.leftListDatas[indexPath.row];
-    cell.jobsRichElementsInCellWithModel2(model);
+    cell.jobsRichElementsCellByModel(model);
     
     return cell;
 }

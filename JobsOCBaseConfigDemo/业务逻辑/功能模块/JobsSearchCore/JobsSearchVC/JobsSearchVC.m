@@ -253,7 +253,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                 case HotSearchStyle_1:{
                     JobsSearchShowHotwordsTBVCell *cell = JobsSearchShowHotwordsTBVCell.cellStyleValue1WithTableView(tableView);
                     cell.indexPath = indexPath;
-                    cell.jobsRichElementsInCellWithModel(self.hotSearchMutArr);
+                    cell.jobsRichElementsCellBy(self.hotSearchMutArr);
                     /// 点击的哪个btn？
                     [cell actionObjectBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
                         @jobs_strongify(self)
@@ -263,7 +263,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                 case HotSearchStyle_2:{
                     JobsSearchTBVCell *cell = JobsSearchTBVCell.cellStyleValue1WithTableView(tableView);
                     cell.indexPath = indexPath;
-                    cell.jobsRichElementsInCellWithModel(self.hotSearchMutArr);
+                    cell.jobsRichElementsCellBy(self.hotSearchMutArr);
                     [cell actionObjectBlock:^(UIViewModel *data) {
                         @jobs_strongify(self)
                         self.jobsSearchBar.textField.text = data.textModel.text;
@@ -286,7 +286,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         case 1:{/// 搜索历史
             JobsSearchShowHistoryDataTBVCell *cell = JobsSearchShowHistoryDataTBVCell.cellStyleValue1WithTableView(tableView);
             cell.indexPath = indexPath;
-            cell.jobsRichElementsInCellWithModel(self.listViewData[indexPath.row]);
+            cell.jobsRichElementsCellBy(self.listViewData[indexPath.row]);
             return cell;
         }break;
         default:

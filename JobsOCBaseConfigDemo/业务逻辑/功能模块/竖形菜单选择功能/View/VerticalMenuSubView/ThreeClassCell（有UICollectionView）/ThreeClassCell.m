@@ -50,11 +50,11 @@
         self.minimumInteritemSpacing = JobsWidth(13);
         self.itemHeight = TreeClassItemCell.cellSizeByModel(nil).height;
         self.backgroundColor = self.contentView.backgroundColor = ThreeClassCellBgCor;
-        self.jobsRichElementsInCellWithModel(nil);
+        self.jobsRichElementsCellBy(nil);
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)
@@ -130,7 +130,7 @@
                  cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     TreeClassItemCell *cell = [TreeClassItemCell cellWithCollectionView:self.collectionView forIndexPath:indexPath];
     /// 针对数据源第一个数据不是我们需要的
-    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.item]);
+    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.item]);
     return cell;
 }
 

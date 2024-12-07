@@ -108,7 +108,7 @@ UITableViewCellProtocol_dynamic
     return [self.jobsGetCurrentTableView numberOfRowsInSection:self.jobsGetCurrentIndexPath.section];
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -121,7 +121,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)

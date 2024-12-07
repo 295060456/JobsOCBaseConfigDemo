@@ -38,7 +38,7 @@
 }
 #pragma mark —— BaseCellProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
@@ -50,9 +50,9 @@
     };
 }
 
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellByModel{
     return ^(UIButtonModel *_Nullable model) {
-        super.jobsRichElementsInCellWithModel(model);
+        super.jobsRichElementsCellBy(model);
     };
 }
 

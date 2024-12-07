@@ -201,7 +201,7 @@ numberOfRowsInSection:(NSInteger)section{
     viewModel.row = indexPath.row;
     viewModel.data = self.dataMutArr[indexPath.row];
     
-    cell.jobsRichElementsInCellWithModel(viewModel);
+    cell.jobsRichElementsCellBy(viewModel);
     
     self.index = indexPath.row;
     @jobs_weakify(self)

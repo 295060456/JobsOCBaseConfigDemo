@@ -61,7 +61,7 @@
                               collectionViewCellBlock0:^UICollectionViewCell * _Nullable{
         @jobs_strongify(self)
         BaiShaETProjOrderDetailsCVCell *cell = [BaiShaETProjOrderDetailsCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-        cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.section]);
+        cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.section]);
         return cell;
     }
                               collectionViewCellBlock1:nil

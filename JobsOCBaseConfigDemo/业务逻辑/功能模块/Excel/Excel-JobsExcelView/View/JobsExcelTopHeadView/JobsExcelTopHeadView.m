@@ -45,8 +45,8 @@
     JobsTopViewItem *cell = [JobsTopViewItem cellWithCollectionView:collectionView
                                                        forIndexPath:indexPath];
     cell.backgroundColor = self.excelConfigureData.cor3;
-    cell.jobsRichElementsInCellWithModel(self.excelConfigureData);
-    cell.jobsRichElementsInCellWithModel2(self.excelConfigureData.topHeaderDatas[indexPath.row]);
+    cell.jobsRichElementsCellBy(self.excelConfigureData);
+    cell.jobsRichElementsCellByModel(self.excelConfigureData.topHeaderDatas[indexPath.row]);
     
     return cell;
 }

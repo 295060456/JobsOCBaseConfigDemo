@@ -27,7 +27,7 @@
     };
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)

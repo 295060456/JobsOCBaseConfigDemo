@@ -166,7 +166,7 @@
     LeftCell *cell = LeftCell.cellStyleDefaultWithTableView(tableView);
     UIViewModel *viewModel = UIViewModel.new;
     viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
-    cell.jobsRichElementsInCellWithModel(viewModel);
+    cell.jobsRichElementsCellBy(viewModel);
     return cell;
 }
 

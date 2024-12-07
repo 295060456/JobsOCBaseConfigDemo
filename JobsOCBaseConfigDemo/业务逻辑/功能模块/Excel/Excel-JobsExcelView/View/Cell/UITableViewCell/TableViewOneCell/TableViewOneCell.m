@@ -35,7 +35,7 @@
     };
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
@@ -49,11 +49,11 @@
     };
 }
 
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellByModel{
 //    @jobs_weakify(self)
     return ^(UIButtonModel *_Nullable model) {
 //        @jobs_strongify(self)
-        super.jobsRichElementsInCellWithModel(model);
+        super.jobsRichElementsCellBy(model);
     };
 }
 

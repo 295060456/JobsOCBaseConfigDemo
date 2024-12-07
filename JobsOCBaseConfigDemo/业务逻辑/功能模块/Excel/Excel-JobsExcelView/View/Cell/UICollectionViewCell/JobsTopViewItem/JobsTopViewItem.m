@@ -46,7 +46,7 @@
                                         cornerRadii:CGSizeMake(JobsWidth(0), JobsWidth(0))];
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
@@ -68,9 +68,9 @@
     };
 }
 
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellByModel{
     return ^(UIButtonModel *_Nullable model) {
-        super.jobsRichElementsInCellWithModel(model);
+        super.jobsRichElementsCellBy(model);
     };
 }
 #pragma mark —— lazyLoad

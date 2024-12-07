@@ -91,7 +91,7 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     JobsHotLabelByMultiLineCVCell *cell = (JobsHotLabelByMultiLineCVCell *)self.cvcellMutArr[indexPath.item];
-    cell.jobsRichElementsInCellWithModel(self.dataModel.viewModelMutArr[indexPath.item]);
+    cell.jobsRichElementsCellBy(self.dataModel.viewModelMutArr[indexPath.item]);
     CGSize itemSize = jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelByMultiLineCVCell.cellSizeByModel(self.dataModel.viewModelMutArr[indexPath.item]) : self.dataModel.cellSize;
     cell.cornerCutToCircleWithCornerRadius(itemSize.height / 2);
     cell.contentView.cornerCutToCircleWithCornerRadius(itemSize.height / 2);

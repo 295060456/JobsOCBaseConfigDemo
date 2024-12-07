@@ -32,7 +32,7 @@
     };
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
@@ -40,7 +40,7 @@
     };
 }
 
--(jobsByIDBlock _Nonnull)jobsRichElementsInCellWithModel2{
+-(jobsByIDBlock _Nonnull)jobsRichElementsCellByModel{
     @jobs_weakify(self)
     return ^(NSMutableArray <UIButtonModel *>*_Nullable model) {
         @jobs_strongify(self)
@@ -85,8 +85,8 @@
                                                                    forIndexPath:indexPath];
     cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
     NSLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.datas[indexPath.row].title);
-    cell.jobsRichElementsInCellWithModel(self.excelConfigureData);
-    cell.jobsRichElementsInCellWithModel2(self.datas[indexPath.row]);
+    cell.jobsRichElementsCellBy(self.excelConfigureData);
+    cell.jobsRichElementsCellByModel(self.datas[indexPath.row]);
     return cell;
 }
 

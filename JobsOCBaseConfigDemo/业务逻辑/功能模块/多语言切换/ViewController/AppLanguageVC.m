@@ -144,7 +144,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = UITableViewCell.cellStyleValue1WithTableView(tableView);
     cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == JobsLanguageManager.language ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    cell.jobsRichElementsInCellWithModel2(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsCellByModel(self.dataMutArr[indexPath.row]);
     return cell;
 }
 

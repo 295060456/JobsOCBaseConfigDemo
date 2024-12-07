@@ -106,7 +106,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsTextStyleTBVCell *cell = JobsTextStyleTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.indexPath = indexPath;
-    cell.jobsRichElementsInCellWithModel(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— lazyLoad

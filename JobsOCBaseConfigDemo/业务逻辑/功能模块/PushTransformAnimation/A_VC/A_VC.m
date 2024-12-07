@@ -107,7 +107,7 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyFansTBVCell *cell = MyFansTBVCell.cellStyleValue1WithTableView(tableView);
-    cell.jobsRichElementsInCellWithModel(@(indexPath.row % 4));
+    cell.jobsRichElementsCellBy(@(indexPath.row % 4));
     return cell;
 }
 /// BaseViewProtocol

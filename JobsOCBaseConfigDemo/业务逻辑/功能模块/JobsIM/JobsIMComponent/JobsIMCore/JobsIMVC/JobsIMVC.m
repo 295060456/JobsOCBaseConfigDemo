@@ -148,7 +148,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.indexPath = indexPath;
     cell.delegate = self;
     cell.allowsMultipleSwipe = YES;
-    cell.jobsRichElementsInCellWithModel(self.chatInfoModelMutArr[indexPath.row]);
+    cell.jobsRichElementsCellBy(self.chatInfoModelMutArr[indexPath.row]);
     return cell;
 }
 #if isAllowSysEdit
