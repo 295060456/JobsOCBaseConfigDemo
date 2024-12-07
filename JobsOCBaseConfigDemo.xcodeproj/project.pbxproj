@@ -95,6 +95,7 @@
 		8478DBFC2D02ED74004E8B90 /* HXPhotoPickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DBFA2D02ED74004E8B90 /* HXPhotoPickerModel.m */; };
 		8478DC002D02EDD4004E8B90 /* UIImageView+RAC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DBFE2D02EDD4004E8B90 /* UIImageView+RAC.m */; };
 		8478DC042D02EE35004E8B90 /* FMNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DC022D02EE35004E8B90 /* FMNameModel.m */; };
+		8478DF622D04172C004E8B90 /* HXPhotoManager+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8478DF602D04172C004E8B90 /* HXPhotoManager+Extra.m */; };
 		8489C9DC2CE622CC00BB5E83 /* JobsEmptyDataView.md in Resources */ = {isa = PBXBuildFile; fileRef = 8489C9DA2CE622CB00BB5E83 /* JobsEmptyDataView.md */; };
 		8489C9DD2CE622CC00BB5E83 /* UICollectionView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */; };
 		8489C9DE2CE622CC00BB5E83 /* UITableView+JobsEmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8489C9D72CE622CB00BB5E83 /* UITableView+JobsEmptyData.m */; };
@@ -1396,6 +1397,8 @@
 		8478DBFE2D02EDD4004E8B90 /* UIImageView+RAC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+RAC.m"; sourceTree = "<group>"; };
 		8478DC012D02EE35004E8B90 /* FMNameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMNameModel.h; sourceTree = "<group>"; };
 		8478DC022D02EE35004E8B90 /* FMNameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMNameModel.m; sourceTree = "<group>"; };
+		8478DF5F2D04172C004E8B90 /* HXPhotoManager+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HXPhotoManager+Extra.h"; sourceTree = "<group>"; };
+		8478DF602D04172C004E8B90 /* HXPhotoManager+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HXPhotoManager+Extra.m"; sourceTree = "<group>"; };
 		8489C9D32CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+JobsEmptyData.h"; sourceTree = "<group>"; };
 		8489C9D42CE622CB00BB5E83 /* UICollectionView+JobsEmptyData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+JobsEmptyData.m"; sourceTree = "<group>"; };
 		8489C9D62CE622CB00BB5E83 /* UITableView+JobsEmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+JobsEmptyData.h"; sourceTree = "<group>"; };
@@ -3681,6 +3684,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				8478DF612D04172C004E8B90 /* HXPhotoManager */,
 				845F88842CF702D000C53A19 /* BRStringPickerView */,
 				84392BC02CF4A3AF000D441F /* Reachability */,
 				84392BC32CF4A3AF000D441F /* IQKeyboardManager */,
@@ -4528,6 +4532,15 @@
 				8478DC022D02EE35004E8B90 /* FMNameModel.m */,
 			);
 			path = FMNameModel;
+			sourceTree = "<group>";
+		};
+		8478DF612D04172C004E8B90 /* HXPhotoManager */ = {
+			isa = PBXGroup;
+			children = (
+				8478DF5F2D04172C004E8B90 /* HXPhotoManager+Extra.h */,
+				8478DF602D04172C004E8B90 /* HXPhotoManager+Extra.m */,
+			);
+			path = HXPhotoManager;
 			sourceTree = "<group>";
 		};
 		8489C9D52CE622CB00BB5E83 /* UICollectionView+JobsEmptyData */ = {
@@ -16372,6 +16385,7 @@
 				8461D4CF2CF1EF1100446E4F /* Ipdata_api.m in Sources */,
 				8461D4D02CF1EF1100446E4F /* Ipinfo_api.m in Sources */,
 				8461D4D12CF1EF1100446E4F /* Ipify_api.m in Sources */,
+				8478DF622D04172C004E8B90 /* HXPhotoManager+Extra.m in Sources */,
 				8461D4D22CF1EF1100446E4F /* IP_api.m in Sources */,
 				CE5A65842CA832CE006D67A7 /* UIWindow+Extra.m in Sources */,
 				CE4F27AC2CA825CD002AF25B /* GoodsClassModel.m in Sources */,

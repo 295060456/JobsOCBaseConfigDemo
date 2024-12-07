@@ -12,5 +12,6 @@
 #import "IQKeyboardManager+Extra.h"
 #import "Reachability+Extra.h"
 #import "BRStringPickerView+Extra.h"
+#import "HXPhotoManager+Extra.h"
 
 #endif /* JobsOCBaseCustomize3rdCore_h */

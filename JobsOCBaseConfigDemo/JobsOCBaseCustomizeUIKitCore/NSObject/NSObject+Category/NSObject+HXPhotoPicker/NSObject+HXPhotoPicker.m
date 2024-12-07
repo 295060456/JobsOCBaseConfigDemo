@@ -27,7 +27,6 @@
                 UIView *view = (UIView *)self;
                 viewController = (UIViewController *)self.getViewControllerByView(view);
             }
-            
             if(viewController){
                 [viewController hx_presentSelectPhotoControllerWithManager:self.photoManager
                                                                    didDone:^(NSArray<HXPhotoModel *> *allList,
@@ -72,7 +71,6 @@
                     UIView *view = (UIView *)self;
                     viewController = (UIViewController *)self.getViewControllerByView(view);
                 }
-                
                 if(viewController){
                     [viewController hx_presentCustomCameraViewControllerWithManager:self.photoManager
                                                                                done:^(HXPhotoModel *photoModel,
@@ -130,26 +128,29 @@ JobsKey(_photoManager)
 -(HXPhotoManager *)photoManager{
     HXPhotoManager *PhotoManager = Jobs_getAssociatedObject(_photoManager);
     if (!PhotoManager) {
-        PhotoManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
-        PhotoManager.configuration.localFileName = self.appDisplayName.add(@"Models");
-        PhotoManager.configuration.type = HXConfigurationTypeWXChat;
-        PhotoManager.configuration.showOriginalBytes = YES;
-        PhotoManager.configuration.showOriginalBytesLoading = YES;
-        PhotoManager.configuration.videoMaximumSelectDuration = -1;
-        PhotoManager.configuration.limitVideoSize = 100 * 1024 * 1024;
-        PhotoManager.configuration.selectVideoLimitSize = YES;
-        PhotoManager.configuration.selectVideoBeyondTheLimitTimeAutoEdit = NO;
-        PhotoManager.configuration.specialModeNeedHideVideoSelectBtn = NO;
-        PhotoManager.configuration.videoMaxNum = 1;
-        PhotoManager.configuration.maxNum = 9;
-        PhotoManager.configuration.photoMaxNum = 9;
-        PhotoManager.configuration.selectTogether = NO;
+        PhotoManager = HXPhotoManager.initByTypePhotoAndVideo;
+        @jobs_weakify(self)
+        PhotoManager.configuration = jobsMakeHXPhotoConfiguration(^(__kindof HXPhotoConfiguration * _Nullable config) {
+            @jobs_strongify(self)
+            config.localFileName = self.appDisplayName.add(@"Models"); /// 模型数组保存草稿时存在本地的文件名称
+            config.type = HXConfigurationTypeWXChat; /// 配置类型
+            config.showOriginalBytes = YES; /// 原图按钮显示已选照片的大小
+            config.showOriginalBytesLoading = YES; /// 原图按钮显示已选照片大小时是否显示加载菊花
+            config.videoMaximumSelectDuration = -1; /// 视频能选择的最大秒数  -  默认 3分钟/180秒
+            config.limitVideoSize = 100 * 1024 * 1024; /// 限制视频的大小 单位：b 字节
+            config.selectVideoLimitSize = YES; /// 选择视频时是否限制照片大小
+            config.selectVideoBeyondTheLimitTimeAutoEdit = NO; /// 选择视频时超出限制时长是否自动跳转编辑界面
+            config.specialModeNeedHideVideoSelectBtn = NO; /// 只针对 照片、视频不能同时选并且视频只能选择1个的时候隐藏掉视频cell右上角的选择按钮
+            config.videoMaxNum = 1; /// 视频最大选择数
+            config.maxNum = 9; /// 最大选择数
+            config.photoMaxNum = 9; /// 照片最大选择数
+            config.selectTogether = NO; /// 图片和视频是否能够同时选择 默认 NO
+        });
         /// ❤️导航栏用系统自带的，防止外界关闭了导航栏的bug❤️
         PhotoManager.viewWillAppear = ^(UIViewController *viewController) {
             /// 只会影响 viewWillAppear 和 viewWillDisappear 两个生命周期
             [viewController.navigationController setNavigationBarHidden:NO animated:NO];
-        };
-        Jobs_setAssociatedRETAIN_NONATOMIC(_photoManager, PhotoManager)
+        };Jobs_setAssociatedRETAIN_NONATOMIC(_photoManager, PhotoManager)
     }return PhotoManager;
 }
 
