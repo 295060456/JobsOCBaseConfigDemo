@@ -6,10 +6,11 @@
 //
 
 #import "BaseView.h"
+#import "DefineProperty.h"
 #import "JobsBlock.h"
 #import "MacroDef_Cor.h"
 #import "MacroDef_String.h"
-#import "UITextModelProtocol.h"
+#import "UITextFieldProtocol.h"
 #import "UITextField+Placeholder.h"
 #import "UITextField+Extend.h"
 #import "NSObject+Measure.h"
@@ -25,33 +26,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsTextField : BaseView
 <
 UITextFieldDelegate
-,UITextModelProtocol
+,UITextFieldProtocol
 >
 /// UI
-@property(nonatomic,strong,nullable)__kindof UIView *leftView;
-@property(nonatomic,strong,nonnull)UITextField *realTextField;
-@property(nonatomic,strong,nullable)__kindof UIView *rightView;
+Prop_strong(nonnull) UITextField *realTextField;
 /// Data
-@property(nonatomic,assign)CGFloat leftViewByOutLineOffset;
-@property(nonatomic,assign)CGFloat leftViewByTextFieldOffset;
-@property(nonatomic,assign)CGFloat rightViewByOutLineOffset;
-@property(nonatomic,assign)CGFloat rightViewByTextFieldOffset;
-@property(nonatomic,strong,null_resettable)UIColor *realTextFieldBgCor;
-@property(nonatomic,assign)UIKeyboardAppearance keyboardAppearance;
-@property(nonatomic,assign)UIKeyboardType keyboardType;
-@property(nonatomic,assign)UIReturnKeyType returnKeyType;
-@property(nonatomic,assign)UITextFieldViewMode leftViewMode;
-@property(nonatomic,assign)UITextFieldViewMode rightViewMode;
-@property(nonatomic,assign)BOOL notAllowEdit;/// 默认不允许编辑
-@property(nonatomic,assign)BOOL secureTextEntry;
-@property(nullable,nonatomic,copy)NSString *placeholder;
-@property(nullable,nonatomic,copy)NSAttributedString *attributedPlaceholder API_AVAILABLE(ios(6.0));
-//@property(nullable,nonatomic,copy)NSString *text;/// UITextModelProtocol
-//@property(nonatomic,strong,null_resettable)UIColor *textCor;/// UITextModelProtocol
-//@property(nonatomic,strong,null_resettable)UIColor *placeholderColor;/// UITextModelProtocol
-//@property(nonatomic,strong,null_resettable)UIFont *placeholderFont;/// UITextModelProtocol
-
--(void)otherActionBlock:(JobsReturnIDByIDBlock)otherActionBlock;
+Prop_assign() CGFloat leftViewByOutLineOffset;
+Prop_assign() CGFloat leftViewByTextFieldOffset;
+Prop_assign() CGFloat rightViewByOutLineOffset;
+Prop_assign() CGFloat rightViewByTextFieldOffset;
+Prop_strong(null_resettable) UIColor *realTextFieldBgCor;
 
 @end
 

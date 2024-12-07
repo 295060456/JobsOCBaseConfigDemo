@@ -15,8 +15,8 @@
 
 @implementation JobsTextField
 BaseViewProtocol_synthesize
+UITextFieldProtocol_synthesize
 BaseProtocol_synthesize
-UITextModelProtocol_synthesize
 #pragma mark —— SysMethod
 -(instancetype)init{
     if (self = [super init]) {
@@ -59,15 +59,6 @@ UITextModelProtocol_synthesize
         self.realTextField.alpha = 1;
         self.rightView.alpha = 1;
     };
-}
-#pragma mark —— UITextModelProtocol
--(NSString *)text{
-    return _realTextField.text;
-}
-
--(void)setText:(NSString *)text{
-    _text = text;
-    self.realTextField.text = _text;
 }
 #pragma mark —— UITextFieldDelegate
 /// 含义：在文本字段即将开始编辑时调用。返回YES表示允许编辑，返回NO则表示不允许编辑。
@@ -144,43 +135,10 @@ willPresentEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
 willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     
 }
-#pragma mark —— set方法
-@synthesize leftView = _leftView;
--(void)setLeftView:(UIView *)leftView{
-    _leftView = leftView;
-    [self addSubview:_leftView];
-    [_leftView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self);
-        make.left.equalTo(self).offset(self.leftViewByOutLineOffset);
-        if (_leftView.width) make.width.mas_equalTo(_leftView.width);
-        if (_leftView.height) make.height.mas_equalTo(_leftView.height);
-    }];
-    /// 会将之前设置的size值冲掉
-    [self layoutIfNeeded];
-    NSLog(@"");
-}
-@synthesize rightView = _rightView;
--(void)setRightView:(UIView *)rightView{
-    _rightView = rightView;
-    [self addSubview:_rightView];
-    [_rightView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self);
-        make.right.equalTo(self).offset(-self.rightViewByOutLineOffset);
-        if(self.isSizeZero(rightView.sizer)){
-            if (rightView.width) make.width.mas_equalTo(rightView.width);
-            if (rightView.height) make.height.mas_equalTo(rightView.height);
-        }else{
-            make.size.mas_equalTo(rightView.sizer);
-        }
-    }];
-    /// 会将之前设置的size值冲掉
-    [self layoutIfNeeded];
-    NSLog(@"");
-}
-
--(void)setPlaceholder:(NSString *)placeholder{
-    _placeholder = placeholder;
-    _realTextField.placeholder = _placeholder;
+#pragma mark —— UITextFieldProtocol
+-(void)setTextFieldPlaceholder:(NSString *)textFieldPlaceholder{
+    _textFieldPlaceholder = textFieldPlaceholder;
+    _realTextField.placeholder = _textFieldPlaceholder;
 }
 
 -(void)setPlaceholderColor:(UIColor *)placeholderColor{
@@ -193,19 +151,52 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     _realTextField.placeholderFont = _placeholderFont;
 }
 
--(void)setFont:(UIFont *)font{
-    _font = font;
-    _realTextField.font = font;
+-(void)setTitleFont:(UIFont *)titleFont{
+    _titleFont = titleFont;
+    _realTextField.font = titleFont;
 }
 
--(void)setSecureTextEntry:(BOOL)secureTextEntry{
-    _secureTextEntry = secureTextEntry;
-    _realTextField.secureTextEntry = secureTextEntry;
+-(void)setTextFieldSecureTextEntry:(BOOL)textFieldSecureTextEntry{
+    _textFieldSecureTextEntry = textFieldSecureTextEntry;
+    _realTextField.secureTextEntry = textFieldSecureTextEntry;
 }
 
--(void)setTextCor:(UIColor *)textCor{
-    _textCor = textCor;
-    _realTextField.textColor = textCor;
+-(void)setTitleCor:(UIColor *)titleCor{
+    _titleCor = titleCor;
+    _realTextField.textColor = titleCor;
+}
+
+-(void)setTitle:(NSString *)title{
+    _title = title;
+    self.realTextField.text = title;
+}
+
+-(NSString *)title{
+    return _realTextField.text;
+}
+
+-(void)setLeftView:(UIView *)leftView{
+    _leftView = leftView;
+    [self addSubview:_leftView];
+    [_leftView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self);
+        make.left.equalTo(self).offset(self.leftViewByOutLineOffset);
+        if (_leftView.width) make.width.mas_equalTo(_leftView.width);
+        if (_leftView.height) make.height.mas_equalTo(_leftView.height);
+    }];self.refresh();/// 会将之前设置的size值冲掉
+}
+
+-(void)setRightView:(UIView *)rightView{
+    _rightView = rightView;
+    [self addSubview:_rightView];
+    [_rightView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self);
+        make.right.equalTo(self).offset(-self.rightViewByOutLineOffset);
+        if(self.isSizeZero(rightView.sizer)){
+            if (rightView.width) make.width.mas_equalTo(rightView.width);
+            if (rightView.height) make.height.mas_equalTo(rightView.height);
+        }else make.size.mas_equalTo(rightView.sizer);
+    }];self.refresh();/// 会将之前设置的size值冲掉
 }
 #pragma mark —— lazyLoad
 -(UITextField *)realTextField{
@@ -213,11 +204,11 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         @jobs_weakify(self)
         _realTextField = jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
             @jobs_strongify(self)
-            textField.text = self.text;
-            textField.font = self.font;
-            textField.textColor = self.textCor;
             textField.delegate = self;
-            textField.secureTextEntry = self.secureTextEntry;
+            textField.text = self.title;
+            textField.font = self.titleFont;
+            textField.textColor = self.titleCor;
+            textField.secureTextEntry = self.textFieldSecureTextEntry;
             textField.backgroundColor = self.realTextFieldBgCor;
             textField.returnKeyType = self.returnKeyType;
             textField.keyboardAppearance = self.keyboardAppearance;
@@ -225,7 +216,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
             textField.leftViewMode = self.leftViewMode;
             textField.rightViewMode = self.rightViewMode;
             textField.attributedPlaceholder = self.attributedPlaceholder;
-            textField.placeholder = self.placeholder;
+            textField.placeholder = self.textFieldPlaceholder;
             textField.placeholderColor = self.placeholderColor;
             textField.placeholderFont = self.placeholderFont;
             [self addSubview:textField];
@@ -247,10 +238,10 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     }return _realTextField;
 }
 
--(UIColor *)textCor{
-    if(!_textCor){
-        _textCor = JobsBlackColor;
-    }return _textCor;
+-(UIColor *)titleCor{
+    if(!_titleCor){
+        _titleCor = JobsBlackColor;
+    }return _titleCor;
 }
 
 -(UIColor *)realTextFieldBgCor{
