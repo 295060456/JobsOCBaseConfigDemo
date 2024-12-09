@@ -262,25 +262,23 @@
     [self addNotificationName:UIKeyboardWillShowNotification
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
-        //        @jobs_strongify(self)
+//        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             NSLog(@"SSS = %d",b.boolValue);
-        }
-        NSLog(@"通知传递过来的 = %@",notification.object);
+        }NSLog(@"通知传递过来的 = %@",notification.object);
     }];
     
     [self addNotificationName:UIKeyboardWillHideNotification
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
-        //        @jobs_strongify(self)
+//        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             NSLog(@"SSS = %d",b.boolValue);
-        }
-        NSLog(@"通知传递过来的 = %@",notification.object);
+        }NSLog(@"通知传递过来的 = %@",notification.object);
     }];
 }
 #pragma mark —— 截屏
@@ -312,7 +310,7 @@
         UIWindow *window = MainWindow;
         view.frame = window.bounds;
         [window addSubview:view];
-        [window layoutIfNeeded];
+        window.refresh();
         UIImage *image = self.screenShot;
         window = nil;
         return image;
@@ -402,40 +400,36 @@ JobsKey(_leftBorderLayer)
 -(CALayer *)leftBorderLayer{
     CALayer *layer = Jobs_getAssociatedObject(_leftBorderLayer);
     if (!layer) {
-        layer = CALayer.layer;// 如果没有找到已存在的 layer，则创建并添加一个
-        [self.layer addSublayer:layer];
-        // 关联这个 layer 到 UIView 实例
-        Jobs_setAssociatedRETAIN_NONATOMIC(_leftBorderLayer, layer);
+        layer = self.layer.add(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
+            
+        }));Jobs_setAssociatedRETAIN_NONATOMIC(_leftBorderLayer, layer);
     }return layer;
 }
 JobsKey(_rightBorderLayer)
 -(CALayer *)rightBorderLayer{
     CALayer *layer = Jobs_getAssociatedObject(_rightBorderLayer);
     if (!layer) {
-        layer = CALayer.layer;// 如果没有找到已存在的 layer，则创建并添加一个
-        [self.layer addSublayer:layer];
-        // 关联这个 layer 到 UIView 实例
-        Jobs_setAssociatedRETAIN_NONATOMIC(_rightBorderLayer, layer);
+        layer = self.layer.add(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
+            
+        }));Jobs_setAssociatedRETAIN_NONATOMIC(_rightBorderLayer, layer);
     }return layer;
 }
 JobsKey(_topBorderLayer)
 -(CALayer *)topBorderLayer{
     CALayer *layer = Jobs_getAssociatedObject(_topBorderLayer);
     if (!layer) {
-        layer = CALayer.layer;// 如果没有找到已存在的 layer，则创建并添加一个
-        [self.layer addSublayer:layer];
-        // 关联这个 layer 到 UIView 实例
-        Jobs_setAssociatedRETAIN_NONATOMIC(_topBorderLayer, layer);
+        layer = self.layer.add(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
+            
+        }));Jobs_setAssociatedRETAIN_NONATOMIC(_topBorderLayer, layer);
     }return layer;
 }
 JobsKey(_bottomBorderLayer)
 -(CALayer *)bottomBorderLayer{
     CALayer *layer = Jobs_getAssociatedObject(_bottomBorderLayer);
     if (!layer) {
-        layer = CALayer.layer;// 如果没有找到已存在的 layer，则创建并添加一个
-        [self.layer addSublayer:layer];
-        // 关联这个 layer 到 UIView 实例
-        Jobs_setAssociatedRETAIN_NONATOMIC(_bottomBorderLayer, layer);
+        layer = self.layer.add(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
+            
+        }));Jobs_setAssociatedRETAIN_NONATOMIC(_bottomBorderLayer, layer);
     }return layer;
 }
 /// 调用方式：view.leftBorderColor(color).leftBorderWidth(borderType);
@@ -496,7 +490,7 @@ JobsKey(_bottomBorderLayer)
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGFloat borderWidth){
         @jobs_strongify(self)
-        CALayer *layer = self.leftBorderLayer;
+        CALayer *layer = self.rightBorderLayer;
         layer.frame = CGRectMake(self.frame.size.width - borderWidth,
                                  0,
                                  borderWidth,
@@ -509,7 +503,7 @@ JobsKey(_bottomBorderLayer)
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGFloat borderWidth){
         @jobs_strongify(self)
-        CALayer *layer = self.leftBorderLayer;
+        CALayer *layer = self.topBorderLayer;
         layer.frame = CGRectMake(0,
                                  0,
                                  self.frame.size.width,
@@ -522,7 +516,7 @@ JobsKey(_bottomBorderLayer)
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGFloat borderWidth){
         @jobs_strongify(self)
-        CALayer *layer = self.leftBorderLayer;
+        CALayer *layer = self.bottomBorderLayer;
         layer.frame = CGRectMake(0,
                                  self.frame.size.height - borderWidth,
                                  self.frame.size.width,
@@ -559,7 +553,7 @@ JobsKey(_bottomBorderLayer)
 -(void)setBorderWithColor:(UIColor *_Nullable)color
               borderWidth:(CGFloat)borderWidth
                borderType:(UIBorderSideType)borderType{
-    [self.superview layoutIfNeeded];
+    self.superview.refresh();
     /// 左
     if (borderType & UIBorderSideTypeLeft) self.leftBorderColor(color).leftBorderWidth(borderType);
     /// 右
@@ -622,8 +616,8 @@ JobsKey(_cornerRadii)
         }
         /// 创建 UIBezierPath 遮罩路径
         __block UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                       byRoundingCorners:corners
-                                                             cornerRadii:cornerRadii];
+                                                               byRoundingCorners:corners
+                                                                     cornerRadii:cornerRadii];
         /// 创建 CAShapeLayer 并设置 path
         self.layer.mask = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
             @jobs_strongify(self)
@@ -646,7 +640,9 @@ JobsKey(_cornerRadii)
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                    byRoundingCorners:corners
                                                          cornerRadii:cornerRadii];
+    @jobs_weakify(self)
     self.layer.mask = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable data) {
+        @jobs_strongify(self)
         data.frame = self.bounds;
         data.path = maskPath.CGPath;
     });
@@ -765,20 +761,28 @@ JobsKey(_cornerRadii)
     };
 }
 /// 顺时针旋转radians度【依据中心点进行旋转】
--(void)transformByRadians:(CGFloat)radians{
-    self.transform = CGAffineTransformMakeRotation(M_PI * radians);
-//    [self transformByRadians:1.5f]; // 逆时针旋转 3 * 90度
+-(jobsByCGFloatBlock _Nonnull)transformByRadians{
+    @jobs_weakify(self)
+    return ^(CGFloat radians){
+        @jobs_strongify(self)
+        self.transform = CGAffineTransformMakeRotation(M_PI * radians);
+        self.transformByRadians(1.5f); // 逆时针旋转 3 * 90度
+    };
 }
 /// 顺时针旋转degrees弧度【依据中心点进行旋转】
--(void)transformByDegrees:(CGFloat)degrees{
-    // 将度数转换为弧度
-    CGFloat radians = degrees * (M_PI / 180.0);
-    // 应用旋转变换（radians为正数将逆时针旋转）
-    self.transform = CGAffineTransformMakeRotation(radians);
-//    [self transformByDegrees:45];// 逆时针旋转 45 度
+-(jobsByCGFloatBlock _Nonnull)transformByDegrees{
+    @jobs_weakify(self)
+    return ^(CGFloat degrees){
+        @jobs_strongify(self)
+        /// 将度数转换为弧度
+        CGFloat radians = degrees * (M_PI / 180.0);
+        /// 应用旋转变换（radians为正数将逆时针旋转）
+        self.transform = CGAffineTransformMakeRotation(radians);
+        self.transformByDegrees(45);// 逆时针旋转 45 度
+    };
 }
 
--(UIImage *_Nullable)getImage {
+-(UIImage *_Nullable)getImage{
     /// 检查视图的大小是否为有效值
     CGSize size = self.bounds.size;
     /// 如果 size 是 {0, 0}，直接返回 nil
@@ -813,21 +817,13 @@ JobsKey(_cornerRadii)
               shadowOpacity:(CGFloat)shadowOpacity
            layerShadowColor:(UIColor *__nullable)layerShadowColor
           layerShadowRadius:(CGFloat)layerShadowRadius{
-    
     targetShadowview.layer.cornerRadius = cornerRadius;/// 圆切角
-    
-    if (superview && CGRectEqualToRect(targetShadowview.frame,CGRectZero)) {
-        /// targetShadowview当在某些masonry约束的时候，没有frame,需要进行刷新得到frame，否则不会出现阴影效果
-        superview.refresh();
-    }
-    
+    /// targetShadowview当在某些masonry约束的时候，没有frame,需要进行刷新得到frame，否则不会出现阴影效果
+    if (superview && CGRectEqualToRect(targetShadowview.frame,CGRectZero)) superview.refresh();
     targetShadowview.layer.shadowOpacity = (shadowOpacity != 0) ? : 0.7f;//shadowOpacity设置了阴影的不透明度,取值范围在0~1;
     targetShadowview.layer.shadowOffset = shadowOffset;//阴影偏移量
     targetShadowview.layer.shadowColor = (layerShadowColor ? :JobsDarkGrayColor).CGColor;//阴影颜色   JobsLightGrayColor.CGColor;
     targetShadowview.layer.shadowRadius = (layerShadowRadius != 0) ? : 8.0f;//模糊计算的半径
-    
-    UIBezierPath *path = UIBezierPath.bezierPath;
-
     /// 偏移量保持为正数，便于后续计算
     offsetX = offsetX >= 0 ? offsetX : -offsetX;
     offsetY = offsetY >= 0 ? offsetY : -offsetY;
@@ -835,65 +831,67 @@ JobsKey(_cornerRadii)
     offsetX = offsetX != 0 ? :20;
     offsetY = offsetY != 0 ? :20;
 
-    switch (ShadowDirection) {
-        case ShadowDirection_top:{
-            path.moveTo(CGPointMake(0, -offsetY));/// 左上角为绘制的贝塞尔曲线原点
-            path.add(CGPointMake(0, targetShadowview.height));/// 👇
-            path.add(CGPointMake(targetShadowview.width, targetShadowview.height));/// 👉
-            path.add(CGPointMake(targetShadowview.width, -offsetY));///👆
-        }break;
-        case ShadowDirection_down:{
-            path.moveTo(CGPointZero);/// 左上角为绘制的贝塞尔曲线原点
-            path.add(CGPointMake(0, targetShadowview.height + offsetY));/// 👇
-            path.add(CGPointMake(targetShadowview.width, targetShadowview.height + offsetY));/// 👉
-            path.add(CGPointMake(targetShadowview.width, 0));///👆
-        }break;
-        case ShadowDirection_left:{
-            path.moveTo(CGPointMake(offsetX, 0));/// 左上角
-            path.add(CGPointMake(offsetX, targetShadowview.height));///👇
-            path.add(CGPointMake(targetShadowview.width, targetShadowview.height));/// 👉
-            path.add(CGPointMake(targetShadowview.width, 0));/// 👆
-        }break;
-        case ShadowDirection_right:{
-            path.moveTo(CGPointZero);/// 左上角
-            path.add(CGPointMake(0, targetShadowview.height));/// 👇
-            path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height));/// 👉
-            path.add(CGPointMake(targetShadowview.width + offsetX, 0));/// 👆
-        }break;
-        case ShadowDirection_leftTop:{
-            path.moveTo(CGPointMake(-offsetX, -offsetY));/// 左上角
-            path.add(CGPointMake(-offsetX, targetShadowview.height - offsetY));/// 👇
-            path.add(CGPointMake(targetShadowview.width - offsetX, targetShadowview.height - offsetY));/// 👉
-            path.add(CGPointMake(targetShadowview.width - offsetX, -offsetY));/// 👆
-        }break;
-        case ShadowDirection_leftDown:{
-            path.moveTo(CGPointMake(-offsetX, offsetY));/// 左上角
-            path.add(CGPointMake(-offsetX, targetShadowview.height + offsetY));/// 👇
-            path.add(CGPointMake(targetShadowview.width - offsetX, targetShadowview.height + offsetX));/// 👉
-            path.add(CGPointMake(targetShadowview.width - offsetX, offsetY));/// 👆
-        }break;
-        case ShadowDirection_rightTop:{
-            path.moveTo(CGPointMake(offsetX, -offsetY));/// 左上角
-            path.add(CGPointMake(offsetX, targetShadowview.height - offsetY));/// 👇
-            path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height - offsetY));/// 👉
-            path.add(CGPointMake(targetShadowview.width + offsetX, -offsetY));/// 👆
-        }break;
-        case ShadowDirection_rightDown:{
-            path.moveTo(CGPointMake(offsetX, offsetY));/// 左上角
-            path.add(CGPointMake(offsetX, targetShadowview.height + offsetY));/// 👇
-            path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height + offsetY));/// 👉
-            path.add(CGPointMake(targetShadowview.width + offsetX, offsetY));/// 👆
-        }break;
-        case ShadowDirection_All:{
-            path.moveTo(CGPointMake(-offsetX, -offsetY));/// 左上角
-            path.add(CGPointMake(-offsetX, targetShadowview.height + offsetY));/// 👇
-            path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height + offsetY));/// 👉
-            path.add(CGPointMake(targetShadowview.width + offsetX, -offsetY));/// 👆
-        }break;
-            
-        default:
-            break;
-    }targetShadowview.layer.shadowPath = path.CGPath;
+    targetShadowview.layer.shadowPath = jobsMakeBezierPath(^(__kindof UIBezierPath * _Nullable path) {
+        switch (ShadowDirection) {
+            case ShadowDirection_top:{
+                path.moveTo(CGPointMake(0, -offsetY));/// 左上角为绘制的贝塞尔曲线原点
+                path.add(CGPointMake(0, targetShadowview.height));/// 👇
+                path.add(CGPointMake(targetShadowview.width, targetShadowview.height));/// 👉
+                path.add(CGPointMake(targetShadowview.width, -offsetY));///👆
+            }break;
+            case ShadowDirection_down:{
+                path.moveTo(CGPointZero);/// 左上角为绘制的贝塞尔曲线原点
+                path.add(CGPointMake(0, targetShadowview.height + offsetY));/// 👇
+                path.add(CGPointMake(targetShadowview.width, targetShadowview.height + offsetY));/// 👉
+                path.add(CGPointMake(targetShadowview.width, 0));///👆
+            }break;
+            case ShadowDirection_left:{
+                path.moveTo(CGPointMake(offsetX, 0));/// 左上角
+                path.add(CGPointMake(offsetX, targetShadowview.height));///👇
+                path.add(CGPointMake(targetShadowview.width, targetShadowview.height));/// 👉
+                path.add(CGPointMake(targetShadowview.width, 0));/// 👆
+            }break;
+            case ShadowDirection_right:{
+                path.moveTo(CGPointZero);/// 左上角
+                path.add(CGPointMake(0, targetShadowview.height));/// 👇
+                path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height));/// 👉
+                path.add(CGPointMake(targetShadowview.width + offsetX, 0));/// 👆
+            }break;
+            case ShadowDirection_leftTop:{
+                path.moveTo(CGPointMake(-offsetX, -offsetY));/// 左上角
+                path.add(CGPointMake(-offsetX, targetShadowview.height - offsetY));/// 👇
+                path.add(CGPointMake(targetShadowview.width - offsetX, targetShadowview.height - offsetY));/// 👉
+                path.add(CGPointMake(targetShadowview.width - offsetX, -offsetY));/// 👆
+            }break;
+            case ShadowDirection_leftDown:{
+                path.moveTo(CGPointMake(-offsetX, offsetY));/// 左上角
+                path.add(CGPointMake(-offsetX, targetShadowview.height + offsetY));/// 👇
+                path.add(CGPointMake(targetShadowview.width - offsetX, targetShadowview.height + offsetX));/// 👉
+                path.add(CGPointMake(targetShadowview.width - offsetX, offsetY));/// 👆
+            }break;
+            case ShadowDirection_rightTop:{
+                path.moveTo(CGPointMake(offsetX, -offsetY));/// 左上角
+                path.add(CGPointMake(offsetX, targetShadowview.height - offsetY));/// 👇
+                path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height - offsetY));/// 👉
+                path.add(CGPointMake(targetShadowview.width + offsetX, -offsetY));/// 👆
+            }break;
+            case ShadowDirection_rightDown:{
+                path.moveTo(CGPointMake(offsetX, offsetY));/// 左上角
+                path.add(CGPointMake(offsetX, targetShadowview.height + offsetY));/// 👇
+                path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height + offsetY));/// 👉
+                path.add(CGPointMake(targetShadowview.width + offsetX, offsetY));/// 👆
+            }break;
+            case ShadowDirection_All:{
+                path.moveTo(CGPointMake(-offsetX, -offsetY));/// 左上角
+                path.add(CGPointMake(-offsetX, targetShadowview.height + offsetY));/// 👇
+                path.add(CGPointMake(targetShadowview.width + offsetX, targetShadowview.height + offsetY));/// 👉
+                path.add(CGPointMake(targetShadowview.width + offsetX, -offsetY));/// 👆
+            }break;
+                
+            default:
+                break;
+        }
+    }).CGPath;
 }
 /// 设置控件是否可见，对影响可视化的hidden 和 alpha属性进行操作
 /// 需要特别注意的是：这个地方的jobsVisible不能属性化，否则在某些情况下会出现异常（只会走子类方法不会走分类方法）

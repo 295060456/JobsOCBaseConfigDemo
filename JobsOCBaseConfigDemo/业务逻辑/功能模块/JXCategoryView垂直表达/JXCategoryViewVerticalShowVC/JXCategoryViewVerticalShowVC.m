@@ -55,7 +55,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [self.view transformByRadians:1.5f];
+//    self.view.transformByRadians(1.5f);
 }
 
 -(void)viewWillLayoutSubviews{
@@ -83,7 +83,7 @@
     NSLog(@"");
 
     for (UICollectionViewCell *cell in self.categoryView.collectionView.visibleCells) {
-//        [cell transformByRadians:0.5f];
+//        cell.transformByRadians(.5f);
     }
 }
 #pragma mark JXCategoryTitleViewDataSource
