@@ -61,6 +61,17 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
+/// 选择电话号码区位
+-(__kindof UIButton *)zoneCodeBtnByBlock:(jobsByIDBlock _Nonnull)block{
+    BaseButton *btn = BaseButton.initByStyle1(JobsInternationalization(@"+63"),
+                                              JobsFontRegular(JobsWidth(16)),
+                                              JobsWhiteColor)
+    .onClick(^(UIButton *x){
+        if (block) block(x);
+    }).bySize(CGSizeMake(JobsWidth(50), JobsWidth(30)));
+    btn.rightBorderColor(JobsWhiteColor).rightBorderWidth(1);
+    return btn;
+}
 /// 配置弹窗数据
 -(JobsReturnViewModelByStringBlock _Nonnull)configPopUpDataBy{
     return ^__kindof UIViewModel *_Nullable(NSString *_Nullable data){

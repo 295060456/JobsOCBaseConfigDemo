@@ -84,7 +84,7 @@
     return ^__kindof CALayer *_Nullable(CALayer *_Nullable data){
         @jobs_strongify(self)
         [self addSublayer:data];
-        return self;
+        return data;
     };
 }
 /// 删除Layer

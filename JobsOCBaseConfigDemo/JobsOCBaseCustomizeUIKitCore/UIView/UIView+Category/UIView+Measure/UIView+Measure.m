@@ -141,7 +141,7 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGSize data){
         @jobs_strongify(self)
-        self.resetSize(data);
+        self.sizer = data;
         return self;
     };
 }
