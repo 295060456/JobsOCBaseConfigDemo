@@ -30,19 +30,19 @@ JobsKey(_gifImageView)
     Jobs_setAssociatedRETAIN_NONATOMIC(_gifImageView, gifImageView)
 }
 
-#pragma mark —— @property(nonatomic,strong)NSString *path;
+#pragma mark —— @property(nonatomic,copy)NSString *path;
 JobsKey(_path)
 @dynamic path;
 -(NSString *)path{
     NSString *Path = Jobs_getAssociatedObject(_path);
     if (isValue(Path)) {
         Path = @"GIF大图.gif".pathForResourceWithFullName;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_path, Path)
+        Jobs_setAssociatedCOPY_NONATOMIC(_path, Path)
     }return Path;
 }
 
 -(void)setPath:(NSString *)path{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_path, path)
+    Jobs_setAssociatedCOPY_NONATOMIC(_path, path)
 }
 #pragma mark —— @property(nonatomic,strong)NSData *data;
 JobsKey(_data)

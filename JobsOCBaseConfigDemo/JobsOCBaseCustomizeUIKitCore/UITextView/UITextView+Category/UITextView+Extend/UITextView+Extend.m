@@ -164,7 +164,7 @@
         }return self.currentWordNum < self.wordLimitNum;
     }
 }
-#pragma mark —— @property(nonatomic,strong)NSString *replacementText;
+#pragma mark —— @property(nonatomic,copy)NSString *replacementText;
 JobsKey(_replacementText)
 @dynamic replacementText;
 -(NSString *)replacementText{
@@ -172,9 +172,9 @@ JobsKey(_replacementText)
 }
 
 -(void)setReplacementText:(NSString *)replacementText{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_replacementText, replacementText)
+    Jobs_setAssociatedCOPY_NONATOMIC(_replacementText, replacementText)
 }
-#pragma mark —— @property(nonatomic,strong)NSString *resStr;
+#pragma mark —— @property(nonatomic,copy)NSString *resStr;
 JobsKey(_resStr)
 @dynamic resStr;
 -(NSString *)resStr{
@@ -182,7 +182,7 @@ JobsKey(_resStr)
 }
 
 -(void)setResStr:(NSString *)resStr{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_resStr, resStr);
+    Jobs_setAssociatedCOPY_NONATOMIC(_resStr, resStr);
 }
 
 @end

@@ -1497,7 +1497,7 @@ JobsKey(_viewModel)
 -(void)setViewModel:(UIViewModel *)viewModel{
     Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, viewModel)
 }
-#pragma mark —— @property(nonatomic,strong)NSString *internationalizationKEY;/// 国际化的key
+#pragma mark —— @property(nonatomic,copy)NSString *internationalizationKEY;/// 国际化的key
 JobsKey(_internationalizationKEY)
 @dynamic internationalizationKEY;
 -(NSString *)internationalizationKEY{
@@ -1506,7 +1506,7 @@ JobsKey(_internationalizationKEY)
 }
 
 -(void)setInternationalizationKEY:(NSString *)internationalizationKEY{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_internationalizationKEY, internationalizationKEY)
+    Jobs_setAssociatedCOPY_NONATOMIC(_internationalizationKEY, internationalizationKEY)
 }
 
 @end

@@ -43,11 +43,11 @@ typedef enum : NSInteger {
 @property(nonatomic,assign)CGFloat willRefreshDuration;
 @property(nonatomic,assign)CGFloat noMoreDataDuration;
 #pragma mark —— title
-@property(nonatomic,strong)NSString *stateIdleTitle;
-@property(nonatomic,strong)NSString *pullingTitle;
-@property(nonatomic,strong)NSString *refreshingTitle;
-@property(nonatomic,strong)NSString *willRefreshTitle;
-@property(nonatomic,strong)NSString *noMoreDataTitle;
+@property(nonatomic,copy)NSString *stateIdleTitle;
+@property(nonatomic,copy)NSString *pullingTitle;
+@property(nonatomic,copy)NSString *refreshingTitle;
+@property(nonatomic,copy)NSString *willRefreshTitle;
+@property(nonatomic,copy)NSString *noMoreDataTitle;
 #pragma mark —— 静态图内部拼接出的动效，而非Gif
 @property(nonatomic,strong)NSMutableArray <UIImage *>*stateIdlePicsMutArr;
 @property(nonatomic,strong)NSMutableArray <UIImage *>*pullingPicsMutArr;
@@ -55,7 +55,7 @@ typedef enum : NSInteger {
 @property(nonatomic,strong)NSMutableArray <UIImage *>*willRefreshPicsMutArr;
 @property(nonatomic,strong)NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
 #pragma mark —— Lottie配置
-@property(nonatomic,strong)NSString *jsonLottiefilePaths;
+@property(nonatomic,copy)NSString *jsonLottiefilePaths;
 @property(nonatomic,copy)JobsReturnIDByIDBlock loadBlock;
 #pragma mark —— 其他
 /** 根据拖拽比例自动切换透明度 */

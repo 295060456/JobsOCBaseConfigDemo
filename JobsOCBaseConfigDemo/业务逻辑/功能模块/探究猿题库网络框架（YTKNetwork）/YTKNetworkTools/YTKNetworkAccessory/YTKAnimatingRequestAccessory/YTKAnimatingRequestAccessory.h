@@ -17,7 +17,7 @@
 @interface YTKAnimatingRequestAccessory : NSObject <YTKRequestAccessory>
 
 @property(nonatomic,weak)UIView *animatingView;
-@property(nonatomic,strong)NSString *animatingText;
+@property(nonatomic,copy)NSString *animatingText;
 
 -(id)initWithAnimatingView:(UIView *)animatingView;
 -(id)initWithAnimatingView:(UIView *)animatingView animatingText:(NSString *)animatingText;

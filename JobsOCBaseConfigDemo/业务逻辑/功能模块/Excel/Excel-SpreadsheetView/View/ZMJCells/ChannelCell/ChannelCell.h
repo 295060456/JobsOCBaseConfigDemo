@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ChannelCell : ZMJCell
 
 @property(nonatomic,strong)UILabel *label;
-@property(nonatomic,strong)NSString *channel;
+@property(nonatomic,copy)NSString *channel;
 
 @end
 

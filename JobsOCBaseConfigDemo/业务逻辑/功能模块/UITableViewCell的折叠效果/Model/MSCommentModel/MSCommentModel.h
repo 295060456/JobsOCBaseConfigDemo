@@ -11,13 +11,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MSCommentDetailModel : BaseModel
 
-@property(nonatomic,strong)NSString *rowTitle;
+@property(nonatomic,copy)NSString *rowTitle;
 
 @end
 
 @interface MSCommentModel : BaseModel
 
-@property(nonatomic,strong)NSString *sectionTitle;
+@property(nonatomic,copy)NSString *sectionTitle;
 @property(nonatomic,strong)NSMutableArray <MSCommentDetailModel *>*commentDataMutArr;
 
 @end

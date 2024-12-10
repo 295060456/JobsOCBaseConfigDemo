@@ -38,8 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL isBarTranslucent;
 @property(nonatomic,strong)UIColor *tintColor;
 @property(nonatomic,strong)UIColor *barTintColor;
-@property(nonatomic,strong)NSString *title;
-
+@property(nonatomic,copy)NSString *title;
 //titleTextAttributes
 @property(nonatomic,strong)NSShadow *shadow;
 @property(nonatomic,strong)UIColor *shadowCor;

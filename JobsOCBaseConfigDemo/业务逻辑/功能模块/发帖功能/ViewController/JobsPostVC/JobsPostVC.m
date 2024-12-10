@@ -21,11 +21,11 @@
 @property(nonatomic,strong)NSArray <HXPhotoModel *>*historyPhotoDataArr;/// 与之相对应的是self.photoManager.afterSelectedArray
 @property(nonatomic,strong)NSArray <HXPhotoModel *>*photosDataArr;
 @property(nonatomic,strong)NSArray <HXPhotoModel *>*videosDataArr;
-@property(nonatomic,strong)NSString *inputDataString;
-@property(nonatomic,strong)NSString *inputDataHistoryString;
-@property(nonatomic,strong)NSString *pictures;
-@property(nonatomic,strong)NSString *videos;
-@property(nonatomic,strong)NSString *coverVideo;
+@property(nonatomic,copy)NSString *inputDataString;
+@property(nonatomic,copy)NSString *inputDataHistoryString;
+@property(nonatomic,copy)NSString *pictures;
+@property(nonatomic,copy)NSString *videos;
+@property(nonatomic,copy)NSString *coverVideo;
 @property(nonatomic,strong)NSMutableArray <UIImage *>*photosImageMutArr;
 @property(nonatomic,strong)NSData *videosData;
 @property(nonatomic,strong)NSURL *videosUrl;

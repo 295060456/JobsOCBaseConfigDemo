@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark —— BaseVC+GifImageView
 @property(nonatomic,strong)UIImageView *gifImageView;
-@property(nonatomic,strong)NSString *path;
+@property(nonatomic,copy)NSString *path;
 @property(nonatomic,strong)NSData *data;
 @property(nonatomic,strong)UIImage *image;
 

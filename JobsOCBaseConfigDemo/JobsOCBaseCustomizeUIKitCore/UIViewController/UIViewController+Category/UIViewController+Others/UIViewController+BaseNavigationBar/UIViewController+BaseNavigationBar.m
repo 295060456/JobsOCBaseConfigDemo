@@ -216,7 +216,7 @@ JobsKey(_barTintColor)
 -(void)setBarTintColor:(UIColor *)barTintColor{
     Jobs_setAssociatedRETAIN_NONATOMIC(_barTintColor, barTintColor)
 }
-#pragma mark —— @property(nonatomic,strong)NSString *title;
+#pragma mark —— @property(nonatomic,copy)NSString *title;
 JobsKey(_title)
 @dynamic title;
 -(NSString *)title{

@@ -435,7 +435,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     };
 }
 /// 获取Tabbar管理的，不含导航的根控制器
--(NSMutableArray <UIViewController *>*)appRootVC{
+-(NSMutableArray <__kindof UIViewController *>*)appRootVC{
     return AppDelegate.viewCtrlMutArr;
 }
 /// 当前对象是否是 Tabbar管理的，不含导航的根控制器
@@ -623,92 +623,114 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscapeLeft;
 }
 #pragma mark —— 通过验证返回YES
--(BOOL)userAndPasswordNotUpTo:(NSString *)value{
-    return value.length < 6;
+-(JobsReturnBOOLByStringBlock _Nonnull)userAndPasswordNotUpTo{
+    return ^BOOL(NSString *_Nullable data){
+        return data.length < 6;
+    };
 }
 
--(BOOL)telNotUpTo:(NSString *)value{
-    return value.length < 20;
+-(JobsReturnBOOLByStringBlock _Nonnull)telNotUpTo{
+    return ^BOOL(NSString *_Nullable data){
+        return data.length < 20;
+    };
 }
 /// 用户账号由6-15个字符组成，只能输入字母大小写和数字
--(BOOL)checkUserName:(NSString *)userName{
-    return ![self userAndPasswordNotUpTo:userName] && userName.length <= 15 && userName.isAlnum;
+-(JobsReturnBOOLByStringBlock _Nonnull)checkUserName{
+    @jobs_weakify(self)
+    return ^BOOL(NSString *_Nullable userName){
+        @jobs_strongify(self)
+        return ![self userAndPasswordNotUpTo:userName] && userName.length <= 15 && userName.isAlnum;
+    };
 }
 /// 用户密码由6-15个字符组成，只能输入字母大小写和数字
--(BOOL)checkUserPassword:(NSString *)userPassword{
-    return ![self userAndPasswordNotUpTo:userPassword] && userPassword.length <= 15 && userPassword.isAlnum;
+-(JobsReturnBOOLByStringBlock _Nonnull)checkUserPassword{
+    @jobs_weakify(self)
+    return ^BOOL(NSString *_Nullable userPassword){
+        @jobs_strongify(self)
+        return ![self userAndPasswordNotUpTo:userPassword] && userPassword.length <= 15 && userPassword.isAlnum;
+    };
 }
 /// 登录的数据检验
--(BOOL)checkLoginData:(JobsAppDoorModel *)model{
-    if ([self checkUserName:model.userName] &&
-        [self checkUserPassword:model.password]) {
-        return YES;
-    }else{
-        if (isNull(model.userName) &&
-            isNull(model.password)) {
-            self.jobsToastErrMsg(JobsInternationalization(@"Please complete the login information"));
-        }else if (isValue(model.userName) &&
-                  isNull(model.password)){
-            self.jobsToastErrMsg(JobsInternationalization(@"Please enter your password"));
-        }else if (isNull(model.userName) &&
-                  isValue(model.password)){
-            self.jobsToastErrMsg(JobsInternationalization(@"Please enter a user name"));
+-(JobsReturnBOOLByAppDoorModelBlock _Nonnull)checkLoginDataBy{
+    @jobs_weakify(self)
+    return ^BOOL(__kindof JobsAppDoorModel *_Nullable model){
+        @jobs_strongify(self)
+        if ([self checkUserName:model.userName] &&
+            [self checkUserPassword:model.password]) {
+            return YES;
         }else{
-            self.jobsToastErrMsg(JobsInternationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers"));
-        }return NO;
-    }
+            if (isNull(model.userName) &&
+                isNull(model.password)) {
+                self.jobsToastErrMsg(JobsInternationalization(@"Please complete the login information"));
+            }else if (isValue(model.userName) &&
+                      isNull(model.password)){
+                self.jobsToastErrMsg(JobsInternationalization(@"Please enter your password"));
+            }else if (isNull(model.userName) &&
+                      isValue(model.password)){
+                self.jobsToastErrMsg(JobsInternationalization(@"Please enter a user name"));
+            }else{
+                self.jobsToastErrMsg(JobsInternationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers"));
+            }return NO;
+        }
+    };
 }
 /// 注册的数据检验
--(BOOL)checkRegisterData:(JobsAppDoorModel *)model{
-    if ([self checkUserName:model.userName] &&
-        [self checkUserPassword:model.password] &&
-        [self checkUserPassword:model.confirmPassword] &&
-        isValue(model.verificationCode) &&
-        isValue(model.tel)) {
-        return YES;
-    }else{
-        if (isNull(model.userName) &&
-            isValue(model.password) &&
-            isValue(model.confirmPassword) &&
-            isValue(model.tel) &&
-            isValue(model.verificationCode)){
-            self.jobsToastErrMsg(@"Please enter a user name");
-        }else if (isValue(model.userName) &&
-                  isNull(model.password) &&
-                  isValue(model.confirmPassword) &&
-                  isValue(model.tel) &&
-                  !isValue(model.verificationCode)){
-            self.jobsToastErrMsg(@"Please enter your password");
-        }else if (isValue(model.userName) &&
-                  isValue(model.password) &&
-                  isNull(model.confirmPassword) &&
-                  isValue(model.tel) &&
-                  isValue(model.verificationCode)){
-            self.jobsToastErrMsg(@"Please confirm your password");
-        }else if (isValue(model.userName) &&
-                  isValue(model.password) &&
-                  isValue(model.confirmPassword) &&
-                  isNull(model.tel) &&
-                  isValue(model.verificationCode)){
-            self.jobsToastErrMsg(@"Please enter your mobile phone number");
-        }else if (isValue(model.userName) &&
-                  isValue(model.password) &&
-                  isValue(model.confirmPassword) &&
-                  isValue(model.tel) &&
-                  isNull(model.verificationCode)){
-            self.jobsToastErrMsg(@"Please enter the verification code");
-        }else if ([self checkUserName:model.userName] ||
-                  [self checkUserPassword:model.password] ||
-                  [self checkUserPassword:model.confirmPassword]){
-            self.jobsToastErrMsg(@"The password consists of 6 to 15 characters and can only be letters and numbers");
-        }else self.jobsToastErrMsg(@"Please complete the registration information");
-    }return NO;
+-(JobsReturnBOOLByAppDoorModelBlock _Nonnull)checkRegisterData{
+    @jobs_weakify(self)
+    return ^BOOL(__kindof JobsAppDoorModel *_Nullable model){
+        @jobs_strongify(self)
+        if ([self checkUserName:model.userName] &&
+            [self checkUserPassword:model.password] &&
+            [self checkUserPassword:model.confirmPassword] &&
+            isValue(model.verificationCode) &&
+            isValue(model.tel)) {
+            return YES;
+        }else{
+            if (isNull(model.userName) &&
+                isValue(model.password) &&
+                isValue(model.confirmPassword) &&
+                isValue(model.tel) &&
+                isValue(model.verificationCode)){
+                self.jobsToastErrMsg(@"Please enter a user name");
+            }else if (isValue(model.userName) &&
+                      isNull(model.password) &&
+                      isValue(model.confirmPassword) &&
+                      isValue(model.tel) &&
+                      !isValue(model.verificationCode)){
+                self.jobsToastErrMsg(@"Please enter your password");
+            }else if (isValue(model.userName) &&
+                      isValue(model.password) &&
+                      isNull(model.confirmPassword) &&
+                      isValue(model.tel) &&
+                      isValue(model.verificationCode)){
+                self.jobsToastErrMsg(@"Please confirm your password");
+            }else if (isValue(model.userName) &&
+                      isValue(model.password) &&
+                      isValue(model.confirmPassword) &&
+                      isNull(model.tel) &&
+                      isValue(model.verificationCode)){
+                self.jobsToastErrMsg(@"Please enter your mobile phone number");
+            }else if (isValue(model.userName) &&
+                      isValue(model.password) &&
+                      isValue(model.confirmPassword) &&
+                      isValue(model.tel) &&
+                      isNull(model.verificationCode)){
+                self.jobsToastErrMsg(@"Please enter the verification code");
+            }else if ([self checkUserName:model.userName] ||
+                      [self checkUserPassword:model.password] ||
+                      [self checkUserPassword:model.confirmPassword]){
+                self.jobsToastErrMsg(@"The password consists of 6 to 15 characters and can only be letters and numbers");
+            }else self.jobsToastErrMsg(@"Please complete the registration information");
+        }return NO;
+    };
 }
 /// 电话号码可以最多20位数，超过后无法输入，且电话号码中无法包含特殊字符或者空格
--(BOOL)checkTelNum:(NSString *)telNum{
-    return !telNum.isContainsSpecialSymbolsString(nil) &&// 不包含特殊字符
-    telNum.length <= 20 &&// 长度小于20位
-    telNum.isContainBlank;// 不包含空格
+-(JobsReturnBOOLByStringBlock _Nonnull)checkTelNum{
+    return ^BOOL(NSString *_Nullable telNum){
+        return !telNum.isContainsSpecialSymbolsString(nil) &&/// 不包含特殊字符
+        telNum.length <= 20 &&/// 长度小于20位
+        telNum.isContainBlank;/// 不包含空格
+    };
 }
 #pragma mark —— @property(nonatomic,strong)NSMutableArray<UIViewModel *> *hotLabelDataMutArr;
 JobsKey(_hotLabelDataMutArr)
@@ -871,7 +893,7 @@ JobsKey(_richTextConfigMutArr)
     NSMutableArray <JobsRichTextConfig *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextConfigMutArr);
     if (!RichTextMutArr) {
         @jobs_weakify(self)
-        RichTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        RichTextMutArr = jobsMakeMutArr(^(NSMutableArray <JobsRichTextConfig *>* _Nullable data) {
             @jobs_strongify(self)
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 data1.font = UIFontWeightRegularSize(12);

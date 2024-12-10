@@ -28,9 +28,9 @@ JhtBannerScrollViewDelegate
 @property(nonatomic,strong)JhtBannerScrollView *bannerView;
 #pragma mark optional
 /** 占位图片名（本地） */
-@property(nonatomic,strong)NSString *placeholderImageName;
+@property(nonatomic,copy)NSString *placeholderImageName;
 /** 占位名（本地） */
-@property(nonatomic,strong)NSString *placeholderName;
+@property(nonatomic,copy)NSString *placeholderName;
 /** 当前显示cardView的Size */
 @property(nonatomic,assign)CGSize JhtBannerCardViewSize;
 

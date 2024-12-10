@@ -71,19 +71,19 @@ JobsKey(_tipsLab)
 -(void)setTipsLab:(UILabel *)tipsLab{
     Jobs_setAssociatedRETAIN_NONATOMIC(_tipsLab, tipsLab)
 }
-#pragma mark —— @property(nonatomic,strong)NSString *tipsTitle;
+#pragma mark —— @property(nonatomic,copy)NSString *tipsTitle;
 JobsKey(_tipsTitle)
 @dynamic tipsTitle;
 -(NSString *)tipsTitle{
     NSString *TipsTitle = Jobs_getAssociatedObject(_tipsTitle);
     if (isNull(TipsTitle)) {
         TipsTitle = JobsInternationalization(@"快来将我填满吧");
-        Jobs_setAssociatedRETAIN_NONATOMIC(_tipsTitle, TipsTitle)
+        Jobs_setAssociatedCOPY_NONATOMIC(_tipsTitle, TipsTitle)
     }return TipsTitle;
 }
 
 -(void)setTipsTitle:(NSString *)tipsTitle{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_tipsTitle, tipsTitle)
+    Jobs_setAssociatedCOPY_NONATOMIC(_tipsTitle, tipsTitle)
 }
 
 @end

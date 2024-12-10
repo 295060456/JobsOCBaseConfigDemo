@@ -10,7 +10,7 @@
 @interface DynamicViewTestVC ()
 
 @property(nonatomic,strong)UIImageView *gifImageView;
-@property(nonatomic,strong)NSString *path;
+@property(nonatomic,copy)NSString *path;
 
 @end
 

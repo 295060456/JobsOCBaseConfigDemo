@@ -95,18 +95,18 @@ AppToolsProtocol
 -(BOOL)isLandscapeRight;
 -(BOOL)isLandscapeLeft;
 #pragma mark —— 通过验证返回YES
--(BOOL)userAndPasswordNotUpTo:(NSString *)value;
--(BOOL)telNotUpTo:(NSString *)value;
+-(JobsReturnBOOLByStringBlock _Nonnull)userAndPasswordNotUpTo;
+-(JobsReturnBOOLByStringBlock _Nonnull)telNotUpTo;
 /// 用户账号由6-15个字符组成，只能输入字母大小写和数字
--(BOOL)checkUserName:(NSString *)userName;
+-(JobsReturnBOOLByStringBlock _Nonnull)checkUserName;
 /// 用户密码由6-15个字符组成，只能输入字母大小写和数字
--(BOOL)checkUserPassword:(NSString *)userPassword;
+-(JobsReturnBOOLByStringBlock _Nonnull)checkUserPassword;
 /// 登录的数据检验
--(BOOL)checkLoginData:(JobsAppDoorModel *)model;
+-(JobsReturnBOOLByAppDoorModelBlock _Nonnull)checkLoginDataBy;
 /// 注册的数据检验
--(BOOL)checkRegisterData:(JobsAppDoorModel *)model;
+-(JobsReturnBOOLByAppDoorModelBlock _Nonnull)checkRegisterData;
 /// 电话号码可以最多20位数，超过后无法输入，且电话号码中无法包含特殊字符或者空格
--(BOOL)checkTelNum:(NSString *)telNum;
+-(JobsReturnBOOLByStringBlock _Nonnull)checkTelNum;
 
 @end
 

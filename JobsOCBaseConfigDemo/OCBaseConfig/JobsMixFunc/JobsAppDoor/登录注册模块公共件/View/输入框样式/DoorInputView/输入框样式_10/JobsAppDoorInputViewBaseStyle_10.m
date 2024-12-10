@@ -12,8 +12,8 @@
 @property(nonatomic,strong)ZYTextField *textField;
 @property(nonatomic,strong)UILabel *titleLab;
 /// Data
-@property(nonatomic,strong)NSString *titleStr_1;
-@property(nonatomic,strong)NSString *titleStr_2;
+@property(nonatomic,copy)NSString *titleStr_1;
+@property(nonatomic,copy)NSString *titleStr_2;
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 @property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
 

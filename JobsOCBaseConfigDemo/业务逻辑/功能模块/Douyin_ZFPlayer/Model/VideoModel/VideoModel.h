@@ -11,25 +11,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VideoModel_Core : NSObject
 #pragma mark —— Jobs的数据源
-@property(nonatomic,strong)NSString *isPraise;/// 是否点赞
-@property(nonatomic,strong)NSString *authorId;/// 视频作者ID
-@property(nonatomic,strong)NSString *videoSort;/// 视频分类
-@property(nonatomic,strong)NSString *headImage;/// 作者头像
-@property(nonatomic,strong)NSString *praiseNum;/// 点赞数
-@property(nonatomic,strong)NSString *author;/// 作者花名
-@property(nonatomic,strong)NSString *videoId;/// 视频ID
-@property(nonatomic,strong)NSString *videoSize;/// 视频尺寸
-@property(nonatomic,strong)NSString *isVip;/// 是否是VIP
-@property(nonatomic,strong)NSString *commentNum;/// 评论数
-@property(nonatomic,strong)NSString *isAttention;/// 是否关注
-@property(nonatomic,strong)NSString *areSelf;/// 视频是否是本人发布
-@property(nonatomic,strong)NSString *publishTime;/// 视频的发布时间
-@property(nonatomic,strong)NSString *playNum;/// 视频的播放次数
-@property(nonatomic,strong)NSString *videoTime;/// 视频持续时间
+@property(nonatomic,copy)NSString *isPraise;/// 是否点赞
+@property(nonatomic,copy)NSString *authorId;/// 视频作者ID
+@property(nonatomic,copy)NSString *videoSort;/// 视频分类
+@property(nonatomic,copy)NSString *headImage;/// 作者头像
+@property(nonatomic,copy)NSString *praiseNum;/// 点赞数
+@property(nonatomic,copy)NSString *author;/// 作者花名
+@property(nonatomic,copy)NSString *videoId;/// 视频ID
+@property(nonatomic,copy)NSString *videoSize;/// 视频尺寸
+@property(nonatomic,copy)NSString *isVip;/// 是否是VIP
+@property(nonatomic,copy)NSString *commentNum;/// 评论数
+@property(nonatomic,copy)NSString *isAttention;/// 是否关注
+@property(nonatomic,copy)NSString *areSelf;/// 视频是否是本人发布
+@property(nonatomic,copy)NSString *publishTime;/// 视频的发布时间
+@property(nonatomic,copy)NSString *playNum;/// 视频的播放次数
+@property(nonatomic,copy)NSString *videoTime;/// 视频持续时间
 /// 以下是几个最主要的属性
-@property(nonatomic,strong)NSString *videoTitle;/// 视频标题
-@property(nonatomic,strong)NSString *videoImg;/// 图
-@property(nonatomic,strong)NSString *videoIdcUrl;/// 视频地址
+@property(nonatomic,copy)NSString *videoTitle;/// 视频标题
+@property(nonatomic,copy)NSString *videoImg;/// 图
+@property(nonatomic,copy)NSString *videoIdcUrl;/// 视频地址
 #pragma mark —— ZFPlayer作者的数据源
 @property(nonatomic,copy)NSString *nick_name;
 @property(nonatomic,copy)NSString *head;

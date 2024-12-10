@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PreviewVC : BaseViewController
 
-@property(nonatomic,strong)NSString *previewText;
+@property(nonatomic,copy)NSString *previewText;
 
 @end
 

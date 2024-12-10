@@ -12,8 +12,8 @@
 @property(nonatomic,strong)BaseLabel *label;
 @property(nonatomic,strong)BaseTextView *textView;
 /// Data
-@property(nonatomic,strong)NSString *textData1;/// 页面上显示的数据
-@property(nonatomic,strong)NSString *textData2;/// 来自于剪切板存储的数据
+@property(nonatomic,copy)NSString *textData1;/// 页面上显示的数据
+@property(nonatomic,copy)NSString *textData2;/// 来自于剪切板存储的数据
 
 @end
 

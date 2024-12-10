@@ -27,11 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// attributedText
 /// titleAttributedDataMutArr
 #pragma mark —— 关于输入的文本字符
-@property(nullable,nonatomic,strong)NSString *nickNamePlaceHolderStr;
-@property(nullable,nonatomic,strong)NSString *titleLabStr;
+@property(nullable,nonatomic,copy)NSString *nickNamePlaceHolderStr;
+@property(nullable,nonatomic,copy)NSString *titleLabStr;
 @property(nullable,nonatomic,strong)UIFont *titleStrFont;
 @property(nullable,nonatomic,strong)UIColor *titleStrCor;
-@property(nullable,nonatomic,strong)NSString *inputStr;/// 输入框里面的实时内容
+@property(nullable,nonatomic,copy)NSString *inputStr;/// 输入框里面的实时内容
 @property(nonatomic,assign)NSInteger inputCharacterRestriction;/// 输入字符限制
 #pragma mark —— 关于键盘⌨️配置
 @property(nonatomic,assign)UIReturnKeyType returnKeyType;

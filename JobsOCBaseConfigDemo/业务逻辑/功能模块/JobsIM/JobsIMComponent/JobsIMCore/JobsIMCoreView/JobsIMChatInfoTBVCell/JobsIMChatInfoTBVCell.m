@@ -18,11 +18,11 @@
 @property(nonatomic,strong)NSMutableArray <UIImage *>*chatBubbleMutArr;
 @property(nonatomic,strong)NSMutableArray <UIMenuItem *>*menuItemMutArr;
 /// data
-@property(nonatomic,strong)NSString *senderChatTextStr;/// 该聊天的文本信息
-@property(nonatomic,strong)NSString *senderChatTextTimeStr;/// 该聊天的时间戳
-@property(nonatomic,strong)NSString *senderUserNameStr;/// 用户名
+@property(nonatomic,copy)NSString *senderChatTextStr;/// 该聊天的文本信息
+@property(nonatomic,copy)NSString *senderChatTextTimeStr;/// 该聊天的时间戳
+@property(nonatomic,copy)NSString *senderUserNameStr;/// 用户名
 @property(nonatomic,strong)UIImage *senderChatUserIconIMG;/// 该聊天的用户头像
-@property(nonatomic,strong)NSString *identification;/// 该聊天对应的数据库坐标ID
+@property(nonatomic,copy)NSString *identification;/// 该聊天对应的数据库坐标ID
 @property(nonatomic,assign)CGFloat contentHeight;/// 内容高
 @property(nonatomic,assign)CGFloat contentWidth;/// 内容宽
 @property(nonatomic,assign)InfoLocation infoLocation;

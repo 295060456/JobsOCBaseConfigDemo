@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsTabBarItemConfig : NSObject
 
 @property(nonatomic,strong)UIViewController *vc;/// 子控制器
-@property(nonatomic,strong)NSString *title;/// 显示标题
+@property(nonatomic,copy)NSString *title;/// 显示标题
 @property(nonatomic,strong,nullable)NSString *lottieName;/// 有值则启用Lottie动画
 @property(nonatomic,strong)UIImage *imageSelected; /// 选中状态的静态图
 @property(nonatomic,strong)UIImage *imageUnselected;/// 未选中状态的静态图
