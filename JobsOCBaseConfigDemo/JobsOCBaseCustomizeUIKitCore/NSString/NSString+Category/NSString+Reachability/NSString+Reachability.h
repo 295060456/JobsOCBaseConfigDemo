@@ -1,5 +1,5 @@
 //
-//  NSString+_3rd.h
+//  NSString+Reachability.h
 //  FM
 //
 //  Created by Admin on 25/11/2024.
@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSString (_3rd)
+@interface NSString (Reachability)
 
 -(Reachability *_Nonnull)makeReachability;
 

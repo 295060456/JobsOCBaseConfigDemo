@@ -87,7 +87,7 @@
     return ^(__kindof JobsParagraphStyleModel *_Nullable data){
         @jobs_strongify(self)
         /// 校验数据
-        if (!data || !data.value || ![data.value isKindOfClass:NSURL.class]) return;/// 超链接属性无效
+        if (!data || !data.value) return;/// 超链接属性无效
         /// 校验 range
         NSRange range = data.range;
         if (range.location == NSNotFound || NSMaxRange(range) > self.length) return;/// 超链接属性 range 无效

@@ -97,6 +97,22 @@ typedef NS_ENUM(NSUInteger, TransformLayerDirectionType) {
     TransformLayerDirectionRight      /// 文字方向朝右
 };
 #endif /* TransformLayerDirectionType_h */
+/// SPAlertController
+#ifndef SPAlertControllerInitType_h
+#define SPAlertControllerInitType_h
+typedef enum : NSUInteger {
+    /// alertControllerWithTitle/message/preferredStyle
+    NSObject_SPAlertControllerInitType_1 = 0,
+    /// alertControllerWithTitle/message/preferredStyle/animationType
+    NSObject_SPAlertControllerInitType_2,
+    /// alertControllerWithCustomAlertView/preferredStyle/animationType
+    NSObject_SPAlertControllerInitType_3,
+    /// alertControllerWithCustomHeaderView/preferredStyle/animationType
+    NSObject_SPAlertControllerInitType_4,
+    /// alertControllerWithCustomActionSequenceView/title/message/preferredStyle/animationType
+    NSObject_SPAlertControllerInitType_5,
+} NSObject_SPAlertControllerInitType;
+#endif /* SPAlertControllerInitType_h */
 /// 当前类型
 #ifndef MyEnums_h
 #define MyEnums_h

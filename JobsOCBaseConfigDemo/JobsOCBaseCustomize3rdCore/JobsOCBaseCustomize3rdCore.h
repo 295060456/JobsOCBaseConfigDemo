@@ -13,5 +13,6 @@
 #import "Reachability+Extra.h"
 #import "BRStringPickerView+Extra.h"
 #import "HXPhotoManager+Extra.h"
+#import "SZTextView+Extra.h"
 
 #endif /* JobsOCBaseCustomize3rdCore_h */

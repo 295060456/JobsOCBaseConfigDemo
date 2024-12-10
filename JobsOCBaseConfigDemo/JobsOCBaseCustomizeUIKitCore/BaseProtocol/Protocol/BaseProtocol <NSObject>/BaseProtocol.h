@@ -50,9 +50,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong,nonnull)RACScheduler *mainScheduler;
 @property(nonatomic,strong,nonnull)RACScheduler *backgroundScheduler;
 /// 传递多个值
-@property (nonatomic,strong,nullable)RACTuple *dataTuple;
+@property(nonatomic,strong,nullable)RACTuple *dataTuple;
 #pragma mark —— 一些状态
 @property(nonatomic,assign)BOOL isLock;
+@property(nonatomic,assign)BOOL becomeFirstResponder;
 @property(nonatomic,assign)AppLanguage appLanguage;
 @property(nonatomic,assign)TimerProcessType timerProcessType;
 #pragma mark —— Data
@@ -117,6 +118,7 @@ NS_ASSUME_NONNULL_END
 @synthesize backgroundScheduler = backgroundScheduler;\
 @synthesize dataTuple = dataTuple;\
 @synthesize isLock = _isLock;\
+@synthesize becomeFirstResponder = _becomeFirstResponder;\
 @synthesize appLanguage = _appLanguage;\
 @synthesize timerProcessType = _timerProcessType;\
 @synthesize internationalizationKEY = _internationalizationKEY;\
@@ -149,6 +151,7 @@ NS_ASSUME_NONNULL_END
 @dynamic backgroundScheduler = backgroundScheduler;\
 @dynamic dataTuple = dataTuple;\
 @dynamic isLock;\
+@dynamic becomeFirstResponder;\
 @dynamic appLanguage;\
 @dynamic timerProcessType;\
 @dynamic internationalizationKEY;\

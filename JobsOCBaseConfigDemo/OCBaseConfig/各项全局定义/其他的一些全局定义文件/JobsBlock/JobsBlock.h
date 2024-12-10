@@ -443,6 +443,9 @@ typedef GKPhotoBrowser *_Nullable(^JobsReturnGKPhotoBrowserByPhotosArrayAndCurre
 @class GKPhoto;
 typedef void(^jobsByGKPhotoBlock)(GKPhoto *_Nonnull data);
 
+@class SZTextView;
+typedef void(^jobsBySZTextViewBlock)(SZTextView *_Nonnull textView);
+
 @class XZMRefreshNormalHeader;
 typedef void(^jobsByXZMRefreshNormalHeaderBlock)(XZMRefreshNormalHeader *_Nonnull data);
 

@@ -1,13 +1,13 @@
 //
-//  NSString+_3rd.m
+//  NSString+Reachability.m
 //  FM
 //
 //  Created by Admin on 25/11/2024.
 //
 
-#import "NSString+_3rd.h"
+#import "NSString+Reachability.h"
 
-@implementation NSString (_3rd)
+@implementation NSString (Reachability)
 
 -(Reachability *_Nonnull)makeReachability{
     return [Reachability reachabilityWithHostname:self];

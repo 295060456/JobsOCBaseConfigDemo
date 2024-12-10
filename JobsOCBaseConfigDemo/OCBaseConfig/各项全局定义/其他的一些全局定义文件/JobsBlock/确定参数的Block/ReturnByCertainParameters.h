@@ -10,7 +10,6 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
-
 #import <JavaScriptCore/JavaScriptCore.h>
 ///【 确定入参个数 并且 有返回值的Block定义】
 #pragma mark —— 关于 id
@@ -153,6 +152,8 @@ typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByImageBlock)(UIImage
 typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByURLBlock)(NSURL *_Nullable data);
 typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByVoidBlock)(void);
 typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByWindowSceneBlock)(UIWindowScene *_Nullable data);
+typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemByIDBlock)(id _Nullable data);
+typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemBySELBlock)(SEL _Nullable data);
 #pragma mark —— 关于按钮
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByControlStateBlock)(UIControlState data);

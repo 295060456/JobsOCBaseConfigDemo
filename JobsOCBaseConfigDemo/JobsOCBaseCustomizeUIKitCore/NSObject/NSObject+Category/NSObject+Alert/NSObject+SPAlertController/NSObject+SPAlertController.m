@@ -103,16 +103,15 @@
                     if (alertVCBlock) alertVCBlock(vc,mutArr);
                     return;
                 }
-                NSMutableArray <SPAlertAction *>*parameters = NSMutableArray.array;
-                if (config.parametersArr.count) {
-                    if ([methodName substringFromIndex:methodName.length - 1].isEqualToString(@":")) {
-                        parameters.add(action);
-                    }
-                }
-                
                 [NSObject methodName:config.alertBtnActionArr[i]
                            targetObj:config.funcInWhere
-                         paramarrays:parameters];
+                         paramarrays:jobsMakeMutArr(^(__kindof NSMutableArray <SPAlertAction *>* _Nullable arr) {
+                    if (config.parametersArr.count) {
+                        if (methodName.substringFromIndex(methodName.length - 1).isEqualToString(@":")) {
+                            arr.add(action);
+                        }
+                    }
+                })];
             }];
             
             action.index = i;//做记号

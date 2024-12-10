@@ -11,6 +11,7 @@
 #import "NSObject+Extras.h"
 #import "NSObject+WHToast.h"//提示
 #import "JobsString.h"
+#import "JobsDefineAllEnumHeader.h"
 
 #if __has_include(<SPAlertController/SPAlertController.h>)
 #import <SPAlertController/SPAlertController.h>
@@ -24,28 +25,14 @@
 #import "WHToast.h"
 #endif
 
-//  pod 'SPAlertController'# https://github.com/SPStore/SPAlertController 深度定制AlertController
-
-typedef enum : NSUInteger {
-    /// alertControllerWithTitle/message/preferredStyle
-    NSObject_SPAlertControllerInitType_1 = 0,
-    /// alertControllerWithTitle/message/preferredStyle/animationType
-    NSObject_SPAlertControllerInitType_2,
-    /// alertControllerWithCustomAlertView/preferredStyle/animationType
-    NSObject_SPAlertControllerInitType_3,
-    /// alertControllerWithCustomHeaderView/preferredStyle/animationType
-    NSObject_SPAlertControllerInitType_4,
-    /// alertControllerWithCustomActionSequenceView/title/message/preferredStyle/animationType
-    NSObject_SPAlertControllerInitType_5,
-} NSObject_SPAlertControllerInitType;
-
 NS_ASSUME_NONNULL_BEGIN
 /// 配置文件
+/// pod 'SPAlertController'# https://github.com/SPStore/SPAlertController 深度定制AlertController
 @interface SPAlertControllerConfig : NSObject
 
 @property(nonatomic,assign)NSObject_SPAlertControllerInitType SPAlertControllerInitType;// SPAlertControllerInitType 初始化模式
-@property(nonatomic,strong,nullable)NSString *title;//  标题，没有可传nil，如果传空字符@“”会多处一行空白
-@property(nonatomic,strong,nullable)NSString *message;// 副标题，没有可传nil，如果传空字符@“”会多处一行空白
+@property(nonatomic,copy,nullable)NSString *title;//  标题，没有可传nil，如果传空字符@“”会多处一行空白
+@property(nonatomic,copy,nullable)NSString *message;// 副标题，没有可传nil，如果传空字符@“”会多处一行空白
 @property(nonatomic,strong,nullable)UIView *customAlertView; // 允许传入自定义的View
 @property(nonatomic,strong,nullable)UIView *customHeaderView;// 允许传入自定义的HeaderView
 @property(nonatomic,strong,nullable)UIView *customActionSequenceView;// 允许传入自定义的customActionSequenceView
@@ -63,7 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface NSObject (SPAlertController)
-
 /// 自定义的Alert
 /// @param config 配置文件
 /// @param alertVCBlock alertVCBlock

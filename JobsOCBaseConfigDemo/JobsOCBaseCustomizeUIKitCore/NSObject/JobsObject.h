@@ -36,13 +36,35 @@
 
 #import "JobsModel.h"
 
-#pragma mark —— Category
+#pragma mark —— Category【3rd】
+/// 平替UIPickerView
+#import "NSObject+BRPickerView.h"
+/// 图片查看器
+#import "NSObject+GKPhotoBrowser.h"
+/// 对 NTESVerifyCodeManager 的二次封装
+/// https://github.com/yidun/NTESVerifyCode
+#import "NSObject+NTESVerifyCodeManager.h"
+/// 极验验证码
+/// https://www2.geetest.com/
+#import "NSObject+GTCaptcha4.h"
 /// LiveChat
 #import "NSObject+LiveChat.h"
 /// 猿题库网络框架的集成
 #import "NSObject+YTKRequest.h"
 ///【二次封装HXPhotoPicker】弹出系统相册选择页面 + 调取系统相机进行拍摄
 #import "NSObject+HXPhotoPicker.h"
+/// 本地弹出View
+#import "NSObject+TFPopup.h"
+/// NSObject+Alert
+#import "NSObject+SPAlertController.h"
+#import "NSObject+SYSAlertController.h"
+/// 网络监控
+#import "NSObject+AFNReachability.h"
+/// RAC
+#import "NSObject+RAC.h"
+/// 提示
+#import "NSObject+WHToast.h"
+#pragma mark —— Category【Sys.】
 /// runtime方式获取对象的一些属性
 #import "NSObject+RunrtimeGet.h"
 /// 弹框提示退出登录清空本地用户数据
@@ -51,8 +73,6 @@
 #import "NSObject+DynamicInvoke.h"
 /// 本机设备信息
 #import "NSObject+CurrentDevice.h"
-/// 本地弹出View
-#import "NSObject+TFPopup.h"
 /// 本地推送通知封装
 #import "NSObject+UserNotifications.h"
 /// App更改图标
@@ -91,29 +111,12 @@
 #import "NSObject+Class.h"
 /// 时间相关方法
 #import "NSObject+Time.h"
-/// 提示
-#import "NSObject+WHToast.h"
-/// NSObject+Alert
-#import "NSObject+SPAlertController.h"
-#import "NSObject+SYSAlertController.h"
-/// 网络监控
-#import "NSObject+AFNReachability.h"
 /// UIScrollViewDelegate 协议
 #import "NSObject+UIScrollViewDelegate.h"
 /// Cell 部署策略
 #import "NSObject+JobsDeployCellConfig.h"
 /// 文本对齐
 #import "NSObject+NSMutableParagraphStyle.h"
-/// 平替UIPickerView
-#import "NSObject+BRPickerView.h"
-/// 图片查看器
-#import "NSObject+GKPhotoBrowser.h"
-/// 对 NTESVerifyCodeManager 的二次封装
-/// https://github.com/yidun/NTESVerifyCode
-#import "NSObject+NTESVerifyCodeManager.h"
-/// 极验验证码
-/// https://www2.geetest.com/
-#import "NSObject+GTCaptcha4.h"
 /// 关于数据
 #import "NSObject+Data.h"
 /// 关于算法
