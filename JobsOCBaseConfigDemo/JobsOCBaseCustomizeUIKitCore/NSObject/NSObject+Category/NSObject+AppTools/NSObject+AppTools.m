@@ -380,7 +380,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         // 首页没有展现的时候，不推出登录页
     //    extern BOOL CasinoHomeVC_viewDidAppear;
     //    if(!CasinoHomeVC_viewDidAppear) return;
-        viewController.comingToPresentVCByRequestParams(JobsAppDoorVC.new,jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+        viewController.comingToPresentVCByRequestParams(JobsAppDoorVC.new,
+                                                        jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.requestParams = @(JobsAppDoorBgType_video);
         }));
     };
@@ -639,7 +640,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable userName){
         @jobs_strongify(self)
-        return ![self userAndPasswordNotUpTo:userName] && userName.length <= 15 && userName.isAlnum;
+        return !self.userAndPasswordNotUpTo(userName) && userName.length <= 15 && userName.isAlnum;
     };
 }
 /// 用户密码由6-15个字符组成，只能输入字母大小写和数字
@@ -647,7 +648,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable userPassword){
         @jobs_strongify(self)
-        return ![self userAndPasswordNotUpTo:userPassword] && userPassword.length <= 15 && userPassword.isAlnum;
+        return !self.userAndPasswordNotUpTo(userPassword) && userPassword.length <= 15 && userPassword.isAlnum;
     };
 }
 /// 登录的数据检验
@@ -655,8 +656,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     @jobs_weakify(self)
     return ^BOOL(__kindof JobsAppDoorModel *_Nullable model){
         @jobs_strongify(self)
-        if ([self checkUserName:model.userName] &&
-            [self checkUserPassword:model.password]) {
+        if (self.checkUserName(model.userName) &&
+            self.checkUserPassword(model.password)) {
             return YES;
         }else{
             if (isNull(model.userName) &&
@@ -679,9 +680,9 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     @jobs_weakify(self)
     return ^BOOL(__kindof JobsAppDoorModel *_Nullable model){
         @jobs_strongify(self)
-        if ([self checkUserName:model.userName] &&
-            [self checkUserPassword:model.password] &&
-            [self checkUserPassword:model.confirmPassword] &&
+        if (self.checkUserName(model.userName) &&
+            self.checkUserPassword(model.password) &&
+            self.checkUserPassword(model.confirmPassword) &&
             isValue(model.verificationCode) &&
             isValue(model.tel)) {
             return YES;
@@ -716,9 +717,9 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
                       isValue(model.tel) &&
                       isNull(model.verificationCode)){
                 self.jobsToastErrMsg(@"Please enter the verification code");
-            }else if ([self checkUserName:model.userName] ||
-                      [self checkUserPassword:model.password] ||
-                      [self checkUserPassword:model.confirmPassword]){
+            }else if (self.checkUserName(model.userName) ||
+                      self.checkUserPassword(model.password) ||
+                      self.checkUserPassword(model.confirmPassword)){
                 self.jobsToastErrMsg(@"The password consists of 6 to 15 characters and can only be letters and numbers");
             }else self.jobsToastErrMsg(@"Please complete the registration information");
         }return NO;
@@ -777,8 +778,7 @@ JobsKey(_separateLab)
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(2), JobsWidth(14)));
                 make.centerX.equalTo(viewController.view);
                 make.bottom.equalTo(viewController.view).offset(JobsWidth(-64));
-            }];
-            [self setSeparateLab:label];
+            }];[self setSeparateLab:label];
         }))
     }return SeparateLab;
 }
@@ -795,8 +795,8 @@ JobsKey(__立即注册)
         @jobs_weakify(self)
         _立即注册 = BaseButton
             .initByStyle1(JobsInternationalization(@"立即注册"),
-                                       UIFontWeightRegularSize(14),
-                                       HEXCOLOR(0x757575))
+                          UIFontWeightRegularSize(14),
+                          HEXCOLOR(0x757575))
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 NSLog(@"联系客服");
@@ -829,8 +829,8 @@ JobsKey(__联系客服)
         @jobs_weakify(self)
         _联系客服 = BaseButton
             .initByStyle1(JobsInternationalization(@"联系客服"),
-                                       UIFontWeightRegularSize(14),
-                                       HEXCOLOR(0x757575))
+                          UIFontWeightRegularSize(14),
+                          HEXCOLOR(0x757575))
             .onClick(^(UIButton *x){
                 @jobs_strongify(self)
                 NSLog(@"联系客服");
@@ -894,8 +894,8 @@ JobsKey(_richTextConfigMutArr)
     if (!RichTextMutArr) {
         @jobs_weakify(self)
         RichTextMutArr = jobsMakeMutArr(^(NSMutableArray <JobsRichTextConfig *>* _Nullable data) {
-            @jobs_strongify(self)
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                @jobs_strongify(self)
                 data1.font = UIFontWeightRegularSize(12);
                 data1.textCor = HEXCOLOR(0x757575);
                 data1.targetString = self.richTextMutArr[0];
@@ -907,8 +907,7 @@ JobsKey(_richTextConfigMutArr)
                 data1.targetString = self.richTextMutArr[1];
                 data1.urlStr = @"click://";
             }));
-        });
-        [self setRichTextConfigMutArr:RichTextMutArr];
+        });[self setRichTextConfigMutArr:RichTextMutArr];
         Jobs_setAssociatedRETAIN_NONATOMIC(_richTextConfigMutArr, RichTextMutArr)
     }return RichTextMutArr;
 }
@@ -922,9 +921,11 @@ JobsKey(_connectionTipsTV)
 -(UITextView *)connectionTipsTV{
     UITextView *ConnectionTipsTV = Jobs_getAssociatedObject(_connectionTipsTV);
     if (!ConnectionTipsTV) {
+        @jobs_weakify(self)
         Jobs_setAssociatedRETAIN_NONATOMIC(_connectionTipsTV, jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
             textView.userInteractionEnabled = YES;
             textView.linkTextAttributes = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                @jobs_strongify(self)
                 [data setValue:self.richTextConfigMutArr[1].textCor forKey:NSForegroundColorAttributeName];/// 链接文字颜色
                 [data setValue:JobsLightGrayColor forKey:NSUnderlineColorAttributeName];
                 [data setValue:@(NSUnderlinePatternSolid) forKey:NSUnderlineStyleAttributeName];
