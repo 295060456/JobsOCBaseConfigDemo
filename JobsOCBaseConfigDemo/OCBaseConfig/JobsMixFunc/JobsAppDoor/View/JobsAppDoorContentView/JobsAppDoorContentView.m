@@ -488,7 +488,7 @@
         _storeCodeBtn.titleLabel.font = UIFontWeightRegularSize(10);
         _storeCodeBtn.selected = YES;// 默认记住密码
         _storeCodeBtn.jobsResetBtnImage(JobsIMG(@"没有记住密码"));
-        _storeCodeBtn.selectedImage(JobsIMG(@"记住密码"));
+        _storeCodeBtn.selectedStateImage(JobsIMG(@"记住密码"));
         _storeCodeBtn.jobsResetBtnTitleCor(Cor4);
         _storeCodeBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         _storeCodeBtn.titleLabel.adjustsFontForContentSizeCategory = YES;

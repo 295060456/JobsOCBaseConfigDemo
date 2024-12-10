@@ -140,6 +140,7 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByCorBlock)(UIColor *_Nullable
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBOOLBlock)(BOOL data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByFloatBlock)(CGFloat data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByNSUIntegerBlock)(NSUInteger data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByNSIntegerBlock)(NSInteger data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewBySizeBlock)(CGSize data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByRectBlock)(CGRect data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByPointBlock)(CGPoint data);
@@ -171,7 +172,7 @@ typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByURLBlock)(NSURL *_Nullabl
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFontBlock)(UIFont *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByColorBlock)(UIColor *_Nonnull cor);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStringBlock)(__kindof NSString *_Nullable data);/// 主文字内容
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByAttributedStringBlock)(NSAttributedString *_Nonnull title);/// 富文本内容
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByAttributedStringBlock)(NSAttributedString *_Nullable title);/// 富文本内容
 /// 多参数
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementAndPaddingBlock)(NSDirectionalRectEdge data,
                                                                                        CGFloat x);
@@ -257,8 +258,11 @@ typedef __kindof UIViewController *_Nullable(^JobsReturnVCByWebViewBlock)(__kind
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByActionBlock)(UIAlertAction *_Nullable data);
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于富文本
+typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByVoidBlock)(void);
+typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByNSUIntegerBlock)(NSUInteger data);
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString *_Nullable data);
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString *_Nonnull data);
+typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByColorBlock)(UIColor *_Nonnull data);
 #pragma mark —— NSNumber
 typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByIntegerBlock)(NSInteger data);
 typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByFloatBlock)(CGFloat data);
@@ -330,12 +334,15 @@ typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransforme
 typedef UIColor *_Nullable(^JobsReturnColorByHexAlphaBlock)(uint32_t hexValue, CGFloat alpha);
 typedef UIColor *_Nullable(^JobsReturnColorByHexBlock)(uint32_t hexValue);
 typedef UIColor *_Nonnull(^JobsReturnColorByCGFloatBlock)(CGFloat data);
+typedef UIColor *_Nullable(^JobsReturnColorByNSUIntegerBlock)(NSUInteger data);
 typedef UIColor *_Nullable(^JobsReturnColorByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
 typedef UIColor *_Nullable(^JobsReturnColorByStringBlock)(NSString *_Nonnull cor);
 typedef UIColor *_Nullable(^JobsReturnColorByImageBlock)(UIImage *_Nonnull cor);
 #pragma mark —— 关于图片
 typedef UIImage *_Nonnull(^JobsReturnImageByVoidBlock)(void);
 typedef UIImage *_Nonnull(^JobsReturnImageByAlphaBlock)(CGFloat alpha);
+typedef UIImage *_Nullable(^JobsReturnImageByNSUIntegerBlock)(NSUInteger data);
+typedef UIImage *_Nullable(^JobsReturnImageByNSIntegerBlock)(NSInteger data);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGRectBlock)(CGRect data);
 typedef UIImage *_Nonnull(^JobsReturnImageByCGSizeBlock)(CGSize data);
 typedef UIImage *_Nonnull(^JobsReturnImageByAVURLAssetBlock)(AVURLAsset *_Nonnull data);

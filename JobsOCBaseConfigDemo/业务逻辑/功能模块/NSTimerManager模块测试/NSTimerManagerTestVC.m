@@ -10,7 +10,7 @@
 @interface NSTimerManagerTestVC ()
 /// UI
 @property(nonatomic,strong)UILabel *valueLab;
-@property(nonatomic,strong)NSMutableArray <UIButton *>*btnMutArr;
+@property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*btnMutArr;
 /// Data
 @property(nonatomic,strong)NSTimerManager *nsTimerManager;
 @property(nonatomic,strong)NSMutableArray <NSString *>*btnTitleMutArr;
@@ -166,15 +166,17 @@
     }return _valueLab;
 }
 
--(NSMutableArray<UIButton *> *)btnMutArr{
+-(NSMutableArray <__kindof UIButton *>*)btnMutArr{
     if (!_btnMutArr) {
-        _btnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        @jobs_weakify(self)
+        _btnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButton *>* _Nullable data) {
+            @jobs_strongify(self)
             for (NSString *title in self.btnTitleMutArr) {
                 UIButton *btn = UIButton.new;
                 btn.jobsResetBtnTitle(title);
                 btn.jobsResetBtnTitleCor(JobsBlackColor);
                 btn.jobsResetBtnBgImage(JobsIMG(@"弹窗取消按钮背景图"));
-                btn.selectedBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
+                btn.selectedStateBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
                 btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
                 btn.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
                     data.layerCor = HEXCOLOR(0xAE8330);

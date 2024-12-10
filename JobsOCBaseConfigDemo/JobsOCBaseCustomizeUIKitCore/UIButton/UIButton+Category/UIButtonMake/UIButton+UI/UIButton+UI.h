@@ -6,16 +6,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MacroDef_Strong@Weak.h"
 #import "JobsBlock.h"
+#import "MacroDef_Strong@Weak.h"
 #import "MacroDef_Cor.h"
 #import "BaseButtonProtocol.h"
+#import "JobsSEL_IMP.h"
+#import "NSObject+DynamicInvoke.h"
+#import "NSObject+NSMutableParagraphStyle.h"
 #import "UIView+Extras.h"
 #import "UIView+Gesture.h"
-#import "NSObject+DynamicInvoke.h"
-#import "JobsSEL_IMP.h"
-#import "NSObject+NSMutableParagraphStyle.h"
 #import "UIButton+ImageTitleSpacing.h"
+#import "UIButton+UIButtonConfiguration.h"
+#import "UIButton+TextView.h"
+#import "UIButton+UIControlState.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -105,13 +108,6 @@ NS_ASSUME_NONNULL_BEGIN
                             primaryAction:(UIAction *_Nullable)primaryAction
                longPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock
                           clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock;
-/// UIButtonConfiguration 创建的UIbutton修改字体以及颜色的方法
-/// 注意⚠️因为UIConfigurationTextAttributesTransformer是没有办法直接获取到里面的字体的，只能从外面生成以后直接赋值，也就是每次修改需要给一个完整的UIConfigurationTextAttributesTransformer对象进UIButtonConfiguration
--(void)jobsSetBtnTitleFont:(UIFont *_Nullable)titleFont
-               btnTitleCor:(UIColor *_Nullable)titleCor;
-
--(void)jobsSetBtnSubTitleFont:(UIFont *_Nullable)subTitleFont
-               btnSubTitleCor:(UIColor *_Nullable)subTitleCor;
 /// @property (nonatomic, readwrite, assign) UIButtonConfigurationSize buttonSize; 这个属性，不是我们想要的UIFont。设置UIFont必须在富文本里面进行设置
 -(UIConfigurationTextAttributesTransformer)jobsSetConfigTextAttributesTransformerByTitleFont:(UIFont *_Nullable)titleFont
                                                                                  btnTitleCor:(UIColor *_Nullable)titleCor;
@@ -133,12 +129,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)changeAction:(CGFloat)angle;
 /// 当Button不可用的时候，需要做些什么
 -(jobsByBOOLBlock _Nonnull)enabledBlock;
-/// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
--(__kindof UIButton *)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock;
--(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock;
-#pragma mark —— 一些通用修改.主标题（Api已做向下兼容）
+#pragma mark —— 一些通用修改（Api已做向下兼容）
 /// 主标题是否多行显示
 -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
+#pragma mark —— 一些通用修改.主标题（Api已做向下兼容）
 ///【兼容】重设Btn主标题的文字内容 优先级高于jobsResetTitle
 -(JobsReturnButtonByStringBlock _Nonnull)jobsResetBtnTitle;
 ///【兼容】重设Btn主标题的文字颜色
@@ -154,8 +148,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
 ///【兼容】重设Btn的副标题字体
 -(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnSubTitleFont;
-///【最新的Api】修改副标题的对齐方式
--(JobsReturnButtonByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0));
 #pragma mark —— 一些通用修改.按钮图片
 ///【兼容】重设Btn.Image
 -(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnImage;
@@ -179,63 +171,13 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedTitle;
 ///【兼容】重设Btn副标题富文本
 -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedSubTitle;
+/// 用 UITextView 替换 UIButton.titleLabel
+-(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnTextViewNormalAttributedTitle;
+/// 用 UITextView 替换 UIButton.subtitleLabel
+-(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnTextViewNormalAttributedSubTitle;
 #pragma mark —— 一些通用修改.间距
 ///【兼容】重设Btn的图文间距和相对位置
 -(JobsReturnButtonByImagePlacementAndPaddingBlock _Nonnull)jobsResetImagePlacement_Padding API_AVAILABLE(ios(16.0));
-///【最新的Api】重设Btn的图文相对位置
--(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
-///【最新的Api】重设Btn的图文间距
--(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
-///【最新的Api】重设Btn主标题与副标题之间的距离
--(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
-#pragma mark —— UIButton.带状态 set
-///【老Api】设置 Btn 已选择状态下的 按钮图片
--(JobsReturnButtonByImageBlock _Nonnull)selectedImage;
-///【老Api】设置 Btn 已选择状态下的 按钮背景图片
--(JobsReturnButtonByImageBlock _Nonnull)selectedBackgroundImage;
-///【老Api】设置 Btn 已选择状态下的 按钮主标题
--(JobsReturnButtonByStringBlock _Nonnull)selectedTitle;
-///【老Api】设置 Btn 已选择状态下的 按钮主标题的颜色
--(JobsReturnButtonByColorBlock _Nonnull)selectedTitleColor;
-///【老Api】设置 Btn 已选择状态下的 按钮主标题的富文本内容
--(JobsReturnButtonByAttributedStringBlock _Nonnull)selectedAttributedTitle;
-/**
- 1、一一对应UIButtonConfiguration.h文件里面的属性
- 2、只有通过UIButtonConfiguration创建的UIButton，这个UIbutton的configuration属性才不为空
- 3、要修改通过UIButtonConfiguration创建的UIButton的各属性值，只有通过下列方式方可以
- */
-#pragma mark ——【最新的Api】UIButton.configuration的各项属性值的修改
--(JobsReturnButtonByTitleAlignmentBlock _Nonnull)jobsResetTitleAlignment API_AVAILABLE(ios(16.0));
--(JobsReturnButtonByBOOLBlock _Nonnull)jobsResetAutomaticallyUpdateForSelection API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)jobsResetBackground API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)jobsResetCornerStyle API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationBySizeBlock _Nonnull)jobsResetButtonSize API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByMacIdiomStyleBlock _Nonnull)jobsResetMacIdiomStyle API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByBaseBackgroundColorBlock _Nonnull)jobsResetBaseBackgroundColor API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetImage API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByImageColorTransformerBlock _Nonnull)jobsResetImageColorTransformer API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByPreferredSymbolConfigurationForImageBlock _Nonnull)jobsResetPreferredSymbolConfigurationForImage API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByShowsActivityIndicatorBlock _Nonnull)jobsResetShowsActivityIndicator API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByActivityIndicatorColorTransformerBlock _Nonnull)jobsResetActivityIndicatorColorTransformer API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetTitle API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetSubTitle API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByAttributedTitleBlock _Nonnull)jobsResetAttributedTitle API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByTitleTextAttributesTransformerBlock _Nonnull)jobsResetTitleTextAttributesTransformer API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetTitleLineBreakMode API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetSubTitleLineBreakMode API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationBySubtitleBlock _Nonnull)jobsResetSubtitle API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByAttributedSubtitleBlock _Nonnull)jobsResetAttributedSubtitle API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationBySubtitleTextAttributesTransformerBlock _Nonnull)jobsResetSubtitleTextAttributesTransformer API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationBySubtitleLineBreakModeBlock _Nonnull)jobsResetSubtitleLineBreakMode API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByIndicatorBlock _Nonnull)jobsResetIndicator API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByIndicatorColorTransformerBlock _Nonnull)jobsResetIndicatorColorTransformer API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByContentInsetsBlock _Nonnull)jobsResetContentInsets API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetSubTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0));
--(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0));
-#pragma mark —— UIButton.UIControlStateNormal.get
 ///【兼容】获取按钮图片（普通状态下）
 -(UIImage *_Nullable)imageForNormalState;
 ///【兼容】获取按钮背景图片（普通状态下）
@@ -250,21 +192,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *_Nullable)titleForNormalState;
 ///【兼容】获取按钮主文字颜色
 -(UIColor *_Nullable)titleColorForNormalState;
-///【兼容】获取按钮主文字字体
--(UIFont *_Nullable)titleFont;
-///【兼容】获取按钮副标题文字字体
--(UIFont *_Nullable)subTitleFont;
-#pragma mark —— UIButton.带状态的 get
-/// 获取 Btn 已选择状态下的按钮图片
--( UIImage *_Nullable)imageForSelectedState;
-/// 获取 Btn 已选择状态下的背景图片
--(UIImage *_Nullable)backgroundImageForSelectedState;
-/// 获取 Btn 已选择状态下的 主标题的文本内容
--(NSString *_Nullable)titleForSelectedState;
-/// 获取 Btn 已选择状态下的 主标题的文本颜色
--(UIColor *_Nullable)titleColorForSelectedState;
-/// 获取 Btn 已选择状态下的 主标题的富文本内容
--(NSAttributedString *_Nullable)attributedTitleForSelectedState;
 
 @end
 

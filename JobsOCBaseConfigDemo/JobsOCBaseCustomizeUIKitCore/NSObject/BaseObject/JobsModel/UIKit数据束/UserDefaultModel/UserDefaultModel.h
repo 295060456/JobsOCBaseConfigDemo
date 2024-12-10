@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)NSInteger NSIntValue;
 @property(nonatomic,assign)CGFloat CGfloatValue;
 // key
-@property(nonatomic,strong,nonnull)NSString *key;
+@property(nonatomic,copy,nonnull)NSString *key;
 
 @end
 

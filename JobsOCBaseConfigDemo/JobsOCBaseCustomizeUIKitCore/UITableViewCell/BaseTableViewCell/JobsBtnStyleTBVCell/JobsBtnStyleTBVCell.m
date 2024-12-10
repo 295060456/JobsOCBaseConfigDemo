@@ -21,6 +21,11 @@ UIViewModelProtocol_self_synthesize
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
+
+-(void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
+    self.btn.jobsResetBtnTextViewNormalAttributedTitle(self.buttonModel.attributedTitle);
+}
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
@@ -67,7 +72,9 @@ UIViewModelProtocol_self_synthesize
     _btn.selected = viewModel.jobsSelected;
     _btn.enabled = viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UITableViewCell
     if(viewModel.textModel.attributedTitle){/// 主标题（富文本）
-        _btn.jobsResetBtnNormalAttributedTitle(viewModel.textModel.attributedTitle);
+//        _btn.jobsResetBtnNormalAttributedTitle(viewModel.textModel.attributedTitle);
+//        _btn.jobsResetBtnTextViewNormalAttributedTitle(viewModel.textModel.attributedTitle);
+//        _btn.titleLabel.backgroundColor = JobsClearColor;
     }else{/// 主标题（普通）
         _btn.jobsResetBtnTitle(viewModel.textModel.text);
         _btn.jobsResetBtnTitleCor(viewModel.textModel.textCor);
@@ -88,7 +95,7 @@ UIViewModelProtocol_self_synthesize
     }];
     /// 长按事件
     [_btn jobsBtnLongPressGestureEventBlock:viewModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
-//            @jobs_strongify(self)
+//        @jobs_strongify(self)
         return nil;
     }];
     /// 背景色
@@ -136,7 +143,8 @@ UIViewModelProtocol_self_synthesize
     _btn.selected = buttonModel.jobsSelected;
     _btn.enabled = buttonModel.enabled;
     if(buttonModel.attributedTitle){/// 主标题（富文本）
-        _btn.jobsResetBtnNormalAttributedTitle(buttonModel.attributedTitle);
+        _btn.jobsResetBtnTextViewNormalAttributedTitle(buttonModel.attributedTitle);
+        
     }else{/// 主标题（普通文本）
         _btn.jobsResetBtnTitle(buttonModel.title);
         _btn.jobsResetBtnTitleCor(buttonModel.titleCor);

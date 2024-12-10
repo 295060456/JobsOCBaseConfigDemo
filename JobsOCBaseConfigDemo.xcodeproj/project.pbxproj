@@ -12,6 +12,10 @@
 		8401507E2CF4501B00211910 /* WKWebViewConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401507C2CF4501B00211910 /* WKWebViewConfiguration+Extra.m */; };
 		8401507F2CF4501B00211910 /* WKWebsiteDataStore+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 840150762CF4501B00211910 /* WKWebsiteDataStore+Extra.m */; };
 		840150802CF4501B00211910 /* NSURLSession+AllowAllCertificates.m in Sources */ = {isa = PBXBuildFile; fileRef = 840150792CF4501B00211910 /* NSURLSession+AllowAllCertificates.m */; };
+		8405D18F2D08652200DE33FE /* UIButton+TextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D18D2D08652200DE33FE /* UIButton+TextView.m */; };
+		8405D1962D08656100DE33FE /* UIButton+UIButtonConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D1942D08656100DE33FE /* UIButton+UIButtonConfiguration.m */; };
+		8405D1972D08656100DE33FE /* UIButton+UIControlState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D1912D08656100DE33FE /* UIButton+UIControlState.m */; };
+		8405D19C2D0865E100DE33FE /* UITabBarItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D19A2D0865E100DE33FE /* UITabBarItem+Extra.m */; };
 		84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */; };
 		84392BDC2CF4A47A000D441F /* UIAlertController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD62CF4A47A000D441F /* UIAlertController+Extra.m */; };
 		84392BDD2CF4A47A000D441F /* UIAlertAction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD32CF4A47A000D441F /* UIAlertAction+Extra.m */; };
@@ -1232,6 +1236,14 @@
 		840150792CF4501B00211910 /* NSURLSession+AllowAllCertificates.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSURLSession+AllowAllCertificates.m"; sourceTree = "<group>"; };
 		8401507B2CF4501B00211910 /* WKWebViewConfiguration+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebViewConfiguration+Extra.h"; sourceTree = "<group>"; };
 		8401507C2CF4501B00211910 /* WKWebViewConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebViewConfiguration+Extra.m"; sourceTree = "<group>"; };
+		8405D18C2D08652200DE33FE /* UIButton+TextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+TextView.h"; sourceTree = "<group>"; };
+		8405D18D2D08652200DE33FE /* UIButton+TextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+TextView.m"; sourceTree = "<group>"; };
+		8405D1902D08656100DE33FE /* UIButton+UIControlState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIControlState.h"; sourceTree = "<group>"; };
+		8405D1912D08656100DE33FE /* UIButton+UIControlState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIControlState.m"; sourceTree = "<group>"; };
+		8405D1932D08656100DE33FE /* UIButton+UIButtonConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIButtonConfiguration.h"; sourceTree = "<group>"; };
+		8405D1942D08656100DE33FE /* UIButton+UIButtonConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonConfiguration.m"; sourceTree = "<group>"; };
+		8405D1992D0865E100DE33FE /* UITabBarItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+Extra.h"; sourceTree = "<group>"; };
+		8405D19A2D0865E100DE33FE /* UITabBarItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+Extra.m"; sourceTree = "<group>"; };
 		8415A2342CE4729600A09C67 /* JobsExcelView的使用.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "JobsExcelView的使用.md"; sourceTree = "<group>"; };
 		84170AFD2CD0BF5D0007E303 /* YTKBatchRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBatchRequest+Extra.h"; sourceTree = "<group>"; };
 		84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBatchRequest+Extra.m"; sourceTree = "<group>"; };
@@ -3651,6 +3663,54 @@
 				8401507C2CF4501B00211910 /* WKWebViewConfiguration+Extra.m */,
 			);
 			path = WKWebViewConfiguration;
+			sourceTree = "<group>";
+		};
+		8405D18E2D08652200DE33FE /* UIButton+TextView */ = {
+			isa = PBXGroup;
+			children = (
+				8405D18C2D08652200DE33FE /* UIButton+TextView.h */,
+				8405D18D2D08652200DE33FE /* UIButton+TextView.m */,
+			);
+			path = "UIButton+TextView";
+			sourceTree = "<group>";
+		};
+		8405D1922D08656100DE33FE /* UIButton+UIControlState */ = {
+			isa = PBXGroup;
+			children = (
+				8405D1902D08656100DE33FE /* UIButton+UIControlState.h */,
+				8405D1912D08656100DE33FE /* UIButton+UIControlState.m */,
+			);
+			path = "UIButton+UIControlState";
+			sourceTree = "<group>";
+		};
+		8405D1952D08656100DE33FE /* UIButton+UIButtonConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				8405D1932D08656100DE33FE /* UIButton+UIButtonConfiguration.h */,
+				8405D1942D08656100DE33FE /* UIButton+UIButtonConfiguration.m */,
+			);
+			path = "UIButton+UIButtonConfiguration";
+			sourceTree = "<group>";
+		};
+		8405D1982D08656F00DE33FE /* UIButtonMake */ = {
+			isa = PBXGroup;
+			children = (
+				CE5A62752CA82C2D006D67A7 /* UIButton+SimplyMake */,
+				8405D1922D08656100DE33FE /* UIButton+UIControlState */,
+				8405D1952D08656100DE33FE /* UIButton+UIButtonConfiguration */,
+				8405D18E2D08652200DE33FE /* UIButton+TextView */,
+				CE5A62872CA82C2D006D67A7 /* UIButton+UI */,
+			);
+			path = UIButtonMake;
+			sourceTree = "<group>";
+		};
+		8405D19B2D0865E100DE33FE /* UITabBarItem */ = {
+			isa = PBXGroup;
+			children = (
+				8405D1992D0865E100DE33FE /* UITabBarItem+Extra.h */,
+				8405D19A2D0865E100DE33FE /* UITabBarItem+Extra.m */,
+			);
+			path = UITabBarItem;
 			sourceTree = "<group>";
 		};
 		84170AFF2CD0BF5D0007E303 /* YTKBatchRequest+Extra */ = {
@@ -11985,12 +12045,11 @@
 			isa = PBXGroup;
 			children = (
 				CE5A62722CA82C2D006D67A7 /* UIButton+SDWebImage */,
-				CE5A62752CA82C2D006D67A7 /* UIButton+SimplyMake */,
+				8405D1982D08656F00DE33FE /* UIButtonMake */,
 				CE5A62782CA82C2D006D67A7 /* UIButton+Animation */,
 				CE5A627B2CA82C2D006D67A7 /* UIButton+Extra */,
 				CE5A627F2CA82C2D006D67A7 /* UIButton+ImageTitleSpacing */,
 				CE5A62832CA82C2D006D67A7 /* UIButton+Timer */,
-				CE5A62872CA82C2D006D67A7 /* UIButton+UI */,
 			);
 			path = "UIButton+Category";
 			sourceTree = "<group>";
@@ -13711,6 +13770,7 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				8405D19B2D0865E100DE33FE /* UITabBarItem */,
 				8478D8FD2D01CC03004E8B90 /* NSDateFormatter */,
 				8478D9002D01CC03004E8B90 /* NSTimeZone */,
 				84A9112D2CFF1A85003BD1CB /* UIStackView */,
@@ -16464,6 +16524,8 @@
 				CE4F27B82CA825CD002AF25B /* ZMJGanttListVC.m in Sources */,
 				CE5A64A92CA82E86006D67A7 /* JobsAppTools.m in Sources */,
 				CE4F27B92CA825CD002AF25B /* NotifiManager.m in Sources */,
+				8405D1962D08656100DE33FE /* UIButton+UIButtonConfiguration.m in Sources */,
+				8405D1972D08656100DE33FE /* UIButton+UIControlState.m in Sources */,
 				CE4F27BA2CA825CD002AF25B /* BaiShaETProjVIPSubCVFooterView.m in Sources */,
 				CE5A64B62CA82EE1006D67A7 /* NSObject+NTESVerifyCodeManager.m in Sources */,
 				CE4F27BB2CA825CD002AF25B /* ZMJTask.m in Sources */,
@@ -16490,6 +16552,7 @@
 				CE5A65902CA8332C006D67A7 /* ImageCodeView.m in Sources */,
 				CE5A661C2CA8365F006D67A7 /* AuthCodeLab.m in Sources */,
 				CE5A65912CA8332C006D67A7 /* JobsScrollYView.m in Sources */,
+				8405D18F2D08652200DE33FE /* UIButton+TextView.m in Sources */,
 				CE4F27C32CA825CD002AF25B /* AppLanguageVC.m in Sources */,
 				CE4F27C42CA825CD002AF25B /* JobsVerticalMenuMainVC.m in Sources */,
 				CE5A64C02CA82F2E006D67A7 /* NSObject+DefConfig.m in Sources */,
@@ -16674,6 +16737,7 @@
 				CE5A65262CA83166006D67A7 /* JobsAnimationLabel.m in Sources */,
 				CE5A65272CA83166006D67A7 /* BaseLabel.m in Sources */,
 				CEB8FA7C2CA8385200CCFDF8 /* JobsUploadingProgressView.m in Sources */,
+				8405D19C2D0865E100DE33FE /* UITabBarItem+Extra.m in Sources */,
 				CEB8FA7D2CA8385200CCFDF8 /* LongPressToDeleteImageView.m in Sources */,
 				CEB8FA7E2CA8385200CCFDF8 /* ZHKeyChainManager.m in Sources */,
 				8474A4B02CF8696900112B4B /* IQKeyboardManager+Extra.m in Sources */,

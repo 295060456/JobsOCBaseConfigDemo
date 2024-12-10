@@ -18,17 +18,17 @@
         }));
         data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
             data1.font = UIFontWeightRegularSize(10.6);;
-            data1.textCor = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            data1.textCor = [UIColor gradientCorDataMutArr:jobsMakeMutArr(^(NSMutableArray <UIColor *>*_Nullable data) {
                 data.add(RGB_COLOR(247, 131, 97));
                 data.add(RGB_COLOR(245, 75, 100));
             })
                                                  startPoint:CGPointZero
                                                    endPoint:CGPointZero
                                                      opaque:NO
-                                             targetViewRect:CGRectMake(0,
-                                                                       0,
-                                                                       JobsWidth(400),
-                                                                       JobsWidth(1))];
+                                            targetViewRect:jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable model) {
+                model.jobsWidth = JobsWidth(400);
+                model.jobsHeight = JobsWidth(1);
+            })];
             data1.targetString = JobsInternationalization(@"我是第二段文字");
         }));
     });;
@@ -46,12 +46,10 @@
     }
     /// 设置段落样式
     NSMutableAttributedString *attributedString = self.richTextWithDataConfigMutArr(richTextDataConfigMutArr);
-    attributedString.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+    attributedString.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel *_Nullable data) {
         data.value = paragraphStyle;
         data.range = NSMakeRange(0, attributedString.string.length);
-    }));
-//    [attributedString endEditing];
-    return attributedString;
+    }));return attributedString;
 }
 /// 利用 NSArray <JobsRichTextConfig *>* 形成富文本
 -(JobsReturnAttributedStringByRichTextConfigArrayBlock _Nonnull)richTextWithDataConfigMutArr{
@@ -73,7 +71,7 @@
         NSUInteger currentFrontLocation = 0;/// 当前位置（前）
         for (JobsRichTextConfig *config in arr) {
             config.range = NSMakeRange(currentFrontLocation, config.targetString.length);
-            currentFrontLocation  += config.targetString.length;
+            currentFrontLocation += config.targetString.length;
         }
         for (JobsRichTextConfig *config in arr){
             /// 添加字体 & 设置作用域

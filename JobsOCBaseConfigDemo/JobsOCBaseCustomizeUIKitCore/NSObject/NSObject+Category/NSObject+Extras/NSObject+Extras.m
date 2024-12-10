@@ -611,6 +611,14 @@
     };
 }
 
+-(jobsByKeyValueModelBlock _Nonnull)jobsKVCBy{
+    @jobs_weakify(self)
+    return ^(JobsKeyValueModel *_Nullable data){
+        @jobs_strongify(self)
+        if(data && isValue(data.key)) [self setValue:data.value forKey:data.key];
+    };
+}
+
 -(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClass{
     @jobs_weakify(self)
     return ^(Class cls) {

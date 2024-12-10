@@ -131,11 +131,11 @@
             make.edges.equalTo(self.contentView);
         }];
     }
-    _bgBtn.selectedImage(self.viewModel.selectedImage_);
-    _bgBtn.selectedTitle(self.viewModel.textModel.selectedText);
-    _bgBtn.selectedBackgroundImage(self.viewModel.bgSelectedImage);
+    _bgBtn.selectedStateImage(self.viewModel.selectedImage_);
+    _bgBtn.selectedStateTitle(self.viewModel.textModel.selectedText);
+    _bgBtn.selectedStateBackgroundImage(self.viewModel.bgSelectedImage);
     _bgBtn.selectedAttributedTitle(self.viewModel.textModel.selectedAttributedText);
-    _bgBtn.selectedTitleColor(self.viewModel.textModel.selectedTextCor);
+    _bgBtn.selectedStateTitleColor(self.viewModel.textModel.selectedTextCor);
     
     _bgBtn.titleAlignment = self.viewModel.textModel.textAlignment;
     _bgBtn.makeNewLineShows(self.viewModel.textModel.lineBreakMode);

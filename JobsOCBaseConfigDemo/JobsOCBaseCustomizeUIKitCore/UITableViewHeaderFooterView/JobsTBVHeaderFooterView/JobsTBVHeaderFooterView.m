@@ -88,10 +88,10 @@
     _subTitleBtn.jobsResetBtnTitleCor(self.viewModel.subTextModel.textCor);
     _subTitleBtn.jobsResetBtnNormalAttributedTitle(self.viewModel.subTextModel.attributedTitle);
     
-    _subTitleBtn.selectedImage(self.viewModel.selectedImage_);
-    _subTitleBtn.selectedBackgroundImage(self.viewModel.bgSelectedImage);
-    _subTitleBtn.selectedTitle(self.viewModel.subTextModel.text);
-    _subTitleBtn.selectedTitleColor(self.viewModel.subTextModel.textCor);
+    _subTitleBtn.selectedStateImage(self.viewModel.selectedImage_);
+    _subTitleBtn.selectedStateBackgroundImage(self.viewModel.bgSelectedImage);
+    _subTitleBtn.selectedStateTitle(self.viewModel.subTextModel.text);
+    _subTitleBtn.selectedStateTitleColor(self.viewModel.subTextModel.textCor);
     _subTitleBtn.selectedAttributedTitle(self.viewModel.subTextModel.attributedTitle);
     
     _subTitleBtn.jobsResetBtnTitleFont(self.viewModel.subTextModel.font);

@@ -6,8 +6,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JobsTabBarItemConfig.h"
 #import "JobsBlock.h"
+#import "JobsTabBarItemConfig.h"
+#import "UITabBarItem+Extra.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsTabBarItem : UITabBarItem
 
 +(JobsReturnTabBarItemByConfigBlock _Nonnull)initByConfig;
--(instancetype)initWithConfig:(JobsTabBarItemConfig *)config;
+-(instancetype)initWithConfig:(JobsTabBarItemConfig *_Nullable)config;
 
 @end
 

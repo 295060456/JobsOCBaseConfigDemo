@@ -137,7 +137,7 @@
         _drawBtn = UIButton.new;
         _drawBtn.jobsResetBtnTitle(self.msgDataModel.isDraw ? JobsInternationalization(@" 已领取 ") : JobsInternationalization(@" 领取 "));
         _drawBtn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
-        _drawBtn.selectedTitleColor(HEXCOLOR(0x757575));
+        _drawBtn.selectedStateTitleColor(HEXCOLOR(0x757575));
         _drawBtn.backgroundColor = HEXCOLOR(0xFFEABA);
         _drawBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(12));
         [self.view addSubview:_drawBtn];

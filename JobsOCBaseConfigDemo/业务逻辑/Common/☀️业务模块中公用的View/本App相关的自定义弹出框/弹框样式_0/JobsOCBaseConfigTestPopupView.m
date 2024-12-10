@@ -43,7 +43,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock)jobsRichElementsInViewWithModel{
+-(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -53,8 +53,12 @@ static dispatch_once_t static_testPopupViewOnceToken;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(CGSize)viewSizeWithModel:(UIViewModel *_Nullable)model{
-    return CGSizeMake(JobsWidth(327), JobsWidth(226));
++(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+    @jobs_weakify(self)
+    return ^(id _Nullable data){
+        @jobs_strongify(self)
+        return CGSizeMake(JobsWidth(327), JobsWidth(226));
+    };
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)containerView{
@@ -86,7 +90,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
     if (!_testPopupViewSureBtn) {
         _testPopupViewSureBtn = UIButton.new;
         _testPopupViewSureBtn.jobsResetBtnBgImage(JobsIMG(@"测试弹窗的确定按钮"));
-        _testPopupViewSureBtn.selectedBackgroundImage(JobsIMG(@"测试弹窗的确定按钮"));
+        _testPopupViewSureBtn.selectedStateBackgroundImage(JobsIMG(@"测试弹窗的确定按钮"));
         _testPopupViewSureBtn.jobsResetBtnTitle(JobsInternationalization(@"确定"));
         _testPopupViewSureBtn.jobsResetBtnTitleCor(JobsBlackColor);
         _testPopupViewSureBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(18));
@@ -100,10 +104,9 @@ static dispatch_once_t static_testPopupViewOnceToken;
         [_testPopupViewSureBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            [self tf_hide:^{
-                @jobs_strongify(self)
-                if(self.objectBlock) self.objectBlock(x);
-            }];return nil;
+            [self tf_hide:nil];
+            if(self.objectBlock) self.objectBlock(x);
+            return nil;
         }];
     }return _testPopupViewSureBtn;
 }

@@ -8,6 +8,44 @@
 #import "UIButton+SimplyMake.h"
 
 @implementation UIButton (SimplyMake)
+#pragma mark —— 对老Api进行二次封装
++(JobsReturnButtonByNSIntegerBlock _Nonnull)initByType{
+    return ^__kindof UIButton *_Nullable(UIButtonType type){
+        return [UIButton buttonWithType:type];
+    };
+}
+
++(__kindof UIButton *)initByCustomType{
+    return UIButton.initByType(UIButtonTypeCustom);
+}
+
++(__kindof UIButton *)initBySysType API_AVAILABLE(ios(7.0)){
+    return UIButton.initByType(UIButtonTypeSystem);
+}
+
++(__kindof UIButton *)initByDetailDisclosureType{
+    return UIButton.initByType(UIButtonTypeDetailDisclosure);
+}
+
++(__kindof UIButton *)initByInfoLightType{
+    return UIButton.initByType(UIButtonTypeInfoLight);
+}
+
++(__kindof UIButton *)initByInfoDarkType{
+    return UIButton.initByType(UIButtonTypeInfoDark);
+}
+
++(__kindof UIButton *)initByContactAddType{
+    return UIButton.initByType(UIButtonTypeContactAdd);
+}
+
++(__kindof UIButton *)initByPlainType API_AVAILABLE(tvos(11.0)) API_UNAVAILABLE(ios, watchos){
+    return UIButton.initByType(UIButtonTypePlain);
+}
+
++(__kindof UIButton *)initByCloseType API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos, watchos){
+    return UIButton.initByType(UIButtonTypeClose);
+}
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠主标题内容（普通文本）进行创建
 +(JobsReturnButtonByStringBlock _Nonnull)initByTitle{

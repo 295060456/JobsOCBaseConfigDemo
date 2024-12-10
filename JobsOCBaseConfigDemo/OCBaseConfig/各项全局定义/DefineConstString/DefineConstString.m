@@ -40,6 +40,7 @@ NSString *const 登录成功 = @"登录成功";/// 登录成功
 NSString *const 退出登录成功 = @"退出登录成功";/// 退出登录成功
 NSString *const 用户信息 = @"用户信息";
 NSString *const 用户名数组 = @"用户名数组";
+NSString *const FM个人中心Tab切换 = @"FM个人中心Tab切换";
 NSString *const FM用户数据 = @"FM用户数据";
 NSString *const FM用户协议 = @"FM用户协议";
 NSString *const App当日首次进入 = @"App当日首次进入";

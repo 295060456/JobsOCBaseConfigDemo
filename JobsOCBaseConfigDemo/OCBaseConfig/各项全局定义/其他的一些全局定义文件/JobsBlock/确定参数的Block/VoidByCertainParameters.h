@@ -89,6 +89,7 @@ typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
 typedef void(^jobsByWKWebViewConfigurationBlock)(WKWebViewConfiguration * _Nullable config);
 /// 按钮配置
 typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
+typedef void(^jobsByBackgroundConfigurationBlock)(UIBackgroundConfiguration * _Nullable config);
 /// UICollectionView配置
 typedef void(^jobsByCollectionViewFlowLayoutBlock)(UICollectionViewFlowLayout *_Nullable data);
 #pragma mark —— URL

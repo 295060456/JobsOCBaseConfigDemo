@@ -21,7 +21,7 @@
     };
 }
 
--(instancetype)initWithConfig:(JobsTabBarItemConfig *)config{
+-(instancetype)initWithConfig:(JobsTabBarItemConfig *_Nullable)config{
     if (self = [super init]) {
         if (config) {
             self.tabBarControllerConfig = config;
@@ -30,10 +30,8 @@
             self.selectedImage = [config.imageSelected imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             self.title = config.title;
             
-            [self setTitleTextAttributes:@{NSForegroundColorAttributeName:config.titleCorNormal}
-                                forState:UIControlStateNormal];
-            [self setTitleTextAttributes:@{NSForegroundColorAttributeName:config.titleCorSelected}
-                                forState:UIControlStateSelected];
+            self.titleTextAttributesByNormalState(config.titleCorNormal);
+            self.titleTextAttributesBySelectedState(config.titleCorNormal);
         }
     }return self;
 }

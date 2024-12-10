@@ -110,6 +110,7 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners
                                      cornerRadii:(CGSize)cornerRadii;
 #pragma mark —— 其他
+-(JobsReturnViewByNSIntegerBlock _Nonnull)viewByID;
 -(JobsReturnViewByGestureRecognizer _Nonnull)addGesture;
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
 -(JobsReturnViewByViewBlock _Nonnull)addSubview;

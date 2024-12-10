@@ -40,6 +40,7 @@ FOUNDATION_EXTERN NSString *_Nonnull const 登录成功;/// 登录成功
 FOUNDATION_EXTERN NSString *_Nonnull const 退出登录成功;/// 退出登录成功
 FOUNDATION_EXTERN NSString *_Nonnull const 用户信息;
 FOUNDATION_EXTERN NSString *_Nonnull const 用户名数组;
+FOUNDATION_EXTERN NSString *_Nonnull const FM个人中心Tab切换;
 FOUNDATION_EXTERN NSString *_Nonnull const FM用户数据;
 FOUNDATION_EXTERN NSString *_Nonnull const FM用户协议;
 FOUNDATION_EXTERN NSString *_Nonnull const App当日首次进入;

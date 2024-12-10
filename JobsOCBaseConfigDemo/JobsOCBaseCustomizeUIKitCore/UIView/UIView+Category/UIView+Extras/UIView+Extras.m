@@ -648,6 +648,14 @@ JobsKey(_cornerRadii)
     });
 }
 #pragma mark —— 其他
+-(JobsReturnViewByNSIntegerBlock _Nonnull)viewByID{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(NSInteger data){
+        @jobs_strongify(self)
+        return [self viewWithTag:data];
+    };
+}
+
 -(JobsReturnViewByGestureRecognizer _Nonnull)addGesture{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIGestureRecognizer *_Nonnull gesture) {

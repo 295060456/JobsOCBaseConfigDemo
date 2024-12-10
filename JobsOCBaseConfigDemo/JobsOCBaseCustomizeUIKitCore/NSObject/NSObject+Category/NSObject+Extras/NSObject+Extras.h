@@ -260,6 +260,7 @@ BaseProtocol
 -(JobsReturnIDByIDBlock _Nonnull)valueForKey;
 /// KVC 的二次封装
 -(jobsByKey_ValueBlock _Nonnull)jobsKVC;
+-(jobsByKeyValueModelBlock _Nonnull)jobsKVCBy;
 -(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClass;
 -(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClass;
 -(void)addCheckerByName:(NSString *_Nonnull)notificationName
