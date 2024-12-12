@@ -133,11 +133,11 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
     if (!_allChooseBtn) {
         _allChooseBtn = UIButton.new;
         _allChooseBtn.jobsResetBtnImage(JobsIMG(@"按钮未选中"));
-        _allChooseBtn.selectedStateImage(JobsIMG(@"按钮已选中"));
+        _allChooseBtn.selectedStateImageBy(JobsIMG(@"按钮已选中"));
         _allChooseBtn.jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58));
         _allChooseBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(14));
         _allChooseBtn.jobsResetBtnTitle(JobsInternationalization(@"全選"));
-        _allChooseBtn.selectedStateTitle(JobsInternationalization(@"取消"));
+        _allChooseBtn.selectedStateTitleBy(JobsInternationalization(@"取消"));
         [self addSubview:_allChooseBtn];
         [_allChooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(28 + 14 + 12), JobsWidth(14)));

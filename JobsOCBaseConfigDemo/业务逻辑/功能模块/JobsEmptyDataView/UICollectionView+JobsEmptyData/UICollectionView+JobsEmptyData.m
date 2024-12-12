@@ -52,11 +52,11 @@
                     data.titleCor = JobsWhiteColor;
                     data.titleFont = bayonRegular(JobsWidth(30));
                     data.normalImage = JobsIMG(@"暂无数据");
-                    data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                    data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                 })).setMasonryBy(^(MASConstraintMaker *make){
                     @jobs_strongify(self)
-                    make.centerX.equalTo(self).offset(model.btn_offset_x);
-                    make.centerY.equalTo(self).offset(model.btn_offset_y);
+                    make.centerX.equalTo(self).offset(model.jobsOffsetX);
+                    make.centerY.equalTo(self).offset(model.jobsOffsetY);
                     make.width.equalTo(self);
                 }));
             });

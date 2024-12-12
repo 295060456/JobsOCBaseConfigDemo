@@ -12,9 +12,9 @@
 
 @interface JobsAppDoorRegisterContentView ()
 /// UI
-@property(nonatomic,strong)BaseButton *backToLoginBtn;// 返回登录
-@property(nonatomic,strong)UILabel *titleLab;// 标题
-@property(nonatomic,strong)BaseButton *sendBtn;// 注册按钮
+@property(nonatomic,strong)BaseButton *backToLoginBtn;/// 返回登录
+@property(nonatomic,strong)UILabel *titleLab;/// 标题
+@property(nonatomic,strong)BaseButton *sendBtn;/// 注册按钮
 /// Data
 @property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
 @property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
@@ -30,11 +30,11 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = Cor1;
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         [self addNotificationName:@"textFieldTag"
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:UITextField.class]){
                 UITextField *b = notification.object;
@@ -118,18 +118,18 @@
     if (!_backToLoginBtn) {
         @jobs_weakify(self)
         _backToLoginBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
             .jobsResetImagePadding(JobsWidth(8))
             .jobsResetBtnImage(JobsIMG(@"用户名称"))
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightMediumSize(13))
             .jobsResetBtnTitle(Title1)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 [self endEditing:YES];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _backToLoginBtn.titleLabel.numberOfLines = 0;
@@ -162,16 +162,16 @@
     if (!_sendBtn) {
         @jobs_weakify(self)
         _sendBtn = BaseButton.jobsInit()
-            .bgColor([JobsSystemPinkColor colorWithAlphaComponent:0.7])
+            .bgColorBy(JobsSystemPinkColor.colorWithAlphaComponentBy(0.7))
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightRegularSize(16))
             .jobsResetBtnTitle(Title6)
             .jobsResetBtnCornerRadiusValue(ThingsHeight / 2)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 [self endEditing:YES];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [_sendBtn buttonAutoWidthByFont];

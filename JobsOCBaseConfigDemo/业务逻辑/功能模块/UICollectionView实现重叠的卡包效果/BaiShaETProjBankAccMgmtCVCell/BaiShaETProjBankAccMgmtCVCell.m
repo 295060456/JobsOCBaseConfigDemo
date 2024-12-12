@@ -98,7 +98,7 @@
     _titleBtn.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
         model.jobsWidth = 1;
         model.layerCor = HEXCOLOR(0xEEE2C8);
-        model.cornerRadius = JobsWidth(20);
+        model.cornerRadiusValue = JobsWidth(20);
     }));
     
     _titleBtn.makeBtnTitleByShowingType(UILabelShowingType_03);

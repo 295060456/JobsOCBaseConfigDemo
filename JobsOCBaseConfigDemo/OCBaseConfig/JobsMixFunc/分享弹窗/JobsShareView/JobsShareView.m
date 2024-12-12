@@ -9,7 +9,6 @@
 
 @interface JobsShareView ()
 /// UI
-//@property(nonatomic,strong)BaseCollectionView *collectionView;
 @property(nonatomic,strong)BaseButton *cancelBtn;
 /// Data
 @property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
@@ -216,12 +215,12 @@ insetForSectionAtIndex:(NSInteger)section {
             .initByStyle1(JobsInternationalization(@"取消"),
                                        UIFontWeightMediumSize(16),
                                        JobsCor(@"#333333"))
-            .bgColor(JobsWhiteColor)
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsWhiteColor)
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_cancelBtn];

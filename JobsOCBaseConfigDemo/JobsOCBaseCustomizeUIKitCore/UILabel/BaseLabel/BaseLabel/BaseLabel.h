@@ -12,6 +12,7 @@
 #import "UIView+Extras.h"
 #import "UILabel+Extra.h"
 #import "NSString+Others.h"
+#import "NSString+Check.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /**
@@ -23,7 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 <
 BaseViewProtocol,
 UILocationProtocol,
-UIGestureRecognizerDelegate
+UIGestureRecognizerDelegate,
+UIEditMenuInteractionDelegate
 >
 
 @property(nonatomic,assign)UIEdgeInsets edgeInsets;

@@ -12,6 +12,10 @@
 #define Prop(s, ...) @property(nonatomic, s, ##__VA_ARGS__)
 #endif /* Prop */
 
+#ifndef Prop_weak
+#define Prop_weak(...) @property(nonatomic, weak, ##__VA_ARGS__)
+#endif /* Prop_weak */
+
 #ifndef Prop_strong
 #define Prop_strong(...) @property(nonatomic, strong, ##__VA_ARGS__)
 #endif /* Prop_strong */

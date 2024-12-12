@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageCodeView : UIView
 
-@property(nonatomic,copy)NSArray *CodeArr;
+@property(nonatomic,copy)__kindof NSArray <NSString *>*CodeArr;
 @property(nonatomic,copy)NSString *CodeStr;
 
 @property(nonatomic,strong)UIColor *color;

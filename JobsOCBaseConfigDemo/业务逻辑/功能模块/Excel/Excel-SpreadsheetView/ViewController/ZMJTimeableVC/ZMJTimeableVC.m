@@ -244,7 +244,7 @@
         [_spreadsheetView registerClass:ChannelCell.class forCellWithReuseIdentifier:NSStringFromClass(ChannelCell.class)];
         [_spreadsheetView registerClass:SlotCell.class forCellWithReuseIdentifier:NSStringFromClass(SlotCell.class)];
         [_spreadsheetView registerClass:MyBlankCell.class forCellWithReuseIdentifier:NSStringFromClass(MyBlankCell.class)];
-        _spreadsheetView.backgroundColor = [UIColor.lightTextColor colorWithAlphaComponent:.7];
+        _spreadsheetView.backgroundColor = JobsLightGrayColor.colorWithAlphaComponentBy(.7f);
         CGFloat hairline = 1 / UIScreen.mainScreen.scale;
         _spreadsheetView.intercellSpacing = CGSizeMake(hairline, hairline);
         _spreadsheetView.gridStyle = [GridStyle style:GridStyle_solid width:hairline color:UIColor.lightGrayColor];
@@ -253,8 +253,7 @@
         [_spreadsheetView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.view);
             make.top.equalTo(self.navBar.mas_bottom);
-        }];
-        [_spreadsheetView flashScrollIndicators];
+        }];[_spreadsheetView flashScrollIndicators];
     }return _spreadsheetView;
 }
 

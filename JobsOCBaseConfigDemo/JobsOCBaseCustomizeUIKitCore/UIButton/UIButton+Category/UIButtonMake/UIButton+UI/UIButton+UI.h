@@ -218,7 +218,7 @@ NS_ASSUME_NONNULL_END
 /**
  
  BaseButton.jobsInit()
-     .bgColor(JobsWhiteColor)
+     .bgColorBy(JobsWhiteColor)
      .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
      .jobsResetImagePadding(1)
      .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -226,9 +226,9 @@ NS_ASSUME_NONNULL_END
      .jobsResetBtnTitleCor(JobsWhiteColor)
      .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
      .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-     .onClick(^(UIButton *x){
+     .onClickBy(^(UIButton *x){
          NSLog(@"");
-     }).onLongPressGesture(^(id data){
+     }).onLongPressGestureBy(^(id data){
          NSLog(@"");
      });
  
@@ -245,10 +245,10 @@ NS_ASSUME_NONNULL_END
         } else {
             NSLog(@"图片加载成功");
         }
-    }).onClick(^(UIButton *x){
+    }).onClickBy(^(UIButton *x){
         @jobs_strongify(self)
         if (self.objectBlock) self.objectBlock(x);
-    }).onLongPressGesture(^(id data){
+    }).onLongPressGestureBy(^(id data){
     NSLog(@"");
  }).bgNormalLoad();
  
@@ -277,7 +277,7 @@ NS_ASSUME_NONNULL_END
                  data1.targetString = self.richTextMutArr[2];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
              }));
-         }))).bgColor(JobsWhiteColor)
+         }))).bgColorBy(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
              .jobsResetImagePadding(1)
              .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -285,11 +285,11 @@ NS_ASSUME_NONNULL_END
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-             .onClick(^(UIButton *x){
+             .onClickBy(^(UIButton *x){
                  @jobs_strongify(self)
                  x.selected = !x.selected;
                  if (self.objectBlock) self.objectBlock(x);
-             }).onLongPressGesture(^(id data){
+             }).onLongPressGestureBy(^(id data){
                  NSLog(@"");
              });
      }return _applyNowBtn;

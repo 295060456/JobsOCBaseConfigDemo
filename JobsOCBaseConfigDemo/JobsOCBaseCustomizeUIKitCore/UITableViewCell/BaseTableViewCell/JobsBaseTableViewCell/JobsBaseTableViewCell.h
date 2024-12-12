@@ -26,6 +26,9 @@
 #error "XYColorOC header not found"
 #endif
 
+#define UITableViewCellTitleWidth JobsMainScreen_WIDTH() * 2 / 3
+#define UITableViewCellSubTitleWidth JobsMainScreen_WIDTH() / 3
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsBaseTableViewCell : UITableViewCell

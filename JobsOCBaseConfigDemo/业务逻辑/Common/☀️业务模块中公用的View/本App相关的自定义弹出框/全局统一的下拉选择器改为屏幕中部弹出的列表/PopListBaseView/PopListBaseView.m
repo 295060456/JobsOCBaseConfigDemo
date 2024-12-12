@@ -21,7 +21,7 @@
 #pragma mark —— SysMethod
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        self.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
     }return self;
 }
 
@@ -38,7 +38,7 @@
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        self.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -46,7 +46,7 @@
     @jobs_weakify(self)
     return ^(NSMutableArray <__kindof UIViewModel *>* model) {
         @jobs_strongify(self)
-        self.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        self.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         self.dataMutArr = model;
         self.tableView.reloadDatas();
     };
@@ -112,10 +112,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
 @synthesize tableView = _tableView;
--(UITableView *)tableView{
+-(__kindof UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.separatorColor = JobsCor(@"#1E1E1E");
         _tableView.showsVerticalScrollIndicator = NO;
@@ -130,8 +130,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        [self addSubview:_tableView];
+        }[self addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];

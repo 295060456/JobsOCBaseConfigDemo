@@ -147,8 +147,8 @@
         [_backBtn mas_makeConstraints:BackBtnModel.masonryBlock ? : ^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(18));
             make.centerY.equalTo(self);
-            NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
-            make.left.equalTo(self).offset(self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(20));
+            NSLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
+            make.left.equalTo(self).offset(self.navBarConfig.backBtnModel.jobsOffsetX ? : JobsWidth(20));
         }];_backBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _backBtn;
 }
@@ -162,7 +162,7 @@
         [_closeBtn mas_makeConstraints:CloseBtnModel.masonryBlock ? : ^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(22), JobsWidth(22)));
             make.centerY.equalTo(self);
-            make.right.equalTo(self).offset(-(self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(15)));
+            make.right.equalTo(self).offset(-(self.navBarConfig.closeBtnModel.jobsOffsetX ? : JobsWidth(15)));
         }];
     }return _closeBtn;
 }

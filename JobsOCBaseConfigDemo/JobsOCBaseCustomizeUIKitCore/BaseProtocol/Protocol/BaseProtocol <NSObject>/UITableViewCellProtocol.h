@@ -6,8 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseCellProtocol.h"
 #import "JobsBlock.h"
+#import "BaseCellProtocol.h"
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,38 +16,38 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 /// ⚠️执行return的顺序依照下列👇🏻属性的排序⚠️
 ///【组 1】 UITableViewCell单独自定义设置系统自带控件的Frame 【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
-@property(nonatomic,assign)CGRect textLabelFrame;
-@property(nonatomic,assign)CGRect detailTextLabelFrame;
-@property(nonatomic,assign)CGRect imageViewFrame;
+Prop_assign()CGRect textLabelFrame;
+Prop_assign()CGRect detailTextLabelFrame;
+Prop_assign()CGRect imageViewFrame;
 ///【组 2】UITableViewCell单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
-@property(nonatomic,assign)CGSize textLabelSize;
-@property(nonatomic,assign)CGSize detailTextLabelSize;
-@property(nonatomic,assign)CGSize imageViewSize;
+Prop_assign()CGSize textLabelSize;
+Prop_assign()CGSize detailTextLabelSize;
+Prop_assign()CGSize imageViewSize;
 ///【组 3】UITableViewCell单独自定义设置系统自带控件的宽高【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、2属性互斥❤️
-@property(nonatomic,assign)CGFloat textLabelWidth;
-@property(nonatomic,assign)CGFloat textLabelHeight;
-@property(nonatomic,assign)CGFloat detailTextLabelWidth;
-@property(nonatomic,assign)CGFloat detailTextLabelHeight;
-@property(nonatomic,assign)CGFloat imageViewWidth;
-@property(nonatomic,assign)CGFloat imageViewHeight;
+Prop_assign()CGFloat textLabelWidth;
+Prop_assign()CGFloat textLabelHeight;
+Prop_assign()CGFloat detailTextLabelWidth;
+Prop_assign()CGFloat detailTextLabelHeight;
+Prop_assign()CGFloat imageViewWidth;
+Prop_assign()CGFloat imageViewHeight;
 ///【组 4】UITableViewCell单独自定义设置系统自带控件的偏移量 在外层设置（也就是在定义TableView的这一层）
-@property(nonatomic,assign)CGFloat textLabelFrameOffsetX;
-@property(nonatomic,assign)CGFloat textLabelFrameOffsetY;
-@property(nonatomic,assign)CGFloat textLabelFrameOffsetWidth;
-@property(nonatomic,assign)CGFloat textLabelFrameOffsetHeight;
+Prop_assign()CGFloat textLabelFrameOffsetX;
+Prop_assign()CGFloat textLabelFrameOffsetY;
+Prop_assign()CGFloat textLabelFrameOffsetWidth;
+Prop_assign()CGFloat textLabelFrameOffsetHeight;
 
-@property(nonatomic,assign)CGFloat detailTextLabelOffsetX;
-@property(nonatomic,assign)CGFloat detailTextLabelOffsetY;
-@property(nonatomic,assign)CGFloat detailTextLabelOffsetWidth;
-@property(nonatomic,assign)CGFloat detailTextLabelOffsetHeight;
+Prop_assign()CGFloat detailTextLabelOffsetX;
+Prop_assign()CGFloat detailTextLabelOffsetY;
+Prop_assign()CGFloat detailTextLabelOffsetWidth;
+Prop_assign()CGFloat detailTextLabelOffsetHeight;
 
-@property(nonatomic,assign)CGFloat imageViewFrameOffsetX;
-@property(nonatomic,assign)CGFloat imageViewFrameOffsetY;
-@property(nonatomic,assign)CGFloat imageViewFrameOffsetWidth;/// 负值缩小，正值放大
-@property(nonatomic,assign)CGFloat imageViewFrameOffsetHeight;/// 负值缩小，正值放大
+Prop_assign()CGFloat imageViewFrameOffsetX;
+Prop_assign()CGFloat imageViewFrameOffsetY;
+Prop_assign()CGFloat imageViewFrameOffsetWidth;/// 负值缩小，正值放大
+Prop_assign()CGFloat imageViewFrameOffsetHeight;/// 负值缩小，正值放大
 #pragma mark —— 初始化方法
 /// @implementation UITableViewCell (BaseCellProtocol)
-+(JobsReturnTableViewCellByTableViewCellStyleBlock)initTableViewCellWithStyle;
++(JobsReturnTableViewCellByTableViewCellStyleBlock _Nonnull)initTableViewCellWithStyle;
 +(instancetype)initTableViewCell:(Class)tableViewCellClass
                        withStyle:(UITableViewCellStyle)style;
 /// 4种UITableViewCell系统样式类型
@@ -72,9 +73,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// UITableViewCell的一些默认样式设置
 -(jobsByVoidBlock _Nonnull)settingForTableViewCell;
 /// 获取这个UITableViewCell所承载的UITableView
--(UITableView *)jobsGetCurrentTableView;
+-(__kindof UITableView *_Nullable)jobsGetCurrentTableView;
 /// 获取当前的UITableViewCell对应的indexPath
--(NSIndexPath *)jobsGetCurrentIndexPath;
+-(NSIndexPath *_Nullable)jobsGetCurrentIndexPath;
 /// 获取当前的UITableViewCell对应的section个数
 -(NSInteger)jobsGetCurrentNumberOfSections;
 /// 获取当前的UITableViewCell对应的section的的row个数
@@ -123,10 +124,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#pragma mark —— @synthesize UITableViewCellProtocol
-/// 和UIViewModelProtocol里面重复定义的部分
-#ifndef UITableViewCell_UIViewModelProtocolSynthesize
-#define UITableViewCell_UIViewModelProtocolSynthesize \
+#ifndef UITableViewCellProtoco_Synthesize_part1
+#define UITableViewCellProtoco_Synthesize_part1 \
+\
 @synthesize imageViewFrame = _imageViewFrame;\
 @synthesize imageViewWidth = _imageViewWidth;\
 @synthesize textLabelHeight = _textLabelHeight;\
@@ -144,10 +144,11 @@ NS_ASSUME_NONNULL_END
 @synthesize textLabelSize = _textLabelSize;\
 @synthesize textLabelWidth = _textLabelWidth;\
 
-#endif
+#endif /* UITableViewCellProtoco_Synthesize_part1 */
 
-#ifndef UITableViewCellProtocol_synthesize
-#define UITableViewCellProtocol_synthesize \
+#ifndef UITableViewCellProtoco_Synthesize_part2
+#define UITableViewCellProtoco_Synthesize_part2 \
+\
 @synthesize detailTextLabelFrame = _detailTextLabelFrame;\
 @synthesize detailTextLabelSize = _detailTextLabelSize;\
 @synthesize detailTextLabelWidth = _detailTextLabelWidth;\
@@ -157,9 +158,8 @@ NS_ASSUME_NONNULL_END
 @synthesize detailTextLabelOffsetWidth = _detailTextLabelOffsetWidth;\
 @synthesize detailTextLabelOffsetHeight = _detailTextLabelOffsetHeight;\
 
-#endif
-//
-#pragma mark —— @dynamic UITableViewCellProtocol
+#endif /* UITableViewCellProtoco_Synthesize_part2 */
+
 #ifndef UITableViewCellProtocol_dynamic
 #define UITableViewCellProtocol_dynamic \
 \
@@ -193,4 +193,4 @@ NS_ASSUME_NONNULL_END
 @dynamic imageViewFrameOffsetWidth;\
 @dynamic imageViewFrameOffsetHeight;\
 
-#endif
+#endif /* UITableViewCellProtocol_dynamic */

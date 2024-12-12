@@ -196,7 +196,7 @@
 #pragma mark —— 实例方法
 /// 将一个确定的UIColor子类，翻译成RGB格式的字符串值并对外输出【可能因为四舍五入的问题影响末位精度，误差在±1】
 /// 资料来源  https://blog.csdn.net/thanklife/article/details/25784879
--(JobsReturnStringByCorBlock)rgbCorStr{
+-(JobsReturnStringByCorBlock)rgbCorStrBy{
     @jobs_weakify(self)
     return ^NSString *_Nullable(UIColor * _Nullable data) {
         @jobs_strongify(self)
@@ -225,7 +225,7 @@
     };
 }
 /// 将一个确定的UIColor子类，翻译成十六进制格式的字符串值并对外输出
--(JobsReturnCorModelByVoidBlock)hexadecimalCorStr{
+-(JobsReturnCorModelByVoidBlock)hexadecimalCorStrBy{
     @jobs_weakify(self)
     return ^JobsCorModel *_Nullable(void) {
         @jobs_strongify(self)
@@ -258,7 +258,7 @@
 }
 /// iOS 父视图透明度影响到子视图
 /// https://blog.csdn.net/ios_xumin/article/details/114263960
--(JobsReturnColorByCGFloatBlock)colorWithAlphaComponent{
+-(JobsReturnColorByCGFloatBlock)colorWithAlphaComponentBy{
     @jobs_weakify(self)
     return ^(CGFloat alpha) {
         @jobs_strongify(self)

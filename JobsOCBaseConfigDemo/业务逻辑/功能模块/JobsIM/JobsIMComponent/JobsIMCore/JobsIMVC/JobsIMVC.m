@@ -445,14 +445,14 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     if (!_shareBtn) {
         @jobs_weakify(self)
         _shareBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnCornerRadiusValue(JobsWidth(23 / 2))
             .jobsResetBtnImage(JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"分享"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 toast(JobsInternationalization(@"正在研发中...敬请期待"));
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _shareBtn.width = JobsWidth(23);

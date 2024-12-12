@@ -38,23 +38,27 @@
     };
 }
 /// 一些变化的UI
--(void)someChangeUI:(NSString *)string{
-    if (isValue(string)) {
-        self.sendBtn.userInteractionEnabled = YES;
-        self.sendBtn.enabled = YES;
-        self.imgView.image = JobsIMG(@"输入框有值");
-    }else{
-        self.sendBtn.userInteractionEnabled = NO;
-        self.sendBtn.enabled = NO;
-        self.imgView.image = JobsIMG(@"输入框无值");
-    }
+-(jobsByStringBlock _Nonnull)someChangeUIBy{
+    @jobs_weakify(self)
+    return ^(NSString *_Nullable string){
+        @jobs_strongify(self)
+        if (isValue(string)) {
+            self.sendBtn.userInteractionEnabled = YES;
+            self.sendBtn.enabled = YES;
+            self.imgView.image = JobsIMG(@"输入框有值");
+        }else{
+            self.sendBtn.userInteractionEnabled = NO;
+            self.sendBtn.enabled = NO;
+            self.imgView.image = JobsIMG(@"输入框无值");
+        }
+    };
 }
 #pragma mark —— UITextFieldDelegate
-//告诉委托人对指定的文本字段停止编辑
+/// 告诉委托人对指定的文本字段停止编辑
 - (void)textFieldDidEndEditing:(ZYTextField *)textField{
     [textField isEmptyText];
 }
-//询问委托人文本字段是否应处理按下返回按钮
+/// 询问委托人文本字段是否应处理按下返回按钮
 - (BOOL)textFieldShouldReturn:(ZYTextField *)textField{
     [self endEditing:YES];
     if (self.objectBlock) self.objectBlock(textField);
@@ -65,13 +69,13 @@
     if (!_sendBtn) {
         @jobs_weakify(self)
         _sendBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnBgImage(JobsCyanColor.image)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"发送"))
             .jobsResetBtnCornerRadiusValue(JobsWidth(3))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 x.jobsResetBtnBgImage(JobsLightGrayColor.image);
@@ -83,7 +87,7 @@
                 }
                 self.inputTextField.text = JobsInternationalization(@"");
                 x.enabled = NO;
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _sendBtn.userInteractionEnabled = NO;
@@ -102,38 +106,39 @@
 -(ZYTextField *)inputTextField{
     if (!_inputTextField) {
         @jobs_weakify(self)
-        _inputTextField = ZYTextField.new;
-        _inputTextField.placeHolderAlignment = NSTextAlignmentCenter;
-        _inputTextField.placeholder = JobsInternationalization(@"在此输入需要发送的信息");
-        _inputTextField.delegate = self;
-        _inputTextField.leftView = self.imgView;
-        _inputTextField.leftViewOffsetX = 20;
-        _inputTextField.font = UIFontWeightMediumSize(12);
-        _inputTextField.leftViewMode = UITextFieldViewModeAlways;
-        _inputTextField.backgroundColor = HEXCOLOR(0xF4F4F4);
-        _inputTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-        _inputTextField.autocorrectionType = UITextAutocorrectionTypeNo;//自动纠错属性默认是yes，就会触发那个监听
-        _inputTextField.inputAccessoryView = self.adNoticeView;
-        _inputTextField.returnKeyType = UIReturnKeySend;
-        [self addSubview:_inputTextField];
-        [_inputTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.equalTo(self.sendBtn);
-            make.right.equalTo(self.sendBtn.mas_left).offset(-10);
-            make.left.equalTo(self).offset(10);
-        }];
-        [self layoutIfNeeded];
-        _inputTextField.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+        _inputTextField = jobsMakeZYTextField(^(ZYTextField * _Nullable textField) {
             @jobs_strongify(self)
-            model.jobsWidth = .5f;
-            model.layerCor = JobsWhiteColor;
-            model.cornerRadius = self->_inputTextField.mj_h / 2;
-        }));
+            textField.placeHolderAlignment = NSTextAlignmentCenter;
+            textField.placeholder = JobsInternationalization(@"在此输入需要发送的信息");
+            textField.delegate = self;
+            textField.leftView = self.imgView;
+            textField.leftViewOffsetX = 20;
+            textField.font = UIFontWeightMediumSize(12);
+            textField.leftViewMode = UITextFieldViewModeAlways;
+            textField.backgroundColor = HEXCOLOR(0xF4F4F4);
+            textField.keyboardAppearance = UIKeyboardAppearanceAlert;
+            textField.autocorrectionType = UITextAutocorrectionTypeNo;//自动纠错属性默认是yes，就会触发那个监听
+            textField.inputAccessoryView = self.adNoticeView;
+            textField.returnKeyType = UIReturnKeySend;
+            [self addSubview:textField];
+            [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.bottom.equalTo(self.sendBtn);
+                make.right.equalTo(self.sendBtn.mas_left).offset(-10);
+                make.left.equalTo(self).offset(10);
+            }];self.refresh();
+            textField.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+                @jobs_strongify(self)
+                model.jobsWidth = .5f;
+                model.layerCor = JobsWhiteColor;
+                model.cornerRadiusValue = self->_inputTextField.mj_h / 2;
+            }));
+        });
         [[_inputTextField.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
             return YES;
         }] subscribeNext:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             NSLog(@"输入的字符为 = %@",x);
-            [self someChangeUI:x];
+            self.someChangeUIBy(x);
         }];
     }return _inputTextField;
 }

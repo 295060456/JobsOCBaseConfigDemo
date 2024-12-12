@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "DefineProperty.h"
 #import "JobsDefineAllEnumHeader.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
@@ -21,12 +22,6 @@
 #import "YTKNetwork.h"
 #endif
 
-typedef enum : NSInteger {
-    TimerProcessType_ready = 0,
-    TimerProcessType_running,
-    TimerProcessType_end
-} TimerProcessType;
-
 @class UIViewModel;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -35,47 +30,45 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 #pragma mark —— RAC
 /// 用于释放资源
-@property(nonatomic,strong,nullable)RACDisposable *racDisposable;
+Prop_strong(nullable)RACDisposable *racDisposable;
 /// 用于手动控制发送事件
-@property(nonatomic,strong,nonnull)RACSubject *racSubject;
+Prop_strong(nonnull)RACSubject *racSubject;
 /// 信号通常是持久存在的
-@property(nonatomic,strong,nullable)RACSignal *reqSignal;
+Prop_strong(nullable)RACSignal *reqSignal;
 /// 通常绑定到按钮操作或用户输入
-@property(nonatomic,strong,nullable)RACCommand *actionCommand;
+Prop_strong(nullable)RACCommand *actionCommand;
 /// 适用于处理集合数据
-@property(nonatomic,strong,nullable)RACSequence *dataSequence;
+Prop_strong(nullable)RACSequence *dataSequence;
 /// 用于控制信号的多订阅行为
-@property(nonatomic,strong,nullable)RACMulticastConnection *dataConnection;
+Prop_strong(nullable)RACMulticastConnection *dataConnection;
 /// 管理信号的调度线程
-@property(nonatomic,strong,nonnull)RACScheduler *mainScheduler;
-@property(nonatomic,strong,nonnull)RACScheduler *backgroundScheduler;
+Prop_strong(nonnull)RACScheduler *mainScheduler;
+Prop_strong(nonnull)RACScheduler *backgroundScheduler;
 /// 传递多个值
-@property(nonatomic,strong,nullable)RACTuple *dataTuple;
+Prop_strong(nullable)RACTuple *dataTuple;
 #pragma mark —— 一些状态
-@property(nonatomic,assign)BOOL isLock;
-@property(nonatomic,assign)BOOL becomeFirstResponder;
-@property(nonatomic,assign)AppLanguage appLanguage;
-@property(nonatomic,assign)TimerProcessType timerProcessType;
+Prop_assign()BOOL isLock;
+Prop_assign()BOOL becomeFirstResponder;
+Prop_assign()AppLanguage appLanguage;
+Prop_assign()TimerProcessType timerProcessType;
 #pragma mark —— Data
-@property(nonatomic,strong)NSURL *url;
-@property(nonatomic,copy,nullable)NSString *internationalizationKEY;/// 国际化的key
-@property(nonatomic,strong,nullable)NSMutableSet *jobsDataMutSet;/// 绑定的数据源，数据类型NSMutableSet
-@property(nonatomic,strong,nullable)NSMutableArray *jobsDataMutArr;/// 绑定的数据源，数据类型NSMutableArray
-@property(nonatomic,strong,nullable)NSMutableArray <__kindof UIViewModel *> *viewModelMutArr;
-@property(nonatomic,strong,nullable)NSMutableDictionary *jobsDataMutDic;/// 绑定的数据源，数据类型NSMutableDictionary
-@property(nonatomic,strong,nullable)Class cls;/// 绑定的class
+Prop_strong(nullable)NSURL *url;
+Prop_copy(nullable)NSString *internationalizationKEY;/// 国际化的key
+Prop_strong(nullable)NSMutableSet *jobsDataMutSet;/// 绑定的数据源，数据类型NSMutableSet
+Prop_strong(nullable)NSMutableArray *jobsDataMutArr;/// 绑定的数据源，数据类型NSMutableArray
+Prop_strong(nullable)NSMutableArray <__kindof UIViewModel *> *viewModelMutArr;
+Prop_strong(nullable)NSMutableDictionary *jobsDataMutDic;/// 绑定的数据源，数据类型NSMutableDictionary
+Prop_strong(nullable)Class cls;/// 绑定的class
 /// 强引用数据源
-@property(nonatomic,strong,nullable)id data;/// 【强引用】绑定的数据源，数据类型id
-@property(nonatomic,strong,nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
-@property(nonatomic,strong,nullable)UIViewModel *viewModel;
+Prop_strong(nullable)id data;/// 【强引用】绑定的数据源，数据类型id
+Prop_strong(nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
+Prop_strong(nullable)UIViewModel *viewModel;
 /// 弱引用数据源
-@property(nonatomic,weak,nullable)id data_weak;/// 【弱引用】绑定的数据源，数据类型id
-@property(nonatomic,weak,nullable)id requestParams_weak;/// 【弱引用】绑定的数据源，数据类型id
-@property(nonatomic,weak,nullable)UIViewModel *viewModel_weak;
-
--(void)languageSwitchNotificationWithSelector:(SEL)aSelector;//在View上,target = self（view）,省略
+Prop_weak(nullable)id data_weak;/// 【弱引用】绑定的数据源，数据类型id
+Prop_weak(nullable)id requestParams_weak;/// 【弱引用】绑定的数据源，数据类型id
+Prop_weak(nullable)UIViewModel *viewModel_weak;
 /// 更改UITabBarItem的标题
--(void)changeTabBarItemTitle:(NSIndexPath *)indexPath;//NSObject (AppTools)
+-(jobsByIndexPathBlock _Nonnull)changeTabBarItemTitleBy;
 #pragma mark —— iOS 通知
 ///【监听所有通知】
 ///【监听所有通知】用 selector
@@ -87,13 +80,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///【通知监听】国际化语言修改UI
 /// @param target 需要铆定监听通知的对象
 /// @param aSelector 相关逻辑
-+(void)target:(id)target languageSwitchNotificationWithSelector:(SEL)aSelector;//NSObject (AppTools)
++(void)target:(id)target languageSwitchNotificationWithSelector:(SEL)aSelector;/// NSObject (AppTools)
 ///【监听通知】设置App语言环境
 -(void)monitorAppLanguage;//NSObject (Notification)
 ///【发通知】设置App语言环境
--(void)setAppLanguageAtAppLanguage:(AppLanguage)appLanguage;
+-(jobsByNSIntegerBlock _Nonnull)appLanguageAtAppLanguageBy;
 /// 接收通知并相应的方法【在分类或者基类中实现会屏蔽具体子类的相关实现】
--(void)JobsLanguageSwitchNotification:(nonnull NSNotification *)notification;//在具体子类进行实现
+-(jobsByNotificationBlock _Nonnull)jobsLanguageSwitchNotification;/// 在具体子类进行实现
 #pragma mark —— 单例化和销毁
 +(void)destroySingleton;
 +(instancetype)sharedManager;
@@ -104,7 +97,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#pragma mark —— @synthesize BaseProtocol isLock
 #ifndef BaseProtocol_synthesize
 #define BaseProtocol_synthesize \
 \
@@ -135,9 +127,8 @@ NS_ASSUME_NONNULL_END
 @synthesize viewModel_weak = _viewModel_weak;\
 @synthesize url = _url;\
 
-#endif
+#endif /* BaseProtocol_synthesize */
 
-#pragma mark —— @dynamic BaseProtocol
 #ifndef BaseProtocol_dynamic
 #define BaseProtocol_dynamic \
 \
@@ -168,4 +159,4 @@ NS_ASSUME_NONNULL_END
 @dynamic viewModel_weak;\
 @dynamic url;\
 
-#endif
+#endif /* BaseProtocol_dynamic */

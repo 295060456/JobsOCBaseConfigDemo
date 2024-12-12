@@ -137,7 +137,7 @@
         _drawBtn = UIButton.new;
         _drawBtn.jobsResetBtnTitle(self.msgDataModel.isDraw ? JobsInternationalization(@" 已领取 ") : JobsInternationalization(@" 领取 "));
         _drawBtn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
-        _drawBtn.selectedStateTitleColor(HEXCOLOR(0x757575));
+        _drawBtn.selectedStateTitleColorBy(HEXCOLOR(0x757575));
         _drawBtn.backgroundColor = HEXCOLOR(0xFFEABA);
         _drawBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(12));
         [self.view addSubview:_drawBtn];
@@ -187,7 +187,7 @@
     if (!_deleteBtn) {
         @jobs_weakify(self)
         _deleteBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -195,11 +195,11 @@
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"删除"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 self.backBtnClickEvent(x);
                 if (self.objectBlock) self.objectBlock(self.msgDataModel);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
     }return _deleteBtn;

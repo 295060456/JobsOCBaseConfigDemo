@@ -158,7 +158,7 @@
             cell.label.text = text;
             UIColor *color  = self.dayColors[indexPath.column - 1];
             cell.label.textColor = color;
-            cell.color           = [color colorWithAlphaComponent:.2];
+            cell.color           = color.colorWithAlphaComponentBy(.2f);
             cell.borders.top     = [BorderStyle.alloc initWithStyle:BorderStyle_solid width:2 color:color];
             cell.borders.bottom  = [BorderStyle.alloc initWithStyle:BorderStyle_solid width:2 color:color];
         } else {

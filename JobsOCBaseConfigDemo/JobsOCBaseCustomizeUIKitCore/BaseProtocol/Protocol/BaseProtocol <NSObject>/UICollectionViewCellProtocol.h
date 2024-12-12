@@ -12,24 +12,24 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol UICollectionViewCellProtocol <BaseCellProtocol>
-
 @optional
-+(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
-                         forIndexPath:(nonnull NSIndexPath *)indexPath;
+
++(instancetype)cellWithCollectionView:(UICollectionView *_Nonnull)collectionView
+                         forIndexPath:(NSIndexPath *_Nonnull)indexPath;
 /// 获取这个UICollectionViewCell所承载的UICollectionView
--(UICollectionView *)jobsGetCurrentCollectionView;
+-(__kindof UICollectionView *_Nullable)jobsGetCurrentCollectionView;
 /// 获取当前的UICollectionViewCell对应的indexPath
--(NSIndexPath *)jobsGetCurrentIndexPath;
+-(NSIndexPath *_Nonnull)jobsGetCurrentIndexPath;
 /// 获取当前的UICollectionViewCell对应的section个数
 -(NSInteger)jobsGetCurrentNumberOfSections;
 /// 获取当前的UICollectionViewCell对应的section的的item个数
 -(NSInteger)jobsGetCurrentNumberOfItemsInSection;
 /// 获取 UITextView
--(UITextView *)getTextView;
+-(__kindof UITextView *_Nullable)getTextView;
 /// 获取 UILabel
--(UILabel *)getLabel;
+-(__kindof UILabel *_Nullable)getLabel;
 /// 获取 UIButton
--(UIButton *)getBgBtn;
+-(__kindof UIButton *_Nullable)getBgBtn;
 /// 对UICollectionView上的每一组的第一个和最后一个UICollectionViewCell进行圆切角
 /// 要求切第一个UICollectionViewCell的左上+右上，最后一个UICollectionViewCell的左下和右下
 /// 作用域 ：UICollectionViewCell子类的 - (void)drawRect:(CGRect)rect
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - numberOfItemsInSection: 当前的UICollectionViewCell对应的section的的item个数
 ///   - borderWidth: 线宽
 ///   - bottomLineCor: cell 底部线条颜色
--(void)makeBottomLineWithIndexPath:(NSIndexPath *)indexPath
+-(void)makeBottomLineWithIndexPath:(NSIndexPath *_Nonnull)indexPath
                             bounds:(CGRect)bounds
             numberOfItemsInSection:(NSInteger)numberOfItemsInSection
                        borderWidth:(CGFloat)borderWidth
@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - numberOfItemsInSection: 当前的UICollectionViewCell对应的section的的item个数
 ///   - borderWidth: 线宽
 ///   - bottomLineCor: cell 底部线条颜色
--(void)makeTopLineWithIndexPath:(NSIndexPath *)indexPath
+-(void)makeTopLineWithIndexPath:(NSIndexPath *_Nonnull)indexPath
                          bounds:(CGRect)bounds
          numberOfItemsInSection:(NSInteger)numberOfItemsInSection
                     borderWidth:(CGFloat)borderWidth

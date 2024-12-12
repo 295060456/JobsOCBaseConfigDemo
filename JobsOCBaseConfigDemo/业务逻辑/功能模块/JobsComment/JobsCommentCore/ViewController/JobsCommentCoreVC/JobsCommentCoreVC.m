@@ -237,7 +237,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
                 data.titleCor = JobsWhiteColor;
                 data.titleFont = bayonRegular(JobsWidth(30));
                 data.normalImage = JobsIMG(@"暂无数据");
-                data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
             });
         }
         {

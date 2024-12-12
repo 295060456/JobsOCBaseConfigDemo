@@ -42,6 +42,22 @@ typedef NS_ENUM(NSInteger, JobsTerminalType) {
     JobsTerminalType_All
 };
 #endif /* JOBS_TERMINAL_TYPE_ENUM_DEFINED */
+/// 控制器的推进方式
+#ifndef COMING_STYLE_ENUM_DEFINED
+#define COMING_STYLE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, ComingStyle) {
+    ComingStyle_PUSH = 0,
+    ComingStyle_PRESENT
+};
+///
+#ifndef JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED
+#define JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, JobsHeaderFooterViewStyle) {
+    JobsHeaderViewStyle = 0,
+    JobsFooterViewStyle
+};
+#endif /* JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED */
+#endif /* COMING_STYLE_ENUM_DEFINED */
 /// 登录方式
 #ifndef LOGINMODE
 #define LOGINMODE
@@ -113,6 +129,15 @@ typedef enum : NSUInteger {
     NSObject_SPAlertControllerInitType_5,
 } NSObject_SPAlertControllerInitType;
 #endif /* SPAlertControllerInitType_h */
+/// 计时器运行状态
+#ifndef TIMER_PROCESS_TYPE_ENUM_DEFINED
+#define TIMER_PROCESS_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, TimerProcessType) {
+    TimerProcessType_Ready = 0,  /// 准备状态
+    TimerProcessType_Running,    /// 运行状态
+    TimerProcessType_End         /// 结束状态
+};
+#endif /* TIMER_PROCESS_TYPE_ENUM_DEFINED */
 /// 当前类型
 #ifndef MyEnums_h
 #define MyEnums_h

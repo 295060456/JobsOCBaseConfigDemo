@@ -16,6 +16,7 @@
 BaseProtocol_synthesize
 BaseViewProtocol_synthesize
 UIPictureAndBackGroundCorProtocol_synthesize
+UITextFieldProtocol_synthesize_part2
 -(instancetype)init{
     if (self = [super init]) {
 
@@ -77,11 +78,11 @@ UIPictureAndBackGroundCorProtocol_synthesize
         _navBar = jobsMakeNavBar(^(__kindof JobsNavBar *_Nullable data) {
             @jobs_strongify(self)
             if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-                self.navBarConfig.backBtnModel.btn_offset_x = self.navBarConfig.backBtnModel.btn_offset_x ? : JobsWidth(40);
-                self.navBarConfig.closeBtnModel.btn_offset_x = self.navBarConfig.closeBtnModel.btn_offset_x ? : JobsWidth(40);
+                self.navBarConfig.backBtnModel.jobsOffsetX = self.navBarConfig.backBtnModel.jobsOffsetX ? : JobsWidth(40);
+                self.navBarConfig.closeBtnModel.jobsOffsetX = self.navBarConfig.closeBtnModel.jobsOffsetX ? : JobsWidth(40);
             }
-            NSLog(@"%f",self.navBarConfig.backBtnModel.btn_offset_x);
-            NSLog(@"%f",self.navBarConfig.closeBtnModel.btn_offset_x);
+            NSLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
+            NSLog(@"%f",self.navBarConfig.closeBtnModel.jobsOffsetX);
     //        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
             data.navBarConfig = self.navBarConfig;
             self.addSubview(data);

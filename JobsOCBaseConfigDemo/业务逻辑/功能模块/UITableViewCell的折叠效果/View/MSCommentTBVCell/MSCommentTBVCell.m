@@ -16,11 +16,10 @@
 @end
 
 @implementation MSCommentTBVCell
-#pragma mark —— @synthesize UITableViewCellProtocol
-UITableViewCellProtocol_synthesize
-#pragma mark —— @synthesize UIViewModelProtocol
-UIViewModelProtocol_synthesize
-UIViewModelProtocol_self_synthesize
+UITableViewCellProtoco_Synthesize_part2
+UIViewModelProtocol_synthesize_part1
+UIViewModelProtocol_synthesize_part2
+BaseLayerProtocol_synthesize_part3
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(instancetype)cellWithTableView:(UITableView *)tableView{
@@ -33,7 +32,7 @@ UIViewModelProtocol_self_synthesize
          ❤️如果单独的对每一个row对应的UITableViewCell的边距有缩进则使用下列方法❤️
          如果这个TableViewCell是JobsBaseTableViewCell则不需要复写-(void)setFrame:(CGRect)frame；否则是需要：
          
-         UILocationProtocol_UIViewModelSynthesize
+         UILocationProtocol
          直接影响:
          cell.offsetXForEach = JobsWidth(8);
          cell.offsetYForEach = JobsWidth(6);
@@ -102,14 +101,17 @@ UIViewModelProtocol_self_synthesize
 -(UILabel *)titleLab{
     if(!_titleLab){
         @jobs_weakify(self)
-        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+        _titleLab = jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
             @jobs_strongify(self)
             label.textColor = JobsCor(@"#666666");
             label.backgroundColor = JobsCor(@"#F7F7F7");
             label.font = UIFontWeightRegularSize(14);
             [self.contentView addSubview:label];
             [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.contentView).with.insets(UIEdgeInsetsMake(JobsWidth(5), JobsWidth(25), JobsWidth(5), JobsWidth(25)));
+                make.edges.equalTo(self.contentView).with.insets(UIEdgeInsetsMake(JobsWidth(5),
+                                                                                  JobsWidth(25),
+                                                                                  JobsWidth(5),
+                                                                                  JobsWidth(25)));
             }];label.cornerCutToCircleWithCornerRadius(JobsWidth(8));
         });
     };return _titleLab;

@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,26 +15,26 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 #pragma mark —— 图片和背景颜色
 /// 关于导航栏的
-@property(nonatomic,strong,nullable)UIImage *navBgImage;
-@property(nonatomic,strong,nullable)UIColor *navBgCor;
+Prop_strong(nullable)UIImage *navBgImage;
+Prop_strong(nullable)UIColor *navBgCor;
 /// 未选中状态
-@property(nonatomic,strong,nullable)UIImage *image;///【未选中状态】图片
-@property(nonatomic,strong,nullable)UIImage *bgImage;///【未选中状态】背景图片
-@property(nonatomic,copy,nullable)NSString *imageURLString;///【未选中状态】图片URL(字符串形式)
-@property(nonatomic,copy,nullable)NSString *bgImageURLString;///【未选中状态】背景图片URL(字符串形式)
-@property(nonatomic,strong,nullable)UIColor *bgCor;///【未选中状态】背景颜色
-@property(nonatomic,strong,nullable)UIImage *backBtnIMG;///【未选中状态】返回按钮的图标
-@property(nonatomic,strong,nullable)UIBackgroundConfiguration *bgConfig API_AVAILABLE(ios(14.0), tvos(14.0), watchos(7.0));
+Prop_strong(nullable)UIImage *image;///【未选中状态】图片
+Prop_strong(nullable)UIImage *bgImage;///【未选中状态】背景图片
+Prop_copy(nullable)NSString *imageURLString;///【未选中状态】图片URL(字符串形式)
+Prop_copy(nullable)NSString *bgImageURLString;///【未选中状态】背景图片URL(字符串形式)
+Prop_strong(nullable)UIColor *bgCor;///【未选中状态】背景颜色
+Prop_strong(nullable)UIImage *backBtnIMG;///【未选中状态】返回按钮的图标
+Prop_strong(nullable)UIBackgroundConfiguration *bgConfig API_AVAILABLE(ios(14.0), tvos(14.0), watchos(7.0));
 /// 选中状态
-@property(nonatomic,strong,nullable)UIImage *selectedImage_;///【选中状态】图片
-@property(nonatomic,strong,nullable)UIImage *bgSelectedImage;///【选中状态】背景图片
-@property(nonatomic,copy,nullable)NSString *selectedImageURLString;///【选中状态】图片URL(字符串形式)
-@property(nonatomic,copy,nullable)NSString *bgSelectedImageURLString;///【选中状态】背景图片URL(字符串形式)
-@property(nonatomic,strong,nullable)UIColor *bgSelectedCor;///【选中状态】背景颜色
-@property(nonatomic,strong,nullable)UIImage *backBtnSelectedIMG;///【选中状态】返回按钮的图标
-@property(nonatomic,strong,nullable)UIBackgroundConfiguration *bgSelectedConfig API_AVAILABLE(ios(14.0), tvos(14.0), watchos(7.0));
+Prop_strong(nullable)UIImage *selectedImage_;///【选中状态】图片
+Prop_strong(nullable)UIImage *bgSelectedImage;///【选中状态】背景图片
+Prop_copy(nullable)NSString *selectedImageURLString;///【选中状态】图片URL(字符串形式)
+Prop_copy(nullable)NSString *bgSelectedImageURLString;///【选中状态】背景图片URL(字符串形式)
+Prop_strong(nullable)UIColor *bgSelectedCor;///【选中状态】背景颜色
+Prop_strong(nullable)UIImage *backBtnSelectedIMG;///【选中状态】返回按钮的图标
+Prop_strong(nullable)UIBackgroundConfiguration *bgSelectedConfig API_AVAILABLE(ios(14.0), tvos(14.0), watchos(7.0));
 /// UI 控件
-@property(nonatomic,strong,nullable)UIImageView *bgImageView;
+Prop_strong(nullable)UIImageView *bgImageView;
 
 @end
 
@@ -87,4 +88,4 @@ NS_ASSUME_NONNULL_END
 @dynamic backBtnSelectedIMG;\
 @dynamic bgSelectedConfig;\
 
-#endif
+#endif /* UIPictureAndBackGroundCorProtocol_dynamic */

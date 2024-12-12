@@ -54,7 +54,7 @@
         @jobs_strongify(self)
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             data.title = title;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 仅仅依靠主标题富文本内容进行创建
@@ -64,7 +64,7 @@
         @jobs_strongify(self)
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             data.attributedTitle = title;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 仅仅靠按钮图片进行创建
@@ -74,7 +74,7 @@
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.image = image;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 仅仅依靠按钮背景图进行创建
@@ -84,7 +84,7 @@
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
             data.buttonModel.backgroundImage = image;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 #pragma mark —— 对副标题进行创建
@@ -97,7 +97,7 @@
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             data.title = title;
             data.subTitle = subTitle;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 仅仅依靠（主标题+副标题）富文本内容进行创建
@@ -108,8 +108,8 @@
         @jobs_strongify(self)
         return self.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             data.attributedTitle = title;
-            data.attributedSubtitle = subTitle;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+            data.attributedSubTitle = subTitle;
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 #pragma mark —— 依靠多数据进行较为复杂的创建
@@ -122,7 +122,7 @@
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
             data.buttonModel.title = title;
             data.buttonModel.titleFont = font;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
@@ -136,7 +136,7 @@
             data.buttonModel.title = title;
             data.buttonModel.titleFont = font;
             data.buttonModel.titleCor = titleCor;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
@@ -156,7 +156,7 @@
             data.buttonModel.titleCor = titleCor;
             data.buttonModel.imagePlacement = imagePlacement;
             data.buttonModel.imagePadding = x;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
@@ -172,7 +172,7 @@
             data.buttonModel.titleFont = font;
             data.buttonModel.titleCor = titleCor;
             data.buttonModel.backgroundImage = backgroundImage;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
@@ -192,7 +192,7 @@
             data.buttonModel.titleCor = titleCor;
             data.buttonModel.backgroundImage = backgroundImage;
             data.buttonModel.imagePlacement = imagePlacement;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
@@ -212,7 +212,7 @@
             data.buttonModel.titleCor = titleCor;
             data.buttonModel.imagePlacement = directionalRectEdge;
             data.buttonModel.imagePadding = x;
-        })).bgColor(JobsClearColor.colorWithAlphaComponent(0));
+        })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 图文混排（图片在上边 ）
@@ -268,7 +268,7 @@
     return ^__kindof UIButton *_Nullable(){
         return BaseButton
             .initByButtonModel(nil)
-            .bgColor(JobsClearColor.colorWithAlphaComponent(0));
+            .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 依靠UIViewModel进行创建
@@ -286,7 +286,7 @@
                                        highlightImage:data.buttonModel.highlightImage
                                       attributedTitle:data.buttonModel.attributedTitle
                               selectedAttributedTitle:data.buttonModel.selectedAttributedTitle
-                                   attributedSubtitle:data.buttonModel.attributedSubtitle
+                                   attributedSubtitle:data.buttonModel.attributedSubTitle
                                                 title:data.buttonModel.title
                                              subTitle:data.buttonModel.subTitle
                                             titleFont:data.buttonModel.titleFont
@@ -326,16 +326,16 @@
     return ^__kindof UIButton *_Nullable(UIButtonModel *_Nullable data){
         @jobs_strongify(self)
         if(!data) data = UIButtonModel.new;
-        return [self.alloc jobsInitBtnByConfiguration:data.btnConfiguration
-                                           background:data.background
-                           buttonConfigTitleAlignment:data.buttonConfigTitleAlignment
+        return [self.alloc jobsInitBtnByConfiguration:data.buttonConfiguration
+                                           background:data.backgroundConfiguration
+                           buttonConfigTitleAlignment:data.buttonConfigurationTitleAlignment
                                         textAlignment:data.textAlignment
                                      subTextAlignment:data.subTextAlignment
                                           normalImage:data.normalImage
                                        highlightImage:data.highlightImage
                                       attributedTitle:data.attributedTitle
                               selectedAttributedTitle:data.selectedAttributedTitle
-                                   attributedSubtitle:data.attributedSubtitle
+                                   attributedSubtitle:data.attributedSubTitle
                                                 title:data.title
                                              subTitle:data.subTitle
                                             titleFont:data.titleFont
@@ -353,7 +353,7 @@
                              contentVerticalAlignment:data.contentVerticalAlignment
                                         contentInsets:data.contentInsets
                                     cornerRadiusValue:data.cornerRadiusValue
-                                      roundingCorners:data.roundingCorners//UIRectCornerAllCorners
+                                      roundingCorners:data.roundingCorners /// UIRectCornerAllCorners
                                  roundingCornersRadii:data.roundingCornersRadii
                                        layerBorderCor:data.layerBorderCor
                                           borderWidth:data.borderWidth
@@ -419,7 +419,7 @@
     };
 }
 #pragma mark —— 一些公有方法
--(JobsReturnButtonByClickBlock _Nonnull)onClick{
+-(JobsReturnButtonByClickBlock _Nonnull)onClickBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
         @jobs_strongify(self)
@@ -428,7 +428,7 @@
     };
 }
 
--(JobsReturnButtonByClickBlock _Nonnull)onLongPressGesture{
+-(JobsReturnButtonByClickBlock _Nonnull)onLongPressGestureBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
         @jobs_strongify(self)
@@ -437,7 +437,7 @@
     };
 }
 
--(JobsReturnButtonByTimerManagerBlock _Nonnull)heartBeat{
+-(JobsReturnButtonByTimerManagerBlock _Nonnull)heartBeatBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByTimerManagerBlock block) {
         @jobs_strongify(self)
@@ -446,7 +446,7 @@
     };
 }
 
--(JobsReturnButtonByColorBlock _Nonnull)bgColor{
+-(JobsReturnButtonByColorBlock _Nonnull)bgColorBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIColor *color) {
         @jobs_strongify(self)
@@ -455,7 +455,7 @@
     };
 }
 
--(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValue{
+-(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValueBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(CGFloat data) {
         @jobs_strongify(self)

@@ -38,7 +38,7 @@
         btn.userInteractionEnabled = NO;
         
         btn.jobsResetBtnImage(JobsIMG(@"灰色椭圆"));
-        btn.selectedStateImage(JobsIMG(@"橙色椭圆"));
+        btn.selectedStateImageBy(JobsIMG(@"橙色椭圆"));
         [self addSubview:btn];
         btn.tag = i + 1;
     }
@@ -148,7 +148,7 @@
     if (pan.state == UIGestureRecognizerStateBegan) {
         for (UIButton *btn in _errorBtns) {
             btn.jobsResetBtnImage(JobsIMG(@"灰色椭圆"));
-            btn.selectedStateImage(JobsIMG(@"橙色椭圆"));
+            btn.selectedStateImageBy(JobsIMG(@"橙色椭圆"));
         }
         [self.errorBtns removeAllObjects];
     }

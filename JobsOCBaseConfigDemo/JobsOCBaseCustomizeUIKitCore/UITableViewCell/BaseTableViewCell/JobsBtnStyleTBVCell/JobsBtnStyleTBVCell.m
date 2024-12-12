@@ -16,15 +16,40 @@
 
 @implementation JobsBtnStyleTBVCell
 #pragma mark —— @synthesize UIViewModelProtocol
-UIViewModelProtocol_synthesize
-UIViewModelProtocol_self_synthesize
+UIViewModelProtocol_synthesize_part1
+UIViewModelProtocol_synthesize_part2
+BaseLayerProtocol_synthesize_part3
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    self.btn.jobsResetBtnTextViewNormalAttributedTitle(self.buttonModel.attributedTitle);
+    /// 此时，self.btn.titleLabel 和 self.btn.subtitleLabel 有正确的Frame，可以指导 self.btn.titleTextView 和 self.btn.subtitleTextView 进行下一步的正常工作
+    if(self.viewModel.textModel.attributedTitle){
+        self.btn.jobsResetBtnTextViewNormalAttributedTitle(self.viewModel.textModel.attributedTitle);
+    }
+    
+    if(self.viewModel.textModel.attributedSubTitle){
+        self.btn.jobsResetBtnTextViewNormalAttributedSubTitle(self.viewModel.textModel.attributedSubTitle);
+    }
+    
+    if(self.buttonModel.attributedTitle){
+        self.btn.jobsResetBtnTextViewNormalAttributedTitle(self.buttonModel.attributedTitle);
+    }
+    
+    if(self.buttonModel.attributedSubTitle){
+        self.btn.jobsResetBtnTextViewNormalAttributedSubTitle(self.buttonModel.attributedSubTitle);
+    }
+}
+#pragma mark —— BaseViewProtocol
+/// 获取绑定的数据源
+-(UIViewModel *)getViewModel{
+    return self.viewModel;
+}
+
+-(UIButtonModel *_Nullable)getButtonModel{
+    return self.buttonModel;
 }
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
@@ -42,15 +67,13 @@ UIViewModelProtocol_self_synthesize
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)
+        self.btn.data = model;
         if(KindOfViewModelCls(model)){
             self.viewModel = model;
         }
         if(KindOfButtonModelCls(model)){
             self.buttonModel = model;
         }
-        
-        self.btn.alpha = 1;
-        self.btn.data = model;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -59,12 +82,7 @@ UIViewModelProtocol_self_synthesize
         return JobsWidth(55);
     };
 }
-#pragma mark —— BaseViewProtocol
-/// 获取绑定的数据源
--(UIViewModel *)getViewModel{
-    return _viewModel;
-}
-
+@synthesize viewModel = _viewModel;
 -(void)setViewModel:(UIViewModel *)viewModel{
     _viewModel = viewModel;
     @jobs_weakify(self)
@@ -72,9 +90,7 @@ UIViewModelProtocol_self_synthesize
     _btn.selected = viewModel.jobsSelected;
     _btn.enabled = viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UITableViewCell
     if(viewModel.textModel.attributedTitle){/// 主标题（富文本）
-//        _btn.jobsResetBtnNormalAttributedTitle(viewModel.textModel.attributedTitle);
-//        _btn.jobsResetBtnTextViewNormalAttributedTitle(viewModel.textModel.attributedTitle);
-//        _btn.titleLabel.backgroundColor = JobsClearColor;
+        _btn.jobsResetBtnNormalAttributedTitle(viewModel.textModel.attributedTitle);
     }else{/// 主标题（普通）
         _btn.jobsResetBtnTitle(viewModel.textModel.text);
         _btn.jobsResetBtnTitleCor(viewModel.textModel.textCor);
@@ -139,19 +155,17 @@ UIViewModelProtocol_self_synthesize
 
 -(void)setButtonModel:(UIButtonModel *)buttonModel{
     _buttonModel = buttonModel;
-    
     _btn.selected = buttonModel.jobsSelected;
-    _btn.enabled = buttonModel.enabled;
+    _btn.enabled = buttonModel.jobsEnabled;
     if(buttonModel.attributedTitle){/// 主标题（富文本）
-        _btn.jobsResetBtnTextViewNormalAttributedTitle(buttonModel.attributedTitle);
-        
+        _btn.jobsResetBtnNormalAttributedTitle(buttonModel.attributedTitle);
     }else{/// 主标题（普通文本）
         _btn.jobsResetBtnTitle(buttonModel.title);
         _btn.jobsResetBtnTitleCor(buttonModel.titleCor);
         _btn.jobsResetBtnTitleFont(buttonModel.titleFont);
     }
-    if(self.buttonModel.attributedSubtitle){/// 子标题（富文本）
-        _btn.jobsResetBtnNormalAttributedSubTitle(buttonModel.attributedSubtitle);
+    if(buttonModel.attributedSubTitle){/// 子标题（富文本）
+        _btn.jobsResetBtnNormalAttributedSubTitle(buttonModel.attributedSubTitle);
     }else{/// 子标题（普通文本）
         _btn.jobsResetBtnSubTitle(buttonModel.subTitle);
         _btn.jobsResetBtnSubTitleCor(buttonModel.subTitleCor);
@@ -198,9 +212,16 @@ UIViewModelProtocol_self_synthesize
 #pragma mark —— lazyLoad
 -(BaseButton *)btn{
     if(!_btn){
+        @jobs_weakify(self)
         _btn = BaseButton.jobsInit();
-        _btn.enabled = NO;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UICollectionViewCell
-        [self.contentView addSubview:_btn];
+        /// enabled 是 userInteractionEnabled 的子集
+        /// enabled = NO ,则不响应：-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event（此方法不要写在分类里面）
+        _btn.enabled = NO; /// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应 UITableViewCell 协议方法
+        _btn.userInteractionEnabled = YES;
+        _btn.onClickBy(^(UIButton *x){
+            @jobs_strongify(self)
+            if(self.objectBlock) self.objectBlock(x);
+        });[self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);/// 如果这里用self.contentView，在某些情况下，约束会失灵。因为self.contentView的生命周期的缘故，还没有完全展开
         }];

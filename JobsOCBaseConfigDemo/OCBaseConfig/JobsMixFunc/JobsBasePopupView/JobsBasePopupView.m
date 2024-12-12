@@ -101,9 +101,9 @@
                           self.viewModel.image,
                           JobsIMG(@"弹窗取消按钮背景图"),
                           NSDirectionalRectEdgeNone)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 if(self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _btn1.tag = 666;
@@ -126,10 +126,10 @@
                           self.viewModel.image,
                           JobsIMG(@"弹窗确定按钮背景图"),
                           NSDirectionalRectEdgeNone)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if(self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _btn2.tag = 999;

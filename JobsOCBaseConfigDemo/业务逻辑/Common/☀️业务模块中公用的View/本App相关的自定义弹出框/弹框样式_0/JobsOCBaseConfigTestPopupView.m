@@ -65,17 +65,17 @@ static dispatch_once_t static_testPopupViewOnceToken;
     if(!_containerView){
         @jobs_weakify(self)
         _containerView = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetTitlePadding(JobsWidth(8))
             .jobsResetBtnTitleCor(JobsRedColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(20))
             .jobsResetBtnTitle(isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"测试弹窗"): self.viewModel.textModel.text)
             .jobsResetBtnSubTitle(isNull(self.viewModel.subTextModel.text) ? JobsInternationalization(@"相关信息"): self.viewModel.textModel.text)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_containerView];
@@ -90,7 +90,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
     if (!_testPopupViewSureBtn) {
         _testPopupViewSureBtn = UIButton.new;
         _testPopupViewSureBtn.jobsResetBtnBgImage(JobsIMG(@"测试弹窗的确定按钮"));
-        _testPopupViewSureBtn.selectedStateBackgroundImage(JobsIMG(@"测试弹窗的确定按钮"));
+        _testPopupViewSureBtn.selectedStateBackgroundImageBy(JobsIMG(@"测试弹窗的确定按钮"));
         _testPopupViewSureBtn.jobsResetBtnTitle(JobsInternationalization(@"确定"));
         _testPopupViewSureBtn.jobsResetBtnTitleCor(JobsBlackColor);
         _testPopupViewSureBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(18));

@@ -176,5 +176,17 @@
         }
     };
 }
+/// 随机生成验证码字符串
+-(JobsReturnStringByArrAndNSIntegerBlock _Nonnull)randomCodeBy{
+    return ^ __kindof NSString *_Nullable(__kindof NSArray <NSString *>*_Nullable data,NSInteger index){
+        return jobsMakeMutString(^(__kindof NSMutableString * _Nullable tmpStr) {
+            NSInteger d = data.count >= (index + 1) ? index : data.count;
+            for (int i = 0; i < d; i++) {
+//                NSInteger index = arc4random() % (data.count - 1);
+                tmpStr.add(data[d]);
+            }
+        });
+    };
+}
 
 @end

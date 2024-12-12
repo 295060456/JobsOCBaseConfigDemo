@@ -6,145 +6,183 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseViewProtocol.h"
 #import "JobsBlock.h"
+#import "DefineProperty.h"
+#import "JobsLabelDef.h"
+#import "BaseViewProtocol.h"
+#import "BaseLayerProtocol.h"
+
+@class UIButtonModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BaseButtonProtocol <BaseViewProtocol>
+@protocol BaseButtonProtocol <BaseViewProtocol,BaseLayerProtocol>
 @optional
-#pragma mark —— UIButton + UI
 /// 为了迎合点语法而故意把下列方法属性化
-/// Common
-@property(nonatomic,strong)UIButtonConfiguration *buttonConfiguration;
-@property(nonatomic,strong)UIBackgroundConfiguration *backgroundConfiguration;
-@property(nonatomic,assign)NSTextAlignment titleAlignment;
-@property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigurationTitleAlignment;
-@property(nonatomic,assign)BOOL jobsSelected;
-@property(nonatomic,strong,nullable)UIImage *backgroundImage;/// 背景图片
-@property(nonatomic,strong,nullable)UIImage *normalImage;/// 正常情况下的image
-/// 在 iOS 16 中，UIButtonConfiguration 使用 titleTextAttributesTransformer 来调整按钮标题的字体和颜色
-/// 但直接访问字体并不像从 titleLabel 那样简单
-@property(nonatomic,strong,nullable)UIFont *titleFont;
-@property(nonatomic,strong,nullable)UIFont *subTitleFont API_AVAILABLE(ios(16.0));
-#pragma mark —— JobsBtnModel
-@property(nonatomic,strong)UIColor *btnBackgroundColor;
-@property(nonatomic,assign)CGSize imageSize;
-/// 结合下列属性来实现改变Button文字位置
-@property(nonatomic,assign)UIControlContentHorizontalAlignment contentHorizontalAlignment;
-@property(nonatomic,assign)UIControlContentVerticalAlignment contentVerticalAlignment;
-@property(nonatomic,assign)NSDirectionalRectEdge imagePlacement;/// ❤️图片和文字的位置关系❤️
-@property(nonatomic,assign)UIEdgeInsets contentEdgeInsets;/// iOS 15以前可以用
-@property(nonatomic,readwrite,assign)NSDirectionalEdgeInsets contentInsets;/// iOS 15以后 结合UIButtonConfiguration 以替换属性：UIEdgeInsets contentEdgeInsets;
-@property(nonatomic,assign)CGFloat contentSpacing;
-@property(nonatomic,assign)NSLineBreakMode lineBreakMode;
-@property(nonatomic,assign)NSLineBreakMode subLineBreakMode;
-@property(nonatomic,assign)CGFloat btnWidth;/// 预设值，父视图的宽度不能大于这个值
-#pragma mark —— 以前的
+/// UIButton + UI
+#pragma mark —— 配置信息
+/// 关于系统对于按钮的配置信息
+Prop_strong(nullable)UIButtonConfiguration *buttonConfiguration API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos) NS_SWIFT_UI_ACTOR;/// 来自新Api的配置文件。UIButtonConfiguration.filledButtonConfiguration;
+Prop_strong(nullable)UIBackgroundConfiguration *backgroundConfiguration API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos) NS_SWIFT_UI_ACTOR;/// 自定义按钮背景的配置
+Prop_assign()UIControlContentHorizontalAlignment contentHorizontalAlignment API_UNAVAILABLE(watchos); /// 针对内容的横向对齐方式
+Prop_assign()UIControlContentVerticalAlignment contentVerticalAlignment API_UNAVAILABLE(watchos); /// 针对内容的竖向对齐方式
+Prop_assign()NSDirectionalEdgeInsets contentInsets API_AVAILABLE(ios(11.0),tvos(11.0),watchos(4.0)); /// 定位内边距的方向。iOS 15以后 结合UIButtonConfiguration 以替换属性：UIEdgeInsets
+Prop_assign()UIEdgeInsets contentEdgeInsets;/// iOS 15以前可以用
+Prop_strong(nullable)UIColor *baseBackgroundColor;/// 背景颜色
+/// 关于按钮的图文关系
+Prop_assign()CGFloat imagePadding;/// 图像与标题之间的间距
+Prop_assign()CGFloat titlePadding;/// 标题和副标题标签之间的距离
+Prop_assign()NSDirectionalRectEdge imagePlacement;/// ❤️图片和文字的位置关系❤️
+/// 一些自定义的配置信息
+Prop_assign()UILabelShowingType titleShowingType;/// 主标题的显示方式
+Prop_assign()UILabelShowingType subTitleShowingType;/// 副标题的显示方式
+Prop_assign()BOOL jobsSelected; /// 避免与系统方法冲突
+Prop_assign()BOOL jobsEnabled; /// 避免与系统方法冲突
+Prop_assign()CGSize imageSize;
+Prop_assign()CGFloat contentSpacing;
+Prop_assign()CGFloat btnWidth; /// 预设值，父视图的宽度不能大于这个值
+#pragma mark —— 普通文本
+Prop_copy(nullable)NSString *title; /// 主标题
+Prop_copy(nullable)NSString *subTitle API_AVAILABLE(ios(16.0)); ///（新Api才有的）副标题
+/**
+ 在 iOS 16 中，UIButtonConfiguration 使用 titleTextAttributesTransformer 来调整按钮标题的字体和颜色
+ 但直接访问字体并不像从 titleLabel 那样简单
+ */
+/// 普通文本的字体
+Prop_strong(nullable)UIFont *titleFont;
+Prop_strong(nullable)UIFont *subTitleFont API_AVAILABLE(ios(16.0));
+/// 普通文本的文字颜色
+Prop_strong(nullable)UIColor *titleCor;/// 主标题文字颜色
+Prop_strong(nullable)UIColor *subTitleCor;/// 副标题文字颜色
+/// 普通文本的对齐方式
+Prop_assign()NSTextAlignment titleAlignment;/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】。也对应新Api里面的title的对齐方式
+Prop_assign()NSTextAlignment subTitleAlignment;/// 也对应新Api里面的subTitle的对齐方式
+Prop_assign()UIButtonConfigurationTitleAlignment buttonConfigurationTitleAlignment API_AVAILABLE(ios(15.0)) API_UNAVAILABLE(watchos);/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+/// 普通文本的换行方式
+Prop_assign()NSLineBreakMode titleLineBreakMode;/// 主标题换行模式
+Prop_assign()NSLineBreakMode subtitleLineBreakMode;///（新Api才有的）副标题换行模式
+#pragma mark —— 图片
+Prop_strong(nullable)UIImage *backgroundImage;/// 背景图片
+Prop_strong(nullable)UIImage *normalImage;/// 正常情况下的image
+Prop_strong(nullable)UIImage *highlightImage;/// = selected_Image 高亮情况下的image
+#pragma mark —— 富文本
+Prop_strong(nullable)NSAttributedString *attributedTitle;/// 主标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
+Prop_strong(nullable)NSAttributedString *selectedAttributedTitle;///（只限于老Api，新Api里面没有）UIControlStateSelected状态下的标题富文本。设置富文本，请关注：#import "NSObject+RichText.h"
+Prop_strong(nullable)NSAttributedString *attributedSubTitle;///（新Api才有的）副标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
+#pragma mark —— 对UIButton子控件的约束
 /// ⚠️执行return的顺序依照下列👇🏻属性的排序⚠️
 ///【组 1】UIButton 单独自定义设置系统自带控件的Frame【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
-@property(nonatomic,assign)CGRect textLabelFrame;
-@property(nonatomic,assign)CGRect subTextLabelFrame;
-@property(nonatomic,assign)CGRect imageViewFrame;
+Prop_assign()CGRect textLabelFrame;
+Prop_assign()CGRect subTextLabelFrame;
+Prop_assign()CGRect imageViewFrame;
 ///【组 2】UIButton 单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
-@property(nonatomic,assign)CGSize textLabelSize;
-@property(nonatomic,assign)CGFloat textLabelFrameResetX;
-@property(nonatomic,assign)CGFloat textLabelFrameResetY;
+Prop_assign()CGSize textLabelSize;
+Prop_assign()CGFloat textLabelFrameResetX;
+Prop_assign()CGFloat textLabelFrameResetY;
 
-@property(nonatomic,assign)CGSize subTextLabelSize;
-@property(nonatomic,assign)CGFloat subTextLabelFrameResetX;
-@property(nonatomic,assign)CGFloat subTextLabelFrameResetY;
+Prop_assign()CGSize subTextLabelSize;
+Prop_assign()CGFloat subTextLabelFrameResetX;
+Prop_assign()CGFloat subTextLabelFrameResetY;
 
-@property(nonatomic,assign)CGSize imageViewSize;
-@property(nonatomic,assign)CGFloat imageViewFrameResetX;
-@property(nonatomic,assign)CGFloat imageViewFrameResetY;
+Prop_assign()CGSize imageViewSize;
+Prop_assign()CGFloat imageViewFrameResetX;
+Prop_assign()CGFloat imageViewFrameResetY;
 ///【组 3】UIButton 单独自定义设置系统自带控件的长宽【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、2属性互斥❤️
-@property(nonatomic,assign)CGFloat textLabelWidth;
-@property(nonatomic,assign)CGFloat subTextLabelWidth;
-@property(nonatomic,assign)CGFloat imageViewWidth;
-@property(nonatomic,assign)CGFloat textLabelHeight;
-@property(nonatomic,assign)CGFloat subTextLabelHeight;
-@property(nonatomic,assign)CGFloat imageViewHeight;
+Prop_assign()CGFloat textLabelWidth;
+Prop_assign()CGFloat subTextLabelWidth;
+Prop_assign()CGFloat imageViewWidth;
+Prop_assign()CGFloat textLabelHeight;
+Prop_assign()CGFloat subTextLabelHeight;
+Prop_assign()CGFloat imageViewHeight;
 /// UIButton 单独自定义设置系统自带控件的偏移量 ❤️与其他组属性不互斥❤️
-// 关于 textLabel 的偏移
-@property(nonatomic,assign)CGFloat textLabelFrameOffsetX;
-@property(nonatomic,assign)CGFloat textLabelFrameOffsetY;
-@property(nonatomic,assign)CGFloat textLabelFrameOffsetWidth;
-@property(nonatomic,assign)CGFloat textLabelFrameOffsetHeight;
-// 关于 subTextLabel 的偏移
-@property(nonatomic,assign)CGFloat subTextLabelFrameOffsetX;
-@property(nonatomic,assign)CGFloat subTextLabelFrameOffsetY;
-@property(nonatomic,assign)CGFloat subTextLabelFrameOffsetWidth;
-@property(nonatomic,assign)CGFloat subTextLabelFrameOffsetHeight;
-// 关于 imageView 的偏移
-@property(nonatomic,assign)CGFloat imageViewFrameOffsetX;
-@property(nonatomic,assign)CGFloat imageViewFrameOffsetY;
-@property(nonatomic,assign)CGFloat imageViewFrameOffsetWidth;
-@property(nonatomic,assign)CGFloat imageViewFrameOffsetHeight;
-//具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)richButtonByModel;
+/// 关于 textLabel 的偏移
+Prop_assign()CGFloat textLabelFrameOffsetX;
+Prop_assign()CGFloat textLabelFrameOffsetY;
+Prop_assign()CGFloat textLabelFrameOffsetWidth;
+Prop_assign()CGFloat textLabelFrameOffsetHeight;
+/// 关于 subTextLabel 的偏移
+Prop_assign()CGFloat subTextLabelFrameOffsetX;
+Prop_assign()CGFloat subTextLabelFrameOffsetY;
+Prop_assign()CGFloat subTextLabelFrameOffsetWidth;
+Prop_assign()CGFloat subTextLabelFrameOffsetHeight;
+/// 关于 imageView 的偏移
+Prop_assign()CGFloat imageViewFrameOffsetX;
+Prop_assign()CGFloat imageViewFrameOffsetY;
+Prop_assign()CGFloat imageViewFrameOffsetWidth;
+Prop_assign()CGFloat imageViewFrameOffsetHeight;
 #pragma mark —— 用类方法定义
-//具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel;
-//具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel;
-//具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel;
-//具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel;
 #pragma mark —— 用实例方法定义
-//具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel;
-//具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel;
-//具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel;
-//具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+/// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel;
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(jobsByIDBlock _Nonnull)richButtonByModel;
 /// 获取绑定的数据源
--(UIButtonModel *_Nullable)getButtonModel;
+-(__kindof UIButtonModel *_Nullable)getButtonModel;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#pragma mark —— @synthesize BaseButtonProtocol
-
-#ifndef BaseButtonProtocol_UIViewModelOthersProtocol_synthesize
-#define BaseButtonProtocol_UIViewModelOthersProtocol_synthesize \
+#ifndef BaseButtonProtocol_synthesize_part1
+#define BaseButtonProtocol_synthesize_part1 \
 \
-@synthesize jobsEnabled = _jobsEnabled;\
 @synthesize jobsSelected = _jobsSelected;\
+@synthesize jobsEnabled = _jobsEnabled;\
 
-#endif
+#endif /* BaseButtonProtocol_synthesize_part1 */
 
-#ifndef BaseButtonProtocol_synthesize
-#define BaseButtonProtocol_synthesize \
+#ifndef BaseButtonProtocol_synthesize_part2
+#define BaseButtonProtocol_synthesize_part2 \
 \
 @synthesize buttonConfiguration = _buttonConfiguration;\
 @synthesize backgroundConfiguration = _backgroundConfiguration;\
-@synthesize titleAlignment = _titleAlignment;\
-@synthesize buttonConfigurationTitleAlignment = _buttonConfigurationTitleAlignment;\
-@synthesize backgroundImage = _backgroundImage;\
-@synthesize normalImage = _normalImage;\
-@synthesize titleFont = _titleFont;\
-@synthesize subTitleFont = _subTitleFont;\
-@synthesize btnBackgroundColor = _btnBackgroundColor;\
-@synthesize imageSize = _imageSize;\
 @synthesize contentHorizontalAlignment = _contentHorizontalAlignment;\
 @synthesize contentVerticalAlignment = _contentVerticalAlignment;\
-@synthesize imagePlacement = _imagePlacement;\
-@synthesize contentEdgeInsets = _contentEdgeInsets;\
 @synthesize contentInsets = _contentInsets;\
+@synthesize contentEdgeInsets = _contentEdgeInsets;\
+@synthesize baseBackgroundColor = _baseBackgroundColor;\
+@synthesize imagePadding = _imagePadding;\
+@synthesize titlePadding = _titlePadding;\
+@synthesize imagePlacement = _imagePlacement;\
+@synthesize titleShowingType = _titleShowingType;\
+@synthesize subTitleShowingType = _subTitleShowingType;\
+@synthesize imageSize = _imageSize;\
 @synthesize contentSpacing = _contentSpacing;\
-@synthesize lineBreakMode = _lineBreakMode;\
-@synthesize subLineBreakMode = _subLineBreakMode;\
 @synthesize btnWidth = _btnWidth;\
-\
+@synthesize title = _title;\
+@synthesize subTitle = _subTitle;\
+@synthesize titleFont = _titleFont;\
+@synthesize subTitleFont = _subTitleFont;\
+@synthesize titleCor = _titleCor;\
+@synthesize subTitleCor = _subTitleCor;\
+@synthesize titleAlignment = _titleAlignment;\
+@synthesize subTitleAlignment = _subTitleAlignment;\
+@synthesize buttonConfigurationTitleAlignment = _buttonConfigurationTitleAlignment;\
+@synthesize titleLineBreakMode = _titleLineBreakMode;\
+@synthesize subtitleLineBreakMode = _subtitleLineBreakMode;\
+@synthesize backgroundImage = _backgroundImage;\
+@synthesize normalImage = _normalImage;\
+@synthesize highlightImage = _highlightImage;\
+@synthesize attributedTitle = _attributedTitle;\
+@synthesize selectedAttributedTitle = _selectedAttributedTitle;\
+@synthesize attributedSubTitle = _attributedSubTitle;\
 @synthesize textLabelFrame = _textLabelFrame;\
 @synthesize subTextLabelFrame = _subTextLabelFrame;\
 @synthesize imageViewFrame = _imageViewFrame;\
-\
 @synthesize textLabelSize = _textLabelSize;\
 @synthesize textLabelFrameResetX = _textLabelFrameResetX;\
 @synthesize textLabelFrameResetY = _textLabelFrameResetY;\
@@ -154,61 +192,75 @@ NS_ASSUME_NONNULL_END
 @synthesize imageViewSize = _imageViewSize;\
 @synthesize imageViewFrameResetX = _imageViewFrameResetX;\
 @synthesize imageViewFrameResetY = _imageViewFrameResetY;\
-\
 @synthesize textLabelWidth = _textLabelWidth;\
 @synthesize subTextLabelWidth = _subTextLabelWidth;\
 @synthesize imageViewWidth = _imageViewWidth;\
 @synthesize textLabelHeight = _textLabelHeight;\
 @synthesize subTextLabelHeight = _subTextLabelHeight;\
 @synthesize imageViewHeight = _imageViewHeight;\
-\
 @synthesize textLabelFrameOffsetX = _textLabelFrameOffsetX;\
 @synthesize textLabelFrameOffsetY = _textLabelFrameOffsetY;\
 @synthesize textLabelFrameOffsetWidth = _textLabelFrameOffsetWidth;\
 @synthesize textLabelFrameOffsetHeight = _textLabelFrameOffsetHeight;\
-\
 @synthesize subTextLabelFrameOffsetX = _subTextLabelFrameOffsetX;\
 @synthesize subTextLabelFrameOffsetY = _subTextLabelFrameOffsetY;\
 @synthesize subTextLabelFrameOffsetWidth = _subTextLabelFrameOffsetWidth;\
 @synthesize subTextLabelFrameOffsetHeight = _subTextLabelFrameOffsetHeight;\
-\
 @synthesize imageViewFrameOffsetX = _imageViewFrameOffsetX;\
 @synthesize imageViewFrameOffsetY = _imageViewFrameOffsetY;\
 @synthesize imageViewFrameOffsetWidth = _imageViewFrameOffsetWidth;\
 @synthesize imageViewFrameOffsetHeight = _imageViewFrameOffsetHeight;\
 
-#endif
+#endif /* BaseButtonProtocol_synthesize_part2 */
 
-#pragma mark —— @dynamic BaseButtonProtocol
+#ifndef BaseButtonProtocol_synthesize
+#define BaseButtonProtocol_synthesize \
+\
+BaseButtonProtocol_synthesize_part1 \
+BaseButtonProtocol_synthesize_part2
+
+#endif /* BaseButtonProtocol_synthesize */
+
 #ifndef BaseButtonProtocol_dynamic
 #define BaseButtonProtocol_dynamic \
 \
 @dynamic buttonConfiguration;\
 @dynamic backgroundConfiguration;\
-@dynamic titleAlignment;\
-@dynamic buttonConfigurationTitleAlignment;\
-@dynamic jobsEnabled;\
-@dynamic jobsSelected;\
-@dynamic backgroundImage;\
-@dynamic normalImage;\
-@dynamic titleFont;\
-@dynamic subTitleFont;\
-@dynamic btnBackgroundColor;\
-@dynamic imageSize;\
 @dynamic contentHorizontalAlignment;\
 @dynamic contentVerticalAlignment;\
-@dynamic imagePlacement;\
-@dynamic contentEdgeInsets;\
 @dynamic contentInsets;\
+@dynamic contentEdgeInsets;\
+@dynamic baseBackgroundColor;\
+@dynamic imagePadding;\
+@dynamic titlePadding;\
+@dynamic imagePlacement;\
+@dynamic titleShowingType;\
+@dynamic subTitleShowingType;\
+@dynamic jobsSelected;\
+@dynamic jobsEnabled;\
+@dynamic imageSize;\
 @dynamic contentSpacing;\
-@dynamic lineBreakMode;\
-@dynamic subLineBreakMode;\
 @dynamic btnWidth;\
-\
+@dynamic title;\
+@dynamic subTitle;\
+@dynamic titleFont;\
+@dynamic subTitleFont;\
+@dynamic titleCor;\
+@dynamic subTitleCor;\
+@dynamic titleAlignment;\
+@dynamic subTitleAlignment;\
+@dynamic buttonConfigurationTitleAlignment;\
+@dynamic titleLineBreakMode;\
+@dynamic subtitleLineBreakMode;\
+@dynamic backgroundImage;\
+@dynamic normalImage;\
+@dynamic highlightImage;\
+@dynamic attributedTitle;\
+@dynamic selectedAttributedTitle;\
+@dynamic attributedSubTitle;\
 @dynamic textLabelFrame;\
 @dynamic subTextLabelFrame;\
 @dynamic imageViewFrame;\
-\
 @dynamic textLabelSize;\
 @dynamic textLabelFrameResetX;\
 @dynamic textLabelFrameResetY;\
@@ -218,27 +270,23 @@ NS_ASSUME_NONNULL_END
 @dynamic imageViewSize;\
 @dynamic imageViewFrameResetX;\
 @dynamic imageViewFrameResetY;\
-\
 @dynamic textLabelWidth;\
 @dynamic subTextLabelWidth;\
 @dynamic imageViewWidth;\
 @dynamic textLabelHeight;\
 @dynamic subTextLabelHeight;\
 @dynamic imageViewHeight;\
-\
 @dynamic textLabelFrameOffsetX;\
 @dynamic textLabelFrameOffsetY;\
 @dynamic textLabelFrameOffsetWidth;\
 @dynamic textLabelFrameOffsetHeight;\
-\
 @dynamic subTextLabelFrameOffsetX;\
 @dynamic subTextLabelFrameOffsetY;\
 @dynamic subTextLabelFrameOffsetWidth;\
 @dynamic subTextLabelFrameOffsetHeight;\
-\
 @dynamic imageViewFrameOffsetX;\
 @dynamic imageViewFrameOffsetY;\
 @dynamic imageViewFrameOffsetWidth;\
 @dynamic imageViewFrameOffsetHeight;\
 
-#endif
+#endif /* BaseButtonProtocol_dynamic */

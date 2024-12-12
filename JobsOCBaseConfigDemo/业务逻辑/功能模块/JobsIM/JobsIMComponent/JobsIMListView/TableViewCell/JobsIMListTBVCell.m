@@ -22,7 +22,7 @@
 @end
 
 @implementation JobsIMListTBVCell
-
+UITextFieldProtocol_synthesize_part2
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsIMListTBVCell *cell = (JobsIMListTBVCell *)tableView.tableViewCellClass(JobsIMListTBVCell.class,@"");
@@ -42,7 +42,7 @@
         self.longPG.enabled = YES;
         self.swipeBackgroundColor = JobsClearColor;
         self.selectedBackgroundView = UIView.new;
-        self.selectedBackgroundView.backgroundColor = [JobsYellowColor colorWithAlphaComponent:0.3];
+        self.selectedBackgroundView.backgroundColor = JobsYellowColor.colorWithAlphaComponentBy(0.3);
         self.leftSwipeSettings.transition = MGSwipeTransitionBorder;
         self.rightSwipeSettings.transition = MGSwipeTransitionDrag;
         self.leftExpansion.buttonIndex = 0;
@@ -72,10 +72,10 @@
             self.userHeaderIMG = listDataModel.userHeaderIMG;
             self.timeStr = listDataModel.timeStr;
         }else{
-            self.usernameStr = @"数据异常";
-            self.contentStr = @"数据异常";
+            self.usernameStr = JobsInternationalization(@"数据异常");
+            self.contentStr = JobsInternationalization(@"数据异常");
             self.userHeaderIMG = nil;
-            self.timeStr = @"数据异常";
+            self.timeStr = JobsInternationalization(@"数据异常");
         }
         
         self.textLabel.text = self.usernameStr;
@@ -87,42 +87,48 @@
 }
 
 -(NSArray *)createLeftButtons{
-    NSMutableArray * result = NSMutableArray.array;
-    for (MGSwipeButtonModel *model in self.leftBtnMutArr) {
-        MGSwipeButton * button = [MGSwipeButton buttonWithTitle:model.titleStr
-                                                           icon:model.IconIMG
-                                                backgroundColor:model.bgCor
-                                                        padding:15
-                                                       callback:^BOOL(MGSwipeTableCell * sender){
-            NSLog(@"Convenience callback received (left).");
-            return YES;
-        }];
-        [result addObject:button];
-    }return result;
+    @jobs_weakify(self)
+    return jobsMakeMutArr(^(__kindof NSMutableArray <MGSwipeButton *>*_Nullable arr) {
+        @jobs_strongify(self)
+        for (MGSwipeButtonModel *model in self.leftBtnMutArr) {
+            arr.add([MGSwipeButton buttonWithTitle:model.titleStr
+                                              icon:model.IconIMG
+                                   backgroundColor:model.bgCor
+                                           padding:15
+                                          callback:^BOOL(MGSwipeTableCell * sender){
+                NSLog(@"Convenience callback received (left).");
+                return YES;
+            }]);
+        }
+    });
 }
 
 -(NSArray *)createRightButtons{
-    NSMutableArray * result = NSMutableArray.array;
-    for (MGSwipeButtonModel *model in self.rightBtnMutArr) {
-        MGSwipeButton * button = [MGSwipeButton buttonWithTitle:model.titleStr
-                                                           icon:model.IconIMG
-                                                backgroundColor:model.bgCor
-                                                        padding:15
-                                                       callback:^BOOL(MGSwipeTableCell * sender){
-            NSLog(@"Convenience callback received (left).");
-            return YES;
-        }];
-        [result addObject:button];
-    }return result;
+    @jobs_weakify(self)
+    return jobsMakeMutArr(^(__kindof NSMutableArray <MGSwipeButton *>*_Nullable arr) {
+        @jobs_strongify(self)
+        for (MGSwipeButtonModel *model in self.rightBtnMutArr) {
+            arr.add([MGSwipeButton buttonWithTitle:model.titleStr
+                                              icon:model.IconIMG
+                                   backgroundColor:model.bgCor
+                                           padding:15
+                                          callback:^BOOL(MGSwipeTableCell * sender){
+                NSLog(@"Convenience callback received (left).");
+                return YES;
+            }]);
+        }
+    });
 }
 
-- (BOOL)canBecomeFirstResponder{
+-(BOOL)canBecomeFirstResponder{
     return YES;
 }
 #pragma mark —— lazyLoad
 -(UILabel *)timeLab{
     if (!_timeLab) {
+        @jobs_weakify(self)
         _timeLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
             label.text = self.timeStr;
             label.textColor = JobsLightGrayColor;
             label.font = UIFontWeightRegularSize(JobsWidth(12));

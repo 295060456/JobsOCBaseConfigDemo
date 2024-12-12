@@ -25,7 +25,7 @@ JobsKey(_backBtnCategory)
     if (!BackBtnCategory) {
         @jobs_weakify(self)
         BackBtnCategory = BaseButton.jobsInit()
-            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+            .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
             .jobsResetBtnImage(self.viewModel.backBtnIMG ? : JobsBuddleIMG(nil,@"Frameworks/GKNavigationBar.framework/GKNavigationBar",nil,self.gk_backStyle == GKNavigationBarBackStyleBlack ? @"btn_back_black" : @"btn_back_white"))
@@ -33,11 +33,11 @@ JobsKey(_backBtnCategory)
             .jobsResetBtnTitleCor(self.viewModel.backBtnTitleModel.textCor ? : JobsBlackColor)
             .jobsResetBtnTitleFont(self.viewModel.backBtnTitleModel.font)
             .jobsResetBtnTitle(self.viewModel.backBtnTitleModel.text)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 self.backBtnClickEvent(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         Jobs_setAssociatedRETAIN_NONATOMIC(_backBtnCategory, BackBtnCategory)

@@ -95,13 +95,13 @@
     if(!_btn){
         @jobs_weakify(self)
         _btn = BaseButton.jobsInit()
-            .bgColor(JobsOrangeColor)
+            .bgColorBy(JobsOrangeColor)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightRegularSize(12))
             .jobsResetBtnTitle(JobsInternationalization(@"点击按钮push出view"))
             .jobsResetBtnCornerRadiusValue(JobsWidth(8))
             .jobsResetBtnLayerBorderWidth(JobsWidth(1))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 
@@ -121,7 +121,7 @@
                 
     //            self.configViewNavigatorBySuperviewAndView(self.view,self.pushView);
     //            self.view.navigator.pushView(self.pushView,YES);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_btn];

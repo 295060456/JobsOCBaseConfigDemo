@@ -12,9 +12,8 @@
 @end
 
 @implementation JobsDropDownListTBVCell
-#pragma mark —— @synthesize UITableViewCellProtocol
-UITableViewCellProtocol_synthesize
-UITableViewCell_UIViewModelProtocolSynthesize
+UITableViewCellProtoco_Synthesize_part1
+UITableViewCellProtoco_Synthesize_part2
 #pragma mark —— UITableViewCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {

@@ -17,6 +17,8 @@ Prop_strong(null_resettable)UIColor *leftLabBgCor;
 Prop_strong(null_resettable)UIColor *rightLabBgCor;
 Prop_assign()CGFloat offset;/// 值越大 = 按钮之间的距离越小
 
++(JobsReturnButtonModelByStringAndImage _Nonnull)makeButtonModel;
+
 @end
 
 NS_ASSUME_NONNULL_END

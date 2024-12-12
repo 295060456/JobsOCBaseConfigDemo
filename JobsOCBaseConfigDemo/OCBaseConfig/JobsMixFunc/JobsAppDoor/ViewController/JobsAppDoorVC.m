@@ -66,11 +66,11 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
         self.viewModel = (UIViewModel *)self.requestParams;
         if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_Image) {
             self.view = self.bgImgV;
-        }else if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_video){
+        }else if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_Video){
             [self.player.currentPlayerManager play];
         }else{}
     }
-    self.currentPage = @(CurrentPage_login);//默认页面是登录
+    self.currentPage = @(CurrentPage_Login);//默认页面是登录
     //标的值初始化
     self.logoContentViewY = 0;
     self.jobsAppDoorContentViewY = 0;
@@ -112,11 +112,11 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
         NSLog(@"%@",self.requestParams);
-        if ([self.viewModel.requestParams integerValue] == CurrentPage_login) {
+        if ([self.viewModel.requestParams integerValue] == CurrentPage_Login) {
             
-        }else if ([self.viewModel.requestParams integerValue] == CurrentPage_register){
+        }else if ([self.viewModel.requestParams integerValue] == CurrentPage_Register){
             [self.jobsAppDoorContentView animationToRegister];
-        }else if ([self.viewModel.requestParams integerValue] == CurrentPage_forgotCode){
+        }else if ([self.viewModel.requestParams integerValue] == CurrentPage_ForgotCode){
             
         }else{}
     }
@@ -129,7 +129,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
         self.viewModel = (UIViewModel *)self.requestParams;
         if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_Image) {
 
-        }else if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_video){
+        }else if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_Video){
             if (self.player.currentPlayerManager.isPlaying) {
                 [self.player.currentPlayerManager pause];
             }
@@ -142,10 +142,10 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     self->_jobsAppDoorContentView.backgroundColor = Cor2;
     Ivar ivar = class_getInstanceVariable(JobsAppDoorContentView.class, "_toRegisterBtn");//必须是下划线接属性
     UIButton *toRegisterBtn = object_getIvar(self->_jobsAppDoorContentView, ivar);
-    toRegisterBtn.jobsResetBtnBgCor(Cor4);
+    toRegisterBtn.jobsResetBtnBgCor(Cor3);
     toRegisterBtn.jobsResetBtnTitleCor(Cor1);
     
-    self.currentPage = @(CurrentPage_register);//注册页面
+    self.currentPage = @(CurrentPage_Register);//注册页面
     self->_jobsAppDoorContentView.frame = CGRectMake(JobsAppDoorContentViewRegisterX,
                                                      JobsAppDoorContentViewRegisterY,
                                                      JobsAppDoorContentViewRegisterWidth,
@@ -162,9 +162,9 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     Ivar ivar = class_getInstanceVariable([JobsAppDoorContentView class], "_toRegisterBtn");//必须是下划线接属性
     UIButton *toRegisterBtn = object_getIvar(self->_jobsAppDoorContentView, ivar);
     toRegisterBtn.jobsResetBtnBgCor(Cor1);
-    toRegisterBtn.jobsResetBtnTitleCor(Cor3);
+    toRegisterBtn.jobsResetBtnTitleCor(Cor4);
 
-    self.currentPage = @(CurrentPage_login);//登录页面
+    self.currentPage = @(CurrentPage_Login);//登录页面
     self->_jobsAppDoorContentView.frame = CGRectMake(JobsAppDoorContentViewLoginX,
                                                      JobsAppDoorContentViewLoginY,
                                                      JobsAppDoorContentViewLoginWidth,
@@ -209,7 +209,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     @jobs_weakify(self)
     NSMutableArray * (^currentPageDataMutArr)(CurrentPage currentPage) = ^(CurrentPage currentPage){
         @jobs_strongify(self)
-        if (currentPage == CurrentPage_login) {
+        if (currentPage == CurrentPage_Login) {
             return self.jobsAppDoorContentView.loginDoorInputViewBaseStyleMutArr;
         }else{
             return self.jobsAppDoorContentView.registerDoorInputViewBaseStyleMutArr;
@@ -275,7 +275,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
                 if (btn.titleForNormalState.isEqualToString(Title1)){
-                    self.currentPage = @(CurrentPage_login);
+                    self.currentPage = @(CurrentPage_Login);
                     [self.forgotCodeContentView removeContentViewWithOffsetY:0];
                     [self.jobsAppDoorContentView showContentViewWithOffsetY:0];
                     @jobs_weakify(self)
@@ -344,7 +344,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                 else if (btn.titleForNormalState.isEqualToString(Title3)){// Title3 JobsInternationalization(@"Forgot code")
                     
                     {//本页动效实现的
-                        self.currentPage = @(CurrentPage_forgotCode);
+                        self.currentPage = @(CurrentPage_ForgotCode);
                         [self->_jobsAppDoorContentView removeContentViewWithOffsetY:0];
                         [self.forgotCodeContentView showContentViewWithOffsetY:0];
                         self.customerServiceBtn.alpha = 0;
@@ -381,7 +381,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             @jobs_strongify(self)
             data.jobsWidth = 2;
             data.layerCor = JobsWhiteColor;
-            data.cornerRadius = self->_customerServiceBtn.height / 2;
+            data.cornerRadiusValue = self->_customerServiceBtn.height / 2;
         }));
     }return _customerServiceBtn;
 }

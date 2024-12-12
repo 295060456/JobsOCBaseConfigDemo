@@ -46,7 +46,7 @@
     switch (zwPullMenuStyle) {
         case PullMenuDarkStyle:
         {
-            self.selectedBgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+            self.selectedBgView.backgroundColor = JobsBlackColor.colorWithAlphaComponentBy(.2f);
             self.menuTitleLab.textColor = [UIColor whiteColor];
             self.lineColor = [UIColor whiteColor];
         }

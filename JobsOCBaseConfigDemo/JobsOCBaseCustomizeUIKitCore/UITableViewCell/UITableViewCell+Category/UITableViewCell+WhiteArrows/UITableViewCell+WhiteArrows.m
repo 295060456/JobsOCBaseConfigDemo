@@ -15,7 +15,7 @@
     if (self.accessoryType == UITableViewCellAccessoryDisclosureIndicator) {
         @jobs_weakify(self)
         BaseButton *btn = BaseButton.initByBackgroundImage(self.img)
-            .onClick(^(__kindof UIButton *x){
+            .onClickBy(^(__kindof UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 if (customAccessoryViewBlock) customAccessoryViewBlock(self);

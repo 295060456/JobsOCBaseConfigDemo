@@ -67,12 +67,15 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrayByVoidBlock)(void);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIDBlock)(id _Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByStringBlock)(NSString *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByArrayBlock)(__kindof NSArray *_Nullable data);
-typedef __kindof NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIntegerBlock)(NSInteger data);
+typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
+typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIDBlock)(id _Nullable data);
 
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString *_Nullable data);
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByDataBlock)(NSData *_Nullable data);
-typedef __kindof NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByVoidBlock)(void);
+typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByVoidBlock)(void);
+
+typedef NSMutableSet *_Nullable(^JobsReturnNSMutableSetByIDBlock)(id _Nullable data);
 
 #pragma mark —— 关于 NSValue
 typedef NSValue *_Nullable(^JobsReturnValueByCGSizeBlock)(CGSize data);
@@ -155,6 +158,7 @@ typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByVoidBlock)(void);
 typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByWindowSceneBlock)(UIWindowScene *_Nullable data);
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemByIDBlock)(id _Nullable data);
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemBySELBlock)(SEL _Nullable data);
+typedef UIEditMenuInteraction *_Nullable(^JobsReturnUIEditMenuInteractionByIDBlock)(id<UIEditMenuInteractionDelegate>_Nullable data);
 #pragma mark —— 关于按钮
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByControlStateBlock)(UIControlState data);
@@ -280,6 +284,7 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByBOOLBlock)(BOOL data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByURLBlock)(NSURL *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByArrAndNSIntegerBlock)(__kindof NSArray *_Nullable arr,NSInteger index);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateBlock)(NSDate *_Nullable date);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDataBlock)(__kindof NSData *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByImageBlock)(UIImage *_Nullable data);

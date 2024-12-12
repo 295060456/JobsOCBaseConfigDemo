@@ -186,6 +186,24 @@ NS_INLINE __kindof NSMutableData *_Nonnull jobsMakeMutData(jobsByMutableDataBloc
     return data;
 }
 
+NS_INLINE __kindof NSSet *_Nonnull jobsMakeMutSet(jobsByMutableSetBlock _Nonnull block){
+    NSMutableSet *data = NSMutableSet.set;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
+    NSMutableArray *data = NSMutableArray.array;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
+    NSMutableDictionary *data = NSMutableDictionary.dictionary;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof NSMutableString *_Nonnull jobsMakeMutString(jobsByMutableStringBlock _Nonnull block){
     NSMutableString *data = NSMutableString.string;
     if (block) block(data);

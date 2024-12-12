@@ -221,14 +221,14 @@ ratio:(CGFloat)ratio {
     if (!_filterBtn) {
         @jobs_weakify(self)
         _filterBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeTrailing)
             .jobsResetImagePadding(JobsWidth(6))
             .jobsResetBtnImage(JobsIMG(@"筛选箭头（向下）"))
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(fontName(@"NotoSans-Bold", 12))
             .jobsResetBtnTitle(JobsInternationalization(@"篩選"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 x.selected = !x.selected;
@@ -245,7 +245,7 @@ ratio:(CGFloat)ratio {
                 }else{
                     self.vc.hidePopupView(self.popUpFiltrationView);
                 }
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_filterBtn];
@@ -261,11 +261,11 @@ ratio:(CGFloat)ratio {
     if (!_customBtn) {
         @jobs_weakify(self)
         _customBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(fontName(@"NotoSans-Bold", 12))
             .jobsResetBtnTitle(JobsInternationalization(@"自定义"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 x.selected = !x.selected;
@@ -284,10 +284,10 @@ ratio:(CGFloat)ratio {
                 }else{
                     self.vc.hidePopupView(self.popUpCustomView);
                 }
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
-        _customBtn.selectedStateTitleColor(HEXCOLOR(0xAE8330));
+        _customBtn.selectedStateTitleColorBy(HEXCOLOR(0xAE8330));
         [self.view addSubview:_customBtn];
         [_customBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.filterBtn.mas_left).offset(JobsWidth(-8));

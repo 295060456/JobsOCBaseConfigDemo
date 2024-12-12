@@ -29,7 +29,7 @@
         self.titleStr_2 = JobsInternationalization(@"发送验证码");
         self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.layerCor = JobsWhiteColor;
-            data.cornerRadius = 1;
+            data.cornerRadiusValue = 1;
         }));
     }return self;
 }
@@ -131,18 +131,17 @@
             data.runningValue.font = UIFontWeightMediumSize(JobsWidth(14));
             /// 计时器结束【静态值】
             data.endValue.bgCor = JobsClearColor;
-        })).onClick(^(__kindof UIButton *x){
+        })).onClickBy(^(__kindof UIButton *x){
             @jobs_strongify(self)
             x.startTimer();//选择时机、触发启动
 //            NSLog(@"SSSSS = 获取验证码");
             if (self.objectBlock) self.objectBlock(x);
-        }).heartBeat(^(id _Nullable data){
+        }).heartBeatBy(^(id _Nullable data){
             if ([data isKindOfClass:UIButtonModel.class]) {
                 UIButtonModel *model = (UIButtonModel *)data;
                 NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
-        });
-        [self addSubview:_countDownBtn];
+        });[self addSubview:_countDownBtn];
         [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-JobsWidth(120));
             make.top.equalTo(self).offset(JobsWidth(8));

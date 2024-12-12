@@ -29,7 +29,7 @@
 //        self.backgroundColor = JobsRedColor;
         self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.jobsWidth = 1;
-            data.layerCor = Cor4;
+            data.layerCor = Cor3;
         }));
     }return self;
 }
@@ -39,7 +39,7 @@
         self.backgroundColor = JobsClearColor;
         self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.jobsWidth = 1;
-            data.layerCor = Cor4;
+            data.layerCor = Cor3;
         }));
     }return self;
 }
@@ -65,8 +65,8 @@
     _textField.isShowDelBtn = self.doorInputViewBaseStyleModel.isShowDelBtn;
     _textField.rightViewOffsetX = self.doorInputViewBaseStyleModel.rightViewOffsetX ? : JobsWidth(8);// 删除按钮的偏移量
     _textField.requestParams = self.textFieldInputModel;
-    _textField.offset = self.doorInputViewBaseStyleModel.offset ? : JobsWidth(1);
-    _textField.animationColor = self.doorInputViewBaseStyleModel.animationColor ? : Cor4;
+    _textField.text_offset = self.doorInputViewBaseStyleModel.offset ? : JobsWidth(1);
+    _textField.animationColor = self.doorInputViewBaseStyleModel.animationColor ? : Cor3;
     _textField.moveDistance = self.doorInputViewBaseStyleModel.moveDistance ? : JobsWidth(35);
     _textField.fieldEditorOffset = self.doorInputViewBaseStyleModel.fieldEditorOffset ? : JobsWidth(50);
 }
@@ -106,7 +106,7 @@
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(void)changeTextFieldAnimationColor:(BOOL)toRegisterBtnSelected{
-    self.textField.animationColor = toRegisterBtnSelected ? Cor4 : Cor4;
+    self.textField.animationColor = toRegisterBtnSelected ? Cor3 : Cor3;
 }
 
 -(JobsMagicTextField *_Nullable)getTextField{
@@ -178,7 +178,6 @@
             @jobs_strongify(self)
             x.selected = !x.selected;
             if (x.selected) {
-                @jobs_weakify(self)
                 self->dropDownListView = [self motivateFromView:x
                                   jobsDropDownListViewDirection:JobsDropDownListViewDirection_UP
                                                            data:self.jobsPageViewDataMutArr

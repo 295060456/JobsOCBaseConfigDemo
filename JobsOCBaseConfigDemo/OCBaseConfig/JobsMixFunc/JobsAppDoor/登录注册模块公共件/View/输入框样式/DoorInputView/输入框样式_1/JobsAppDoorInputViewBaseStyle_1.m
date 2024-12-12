@@ -70,7 +70,7 @@
     _textField.placeholderColor = self.doorInputViewBaseStyleModel.placeholderColor;
     _textField.placeholderFont = self.doorInputViewBaseStyleModel.placeholderFont;
     _textField.leftViewOffsetX = self.doorInputViewBaseStyleModel.leftViewOffsetX ? :  JobsWidth(17);
-    _textField.animationColor = self.doorInputViewBaseStyleModel.animationColor ? : Cor4;
+    _textField.animationColor = self.doorInputViewBaseStyleModel.animationColor ? : Cor3;
     _textField.placeHolderAlignment = self.doorInputViewBaseStyleModel.placeHolderAlignment ? : NSTextAlignmentLeft;
     _textField.placeHolderOffset = self.doorInputViewBaseStyleModel.placeHolderOffset ? : JobsWidth(39);
     _textField.moveDistance = self.doorInputViewBaseStyleModel.moveDistance ? : JobsWidth(35);
@@ -114,7 +114,7 @@
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(void)changeTextFieldAnimationColor:(BOOL)toRegisterBtnSelected{
-    self.textField.animationColor = toRegisterBtnSelected ? Cor4 : Cor4;
+    self.textField.animationColor = toRegisterBtnSelected ? Cor3 : Cor3;
 }
 
 -(JobsMagicTextField *_Nullable)getTextField{
@@ -157,13 +157,13 @@
             data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
                 model.bgCor = JobsClearColor;
             });
-        })).onClick(^(__kindof UIButton *x){
+        })).onClickBy(^(__kindof UIButton *x){
             @jobs_strongify(self)
             x.startTimer();//选择时机、触发启动
             if (self.objectBlock) self.objectBlock(x);
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
-        }).heartBeat(^(id _Nullable data){
+        }).heartBeatBy(^(id _Nullable data){
             if ([data isKindOfClass:UIButtonModel.class]) {
                 UIButtonModel *model = (UIButtonModel *)data;
                 NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);

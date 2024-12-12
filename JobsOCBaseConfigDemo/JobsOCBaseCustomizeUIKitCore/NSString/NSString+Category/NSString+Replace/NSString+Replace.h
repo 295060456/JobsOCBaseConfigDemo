@@ -86,6 +86,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(__kindof NSString *_Nullable)remove200BMark;
 /// 从字符串中提取指定范围内的子字符串
 -(JobsReturnStringByRangeBlock _Nonnull)substringWithRange;
+/// 将字符串的每一个字后面加换行符，使其竖向排列
+-(__kindof NSString *_Nullable)addNewlines;
 
 @end
 

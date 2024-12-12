@@ -8,19 +8,15 @@
 #import "ZMJCell+CustomView.h"
 
 @implementation ZMJCell (CustomView)
-
-static char *ZMJCell_CustomView_btn = "ZMJCell_CustomView_btn";
-@dynamic btn;
-
-static char *ZMJCell_CustomView_colorBarView = "ZMJCell_CustomView_colorBarView";
-@dynamic colorBarView;
-
-static char *ZMJCell_CustomView_color = "ZMJCell_CustomView_color";
-@dynamic color;
-
 #pragma mark —— @property(nonatomic,strong)UIButton *btn;
+JobsKey(_btn)
+@dynamic btn;
+-(void)setBtn:(UIButton *)btn{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_btn, btn);
+}
+
 -(UIButton *)btn{
-    UIButton *Btn = objc_getAssociatedObject(self, ZMJCell_CustomView_btn);
+    UIButton *Btn = Jobs_getAssociatedObject(_btn);
     if (!Btn) {
         Btn = UIButton.new;
         Btn.frame = self.bounds;
@@ -30,57 +26,41 @@ static char *ZMJCell_CustomView_color = "ZMJCell_CustomView_color";
         Btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         Btn.titleLabel.numberOfLines = 0;
         [self.contentView addSubview:Btn];
-        objc_setAssociatedObject(self,
-                                 ZMJCell_CustomView_btn,
-                                 Btn,
-                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_btn, Btn);
     }return Btn;
 }
-
--(void)setBtn:(UIButton *)btn{
-    objc_setAssociatedObject(self,
-                             ZMJCell_CustomView_btn,
-                             btn,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
 #pragma mark —— @property(nonatomic,strong)UIView *colorBarView;
+JobsKey(_colorBarView)
+@dynamic colorBarView;
+-(void)setColorBarView:(UIView *)colorBarView{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_colorBarView, colorBarView);
+}
+
 -(UIView *)colorBarView{
-    UIView *ColorBarView = objc_getAssociatedObject(self, ZMJCell_CustomView_colorBarView);
+    UIView *ColorBarView = Jobs_getAssociatedObject(_colorBarView);
     if (!ColorBarView) {
-        ColorBarView = UIView.new;
-        ColorBarView.backgroundColor = self.color;
-        ColorBarView.frame = CGRectInset(self.bounds, 2, 2);
-        [self.contentView addSubview:ColorBarView];
-        objc_setAssociatedObject(self,
-                                 ZMJCell_CustomView_colorBarView,
-                                 ColorBarView,
-                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        @jobs_weakify(self)
+        ColorBarView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            @jobs_strongify(self)
+            view.backgroundColor = self.color;
+            view.frame = CGRectInset(self.bounds, 2, 2);
+            [self.contentView addSubview:view];
+        });Jobs_setAssociatedRETAIN_NONATOMIC(_colorBarView, ColorBarView);
     }return ColorBarView;
 }
-
--(void)setColorBarView:(UIView *)colorBarView{
-    objc_setAssociatedObject(self,
-                             ZMJCell_CustomView_colorBarView,
-                             colorBarView,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
 #pragma mark —— @property(nonatomic,strong)UIColor *color;
+JobsKey(_color)
+@dynamic color;
+-(void)setColor:(UIColor *)color{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_color, color);
+}
+
 -(UIColor *)color{
-    UIColor *Color = objc_getAssociatedObject(self, ZMJCell_CustomView_color);
+    UIColor *Color = Jobs_getAssociatedObject(_color);
     if (!Color) {
         Color = JobsBlueColor;
-        objc_setAssociatedObject(self,
-                                 ZMJCell_CustomView_color,
-                                 Color,
-                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_color, Color);
     }return Color;
-}
-
--(void)setColor:(UIColor *)color{
-    objc_setAssociatedObject(self,
-                             ZMJCell_CustomView_color,
-                             color,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

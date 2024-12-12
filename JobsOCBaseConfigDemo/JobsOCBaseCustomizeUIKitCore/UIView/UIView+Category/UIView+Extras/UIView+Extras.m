@@ -541,7 +541,7 @@ JobsKey(_bottomBorderLayer)
         @jobs_strongify(self)
         self.layer.borderColor = data.layerCor.CGColor;
         self.layer.borderWidth = data.jobsWidth;
-        self.layer.cornerRadius = data.cornerRadius;
+        self.layer.cornerRadius = data.cornerRadiusValue;
         self.layer.masksToBounds = data.masksToBounds;
         return self;
     };

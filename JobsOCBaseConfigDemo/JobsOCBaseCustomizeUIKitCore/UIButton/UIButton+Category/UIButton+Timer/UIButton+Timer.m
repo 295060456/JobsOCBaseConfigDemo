@@ -66,7 +66,7 @@
         self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable model) {
             model.layerCor = data.layerBorderCor;
             model.jobsWidth = data.layerBorderWidth;
-            model.cornerRadius = data.layerCornerRadius;
+            model.cornerRadiusValue = data.layerCornerRadius;
         }));
     };
 }
@@ -351,15 +351,15 @@ JobsKey(_btnTimerConfig)
     [BtnTimerConfig actionObjectBlock:^(NSTimerManager *data) {
         @jobs_strongify(self)
         switch (data.timerProcessType) {
-            case TimerProcessType_ready:{
+            case TimerProcessType_Ready:{
                 
             }break;
-            case TimerProcessType_running:{
+            case TimerProcessType_Running:{
                 data.timerStyle = BtnTimerConfig.countDownBtnType;
                 NSLog(@"DDD = %f",data.anticlockwiseTime);
                 self.timerRuning((long)data.anticlockwiseTime);/// 倒计时方法
             }break;
-            case TimerProcessType_end:{
+            case TimerProcessType_End:{
                 self.timerDestroy();
             }break;
             default:

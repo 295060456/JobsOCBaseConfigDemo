@@ -100,13 +100,13 @@ NS_ASSUME_NONNULL_END
              model.titleFont = bayonRegular(JobsWidth(12));
              model.backgroundImage = JobsIMG(@"获取验证码背景图");
          });
-     })).onClick(^(__kindof UIButton *x){
+     })).onClickBy(^(__kindof UIButton *x){
          @jobs_strongify(self)
          x.startTimer();//选择时机、触发启动
          if (self.objectBlock) self.objectBlock(x);
-     }).onLongPressGesture(^(id data){
+     }).onLongPressGestureBy(^(id data){
          NSLog(@"");
-     }).heartBeat(^(NSTimerManager *_Nullable data){
+     }).heartBeatBy(^(NSTimerManager *_Nullable data){
          NSLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
      });
  }

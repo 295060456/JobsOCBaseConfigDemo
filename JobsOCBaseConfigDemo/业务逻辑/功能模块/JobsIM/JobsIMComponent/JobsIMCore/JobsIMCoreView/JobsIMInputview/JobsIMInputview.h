@@ -21,7 +21,7 @@ UITextFieldDelegate
 
 @property(nonatomic,strong)ZYTextField *inputTextField;
 
--(void)someChangeUI:(NSString *)string;//一些变化的UI
+-(jobsByStringBlock _Nonnull)someChangeUIBy;
 
 @end
 

@@ -8,7 +8,7 @@
 #import "ButtonTimerConfigModel.h"
 
 @implementation ButtonTimerConfigModel
-UILocationProtocol_UIViewModelSynthesize
+UILocationProtocol_synthesize
 #pragma mark —— 重写set方法
 @synthesize countDownBtnType = _countDownBtnType;
 -(void)setCountDownBtnType:(TimerStyle)countDownBtnType{
@@ -53,7 +53,9 @@ UILocationProtocol_UIViewModelSynthesize
 /// 计时器未开始
 -(UIButtonModel *)readyPlayValue{
     if (!_readyPlayValue) {
+        @jobs_weakify(self)
         _readyPlayValue = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            @jobs_strongify(self)
 //            data.layerBorderCor = JobsWhiteColor;
 //            data.textCor = JobsWhiteColor;
 //            data.font = UIFontWeightRegularSize(12);

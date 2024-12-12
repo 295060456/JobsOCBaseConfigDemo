@@ -145,7 +145,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             @jobs_strongify(self)
             model.jobsWidth = 1.f;
             model.layerCor = HEXCOLOR(0xEEE2C8);
-            model.cornerRadius = self->_userHeaderBtn.imageView.image.jobsHeight / 2;
+            model.cornerRadiusValue = self->_userHeaderBtn.imageView.image.jobsHeight / 2;
         }));
         _userHeaderBtn.imageTitleSpace = JobsWidth(12);
         _userHeaderBtn.makeBtnTitleByShowingType(UILabelShowingType_05);

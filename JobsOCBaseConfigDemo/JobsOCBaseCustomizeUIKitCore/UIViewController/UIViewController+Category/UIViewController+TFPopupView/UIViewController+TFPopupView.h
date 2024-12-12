@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_END
          _customBtn.jobsResetBtnTitle = JobsInternationalization(@"自定义");
          _customBtn.titleFont = fontName(@"NotoSans-Bold", 12);
          _customBtn.jobsResetBtnTitleCor = HEXCOLOR(0x3D4A58);
-         _customBtn.selectedStateTitleColor = HEXCOLOR(0xAE8330);
+         _customBtn.selectedStateTitleColorBy = HEXCOLOR(0xAE8330);
          [self.view addSubview:_customBtn];
          [_customBtn mas_makeConstraints:^(MASConstraintMaker *make) {
              make.right.equalTo(self.filterBtn.mas_left).offset(JobsWidth(-8));

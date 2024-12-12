@@ -103,9 +103,9 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
     if (!_contactCustomerServiceBtn) {
         @jobs_weakify(self)
         _contactCustomerServiceBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnImage(JobsIMG(@"zaixiankefu_en"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 NSLog(@"返回登录");
                 if (isNull(self.customerContactModel.onlineUrl.customerAccount)) {
@@ -115,7 +115,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
                 }
                 [self endEditing:YES];
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.backgroundImageView addSubview:_contactCustomerServiceBtn];
@@ -132,12 +132,12 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
     if (!_closeBtn) {
         @jobs_weakify(self)
         _closeBtn = BaseButton.jobsInit()
-            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+            .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .jobsResetBtnBgImage(JobsIMG(@"客服_关闭按钮"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.backgroundImageView addSubview:_closeBtn];

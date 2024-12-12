@@ -245,5 +245,22 @@
         return [self substringWithRange:data];
     };
 }
+/// 将字符串的每一个字后面加换行符，使其竖向排列
+-(__kindof NSString *_Nullable)addNewlines{
+    @jobs_weakify(self)
+    return jobsMakeMutString(^(__kindof NSMutableString * _Nullable data) {
+        @jobs_strongify(self)
+        for (NSUInteger i = 0; i < self.length; i++) {
+            unichar character = [self characterAtIndex:i];
+            [data appendFormat:@"%C\n", character];
+        }
+    }).copy;
+}
+
+-(void)de{
+    ;
+    
+    
+}
 
 @end

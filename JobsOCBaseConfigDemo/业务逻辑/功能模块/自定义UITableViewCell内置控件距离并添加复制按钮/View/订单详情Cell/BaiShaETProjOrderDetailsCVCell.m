@@ -36,7 +36,7 @@
     cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
         model.jobsWidth = .5f;
         model.layerCor = HEXCOLOR(0xEEE2C8);
-        model.cornerRadius = JobsWidth(8);
+        model.cornerRadiusValue = JobsWidth(8);
     }));
     JobsCellCor(JobsWhiteColor);
     return cell;

@@ -15,7 +15,7 @@
         @jobs_weakify(self)
         _excelView = jobsMakeExcelView(^(__kindof JobsExcelView * _Nullable view) {
             @jobs_strongify(self)
-            view.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+            view.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
             [self addSubview:view];
             [view mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self);
@@ -91,7 +91,7 @@
                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                     @jobs_strongify(self)
                     buttonModel.title = self.excelData.leftTitles[y];
-                    buttonModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                    buttonModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                     buttonModel.titleCor = JobsWhiteColor;
                     buttonModel.baseBackgroundColor = y % 2 ? self.excelData.cor2 : self.excelData.cor1;
                     buttonModel.backgroundImage = y % 2 ? self.excelData.image2 : self.excelData.image1;

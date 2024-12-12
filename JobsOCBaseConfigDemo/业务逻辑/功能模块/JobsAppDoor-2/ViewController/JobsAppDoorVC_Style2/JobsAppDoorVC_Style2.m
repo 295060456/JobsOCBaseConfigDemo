@@ -57,7 +57,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         self.viewModel = (UIViewModel *)self.requestParams;
         if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_Image) {
             self.view = self.bgImgV;
-        }else if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_video){
+        }else if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_Video){
             [self.player.currentPlayerManager play];
         }else{}
         self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
@@ -74,7 +74,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     self.registerContentViewY = 0;
     self.loginCustomerServiceBtnY = 0;
     self.registerCustomerServiceBtnY = 0;
-    self.currentPage = @(CurrentPage_login);//默认页面是登录
+    self.currentPage = @(CurrentPage_Login);//默认页面是登录
     self.loginDoorInputEditing = NO;
     
     [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
@@ -100,7 +100,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         self.viewModel = (UIViewModel *)self.requestParams;
         if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_Image) {
 
-        }else if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_video){
+        }else if ([self.viewModel.requestParams integerValue] == JobsAppDoorBgType_Video){
             if (self.player.currentPlayerManager.isPlaying) {
                 [self.player.currentPlayerManager pause];
             }
@@ -119,7 +119,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     @jobs_weakify(self)
     NSMutableArray * (^currentPageDataMutArr)(CurrentPage currentPage) = ^(CurrentPage currentPage){
         @jobs_strongify(self)
-        if (currentPage == CurrentPage_login) {
+        if (currentPage == CurrentPage_Login) {
             return self.loginContentView.appDoorInputViewBaseStyle;
         }else{
             return self.registerContentView.appDoorInputViewBaseStyle;
@@ -159,9 +159,9 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         self.loginContentView.y = self.loginContentViewY;
         self.registerContentView.y = self.registerContentViewY;
         
-        if (self.currentPage == CurrentPage_login) {
+        if (self.currentPage == CurrentPage_Login) {
             self.customerServiceBtn.y = self.loginCustomerServiceBtnY;
-        }else if (self.currentPage.integerValue == CurrentPage_register){
+        }else if (self.currentPage.integerValue == CurrentPage_Register){
             self.customerServiceBtn.y = self.registerCustomerServiceBtnY;
         }else{}
         
@@ -194,7 +194,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
                 if ([btn.titleLabel.text isEqualToString:Title2]) {
-                    self.currentPage = @(CurrentPage_register);
+                    self.currentPage = @(CurrentPage_Register);
                     [self->_loginContentView removeContentViewWithOffsetY:0];
                     [self.registerContentView showContentViewWithOffsetY:0];
                     @jobs_weakify(self)
@@ -212,7 +212,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
                         
                     } completion:nil];
                 }else if([btn.titleLabel.text isEqualToString:Title3]){
-                    self.currentPage = @(CurrentPage_forgotCode);
+                    self.currentPage = @(CurrentPage_ForgotCode);
                     [self->_loginContentView removeContentViewWithOffsetY:0];
                     [self.forgotCodeContentView showContentViewWithOffsetY:0];
                     self.customerServiceBtn.alpha = 0;
@@ -248,7 +248,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
                 if ([btn.titleLabel.text isEqualToString:Title1]){
-                    self.currentPage = @(CurrentPage_login);
+                    self.currentPage = @(CurrentPage_Login);
                     [self.registerContentView removeContentViewWithOffsetY:0];
                     [self->_loginContentView showContentViewWithOffsetY:0];
                     @jobs_weakify(self)
@@ -284,7 +284,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
                 if ([btn.titleLabel.text isEqualToString:Title1]){
-                    self.currentPage = @(CurrentPage_login);
+                    self.currentPage = @(CurrentPage_Login);
                     [self.forgotCodeContentView removeContentViewWithOffsetY:0];
                     [self->_loginContentView showContentViewWithOffsetY:0];
                     @jobs_weakify(self)
@@ -328,11 +328,11 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
                           JobsIMG(@"客服"),
                           NSDirectionalRectEdgeTop,
                           JobsWidth(5))
-            .bgColor(JobsWhiteColor)
-            .cornerRadiusValue(_customerServiceBtn.height / 2)
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsWhiteColor)
+            .cornerRadiusValueBy(_customerServiceBtn.height / 2)
+            .onClickBy(^(UIButton *x){
                 toast(x.titleForNormalState);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [_customerServiceBtn buttonAutoFontByWidth];

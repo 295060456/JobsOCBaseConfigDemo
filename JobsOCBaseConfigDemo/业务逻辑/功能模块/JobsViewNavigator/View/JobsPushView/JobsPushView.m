@@ -36,11 +36,11 @@
     @jobs_weakify(self)
     if(!_push_btn){
         _push_btn = BaseButton.jobsInit()
-            .bgColor(JobsOrangeColor)
+            .bgColorBy(JobsOrangeColor)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"点击按钮push出view"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 
@@ -62,7 +62,7 @@
     //
                 self.configViewNavigatorBySuperviewAndView_(self,self.pushView);
                 self.navigator.pushView(self.pushView,YES);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_push_btn];
@@ -78,16 +78,16 @@
     @jobs_weakify(self)
     if(!_pop_btn){
         _pop_btn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"点我pop当前view"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 NSLog(@"%@",self.navigator);
                 if(self.navigator) self.navigator.popViewAnimated(YES);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_pop_btn];

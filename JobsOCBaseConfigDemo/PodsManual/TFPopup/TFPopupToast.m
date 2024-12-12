@@ -75,7 +75,7 @@ dissmissDuration:(NSTimeInterval)duration
         
         self.layer.cornerRadius = 6;
         self.layer.masksToBounds = YES;
-        self.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.7];
+        self.backgroundColor = JobsBlackColor.colorWithAlphaComponentBy(.7f);
         self.userInteractionEnabled = NO;
         [self addSubview:self.msgLabel];
         

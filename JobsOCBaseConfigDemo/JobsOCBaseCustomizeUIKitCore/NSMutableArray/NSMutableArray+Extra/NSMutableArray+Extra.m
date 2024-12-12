@@ -39,9 +39,9 @@
     };
 }
 /// 阻止向可变数组添加空元素
--(JobsReturnIDByIDBlock _Nonnull)add{
+-(JobsReturnMutableArrayByIDBlock _Nonnull)add{
     @jobs_weakify(self)
-    return ^id (id _Nullable data) {
+    return ^NSMutableArray *_Nullable(id _Nullable data) {
         @jobs_strongify(self)
         if(data){
             [self addObject:data];/// 向数组加入nil会崩
@@ -122,8 +122,8 @@
     };
 }
 /// 监控选中状态
--(void)unselectBlock:(jobsByBtnBlock)unselectBlock
-         selectBlock:(jobsByBtnBlock)selectBlock{
+-(void)unselectBlock:(jobsByBtnBlock _Nullable)unselectBlock
+         selectBlock:(jobsByBtnBlock _Nullable)selectBlock{
     for (id obj in self) {
         [[obj rac_valuesForKeyPath:@"selected" observer:self]
          subscribeNext:^(NSNumber *selected) {

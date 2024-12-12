@@ -106,12 +106,12 @@
                                                    nil,
                                                    JobsIMG(@"用户名称"),
                                                    JobsWidth(8))
-        .bgColor(JobsBlackColor)
-        .onClick(^(UIButton *x){
+        .bgColorBy(JobsBlackColor)
+        .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             [self endEditing:YES];
             if (self.objectBlock) self.objectBlock(x);
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
         });
         _toRegisterBtn.makeNewLineShows(YES);
@@ -146,11 +146,11 @@
             .initByStyle1(Title4,
                           UIFontWeightSemiboldSize(15),
                           JobsWhiteColor)
-            .bgColor(JobsBlackColor)
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsBlackColor)
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [_abandonLoginBtn buttonAutoWidthByFont];
@@ -170,13 +170,13 @@
             .initByStyle1(Title7,
                           UIFontWeightSemiboldSize(15),
                           JobsWhiteColor)
-            .cornerRadiusValue(ThingsHeight / 2)
-            .bgColor([JobsSystemPinkColor colorWithAlphaComponent:0.7])
-            .onClick(^(UIButton *x){
+            .cornerRadiusValueBy(ThingsHeight / 2)
+            .bgColorBy(JobsSystemPinkColor.colorWithAlphaComponentBy(.7f))
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 toast(x.titleForNormalState);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_sendBtn];
@@ -198,12 +198,12 @@
                              JobsWhiteColor,
                              JobsIMG(@"没有记住密码"),
                              JobsWidth(3))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 x.selected = !x.selected;
                 x.selected ? x.jobsResetBtnImage(JobsIMG(@"记住密码")) : x.jobsResetBtnImage(JobsIMG(@"没有记住密码"));
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _storeCodeBtn.selected = YES;// 默认记住密码
@@ -223,11 +223,11 @@
         @jobs_weakify(self)
         _findCodeBtn = BaseButton
             .initByStyle1(Title3,UIFontWeightRegularSize(12),JobsBlueColor)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             })
-            .onLongPressGesture(^(id data){
+            .onLongPressGestureBy(^(id data){
             NSLog(@"");
             });
         [_findCodeBtn buttonAutoWidthByFont];

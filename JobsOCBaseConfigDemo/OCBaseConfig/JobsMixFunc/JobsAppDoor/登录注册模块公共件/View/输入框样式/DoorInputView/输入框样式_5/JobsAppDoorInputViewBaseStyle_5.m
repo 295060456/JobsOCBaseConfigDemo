@@ -78,7 +78,7 @@
     _textField.placeHolderAlignment = self.doorInputViewBaseStyleModel.placeHolderAlignment;
     _textField.placeHolderOffset = self.doorInputViewBaseStyleModel.placeHolderOffset;
     _textField.leftViewOffsetX = self.doorInputViewBaseStyleModel.leftViewOffsetX;
-    _textField.offset = self.doorInputViewBaseStyleModel.offset;
+    _textField.text_offset = self.doorInputViewBaseStyleModel.offset;
     _textField.requestParams = self.textFieldInputModel;
     _textField.placeholderColor = self.doorInputViewBaseStyleModel.placeholderColor;
     _textField.placeholderFont = self.doorInputViewBaseStyleModel.placeholderFont;
@@ -145,7 +145,7 @@
     if (!_securityModeBtn) {
         _securityModeBtn = BaseButton
             .initByNormalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 if (self.objectBlock) self.objectBlock(x);
                 x.selected = !x.selected;
                 if(x.selected){
@@ -155,7 +155,7 @@
                 if (x.selected && !self.textField.isEditing) {
                     self.textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
                 }
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
         });
         [self addSubview:_securityModeBtn];
@@ -214,9 +214,9 @@
             data.endValue.layerBorderCor = JobsClearColor;
             data.endValue.textCor = HEXCOLOR(0xAE8330);
             data.endValue.text = JobsInternationalization(@"重新获取验证码");
-        })).onClick(^(__kindof UIButton *_Nullable x){
+        })).onClickBy(^(__kindof UIButton *_Nullable x){
             x.startTimer();
-        }).heartBeat(^(id _Nullable data){
+        }).heartBeatBy(^(id _Nullable data){
             if ([data isKindOfClass:UIButtonModel.class]) {
                 UIButtonModel *model = (UIButtonModel *)data;
                 NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
@@ -224,7 +224,7 @@
         }).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.layerCor = HEXCOLOR(0xAE8330);
             data.jobsWidth = 0.5f;
-            data.cornerRadius = 25 / 2;
+            data.cornerRadiusValue = 25 / 2;
         }));
         [self addSubview:_authCodeBtn];
         [_authCodeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -239,7 +239,7 @@
     if (!_chooseBtn) {
         @jobs_weakify(self)
         _chooseBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-            data.buttonConfigTitleAlignment = UIButtonConfigurationTitleAlignmentAutomatic;
+            data.buttonConfigurationTitleAlignment = UIButtonConfigurationTitleAlignmentAutomatic;
             data.textAlignment = NSTextAlignmentCenter;
             data.subTextAlignment = NSTextAlignmentCenter;
             data.normalImage = self.chooseBtnViewModel.image;
@@ -253,7 +253,7 @@
             data.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
             data.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             data.roundingCorners = UIRectCornerAllCorners;
-        })).onClick(^(UIButton *x){
+        })).onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             x.selected = !x.selected;
             if (self.objectBlock) self.objectBlock(x);
@@ -270,7 +270,7 @@
             }else{
                 self->dropDownListView.dropDownListViewDisappear(x);
             }
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
         });
         [self addSubview:_chooseBtn];

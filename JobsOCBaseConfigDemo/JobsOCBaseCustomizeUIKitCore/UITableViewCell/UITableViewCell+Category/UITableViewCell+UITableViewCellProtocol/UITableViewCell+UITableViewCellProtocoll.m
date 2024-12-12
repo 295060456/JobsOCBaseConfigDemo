@@ -11,7 +11,7 @@
 #pragma mark —— @dynamic UITableViewCellProtocol
 UITableViewCellProtocol_dynamic
 #pragma mark —— UITableViewCellProtocol
-+(JobsReturnTableViewCellByTableViewCellStyleBlock)initTableViewCellWithStyle{
++(JobsReturnTableViewCellByTableViewCellStyleBlock _Nonnull)initTableViewCellWithStyle{
     @jobs_weakify(self)
     return ^(UITableViewCellStyle tableViewCellStyle) {
         @jobs_strongify(self)
@@ -33,8 +33,7 @@ UITableViewCellProtocol_dynamic
         @jobs_strongify(self)
         UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
-            cell = [self initTableViewCell:self
-                                 withStyle:UITableViewCellStyleDefault];
+            cell = [self initTableViewCell:self withStyle:UITableViewCellStyleDefault];
             cell.settingForTableViewCell();
         }return cell;
     };
@@ -46,8 +45,7 @@ UITableViewCellProtocol_dynamic
         @jobs_strongify(self)
         UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
-            cell = [self initTableViewCell:self
-                                 withStyle:UITableViewCellStyleValue1];
+            cell = [self initTableViewCell:self withStyle:UITableViewCellStyleValue1];
             cell.settingForTableViewCell();
         }return cell;
     };
@@ -59,8 +57,7 @@ UITableViewCellProtocol_dynamic
         @jobs_strongify(self)
         UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
-            cell = [self initTableViewCell:self
-                                 withStyle:UITableViewCellStyleValue2];
+            cell = [self initTableViewCell:self withStyle:UITableViewCellStyleValue2];
             cell.settingForTableViewCell();
         }return cell;
     };
@@ -72,8 +69,7 @@ UITableViewCellProtocol_dynamic
         @jobs_strongify(self)
         UITableViewCell *cell = (UITableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
-            cell = [self initTableViewCell:self
-                                 withStyle:UITableViewCellStyleSubtitle];
+            cell = [self initTableViewCell:self withStyle:UITableViewCellStyleSubtitle];
             cell.settingForTableViewCell();
         }return cell;
     };

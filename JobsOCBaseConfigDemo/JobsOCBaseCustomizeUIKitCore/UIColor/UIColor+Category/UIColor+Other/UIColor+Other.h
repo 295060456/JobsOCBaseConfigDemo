@@ -42,12 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 实例方法
 /// 将一个确定的UIColor子类，翻译成RGB格式的字符串值并对外输出【可能因为四舍五入的问题影响末位精度，误差在±1】
 /// 资料来源  https://blog.csdn.net/thanklife/article/details/25784879
--(JobsReturnStringByCorBlock)rgbCorStr;
+-(JobsReturnStringByCorBlock)rgbCorStrBy;
 /// 将一个确定的UIColor子类，翻译成十六进制格式的字符串值并对外输出
--(JobsReturnCorModelByVoidBlock)hexadecimalCorStr;
+-(JobsReturnCorModelByVoidBlock)hexadecimalCorStrBy;
 /// iOS 父视图透明度影响到子视图
 /// https://blog.csdn.net/ios_xumin/article/details/114263960
--(JobsReturnColorByCGFloatBlock)colorWithAlphaComponent;
+-(JobsReturnColorByCGFloatBlock)colorWithAlphaComponentBy;
 /// 根据颜色生成图片
 -(UIImage *)image;
 
@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_END
  
  */
 NS_INLINE UIColor *_Nullable JobsLightTextCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsLightTextColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsLightTextColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -76,7 +76,7 @@ NS_INLINE UIColor *_Nullable JobsLightTextCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsLightGrayCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsLightGrayColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsLightGrayColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -84,7 +84,7 @@ NS_INLINE UIColor *_Nullable JobsLightGrayCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsGreenCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsGreenColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsGreenColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -92,7 +92,7 @@ NS_INLINE UIColor *_Nullable JobsGreenCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsMagentaCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsMagentaColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsMagentaColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -100,7 +100,7 @@ NS_INLINE UIColor *_Nullable JobsMagentaCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsBlackCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsBlackColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsBlackColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -108,7 +108,7 @@ NS_INLINE UIColor *_Nullable JobsBlackCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsBlueCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsBlueColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsBlueColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -116,7 +116,7 @@ NS_INLINE UIColor *_Nullable JobsBlueCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsWhiteCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsWhiteColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsWhiteColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -124,7 +124,7 @@ NS_INLINE UIColor *_Nullable JobsWhiteCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsCyanCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsCyanColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsCyanColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -132,7 +132,7 @@ NS_INLINE UIColor *_Nullable JobsCyanCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsGrayCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsGrayColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsGrayColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -140,7 +140,7 @@ NS_INLINE UIColor *_Nullable JobsGrayCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsOrangeCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsOrangeColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsOrangeColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -148,7 +148,7 @@ NS_INLINE UIColor *_Nullable JobsOrangeCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsRedCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsRedColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsRedColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -156,7 +156,7 @@ NS_INLINE UIColor *_Nullable JobsRedCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsBrownCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsBrownColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsBrownColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -164,7 +164,7 @@ NS_INLINE UIColor *_Nullable JobsBrownCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsDarkGrayCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsDarkGrayColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsDarkGrayColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -172,7 +172,7 @@ NS_INLINE UIColor *_Nullable JobsDarkGrayCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsDarkTextCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsDarkTextColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsDarkTextColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -180,7 +180,7 @@ NS_INLINE UIColor *_Nullable JobsDarkTextCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsYellowCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsYellowColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsYellowColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -188,7 +188,7 @@ NS_INLINE UIColor *_Nullable JobsYellowCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsPurpleCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsPurpleColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsPurpleColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -196,7 +196,7 @@ NS_INLINE UIColor *_Nullable JobsPurpleCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemRedCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemRedColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemRedColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -204,7 +204,7 @@ NS_INLINE UIColor *_Nullable JobsSystemRedCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemGreenCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemGreenColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemGreenColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -212,7 +212,7 @@ NS_INLINE UIColor *_Nullable JobsSystemGreenCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemBlueCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemBlueColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemBlueColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -220,7 +220,7 @@ NS_INLINE UIColor *_Nullable JobsSystemBlueCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemOrangeCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemOrangeColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemOrangeColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -228,7 +228,7 @@ NS_INLINE UIColor *_Nullable JobsSystemOrangeCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemYellowCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemYellowColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemYellowColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -236,7 +236,7 @@ NS_INLINE UIColor *_Nullable JobsSystemYellowCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemPinkCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemPinkColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemPinkColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -244,7 +244,7 @@ NS_INLINE UIColor *_Nullable JobsSystemPinkCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemPurpleCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemPurpleColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemPurpleColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -252,7 +252,7 @@ NS_INLINE UIColor *_Nullable JobsSystemPurpleCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemTealCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemTealColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemTealColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -260,7 +260,7 @@ NS_INLINE UIColor *_Nullable JobsSystemTealCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemIndigoCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemIndigoColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemIndigoColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -268,7 +268,7 @@ NS_INLINE UIColor *_Nullable JobsSystemIndigoCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemGrayCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemGrayColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemGrayColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -276,7 +276,7 @@ NS_INLINE UIColor *_Nullable JobsSystemGrayCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemGray2Cor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemGray2Color.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemGray2Color.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -284,7 +284,7 @@ NS_INLINE UIColor *_Nullable JobsSystemGray2Cor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemGray3Cor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemGray3Color.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemGray3Color.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -292,7 +292,7 @@ NS_INLINE UIColor *_Nullable JobsSystemGray3Cor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemGray4Cor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemGray4Color.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemGray4Color.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -300,7 +300,7 @@ NS_INLINE UIColor *_Nullable JobsSystemGray4Cor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemGray5Cor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemGray5Color.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemGray5Color.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -308,7 +308,7 @@ NS_INLINE UIColor *_Nullable JobsSystemGray5Cor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemGray6Cor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemGray6Color.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemGray6Color.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -316,7 +316,7 @@ NS_INLINE UIColor *_Nullable JobsSystemGray6Cor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsLabelCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsLabelColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsLabelColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -324,7 +324,7 @@ NS_INLINE UIColor *_Nullable JobsLabelCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSecondaryLabelCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSecondaryLabelColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSecondaryLabelColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -332,7 +332,7 @@ NS_INLINE UIColor *_Nullable JobsSecondaryLabelCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsTertiaryLabelCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsTertiaryLabelColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsTertiaryLabelColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -340,7 +340,7 @@ NS_INLINE UIColor *_Nullable JobsTertiaryLabelCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsQuaternaryLabelCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsQuaternaryLabelColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsQuaternaryLabelColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -348,7 +348,7 @@ NS_INLINE UIColor *_Nullable JobsQuaternaryLabelCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsLinkCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsLinkColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsLinkColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -356,7 +356,7 @@ NS_INLINE UIColor *_Nullable JobsLinkCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsPlaceholderTextCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsPlaceholderTextColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsPlaceholderTextColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -364,7 +364,7 @@ NS_INLINE UIColor *_Nullable JobsPlaceholderTextCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSeparatorCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSeparatorColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSeparatorColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -372,7 +372,7 @@ NS_INLINE UIColor *_Nullable JobsSeparatorCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsOpaqueSeparatorCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsOpaqueSeparatorColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsOpaqueSeparatorColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -380,7 +380,7 @@ NS_INLINE UIColor *_Nullable JobsOpaqueSeparatorCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -388,7 +388,7 @@ NS_INLINE UIColor *_Nullable JobsSystemBackgroundCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSecondarySystemBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSecondarySystemBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSecondarySystemBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -396,7 +396,7 @@ NS_INLINE UIColor *_Nullable JobsSecondarySystemBackgroundCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsTertiarySystemBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsTertiarySystemBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsTertiarySystemBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -404,7 +404,7 @@ NS_INLINE UIColor *_Nullable JobsTertiarySystemBackgroundCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemGroupedBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemGroupedBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemGroupedBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -412,7 +412,7 @@ NS_INLINE UIColor *_Nullable JobsSystemGroupedBackgroundCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSecondarySystemGroupedBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSecondarySystemGroupedBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSecondarySystemGroupedBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -420,7 +420,7 @@ NS_INLINE UIColor *_Nullable JobsSecondarySystemGroupedBackgroundCor(CGFloat alp
 }
 
 NS_INLINE UIColor *_Nullable JobsTertiarySystemGroupedBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsTertiarySystemGroupedBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsTertiarySystemGroupedBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -428,7 +428,7 @@ NS_INLINE UIColor *_Nullable JobsTertiarySystemGroupedBackgroundCor(CGFloat alph
 }
 
 NS_INLINE UIColor *_Nullable JobsSystemFillCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSystemFillColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSystemFillColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -436,7 +436,7 @@ NS_INLINE UIColor *_Nullable JobsSystemFillCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsSecondarySystemFillCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsSecondarySystemFillColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsSecondarySystemFillColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -444,7 +444,7 @@ NS_INLINE UIColor *_Nullable JobsSecondarySystemFillCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsTertiarySystemFillCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsTertiarySystemFillColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsTertiarySystemFillColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -452,7 +452,7 @@ NS_INLINE UIColor *_Nullable JobsTertiarySystemFillCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsQuaternarySystemFillCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsQuaternarySystemFillColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsQuaternarySystemFillColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -460,7 +460,7 @@ NS_INLINE UIColor *_Nullable JobsQuaternarySystemFillCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsRandomCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsRandomColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsRandomColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -468,7 +468,7 @@ NS_INLINE UIColor *_Nullable JobsRandomCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsHexCor(CGFloat alpha,UInt32 hexValue){
-    JobsCorModel *corModel = HEXCOLOR(hexValue).hexadecimalCorStr();
+    JobsCorModel *corModel = HEXCOLOR(hexValue).hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -477,7 +477,7 @@ NS_INLINE UIColor *_Nullable JobsHexCor(CGFloat alpha,UInt32 hexValue){
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 NS_INLINE UIColor *_Nullable JobsGroupTableViewBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsGroupTableViewBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsGroupTableViewBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -485,7 +485,7 @@ NS_INLINE UIColor *_Nullable JobsGroupTableViewBackgroundCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsViewFlipsideBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsViewFlipsideBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsViewFlipsideBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -493,7 +493,7 @@ NS_INLINE UIColor *_Nullable JobsViewFlipsideBackgroundCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsScrollViewTexturedBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsScrollViewTexturedBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsScrollViewTexturedBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue
@@ -501,7 +501,7 @@ NS_INLINE UIColor *_Nullable JobsScrollViewTexturedBackgroundCor(CGFloat alpha){
 }
 
 NS_INLINE UIColor *_Nullable JobsUnderPageBackgroundCor(CGFloat alpha){
-    JobsCorModel *corModel = JobsUnderPageBackgroundColor.hexadecimalCorStr();
+    JobsCorModel *corModel = JobsUnderPageBackgroundColor.hexadecimalCorStrBy();
     return [UIColor colorWithRed:corModel.red
                            green:corModel.green
                             blue:corModel.blue

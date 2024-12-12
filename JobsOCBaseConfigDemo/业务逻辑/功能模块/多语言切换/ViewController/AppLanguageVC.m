@@ -123,8 +123,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     for (UITableViewCell *acell in tableView.visibleCells) {
         acell.accessoryType = acell == cell ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
-    [self setAppLanguageAtAppLanguage:self.dataMutArr[indexPath.row].appLanguage];/// 设置App语言环境并发送全局通知JobsLanguageSwitchNotification
-    [self changeTabBarItemTitle:indexPath];///【App语言国际化】更改UITabBarItem的标题
+    self.appLanguageAtAppLanguageBy(self.dataMutArr[indexPath.row].appLanguage);/// 设置App语言环境并发送全局通知JobsLanguageSwitchNotification
+    self.changeTabBarItemTitleBy(indexPath);///【App语言国际化】更改UITabBarItem的标题
     /// 重塑数据源
     [self.dataMutArr removeAllObjects];
     _dataMutArr = nil;

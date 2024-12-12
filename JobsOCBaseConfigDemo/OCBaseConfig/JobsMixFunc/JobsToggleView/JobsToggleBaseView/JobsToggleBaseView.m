@@ -323,5 +323,46 @@ JobsToggleNavViewProtocolSynthesize
         });
     }return _taggedNavDatas;
 }
-INIT_BUTTON_MODE
+
+-(UIButtonModel *)buttonModel{
+    if(!_buttonModel){
+        _buttonModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.buttonConfiguration = nil;
+            model.backgroundConfiguration = nil;
+            model.buttonConfigurationTitleAlignment = UIButtonConfigurationTitleAlignmentAutomatic;
+            model.textAlignment = NSTextAlignmentCenter;
+            model.subTextAlignment = NSTextAlignmentCenter;
+            model.normalImage = nil;
+            model.highlightImage = nil;
+            model.attributedTitle = nil;
+            model.selectedAttributedTitle = nil;
+            model.attributedSubTitle = nil;
+            model.title = nil;
+            model.subTitle = nil;
+            model.titleFont = bayonRegular(JobsWidth(16));
+            model.subTitleFont = nil;
+            model.titleCor = JobsCor(@"#ABABAB");
+            model.subTitleCor = nil;
+            model.titleLineBreakMode = NSLineBreakByWordWrapping;
+            model.subtitleLineBreakMode = NSLineBreakByWordWrapping;
+            model.baseBackgroundColor = JobsWhiteColor;
+            model.backgroundImage = nil;
+            model.imagePadding = JobsWidth(0);
+            model.titlePadding = JobsWidth(0);
+            model.imagePlacement = NSDirectionalRectEdgeNone;
+            model.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+            model.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+            model.contentInsets = jobsSameDirectionalEdgeInsets(0);
+            model.cornerRadiusValue = JobsWidth(0);
+            model.roundingCorners = UIRectCornerAllCorners;
+            model.roundingCornersRadii = CGSizeZero;
+            model.layerBorderCor = nil;
+            model.borderWidth = JobsWidth(0);
+            model.primaryAction = nil;
+            model.longPressGestureEventBlock = nil;
+            model.clickEventBlock = nil;
+        });
+    }return _buttonModel;
+}
+
 @end

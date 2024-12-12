@@ -9,35 +9,9 @@
 #import "NSObject+Measure.h"
 
 @implementation NSObject (Measure)
-#pragma mark —— UIViewModelProtocol
-/// 方位
-@dynamic cornerRadius;
-@dynamic jobsWidth;
-@dynamic jobsHeight;
-@dynamic jobsTop;
-@dynamic jobsLeft;
-@dynamic jobsRight;
-@dynamic jobsBottom;
-@dynamic jobsSize;
-@dynamic jobsRect;
-@dynamic jobsPoint;
-@dynamic offsetXForEach;
-@dynamic offsetYForEach;
-@dynamic offsetHeight;
-@dynamic offsetWidth;
-@dynamic axis;
-@dynamic distribution;
-@dynamic alignment;
-@dynamic buttonEdgeInsetsStyle;
-/// 标记📌
-@dynamic indexPath;
-@dynamic section;
-@dynamic row;
-@dynamic item;
-@dynamic lastPoint;
-@dynamic index;
-@dynamic currentPage;
-@dynamic pageSize;
+UILocationProtocol_dynamic /// 方位
+UIMarkProtocol_dynamic_part2 /// 标记📌
+@dynamic cornerRadiusValue;
 /// 已知父控件和子控件的宽度或者高度，当父控件为X轴或者Y轴中心的时候，子控件的X 和 Y 是多少？
 /// @param subview 子控件的宽 或者 高
 /// @param superview 父控件的宽 或者 高

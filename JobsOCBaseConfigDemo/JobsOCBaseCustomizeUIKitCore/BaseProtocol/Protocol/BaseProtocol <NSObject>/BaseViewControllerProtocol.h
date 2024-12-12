@@ -8,8 +8,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
-#import "BaseViewProtocol.h"
 #import "JobsBlock.h"
+#import "DefineProperty.h"
+#import "JobsDefineAllEnumHeader.h"
+#import "BaseViewProtocol.h"
 #import "JobsNavBar.h"
 
 #if __has_include(<SPAlertController/SPAlertController.h>)
@@ -20,38 +22,30 @@
 
 @class JobsBasePopupView;
 
-#ifndef COMING_STYLE_ENUM_DEFINED
-#define COMING_STYLE_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, ComingStyle) {
-    ComingStyle_PUSH = 0,
-    ComingStyle_PRESENT
-};
-#endif /* COMING_STYLE_ENUM_DEFINED */
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewControllerProtocol<BaseViewProtocol>
 @optional
 /// 生命周期监控
-@property(nonatomic,assign)BOOL LoadView;
-@property(nonatomic,assign)BOOL ViewDidLoad;
-@property(nonatomic,assign)BOOL ViewWillAppear;
-@property(nonatomic,assign)BOOL ViewDidAppear;
-@property(nonatomic,assign)BOOL ViewWillDisappear;
-@property(nonatomic,assign)BOOL ViewDidDisappear;
+Prop_assign()BOOL LoadView;
+Prop_assign()BOOL ViewDidLoad;
+Prop_assign()BOOL ViewWillAppear;
+Prop_assign()BOOL ViewDidAppear;
+Prop_assign()BOOL ViewWillDisappear;
+Prop_assign()BOOL ViewDidDisappear;
 /// UI
-@property(nonatomic,weak)UIViewController *fromVC;
-@property(nonatomic,strong,nullable)WKWebView *webView;
-@property(nonatomic,strong,nullable)SPAlertController *alertController;
-@property(nonatomic,assign)ComingStyle pushOrPresent;
-@property(nonatomic,assign)BOOL setupNavigationBarHidden;
-@property(nonatomic,strong)__kindof UIView *statusBar;
-@property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
-@property(nonatomic,strong)JobsNavBar *navBar;
-@property(nonatomic,strong)NSMutableArray<__kindof UIBarButtonItem *> *leftBarButtonItems;/// 左边UIBarButtonItem 数组
-@property(nonatomic,strong)NSMutableArray<__kindof UIBarButtonItem *> *rightBarButtonItems;/// 右边UIBarButtonItem 数组
-@property(nonatomic,strong)NSMutableArray<__kindof UIViewController *> *vcs;/// 子视图控制器 数组
-@property(nonatomic,strong)UIBarButtonItem *barButtonItem;
+Prop_weak()UIViewController *fromVC;
+Prop_strong(nullable)WKWebView *webView;
+Prop_strong(nullable)SPAlertController *alertController;
+Prop_assign()ComingStyle pushOrPresent;
+Prop_assign()BOOL setupNavigationBarHidden;
+Prop_strong(nullable)__kindof UIView *statusBar;
+Prop_strong(nullable)JobsNavBarConfig *navBarConfig;
+Prop_strong(nullable)JobsNavBar *navBar;
+Prop_strong(nullable)__kindof NSMutableArray <__kindof UIBarButtonItem *>*leftBarButtonItems;/// 左边UIBarButtonItem 数组
+Prop_strong(nullable)__kindof NSMutableArray <__kindof UIBarButtonItem *>*rightBarButtonItems;/// 右边UIBarButtonItem 数组
+Prop_strong(nullable)__kindof NSMutableArray <__kindof UIViewController *>*vcs;/// 子视图控制器 数组
+Prop_strong(nullable)UIBarButtonItem *barButtonItem;
 /// 更新状态栏颜色为自定义的颜色
 -(jobsByCorBlock _Nonnull)updateStatusBarCor;
 /// 恢复状态栏颜色
@@ -66,10 +60,18 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+/// 在 @implementation UIViewController (BaseVC) 实现。
+#ifndef BaseViewControllerProtocol_synthesize_part1
+#define BaseViewControllerProtocol_synthesize_part1 \
+\
+@synthesize navBar = _navBar;\
+@synthesize navBarConfig = _navBarConfig;\
 
-#pragma mark —— @synthesize BaseViewControllerProtocol
+#endif /* BaseViewControllerProtocol_synthesize_part1 */
+
 #ifndef BaseViewControllerProtocol_synthesize
 #define BaseViewControllerProtocol_synthesize \
+\
 @synthesize fromVC = _fromVC;\
 @synthesize webView = _webView;\
 @synthesize alertController = _alertController;\
@@ -86,14 +88,12 @@ NS_ASSUME_NONNULL_END
 @synthesize rightBarButtonItems = _rightBarButtonItems;\
 @synthesize vcs = _vcs;\
 @synthesize barButtonItem = _barButtonItem;\
-//@synthesize navBar = _navBar;\ 在 @implementation UIViewController (BaseVC) 实现。这里不写
-//@synthesize navBarConfig = _navBarConfig;\ 在 @implementation UIViewController (BaseVC) 实现。这里不写
 
-#endif
+#endif /* BaseViewControllerProtocol_synthesize */
 
-#pragma mark —— @dynamic BaseViewControllerProtocol
 #ifndef BaseViewControllerProtocol_dynamic
 #define BaseViewControllerProtocol_dynamic \
+\
 @dynamic fromVC;\
 @dynamic webView;\
 @dynamic alertController;\
@@ -114,4 +114,4 @@ NS_ASSUME_NONNULL_END
 @dynamic vcs;\
 @dynamic barButtonItem;\
 
-#endif
+#endif /* BaseViewControllerProtocol_dynamic */

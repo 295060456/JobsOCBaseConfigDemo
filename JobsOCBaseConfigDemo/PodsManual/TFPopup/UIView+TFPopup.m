@@ -374,7 +374,7 @@
             }else if(self.popupParam.backgroundColorClear){
                 self.extension.defaultBackgroundView.backgroundColor = [UIColor clearColor];
             }else{
-                self.extension.defaultBackgroundView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:kDefaultBackgroundColorAlpha];
+                self.extension.defaultBackgroundView.backgroundColor = JobsBlackColor.colorWithAlphaComponentBy(kDefaultBackgroundColorAlpha);
             }
             [self.extension.defaultBackgroundView addTarget:self
                                                      action:@selector(defaultBackgroundViewClick:)
@@ -1612,7 +1612,6 @@ static inline CGRect normalTargetFrame(TFPopupParam *param){
     CGFloat y = (ar.size.height - s.height) * 0.5 + st.y;
     return CGRectMake(x, y, s.width, s.height);
 }
-
 
 static inline UIBezierPath *foldPath(CGRect targetFrame,PopupDirection direction,BOOL target){
     CGSize ss = targetFrame.size;

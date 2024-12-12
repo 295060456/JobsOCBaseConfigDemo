@@ -39,13 +39,15 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     }];
 }
 /// 【App语言国际化】更改UITabBarItem的标题
--(void)changeTabBarItemTitle:(NSIndexPath *)indexPath{
-    id appDelegate = getSysAppDelegate();
-    if (!appDelegate) appDelegate = AppDelegate.sharedManager;
-    if ([appDelegate isKindOfClass:AppDelegate.class]) {
-        AppDelegate *ad = (AppDelegate *)appDelegate;
-        [ad refreshTabBarTitle];
-    }
+-(jobsByIndexPathBlock _Nonnull)changeTabBarItemTitleBy{
+    return ^(NSIndexPath *_Nullable indexPath){
+        id appDelegate = getSysAppDelegate();
+        if (!appDelegate) appDelegate = AppDelegate.sharedManager;
+        if ([appDelegate isKindOfClass:AppDelegate.class]) {
+            AppDelegate *ad = (AppDelegate *)appDelegate;
+            [ad refreshTabBarTitle];
+        }
+    };
 }
 #pragma mark —— 测试调试专用
 /// 查询当下的本地登录数据
@@ -66,7 +68,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     BaseButton *btn = BaseButton.initByStyle1(JobsInternationalization(@"+63"),
                                               JobsFontRegular(JobsWidth(16)),
                                               JobsWhiteColor)
-    .onClick(^(UIButton *x){
+    .onClickBy(^(UIButton *x){
         if (block) block(x);
     }).bySize(CGSizeMake(JobsWidth(50), JobsWidth(30)));
     btn.rightBorderColor(JobsWhiteColor).rightBorderWidth(1);
@@ -258,12 +260,12 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 -(__kindof UIButton *_Nullable)makeContactBtn{
     @jobs_weakify(self)
     return BaseButton.initByBackgroundImage(JobsIMG(@"联系我们"))
-        .onClick(^(UIButton *x){
+        .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
             self.comingToPushVC(MyCollectionVC.new);
             toast(@"联系我们");
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
         });
 }
@@ -271,7 +273,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 -(__kindof UIButton *_Nullable)makeCloseBtnByActionBlock:(jobsByVoidBlock _Nullable)actionBlock{
     @jobs_weakify(self)
     return BaseButton.initByBackgroundImage(JobsIMG(@"关闭"))
-        .onClick(^(UIButton *x){
+        .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             if (self.objectBlock) self.objectBlock(x);
             if(actionBlock) actionBlock();
@@ -279,7 +281,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                 UIView *view = (UIView *)self;
                 [view tf_hide:nil];
             }
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
         });
 }
@@ -311,7 +313,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         data.selected_backgroundImage = JobsIMG(@"返回");
         data.highlightImage = JobsIMG(@"返回");
         data.normalImage = JobsIMG(@"返回");
-        data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         data.title = self.viewModel.backBtnTitleModel.text;
         data.font = self.viewModel.backBtnTitleModel.font;
         data.titleCor = JobsBlackColor;
@@ -382,7 +384,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     //    if(!CasinoHomeVC_viewDidAppear) return;
         viewController.comingToPresentVCByRequestParams(JobsAppDoorVC.new,
                                                         jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
-            data.requestParams = @(JobsAppDoorBgType_video);
+            data.requestParams = @(JobsAppDoorBgType_Video);
         }));
     };
 }
@@ -400,11 +402,11 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     return ^(){
         @jobs_strongify(self)
         [self toLoginOrRegisterWithRestricted:self.makeDataArr
-                           appDoorContentType:CurrentPage_login];
+                           appDoorContentType:CurrentPage_Login];
     };
 }
 /// 限制条件：在某些页面（noNeedLoginArr）不调取登录页
--(void)toLoginOrRegisterWithRestricted:(NSArray <Class>*_Nullable)dataArr
+-(void)toLoginOrRegisterWithRestricted:(__kindof NSArray <Class>*_Nullable)dataArr
                     appDoorContentType:(CurrentPage)appDoorContentType{
     if (dataArr.containsObject(self.class)) return;/// 包含则不触发AppDoor的页面
     self.toLoginOrRegister(appDoorContentType);
@@ -797,12 +799,12 @@ JobsKey(__立即注册)
             .initByStyle1(JobsInternationalization(@"立即注册"),
                           UIFontWeightRegularSize(14),
                           HEXCOLOR(0x757575))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 NSLog(@"联系客服");
                 if (self.objectBlock) self.objectBlock(x);
             })
-            .onLongPressGesture(^(id data){
+            .onLongPressGestureBy(^(id data){
                 NSLog(@"按钮的长按事件触发");
             });
         UIViewController *viewController = (UIViewController *)self;
@@ -831,12 +833,12 @@ JobsKey(__联系客服)
             .initByStyle1(JobsInternationalization(@"联系客服"),
                           UIFontWeightRegularSize(14),
                           HEXCOLOR(0x757575))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 NSLog(@"联系客服");
                 if (self.objectBlock) self.objectBlock(x);
             })
-            .onLongPressGesture(^(id data){
+            .onLongPressGestureBy(^(id data){
                 NSLog(@"按钮的长按事件触发");
             });
         UIViewController *viewController = (UIViewController *)self;

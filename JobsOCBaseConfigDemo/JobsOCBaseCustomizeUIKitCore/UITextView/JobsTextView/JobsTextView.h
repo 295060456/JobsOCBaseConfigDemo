@@ -5,8 +5,11 @@
 //  Created by alan comb on 2021/4/3.
 //
 
+#import "JobsBlock.h"
 #import "BaseView.h"
 #import "UITextView+Extend.h"
+#import "SZTextView+Extra.h"
+#import "DefineConstString.h"
 
 #if __has_include(<SZTextView/SZTextView.h>)
 #import <SZTextView/SZTextView.h>
@@ -19,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsTextView : BaseView
 
 -(SZTextView *)getTextView;
--(void)updateWordCount:(NSInteger)count;
+-(jobsByNSIntegerBlock _Nonnull)updateWordCount;
 
 @end
 

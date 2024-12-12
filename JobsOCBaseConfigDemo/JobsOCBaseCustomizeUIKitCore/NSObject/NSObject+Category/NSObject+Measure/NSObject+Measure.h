@@ -12,7 +12,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSObject (Measure)<UIViewModelProtocol>
+@interface NSObject (Measure)
+<
+UIViewModelOthersProtocol /// UIViewModelOthersProtocol_synthesize、UIViewModelOthersProtocol_dynamic
+,UIPictureAndBackGroundCorProtocol /// UIPictureAndBackGroundCorProtocol_synthesize、UIPictureAndBackGroundCorProtocol_dynamic
+,UILocationProtocol /// UILocationProtocol_synthesize、UILocationProtocol_dynamic
+,UIMarkProtocol /// UIMarkProtocol_synthesize、UIMarkProtocol_dynamic
+,UITextModelProtocol /// UITextModelProtocol_synthesize、UITextModelProtocol_dynamic
+,BaseLayerProtocol /// BaseLayerProtocol_synthesize、BaseLayerProtocol_dynamic
+>
 /// 已知父控件和子控件的宽度或者高度，当父控件为X轴或者Y轴中心的时候，子控件的X 和 Y 是多少？
 /// @param subview 子控件的宽 或者 高
 /// @param superview 父控件的宽 或者 高

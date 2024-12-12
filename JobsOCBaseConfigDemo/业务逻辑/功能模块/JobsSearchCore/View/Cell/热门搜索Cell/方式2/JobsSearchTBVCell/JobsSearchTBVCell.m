@@ -12,8 +12,9 @@
 @end
 
 @implementation JobsSearchTBVCell
-UIViewModelProtocol_synthesize
-UIViewModelProtocol_self_synthesize
+UIViewModelProtocol_synthesize_part1
+UIViewModelProtocol_synthesize_part2
+BaseLayerProtocol_synthesize_part3
 #pragma mark —— BaseCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {

@@ -75,7 +75,7 @@ static dispatch_once_t static_showNumViewOnceToken;
             btn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
             @jobs_weakify(self)
             [btn jobsBtnClickEventBlock:^id(id data) {
-                @jobs_strongify(self)
+//                @jobs_strongify(self)
                 NSLog(@"%@",btn.titleForNormalState)
                 return nil;
             }];
@@ -89,8 +89,7 @@ static dispatch_once_t static_showNumViewOnceToken;
                 }else{
                     make.left.equalTo(self).offset(model.jobsLeft);
                 }
-            }];
-            [self.btnMutArr addObject:btn];
+            }];self.btnMutArr.add(btn);
         }
     };
 }

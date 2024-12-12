@@ -31,7 +31,7 @@
         self.backgroundColor = JobsClearColor;
         self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.jobsWidth = 1;
-            data.layerCor = Cor4;
+            data.layerCor = Cor3;
         }));
     }return self;
 }
@@ -115,7 +115,7 @@
         @jobs_weakify(self)
         _securityModelBtn = BaseButton
             .initByNormalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 x.selected = !x.selected;
@@ -124,7 +124,7 @@
                 if (x.selected && !self.textField.isEditing) {
                     self.textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
                 }
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
         });
         [self addSubview:_securityModelBtn];

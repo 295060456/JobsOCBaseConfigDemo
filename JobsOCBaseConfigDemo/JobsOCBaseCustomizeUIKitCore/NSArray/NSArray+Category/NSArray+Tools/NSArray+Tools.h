@@ -49,27 +49,27 @@
          _subViewsMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIView *>*_Nullable data) {
              @jobs_strongify(self)
              data.add(BaseButton.jobsInit()
-                      .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+                      .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
                       .jobsResetBtnBgImage(JobsIMG(@"纸飞机账户绑定"))
-                      .onClick(^(UIButton *x){
+                      .onClickBy(^(UIButton *x){
                           toast(@"纸飞机");
-                      }).onLongPressGesture(^(id data){
+                      }).onLongPressGestureBy(^(id data){
                           NSLog(@"");
                       }));
              data.add(BaseButton.jobsInit()
-                      .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+                      .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
                       .jobsResetBtnBgImage(JobsIMG(@"脸书账户绑定"))
-                      .onClick(^(UIButton *x){
+                      .onClickBy(^(UIButton *x){
                           toast(@"脸书");
-                      }).onLongPressGesture(^(id data){
+                      }).onLongPressGestureBy(^(id data){
                           NSLog(@"");
                       }));
              data.add(BaseButton.jobsInit()
-                      .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+                      .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
                       .jobsResetBtnBgImage(JobsIMG(@"Viber账户绑定"))
-                      .onClick(^(UIButton *x){
+                      .onClickBy(^(UIButton *x){
                           toast(@"Viber");
-                      }).onLongPressGesture(^(id data){
+                      }).onLongPressGestureBy(^(id data){
                           NSLog(@"");
                       }));
              for (UIView *view in data) {

@@ -399,7 +399,7 @@ if (self.isOpenPPBadge) {
       if (!_titleBtn) {
           @jobs_weakify(self)
           _titleBtn = BaseButton.jobsInit()
-  //            .bgColor(JobsWhiteColor)
+  //            .bgColorBy(JobsWhiteColor)
   //            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
   //            .jobsResetImagePadding(1)
   //            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -407,11 +407,11 @@ if (self.isOpenPPBadge) {
   //            .jobsResetBtnTitleCor(JobsWhiteColor)
   //            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
   //            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-              .onClick(^(UIButton *x){
+              .onClickBy(^(UIButton *x){
                   @jobs_strongify(self)
                   x.selected = !x.selected;
                   if (self.objectBlock) self.objectBlock(x);
-              }).onLongPressGesture(^(id data){
+              }).onLongPressGestureBy(^(id data){
                   NSLog(@"");
               });
           [self addSubview:_titleBtn];
@@ -526,6 +526,9 @@ if (self.isOpenPPBadge) {
   /// Data
   @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
   @property(nonatomic,assign)BOOL allowOrentitaionRotation;
+  
+  +(instancetype)sharedManager;
+  +(void)destroyInstance;
   
   -(void)saveContext;
   

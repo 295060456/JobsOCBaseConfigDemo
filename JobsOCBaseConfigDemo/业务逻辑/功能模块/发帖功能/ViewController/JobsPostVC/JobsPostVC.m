@@ -98,7 +98,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.textView updateWordCount:self.inputDataHistoryString.length];
+    self.textView.updateWordCount(self.inputDataHistoryString.length);
 }
 
 -(void)viewWillLayoutSubviews{
@@ -347,18 +347,18 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
     if (!_releaseBtn) {
         @jobs_weakify(self)
         _releaseBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnBgImage(JobsIMG(@"未发布"))
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"发布"))
             .jobsResetBtnCornerRadiusValue(JobsWidth(23 / 2))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 [self.view endEditing:YES];
                 [self networking_checkHadRoleGET];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _releaseBtn.enabled = NO;

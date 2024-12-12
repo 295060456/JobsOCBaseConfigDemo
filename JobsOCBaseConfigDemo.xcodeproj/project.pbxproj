@@ -132,6 +132,8 @@
 		84B1BA2C2CEDCA570001562D /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA0A2CEDC9410001562D /* FSCalendarCollectionViewLayout.m */; };
 		84B1BA2D2CEDCA570001562D /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA102CEDC9410001562D /* FSCalendarDelegationProxy.m */; };
 		84B1BA2E2CEDCA630001562D /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA022CEDC9410001562D /* FSCalendarAppearance.m */; };
+		84B8A9542D0ACE220079336D /* UIEditMenuInteraction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8A9522D0ACE220079336D /* UIEditMenuInteraction+Extra.m */; };
+		84B8A9582D0ACECE0079336D /* UITextItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8A9562D0ACECE0079336D /* UITextItem+Extra.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
@@ -716,7 +718,6 @@
 		CE5A659F2CA83351006D67A7 /* ZLGestureLockIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28EA2CA8286D002AF25B /* ZLGestureLockIndicator.m */; };
 		CE5A65A02CA83351006D67A7 /* ZLGestureLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28EC2CA8286D002AF25B /* ZLGestureLockView.m */; };
 		CE5A65A12CA8335B006D67A7 /* JobsAdNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28F12CA8286D002AF25B /* JobsAdNoticeView.m */; };
-		CE5A65A22CA8336A006D67A7 /* JobsAppDoorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28F42CA8286D002AF25B /* JobsAppDoorConfig.m */; };
 		CE5A65A32CA83372006D67A7 /* JobsAppDoorInputViewBaseStyle_2.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F28FE2CA8286D002AF25B /* JobsAppDoorInputViewBaseStyle_2.m */; };
 		CE5A65A42CA83372006D67A7 /* JobsAppDoorInputViewBaseStyle_4.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F29082CA8286D002AF25B /* JobsAppDoorInputViewBaseStyle_4.m */; };
 		CE5A65A52CA83372006D67A7 /* JobsAppDoorInputViewBaseStyle_3.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F29032CA8286D002AF25B /* JobsAppDoorInputViewBaseStyle_3.m */; };
@@ -1482,6 +1483,11 @@
 		84B1BA1B2CEDC9410001562D /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
 		84B1BA1C2CEDC9410001562D /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
 		84B1BA1D2CEDC9410001562D /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
+		84B8A9502D0ACB5E0079336D /* BaseLayerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseLayerProtocol.h; sourceTree = "<group>"; };
+		84B8A9512D0ACE220079336D /* UIEditMenuInteraction+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIEditMenuInteraction+Extra.h"; sourceTree = "<group>"; };
+		84B8A9522D0ACE220079336D /* UIEditMenuInteraction+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIEditMenuInteraction+Extra.m"; sourceTree = "<group>"; };
+		84B8A9552D0ACECE0079336D /* UITextItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextItem+Extra.h"; sourceTree = "<group>"; };
+		84B8A9562D0ACECE0079336D /* UITextItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextItem+Extra.m"; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
 		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
@@ -2311,7 +2317,6 @@
 		CE4F28F02CA8286D002AF25B /* JobsAdNoticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAdNoticeView.h; sourceTree = "<group>"; };
 		CE4F28F12CA8286D002AF25B /* JobsAdNoticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsAdNoticeView.m; sourceTree = "<group>"; };
 		CE4F28F32CA8286D002AF25B /* JobsAppDoorConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorConfig.h; sourceTree = "<group>"; };
-		CE4F28F42CA8286D002AF25B /* JobsAppDoorConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsAppDoorConfig.m; sourceTree = "<group>"; };
 		CE4F28F62CA8286D002AF25B /* 输入框样式_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "输入框样式_1.png"; sourceTree = "<group>"; };
 		CE4F28F72CA8286D002AF25B /* 输入框样式_1(✉️获取并输入手机短信验证码).md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "输入框样式_1(✉️获取并输入手机短信验证码).md"; sourceTree = "<group>"; };
 		CE4F28F82CA8286D002AF25B /* JobsAppDoorInputViewBaseStyle_1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsAppDoorInputViewBaseStyle_1.h; sourceTree = "<group>"; };
@@ -4846,6 +4851,24 @@
 				84B1BA1D2CEDC9410001562D /* FSCalendarWeekdayView.m */,
 			);
 			path = FSCalendar;
+			sourceTree = "<group>";
+		};
+		84B8A9532D0ACE220079336D /* UIEditMenuInteraction */ = {
+			isa = PBXGroup;
+			children = (
+				84B8A9512D0ACE220079336D /* UIEditMenuInteraction+Extra.h */,
+				84B8A9522D0ACE220079336D /* UIEditMenuInteraction+Extra.m */,
+			);
+			path = UIEditMenuInteraction;
+			sourceTree = "<group>";
+		};
+		84B8A9572D0ACECE0079336D /* UITextItem */ = {
+			isa = PBXGroup;
+			children = (
+				84B8A9552D0ACECE0079336D /* UITextItem+Extra.h */,
+				84B8A9562D0ACECE0079336D /* UITextItem+Extra.m */,
+			);
+			path = UITextItem;
 			sourceTree = "<group>";
 		};
 		84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */ = {
@@ -9560,7 +9583,6 @@
 			isa = PBXGroup;
 			children = (
 				CE4F28F32CA8286D002AF25B /* JobsAppDoorConfig.h */,
-				CE4F28F42CA8286D002AF25B /* JobsAppDoorConfig.m */,
 			);
 			path = "配置文件";
 			sourceTree = "<group>";
@@ -10760,6 +10782,7 @@
 				CE5A609C2CA82C2D006D67A7 /* BaseViewProtocol.h */,
 				CE5A609D2CA82C2D006D67A7 /* UICollectionViewCellProtocol.h */,
 				CE5A609E2CA82C2D006D67A7 /* UITableViewCellProtocol.h */,
+				84B8A9502D0ACB5E0079336D /* BaseLayerProtocol.h */,
 			);
 			path = "BaseProtocol <NSObject>";
 			sourceTree = "<group>";
@@ -13770,6 +13793,8 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				84B8A9572D0ACECE0079336D /* UITextItem */,
+				84B8A9532D0ACE220079336D /* UIEditMenuInteraction */,
 				8405D19B2D0865E100DE33FE /* UITabBarItem */,
 				8478D8FD2D01CC03004E8B90 /* NSDateFormatter */,
 				8478D9002D01CC03004E8B90 /* NSTimeZone */,
@@ -16427,6 +16452,7 @@
 				CE4F278E2CA825CD002AF25B /* CustomBtnVC.m in Sources */,
 				CE4F278F2CA825CD002AF25B /* CutomView.m in Sources */,
 				CE4F27902CA825CD002AF25B /* MainTableViewCellItem.m in Sources */,
+				84B8A9542D0ACE220079336D /* UIEditMenuInteraction+Extra.m in Sources */,
 				CE4F27912CA825CD002AF25B /* BaiShaETProjCollectionHeaderView.m in Sources */,
 				CE5A64752CA82CC7006D67A7 /* CALayer+Anim.m in Sources */,
 				CE5A65112CA830FE006D67A7 /* UICollectionViewCell+UICollectionViewCellProtocol.m in Sources */,
@@ -16630,7 +16656,6 @@
 				CE5A64DF2CA83012006D67A7 /* NSObject+UserNotifications.m in Sources */,
 				CE4F27CF2CA825CD002AF25B /* MyBlankCell.m in Sources */,
 				CE5A659E2CA83351006D67A7 /* ZLGestureLockViewController.m in Sources */,
-				CE5A65A22CA8336A006D67A7 /* JobsAppDoorConfig.m in Sources */,
 				CE3629A42CB403F900353B97 /* TFPopupExtension.m in Sources */,
 				CE3629A52CB403F900353B97 /* UIScrollView+TFPopup.m in Sources */,
 				84A9112E2CFF1A85003BD1CB /* UIStackView+Extra.m in Sources */,
@@ -16661,6 +16686,7 @@
 				CE4F27D92CA825CD002AF25B /* JobsVerticalMenuVC@0.m in Sources */,
 				CE4F27DA2CA825CD002AF25B /* TimeTitleCell.m in Sources */,
 				CE4F27DB2CA825CD002AF25B /* ZFDouYinControlView.m in Sources */,
+				84B8A9582D0ACECE0079336D /* UITextItem+Extra.m in Sources */,
 				CE4F27DC2CA825CD002AF25B /* JXCategoryViewWithHeaderViewVC.m in Sources */,
 				CE4F27DD2CA825CD002AF25B /* JobsExcelLeftListView.m in Sources */,
 				CE5A64CC2CA82F86006D67A7 /* NSObject+UDID.m in Sources */,

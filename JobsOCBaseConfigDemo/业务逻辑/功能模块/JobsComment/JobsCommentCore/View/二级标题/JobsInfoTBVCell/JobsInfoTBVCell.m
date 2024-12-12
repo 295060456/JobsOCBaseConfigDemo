@@ -18,6 +18,7 @@
 
 @implementation JobsInfoTBVCell
 BaseProtocol_synthesize
+UITextFieldProtocol_synthesize_part2
 #pragma mark —— UITableViewCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
@@ -89,12 +90,12 @@ BaseProtocol_synthesize
     if(!_likeBtn){
         @jobs_weakify(self)
         _likeBtn = RBCLikeButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnImage(_likeBtn.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"))
             .jobsResetBtnTitleCor(_likeBtn.selected ? JobsRedColor : JobsGrayColor)
             .jobsResetBtnTitleFont(UIFontWeightRegularSize(4))
             .jobsResetBtnTitle((toStringByNSInteger(_likeBtn.thumpNum)))
-            .onClick(^(RBCLikeButton *x){
+            .onClickBy(^(RBCLikeButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 x.jobsResetBtnImage(x.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
@@ -109,7 +110,7 @@ BaseProtocol_synthesize
                 x.jobsResetTitle(toStringByNSInteger(x.thumpNum));
                 x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _likeBtn.thumpNum = 0;

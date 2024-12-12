@@ -32,7 +32,7 @@
     @jobs_weakify(self)
     return ^() {
         @jobs_strongify(self)
-        self.timerProcessType = TimerProcessType_running;
+        self.timerProcessType = TimerProcessType_Running;
         if (self.objectBlock) self.objectBlock(self);
     };
 }
@@ -41,7 +41,7 @@
     @jobs_weakify(self)
     return ^() {
         @jobs_strongify(self)
-        self.timerProcessType = TimerProcessType_end;
+        self.timerProcessType = TimerProcessType_End;
         if (self.objectBlock) self.objectBlock(self);
     };
 }

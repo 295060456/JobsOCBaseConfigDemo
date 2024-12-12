@@ -130,8 +130,8 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 JobsCor(@"#EA2918"),
                                                 JobsIMG(@"视频未点赞"),
                                                 JobsWidth(5))
-            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
+            .onClickBy(^(UIButton *x){
                 NSLog(@"我是点赞");
                 x.selected = !x.selected;
                 @jobs_weakify(x)
@@ -141,7 +141,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     x.tag = MKRightBtnViewBtnType_loveBtn;//写在block外部，此值异常
                     if (self.objectBlock) self.objectBlock(x);
                 }];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_loveBtn];
@@ -159,8 +159,8 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 JobsCor(@"#EA2918"),
                                                 JobsIMG(@"视频评论"),
                                                 JobsWidth(5))
-            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
+            .onClickBy(^(UIButton *x){
                 NSLog(@"我是评论");
                 @jobs_weakify(x)
                 [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
@@ -182,7 +182,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                         NSLog(@"您点击了评论");
                     }];
                 }];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_commentBtn];
@@ -198,8 +198,8 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                  JobsCor(@"#EA2918"),
                                                  JobsIMG(@"分享"),
                                                  JobsWidth(5))
-            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
+            .onClickBy(^(UIButton *x){
                 NSLog(@"我是分享");
                 @jobs_weakify(x)
                 [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
@@ -211,7 +211,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     self.popupShowSlideWithView(shareView);
                     if (self.objectBlock) self.objectBlock(x);
                 }];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_shareBtn];

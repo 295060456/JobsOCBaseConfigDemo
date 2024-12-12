@@ -61,7 +61,7 @@
     if (!_titleBtn) {
         @jobs_weakify(self)
         _titleBtn = BaseButton.jobsInit()
-//            .bgColor(JobsWhiteColor)
+//            .bgColorBy(JobsWhiteColor)
 //            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
 //            .jobsResetImagePadding(1)
 //            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -69,11 +69,11 @@
 //            .jobsResetBtnTitleCor(JobsWhiteColor)
 //            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
 //            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_titleBtn];
@@ -110,7 +110,7 @@
     if (!_subTitleBtn) {
         @jobs_weakify(self)
         _subTitleBtn = BaseButton.jobsInit()
-//            .bgColor(JobsWhiteColor)
+//            .bgColorBy(JobsWhiteColor)
 //            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
 //            .jobsResetImagePadding(1)
 //            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -118,11 +118,11 @@
 //            .jobsResetBtnTitleCor(JobsWhiteColor)
 //            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
 //            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_subTitleBtn];

@@ -73,7 +73,7 @@
         _btn1.imageView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
             model.jobsWidth = 1;
             model.layerCor = HEXCOLOR(0xEEE2C8);
-            model.cornerRadius = 1;
+            model.cornerRadiusValue = 1;
         }));
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn1.makeBtnTitleByShowingType(UILabelShowingType_03);
@@ -99,7 +99,7 @@
         _btn2.imageView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
             model.jobsWidth = 1;
             model.layerCor = HEXCOLOR(0xEEE2C8);
-            model.cornerRadius = 1;
+            model.cornerRadiusValue = 1;
         }));
         _btn2.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTrailing,JobsWidth(8));
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
@@ -125,7 +125,7 @@
         _btn3.imageView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
             model.jobsWidth = 1;
             model.layerCor = HEXCOLOR(0xEEE2C8);
-            model.cornerRadius = 1;
+            model.cornerRadiusValue = 1;
         }));
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn3.makeBtnTitleByShowingType(UILabelShowingType_03);
@@ -151,7 +151,7 @@
         _btn4.imageView.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
             model.jobsWidth = 1;
             model.layerCor = HEXCOLOR(0xEEE2C8);
-            model.cornerRadius = 1;
+            model.cornerRadiusValue = 1;
         }));
         /// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
         _btn4.makeBtnTitleByShowingType(UILabelShowingType_03);

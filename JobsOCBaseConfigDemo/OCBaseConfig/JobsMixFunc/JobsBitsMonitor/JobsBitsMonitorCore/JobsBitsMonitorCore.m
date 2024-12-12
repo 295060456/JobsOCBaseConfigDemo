@@ -169,13 +169,13 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
             [data actionObjectBlock:^(UIButtonModel *data) {
                 @jobs_strongify(self)
                 switch (data.timerProcessType) {
-                    case TimerProcessType_ready:{
+                    case TimerProcessType_Ready:{
                         
                     }break;
-                    case TimerProcessType_running:{
+                    case TimerProcessType_Running:{
                         [self bitsSpeedMonitor];
                     }break;
-                    case TimerProcessType_end:{
+                    case TimerProcessType_End:{
                         NSLog(@"我死球了");
                     }break;
                         

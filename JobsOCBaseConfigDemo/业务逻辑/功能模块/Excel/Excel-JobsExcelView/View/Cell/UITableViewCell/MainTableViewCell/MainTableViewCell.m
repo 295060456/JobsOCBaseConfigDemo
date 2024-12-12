@@ -26,7 +26,7 @@
             cell = [self initTableViewCell:self
                                  withStyle:UITableViewCellStyleValue1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+            cell.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
             cell.collectionView.alpha = 1;
         }return cell;
     };
@@ -83,7 +83,7 @@
                            cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     MainTableViewCellItem *cell = [MainTableViewCellItem cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
-    cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+    cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
     NSLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.datas[indexPath.row].title);
     cell.jobsRichElementsCellBy(self.excelConfigureData);
     cell.jobsRichElementsCellByModel(self.datas[indexPath.row]);
@@ -111,7 +111,7 @@
             data.minimumLineSpacing = 0;
             data.minimumInteritemSpacing = 0;
         })];
-        _collectionView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        _collectionView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;

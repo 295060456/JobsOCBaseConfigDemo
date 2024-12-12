@@ -8,7 +8,7 @@
  -(BaseButton *)applyNowBtn{
      if(!_applyNowBtn){
          _applyNowBtn = BaseButton.jobsInit()
-             .bgColor(JobsWhiteColor)
+             .bgColorBy(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
              .jobsResetImagePadding(1)
              .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -16,9 +16,9 @@
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .titleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-             .onClick(^(UIButton *x){
+             .onClickBy(^(UIButton *x){
                  NSLog(@"");
-             }).onLongPressGesture(^(id data){
+             }).onLongPressGestureBy(^(id data){
                  NSLog(@"");
              });
          [self.bgImageView addSubview:_applyNowBtn];
@@ -38,9 +38,9 @@
                                   nil,
                                   JobsBlackColor,
                                   JobsIMG(@"弹窗取消按钮背景图"))
-        .bgColor(JobsWhiteColor)
-        .cornerRadiusValue(buttonModel.cornerRadiusValue)
-        .onClick(^(UIButton *btn){
+        .bgColorBy(JobsWhiteColor)
+        .cornerRadiusValueBy(buttonModel.cornerRadiusValueBy)
+        .onClickBy(^(UIButton *btn){
             btn.selected = !btn.selected;
             btn.jobsResetBtnBgImage(btn.selected ? JobsIMG(@"弹窗取消按钮背景图") : JobsIMG(@"弹窗取消按钮背景图"));
             
@@ -48,7 +48,7 @@
             btn.jobsResetBtnLayerBorderWidth(0.5f);/// 重设Btn的描边线段的宽度
             btn.jobsResetBtnCornerRadiusValue(JobsWidth(8));/// 重设Btn的圆切角
             
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
         })
         .layerByBorderCor(HEXCOLOR(0xAE8330))

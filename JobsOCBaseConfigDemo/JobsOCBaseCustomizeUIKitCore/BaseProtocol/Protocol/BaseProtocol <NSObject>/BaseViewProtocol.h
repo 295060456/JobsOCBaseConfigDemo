@@ -6,49 +6,39 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseProtocol.h"
 #import "JobsBlock.h"
-#import "VoidByCertainParameters.h"
+#import "DefineProperty.h"
+#import "JobsDefineAllEnumHeader.h"
+#import "BaseProtocol.h"
 
-#if __has_include(<Masonry/Masonry.h>)
-#import <Masonry/Masonry.h>
-#else
-#import "Masonry.h"
-#endif
-
-#ifndef JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED
-#define JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, JobsHeaderFooterViewStyle) {
-    JobsHeaderViewStyle = 0,
-    JobsFooterViewStyle
-};
-#endif /* JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED */
-
+@class MASConstraint;
 @class UIViewModel;
 @class UIButtonModel;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewProtocol <BaseProtocol>
+typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewProtocol> _Nullable data);
 @optional
-@property(nonatomic,strong)__kindof UICollectionView *collectionView;
-@property(nonatomic,strong)__kindof UITableView *tableView;
-@property(nonatomic,strong)__kindof UIScrollView *scrollView;
+Prop_strong(nullable)__kindof UICollectionView *collectionView;
+Prop_strong(nullable)__kindof UITableView *tableView;
+Prop_strong(nullable)__kindof UIScrollView *scrollView;
 /// 是否允许托拽手势
-@property(nonatomic,assign)BOOL isAllowDrag;
+Prop_assign()BOOL isAllowDrag;
 /// 退出当前页面的时候，除了当前页面出栈以外，你额外需要做的事情
-@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock jobsBackBlock;
+Prop_copy(nullable)JobsReturnIDByIDBlock jobsBackBlock;
 /// 圆切角参数：作用于-(void)layoutSubviews
-@property(nonatomic,assign)UIRectCorner layoutSubviewsRectCorner;
-@property(nonatomic,assign)CGSize layoutSubviewsRectCornerSize;
-@property(nonatomic,strong)UIColor *layerCor;
+Prop_assign()UIRectCorner layoutSubviewsRectCorner;
+Prop_assign()CGSize layoutSubviewsRectCornerSize;
+Prop_strong(nullable)UIColor *layerCor;
 /// 记录该View的Masonry约束情况
-@property(nonatomic,strong)NSMutableArray <MASConstraint *>*constraintMutArr;
+Prop_strong(nullable)NSMutableArray <MASConstraint *>*constraintMutArr;/* #import <Masonry/Masonry.h> */
 /// 视图长、宽、高的定义
-@property(nonatomic,assign)CGSize thisViewSize;
+Prop_assign()CGSize thisViewSize;
 /// 标记是HeaderView 还是 FooterView
-@property(nonatomic,assign)JobsHeaderFooterViewStyle headerFooterViewStyle;
-@property(nonatomic,copy)jobsByBtnBlock backBtnClickAction;
-@property(nonatomic,copy)jobsByBtnBlock closeBtnClickAction;
+Prop_assign()JobsHeaderFooterViewStyle headerFooterViewStyle;
+Prop_copy(nullable)jobsByBtnBlock backBtnClickAction;
+Prop_copy(nullable)jobsByBtnBlock closeBtnClickAction;
 #pragma mark —— 用类方法定义
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGFloatByIDBlock _Nonnull)viewWidthByModel;
@@ -106,9 +96,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 数据（字符串）定高
 -(JobsReturnCGFloatByIDBlock _Nonnull)heightByData;
 #pragma mark —— 关于导航栏
-@property(nonatomic,strong,nullable)UIButtonModel *closeBtnModel;
-@property(nonatomic,strong,nullable)UIButtonModel *backBtnModel;
-@property(nonatomic,strong,nullable)UIViewModel *titleModel;
+Prop_strong(nullable)UIButtonModel *closeBtnModel;
+Prop_strong(nullable)UIButtonModel *backBtnModel;
+Prop_strong(nullable)UIViewModel *titleModel;
 /// 配置 GKNavigationBar
 -(jobsByViewModelBlock _Nonnull)setGKNav;
 /// 配置 JobsNavBarConfig
@@ -146,18 +136,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(JobsReturnViewByTableViewHeaderFooterViewBlock _Nonnull)makeViewOnTableViewHeaderFooterView;
 #pragma mark —— 在View内部进行实现处理，对外暴露的值。（不直接暴露UI控件）
--(id)value;
--(id)value1;
--(id)value2;
--(id)value3;
--(id)value4;
+-(id _Nullable)value;
+-(id _Nullable)value1;
+-(id _Nullable)value2;
+-(id _Nullable)value3;
+-(id _Nullable)value4;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewProtocol> _Nullable data);
-#pragma mark —— @synthesize BaseViewProtocol
 #ifndef BaseViewProtocol_synthesize
 #define BaseViewProtocol_synthesize \
 \
@@ -178,9 +166,8 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 @synthesize backBtnModel = _backBtnModel;\
 @synthesize titleModel = _titleModel;\
 
-#endif
+#endif /* BaseViewProtocol_synthesize */
 
-#pragma mark —— @dynamic BaseViewProtocol
 #ifndef BaseViewProtocol_dynamic
 #define BaseViewProtocol_dynamic \
 \
@@ -201,4 +188,4 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 @dynamic backBtnModel;\
 @dynamic titleModel;\
 
-#endif
+#endif /* BaseViewProtocol_dynamic */

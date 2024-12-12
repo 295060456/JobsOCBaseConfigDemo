@@ -7,18 +7,12 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
-/// 可变数组的方便调用
-NS_INLINE __kindof NSSet *_Nonnull jobsMakeMutSet(jobsByMutableSetBlock _Nonnull block){
-    NSMutableSet *data = NSMutableSet.set;
-    if (block) block(data);
-    return data;
-}
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableSet (Extra)
 /// 阻止向可变集合添加空元素
--(JobsReturnIDByIDBlock _Nonnull)add;
+-(JobsReturnNSMutableSetByIDBlock _Nonnull)add;
 
 @end
 

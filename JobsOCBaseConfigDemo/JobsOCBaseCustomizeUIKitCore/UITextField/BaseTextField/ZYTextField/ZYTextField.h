@@ -22,9 +22,6 @@
 
 @interface ZYTextField : UITextField <UITextFieldProtocol>
 
-//@property(nonatomic,strong)UIColor *placeholderColor;
-//@property(nonatomic,strong)UIFont *placeholderFont;
-
 @property(nonatomic,assign)CGFloat ZYTextFieldCornerRadius;
 @property(nonatomic,assign)CGFloat ZYTextFieldBorderWidth;
 @property(nonatomic,assign,nullable)UIColor *ZYTextFieldBorderColor;

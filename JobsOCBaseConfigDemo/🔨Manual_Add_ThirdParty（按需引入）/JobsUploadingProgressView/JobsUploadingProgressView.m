@@ -46,7 +46,8 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
         self.radius = 34;
 
         self.hidden = YES;
-        self.backgroundColor = [[UIColor colorWithWhite:0.0 alpha:1.000] colorWithAlphaComponent:0.9];
+        
+        self.backgroundColor = JobsWhiteColor.colorWithAlphaComponentBy(.9f);
         self.layer.cornerRadius = 10;
         self.clipsToBounds = YES;
         
@@ -89,7 +90,8 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
         @jobs_weakify(self)
         [_nsTimerManager actionObjectBlock:^(id data) {
             @jobs_strongify(self)
-            self.refreshLabel.text = [self.refreshLabel.text isEqualToString:JobsInternationalization(@"正在上传...")] ? JobsInternationalization(@"正在上传") : [NSString stringWithFormat:@"%@.",self.refreshLabel.text];
+            self.refreshLabel.text.add(@".");
+            self.refreshLabel.text = self.refreshLabel.text.isEqualToString(JobsInternationalization(@"正在上传...")) ? JobsInternationalization(@"正在上传") : self.refreshLabel.text.add(JobsDot);
         }];
     }return _nsTimerManager;
 }

@@ -38,8 +38,8 @@ NS_ASSUME_NONNULL_END
          _tipsLab.label.textAlignment = NSTextAlignmentLeft;
          _tipsLab.label.numberOfLines = 0;
          _tipsLab.label.lineBreakMode = NSLineBreakByWordWrapping;
-         _tipsLab.label.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-         _tipsLab.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+         _tipsLab.label.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+         _tipsLab.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
          [self addSubview:_tipsLab];
          [_tipsLab mas_makeConstraints:^(MASConstraintMaker *make) {
              make.centerX.equalTo(self);

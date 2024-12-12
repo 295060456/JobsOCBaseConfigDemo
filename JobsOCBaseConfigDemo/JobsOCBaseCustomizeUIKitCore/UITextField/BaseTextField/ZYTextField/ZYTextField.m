@@ -42,7 +42,7 @@ UITextFieldProtocol_synthesize
             @jobs_weakify(self)
             self.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
                 @jobs_strongify(self)
-                data.cornerRadius = self.ZYTextFieldCornerRadius;
+                data.cornerRadiusValue = self.ZYTextFieldCornerRadius;
                 data.jobsWidth = self.ZYTextFieldBorderWidth;
                 data.layerCor = self.ZYTextFieldBorderColor;
                 data.masksToBounds = ZYTextFieldMasksToBounds;//必须写在最后，否则绘制无效
@@ -137,9 +137,9 @@ UITextFieldProtocol_synthesize
     @jobs_weakify(self)
     return jobsEqualToZeroRect(self.textRectForBounds) ? jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
         @jobs_strongify(self)
-        data.jobsX = (bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX);
+        data.jobsX = (bounds.origin.x + self.text_offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX);
         data.jobsY = bounds.origin.y;
-        data.jobsWidth = bounds.size.width - (self.offset + self.leftViewOffsetX + self.rightViewOffsetX);
+        data.jobsWidth = bounds.size.width - (self.text_offset + self.leftViewOffsetX + self.rightViewOffsetX);
         data.jobsHeight = bounds.size.height;
     }) : self.textRectForBounds;
 }
@@ -148,17 +148,17 @@ UITextFieldProtocol_synthesize
     @jobs_weakify(self)
     return jobsEqualToZeroRect(self.editingRectForBounds) ? jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
         @jobs_strongify(self)
-        data.jobsX = (bounds.origin.x + self.offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX);
+        data.jobsX = (bounds.origin.x + self.text_offset) + (self.leftView.Origin.x + self.leftView.sizer.width + self.leftViewOffsetX);
         data.jobsY = bounds.origin.y;
-        data.jobsWidth = bounds.size.width - (self.offset + self.leftViewOffsetX + self.rightViewOffsetX + self.fieldEditorOffset);
+        data.jobsWidth = bounds.size.width - (self.text_offset + self.leftViewOffsetX + self.rightViewOffsetX + self.fieldEditorOffset);
         data.jobsHeight = bounds.size.height;
     }) : self.editingRectForBounds;
 }
 #pragma mark —— lazyLoad
--(CGFloat)offset{
-    if (_offset == 0) {
-        _offset = 0.1;
-    }return _offset;
+-(CGFloat)text_offset{
+    if(!_text_offset){
+        _text_offset = 0.1;
+    }return _text_offset;
 }
 
 -(CGFloat)leftViewOffsetX{

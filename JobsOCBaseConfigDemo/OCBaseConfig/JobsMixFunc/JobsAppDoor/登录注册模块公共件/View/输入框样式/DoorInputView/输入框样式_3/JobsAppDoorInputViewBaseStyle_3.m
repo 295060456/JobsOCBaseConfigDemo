@@ -24,7 +24,7 @@
 //        self.backgroundColor = JobsRedColor;
         self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.jobsWidth = 1;
-            data.layerCor = Cor4;
+            data.layerCor = Cor3;
         }));
     }return self;
 }
@@ -35,7 +35,7 @@
         self.thisViewSize = thisViewSize;
         self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.jobsWidth = 1;
-            data.layerCor = Cor4;
+            data.layerCor = Cor3;
         }));
     }return self;
 }
@@ -61,11 +61,11 @@
     _textField.useCustomClearButton = self.doorInputViewBaseStyleModel.useCustomClearButton;
     _textField.isShowDelBtn = self.doorInputViewBaseStyleModel.isShowDelBtn;
     _textField.rightViewOffsetX = self.doorInputViewBaseStyleModel.rightViewOffsetX ? : JobsWidth(8);// 删除按钮的偏移量
-    _textField.offset = self.doorInputViewBaseStyleModel.offset;
+    _textField.text_offset = self.doorInputViewBaseStyleModel.offset;
     _textField.placeholderColor = self.doorInputViewBaseStyleModel.placeholderColor;
     _textField.placeholderFont = self.doorInputViewBaseStyleModel.placeholderFont;
     _textField.leftViewOffsetX = self.doorInputViewBaseStyleModel.leftViewOffsetX ? : JobsWidth(17);
-    _textField.animationColor = self.doorInputViewBaseStyleModel.animationColor ? : Cor4;
+    _textField.animationColor = self.doorInputViewBaseStyleModel.animationColor ? : Cor3;
     _textField.placeHolderAlignment = self.doorInputViewBaseStyleModel.placeHolderAlignment ? : NSTextAlignmentLeft;
     _textField.moveDistance = self.doorInputViewBaseStyleModel.moveDistance ? : JobsWidth(35);
     _textField.placeHolderOffset = self.doorInputViewBaseStyleModel.placeHolderOffset ? : JobsWidth(20);
@@ -107,7 +107,7 @@
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(void)changeTextFieldAnimationColor:(BOOL)toRegisterBtnSelected{
-    self.textField.animationColor = toRegisterBtnSelected ? Cor4 : Cor4;
+    self.textField.animationColor = toRegisterBtnSelected ? Cor3 : Cor3;
 }
 
 -(JobsMagicTextField *_Nullable)getTextField{
@@ -130,7 +130,7 @@
 -(UIButton *)securityModeBtn{
     if (!_securityModeBtn) {
         _securityModeBtn = UIButton.new;
-        _securityModeBtn.selectedStateImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
+        _securityModeBtn.selectedStateImageBy(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
         _securityModeBtn.jobsResetBtnImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image);
         @jobs_weakify(self)
         [_securityModeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
@@ -141,7 +141,6 @@
                 self.textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
             }return nil;
         }];
-
         [self addSubview:_securityModeBtn];
         [_securityModeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.bottom.equalTo(self);

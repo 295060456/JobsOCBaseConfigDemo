@@ -100,7 +100,7 @@ cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
         data.layerCor = JobsCor(@"#6E5600");
         data.jobsWidth = JobsWidth(1);
-        data.cornerRadius = JobsBtnStyleCVCell.cellSizeByModel(nil).height / 2;
+        data.cornerRadiusValue = JobsBtnStyleCVCell.cellSizeByModel(nil).height / 2;
     }));
     return cell;
 }
@@ -368,13 +368,13 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
                           UIFontWeightRegularSize(18)
                           ,HEXCOLOR(0xB0B0B0)
                           ,JobsIMG(@"弹窗取消按钮"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 self.cancelBtnActionForPopView(x);
                 self.shakeCell(NO);
             })
-            .onLongPressGesture(^(id data){
+            .onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.bgView addSubview:_cancelBtn];
@@ -394,13 +394,13 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
                           ,UIFontWeightRegularSize(18)
                           ,JobsBlackColor
                           ,JobsIMG(@"弹窗提交按钮"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 self.cancelBtnActionForPopView(self.dataMutArr);
                 self.shakeCell(NO);
             })
-            .onLongPressGesture(^(id data){
+            .onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.bgView addSubview:_sureBtn];

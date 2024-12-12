@@ -75,7 +75,7 @@
 -(UIImageView *)bgImageView_{
     if(!_bgImageView_){
         _bgImageView_ = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-            imageView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+            imageView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
     //        imageView.image = JobsIMG(@"投注记录");
             [self.contentView addSubview:imageView];
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -101,7 +101,7 @@
             data.lineWidth = self.excelConfigureData.LineWidth;
             data.strokeColor = self.excelConfigureData.cor6.CGColor;
             data.path = self.linePath.CGPath;
-            data.fillColor = JobsClearColor.colorWithAlphaComponent(0).CGColor;
+            data.fillColor = JobsClearColor.colorWithAlphaComponentBy(0).CGColor;
         });
     }return _lineLayer;
 }

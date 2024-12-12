@@ -87,7 +87,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView = UITableView.initWithStylePlain;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
-        _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         _tableView.dataLink(self);
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {

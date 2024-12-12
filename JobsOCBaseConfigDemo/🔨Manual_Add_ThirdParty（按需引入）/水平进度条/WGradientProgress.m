@@ -146,13 +146,13 @@
             [data actionObjectBlock:^(UIButtonModel *data) {
                 @jobs_strongify(self)
                 switch (data.timerProcessType) {
-                    case TimerProcessType_ready:{
+                    case TimerProcessType_Ready:{
                         
                     }break;
-                    case TimerProcessType_running:{
+                    case TimerProcessType_Running:{
                         [self timerFunc];
                     }break;
-                    case TimerProcessType_end:{
+                    case TimerProcessType_End:{
                         NSLog(@"我死球了");
                     }break;
                         
@@ -175,10 +175,10 @@
             [data actionObjectBlock:^(UIButtonModel *data) {
                 @jobs_strongify(self)
                 switch (data.timerProcessType) {
-                    case TimerProcessType_ready:{
+                    case TimerProcessType_Ready:{
                         
                     }break;
-                    case TimerProcessType_running:{
+                    case TimerProcessType_Running:{
                         if (self.progress < 1) {
                             [self start];
                             
@@ -193,7 +193,7 @@
                             [self.nsTimerManager_length nsTimeDestroy];//销毁
                         }
                     }break;
-                    case TimerProcessType_end:{
+                    case TimerProcessType_End:{
                         NSLog(@"我死球了");
                     }break;
                         

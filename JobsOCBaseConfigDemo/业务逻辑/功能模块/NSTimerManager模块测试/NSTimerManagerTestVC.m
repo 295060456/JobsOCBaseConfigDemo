@@ -176,7 +176,7 @@
                 btn.jobsResetBtnTitle(title);
                 btn.jobsResetBtnTitleCor(JobsBlackColor);
                 btn.jobsResetBtnBgImage(JobsIMG(@"弹窗取消按钮背景图"));
-                btn.selectedStateBackgroundImage(JobsIMG(@"弹窗取消按钮背景图"));
+                btn.selectedStateBackgroundImageBy(JobsIMG(@"弹窗取消按钮背景图"));
                 btn.cornerCutToCircleWithCornerRadius(JobsWidth(8));
                 btn.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
                     data.layerCor = HEXCOLOR(0xAE8330);

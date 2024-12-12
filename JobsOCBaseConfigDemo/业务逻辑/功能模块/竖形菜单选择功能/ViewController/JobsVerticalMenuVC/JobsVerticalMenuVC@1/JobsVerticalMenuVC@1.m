@@ -91,7 +91,9 @@
 }
 #pragma mark —— 一些私有方法
 -(jobsByVoidBlock)makeSubVC{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         /// 这里可以调用接口去获取一级目录分类的数据
         for (int i = 0; i < self.titleMutArr.count; i++){
             self.vcs.add(JobsVerticalMenuSubVC.new);
@@ -211,12 +213,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_customerServiceBtn) {
         @jobs_weakify(self)
         _customerServiceBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnImage(JobsIMG(@"人工客服"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
     }return _customerServiceBtn;
@@ -227,10 +229,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _msgBtn = BaseButton.jobsInit()
             .jobsResetBtnImage(JobsIMG(@"消息"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });;
     }return _msgBtn;
@@ -281,18 +283,18 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_editBtn) {
         @jobs_weakify(self)
         _editBtn = BaseButton.jobsInit()
-            .bgColor(HEXCOLOR(0xFCFBFB))
+            .bgColorBy(HEXCOLOR(0xFCFBFB))
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(JobsWidth(5.75))
             .jobsResetBtnBgImage(JobsIMG(@"编辑"))
             .jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"编辑"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 toast(JobsInternationalization(@"编辑"));
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_editBtn];

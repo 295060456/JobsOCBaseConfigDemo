@@ -27,5 +27,6 @@
 #import "NSString+Notification.h"
 #import "NSString+NSUserDefaults.h"
 #import "NSString+Reachability.h"
+#import "NSString+Menu.h"
 
 #endif /* JobsString_h */

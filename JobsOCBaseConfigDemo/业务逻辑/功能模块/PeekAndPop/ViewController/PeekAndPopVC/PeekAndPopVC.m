@@ -86,17 +86,17 @@
     if(!_switchBtn){
         @jobs_weakify(self)
         _switchBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(18))
             .jobsResetBtnTitle(JobsInternationalization(@"点击"))
             .jobsResetBtnSubTitle(JobsInternationalization(@"跳转Collection控制器"))
             .jobsResetTitlePadding(JobsWidth(10))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 self.comingToPushVC(MyCollectionVC.new);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_switchBtn];

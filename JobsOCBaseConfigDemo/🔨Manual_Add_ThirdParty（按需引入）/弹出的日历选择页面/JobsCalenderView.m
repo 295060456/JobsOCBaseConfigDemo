@@ -178,7 +178,7 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
 //        _calendar.calendarWeekdayView.backgroundColor = JobsYellowColor;
         _calendar.dataSource = self;
         _calendar.delegate = self;
-        _calendar.calendarHeaderView.backgroundColor = [JobsLightGrayColor colorWithAlphaComponent:0.1];
+        _calendar.calendarHeaderView.backgroundColor = JobsLightGrayColor.colorWithAlphaComponentBy(.1f);
         _calendar.appearance.headerMinimumDissolvedAlpha = 1;
         _calendar.appearance.headerDateFormat = @"yyyy年MM月";
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
@@ -190,9 +190,7 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
         [self addSubview:_calendar];
         [_calendar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
-        }];
-        [_calendar setNeedsLayout];
-        [_calendar layoutIfNeeded];
+        }];_calendar.refresh();
     }return _calendar;
 }
 

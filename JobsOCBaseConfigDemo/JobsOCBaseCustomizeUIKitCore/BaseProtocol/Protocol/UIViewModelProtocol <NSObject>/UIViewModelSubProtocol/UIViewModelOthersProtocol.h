@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DefineProperty.h"
 #import "JobsLabelDef.h"
 #import "JobsBlock.h"
 
@@ -22,28 +23,27 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 /// 其他
 #pragma mark —— UI
-@property(nonatomic,strong,nullable)UIColor *layerBorderCor;
-@property(nonatomic,assign)CGFloat layerBorderWidth;
-@property(nonatomic,assign)CGFloat layerCornerRadius;
-@property(nonatomic,assign)BOOL isTranslucent;/// 是否取消tabBar的透明效果
-@property(nonatomic,assign)BOOL isVisible;/// ❤️只是一个标记是否可见，如果需要设置请移步@interface UIView (Extras) ：-(BOOL)jobsVisible; 和 -(void)setJobsVisible:(BOOL)jobsVisible;
-@property(nonatomic,assign)BOOL isInvisible;/// 此属性默认就是NO，即可见
-@property(nonatomic,assign)BOOL isMultiLineShows;/// 是否多行行显示【默认单行显示】
-@property(nonatomic,assign)UILabelShowingType labelShowingType;
+Prop_strong(nullable)UIColor *layerBorderCor;
+Prop_assign()CGFloat layerBorderWidth;
+Prop_assign()CGFloat layerCornerRadius;
+Prop_assign()BOOL isTranslucent;/// 是否取消tabBar的透明效果
+Prop_assign()BOOL isVisible;/// ❤️只是一个标记是否可见，如果需要设置请移步@interface UIView (Extras) ：-(BOOL)jobsVisible; 和 -(void)setJobsVisible:(BOOL)jobsVisible;
+Prop_assign()BOOL isInvisible;/// 此属性默认就是NO，即可见
+Prop_assign()BOOL isMultiLineShows;/// 是否多行行显示【默认单行显示】
+Prop_assign()UILabelShowingType labelShowingType;
 #pragma mark —— 定位
-@property(nonatomic,assign)NSUInteger jobsTag;
+Prop_assign()NSUInteger jobsTag;
 #pragma mark —— 点击
-@property(nonatomic,assign)BOOL jobsSelected;
-@property(nonatomic,assign)BOOL jobsEnabled;
-@property(nonatomic,strong,nullable)UIAction *primaryAction;/// 新Api的点击事件
-@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
-@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
+Prop_assign()BOOL jobsSelected;
+Prop_assign()BOOL jobsEnabled;
+Prop_strong(nullable)UIAction *primaryAction;/// 新Api的点击事件
+Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
+Prop_copy(nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#pragma mark —— @synthesize UIViewModelOthersProtocol
 #ifndef UIViewModelOthersProtocol_synthesize
 #define UIViewModelOthersProtocol_synthesize \
 \
@@ -62,9 +62,8 @@ NS_ASSUME_NONNULL_END
 @synthesize longPressGestureEventBlock = _longPressGestureEventBlock;\
 @synthesize clickEventBlock = _clickEventBlock;\
 
-#endif
+#endif /* UIViewModelOthersProtocol_synthesize */
 
-#pragma mark —— @dynamic UIViewModelOthersProtocol
 #ifndef UIViewModelOthersProtocol_dynamic
 #define UIViewModelOthersProtocol_dynamic \
 \
@@ -83,5 +82,5 @@ NS_ASSUME_NONNULL_END
 @dynamic longPressGestureEventBlock;\
 @dynamic clickEventBlock;\
 
-#endif
+#endif /* UIViewModelOthersProtocol_dynamic */
 

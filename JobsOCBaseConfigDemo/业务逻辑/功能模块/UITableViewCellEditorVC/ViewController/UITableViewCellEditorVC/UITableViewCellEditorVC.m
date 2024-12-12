@@ -210,11 +210,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_editBtn) {
         @jobs_weakify(self)
         _editBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(12))
             .jobsResetBtnTitle(JobsInternationalization(@"編輯"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
     //            toast(x.titleForNormalState);
@@ -222,7 +222,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 x.jobsResetBtnTitle(x.selected ? JobsInternationalization(@"完成") : JobsInternationalization(@"編輯"));
                 [self.tableView setEditing:x.selected animated:YES];
                 x.selected ? [self.getMsgEditBoardView appearByView:self.view] : [self.getMsgEditBoardView disappearByView:self.view];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
     }return _editBtn;

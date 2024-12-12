@@ -20,7 +20,7 @@
 
 @implementation TreeClassItemCell
 #pragma mark —— UILocationProtocol
-UILocationProtocol_UIViewModelSynthesize
+UILocationProtocol_synthesize
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
@@ -111,7 +111,7 @@ UILocationProtocol_UIViewModelSynthesize
     if (!_btn) {
         @jobs_weakify(self)
         _btn = BaseButton.jobsInit()
-            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
+            .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(JobsWidth(5))
             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -119,7 +119,7 @@ UILocationProtocol_UIViewModelSynthesize
             .jobsResetBtnTitleCor(HEXCOLOR(0xC4C4C4))
             .jobsResetBtnTitleFont(UIFontWeightRegularSize(12))
             .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if(x.selected){
@@ -127,7 +127,7 @@ UILocationProtocol_UIViewModelSynthesize
                     self.dataModel.jobsSelected = x.selected;
                 }
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.contentView addSubview:_btn];

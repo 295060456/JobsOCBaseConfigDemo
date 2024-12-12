@@ -15,8 +15,9 @@
 
 @implementation JobsTextStyleTBVCell
 #pragma mark —— @synthesize UIViewModelProtocol
-UIViewModelProtocol_synthesize
-UIViewModelProtocol_self_synthesize
+UIViewModelProtocol_synthesize_part1
+UIViewModelProtocol_synthesize_part2
+BaseLayerProtocol_synthesize_part3
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
@@ -50,7 +51,7 @@ UIViewModelProtocol_self_synthesize
 #pragma mark —— BaseViewProtocol
 /// 获取绑定的数据源
 -(UIViewModel *)getViewModel{
-    return _viewModel;
+    return self.viewModel;
 }
 #pragma mark —— lazyLoad
 -(UILabel *)lab{

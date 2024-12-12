@@ -49,7 +49,7 @@
 }
 #pragma mark —— 一些私有方法
 -(void)configTextField{
-    _textField.leftView = [UIImageView.alloc initWithImage:self.doorInputViewBaseStyleModel.leftViewIMG];
+    _textField.leftView = UIImageView.initBy(self.doorInputViewBaseStyleModel.leftViewIMG);
     _textField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
     _textField.placeholder = isNull(self.doorInputViewBaseStyleModel.placeholder) ? self.titleStr_1 : self.doorInputViewBaseStyleModel.placeholder;
     _textField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;

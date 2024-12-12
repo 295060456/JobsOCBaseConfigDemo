@@ -359,12 +359,12 @@
         case PullMenuDarkStyle:
         {
             self.coverBgColor = [UIColor clearColor];
-            self.menuBgColor  = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+            self.menuBgColor  = JobsBlackColor.colorWithAlphaComponentBy(0.6f);
         }
             break;
         case PullMenuLightStyle:
         {
-            self.coverBgColor = [[UIColor grayColor] colorWithAlphaComponent:0.3];
+            self.coverBgColor = JobsGrayColor.colorWithAlphaComponentBy(0.3f);
             self.menuBgColor  = [UIColor whiteColor];
         }
             break;

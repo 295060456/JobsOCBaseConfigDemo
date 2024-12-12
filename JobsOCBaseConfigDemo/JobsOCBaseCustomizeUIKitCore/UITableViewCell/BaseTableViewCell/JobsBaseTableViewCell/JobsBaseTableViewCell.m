@@ -8,9 +8,6 @@
 
 #import "JobsBaseTableViewCell.h"
 
-#define UITableViewCellTitleWidth JobsMainScreen_WIDTH() * 2 / 3
-#define UITableViewCellSubTitleWidth JobsMainScreen_WIDTH() / 3
-
 @interface JobsBaseTableViewCell ()
 /// Data
 @property(nonatomic,assign)BOOL isSetTBVCellOffset;
@@ -18,8 +15,7 @@
 @end
 
 @implementation JobsBaseTableViewCell
-#pragma mark —— @synthesize UITableViewCellProtocol
-UITableViewCellProtocol_synthesize
+UITableViewCellProtoco_Synthesize_part2
 #pragma mark —— UITableViewCellProtocol
 /// 4种UITableViewCell系统样式类型
 /// UITableViewCellStyleDefault ：左边有一个显示图片的imageView和一个标题textLabel。
@@ -29,8 +25,7 @@ UITableViewCellProtocol_synthesize
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
-            cell = [self initTableViewCell:self
-                                 withStyle:UITableViewCellStyleDefault];
+            cell = [self initTableViewCell:self withStyle:UITableViewCellStyleDefault];
             cell.settingForTableViewCell();
         }return cell;
     };
@@ -42,8 +37,7 @@ UITableViewCellProtocol_synthesize
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
-            cell = [self initTableViewCell:self
-                                 withStyle:UITableViewCellStyleValue1];
+            cell = [self initTableViewCell:self withStyle:UITableViewCellStyleValue1];
             cell.settingForTableViewCell();
         }return cell;
     };
@@ -55,8 +49,7 @@ UITableViewCellProtocol_synthesize
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
-            cell = [self initTableViewCell:self
-                                 withStyle:UITableViewCellStyleValue2];
+            cell = [self initTableViewCell:self withStyle:UITableViewCellStyleValue2];
             cell.settingForTableViewCell();
         }return cell;
     };
@@ -68,8 +61,7 @@ UITableViewCellProtocol_synthesize
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
-            cell = [self initTableViewCell:self
-                                 withStyle:UITableViewCellStyleSubtitle];
+            cell = [self initTableViewCell:self withStyle:UITableViewCellStyleSubtitle];
             cell.settingForTableViewCell();
         }return cell;
     };
@@ -101,7 +93,7 @@ UITableViewCellProtocol_synthesize
      ❤️如果单独的对每一个row对应的UITableViewCell的边距有缩进则使用下列方法❤️
      如果这个TableViewCell是JobsBaseTableViewCell则不需要复写-(void)setFrame:(CGRect)frame；否则是需要：
      
-     UILocationProtocol_UIViewModelSynthesize
+     UILocationProtocol
      直接影响:
      cell.offsetXForEach = JobsWidth(8);
      cell.offsetYForEach = JobsWidth(6);
@@ -136,8 +128,7 @@ UITableViewCellProtocol_synthesize
         frame.size.height -= offsetY * 2;
         frame.size.width -= offsetX * 2;
         self.isSetTBVCellOffset = !self.isSetTBVCellOffset;
-    }
-    [super setFrame:frame];
+    }[super setFrame:frame];
 }
 // 在具体的子类，去覆盖-(void)setFrame:(CGRect)frame方法
 //-(void)setFrame:(CGRect)frame{
@@ -208,7 +199,7 @@ UITableViewCellProtocol_synthesize
 }
 /// 获取绑定的数据源
 -(UIViewModel *)getViewModel{
-    return _viewModel;
+    return self.viewModel;
 }
 #pragma mark —— BaseCellProtocol
 -(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
@@ -231,8 +222,7 @@ UITableViewCellProtocol_synthesize
                     self.textLabel.text = model.textModel.text;
                     self.textLabel.textColor = self.viewModel.textModel.textCor;
                     self.textLabel.font = self.viewModel.textModel.font;
-                }
-                self.textLabel.numberOfLines = 0;
+                }self.textLabel.numberOfLines = 0;
             }
             
             if(self.detailTextLabel){
@@ -244,8 +234,7 @@ UITableViewCellProtocol_synthesize
                     self.detailTextLabel.font = self.viewModel.subTextModel.font;
                     self.detailTextLabel.width = UITableViewCellSubTitleWidth;
                     self.detailTextLabel.makeLabelByShowingType(UILabelShowingType_05);
-                }
-                self.detailTextLabel.numberOfLines = 0;
+                }self.detailTextLabel.numberOfLines = 0;
             }
             
             self.imageView.image = self.viewModel.image;
@@ -255,33 +244,33 @@ UITableViewCellProtocol_synthesize
 
 +(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(__kindof UIViewModel *_Nullable model){
+        __block NSString *title = @"";
+        __block NSString *subtitle = @"";
         if(model){
-            UIViewModel *vm = UIViewModel.new;
-            NSString *title = @"";
-            NSString *subtitle = @"";
-            if(model.textModel.attributedTitle.string.length){
-                title = model.textModel.attributedTitle.string;
-                vm.textModel.font = model.textModel.attributedTitle.attributedStringFont() ? : UIFontWeightRegularSize(14);
-                vm.textModel.textLineSpacing = model.textModel.attributedTitle.attributedStringParagraphStyle().lineSpacing;
-            }else{
-                title = model.textModel.text;
-                vm.textModel.font = model.textModel.font ? : UIFontWeightRegularSize(14);
-                vm.textModel.textLineSpacing = model.textModel.textLineSpacing;
-            }
-            
-            if(model.subTextModel.attributedTitle.string.length){
-                subtitle = model.subTextModel.attributedTitle.string;
-                vm.textModel.font = model.subTextModel.attributedTitle.attributedStringFont() ? : UIFontWeightRegularSize(14);
-                vm.textModel.textLineSpacing = model.subTextModel.attributedTitle.attributedStringParagraphStyle().lineSpacing;
-            }else{
-                subtitle = model.subTextModel.text;
-                vm.textModel.font = model.subTextModel.font ? : UIFontWeightRegularSize(14);
-                vm.textModel.textLineSpacing = model.subTextModel.textLineSpacing;
-            }
-            /// 主标题和副标题进行比较，以最长文本为标准执行
-            vm.textModel.text = title.length >= subtitle.length ? title : subtitle;
-            vm.jobsWidth = UITableViewCellTitleWidth;
-            
+            UIViewModel *vm = jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
+                if(model.textModel.attributedTitle.string.length){
+                    title = model.textModel.attributedTitle.string;
+                    data.textModel.font = model.textModel.attributedTitle.attributedStringFont() ? : UIFontWeightRegularSize(14);
+                    data.textModel.textLineSpacing = model.textModel.attributedTitle.attributedStringParagraphStyle().lineSpacing;
+                }else{
+                    title = model.textModel.text;
+                    data.textModel.font = model.textModel.font ? : UIFontWeightRegularSize(14);
+                    data.textModel.textLineSpacing = model.textModel.textLineSpacing;
+                }
+                
+                if(model.subTextModel.attributedTitle.string.length){
+                    subtitle = model.subTextModel.attributedTitle.string;
+                    data.textModel.font = model.subTextModel.attributedTitle.attributedStringFont() ? : UIFontWeightRegularSize(14);
+                    data.textModel.textLineSpacing = model.subTextModel.attributedTitle.attributedStringParagraphStyle().lineSpacing;
+                }else{
+                    subtitle = model.subTextModel.text;
+                    data.textModel.font = model.subTextModel.font ? : UIFontWeightRegularSize(14);
+                    data.textModel.textLineSpacing = model.subTextModel.textLineSpacing;
+                }
+                /// 主标题和副标题进行比较，以最长文本为标准执行
+                data.textModel.text = title.length >= subtitle.length ? title : subtitle;
+                data.jobsWidth = UITableViewCellTitleWidth;
+            });
             return [vm.textModel.text jobsTextHeightWithFont:vm.textModel.font
                                                   lineHeight:vm.textModel.textLineSpacing
                                                 controlWidth:vm.jobsWidth].jobsHeight;
@@ -289,8 +278,9 @@ UITableViewCellProtocol_synthesize
     };
 }
 #pragma mark —— @synthesize UIViewModelProtocol
-UIViewModelProtocol_synthesize
-UIViewModelProtocol_self_synthesize
+UIViewModelProtocol_synthesize_part1
+UIViewModelProtocol_synthesize_part2
+BaseLayerProtocol_synthesize_part3
 -(void)setIndexPath:(NSIndexPath *)indexPath{
     _indexPath = indexPath;
 }

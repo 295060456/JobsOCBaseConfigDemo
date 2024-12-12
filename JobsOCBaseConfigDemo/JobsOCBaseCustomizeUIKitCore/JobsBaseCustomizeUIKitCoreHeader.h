@@ -161,6 +161,10 @@
 #import "NSTimeZone+Extra.h"
 #pragma mark —— NSDateFormatter
 #import "NSDateFormatter+Extra.h"
+#pragma mark —— UITextItem
+#import "UITextItem+Extra.h"
+#pragma mark —— UIEditMenuInteraction
+#import "UIEditMenuInteraction+Extra.h"
 
 #import "JobsMakes.h"
 

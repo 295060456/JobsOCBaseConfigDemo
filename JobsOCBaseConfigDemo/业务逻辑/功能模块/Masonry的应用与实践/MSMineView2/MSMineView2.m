@@ -90,12 +90,12 @@ static dispatch_once_t static_mineView2OnceToken;
                                            JobsBlackColor,
                                            JobsIMG(@"入职Mata"),
                                            JobsWidth(10))
-            .bgColor(JobsWhiteColor)
-            .cornerRadiusValue(JobsWidth(8))
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsWhiteColor)
+            .cornerRadiusValueBy(JobsWidth(8))
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_btn1];
@@ -113,12 +113,12 @@ static dispatch_once_t static_mineView2OnceToken;
         _btn2 = BaseButton.initByStyle1(JobsInternationalization(@"立即进入"),
                                                      UIFontWeightRegularSize(14),
                                                      JobsWhiteColor)
-            .bgColor(JobsCor(@"#EA2918"))
-            .cornerRadiusValue(JobsWidth(14))
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsCor(@"#EA2918"))
+            .cornerRadiusValueBy(JobsWidth(14))
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_btn2];

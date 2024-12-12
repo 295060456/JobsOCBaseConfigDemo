@@ -20,7 +20,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        self.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
     }return self;
 }
 
@@ -59,7 +59,7 @@
         _textField.returnKeyType = UIReturnKeySearch;
         _textField.placeHolderAlignment = NSTextAlignmentCenter;
         _textField.leftViewOffsetX = JobsWidth(5);
-        _textField.offset = JobsWidth(3);
+        _textField.text_offset = JobsWidth(3);
         [self addSubview:_textField];
         CGFloat TextFieldWidth = self.mj_w - JobsWidth(80);
         [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -82,7 +82,7 @@
         _textField.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
             model.jobsWidth = .05f;
             model.layerCor = JobsBlueColor;
-            model.cornerRadius = JobsWidth(8);
+            model.cornerRadiusValue = JobsWidth(8);
         }));
     }return _textField;
 }
@@ -91,14 +91,14 @@
     if (!_cancelBtn) {
         @jobs_weakify(self)
         _cancelBtn = BaseButton.jobsInit()
-            .bgColor(JobsLightGrayColor)
+            .bgColorBy(JobsLightGrayColor)
             .jobsResetBtnTitleCor(HEXCOLOR(0x0F81FE))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"取消"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_cancelBtn];

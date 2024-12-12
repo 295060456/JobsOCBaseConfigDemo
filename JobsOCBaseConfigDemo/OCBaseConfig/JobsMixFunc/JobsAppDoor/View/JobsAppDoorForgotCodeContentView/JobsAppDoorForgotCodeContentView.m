@@ -83,19 +83,19 @@
     if (!_backToLoginBtn) {
         @jobs_weakify(self)
         _backToLoginBtn = BaseButton.jobsInit()
-            .bgColor(Cor1)
+            .bgColorBy(Cor1)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(JobsWidth(8))
             .jobsResetBtnImage(JobsIMG(@"用户名称"))
             .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
-            .jobsResetBtnTitleCor(Cor3)
+            .jobsResetBtnTitleCor(Cor4)
             .jobsResetBtnTitleFont(UIFontWeightMediumSize(13))
             .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 [self endEditing:YES];
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _backToLoginBtn.alpha = 0.7f;
@@ -113,13 +113,13 @@
     if (!_contactCustomerServiceBtn) {
         @jobs_weakify(self)
         _contactCustomerServiceBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnImage(JobsIMG(@"zaixiankefu_en"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 [self endEditing:YES];
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self addSubview:_contactCustomerServiceBtn];

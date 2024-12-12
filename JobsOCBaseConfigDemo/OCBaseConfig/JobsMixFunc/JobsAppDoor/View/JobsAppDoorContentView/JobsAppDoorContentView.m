@@ -183,14 +183,14 @@
     self.titleLab.text = Title7;
     self.titleLab.font = [UIFont systemFontOfSize:JobsWidth(20)
                                            weight:UIFontWeightRegular];
-    self.titleLab.textColor = Cor4;
+    self.titleLab.textColor = Cor3;
     [self.titleLab sizeToFit];//sizeToFit也会刷新UI造成UI错位，所以需要提前写
     self.titleLab.top = JobsWidth(20);
     self.titleLab.centerX = (self.width - self.toRegisterBtn.width) / 2;
 }
 
 -(void)initialSendBtn{
-//        _sendBtn.backgroundColor = [KSystemPinkColor colorWithAlphaComponent:0.3];
+//    self.sendBtn.backgroundColor = KSystemPinkColor.colorWithAlphaComponentBy(.3f);
     
     self.sendBtn.sizer = CGSizeMake(self.width - self.toRegisterBtn.width - JobsWidth(40), ThingsHeight);
     [self.sendBtn setBackgroundImage:JobsIMG(@"登录注册按钮背景图") forState:UIControlStateNormal];
@@ -211,7 +211,7 @@
 -(void)initialAbandonLoginBtn{
     self.abandonLoginBtn.height = JobsWidth(10);
     self.abandonLoginBtn.jobsResetBtnTitle(Title4);
-    self.abandonLoginBtn.jobsResetBtnTitleCor(Cor3);
+    self.abandonLoginBtn.jobsResetBtnTitleCor(Cor4);
     self.abandonLoginBtn.titleLabel.font = [UIFont systemFontOfSize:JobsWidth(12)
                                                              weight:UIFontWeightSemibold];
     [self.abandonLoginBtn.titleLabel sizeToFit];
@@ -377,17 +377,17 @@
         
         用户名.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.jobsWidth = 1;
-            data.layerCor = Cor4;
+            data.layerCor = Cor3;
         }));
         
         密码.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.jobsWidth = 1;
-            data.layerCor = Cor4;
+            data.layerCor = Cor3;
         }));
         
         确认密码.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.jobsWidth = 1;
-            data.layerCor = Cor4;
+            data.layerCor = Cor3;
         }));
     }
 }
@@ -429,7 +429,7 @@
         _toRegisterBtn.jobsResetBtnImage(JobsIMG(@"用户名称"));
         _toRegisterBtn.titleLabel.numberOfLines = 0;
         _toRegisterBtn.backgroundColor = Cor1;
-        _toRegisterBtn.jobsResetBtnTitleCor(Cor3);
+        _toRegisterBtn.jobsResetBtnTitleCor(Cor4);
         _toRegisterBtn.titleLabel.font = UIFontWeightMediumSize(13);
         @jobs_weakify(self)
         [_toRegisterBtn jobsBtnClickEventBlock:^id(UIButton *x) {
@@ -488,8 +488,8 @@
         _storeCodeBtn.titleLabel.font = UIFontWeightRegularSize(10);
         _storeCodeBtn.selected = YES;// 默认记住密码
         _storeCodeBtn.jobsResetBtnImage(JobsIMG(@"没有记住密码"));
-        _storeCodeBtn.selectedStateImage(JobsIMG(@"记住密码"));
-        _storeCodeBtn.jobsResetBtnTitleCor(Cor4);
+        _storeCodeBtn.selectedStateImageBy(JobsIMG(@"记住密码"));
+        _storeCodeBtn.jobsResetBtnTitleCor(Cor3);
         _storeCodeBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         _storeCodeBtn.titleLabel.adjustsFontForContentSizeCategory = YES;
         [self addSubview:_storeCodeBtn];
@@ -515,7 +515,7 @@
         _findCodeBtn = UIButton.new;
         _findCodeBtn.jobsResetBtnTitle(Title3);
         _findCodeBtn.titleLabel.font = UIFontWeightRegularSize(10);
-        _findCodeBtn.jobsResetBtnTitleCor(Cor3);
+        _findCodeBtn.jobsResetBtnTitleCor(Cor4);
         _findCodeBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
         _findCodeBtn.titleLabel.adjustsFontForContentSizeCategory = YES;
         [self addSubview:_findCodeBtn];

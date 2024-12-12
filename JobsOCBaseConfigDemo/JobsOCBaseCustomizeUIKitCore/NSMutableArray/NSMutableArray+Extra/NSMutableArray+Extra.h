@@ -8,16 +8,16 @@
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
 
-/// 可变数组的方便调用
-NS_INLINE __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
-    NSMutableArray *data = NSMutableArray.array;
-    if (block) block(data);
-    return data;
-}
+#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
+#import <ReactiveObjC/ReactiveObjC.h>
+#else
+#import "ReactiveObjC.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableArray (Extra)
+
 +(JobsReturnArrayByArrayBlock _Nonnull)initBy;
 /// 清除数组元素
 -(jobsByVoidBlock _Nonnull)clean;
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 数组取下标
 -(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy;
 /// 阻止向可变数组添加空元素
--(JobsReturnIDByIDBlock _Nonnull)add;
+-(JobsReturnMutableArrayByIDBlock _Nonnull)add;
 /// 删除元素
 -(JobsReturnIDByIDBlock _Nonnull)remove;
 /// 阻止向可变数组添加空元素
@@ -41,8 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 改变输入的按钮状态
 -(jobsByBtnBlock _Nonnull)chooseBy;
 /// 监控选中状态
--(void)unselectBlock:(jobsByBtnBlock)unselectBlock
-         selectBlock:(jobsByBtnBlock)selectBlock;
+-(void)unselectBlock:(jobsByBtnBlock _Nullable)unselectBlock
+         selectBlock:(jobsByBtnBlock _Nullable)selectBlock;
 
 @end
 

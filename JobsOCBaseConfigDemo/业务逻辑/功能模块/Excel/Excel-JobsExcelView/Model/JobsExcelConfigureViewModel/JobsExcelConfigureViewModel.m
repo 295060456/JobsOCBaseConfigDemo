@@ -44,7 +44,7 @@
                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
                     @jobs_strongify(self)
                     data1.title = self.leftTitles[y - 1];
-                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                     data1.titleCor = JobsWhiteColor;
                     data1.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;
                     data1.backgroundImage = y % 2 ? self.image2 : self.image1;
@@ -82,7 +82,7 @@
                         @jobs_strongify(self)
                         model.title = self.leftTitles[i].add(@"@").add(self.topHeaderTitles[j]);
                         if(j == 2){
-                            model.enabled = YES;
+                            model.jobsEnabled = YES;
                             model.imagePlacement = NSDirectionalRectEdgeTrailing;
                             model.imagePadding = JobsWidth(8);
                             model.normalImage = JobsIMG(@"复制图标");
@@ -149,7 +149,7 @@
                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
                     @jobs_strongify(self)
                     data1.title = self.topHeaderTitles[y] ? : toStringByInt(y).add(JobsInternationalization(@"层"));
-                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                     data1.titleCor = self.cor4;
                     data1.baseBackgroundColor = self.cor3;
                     data1.backgroundImage = self.image3;
@@ -168,7 +168,7 @@
 //                data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
 //                    @jobs_strongify(self)
 //                    data1.title = toStringByInt(y).add(JobsInternationalization(@"楼"));
-//                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+//                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
 //                    data1.titleCor = JobsWhiteColor;
 //                    data1.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;
 //                    data1.backgroundImage = y % 2 ? self.image2 : self.image1;
@@ -279,7 +279,7 @@
             data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.title = topHeaderTitles[y];
-                data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+                data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                 data1.titleCor = self.cor4;
                 data1.baseBackgroundColor = self.cor3;
                 data1.backgroundImage = self.image3;

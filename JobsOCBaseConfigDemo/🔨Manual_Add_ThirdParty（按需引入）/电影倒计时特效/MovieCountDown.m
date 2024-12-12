@@ -76,7 +76,7 @@
                     [self getCuntDown:(NSInteger)timerManager.anticlockwiseTime];
                 }else if ([data isKindOfClass:UIButtonModel.class]){
                     UIButtonModel *model = (UIButtonModel *)data;
-                    if (model.timerProcessType == TimerProcessType_end) {
+                    if (model.timerProcessType == TimerProcessType_End) {
                         if (self.objectBlock) self.objectBlock(data);
                     }
                 }else{}
@@ -114,7 +114,7 @@
             view.centerY = self->_countDown.centerY;
             view.alpha = 0;
             view.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-                data.cornerRadius = 50.f;
+                data.cornerRadiusValue = 50.f;
             }));[self.effectView addSubview:view];
         });
     }return _aphView;

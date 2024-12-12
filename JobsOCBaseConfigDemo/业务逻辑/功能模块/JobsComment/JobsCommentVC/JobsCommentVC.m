@@ -72,12 +72,12 @@
     if (!_contactCustomerServiceBtn) {
         @jobs_weakify(self)
         _contactCustomerServiceBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnImage(JobsIMG(@"zaixiankefu_en"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 [self makeJobsCommentCoreVC];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_contactCustomerServiceBtn];

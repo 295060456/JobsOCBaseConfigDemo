@@ -13,7 +13,7 @@
 
 @implementation BaseButton
 BaseProtocol_synthesize
-UIMarkProtocol_synthesize
+UIMarkProtocol_synthesize_part1
 BaseButtonProtocol_synthesize
 #pragma mark —— Sys
 -(instancetype)init{
@@ -51,6 +51,24 @@ BaseButtonProtocol_synthesize
 
 -(void)setFrame:(CGRect)frame{
     [super setFrame:frame];
+}
+/// 判断触摸点是否在 UITextView 内
+/// 当 UIButton.enabled = NO时，此方法不响应
+-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    UIView *hitView = [super hitTest:point withEvent:event];
+    /// 如果触摸点在 UITextView 内部，忽略事件
+    if ([hitView isKindOfClass:[UITextView class]]) {
+        return nil; /// 将事件传递给 UIButton 的 superview
+    }
+    for (UIView *subview in self.subviews) {
+        if ([subview isKindOfClass:UITextView.class]) {
+            if(self.objectBlock) self.objectBlock(subview);
+            CGPoint subPoint = [subview convertPoint:point fromView:self];
+            if ([subview pointInside:subPoint withEvent:event]) {
+                return subview; /// 返回 UITextView
+            }
+        }
+    }return hitView; /// 默认返回按钮自身
 }
 #pragma mark —— 一些私有方法
 /// 只能在-(void)layoutSubviews里面进行调用
@@ -256,12 +274,7 @@ BaseButtonProtocol_synthesize
     }
     if([self.data isKindOfClass:UIButtonModel.class]){
         UIButtonModel *buttonModel = (UIButtonModel *)self.data;
-//        self.jobsResetBtnImage(selected ? buttonModel.highlightImage : buttonModel.normalImage);
-        if(selected){
-            self.jobsResetBtnImage(buttonModel.highlightImage);
-        }else{
-            self.jobsResetBtnImage(buttonModel.normalImage);
-        }
+        self.jobsResetBtnImage(selected ? buttonModel.highlightImage : buttonModel.normalImage);
     }
 }
 

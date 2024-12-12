@@ -97,7 +97,7 @@
     if(!_switchBtn){
         @jobs_weakify(self)
         _switchBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetTitlePadding(JobsWidth(10))
             .jobsResetBtnCornerRadiusValue(JobsWidth(8))
@@ -107,14 +107,14 @@
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"点击"))
             .jobsResetBtnSubTitle(JobsInternationalization(@"切换App图标"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
     //            x.selected = !x.selected;
     //            NSString *appIconToName = x.selected ? @"AlternateIcon2" : @"AlternateIcon1";
     //            [self changeAppIconToName:appIconToName];
                 [self changeAppIconToName:@"AlternateIcon2"];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_switchBtn];

@@ -72,11 +72,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 依靠UITextModel进行创建
 +(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel;
 #pragma mark —— 一些公有方法
--(JobsReturnButtonByClickBlock _Nonnull)onClick;
--(JobsReturnButtonByClickBlock _Nonnull)onLongPressGesture;
--(JobsReturnButtonByTimerManagerBlock _Nonnull)heartBeat;
--(JobsReturnButtonByColorBlock _Nonnull)bgColor;
--(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValue;
+-(JobsReturnButtonByClickBlock _Nonnull)onClickBy;
+-(JobsReturnButtonByClickBlock _Nonnull)onLongPressGestureBy;
+-(JobsReturnButtonByTimerManagerBlock _Nonnull)heartBeatBy;
+-(JobsReturnButtonByColorBlock _Nonnull)bgColorBy;
+-(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValueBy;
 
 @end
 
@@ -181,15 +181,15 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
          } else {
              NSLog(@"图片加载成功");
          }
-     }).onClick(^(UIButton *x){
+     }).onClickBy(^(UIButton *x){
          @jobs_strongify(self)
          if (self.objectBlock) self.objectBlock(x);
-     }).onLongPressGesture(^(id data){
+     }).onLongPressGestureBy(^(id data){
      NSLog(@"");
  }).bgNormalLoad();
  
  _applyNowBtn = BaseButton.jobsInit()
-     .bgColor(JobsWhiteColor)
+     .bgColorBy(JobsWhiteColor)
      .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
      .jobsResetImagePadding(1)
      .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -197,9 +197,9 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
      .jobsResetBtnTitleCor(JobsWhiteColor)
      .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
      .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-     .onClick(^(UIButton *x){
+     .onClickBy(^(UIButton *x){
          NSLog(@"");
-     }).onLongPressGesture(^(id data){
+     }).onLongPressGestureBy(^(id data){
          NSLog(@"");
      });
  
@@ -228,7 +228,7 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
                  data1.targetString = self.richTextMutArr[2];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
              }));
-         }))).bgColor(JobsWhiteColor)
+         }))).bgColorBy(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
              .jobsResetImagePadding(1)
              .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
@@ -236,11 +236,11 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-             .onClick(^(UIButton *x){
+             .onClickBy(^(UIButton *x){
                  @jobs_strongify(self)
                  x.selected = !x.selected;
                  if (self.objectBlock) self.objectBlock(x);
-             }).onLongPressGesture(^(id data){
+             }).onLongPressGestureBy(^(id data){
                  NSLog(@"");
              });
      }return _applyNowBtn;

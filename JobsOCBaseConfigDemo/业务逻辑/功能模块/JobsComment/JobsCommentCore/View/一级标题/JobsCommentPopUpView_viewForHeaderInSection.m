@@ -58,16 +58,16 @@
     if(!_userInfoBtn){
         @jobs_weakify(self)
         _userInfoBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
             .jobsResetBtnTitleCor(JobsCor(@"#EA2918"))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         /// 很重要，自定义设置UIBotton.imageView
@@ -115,12 +115,12 @@
     if(!_likeBtn){
         @jobs_weakify(self)
         _likeBtn = RBCLikeButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnImage(_likeBtn.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"))
             .jobsResetBtnTitleCor(_likeBtn.selected ? JobsRedColor : JobsGrayColor)
             .jobsResetBtnTitleFont(UIFontWeightRegularSize(4))
             .jobsResetBtnTitle((toStringByNSInteger(_likeBtn.thumpNum)))
-            .onClick(^(RBCLikeButton *x){
+            .onClickBy(^(RBCLikeButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 x.jobsResetBtnImage(x.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
@@ -135,7 +135,7 @@
                 x.jobsResetTitle(toStringByNSInteger(x.thumpNum));
                 x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _likeBtn.thumpNum = 0;

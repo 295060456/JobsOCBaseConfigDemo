@@ -6,10 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DefineProperty.h"
 #import "BaseProtocol.h"
 #import "JobsBlock.h"
 #import "JobsAppDoorConfig.h"
-#import "NetworkingConstant.h"
 #import "NetworkingConstant.h"
 
 @class JobsHotLabelBySingleLine;
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 去登录？去注册？
 -(jobsByNSIntegerBlock _Nonnull)toLoginOrRegister;
 /// 在某些页面不调取登录页
--(void)toLoginOrRegisterWithRestricted:(NSArray <Class>*_Nullable)dataArr
+-(void)toLoginOrRegisterWithRestricted:(__kindof NSArray <Class>*_Nullable)dataArr
                     appDoorContentType:(CurrentPage)appDoorContentType;
 /// 去登录
 -(jobsByVoidBlock _Nonnull)toLogin;
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 跳到首页
 -(void)jumpToHome;
 /// 获取Tabbar管理的，不含导航的根控制器
--(NSMutableArray <UIViewController *>*)appRootVC;
+-(NSMutableArray <__kindof UIViewController *>*)appRootVC;
 /// 当前对象是否是 Tabbar管理的，不含导航的根控制器
 -(BOOL)isRootVC;
 #pragma mark —— 关于图片编解码

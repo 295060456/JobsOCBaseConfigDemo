@@ -88,9 +88,9 @@
             .initByStyle1(JobsInternationalization(@"点击按钮弹出下拉列表"),
                           UIFontWeightRegularSize(12),
                           JobsWhiteColor)
-            .bgColor(JobsWhiteColor)
-            .cornerRadiusValue(JobsWidth(8))
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsWhiteColor)
+            .cornerRadiusValueBy(JobsWidth(8))
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 NSLog(@"AAA = %@",self.dropDownListView);
@@ -107,7 +107,7 @@
                 }else{
                     [self endDropDownListView];
                 }
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"按钮的长按事件触发");
             });
         [self.view addSubview:_btn];

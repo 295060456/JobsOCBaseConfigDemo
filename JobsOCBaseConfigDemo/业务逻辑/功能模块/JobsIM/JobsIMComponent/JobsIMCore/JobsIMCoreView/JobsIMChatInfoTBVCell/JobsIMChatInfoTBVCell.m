@@ -32,7 +32,7 @@
 @end
 
 @implementation JobsIMChatInfoTBVCell
-
+UITextFieldProtocol_synthesize_part2
 -(instancetype)initWithStyle:(UITableViewCellStyle)style
              reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style
@@ -40,7 +40,7 @@
         self.longPG.enabled = YES;
         self.swipeBackgroundColor = JobsClearColor;
         self.selectedBackgroundView = UIView.new;
-        self.selectedBackgroundView.backgroundColor = [JobsYellowColor colorWithAlphaComponent:0.3];
+        self.selectedBackgroundView.backgroundColor = JobsYellowColor.colorWithAlphaComponentBy(.3f);
         self.leftSwipeSettings.transition = MGSwipeTransitionBorder;
         self.rightSwipeSettings.transition = MGSwipeTransitionDrag;
         self.leftExpansion.buttonIndex = 0;
@@ -88,9 +88,9 @@
         @jobs_strongify(self)
         if ([model isKindOfClass:JobsIMChatInfoModel.class]) {
             JobsIMChatInfoModel *chatInfoModel = (JobsIMChatInfoModel *)model;
-            if ([chatInfoModel.identification isEqualToString:@"我是服务器"]) {//对方发的消息
+            if (chatInfoModel.identification.isEqualToString(JobsInternationalization(@"我是服务器"))) {/// 对方发的消息
                 self.infoLocation = InfoLocation_Left;
-            }else if ([chatInfoModel.identification isEqualToString:@"我是我自己"]){//自己发的消息
+            }else if (chatInfoModel.identification.isEqualToString(JobsInternationalization(@"我是我自己"))){/// 自己发的消息
                 self.infoLocation = InfoLocation_Right;
             }else{
                 self.infoLocation = InfoLocation_Unknown;
@@ -369,16 +369,14 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
                 jobsMakeMenuController(^(__kindof UIMenuController * _Nullable menuController) {
+                    @jobs_strongify(self)
                     menuController.arrowDirection = UIMenuControllerArrowDefault;/// 控制箭头方向
                     menuController.menuItems = self.menuItemMutArr;/// 自定义事件
                     if (@available(iOS 13.0, *)) {
-                        [menuController showMenuFromView:self
-                                                    rect:cell.chatBubbleIMGV.frame];
+                        [menuController showMenuFromView:self rect:cell.chatBubbleIMGV.frame];
                     }else{
-                        [menuController setTargetRect:cell.frame
-                                               inView:self];
-                        [menuController setMenuVisible:YES
-                                              animated:YES];
+                        [menuController setTargetRect:cell.frame inView:self];
+                        [menuController setMenuVisible:YES animated:YES];
                     }
                 });
 #pragma clang diagnostic pop
@@ -390,10 +388,8 @@
 -(NSMutableArray<UIMenuItem *> *)menuItemMutArr{
     if (!_menuItemMutArr) {
         _menuItemMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-            arr.add([UIMenuItem.alloc initWithTitle:JobsInternationalization(@"置顶")
-                                             action:@selector(menuTopBtnPressed:)]);
-            arr.add([UIMenuItem.alloc initWithTitle:JobsInternationalization(@"删除")
-                                             action:@selector(menuDelBtnPressed:)]);
+            arr.add(JobsInternationalization(@"置顶").initMenuItemBy(@selector(menuTopBtnPressed:)));
+            arr.add(JobsInternationalization(@"删除").initMenuItemBy(@selector(menuDelBtnPressed:)));
         });
     }return _menuItemMutArr;
 }

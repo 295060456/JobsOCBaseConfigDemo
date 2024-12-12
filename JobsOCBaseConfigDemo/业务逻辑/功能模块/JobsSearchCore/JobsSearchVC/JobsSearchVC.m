@@ -471,11 +471,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         _scanBtn = BaseButton
             .initByNormalImage(JobsIMG(@"扫描"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 toast(JobsInternationalization(@"此功能尚未开发"));
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
     }return _scanBtn;

@@ -37,8 +37,9 @@
 }
 ///【最新的Api】修改主标题的对齐方式
 -(JobsReturnButtonByTextAlignmentBlock _Nonnull)_jobsResetTitleTextAlignment API_AVAILABLE(ios(16.0)){
+    @jobs_weakify(self)
     return ^__kindof UIButton *(NSTextAlignment data) {
-        @jobs_weakify(self)
+        @jobs_strongify(self)
         return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             @jobs_strongify(self)
             if(config.subtitle){
@@ -54,8 +55,9 @@
 }
 ///【最新的Api】修改副标题的对齐方式
 -(JobsReturnButtonByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0)){
+    @jobs_weakify(self)
     return ^__kindof UIButton *(NSTextAlignment data) {
-        @jobs_weakify(self)
+        @jobs_strongify(self)
         return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             @jobs_strongify(self)
             config.attributedSubtitle = JobsAttributedStringByAttributes(config.subtitle, jobsMakeMutDic(^(__kindof NSMutableDictionary <NSAttributedStringKey, id>*_Nullable data1) {

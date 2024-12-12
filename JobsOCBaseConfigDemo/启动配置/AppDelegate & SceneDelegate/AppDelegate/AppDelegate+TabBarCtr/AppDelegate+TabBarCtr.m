@@ -253,7 +253,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
                 viewModel.buttonModel.backgroundImage = DefaultIndex == 0 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
-                     .onClick(^(__kindof UIButton *x){
+                     .onClickBy(^(__kindof UIButton *x){
                          x.selected = !x.selected;
                          JobsAppTool.loginWork = FMLoginWork_MyFav;
                          @jobs_weakify(self)
@@ -263,7 +263,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
 //                             if (self.objectBlock) self.objectBlock(x);
 //                         }];
                          [AppDelegate button:x index:0];
-                     }).onLongPressGesture(^(id data){
+                     }).onLongPressGestureBy(^(id data){
                          NSLog(@"");
                      }));
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
@@ -279,7 +279,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
                 viewModel.buttonModel.backgroundImage = DefaultIndex == 1 ? JobsIMG(@"TabBarItem选中的背景色")  :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
-                     .onClick(^(__kindof UIButton *x){
+                     .onClickBy(^(__kindof UIButton *x){
                          x.selected = !x.selected;
                          JobsAppTool.loginWork = FMLoginWork_MyBank;
                          @jobs_weakify(self)
@@ -289,7 +289,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
 //                             if (self.objectBlock) self.objectBlock(x);
 //                         }];
                          [AppDelegate button:x index:1];
-                     }).onLongPressGesture(^(id data){
+                     }).onLongPressGestureBy(^(id data){
                          NSLog(@"");
                      }));
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
@@ -306,12 +306,12 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.buttonModel.backgroundImage = JobsIMG(@"TabBarItem选中的背景色（透明）");
 //                DefaultIndex == 2 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
-                     .onClick(^(__kindof UIButton *x){
+                     .onClickBy(^(__kindof UIButton *x){
                          @jobs_strongify(self)
                          x.selected = !x.selected;
                          [AppDelegate button:x index:2];
                          if (self.objectBlock) self.objectBlock(x);
-                     }).onLongPressGesture(^(id data){
+                     }).onLongPressGestureBy(^(id data){
                          NSLog(@"");
                      }));
             
@@ -328,13 +328,13 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
                 viewModel.buttonModel.backgroundImage = DefaultIndex == 3 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
-                     .onClick(^(__kindof UIButton *x){
+                     .onClickBy(^(__kindof UIButton *x){
                          @jobs_strongify(self)
                          JobsAppTool.loginWork = FMLoginWork_Default;
                          x.selected = !x.selected;
                          [AppDelegate button:x index:3];
                          if (self.objectBlock) self.objectBlock(x);
-                     }).onLongPressGesture(^(id data){
+                     }).onLongPressGestureBy(^(id data){
                          NSLog(@"");
                      }));
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
@@ -350,12 +350,12 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
                 viewModel.buttonModel.backgroundImage = DefaultIndex == 4 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
-                     .onClick(^(__kindof UIButton *x){
+                     .onClickBy(^(__kindof UIButton *x){
                          @jobs_strongify(self)
                          x.selected = !x.selected;
                          [AppDelegate button:x index:4];
                          if (self.objectBlock) self.objectBlock(x);
-                     }).onLongPressGesture(^(id data){
+                     }).onLongPressGestureBy(^(id data){
                          NSLog(@"");
                      }));
         });

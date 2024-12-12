@@ -398,12 +398,12 @@ referenceSizeForFooterInSection:(NSInteger)section{
     if (!_customerServiceBtn) {
         @jobs_weakify(self)
         _customerServiceBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnImage(JobsIMG(@"人工客服"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
     }return _customerServiceBtn;
@@ -414,10 +414,10 @@ referenceSizeForFooterInSection:(NSInteger)section{
         @jobs_weakify(self)
         _msgBtn = BaseButton.jobsInit()
             .jobsResetBtnImage(JobsIMG(@"消息"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });;
     }return _msgBtn;
@@ -469,14 +469,14 @@ referenceSizeForFooterInSection:(NSInteger)section{
     if (!_editBtn) {
         @jobs_weakify(self)
         _editBtn = BaseButton.jobsInit()
-            .bgColor(HEXCOLOR(0xFCFBFB))
+            .bgColorBy(HEXCOLOR(0xFCFBFB))
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(JobsWidth(5.75))
             .jobsResetBtnBgImage(JobsIMG(@"编辑"))
             .jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"编辑"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
     //            toast(JobsInternationalization(@"编辑"));
@@ -485,7 +485,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                 [self.popupView tf_showSlide:MainWindow
                                    direction:PopupDirectionBottom
                                   popupParam:self.popupParameter];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_editBtn];

@@ -19,8 +19,9 @@
 
 @implementation JobsBtnsStyleCVCell
 #pragma mark —— @synthesize UIViewModelProtocol
-UIViewModelProtocol_synthesize
-UIViewModelProtocol_self_synthesize
+UIViewModelProtocol_synthesize_part1
+UIViewModelProtocol_synthesize_part2
+BaseLayerProtocol_synthesize_part3
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
@@ -65,7 +66,7 @@ UIViewModelProtocol_self_synthesize
 #pragma mark —— BaseViewProtocol
 /// 获取绑定的数据源
 -(UIViewModel *)getViewModel{
-    return _viewModel;
+    return self.viewModel;
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)leftBtn{
@@ -73,18 +74,18 @@ UIViewModelProtocol_self_synthesize
         @jobs_weakify(self)
         _leftBtn = BaseButton
             .jobsInit()
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _leftBtn.tag = 1;
         [self.contentView addSubview:_leftBtn];
         [_leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.contentView);
-            make.left.equalTo(self.contentView).offset(self.leftBtnVM.btn_offset_x);
-            make.height.mas_equalTo(self.leftBtnVM.btn_height);
+            make.left.equalTo(self.contentView).offset(self.leftBtnVM.jobsOffsetX);
+            make.height.mas_equalTo(self.leftBtnVM.jobsWidth);
         }];
     }
     
@@ -99,8 +100,8 @@ UIViewModelProtocol_self_synthesize
         }
     }
     
-    if(self.leftBtnVM.attributedSubtitle){
-        _leftBtn.jobsResetAttributedTitle(self.leftBtnVM.attributedSubtitle);
+    if(self.leftBtnVM.attributedSubTitle){
+        _leftBtn.jobsResetAttributedTitle(self.leftBtnVM.attributedSubTitle);
     }else{
         if(self.leftBtnVM.subTitle){
             _leftBtn.jobsResetBtnTitle(self.leftBtnVM.subTitle);
@@ -127,18 +128,17 @@ UIViewModelProtocol_self_synthesize
         @jobs_weakify(self)
         _rightBtn = BaseButton
             .jobsInit()
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
-        });
-        _rightBtn.tag = 2;
+        });_rightBtn.tag = 2;
         [self.contentView addSubview:_rightBtn];
         [_rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.contentView);
-            make.right.equalTo(self.contentView).offset(-self.rightBtnVM.btn_offset_x);
-            make.height.mas_equalTo(self.rightBtnVM.btn_height);
+            make.right.equalTo(self.contentView).offset(-self.rightBtnVM.jobsOffsetX);
+            make.height.mas_equalTo(self.rightBtnVM.jobsHeight);
         }];
     }
     
@@ -153,8 +153,8 @@ UIViewModelProtocol_self_synthesize
         }
     }
     
-    if(self.rightBtnVM.attributedSubtitle){
-        _rightBtn.jobsResetAttributedTitle(self.rightBtnVM.attributedSubtitle);
+    if(self.rightBtnVM.attributedSubTitle){
+        _rightBtn.jobsResetAttributedTitle(self.rightBtnVM.attributedSubTitle);
     }else{
         if(self.rightBtnVM.subTitle){
             _rightBtn.jobsResetBtnSubTitle(self.rightBtnVM.subTitle);

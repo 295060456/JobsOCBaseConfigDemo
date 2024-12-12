@@ -38,9 +38,9 @@ NS_ASSUME_NONNULL_END
      @jobs_weakify(self)
      _btn = BaseButton
          .initByStyle1(JobsInternationalization(@"点击按钮弹出下拉列表"),UIFontWeightRegularSize(12),JobsWhiteColor)
-         .bgColor(JobsWhiteColor)
-         .cornerRadiusValue(JobsWidth(8))
-         .onClick(^(UIButton *x){
+         .bgColorBy(JobsWhiteColor)
+         .cornerRadiusValueBy(JobsWidth(8))
+         .onClickBy(^(UIButton *x){
              if (self.objectBlock) self.objectBlock(x);
              NSLog(@"AAA = %@",self.dropDownListView);
              x.selected = !x.selected;
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_END
              }else{
                  [self endDropDownListView];
              }
-         }).onLongPressGesture(^(id data){
+         }).onLongPressGestureBy(^(id data){
              NSLog(@"按钮的长按事件触发");
          });
      [self.view addSubview:_btn];

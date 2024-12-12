@@ -238,11 +238,11 @@
                 data.titlePadding = JobsWidth(10);
                 data.imagePlacement = self.btnConfig.imagePlacement;
                 data.cornerRadiusValue = JobsWidth(8);
-            })).onClick(^(UIButton *x){
+            })).onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 [self choseMenu:x];
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
             menuButton.imageViewFrameResetX = 0;

@@ -166,20 +166,20 @@
         if(self == UIButton.initBySysType){
             btn = self;
             /// 公共设置
-            self.normalStateImage(normalImage);
+            self.normalStateImageBy(normalImage);
             self.jobsResetBtnTitleFont(titleFont);
             
             if(attributedTitle){
                 self.jobsResetBtnNormalAttributedTitle(attributedTitle);
             }else{
-                self.normalStateTitle(title);
-                self.normalStateTitleColor(titleCor);
+                self.normalStateTitleBy(title);
+                self.normalStateTitleColorBy(titleCor);
             }
             SuppressWdeprecatedDeclarationsWarning(btn.contentEdgeInsets = UIEdgeInsetsMake(contentInsets.top,
                                                                                             contentInsets.leading,
                                                                                             contentInsets.bottom,
                                                                                             contentInsets.trailing););
-            if(selectedAttributedTitle) self.selectedAttributedTitle(selectedAttributedTitle);
+            if(selectedAttributedTitle) self.selectedAttributedTitleBy(selectedAttributedTitle);
             /// 在按钮高亮状态变化时，使用 configurationUpdateHandler 来自定义图像样式
             self.configurationUpdateHandler = ^(UIButton * _Nonnull updatedButton) {
                 updatedButton.configuration.image = updatedButton.isHighlighted ? highlightImage : normalImage;
@@ -312,7 +312,7 @@
     return ^(BOOL enabled) {
         @jobs_strongify(self)
         self.enabled = enabled;
-        self.normalStateTitleColor(self.enabled ? self.titleColorForNormalState : HEXCOLOR(0xB0B0B0));
+        self.normalStateTitleColorBy(self.enabled ? self.titleColorForNormalState : HEXCOLOR(0xB0B0B0));
     };
 }
 #pragma mark —— 一些通用修改（Api已做向下兼容）
@@ -332,7 +332,7 @@
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetTitle(data ? : JobsInternationalization(@"暂无数据"));
-        } else self.normalStateTitle(data);
+        } else self.normalStateTitleBy(data);
         return self;
     };
 }
@@ -343,7 +343,7 @@
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetTitleBaseForegroundColor(data ? : JobsBlueColor);
-        } else self.normalStateTitleColor(data);
+        } else self.normalStateTitleColorBy(data);
         return self;
     };
 }
@@ -417,7 +417,7 @@
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             self.jobsResetImage(data);
-        } else self.normalStateImage(data);
+        } else self.normalStateImageBy(data);
         return self;
     };
 }
@@ -431,7 +431,7 @@
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 config.background.image = backgroundImage;
             }];
-        } else self.selectedStateBackgroundImage(backgroundImage);
+        } else self.selectedStateBackgroundImageBy(backgroundImage);
         return self;
     };
 }
@@ -455,7 +455,7 @@
         @jobs_strongify(self)
         self.jobsResetBtnLayerBorderCor(data.layerCor);
         self.jobsResetBtnLayerBorderWidth(data.jobsWidth);
-        self.jobsResetBtnCornerRadiusValue(data.cornerRadius);
+        self.jobsResetBtnCornerRadiusValue(data.cornerRadiusValue);
         return self;
     };
 }
@@ -509,7 +509,7 @@
                 return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration *_Nullable config) {
                     config.attributedTitle = title;
                 }];
-            } else self.normalStateAttributedTitle(title);
+            } else self.normalStateAttributedTitleBy(title);
         }return self;
     };
 }

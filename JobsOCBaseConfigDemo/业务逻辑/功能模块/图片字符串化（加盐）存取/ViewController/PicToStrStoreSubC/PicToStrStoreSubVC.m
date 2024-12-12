@@ -223,7 +223,7 @@
     if(!_btn_1){
         @jobs_weakify(self)
         _btn_1 = BaseButton.jobsInit()
-            .bgColor(JobsLightGrayColor)
+            .bgColorBy(JobsLightGrayColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeNone)
             .jobsResetImagePadding(JobsWidth(10))
             .jobsResetTitlePadding(JobsWidth(10))
@@ -234,7 +234,7 @@
             .jobsResetBtnSubTitleFont(UIFontWeightBoldSize(18))
             .jobsResetBtnTitle(JobsInternationalization(@"点击按钮"))
             .jobsResetBtnSubTitle(JobsInternationalization(@"选取相册图片"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
@@ -255,7 +255,7 @@
                 } failBlock:^(HXPhotoPickerModel *data) {
     //                @jobs_strongify(self)
                 }];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_btn_1];
@@ -273,7 +273,7 @@
     if(!_btn_2){
         @jobs_weakify(self)
         _btn_2 = BaseButton.jobsInit()
-            .bgColor(JobsLightGrayColor)
+            .bgColorBy(JobsLightGrayColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeNone)
             .jobsResetImagePadding(JobsWidth(10))
             .jobsResetTitlePadding(JobsWidth(10))
@@ -286,7 +286,7 @@
             .jobsResetBtnSubTitle(JobsInternationalization(@"编码转译成图片"))
             .jobsResetBtnCornerRadiusValue(JobsWidth(8))
             .jobsResetBtnLayerBorderWidth(JobsWidth(.5f))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
@@ -294,7 +294,7 @@
                     /// 存在于内存里面的编码，转变成图像对外进行输出
                     self.picForStr(self->_resultStr);
                 }else self.jobsToastMsg(JobsInternationalization(@"请先编码图片"));
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_btn_2];

@@ -41,17 +41,16 @@ static dispatch_once_t static_textViewOnceToken;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         [self addNotificationName:语言切换
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
                 NSLog(@"SSS = %d",b.boolValue);
-            }
-            NSLog(@"通知传递过来的 = %@",notification.object);
+            }NSLog(@"通知传递过来的 = %@",notification.object);
         }];
     }return self;
 }
@@ -73,7 +72,7 @@ static dispatch_once_t static_textViewOnceToken;
         @jobs_strongify(self)
         if([model isKindOfClass:UITextModel.class]){
             self.textModel = (UITextModel *)model;
-            [self updateWordCount:0];
+            self.updateWordCount(0);
             self.countLabel.alpha = 1;
             self.textView.alpha = 1;
         }
@@ -84,36 +83,46 @@ static dispatch_once_t static_textViewOnceToken;
     return _textView;
 }
 
--(void)updateWordCount:(NSInteger)count{
-    if(count) self.textModel.curWordCount = count;
-    self.countLabel.text = [NSString stringWithFormat:@"%ld/%ld", self.textModel.curWordCount, self.textModel.maxWordCount];
-    self.countLabel.makeLabelByShowingType(UILabelShowingType_03);
+-(jobsByNSIntegerBlock _Nonnull)updateWordCount{
+    @jobs_weakify(self)
+    return ^(NSInteger count){
+        @jobs_strongify(self)
+        if(count) self.textModel.curWordCount = count;
+        self.countLabel.text = toStringByNSInteger(self.textModel.curWordCount)
+            .add(JobsSeparation)
+            .add(toStringByNSInteger(self.textModel.maxWordCount));
+        self.countLabel.makeLabelByShowingType(UILabelShowingType_03);
+    };
 }
 #pragma mark —— lazyLoad
 -(SZTextView *)textView{
     if (!_textView) {
-        _textView = SZTextView.new;
-        _textView.backgroundColor = JobsCor(@"#FEF4F3");
-        _textView.editable = YES;
-        [self addSubview:_textView];
-        [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(JobsWidth(5));
-            make.left.equalTo(self).offset(JobsWidth(10));
-            make.right.equalTo(self).offset(JobsWidth(-10));
-            make.bottom.equalTo(self.countLabel.mas_top);
-        }];
         @jobs_weakify(self)
+        _textView = jobsMakeSZTextView(^(SZTextView * _Nonnull textView) {
+            @jobs_strongify(self)
+            textView.backgroundColor = JobsCor(@"#FEF4F3");
+            textView.editable = YES;
+            [self addSubview:textView];
+            [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self).offset(JobsWidth(5));
+                make.left.equalTo(self).offset(JobsWidth(10));
+                make.right.equalTo(self).offset(JobsWidth(-10));
+                make.bottom.equalTo(self.countLabel.mas_top);
+            }];
+        });
         /// 这里的x是整个textView目前的所有字符串的值
         [_textView jobsTextViewSubscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             /// 超过直接截取
             if(x.length > self.textModel.maxWordCount) {
-                x = [x substringToIndex:self.textModel.maxWordCount];
-                self.jobsToastMsg(JobsInternationalization(@"最多只能输入").add(toStringByLong(self.textModel.maxWordCount).add(@"个字")));
+                x = x.substringToIndex(self.textModel.maxWordCount);
+                self.jobsToastMsg(JobsInternationalization(@"最多只能输入")
+                                  .add(toStringByLong(self.textModel.maxWordCount)
+                                       .add(JobsInternationalization(@"个字"))));
             }
             self.textView.text = x;
             self.textModel.curWordCount = x.length;
-            [self updateWordCount:0];
+            self.updateWordCount(0);
             /// 向外回调目前的textView的字符串
             if (self.objectBlock) self.objectBlock(x);
         }];

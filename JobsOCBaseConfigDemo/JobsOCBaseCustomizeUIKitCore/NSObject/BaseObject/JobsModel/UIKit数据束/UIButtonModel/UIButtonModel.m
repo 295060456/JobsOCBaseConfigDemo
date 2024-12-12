@@ -8,13 +8,10 @@
 #import "UIButtonModel.h"
 
 @implementation UIButtonModel
-UIViewModelProtocol_synthesize
-UIViewModelProtocol_self_synthesize
-@synthesize backgroundImage = _backgroundImage;
-@synthesize normalImage = _normalImage;
+UIViewModelProtocol_synthesize_part1
+UIViewModelProtocol_synthesize_part2
+BaseLayerProtocol_synthesize_part3
 @synthesize timerProcessType = _timerProcessType;
-@synthesize titleFont = _titleFont;
-@synthesize subTitleFont = _subTitleFont;
 
 -(NSTextAlignment)textAlignment{
     if (!_textAlignment) {

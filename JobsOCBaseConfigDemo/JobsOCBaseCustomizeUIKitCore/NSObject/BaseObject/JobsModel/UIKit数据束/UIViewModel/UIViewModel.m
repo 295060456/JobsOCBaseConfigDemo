@@ -9,24 +9,19 @@
 
 @implementation UIViewModel
 #pragma mark —— UIViewModelProtocol
-/// UIViewModelOthersProtocol
-UIViewModelOthersProtocol_synthesize
-/// UIPictureAndBackGroundCorProtocol
-UIPictureAndBackGroundCorProtocol_synthesize
-/// UILocationProtocol
-UILocationProtocol_UIViewModelSynthesize
-/// UIMarkProtocol
-UIMarkProtocol_synthesize
-/// BaseButtonProtocol
-BaseButtonProtocol_synthesize
-/// UITextModelProtocol
-UITextModelProtocol_synthesize
-/// BaseViewProtocol
-BaseViewProtocol_synthesize
-/// BaseProtocol
-BaseProtocol_synthesize
-/// UIViewModelProtocol
-UIViewModelProtocol_self_synthesize
+UIViewModelOthersProtocol_synthesize /// UIViewModelOthersProtocol
+UIPictureAndBackGroundCorProtocol_synthesize /// UIPictureAndBackGroundCorProtocol
+UILocationProtocol_synthesize /// UILocationProtocol
+UIMarkProtocol_synthesize_part1 /// UIMarkProtocol
+BaseButtonProtocol_synthesize_part2 /// BaseButtonProtocol
+UITextModelProtocol_synthesize_part2 /// UITextModelProtocol
+UITextModelProtocol_synthesize_part3 /// UITextModelProtocol
+BaseViewProtocol_synthesize /// BaseViewProtocol
+BaseProtocol_synthesize /// BaseProtocol
+UIViewModelProtocol_synthesize_part1 /// UIViewModelProtocol
+BaseLayerProtocol_synthesize_part2 /// BaseLayerProtocol
+BaseLayerProtocol_synthesize_part3 /// BaseLayerProtocol
+UITextFieldProtocol_synthesize_part2 /// UITextFieldProtocol
 
 #pragma mark —— UIViewModelProtocol
 -(UITextModel *)textModel{
@@ -75,10 +70,10 @@ UIViewModelProtocol_self_synthesize
     }return _bgImage;
 }
 
--(CGFloat)cornerRadius{
-    if (!_cornerRadius) {
-//        _cornerRadius = 3;
-    }return _cornerRadius;
+-(CGFloat)cornerRadiusValue{
+    if(!_cornerRadiusValue){
+//        _cornerRadiusValue = 3;
+    }return _cornerRadiusValue;
 }
 
 -(CGFloat)width{

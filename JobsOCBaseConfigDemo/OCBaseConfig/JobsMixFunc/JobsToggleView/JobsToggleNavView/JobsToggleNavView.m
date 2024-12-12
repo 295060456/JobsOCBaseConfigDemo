@@ -71,26 +71,26 @@ JobsToggleNavViewProtocolSynthesize
                 .initByButtonModel(buttonModel)
                 .byFrame(jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel *_Nullable data) {
                     @jobs_strongify(self)
-                    data.jobsWidth = jobs3TO(buttonModel.btn_width,self.buttonWidth);
-                    data.jobsHeight = jobs3TO(buttonModel.btn_height,self.height);
+                    data.jobsWidth = jobs3TO(buttonModel.jobsWidth,self.buttonWidth);
+                    data.jobsHeight = jobs3TO(buttonModel.jobsHeight,self.height);
                     if(i == 0){
                         btnRight = data.jobsWidth;
-                        buttonModel.btn_right = btnRight;
+                        buttonModel.jobsRight = btnRight;
                         data.jobsX = 0;
                     }else{
                         btnRight += (data.jobsWidth + self.btn_each_offset * i);
-                        buttonModel.btn_right = btnRight;
+                        buttonModel.jobsRight = btnRight;
                         UIButtonModel *buttonModel2 = self.buttonModels[i - 1];/// 上一个
-                        CGFloat d = jobs3TO(buttonModel2.btn_width,self.buttonWidth);
-                        buttonModel.btn_x = (d + self.btn_each_offset) * i;
-                        data.jobsX = buttonModel2.btn_right + self.btn_each_offset;
+                        CGFloat d = jobs3TO(buttonModel2.jobsWidth,self.buttonWidth);
+                        buttonModel.jobsX = (d + self.btn_each_offset) * i;
+                        data.jobsX = buttonModel2.jobsRight + self.btn_each_offset;
                     }
                     data.jobsY = 0;
                 }));
             
 //            UIButtonModel *buttonModel = self.buttonModels[i];
 //            BaseButton *button = BaseButton.jobsInit()
-//                .bgColor(buttonModel.baseBackgroundColor)
+//                .bgColorBy(buttonModel.baseBackgroundColor)
 //                .jobsResetImagePlacement(buttonModel.imagePlacement)
 //                .jobsResetImagePadding(buttonModel.imagePadding)
 //                .jobsResetBtnImage(buttonModel.normalImage)
@@ -98,14 +98,14 @@ JobsToggleNavViewProtocolSynthesize
 //                .jobsResetBtnTitleCor(buttonModel.titleCor)
 //                .jobsResetBtnTitleFont(buttonModel.titleFont)
 //                .jobsResetBtnTitle(buttonModel.title)
-//                .onClick(buttonModel.onClickBlock)
-//                .onLongPressGesture(buttonModel.onLongPressGestureEventBlock)
+//                .onClickBy(buttonModel.onClickBlock)
+//                .onLongPressGestureBy(buttonModel.onLongPressGestureEventBlock)
 //                .byFrame(jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
 //                    @jobs_strongify(self)
 //                    data.jobsX = i * self.buttonWidth + (i ? self.btn_each_offset : 0);
 //                    data.jobsY = 0;
-//                    data.jobsWidth = jobs3TO(self.buttonModels[i].btn_width,self.buttonWidth);
-//                    data.jobsHeight = jobs3TO(self.buttonModels[i].btn_height,self.height);
+//                    data.jobsWidth = jobs3TO(self.buttonModels[i].jobsWidth,self.buttonWidth);
+//                    data.jobsHeight = jobs3TO(self.buttonModels[i].jobsHeight,self.height);
 //                }));
             button.index = i;
             self.buttonsArray.add(button);
@@ -233,11 +233,51 @@ JobsToggleNavViewProtocolSynthesize
         _sliderW = JobsWidth(1);
     }return _sliderW;
 }
+
+-(UIButtonModel *)buttonModel{
+    if(!_buttonModel){
+        _buttonModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.buttonConfiguration = nil;
+            model.backgroundConfiguration = nil;
+            model.buttonConfigurationTitleAlignment = UIButtonConfigurationTitleAlignmentAutomatic;
+            model.textAlignment = NSTextAlignmentCenter;
+            model.subTextAlignment = NSTextAlignmentCenter;
+            model.normalImage = nil;
+            model.highlightImage = nil;
+            model.attributedTitle = nil;
+            model.selectedAttributedTitle = nil;
+            model.attributedSubTitle = nil;
+            model.title = nil;
+            model.subTitle = nil;
+            model.titleFont = bayonRegular(JobsWidth(16));
+            model.subTitleFont = nil;
+            model.titleCor = JobsCor(@"#ABABAB");
+            model.subTitleCor = nil;
+            model.titleLineBreakMode = NSLineBreakByWordWrapping;
+            model.subtitleLineBreakMode = NSLineBreakByWordWrapping;
+            model.baseBackgroundColor = JobsWhiteColor;
+            model.backgroundImage = nil;
+            model.imagePadding = JobsWidth(0);
+            model.titlePadding = JobsWidth(0);
+            model.imagePlacement = NSDirectionalRectEdgeNone;
+            model.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+            model.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+            model.contentInsets = jobsSameDirectionalEdgeInsets(0);
+            model.cornerRadiusValue = JobsWidth(0);
+            model.roundingCorners = UIRectCornerAllCorners;
+            model.roundingCornersRadii = CGSizeZero;
+            model.layerBorderCor = nil;
+            model.borderWidth = JobsWidth(0);
+            model.primaryAction = nil;
+            model.longPressGestureEventBlock = nil;
+            model.clickEventBlock = nil;
+        });
+    }return _buttonModel;
+}
 //@synthesize buttonModels = _buttonModels;
 //-(NSMutableArray<UIButtonModel *> *)buttonModels{
 //    if(!_buttonModels){
 //        _buttonModels = NSMutableArray.array;
 //    }return _buttonModels;
 //}
-INIT_BUTTON_MODE
 @end

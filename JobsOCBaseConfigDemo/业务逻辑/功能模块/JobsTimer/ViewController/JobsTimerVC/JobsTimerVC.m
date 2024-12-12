@@ -137,11 +137,11 @@
             data.endValue.text = JobsInternationalization(@"哈哈哈哈");
             data.endValue.layerBorderCor = JobsPurpleColor;
             data.endValue.textCor = JobsBlackColor;
-        })).onClick(^(__kindof UIButton *x){
+        })).onClickBy(^(__kindof UIButton *x){
             x.startTimer();/// 选择时机、触发启动
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
-        }).heartBeat(^(id _Nullable data){
+        }).heartBeatBy(^(id _Nullable data){
             if ([data isKindOfClass:UIButtonModel.class]) {
                 UIButtonModel *model = (UIButtonModel *)data;
                 NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
@@ -165,8 +165,8 @@
                                   nil,
                                   JobsBlackColor,
                                   JobsIMG(@"弹窗取消按钮背景图"))
-                .bgColor(JobsWhiteColor)
-                .onClick(^(UIButton *btn){
+                .bgColorBy(JobsWhiteColor)
+                .onClickBy(^(UIButton *btn){
                     btn.selected = !btn.selected;
                     btn.jobsResetBtnBgImage(btn.selected ? JobsIMG(@"弹窗取消按钮背景图") : JobsIMG(@"弹窗取消按钮背景图"));
                     
@@ -174,7 +174,7 @@
                     btn.jobsResetBtnLayerBorderWidth(0.5f);/// 重设Btn的描边线段的宽度
                     btn.jobsResetBtnCornerRadiusValue(JobsWidth(8));/// 重设Btn的圆切角
                     
-                }).onLongPressGesture(^(id data){
+                }).onLongPressGestureBy(^(id data){
                     NSLog(@"");
                 })
                 .layerByBorderCor(HEXCOLOR(0xAE8330))

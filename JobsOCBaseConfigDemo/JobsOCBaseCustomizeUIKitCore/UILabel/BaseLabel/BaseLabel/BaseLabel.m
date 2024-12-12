@@ -12,7 +12,7 @@
 @end
 
 @implementation BaseLabel
-UILocationProtocol_UIViewModelSynthesize
+UILocationProtocol_synthesize
 -(instancetype)init{
     if (self = [super init]) {
         
@@ -45,8 +45,6 @@ UILocationProtocol_UIViewModelSynthesize
         }
     }return self;
 }
-#pragma mark —— 一些私有方法
-
 #pragma mark —— 一些公有方法
 /// UILabel文字的复制
 -(jobsByStringBlock _Nonnull)copyText{
@@ -58,31 +56,58 @@ UILocationProtocol_UIViewModelSynthesize
 /// 弹出系统菜单控件
 -(jobsByStringBlock _Nonnull)makeMenuCtrl{
     @jobs_weakify(self)
-    return ^(NSString *_Nullable text){
+    return ^(NSString *_Nullable text) {
         @jobs_strongify(self)
-        UIMenuController.sharedMenuController.menuItems = nil;
-        UIMenuController *menu = UIMenuController.sharedMenuController;
-        @jobs_weakify(self)
-        UIMenuItem *copyItem = [UIMenuItem.alloc initWithTitle:JobsInternationalization(@"请复制")
-                                                        action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                            id _Nullable arg) {
-            @jobs_strongify(self)
-            if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
-            self.copyText(text);
-            return nil;
-        }, @"copyText", self)];
-        menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            data.add(copyItem);
-        });
-        [menu update];
-        if(@available(iOS 10.3, *)){
-            [menu showMenuFromView:self rect:self.bounds];
-        }else{
-            SuppressWdeprecatedDeclarationsWarning([menu setTargetRect:self.bounds inView:self];
-                                                   [menu setMenuVisible:YES animated:YES];);
+        if (@available(iOS 16.0, *)) {
+            // 使用 UIEditMenuInteraction
+            UIEditMenuInteraction *menuInteraction = UIEditMenuInteraction.initBy(self);
+            [self addInteraction:menuInteraction];
+            // 定义菜单项
+            UIMenu *menu = [UIMenu menuWithTitle:@""
+                                        children:@[
+                [UIAction actionWithTitle:JobsInternationalization(@"请复制")
+                                   image:nil
+                              identifier:nil
+                                 handler:^(__kindof UIAction * _Nonnull action) {
+                    @jobs_strongify(self)
+                    if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(self, text);
+                    self.copyText(text);
+                }]
+            ]];
+            // 创建配置
+            CGPoint sourcePoint = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+            UIEditMenuConfiguration *configuration = [UIEditMenuConfiguration configurationWithIdentifier:@"customMenu"
+                                                                                               sourcePoint:sourcePoint];
+            // 展示菜单
+            [menuInteraction presentEditMenuWithConfiguration:configuration];
+        } else {
+            // 使用 UIMenuController（适配 iOS 16 以下版本）
+            UIMenuController.sharedMenuController.menuItems = nil;
+            UIMenuController *menu = jobsMakeMenuController(^(__kindof UIMenuController * _Nullable menu) {
+                menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+                    data.add(JobsInternationalization(@"请复制").initMenuItemBy(selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                                                          id _Nullable arg) {
+                        @jobs_strongify(self)
+                        if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf, arg);
+                        self.copyText(text);
+                        return nil;
+                    }, @"copyText", self)));
+                });
+            });
+            [menu update];
+            if (@available(iOS 10.3, *)) {
+                [menu showMenuFromView:self rect:self.bounds];
+            } else {
+                #pragma clang diagnostic push
+                #pragma clang diagnostic ignored "-Wdeprecated-declarations"
+                [menu setTargetRect:self.bounds inView:self];
+                [menu setMenuVisible:YES animated:YES];
+                #pragma clang diagnostic pop
+            }
         }
     };
 }
+#pragma mark —— UIEditMenuInteractionDelegate
 #pragma mark —— UIResponder
 -(BOOL)canPerformAction:(SEL)action
               withSender:(id)sender{
@@ -90,29 +115,29 @@ UILocationProtocol_UIViewModelSynthesize
 #pragma clang diagnostic ignored "-Wundeclared-selector"
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if([sender isKindOfClass:UIMenuController.class]){
-        if(action == @selector(cut:) ||/// 剪切
-           action == @selector(copy:) ||/// 拷贝
-           action == @selector(paste:) ||/// 粘贴
-           action == @selector(delete:) ||/// 简 <==> 繁
-           action == @selector(select:) ||///
-           action == @selector(selectAll:) ||///
-           action == @selector(_promptForReplace:) ||
-           action == @selector(_transliterateChinese:) ||
-           action == @selector(_insertDrawing:) ||
-           action == @selector(captureTextFromCamera:) ||
-           action == @selector(toggleBoldface:) ||
-           action == @selector(toggleItalics:) ||
-           action == @selector(toggleUnderline:) ||
-           action == @selector(makeTextWritingDirectionRightToLeft:) ||
-           action == @selector(makeTextWritingDirectionLeftToRight:) ||
-           action == @selector(_findSelected:) ||
-           action == @selector(_define:) ||
-           action == @selector(_translate:) ||/// 翻译
-           action == @selector(_addShortcut:) ||
-           action == @selector(_accessibilitySpeak:) ||
-           action == @selector(_accessibilitySpeakLanguageSelection:) ||
-           action == @selector(_accessibilityPauseSpeaking:) ||
-           action == @selector(_share:)){/// 共享
+        if (action == @selector(cut:) || /// 剪切
+            action == @selector(copy:) || /// 拷贝
+            action == @selector(paste:) || /// 粘贴
+            action == @selector(delete:) || /// 删除
+            action == @selector(select:) || /// 选择
+            action == @selector(selectAll:) || /// 全选
+            action == @selector(_promptForReplace:) || /// 替换
+            action == @selector(_transliterateChinese:) || /// 中文简繁转换
+            action == @selector(_insertDrawing:) || /// 插入绘图
+            action == @selector(captureTextFromCamera:) || /// 从相机捕获文本
+            action == @selector(toggleBoldface:) || /// 加粗
+            action == @selector(toggleItalics:) || /// 斜体
+            action == @selector(toggleUnderline:) || /// 下划线
+            action == @selector(makeTextWritingDirectionRightToLeft:) || /// 从右到左
+            action == @selector(makeTextWritingDirectionLeftToRight:) || /// 从左到右
+            action == @selector(_findSelected:) || /// 查找
+            action == @selector(_define:) || /// 定义
+            action == @selector(_translate:) || /// 翻译
+            action == @selector(_addShortcut:) || /// 添加快捷方式
+            action == @selector(_accessibilitySpeak:) || /// 辅助语音
+            action == @selector(_accessibilitySpeakLanguageSelection:) || /// 辅助语音语言选择
+            action == @selector(_accessibilityPauseSpeaking:) || /// 暂停语音
+            action == @selector(_share:)) {/// 共享
             return NO;
         }else if ([NSStringFromSelector(action) containsString:@"copyText"]){
             return YES;
@@ -135,8 +160,8 @@ UILocationProtocol_UIViewModelSynthesize
     [super setFrame:frame];
 }
 /// 修改绘制文字的区域，edgeInsets增加bounds
-- (CGRect)textRectForBounds:(CGRect)bounds
-     limitedToNumberOfLines:(NSInteger)numberOfLines {
+-(CGRect)textRectForBounds:(CGRect)bounds
+    limitedToNumberOfLines:(NSInteger)numberOfLines {
     CGRect rect = [super textRectForBounds:UIEdgeInsetsInsetRect(bounds, self.edgeInsets)
                     limitedToNumberOfLines:numberOfLines];
     rect.origin.x -= self.edgeInsets.left;
@@ -146,12 +171,11 @@ UILocationProtocol_UIViewModelSynthesize
     return rect;
 }
 /// 绘制文字
-- (void)drawTextInRect:(CGRect)rect {
+-(void)drawTextInRect:(CGRect)rect{
     CGRect newRect = rect;
     newRect.origin.y += self.jobsOffsetX;
     newRect.origin.x += self.jobsOffsetY;
-    
-    if (self.text && ![self.text isEqualToString:JobsInternationalization(@"")]) {
+    if (isValue(self.text)) {
         [super drawTextInRect:UIEdgeInsetsInsetRect(newRect, self.edgeInsets)];
         self.isVisible = YES;
     } else {

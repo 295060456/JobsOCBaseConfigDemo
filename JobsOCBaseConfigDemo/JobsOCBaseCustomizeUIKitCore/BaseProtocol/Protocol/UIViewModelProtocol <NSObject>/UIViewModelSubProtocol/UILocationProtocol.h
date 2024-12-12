@@ -7,16 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "DefineProperty.h"
 #import "UIButton+ImageTitleSpacing.h"
-/// 屏幕方向
-#ifndef DeviceOrientation_typedef
-#define DeviceOrientation_typedef
-typedef NS_ENUM(NSInteger, DeviceOrientation) {
-  DeviceOrientationUnknown, /// 未知方向
-  DeviceOrientationPortrait,/// 竖屏
-  DeviceOrientationLandscape /// 横屏
-};
-#endif /* DeviceOrientation_typedef */
+#import "JobsDefineAllEnumHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,71 +17,65 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 #pragma mark —— 方位和大小
 /// Frame
-@property(nonatomic,assign)CGFloat jobsX;
-@property(nonatomic,assign)CGFloat jobsY;
-@property(nonatomic,assign)CGFloat jobsWidth;/// 宽
-@property(nonatomic,assign)CGFloat jobsHeight;/// 高
+Prop_assign()CGFloat jobsX;
+Prop_assign()CGFloat jobsY;
+Prop_assign()CGFloat jobsWidth;/// 宽
+Prop_assign()CGFloat jobsHeight;/// 高
 /// Edge
-@property(nonatomic,assign)CGFloat jobsTop;
-@property(nonatomic,assign)CGFloat jobsLeft;/// = leading
-@property(nonatomic,assign)CGFloat jobsRight;/// = trailing
-@property(nonatomic,assign)CGFloat jobsBottom;
+Prop_assign()CGFloat jobsTop;
+Prop_assign()CGFloat jobsLeft;/// = leading
+Prop_assign()CGFloat jobsRight;/// = trailing
+Prop_assign()CGFloat jobsBottom;
 /// NSRange
-@property(nonatomic,assign)NSUInteger location;
-@property(nonatomic,assign)NSUInteger length;
+Prop_assign()NSUInteger location;
+Prop_assign()NSUInteger length;
 /// Offset
-@property(nonatomic,assign)CGFloat jobsOffsetX;
-@property(nonatomic,assign)CGFloat jobsOffsetY;
+Prop_assign()CGFloat jobsOffsetX;
+Prop_assign()CGFloat jobsOffsetY;
 /// 结构体
-@property(nonatomic,assign)CGSize jobsSize;/// 二维尺寸
-@property(nonatomic,assign)CGRect jobsRect;
-@property(nonatomic,assign)CGPoint jobsPoint;
-@property(nonatomic,assign)UIRectCorner rectCorner;/// 设置切哪个直角
-@property(nonatomic,assign)CGSize cornerRadii;/// 设置切哪个直角的切角矩形
-@property(nonatomic,assign)UILayoutConstraintAxis axis;
-@property(nonatomic,assign)UIStackViewDistribution distribution;
-@property(nonatomic,assign)UIStackViewAlignment alignment;
-@property(nonatomic,assign)NSInteger row;
-@property(nonatomic,assign)NSInteger item;
-@property(nonatomic,assign)NSInteger section;
-/// Layer
-@property(nonatomic,assign)CGFloat cornerRadius;/// 圆切角（全角）
-@property(nonatomic,assign)BOOL masksToBounds;
+Prop_assign()CGSize jobsSize;/// 二维尺寸
+Prop_assign()CGRect jobsRect;
+Prop_assign()CGPoint jobsPoint;
+Prop_assign()UIRectCorner rectCorner;/// 设置切哪个直角
+Prop_assign()CGSize cornerRadii;/// 设置切哪个直角的切角矩形
+Prop_assign()UILayoutConstraintAxis axis;
+Prop_assign()UIStackViewDistribution distribution;
+Prop_assign()UIStackViewAlignment alignment;
+Prop_assign()NSInteger section;
+Prop_assign()NSInteger item;
+Prop_assign()NSInteger row;
 #pragma mark —— UIButton 专用属性 — 图文的相对位置
-@property(nonatomic,assign)NSDirectionalRectEdge buttonEdgeInsetsStyle;
-@property(nonatomic,assign)CGFloat imageTitleSpace;
-@property(nonatomic,assign)CGFloat titleSpace;
+Prop_assign()NSDirectionalRectEdge buttonEdgeInsetsStyle;
+Prop_assign()CGFloat imageTitleSpace;
+Prop_assign()CGFloat titleSpace;
 #pragma mark —— 关于 UITableViewCell 和 UICollectionViewCell
-@property(nonatomic,assign,class)CGFloat HeightForHeaderInSection;
-@property(nonatomic,assign,class)CGFloat CellWidth;
-@property(nonatomic,assign,class)CGFloat CellHeight;
-@property(nonatomic,assign,class)CGSize CellSize;
+Prop_assign(class)CGFloat HeightForHeaderInSection;
+Prop_assign(class)CGFloat CellWidth;
+Prop_assign(class)CGFloat CellHeight;
+Prop_assign(class)CGSize CellSize;
 
-@property(nonatomic,assign)CGFloat heightForHeaderInSection;
-@property(nonatomic,assign)CGFloat cellWidth;
-@property(nonatomic,assign)CGFloat cellHeight;
-@property(nonatomic,assign)CGSize cellSize;
+Prop_assign()CGFloat heightForHeaderInSection;
+Prop_assign()CGFloat cellWidth;
+Prop_assign()CGFloat cellHeight;
+Prop_assign()CGSize cellSize;
 
-@property(nonatomic,assign)CGSize tableHeaderViewSize;
-@property(nonatomic,assign)CGSize tableFooterViewSize;
-@property(nonatomic,assign)BOOL usesTableViewHeaderView;/// 默认不使用
-@property(nonatomic,assign)BOOL usesTableViewFooterView;/// 默认不使用
+Prop_assign()CGSize tableHeaderViewSize;
+Prop_assign()CGSize tableFooterViewSize;
+Prop_assign()BOOL usesTableViewHeaderView;/// 默认不使用
+Prop_assign()BOOL usesTableViewFooterView;/// 默认不使用
 /// 更多，参见： 关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量.md
-@property(nonatomic,assign)CGFloat offsetXForEach;
-@property(nonatomic,assign)CGFloat offsetYForEach;
-@property(nonatomic,assign)CGFloat offsetHeight;
-@property(nonatomic,assign)CGFloat offsetWidth;
+Prop_assign()CGFloat offsetXForEach;
+Prop_assign()CGFloat offsetYForEach;
+Prop_assign()CGFloat offsetHeight;
+Prop_assign()CGFloat offsetWidth;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#pragma mark —— @synthesize UILocationProtocol_UIViewModelSynthesize
-/// 和 UIViewModel 重复定义的部分
-#ifndef UILocationProtocol_UIViewModelSynthesize
-#define UILocationProtocol_UIViewModelSynthesize \
-@synthesize cornerRadius = _cornerRadius;\
-@synthesize masksToBounds = _masksToBounds;\
+#ifndef UILocationProtocol_synthesize
+#define UILocationProtocol_synthesize \
+\
 @synthesize rectCorner = _rectCorner;\
 @synthesize cornerRadii = _cornerRadii;\
 @synthesize jobsX = _jobsX;\
@@ -128,14 +115,11 @@ NS_ASSUME_NONNULL_END
 @synthesize usesTableViewHeaderView = _usesTableViewHeaderView;\
 @synthesize usesTableViewFooterView = _usesTableViewFooterView;\
 
-#endif
+#endif /* UILocationProtocol_synthesize */
 
-#pragma mark —— @dynamic UILocationProtocol_UIViewModelDynamic
-#ifndef UILocationProtocol_UIViewModelDynamic
-#define UILocationProtocol_UIViewModelDynamic \
+#ifndef UILocationProtocol_dynamic
+#define UILocationProtocol_dynamic \
 \
-@dynamic cornerRadius;\
-@dynamic masksToBounds;\
 @dynamic rectCorner;\
 @dynamic cornerRadii;\
 @dynamic jobsX;\
@@ -175,4 +159,4 @@ NS_ASSUME_NONNULL_END
 @dynamic usesTableViewHeaderView;\
 @dynamic usesTableViewFooterView;\
 
-#endif
+#endif /* UILocationProtocol_dynamic */

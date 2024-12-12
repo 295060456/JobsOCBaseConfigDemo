@@ -78,19 +78,19 @@
     if(!_btn){
         @jobs_weakify(self)
         _btn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(JobsCor(@"#333333"))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(18)))
             .jobsResetBtnTitle(JobsInternationalization(@"点我"))
             .jobsResetBtnSubTitle(JobsInternationalization(@"出推送通知"))
             .jobsResetTitlePadding(JobsWidth(10))
             .jobsResetBtnCornerRadiusValue(JobsWidth(8))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
                 [JobsMakeLocalNotification.new triggerLocalNotification:JobsLocalNotificationModel.new];
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         [self.view addSubview:_btn];

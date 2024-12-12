@@ -15,8 +15,9 @@
 @end
 
 @implementation LeftCell
-UITableViewCellProtocol_synthesize
-UITableViewCell_UIViewModelProtocolSynthesize
+UITableViewCellProtoco_Synthesize_part1
+UITableViewCellProtoco_Synthesize_part2
+UITextFieldProtocol_synthesize_part2
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell

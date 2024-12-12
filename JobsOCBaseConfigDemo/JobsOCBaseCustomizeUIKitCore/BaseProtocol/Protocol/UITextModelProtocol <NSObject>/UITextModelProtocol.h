@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DefineProperty.h"
 
 @class JobsRichTextConfig;
 
@@ -14,57 +15,65 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UITextModelProtocol <NSObject>
 @optional
 #pragma mark —— Common
-@property(nonatomic,assign)NSTextAlignment textAlignment;/// 主文字对齐方式
-@property(nonatomic,assign)NSLineBreakMode lineBreakMode;/// 主文字提行方式
-@property(nonatomic,assign)NSTextAlignment subTextAlignment;/// 副文字对齐方式
-@property(nonatomic,assign)NSLineBreakMode subLineBreakMode;/// 副文字提行方式
-@property(nonatomic,assign)CGFloat textLineSpacing;
-@property(nonatomic,copy)NSString *placeholder;
-@property(nonatomic,strong)UIColor *placeholderColor;
-@property(nonatomic,strong)UIFont *placeholderFont;
-@property(nonatomic,assign)NSInteger curWordCount;/// 目前字数
-@property(nonatomic,assign)NSInteger maxWordCount;/// 最大限制字数
+Prop_assign()NSTextAlignment textAlignment;/// 主文字对齐方式
+Prop_assign()NSLineBreakMode lineBreakMode;/// 主文字提行方式
+Prop_assign()NSTextAlignment subTextAlignment;/// 副文字对齐方式
+Prop_assign()NSLineBreakMode subLineBreakMode;/// 副文字提行方式
+Prop_assign()CGFloat textLineSpacing;
+Prop_copy(nullable)NSString *placeholder;
+Prop_strong(nullable)UIColor *placeholderColor;
+Prop_strong(nullable)UIFont *placeholderFont;
+Prop_assign()NSInteger curWordCount;/// 目前字数
+Prop_assign()NSInteger maxWordCount;/// 最大限制字数
 #pragma mark —— Normal
 /// 主标题
-@property(nonatomic,copy,nullable)NSString *text;
-@property(nonatomic,strong,nullable)UIFont *font;
-@property(nonatomic,strong,nullable)UIColor *textCor;/// 主字体颜色
-@property(nonatomic,strong,nullable)NSAttributedString *attributedTitle API_AVAILABLE(ios(6.0));
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
+Prop_copy(nullable)NSString *text;
+Prop_strong(nullable)UIFont *font;
+Prop_strong(nullable)UIColor *textCor;/// 主字体颜色
+Prop_strong(nullable)NSAttributedString *attributedTitle API_AVAILABLE(ios(6.0));
+Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
 /// 子标题
-@property(nonatomic,copy,nullable)NSString *subText;
-@property(nonatomic,strong,nullable)UIFont *subFont;
-@property(nonatomic,strong,nullable)UIColor *subTextCor;/// 主字体颜色
-@property(nonatomic,strong,nullable)NSAttributedString *attributedSubTitle API_AVAILABLE(ios(6.0));
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *subTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
+Prop_copy(nullable)NSString *subText;
+Prop_strong(nullable)UIFont *subFont;
+Prop_strong(nullable)UIColor *subTextCor;/// 主字体颜色
+Prop_strong(nullable)NSAttributedString *attributedSubTitle API_AVAILABLE(ios(6.0));
+Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *subTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
 #pragma mark —— Selected
 /// 主标题
-@property(nonatomic,strong,nullable)NSString *selectedText;
-@property(nonatomic,strong,nullable)UIFont *selectedFont;
-@property(nonatomic,strong,nullable)UIColor *selectedTextCor;/// 主字体颜色
-@property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedText API_AVAILABLE(ios(6.0));
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
+Prop_copy(nullable)NSString *selectedText;
+Prop_strong(nullable)UIFont *selectedFont;
+Prop_strong(nullable)UIColor *selectedTextCor;/// 主字体颜色
+Prop_strong(nullable)NSAttributedString *selectedAttributedText API_AVAILABLE(ios(6.0));
+Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
 /// 子标题
-@property(nonatomic,strong,nullable)NSString *selectedSubText;
-@property(nonatomic,strong,nullable)UIFont *selectedSubFont;
-@property(nonatomic,strong,nullable)UIColor *selectedSubTextCor;/// 主字体颜色
-@property(nonatomic,strong,nullable)NSAttributedString *selectedAttributedSubText API_AVAILABLE(ios(6.0));
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *> *selectedSubTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
+Prop_copy(nullable)NSString *selectedSubText;
+Prop_strong(nullable)UIFont *selectedSubFont;
+Prop_strong(nullable)UIColor *selectedSubTextCor;/// 主字体颜色
+Prop_strong(nullable)NSAttributedString *selectedAttributedSubText API_AVAILABLE(ios(6.0));
+Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *selectedSubTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
 @end
 
 NS_ASSUME_NONNULL_END
 
 #pragma mark —— @synthesize UITextModelProtocol
-/// 和 BaseButtonProtocol 重复定义的部分
-#ifndef UITextModelProtocol_UIViewModelSynthesize
-#define UITextModelProtocol_UIViewModelSynthesize \
+#ifndef UITextModelProtocol_synthesize_part1
+#define UITextModelProtocol_synthesize_part1 \
+\
+@synthesize attributedTitle = _attributedTitle;\
+@synthesize attributedSubTitle = _attributedSubTitle;\
+
+#endif
+
+#ifndef UITextModelProtocol_synthesize_part2
+#define UITextModelProtocol_synthesize_part2 \
+\
 @synthesize lineBreakMode = _lineBreakMode;\
 @synthesize subLineBreakMode = _subLineBreakMode;\
 
 #endif
 
-#ifndef UITextModelProtocol_synthesize
-#define UITextModelProtocol_synthesize \
+#ifndef UITextModelProtocol_synthesize_part3
+#define UITextModelProtocol_synthesize_part3 \
 \
 @synthesize textAlignment = _textAlignment;\
 @synthesize subTextAlignment = _subTextAlignment;\
@@ -80,9 +89,7 @@ NS_ASSUME_NONNULL_END
 @synthesize subText = _subText;\
 @synthesize subFont = _subFont;\
 @synthesize subTextCor = _subTextCor;\
-@synthesize attributedSubTitle = _attributedSubTitle;\
 @synthesize subTitleAttributedDataMutArr = _subTitleAttributedDataMutArr;\
-@synthesize attributedTitle = _attributedTitle;\
 @synthesize titleAttributedDataMutArr = _titleAttributedDataMutArr;\
 @synthesize selectedText = _selectedText;\
 @synthesize selectedFont = _selectedFont;\
@@ -97,9 +104,19 @@ NS_ASSUME_NONNULL_END
 
 #endif
 
+#ifndef UITextModelProtocol_synthesize
+#define UITextModelProtocol_synthesize \
+\
+UITextModelProtocol_synthesize_part1 \
+UITextModelProtocol_synthesize_part2 \
+UITextModelProtocol_synthesize_part3
+
+#endif
+
 #pragma mark —— @dynamic UITextModelProtocol
 #ifndef UITextModelProtocol_dynamic
 #define UITextModelProtocol_dynamic \
+\
 @dynamic textAlignment;\
 @dynamic subTextAlignment;\
 @dynamic lineBreakMode;\

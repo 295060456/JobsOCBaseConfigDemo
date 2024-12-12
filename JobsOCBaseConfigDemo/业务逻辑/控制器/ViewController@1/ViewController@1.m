@@ -169,8 +169,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _userHeadBtn = BaseButton
             .initByNormalImage(JobsIMG(@"首页_头像"))
-            .bgColor(JobsClearColor.colorWithAlphaComponent(0))
-            .onClick(^(UIButton *x){
+            .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
                 UIViewModel *viewModel = self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
@@ -180,7 +180,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 }));
                 [self forceComingToPushVC:viewModel.cls.new
                             requestParams:viewModel];// 测试专用
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });_userHeadBtn.sizer = CGSizeMake(JobsWidth(32), JobsWidth(32));
     }return _userHeadBtn;
@@ -389,13 +389,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 model.title = JobsInternationalization(@"JobsAppDoor-1");
                 model.subTitle = JobsInternationalization(@"登录注册的第一种表现形式");
                 model.cls = JobsAppDoorVC.class;
-                model.requestParams = @(JobsAppDoorBgType_video);
+                model.requestParams = @(JobsAppDoorBgType_Video);
             })));
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"JobsAppDoor-2");
                 model.subTitle = JobsInternationalization(@"登录注册的第二种表现形式");
                 model.cls = JobsAppDoorVC_Style2.class;
-                model.requestParams = @(JobsAppDoorBgType_video);
+                model.requestParams = @(JobsAppDoorBgType_Video);
             })));
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"Douyin_ZFPlayer_1");

@@ -61,6 +61,24 @@
         return CGSizeMake(JobsWidth(400), JobsWidth(62));
     };
 }
+#pragma mark —— 一些公有方法
++(JobsReturnButtonModelByStringAndImage _Nonnull)makeButtonModel{
+    return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable title,UIImage *_Nullable image){
+        return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+            data1.title = title;
+            data1.titleCor = JobsWhiteColor;
+            data1.titleFont = UIFontWeightRegularSize(14);
+            data1.normalImage = image;
+            data1.imagePlacement = NSDirectionalRectEdgeTop;
+            data1.imagePadding = JobsWidth(8);
+            data1.roundingCorners = UIRectCornerAllCorners;
+            data1.leftViewWidth = JobsWidth(80);
+            data1.rightViewWidth = JobsWidth(80);
+            data1.baseBackgroundColor = JobsClearColor;
+            data1.jobsSelected = YES;
+        });
+    };
+}
 #pragma mark —— 一些私有方法
 -(jobsByVoidBlock)makeBtn{
     @jobs_weakify(self)
@@ -102,7 +120,7 @@
         }
     };
 }
-#pragma mark —— 一些私有方法
+
 -(void)makeRightLab:(UIButton *)btn buttonModel:(UIButtonModel *)buttonModel{
     @jobs_weakify(self)
     jobsMakeLabel(^(__kindof UILabel * _Nullable label) {

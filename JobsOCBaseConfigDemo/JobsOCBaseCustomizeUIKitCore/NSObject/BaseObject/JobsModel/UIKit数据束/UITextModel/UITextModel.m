@@ -9,10 +9,8 @@
 
 @implementation UITextModel
 UITextModelProtocol_synthesize
-UITextModelProtocol_UIViewModelSynthesize
-UILocationProtocol_UIViewModelSynthesize
+UILocationProtocol_synthesize
 UIViewModelOthersProtocol_synthesize
-
 -(UIColor *)textCor{
     if (!_textCor) {
         _textCor = RGB_SAMECOLOR(51);

@@ -8,7 +8,8 @@
 #import "JobsLocationModel.h"
 
 @implementation JobsLocationModel
-UILocationProtocol_UIViewModelSynthesize
+UILocationProtocol_synthesize
+BaseLayerProtocol_synthesize
 @synthesize layerCor = _layerCor;
 
 @end

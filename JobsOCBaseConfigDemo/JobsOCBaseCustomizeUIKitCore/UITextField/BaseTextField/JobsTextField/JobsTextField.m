@@ -41,7 +41,7 @@ BaseProtocol_synthesize
                                         cornerRadii:self.layoutSubviewsRectCornerSize];
 }
 #pragma mark —— 一些公有方法
--(void)otherActionBlock:(JobsReturnIDByIDBlock)otherActionBlock{
+-(void)otherActionBlock:(JobsReturnIDByIDBlock _Nullable)otherActionBlock{
     self.otherActionBlock = otherActionBlock;
 }
 #pragma mark —— BaseViewProtocol

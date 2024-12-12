@@ -45,7 +45,7 @@ static dispatch_once_t static_navBarConfigOnceToken;
         _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             data.backgroundImage = JobsIMG(@"关闭");
             data.selected_backgroundImage = JobsIMG(@"关闭");
-            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
             data.titleCor = JobsClearColor;
             data.selected_titleCor = JobsClearColor;
             data.roundingCorners = UIRectCornerAllCorners;

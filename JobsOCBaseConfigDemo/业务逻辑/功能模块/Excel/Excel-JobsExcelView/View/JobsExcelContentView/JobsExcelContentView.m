@@ -92,7 +92,7 @@
 - (UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+        _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         _tableView.dataLink(self);
         _tableView.rowHeight = self.excelConfigureData.itemH;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -101,9 +101,9 @@
             data.titleCor = JobsWhiteColor;
             data.titleFont = bayonRegular(JobsWidth(30));
             data.normalImage = JobsIMG(@"暂无数据");
-            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-            data.btn_offset_x = JobsWidth(-100);
-            data.btn_offset_y = 0;
+            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+            data.jobsOffsetX = JobsWidth(-100);
+            data.jobsOffsetY = 0;
         });
         [self addSubview:_tableView];
         [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {

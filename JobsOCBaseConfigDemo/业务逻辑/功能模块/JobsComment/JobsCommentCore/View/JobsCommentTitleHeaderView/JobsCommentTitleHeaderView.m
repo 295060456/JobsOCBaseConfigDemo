@@ -61,10 +61,10 @@
         @jobs_weakify(self)
         _cancelBtn = BaseButton
             .initByBackgroundImage(JobsIMG(@"删除"))
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-        }).onLongPressGesture(^(id data){
+        }).onLongPressGestureBy(^(id data){
             NSLog(@"");
         });;
         [self addSubview:_cancelBtn];

@@ -16,6 +16,7 @@
 
 @implementation JobsBaseCollectionViewCell
 @synthesize viewModel = _viewModel;
+UITextFieldProtocol_synthesize_part2
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
 //        self.jobsRichElementsCellBy(nil);
@@ -110,7 +111,7 @@
     if (!_bgBtn) {
         @jobs_weakify(self)
         _bgBtn = BaseButton.jobsInit()
-            .bgColor(JobsWhiteColor)
+            .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
             .jobsResetBtnImage(self.viewModel.image)
@@ -119,10 +120,10 @@
             .jobsResetBtnTitleFont(self.viewModel.textModel.font)
             .jobsResetBtnTitle(self.viewModel.textModel.text)
             .jobsResetBtnNormalAttributedTitle(self.viewModel.textModel.attributedTitle)
-            .onClick(^(UIButton *x){
+            .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGesture(^(id data){
+            }).onLongPressGestureBy(^(id data){
                 NSLog(@"");
             });
         _bgBtn.userInteractionEnabled = NO;
@@ -131,11 +132,11 @@
             make.edges.equalTo(self.contentView);
         }];
     }
-    _bgBtn.selectedStateImage(self.viewModel.selectedImage_);
-    _bgBtn.selectedStateTitle(self.viewModel.textModel.selectedText);
-    _bgBtn.selectedStateBackgroundImage(self.viewModel.bgSelectedImage);
-    _bgBtn.selectedAttributedTitle(self.viewModel.textModel.selectedAttributedText);
-    _bgBtn.selectedStateTitleColor(self.viewModel.textModel.selectedTextCor);
+    _bgBtn.selectedStateImageBy(self.viewModel.selectedImage_);
+    _bgBtn.selectedStateTitleBy(self.viewModel.textModel.selectedText);
+    _bgBtn.selectedStateBackgroundImageBy(self.viewModel.bgSelectedImage);
+    _bgBtn.selectedAttributedTitleBy(self.viewModel.textModel.selectedAttributedText);
+    _bgBtn.selectedStateTitleColorBy(self.viewModel.textModel.selectedTextCor);
     
     _bgBtn.titleAlignment = self.viewModel.textModel.textAlignment;
     _bgBtn.makeNewLineShows(self.viewModel.textModel.lineBreakMode);
