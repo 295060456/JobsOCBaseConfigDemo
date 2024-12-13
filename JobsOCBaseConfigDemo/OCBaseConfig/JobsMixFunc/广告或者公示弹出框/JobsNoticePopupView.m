@@ -52,8 +52,10 @@
                 imageView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                         UITapGestureRecognizer *_Nullable arg) {
                     return nil;
-                }];imageView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+                }];
+                imageView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
             }
+            
             self.addSubview(imageView);
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self);

@@ -8,17 +8,18 @@
 #ifndef JobsBaseProtocolHeader_h
 #define JobsBaseProtocolHeader_h
 
-#import "AppToolsProtocol.h"
-#import "UIViewModelProtocol.h"
-#import "UITextModelProtocol.h"
-
+#pragma mark —— BaseProtocols <YTKChainRequestDelegate>
 #import "BaseProtocol.h"
-#import "BaseLayerProtocol.h"
-#import "UITableViewCellProtocol.h"
-#import "UICollectionViewCellProtocol.h"
+#import "AppToolsProtocol.h"
+#pragma mark —— XProtocols <NSObject>
+#import "XProtocol.h"
+#pragma mark —— UIViewModelProtocols <XProtocol>
 #import "BaseViewProtocol.h"
-#import "BaseCellProtocol.h"
-#import "BaseButtonProtocol.h"
 #import "BaseViewControllerProtocol.h"
+#import "BaseCellProtocol.h"
+/// BaseCellProtocol
+#import "UICollectionViewCellProtocol.h"
+#import "UITableViewCellProtocol.h"
+
 
 #endif /* JobsBaseProtocolHeader_h */

@@ -27,76 +27,59 @@
 #define HDisPad (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)/// 是否iPad
 #define HDisiPhone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)/// 是否iPhone
 #define HDisRetina (UIScreen.mainScreen.scale >= 2.0)/// 非Retain屏幕 1.0
-
-/**
- 仿写来自WMZBanner框架的属性点语法调用
- https://github.com/wwmz/WMZBanner 轻量级轮播图+卡片样式+自定义样式 ⚠️作者停止维护
- 关注：关于WMZBanner的怪异写法探究.md
- */
-/// 用于 @interface
-#ifndef JobsInterface
-#define JobsInterface(className,propertyModifier,propertyPointerType,propertyName) \
-@property(nonatomic,propertyModifier)propertyPointerType  propertyName; \
--(className *(^)(propertyPointerType propertyName)) propertyName##Set;
-#endif
-/// 用于 @implementation
-#ifndef JobsImplementation
-#define JobsImplementation(className,propertyPointerType,propertyName) \
-- (className * (^) (propertyPointerType propertyName))propertyName##Set{ \
-return ^(propertyPointerType propertyName) { \
-self->_##propertyName = propertyName; \
-return self; \
-}; \
+/// 懒加载
+#ifndef Jobs_Lazy_Load_Property
+#define Jobs_Lazy_Load_Property(PropertyType, Name, InitCode) \
+- (PropertyType *)Name { \
+    if (!_##Name) { \
+        InitCode \
+    } return _##Name; \
 }
-#endif
+#endif /* Jobs_Lazy_Load_Property */
 /// 用于分类定义属性Set和Get方法
 #pragma mark —— Key
 #ifndef JobsKey
 #define JobsKey(key) static void *key = &key;
-#endif
+#endif /* JobsKey */
 #pragma mark —— Get
 #ifndef Jobs_getAssociatedObject
 #define Jobs_getAssociatedObject(key) objc_getAssociatedObject(self, &key)
-#endif
+#endif /* Jobs_getAssociatedObject */
 #pragma mark —— Set
-#ifndef Jobs_setAssociatedASSIGN
+#ifndef Jobs_setAssociatedASSIGN /// 封装成对象（NSNumber *）进行存储
 #define Jobs_setAssociatedASSIGN(key, Object) \
     objc_setAssociatedObject(self, \
                              &(key), \
                              (Object), \
                              OBJC_ASSOCIATION_ASSIGN);
-#endif
-
-#ifndef Jobs_setAssociatedRETAIN_NONATOMIC
+#endif /* Jobs_setAssociatedASSIGN */
+#ifndef Jobs_setAssociatedRETAIN_NONATOMIC /// 适用于被 strong 和 retain 修饰的属性
 #define Jobs_setAssociatedRETAIN_NONATOMIC(key, Object) \
     objc_setAssociatedObject(self, \
                              &(key), \
                              (Object), \
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-#endif
-
+#endif /* Jobs_setAssociatedRETAIN_NONATOMIC */
+#ifndef Jobs_setAssociatedRETAIN /// 适用于被 strong 和 retain 修饰的属性
+#define Jobs_setAssociatedRETAIN(key, Object) \
+    objc_setAssociatedObject(self, \
+                             &(key), \
+                             (Object), \
+                             OBJC_ASSOCIATION_RETAIN);
+#endif /* Jobs_setAssociatedRETAIN */
 #ifndef Jobs_setAssociatedCOPY_NONATOMIC
 #define Jobs_setAssociatedCOPY_NONATOMIC(key, Object) \
     objc_setAssociatedObject(self, \
                              &(key), \
                              (Object), \
                              OBJC_ASSOCIATION_COPY_NONATOMIC);
-#endif
-
-#ifndef Jobs_setAssociatedRETAIN
-#define Jobs_setAssociatedRETAIN(key, Object) \
-    objc_setAssociatedObject(self, \
-                             &(key), \
-                             (Object), \
-                             OBJC_ASSOCIATION_RETAIN);
-#endif
-
+#endif /* Jobs_setAssociatedCOPY_NONATOMIC */
 #ifndef Jobs_setAssociatedCOPY
 #define Jobs_setAssociatedCOPY(key, Object) \
     objc_setAssociatedObject(self, \
                              &(key), \
                              (Object), \
                              OBJC_ASSOCIATION_COPY);
-#endif
+#endif /* Jobs_setAssociatedCOPY */
 
 #endif /* MacroDef_Sys_h */

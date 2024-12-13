@@ -8,7 +8,6 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+Data.h"
 #import "JobsDefineAllEnumHeader.h"
-#import "UIViewModel.h"
 
 #if __has_include(<MJExtension/MJExtension.h>)
 #import <MJExtension/MJExtension.h>

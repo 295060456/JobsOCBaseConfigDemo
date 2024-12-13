@@ -1,5 +1,5 @@
 //
-//  CustomTabBar.h
+//  JobsTabBar.h
 //  HitTesting
 //
 //  Created by mac on 2017/5/19.
@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewProtocol.h"
 #import "JobsLoadingImage.h"
 #import "UIView+Measure.h"
 #import "NSMutableArray+Extra.h"
@@ -23,7 +22,7 @@ typedef NS_ENUM(NSInteger, AlignmentType) {
 #endif /* ALIGNMENT_TYPE_ENUM_DEFINED */
 
 // 超过 6 个 系统会变成更多，过不了审核
-@interface JobsTabBar : UITabBar<BaseViewProtocol>
+@interface JobsTabBar : UITabBar
 
 @property(nonatomic,assign)AlignmentType alignmentType;
 

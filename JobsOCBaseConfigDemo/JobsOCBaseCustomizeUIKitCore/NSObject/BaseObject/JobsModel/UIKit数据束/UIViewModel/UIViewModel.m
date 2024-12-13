@@ -22,6 +22,7 @@ UIViewModelProtocol_synthesize_part1 /// UIViewModelProtocol
 BaseLayerProtocol_synthesize_part2 /// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3 /// BaseLayerProtocol
 UITextFieldProtocol_synthesize_part2 /// UITextFieldProtocol
+AppToolsProtocol_synthesize
 
 #pragma mark —— UIViewModelProtocol
 -(UITextModel *)textModel{

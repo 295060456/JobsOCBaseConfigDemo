@@ -6,8 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseModel.h"
 #import "JobsBlock.h"
+#import "AppToolsProtocol.h"
+#import "BaseModel.h"
 
 #if __has_include(<MJExtension/MJExtension.h>)
 #import <MJExtension/MJExtension.h>
@@ -17,7 +18,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GoodsClassModel : BaseModel
+@interface GoodsClassModel : BaseModel <AppToolsProtocol>
 
 @property(nonatomic,copy)NSString *idField;
 @property(nonatomic,copy)NSString *pid;
@@ -27,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *iconUrl;
 @property(nonatomic,copy)NSString *showUrl;
 @property(nonatomic,copy)NSString *productUrl;
-@property(nonatomic,strong)NSMutableArray<GoodsClassModel *> *childrenList;
+@property(nonatomic,strong)NSMutableArray <GoodsClassModel *>*childrenList;
 
 @end
 

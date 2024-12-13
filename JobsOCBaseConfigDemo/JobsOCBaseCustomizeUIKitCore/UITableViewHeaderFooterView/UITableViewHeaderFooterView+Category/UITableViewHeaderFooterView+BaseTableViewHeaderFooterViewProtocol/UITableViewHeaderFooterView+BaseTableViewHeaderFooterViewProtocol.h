@@ -6,12 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewProtocol.h"
 #import "UIViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITableViewHeaderFooterView (BaseTableViewHeaderFooterViewProtocol)<BaseViewProtocol>
+@interface UITableViewHeaderFooterView (BaseTableViewHeaderFooterViewProtocol)
 
 @end
 

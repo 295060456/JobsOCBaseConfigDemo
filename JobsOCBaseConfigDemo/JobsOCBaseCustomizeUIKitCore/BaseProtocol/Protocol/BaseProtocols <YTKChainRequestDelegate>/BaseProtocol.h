@@ -22,8 +22,6 @@
 #import "YTKNetwork.h"
 #endif
 
-@class UIViewModel;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseProtocol <YTKChainRequestDelegate>
@@ -56,17 +54,14 @@ Prop_strong(nullable)NSURL *url;
 Prop_copy(nullable)NSString *internationalizationKEY;/// 国际化的key
 Prop_strong(nullable)NSMutableSet *jobsDataMutSet;/// 绑定的数据源，数据类型NSMutableSet
 Prop_strong(nullable)NSMutableArray *jobsDataMutArr;/// 绑定的数据源，数据类型NSMutableArray
-Prop_strong(nullable)NSMutableArray <__kindof UIViewModel *> *viewModelMutArr;
 Prop_strong(nullable)NSMutableDictionary *jobsDataMutDic;/// 绑定的数据源，数据类型NSMutableDictionary
 Prop_strong(nullable)Class cls;/// 绑定的class
 /// 强引用数据源
 Prop_strong(nullable)id data;/// 【强引用】绑定的数据源，数据类型id
 Prop_strong(nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
-Prop_strong(nullable)UIViewModel *viewModel;
 /// 弱引用数据源
 Prop_weak(nullable)id data_weak;/// 【弱引用】绑定的数据源，数据类型id
 Prop_weak(nullable)id requestParams_weak;/// 【弱引用】绑定的数据源，数据类型id
-Prop_weak(nullable)UIViewModel *viewModel_weak;
 /// 更改UITabBarItem的标题
 -(jobsByIndexPathBlock _Nonnull)changeTabBarItemTitleBy;
 #pragma mark —— iOS 通知
@@ -116,15 +111,12 @@ NS_ASSUME_NONNULL_END
 @synthesize internationalizationKEY = _internationalizationKEY;\
 @synthesize jobsDataMutSet = _jobsDataMutSet;\
 @synthesize jobsDataMutArr = _jobsDataMutArr;\
-@synthesize viewModelMutArr = _viewModelMutArr;\
 @synthesize jobsDataMutDic = _jobsDataMutDic;\
 @synthesize cls = _cls;\
 @synthesize data = _data;\
 @synthesize data_weak = _data_weak;\
 @synthesize requestParams = _requestParams;\
 @synthesize requestParams_weak = _requestParams_weak;\
-@synthesize viewModel = _viewModel;\
-@synthesize viewModel_weak = _viewModel_weak;\
 @synthesize url = _url;\
 
 #endif /* BaseProtocol_synthesize */
@@ -148,15 +140,12 @@ NS_ASSUME_NONNULL_END
 @dynamic internationalizationKEY;\
 @dynamic jobsDataMutSet;\
 @dynamic jobsDataMutArr;\
-@dynamic viewModelMutArr;\
 @dynamic jobsDataMutDic;\
 @dynamic cls;\
 @dynamic data;\
 @dynamic requestParams;\
-@dynamic viewModel;\
 @dynamic data_weak;\
 @dynamic requestParams_weak;\
-@dynamic viewModel_weak;\
 @dynamic url;\
 
 #endif /* BaseProtocol_dynamic */

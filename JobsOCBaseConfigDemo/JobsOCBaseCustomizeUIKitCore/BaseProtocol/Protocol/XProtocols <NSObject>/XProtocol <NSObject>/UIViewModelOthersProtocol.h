@@ -39,6 +39,8 @@ Prop_assign()BOOL jobsEnabled;
 Prop_strong(nullable)UIAction *primaryAction;/// 新Api的点击事件
 Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
 Prop_copy(nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
+#pragma mark —— ZFDouYinCell
+-(void)zf_douyinRotation;
 
 @end
 

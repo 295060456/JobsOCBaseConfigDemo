@@ -17,6 +17,7 @@ BaseProtocol_synthesize
 BaseViewProtocol_synthesize
 UIPictureAndBackGroundCorProtocol_synthesize
 UITextFieldProtocol_synthesize_part2
+AppToolsProtocol_synthesize
 -(instancetype)init{
     if (self = [super init]) {
 

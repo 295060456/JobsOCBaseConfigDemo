@@ -107,7 +107,7 @@
 /// @param completion 完成Present动作以后得动作
 -(void)forceComingToPresentVC:(UIViewController *_Nonnull)toPresentVC
                 requestParams:(id _Nullable)requestParams
-                   completion:(void (^ __nullable)(void))completion{
+                   completion:(jobsByVoidBlock _Nonnull)completion{
     UIViewController *viewController = KindOfVCCls(self) ? (UIViewController *)self : self.jobsGetCurrentViewController;
     [viewController presentViewController:toPresentVC
                                  animated:YES

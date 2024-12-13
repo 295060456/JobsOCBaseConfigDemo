@@ -268,8 +268,25 @@ typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByStri
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString *_Nonnull data);
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByColorBlock)(UIColor *_Nonnull data);
 #pragma mark —— NSNumber
-typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByIntegerBlock)(NSInteger data);
-typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByFloatBlock)(CGFloat data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByCharBlock)(char data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByUnsignedCharBlock)(unsigned char data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByShortBlock)(short data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByUnsignedShortBlock)(unsigned short data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByIntBlock)(int data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByUnsignedIntBlock)(unsigned int data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByLongBlock)(long data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByUnsignedLongBlock)(unsigned long data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByLongLongBlock)(long long data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByUnsignedLongLongBlock)(unsigned long long data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByFloatBlock)(float data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByDoubleBlock)(double data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByBOOLBlock)(BOOL data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByNSIntegerBlock)(NSInteger data);
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByNSUIntegerBlock)(NSUInteger data);
+/// CGFloat 是一个平台相关的类型，它在 32 位系统上是 float 类型，而在 64 位系统上是 double 类型。
+/// 因此，直接将 CGFloat 封装为 NSNumber 时，需要根据平台的不同选择正确的 NSNumber 方法。
+typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByCGFloatBlock)(CGFloat data);
+
 #pragma mark —— 关于字符串
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegersBlock)(NSInteger data, ...);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
@@ -485,6 +502,7 @@ typedef CGFloat(^JobsReturnByCGPointBlock)(CGPoint data);
 typedef CGFloat(^JobsReturnCGFloatByIDBlock)(id _Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByArrBlock)(NSMutableArray *_Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByFontBlock)(UIFont *_Nullable font);
+typedef CGFloat(^JobsReturnCGFloatByNumberBlock)(NSNumber *_Nullable data);
 
 typedef BOOL(^JobsReturnBOOLByVoidBlock)(void);
 typedef BOOL(^JobsReturnBOOLBySizeBlock)(CGSize size);

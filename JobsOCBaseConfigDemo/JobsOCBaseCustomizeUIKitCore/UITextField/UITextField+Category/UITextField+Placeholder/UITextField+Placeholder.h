@@ -7,11 +7,12 @@
 
 #import <UIKit/UIKit.h>
 #import "UITextModelProtocol.h"
+#import "AppToolsProtocol.h"
 #import "NSMutableArray+Extra.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 修改UITextField.Placeholder
-@interface UITextField (Placeholder)<UITextModelProtocol>
+@interface UITextField (Placeholder)<UITextModelProtocol,AppToolsProtocol>
 
 -(UILabel *)placeholderLabel;
 

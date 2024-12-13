@@ -21,7 +21,7 @@
 #import "NSString+NSUserDefaults.h"
 
 #import "BaseProtocol.h"
-#import "UIViewModelProtocol.h"
+#import "AppToolsProtocol.h"
 #import "BaseViewControllerProtocol.h"
 
 #import "JobsBlock.h"
@@ -111,8 +111,8 @@ NS_INLINE __kindof YTKNetworkConfig *_Nonnull jobsMakeYTKNetworkConfig(jobsByYTK
 
 @interface NSObject (Extras)
 <
-BaseProtocol
-,UIViewModelProtocol
+AppToolsProtocol
+,BaseProtocol
 ,BaseViewControllerProtocol
 >
 #pragma mark —— 宏
@@ -150,7 +150,7 @@ BaseProtocol
 /// @param completion 完成Present动作以后得动作
 -(void)forceComingToPresentVC:(UIViewController *_Nonnull)toPresentVC
                 requestParams:(id _Nullable)requestParams
-                   completion:(void (^ __nullable)(void))completion;
+                   completion:(jobsByVoidBlock _Nonnull)completion;
 /// 获取Storyboard里面的单独控制器
 -(UIViewController *_Nullable)vcByStoryboardWithName:(NSString *_Nonnull)storyboardWithName
                                     storyboardBundle:(NSBundle *_Nullable)storyboardBundle

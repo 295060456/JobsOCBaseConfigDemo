@@ -11,6 +11,7 @@
 #import "BaseCellProtocol.h"
 #import "UITableViewCellProtocol.h"
 #import "UIViewModelProtocol.h"
+#import "AppToolsProtocol.h"
 #import "MacroDef_Func.h"
 #import "UIViewModel.h"
 #import "UIView+Measure.h"
@@ -33,8 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsBaseTableViewCell : UITableViewCell
 <
-UITableViewCellProtocol
-,UIViewModelProtocol
+UITableViewCellProtocol,
+UIViewModelProtocol,
+AppToolsProtocol
 >
 
 @end

@@ -8,7 +8,12 @@
 
 #ifndef XLMatrix_h
 #define XLMatrix_h
-#import "XLPoint.h"
+
+struct XLPoint {
+    CGFloat x;
+    CGFloat y;
+    CGFloat z;
+};
 
 struct XLMatrix {
     NSInteger column;
@@ -16,7 +21,16 @@ struct XLMatrix {
     CGFloat matrix[4][4];
 };
 
+typedef struct XLPoint XLPoint;
 typedef struct XLMatrix XLMatrix;
+
+XLPoint XLPointMake(CGFloat x, CGFloat y, CGFloat z) {
+    XLPoint point;
+    point.x = x;
+    point.y = y;
+    point.z = z;
+    return point;
+}
 
 static XLMatrix XLMatrixMake(NSInteger column, NSInteger row) {
     XLMatrix matrix;

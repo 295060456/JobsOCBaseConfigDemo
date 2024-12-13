@@ -8,12 +8,12 @@
 #import "BaseCollectionReusableView.h"
 
 @interface BaseCollectionReusableView ()
-/// UI
-@property(nonatomic,strong)UIImageView *bgImageView;
 
 @end
 
 @implementation BaseCollectionReusableView
+UITextFieldProtocol_synthesize_part2
+UIPictureAndBackGroundCorProtocol_synthesize
 @synthesize viewModel = _viewModel;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {

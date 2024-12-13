@@ -14,7 +14,6 @@
 
 #import "LOTAnimationMJRefreshHeader.h"
 #import "MJRefreshConfigModel.h"
-#import "BaseViewProtocol.h"
 
 #if __has_include(<ReactiveObjC/RACmetamacros.h>)
 #import <ReactiveObjC/RACmetamacros.h>
@@ -60,7 +59,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 /// https://github.com/CoderMJLee/MJRefresh/issues/1495
-@interface UIView (Refresh)<BaseViewProtocol>
+@interface UIView (Refresh)
 /// MJRefresh 作用于targetView
 @property(nonatomic,weak)UIScrollView *mjRefreshTargetView;
 

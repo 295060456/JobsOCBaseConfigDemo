@@ -11,7 +11,7 @@
 
 #import "JobsRightBtnsView.h"
 
-#import "ZFDouYinCellDelegate.h"
+#import "UIViewModelOthersProtocol.h"
 #import "VideoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -22,7 +22,7 @@ BaseCellProtocol,
 UIMarkProtocol
 >
 
-@property(nonatomic,weak)id<ZFDouYinCellDelegate> delegate;
+@property(nonatomic,weak)id<UIViewModelOthersProtocol> delegate;
 
 @end
 

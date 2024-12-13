@@ -6,19 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DefineProperty.h"
 #import "JobsBlock.h"
+#import "AppToolsProtocol.h"
 #import "BaseButtonProtocol.h"
-#import "UIViewModelProtocol.h"
 #import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIButtonModel : BaseModel
-<
-BaseButtonProtocol
-,UIViewModelProtocol
->
+@interface UIButtonModel : BaseModel <BaseButtonProtocol,AppToolsProtocol>
 #pragma mark —— 对方位 <UILocationProtocol>
 #pragma mark —— 对 UIButton + UI <BaseButtonProtocol>
 Prop_assign()CGFloat leftViewWidth;

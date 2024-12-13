@@ -11,6 +11,7 @@
 #import "BaseProtocol.h"
 #import "BaseViewProtocol.h"
 #import "UIViewModelProtocol.h"
+#import "AppToolsProtocol.h"
 #import "MacroDef_Notification.h"
 #import "JobsNavBar.h"
 //#import "NSObject+AppTools.h"
@@ -19,10 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseView : UIView
 <
-UIViewModelProtocol
-,BaseProtocol
-,BaseViewProtocol
+UIViewModelProtocol,
+BaseProtocol,
+BaseViewProtocol,
+AppToolsProtocol
 >
+
 @property(nonatomic,strong,nullable)JobsNavBarConfig *navBarConfig;
 @property(nonatomic,strong,nullable)JobsNavBar *navBar;
 

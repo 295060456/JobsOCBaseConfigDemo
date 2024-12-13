@@ -171,7 +171,7 @@
 -(BOOL)prefersStatusBarHidden{
     return NO;
 }
-#pragma mark —— ZFDouYinCellDelegate
+#pragma mark —— UIViewModelOthersProtocol
 -(void)zf_douyinRotation{
     UIInterfaceOrientation orientation = UIInterfaceOrientationUnknown;
     if(self.player.isFullScreen){

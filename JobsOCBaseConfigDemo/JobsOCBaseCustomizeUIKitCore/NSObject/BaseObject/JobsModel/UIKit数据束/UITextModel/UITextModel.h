@@ -11,7 +11,7 @@
 #import "UILocationProtocol.h"
 #import "JobsBlock.h"
 
-#define TextModelDataString @"主文字默认占位内容"
+#define TextModelDataString JobsInternationalization(@"主文字默认占位内容")
 /// 数据归位
 #define MakeDataNull \
 if ([self.viewModel.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)]) {\

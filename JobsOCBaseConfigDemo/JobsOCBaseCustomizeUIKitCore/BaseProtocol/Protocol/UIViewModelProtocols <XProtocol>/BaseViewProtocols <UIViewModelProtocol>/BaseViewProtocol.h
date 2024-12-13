@@ -9,15 +9,13 @@
 #import "JobsBlock.h"
 #import "DefineProperty.h"
 #import "JobsDefineAllEnumHeader.h"
-#import "BaseProtocol.h"
+#import "UIViewModelProtocol.h"
 
 @class MASConstraint;
-@class UIViewModel;
-@class UIButtonModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BaseViewProtocol <BaseProtocol>
+@protocol BaseViewProtocol <UIViewModelProtocol>
 typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewProtocol> _Nullable data);
 @optional
 Prop_strong(nullable)__kindof UICollectionView *collectionView;
@@ -95,20 +93,6 @@ Prop_copy(nullable)jobsByBtnBlock closeBtnClickAction;
 -(JobsReturnCGFloatByIDBlock _Nonnull)widthByData;
 /// 数据（字符串）定高
 -(JobsReturnCGFloatByIDBlock _Nonnull)heightByData;
-#pragma mark —— 关于导航栏
-Prop_strong(nullable)UIButtonModel *closeBtnModel;
-Prop_strong(nullable)UIButtonModel *backBtnModel;
-Prop_strong(nullable)UIViewModel *titleModel;
-/// 配置 GKNavigationBar
--(jobsByViewModelBlock _Nonnull)setGKNav;
-/// 配置 JobsNavBarConfig
--(JobsReturnNavBarConfigByButtonModelBlock _Nonnull)makeNavBarConfig;
-/// 配置GKNavigationBar的返回按钮
--(jobsByBtnBlock _Nonnull)setGKNavBackBtn;
-/// 返回按钮的回调
--(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock _Nullable)objectBlock;
-/// 关闭按钮的回调
--(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock _Nullable)objectBlock;
 #pragma mark —— 一些功能性的
 /// 初始化的时候最好传入一个size值将其子视图的大小固定死。因为只有当父视图有Size的情况下子视图才会展开，从而避免刷新约束时候的一系列麻烦事。
 -(instancetype)initWithSize:(CGSize)thisViewSize;
@@ -119,9 +103,6 @@ Prop_strong(nullable)UIViewModel *titleModel;
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel;
 -(jobsByViewModelBlock _Nonnull)jobsRichViewByViewModel;
 -(jobsByIDBlock _Nonnull)update;
-/// 获取绑定的数据源
--(UIViewModel *_Nullable)getViewModel;
--(UIButtonModel *_Nullable)getButtonModel;
 #pragma mark —— 关于 TextField
 /// 清除数据
 -(JobsReturnViewByVoidBlock _Nonnull)cleanTextFieldValue;
@@ -162,9 +143,6 @@ NS_ASSUME_NONNULL_END
 @synthesize headerFooterViewStyle = _headerFooterViewStyle;\
 @synthesize backBtnClickAction = _backBtnClickAction;\
 @synthesize closeBtnClickAction = _closeBtnClickAction;\
-@synthesize closeBtnModel = _closeBtnModel;\
-@synthesize backBtnModel = _backBtnModel;\
-@synthesize titleModel = _titleModel;\
 
 #endif /* BaseViewProtocol_synthesize */
 
@@ -184,8 +162,5 @@ NS_ASSUME_NONNULL_END
 @dynamic headerFooterViewStyle;\
 @dynamic backBtnClickAction;\
 @dynamic closeBtnClickAction;\
-@dynamic closeBtnModel;\
-@dynamic backBtnModel;\
-@dynamic titleModel;\
 
 #endif /* BaseViewProtocol_dynamic */

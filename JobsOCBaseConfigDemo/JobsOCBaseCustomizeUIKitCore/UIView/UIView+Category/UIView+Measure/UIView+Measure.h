@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-#import "BaseViewProtocol.h"
 #import "JobsAppTools.h"
 #import "JobsBlock.h"
 
@@ -28,7 +27,7 @@ NS_INLINE CGRect exchangeXAndY(CGRect frame){
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (Measure) <BaseViewProtocol>
+@interface UIView (Measure)
 #pragma mark —— 简捷获得控件坐标
 @property(nonatomic,assign)CGFloat x;
 @property(nonatomic,assign)CGFloat y;

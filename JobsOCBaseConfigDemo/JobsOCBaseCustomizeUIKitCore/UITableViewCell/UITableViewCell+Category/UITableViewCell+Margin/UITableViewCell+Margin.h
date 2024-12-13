@@ -9,13 +9,16 @@
 #import <objc/runtime.h>
 #import "JobsBlock.h"
 #import "BaseCellProtocol.h"
+#import "UIViewModelProtocol.h"
+#import "UITableViewCellProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 重设边距
 @interface UITableViewCell (Margin)
 <
-BaseCellProtocol
-,UIViewModelProtocol
+BaseCellProtocol,
+UIViewModelProtocol,
+UITableViewCellProtocol
 >
 #pragma mark —— 一些公有的功能方法
 /// 值打印

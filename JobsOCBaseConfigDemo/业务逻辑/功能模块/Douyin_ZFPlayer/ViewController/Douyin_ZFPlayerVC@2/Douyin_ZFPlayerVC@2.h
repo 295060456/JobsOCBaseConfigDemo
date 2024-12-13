@@ -25,8 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Douyin_ZFPlayerVC_2 : BaseViewController
 <
 UITableViewDelegate,
-UITableViewDataSource,
-ZFDouYinCellDelegate
+UITableViewDataSource
 >
 /// 指定到某一行播放
 -(void)playTheIndex:(NSInteger)index;

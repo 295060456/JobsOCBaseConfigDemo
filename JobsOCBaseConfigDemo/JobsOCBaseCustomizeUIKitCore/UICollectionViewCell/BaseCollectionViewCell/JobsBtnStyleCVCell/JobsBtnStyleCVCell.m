@@ -19,6 +19,7 @@
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
 BaseLayerProtocol_synthesize_part3
+AppToolsProtocol_synthesize
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
@@ -89,7 +90,7 @@ BaseLayerProtocol_synthesize_part3
         return CGSizeMake(JobsWidth(106), JobsWidth(30));
     };
 }
-@synthesize viewModel = _viewModel;
+
 -(void)setViewModel:(UIViewModel *)viewModel{
     _viewModel = viewModel;
     @jobs_weakify(self)

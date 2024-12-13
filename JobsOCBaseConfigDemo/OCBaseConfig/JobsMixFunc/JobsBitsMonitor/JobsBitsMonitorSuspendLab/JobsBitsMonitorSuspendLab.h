@@ -14,14 +14,13 @@
 #endif
 
 #import "JobsBitsMonitorCore.h"
-#import "NSObject+WHToast.h"//提示
+#import "NSObject+WHToast.h" /// 提示
 #import "JobsDefineAllEnumHeader.h"
 #import "UILabel+Extra.h"
-#import "BaseViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsBitsMonitorSuspendLab : JobsSuspendLab<BaseViewProtocol>
+@interface JobsBitsMonitorSuspendLab : JobsSuspendLab
 
 @end
 

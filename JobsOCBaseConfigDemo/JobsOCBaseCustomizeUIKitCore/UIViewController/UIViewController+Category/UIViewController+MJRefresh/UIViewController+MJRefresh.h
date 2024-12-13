@@ -42,11 +42,10 @@
 
 #import "LOTAnimationMJRefreshHeader.h"
 #import "MJRefreshConfigModel.h"
-#import "BaseViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController (MJRefresh)<BaseViewProtocol>
+@interface UIViewController (MJRefresh)
 #pragma mark —— 配置信息
 @property(nonatomic,strong)MJRefreshConfigModel *refreshConfigHeader;/// 头部的配置信息
 @property(nonatomic,strong)MJRefreshConfigModel *refreshConfigFooter;/// 尾部的配置信息

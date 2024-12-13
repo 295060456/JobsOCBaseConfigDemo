@@ -1,15 +1,74 @@
 #  BaseProtocol 相关继承结构关系图
 
-```objective-c
-1、UIViewModelProtocol <NSObject>
-2、BaseProtocol <NSObject>
-    2.1、AppToolsProtocol <BaseProtocol>
-    2.2、BaseViewProtocol <BaseProtocol>
-        2.2.1、BaseViewControllerProtocol<BaseViewProtocol>
-        2.2.2、BaseButtonProtocol <BaseViewProtocol>
-        2.2.3、BaseCellProtocol <BaseViewProtocol>
-                2.2.3.1、UITableViewCellProtocol<BaseCellProtocol>
-                2.2.3.2、UICollectionViewCellProtocol<BaseCellProtocol>
-3、NTESVerifyCodeManagerProtocol <NSObject>
-4、ZFDouYinCellDelegate <NSObject>
+```mermaid
+classDiagram
+    class BaseProtocol {
+        <<protocol>>
+    }
+    class AppToolsProtocol {
+        <<protocol>>
+    }
+    class XProtocol {
+        <<protocol>>
+    }
+    class UITextFieldProtocol {
+        <<protocol>>
+    }
+    class BaseButtonProtocol {
+        <<protocol>>
+    }
+    class BaseLayerProtocol {
+        <<protocol>>
+    }
+    class UILocationProtocol {
+        <<protocol>>
+    }
+    class UIMarkProtocol {
+        <<protocol>>
+    }
+    class UIPictureAndBackGroundCorProtocol {
+        <<protocol>>
+    }
+    class UITextModelProtocol {
+        <<protocol>>
+    }
+    class UIViewModelOthersProtocol {
+        <<protocol>>
+    }
+    class UIViewModelProtocol {
+        <<protocol>>
+    }
+    class BaseViewProtocol {
+        <<protocol>>
+    }
+    class BaseViewControllerProtocol {
+        <<protocol>>
+    }
+    class BaseCellProtocol {
+        <<protocol>>
+    }
+    class UICollectionViewCellProtocol {
+        <<protocol>>
+    }
+    class UITableViewCellProtocol {
+        <<protocol>>
+    }
+
+    AppToolsProtocol --|> BaseProtocol
+    XProtocol --|> BaseLayerProtocol
+    XProtocol --|> UILocationProtocol
+    XProtocol --|> UIMarkProtocol
+    XProtocol --|> UIPictureAndBackGroundCorProtocol
+    XProtocol --|> UITextModelProtocol
+    XProtocol --|> UIViewModelOthersProtocol
+    XProtocol --|> BaseButtonProtocol
+    XProtocol --|> UITextFieldProtocol
+
+    UIViewModelProtocol --|> XProtocol
+    BaseViewProtocol --|> UIViewModelProtocol
+    BaseViewControllerProtocol --|> BaseViewProtocol
+    BaseCellProtocol --|> BaseViewProtocol
+    UICollectionViewCellProtocol --|> BaseCellProtocol
+    UITableViewCellProtocol --|> BaseCellProtocol
+
 ```

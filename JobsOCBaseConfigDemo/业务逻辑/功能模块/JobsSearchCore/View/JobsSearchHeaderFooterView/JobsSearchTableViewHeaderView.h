@@ -5,17 +5,13 @@
 //  Created by Jobs on 2020/10/2.
 //
 
-#import "BaseViewProtocol.h"
 #import "BaseTableViewHeaderFooterView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsSearchTableViewHeaderView : BaseTableViewHeaderFooterView
-<
-BaseViewProtocol
->
 
--(UIButton *)getDelBtn;
+@property(nonatomic,strong,readonly)UIButton *delBtn;
 
 @end
 

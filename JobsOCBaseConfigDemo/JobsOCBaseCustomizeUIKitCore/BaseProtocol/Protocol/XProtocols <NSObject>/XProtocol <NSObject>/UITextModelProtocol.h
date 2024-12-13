@@ -8,8 +8,6 @@
 #import <Foundation/Foundation.h>
 #import "DefineProperty.h"
 
-@class JobsRichTextConfig;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol UITextModelProtocol <NSObject>
@@ -31,26 +29,23 @@ Prop_copy(nullable)NSString *text;
 Prop_strong(nullable)UIFont *font;
 Prop_strong(nullable)UIColor *textCor;/// 主字体颜色
 Prop_strong(nullable)NSAttributedString *attributedTitle API_AVAILABLE(ios(6.0));
-Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
 /// 子标题
 Prop_copy(nullable)NSString *subText;
 Prop_strong(nullable)UIFont *subFont;
 Prop_strong(nullable)UIColor *subTextCor;/// 主字体颜色
 Prop_strong(nullable)NSAttributedString *attributedSubTitle API_AVAILABLE(ios(6.0));
-Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *subTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
 #pragma mark —— Selected
 /// 主标题
 Prop_copy(nullable)NSString *selectedText;
 Prop_strong(nullable)UIFont *selectedFont;
 Prop_strong(nullable)UIColor *selectedTextCor;/// 主字体颜色
 Prop_strong(nullable)NSAttributedString *selectedAttributedText API_AVAILABLE(ios(6.0));
-Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
 /// 子标题
 Prop_copy(nullable)NSString *selectedSubText;
 Prop_strong(nullable)UIFont *selectedSubFont;
 Prop_strong(nullable)UIColor *selectedSubTextCor;/// 主字体颜色
 Prop_strong(nullable)NSAttributedString *selectedAttributedSubText API_AVAILABLE(ios(6.0));
-Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *selectedSubTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
+
 @end
 
 NS_ASSUME_NONNULL_END
@@ -89,18 +84,14 @@ NS_ASSUME_NONNULL_END
 @synthesize subText = _subText;\
 @synthesize subFont = _subFont;\
 @synthesize subTextCor = _subTextCor;\
-@synthesize subTitleAttributedDataMutArr = _subTitleAttributedDataMutArr;\
-@synthesize titleAttributedDataMutArr = _titleAttributedDataMutArr;\
 @synthesize selectedText = _selectedText;\
 @synthesize selectedFont = _selectedFont;\
 @synthesize selectedTextCor = _selectedTextCor;\
 @synthesize selectedAttributedText = _selectedAttributedText;\
-@synthesize selectedTitleAttributedDataMutArr = _selectedTitleAttributedDataMutArr;\
 @synthesize selectedSubText = _selectedSubText;\
 @synthesize selectedSubFont = _selectedSubFont;\
 @synthesize selectedSubTextCor = _selectedSubTextCor;\
 @synthesize selectedAttributedSubText = _selectedAttributedSubText;\
-@synthesize selectedSubTitleAttributedDataMutArr = _selectedSubTitleAttributedDataMutArr;\
 
 #endif
 
@@ -134,19 +125,15 @@ UITextModelProtocol_synthesize_part3
 @dynamic subFont;\
 @dynamic subTextCor;\
 @dynamic attributedSubTitle;\
-@dynamic subTitleAttributedDataMutArr;\
 @dynamic attributedTitle;\
-@dynamic titleAttributedDataMutArr;\
 @dynamic selectedText;\
 @dynamic selectedFont;\
 @dynamic selectedTextCor;\
 @dynamic selectedAttributedText;\
-@dynamic selectedTitleAttributedDataMutArr;\
 @dynamic selectedSubText;\
 @dynamic selectedSubFont;\
 @dynamic selectedSubTextCor;\
 @dynamic selectedAttributedSubText;\
-@dynamic selectedSubTitleAttributedDataMutArr;\
 
 #endif
 

@@ -7,12 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
-#import "BaseProtocol.h"
 #import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol UITextFieldProtocol <BaseProtocol>
+@protocol UITextFieldProtocol <NSObject>
 #pragma mark —— 关于数据
 /// UITextField.text
 Prop_copy(nullable)NSString *title;/// 主标题
@@ -36,8 +35,8 @@ Prop_assign()CGFloat leftViewOffsetX; /// leftView 距离控件最左边的差�
 Prop_assign()CGFloat rightViewOffsetX; /// TextField的删除按钮距离控件最右边的差值
 Prop_assign()CGFloat fieldEditorOffset; /// 因为设置了leftView后fieldEditor所需的偏移量
 #pragma mark —— 关于子UI及其相关的配置
-Prop_strong(nullable)UIView *leftView;
-Prop_strong(nullable)UIView *rightView;
+Prop_strong(nullable)__kindof UIView *leftView;
+Prop_strong(nullable)__kindof UIView *rightView;
 Prop_assign()UITextFieldViewMode leftViewMode;
 Prop_assign()UITextFieldViewMode rightViewMode;
 Prop_assign()BOOL isShowDelBtn;/// 是否显示删除按钮，默认不显示

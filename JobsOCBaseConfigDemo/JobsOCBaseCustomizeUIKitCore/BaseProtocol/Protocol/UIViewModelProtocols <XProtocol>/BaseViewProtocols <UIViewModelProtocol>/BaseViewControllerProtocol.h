@@ -24,7 +24,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BaseViewControllerProtocol<BaseViewProtocol>
+@protocol BaseViewControllerProtocol <BaseViewProtocol>
 @optional
 /// 生命周期监控
 Prop_assign()BOOL LoadView;

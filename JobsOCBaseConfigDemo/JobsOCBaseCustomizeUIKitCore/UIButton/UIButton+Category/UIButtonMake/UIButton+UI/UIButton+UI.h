@@ -9,6 +9,7 @@
 #import "JobsBlock.h"
 #import "MacroDef_Strong@Weak.h"
 #import "MacroDef_Cor.h"
+#import "BaseProtocol.h"
 #import "BaseButtonProtocol.h"
 #import "JobsSEL_IMP.h"
 #import "NSObject+DynamicInvoke.h"
@@ -33,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 #warning 富文本兼容一切
 /// ⚠️当font描绘的文字,或者文字大于UIButton的frame,UIButton的Title将不会显现⚠️
-@interface UIButton (UI)<BaseButtonProtocol>
+@interface UIButton (UI)<BaseButtonProtocol,BaseProtocol>
 #pragma mark —— 一些功能性
 /// 为了兼容新的Api，批量设定UIButton
 /// 新Api较老的Api，增加了subTitle
