@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "JobsBlock.h"
+#import "MacroDef_Sys.h"
 #import "BaseCellProtocol.h"
 #import "UIViewModelProtocol.h"
 #import "UITableViewCellProtocol.h"

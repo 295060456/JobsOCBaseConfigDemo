@@ -82,6 +82,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 制作滤镜
 -(CIFilter *_Nonnull)filter;
 #pragma mark —— 一些功能性的
+/// 输入单词的首字母大写（适用于拼接set方法）
+-(NSString *_Nonnull)capitalizeFirstLetter;
 /// 清除SDImage的图片缓存（用url为key）
 /// ⚠️ 这个方法一旦使用，亦会清除掉placeholderImage
 -(void)cleanSDImageCache:(SDWebImageNoParamsBlock _Nullable)block;

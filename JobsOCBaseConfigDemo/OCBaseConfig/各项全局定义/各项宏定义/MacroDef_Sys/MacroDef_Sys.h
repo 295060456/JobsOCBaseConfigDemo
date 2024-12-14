@@ -7,7 +7,7 @@
 
 #ifndef MacroDef_Sys_h
 #define MacroDef_Sys_h
-
+#pragma mark ——
 #define HDAppVersion [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"]/// 标识应用程序的发布版本号
 #define HDAppBuildVersion [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleVersion"]/// App BUILD 版本号
 #define HDAppDisplayName [NSBundle.mainBundle objectForInfoDictionaryKey:@"CFBundleExecutable"]/// App名字
@@ -27,7 +27,7 @@
 #define HDisPad (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)/// 是否iPad
 #define HDisiPhone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)/// 是否iPhone
 #define HDisRetina (UIScreen.mainScreen.scale >= 2.0)/// 非Retain屏幕 1.0
-/// 懒加载
+#pragma mark —— 懒加载
 #ifndef Jobs_Lazy_Load_Property
 #define Jobs_Lazy_Load_Property(PropertyType, Name, InitCode) \
 - (PropertyType *)Name { \
@@ -36,16 +36,16 @@
     } return _##Name; \
 }
 #endif /* Jobs_Lazy_Load_Property */
-/// 用于分类定义属性Set和Get方法
-#pragma mark —— Key
+#pragma mark —— 用于分类定义属性Set和Get方法
+/// Key
 #ifndef JobsKey
 #define JobsKey(key) static void *key = &key;
 #endif /* JobsKey */
-#pragma mark —— Get
+/// Get
 #ifndef Jobs_getAssociatedObject
 #define Jobs_getAssociatedObject(key) objc_getAssociatedObject(self, &key)
 #endif /* Jobs_getAssociatedObject */
-#pragma mark —— Set
+/// Set
 #ifndef Jobs_setAssociatedASSIGN /// 封装成对象（NSNumber *）进行存储
 #define Jobs_setAssociatedASSIGN(key, Object) \
     objc_setAssociatedObject(self, \
@@ -81,5 +81,317 @@
                              (Object), \
                              OBJC_ASSOCIATION_COPY);
 #endif /* Jobs_setAssociatedCOPY */
+#pragma mark —— 二次封装分类挂载属性的set/get方法
+/// 对象
+#ifndef PROP_STRONG_OBJECT_TYPE
+#define PROP_STRONG_OBJECT_TYPE(type, varName, VarName) \
+static void * _##varName = &_##varName; \
+-(type *)varName{ \
+    return objc_getAssociatedObject(self, &_##varName); \
+} \
+\
+- (void)set##VarName:(type *)varName { \
+    objc_setAssociatedObject(self, \
+                             &_##varName, \
+                             varName, \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_STRONG_OBJECT_TYPE */
+#ifndef PROP_COPY_OBJECT_TYPE
+#define PROP_COPY_OBJECT_TYPE(type, varName, VarName) \
+static void * _##varName = &_##varName; \
+-(type *)varName{ \
+    return objc_getAssociatedObject(self, &_##varName); \
+} \
+\
+-(void)set##VarName:(type *)varName{ \
+    objc_setAssociatedObject(self,\
+                             &_##varName,\
+                             varName,\
+                             OBJC_ASSOCIATION_COPY_NONATOMIC); \
+}
+#endif /* PROP_COPY_OBJECT_TYPE */
+#ifndef PROP_ASSIGN_OBJECT_TYPE
+#define PROP_ASSIGN_OBJECT_TYPE(type, varName, VarName) \
+static void * _##varName = &_##varName; \
+-(type)varName{ \
+    return objc_getAssociatedObject(self, &_##varName); \
+} \
+\
+-(void)set##VarName:(type)varName{ \
+    objc_setAssociatedObject(self,\
+                             &_##varName,\
+                             varName,\
+                             OBJC_ASSOCIATION_ASSIGN); \
+}
+#endif /* PROP_ASSIGN_OBJECT_TYPE */
+/// 基本数据类型
+#ifndef PROP_CGFloat
+#define PROP_CGFloat(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(CGFloat)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) byFloat]; \
+} \
+\
+-(void)set##VarName:(CGFloat)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_CGFloat */
+#ifndef PROP_CHAR
+#define PROP_CHAR(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(char)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) charValue]; \
+} \
+\
+-(void)set##VarName:(char)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_CHAR */
+#ifndef PROP_UNSIGNED_CHAR
+#define PROP_UNSIGNED_CHAR(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(unsigned char)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) unsignedCharValue]; \
+} \
+\
+-(void)set##VarName:(unsigned char)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_UNSIGNED_CHAR */
+#ifndef PROP_SHORT
+#define PROP_SHORT(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(short)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) shortValue]; \
+} \
+\
+-(void)set##VarName:(short)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_SHORT */
+#ifndef PROP_UNSIGNED_SHORT
+#define PROP_UNSIGNED_SHORT(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(unsigned short)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) unsignedShortValue]; \
+} \
+\
+-(void)set##VarName:(unsigned short)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_UNSIGNED_SHORT */
+#ifndef PROP_INT
+#define PROP_INT(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(int)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) intValue]; \
+} \
+\
+-(void)set##VarName:(int)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_INT */
+#ifndef PROP_UNSIGNED_INT
+#define PROP_UNSIGNED_INT(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(unsigned int)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) unsignedIntValue]; \
+} \
+\
+-(void)set##VarName:(unsigned int)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_UNSIGNED_INT */
+#ifndef PROP_LONG
+#define PROP_LONG(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(long)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) longValue]; \
+} \
+\
+-(void)set##VarName:(long)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_LONG */
+#ifndef PROP_UNSIGNED_LONG
+#define PROP_UNSIGNED_LONG(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(unsigned long)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) unsignedLongValue]; \
+} \
+\
+-(void)set##VarName:(unsigned long)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_UNSIGNED_LONG */
+#ifndef PROP_LONG_LONG
+#define PROP_LONG_LONG(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(long long)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) longLongValue]; \
+} \
+\
+-(void)set##VarName:(long long)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_LONG_LONG */
+#ifndef PROP_UNSIGNED_LONG_LONG
+#define PROP_UNSIGNED_LONG_LONG(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(unsigned long long)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) unsignedLongLongValue]; \
+} \
+\
+-(void)set##VarName:(unsigned long long)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_UNSIGNED_LONG_LONG */
+#ifndef PROP_FLOAT
+#define PROP_FLOAT(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(float)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) floatValue]; \
+} \
+\
+-(void)set##VarName:(float)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_FLOAT */
+#ifndef PROP_DOUBLE
+#define PROP_DOUBLE(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(double)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) doubleValue]; \
+} \
+\
+-(void)set##VarName:(double)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_DOUBLE */
+#ifndef PROP_BOOL
+#define PROP_BOOL(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(BOOL)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) boolValue]; \
+} \
+\
+-(void)set##VarName:(BOOL)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_BOOL */
+#ifndef PROP_NSInteger
+#define PROP_NSInteger(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(NSInteger)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) integerValue]; \
+} \
+\
+-(void)set##VarName:(NSInteger)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_NSInteger */
+#ifndef PROP_NSUInteger
+#define PROP_NSUInteger(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(NSUInteger)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) unsignedIntegerValue]; \
+} \
+\
+-(void)set##VarName:(NSUInteger)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             @(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_NSUInteger */
+/// 结构体类型
+#ifndef PROP_CGPOINT
+#define PROP_CGPOINT(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(CGPoint)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) CGPointValue]; \
+} \
+\
+-(void)set##VarName:(CGPoint)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             NSValue.byPoint(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_CGPOINT */
+#ifndef PROP_CGSIZE
+#define PROP_CGSIZE(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(CGSize)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) CGSizeValue]; \
+} \
+\
+-(void)set##VarName:(CGSize)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             NSValue.bySize(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_CGSIZE */
+#ifndef PROP_CGRECT
+#define PROP_CGRECT(varName, VarName) \
+static void * _##varName = &_##varName; \
+-(CGRect)varName{ \
+    return [objc_getAssociatedObject(self, &_##varName) CGRectValue]; \
+} \
+\
+- (void)set##VarName:(CGRect)varName{ \
+    objc_setAssociatedObject(self, \
+                             &_##varName,\
+                             NSValue.byRect(varName), \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_CGRECT */
 
 #endif /* MacroDef_Sys_h */

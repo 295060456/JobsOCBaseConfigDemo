@@ -63,72 +63,50 @@ UILocationProtocol_dynamic
         self.contentView.frame = self.bounds;
         
         {///【组 1】 UITableViewCell单独自定义设置系统自带控件的Frame 【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
-            if (!jobsZeroRectValue(self.textLabelFrame)) {
-                self.textLabel.frame = self.textLabelFrame;
-            }
+            if (!jobsZeroRectValue(self.textLabelFrame)) self.textLabel.frame = self.textLabelFrame;
             
             if (!jobsZeroRectValue(self.detailTextLabelFrame) && self.detailTextLabel) {
                 self.detailTextLabel.frame = self.detailTextLabelFrame;
             }
 
-            if (!jobsZeroRectValue(self.imageViewFrame)) {
-                self.imageView.frame = self.imageViewFrame;
-            }
+            if (!jobsZeroRectValue(self.imageViewFrame)) self.imageView.frame = self.imageViewFrame;
         }
         
         {///【组 2】UITableViewCell单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
             {
-                if (!jobsZeroSizeValue(self.textLabelSize)) {
-                    self.textLabel.resetSize(self.textLabelSize);
-                }
-                if(self.textLabelFrameOffsetX){
-                    self.textLabel.resetOriginXByOffset(self.textLabelFrameOffsetX);
-                }
-                if(self.textLabelFrameOffsetY){
-                    self.textLabel.resetOriginYByOffset(self.textLabelFrameOffsetY);
-                }
+                if (!jobsZeroSizeValue(self.textLabelSize)) self.textLabel.resetSize(self.textLabelSize);
+                if (self.textLabelFrameOffsetX) self.textLabel.resetOriginXByOffset(self.textLabelFrameOffsetX);
+                if (self.textLabelFrameOffsetY) self.textLabel.resetOriginYByOffset(self.textLabelFrameOffsetY);
             }
             
             {
                 if (!jobsZeroSizeValue(self.detailTextLabelSize) && self.detailTextLabel) {
                     self.detailTextLabel.resetSize(self.detailTextLabelSize);
                 }
-                if(self.detailTextLabelOffsetX && self.detailTextLabel){
+                if (self.detailTextLabelOffsetX && self.detailTextLabel){
                     self.detailTextLabel.resetOriginXByOffset(self.detailTextLabelOffsetX);
                 }
-                if(self.detailTextLabelOffsetY && self.detailTextLabel){
+                if (self.detailTextLabelOffsetY && self.detailTextLabel){
                     self.detailTextLabel.resetOriginYByOffset(self.detailTextLabelOffsetY);
                 }
             }
 
             {
-                if (!jobsZeroSizeValue(self.imageViewSize)) {
-                    self.imageView.resetSize(self.imageViewSize);
-                }
-                if(self.imageViewFrameOffsetX){
-                    self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
-                }
-                if(self.imageViewFrameOffsetY){
-                    self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
-                }
+                if (!jobsZeroSizeValue(self.imageViewSize)) self.imageView.resetSize(self.imageViewSize);
+                if (self.imageViewFrameOffsetX) self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
+                if (self.imageViewFrameOffsetY) self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
             }
         }
         
         {///【组 3】UITableViewCell单独自定义设置系统自带控件的宽高【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、2属性互斥❤️
            
             {
-                if (self.textLabelWidth) {
-                    self.textLabel.resetWidth(self.textLabelWidth);
-                }
+                if (self.textLabelWidth) self.textLabel.resetWidth(self.textLabelWidth);
                 if (self.textLabelHeight && self.detailTextLabel) {
                     self.detailTextLabel.resetHeight(self.textLabelHeight);
                 }
-                if(self.textLabelFrameOffsetX){
-                    self.textLabel.resetOriginXByOffset(self.textLabelFrameOffsetX);
-                }
-                if(self.textLabelFrameOffsetY){
-                    self.textLabel.resetOriginYByOffset(self.textLabelFrameOffsetY);
-                }
+                if(self.textLabelFrameOffsetX) self.textLabel.resetOriginXByOffset(self.textLabelFrameOffsetX);
+                if(self.textLabelFrameOffsetY) self.textLabel.resetOriginYByOffset(self.textLabelFrameOffsetY);
             }
             
             {
@@ -138,56 +116,51 @@ UILocationProtocol_dynamic
                 if (self.detailTextLabelHeight && self.detailTextLabel) {
                     self.detailTextLabel.resetHeight(self.detailTextLabelHeight);
                 }
-                if(self.detailTextLabelOffsetX && self.detailTextLabel){
+                if (self.detailTextLabelOffsetX && self.detailTextLabel){
                     self.detailTextLabel.resetOriginXByOffset(self.detailTextLabelOffsetX);
                 }
-                if(self.detailTextLabelOffsetY && self.detailTextLabel){
+                if (self.detailTextLabelOffsetY && self.detailTextLabel){
                     self.detailTextLabel.resetOriginYByOffset(self.detailTextLabelOffsetY);
                 }
             }
             
             {
-                if (self.imageViewWidth) {
-                    self.imageView.resetWidth(self.imageViewWidth);
-                }
-                if (self.imageViewHeight) {
-                    self.imageView.resetHeight(self.imageViewHeight);
-                }
-                if(self.imageViewFrameOffsetX){
-                    self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
-                }
-                if(self.imageViewFrameOffsetY){
-                    self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
-                }
+                if (self.imageViewWidth) self.imageView.resetWidth(self.imageViewWidth);
+                if (self.imageViewHeight) self.imageView.resetHeight(self.imageViewHeight);
+                if (self.imageViewFrameOffsetX) self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
+                if (self.imageViewFrameOffsetY)self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
             }
         }
         
         {/// 【组 4】UITableViewCell单独自定义设置系统自带控件的偏移量
             {
-                UIViewModel *viewModel = UIViewModel.new;
-                viewModel.offsetXForEach = self.textLabelFrameOffsetX;
-                viewModel.offsetYForEach = self.textLabelFrameOffsetY;
-                viewModel.offsetWidth = self.textLabelFrameOffsetWidth;
-                viewModel.offsetHeight = self.textLabelFrameOffsetHeight;
-                self.textLabel.offsetForView(viewModel);
+                self.textLabel.offsetForView(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+                    @jobs_strongify(self)
+                    data.offsetXForEach = self.textLabelFrameOffsetX;
+                    data.offsetYForEach = self.textLabelFrameOffsetY;
+                    data.offsetWidth = self.textLabelFrameOffsetWidth;
+                    data.offsetHeight = self.textLabelFrameOffsetHeight;
+                }));
             }
             
             if (self.detailTextLabel) {
-                UIViewModel *viewModel = UIViewModel.new;
-                viewModel.offsetXForEach = self.detailTextLabelOffsetX;
-                viewModel.offsetYForEach = self.detailTextLabelOffsetY;
-                viewModel.offsetWidth = self.detailTextLabelOffsetWidth;
-                viewModel.offsetHeight = self.detailTextLabelOffsetHeight;
-                self.detailTextLabel.offsetForView(viewModel);
+                self.detailTextLabel.offsetForView(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+                    @jobs_strongify(self)
+                    data.offsetXForEach = self.detailTextLabelOffsetX;
+                    data.offsetYForEach = self.detailTextLabelOffsetY;
+                    data.offsetWidth = self.detailTextLabelOffsetWidth;
+                    data.offsetHeight = self.detailTextLabelOffsetHeight;
+                }));
             }
             
             {
-                UIViewModel *viewModel = UIViewModel.new;
-                viewModel.offsetXForEach = self.imageViewFrameOffsetX;
-                viewModel.offsetYForEach = self.imageViewFrameOffsetY;
-                viewModel.offsetWidth = self.imageViewFrameOffsetWidth;
-                viewModel.offsetHeight = self.imageViewFrameOffsetHeight;
-                self.imageView.offsetForView(viewModel);
+                self.imageView.offsetForView(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+                    @jobs_strongify(self)
+                    data.offsetXForEach = self.imageViewFrameOffsetX;
+                    data.offsetYForEach = self.imageViewFrameOffsetY;
+                    data.offsetWidth = self.imageViewFrameOffsetWidth;
+                    data.offsetHeight = self.imageViewFrameOffsetHeight;
+                }));
             }
         }
     };
@@ -233,239 +206,57 @@ UILocationProtocol_dynamic
         }
     };
 }
-#pragma mark —— <UIViewModelProtocol> @property(nonatomic,strong)NSIndexPath *indexPath;
-JobsKey(_indexPath)
--(NSIndexPath *)indexPath{
-    return Jobs_getAssociatedObject(_indexPath);
-}
-
--(void)setIndexPath:(NSIndexPath *)indexPath{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_indexPath, indexPath)
-}
-#pragma mark —— <UIMarkProtocol> @property(nonatomic,assign)NSInteger index;
-JobsKey(_index)
--(NSInteger)index{
-    return [Jobs_getAssociatedObject(_index) integerValue];
-}
-
--(void)setIndex:(NSInteger)index{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_index, @(index))
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGRect textLabelFrame;
-JobsKey(_textLabelFrame)
--(CGRect)textLabelFrame{
-    return [Jobs_getAssociatedObject(_textLabelFrame) CGRectValue];
-}
-
--(void)setTextLabelFrame:(CGRect)textLabelFrame{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_textLabelFrame, NSValue.byRect(textLabelFrame))
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGRect detailTextLabelFrame;
-JobsKey(_detailTextLabelFrame)
--(CGRect)detailTextLabelFrame{
-    return [Jobs_getAssociatedObject(_detailTextLabelFrame) CGRectValue];
-}
-
--(void)setDetailTextLabelFrame:(CGRect)detailTextLabelFrame{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_detailTextLabelFrame, NSValue.byRect(detailTextLabelFrame))
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGRect imageViewFrame;
-JobsKey(_imageViewFrame)
--(CGRect)imageViewFrame{
-    return [Jobs_getAssociatedObject(_imageViewFrame) CGRectValue];
-}
-
--(void)setImageViewFrame:(CGRect)imageViewFrame{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_imageViewFrame, NSValue.byRect(imageViewFrame))
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGRect textLabelSize;
-JobsKey(_textLabelSize)
--(CGSize)textLabelSize{
-    return [Jobs_getAssociatedObject(_imageViewFrame) CGSizeValue];
-}
-
--(void)setTextLabelSize:(CGSize)textLabelSize{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_textLabelSize, NSValue.bySize(textLabelSize))
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGSize detailTextLabelSize;
-JobsKey(_detailTextLabelSize)
--(CGSize)detailTextLabelSize{
-    return [Jobs_getAssociatedObject(_detailTextLabelSize) CGSizeValue];
-}
-
--(void)setDetailTextLabelSize:(CGSize)detailTextLabelSize{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_detailTextLabelSize, NSValue.bySize(detailTextLabelSize));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGSize imageViewSize;
-JobsKey(_imageViewSize)
--(CGSize)imageViewSize{
-    return [Jobs_getAssociatedObject(_imageViewSize) CGSizeValue];
-}
-
--(void)setImageViewSize:(CGSize)imageViewSize{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_imageViewSize, NSValue.bySize(imageViewSize));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelWidth;
-JobsKey(_textLabelWidth)
--(CGFloat)textLabelWidth{
-    return [Jobs_getAssociatedObject(_textLabelWidth) byFloat];
-}
-
--(void)setTextLabelWidthe:(CGFloat)textLabelWidth{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_textLabelWidth, NSNumber.initByShort(textLabelWidth));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelHeight;
-JobsKey(_textLabelHeight)
--(CGFloat)textLabelHeight{
-    return [Jobs_getAssociatedObject(_textLabelHeight) byFloat];
-}
-
--(void)setTextLabelHeight:(CGFloat)textLabelHeight{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_textLabelHeight, NSNumber.initByCGFloat(textLabelHeight));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelWidth;
-JobsKey(_detailTextLabelWidth)
--(CGFloat)detailTextLabelWidth{
-    return [Jobs_getAssociatedObject(_detailTextLabelWidth) byFloat];
-}
-
--(void)setDetailTextLabelWidth:(CGFloat)detailTextLabelWidth{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_detailTextLabelWidth, NSNumber.initByCGFloat(detailTextLabelWidth));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelHeight;
-JobsKey(_detailTextLabelHeight)
--(CGFloat)detailTextLabelHeight{
-    return [Jobs_getAssociatedObject(_detailTextLabelHeight) byFloat];
-}
-
--(void)setDetailTextLabelHeight:(CGFloat)detailTextLabelHeight{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_detailTextLabelHeight, NSNumber.initByCGFloat(detailTextLabelHeight));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewWidth;
-JobsKey(_imageViewWidth)
--(CGFloat)imageViewWidth{
-    return [Jobs_getAssociatedObject(_imageViewWidth) byFloat];
-}
-
--(void)setImageViewWidth:(CGFloat)imageViewWidth{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_imageViewWidth, NSNumber.initByCGFloat(imageViewWidth));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewHeight;
-JobsKey(_imageViewHeight)
--(CGFloat)imageViewHeight{
-    return [Jobs_getAssociatedObject(_imageViewHeight) byFloat];
-}
-
--(void)setImageViewHeight:(CGFloat)imageViewHeight{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_imageViewHeight, NSNumber.initByCGFloat(imageViewHeight));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelFrameOffsetX;
-JobsKey(_textLabelFrameOffsetX)
--(CGFloat)textLabelFrameOffsetX{
-    return [Jobs_getAssociatedObject(_textLabelFrameOffsetX) byFloat];
-}
-
--(void)setTextLabelFrameOffsetX:(CGFloat)textLabelFrameOffsetX{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_textLabelFrameOffsetX, NSNumber.initByCGFloat(textLabelFrameOffsetX));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelFrameOffsetY;
-JobsKey(_textLabelFrameOffsetY)
--(CGFloat)textLabelFrameOffsetY{
-    return [Jobs_getAssociatedObject(_textLabelFrameOffsetY) byFloat];
-}
-
--(void)setTextLabelFrameOffsetY:(CGFloat)textLabelFrameOffsetY{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_textLabelFrameOffsetY, NSNumber.initByCGFloat(textLabelFrameOffsetY));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelFrameOffsetWidth;
-JobsKey(_textLabelFrameOffsetWidth)
--(CGFloat)textLabelFrameOffsetWidth{
-    return [Jobs_getAssociatedObject(_textLabelFrameOffsetWidth) byFloat];
-}
-
--(void)setTextLabelFrameOffsetWidth:(CGFloat)textLabelFrameOffsetWidth{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_textLabelFrameOffsetWidth, NSNumber.initByCGFloat(textLabelFrameOffsetWidth));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelFrameOffsetHeight;
-JobsKey(_textLabelFrameOffsetHeight)
--(CGFloat)textLabelFrameOffsetHeight{
-    return [Jobs_getAssociatedObject(_textLabelFrameOffsetHeight) byFloat];
-}
-
--(void)setTextLabelFrameOffsetHeight:(CGFloat)textLabelFrameOffsetHeight{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_textLabelFrameOffsetHeight, NSNumber.initByCGFloat(textLabelFrameOffsetHeight));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelOffsetX;
-JobsKey(_detailTextLabelOffsetX)
--(CGFloat)detailTextLabelOffsetX{
-    return [Jobs_getAssociatedObject(_detailTextLabelOffsetX) byFloat];
-}
-
--(void)setDetailTextLabelOffsetX:(CGFloat)detailTextLabelOffsetX{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_detailTextLabelOffsetX, NSNumber.initByCGFloat(detailTextLabelOffsetX));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelOffsetY;
-JobsKey(_detailTextLabelOffsetY)
--(CGFloat)detailTextLabelOffsetY{
-    return [Jobs_getAssociatedObject(_detailTextLabelOffsetY) byFloat];
-}
-
--(void)setDetailTextLabelOffsetY:(CGFloat)detailTextLabelOffsetY{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_detailTextLabelOffsetY, NSNumber.initByCGFloat(detailTextLabelOffsetY));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelOffsetWidth;
-JobsKey(_detailTextLabelOffsetWidth)
--(CGFloat)detailTextLabelOffsetWidth{
-    return [Jobs_getAssociatedObject(_detailTextLabelOffsetWidth) byFloat];
-}
-
--(void)setDetailTextLabelOffsetWidth:(CGFloat)detailTextLabelOffsetWidth{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_detailTextLabelOffsetWidth, NSNumber.initByCGFloat(detailTextLabelOffsetWidth));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelOffsetHeight;
-JobsKey(_detailTextLabelOffsetHeight)
--(CGFloat)detailTextLabelOffsetHeight{
-    return [Jobs_getAssociatedObject(_detailTextLabelOffsetHeight) byFloat];
-}
-
--(void)setDetailTextLabelOffsetHeight:(CGFloat)detailTextLabelOffsetHeight{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_detailTextLabelOffsetHeight, NSNumber.initByCGFloat(detailTextLabelOffsetHeight));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewFrameOffsetX;
-JobsKey(_imageViewFrameOffsetX)
--(CGFloat)imageViewFrameOffsetX{
-    return [Jobs_getAssociatedObject(_imageViewFrameOffsetX) byFloat];
-}
-
--(void)setImageViewFrameOffsetX:(CGFloat)imageViewFrameOffsetX{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_imageViewFrameOffsetX, NSNumber.initByCGFloat(imageViewFrameOffsetX));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewFrameOffsetY;
-JobsKey(_imageViewFrameOffsetY)
--(CGFloat)imageViewFrameOffsetY{
-    return [Jobs_getAssociatedObject(_imageViewFrameOffsetY) byFloat];
-}
-
--(void)setImageViewFrameOffsetY:(CGFloat)imageViewFrameOffsetY{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_imageViewFrameOffsetY, NSNumber.initByCGFloat(imageViewFrameOffsetY));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewFrameOffsetWidth;
-JobsKey(_imageViewFrameOffsetWidth)
--(CGFloat)imageViewFrameOffsetWidth{
-    return [Jobs_getAssociatedObject(_imageViewFrameOffsetWidth) byFloat];
-}
-
--(void)setImageViewFrameOffsetWidth:(CGFloat)imageViewFrameOffsetWidth{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_imageViewFrameOffsetWidth, NSNumber.initByCGFloat(imageViewFrameOffsetWidth));
-}
-#pragma mark —— <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewFrameOffsetHeight;
-JobsKey(_imageViewFrameOffsetHeight)
--(CGFloat)imageViewFrameOffsetHeight{
-    return [Jobs_getAssociatedObject(_imageViewFrameOffsetHeight) byFloat];
-}
-
--(void)setImageViewFrameOffsetHeight:(CGFloat)imageViewFrameOffsetHeight{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_imageViewFrameOffsetHeight, NSNumber.initByCGFloat(imageViewFrameOffsetHeight));
-}
+/// <UIViewModelProtocol> @property(nonatomic,strong)NSIndexPath *indexPath;
+PROP_STRONG_OBJECT_TYPE(NSIndexPath, indexPath, IndexPath)
+/// <UIMarkProtocol> @property(nonatomic,assign)NSInteger index;
+PROP_NSInteger(index, Index)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGRect textLabelFrame;
+PROP_CGRECT(textLabelFrame, TextLabelFrame)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGRect detailTextLabelFrame;
+PROP_CGRECT(detailTextLabelFrame, DetailTextLabelFrame)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGRect imageViewFrame;
+PROP_CGRECT(imageViewFrame, ImageViewFrame)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGSize textLabelSize;
+PROP_CGSIZE(textLabelSize, TextLabelSize)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGSize detailTextLabelSize;
+PROP_CGSIZE(detailTextLabelSize, DetailTextLabelSize)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGSize imageViewSize;
+PROP_CGSIZE(imageViewSize, ImageViewSize)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelWidth;
+PROP_CGFloat(textLabelWidth, TextLabelWidth)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelHeight;
+PROP_CGFloat(textLabelHeight, TextLabelHeight)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelWidth;
+PROP_CGFloat(detailTextLabelWidth, DetailTextLabelWidth)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelHeight;
+PROP_CGFloat(detailTextLabelHeight, DetailTextLabelHeight)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewWidth;
+PROP_CGFloat(imageViewWidth, ImageViewWidth)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewHeight;
+PROP_CGFloat(imageViewHeight, ImageViewHeight)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelFrameOffsetX;
+PROP_CGFloat(textLabelFrameOffsetX, TextLabelFrameOffsetX)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelFrameOffsetY;
+PROP_CGFloat(textLabelFrameOffsetY, TextLabelFrameOffsetY)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelFrameOffsetWidth;
+PROP_CGFloat(textLabelFrameOffsetWidth, TextLabelFrameOffsetWidth)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat textLabelFrameOffsetHeight;
+PROP_CGFloat(textLabelFrameOffsetHeight, TextLabelFrameOffsetHeight)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelOffsetX;
+PROP_CGFloat(detailTextLabelOffsetX, DetailTextLabelOffsetX)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelOffsetY;
+PROP_CGFloat(detailTextLabelOffsetY, DetailTextLabelOffsetY)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelOffsetWidth;
+PROP_CGFloat(detailTextLabelOffsetWidth, DetailTextLabelOffsetWidth)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat detailTextLabelOffsetHeight;
+PROP_CGFloat(detailTextLabelOffsetHeight, DetailTextLabelOffsetHeight)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewFrameOffsetX;
+PROP_CGFloat(imageViewFrameOffsetX, ImageViewFrameOffsetX)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewFrameOffsetY;
+PROP_CGFloat(imageViewFrameOffsetY, ImageViewFrameOffsetY)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewFrameOffsetWidth;
+PROP_CGFloat(imageViewFrameOffsetWidth, ImageViewFrameOffsetWidth)
+/// <UITableViewCellProtocol> @property(nonatomic, assign)CGFloat imageViewFrameOffsetHeight;
+PROP_CGFloat(imageViewFrameOffsetHeight, ImageViewFrameOffsetHeight)
 
 @end
