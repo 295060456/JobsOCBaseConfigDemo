@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
-#import "JobsBlock.h"
 #import "NSObject+Extras.h"
 
 NS_ASSUME_NONNULL_BEGIN

@@ -51,8 +51,6 @@ UITextFieldProtocol_dynamic
 -(UIDevice *_Nullable)currentDevice{
     return self.currentDevice;
 }
-
-
 #pragma mark —— 宏
 /// App 国际化相关系统宏二次封装 + 设置缺省值
 +(NSString *_Nullable)localStringWithKey:(nonnull NSString *)key{
@@ -209,15 +207,20 @@ UITextFieldProtocol_dynamic
 }
 #pragma mark —— 功能性的
 /// runtime方法交换
-+(void)exchangeMethodForClass:(NSString *)className
-                  originalSel:(SEL)originalSelector
-                  swizzledSel:(SEL)swizzledSelector {
++ (void)exchangeMethodForClass:(NSString *)className
+                   originalSel:(SEL)originalSelector
+                   swizzledSel:(SEL)swizzledSelector {
     Class cls = objc_getClass(className.UTF8String);
-    if (cls) {
-        Method originalMethod = class_getInstanceMethod(cls, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod(cls, swizzledSelector);
-        if (originalMethod && swizzledMethod) method_exchangeImplementations(originalMethod, swizzledMethod);
+    if (!cls) {
+        NSLog(@"交换失败：未找到类 %@", className);
+        return;
     }
+    Method originalMethod = class_getInstanceMethod(cls, originalSelector);
+    Method swizzledMethod = class_getInstanceMethod(cls, swizzledSelector);
+    if (!originalMethod || !swizzledMethod) {
+        NSLog(@"交换失败：类 %@ 中的方法 %@ 或 %@ 未找到", className, NSStringFromSelector(originalSelector), NSStringFromSelector(swizzledSelector));
+        return;
+    }method_exchangeImplementations(originalMethod, swizzledMethod);
 }
 /// UIAlertController + UIAlertAction
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
