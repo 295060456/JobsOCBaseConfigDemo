@@ -81,7 +81,7 @@ static dispatch_once_t AppDelegateOnceToken;
 - (NSPersistentCloudKitContainer *)persistentContainer {
     @synchronized (self) {
         if (_persistentContainer == nil) {
-            _persistentContainer = [NSPersistentCloudKitContainer.alloc initWithName:HDAppDisplayName];
+            _persistentContainer = [NSPersistentCloudKitContainer.alloc initWithName:self.appName];
             [_persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *storeDescription,
                                                                               NSError *error) {
                 if (error) {

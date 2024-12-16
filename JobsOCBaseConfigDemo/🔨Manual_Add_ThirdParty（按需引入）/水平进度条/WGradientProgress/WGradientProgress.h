@@ -7,15 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JobsDefineAllEnumHeader.h"
-
-#ifndef WGradientProgressType_h
-#define WGradientProgressType_h
-typedef enum : NSUInteger {
-    WGradientProgressType_colorNormal = 0, /// 单一色
-    WGradientProgressType_colorRoll        /// 色彩在不断的翻滚
-} WGradientProgressType;
-#endif /* WGradientProgressType_h */
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 
 @interface WGradientProgress : UIView
 

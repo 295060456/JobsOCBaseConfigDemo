@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YTKNetworkToolsHeader.h"
-#import "DefineConstString.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 #import "JobsBlock.h"
 
 #define GETMethod httpMethod(YTKRequestMethodGET);

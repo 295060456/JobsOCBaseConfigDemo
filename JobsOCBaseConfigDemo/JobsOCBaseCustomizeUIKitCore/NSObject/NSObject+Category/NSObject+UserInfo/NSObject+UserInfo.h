@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DefineConstString.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 #import "JobsBlock.h"
 #import "JobsUserModel.h"
 #import "NSUserDefaults+Manager.h"

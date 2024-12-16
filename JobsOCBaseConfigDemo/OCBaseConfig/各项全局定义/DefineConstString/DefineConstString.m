@@ -5,18 +5,28 @@
 //  Created by Jobs on 2021/12/13.
 //
 
-#import "DefineConstString.h"
-
+#import "DefineConstString.h" /// 常亮字符串的定义
+/// 系统环境一览
+NSString *const 应用程序的发布版本号 = @"CFBundleShortVersionString";
+NSString *const APP编译构建的版本号 = @"CFBundleVersion";
+NSString *const APP的名字 = @"CFBundleExecutable";
+/// 多语言
+NSString *const 菲律宾语_不带区域组合 = @"fil";
+NSString *const 菲律宾语_菲律宾 = @"fil-PH";
+NSString *const 简体中文 = @"zh-Hans";
+NSString *const 繁体中文 = @"zh-Hant";
+NSString *const 英文_不带区域组合 = @"en";
+/// HTTP 协议
 NSString *const GET = @"GET";
 NSString *const POST = @"POST";
 NSString *const PUT = @"PUT";
 NSString *const DELETE = @"DELETE";
 NSString *const PATCH = @"PATCH";
 NSString *const HEAD = @"HEAD";
-
+/// 网络请求参数
 NSString *const ContentType = @"Content-Type";
 NSString *const Authorization = @"Authorization";
-
+/// 特殊字符串
 NSString *const 回车符号转义字符 = @"\r";       /// 回车符号转义字符
 NSString *const 零宽转义字符 = @"\u200B";      /// 零宽转义字符
 NSString *const JobsSeparation = @"/";       /// 分隔符
@@ -32,7 +42,7 @@ NSString *const JobsDash = @"-";             /// 连字符
 NSString *const JobsUnderscore = @"_";       /// 下划线
 NSString *const JobsAsterisk = @"*";         /// 星号
 NSString *const JobsEqual = @"=";            /// 等于
-
+/// 业务功能相关
 NSString *const 网络状态监控 = @"网络状态监控";/// 网络状态监控
 NSString *const 退到后台停止播放ZFPlayer = @"退到后台停止播放ZFPlayer";/// 退到后台停止播放ZFPlayer
 NSString *const 语言切换 = @"语言切换";/// 语言切换
@@ -65,7 +75,7 @@ NSString *const 编号序号 = @"①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮�
 NSString *const 爱心符号 = @"♥❣ღ♠♡♤❤❥";
 NSString *const 箭头符号 = @"↑↓←→↖↗↘↙↔↕➻➼➽➸➳➺➻➴➵➶➷➹▶►▷◁◀◄«»➩➪➫➬➭➮➯➱⏎➲➾➔➘➙➚➛➜➝➞➟➠➡➢➣➤➥➦➧➨↚↛↜↝↞↟↠↠↡↢↣↤↤↥↦↧↨⇄⇅⇆⇇⇈⇉⇊⇋⇌⇍⇎⇏⇐⇑⇒⇓⇔⇖⇗⇘⇙⇜↩↪↫↬↭↮↯↰↱↲↳↴↵↶↷↸↹☇☈↼↽↾↿⇀⇁⇂⇃⇞⇟⇠⇡⇢⇣⇤⇥⇦⇧⇨⇩⇪↺↻⇚⇛♐";
 NSString *const 符号图案 = @"✐✎✏✑✒✍✉✁✂✃✄✆✉☎☏☑✓✔√☐☒✗✘ㄨ✕✖✖☢☠☣✈★☆✡囍㍿☯☰☲☱☴☵☶☳☷☜☞☝✍☚☛☟✌♤♧♡♢♠♣♥♦☀☁☂❄☃♨웃유❖☽☾☪✿♂♀✪✯☭➳卍卐√×■◆●○◐◑✙☺☻❀⚘♔♕♖♗♘♙♚♛♜♝♞♟♧♡♂♀♠♣♥❤☜☞☎☏⊙◎☺☻☼▧▨♨◐◑↔↕▪▒◊◦▣▤▥▦▩◘◈◇♬♪♩♭♪の★☆→あぃ￡Ю〓§♤♥▶¤✲❈✿✲❈➹☀☂☁【】┱┲❣✚✪✣✤✥✦❉❥❦❧❃❂❁❀✄☪☣☢☠☭ღ▶▷◀◁☀☁☂☃☄★☆☇☈⊙☊☋☌☍ⓛⓞⓥⓔ╬『』∴☀♫♬♩♭♪☆∷﹌の★◎▶☺☻►◄▧▨♨◐◑↔↕↘▀▄█▌◦☼♪の☆→♧ぃ￡❤▒▬♦◊◦♠♣▣۰•❤•۰►◄▧▨♨◐◑↔↕▪▫☼♦⊙●○①⊕◎Θ⊙¤㊣★☆♀◆◇◣◢◥▲▼△▽⊿◤◥✐✌✍✡✓✔✕✖♂♀♥♡☜☞☎☏⊙◎☺☻►◄▧▨♨◐◑↔↕♥♡▪▫☼♦▀▄█▌▐░▒▬♦◊◘◙◦☼♠♣▣▤▥▦▩◘◙◈♫♬♪♩♭♪✄☪☣☢☠♯♩♪♫♬♭♮☎☏☪♈ºº₪¤큐«»™♂✿♥　◕‿-｡　｡◕‿◕｡";
-#pragma mark —— 语言文字类型
+/// 语言文字类型
 NSString *const 希腊字母 = @"ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζνξοπρσηθικλμτυφχψω";
 NSString *const 俄语字母 = @"АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 NSString *const 汉语拼音 = @"āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüêɑńňɡㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩ";

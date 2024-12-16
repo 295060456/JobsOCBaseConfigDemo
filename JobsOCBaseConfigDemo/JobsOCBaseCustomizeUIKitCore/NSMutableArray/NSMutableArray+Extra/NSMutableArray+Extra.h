@@ -21,10 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsReturnArrayByArrayBlock _Nonnull)initBy;
 /// 清除数组元素
 -(jobsByVoidBlock _Nonnull)clean;
-/// 数组取值（无法关联数组的泛型）
--(JobsReturnIDByUIntegerBlock _Nonnull)objectAt;
-/// 数组取下标
--(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy;
 /// 阻止向可变数组添加空元素
 -(JobsReturnMutableArrayByIDBlock _Nonnull)add;
 /// 删除元素

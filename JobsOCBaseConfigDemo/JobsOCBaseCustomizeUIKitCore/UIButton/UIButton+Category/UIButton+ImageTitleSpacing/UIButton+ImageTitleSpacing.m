@@ -90,8 +90,8 @@
                                            CGFloat labelHeight = 0.0;
                                            
                                            /// 由于iOS8中titleLabel的size为0
-                                           labelWidth = HDDeviceSystemVersion.floatValue >= 8.0 ? self.titleLabel.intrinsicContentSize.width : self.titleLabel.width;
-                                           labelHeight = HDDeviceSystemVersion.floatValue >= 8.0 ? self.titleLabel.intrinsicContentSize.height : self.titleLabel.height;
+                                           labelWidth = self.systemVersion.floatValue >= 8.0 ? self.titleLabel.intrinsicContentSize.width : self.titleLabel.width;
+                                           labelHeight = self.systemVersion.floatValue >= 8.0 ? self.titleLabel.intrinsicContentSize.height : self.titleLabel.height;
              
                                            // 2、 声明全局的imageEdgeInsets和labelEdgeInsets
                                            UIEdgeInsets imageEdgeInsets = UIEdgeInsetsZero;

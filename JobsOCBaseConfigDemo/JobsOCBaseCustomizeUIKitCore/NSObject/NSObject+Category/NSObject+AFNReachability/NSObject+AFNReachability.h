@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DefineConstString.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 #import "JobsBlock.h"
 
 #if __has_include(<ReactiveObjC/RACmetamacros.h>)

@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
-#import "DefineConstString.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 #import "NSString+Others.h"
 /// 参考文献：https://www.jianshu.com/p/de17fd495935
 NS_ASSUME_NONNULL_BEGIN

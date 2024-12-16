@@ -123,5 +123,7 @@
 #import "NSObject+Algorithm.h"
 /// 作为 NSObject 的替代者使用
 #import "This.h"
+/// 获取系统环境变量
+#import "NSObject+SysInfo.h"
 
 #endif /* JobsObject_h */

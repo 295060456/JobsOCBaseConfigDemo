@@ -37,7 +37,7 @@
 //#import "FM-Bridging-Header.h"
 #pragma mark —— 各项全局定义
 /// 各项宏定义
-#import "DefineConstString.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 #import "DefineProperty.h"
 
 #import "MacroDef_Size.h"
@@ -57,7 +57,7 @@
 ///  其他的一些全局定义文件
 #import "JobsBlock.h"
 #import "APIKey.h"
-#import "JobsDefineAllEnumHeader.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #pragma mark —— JobsBaseCustomizeUIKitCore
 #import "JobsBaseCustomizeUIKitCoreHeader.h"
 #pragma mark —— JobsOCBaseCustomize3rdCore

@@ -5,6 +5,9 @@
 //  Created by Admin on 25/11/2024.
 //
 
+#import <Foundation/Foundation.h>
+#import "JobsBlock.h"
+
 #if __has_include(<AFNetworking/AFNetworking.h>)
 #import <AFNetworking/AFNetworking.h>
 #elif __has_include("AFNetworking.h")
@@ -14,8 +17,6 @@
 #else
 #error "AFNetworking header not found"
 #endif
-
-#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -11,7 +11,7 @@
 #import "NSData+Other.h"
 #import "JobsBlock.h"
 #import "MacroDef_Func.h"
-#import "DefineConstString.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 
 #define FORMAT_STRING(fmt, val) [NSString stringWithFormat:(fmt), (val)]
 

@@ -29,7 +29,7 @@
 #import "MacroDef_SysWarning.h"
 
 #import "FileFolderHandleTool.h"
-#import "JobsDefineAllEnumHeader.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "JobsAppTools.h"
 #import "JobsSnowflake.h"
 #import "JobsModel.h"
@@ -77,21 +77,6 @@
 #import "ReactiveObjC.h"
 #endif
 
-#if __has_include(<YTKNetwork/YTKNetwork.h>)
-#import <YTKNetwork/YTKNetwork.h>
-#else
-#import "YTKNetwork.h"
-#endif
-/// 屏幕方向
-#ifndef DeviceOrientation_typedef
-#define DeviceOrientation_typedef
-typedef NS_ENUM(NSInteger, DeviceOrientation) {
-    DeviceOrientationUnknown,
-    DeviceOrientationPortrait,
-    DeviceOrientationLandscape
-};
-#endif /* DeviceOrientation_typedef */
-
 #ifndef MainWindow
 #define MainWindow NSObject.mainWindow()
 #endif /* MainWindow */
@@ -103,18 +88,27 @@ NS_INLINE NSObject *_Nullable idToObject(id _Nullable data){
     }else return nil;
 }
 
-NS_INLINE __kindof YTKNetworkConfig *_Nonnull jobsMakeYTKNetworkConfig(jobsByYTKNetworkConfigBlock _Nonnull block){
-    YTKNetworkConfig *data = YTKNetworkConfig.sharedConfig;
-    if (block) block(data);
-    return data;
-}
-
 @interface NSObject (Extras)
 <
 AppToolsProtocol
 ,BaseProtocol
 ,BaseViewControllerProtocol
 >
+#pragma mark —— 系统类单例的二次封装
+/// NSBundle
++(NSBundle *_Nullable)mainBundle;
+-(NSBundle *_Nullable)mainBundle;
+/// NSLocale
++(NSLocale *_Nullable)currentLocale;
+-(NSLocale *_Nullable)currentLocale;
++(NSLocale *_Nullable)systemLocale;
+-(NSLocale *_Nullable)systemLocale;
++(NSLocale *_Nullable)autoupdatingCurrentLocale API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0));
+-(NSLocale *_Nullable)autoupdatingCurrentLocale API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0));
+/// UIDevice
++(UIDevice *_Nullable)currentDevice;
+-(UIDevice *_Nullable)currentDevice;
+
 #pragma mark —— 宏
 /// App 国际化相关系统宏二次封装 + 设置缺省值
 +(NSString *_Nullable)localStringWithKey:(nonnull NSString *)key;
@@ -175,6 +169,10 @@ AppToolsProtocol
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
+/// runtime方法交换
++(void)exchangeMethodForClass:(NSString *)className
+                  originalSel:(SEL)originalSelector
+                  swizzledSel:(SEL)swizzledSelector;
 /// UIAlertController + UIAlertAction
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
 -(JobsReturnAlertControllerByAlertModelBlock _Nonnull)makeAlertControllerByAlertModel;

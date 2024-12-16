@@ -65,18 +65,26 @@ typedef id _Nullable(^JobsReturnIDByTenIDBlock)Jobs_10_Arguments;
 #pragma mark —— 关于数据容器
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByVoidBlock)(void);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIDBlock)(id _Nullable data);
-typedef __kindof NSArray *_Nullable(^JobsReturnArrayByStringBlock)(NSString *_Nullable data);
+typedef __kindof NSArray *_Nullable(^JobsReturnArrayByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByArrayBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIntegerBlock)(NSInteger data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIDBlock)(id _Nullable data);
 
-typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(NSString *_Nullable data);
+typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByDataBlock)(NSData *_Nullable data);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByVoidBlock)(void);
 
+typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByIDBlock)(id _Nullable data);
+typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByArrBlock)(__kindof NSArray *_Nullable data);
 typedef NSMutableSet *_Nullable(^JobsReturnNSMutableSetByIDBlock)(id _Nullable data);
 
+#pragma mark —— 关于 NSBundle
+typedef NSBundle *_Nullable(^JobsReturnBundleByStringBlock)(__kindof NSString *_Nullable data);
+typedef NSBundle *_Nullable(^JobsReturnBundleByURLBlock)(NSURL *_Nullable data);
+typedef NSBundle *_Nullable(^JobsReturnBundleByClsBlock)(Class _Nullable data);
+#pragma mark —— 关于 NSLocale
+typedef NSLocale *_Nullable(^JobsReturnLocaleByStringBlock)(__kindof NSString *_Nullable data);
 #pragma mark —— 关于 NSValue
 typedef NSValue *_Nullable(^JobsReturnValueByCGSizeBlock)(CGSize data);
 typedef NSValue *_Nullable(^JobsReturnValueByPointerBlock)(const void *_Nullable data);

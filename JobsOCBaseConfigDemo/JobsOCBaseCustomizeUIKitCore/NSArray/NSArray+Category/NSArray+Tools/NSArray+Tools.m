@@ -9,6 +9,22 @@
 #import "NSArray+Tools.h"
 
 @implementation NSArray (Tools)
+/// 数组取值（无法关联数组的泛型）
+-(JobsReturnIDByUIntegerBlock _Nonnull)objectAt{
+    @jobs_weakify(self)
+    return ^id _Nullable(NSUInteger data){
+        @jobs_strongify(self)
+        return [self objectAtIndex:data];
+    };
+}
+/// 数组取下标
+-(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy{
+    @jobs_weakify(self)
+    return ^NSUInteger(id _Nullable data){
+        @jobs_strongify(self)
+        return [self indexOfObject:data];
+    };
+}
 /// 数组里面是否包含某个元素
 -(JobsReturnBOOLByIDBlock _Nonnull)containsObject{
     @jobs_weakify(self)
@@ -35,7 +51,7 @@
     @jobs_weakify(self)
     return ^BOOL(NSArray *_Nullable array){
         @jobs_strongify(self)
-        return [[NSSet setWithArray:self] isEqualToSet:[NSSet setWithArray:array]];
+        return [NSSet.initByArr(self) isEqualToSet:NSSet.initByArr(array)];
     };
 }
 /// 数组计算交集

@@ -9,7 +9,7 @@
 #import "BaseView.h"
 #import "UITextView+Extend.h"
 #import "SZTextView+Extra.h"
-#import "DefineConstString.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 
 #if __has_include(<SZTextView/SZTextView.h>)
 #import <SZTextView/SZTextView.h>

@@ -17,6 +17,10 @@
 #endif
 
 @interface NSArray (Tools)
+/// 数组取值（无法关联数组的泛型）
+-(JobsReturnIDByUIntegerBlock _Nonnull)objectAt;
+/// 数组取下标
+-(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy;
 /// 数组里面是否包含某个元素
 -(JobsReturnBOOLByIDBlock _Nonnull)containsObject;
 /// 数组转字符串

@@ -6,17 +6,27 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/// 系统环境一览
+FOUNDATION_EXTERN NSString *_Nonnull const 应用程序的发布版本号;
+FOUNDATION_EXTERN NSString *_Nonnull const APP编译构建的版本号;
+FOUNDATION_EXTERN NSString *_Nonnull const APP的名字;
+/// 多语言
+FOUNDATION_EXTERN NSString *_Nonnull const 菲律宾语_不带区域组合;
+FOUNDATION_EXTERN NSString *_Nonnull const 菲律宾语_菲律宾;
+FOUNDATION_EXTERN NSString *_Nonnull const 简体中文;
+FOUNDATION_EXTERN NSString *_Nonnull const 繁体中文;
+FOUNDATION_EXTERN NSString *_Nonnull const 英文_不带区域组合;
+/// HTTP 协议
 FOUNDATION_EXTERN NSString *_Nonnull const GET;
 FOUNDATION_EXTERN NSString *_Nonnull const POST;
 FOUNDATION_EXTERN NSString *_Nonnull const PUT;
 FOUNDATION_EXTERN NSString *_Nonnull const DELETE;
 FOUNDATION_EXTERN NSString *_Nonnull const PATCH;
 FOUNDATION_EXTERN NSString *_Nonnull const HEAD;
-
+/// 网络请求参数
 FOUNDATION_EXTERN NSString *_Nonnull const ContentType;
 FOUNDATION_EXTERN NSString *_Nonnull const Authorization;
-
+/// 特殊字符串
 FOUNDATION_EXTERN NSString *_Nonnull const 回车符号转义字符;       /// 回车符号转义字符
 FOUNDATION_EXTERN NSString *_Nonnull const 零宽转义字符;          /// 零宽转义字符
 FOUNDATION_EXTERN NSString *_Nonnull const JobsSeparation;      /// 分隔符
@@ -32,7 +42,7 @@ FOUNDATION_EXTERN NSString *_Nonnull const JobsDash;            /// 连字符
 FOUNDATION_EXTERN NSString *_Nonnull const JobsUnderscore;      /// 下划线
 FOUNDATION_EXTERN NSString *_Nonnull const JobsAsterisk;        /// 星号
 FOUNDATION_EXTERN NSString *_Nonnull const JobsEqual;           /// 等于
-
+/// 业务功能相关
 FOUNDATION_EXTERN NSString *_Nonnull const 网络状态监控;/// 网络状态监控
 FOUNDATION_EXTERN NSString *_Nonnull const 退到后台停止播放ZFPlayer;/// 退到后台停止播放ZFPlayer
 FOUNDATION_EXTERN NSString *_Nonnull const 语言切换;/// 语言切换
@@ -48,7 +58,11 @@ FOUNDATION_EXTERN NSString *_Nonnull const 获取极验验证码成功;
 FOUNDATION_EXTERN NSString *_Nonnull const 获取极验验证码失败;
 FOUNDATION_EXTERN NSString *_Nonnull const JobsLanguageKey;
 FOUNDATION_EXTERN NSString *_Nonnull const KYC状态;
-
+/*
+ * 常用符号大全
+ * 特殊符号 编号序号 数学符号 爱心符号 标点符号 单位符号 货币符号 箭头符号 符号图案 制表符 皇冠符号
+ * 汉语拼音 中文字符 日语字符 希腊字母 俄语字母
+ */
 FOUNDATION_EXTERN NSString *_Nonnull const 皇冠符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 数学符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 标点符号;
@@ -61,7 +75,7 @@ FOUNDATION_EXTERN NSString *_Nonnull const 编号序号;
 FOUNDATION_EXTERN NSString *_Nonnull const 爱心符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 箭头符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 符号图案;
-#pragma mark —— 语言文字类型
+/// 语言文字类型
 FOUNDATION_EXTERN NSString *_Nonnull const 希腊字母;
 FOUNDATION_EXTERN NSString *_Nonnull const 俄语字母;
 FOUNDATION_EXTERN NSString *_Nonnull const 汉语拼音;

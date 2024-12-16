@@ -10,7 +10,7 @@
 #import <WebKit/WebKit.h>
 #import "JobsBlock.h"
 #import "DefineProperty.h"
-#import "JobsDefineAllEnumHeader.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "BaseViewProtocol.h"
 #import "JobsNavBar.h"
 

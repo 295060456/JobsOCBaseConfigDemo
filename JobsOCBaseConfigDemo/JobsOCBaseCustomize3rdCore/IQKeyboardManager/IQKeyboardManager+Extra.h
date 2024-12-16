@@ -5,13 +5,13 @@
 //  Created by Admin on 25/11/2024.
 //
 
+#import <Foundation/Foundation.h>
+
 #if __has_include(<IQKeyboardManager/IQKeyboardManager.h>)
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #else
 #import "IQKeyboardManager.h"
 #endif
-
-#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

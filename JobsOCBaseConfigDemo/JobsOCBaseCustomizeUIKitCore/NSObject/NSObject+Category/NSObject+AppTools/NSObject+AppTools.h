@@ -12,12 +12,13 @@
 #import "NSObject+Extras.h"
 #import "UIView+Extras.h"
 #import "AppDelegate+TabBarCtr.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 
 #import "AppDelegate.h"
 #import "JobsAppDoorVC.h"
 #import "AppLanguageVC.h"
-//#import "CasinoUpgradePopupView.h"
 #import "JobsHotLabelBySingleLine.h"
+//#import "CasinoUpgradePopupView.h"
 
 #import "JobsNetworkingHeader.h"
 #import "UIViewModel.h"

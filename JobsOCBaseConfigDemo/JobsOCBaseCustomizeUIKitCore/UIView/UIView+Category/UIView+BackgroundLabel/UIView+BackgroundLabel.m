@@ -14,7 +14,9 @@ JobsKey(_backgroundLabel)
 -(UILabel *)backgroundLabel{
     UILabel *BackgroundLabel = Jobs_getAssociatedObject(_backgroundLabel);
     if (!BackgroundLabel) {
+        @jobs_weakify(self)
         BackgroundLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
             label.userInteractionEnabled = YES;
             self.addSubview(label);
             self.sendSubviewToBack(label);

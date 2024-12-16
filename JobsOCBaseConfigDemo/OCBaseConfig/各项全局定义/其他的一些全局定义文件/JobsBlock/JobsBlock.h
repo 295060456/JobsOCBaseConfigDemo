@@ -471,7 +471,7 @@ typedef void(^jobsByYTKBatchRequestBlock)(__kindof YTKBatchRequest *_Nullable da
 typedef __kindof YTKBatchRequest *_Nullable(^JobsReturnBatchRequestByArrBlock)(__kindof NSArray <YTKRequest *>*_Nullable data);
 
 @class YTKBaseRequest;
-#import "JobsDefineAllEnumHeader.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
 typedef JobsResponseModel *_Nullable(^JobsReturnResponseModelByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
 typedef void(^JobsHandelNoSuccessBlock)(__kindof YTKBaseRequest *_Nonnull request);

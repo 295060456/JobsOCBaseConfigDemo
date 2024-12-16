@@ -630,7 +630,7 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
                                                       BOOL *stop){//对获取到集合进行遍历
             PHAssetCollection *assetCollection = obj;
             NSLog(@"LLL %@",assetCollection.localizedTitle);
-            if (assetCollection.localizedTitle.isEqualToString(HDAppDisplayName)){
+            if (assetCollection.localizedTitle.isEqualToString(self.appName)){
                 [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
                     /// 请求创建一个Asset
                     PHAssetChangeRequest *assetRequest = [PHAssetChangeRequest creationRequestForAssetFromVideoAtFileURL:movieURL];

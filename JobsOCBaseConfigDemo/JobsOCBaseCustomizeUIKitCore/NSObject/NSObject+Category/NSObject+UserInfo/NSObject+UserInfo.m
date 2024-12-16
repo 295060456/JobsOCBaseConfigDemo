@@ -129,7 +129,7 @@
     return ^id _Nullable(Class _Nonnull cls,NSString *_Nullable userName){
         NSData *archivedData = NSUserDefaults.readWithKey(userName);
         if(archivedData){
-            if(HDDeviceSystemVersion.floatValue < 12.0){
+            if(self.systemVersion.floatValue < 12.0){
                 SuppressWdeprecatedDeclarationsWarning(return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];);
             }else{
                 NSError *error = nil;

@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JobsDefineAllEnumHeader.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "NSObject+Extras.h"
 #import "NSString+Check.h"
 #import "JobsBlock.h"

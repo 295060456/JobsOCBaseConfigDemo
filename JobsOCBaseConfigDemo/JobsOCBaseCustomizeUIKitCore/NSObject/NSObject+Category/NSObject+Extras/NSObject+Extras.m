@@ -9,6 +9,50 @@
 #import "NSObject+Extras.h"
 
 @implementation NSObject (Extras)
+UITextFieldProtocol_dynamic
+#pragma mark —— 系统类单例的二次封装
+/// NSBundle
++(NSBundle *_Nullable)mainBundle{
+    return NSBundle.mainBundle;
+}
+
+-(NSBundle *_Nullable)mainBundle{
+    return self.mainBundle;
+}
+/// NSLocale
++(NSLocale *_Nullable)currentLocale{
+    return NSLocale.currentLocale;
+}
+
+-(NSLocale *_Nullable)currentLocale{
+    return self.currentLocale;
+}
+
++(NSLocale *_Nullable)systemLocale{
+    return NSLocale.systemLocale;
+}
+
+-(NSLocale *_Nullable)systemLocale{
+    return self.systemLocale;
+}
+
++(NSLocale *_Nullable)autoupdatingCurrentLocale API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) {
+    return NSLocale.autoupdatingCurrentLocale;
+}
+
+-(NSLocale *_Nullable)autoupdatingCurrentLocale API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) {
+    return self.autoupdatingCurrentLocale;
+}
+/// UIDevice
++(UIDevice *_Nullable)currentDevice{
+    return UIDevice.currentDevice;
+}
+
+-(UIDevice *_Nullable)currentDevice{
+    return self.currentDevice;
+}
+
+
 #pragma mark —— 宏
 /// App 国际化相关系统宏二次封装 + 设置缺省值
 +(NSString *_Nullable)localStringWithKey:(nonnull NSString *)key{
@@ -27,7 +71,7 @@
                              inBundle:(nullable NSBundle *)bundle{
     return NSLocalizedStringFromTableInBundle(key,
                                               tableName,
-                                              bundle ? : NSBundle.mainBundle,
+                                              bundle ? : self.mainBundle,
                                               nil);
 }
 
@@ -37,7 +81,7 @@
                          defaultValue:(nullable NSString *)defaultValue{
     return NSLocalizedStringWithDefaultValue(key,
                                              tableName,
-                                             bundle ? : NSBundle.mainBundle,
+                                             bundle ? : self.mainBundle,
                                              defaultValue,
                                              nil);
 }
@@ -164,6 +208,17 @@
     };
 }
 #pragma mark —— 功能性的
+/// runtime方法交换
++(void)exchangeMethodForClass:(NSString *)className
+                  originalSel:(SEL)originalSelector
+                  swizzledSel:(SEL)swizzledSelector {
+    Class cls = objc_getClass(className.UTF8String);
+    if (cls) {
+        Method originalMethod = class_getInstanceMethod(cls, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(cls, swizzledSelector);
+        if (originalMethod && swizzledMethod) method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
+}
 /// UIAlertController + UIAlertAction
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
 -(JobsReturnAlertControllerByAlertModelBlock _Nonnull)makeAlertControllerByAlertModel{

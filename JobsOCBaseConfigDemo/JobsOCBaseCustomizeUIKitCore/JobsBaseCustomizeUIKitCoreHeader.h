@@ -26,6 +26,8 @@
 #import "NSMutableArray+Extra.h"
 #pragma mark —— NSMutableSet
 #import "NSMutableSet+Extra.h"
+#pragma mark —— NSSet
+#import "NSSet+Extra.h"
 #pragma mark —— NSBundle
 #import "JobsBundle.h"
 #pragma mark —— NSLocale

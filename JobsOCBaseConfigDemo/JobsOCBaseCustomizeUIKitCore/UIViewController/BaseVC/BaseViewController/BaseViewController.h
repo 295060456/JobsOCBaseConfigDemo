@@ -9,7 +9,7 @@
 #import "UIViewModelProtocol.h"
 #import "BaseViewControllerProtocol.h"
 #import "JobsBlock.h"
-#import "DefineConstString.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 #import "MacroDef_Notification.h"
 #import "MacroDef_Log.h"
 #import "MacroDef_String.h"

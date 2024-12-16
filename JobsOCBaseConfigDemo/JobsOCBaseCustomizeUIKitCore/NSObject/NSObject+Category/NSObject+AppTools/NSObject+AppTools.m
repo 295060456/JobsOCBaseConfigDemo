@@ -65,14 +65,14 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 #pragma mark —— 一些公共设置
 /// 选择电话号码区位
 -(__kindof UIButton *)zoneCodeBtnByBlock:(jobsByIDBlock _Nonnull)block{
-    BaseButton *btn = BaseButton.initByStyle1(JobsInternationalization(@"+63"),
-                                              JobsFontRegular(JobsWidth(16)),
-                                              JobsWhiteColor)
+    return BaseButton.initByStyle1(JobsInternationalization(@"+63"),
+                                   JobsFontRegular(JobsWidth(16)),
+                                   JobsWhiteColor)
     .onClickBy(^(UIButton *x){
         if (block) block(x);
-    }).bySize(CGSizeMake(JobsWidth(50), JobsWidth(30)));
-    btn.rightBorderColor(JobsWhiteColor).rightBorderWidth(1);
-    return btn;
+    }).bySize(CGSizeMake(JobsWidth(50), JobsWidth(30)))
+        .rightBorderColor(JobsWhiteColor)
+        .rightBorderWidth(1);
 }
 /// 配置弹窗数据
 -(JobsReturnViewModelByStringBlock _Nonnull)configPopUpDataBy{
@@ -533,9 +533,9 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 }
 
 -(NSString *)currentLanguage{
-    if (currentLanguage().containsString(@"zh-Hans")) {
+    if (currentLanguage().containsString(简体中文)) {
         return @"简体中文";
-    }else if (currentLanguage().containsString(@"en")){
+    }else if (currentLanguage().containsString(英文_不带区域组合)){
         return @"English";
     }else{
         NSLog(@"%@",currentLanguage());
@@ -544,9 +544,9 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 }
 
 -(HTTPRequestHeaderLanguageType)currentLanguageType{
-    if(currentLanguage().containsString(@"zh-Hans")){
+    if(currentLanguage().containsString(简体中文)){
         return HTTPRequestHeaderLanguageCN;
-    }else if (currentLanguage().containsString(@"en")){
+    }else if (currentLanguage().containsString(英文_不带区域组合)){
         return HTTPRequestHeaderLanguageEn;
     }else{
         NSLog(@"%@",currentLanguage());

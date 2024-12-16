@@ -10,7 +10,7 @@
 #import "BaseViewController.h"
 #import "MacroDef_Func.h"
 #import "MacroDef_Notification.h"
-#import "DefineConstString.h"
+#import "DefineConstString.h" /// 常亮字符串的定义
 #import "NSObject+AppTools.h"
 #import "UIViewController+BackBtn.h"
 #import "UITableViewCell+UITableViewCellProtocol.h"

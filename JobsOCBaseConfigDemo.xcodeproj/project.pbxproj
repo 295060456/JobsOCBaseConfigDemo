@@ -141,6 +141,8 @@
 		84E999302CEB2D1C00ABE463 /* NSObject+Mock.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E9992C2CEB2D1C00ABE463 /* NSObject+Mock.m */; };
 		84E999312CEB2D1C00ABE463 /* NSObject+UAT.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E999292CEB2D1C00ABE463 /* NSObject+UAT.m */; };
 		84E99A442CEB4EE100ABE463 /* JobsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */; };
+		84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */; };
+		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
 		CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3E2CAE671C00233F0F /* NSString+Replace.m */; };
 		CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F412CAE671C00233F0F /* NSString+Statistics.m */; };
@@ -1518,6 +1520,10 @@
 		84E9992C2CEB2D1C00ABE463 /* NSObject+Mock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Mock.m"; sourceTree = "<group>"; };
 		84E99A412CEB4EE100ABE463 /* JobsWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsWebViewController.h; sourceTree = "<group>"; };
 		84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsWebViewController.m; sourceTree = "<group>"; };
+		84EB57082D102C3800AC56B0 /* NSObject+SysInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SysInfo.h"; sourceTree = "<group>"; };
+		84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SysInfo.m"; sourceTree = "<group>"; };
+		84EB570C2D102C7700AC56B0 /* NSSet+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSSet+Extra.h"; sourceTree = "<group>"; };
+		84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSSet+Extra.m"; sourceTree = "<group>"; };
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -5111,6 +5117,24 @@
 				84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */,
 			);
 			path = JobsWebViewController;
+			sourceTree = "<group>";
+		};
+		84EB570A2D102C3800AC56B0 /* NSObject+SysInfo */ = {
+			isa = PBXGroup;
+			children = (
+				84EB57082D102C3800AC56B0 /* NSObject+SysInfo.h */,
+				84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */,
+			);
+			path = "NSObject+SysInfo";
+			sourceTree = "<group>";
+		};
+		84EB570E2D102C7700AC56B0 /* NSSet */ = {
+			isa = PBXGroup;
+			children = (
+				84EB570C2D102C7700AC56B0 /* NSSet+Extra.h */,
+				84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */,
+			);
+			path = NSSet;
 			sourceTree = "<group>";
 		};
 		92563F87BB14F01482586366 /* Frameworks */ = {
@@ -11846,6 +11870,7 @@
 		CE5A62162CA82C2D006D67A7 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				84EB570A2D102C3800AC56B0 /* NSObject+SysInfo */,
 				8461A4F62D0801860081C41D /* NSObject+3rd */,
 				84A911292CFF1A0E003BD1CB /* NSObject+Path */,
 				8474A7B12CFD4B2100112B4B /* NSObject+Algorithm */,
@@ -13878,6 +13903,7 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				84EB570E2D102C7700AC56B0 /* NSSet */,
 				84B8A9572D0ACECE0079336D /* UITextItem */,
 				84B8A9532D0ACE220079336D /* UIEditMenuInteraction */,
 				8405D19B2D0865E100DE33FE /* UITabBarItem */,
@@ -16213,6 +16239,7 @@
 				840150802CF4501B00211910 /* NSURLSession+AllowAllCertificates.m in Sources */,
 				CE5A64FC2CA830B2006D67A7 /* SoundBtn.m in Sources */,
 				CECE7EBB2C450E5B00764AF5 /* TKPermissionMedia.m in Sources */,
+				84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */,
 				CE5A661E2CA836B0006D67A7 /* TMSWalletCollectionViewCell.m in Sources */,
 				CE5A661F2CA836B0006D67A7 /* TMSCollectionViewLayout.m in Sources */,
 				CE5A66202CA836B0006D67A7 /* TMSWalletCollectionReusableView.m in Sources */,
@@ -16465,6 +16492,7 @@
 				CE5A65F12CA8345D006D67A7 /* JobsCustomTabBarConfig.m in Sources */,
 				CE5A65F22CA8345D006D67A7 /* JobsCustomTabBarButton.m in Sources */,
 				CE5A65F32CA8345D006D67A7 /* JobsCustomTabBarVC.m in Sources */,
+				84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */,
 				CE5A65F42CA8345D006D67A7 /* JobsCustomTabBar.m in Sources */,
 				84392BDC2CF4A47A000D441F /* UIAlertController+Extra.m in Sources */,
 				84392BDD2CF4A47A000D441F /* UIAlertAction+Extra.m in Sources */,

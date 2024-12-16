@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol UITextFieldProtocol <NSObject>
+@optional
 #pragma mark —— 关于数据
 /// UITextField.text
 Prop_copy(nullable)NSString *title;/// 主标题

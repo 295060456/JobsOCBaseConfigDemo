@@ -58,6 +58,14 @@ typedef NS_ENUM(NSInteger, JobsHeaderFooterViewStyle) {
 };
 #endif /* JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED */
 #endif /* COMING_STYLE_ENUM_DEFINED */
+/// WGradientProgress
+#ifndef WGradientProgressType_h
+#define WGradientProgressType_h
+typedef enum : NSUInteger {
+    WGradientProgressType_colorNormal = 0, /// 单一色
+    WGradientProgressType_colorRoll        /// 色彩在不断的翻滚
+} WGradientProgressType;
+#endif /* WGradientProgressType_h */
 /// 登录方式
 #ifndef LOGINMODE
 #define LOGINMODE

@@ -48,7 +48,7 @@ NS_INLINE JobsNetworkingEnvir networkingEnvir(NSInteger data) {
     }return _networkingEnvir;
 }
 
-#import "JobsDefineAllEnumHeader.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 
 #ifndef JobsURL
 #define JobsURL(URL) [NSObject url:(URL) funcName:NSStringFromSelector(_cmd)];
