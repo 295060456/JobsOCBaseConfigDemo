@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByPointBlock _Nonnull)add;
 /// moveToPoint
 -(jobsByPointBlock _Nonnull)moveTo;
+/// 对系统方法 bezierPathWithRect
++(JobsReturnBezierPathByCGRectBlock _Nonnull)initByRect;
 
 @end
 

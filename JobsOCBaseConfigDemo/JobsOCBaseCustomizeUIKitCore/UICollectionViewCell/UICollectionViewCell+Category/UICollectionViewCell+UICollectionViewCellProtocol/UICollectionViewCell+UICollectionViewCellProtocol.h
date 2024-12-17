@@ -7,7 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MacroDef_Func.h"
+#import "JobsMakes.h"
+#import "UIBezierPath+Extras.h"
+#import "JobsDefineAllEnumHeader.h"
 #import "UICollectionViewCellProtocol.h"
+#import "CALayer+Transition.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /**

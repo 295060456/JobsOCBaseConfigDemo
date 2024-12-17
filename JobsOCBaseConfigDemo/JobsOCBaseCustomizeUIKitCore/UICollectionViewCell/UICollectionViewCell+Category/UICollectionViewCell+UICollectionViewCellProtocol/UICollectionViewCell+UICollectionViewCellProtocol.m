@@ -81,18 +81,18 @@
                                                        byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
                                                              cornerRadii:cornerRadiusSize];
                 }else{/// 中间的都为矩形
-                    bezierPath = [UIBezierPath bezierPathWithRect:bounds];
+                    bezierPath = UIBezierPath.initByRect(bounds);
                 }
             }
         }
         
         {
-            CAShapeLayer *layer1 = CAShapeLayer.layer;/// 新建一个图层
-            layer1.borderWidth = borderWidth;/// 线宽
-            layer1.path = bezierPath.CGPath;/// 图层边框路径
-            layer1.fillColor = cellBgCor.CGColor;/// 图层填充色,也就是cell的底色
-            layer1.strokeColor = cellOutLineCor.CGColor;/// 图层边框线条颜色
-            [self.layer insertSublayer:layer1 atIndex:0];/// 将图层添加到cell的图层中,并插到最底层
+            [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+                layer.borderWidth = borderWidth;/// 线宽
+                layer.path = bezierPath.CGPath;/// 图层边框路径
+                layer.fillColor = cellBgCor.CGColor;/// 图层填充色,也就是cell的底色
+                layer.strokeColor = cellOutLineCor.CGColor;/// 图层边框线条颜色
+            }) atIndex:0];/// 将图层添加到cell的图层中,并插到最底层
         }
         /// 除了最后一行以外，所有的cell的最下面的线为bottomLineCor
         [self makeBottomLineWithIndexPath:indexPath
@@ -121,18 +121,21 @@
                        borderWidth:(CGFloat)borderWidth
                      bottomLineCor:(UIColor *_Nullable)bottomLineCor{
     if (indexPath.row != numberOfItemsInSection - 1) {
-        UIBezierPath *linePath = UIBezierPath.bezierPath;
-        /// 起点
-        [linePath moveToPoint:CGPointMake(bounds.origin.x, bounds.size.height)];
-        /// 其他点
-        [linePath addLineToPoint:CGPointMake(bounds.origin.x + bounds.size.width, bounds.size.height)];
-        /// 新建一个图层
-        CAShapeLayer *layer2 = CAShapeLayer.layer;
-        layer2.borderWidth = borderWidth;
-        layer2.path = linePath.CGPath;
-        layer2.strokeColor = bottomLineCor.CGColor;
         /// 将图层添加到cell的图层中,并插到最底层
-        [self.layer insertSublayer:layer2 atIndex:1];
+        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            layer.borderWidth = borderWidth;
+            layer.strokeColor = bottomLineCor.CGColor;
+            layer.path = jobsMakeBezierPath(^(__kindof UIBezierPath * _Nullable linePath) {
+                linePath.moveTo(jobsMakeCGPointByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable model) {
+                    model.jobsX = bounds.origin.x;
+                    model.jobsY = bounds.size.height;
+                })); /// 起点
+                linePath.add(jobsMakeCGPointByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable model) {
+                    model.jobsX = bounds.origin.x + bounds.size.width;
+                    model.jobsY = bounds.size.height;
+                })); /// 其他点
+            }).CGPath;
+        }) atIndex:1];
     }
 }
 /// 除了第一行以外，所有的cell的最上面的线为bottomLineCor
@@ -148,18 +151,19 @@
                     borderWidth:(CGFloat)borderWidth
                   bottomLineCor:(UIColor *_Nullable)bottomLineCor{
     if(indexPath.row){
-        UIBezierPath *linePath = UIBezierPath.bezierPath;
-        /// 起点
-        [linePath moveToPoint:CGPointMake(bounds.origin.x, 0)];
-        /// 其他点
-        [linePath addLineToPoint:CGPointMake(bounds.origin.x + bounds.size.width,0)];
-        /// 新建一个图层
-        CAShapeLayer *layer3 = CAShapeLayer.layer;
-        layer3.borderWidth = borderWidth;
-        layer3.path = linePath.CGPath;
-        layer3.strokeColor = bottomLineCor.CGColor;
         /// 将图层添加到cell的图层中,并插到最底层
-        [self.layer insertSublayer:layer3 atIndex:1];
+        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            layer.strokeColor = bottomLineCor.CGColor;
+            layer.borderWidth = borderWidth;
+            layer.path = jobsMakeBezierPath(^(__kindof UIBezierPath * _Nullable linePath) {
+                linePath.moveTo(jobsMakeCGPointByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable model) {
+                    model.jobsX = bounds.origin.x;
+                }));/// 起点
+                linePath.add(jobsMakeCGPointByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable model) {
+                    model.jobsX = bounds.origin.x + bounds.size.width;
+                }));/// 其他点
+            }).CGPath;
+        }) atIndex:1];
     }
 }
 /// 利用UIBezierPath，对 UICollectionViewCell 描边 + 切角
@@ -259,10 +263,10 @@
                                        self.contentView.frame.size.height);
     }
     
-    if(topBorder) [self.contentView.layer addSublayer:topBorder];
-    if(bottomBorder) [self.contentView.layer addSublayer:bottomBorder];
-    if(leftBorder) [self.contentView.layer addSublayer:leftBorder];
-    if(rightBorder) [self.contentView.layer addSublayer:rightBorder];
+    if(topBorder) self.contentView.layer.add(topBorder);
+    if(bottomBorder) self.contentView.layer.add(bottomBorder);
+    if(leftBorder) self.contentView.layer.add(leftBorder);
+    if(rightBorder) self.contentView.layer.add(rightBorder);
 }
 #pragma mark —— 一些私有的功能方法
 /// 附加偏移量以后的大小
@@ -277,29 +281,5 @@
      */
     return CGRectInset(self.bounds,dx,dy);/// 获取显示区域大小
 }
-
-//+(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
-//    @jobs_weakify(self)
-//    return ^CGSize(id _Nullable data){
-//        @jobs_strongify(self)
-//        return CGSizeZero;
-//    };
-//}
-//
-//-(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
-//    @jobs_weakify(self)
-//    return ^CGFloat(id _Nullable data){
-//        @jobs_strongify(self)
-//        return self.class.cellHeightByModel(data);
-//    };
-//}
-//
-//-(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
-//    @jobs_weakify(self)
-//    return ^CGSize(id _Nullable data){
-//        @jobs_strongify(self)
-//        return self.class.cellSizeByModel(data);
-//    };
-//}
 
 @end

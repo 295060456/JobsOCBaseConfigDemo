@@ -16,6 +16,14 @@
         return [self.class.alloc initWithFrame:CGRectZero collectionViewLayout:data];
     };
 }
+/// 对系统方法 cellForItemAtIndexPath 的二次封装
+-(JobsReturnCollectionViewCellByIndexPathBlock _Nonnull)cellBy{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionViewCell *_Nullable(NSIndexPath *_Nullable indexPath){
+        @jobs_strongify(self)
+        return [self cellForItemAtIndexPath:indexPath];
+    };
+}
 
 -(jobsByIDBlock _Nonnull)dataLink{
     @jobs_weakify(self)
@@ -36,7 +44,7 @@
             }
         }
     }
-    UICollectionViewCell *cell = (UICollectionViewCell *)[self cellForItemAtIndexPath:indexPath];
+    UICollectionViewCell *cell = (UICollectionViewCell *)self.cellBy(indexPath);
     cell.selected = YES;
     return cell;
 }
@@ -44,7 +52,7 @@
 -(UICollectionViewCell *)didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
                             collectionViewCellClass:(Class _Nullable)collectionViewCellClass{
     NSLog(@"%s", __FUNCTION__);
-    UICollectionViewCell *cell = (UICollectionViewCell *)[self cellForItemAtIndexPath:indexPath];
+    UICollectionViewCell *cell = (UICollectionViewCell *)self.cellBy(indexPath);
     cell.selected = YES;
     return cell;
 }

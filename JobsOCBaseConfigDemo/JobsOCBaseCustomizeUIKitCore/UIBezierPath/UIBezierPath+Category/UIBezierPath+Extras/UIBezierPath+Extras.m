@@ -72,5 +72,11 @@
         [self moveToPoint:data];
     };
 }
+/// 对系统方法 bezierPathWithRect
++(JobsReturnBezierPathByCGRectBlock _Nonnull)initByRect{
+    return ^ UIBezierPath *_Nullable(CGRect bounds){
+        return [UIBezierPath bezierPathWithRect:bounds];
+    };
+}
 
 @end

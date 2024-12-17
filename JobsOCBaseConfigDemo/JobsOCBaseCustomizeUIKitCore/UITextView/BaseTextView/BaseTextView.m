@@ -12,73 +12,71 @@
 @end
 
 @implementation BaseTextView
-
+@synthesize becomeFirstResponder = _becomeFirstResponder;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        UIMenuController *menu = UIMenuController.sharedMenuController;
         @jobs_weakify(self)
-        menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            data.add([UIMenuItem.alloc initWithTitle:JobsInternationalization(@"相应事件")
-                                              action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                  id _Nullable arg) {
-                @jobs_strongify(self)
-                if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
-                return nil;
-            }, MethodName(self), self)]);
+        UIMenuController *menu = jobsMakeMenuController(^(__kindof UIMenuController * _Nullable menu) {
+            menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+                data.add(JobsInternationalization(@"响应事件").initMenuItemBy(selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                                                       id _Nullable arg) {
+                    @jobs_strongify(self)
+                    if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
+                    return nil;
+                }, MethodName(self), self)));
+            });
         });
         [menu update];
         if(@available(iOS 10.3, *)){
             [menu showMenuFromView:self rect:self.bounds];
         }else{
-            SuppressWdeprecatedDeclarationsWarning([menu setTargetRect:self.bounds inView:self];
-                                                   [menu setMenuVisible:YES animated:YES];);
+            [menu setTargetRect:self.bounds inView:self];
+            [menu setMenuVisible:YES animated:YES];
         }
 #pragma clang diagnostic pop
     }return self;
 }
-
 #pragma mark —— UIResponder
--(BOOL)canPerformAction:(SEL)action
-              withSender:(id)sender{
+-(BOOL)canBecomeFirstResponder {
+    return self.becomeFirstResponder; /// NO:禁止成为第一响应者，彻底禁用菜单
+}
+
+-(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if(!sender) return NO;
     if([sender isKindOfClass:UIMenuController.class] || [sender isKindOfClass:UIMenu.class]){// _UIImmutableKeyCommand
-        if(action == @selector(cut:) ||/// 剪切
-           action == @selector(copy:) ||/// 拷贝
-           action == @selector(paste:) ||/// 粘贴
-           action == @selector(delete:) ||/// 简 <==> 繁
-           action == @selector(select:) ||///
-           action == @selector(selectAll:) ||///
-           action == @selector(_promptForReplace:) ||
-           action == @selector(_transliterateChinese:) ||
-           action == @selector(_insertDrawing:) ||
-           action == @selector(captureTextFromCamera:) ||
-           action == @selector(toggleBoldface:) ||
-           action == @selector(toggleItalics:) ||
-           action == @selector(toggleUnderline:) ||
-           action == @selector(makeTextWritingDirectionRightToLeft:) ||
-           action == @selector(makeTextWritingDirectionLeftToRight:) ||
-           action == @selector(_findSelected:) ||
-           action == @selector(_define:) ||
-           action == @selector(_translate:) ||/// 翻译
-           action == @selector(_addShortcut:) ||
-           action == @selector(_accessibilitySpeak:) ||
-           action == @selector(_accessibilitySpeakLanguageSelection:) ||
-           action == @selector(_accessibilityPauseSpeaking:) ||
-           action == @selector(_share:)){/// 共享
+        if (action == @selector(cut:) || /// 剪切
+            action == @selector(copy:) || /// 拷贝
+            action == @selector(paste:) || /// 粘贴
+            action == @selector(delete:) || /// 删除
+            action == @selector(select:) || /// 选择
+            action == @selector(selectAll:) || /// 全选
+            action == @selector(_promptForReplace:) || /// 替换
+            action == @selector(_transliterateChinese:) || /// 中文简繁转换
+            action == @selector(_insertDrawing:) || /// 插入绘图
+            action == @selector(captureTextFromCamera:) || /// 从相机捕获文本
+            action == @selector(toggleBoldface:) || /// 加粗
+            action == @selector(toggleItalics:) || /// 斜体
+            action == @selector(toggleUnderline:) || /// 下划线
+            action == @selector(makeTextWritingDirectionRightToLeft:) || /// 从右到左
+            action == @selector(makeTextWritingDirectionLeftToRight:) || /// 从左到右
+            action == @selector(_findSelected:) || /// 查找
+            action == @selector(_define:) || /// 定义
+            action == @selector(_translate:) || // 翻译
+            action == @selector(_addShortcut:) || /// 添加快捷方式
+            action == @selector(_accessibilitySpeak:) || // 辅助语音
+            action == @selector(_accessibilitySpeakLanguageSelection:) || /// 辅助语音语言选择
+            action == @selector(_accessibilityPauseSpeaking:) || /// 暂停语音
+            action == @selector(_share:)) {/// 共享
             return NO;
         }else if ([NSStringFromSelector(action) containsString:JobsInternationalization(@"")]){
             return YES;
-        }else{
-            return NO;
-        }
-    }else {
-        return YES;
-    }
+        }else return NO;
+    }else return YES;
 #pragma clang diagnostic pop
 }
 
