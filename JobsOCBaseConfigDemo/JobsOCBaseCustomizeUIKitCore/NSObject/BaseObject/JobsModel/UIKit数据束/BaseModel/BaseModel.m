@@ -52,7 +52,7 @@
     return YES;
 }
 #pragma mark —— MJExtension
-+(NSDictionary *)mj_replacedKeyFromPropertyName{
++(__kindof NSDictionary *)mj_replacedKeyFromPropertyName{
     /* 返回的字典，key为模型属性名，value为转化的字典的多级key */
     return @{
         @"ID" : @"id"
@@ -63,7 +63,7 @@
 //    return [super mj_replacedKeyFromPropertyName].mutableCopy;
 //}
 #pragma mark —— YYModel
-+(NSDictionary *)modelCustomPropertyMapper{
++(__kindof NSDictionary *)modelCustomPropertyMapper{
     return @{
         @"ID" : @"id"
     };
@@ -83,7 +83,7 @@
 //    }return oldValue;/// 对于不需要转换的其他字段，直接返回原始值
 //}
 #pragma mark —— 字段映射
-//+(NSDictionary *)mj_objectClassInArray {
+//+(__kindof NSDictionary *)mj_objectClassInArray {
 //    return @{
 //        @"ewalletDpChannelList" : EwalletDpChannelList.class,
 //        @"dpChannelList" : DpChannelList.class,

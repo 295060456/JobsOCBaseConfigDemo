@@ -9,11 +9,30 @@
 
 @implementation NSKeyedArchiver (Extra)
 
-+(JobsReturnDataByIDBlock _Nonnull)archivedDataByRootObject{
++(JobsReturnDataByIDBlock _Nonnull)initByObject{
+    return ^__kindof NSData *_Nullable(id _Nullable data){
+        return [NSKeyedArchiver archivedDataWithRootObject:data];
+    };
+}
+
++(JobsReturnDataByIDBlock _Nonnull)archivedDataByRootObject_NO{
     return ^NSData *_Nullable(id _Nullable data){
         NSError *err = nil;
         NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data
                                                        requiringSecureCoding:NO
+                                                                       error:&err];
+        if(err){
+            return nil;
+            NSLog(@"%@",err.description);
+        }return compressedData;
+    };
+}
+
++(JobsReturnDataByIDBlock _Nonnull)archivedDataByRootObject_YES{
+    return ^NSData *_Nullable(id _Nullable data){
+        NSError *err = nil;
+        NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data
+                                                       requiringSecureCoding:YES
                                                                        error:&err];
         if(err){
             return nil;

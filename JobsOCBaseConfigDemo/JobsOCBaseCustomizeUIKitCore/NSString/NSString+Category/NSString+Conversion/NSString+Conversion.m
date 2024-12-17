@@ -91,12 +91,12 @@
 }
 ///【实例方法】解压缩字符串
 -(NSData *)compress{
-    return NSKeyedArchiver.archivedDataByRootObject(self.UTF8Encoding);
+    return NSKeyedArchiver.archivedDataByRootObject_NO(self.UTF8Encoding);
 }
 ///【类方法】压缩字符串成NSData
 -(JobsReturnDataByStringBlock _Nonnull)compressString{
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
-        return NSKeyedArchiver.archivedDataByRootObject(string.UTF8Encoding);
+        return NSKeyedArchiver.archivedDataByRootObject_NO(string.UTF8Encoding);
     };
 }
 ///【类方法】解压缩字符串

@@ -131,6 +131,7 @@
 		84B1BA2C2CEDCA570001562D /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA0A2CEDC9410001562D /* FSCalendarCollectionViewLayout.m */; };
 		84B1BA2D2CEDCA570001562D /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA102CEDC9410001562D /* FSCalendarDelegationProxy.m */; };
 		84B1BA2E2CEDCA630001562D /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA022CEDC9410001562D /* FSCalendarAppearance.m */; };
+		84B58BED2D115A4D0034C49D /* UIImpactFeedbackGenerator+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58BEB2D115A4D0034C49D /* UIImpactFeedbackGenerator+Extra.m */; };
 		84B8A9542D0ACE220079336D /* UIEditMenuInteraction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8A9522D0ACE220079336D /* UIEditMenuInteraction+Extra.m */; };
 		84B8A9582D0ACECE0079336D /* UITextItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8A9562D0ACECE0079336D /* UITextItem+Extra.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
@@ -1500,6 +1501,8 @@
 		84B1BA1B2CEDC9410001562D /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
 		84B1BA1C2CEDC9410001562D /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCalendarWeekdayView.h; sourceTree = "<group>"; };
 		84B1BA1D2CEDC9410001562D /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCalendarWeekdayView.m; sourceTree = "<group>"; };
+		84B58BEA2D115A4D0034C49D /* UIImpactFeedbackGenerator+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImpactFeedbackGenerator+Extra.h"; sourceTree = "<group>"; };
+		84B58BEB2D115A4D0034C49D /* UIImpactFeedbackGenerator+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImpactFeedbackGenerator+Extra.m"; sourceTree = "<group>"; };
 		84B8A9512D0ACE220079336D /* UIEditMenuInteraction+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIEditMenuInteraction+Extra.h"; sourceTree = "<group>"; };
 		84B8A9522D0ACE220079336D /* UIEditMenuInteraction+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIEditMenuInteraction+Extra.m"; sourceTree = "<group>"; };
 		84B8A9552D0ACECE0079336D /* UITextItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextItem+Extra.h"; sourceTree = "<group>"; };
@@ -4935,6 +4938,15 @@
 				84B1BA1D2CEDC9410001562D /* FSCalendarWeekdayView.m */,
 			);
 			path = FSCalendar;
+			sourceTree = "<group>";
+		};
+		84B58BEC2D115A4D0034C49D /* UIImpactFeedbackGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				84B58BEA2D115A4D0034C49D /* UIImpactFeedbackGenerator+Extra.h */,
+				84B58BEB2D115A4D0034C49D /* UIImpactFeedbackGenerator+Extra.m */,
+			);
+			path = UIImpactFeedbackGenerator;
 			sourceTree = "<group>";
 		};
 		84B8A9532D0ACE220079336D /* UIEditMenuInteraction */ = {
@@ -13903,6 +13915,7 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				84B58BEC2D115A4D0034C49D /* UIImpactFeedbackGenerator */,
 				84EB570E2D102C7700AC56B0 /* NSSet */,
 				84B8A9572D0ACECE0079336D /* UITextItem */,
 				84B8A9532D0ACE220079336D /* UIEditMenuInteraction */,
@@ -16342,6 +16355,7 @@
 				8489C9DD2CE622CC00BB5E83 /* UICollectionView+JobsEmptyData.m in Sources */,
 				8489C9DE2CE622CC00BB5E83 /* UITableView+JobsEmptyData.m in Sources */,
 				CE61AD4C2C9EAB26002DF138 /* NSObject+YTKNetwork.m in Sources */,
+				84B58BED2D115A4D0034C49D /* UIImpactFeedbackGenerator+Extra.m in Sources */,
 				CE5A64AF2CA82EAD006D67A7 /* DispatchTimerManager.m in Sources */,
 				CE5A64D82CA82FEB006D67A7 /* NSObject+Shake.m in Sources */,
 				CE61AD4F2C9EAB26002DF138 /* JobsBaseApi.m in Sources */,

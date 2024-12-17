@@ -7,7 +7,7 @@
 
 #ifndef JobsBlock_h
 #define JobsBlock_h
-
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
 /**
@@ -30,77 +30,6 @@
 #pragma mark —— 定义不确定参数的Block
 #import "ReturnByUnCertainParameters.h"
 #import "VoidByUnCertainParameters.h"
-
-#pragma mark —— 定义业务Block
-#ifndef JOBS_TimeZoneType
-#define JOBS_TimeZoneType
-typedef NS_ENUM(NSInteger, TimeZoneType) {
-    TimeZoneTypeUTC,           // 协调世界时
-    TimeZoneTypeGMT,           // 格林尼治标准时间
-    TimeZoneTypePST,           // 太平洋标准时间 (美国和加拿大)
-    TimeZoneTypeEST,           // 东部标准时间 (美国和加拿大)
-    TimeZoneTypeCST,           // 中部标准时间 (美国和加拿大)
-    TimeZoneTypeMST,           // 山地标准时间 (美国和加拿大)
-    TimeZoneTypeCSTChina,      // 中国标准时间
-    TimeZoneTypeJST,           // 日本标准时间
-    TimeZoneTypeBST,           // 英国夏令时
-    TimeZoneTypeAEST,          // 澳大利亚东部标准时间
-    TimeZoneTypeAWST,          // 澳大利亚西部标准时间
-    TimeZoneTypeCET,           // 欧洲中部时间
-    TimeZoneTypeMSK,           // 莫斯科标准时间
-    TimeZoneTypeIST,           // 印度标准时间
-    TimeZoneTypeBRT,           // 巴西利亚时间
-    TimeZoneTypeCSTMexico,     // 墨西哥城时间
-    TimeZoneTypeART,           // 阿根廷时间
-    TimeZoneTypeHST,           // 夏威夷标准时间
-    TimeZoneTypeAKST,          // 阿拉斯加标准时间
-    TimeZoneTypeCEST,          // 中欧夏令时
-    TimeZoneTypeEET,           // 欧洲东部时间
-    TimeZoneTypeWET,           // 欧洲西部时间
-    TimeZoneTypeNST,           // 纽芬兰标准时间
-    TimeZoneTypeAST,           // 大西洋标准时间
-    TimeZoneTypePDT,           // 太平洋夏令时
-    TimeZoneTypeMDT,           // 山地夏令时
-    TimeZoneTypeCDT,           // 中部夏令时
-    TimeZoneTypeEDT,           // 东部夏令时
-    TimeZoneTypeNZST,          // 新西兰标准时间
-    TimeZoneTypeHKT,           // 香港时间
-    TimeZoneTypeSGT,           // 新加坡时间
-    TimeZoneTypeMYT,           // 马来西亚时间
-    TimeZoneTypeKST            // 韩国标准时间
-    // 可以继续添加更多时区类型...
-};
-#endif /* JOBS_TimeZoneType */
-/// 系统支持语言
-#ifndef APP_LANGUAGE_ENUM_DEFINED
-#define APP_LANGUAGE_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, AppLanguage) {
-    AppLanguageBySys,/// App语言跟随当前系统
-    AppLanguageChineseSimplified, /// zh-Hans：简体中文
-    AppLanguageChineseTraditional,/// zh-Hant：繁体中文
-    AppLanguageEnglish,           /// en：标准英语
-    AppLanguageTagalog            /// tl：菲律宾他加禄语
-};
-#endif/* APP_LANGUAGE_ENUM_DEFINED */
-/// 屏幕方向
-#ifndef DeviceOrientation_typedef
-#define DeviceOrientation_typedef
-typedef NS_ENUM(NSInteger, DeviceOrientation) {
-    DeviceOrientationUnknown, /// 未知方向
-    DeviceOrientationPortrait,/// 竖屏
-    DeviceOrientationLandscape /// 横屏
-};
-#endif /* DeviceOrientation_typedef */
-/// 当前类型
-#ifndef MyEnums_h
-#define MyEnums_h
-typedef NS_ENUM(NSInteger, ComponentType) {
-    ComponentTypeUnknown,/// 其他
-    ComponentTypeView,/// 视图
-    ComponentTypeViewController/// 控制器
-};
-#endif /* MyEnums_h */
-
 #pragma mark —— 涉及到自定义类的Block定义
 typedef ComponentType(^JobsReturnComponentTypeByVoidBlock)(void);
 typedef DeviceOrientation(^JobsReturnDeviceOrientationByVoidBlock)(void);

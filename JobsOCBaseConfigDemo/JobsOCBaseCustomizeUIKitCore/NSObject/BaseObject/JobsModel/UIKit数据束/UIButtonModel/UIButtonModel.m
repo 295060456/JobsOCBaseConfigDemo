@@ -12,7 +12,8 @@ UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
 BaseLayerProtocol_synthesize_part3
 BaseButtonProtocol_synthesize_part2
-@synthesize timerProcessType = _timerProcessType;
+AppToolsProtocol_synthesize
+BaseProtocol_synthesize
 
 -(NSTextAlignment)textAlignment{
     if (!_textAlignment) {

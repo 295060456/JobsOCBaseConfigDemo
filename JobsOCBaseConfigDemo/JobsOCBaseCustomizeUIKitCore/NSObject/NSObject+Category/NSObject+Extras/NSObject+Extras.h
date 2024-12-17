@@ -323,7 +323,7 @@ AppToolsProtocol
 /// 判断是否是App今日的首次启动
 -(BOOL)isTodayAppFirstLaunch;
 /// 震动特效反馈
--(jobsByVoidBlock _Nonnull)feedbackGenerator;
+-(jobsByViewBlock _Nonnull)feedbackGenerator;
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
 -(JobsReturnBOOLByVoidBlock _Nonnull)didUserPressLockButton;
 /// iOS 限制自动锁屏 lockSwitch:YES(关闭自动锁屏)

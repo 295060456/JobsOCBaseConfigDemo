@@ -696,7 +696,8 @@ UITextFieldProtocol_dynamic
 -(void)addCheckerByName:(NSString *_Nonnull)notificationName
           selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock{
     [JobsNotificationCenter addObserver:self
-                               selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf, id _Nullable arg) {
+                               selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                     id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
@@ -992,13 +993,21 @@ UITextFieldProtocol_dynamic
     }return ![recordToday isEqualToString:today];
 }
 /// 震动特效反馈
--(jobsByVoidBlock _Nonnull)feedbackGenerator{
-    return ^() {
-        if (@available(iOS 10.0, *)) {
-            UIImpactFeedbackGenerator *generator = [UIImpactFeedbackGenerator.alloc initWithStyle:UIImpactFeedbackStyleMedium];
+- (jobsByViewBlock _Nonnull)feedbackGenerator {
+    return ^(__kindof UIView *_Nullable view) {
+        if (@available(iOS 17.5, *)) {
+            /// iOS 17.5 及以上使用新的 API
+            UIImpactFeedbackGenerator *generator = UIImpactFeedbackGenerator.initMediumStyleBy(view);
+            [generator impactOccurred];
+        } else if (@available(iOS 10.0, *)) {
+            /// iOS 10.0 - 17.4 使用旧的初始化方法
+            UIImpactFeedbackGenerator *generator = UIImpactFeedbackGenerator.initByMediumStyle;
             [generator prepare];
             [generator impactOccurred];
-        } else AudioServicesPlaySystemSound(1520);
+        } else {
+            /// iOS 10.0 以下，使用系统音效反馈
+            AudioServicesPlaySystemSound(1520);
+        }
     };
 }
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
@@ -1079,7 +1088,7 @@ UITextFieldProtocol_dynamic
     if (self.isFloat(inputData) && !bitNum) bitNum = 2;/// 默认保存小数点后2位
     NSString *format = @"%.".add(JobsFormattedString(@"%ldf",bitNum));
     NSString *str = JobsFormattedString(format,inputData);
-    return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+    return jobsMakeMutArr(^(__kindof NSMutableArray <UIImage *>*_Nullable data) {
         NSUInteger len = str.length;
         unichar buffer[len + 1];
         [str getCharacters:buffer range:NSMakeRange(0, len)];
@@ -1096,9 +1105,9 @@ UITextFieldProtocol_dynamic
     /// fileName Plist文件名
     return ^(NSString * _Nullable fileName) {
         NSString *filePath = JobsPathForResource(nil,
-                                                fileName,
-                                                nil,
-                                                @"plist");
+                                                 fileName,
+                                                 nil,
+                                                 @"plist");
         if (FileFolderHandleTool.isExistsAtPath(filePath)) {
             return [NSDictionary.alloc initWithContentsOfFile:filePath];
         }return (NSDictionary *)nil;
@@ -1132,14 +1141,9 @@ UITextFieldProtocol_dynamic
          *  error 返回时，是编码时发生的错误，或者nil没有发生错误
          */
         if (@available(iOS 11.0, *)) {
-            NSError *error = nil;
-            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:array
-                                                 requiringSecureCoding:YES
-                                                                 error:&error];
-            if (error) NSLog(@"err = %@",error.description);
-            return data;
+            return NSKeyedArchiver.archivedDataByRootObject_YES(array);
         }else{
-            SuppressWdeprecatedDeclarationsWarning(return [NSKeyedArchiver archivedDataWithRootObject:array]);
+            SuppressWdeprecatedDeclarationsWarning(return NSKeyedArchiver.initByObject(array));
         }
     }else if ([object isKindOfClass:NSDictionary.class]){
         return self.dataByJSONObject(object);

@@ -338,11 +338,17 @@ typedef __kindof NSCalendar *_Nullable(^JobsReturnCalendarByCalendarIdentifierBl
 typedef __kindof UNCalendarNotificationTrigger *_Nullable(^JobsReturnCalendarNotificationTriggerByComponentsBlock)(NSDateComponents *_Nullable data);
 typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByStringBlock)(__kindof NSString *_Nullable data);
 typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByIntegerBlock)(NSInteger data);
-#pragma mark —— 关于数据
+#pragma mark —— 关于URL
+typedef NSURL *_Nullable(^JobsReturnURLByStringBlock)(NSString *_Nullable data);
+typedef NSURL *_Nullable(^JobsReturnURLByURLBlock)(NSURL *_Nullable data);
+typedef NSURL *_Nullable(^JobsReturnURLByVoidBlock)(void);
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByVoidBlock)(void);
 typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByVoidBlock)(void);
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL *_Nullable url);
 typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByURLBlock)(NSURL *_Nullable url);
+#pragma mark —— 关于相册
+typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
+#pragma mark —— 关于数据
 typedef __kindof NSData *_Nullable(^JobsReturnDataByVoidBlock)(void);
 typedef __kindof NSData *_Nullable(^JobsReturnDataByIDBlock)(id _Nullable data);
 typedef __kindof NSData *_Nullable(^JobsReturnDataByNSUIntegerBlock)(NSUInteger data);
@@ -353,10 +359,6 @@ typedef __kindof NSData *_Nullable(^JobsReturnDataByURLBlock)(NSURL *_Nullable d
 typedef __kindof NSData *_Nullable(^JobsReturnDataByAssetBlock)(AVAsset *_Nullable asset);
 typedef __kindof NSData *_Nullable(^JobsReturnDataByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
-typedef PHAsset *_Nullable(^JobsReturnAssetByStrBlock)(NSString *_Nullable Key);
-typedef NSURL *_Nullable(^JobsReturnURLByStringBlock)(NSString *_Nullable data);
-typedef NSURL *_Nullable(^JobsReturnURLByURLBlock)(NSURL *_Nullable data);
-typedef NSURL *_Nullable(^JobsReturnURLByVoidBlock)(void);
 #pragma mark —— 关于字体
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
 typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
@@ -576,6 +578,10 @@ typedef unsigned long long(^JobsReturnUnsignedLongLongByVoidBlock)(void);
 typedef unsigned long long(^JobsReturnByUnsignedLongLongBlock)(unsigned long long data);
 
 typedef NSIndexPath *_Nonnull(^JobsReturnIndexPathByXYBlock)(CGFloat x,CGFloat y);
+#pragma mark —— 其他
+typedef UIImpactFeedbackGenerator *_Nonnull(^JobsReturnImpactFeedbackGeneratorByVoidBlock)(void);
+typedef UIImpactFeedbackGenerator *_Nonnull(^JobsReturnImpactFeedbackGeneratorByNSIntegerBlock)(NSInteger data);
+typedef UIImpactFeedbackGenerator *_Nonnull(^JobsReturnImpactFeedbackGeneratorByViewBlock)(__kindof UIView *_Nullable view);
 
 #pragma clang diagnostic pop
 

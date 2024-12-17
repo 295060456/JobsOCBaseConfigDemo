@@ -167,6 +167,8 @@
 #import "UITextItem+Extra.h"
 #pragma mark —— UIEditMenuInteraction
 #import "UIEditMenuInteraction+Extra.h"
+#pragma mark —— UIImpactFeedbackGenerator
+#import "UIImpactFeedbackGenerator+Extra.h"
 
 #import "JobsMakes.h"
 

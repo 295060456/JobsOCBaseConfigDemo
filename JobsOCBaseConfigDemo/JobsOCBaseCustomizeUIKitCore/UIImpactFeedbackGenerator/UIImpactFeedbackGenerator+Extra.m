@@ -1,0 +1,79 @@
+//
+//  UIImpactFeedbackGenerator+Extra.m
+//  FM
+//
+//  Created by Admin on 17/12/2024.
+//
+
+#import "UIImpactFeedbackGenerator+Extra.h"
+
+@implementation UIImpactFeedbackGenerator (Extra)
+
++(JobsReturnImpactFeedbackGeneratorByNSIntegerBlock _Nonnull)initByStyle{
+    return ^UIImpactFeedbackGenerator *_Nonnull(UIImpactFeedbackStyle style){
+        return [UIImpactFeedbackGenerator.alloc initWithStyle:style];
+    };
+}
+
++(UIImpactFeedbackGenerator *_Nonnull)initByLightStyle{
+    return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleLight);
+}
+
++(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initLightStyleBy{
+    return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+        if (@available(iOS 17.5, *)) {
+            return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleLight forView:view];
+        } else return UIImpactFeedbackGenerator.initByLightStyle;
+    };
+}
+
++(UIImpactFeedbackGenerator *_Nonnull)initByMediumStyle{
+    return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleMedium);
+}
+
++(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initMediumStyleBy{
+    return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+        if (@available(iOS 17.5, *)) {
+            return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleMedium forView:view];
+        } else return UIImpactFeedbackGenerator.initByMediumStyle;
+    };
+}
+
++(UIImpactFeedbackGenerator *_Nonnull)initByHeavyStyle{
+    return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleHeavy);
+}
+
++(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initHeavyStyleBy{
+    return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+        if (@available(iOS 17.5, *)) {
+            return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleHeavy forView:view];
+        } else return UIImpactFeedbackGenerator.initByHeavyStyle;
+    };
+}
+
++(UIImpactFeedbackGenerator *_Nonnull)initBySoftStyle API_AVAILABLE(ios(13.0)){
+    return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleSoft);
+}
+
++(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initSoftStyleBy{
+    return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+        if (@available(iOS 17.5, *)) {
+            return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleSoft forView:view];
+        } else return UIImpactFeedbackGenerator.initBySoftStyle;
+    };
+}
+
++(UIImpactFeedbackGenerator *_Nonnull)initByRigidStyle{
+    return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleRigid);
+}
+
++(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initRigidStyleBy{
+    return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+        if (@available(iOS 17.5, *)) {
+            return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleRigid forView:view];
+        } else return UIImpactFeedbackGenerator.initByRigidStyle;
+    };
+}
+
+
+@end

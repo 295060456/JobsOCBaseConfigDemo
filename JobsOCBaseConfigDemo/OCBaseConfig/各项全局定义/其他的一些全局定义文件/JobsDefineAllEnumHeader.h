@@ -20,6 +20,44 @@ typedef NS_ENUM(NSInteger, JobsNetworkingEnvir) {
     JobsNetworkingEnvir_Product,/// 生产环境
 };
 #endif /* JOBS_NETWORKING_ENVIR_ENUM_DEFINED */
+/// 屏幕分辨率
+#ifndef iPhScrPxType_h
+#define iPhScrPxType_h
+typedef NS_ENUM(NSUInteger, iPhScrPxType) {
+    iPhScrPxType_None,
+    iPhScrPxType_4_4S,          /// 屏幕分辨率(px) = 640 * 960
+    iPhScrPxType_5_5C_5S_SE,    /// 屏幕分辨率(px) = 640 * 1136
+    iPhScrPxType_6_6S_7_8_SE2,  /// 屏幕分辨率(px) = 750 * 1334
+    iPhScrPxType_6_6S_7_8Plus,  /// 屏幕分辨率(px) = 1242 * 2208
+    /// 从这里开始刘海屏
+    iPhScrPxType_X_XS_11Pro,    /// 屏幕分辨率(px) = 1125 * 2436
+    iPhScrPxType_Xr_11,         /// 屏幕分辨率(px) = 828 * 1792
+    iPhScrPxType_XSMax_11ProMax,/// 屏幕分辨率(px) = 1242 * 2688
+    /// iPhone 12 系列
+    iPhScrPxType_12mini,        /// 屏幕分辨率(px) = 1080 * 2340
+    iPhScrPxType_12_12Pro,      /// 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_12ProMax,      /// 屏幕分辨率(px) = 1284 * 2778
+    /// iPhone 13 系列
+    iPhScrPxType_13mini,        /// 屏幕分辨率(px) = 1080 * 2340
+    iPhScrPxType_13_13Pro,      /// 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_13ProMax,      /// 屏幕分辨率(px) = 1284 * 2778
+    /// iPhone 14 系列
+    iPhScrPxType_14,            /// 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_14Plus,        /// 屏幕分辨率(px) = 1284 * 2778
+    iPhScrPxType_14Pro,         /// 屏幕分辨率(px) = 1179 * 2556
+    iPhScrPxType_14ProMax,      /// 屏幕分辨率(px) = 1290 * 2796
+    /// iPhone 15 系列
+    iPhScrPxType_15,            /// 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_15Plus,        /// 屏幕分辨率(px) = 1284 * 2778
+    iPhScrPxType_15Pro,         /// 屏幕分辨率(px) = 1179 * 2556
+    iPhScrPxType_15ProMax,      /// 屏幕分辨率(px) = 1290 * 2796
+    /// iPhone 16 系列
+    iPhScrPxType_16,            /// 屏幕分辨率(px) = 1170 * 2532
+    iPhScrPxType_16Plus,        /// 屏幕分辨率(px) = 1284 * 2778
+    iPhScrPxType_16Pro,         /// 屏幕分辨率(px) = 1179 * 2556
+    iPhScrPxType_16ProMax       /// 屏幕分辨率(px) = 1290 * 2796
+};
+#endif /* iPhScrPxType_h */
 /// 平台维护状态
 #ifndef JOBS_APP_STATUS_ENUM_DEFINED
 #define JOBS_APP_STATUS_ENUM_DEFINED
@@ -155,6 +193,74 @@ typedef NS_ENUM(NSInteger, ComponentType) {
     ComponentTypeViewController/// 控制器
 };
 #endif /* MyEnums_h */
+#ifndef JOBS_TimeZoneType
+#define JOBS_TimeZoneType
+typedef NS_ENUM(NSInteger, TimeZoneType) {
+    TimeZoneTypeUTC,           // 协调世界时
+    TimeZoneTypeGMT,           // 格林尼治标准时间
+    TimeZoneTypePST,           // 太平洋标准时间 (美国和加拿大)
+    TimeZoneTypeEST,           // 东部标准时间 (美国和加拿大)
+    TimeZoneTypeCST,           // 中部标准时间 (美国和加拿大)
+    TimeZoneTypeMST,           // 山地标准时间 (美国和加拿大)
+    TimeZoneTypeCSTChina,      // 中国标准时间
+    TimeZoneTypeJST,           // 日本标准时间
+    TimeZoneTypeBST,           // 英国夏令时
+    TimeZoneTypeAEST,          // 澳大利亚东部标准时间
+    TimeZoneTypeAWST,          // 澳大利亚西部标准时间
+    TimeZoneTypeCET,           // 欧洲中部时间
+    TimeZoneTypeMSK,           // 莫斯科标准时间
+    TimeZoneTypeIST,           // 印度标准时间
+    TimeZoneTypeBRT,           // 巴西利亚时间
+    TimeZoneTypeCSTMexico,     // 墨西哥城时间
+    TimeZoneTypeART,           // 阿根廷时间
+    TimeZoneTypeHST,           // 夏威夷标准时间
+    TimeZoneTypeAKST,          // 阿拉斯加标准时间
+    TimeZoneTypeCEST,          // 中欧夏令时
+    TimeZoneTypeEET,           // 欧洲东部时间
+    TimeZoneTypeWET,           // 欧洲西部时间
+    TimeZoneTypeNST,           // 纽芬兰标准时间
+    TimeZoneTypeAST,           // 大西洋标准时间
+    TimeZoneTypePDT,           // 太平洋夏令时
+    TimeZoneTypeMDT,           // 山地夏令时
+    TimeZoneTypeCDT,           // 中部夏令时
+    TimeZoneTypeEDT,           // 东部夏令时
+    TimeZoneTypeNZST,          // 新西兰标准时间
+    TimeZoneTypeHKT,           // 香港时间
+    TimeZoneTypeSGT,           // 新加坡时间
+    TimeZoneTypeMYT,           // 马来西亚时间
+    TimeZoneTypeKST            // 韩国标准时间
+    // 可以继续添加更多时区类型...
+};
+#endif /* JOBS_TimeZoneType */
+/// 系统支持语言
+#ifndef APP_LANGUAGE_ENUM_DEFINED
+#define APP_LANGUAGE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, AppLanguage) {
+    AppLanguageBySys,/// App语言跟随当前系统
+    AppLanguageChineseSimplified, /// zh-Hans：简体中文
+    AppLanguageChineseTraditional,/// zh-Hant：繁体中文
+    AppLanguageEnglish,           /// en：标准英语
+    AppLanguageTagalog            /// tl：菲律宾他加禄语
+};
+#endif/* APP_LANGUAGE_ENUM_DEFINED */
+/// 屏幕方向
+#ifndef DeviceOrientation_typedef
+#define DeviceOrientation_typedef
+typedef NS_ENUM(NSInteger, DeviceOrientation) {
+    DeviceOrientationUnknown, /// 未知方向
+    DeviceOrientationPortrait,/// 竖屏
+    DeviceOrientationLandscape /// 横屏
+};
+#endif /* DeviceOrientation_typedef */
+/// 当前类型
+#ifndef MyEnums_h
+#define MyEnums_h
+typedef NS_ENUM(NSInteger, ComponentType) {
+    ComponentTypeUnknown,/// 其他
+    ComponentTypeView,/// 视图
+    ComponentTypeViewController/// 控制器
+};
+#endif /* MyEnums_h */
 /// 图片编码格式
 #ifndef PIC_TO_STR_STYLE_ENUM_DEFINED
 #define PIC_TO_STR_STYLE_ENUM_DEFINED
@@ -192,6 +298,11 @@ typedef NS_OPTIONS(NSUInteger, ShadowDirection) {
     ShadowDirection_All = ~0UL
 };
 #endif /* ShadowDirection_h */
+/// JobsDropDownListView的方向
+typedef enum : NSInteger {
+    JobsDropDownListViewDirection_Down = 0,
+    JobsDropDownListViewDirection_UP
+} JobsDropDownListViewDirection;
 /// UIBorderSideType
 #ifndef UIBorderSideType_h
 #define UIBorderSideType_h
@@ -204,45 +315,37 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 };
 #endif /* UIBorderSideType_h */
 /// BaseURL
-#ifndef SERVER_URL_DEFINED
-#define SERVER_URL_DEFINED
+#ifndef server_URL
 #define server_URL NSObject.BaseUrl
-#endif /* SERVER_URL_DEFINED */
+#endif /* server_URL */
 /// 服务器相关
-#ifndef HTTP_REQUEST_TOKEN_KEY_DEFINED
-#define HTTP_REQUEST_TOKEN_KEY_DEFINED
+#ifndef HTTPRequestTokenKey
 #define HTTPRequestTokenKey @"token"
-#endif /* HTTP_REQUEST_TOKEN_KEY_DEFINED */
+#endif /* HTTPRequestTokenKey */
 /// 签名key
-#ifndef HTTP_SERVICE_SIGN_KEY_DEFINED
-#define HTTP_SERVICE_SIGN_KEY_DEFINED
+#ifndef HTTPServiceSignKey
 #define HTTPServiceSignKey @"sign"
-#endif /* HTTP_SERVICE_SIGN_KEY_DEFINED */
+#endif /* HTTPServiceSignKey */
 /// 私钥key
-#ifndef HTTP_SERVICE_KEY_DEFINED
-#define HTTP_SERVICE_KEY_DEFINED
+#ifndef HTTPServiceKey
 #define HTTPServiceKey @"privatekey"
-#endif /* HTTP_SERVICE_KEY_DEFINED */
+#endif /* HTTPServiceKey */
 /// 私钥Value
-#ifndef HTTP_SERVICE_KEY_VALUE_DEFINED
-#define HTTP_SERVICE_KEY_VALUE_DEFINED
+#ifndef HTTPServiceKeyValue
 #define HTTPServiceKeyValue @"/** 你的私钥 **/"
-#endif /* HTTP_SERVICE_KEY_VALUE_DEFINED */
+#endif /* HTTPServiceKeyValue */
 /// 状态码key
-#ifndef HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED
-#define HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED
+#ifndef HTTPServiceResponseCodeKey
 #define HTTPServiceResponseCodeKey @"code"
-#endif /* HTTP_SERVICE_RESPONSE_CODE_KEY_DEFINED */
+#endif /* HTTPServiceResponseCodeKey */
 /// 消息key
-#ifndef HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED
-#define HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED
+#ifndef HTTPServiceResponseMsgKey
 #define HTTPServiceResponseMsgKey @"msg"
-#endif /* HTTP_SERVICE_RESPONSE_MSG_KEY_DEFINED */
+#endif /* HTTPServiceResponseMsgKey */
 /// 数据data
-#ifndef HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED
-#define HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED
+#ifndef HTTPServiceResponseDataKey
 #define HTTPServiceResponseDataKey @"data"
-#endif /* HTTP_SERVICE_RESPONSE_DATA_KEY_DEFINED */
+#endif /* HTTPServiceResponseDataKey */
 /**
  后台定义：
  

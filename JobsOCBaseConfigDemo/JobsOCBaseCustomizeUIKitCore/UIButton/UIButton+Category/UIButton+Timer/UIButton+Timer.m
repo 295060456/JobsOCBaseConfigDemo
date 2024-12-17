@@ -101,7 +101,6 @@
         @jobs_strongify(self)
         switch (self.btnTimerConfig.cequenceForShowTitleRuningStrType) {
             case CequenceForShowTitleRuningStrType_front:{/// 首在前
-                id f = self.runningValue.title;
                 self.runningValue.title = self.runningValue.title.add(self.btnTimerConfig.formatTimeStr);
             }break;
             case CequenceForShowTitleRuningStrType_tail:{/// 首在后

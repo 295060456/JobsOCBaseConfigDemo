@@ -7,13 +7,9 @@
 
 #import "BaseView.h"
 #import "JobsBlock.h"
-#import "JobsDropDownListTBVCell.h"
 #import "UITableViewCellProtocol.h"
-/// JobsDropDownListView的方向
-typedef enum : NSInteger {
-    JobsDropDownListViewDirection_Down = 0,
-    JobsDropDownListViewDirection_UP
-} JobsDropDownListViewDirection;
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "JobsDropDownListTBVCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

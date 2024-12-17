@@ -23,9 +23,9 @@ NSCoding,/// 编码
 NSSecureCoding/// 解码
 >
 #pragma mark —— MJExtension
-+(NSDictionary *)mj_replacedKeyFromPropertyName;
++(__kindof NSDictionary *)mj_replacedKeyFromPropertyName;
 #pragma mark —— YYModel
-+(NSDictionary *)modelCustomPropertyMapper;
++(__kindof NSDictionary *)modelCustomPropertyMapper;
 
 @end
 
