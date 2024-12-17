@@ -236,10 +236,11 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle7Block)(NSString *_
 typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,
                                                                                                                   NSString *_Nullable salt);
 #pragma mark —— 关于 UITableViewCell
-typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewCellStyleBlock)(UITableViewCellStyle tableViewCellStyle);
-typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewBlock)(UITableView *_Nonnull tableView);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsBlock)(Class _Nonnull cls);
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewCellStyleBlock)(UITableViewCellStyle tableViewCellStyle);
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewBlock)(UITableView *_Nonnull tableView);
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByIndexPathBlock)(NSIndexPath *_Nonnull indexPath);
 /// 多参数
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Class _Nonnull cls,
                                                                                           NSString *_Nullable salt);

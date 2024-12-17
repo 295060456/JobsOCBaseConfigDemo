@@ -222,7 +222,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     data.loadBlock = ^id _Nullable(id _Nullable data) {
                         @jobs_strongify(self)
                         /// 下拉刷新
-                        self.feedbackGenerator();//震动反馈
+                        self.feedbackGenerator(nil);//震动反馈
                         self.tableView.endRefreshing(YES);
                         return nil;
                     };

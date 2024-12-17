@@ -301,7 +301,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                 data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self.feedbackGenerator();//震动反馈
+                    self.feedbackGenerator(nil);//震动反馈
                     return nil;
                 };
             }));
@@ -311,7 +311,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                 data.refreshingTitle = JobsInternationalization(@"");
                 data.willRefreshTitle = JobsInternationalization(@"");
                 data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                data.loadBlock = ^id _Nullable(id _Nullable data) {
                     @jobs_strongify(self)
                     self->_collectionView.endRefreshing(self.dataMutArr.count);
                     return nil;

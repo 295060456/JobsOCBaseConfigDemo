@@ -208,7 +208,7 @@ willDisplayHeaderView:(UIView *)view
                 data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self.feedbackGenerator();//震动反馈
+                    self.feedbackGenerator(nil);//震动反馈
                     return nil;
                 };
             }));

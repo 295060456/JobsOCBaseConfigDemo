@@ -30,7 +30,24 @@
     return [UITableView.alloc initWithFrame:CGRectZero style:UITableViewStyleInsetGrouped];
 }
 #pragma mark —— UITableViewCell
--(UITableViewCell __kindof *)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/// 对系统方法 cellForRowAtIndexPath 的二次封装
+-(JobsReturnTableViewCellByIndexPathBlock _Nonnull)cellBy{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(NSIndexPath *_Nonnull indexPath){
+        @jobs_strongify(self)
+        return [self cellForRowAtIndexPath:indexPath];
+    };
+}
+/// 对系统方法 numberOfRowsInSection 的二次封装
+-(JobsReturnByNSIntegerBlock _Nonnull)rowsInSection{
+    @jobs_weakify(self)
+    return ^NSInteger(NSInteger Section){
+        @jobs_strongify(self)
+        return [self numberOfRowsInSection:Section];
+    };
+}
+
+-(__kindof UITableViewCell *)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                                   tableViewCellClass:(Class _Nullable)tableViewCellClass{
     NSLog(@"%s", __FUNCTION__);
     if (tableViewCellClass) {
@@ -41,70 +58,66 @@
             }
         }
     }
-    UITableViewCell *cell = (UITableViewCell *)[self cellForRowAtIndexPath:indexPath];
-    cell.selected = !cell.selected;// 当程序运行到cellForRowAtIndexPath，赋值失效
-    cell.jobsSelected = !cell.jobsSelected;// 当程序运行到cellForRowAtIndexPath，赋值失效
+    UITableViewCell *cell = (UITableViewCell *)self.cellBy(indexPath);
+    cell.selected = !cell.selected;
+    cell.jobsSelected = !cell.jobsSelected;
     cell.getViewModel.jobsSelected = !cell.getViewModel.jobsSelected;/// 建议用model来修改
     return cell;
 }
 
--(UITableViewCell __kindof *)didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+-(__kindof UITableViewCell *)didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
                                     tableViewCellClass:(Class _Nullable)tableViewCellClass{
     NSLog(@"%s", __FUNCTION__);
-    UITableViewCell *cell = (UITableViewCell *)[self cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = (UITableViewCell *)self.cellBy(indexPath);
     cell.selected = !cell.selected;
     cell.getViewModel.jobsSelected = !cell.getViewModel.jobsSelected;
     return cell;
 }
 
--(UITableViewCell __kindof *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
+-(__kindof UITableViewCell *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
+                              tableViewCellSalt:(NSString * _Nullable)cellSalt
+                                      withStyle:(UITableViewCellStyle)cellStyle{
+    if(!cellSalt) cellSalt = @"";
+    UITableViewCell *tableViewCell = (UITableViewCell *)self.tableViewCellClass(tableViewCellClass,cellSalt);
+    if (!tableViewCell) {
+        tableViewCell = [tableViewCellClass initTableViewCell:tableViewCellClass
+                                                    withStyle:cellStyle];
+        tableViewCell.settingForTableViewCell();
+    }return tableViewCell;
+}
+
+-(__kindof UITableViewCell *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
                    tableViewCellStyleValue1Salt:(NSString * _Nullable)salt{
-    if(!salt) salt = @"";
-    UITableViewCell *tableViewCell = (UITableViewCell *)self.tableViewCellClass(tableViewCellClass,salt);
-    if (!tableViewCell) {
-        tableViewCell = [UITableViewCell initTableViewCell:tableViewCellClass
-                                                 withStyle:UITableViewCellStyleValue1];
-        tableViewCell.settingForTableViewCell();
-    }return tableViewCell;
+    return [self tableViewCellClass:tableViewCellClass
+                  tableViewCellSalt:salt
+                          withStyle:UITableViewCellStyleValue1];
 }
 
--(UITableViewCell __kindof *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
+-(__kindof UITableViewCell *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
                   tableViewCellStyleDefaultSalt:(NSString * _Nullable)salt{
-    if(!salt) salt = @"";
-    UITableViewCell *tableViewCell = (UITableViewCell *)self.tableViewCellClass(tableViewCellClass,salt);
-    if (!tableViewCell) {
-        tableViewCell = [UITableViewCell initTableViewCell:tableViewCellClass
-                                                 withStyle:UITableViewCellStyleDefault];
-        tableViewCell.settingForTableViewCell();
-    }return tableViewCell;
+    return [self tableViewCellClass:tableViewCellClass
+                  tableViewCellSalt:salt
+                          withStyle:UITableViewCellStyleDefault];
 }
 
--(UITableViewCell __kindof *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
+-(__kindof UITableViewCell *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
                    tableViewCellStyleValue2Salt:(NSString * _Nullable)salt{
-    if(!salt) salt = @"";
-    UITableViewCell *tableViewCell = (UITableViewCell *)self.tableViewCellClass(tableViewCellClass,salt);
-    if (!tableViewCell) {
-        tableViewCell = [UITableViewCell initTableViewCell:tableViewCellClass
-                                                 withStyle:UITableViewCellStyleValue2];
-        tableViewCell.settingForTableViewCell();
-    }return tableViewCell;
+    return [self tableViewCellClass:tableViewCellClass
+                  tableViewCellSalt:salt
+                          withStyle:UITableViewCellStyleValue2];
 }
 
--(UITableViewCell __kindof *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
+-(__kindof UITableViewCell *)tableViewCellClass:(Class <UITableViewCellProtocol>)tableViewCellClass
                  tableViewCellStyleSubtitleSalt:(NSString * _Nullable)salt{
-    if(!salt) salt = @"";
-    UITableViewCell *tableViewCell = (UITableViewCell *)self.tableViewCellClass(tableViewCellClass,salt);
-    if (!tableViewCell) {
-        tableViewCell = [UITableViewCell initTableViewCell:tableViewCellClass
-                                                 withStyle:UITableViewCellStyleSubtitle];
-        tableViewCell.settingForTableViewCell();
-    }return tableViewCell;
+    return [self tableViewCellClass:tableViewCellClass
+                  tableViewCellSalt:salt
+                          withStyle:UITableViewCellStyleSubtitle];
 }
 #pragma mark —— 其他
 /// 更多，参见： 关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量.md
 /// 隐藏最后一个单元格的分界线
 -(void)hideSeparatorLineAtLast:(NSIndexPath *)indexPath
-                          cell:(UITableViewCell __kindof *)cell{
+                          cell:(__kindof UITableViewCell *)cell{
     /// 判断是否是该 section 的最后一行
     if (indexPath.row == [self numberOfRowsInSection:indexPath.section] - 1){
         cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);

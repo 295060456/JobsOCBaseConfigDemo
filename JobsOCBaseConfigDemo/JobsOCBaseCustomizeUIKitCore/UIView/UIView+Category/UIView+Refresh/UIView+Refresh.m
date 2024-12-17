@@ -9,7 +9,7 @@
 
 @implementation UIView (Refresh)
 #pragma mark —— 一些私有方法
--(jobsByRefreshConfigModelBlock)handleWord{
+-(jobsByRefreshConfigModelBlock _Nonnull)handleWord{
     @jobs_weakify(self)
     return ^(__kindof MJRefreshConfigModel *_Nullable data){
         @jobs_strongify(self)
@@ -635,14 +635,14 @@
                        context:(void *)context {
     if ([object isEqual:self.mjRefreshGifHeader] &&
         self.mjRefreshGifHeader.state == MJRefreshStatePulling) {
-        self.feedbackGenerator();
+        self.feedbackGenerator(nil);
     }else if (([object isEqual:self.mjRefreshAutoGifFooter] ||
                [object isEqual:self.mjRefreshBackNormalFooter] ||
                [object isEqual:self.mjRefreshAutoNormalFooter]) && (self.mjRefreshAutoGifFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshBackNormalFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshAutoNormalFooter.state == MJRefreshStatePulling)
              ) {
-        self.feedbackGenerator();
+        self.feedbackGenerator(nil);
     }else{}
 }
 /**

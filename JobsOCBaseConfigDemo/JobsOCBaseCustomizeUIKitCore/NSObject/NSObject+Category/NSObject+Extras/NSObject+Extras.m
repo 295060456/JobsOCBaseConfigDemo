@@ -994,7 +994,14 @@ UITextFieldProtocol_dynamic
 }
 /// 震动特效反馈
 - (jobsByViewBlock _Nonnull)feedbackGenerator {
+    @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable view) {
+        @jobs_strongify(self)
+        if(!view && [self isKindOfClass:UIView.class]) view = (UIView *)self;
+        if(!view && [self isKindOfClass:UIViewController.class]) {
+            UIViewController *vc = (UIViewController *)self;
+            view = vc.view;
+        }
         if (@available(iOS 17.5, *)) {
             /// iOS 17.5 及以上使用新的 API
             UIImpactFeedbackGenerator *generator = UIImpactFeedbackGenerator.initMediumStyleBy(view);

@@ -40,11 +40,11 @@ static dispatch_once_t static_shareViewOnceToken;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         [self addNotificationName:语言切换
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
@@ -65,7 +65,7 @@ static dispatch_once_t static_shareViewOnceToken;
     JobsLock(self.sizer = JobsShareView.viewSizeByModel(nil);)
     /// 内部指定圆切角
     [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -178,9 +178,11 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 - (CGSize)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.cls = self.class;
-    return MSMineView6CVCell.cellSizeByModel(viewModel);
+    @jobs_weakify(self)
+    return MSMineView6CVCell.cellSizeByModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+        @jobs_strongify(self)
+        data.cls = self.class;
+    }));
 }
 /// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
@@ -255,7 +257,7 @@ insetForSectionAtIndex:(NSInteger)section {
                 data.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self.feedbackGenerator();//震动反馈
+                    self.feedbackGenerator(nil);//震动反馈
                     self->_collectionView.endRefreshing(YES);
                     return nil;
                 };

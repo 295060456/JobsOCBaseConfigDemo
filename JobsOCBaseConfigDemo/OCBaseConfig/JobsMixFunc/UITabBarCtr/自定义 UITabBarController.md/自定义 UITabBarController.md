@@ -145,7 +145,7 @@
                   }break;
                   case UIGestureRecognizerStateBegan:{
                       if (self.isFeedbackGenerator) {
-                          self.feedbackGenerator();/// 震动反馈
+                          self.feedbackGenerator(nil);/// 震动反馈
                       }
                       /// 长按手势出菜单（高仿 Telegram）
                       [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
