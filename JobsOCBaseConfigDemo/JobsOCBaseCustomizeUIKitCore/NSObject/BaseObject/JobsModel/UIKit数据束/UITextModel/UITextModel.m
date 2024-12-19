@@ -31,6 +31,14 @@ UIViewModelOthersProtocol_synthesize
     }return _text;
 }
 
+-(NSString *)subText{
+    if(!_subText){
+#ifdef DEBUG
+        _subText = JobsInternationalization(TextModelDataString2);
+#endif
+    }return _subText;
+}
+
 -(UILabelShowingType)labelShowingType{
     if (!_labelShowingType) {
         /// 默认：一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】

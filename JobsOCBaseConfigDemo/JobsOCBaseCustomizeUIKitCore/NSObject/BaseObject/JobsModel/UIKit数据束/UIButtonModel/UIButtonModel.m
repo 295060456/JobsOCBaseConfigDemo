@@ -92,13 +92,17 @@ BaseProtocol_synthesize
 
 -(NSString *)title{
     if (!_title) {
-        _title = @"";
+#ifdef DEBUG
+        _title = JobsInternationalization(TextModelDataString);
+#endif
     }return _title;
 }
 
 -(NSString *)subTitle{
     if(!_subTitle){
-        _subTitle = @"";
+#ifdef DEBUG
+        _subTitle = JobsInternationalization(TextModelDataString2);
+#endif
     }return _subTitle;
 }
 

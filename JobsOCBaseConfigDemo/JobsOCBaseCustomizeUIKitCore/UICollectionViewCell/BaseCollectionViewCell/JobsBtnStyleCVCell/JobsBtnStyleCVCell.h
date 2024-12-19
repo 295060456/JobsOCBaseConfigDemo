@@ -6,6 +6,7 @@
 //
 
 #import "JobsBaseCollectionViewCell.h"
+#import "JobsBlock.h"
 #import "UIButton+UI.h"
 #import "UIButton+SDWebImage.h"
 #import "UIViewModelProtocol.h"
@@ -17,8 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 其目的是利用Button丰富的图文展示效果
 /// 同 JobsBtnStyleTBVCell
 @interface JobsBtnStyleCVCell : JobsBaseCollectionViewCell
-#pragma mark —— 一些公有方法
--(BaseButton *)btn;
+
+@property(nonatomic,strong,readonly)BaseButton *btn;
+@property(nonatomic,strong,readonly)WKWebView *webView;
 
 @end
 

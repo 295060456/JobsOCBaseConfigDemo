@@ -19,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 UICollectionViewCellProtocol,
 AppToolsProtocol
 >
-
+@property(nonatomic,strong,readonly)UILabel *label;
+@property(nonatomic,strong,readonly)BaseButton *bgBtn;
 @property(nonatomic,assign)BOOL forceUseLabel;
 @property(nonatomic,assign)BOOL forceUseBgBtn;
 

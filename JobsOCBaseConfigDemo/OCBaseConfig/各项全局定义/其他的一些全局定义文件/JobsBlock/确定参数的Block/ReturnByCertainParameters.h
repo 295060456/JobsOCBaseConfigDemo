@@ -526,7 +526,7 @@ typedef BOOL(^JobsReturnBOOLByNSUIntegerBlock)(NSUInteger data);
 typedef BOOL(^JobsReturnBOOLByNSIntegerBlock)(NSInteger data);
 typedef BOOL(^JobsReturnBOOLByIDBlock)(id _Nullable data);
 typedef BOOL(^JobsReturnBOOLByViewControllerBlock)(UIViewController *_Nullable viewController);
-typedef BOOL(^JobsReturnBOOLByStringBlock)(NSString *_Nullable data);
+typedef BOOL(^JobsReturnBOOLByStringBlock)(__kindof NSString *_Nullable data);
 typedef BOOL(^JobsReturnBOOLByDateBlock)(NSDate *_Nullable date);
 typedef BOOL(^JobsReturnBOOLByArrBlock)(__kindof NSArray *_Nullable arr);
 

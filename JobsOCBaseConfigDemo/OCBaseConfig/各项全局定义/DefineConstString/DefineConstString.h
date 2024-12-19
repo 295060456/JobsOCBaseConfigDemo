@@ -81,3 +81,6 @@ FOUNDATION_EXTERN NSString *_Nonnull const 俄语字母;
 FOUNDATION_EXTERN NSString *_Nonnull const 汉语拼音;
 FOUNDATION_EXTERN NSString *_Nonnull const 中文字符;
 FOUNDATION_EXTERN NSString *_Nonnull const 日文平假名和片假名;
+/// 默认占位
+FOUNDATION_EXTERN NSString *_Nonnull const 主标题文字默认占位内容;
+FOUNDATION_EXTERN NSString *_Nonnull const 副标题文字默认占位内容;

@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsBlock.h"
 #import "JobsDeployDataForCellHeader.h"
 #import "UICollectionViewCellProtocol.h"
 #import "UITableViewCellProtocol.h"

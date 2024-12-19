@@ -45,14 +45,6 @@ UITextFieldProtocol_synthesize_part2
     
     return cell;
 }
-
--(UILabel *)getLabel{
-    return self.label;
-}
-
--(UIButton *)getBgBtn{
-    return self.bgBtn;
-}
 #pragma mark —— 复写父类相关方法和属性
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
@@ -70,23 +62,6 @@ UITextFieldProtocol_synthesize_part2
     return ^(UIViewModel *_Nonnull model) {
         @jobs_strongify(self)
         self.viewModel = model;
-        if(model){
-            /// 如果有图片则只显示这个图片，并铺满
-            BOOL A = model.bgImage || model.image;
-            BOOL B = (!model.textModel.text.isEqualToString(JobsInternationalization(TextModelDataString)) && isValue(model.textModel.text)) || model.textModel.attributedTitle;
-
-            if (A || self.forceUseBgBtn) {
-                self.bgBtn.jobsVisible = A || self.forceUseBgBtn;
-                return;
-            }
-            /// 如果有文字（普通文本 或者富文本）则只显示这个文字（普通文本 或者富文本），并铺满
-            if (B || self.forceUseLabel) {
-                /// ❤️textView 和 bgBtn不能共存❤️
-                self.bgBtn.jobsVisible = !B || self.forceUseBgBtn;
-                self.label.jobsVisible = B || self.forceUseLabel;
-                return;
-            }
-        }
     };
 }
 #pragma mark —— <UIViewModelProtocol> 协议属性合成set & get方法
@@ -107,64 +82,5 @@ UITextFieldProtocol_synthesize_part2
     _index = index;
 }
 #pragma mark —— lazyLoad
--(BaseButton *)bgBtn{
-    if (!_bgBtn) {
-        @jobs_weakify(self)
-        _bgBtn = BaseButton.jobsInit()
-            .bgColorBy(JobsWhiteColor)
-            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePadding(1)
-            .jobsResetBtnImage(self.viewModel.image)
-            .jobsResetBtnBgImage(self.viewModel.bgImage)
-            .jobsResetBtnTitleCor(self.viewModel.textModel.textCor)
-            .jobsResetBtnTitleFont(self.viewModel.textModel.font)
-            .jobsResetBtnTitle(self.viewModel.textModel.text)
-            .jobsResetBtnNormalAttributedTitle(self.viewModel.textModel.attributedTitle)
-            .onClickBy(^(UIButton *x){
-                @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
-            }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
-            });
-        _bgBtn.userInteractionEnabled = NO;
-        [self.contentView addSubview:_bgBtn];
-        [_bgBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        }];
-    }
-    _bgBtn.selectedStateImageBy(self.viewModel.selectedImage_);
-    _bgBtn.selectedStateTitleBy(self.viewModel.textModel.selectedText);
-    _bgBtn.selectedStateBackgroundImageBy(self.viewModel.bgSelectedImage);
-    _bgBtn.selectedAttributedTitleBy(self.viewModel.textModel.selectedAttributedText);
-    _bgBtn.selectedStateTitleColorBy(self.viewModel.textModel.selectedTextCor);
-    
-    _bgBtn.titleAlignment = self.viewModel.textModel.textAlignment;
-    _bgBtn.makeNewLineShows(self.viewModel.textModel.lineBreakMode);
-    _bgBtn.jobsResetBtnNormalAttributedTitle(self.viewModel.textModel.attributedTitle);
-    _bgBtn.jobsResetBtnNormalAttributedSubTitle(self.viewModel.textModel.attributedSubTitle);
-    
-    _bgBtn.jobsResetImagePlacement_Padding(self.viewModel.buttonEdgeInsetsStyle,
-                                           self.viewModel.imageTitleSpace);
-    return _bgBtn;
-}
-
--(UILabel *)label{
-    if(!_label){
-        @jobs_weakify(self)
-        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-            @jobs_strongify(self)
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.contentView);
-            }];
-        });
-    }
-    _label.attributedText = self.viewModel.textModel.attributedTitle;
-    _label.font = self.viewModel.textModel.font;
-    _label.textAlignment = self.viewModel.textModel.textAlignment;
-    _label.text = self.viewModel.textModel.text;
-    _label.textColor = self.selected ? self.viewModel.textModel.selectedTextCor : self.viewModel.textModel.textCor;
-    return _label;
-}
 
 @end
