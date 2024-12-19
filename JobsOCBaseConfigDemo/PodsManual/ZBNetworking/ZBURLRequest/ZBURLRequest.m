@@ -53,12 +53,12 @@
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{
-    //  NSLog(@"undefinedKey:%@",key);
+    //  JobsLog(@"undefinedKey:%@",key);
 }
 
 - (void)dealloc{
     if (_consoleLog==YES) {
-        NSLog(@"%s",__func__);
+        JobsLog(@"%s",__func__);
     }
 }
 

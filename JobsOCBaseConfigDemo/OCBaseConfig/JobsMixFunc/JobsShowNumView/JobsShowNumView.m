@@ -76,7 +76,7 @@ static dispatch_once_t static_showNumViewOnceToken;
             @jobs_weakify(self)
             [btn jobsBtnClickEventBlock:^id(id data) {
 //                @jobs_strongify(self)
-                NSLog(@"%@",btn.titleForNormalState)
+                JobsLog(@"%@",btn.titleForNormalState)
                 return nil;
             }];
             [self addSubview:btn];

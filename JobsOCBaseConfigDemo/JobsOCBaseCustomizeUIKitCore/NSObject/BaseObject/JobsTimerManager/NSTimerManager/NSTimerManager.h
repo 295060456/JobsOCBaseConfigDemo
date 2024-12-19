@@ -100,7 +100,7 @@ NS_INLINE NSTimerManager *_Nonnull jobsMakeTimerManager(jobsByTimerManagerBlock 
              @jobs_strongify(self)
              if ([data isKindOfClass:UIButtonModel.class]) {
                  UIButtonModel *model = (UIButtonModel *)data;
-                 NSLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
+                 JobsLog(@"❤️❤️❤️❤️❤️%f",model.data.anticlockwiseTime);
                  self.valueLab.text = [NSString stringWithFormat:@"%.2f",model.data.anticlockwiseTime];
              }
          }];

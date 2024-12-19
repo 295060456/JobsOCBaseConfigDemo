@@ -14,7 +14,7 @@
 @implementation CheckMemFreeVC
 
 -(void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     self.jobsToastMsg(JobsInternationalization(@"检查者出栈"));
 }
 
@@ -26,36 +26,36 @@
     [super viewDidLoad];
     self.jobsToastMsg(JobsInternationalization(@"检查者进栈"));
     self.view.backgroundColor = JobsRandomColor;
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 @end

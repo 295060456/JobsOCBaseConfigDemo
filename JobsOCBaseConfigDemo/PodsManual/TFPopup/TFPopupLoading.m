@@ -20,7 +20,7 @@
 
 -(void)dealloc{
 #if DEBUG
-    NSLog(@"****** TFPopupLoading(已释放) msg:%@ ******",self.msg);
+    JobsLog(@"****** TFPopupLoading(已释放) msg:%@ ******",self.msg);
 #endif
 }
 
@@ -42,8 +42,8 @@
  animationType:(TFAnimationType)animationType
    customBlock:(TFPopupLoadingBlock)customBlock{
     
-    if (inView == nil) {NSLog(@"****** %@ %@ ******",[self class],@"inView 不能为空！");return;}
-    if (msg == nil) {NSLog(@"****** %@ %@ ******",[self class],@"msg 不能为空！");return;}
+    if (inView == nil) {JobsLog(@"****** %@ %@ ******",[self class],@"inView 不能为空！");return;}
+    if (msg == nil) {JobsLog(@"****** %@ %@ ******",[self class],@"msg 不能为空！");return;}
     
     TFPopupParam *param = [TFPopupParam new];
     param.backgroundColorClear = YES;

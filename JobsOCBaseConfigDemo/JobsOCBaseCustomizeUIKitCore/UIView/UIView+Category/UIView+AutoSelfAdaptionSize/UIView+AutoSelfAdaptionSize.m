@@ -72,7 +72,7 @@
                            origin.y,
                            rect.size.width,
                            maxHight);
-        NSLog(@"Label");
+        JobsLog(@"Label");
     }
     
     if ([self isKindOfClass:UIButton.class]) {
@@ -85,7 +85,7 @@
                            origin.y,
                            rect.size.width,
                            maxHight);
-        NSLog(@"Button");
+        JobsLog(@"Button");
     }return frame;
 }
 /// 自适应高度
@@ -103,7 +103,7 @@
                            origin.y,
                            rect.size.width,
                            rect.size.height);
-        NSLog(@"Label");
+        JobsLog(@"Label");
     }
     
     if ([self isKindOfClass:UIButton.class]) {
@@ -118,7 +118,7 @@
                            origin.y,
                            rect.size.width,
                            rect.size.height);
-        NSLog(@"Button");
+        JobsLog(@"Button");
     }return frame;
 }
 /// 自适应宽度--->可调整字间距
@@ -146,7 +146,7 @@
                            origin.y,
                            rect.size.width,
                            maxHight);
-        NSLog(@"Label");
+        JobsLog(@"Label");
     }return frame;
 }
 /// 自适应高度--->可调整字间距和行间距
@@ -182,7 +182,7 @@
                            origin.y,
                            rect.size.width,
                            rect.size.height);
-        NSLog(@"Label");
+        JobsLog(@"Label");
     }return frame;
 }
 

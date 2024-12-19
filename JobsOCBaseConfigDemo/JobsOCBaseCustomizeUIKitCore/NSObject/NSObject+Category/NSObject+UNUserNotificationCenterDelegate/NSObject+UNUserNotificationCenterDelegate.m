@@ -17,11 +17,11 @@
             // 1 Minute
             NSDate *newDate = [NSDate dateWithTimeIntervalSinceNow:60];
             self.scheduleNotificationAt(newDate);
-            NSLog(@"1 Minute");
+            JobsLog(@"1 Minute");
         } else if (response.actionIdentifier.isEqualToString(@"remindMeIn5Minutes")) {
             NSDate *newDate = [NSDate.alloc initWithTimeIntervalSinceNow:60 * 5];
             self.scheduleNotificationAt(newDate);
-            NSLog(@"5 Minutes");
+            JobsLog(@"5 Minutes");
         }
     };
 }
@@ -42,12 +42,12 @@
                     data.alertActionTitle = JobsInternationalization(@"OK");
                     data.alertActionStyle = UIAlertActionStyleDefault;
                     data.alertActionBlock = ^(__kindof UIAlertAction * _Nullable action) {
-                        NSLog(@"OK");
+                        JobsLog(@"OK");
                     };
             //        data.cancelAlertActionTitle = @"取消";
             //        data.cancelAlertActionStyle = UIAlertActionStyleCancel;
             //        data.cancelAlertActionBlock = ^(__kindof UIAlertAction * _Nullable action) {
-            //            NSLog(@"Cancel");
+            //            JobsLog(@"Cancel");
             //        };
                 })));
             }
@@ -78,7 +78,7 @@
             }));
         })).notificationRequestCompletionHandlerBy(^(NSError * _Nullable error){
             if (error) {
-                NSLog(@"Failed to add request to notification center. error:\(error)");
+                JobsLog(@"Failed to add request to notification center. error:\(error)");
             }
         });
     };
@@ -101,9 +101,9 @@
 didReceiveNotificationResponse:(UNNotificationResponse *)response
          withCompletionHandler:(jobsByVoidBlock)completionHandler {
     if (response.actionIdentifier.isEqualToString(UNNotificationDefaultActionIdentifier)) {
-        NSLog(@"Default Action");
+        JobsLog(@"Default Action");
     } else if (response.actionIdentifier.isEqualToString(UNNotificationDismissActionIdentifier)) {
-        NSLog(@"Dismiss Action");
+        JobsLog(@"Dismiss Action");
     } else if (response.notification.request.content.categoryIdentifier.isEqualToString(@"calendarCategory")) {
         self.handleCalendarCategoryAction(response);
     } else if (response.notification.request.content.categoryIdentifier.isEqualToString(@"customUICategory")) {

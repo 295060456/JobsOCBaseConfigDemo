@@ -50,7 +50,7 @@ UILocationProtocol_synthesize
 -(jobsByStringBlock _Nonnull)copyText{
     return ^(NSString *_Nullable text){
         text.pasteboard();
-        NSLog(@"%@%@",JobsInternationalization(@"复制的文字："),text);
+        JobsLog(@"%@%@",JobsInternationalization(@"复制的文字："),text);
     };
 }
 /// 弹出系统菜单控件

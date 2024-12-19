@@ -16,7 +16,7 @@
 @implementation JobsShowObjInfoVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 

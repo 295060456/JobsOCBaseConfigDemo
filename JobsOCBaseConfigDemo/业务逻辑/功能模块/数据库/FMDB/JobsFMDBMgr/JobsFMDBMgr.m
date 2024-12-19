@@ -58,9 +58,9 @@ static dispatch_once_t JobsFMDBMgrOnceToken;
         NSString *createTableQuery = @"CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER)";
         BOOL success = [db executeUpdate:createTableQuery];
         if (success) {
-            NSLog(@"Table created successfully.");
+            JobsLog(@"Table created successfully.");
         } else {
-            NSLog(@"Failed to create table.");
+            JobsLog(@"Failed to create table.");
         }
     }];
 }
@@ -70,9 +70,9 @@ static dispatch_once_t JobsFMDBMgrOnceToken;
         NSString *insertQuery = @"INSERT INTO Users (name, age) VALUES (?, ?)";
         BOOL success = [db executeUpdate:insertQuery, name, @(age)];
         if (success) {
-            NSLog(@"User inserted successfully.");
+            JobsLog(@"User inserted successfully.");
         } else {
-            NSLog(@"Failed to insert user.");
+            JobsLog(@"Failed to insert user.");
         }
     }];
 }
@@ -100,9 +100,9 @@ static dispatch_once_t JobsFMDBMgrOnceToken;
         NSString *updateQuery = @"UPDATE Users SET name = ?, age = ? WHERE id = ?";
         BOOL success = [db executeUpdate:updateQuery, newName, @(newAge), @(userID)];
         if (success) {
-            NSLog(@"User updated successfully.");
+            JobsLog(@"User updated successfully.");
         } else {
-            NSLog(@"Failed to update user.");
+            JobsLog(@"Failed to update user.");
         }
     }];
 }
@@ -112,9 +112,9 @@ static dispatch_once_t JobsFMDBMgrOnceToken;
         NSString *deleteQuery = @"DELETE FROM Users WHERE id = ?";
         BOOL success = [db executeUpdate:deleteQuery, @(userID)];
         if (success) {
-            NSLog(@"User deleted successfully.");
+            JobsLog(@"User deleted successfully.");
         } else {
-            NSLog(@"Failed to delete user.");
+            JobsLog(@"Failed to delete user.");
         }
     }];
 }

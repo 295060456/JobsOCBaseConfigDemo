@@ -156,12 +156,12 @@
         _textField.secureTextEntry = self.doorInputViewBaseStyleModel.isShowSecurityBtn;
         @jobs_weakify(self)
         [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
-            NSLog(@"SSS = %@",self.textFieldInputModel.PlaceHolder);
+            JobsLog(@"SSS = %@",self.textFieldInputModel.PlaceHolder);
             @jobs_strongify(self)
             return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(NSString *_Nullable x) {
             @jobs_strongify(self)
-            NSLog(@"输入的字符为 = %@",x);
+            JobsLog(@"输入的字符为 = %@",x);
             self.securityModeBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
             if (x.isContainsSpecialSymbolsString(nil)) {
                 self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));

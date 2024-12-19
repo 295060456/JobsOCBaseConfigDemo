@@ -14,13 +14,13 @@
 @implementation ViewController_4
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 
 - (instancetype)init{
     if (self = [super init]) {
-        NSLog(@"");
+        JobsLog(@"");
     }return self;
 }
 

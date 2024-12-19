@@ -125,7 +125,7 @@
                     self.textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
                 }
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         });
         [self addSubview:_securityModelBtn];
         [_securityModelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,12 +146,12 @@
             return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(NSString *_Nullable x) {
             @jobs_strongify(self)
-            NSLog(@"输入的字符为 = %@",x);
+            JobsLog(@"输入的字符为 = %@",x);
             self.securityModelBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
             if (x.isContainsSpecialSymbolsString(nil)) {
                 self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));
             }else{
-                NSLog(@"输入的字符为 = %@",x);
+                JobsLog(@"输入的字符为 = %@",x);
                 [self block:self->_textField
                       value:x];
             }

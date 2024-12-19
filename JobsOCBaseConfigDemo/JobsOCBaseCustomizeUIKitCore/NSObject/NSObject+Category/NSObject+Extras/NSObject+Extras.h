@@ -162,7 +162,7 @@ AppToolsProtocol
      if ([object isKindOfClass:UIScrollView.class]) {
          UIScrollView *scrollView = (UIScrollView *)object;
          CGPoint point = [((NSValue *)[scrollView valueForKey:@"contentOffset"]) CGPointValue];
-         NSLog(@"point.x = %f,point.y = %f",point.x,point.y);
+         JobsLog(@"point.x = %f,point.y = %f",point.x,point.y);
      }
  }
  */
@@ -454,17 +454,17 @@ AppToolsProtocol
  使用方法：
  IQKeyboardManager.sharedManager.enable = NO;
  [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-     NSLog(@"");
+     JobsLog(@"");
  } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-     NSLog(@"");
+     JobsLog(@"");
  }];
  [self actionNotificationBlock:^id(NSNotificationKeyboardModel *data) {
      @jobs_strongify(self)
-     NSLog(@"userInfo = %@",data.userInfo);
-     NSLog(@"beginFrame = %@",NSStringFromCGRect(data.beginFrame));
-     NSLog(@"endFrame = %@",NSStringFromCGRect(data.endFrame));
-     NSLog(@"keyboardOffsetY = %f",data.keyboardOffsetY);
-     NSLog(@"notificationName = %@",data.notificationName);
+     JobsLog(@"userInfo = %@",data.userInfo);
+     JobsLog(@"beginFrame = %@",NSStringFromCGRect(data.beginFrame));
+     JobsLog(@"endFrame = %@",NSStringFromCGRect(data.endFrame));
+     JobsLog(@"keyboardOffsetY = %f",data.keyboardOffsetY);
+     JobsLog(@"notificationName = %@",data.notificationName);
      if (data.notificationName.isEqualToString(@"UIKeyboardWillChangeFrameNotification")) {
 
          if (data.keyboardOffsetY >= 0) {
@@ -476,7 +476,7 @@ AppToolsProtocol
          }
          
      }else if (data.notificationName.isEqualToString(@"UIKeyboardDidChangeFrameNotification")){
-         NSLog(@"");
+         JobsLog(@"");
      }else{}
      
      return nil;
@@ -497,7 +497,7 @@ AppToolsProtocol
      NSString *arg2 = @"b";
      NSString *arg3 = @"c";
      jobsByIDBlock arg4 = ^(id data){
-         NSLog(@"嗯，不错");
+         JobsLog(@"嗯，不错");
      };
      
      NSArray *paramarrays = @[arg1,
@@ -516,7 +516,7 @@ AppToolsProtocol
             andArg3:(NSString *)arg3
               block:(jobsByIDBlock)block{
  
-     NSLog(@"%@---%@---%@", arg1, arg2, arg3);
+     JobsLog(@"%@---%@---%@", arg1, arg2, arg3);
      if (block) {
          block(@"嗯！！");
      }

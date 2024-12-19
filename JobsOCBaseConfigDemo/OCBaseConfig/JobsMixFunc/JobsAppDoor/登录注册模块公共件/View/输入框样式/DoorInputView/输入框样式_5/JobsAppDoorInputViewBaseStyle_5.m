@@ -59,7 +59,7 @@
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
+            JobsLog(@"SSS = %d",b.boolValue);
         }
         if (self.style_5 == InputViewStyle_5_3) {
             self->dropDownListView.dropDownListViewDisappear(self.chooseBtn);
@@ -156,7 +156,7 @@
                     self.textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
                 }
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         });
         [self addSubview:_securityModeBtn];
         [_securityModeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -219,7 +219,7 @@
         }).heartBeatBy(^(id _Nullable data){
             if ([data isKindOfClass:UIButtonModel.class]) {
                 UIButtonModel *model = (UIButtonModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
+                JobsLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
         }).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.layerCor = HEXCOLOR(0xAE8330);
@@ -263,15 +263,15 @@
                                                            data:self.jobsPageViewDataMutArr
                                              motivateViewOffset:0
                                                     finishBlock:^(UIViewModel *data) {
-                    NSLog(@"data = %@",data);
-                    NSLog(@"data = %@",data.data);
+                    JobsLog(@"data = %@",data);
+                    JobsLog(@"data = %@",data.data);
                     x.jobsResetBtnTitle(data.textModel.text.add(data.subTextModel.text));
                 }];
             }else{
                 self->dropDownListView.dropDownListViewDisappear(x);
             }
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         });
         [self addSubview:_chooseBtn];
         [_chooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {

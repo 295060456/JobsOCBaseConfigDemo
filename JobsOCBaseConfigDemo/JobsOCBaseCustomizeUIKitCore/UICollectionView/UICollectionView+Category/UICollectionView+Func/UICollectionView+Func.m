@@ -36,7 +36,7 @@
 
 -(UICollectionViewCell *)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
                           collectionViewCellClass:(Class _Nullable)collectionViewCellClass{
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     if (collectionViewCellClass) {
         for (UICollectionViewCell *cell in self.visibleCells) {
             if ([cell isKindOfClass:collectionViewCellClass]) {
@@ -51,7 +51,7 @@
 
 -(UICollectionViewCell *)didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
                             collectionViewCellClass:(Class _Nullable)collectionViewCellClass{
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     UICollectionViewCell *cell = (UICollectionViewCell *)self.cellBy(indexPath);
     cell.selected = YES;
     return cell;

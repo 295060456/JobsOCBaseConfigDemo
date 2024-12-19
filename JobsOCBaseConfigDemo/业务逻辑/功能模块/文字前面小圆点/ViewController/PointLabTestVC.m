@@ -23,7 +23,7 @@
 
 - (void)dealloc{
     JobsNotificationCenter.remove(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 - (void)viewDidLoad {

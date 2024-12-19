@@ -23,7 +23,7 @@
 @implementation JXCategoryViewVerticalShowVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsNotificationCenter.remove(self);
 }
 
@@ -80,7 +80,7 @@
 
 //    JXCategoryBaseCell *cell = (JXCategoryBaseCell *)[self.categoryView.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
 //    NSArray <UICollectionViewCell *>*visibleCells = self.categoryView.collectionView.visibleCells;
-    NSLog(@"");
+    JobsLog(@"");
 
     for (UICollectionViewCell *cell in self.categoryView.collectionView.visibleCells) {
 //        cell.transformByRadians(.5f);
@@ -138,7 +138,7 @@ didScrollSelectedItemAtIndex:(NSInteger)index{
 scrollingFromLeftIndex:(NSInteger)leftIndex
 toRightIndex:(NSInteger)rightIndex
 ratio:(CGFloat)ratio {
-    NSLog(@"");
+    JobsLog(@"");
     //    [self.listContainerView scrollingFromLeftIndex:leftIndex
     //                                      toRightIndex:rightIndex
     //                                             ratio:ratio
@@ -208,7 +208,7 @@ ratio:(CGFloat)ratio {
         
         /// ❤️在需要的地方写❤️
         NSNumber *currentIndex = [self.listContainerView valueForKey:@"currentIndex"];
-        NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
+        JobsLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
         
     }return _listContainerView;
 }

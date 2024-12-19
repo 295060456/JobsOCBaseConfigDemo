@@ -68,35 +68,35 @@ BaseLayerProtocol_synthesize_part3
 /// 允许选中时，高亮
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 高亮完成后回调
 -(void)collectionView:(UICollectionView *)collectionView
 didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
 }
 /// 由高亮转成非高亮完成时的回调
 -(void)collectionView:(UICollectionView *)collectionView
 didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
 }
 /// 设置是否允许选中
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 设置是否允许取消选中
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 选中操作
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     JobsSearchDataCVCell *cvcell = (JobsSearchDataCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
     if (self.objectBlock) self.objectBlock(cvcell.viewModel);
     /// 点击即存入数据
@@ -105,7 +105,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 /// 取消选中操作
 -(void)collectionView:(UICollectionView *)collectionView
 didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
 }
 #pragma mark —— UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView

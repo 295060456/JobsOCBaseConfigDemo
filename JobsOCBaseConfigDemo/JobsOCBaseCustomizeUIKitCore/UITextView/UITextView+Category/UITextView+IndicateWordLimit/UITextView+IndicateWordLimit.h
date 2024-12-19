@@ -64,8 +64,8 @@ NS_ASSUME_NONNULL_END
  shouldChangeTextInRange:(NSRange)range
   replacementText:(NSString *)text{
      
-     NSLog(@"textField.text = %@",textView.text);
-     NSLog(@"string = %@",text);
+     JobsLog(@"textField.text = %@",textView.text);
+     JobsLog(@"string = %@",text);
      
      
  #warning 过滤删除最科学的做法
@@ -90,7 +90,7 @@ NS_ASSUME_NONNULL_END
          resString = [textView.text stringByAppendingString:text];
      }
 
-     NSLog(@"SSSresString = %@",resString);
+     JobsLog(@"SSSresString = %@",resString);
      self.textView.currentWordNum = resString.length;//关键代码
  
      if (isNull(resString)) {

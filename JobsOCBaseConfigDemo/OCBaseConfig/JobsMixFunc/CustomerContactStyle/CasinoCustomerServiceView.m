@@ -107,7 +107,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
             .jobsResetBtnImage(JobsIMG(@"zaixiankefu_en"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                NSLog(@"返回登录");
+                JobsLog(@"返回登录");
                 if (isNull(self.customerContactModel.onlineUrl.customerAccount)) {
                     [self customerContact];/// 获取客服联系方式
                 }else{
@@ -116,7 +116,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
                 [self endEditing:YES];
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.backgroundImageView addSubview:_contactCustomerServiceBtn];
         [_contactCustomerServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -138,7 +138,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.backgroundImageView addSubview:_closeBtn];
         [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {

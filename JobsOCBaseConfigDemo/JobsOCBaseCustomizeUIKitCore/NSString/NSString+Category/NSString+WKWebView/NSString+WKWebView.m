@@ -47,9 +47,9 @@
                       completionHandler:^(id _Nullable result,
                                           NSError * _Nullable error) {
                 if (error) {
-                    NSLog(@"执行 JavaScript 出错: %@", error);
+                    JobsLog(@"执行 JavaScript 出错: %@", error);
                 } else {
-                    NSLog(@"JavaScript 结果: %@", result);
+                    JobsLog(@"JavaScript 结果: %@", result);
                 }
             }];
         });

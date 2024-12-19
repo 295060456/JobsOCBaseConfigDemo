@@ -137,7 +137,7 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:JobsInternationalization(@"Cancel")
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * _Nonnull action) {
-                                                             NSLog(@"Cancel Action");
+                                                             JobsLog(@"Cancel Action");
                                                          }];
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:JobsInternationalization(@"Login")
                                                           style:UIAlertActionStyleDefault
@@ -145,7 +145,7 @@
                                                             UITextField *userName = alertController.textFields.firstObject;
                                                             UITextField *password = alertController.textFields.lastObject;
                                                             // 输出用户名 密码到控制台
-                                                            NSLog(@"username is %@, password is %@",userName.text,password.text);
+                                                            JobsLog(@"username is %@, password is %@",userName.text,password.text);
     }];
     loginAction.enabled = NO;// 禁用Login按钮
     [alertController addAction:cancelAction];

@@ -21,7 +21,7 @@
 @implementation JobsDropDownListView
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(instancetype)init{

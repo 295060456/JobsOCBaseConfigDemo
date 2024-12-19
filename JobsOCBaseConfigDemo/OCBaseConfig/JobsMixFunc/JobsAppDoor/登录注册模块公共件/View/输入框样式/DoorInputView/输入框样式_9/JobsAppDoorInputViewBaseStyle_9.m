@@ -134,12 +134,12 @@
         })).onClickBy(^(__kindof UIButton *x){
             @jobs_strongify(self)
             x.startTimer();//选择时机、触发启动
-//            NSLog(@"SSSSS = 获取验证码");
+//            JobsLog(@"SSSSS = 获取验证码");
             if (self.objectBlock) self.objectBlock(x);
         }).heartBeatBy(^(id _Nullable data){
             if ([data isKindOfClass:UIButtonModel.class]) {
                 UIButtonModel *model = (UIButtonModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
+                JobsLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
         });[self addSubview:_countDownBtn];
         [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -161,7 +161,7 @@
             return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(id _Nullable x) {
             @jobs_strongify(self)
-            NSLog(@"MMM = %@",x);
+            JobsLog(@"MMM = %@",x);
             [self block:self->_textField
                   value:x];
         }];

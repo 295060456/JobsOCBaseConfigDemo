@@ -27,7 +27,7 @@
                                                 completionHandler:^(NSError * _Nullable error) {
                 if (error) {
                     self.jobsToastErrMsg(JobsInternationalization(@"更换app图标发生错误了 ：").add(error.description));
-                    NSLog(@"更换app图标发生错误了 ： %@",error);
+                    JobsLog(@"更换app图标发生错误了 ： %@",error);
                 }
             }];
         }

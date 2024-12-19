@@ -73,7 +73,7 @@ BaseLayerProtocol_synthesize_part3
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _leftBtn.tag = 1;
         [self.contentView addSubview:_leftBtn];
@@ -130,7 +130,7 @@ BaseLayerProtocol_synthesize_part3
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });;
         _rightBtn.tag = 2;
         [self.contentView addSubview:_rightBtn];

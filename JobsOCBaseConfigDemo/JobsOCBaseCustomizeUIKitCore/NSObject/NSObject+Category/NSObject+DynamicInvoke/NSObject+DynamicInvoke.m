@@ -17,7 +17,7 @@ callingMethodWithName:(nullable NSString *)methodName{
     if ([NSObject judgementObj:targetObj existMethodWithName:methodName]) {
         SuppressWarcPerformSelectorLeaksWarning([targetObj performSelector:NSSelectorFromString(methodName)]);
     }else{
-        NSLog(@"目标类：%@,不存在此方法：%@,请检查",targetObj.class,methodName);
+        JobsLog(@"目标类：%@,不存在此方法：%@,请检查",targetObj.class,methodName);
     }
 }
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
@@ -28,7 +28,7 @@ callingMethodWithName:(nullable NSString *)methodName{
         if ([NSObject judgementObj:self existMethodWithName:data]) {
             SuppressWarcPerformSelectorLeaksWarning([self performSelector:NSSelectorFromString(data)]);
         }else{
-            NSLog(@"目标类：%@,不存在此方法：%@,请检查",self.class,data);
+            JobsLog(@"目标类：%@,不存在此方法：%@,请检查",self.class,data);
         }
     };
 }
@@ -93,7 +93,7 @@ callingMethodWithName:(nullable NSString *)methodName{
      2、设置参数，必须传递参数的地址，不能直接传值
      **/
     for (int i = 2; i < paramarrays.count + 2; i++) {
-        NSLog(@"i = %d",i);
+        JobsLog(@"i = %d",i);
         id d = paramarrays[i - 2];
         [invocation setArgument:&d atIndex:i];
     }
@@ -188,7 +188,7 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
         .add(toStringByID(target.makeSnowflake))
         .add(@"_")
         .add(selectorName);
-    NSLog(@"selName = %@", selName);
+    JobsLog(@"selName = %@", selName);
     SEL sel = NSSelectorFromString(selName);
     /// 检查缓存
     static NSMutableDictionary *methodCache;
@@ -211,7 +211,7 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
      */
     /// 检查目标类是否已有该方法
     if (class_getInstanceMethod([target class], sel)) {
-        NSLog(@"方法曾经已经被成功添加，再次添加会崩溃");
+        JobsLog(@"方法曾经已经被成功添加，再次添加会崩溃");
         return sel;
     } else {
         /// 动态添加方法

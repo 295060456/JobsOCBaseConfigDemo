@@ -35,6 +35,8 @@
 #import "JobsTuple.h"
 
 #import "JobsModel.h"
+/// 格式化 HTML 字符串
+#import "HTMLFormatter.h"
 
 #pragma mark —— Category【3rd】
 /// 平替UIPickerView
@@ -125,5 +127,7 @@
 #import "This.h"
 /// 获取系统环境变量
 #import "NSObject+SysInfo.h"
+/// 处理 HTML 字符串
+#import "NSObject+HTML.h"
 
 #endif /* JobsObject_h */

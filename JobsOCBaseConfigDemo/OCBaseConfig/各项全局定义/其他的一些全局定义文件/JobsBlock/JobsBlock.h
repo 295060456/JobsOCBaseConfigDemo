@@ -218,6 +218,9 @@ typedef NSString *_Nullable(^JobsReturnStringByTimeModelBlock)(__kindof JobsTime
 typedef JobsTimeModel *_Nullable(^JobsReturnTimeModelByIntegerBlock)(NSInteger timeSec);
 typedef JobsTimeModel *_Nullable(^JobsReturnTimeModelByStringBlock)(NSString *_Nullable dateFormat);
 
+@class HTMLFormatter;
+typedef void(^jobsByHTMLFormatterBlock)(__kindof HTMLFormatter *_Nullable formatter);
+
 @class VideoModel_Core;
 typedef void(^jobsByVideoModelCoreBlock)(__kindof VideoModel_Core *_Nullable data);
 
@@ -285,6 +288,9 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBloc
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
+@class HTMLDocument;
+typedef HTMLDocument *_Nullable(^JobsReturnHTMLDocumentByStringBlock)(__kindof NSString *_Nullable string);
+
 @class HXPhotoManager;
 typedef __kindof HXPhotoManager *_Nonnull(^JobsReturnHXPhotoManagerByNSUIntegerBlock)(NSUInteger type);
 @class HXPhotoConfiguration;
@@ -505,7 +511,7 @@ typedef void(^jobsByFMAccModelBlock)(__kindof FMAccModel *_Nullable model);
         @jobs_strongify(self)
         if (firstArg) {
             // 取出第一个参数
-            NSLog(@"%@", firstArg);
+            JobsLog(@"%@", firstArg);
             // 定义一个指向个数可变的参数列表指针；
             va_list args;
             // 用于存放取出的参数
@@ -517,21 +523,21 @@ typedef void(^jobsByFMAccModelBlock)(__kindof FMAccModel *_Nullable model);
                 NSNumber *num = (NSNumber *)firstArg;
                 for (int i = 0; i < num.intValue; i++) {
                     arg = va_arg(args, id);
-    //                    NSLog(@"KKK = %@", arg);
+    //                    JobsLog(@"KKK = %@", arg);
                     if ([arg isKindOfClass:UIImage.class]) {
-                        NSLog(@"");
+                        JobsLog(@"");
                     }else if ([arg isKindOfClass:PHAsset.class]){
-                        NSLog(@"");
+                        JobsLog(@"");
                     }else if ([arg isKindOfClass:NSString.class]){
-                        NSLog(@"");
+                        JobsLog(@"");
                     }else if ([arg isKindOfClass:NSArray.class]){
-                        NSLog(@"");
+                        JobsLog(@"");
                     }else{
-                        NSLog(@"");
+                        JobsLog(@"");
                     }
                 }
             }else{
-                NSLog(@"");
+                JobsLog(@"");
             }
             // 清空参数列表，并置参数指针args无效
             va_end(args);

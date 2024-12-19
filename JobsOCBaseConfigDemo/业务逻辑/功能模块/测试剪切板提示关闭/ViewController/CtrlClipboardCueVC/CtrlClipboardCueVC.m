@@ -21,7 +21,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -62,12 +62,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -96,13 +96,13 @@
 ////-(BOOL)textViewShouldEndEditing:(UITextView *)textView;
 //-(void)textViewDidBeginEditing:(UITextView *)textView{
 ////    textView.text = _textData2;
-//    NSLog(@"333");
+//    JobsLog(@"333");
 //}
 ////-(void)textViewDidEndEditing:(UITextView *)textView;
 //-(BOOL)textView:(UITextView *)textView
 //shouldChangeTextInRange:(NSRange)range
 //replacementText:(NSString *)text{
-//    NSLog(@"21");
+//    JobsLog(@"21");
 //    return YES;
 //}
 //-(void)textViewDidChange:(UITextView *)textView{

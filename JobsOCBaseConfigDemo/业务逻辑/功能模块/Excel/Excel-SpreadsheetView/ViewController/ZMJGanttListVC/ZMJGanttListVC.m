@@ -30,7 +30,7 @@
 
 - (void)dealloc{
     JobsNotificationCenter.remove(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -69,12 +69,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -129,7 +129,7 @@
         NSDate *suDate = [formatter dateFromString:sr];
         allDaysArray.add([NSString stringWithFormat:@"%02ld %@", i, [self getweekDayWithDate:suDate]]);
     }
-    NSLog(@"allDaysArray %@",allDaysArray);
+    JobsLog(@"allDaysArray %@",allDaysArray);
     return allDaysArray.copy;
 }
 /// 获得某天的数据
@@ -662,7 +662,7 @@ NSInteger getMinIndex(NSInteger begin, NSInteger offset) {
 /// Delegate
 - (void)spreadsheetView:(SpreadsheetView *)spreadsheetView
         didSelectItemAt:(NSIndexPath *)indexPath {
-    NSLog(@"Selected: (row: %ld, column: %ld)", (long)indexPath.row, (long)indexPath.column);
+    JobsLog(@"Selected: (row: %ld, column: %ld)", (long)indexPath.row, (long)indexPath.column);
     ZMJCell *cell = [spreadsheetView cellForItemAt:indexPath];
     if (![cell isKindOfClass:ZMJChartBarCell.class]) {[self.tipView dismissWithCompletion:nil]; return;}
     ZMJTask *task = self.tasks[indexPath.row - 2];

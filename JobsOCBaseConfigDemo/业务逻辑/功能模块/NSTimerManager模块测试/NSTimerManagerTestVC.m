@@ -20,7 +20,7 @@
 @implementation NSTimerManagerTestVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -143,7 +143,7 @@
                 @jobs_strongify(self)
                 if ([data isKindOfClass:UIButtonModel.class]) {
                     UIButtonModel *model = (UIButtonModel *)data;
-                    NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
+                    JobsLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
                     self.valueLab.text = [NSString stringWithFormat:@"%.2f",model.timerManager.anticlockwiseTime];
                 }
             }];

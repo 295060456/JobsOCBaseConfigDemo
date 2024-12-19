@@ -25,7 +25,7 @@
 -(void)loadView{
     [super loadView];
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
-        NSLog(@"退出页面的逻辑");
+        JobsLog(@"退出页面的逻辑");
         return nil;
     };
 }
@@ -40,7 +40,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    NSLog(@"SSS = %ld",(long)self.getDeviceOrientation);
+    JobsLog(@"SSS = %ld",(long)self.getDeviceOrientation);
 }
 
 -(void)viewWillLayoutSubviews{
@@ -87,8 +87,8 @@
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
-                NSLog(@"SSS = %d",b.boolValue);
-            }NSLog(@"通知传递过来的 = %@",notification.object);
+                JobsLog(@"SSS = %d",b.boolValue);
+            }JobsLog(@"通知传递过来的 = %@",notification.object);
         }];
     };
 }
@@ -103,22 +103,22 @@
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
-                NSLog(@"SSS = %d",b.boolValue);
-            }NSLog(@"通知传递过来的 = %@",notification.object);
+                JobsLog(@"SSS = %d",b.boolValue);
+            }JobsLog(@"通知传递过来的 = %@",notification.object);
             switch (UIDevice.currentDevice.orientation) {
                     // 处理竖屏方向的逻辑
                 case UIDeviceOrientationPortrait:/// 设备竖直向上，Home 按钮在下方
-                    NSLog(@"系统通知：↓");
+                    JobsLog(@"系统通知：↓");
                     break;
                 case UIDeviceOrientationPortraitUpsideDown:/// 设备竖直向下，Home 按钮在上方
-                    NSLog(@"系统通知：↑");
+                    JobsLog(@"系统通知：↑");
                     break;
                     // 处理横屏方向的逻辑
                 case UIDeviceOrientationLandscapeLeft:/// 设备水平，Home 按钮在右侧
-                    NSLog(@"系统通知：→");
+                    JobsLog(@"系统通知：→");
                     break;
                 case UIDeviceOrientationLandscapeRight:/// 设备水平，Home 按钮在左侧
-                    NSLog(@"系统通知：←");
+                    JobsLog(@"系统通知：←");
                     break;
                 default:
                     break;

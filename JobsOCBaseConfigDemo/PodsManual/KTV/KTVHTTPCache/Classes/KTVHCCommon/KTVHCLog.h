@@ -71,7 +71,7 @@ if (([KTVHCLog log].consoleLogEnable && console_log_enable) || ([KTVHCLog log].r
         [[KTVHCLog log] addRecordLog:log];                                          \
     }                                                                               \
     if ([KTVHCLog log].consoleLogEnable && console_log_enable) {                    \
-        NSLog(@"%@", log);                                                          \
+        JobsLog(@"%@", log);                                                          \
     }                                                                               \
 }
 

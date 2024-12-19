@@ -14,7 +14,7 @@
 @implementation YTKNetworkStudyVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 
@@ -71,7 +71,7 @@
         GetImageApi *c = (GetImageApi *)requests[2];
         GetUserInfoApi *user = (GetUserInfoApi *)requests[3];
         ///deal with requests result ...
-        NSLog(@"%@, %@, %@, %@", a, b, c, user);
+        JobsLog(@"%@, %@, %@, %@", a, b, c, user);
         /// 以下是我们需要的值
         a.responseObject;
         b.responseObject;
@@ -86,7 +86,7 @@
     /// 上传KYC的图片@POST
     [self uploadKYCImage:UIImagePNGRepresentation(JobsIMG(@"启动页SLOGAN"))
             successBlock:^(JobsResponseModel * _Nullable responseModel) {
-        NSLog(@"");
+        JobsLog(@"");
     }];
 }
 
@@ -99,13 +99,13 @@
 }
 #pragma mark —— YTKChainRequestDelegate
 -(void)chainRequestFinished:(YTKChainRequest *)chainRequest{
-    NSLog(@"all requests are done");
+    JobsLog(@"all requests are done");
 //    chainRequest.requestArray;
 //    chainRequest.requestAccessories;
     YTKBaseRequest *resultRequest = chainRequest.requestArray.lastObject;
     [self request:resultRequest successBlock:^(JobsResponseModel *_Nullable responseModel){
 //        self.dataMutArr2 = GetDepositDiscountActivityRecordModel.byData(responseModel.data);
-        NSLog(@"");
+        JobsLog(@"");
     }];
 }
 
@@ -113,7 +113,7 @@
         failedBaseRequest:(YTKBaseRequest*)request{
     JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
     self.jobsHandelNoSuccess(request);
-    NSLog(@"请求失败");
+    JobsLog(@"请求失败");
 }
 #pragma mark —— lazyLoad
 

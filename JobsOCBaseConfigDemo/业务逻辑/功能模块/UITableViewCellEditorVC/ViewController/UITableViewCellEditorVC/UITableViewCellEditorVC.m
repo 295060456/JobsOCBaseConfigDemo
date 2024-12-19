@@ -20,7 +20,7 @@
 @implementation UITableViewCellEditorVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -68,12 +68,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -223,7 +223,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 [self.tableView setEditing:x.selected animated:YES];
                 x.selected ? [self.getMsgEditBoardView appearByView:self.view] : [self.getMsgEditBoardView disappearByView:self.view];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
     }return _editBtn;
 }
@@ -310,7 +310,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                     }
                     [self dataForUI];
                 }else if ([btn.jobsResetBtnTitle isEqualToString:JobsInternationalization(@"删除")]){
-                    NSLog(@"%@",self.selectedDataMutArr);
+                    JobsLog(@"%@",self.selectedDataMutArr);
                     [self.dataMutArr removeObjectsInArray:self.selectedDataMutArr];
                     [self dataForUI];
                 }else{}

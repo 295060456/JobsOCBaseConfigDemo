@@ -24,7 +24,7 @@
 @implementation JobsAppDoorRegisterContentView
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 #pragma mark - Lifecycle
 -(instancetype)init{
@@ -38,8 +38,8 @@
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:UITextField.class]){
                 UITextField *b = notification.object;
-                NSLog(@"木头 = %@",b.requestParams);
-            }NSLog(@"通知传递过来的 = %@",notification.object);
+                JobsLog(@"木头 = %@",b.requestParams);
+            }JobsLog(@"通知传递过来的 = %@",notification.object);
         }];
     }return self;
 }
@@ -130,7 +130,7 @@
                 if (self.objectBlock) self.objectBlock(x);
                 [self endEditing:YES];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _backToLoginBtn.titleLabel.numberOfLines = 0;
         [self addSubview:_backToLoginBtn];
@@ -172,7 +172,7 @@
                 if (self.objectBlock) self.objectBlock(x);
                 [self endEditing:YES];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [_sendBtn buttonAutoWidthByFont];
         _sendBtn.x = self.backToLoginBtn.width + JobsWidth(20);

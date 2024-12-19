@@ -30,7 +30,7 @@
 @implementation TestLabelVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 

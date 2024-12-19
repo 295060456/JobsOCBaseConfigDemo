@@ -181,7 +181,7 @@
  * NSError *err = nil;
  * if (![httpServer start:&err])
  * {
- *     NSLog(@"Error starting http server: %@", err);
+ *     JobsLog(@"Error starting http server: %@", err);
  * }
 **/
 - (BOOL)start:(NSError **)errPtr;

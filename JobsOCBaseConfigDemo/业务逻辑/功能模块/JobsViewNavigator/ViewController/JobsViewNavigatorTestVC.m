@@ -18,7 +18,7 @@
 
 - (void)dealloc{
     JobsNotificationCenter.remove(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -57,12 +57,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -122,7 +122,7 @@
     //            self.configViewNavigatorBySuperviewAndView(self.view,self.pushView);
     //            self.view.navigator.pushView(self.pushView,YES);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.view addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {

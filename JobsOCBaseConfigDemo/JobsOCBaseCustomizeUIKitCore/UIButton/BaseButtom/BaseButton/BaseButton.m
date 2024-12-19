@@ -18,13 +18,13 @@ BaseButtonProtocol_synthesize
 #pragma mark —— Sys
 -(instancetype)init{
     if (self = [super init]) {
-        NSLog(@"");
+        JobsLog(@"");
     }return self;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        NSLog(@"");
+        JobsLog(@"");
     }return self;
 }
 
@@ -204,35 +204,35 @@ BaseButtonProtocol_synthesize
 }
 
 -(void)printValue{
-    NSLog(@"self.textLabelFrame = %@",NSStringFromCGRect(self.textLabelFrame));
-    NSLog(@"self.subTextLabelFrame = %@",NSStringFromCGRect(self.subTextLabelFrame));
-    NSLog(@"self.imageViewFrame = %@",NSStringFromCGRect(self.imageViewFrame));
+    JobsLog(@"self.textLabelFrame = %@",NSStringFromCGRect(self.textLabelFrame));
+    JobsLog(@"self.subTextLabelFrame = %@",NSStringFromCGRect(self.subTextLabelFrame));
+    JobsLog(@"self.imageViewFrame = %@",NSStringFromCGRect(self.imageViewFrame));
     
-    NSLog(@"self.textLabelSize = %@",NSStringFromCGSize(self.textLabelSize));
-    NSLog(@"self.subTextLabelSize = %@",NSStringFromCGSize(self.subTextLabelSize));
-    NSLog(@"self.imageViewSize = %@",NSStringFromCGSize(self.imageViewSize));
+    JobsLog(@"self.textLabelSize = %@",NSStringFromCGSize(self.textLabelSize));
+    JobsLog(@"self.subTextLabelSize = %@",NSStringFromCGSize(self.subTextLabelSize));
+    JobsLog(@"self.imageViewSize = %@",NSStringFromCGSize(self.imageViewSize));
     
-    NSLog(@"self.textLabelWidth = %f",self.textLabelWidth);
-    NSLog(@"self.textLabelHeight = %f",self.textLabelHeight);
-    NSLog(@"self.subTextLabelWidth = %f",self.subTextLabelWidth);
-    NSLog(@"self.subTextLabelHeight = %f",self.subTextLabelHeight);
-    NSLog(@"self.imageViewWidth = %f",self.imageViewWidth);
-    NSLog(@"self.imageViewHeight = %f",self.imageViewHeight);
+    JobsLog(@"self.textLabelWidth = %f",self.textLabelWidth);
+    JobsLog(@"self.textLabelHeight = %f",self.textLabelHeight);
+    JobsLog(@"self.subTextLabelWidth = %f",self.subTextLabelWidth);
+    JobsLog(@"self.subTextLabelHeight = %f",self.subTextLabelHeight);
+    JobsLog(@"self.imageViewWidth = %f",self.imageViewWidth);
+    JobsLog(@"self.imageViewHeight = %f",self.imageViewHeight);
     
-    NSLog(@"self.textLabelFrameOffsetX = %f",self.textLabelFrameOffsetX);
-    NSLog(@"self.textLabelFrameOffsetY = %f",self.textLabelFrameOffsetY);
-    NSLog(@"self.textLabelFrameOffsetWidth = %f",self.textLabelFrameOffsetWidth);
-    NSLog(@"self.textLabelFrameOffsetHeight = %f",self.textLabelFrameOffsetHeight);
+    JobsLog(@"self.textLabelFrameOffsetX = %f",self.textLabelFrameOffsetX);
+    JobsLog(@"self.textLabelFrameOffsetY = %f",self.textLabelFrameOffsetY);
+    JobsLog(@"self.textLabelFrameOffsetWidth = %f",self.textLabelFrameOffsetWidth);
+    JobsLog(@"self.textLabelFrameOffsetHeight = %f",self.textLabelFrameOffsetHeight);
     
-    NSLog(@"self.subTextLabelFrameOffsetX = %f",self.subTextLabelFrameOffsetX);
-    NSLog(@"self.subTextLabelFrameOffsetY = %f",self.subTextLabelFrameOffsetY);
-    NSLog(@"self.subTextLabelFrameOffsetWidth = %f",self.subTextLabelFrameOffsetWidth);
-    NSLog(@"self.subTextLabelFrameOffsetHeight = %f",self.subTextLabelFrameOffsetHeight);
+    JobsLog(@"self.subTextLabelFrameOffsetX = %f",self.subTextLabelFrameOffsetX);
+    JobsLog(@"self.subTextLabelFrameOffsetY = %f",self.subTextLabelFrameOffsetY);
+    JobsLog(@"self.subTextLabelFrameOffsetWidth = %f",self.subTextLabelFrameOffsetWidth);
+    JobsLog(@"self.subTextLabelFrameOffsetHeight = %f",self.subTextLabelFrameOffsetHeight);
     
-    NSLog(@"self.imageViewFrameOffsetX = %f",self.imageViewFrameOffsetX);
-    NSLog(@"self.imageViewFrameOffsetY = %f",self.imageViewFrameOffsetY);
-    NSLog(@"self.imageViewFrameOffsetWidth = %f",self.imageViewFrameOffsetWidth);
-    NSLog(@"self.imageViewFrameOffsetHeight = %f",self.imageViewFrameOffsetHeight);
+    JobsLog(@"self.imageViewFrameOffsetX = %f",self.imageViewFrameOffsetX);
+    JobsLog(@"self.imageViewFrameOffsetY = %f",self.imageViewFrameOffsetY);
+    JobsLog(@"self.imageViewFrameOffsetWidth = %f",self.imageViewFrameOffsetWidth);
+    JobsLog(@"self.imageViewFrameOffsetHeight = %f",self.imageViewFrameOffsetHeight);
 }
 #pragma mark —— BaseButtonProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】

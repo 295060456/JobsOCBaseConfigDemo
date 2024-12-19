@@ -13,10 +13,10 @@
           nilImageBlock:(jobsByVoidBlock _Nullable)nilImageBlock{
     [RACObserve(self, image) subscribeNext:^(UIImage *newImage) {
         if (newImage) {
-            NSLog(@"UIImageView 的 image 属性发生了变化：%@", newImage);
+            JobsLog(@"UIImageView 的 image 属性发生了变化：%@", newImage);
             if(uploadImageBlock) uploadImageBlock(newImage);
         } else {
-            NSLog(@"UIImageView 的 image 属性被设置为 nil");
+            JobsLog(@"UIImageView 的 image 属性被设置为 nil");
             if(nilImageBlock) nilImageBlock();
         }
     }];

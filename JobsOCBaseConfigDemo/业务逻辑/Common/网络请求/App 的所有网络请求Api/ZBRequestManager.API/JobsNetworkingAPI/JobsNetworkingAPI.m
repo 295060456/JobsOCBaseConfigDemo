@@ -15,7 +15,7 @@
 +(void)requestApi:(NSString *_Nonnull)requestApi
        parameters:(id _Nullable)parameters
      successBlock:(jobsByIDBlock _Nullable)successBlock{
-    NSLog(@"接口名：%@，请求参数打印 %@",requestApi,parameters);
+    JobsLog(@"接口名：%@，请求参数打印 %@",requestApi,parameters);
     [NSObject methodName:requestApi.add(@":successBlock:")
                targetObj:(JobsNetworkingAPI *)self
              paramarrays:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
@@ -28,7 +28,7 @@
        parameters:(id _Nullable)parameters
      successBlock:(jobsByIDBlock _Nullable)successBlock
      failureBlock:(jobsByIDBlock _Nullable)failureBlock{
-    NSLog(@"接口名：%@，请求参数打印 %@",requestApi,parameters);
+    JobsLog(@"接口名：%@，请求参数打印 %@",requestApi,parameters);
     [NSObject methodName:requestApi.add(@":successBlock:failureBlock:")
                targetObj:(JobsNetworkingAPI *)self
              paramarrays:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
@@ -72,24 +72,24 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
     if ([responseObject isKindOfClass:JobsResponseModel.class]) {
         // 公共请求错误直接抛出
         if (responseObject.code == HTTPResponseCodeSuccess) {
-            NSLog(@"请求成功");
+            JobsLog(@"请求成功");
             if (successBlock) successBlock(responseObject);
         }else{// 请求成功但是因为未登录、被踢线下等涉及到用户token的原因导致的失败
             JobsNetworkingAPI.handleError(responseObject);
             if (failureBlock) failureBlock(responseObject);
         }
-    }else NSLog(@"responseObject 不是 JobsResponseModel类型");
+    }else JobsLog(@"responseObject 不是 JobsResponseModel类型");
 }
 #pragma mark —— 错误处理
 +(jobsByIDBlock _Nonnull)handleError{
     return ^(id _Nullable error){
         if ([error isKindOfClass:NSError.class]) {
             NSError *err = (NSError *)error;
-            NSLog(@"%@",err.description);
+            JobsLog(@"%@",err.description);
             self.jobsToastErrMsg(err.description);
         }else if ([error isKindOfClass:JobsResponseModel.class]){
             JobsResponseModel *responseModel = (JobsResponseModel *)error;
-            NSLog(@"code = %lu",(unsigned long)responseModel.code);
+            JobsLog(@"code = %lu",(unsigned long)responseModel.code);
             switch (responseModel.code) {
                 case HTTPResponseCodeServeError:{// 服务器异常
                     self.jobsToastErrMsg(JobsInternationalization(@"服务器异常"));

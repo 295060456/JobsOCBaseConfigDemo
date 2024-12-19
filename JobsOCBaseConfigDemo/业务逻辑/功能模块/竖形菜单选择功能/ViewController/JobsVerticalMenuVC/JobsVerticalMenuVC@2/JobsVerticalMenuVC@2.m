@@ -30,7 +30,7 @@
 @implementation JobsVerticalMenuVC_2
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 
@@ -216,7 +216,7 @@
             model.textModel.text = @"1234";
             model.subTextModel.text = toStringByInt(iFlag).add(JobsInternationalization(@"球桌球"));
             model.bgImage = self.imageDataMutArr[iFlag];
-            NSLog(@"%@",model.bgImage);
+            JobsLog(@"%@",model.bgImage);
             @jobs_strongify(self)
             model.childrenList = jobsMakeMutArr(^(__kindof NSMutableArray <GoodsClassModel *>*_Nullable arr) {
                 @jobs_strongify(self)
@@ -224,7 +224,7 @@
                 for (int i = 0; i < 9; i++){
                     arr.add(self.createThreeModel(i));
                 }
-            });NSLog(@"LKL = %ld",model.childrenList.count);
+            });JobsLog(@"LKL = %ld",model.childrenList.count);
         });
     };
 }
@@ -281,8 +281,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    @jobs_weakify(self)
     [cell actionObjectBlock:^(GoodsClassModel *model) {
 //        @jobs_strongify(self)
-        NSLog(@"pid : %@", model.idField);
-        NSLog(@"选中id : %@", model.idField);
+        JobsLog(@"pid : %@", model.idField);
+        JobsLog(@"选中id : %@", model.idField);
     }];return cell;
 }
 
@@ -404,7 +404,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
     }return _customerServiceBtn;
 }
@@ -418,7 +418,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });;
     }return _msgBtn;
 }
@@ -451,7 +451,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
 //                                                                  data:self.listViewData
 //                                                    motivateViewOffset:JobsWidth(5)
 //                                                           finishBlock:^(UIViewModel *data) {
-//                            NSLog(@"data = %@",data);
+//                            JobsLog(@"data = %@",data);
 //                        }];
 //                    }
 //                }break;
@@ -486,7 +486,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                                    direction:PopupDirectionBottom
                                   popupParam:self.popupParameter];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.view addSubview:_editBtn];
         [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -567,7 +567,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                 for (UIViewModel *viewModel in dataMutArr) {
                     mutArr.add(viewModel.textModel.text);
                 }
-                NSLog(@"%@",mutArr);
+                JobsLog(@"%@",mutArr);
 #endif
                 self.titleMutArr = dataMutArr;
             }else if ([data isKindOfClass:UIButton.class]){
@@ -581,7 +581,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
             [self.collectionView reloadData];
         }];
     }
-    NSLog(@"self.thisIndex = %ld",self.thisIndex);
+    JobsLog(@"self.thisIndex = %ld",self.thisIndex);
     
     UIViewModel *viewModel = UIViewModel.new;
     viewModel.index = self.thisIndex;

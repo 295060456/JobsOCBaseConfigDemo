@@ -59,11 +59,11 @@ static dispatch_once_t static_userModelOnceToken;
 -(void)encodeWithCoder:(NSCoder *)encoder{
     [super encodeWithCoder:encoder];
     // 获取对象的属性列表
-    NSLog(@"printPropertyListByClass = %@",printPropertyListByClass(self.class));
+    JobsLog(@"printPropertyListByClass = %@",printPropertyListByClass(self.class));
     for (NSString *key in printPropertyListByClass(self.class)) {
         // 检查是否实现了协议中的属性对应的setter方法
-        NSLog(@"key.jobsCapitalCaseString = %@",@"set".add(key.capitalizedString).add(@":"));
-        NSLog(@"key = %@",key);
+        JobsLog(@"key.jobsCapitalCaseString = %@",@"set".add(key.capitalizedString).add(@":"));
+        JobsLog(@"key = %@",key);
         if ([self respondsToSelector:NSSelectorFromString(@"set".add(key.capitalizedString).add(@":"))]) {
             id value = [self valueForKey:key];
             [encoder encodeObject:value forKey:key];
@@ -138,7 +138,7 @@ static dispatch_once_t static_userModelOnceToken;
 -(void)setExpireTime:(NSString *)expireTime{
     _expireTime = expireTime;
     if(_expireTime) self.tokenExpireTime = _expireTime.chinaTime(nil);
-    NSLog(@"Token 的过期时间是:%@-%@",expireTime,self.tokenExpireTime);
+    JobsLog(@"Token 的过期时间是:%@-%@",expireTime,self.tokenExpireTime);
 }
 #pragma mark —— 默认值设置
 -(NSString *)token{

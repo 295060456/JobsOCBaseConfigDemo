@@ -15,7 +15,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -60,12 +60,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{

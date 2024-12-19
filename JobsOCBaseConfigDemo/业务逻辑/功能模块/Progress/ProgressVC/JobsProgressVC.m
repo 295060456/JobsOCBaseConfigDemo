@@ -16,7 +16,7 @@
 @implementation JobsProgressVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 

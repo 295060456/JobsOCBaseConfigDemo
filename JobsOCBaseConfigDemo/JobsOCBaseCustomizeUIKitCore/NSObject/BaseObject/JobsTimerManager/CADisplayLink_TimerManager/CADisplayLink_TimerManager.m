@@ -15,7 +15,7 @@
 @implementation CADisplayLink_TimerManager
 
 -(void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 /// 需要定时器做的事情，回调
 -(void)actionCADisplayLinkTimerManagerBlock:(jobsByIDBlock _Nullable)CADisplayLinkTimerManagerBlock{

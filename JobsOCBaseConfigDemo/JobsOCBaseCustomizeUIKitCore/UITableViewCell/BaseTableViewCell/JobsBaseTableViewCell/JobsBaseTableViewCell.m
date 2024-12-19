@@ -101,8 +101,8 @@ UITableViewCellProtoco_Synthesize_part2
      // 在具体的子类去实现,分类调用异常
      #pragma mark —— 复写父类方法
      -(void)setFrame:(CGRect)frame{
-     NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-     NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+     JobsLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+     JobsLog(@"self.offsetYForEach = %f",self.offsetYForEach);
      frame.origin.x += self.offsetXForEach;
      frame.origin.y += self.offsetYForEach;
      frame.size.height -= self.offsetYForEach * 2;
@@ -147,7 +147,7 @@ UITableViewCellProtoco_Synthesize_part2
 /// CXB 所言 全局只有在cellForRowAtIndexPath里面才能设置真正的selected值。而didSelectRowAtIndexPath不行
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
-    NSLog(@"%d",self.selected);
+    JobsLog(@"%d",self.selected);
 }
 //@synthesize selected = _selected;
 //-(void)setSelected:(BOOL)selected{
@@ -176,8 +176,8 @@ UITableViewCellProtoco_Synthesize_part2
  */
 -(void)setFrame:(CGRect)frame{
     if (self.class == JobsBaseTableViewCell.class) {
-        NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-        NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+        JobsLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+        JobsLog(@"self.offsetYForEach = %f",self.offsetYForEach);
         frame.origin.x += self.offsetXForEach;
         frame.origin.y += self.offsetYForEach;
         frame.size.height -= self.offsetYForEach * 2;

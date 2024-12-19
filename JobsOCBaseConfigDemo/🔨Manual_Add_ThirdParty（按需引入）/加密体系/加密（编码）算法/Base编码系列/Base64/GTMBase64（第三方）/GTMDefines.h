@@ -83,7 +83,7 @@
 // _GTMDevLog & _GTMDevAssert
 //
 // _GTMDevLog & _GTMDevAssert are meant to be a very lightweight shell for
-// developer level errors.  This implementation simply macros to NSLog/NSAssert.
+// developer level errors.  This implementation simply macros to JobsLog/NSAssert.
 // It is not intended to be a general logging/reporting system.
 //
 // Please see http://code.google.com/p/google-toolbox-for-mac/wiki/DevLogNAssert
@@ -103,7 +103,7 @@
 #ifndef _GTMDevLog
 
 #ifdef DEBUG
-  #define _GTMDevLog(...) NSLog(__VA_ARGS__)
+  #define _GTMDevLog(...) JobsLog(__VA_ARGS__)
 #else
   #define _GTMDevLog(...) do { } while (0)
 #endif

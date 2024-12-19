@@ -45,9 +45,9 @@ static JobsMonitorNetwoking *monitorNetwoking = nil;
     self.lastBytes= [self getInterfaceBytes];
     //格式化一下
     NSString*rateStr = [self formatNetWork:rate];
-    NSLog(@"当前网速%@",rateStr);
+    JobsLog(@"当前网速%@",rateStr);
     _rateLabel.text = rateStr;
-//    NSLog(@"hehe:%lld",hehe/1024/1024);
+//    JobsLog(@"hehe:%lld",hehe/1024/1024);
 }
 
 -(long long)getInterfaceBytes{
@@ -72,7 +72,7 @@ static JobsMonitorNetwoking *monitorNetwoking = nil;
         }
     }
     freeifaddrs(ifa_list);
-//    NSLog(@"\n[getInterfaceBytes-Total]%d,%d",iBytes,oBytes);
+//    JobsLog(@"\n[getInterfaceBytes-Total]%d,%d",iBytes,oBytes);
     return iBytes;
 }
 

@@ -49,7 +49,7 @@
 
 -(__kindof UITableViewCell *)didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                                   tableViewCellClass:(Class _Nullable)tableViewCellClass{
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     if (tableViewCellClass) {
         for (UITableViewCell *cell in self.visibleCells) {
             if ([cell isKindOfClass:tableViewCellClass]) {
@@ -67,7 +67,7 @@
 
 -(__kindof UITableViewCell *)didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
                                     tableViewCellClass:(Class _Nullable)tableViewCellClass{
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     UITableViewCell *cell = (UITableViewCell *)self.cellBy(indexPath);
     cell.selected = !cell.selected;
     cell.getViewModel.jobsSelected = !cell.getViewModel.jobsSelected;

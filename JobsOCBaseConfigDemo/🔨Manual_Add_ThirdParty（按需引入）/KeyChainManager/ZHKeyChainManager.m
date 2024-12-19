@@ -98,7 +98,7 @@
         @try {
             idObject = [NSKeyedUnarchiver unarchiveObjectWithData:(__bridge NSData *)(keyChainData)];
         } @catch (NSException * exception){
-            NSLog(@"Unarchive of search data where %@ failed of %@ ",identifier,exception);
+            JobsLog(@"Unarchive of search data where %@ failed of %@ ",identifier,exception);
         }
     }
     if (keyChainData) {

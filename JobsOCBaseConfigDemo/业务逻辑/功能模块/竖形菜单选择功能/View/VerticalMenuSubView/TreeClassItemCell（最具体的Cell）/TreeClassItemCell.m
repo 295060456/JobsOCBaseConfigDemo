@@ -128,7 +128,7 @@ UILocationProtocol_synthesize
                 }
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {

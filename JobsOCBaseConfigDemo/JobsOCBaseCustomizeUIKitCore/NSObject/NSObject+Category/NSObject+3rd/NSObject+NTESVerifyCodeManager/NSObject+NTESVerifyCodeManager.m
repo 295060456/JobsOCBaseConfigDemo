@@ -20,11 +20,11 @@
 #pragma mark —— NTESVerifyCodeManagerDelegate
 /// 验证码组件初始化完成
 - (void)verifyCodeInitFinish{
-    NSLog(@"收到初始化完成的回调");
+    JobsLog(@"收到初始化完成的回调");
 }
 /// 验证码组件初始化出错
 - (void)verifyCodeInitFailed:(NSArray *)error {
-    NSLog(@"收到初始化失败的回调:%@",error);
+    JobsLog(@"收到初始化失败的回调:%@",error);
 }
 /// 完成验证之后的回调
 /// - Parameters:
@@ -34,12 +34,12 @@
 - (void)verifyCodeValidateFinish:(BOOL)result
                         validate:(NSString *)validate
                          message:(NSString *)message{
-    NSLog(@"收到验证结果的回调:(%d,%@,%@)", result, validate, message);
+    JobsLog(@"收到验证结果的回调:(%d,%@,%@)", result, validate, message);
 }
 /// 关闭验证码窗口后的回调
 - (void)verifyCodeCloseWindow{
     //用户关闭验证后执行的方法
-    NSLog(@"收到关闭验证码视图的回调");
+    JobsLog(@"收到关闭验证码视图的回调");
 }
 
 - (void)verifyCodeCloseWindow:(NTESVerifyCodeClose)close {

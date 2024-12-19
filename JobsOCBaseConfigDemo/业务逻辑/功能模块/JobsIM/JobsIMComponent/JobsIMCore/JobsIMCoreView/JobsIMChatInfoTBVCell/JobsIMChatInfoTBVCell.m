@@ -74,7 +74,7 @@ UITextFieldProtocol_synthesize_part2
     //                                                                                       calcLabelHeight_Width:CalcLabelHeight
     //                                                                                                        font:NULL
     //                                                                                boundingRectWithHeight_Width:JobsIMChatInfoTBVChatContentLabWidth()];
-            NSLog(@"%f",CellHeight);
+            JobsLog(@"%f",CellHeight);
             return (CellHeight < JobsIMChatInfoTBVDefaultCellHeight() ? JobsIMChatInfoTBVDefaultCellHeight() : CellHeight) + (JobsIMChatInfoTBVDefaultCellHeight() / 2 - 5);
         }else{
             return 0;
@@ -116,8 +116,8 @@ UITextFieldProtocol_synthesize_part2
     //                                                                                                     font:NULL
     //                                                                             boundingRectWithHeight_Width:self.contentWidth];
             
-            NSLog(@"contentHeight = %f",self.contentHeight);
-            NSLog(@"contentWidth = %f",self.contentWidth);
+            JobsLog(@"contentHeight = %f",self.contentHeight);
+            JobsLog(@"contentWidth = %f",self.contentWidth);
             
             self.iconIMGV
                     .imageURL(chatInfoModel.userIconURLStr.jobsUrl)
@@ -128,9 +128,9 @@ UITextFieldProtocol_synthesize_part2
                                  SDImageCacheType cacheType,
                                  NSURL * _Nullable imageURL) {
                         if (error) {
-                            NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                            JobsLog(@"aa图片加载失败: %@-%@", error,imageURL);
                         } else {
-                            NSLog(@"图片加载成功");
+                            JobsLog(@"图片加载成功");
                         }
                     }).load();
             self.chatUserNameLab.alpha = self.isShowChatUserName;
@@ -151,7 +151,7 @@ UITextFieldProtocol_synthesize_part2
                                    backgroundColor:model.bgCor
                                            padding:15
                                           callback:^BOOL(MGSwipeTableCell * sender){
-                NSLog(@"Convenience callback received (left).");
+                JobsLog(@"Convenience callback received (left).");
                 return YES;
             }]);
         }
@@ -168,7 +168,7 @@ UITextFieldProtocol_synthesize_part2
                                    backgroundColor:model.bgCor
                                            padding:15
                                           callback:^BOOL(MGSwipeTableCell * sender){
-                NSLog(@"Convenience callback received (left).");
+                JobsLog(@"Convenience callback received (left).");
                 return YES;
             }]);
         }
@@ -176,11 +176,11 @@ UITextFieldProtocol_synthesize_part2
 }
 
 -(void)menuTopBtnPressed:(id)sender{
-    NSLog(@"123");
+    JobsLog(@"123");
 }
 
 -(void)menuDelBtnPressed:(id)sender{
-    NSLog(@"456");
+    JobsLog(@"456");
 }
 
 -(BOOL)canPerformAction:(SEL)action

@@ -20,16 +20,16 @@
 NS_INLINE void JobsPrintURLRequest(NSURLRequest *_Nonnull request){
     if (!request) return;
     // 请求URL
-    NSLog(@"请求URL:%@\n",request.URL);
+    JobsLog(@"请求URL:%@\n",request.URL);
     // 请求方式
-    NSLog(@"请求方式:%@\n",request.HTTPMethod);
+    JobsLog(@"请求方式:%@\n",request.HTTPMethod);
     // 请求头信息
-    NSLog(@"请求头信息:%@\n",request.allHTTPHeaderFields);
+    JobsLog(@"请求头信息:%@\n",request.allHTTPHeaderFields);
     // 请求正文信息
-    NSLog(@"请求正文信息:%@\n",request.HTTPBody.stringByUTF8Encoding);
+    JobsLog(@"请求正文信息:%@\n",request.HTTPBody.stringByUTF8Encoding);
     // 请求响应时间
-    NSLog(@"请求响应时间:%@\n",request.currentTimestampString(nil));
-    NSLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",
+    JobsLog(@"请求响应时间:%@\n",request.currentTimestampString(nil));
+    JobsLog(@"\n请求URL:%@\n请求方式:%@\n请求头信息:%@\n请求正文信息:%@\n请求响应时间:%@\n",
           request.URL,
           request.HTTPMethod,
           request.allHTTPHeaderFields,

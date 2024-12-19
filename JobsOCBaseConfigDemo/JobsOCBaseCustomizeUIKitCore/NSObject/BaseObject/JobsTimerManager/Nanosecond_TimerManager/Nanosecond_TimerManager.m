@@ -11,7 +11,7 @@
 @implementation Nanosecond_TimerManager
 
 -(void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 /**
     1000ULL 中的 ULL 是一种整数字面量后缀，它表示这个整数是无符号长长整型(unsigned long long)。

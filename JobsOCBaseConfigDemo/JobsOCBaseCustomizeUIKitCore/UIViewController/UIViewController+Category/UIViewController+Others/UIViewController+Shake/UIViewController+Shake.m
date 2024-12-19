@@ -30,7 +30,7 @@
           withEvent:(UIEvent *)event {
     // 判断是否是摇动事件
     if (motion == UIEventSubtypeMotionShake) {
-        NSLog(@"摇一摇结束~~~~~");
+        JobsLog(@"摇一摇结束~~~~~");
         //摇动结束添加事件
         if (self.objectBlock) self.objectBlock(@(UIViewControllerShakeEndType));
     }
@@ -79,7 +79,7 @@
         @jobs_strongify(self)
         [self outputAccelertionData:accelerometerData.acceleration];
         if (error) {
-            NSLog(@"motion error:%@",error);
+            JobsLog(@"motion error:%@",error);
         }
     }];
 }

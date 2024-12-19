@@ -33,9 +33,9 @@ NS_ASSUME_NONNULL_END
      [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound + UNAuthorizationOptionBadge)
                            completionHandler:^(BOOL granted, NSError * _Nullable error) {
          if (granted) {
-             NSLog(@"Notification permission granted.");
+             JobsLog(@"Notification permission granted.");
          } else {
-             NSLog(@"Notification permission denied.");
+             JobsLog(@"Notification permission denied.");
          }
      }];
      

@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_END
          .cornerRadiusValueBy(JobsWidth(8))
          .onClickBy(^(UIButton *x){
              if (self.objectBlock) self.objectBlock(x);
-             NSLog(@"AAA = %@",self.dropDownListView);
+             JobsLog(@"AAA = %@",self.dropDownListView);
              x.selected = !x.selected;
              if (x.selected) {
                  /// ❤️只能让它执行一次❤️
@@ -47,13 +47,13 @@ NS_ASSUME_NONNULL_END
                                                            data:self.listViewData
                                              motivateViewOffset:JobsWidth(5)
                                                     finishBlock:^(UIViewModel *data) {
-                     NSLog(@"data = %@",data);
+                     JobsLog(@"data = %@",data);
                  }];
              }else{
                  [self endDropDownListView];
              }
          }).onLongPressGestureBy(^(id data){
-             NSLog(@"按钮的长按事件触发");
+             JobsLog(@"按钮的长按事件触发");
          });
      [self.view addSubview:_btn];
      [_btn mas_makeConstraints:^(MASConstraintMaker *make) {

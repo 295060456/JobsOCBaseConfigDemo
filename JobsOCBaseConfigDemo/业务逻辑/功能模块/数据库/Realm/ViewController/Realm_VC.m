@@ -15,7 +15,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -52,7 +52,7 @@
     [self insertUserWithName:@"Bob" age:30];
     /// 查询所有用户
     NSArray *users = self.fetchAllUsers;
-    NSLog(@"Users: %@", users);
+    JobsLog(@"Users: %@", users);
     /// 更新用户
     if (users.count > 0) {
         User_Realm *user = users[0];
@@ -65,17 +65,17 @@
     }
     /// 获取更新后的用户列表
     users = [self fetchAllUsers];
-    NSLog(@"Updated Users: %@", users);
+    JobsLog(@"Updated Users: %@", users);
 }
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{

@@ -112,25 +112,25 @@
          截取 textView.text 最后2位
          */
         NSString *res = JobsInternationalization(@"");
-        NSLog(@"MMM = %@",self.text);
+        JobsLog(@"MMM = %@",self.text);
         if (self.text.length >= 2) {
             // 这里的emoji判断有点问题，不识别新版本系统的emoji，以前的旧的emoji是可以识别的，我已经给apple提了单让他们给我们写一个api
             if ([[self.text substringFromIndex:self.text.length - 2] validateContainsEmoji]) {
                 res = [self.text substringWithRange:NSMakeRange(0, self.text.length - 2)];
-                NSLog(@"res = %@",res);
+                JobsLog(@"res = %@",res);
             }else{
                 res = [self.text substringWithRange:NSMakeRange(0, self.text.length - 1)];
-                NSLog(@"res = %@",res);
+                JobsLog(@"res = %@",res);
             }
         }else if (self.text.length == 1){
             res = [self.text substringWithRange:NSMakeRange(0, self.text.length - 1)];
-            NSLog(@"res = %@",res);
+            JobsLog(@"res = %@",res);
         }else{
             res = JobsInternationalization(@"");
-            NSLog(@"res = %@",res);
+            JobsLog(@"res = %@",res);
         }
         self.currentWordNum = res.length;
-        NSLog(@"SSS = %ld",self.currentWordNum);
+        JobsLog(@"SSS = %ld",self.currentWordNum);
         if (delBlock) delBlock(res);
         return YES;
     }else{//正向输入

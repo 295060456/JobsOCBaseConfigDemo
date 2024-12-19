@@ -39,8 +39,8 @@
     NSArray *propertyKeys = printPropertyListByObj(self);
     for (NSString *key in propertyKeys) {
         // 检查是否实现了协议中的属性对应的setter方法
-        NSLog(@"SSS = %@",(@"set".add(key.capitalizedString).add(@":")));
-        NSLog(@"AAA = %@",key);
+        JobsLog(@"SSS = %@",(@"set".add(key.capitalizedString).add(@":")));
+        JobsLog(@"AAA = %@",key);
         if ([self respondsToSelector:NSSelectorFromString(@"set".add(key.capitalizedString).add(@":"))]) {
             id value = [self valueForKey:key];
             [encoder encodeObject:value forKey:key];
@@ -114,7 +114,7 @@
 //            [description appendFormat:@"\t%@: %@\n", StringWithUTF8String(name), value];
 //        }
 //        @catch (NSException *exception) {
-//            NSLog(@"Exception when accessing ivar %@: %@", StringWithUTF8String(name), exception);
+//            JobsLog(@"Exception when accessing ivar %@: %@", StringWithUTF8String(name), exception);
 //            [description appendFormat:@"\t%@ : <Error accessing ivar>\n", StringWithUTF8String(name)];
 //        }
 //    }

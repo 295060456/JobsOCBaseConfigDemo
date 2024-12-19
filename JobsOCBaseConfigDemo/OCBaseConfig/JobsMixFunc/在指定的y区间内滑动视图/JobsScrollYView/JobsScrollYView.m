@@ -45,8 +45,8 @@ static dispatch_once_t static_scrollYViewOnceToken;
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
-                NSLog(@"SSS = %d",b.boolValue);
-            }NSLog(@"通知传递过来的 = %@",notification.object);
+                JobsLog(@"SSS = %d",b.boolValue);
+            }JobsLog(@"通知传递过来的 = %@",notification.object);
         }];
     }return self;
 }
@@ -108,8 +108,8 @@ static dispatch_once_t static_scrollYViewOnceToken;
             self.center = CGPointMake(self.initialTouchPoint.x, newY);
         }
         if (sender.state == UIGestureRecognizerStateEnded) {
-            NSLog(@"translation = %f",translation.y);// 向上为负、向下为正
-            NSLog(@"fdfd = %f",self.center.y);//541.333328 703.666672
+            JobsLog(@"translation = %f",translation.y);// 向上为负、向下为正
+            JobsLog(@"fdfd = %f",self.center.y);//541.333328 703.666672
             // 在手势结束时，检查视图的位置并执行你想要的操作
             if(self.objectBlock) self.objectBlock(self);
         }return nil;

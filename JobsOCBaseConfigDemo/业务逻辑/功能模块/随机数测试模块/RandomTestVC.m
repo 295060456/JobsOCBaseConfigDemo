@@ -14,7 +14,7 @@
 @implementation RandomTestVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -74,7 +74,7 @@
     int l = random100_200();/// 示例：获取一个随机数范围在：【100、200），包括100，不包括200
     int j = random100__200();/// 示例：获取一个随机数范围在：【100、200】，包括100，包括200
     
-    NSLog(@"%d",f);
+    JobsLog(@"%d",f);
 }
 #pragma mark —— LazyLoad
 

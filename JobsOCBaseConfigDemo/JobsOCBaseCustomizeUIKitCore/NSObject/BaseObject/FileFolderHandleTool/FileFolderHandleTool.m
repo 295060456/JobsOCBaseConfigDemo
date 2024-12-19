@@ -17,7 +17,7 @@
         [NSString.documentsDir.jobsFileUrl setResourceValue:@(YES)
                                                      forKey:NSURLIsExcludedFromBackupKey
                                                       error:&error];
-        if(error) NSLog(@"error = %@",error);
+        if(error) JobsLog(@"error = %@",error);
     };
 }
 #pragma mark - 创建Library/Caches下的文件夹📂路径 还未真正创建
@@ -58,7 +58,7 @@
                                          attributes:nil
                                               error:error];
     if (error){
-        NSLog(@"createDirectoryAtPath_err = %@",(*error).description);
+        JobsLog(@"createDirectoryAtPath_err = %@",(*error).description);
     }return isSuccess;
 }
 /// 创建带文件夹的文件 返回是否创建带文件夹的文件成功状态
@@ -156,7 +156,7 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
 /// @param fileType 获取的文件类型 因为要以不同的方式解析出数据
 +(id)filePath:(NSString *__nonnull)filePath fileType:(FileType)fileType{
     if (isNull(filePath)){
-        NSLog(@"文件路径不存在");
+        JobsLog(@"文件路径不存在");
         return nil;
     }else{
         switch (fileType){
@@ -271,7 +271,7 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
             return NO;
         }
     }else{
-        NSLog(@"文件路径不存在");
+        JobsLog(@"文件路径不存在");
         return NO;
     }return YES;
 }
@@ -612,10 +612,10 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
             [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:folderName];
         } completionHandler:^(BOOL success,NSError * _Nullable error){
             if (success){
-                NSLog(@"创建相册文件夹成功!");
+                JobsLog(@"创建相册文件夹成功!");
                 FileFolderHandleTool.saveRes(pathStr.jobsUrl);
             } else{
-                NSLog(@"创建相册文件夹失败:%@", error);
+                JobsLog(@"创建相册文件夹失败:%@", error);
             }
         }];
     }else FileFolderHandleTool.saveRes(pathStr.jobsUrl);
@@ -629,7 +629,7 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
                                                       NSUInteger idx,
                                                       BOOL *stop){//对获取到集合进行遍历
             PHAssetCollection *assetCollection = obj;
-            NSLog(@"LLL %@",assetCollection.localizedTitle);
+            JobsLog(@"LLL %@",assetCollection.localizedTitle);
             if (assetCollection.localizedTitle.isEqualToString(self.appName)){
                 [PHPhotoLibrary.sharedPhotoLibrary performChanges:^{
                     /// 请求创建一个Asset
@@ -643,11 +643,11 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
                     localIdentifier = placeHolder.localIdentifier;
                 } completionHandler:^(BOOL success,NSError *error){
                     if (success){
-                        NSLog(@"保存视频成功!");
+                        JobsLog(@"保存视频成功!");
                         //保存视频成功 全局发通知
                         JobsPostNotification(@"saveRes_success", nil);
                     } else{
-                        NSLog(@"保存视频失败:%@", error);
+                        JobsLog(@"保存视频失败:%@", error);
                     }
                 }];
             }
@@ -688,9 +688,9 @@ bundleFileSuffix:(NSString *__nonnull)bundleFileSuffix
 didFinishSavingWithError:(NSError *)error
             contextInfo:(void *)contextInfo{
     if (error){
-        NSLog(@"保存图片出错%@",error.localizedDescription);
+        JobsLog(@"保存图片出错%@",error.localizedDescription);
     }else{
-        NSLog(@"保存图片成功");
+        JobsLog(@"保存图片成功");
     }
 }
 /// 保存文件到系统默认的相册，videoPath为视频下载到本地之后的本地路径
@@ -710,9 +710,9 @@ didFinishSavingWithError:(NSError *)error
 didFinishSavingWithError:(NSError *)error
   contextInfo:(void *)contextInfo{
     if (error){
-        NSLog(@"保存视频失败%@", error.localizedDescription);
+        JobsLog(@"保存视频失败%@", error.localizedDescription);
     }else{
-        NSLog(@"保存视频成功");
+        JobsLog(@"保存视频成功");
     }
 }
 /// 仅获取PHAsset里面的视频

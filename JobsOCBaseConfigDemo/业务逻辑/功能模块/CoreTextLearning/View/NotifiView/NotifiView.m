@@ -48,7 +48,7 @@
     
     NSString* key = data[kNotifiViewKey];
     if (![key isEqualToString:self.key]) {
-        NSLog(@"要更新的View的key与源key不同。更新失败!");
+        JobsLog(@"要更新的View的key与源key不同。更新失败!");
         if (finishBlock) {
             finishBlock(self.key);
         }

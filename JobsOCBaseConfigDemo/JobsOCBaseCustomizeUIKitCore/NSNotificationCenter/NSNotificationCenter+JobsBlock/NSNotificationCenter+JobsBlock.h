@@ -29,13 +29,13 @@ NS_ASSUME_NONNULL_END
                                       queue:nil
                                  usingBlock:^(NSNotification * _Nonnull notification) {
         NSString *d = notification.name;
-        NSLog(@"");
+        JobsLog(@"");
  }];
  =================================================================================================
  或者，使用方法 2：
  JobsNotificationCenter.jobsNotificationBlock = ^(NSNotification * _Nonnull notification) {
      NSString *d = notification.name;
-     NSLog(@"");
+     JobsLog(@"");
  };
 
  // 添加观察者监听通知
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_END
  [JobsNotificationCenter addObserver:self
                             selector:selectorBlocks(^id _Nullable(id  _Nullable weakSelf,
                                                              id  _Nullable arg) {
-        NSLog(@"SSSS加载新的数据，参数: %@", arg);
+        JobsLog(@"SSSS加载新的数据，参数: %@", arg);
         /// 在需要结束刷新的时候调用（只能调用一次）
         /// _collectionView.endRefreshing(YES);
         return nil;

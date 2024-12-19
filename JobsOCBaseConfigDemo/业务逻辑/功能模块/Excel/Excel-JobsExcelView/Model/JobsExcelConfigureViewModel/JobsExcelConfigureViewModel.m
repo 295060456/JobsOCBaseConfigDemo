@@ -95,7 +95,7 @@
                         model.backgroundImage = i % 2 ? self.image2: self.image1;
                         model.titleCor = JobsWhiteColor;
                         model.titleFont = UIFontWeightRegularSize(JobsWidth(10));
-                        NSLog(@"");
+                        JobsLog(@"");
                         model.jobsTestBlock();
                         model.jobsReturnedTestBlock(^id _Nullable(id  _Nullable data) {
                             return nil;
@@ -103,7 +103,7 @@
                     }));
                 }
             }));
-        }NSLog(@"");
+        }JobsLog(@"");
     };
 }
 

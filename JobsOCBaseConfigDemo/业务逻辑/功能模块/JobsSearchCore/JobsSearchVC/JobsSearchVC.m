@@ -27,7 +27,7 @@
 @implementation JobsSearchVC
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     [self endDropDownListView];
 }
 
@@ -452,7 +452,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 //                                                                  data:self.listViewData
 //                                                    motivateViewOffset:JobsWidth(5)
 //                                                           finishBlock:^(UIViewModel *data) {
-//                            NSLog(@"data = %@",data);
+//                            JobsLog(@"data = %@",data);
 //                        }];
 //                    }
 //                }break;
@@ -476,7 +476,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
                 if (self.objectBlock) self.objectBlock(x);
                 toast(JobsInternationalization(@"此功能尚未开发"));
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
     }return _scanBtn;
 }

@@ -186,7 +186,7 @@ typedef void (^_FDViewControllerWillAppearInjectBlock)(UIViewController *viewCon
                                                      BOOL animated) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (strongSelf) {
-            NSLog(@"viewController.fd_prefersNavigationBarHidden = %d",viewController.fd_prefersNavigationBarHidden);
+            JobsLog(@"viewController.fd_prefersNavigationBarHidden = %d",viewController.fd_prefersNavigationBarHidden);
             [strongSelf setNavigationBarHidden:YES//viewController.fd_prefersNavigationBarHidden
                                       animated:animated];
         }

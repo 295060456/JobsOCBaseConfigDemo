@@ -76,7 +76,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_containerView];
         [_containerView mas_makeConstraints:^(MASConstraintMaker *make) {

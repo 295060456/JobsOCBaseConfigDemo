@@ -17,7 +17,7 @@
 /**
  UITapGestureRecognizer *tapGesture = UITapGestureRecognizer.rac_recognizer;
  [tapGesture.rac_gestureSignal subscribeNext:^(__kindof UIGestureRecognizer * _Nullable gesture) {
-     NSLog(@"");
+     JobsLog(@"");
  }];
  self.topBar.addGesture(tapGesture);
  */

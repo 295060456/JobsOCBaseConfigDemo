@@ -27,7 +27,7 @@
 @implementation JXCategoryPopupVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -118,7 +118,7 @@ didScrollSelectedItemAtIndex:(NSInteger)index{
 scrollingFromLeftIndex:(NSInteger)leftIndex
 toRightIndex:(NSInteger)rightIndex
 ratio:(CGFloat)ratio {
-    NSLog(@"");
+    JobsLog(@"");
     //    [self.listContainerView scrollingFromLeftIndex:leftIndex
     //                                      toRightIndex:rightIndex
     //                                             ratio:ratio
@@ -188,7 +188,7 @@ ratio:(CGFloat)ratio {
         [self.view layoutIfNeeded];
         /// ❤️在需要的地方写❤️
         NSNumber *currentIndex = self.listContainerView.valueForKey(@"currentIndex");
-        NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
+        JobsLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
     }return _listContainerView;
 }
 
@@ -235,7 +235,7 @@ ratio:(CGFloat)ratio {
                 self.jobsToastMsg(JobsInternationalization(@"篩選"));
                 [x changeAction:x.selected];
                 self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
-                NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
+                JobsLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
                 self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
                 self.vc.hidePopupView(self.popUpCustomView);
                 if (x.selected) {
@@ -246,7 +246,7 @@ ratio:(CGFloat)ratio {
                     self.vc.hidePopupView(self.popUpFiltrationView);
                 }
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.view addSubview:_filterBtn];
         [_filterBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -272,7 +272,7 @@ ratio:(CGFloat)ratio {
                 x.jobsResetBtnTitleCor(x.selected ? HEXCOLOR(0xAE8330) : HEXCOLOR(0x3D4A58));
                 self.jobsToastMsg(JobsInternationalization(@"自定义"));
                 self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
-                NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
+                JobsLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
                 self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];
                 self.popUpFiltrationView = self.vc.popUpFiltrationView;
                 self.vc.hidePopupView(self.popUpFiltrationView);
@@ -285,7 +285,7 @@ ratio:(CGFloat)ratio {
                     self.vc.hidePopupView(self.popUpCustomView);
                 }
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _customBtn.selectedStateTitleColorBy(HEXCOLOR(0xAE8330));
         [self.view addSubview:_customBtn];

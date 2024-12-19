@@ -18,7 +18,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -49,7 +49,7 @@
     self.collectionView.reloadDatas();
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
         @jobs_strongify(self)
-        NSLog(@"退出页面的逻辑");
+        JobsLog(@"退出页面的逻辑");
          JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
          JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortrait;/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
 //        self.currentDeviceOrientation = UIDeviceOrientationPortrait;/// 设备竖直放置，设备底部的 Home 键在底部（设备顶部朝上）
@@ -65,12 +65,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -183,35 +183,35 @@ atIndexPath:(NSIndexPath *)indexPath {
 /// 允许选中时，高亮
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 高亮完成后回调
 -(void)collectionView:(UICollectionView *)collectionView
 didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
 }
 /// 由高亮转成非高亮完成时的回调
 -(void)collectionView:(UICollectionView *)collectionView
 didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
 }
 /// 设置是否允许选中
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 设置是否允许取消选中
 -(BOOL)collectionView:(UICollectionView *)collectionView
 shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 选中操作
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     self.dataMutArr[indexPath.item].jobsBlock(nil);
     /**
      滚动到指定位置
@@ -222,7 +222,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 /// 取消选中操作
 -(void)collectionView:(UICollectionView *)collectionView
 didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
 }
 #pragma mark —— UICollectionViewDelegateFlowLayout
 /// header 大小
@@ -348,7 +348,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                 });
                 data1.jobsBlock = ^id(id param){
                     @jobs_strongify(self)
-                    NSLog(@"检测当前屏幕方向");
+                    JobsLog(@"检测当前屏幕方向");
                     [self checkScreenOrientation_UIInterfaceOrientation:^CGSize(NSInteger data) {
                         return CGSizeZero;
                     }];
@@ -365,7 +365,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                 });
                 data1.jobsBlock = ^id(id param){
                     @jobs_strongify(self)
-                    NSLog(@"锁定横屏:设备可以处于任意横屏模式，包括左横屏和右横屏");
+                    JobsLog(@"锁定横屏:设备可以处于任意横屏模式，包括左横屏和右横屏");
     //                self.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscape;/// 设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏
                      JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;/// 设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏
     //                self.currentDeviceOrientation = UIDeviceOrientationUnknown;/// 设备方向未知或不确定
@@ -381,7 +381,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                 });
                 data.jobsBlock = ^id(id param){
                     @jobs_strongify(self)
-                    NSLog(@"解除锁定:设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏");
+                    JobsLog(@"解除锁定:设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏");
                     JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskAll;/// 设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏
                     JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortrait |
                                                        UIInterfaceOrientationPortraitUpsideDown |
@@ -400,7 +400,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                 });
                 data1.jobsBlock = ^id(id param){
                     @jobs_strongify(self)
-                    NSLog(@"设备处于左横屏模式");
+                    JobsLog(@"设备处于左横屏模式");
                     JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeLeft;/// 设备处于左横屏（Landscape Left）模式
                     JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft;/// 设备处于左横屏（Landscape Left）模式
     //                self.currentDeviceOrientation = UIDeviceOrientationUnknown;/// 设备方向未知或不确定
@@ -416,7 +416,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                 });
                 data1.jobsBlock = ^id(id param){
                     @jobs_strongify(self)
-                    NSLog(@"设备处于右横屏模式");
+                    JobsLog(@"设备处于右横屏模式");
                     JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;/// 设备处于右横屏（Landscape Right）模式
                     JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeRight;/// 设备处于右横屏（Landscape Right）模式
     //                self.currentDeviceOrientation = UIDeviceOrientationUnknown;/// 设备方向未知或不确定
@@ -432,7 +432,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                 });
                 data1.jobsBlock = ^id(id param) {
                     @jobs_strongify(self)
-                    NSLog(@"设备处于竖屏模式");
+                    JobsLog(@"设备处于竖屏模式");
                     JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;/// 设备处于竖屏（Portrait）模式。
                     JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortrait;/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
     //                self.currentDeviceOrientation = UIDeviceOrientationPortrait;/// 设备竖直放置，设备底部的 Home 键在底部（设备顶部朝上）
@@ -448,7 +448,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 //                });
 //                data1.jobsBlock = ^id(id param) {
 //                    @jobs_strongify(self)
-//                    NSLog(@"设备处于倒竖屏模式。可能设备不支持");
+//                    JobsLog(@"设备处于倒竖屏模式。可能设备不支持");
 //                    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortraitUpsideDown;/// 设备处于竖屏（Portrait）模式。
 //                    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
 //    //                self.currentDeviceOrientation = UIDeviceOrientationUnknown;/// 设备方向未知或不确定

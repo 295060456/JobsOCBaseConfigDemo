@@ -60,14 +60,14 @@
 /// 通知验证界面将要展现
 /// @param captchaSession 验证会话
 - (void)gtCaptchaSessionWillShow:(GTCaptcha4Session *)captchaSession{
-    NSLog(@"");
+    JobsLog(@"");
 }
 /// 回调验证会话中发生的错误(Callback errors that occurred in the captcha session)
 /// @param captchaSession 验证会话(Captcha session)
 /// @param error 错误描述对象(Error description object)
 - (void)gtCaptchaSession:(GTCaptcha4Session *)captchaSession
          didReceiveError:(GTC4Error *)error{
-    NSLog(@"error = %@",error);
+    JobsLog(@"error = %@",error);
     self.JobsPostBy(jobsMakeKeyValueModel(^(JobsKeyValueModel * _Nullable data) {
         data.key = 获取极验验证码失败;
         data.value = jobsMakeGTCaptcha4Model(^(__kindof GTCaptcha4Model * _Nullable data1) {

@@ -60,7 +60,7 @@ static dispatch_once_t AppDelegateOnceToken;
             userModel.phone = @"13487878787".encryptedChineseTele;
         }));
         id f = self.readUserInfo;
-        NSLog(@"");
+        JobsLog(@"");
     };
 }
 #pragma mark —— 一些公有方法
@@ -71,7 +71,7 @@ static dispatch_once_t AppDelegateOnceToken;
     if (context.hasChanges && ![context save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+        JobsLog(@"Unresolved error %@, %@", error, error.userInfo);
         abort();
     }
 }
@@ -85,7 +85,7 @@ static dispatch_once_t AppDelegateOnceToken;
             [_persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *storeDescription,
                                                                               NSError *error) {
                 if (error) {
-                    NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+                    JobsLog(@"Unresolved error %@, %@", error, error.userInfo);
                     abort();
                 }
             }];

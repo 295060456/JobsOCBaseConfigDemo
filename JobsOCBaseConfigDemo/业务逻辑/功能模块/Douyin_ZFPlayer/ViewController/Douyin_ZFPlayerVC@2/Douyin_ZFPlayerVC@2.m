@@ -22,7 +22,7 @@
 @implementation Douyin_ZFPlayerVC_2
 
 -(void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 #pragma mark —— Lifecycle
 -(instancetype)init{
@@ -53,7 +53,7 @@
     NSError *error = nil;
     [KTVHTTPCache proxyStart:&error];
     if(error){
-        NSLog(@"error = %@",error.description)
+        JobsLog(@"error = %@",error.description)
     }
 }
 
@@ -280,7 +280,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    NSLog(@"下拉刷新");
+                    JobsLog(@"下拉刷新");
                     self.currentPage = @(1);
                     [self requestData];
                 //    [self requestData:NO];
@@ -296,10 +296,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 data.noMoreDataTitle = JobsInternationalization(@"没有更多数据");
                 data.loadBlock = ^id _Nullable(id _Nullable data) {
                     @jobs_strongify(self)
-                    NSLog(@"上拉加载更多");
+                    JobsLog(@"上拉加载更多");
                     self.currentPage = @(self.currentPage.integerValue + 1);
                     [self requestData];
-                //    NSLog(@"currentPageNum = %ld",self.currentPage);
+                //    JobsLog(@"currentPageNum = %ld",self.currentPage);
                 //    [self requestData:YES];
                 //    [self playVideo];
                     return nil;
@@ -498,7 +498,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 -(void)requestData:(BOOL)isLoadMore{
     /// 下拉时候一定要停止当前播放，不然有新数据，播放位置会错位。
     [self.player stopCurrentPlayingCell];
-    NSLog(@"当前是否有网：%d 状态：%ld",ZBRequestManager.isNetworkReachable,ZBRequestManager.networkReachability);
+    JobsLog(@"当前是否有网：%d 状态：%ld",ZBRequestManager.isNetworkReachable,ZBRequestManager.networkReachability);
     DataManager.sharedManager.tag = ReuseIdentifier;
     /**
      公共配置
@@ -516,7 +516,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                                   @"pageNum":self.currentPage}
                    successBlock:^(JobsResponseModel *data) {
         @jobs_strongify(self)
-        NSLog(@"");
+        JobsLog(@"");
         if([data.data isKindOfClass:NSArray.class]){
             NSArray *tempDataArr = (NSArray *)data.data;
             {// 数据组装

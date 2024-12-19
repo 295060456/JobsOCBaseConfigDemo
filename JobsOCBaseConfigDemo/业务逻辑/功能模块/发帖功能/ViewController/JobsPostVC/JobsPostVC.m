@@ -39,7 +39,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -68,7 +68,7 @@
         if (isValue(JobsUserModel.sharedManager.postDraftURLStr)) {
             self.inputDataHistoryString = [FileFolderHandleTool filePath:JobsUserModel.sharedManager.postDraftURLStr
                                                                 fileType:TXT];
-        }NSLog(@"%@",self.inputDataHistoryString);
+        }JobsLog(@"%@",self.inputDataHistoryString);
     }
 }
 
@@ -151,12 +151,12 @@
                                                              fileFullname:@"发帖草稿数据.txt"
                                                                     error:&err];
         if(err){
-            NSLog(@"%@",err.description);
+            JobsLog(@"%@",err.description);
         }
     }else{
         FileFolderHandleTool.cleanFilesWithPath(JobsUserModel.sharedManager.postDraftURLStr);
     }
-    NSLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
+    JobsLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
     [self.view hx_showLoadingHUDText:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL success = [self.photoManager saveLocalModelsToFile];//保存图片
@@ -359,7 +359,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
                 [self.view endEditing:YES];
                 [self networking_checkHadRoleGET];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _releaseBtn.enabled = NO;
         _releaseBtn.width = JobsWidth(38);

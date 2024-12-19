@@ -30,7 +30,7 @@
         }else if (self.length == 13){
             sec = self.doubleValue / 1000.0;/// 毫秒级时间戳（13位）
         }else{
-            NSLog(@"不是正确的时间戳，请检查");
+            JobsLog(@"不是正确的时间戳，请检查");
             toast(JobsInternationalization(@"不是正确的时间戳，请检查"));
             return nil;
         }return jobsMakeDateFormatter(^(__kindof NSDateFormatter *_Nullable dateFormatter) {
@@ -64,7 +64,7 @@
     return ^BOOL(){
         @jobs_strongify(self)
 #ifdef DEBUG
-        NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.chinaTime(nil));
+        JobsLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.chinaTime(nil));
         toast(JobsFormattedString(@"Token过期时间为:%@", self.chinaTime(nil)));
 #endif
         /// 将时间戳字符串转换为 double 类型的时间戳

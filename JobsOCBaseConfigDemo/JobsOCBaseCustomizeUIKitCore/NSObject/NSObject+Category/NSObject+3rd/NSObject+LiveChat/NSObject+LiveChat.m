@@ -70,15 +70,15 @@
 }
 
 -(void)chatPresented {
-    NSLog(@"Chat presented");
+    JobsLog(@"Chat presented");
 }
 
 -(void)chatDismissed {
-    NSLog(@"Chat dismissed");
+    JobsLog(@"Chat dismissed");
 }
 
 -(void)chatLoadingFailedWith:(NSError *)error {
-    NSLog(@"Chat loading failure %@", error.localizedDescription);
+    JobsLog(@"Chat loading failure %@", error.localizedDescription);
 }
 
 -(void)handleWithURL:(NSURL *)URL{

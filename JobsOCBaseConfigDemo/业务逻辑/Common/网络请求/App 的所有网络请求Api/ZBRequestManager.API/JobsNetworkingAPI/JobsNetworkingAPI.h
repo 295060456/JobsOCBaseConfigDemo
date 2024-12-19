@@ -15,7 +15,7 @@
  插件机制
  证书设置
  */
-#define JobsNetworkingPrepare NSLog(@"当前是否有网：%d 状态：%ld",ZBRequestManager.isNetworkReachable,ZBRequestManager.networkReachability);\
+#define JobsNetworkingPrepare JobsLog(@"当前是否有网：%d 状态：%ld",ZBRequestManager.isNetworkReachable,ZBRequestManager.networkReachability);\
 DataManager.sharedManager.tag = ReuseIdentifier.add(@"_").add(NSStringFromSelector(_cmd));\
 
 NS_ASSUME_NONNULL_BEGIN
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_END
 /**
  调用示例：【一般的网络请求，只带body参数，最多也就是自定义header】
  -(void)networking_messageSecondClassListGET{
-     NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
+     JobsLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
      DataManager.sharedManager.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
      RequestTool *config = RequestTool.new
      config.languageType = HTTPRequestHeaderLanguageCN;
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_END
          request.server = This.BaseUrl;
          request.url = [request.server stringByAppendingString:NSObject.userInfoInviteFriendPOST.url];
          
-         NSLog(@"request.URLString = %@",request.url);
+         JobsLog(@"request.URLString = %@",request.url);
          
          request.methodType = ZBMethodTypePOST;//默认为GET
          request.apiType = ZBRequestTypeRefresh;//（默认为ZBRequestTypeRefresh 不读取缓存，不存储缓存）
@@ -106,18 +106,18 @@ NS_ASSUME_NONNULL_END
          }//一些临时的其他的配置
          
      }progress:^(NSProgress * _Nullable progress){
-         NSLog(@"进度 = %f",progress.fractionCompleted * 100);
+         JobsLog(@"进度 = %f",progress.fractionCompleted * 100);
      }success:^(id  _Nullable responseObject,
                 ZBURLRequest * _Nullable request){
          if (successBlock) {
              successBlock(responseObject);
          }
      }failure:^(NSError * _Nullable error){
-         NSLog(@"error = %@",error);
+         JobsLog(@"error = %@",error);
      }finished:^(id  _Nullable responseObject,
                  NSError * _Nullable error,
                  ZBURLRequest * _Nullable request){
-         NSLog(@"请求完成 userInfo:%@",request.userInfo);
+         JobsLog(@"请求完成 userInfo:%@",request.userInfo);
      }];
  }
  
@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_END
 调用示例：【特殊的网络请求：可以body里面携带参数，也可以自定义header，并且表单模式post传输data数据】
 /// 帖子图片上传 POST
 -(void)networking_postUploadImagePOST{
- NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
+ JobsLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
  DataManager.sharedManager.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
 
  RequestTool *config = RequestTool.new
@@ -141,11 +141,11 @@ NS_ASSUME_NONNULL_END
                                self.photosImageMutArr]
                 successBlock:^(id data) {
      @jobs_strongify(self)
-     NSLog(@"data = %@",data);
+     JobsLog(@"data = %@",data);
  }
                 failureBlock:^(id data) {
      @jobs_strongify(self)
-     NSLog(@"data = %@",data);
+     JobsLog(@"data = %@",data);
  }];
 }
  
@@ -169,7 +169,7 @@ NS_ASSUME_NONNULL_END
  [ZBRequestManager requestWithConfig:^(ZBURLRequest * request) {
      request.server = This.BaseUrl;
      request.url = [request.server stringByAppendingString:NSObject.postUploadImagePOST.url];
-     NSLog(@"request.URLString = %@",request.url);
+     JobsLog(@"request.URLString = %@",request.url);
      request.methodType = ZBMethodTypeUpload;
      request.apiType = ZBRequestTypeRefresh;//（默认为ZBRequestTypeRefresh 不读取缓存，不存储缓存）
 //        request.parameters = parameters;//与公共配置 Parameters 兼容
@@ -182,14 +182,14 @@ NS_ASSUME_NONNULL_END
          request.userInfo = @{@"info":DataManager.sharedManager.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
      };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
  } progress:^(NSProgress * _Nullable progress) {
-     NSLog(@"onProgress: %.2f", 100.f * progress.completedUnitCount/progress.totalUnitCount);
+     JobsLog(@"onProgress: %.2f", 100.f * progress.completedUnitCount/progress.totalUnitCount);
  } success:^(id  responseObject,ZBURLRequest * request) {
-     NSLog(@"responseObject: %@", responseObject);
+     JobsLog(@"responseObject: %@", responseObject);
      if (successBlock) {
          successBlock(responseObject);
      }
  } failure:^(NSError * _Nullable error) {
-     NSLog(@"error: %@", error);
+     JobsLog(@"error: %@", error);
      if (failureBlock) {
          failureBlock(error);
      }
@@ -202,7 +202,7 @@ NS_ASSUME_NONNULL_END
 调用示例：【特殊的网络请求：可以body里面携带参数，也可以自定义header，并且表单模式post传输data数据】
 /// 帖子视频上传 POST
 -(void)networking_postuploadVideoPOST{
- NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
+ JobsLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
  DataManager.sharedManager.tag = [ReuseIdentifier stringByAppendingString:NSStringFromSelector(_cmd)];
 
  RequestTool *config = RequestTool.new
@@ -220,11 +220,11 @@ NS_ASSUME_NONNULL_END
                                self.videosData]
                 successBlock:^(id data) {
      @jobs_strongify(self)
-     NSLog(@"data = %@",data);
+     JobsLog(@"data = %@",data);
  }
                 failureBlock:^(id data) {
      @jobs_strongify(self)
-     NSLog(@"data = %@",data);
+     JobsLog(@"data = %@",data);
  }];
 }
 
@@ -253,7 +253,7 @@ NS_ASSUME_NONNULL_END
      [ZBRequestManager requestWithConfig:^(ZBURLRequest * request) {
          request.server = This.BaseUrl;
          request.url = [request.server stringByAppendingString:NSObject.postuploadVideoPOST.url];
-         NSLog(@"request.URLString = %@",request.url);
+         JobsLog(@"request.URLString = %@",request.url);
          request.methodType = ZBMethodTypeUpload;
          request.apiType = ZBRequestTypeRefresh;//（默认为ZBRequestTypeRefresh 不读取缓存，不存储缓存）
  //        request.parameters = parameters;//与公共配置 Parameters 兼容
@@ -266,16 +266,16 @@ NS_ASSUME_NONNULL_END
              request.userInfo = @{@"info":DataManager.sharedManager.tag};//与公共配置 UserInfo 不兼容 优先级大于 公共配置
          };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
      } progress:^(NSProgress * _Nullable progress) {
-         NSLog(@"onProgress: %.2f", 100.f * progress.completedUnitCount/progress.totalUnitCount);
+         JobsLog(@"onProgress: %.2f", 100.f * progress.completedUnitCount/progress.totalUnitCount);
          [WHToast toastLoadingMsg:@"视频上传中...请稍后"];
      } success:^(id  responseObject,ZBURLRequest * request) {
-         NSLog(@"responseObject: %@", responseObject);
+         JobsLog(@"responseObject: %@", responseObject);
          [WHToast toastHide];
          if (successBlock) {
              successBlock(responseObject);
          }
      } failure:^(NSError * _Nullable error) {
-         NSLog(@"error: %@", error);
+         JobsLog(@"error: %@", error);
          [WHToast toastHide];
          if (failureBlock) {
              failureBlock(error);
@@ -308,10 +308,10 @@ NS_ASSUME_NONNULL_END
                               progress:^(NSProgress * _Nonnull downloadProgress) {
      } success:^(NSURLSessionDataTask * _Nonnull task,
                  id  _Nullable responseObject) {
-         NSLog(@"%@",responseObject);
+         JobsLog(@"%@",responseObject);
      } failure:^(NSURLSessionDataTask * _Nullable task,
                  NSError * _Nonnull error) {
-         NSLog(@"%@",error);
+         JobsLog(@"%@",error);
      }];
  }
  
@@ -326,7 +326,7 @@ NS_ASSUME_NONNULL_END
      NSDictionary *rootDict = [NSJSONSerialization JSONObjectWithData:data
                                                   options:NSJSONReadingAllowFragments
                                                     error:&err];
-     NSLog(@"");
+     JobsLog(@"");
  }
  
  **/

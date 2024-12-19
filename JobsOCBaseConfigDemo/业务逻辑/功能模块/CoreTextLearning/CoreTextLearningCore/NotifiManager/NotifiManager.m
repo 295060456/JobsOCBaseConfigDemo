@@ -49,7 +49,7 @@
     NotifiView* nView = [[NotifiViewFactory shared] fetchViewWithKey:key];
     if (nView) {
         [nView updateWithData:data finish:^(NSString *key) {
-            NSLog(@"更新完成!Key => %@", key);
+            JobsLog(@"更新完成!Key => %@", key);
         }];
     }
 }

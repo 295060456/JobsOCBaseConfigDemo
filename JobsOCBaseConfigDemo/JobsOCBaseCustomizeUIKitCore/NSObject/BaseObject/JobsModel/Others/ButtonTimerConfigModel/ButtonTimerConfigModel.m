@@ -31,8 +31,8 @@ UILocationProtocol_synthesize
             //倒计时启动
             [data actionObjectBlock:^(NSTimerManager *data) {
                 @jobs_strongify(self)
-                NSLog(@"正在倒计时...");
-                NSLog(@"SSS = %@",self.objectBlock);
+                JobsLog(@"正在倒计时...");
+                JobsLog(@"SSS = %@",self.objectBlock);
                 if (self.objectBlock) self.objectBlock(data);
             }];
         });

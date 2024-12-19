@@ -147,7 +147,7 @@
         [_backBtn mas_makeConstraints:BackBtnModel.masonryBlock ? : ^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(18));
             make.centerY.equalTo(self);
-            NSLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
+            JobsLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
             make.left.equalTo(self).offset(self.navBarConfig.backBtnModel.jobsOffsetX ? : JobsWidth(20));
         }];_backBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _backBtn;

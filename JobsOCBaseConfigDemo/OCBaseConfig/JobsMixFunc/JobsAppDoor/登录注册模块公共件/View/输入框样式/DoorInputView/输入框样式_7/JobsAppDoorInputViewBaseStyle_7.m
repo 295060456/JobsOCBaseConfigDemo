@@ -184,8 +184,8 @@
                                              motivateViewOffset:0
                                                     finishBlock:^(UIViewModel *data) {
 //                    @jobs_strongify(self)
-                    NSLog(@"data = %@",data);
-                    NSLog(@"data = %@",data.data);
+                    JobsLog(@"data = %@",data);
+                    JobsLog(@"data = %@",data.data);
                     x.jobsResetBtnTitle(data.textModel.text.add(data.subTextModel.text));
                 }];
             }else{
@@ -220,7 +220,7 @@
             return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
-            NSLog(@"输入的字符为 = %@",x);
+            JobsLog(@"输入的字符为 = %@",x);
             [self block:self->_textField
                   value:x];
         }];

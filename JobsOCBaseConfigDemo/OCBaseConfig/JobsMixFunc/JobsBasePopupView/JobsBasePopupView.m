@@ -104,7 +104,7 @@
             .onClickBy(^(UIButton *x){
                 if(self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _btn1.tag = 666;
         [self addSubview:_btn1];
@@ -130,7 +130,7 @@
                 @jobs_strongify(self)
                 if(self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _btn2.tag = 999;
         [self addSubview:_btn2];

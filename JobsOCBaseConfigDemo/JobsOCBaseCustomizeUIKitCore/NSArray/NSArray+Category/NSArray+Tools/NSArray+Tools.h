@@ -58,7 +58,7 @@
                       .onClickBy(^(UIButton *x){
                           toast(@"纸飞机");
                       }).onLongPressGestureBy(^(id data){
-                          NSLog(@"");
+                          JobsLog(@"");
                       }));
              data.add(BaseButton.jobsInit()
                       .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
@@ -66,7 +66,7 @@
                       .onClickBy(^(UIButton *x){
                           toast(@"脸书");
                       }).onLongPressGestureBy(^(id data){
-                          NSLog(@"");
+                          JobsLog(@"");
                       }));
              data.add(BaseButton.jobsInit()
                       .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
@@ -74,7 +74,7 @@
                       .onClickBy(^(UIButton *x){
                           toast(@"Viber");
                       }).onLongPressGestureBy(^(id data){
-                          NSLog(@"");
+                          JobsLog(@"");
                       }));
              for (UIView *view in data) {
                  self.addSubview(view);

@@ -704,7 +704,7 @@
  * dragGes:拖拽手势
  */
 -(void)dragGestureRecognizer:(UIPanGestureRecognizer *)dragGes{
-    //NSLog(@"弹框拖动手势事件=======:%@",[dragGes.view class]);
+    //JobsLog(@"弹框拖动手势事件=======:%@",[dragGes.view class]);
     if ([self.popupDelegate respondsToSelector:@selector(tf_popupViewDidDrag:dragGes:)]) {
         
         //拖动开始时,左右拖动操作前的配置

@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_END
                  [self.view layoutIfNeeded];
          //        /// ❤️在需要的地方写❤️
          //        NSNumber *currentIndex = [self.listContainerView valueForKey:@"currentIndex"];
-         //        NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
+         //        JobsLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
 
              }return _listContainerView;
          }

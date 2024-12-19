@@ -150,15 +150,15 @@
         btn = [self.class buttonWithConfiguration:btnConfiguration
                                     primaryAction:primaryAction];
         
-//        NSLog(@"%@",btnConfiguration);
-//        NSLog(@"%@",btn.configuration);
-//        NSLog(@"");
+//        JobsLog(@"%@",btnConfiguration);
+//        JobsLog(@"%@",btn.configuration);
+//        JobsLog(@"");
     /**
      UIAction *action = [UIAction actionWithTitle:@"按钮点击操作"
                                             image:nil
                                        identifier:nil
                                           handler:^(__kindof UIAction * _Nonnull action) {
-         NSLog(@"按钮被点击了！");
+         JobsLog(@"按钮被点击了！");
          // 在这里执行按钮点击时的操作
      }];
      */
@@ -187,7 +187,7 @@
             self.titleLabel.textAlignment = textAlignment;
             self.jobsResetImagePlacement_Padding(imagePlacement,imagePadding);
         }else{
-            NSLog(@"初始化UIButton失败");
+            JobsLog(@"初始化UIButton失败");
             NSAssert(0, @"初始化失败");
         }
     }

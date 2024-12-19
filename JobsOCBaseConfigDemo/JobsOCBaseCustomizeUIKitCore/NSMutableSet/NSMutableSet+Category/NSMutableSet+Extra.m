@@ -17,7 +17,7 @@
             /// 向集合加入nil会崩
             [self addObject:data];
         }else{
-            NSLog(@"集合被添加了一个空元素");
+            JobsLog(@"集合被添加了一个空元素");
         }return self;
     };
 }

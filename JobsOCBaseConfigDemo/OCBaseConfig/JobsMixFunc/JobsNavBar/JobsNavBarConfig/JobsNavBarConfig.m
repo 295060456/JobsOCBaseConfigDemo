@@ -28,7 +28,7 @@ static dispatch_once_t static_navBarConfigOnceToken;
         @jobs_weakify(self)
         _backBtnModel = self.makeBackBtnModel;
         _backBtnModel.longPressGestureEventBlock = ^id (__kindof UIButton *x) {
-            NSLog(@"按钮的长按事件触发");
+            JobsLog(@"按钮的长按事件触发");
             return nil;
         };
         _backBtnModel.clickEventBlock = ^id(BaseButton *x){
@@ -50,7 +50,7 @@ static dispatch_once_t static_navBarConfigOnceToken;
             data.selected_titleCor = JobsClearColor;
             data.roundingCorners = UIRectCornerAllCorners;
             data.longPressGestureEventBlock = ^id(__kindof UIButton *x) {
-                NSLog(@"按钮的长按事件触发");
+                JobsLog(@"按钮的长按事件触发");
                 return nil;
             };
             data.clickEventBlock = ^id(BaseButton *x){

@@ -19,11 +19,11 @@
                 value = [self objectForKey:key];
             }
             @catch (NSException *exception) {
-                NSLog(@"Exception while fetching value for key '%@': %@", key, exception);
+                JobsLog(@"Exception while fetching value for key '%@': %@", key, exception);
                 value = nil; // 返回 nil 或者自定义的默认值
             }
         } else {
-            NSLog(@"Invalid key: '%@' does not conform to the required format.", key);
+            JobsLog(@"Invalid key: '%@' does not conform to the required format.", key);
         }return value;
     };
 }

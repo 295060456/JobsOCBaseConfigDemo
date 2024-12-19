@@ -82,8 +82,8 @@ AppToolsProtocol_synthesize
                 self.navBarConfig.backBtnModel.jobsOffsetX = self.navBarConfig.backBtnModel.jobsOffsetX ? : JobsWidth(40);
                 self.navBarConfig.closeBtnModel.jobsOffsetX = self.navBarConfig.closeBtnModel.jobsOffsetX ? : JobsWidth(40);
             }
-            NSLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
-            NSLog(@"%f",self.navBarConfig.closeBtnModel.jobsOffsetX);
+            JobsLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
+            JobsLog(@"%f",self.navBarConfig.closeBtnModel.jobsOffsetX);
     //        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
             data.navBarConfig = self.navBarConfig;
             self.addSubview(data);
@@ -130,7 +130,7 @@ AppToolsProtocol_synthesize
         @jobs_weakify(self)
         _backBtnModel = self.makeBackBtnModel;
         _backBtnModel.longPressGestureEventBlock = ^id(__kindof UIButton *x) {
-            NSLog(@"按钮的长按事件触发");
+            JobsLog(@"按钮的长按事件触发");
             return nil;
         };
         _backBtnModel.clickEventBlock = ^id(BaseButton *x){

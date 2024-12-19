@@ -36,10 +36,10 @@
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
     if (error) {
-        NSLog(@"JSON转换失败: %@", error);
+        JobsLog(@"JSON转换失败: %@", error);
     } else {
         jsonString = NSString.initByUTF8Data(jsonData);
-        NSLog(@"%@", jsonString);
+        JobsLog(@"%@", jsonString);
     }return jsonString;
 }
 

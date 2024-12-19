@@ -27,7 +27,7 @@ static NSString *kX = @"curveX";
 static NSString *kY = @"curveY";
 - (void)dealloc {
 
-    NSLog(@"%s",__FUNCTION__);
+    JobsLog(@"%s",__FUNCTION__);
     [self removeObserver:self forKeyPath:kX];
     [self removeObserver:self forKeyPath:kY];
 }

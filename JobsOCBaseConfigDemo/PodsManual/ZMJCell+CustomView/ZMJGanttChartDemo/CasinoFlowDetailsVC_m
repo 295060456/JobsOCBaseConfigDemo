@@ -18,7 +18,7 @@
 @implementation CasinoFlowDetailsVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -68,7 +68,7 @@
 //- (void)spreadsheetView:(SpreadsheetView *)spreadsheetView didDeselectItemAt:(NSIndexPath *)indexPath;
 -(void)spreadsheetView:(SpreadsheetView *)spreadsheetView
        didSelectItemAt:(NSIndexPath *)indexPath {
-    NSLog(@"Selected: (row: %ld, column: %ld)", (long)indexPath.row, (long)indexPath.column);
+    JobsLog(@"Selected: (row: %ld, column: %ld)", (long)indexPath.row, (long)indexPath.column);
 }
 #pragma mark —— SpreadsheetViewDataSource
 //@required

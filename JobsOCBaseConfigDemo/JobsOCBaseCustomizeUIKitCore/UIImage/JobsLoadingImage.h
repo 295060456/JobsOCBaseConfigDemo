@@ -16,14 +16,14 @@
 NS_INLINE UIImage *__nullable JobsIMG(NSString *__nonnull imgName){
     UIImage *image = [UIImage imageNamed:imgName];
     if(!image && isValue(imgName)){
-        NSLog(@"文件名为%@的图片获取失败，请检查",imgName);
+        JobsLog(@"文件名为%@的图片获取失败，请检查",imgName);
     }return image;
 }
 
 NS_INLINE UIImage *__nullable JobsGifIMG(NSString *__nonnull imgName){
     UIImage *image = [UIImage animatedGIFNamed:imgName];
     if(!image && isValue(imgName)){
-        NSLog(@"文件名为%@的图片获取失败，请检查",imgName);
+        JobsLog(@"文件名为%@的图片获取失败，请检查",imgName);
     }return image;
 }
 /// 根据参数输出系统需要的文件路径

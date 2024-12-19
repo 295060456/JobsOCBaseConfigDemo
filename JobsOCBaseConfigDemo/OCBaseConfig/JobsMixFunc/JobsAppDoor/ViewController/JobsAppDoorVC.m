@@ -37,7 +37,7 @@
 @implementation JobsAppDoorVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 
@@ -93,9 +93,9 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-        NSLog(@"");
+        JobsLog(@"");
     } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-        NSLog(@"");
+        JobsLog(@"");
     }];
     self.jobsAppDoorContentView.图片从小放大();
     self.logoContentView.图片从小放大();
@@ -108,10 +108,10 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    NSLog(@"%@",self.requestParams);
+    JobsLog(@"%@",self.requestParams);
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
-        NSLog(@"%@",self.requestParams);
+        JobsLog(@"%@",self.requestParams);
         if ([self.viewModel.requestParams integerValue] == CurrentPage_Login) {
             
         }else if ([self.viewModel.requestParams integerValue] == CurrentPage_Register){
@@ -221,11 +221,11 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     for (JobsAppDoorInputViewBaseStyle *inputView in currentPageDataMutArr(self.currentPage)) {
         UITextField *textField = inputView.textField;
         if (textField.isEditing) {
-            NSLog(@"当前被激活的输入框的index = %ld",index);
+            JobsLog(@"当前被激活的输入框的index = %ld",index);
             self.lastTimeActivateTFIndex = self.currentActivateTFIndex;
             self.currentActivateTFIndex = index;//赋予新值。因为同一时刻，textField有且只有一个被激活
             
-            NSLog(@"在编辑");
+            JobsLog(@"在编辑");
             NSInteger offsetIdx = self.currentActivateTFIndex - self.lastTimeActivateTFIndex;
             self.jobsAppDoorContentView.y -= JobsWidth(40) * (offsetIdx + 0);
             self.logoContentView.y -= JobsWidth(40) * (offsetIdx + 0);
@@ -235,14 +235,14 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             index++;
             break;
         }else{
-            NSLog(@"没有在编辑");
+            JobsLog(@"没有在编辑");
             self.jobsAppDoorContentView.y = self.jobsAppDoorContentViewY;
             self.logoContentView.y = self.logoContentViewY;
             self.customerServiceBtn.y = self.customerServiceBtnY;
             index++;
         }
     }
-    NSLog(@"");
+    JobsLog(@"");
 }
 #pragma mark —— lazyLoad
 -(JobsAppDoorLogoContentView *)logoContentView{
@@ -374,7 +374,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
         _customerServiceBtn.top = self.jobsAppDoorContentView.top + self.jobsAppDoorContentView.height + 20;
         self.customerServiceBtnY = _customerServiceBtn.y;
         [_customerServiceBtn jobsBtnClickEventBlock:^id(id data) {
-            NSLog(@"点击客服按钮");
+            JobsLog(@"点击客服按钮");
             return nil;
         }];
         _customerServiceBtn.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {

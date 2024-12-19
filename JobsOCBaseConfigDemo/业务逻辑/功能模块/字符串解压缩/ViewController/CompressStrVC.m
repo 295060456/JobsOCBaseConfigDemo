@@ -15,7 +15,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -50,18 +50,18 @@
     [super viewWillAppear:animated];
 
     NSData *data = @"这是一个需要压缩的字符串".compress;
-    NSLog(@"压缩后的数据: %@",data);
-    NSLog(@"解压后的字符串: %@", data.decompressToStr);
+    JobsLog(@"压缩后的数据: %@",data);
+    JobsLog(@"解压后的字符串: %@", data.decompressToStr);
 }
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{

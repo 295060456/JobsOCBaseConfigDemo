@@ -65,7 +65,7 @@
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         });;
         [self addSubview:_cancelBtn];
         [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {

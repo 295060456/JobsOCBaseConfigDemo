@@ -36,7 +36,7 @@
                     SuppressWdeprecatedDeclarationsWarning(ret = [NSKeyedUnarchiver unarchiveObjectWithData:(__bridge NSData *)result]);
                 }
             } @catch (NSException * exception){
-                NSLog(@"Unarchive of search data where %@ failed of %@ ",service,exception);
+                JobsLog(@"Unarchive of search data where %@ failed of %@ ",service,exception);
             }
         }if (result)  CFRelease(result);
         keychainQuery = nil;/// 释放对象
@@ -80,7 +80,7 @@
                                     requiringSecureCoding:YES
                                                     error:&error];
         if(error){
-            NSLog(@"error = %@",error.description)
+            JobsLog(@"error = %@",error.description)
         }
     }else{
         SuppressWdeprecatedDeclarationsWarning(obj = NSKeyedArchiver.initByObject(data));

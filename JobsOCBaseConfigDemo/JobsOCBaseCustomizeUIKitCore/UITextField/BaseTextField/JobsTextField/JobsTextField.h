@@ -50,7 +50,7 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
  当 UITextField 本身是不可编辑状态（enabled = NO 或 userInteractionEnabled = NO）时，直接更改其 text 属性不会触发 RAC 的绑定，因为 RAC 的绑定通常依赖于控件的事件（如 UIControlEventEditingChanged）来检测变化。
  
  [[RACObserve(textField, text) distinctUntilChanged] subscribeNext:^(NSString *newText) {
-     NSLog(@"Text changed via KVO: %@", newText);
+     JobsLog(@"Text changed via KVO: %@", newText);
  }];
 
  // 修改 text 属性
@@ -66,7 +66,7 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
 
  // 绑定信号
  [textFieldSignal subscribeNext:^(NSString *newText) {
-     NSLog(@"Text changed: %@", newText);
+     JobsLog(@"Text changed: %@", newText);
  }];
 
  // 模拟改变 text 值

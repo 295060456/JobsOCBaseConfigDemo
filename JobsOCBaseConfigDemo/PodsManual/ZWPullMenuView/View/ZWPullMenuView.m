@@ -337,7 +337,7 @@
     if (!titleArray.count) return;
     if (self.menuArray.count&&
         self.menuArray.count != titleArray.count) {
-        NSLog( @"文字图片数量不匹配！");
+        JobsLog( @"文字图片数量不匹配！");
         return;
     }
     [self handleMenuModelArray:titleArray];
@@ -347,7 +347,7 @@
     if (!imageArray.count) return;
     if (self.menuArray.count&&
         self.menuArray.count != imageArray.count) {
-        NSLog( @"文字图片数量不匹配！");
+        JobsLog( @"文字图片数量不匹配！");
         return;
     }
     [self handleMenuModelArray:imageArray];

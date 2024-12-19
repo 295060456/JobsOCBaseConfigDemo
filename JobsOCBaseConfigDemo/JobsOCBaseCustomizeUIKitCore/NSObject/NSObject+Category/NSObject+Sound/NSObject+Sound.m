@@ -18,7 +18,7 @@
         /// 生成系统音效id
         OSStatus errorCode = AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url) , &soundID);
         if (errorCode) {
-            NSLog(@"create sound failed");
+            JobsLog(@"create sound failed");
             return;
         }
         /// 播放系统音效
@@ -36,7 +36,7 @@
         /// 生成系统音效id
         OSStatus errorCode = AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundFilePath.jobsUrl, &soundID);
         if (errorCode) {
-            NSLog(@"create sound failed");
+            JobsLog(@"create sound failed");
             return;
         }
         /// 播放系统音效

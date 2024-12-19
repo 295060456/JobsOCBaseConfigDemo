@@ -327,7 +327,7 @@
     return ^() {
         @jobs_strongify(self)
         self.enabled = YES;
-        NSLog(@"self.btnTimerConfig.titleEndStr = %@",self.endValue.title);
+        JobsLog(@"self.btnTimerConfig.titleEndStr = %@",self.endValue.title);
         self.configTitleEnd();
         self.configTitleLabelEnd();
         self.configLayerEnd();
@@ -355,7 +355,7 @@ JobsKey(_btnTimerConfig)
             }break;
             case TimerProcessType_Running:{
                 data.timerStyle = BtnTimerConfig.countDownBtnType;
-                NSLog(@"DDD = %f",data.anticlockwiseTime);
+                JobsLog(@"DDD = %f",data.anticlockwiseTime);
                 self.timerRuning((long)data.anticlockwiseTime);/// 倒计时方法
             }break;
             case TimerProcessType_End:{

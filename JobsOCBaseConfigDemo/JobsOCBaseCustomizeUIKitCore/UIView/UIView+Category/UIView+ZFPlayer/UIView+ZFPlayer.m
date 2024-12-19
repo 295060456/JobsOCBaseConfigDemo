@@ -37,7 +37,7 @@ JobsKey(_playerCtr)
             PlayerCtr = [ZFPlayerController.alloc initWithPlayerManager:self.avPlayerManager
                                                           containerView:self];
             PlayerCtr.controlView = self.customPlayerControlView;
-            NSLog(@"%@",PlayerCtr.controlView);
+            JobsLog(@"%@",PlayerCtr.controlView);
             PlayerCtr.muted = YES;//静音播放
             [PlayerCtr setPlayerDidToEnd:^(id<ZFPlayerMediaPlayback>  _Nonnull asset) {
                 @jobs_strongify(self)
@@ -50,7 +50,7 @@ JobsKey(_playerCtr)
             PlayerCtr = [ZFPlayerController.alloc initWithPlayerManager:self.ijkPlayerManager
                                                           containerView:self];
             PlayerCtr.controlView = self.customPlayerControlView;
-            NSLog(@"%@",PlayerCtr.controlView);
+            JobsLog(@"%@",PlayerCtr.controlView);
             PlayerCtr.muted = YES;//静音播放
             [PlayerCtr setPlayerDidToEnd:^(id<ZFPlayerMediaPlayback>  _Nonnull asset) {
                 @jobs_strongify(self)

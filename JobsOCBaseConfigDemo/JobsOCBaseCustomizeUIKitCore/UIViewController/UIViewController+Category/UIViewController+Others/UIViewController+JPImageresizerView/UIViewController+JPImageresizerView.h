@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_END
 //    self.configureType = JPImageresizerConfigureType_1;
 //    self.JPImageresizerView_img = img;
 //    //图片裁剪 方式方法_2
-//    NSLog(@"图片裁剪中...");
+//    JobsLog(@"图片裁剪中...");
 //    @jobs_weakify(self)
 //    [self.imageresizerView cropPictureWithCompressScale:0.5// 压缩比例，大于等于1按原图尺寸裁剪，小于等于0则返回nil（例：compressScale = 0.5，1000 x 500 --> 500 x 250）
 //                                               cacheURL:[FileFolderHandleTool cacheURL:@"png"]
@@ -79,22 +79,22 @@ NS_ASSUME_NONNULL_END
 ////                    @jobs_strongify(self)
 //        switch (reason) {
 //            case JPIEReason_NilObject:
-//                NSLog(@"资源为空");
+//                JobsLog(@"资源为空");
 //                break;
 //            case JPIEReason_CacheURLAlreadyExists:
-//                NSLog(@"缓存路径已存在其他文件");
+//                JobsLog(@"缓存路径已存在其他文件");
 //                break;
 //            case JPIEReason_NoSupportedFileType:
-//                NSLog(@" 不支持的文件格式");
+//                JobsLog(@" 不支持的文件格式");
 //                break;
 //             case JPIEReason_VideoAlreadyDamage:
-//                NSLog(@"视频文件已损坏");
+//                JobsLog(@"视频文件已损坏");
 //                break;
 //            case JPIEReason_VideoExportFailed:
-//                NSLog(@"视频导出失败");
+//                JobsLog(@"视频导出失败");
 //                break;
 //            case JPIEReason_VideoExportCancelled:
-//                NSLog(@"视频导出取消");
+//                JobsLog(@"视频导出取消");
 //                break;
 //    }
 //
@@ -103,10 +103,10 @@ NS_ASSUME_NONNULL_END
 //                                                           NSURL *cacheURL,
 //                                                           BOOL isCacheSuccess) {
 //        @jobs_strongify(self)
-//        NSLog(@"图片裁剪完成");
+//        JobsLog(@"图片裁剪完成");
 //        // 裁剪完成，finalImage为裁剪后的图片
 //        if (!finalImage && !cacheURL) {
-//            NSLog(@"裁剪失败");
+//            JobsLog(@"裁剪失败");
 //            return;
 //        }
 //        //本地

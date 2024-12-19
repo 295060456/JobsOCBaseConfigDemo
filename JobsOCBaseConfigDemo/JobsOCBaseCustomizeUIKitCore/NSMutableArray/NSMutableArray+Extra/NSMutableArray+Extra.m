@@ -29,7 +29,7 @@
         @jobs_strongify(self)
         if(data){
             [self addObject:data];/// 向数组加入nil会崩
-        }else NSLog(@"数组被添加了一个空元素");
+        }else JobsLog(@"数组被添加了一个空元素");
         return self;
     };
 }
@@ -40,7 +40,7 @@
         @jobs_strongify(self)
         if(data){
             [self removeObject:data];
-        }else NSLog(@"数组被删除了一个非空元素");
+        }else JobsLog(@"数组被删除了一个非空元素");
         return self;
     };
 }
@@ -51,7 +51,7 @@
         @jobs_strongify(self)
         if(data){
             [self addObjectsFromArray:data];/// 向数组加入nil会崩
-        }else NSLog(@"数组被添加了一个空元素");
+        }else JobsLog(@"数组被添加了一个空元素");
         return self;
     };
 }
@@ -62,7 +62,7 @@
         @jobs_strongify(self)
         if(data){
             if (!self.containsObject(data)) self.add(data);
-        }else NSLog(@"数组被添加了一个空元素");
+        }else JobsLog(@"数组被添加了一个空元素");
         return self;
     };
 }

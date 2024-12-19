@@ -27,7 +27,7 @@
                                              queue:nil
                                         usingBlock:^(NSNotification * _Nonnull notification) {
             
-            NSLog(@"%@",notification.object);
+            JobsLog(@"%@",notification.object);
         }];
         /// upload
         [JobsNotificationCenter addObserverForName:GSUploadNetworkSpeedNotificationKey
@@ -35,14 +35,14 @@
                                              queue:nil
                                         usingBlock:^(NSNotification * _Nonnull notification) {
             
-            NSLog(@"%@",notification.object);
+            JobsLog(@"%@",notification.object);
         }];
         /// UploadAndDownload
         [JobsNotificationCenter addObserverForName:GSUploadAndDownloadNetworkSpeedNotificationKey
                                             object:nil
                                              queue:nil
                                         usingBlock:^(NSNotification * _Nonnull notification) {
-            NSLog(@"%@",notification.object);
+            JobsLog(@"%@",notification.object);
             self.text = notification.object;
             self.makeLabelByShowingType(UILabelShowingType_03);
         }];
@@ -72,7 +72,7 @@
     @jobs_weakify(self)
     menuView.blockSelectedMenu = ^(NSInteger menuRow) {
         @jobs_strongify(self)
-        NSLog(@"action----->%ld",(long)menuRow);
+        JobsLog(@"action----->%ld",(long)menuRow);
         networkingEnvir(menuRow);
         if (menuRow + 1 <= self.operationEnvironMutArr.count) {
             self.jobsToastMsg(JobsInternationalization(@"当前环境").add(self.operationEnvironMutArr[menuRow]));

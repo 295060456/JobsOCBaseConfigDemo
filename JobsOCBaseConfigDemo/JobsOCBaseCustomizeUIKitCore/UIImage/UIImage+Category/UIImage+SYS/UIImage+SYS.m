@@ -30,7 +30,7 @@
         JobsReturnIDByIDBlock UIImageBlock_1 = ^UIImage *(NSString *name){//name 在这里一定不为空 过滤条件在上一层
             image = [UIImage imageNamed:name];
             if (!image) {
-                NSLog(@"缺失的图片资源名:%@",name);
+                JobsLog(@"缺失的图片资源名:%@",name);
                 if (UIImageBlock_2) UIImageBlock_2();
             }return image;
         };

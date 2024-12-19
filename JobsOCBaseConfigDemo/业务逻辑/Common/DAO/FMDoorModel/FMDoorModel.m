@@ -91,9 +91,9 @@
 //- (void)encodeWithCoder:(NSCoder *)encoder {
 //    [super encodeWithCoder:encoder];
 //    // 获取对象的属性列表
-//    NSLog(@"printPropertyListByClass = %@", printPropertyListByClass(self.class));
+//    JobsLog(@"printPropertyListByClass = %@", printPropertyListByClass(self.class));
 //    for (NSString *key in printPropertyListByClass(self.class)) {
-//        NSLog(@"DDD = %@",key.removeColonMark);
+//        JobsLog(@"DDD = %@",key.removeColonMark);
 //        // 拼接setter方法的名称
 //        NSString *setterSelectorString = key.substringBeforeColon.capitalizeFirstLetterAndPrefixSet();
 ////        NSString *gg = key.substringBeforeColon;
@@ -103,7 +103,7 @@
 //            id value = [self valueForKey:key.substringBeforeColon];
 //            [encoder encodeObject:value forKey:key.substringBeforeColon];
 //        } else {
-//            NSLog(@"未找到 setter 方法: %@", setterSelectorString);
+//            JobsLog(@"未找到 setter 方法: %@", setterSelectorString);
 //        }
 //    }
 //}
@@ -185,7 +185,7 @@
 -(void)setExpireTime:(NSString *)expireTime{
     _expireTime = expireTime;
     if(_expireTime) self.tokenExpireTime = _expireTime.chinaTime(nil);
-    NSLog(@"Token 的过期时间是:%@-%@",expireTime,self.tokenExpireTime);
+    JobsLog(@"Token 的过期时间是:%@-%@",expireTime,self.tokenExpireTime);
 }
 #pragma mark —— 一些公有方法
 /// 新值（入参）冲抵老值（调用方）

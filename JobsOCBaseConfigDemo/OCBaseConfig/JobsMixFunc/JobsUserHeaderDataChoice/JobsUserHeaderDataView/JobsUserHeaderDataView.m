@@ -143,7 +143,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForHeaderInSection:(NSInteger)section{
-    NSLog(@"%d",self.viewModel.usesTableViewHeaderView);
+    JobsLog(@"%d",self.viewModel.usesTableViewHeaderView);
     return self.viewModel.usesTableViewHeaderView ? JobsUserHeaderDataViewForHeaderInSection.viewHeightByModel(nil) : 0;
 }
 

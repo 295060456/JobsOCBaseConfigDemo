@@ -63,7 +63,7 @@ static const uint32_t kSequenceBits = 12;
             }
         } else {
             // 处理时钟回退的情况，可以通过等待或重新同步时间来解决
-            NSLog(@"Clock moved backwards. Waiting for valid timestamp.");
+            JobsLog(@"Clock moved backwards. Waiting for valid timestamp.");
             usleep(1000);
             currentTime = (uint64_t)NSDate.date.timeIntervalSince1970 * 1000;
             self.lastGeneralMillisecond = currentTime;

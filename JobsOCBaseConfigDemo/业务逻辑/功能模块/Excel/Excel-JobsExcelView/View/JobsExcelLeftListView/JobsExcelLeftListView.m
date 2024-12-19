@@ -64,7 +64,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"KKK3 = %f", scrollView.contentOffset.y);
+    JobsLog(@"KKK3 = %f", scrollView.contentOffset.y);
     /// 防止在初始情况下，无意义的往下拉动👇🏻
     if (scrollView.contentOffset.y < 0) {
         scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);

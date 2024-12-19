@@ -398,7 +398,7 @@ NSString *const _delegate =@"_delegate";
             if (request.isBaseServer && request.server.length == 0&& self.baseServerString.length > 0) {
                 request.server=self.baseServerString;
                 if (request.consoleLog==YES) {
-                    NSLog(@"\n------------ZBNetworking------request info------begin------\n 重新配置URL request.server为空 使用了默认请求地址-baseServer-:%@\n 如不需要使用默认请求地址，该请求可设置request.isBaseServer更改 \n------------ZBNetworking------request info-------end-------",self.baseServerString);
+                    JobsLog(@"\n------------ZBNetworking------request info------begin------\n 重新配置URL request.server为空 使用了默认请求地址-baseServer-:%@\n 如不需要使用默认请求地址，该请求可设置request.isBaseServer更改 \n------------ZBNetworking------request info-------end-------",self.baseServerString);
                 }
             }
             if (request.path.length > 0) {
@@ -434,7 +434,7 @@ NSString *const _delegate =@"_delegate";
     if (request.consoleLog==YES) {
         NSString *requestStr=request.requestSerializer==ZBHTTPRequestSerializer ?@"HTTP":@"JOSN";
         NSString *responseStr =[self responseStrWithRequest:request];
-        NSLog(@"\n------------ZBNetworking------request info------begin------\n-URLAddress-: %@ \n-parameters-:%@ \n-Header-: %@\n-userInfo-: %@\n-timeout-:%.2f\n-requestSerializer-:%@\n-responseSerializer-:%@\n------------ZBNetworking------request info-------end-------",request.url,request.parameters, self.requestSerializer.HTTPRequestHeaders,request.userInfo,self.requestSerializer.timeoutInterval,requestStr,responseStr);
+        JobsLog(@"\n------------ZBNetworking------request info------begin------\n-URLAddress-: %@ \n-parameters-:%@ \n-Header-: %@\n-userInfo-: %@\n-timeout-:%.2f\n-requestSerializer-:%@\n-responseSerializer-:%@\n------------ZBNetworking------request info-------end-------",request.url,request.parameters, self.requestSerializer.HTTPRequestHeaders,request.userInfo,self.requestSerializer.timeoutInterval,requestStr,responseStr);
     }
 }
 

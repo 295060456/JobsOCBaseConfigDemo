@@ -46,8 +46,8 @@ static dispatch_once_t static_mineView2OnceToken;
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
-                NSLog(@"SSS = %d",b.boolValue);
-            }NSLog(@"通知传递过来的 = %@",notification.object);
+                JobsLog(@"SSS = %d",b.boolValue);
+            }JobsLog(@"通知传递过来的 = %@",notification.object);
         }];
     }return self;
 }
@@ -96,7 +96,7 @@ static dispatch_once_t static_mineView2OnceToken;
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_btn1];
         [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -119,7 +119,7 @@ static dispatch_once_t static_mineView2OnceToken;
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_btn2];
         [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -7,7 +7,7 @@
     @jobs_strongify(self)
     if (firstArg) {
         // 取出第一个参数
-        NSLog(@"%@", firstArg);
+        JobsLog(@"%@", firstArg);
         // 定义一个指向个数可变的参数列表指针；
         va_list args;
         // 用于存放取出的参数
@@ -19,21 +19,21 @@
             NSNumber *num = (NSNumber *)firstArg;
             for (int i = 0; i < num.intValue; i++) {
                 arg = va_arg(args, id);
-//                    NSLog(@"KKK = %@", arg);
+//                    JobsLog(@"KKK = %@", arg);
                 if ([arg isKindOfClass:UIImage.class]) {
-                    NSLog(@"");
+                    JobsLog(@"");
                 }else if ([arg isKindOfClass:PHAsset.class]){
-                    NSLog(@"");
+                    JobsLog(@"");
                 }else if ([arg isKindOfClass:NSString.class]){
-                    NSLog(@"");
+                    JobsLog(@"");
                 }else if ([arg isKindOfClass:NSArray.class]){
-                    NSLog(@"");
+                    JobsLog(@"");
                 }else{
-                    NSLog(@"");
+                    JobsLog(@"");
                 }
             }
         }else{
-            NSLog(@"");
+            JobsLog(@"");
         }
         // 清空参数列表，并置参数指针args无效
         va_end(args);

@@ -22,7 +22,7 @@
             }else{
                 EnglishCount ++;
             }
-        }NSLog(@"字符串:%@包含——> 汉字字数：%ld;字母字数%ld",self,(long)chineseCount,(long)EnglishCount);
+        }JobsLog(@"字符串:%@包含——> 汉字字数：%ld;字母字数%ld",self,(long)chineseCount,(long)EnglishCount);
         switch (type) {
             case StatisticsAlphabetNumberType_Chinese:{
                 return chineseCount;

@@ -54,12 +54,19 @@
 #import "YTKNetwork.h"
 #endif
 
+#if __has_include(<HTMLReader/HTMLReader.h>)
+#import <HTMLReader/HTMLReader.h>
+#else
+#import "HTMLReader.h"
+#endif
+
 #import "AFSecurityPolicy+Extra.h"
 #import "IQKeyboardManager+Extra.h"
 #import "Reachability+Extra.h"
 #import "BRStringPickerView+Extra.h"
 #import "HXPhotoManager+Extra.h"
 #import "SZTextView+Extra.h"
+#import "HTMLDocument+Extra.h"
 
 #endif /* JobsOCBaseCustomize3rdCore_h */
 

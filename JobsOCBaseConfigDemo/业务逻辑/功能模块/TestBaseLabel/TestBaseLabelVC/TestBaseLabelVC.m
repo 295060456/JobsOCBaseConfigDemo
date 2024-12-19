@@ -17,7 +17,7 @@
 @implementation TestBaseLabelVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -84,12 +84,12 @@
         }];
 
         [_titleLab.getLabel actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
-            NSLog(@"JobsBaseLabel的Tap手势");
+            JobsLog(@"JobsBaseLabel的Tap手势");
             return @1;
         }];
         
         [_titleLab.getLabel actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
-            NSLog(@"JobsBaseLabel的LongPress手势");
+            JobsLog(@"JobsBaseLabel的LongPress手势");
             return @1;
         }];
     }
@@ -116,11 +116,11 @@
                 make.height.mas_equalTo(JobsWidth(26));
             }];
             [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
-                NSLog(@"BaseLabel的Tap手势");
+                JobsLog(@"BaseLabel的Tap手势");
                 return @1;
             }];
             [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
-                NSLog(@"BaseLabel的LongPress手势");
+                JobsLog(@"BaseLabel的LongPress手势");
                 return @1;
             }];
         });

@@ -44,7 +44,7 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     if (!urlString) return;
     self.urlString = urlString;
     self.socket = [SRWebSocket.alloc initWithURLRequest:[NSURLRequest requestWithURL:urlString.jobsUrl]];
-    NSLog(@"请求的websocket地址：%@",self.socket.url.absoluteString);
+    JobsLog(@"请求的websocket地址：%@",self.socket.url.absoluteString);
     //SRWebSocketDelegate 协议
     self.socket.delegate = self;
     //开始连接
@@ -61,7 +61,7 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
 }
 
 - (void)sendData:(id)data {
-    NSLog(@"socketSendData --------------- %@",data);
+    JobsLog(@"socketSendData --------------- %@",data);
     @jobs_weakify(self)
     dispatch_queue_t queue =  dispatch_queue_create("zy", NULL);
     dispatch_async(queue, ^{
@@ -71,7 +71,7 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
                 [weakSelf.socket send:data];    // 发送数据
                 
             } else if (weakSelf.socket.readyState == SR_CONNECTING) {
-                NSLog(@"正在连接中，重连后其他方法会去自动同步数据");
+                JobsLog(@"正在连接中，重连后其他方法会去自动同步数据");
                 // 每隔2秒检测一次 socket.readyState 状态，检测 10 次左右
                 // 只要有一次状态是 SR_OPEN 的就调用 [ws.socket send:data] 发送数据
                 // 如果 10 次都还是没连上的，那这个发送请求就丢失了，这种情况是服务器的问题了，小概率的
@@ -81,13 +81,13 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
             } else if (weakSelf.socket.readyState == SR_CLOSING || weakSelf.socket.readyState == SR_CLOSED) {
                 // websocket 断开了，调用 reConnect 方法重连
                 
-                NSLog(@"重连");
+                JobsLog(@"重连");
                 
                 [self reConnect];
             }
         } else {
-            NSLog(@"没网络，发送失败，一旦断网 socket 会被我设置 nil 的");
-            NSLog(@"其实最好是发送前判断一下网络状态比较好，我写的有点晦涩，socket==nil来表示断网");
+            JobsLog(@"没网络，发送失败，一旦断网 socket 会被我设置 nil 的");
+            JobsLog(@"其实最好是发送前判断一下网络状态比较好，我写的有点晦涩，socket==nil来表示断网");
         }
     });
 }
@@ -105,7 +105,7 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
                    dispatch_get_main_queue(), ^{
         self.socket = nil;
         [self SRWebSocketOpenWithURLString:self.urlString];
-        NSLog(@"重连");
+        JobsLog(@"重连");
     });
     //重连时间2的指数级增长
     if (reConnectTime == 0) {
@@ -160,14 +160,14 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
     //开启心跳
     [self initHeartBeat];
     if (webSocket == self.socket) {
-        NSLog(@"************************** socket 连接成功************************** ");
+        JobsLog(@"************************** socket 连接成功************************** ");
         JobsPostNotification(kWebSocketDidOpenNote, nil);
     }
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
     if (webSocket == self.socket) {
-        NSLog(@"************************** socket 连接失败************************** ");
+        JobsLog(@"************************** socket 连接失败************************** ");
         _socket = nil;
         //连接失败就重连
         [self reConnect];
@@ -179,8 +179,8 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
            reason:(NSString *)reason
          wasClean:(BOOL)wasClean {
     if (webSocket == self.socket) {
-        NSLog(@"************************** socket连接断开************************** ");
-        NSLog(@"被关闭连接，code:%ld,reason:%@,wasClean:%d",(long)code,reason,wasClean);
+        JobsLog(@"************************** socket连接断开************************** ");
+        JobsLog(@"被关闭连接，code:%ld,reason:%@,wasClean:%d",(long)code,reason,wasClean);
         [self SRWebSocketClose];
         JobsPostNotification(kWebSocketDidCloseNote,nil);
     }
@@ -194,15 +194,15 @@ NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessage
 - (void)webSocket:(SRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload {
     NSString *reply = [NSString.alloc initWithData:pongPayload
                                           encoding:NSUTF8StringEncoding];
-    NSLog(@"reply===%@",reply);
+    JobsLog(@"reply===%@",reply);
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message{
     
     if (webSocket == self.socket) {
-        NSLog(@"************************** socket收到数据了************************** ");
-        NSLog(@"我这后台约定的 message 是 json 格式数据收到数据，就按格式解析吧，然后把数据发给调用层");
-        NSLog(@"message:%@",message);
+        JobsLog(@"************************** socket收到数据了************************** ");
+        JobsLog(@"我这后台约定的 message 是 json 格式数据收到数据，就按格式解析吧，然后把数据发给调用层");
+        JobsLog(@"message:%@",message);
         JobsPostNotification(kWebSocketdidReceiveMessageNote,message);
     }
 }

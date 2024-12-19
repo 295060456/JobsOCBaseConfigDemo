@@ -44,7 +44,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     [cell customAccessoryView:^(id data) {
         @jobs_strongify(self)
         JobsSearchShowHistoryDataTBVCell *cell = (JobsSearchShowHistoryDataTBVCell *)data;
-        NSLog(@"MMM - %ld",cell.index);
+        JobsLog(@"MMM - %ld",cell.index);
     }];
 }
 */

@@ -148,7 +148,7 @@
             return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(id _Nullable x) {
             @jobs_strongify(self)
-            NSLog(@"MMM = %@",x);
+            JobsLog(@"MMM = %@",x);
             [self block:self->_textField
                   value:x];
         }];

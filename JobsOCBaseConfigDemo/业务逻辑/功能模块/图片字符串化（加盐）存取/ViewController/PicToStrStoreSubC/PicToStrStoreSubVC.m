@@ -28,7 +28,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -73,12 +73,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -256,7 +256,7 @@
     //                @jobs_strongify(self)
                 }];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.view addSubview:_btn_1];
         [_btn_1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -295,7 +295,7 @@
                     self.picForStr(self->_resultStr);
                 }else self.jobsToastMsg(JobsInternationalization(@"请先编码图片"));
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.view addSubview:_btn_2];
         [_btn_2 mas_makeConstraints:^(MASConstraintMaker *make) {

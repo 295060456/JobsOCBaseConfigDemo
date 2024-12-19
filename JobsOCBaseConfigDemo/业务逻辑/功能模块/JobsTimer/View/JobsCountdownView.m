@@ -26,7 +26,7 @@
 @implementation JobsCountdownView
 @synthesize viewModel = _viewModel;
 -(void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     [self.nsTimerManager nsTimeDestroy];
 }
 #pragma mark —— BaseProtocol

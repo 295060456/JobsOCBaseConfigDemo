@@ -71,7 +71,7 @@
     return ^__kindof YTKBaseRequest *_Nonnull(NSDictionary *_Nullable data){
         @jobs_strongify(self)
         [self.customHTTPHeader addEntriesFromDictionary:data];
-        NSLog(@"请求头: %@", self.requestHeaderFieldValueDictionary);
+        JobsLog(@"请求头: %@", self.requestHeaderFieldValueDictionary);
         return self;
     };
 }

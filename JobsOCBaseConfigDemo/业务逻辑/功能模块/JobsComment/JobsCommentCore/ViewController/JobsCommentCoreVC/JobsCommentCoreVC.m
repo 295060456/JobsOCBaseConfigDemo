@@ -19,7 +19,7 @@
 @implementation JobsCommentCoreVC
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 #pragma mark - Lifecycle
 -(instancetype)init{
@@ -165,7 +165,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSLog(@"一级评论的个数 = %ld",self.mjModel.listDataArr.count);
+    JobsLog(@"一级评论的个数 = %ld",self.mjModel.listDataArr.count);
     return self.mjModel.listDataArr.count;/// 一级评论👌
 }
 
@@ -254,7 +254,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
                     NSDictionary *dic = @"CommentData".readLocalFileWithName;
                     self.mjModel = [JobsCommentModel mj_objectWithKeyValues:dic[@"data"]];
                 //    self.yyModel = [MKCommentModel yy_modelWithDictionary:dic[@"data"]];
-                    NSLog(@"self.mjModel = %@",self.mjModel);
+                    JobsLog(@"self.mjModel = %@",self.mjModel);
                     self.tableView.endRefreshing(self.mjModel.listDataArr.count);
                     // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
                     self.tableView.pagingEnabled = NO;
@@ -273,7 +273,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id _Nullable data) {
                     @jobs_strongify(self)
-                    NSLog(@"上拉加载更多");
+                    JobsLog(@"上拉加载更多");
                     self.tableView.endRefreshing(self.mjModel.listDataArr.count);
                     return nil;
                 };

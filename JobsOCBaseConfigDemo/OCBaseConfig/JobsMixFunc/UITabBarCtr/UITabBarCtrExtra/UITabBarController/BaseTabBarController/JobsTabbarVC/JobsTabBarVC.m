@@ -24,7 +24,7 @@
 @implementation JobsTabBarVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 #pragma mark —— 初始化方法
@@ -89,7 +89,7 @@ static dispatch_once_t JobsTabBarVCOnceToken;
 //    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
 //    UIInterfaceOrientation s = self.getInterfaceOrientation;
 //    DeviceOrientation d = self.getDeviceOrientation;
-//    NSLog(@"");
+//    JobsLog(@"");
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -105,7 +105,7 @@ static dispatch_once_t JobsTabBarVCOnceToken;
 //    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
 //    UIInterfaceOrientation s = self.getInterfaceOrientation;
 //    DeviceOrientation d = self.getDeviceOrientation;
-//    NSLog(@"");
+//    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -113,12 +113,12 @@ static dispatch_once_t JobsTabBarVCOnceToken;
 //    UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
 //    UIInterfaceOrientation s = self.getInterfaceOrientation;
 //    DeviceOrientation d = self.getDeviceOrientation;
-//    NSLog(@"");
+//    JobsLog(@"");
 }
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 static dispatch_once_t onceToken;
 -(void)viewDidLayoutSubviews {
@@ -288,7 +288,7 @@ static dispatch_once_t onceToken;
     return ^(UIPanGestureRecognizer __kindof *_Nullable sender) {
         @jobs_strongify(self)
         CGPoint translation = [sender translationInView:self.view];
-        NSLog(@"FromIndex = %lu",(unsigned long)self.selectedIndex);
+        JobsLog(@"FromIndex = %lu",(unsigned long)self.selectedIndex);
         /// ❤️需要被跳开的item的逻辑❤️
         for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.tabBarItemConfigMutArr) {
             if(tabBarItemConfig.isNeedjump){
@@ -329,7 +329,7 @@ static dispatch_once_t onceToken;
             self.selectedIndex++;
         }else{}
         self.forcedLoginIndex(self.selectedIndex);
-        NSLog(@"ToIndex = %lu",(unsigned long)self.selectedIndex);
+        JobsLog(@"ToIndex = %lu",(unsigned long)self.selectedIndex);
     };
 }
 #pragma mark —— TabBarItem的相关手势
@@ -349,7 +349,7 @@ static dispatch_once_t onceToken;
             if(self.gestureRecognizerBlock) self.gestureRecognizerBlock(longPressGR);
             switch (longPressGR.state) {
                 case UIGestureRecognizerStatePossible:{
-                    NSLog(@"没有触摸事件发生，所有手势识别的默认状态");
+                    JobsLog(@"没有触摸事件发生，所有手势识别的默认状态");
                 }break;
                 case UIGestureRecognizerStateBegan:{
                     if (self.isFeedbackGenerator) {
@@ -358,19 +358,19 @@ static dispatch_once_t onceToken;
                     /// 长按手势出菜单（高仿 Telegram）
                     [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
                                                       dataMutArr:self.pullListAutoSizeViewMutArr];
-                    NSLog(@"一个手势已经开始  但尚未改变或者完成时");
+                    JobsLog(@"一个手势已经开始  但尚未改变或者完成时");
                 }break;
                 case UIGestureRecognizerStateChanged:{
-                    NSLog(@"手势状态改变");
+                    JobsLog(@"手势状态改变");
                 }break;
                 case UIGestureRecognizerStateEnded:{// = UIGestureRecognizerStateRecognized
-                    NSLog(@"手势完成");
+                    JobsLog(@"手势完成");
                 }break;
                 case UIGestureRecognizerStateCancelled:{
-                    NSLog(@"手势取消，恢复至Possible状态");
+                    JobsLog(@"手势取消，恢复至Possible状态");
                 }break;
                 case UIGestureRecognizerStateFailed:{
-                    NSLog(@"手势失败，恢复至Possible状态");
+                    JobsLog(@"手势失败，恢复至Possible状态");
                 }break;
                 default:
                     break;
@@ -385,7 +385,7 @@ static dispatch_once_t onceToken;
  didSelectItem:(UITabBarItem *)item {
     if ([tabBar.items containsObject:item]) {
         NSUInteger index = [self.tabBar.items indexOfObject:item];
-        NSLog(@"当前点击：%ld",(long)index);
+        JobsLog(@"当前点击：%ld",(long)index);
         for (JobsTabBarItemConfig *tabBarItemConfig in AppDelegate.tabBarItemConfigMutArr) {
             if(tabBarItemConfig.isNeedjump){
                 if (!self.forcedLoginIndex(index)) {
@@ -445,7 +445,7 @@ shouldSelectViewController:(UIViewController *)viewController {
 
 - (void)tabBarController:(UITabBarController *)tabBarController
  didSelectViewController:(UIViewController *)viewController{
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 - (id<UIViewControllerInteractiveTransitioning>)tabBarController:(UITabBarController *)tabBarController

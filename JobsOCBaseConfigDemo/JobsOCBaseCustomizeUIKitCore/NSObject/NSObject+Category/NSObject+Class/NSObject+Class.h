@@ -33,7 +33,7 @@ NS_INLINE NSMutableArray<NSString *> *printIvarListByClass(Class cls) {
         const char *ivarName = ivar_getName(myIvar);
         id value = object_getIvar(instance, myIvar); // 获取对应的值
         // 打印成员变量名和对应的值
-        NSLog(@"ivar(%d) : %@ = %@", i, [NSString stringWithUTF8String:ivarName], value);
+        JobsLog(@"ivar(%d) : %@ = %@", i, [NSString stringWithUTF8String:ivarName], value);
         [tempDataMutArr addObject:[NSString stringWithFormat:@"%s: %@", ivarName, value]];
     }free(ivarList);
     return tempDataMutArr;
@@ -49,7 +49,7 @@ NS_INLINE NSMutableArray<NSString *> *printPropertyListByClass(Class cls) {
         const char *propertyName = property_getName(propertyList[i]);
         id value = [instance valueForKey:[NSString stringWithUTF8String:propertyName]]; // 获取属性值
         // 打印属性名和对应的值
-        NSLog(@"property(%d) : %@ = %@", i, [NSString stringWithUTF8String:propertyName], value);
+        JobsLog(@"property(%d) : %@ = %@", i, [NSString stringWithUTF8String:propertyName], value);
         [tempDataMutArr addObject:[NSString stringWithFormat:@"%s: %@", propertyName, value]];
     }free(propertyList);
     return tempDataMutArr;
@@ -61,7 +61,7 @@ NS_INLINE NSMutableArray <NSString *>*printMethodListByClass(Class cls){
     Method *methodList = class_copyMethodList([cls class], &count);
     for (unsigned int i = 0; i < count; i++) {
         Method method = methodList[i];
-        NSLog(@"method(%d) : %@", i, NSStringFromSelector(method_getName(method)));
+        JobsLog(@"method(%d) : %@", i, NSStringFromSelector(method_getName(method)));
         [tempDataMutArr addObject:NSStringFromSelector(method_getName(method))];
     }free(methodList);
     return tempDataMutArr;
@@ -74,7 +74,7 @@ NS_INLINE NSMutableArray <NSString *>*printProtocolListByClass(Class cls){
     for (unsigned int i = 0; i < count; i++) {
         Protocol *myProtocal = protocolList[i];
         const char *protocolName = protocol_getName(myProtocal);
-        NSLog(@"protocol(%d) : %@", i, [NSString stringWithUTF8String:protocolName]);
+        JobsLog(@"protocol(%d) : %@", i, [NSString stringWithUTF8String:protocolName]);
         [tempDataMutArr addObject:[NSString stringWithUTF8String:protocolName]];
     }free(protocolList);
     return tempDataMutArr;

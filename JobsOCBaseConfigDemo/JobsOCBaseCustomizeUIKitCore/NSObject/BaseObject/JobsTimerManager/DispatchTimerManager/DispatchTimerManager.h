@@ -94,7 +94,7 @@ NS_ASSUME_NONNULL_END
          self.dispatchTimer = [DispatchTimerManager scheduledTimerWithTimeInterval:.5f
                                                                            repeats:YES
                                                                              block:^(DispatchTimerManager * _Nonnull timer) {
-             NSLog(@"sde");
+             JobsLog(@"sde");
          }];
      }
      // 或者

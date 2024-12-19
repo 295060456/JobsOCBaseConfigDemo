@@ -55,17 +55,17 @@
 //                // Set up callbacks if needed
 //                adManager.singleTapCallback = ^{
 //                    // Handle single tap
-//                    NSLog(@"Ad single tapped");
+//                    JobsLog(@"Ad single tapped");
 //                };
 //
 //                adManager.doubleTapCallback = ^{
 //                    // Handle double tap
-//                    NSLog(@"Ad double tapped");
+//                    JobsLog(@"Ad double tapped");
 //                };
 //
 //                adManager.shakeCallback = ^{
 //                    // Handle shake gesture
-//                    NSLog(@"Device shaken");
+//                    JobsLog(@"Device shaken");
 //                };
 //
 //                // Show the ad
@@ -78,16 +78,16 @@
             adManager.countdownDuration = 5;
             adManager.redirectURL = @"https://www.google.com";
             adManager.onSingleTap = ^{
-                NSLog(@"用户单击了广告");
+                JobsLog(@"用户单击了广告");
             };
             adManager.onDoubleTap = ^{
-                NSLog(@"用户双击了广告");
+                JobsLog(@"用户双击了广告");
             };
             adManager.onLongPress = ^{
-                NSLog(@"用户长按了广告");
+                JobsLog(@"用户长按了广告");
             };
             adManager.onShake = ^{
-                NSLog(@"用户摇晃了设备");
+                JobsLog(@"用户摇晃了设备");
             };
             
             // 本地图片资源示例
@@ -133,7 +133,7 @@
     return ^(){
         NSError *error = nil;
         [KTVHTTPCache proxyStart:&error];
-        if(error) NSLog(@"error = %@",error.description)
+        if(error) JobsLog(@"error = %@",error.description)
     };
 }
 #pragma mark —— 欢迎引导页面
@@ -154,7 +154,7 @@
             userModel.uid = @"54321";
         }));
 //        JobsUserModel *f = self.readUserInfo;
-//        NSLog(@"");
+//        JobsLog(@"");
     };
 }
 #pragma mark —— 读取Plist配置文件
@@ -165,7 +165,7 @@
         static dispatch_once_t readPlistConfigDispatchOnce;
         dispatch_once(&readPlistConfigDispatchOnce, ^{
             id plistConfig = self.readLocalPlistWithFileName(@"MetaData");
-            NSLog(@"plistConfig = %@",plistConfig);
+            JobsLog(@"plistConfig = %@",plistConfig);
         });
     };
 }
@@ -252,9 +252,9 @@
                                   completionHandler:^(BOOL granted,
                                                       NSError *_Nullable error) {
                 if (granted) {
-                    NSLog(@"Notification permission granted.");
+                    JobsLog(@"Notification permission granted.");
                 } else {
-                    NSLog(@"Notification permission denied.");
+                    JobsLog(@"Notification permission denied.");
                 }
             }];
         });
@@ -278,7 +278,7 @@
                                     id _Nullable arg) {
 //            @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
-            NSLog(@"通知传递过来的 = %@",notification.object);
+            JobsLog(@"通知传递过来的 = %@",notification.object);
         }];
         dispatch_async(dispatch_get_main_queue(), ^{
             @jobs_strongify(self)

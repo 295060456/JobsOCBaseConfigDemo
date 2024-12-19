@@ -27,9 +27,9 @@
     [center addNotificationRequest:request
              withCompletionHandler:^(NSError * _Nullable error) {
         if (error) {
-            NSLog(@"Error adding notification: %@", error);
+            JobsLog(@"Error adding notification: %@", error);
         } else {
-            NSLog(@"Notification scheduled.");
+            JobsLog(@"Notification scheduled.");
         }
     }];
 }

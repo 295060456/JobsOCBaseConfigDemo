@@ -57,7 +57,7 @@
             doneTitle = doneTitle.add(@" ");
             count = 0;
         }
-    }NSLog(@"%@", doneTitle);
+    }JobsLog(@"%@", doneTitle);
     return doneTitle;
 }
 /// 在字符串前面和后面拼接一个字符串
@@ -133,7 +133,7 @@
     if (isNull(replaceStr)) replaceStr = @".";
     /// limit 是不包括省略号的实际的限制字数
     if(!self.isPureDigit){
-        NSLog(@"当前字符串为%@,不是纯字符串，无法格式化输出",self);
+        JobsLog(@"当前字符串为%@,不是纯字符串，无法格式化输出",self);
         return @"";
     }
     NSString *resultStr = self;

@@ -18,7 +18,7 @@
 @implementation NSTimerManager
 @synthesize timerProcessType = _timerProcessType;
 -(void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     if (_nsTimer) self.nsTimeDestroy();
 }
 

@@ -17,7 +17,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -56,12 +56,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -87,7 +87,7 @@
         [UIApplication.sharedApplication setAlternateIconName:iconName
                                             completionHandler:^(NSError * _Nullable error) {
             if (error) {
-                NSLog(@"Error changing app icon: %@", error.localizedDescription);
+                JobsLog(@"Error changing app icon: %@", error.localizedDescription);
             }
         }];
     }
@@ -115,7 +115,7 @@
     //            [self changeAppIconToName:appIconToName];
                 [self changeAppIconToName:@"AlternateIcon2"];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.view addSubview:_switchBtn];
         [_switchBtn mas_makeConstraints:^(MASConstraintMaker *make) {

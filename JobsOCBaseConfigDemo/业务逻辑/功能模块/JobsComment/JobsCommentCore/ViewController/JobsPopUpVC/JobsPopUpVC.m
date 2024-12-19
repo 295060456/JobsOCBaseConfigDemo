@@ -15,7 +15,7 @@
 @implementation JobsPopUpVC
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 #pragma mark - Lifecycle
 -(instancetype)init{

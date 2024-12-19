@@ -88,7 +88,7 @@
                 self.inputTextField.text = JobsInternationalization(@"");
                 x.enabled = NO;
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _sendBtn.userInteractionEnabled = NO;
         _sendBtn.enabled = NO;
@@ -137,7 +137,7 @@
             return YES;
         }] subscribeNext:^(NSString * _Nullable x) {
             @jobs_strongify(self)
-            NSLog(@"输入的字符为 = %@",x);
+            JobsLog(@"输入的字符为 = %@",x);
             self.someChangeUIBy(x);
         }];
     }return _inputTextField;

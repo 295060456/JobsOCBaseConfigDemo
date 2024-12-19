@@ -34,7 +34,7 @@
 @implementation JobsAppDoorVC_Style2
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 
@@ -78,9 +78,9 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     self.loginDoorInputEditing = NO;
     
     [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-        NSLog(@"");
+        JobsLog(@"");
     } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-        NSLog(@"");
+        JobsLog(@"");
     }];
 }
 
@@ -145,7 +145,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             JobsMagicTextField *tf = object_getIvar(inputView, ivar);
             self.loginDoorInputEditing |= tf.editing;
             if (tf.editing) {
-                NSLog(@"FFF = %ld",index);//当前被激活的idx
+                JobsLog(@"FFF = %ld",index);//当前被激活的idx
                 self.lastTimeActivateTFIndex = self.currentActivateTFIndex;
                 self.currentActivateTFIndex = index;//赋予新值。因为同一时刻，textField有且只有一个被激活
             }
@@ -154,7 +154,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
     }
 
     if (!self.loginDoorInputEditing) {
-        NSLog(@"没有在编辑");
+        JobsLog(@"没有在编辑");
         self.logoContentView.y = self.logoContentViewY;
         self.loginContentView.y = self.loginContentViewY;
         self.registerContentView.y = self.registerContentViewY;
@@ -166,7 +166,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         }else{}
         
     }else{
-        NSLog(@"在编辑");
+        JobsLog(@"在编辑");
         NSInteger offsetIdx = self.currentActivateTFIndex - self.lastTimeActivateTFIndex;
         self.logoContentView.y -= 40 * (offsetIdx + 0);
         self.loginContentView.y -= 40 * (offsetIdx + 0);
@@ -333,7 +333,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             .onClickBy(^(UIButton *x){
                 toast(x.titleForNormalState);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [_customerServiceBtn buttonAutoFontByWidth];
         [self.view addSubview:_customerServiceBtn];

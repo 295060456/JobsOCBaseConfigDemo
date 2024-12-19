@@ -131,13 +131,13 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
     if (_iBytes != 0) {
         self.downloadNetworkSpeed = [[self stringWithbytes:iBytes - _iBytes] stringByAppendingString:@"/s"];
         JobsPostNotification(GSDownloadNetworkSpeedNotificationKey, self.downloadNetworkSpeed);
-        NSLog(@"self.downloadNetworkSpeed : %@",self.downloadNetworkSpeed);
+        JobsLog(@"self.downloadNetworkSpeed : %@",self.downloadNetworkSpeed);
     }
     _iBytes = iBytes;
     if (_oBytes != 0) {
         self.uploadNetworkSpeed = [[self stringWithbytes:oBytes - _oBytes] stringByAppendingString:@"/s"];
         JobsPostNotification(GSUploadNetworkSpeedNotificationKey, self.uploadNetworkSpeed);
-        NSLog(@"self.uploadNetworkSpeed  :%@",self.uploadNetworkSpeed);
+        JobsLog(@"self.uploadNetworkSpeed  :%@",self.uploadNetworkSpeed);
     }
     
     NSString *str = [NSString stringWithFormat:@"↑%@ / ↓%@",JobsNonnullString(self.uploadNetworkSpeed, @"0b/s"),JobsNonnullString(self.downloadNetworkSpeed, @"0b/s")];
@@ -176,7 +176,7 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
                         [self bitsSpeedMonitor];
                     }break;
                     case TimerProcessType_End:{
-                        NSLog(@"我死球了");
+                        JobsLog(@"我死球了");
                     }break;
                         
                     default:

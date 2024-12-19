@@ -162,11 +162,11 @@
             x.startTimer();//选择时机、触发启动
             if (self.objectBlock) self.objectBlock(x);
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         }).heartBeatBy(^(id _Nullable data){
             if ([data isKindOfClass:UIButtonModel.class]) {
                 UIButtonModel *model = (UIButtonModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
+                JobsLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
         });
         [self addSubview:_countDownBtn];
@@ -189,7 +189,7 @@
             return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(id _Nullable x) {
             @jobs_strongify(self)
-            NSLog(@"MMM = %@",x);
+            JobsLog(@"MMM = %@",x);
             [self block:self->_textField
                   value:x];
         }];

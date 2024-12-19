@@ -55,9 +55,9 @@ UITextFieldProtocol_synthesize_part2
                              SDImageCacheType cacheType,
                              NSURL * _Nullable imageURL) {
                     if (error) {
-                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        JobsLog(@"aa图片加载失败: %@-%@", error,imageURL);
                     } else {
-                        NSLog(@"图片加载成功");
+                        JobsLog(@"图片加载成功");
                     }
                 }).load();
         }
@@ -111,7 +111,7 @@ UITextFieldProtocol_synthesize_part2
                 x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _likeBtn.thumpNum = 0;
         [self.contentView addSubview:_likeBtn];

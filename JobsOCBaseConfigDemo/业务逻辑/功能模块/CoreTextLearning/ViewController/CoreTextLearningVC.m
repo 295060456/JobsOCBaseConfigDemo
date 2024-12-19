@@ -14,7 +14,7 @@
 @implementation CoreTextLearningVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -89,12 +89,12 @@
     [[NotifiManager shared] showNotifiWithData:@{@"key": @"111", @"content" : @"key:111"}
                                         onView:self.view
                                    finishBlock:^(NSString *key) {
-        NSLog(@"key为%@的NotifiView 显示完成！", key);
+        JobsLog(@"key为%@的NotifiView 显示完成！", key);
     }];
     
     for (int i = 0; i < 20; i++) {
         int random = arc4random() % 10 + 1;
-        NSLog(@"random ------------>%d, index:%d", random, i);
+        JobsLog(@"random ------------>%d, index:%d", random, i);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
                                      (int64_t)((random) * NSEC_PER_SEC)),
                        dispatch_get_main_queue(),
@@ -103,7 +103,7 @@
             [[NotifiManager shared] showNotifiWithData:@{@"key": key, @"content" : [NSString stringWithFormat:@"key:%@", key]}
                                                 onView:self.view
                                            finishBlock:^(NSString *key) {
-                NSLog(@"key为%@的NotifiView 显示完成！", key);
+                JobsLog(@"key为%@的NotifiView 显示完成！", key);
             }];
         });
     }
@@ -114,7 +114,7 @@
         
         [[NotifiManager shared] updateNotifiWithData:@{@"key" : @"111", @"content" : @"key:X222"}
                                          finishBlock:^(NSString *key) {
-            NSLog(@"完成更新！！！key => %@", key);
+            JobsLog(@"完成更新！！！key => %@", key);
         }];
         
     });

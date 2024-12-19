@@ -16,7 +16,7 @@
 @implementation JobsCommentVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -63,7 +63,7 @@
 //        @jobs_weakify(self)
     [jobsCommentCoreVC actionObjectBlock:^(id data) {
 //            @jobs_strongify(self)
-        NSLog(@"您点击了关注");
+        JobsLog(@"您点击了关注");
     }];
     self.comingToPresentVCByRequestParams(jobsCommentCoreVC,JobsInternationalization(@""));
 }
@@ -78,7 +78,7 @@
                 @jobs_strongify(self)
                 [self makeJobsCommentCoreVC];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.view addSubview:_contactCustomerServiceBtn];
         [_contactCustomerServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {

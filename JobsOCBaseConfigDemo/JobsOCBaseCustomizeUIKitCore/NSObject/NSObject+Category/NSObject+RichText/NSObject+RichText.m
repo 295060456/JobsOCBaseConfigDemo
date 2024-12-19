@@ -61,10 +61,10 @@
         for (JobsRichTextConfig *config in arr) {
             if (config.targetString) {
                 resultString = resultString.add(config.targetString);
-                NSLog(@"resultString = %@",resultString);
+                JobsLog(@"resultString = %@",resultString);
             }
         }
-        NSLog(@"resultString = %@",resultString);
+        JobsLog(@"resultString = %@",resultString);
         NSMutableAttributedString *attrString = JobsMutAttributedString(resultString);
         if (!arr || !arr.count) return attrString;
         ///  因为NSArray <JobsRichTextConfig *>* 是动态。进方法以后为固定，那么以此计算真正的range

@@ -99,7 +99,7 @@
     } else {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
-//    NSLog(@"选择国家: %@   代码: %@",originText,originText);
+//    JobsLog(@"选择国家: %@   代码: %@",originText,originText);
 }
 
 #pragma mark - UISearchResultsUpdating

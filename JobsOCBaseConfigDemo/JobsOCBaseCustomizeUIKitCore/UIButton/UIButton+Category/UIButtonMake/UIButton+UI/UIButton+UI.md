@@ -17,9 +17,9 @@
              .titleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
              .onClickBy(^(UIButton *x){
-                 NSLog(@"");
+                 JobsLog(@"");
              }).onLongPressGestureBy(^(id data){
-                 NSLog(@"");
+                 JobsLog(@"");
              });
          [self.bgImageView addSubview:_applyNowBtn];
          [_applyNowBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -49,7 +49,7 @@
             btn.jobsResetBtnCornerRadiusValue(JobsWidth(8));/// 重设Btn的圆切角
             
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         })
         .layerByBorderCor(HEXCOLOR(0xAE8330))
         .layerByBorderWidth(0.5f)
@@ -104,7 +104,7 @@
                                                     borderWidth:JobsWidth(0)
                                                   primaryAction:nil
                                      longPressGestureEventBlock:^(__kindof UIButton *x) {
-           NSLog(@"按钮的长按事件触发");
+           JobsLog(@"按钮的长按事件触发");
            return nil;
        }
                                                 clickEventBlock:^id(BaseButton *x){

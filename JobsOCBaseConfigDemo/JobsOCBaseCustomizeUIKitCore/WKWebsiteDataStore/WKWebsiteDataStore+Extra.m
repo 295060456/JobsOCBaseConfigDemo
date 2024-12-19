@@ -16,7 +16,7 @@
             data.add(WKWebsiteDataTypeMemoryCache);
             data.add(WKWebsiteDataTypeCookies);
         })modifiedSince:NSDate.distantPast completionHandler:^{
-            NSLog(@"清理完成");
+            JobsLog(@"清理完成");
         }];
     };
 }

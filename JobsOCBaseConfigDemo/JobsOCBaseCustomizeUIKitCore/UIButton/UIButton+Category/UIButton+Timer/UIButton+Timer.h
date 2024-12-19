@@ -105,9 +105,9 @@ NS_ASSUME_NONNULL_END
          x.startTimer();//选择时机、触发启动
          if (self.objectBlock) self.objectBlock(x);
      }).onLongPressGestureBy(^(id data){
-         NSLog(@"");
+         JobsLog(@"");
      }).heartBeatBy(^(NSTimerManager *_Nullable data){
-         NSLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
+         JobsLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
      });
  }
  

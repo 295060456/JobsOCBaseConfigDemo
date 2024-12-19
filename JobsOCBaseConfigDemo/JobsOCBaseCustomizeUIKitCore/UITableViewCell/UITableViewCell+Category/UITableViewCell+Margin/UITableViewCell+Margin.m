@@ -11,8 +11,8 @@
 UILocationProtocol_dynamic
 // 在具体的子类去实现,分类调用异常
 //-(void)setFrame:(CGRect)frame{
-//    NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-//    NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+//    JobsLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+//    JobsLog(@"self.offsetYForEach = %f",self.offsetYForEach);
 //    frame.origin.x += self.offsetXForEach;
 //    frame.origin.y += self.offsetYForEach;
 //    frame.size.height -= self.offsetYForEach * 2;
@@ -24,35 +24,35 @@ UILocationProtocol_dynamic
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        NSLog(@"self.textLabelFrame = %@",NSStringFromCGRect(self.textLabelFrame));
-        NSLog(@"self.detailTextLabelFrame = %@",NSStringFromCGRect(self.detailTextLabelFrame));
-        NSLog(@"self.imageViewFrame = %@",NSStringFromCGRect(self.imageViewFrame));
+        JobsLog(@"self.textLabelFrame = %@",NSStringFromCGRect(self.textLabelFrame));
+        JobsLog(@"self.detailTextLabelFrame = %@",NSStringFromCGRect(self.detailTextLabelFrame));
+        JobsLog(@"self.imageViewFrame = %@",NSStringFromCGRect(self.imageViewFrame));
         
-        NSLog(@"self.textLabelSize = %@",NSStringFromCGSize(self.textLabelSize));
-        NSLog(@"self.detailTextLabelSize = %@",NSStringFromCGSize(self.detailTextLabelSize));
-        NSLog(@"self.imageViewSize = %@",NSStringFromCGSize(self.imageViewSize));
+        JobsLog(@"self.textLabelSize = %@",NSStringFromCGSize(self.textLabelSize));
+        JobsLog(@"self.detailTextLabelSize = %@",NSStringFromCGSize(self.detailTextLabelSize));
+        JobsLog(@"self.imageViewSize = %@",NSStringFromCGSize(self.imageViewSize));
         
-        NSLog(@"self.textLabelWidth = %f",self.textLabelWidth);
-        NSLog(@"self.textLabelHeight = %f",self.textLabelHeight);
-        NSLog(@"self.detailTextLabelWidth = %f",self.detailTextLabelWidth);
-        NSLog(@"elf.detailTextLabelHeight = %f",self.detailTextLabelHeight);
-        NSLog(@"self.imageViewWidth = %f",self.imageViewWidth);
-        NSLog(@"self.imageViewHeight = %f",self.imageViewHeight);
+        JobsLog(@"self.textLabelWidth = %f",self.textLabelWidth);
+        JobsLog(@"self.textLabelHeight = %f",self.textLabelHeight);
+        JobsLog(@"self.detailTextLabelWidth = %f",self.detailTextLabelWidth);
+        JobsLog(@"elf.detailTextLabelHeight = %f",self.detailTextLabelHeight);
+        JobsLog(@"self.imageViewWidth = %f",self.imageViewWidth);
+        JobsLog(@"self.imageViewHeight = %f",self.imageViewHeight);
         
-        NSLog(@"self.textLabelFrameOffsetX = %f",self.textLabelFrameOffsetX);
-        NSLog(@"self.textLabelFrameOffsetY = %f",self.textLabelFrameOffsetY);
-        NSLog(@"self.textLabelFrameOffsetWidth = %f",self.textLabelFrameOffsetWidth);
-        NSLog(@"self.textLabelFrameOffsetHeight = %f",self.textLabelFrameOffsetHeight);
+        JobsLog(@"self.textLabelFrameOffsetX = %f",self.textLabelFrameOffsetX);
+        JobsLog(@"self.textLabelFrameOffsetY = %f",self.textLabelFrameOffsetY);
+        JobsLog(@"self.textLabelFrameOffsetWidth = %f",self.textLabelFrameOffsetWidth);
+        JobsLog(@"self.textLabelFrameOffsetHeight = %f",self.textLabelFrameOffsetHeight);
         
-        NSLog(@"self.detailTextLabelOffsetX = %f",self.detailTextLabelOffsetX);
-        NSLog(@"self.detailTextLabelOffsetY = %f",self.detailTextLabelOffsetY);
-        NSLog(@"self.detailTextLabelOffsetWidth = %f",self.detailTextLabelOffsetWidth);
-        NSLog(@"self.detailTextLabelOffsetHeight = %f",self.detailTextLabelOffsetHeight);
+        JobsLog(@"self.detailTextLabelOffsetX = %f",self.detailTextLabelOffsetX);
+        JobsLog(@"self.detailTextLabelOffsetY = %f",self.detailTextLabelOffsetY);
+        JobsLog(@"self.detailTextLabelOffsetWidth = %f",self.detailTextLabelOffsetWidth);
+        JobsLog(@"self.detailTextLabelOffsetHeight = %f",self.detailTextLabelOffsetHeight);
         
-        NSLog(@"self.imageViewFrameOffsetX = %f",self.imageViewFrameOffsetX);
-        NSLog(@"self.imageViewFrameOffsetY = %f",self.imageViewFrameOffsetY);
-        NSLog(@"self.imageViewFrameOffsetWidth = %f",self.imageViewFrameOffsetWidth);
-        NSLog(@"self.imageViewFrameOffsetHeight = %f",self.imageViewFrameOffsetHeight);
+        JobsLog(@"self.imageViewFrameOffsetX = %f",self.imageViewFrameOffsetX);
+        JobsLog(@"self.imageViewFrameOffsetY = %f",self.imageViewFrameOffsetY);
+        JobsLog(@"self.imageViewFrameOffsetWidth = %f",self.imageViewFrameOffsetWidth);
+        JobsLog(@"self.imageViewFrameOffsetHeight = %f",self.imageViewFrameOffsetHeight);
     };
 }
 /// 修改 UITableViewCell 中默认子控件的frame 【方法一】

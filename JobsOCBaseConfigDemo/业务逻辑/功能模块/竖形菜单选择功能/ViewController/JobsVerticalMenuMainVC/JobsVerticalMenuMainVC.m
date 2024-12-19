@@ -19,7 +19,7 @@
 
 - (void)dealloc{
     JobsNotificationCenter.remove(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -56,12 +56,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -182,8 +182,8 @@ viewForHeaderInSection:(NSInteger)section{
  
  // 在具体的子类去实现,分类调用异常
  -(void)setFrame:(CGRect)frame{
-     NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-     NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+     JobsLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+     JobsLog(@"self.offsetYForEach = %f",self.offsetYForEach);
      frame.origin.x += self.offsetXForEach;
      frame.origin.y += self.offsetYForEach;
      frame.size.height -= self.offsetYForEach * 2;
@@ -213,7 +213,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [cell customAccessoryView:^(id data) {
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
-        NSLog(@"MMM - %ld",cell.index);
+        JobsLog(@"MMM - %ld",cell.index);
     }];
     cell.accessoryView.resetWidth(10);
     [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)

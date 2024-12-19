@@ -19,7 +19,7 @@
 @implementation JobsShakeBtn
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 - (void)layoutSubviews {

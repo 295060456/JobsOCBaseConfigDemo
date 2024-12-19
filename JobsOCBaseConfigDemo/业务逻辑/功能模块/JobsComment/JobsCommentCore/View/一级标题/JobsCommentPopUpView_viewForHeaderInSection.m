@@ -68,7 +68,7 @@
                 x.selected = !x.selected;
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         /// 很重要，自定义设置UIBotton.imageView
         _userInfoBtn.imageViewFrame = CGRectMake(JobsWidth(15), 0, JobsWidth(45), JobsWidth(45));
@@ -92,9 +92,9 @@
                          SDImageCacheType cacheType,
                          NSURL * _Nullable imageURL) {
                 if (error) {
-                    NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                    JobsLog(@"aa图片加载失败: %@-%@", error,imageURL);
                 } else {
-                    NSLog(@"图片加载成功");
+                    JobsLog(@"图片加载成功");
                 }
             }).normalLoad();
     }else{
@@ -136,7 +136,7 @@
                 x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _likeBtn.thumpNum = 0;
         [self addSubview:_likeBtn];

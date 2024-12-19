@@ -20,7 +20,7 @@
 @implementation JobsTimerVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
     self.countDownBtn.timerDestroy();
 }
@@ -140,11 +140,11 @@
         })).onClickBy(^(__kindof UIButton *x){
             x.startTimer();/// 选择时机、触发启动
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         }).heartBeatBy(^(id _Nullable data){
             if ([data isKindOfClass:UIButtonModel.class]) {
                 UIButtonModel *model = (UIButtonModel *)data;
-                NSLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
+                JobsLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
         });
         [self.view addSubview:_countDownBtn];
@@ -175,7 +175,7 @@
                     btn.jobsResetBtnCornerRadiusValue(JobsWidth(8));/// 重设Btn的圆切角
                     
                 }).onLongPressGestureBy(^(id data){
-                    NSLog(@"");
+                    JobsLog(@"");
                 })
                 .layerByBorderCor(HEXCOLOR(0xAE8330))
                 .layerByBorderWidth(0.5f)

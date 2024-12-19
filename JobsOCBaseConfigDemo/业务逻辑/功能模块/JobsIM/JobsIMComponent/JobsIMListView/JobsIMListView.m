@@ -71,13 +71,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   tappedButtonAtIndex:(NSInteger)index
             direction:(MGSwipeDirection)direction
         fromExpansion:(BOOL)fromExpansion{
-    NSLog(@"Delegate: button tapped, %@ position, index %d, from Expansion: %@",direction == MGSwipeDirectionLeftToRight ? @"left" : @"right", (int)index, fromExpansion ? @"YES" : @"NO");
+    JobsLog(@"Delegate: button tapped, %@ position, index %d, from Expansion: %@",direction == MGSwipeDirectionLeftToRight ? @"left" : @"right", (int)index, fromExpansion ? @"YES" : @"NO");
     return YES;
 }
 
 -(void)tableView:(UITableView *)tableView
 accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"Tapped accessory button");
+    JobsLog(@"Tapped accessory button");
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
@@ -107,7 +107,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    NSLog(@"下拉刷新");
+                    JobsLog(@"下拉刷新");
                     self.tableView.endRefreshing(self.jobsIMListMutArr.count);
                     return nil;
                 };
@@ -120,7 +120,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    NSLog(@"上拉加载更多");
+                    JobsLog(@"上拉加载更多");
                     // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
                     self.tableView.pagingEnabled = NO;
                     self.tableView.mj_footer.state = MJRefreshStateIdle;

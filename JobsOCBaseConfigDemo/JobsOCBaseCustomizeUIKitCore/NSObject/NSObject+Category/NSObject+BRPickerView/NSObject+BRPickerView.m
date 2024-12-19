@@ -85,7 +85,7 @@
 //    self.datePickerView.resultBlock = ^(NSDate *selectDate,
 //                                        NSString *selectValue) {
 //        @jobs_strongify(self)
-//        NSLog(@"选择的值：%@", selectValue);
+//        JobsLog(@"选择的值：%@", selectValue);
 //        if (clickResultBlock) clickResultBlock(selectDate,selectValue);
 //    };
 //    [self.datePickerView show];
@@ -104,7 +104,7 @@
 //                                           BRCityModel *city,
 //                                           BRAreaModel *area) {
 //        @jobs_strongify(self)
-//        NSLog(@"选择的值：%@", [NSString stringWithFormat:@"%@-%@-%@", province.name, city.name, area.name]);
+//        JobsLog(@"选择的值：%@", [NSString stringWithFormat:@"%@-%@-%@", province.name, city.name, area.name]);
 //        if (clickResultBlock) clickResultBlock(province,city,area);
 //    };
 ////    self.addressPickerView.pickerMode = BRAddressPickerModeProvince;
@@ -142,7 +142,7 @@
 //    };
 //    /** 选择结果的回调【单列】 */
 //    self.stringPickerView.resultModelBlock = ^(BRResultModel *resultModel) {
-////            NSLog(@"选择的值：%@", resultModel.selectValue);
+////            JobsLog(@"选择的值：%@", resultModel.selectValue);
 //        @jobs_strongify(self)
 //        if (self.objectBlock) self.objectBlock(resultModel);
 //    };

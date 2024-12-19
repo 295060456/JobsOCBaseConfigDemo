@@ -64,9 +64,9 @@
                                                                      machineID:1];
     NSNumber *snowflakeID = snowflake.nextID;
     if (snowflakeID){
-        NSLog(@"Generated Snowflake ID: %@", snowflakeID);
+        JobsLog(@"Generated Snowflake ID: %@", snowflakeID);
     }else{
-        NSLog(@"Failed to generate Snowflake ID.");
+        JobsLog(@"Failed to generate Snowflake ID.");
     }return snowflakeID;
 }
 /// 查询算法

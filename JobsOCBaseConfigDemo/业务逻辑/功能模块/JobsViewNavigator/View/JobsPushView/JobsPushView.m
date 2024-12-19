@@ -20,7 +20,7 @@
 
 -(void)dealloc{
     JobsNotificationCenter.remove(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel{
@@ -63,7 +63,7 @@
                 self.configViewNavigatorBySuperviewAndView_(self,self.pushView);
                 self.navigator.pushView(self.pushView,YES);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_push_btn];
         [_push_btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -85,10 +85,10 @@
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
-                NSLog(@"%@",self.navigator);
+                JobsLog(@"%@",self.navigator);
                 if(self.navigator) self.navigator.popViewAnimated(YES);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_pop_btn];
         [_pop_btn mas_makeConstraints:^(MASConstraintMaker *make) {

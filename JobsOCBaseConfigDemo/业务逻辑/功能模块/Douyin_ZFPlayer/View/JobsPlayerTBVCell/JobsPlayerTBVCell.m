@@ -22,7 +22,7 @@
 @implementation JobsPlayerTBVCell
 @synthesize index = _index;
 -(void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(instancetype)init{
@@ -96,7 +96,7 @@
         _playerManager = jobsMakeZFAVPlayerManager(^(__kindof ZFAVPlayerManager * _Nullable data) {
             @jobs_strongify(self)
             data.shouldAutoPlay = YES;
-            NSLog(@"videoIdcUrl = %@",self.videoModel_Core.videoIdcUrl);
+            JobsLog(@"videoIdcUrl = %@",self.videoModel_Core.videoIdcUrl);
             data.assetURL = self.videoModel_Core.videoIdcUrl.jobsUrl;
         });
     }return _playerManager;

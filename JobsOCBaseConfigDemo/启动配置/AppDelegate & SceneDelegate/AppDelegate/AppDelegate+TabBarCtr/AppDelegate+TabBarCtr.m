@@ -264,7 +264,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
 //                         }];
                          [AppDelegate button:x index:0];
                      }).onLongPressGestureBy(^(id data){
-                         NSLog(@"");
+                         JobsLog(@"");
                      }));
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 @jobs_strongify(self)
@@ -290,7 +290,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
 //                         }];
                          [AppDelegate button:x index:1];
                      }).onLongPressGestureBy(^(id data){
-                         NSLog(@"");
+                         JobsLog(@"");
                      }));
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 @jobs_strongify(self)
@@ -312,7 +312,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          [AppDelegate button:x index:2];
                          if (self.objectBlock) self.objectBlock(x);
                      }).onLongPressGestureBy(^(id data){
-                         NSLog(@"");
+                         JobsLog(@"");
                      }));
             
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
@@ -335,7 +335,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          [AppDelegate button:x index:3];
                          if (self.objectBlock) self.objectBlock(x);
                      }).onLongPressGestureBy(^(id data){
-                         NSLog(@"");
+                         JobsLog(@"");
                      }));
             data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 @jobs_strongify(self)
@@ -356,7 +356,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          [AppDelegate button:x index:4];
                          if (self.objectBlock) self.objectBlock(x);
                      }).onLongPressGestureBy(^(id data){
-                         NSLog(@"");
+                         JobsLog(@"");
                      }));
         });
     } return _tabBarItemMutArr;

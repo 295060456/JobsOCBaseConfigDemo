@@ -141,7 +141,7 @@
               if(self.gestureRecognizerBlock) self.gestureRecognizerBlock(longPressGR);
               switch (longPressGR.state) {
                   case UIGestureRecognizerStatePossible:{
-                      NSLog(@"没有触摸事件发生，所有手势识别的默认状态");
+                      JobsLog(@"没有触摸事件发生，所有手势识别的默认状态");
                   }break;
                   case UIGestureRecognizerStateBegan:{
                       if (self.isFeedbackGenerator) {
@@ -150,19 +150,19 @@
                       /// 长按手势出菜单（高仿 Telegram）
                       [JobsPullListAutoSizeView initWithTargetView:self.UITabBarButtonMutArr[longPressGR.view.tag]
                                                         dataMutArr:self.pullListAutoSizeViewMutArr];
-                      NSLog(@"一个手势已经开始  但尚未改变或者完成时");
+                      JobsLog(@"一个手势已经开始  但尚未改变或者完成时");
                   }break;
                   case UIGestureRecognizerStateChanged:{
-                      NSLog(@"手势状态改变");
+                      JobsLog(@"手势状态改变");
                   }break;
                   case UIGestureRecognizerStateEnded:{// = UIGestureRecognizerStateRecognized
-                      NSLog(@"手势完成");
+                      JobsLog(@"手势完成");
                   }break;
                   case UIGestureRecognizerStateCancelled:{
-                      NSLog(@"手势取消，恢复至Possible状态");
+                      JobsLog(@"手势取消，恢复至Possible状态");
                   }break;
                   case UIGestureRecognizerStateFailed:{
-                      NSLog(@"手势失败，恢复至Possible状态");
+                      JobsLog(@"手势失败，恢复至Possible状态");
                   }break;
                   default:
                       break;
@@ -412,7 +412,7 @@ if (self.isOpenPPBadge) {
                   x.selected = !x.selected;
                   if (self.objectBlock) self.objectBlock(x);
               }).onLongPressGestureBy(^(id data){
-                  NSLog(@"");
+                  JobsLog(@"");
               });
           [self addSubview:_titleBtn];
           [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -479,7 +479,7 @@ if (self.isOpenPPBadge) {
     ```
     - (void)tabBarController:(UITabBarController *)tabBarController 
      didSelectViewController:(UIViewController *)viewController{
-        NSLog(@"");
+        JobsLog(@"");
     }
     ```
 

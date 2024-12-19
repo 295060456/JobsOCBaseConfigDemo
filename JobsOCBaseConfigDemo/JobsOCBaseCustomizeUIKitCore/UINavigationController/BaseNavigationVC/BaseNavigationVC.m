@@ -17,7 +17,7 @@
 @implementation BaseNavigationVC
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController {

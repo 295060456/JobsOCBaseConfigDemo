@@ -25,7 +25,7 @@
 @implementation JobsAppDoorLoginContentView
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 #pragma mark - Lifecycle
 -(instancetype)init{
@@ -39,8 +39,8 @@
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:UITextField.class]){
                 UITextField *b = notification.object;
-                NSLog(@"木头 = %@",b.requestParams);
-            }NSLog(@"通知传递过来的 = %@",notification.object);
+                JobsLog(@"木头 = %@",b.requestParams);
+            }JobsLog(@"通知传递过来的 = %@",notification.object);
         }];
     }return self;
 }
@@ -112,7 +112,7 @@
             [self endEditing:YES];
             if (self.objectBlock) self.objectBlock(x);
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         });
         _toRegisterBtn.makeNewLineShows(YES);
         [self addSubview:_toRegisterBtn];
@@ -151,7 +151,7 @@
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [_abandonLoginBtn buttonAutoWidthByFont];
         [self addSubview:_abandonLoginBtn];
@@ -177,7 +177,7 @@
                 if (self.objectBlock) self.objectBlock(x);
                 toast(x.titleForNormalState);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_sendBtn];
         [_sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -204,7 +204,7 @@
                 x.selected = !x.selected;
                 x.selected ? x.jobsResetBtnImage(JobsIMG(@"记住密码")) : x.jobsResetBtnImage(JobsIMG(@"没有记住密码"));
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _storeCodeBtn.selected = YES;// 默认记住密码
         [_storeCodeBtn buttonAutoWidthByFont];
@@ -228,7 +228,7 @@
                 if (self.objectBlock) self.objectBlock(x);
             })
             .onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
             });
         [_findCodeBtn buttonAutoWidthByFont];
         [self addSubview:_findCodeBtn];

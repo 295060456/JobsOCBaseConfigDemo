@@ -134,35 +134,35 @@ numberOfItemsInSection:(NSInteger)section {
 /// 允许选中时，高亮
 -(BOOL)collectionView:(__kindof UICollectionView *)collectionView
 shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 高亮完成后回调
 -(void)collectionView:(__kindof UICollectionView *)collectionView
 didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
 }
 /// 由高亮转成非高亮完成时的回调
 -(void)collectionView:(__kindof UICollectionView *)collectionView
 didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
 }
 /// 设置是否允许选中
 -(BOOL)collectionView:(__kindof UICollectionView *)collectionView
 shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 设置是否允许取消选中
 -(BOOL)collectionView:(__kindof UICollectionView *)collectionView
 shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     return YES;
 }
 /// 选中操作
 - (void)collectionView:(__kindof UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
     /**
      滚动到指定位置
      _collectionView.contentOffset = CGPointMake(0,-100);
@@ -172,7 +172,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 /// 取消选中操作
 -(void)collectionView:(__kindof UICollectionView *)collectionView
 didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%s", __FUNCTION__);
+    JobsLog(@"%s", __FUNCTION__);
 }
 #pragma mark —— UICollectionViewDelegateFlowLayout
 /// header 大小
@@ -244,7 +244,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     for (UIViewModel *viewModel in self.dataMutArr) {
         mutArr.add(viewModel.textModel.text);
     }
-    NSLog(@"%@",mutArr);
+    JobsLog(@"%@",mutArr);
 #endif
 }
 #pragma mark —— lazyLoad
@@ -309,7 +309,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             _collectionView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
             _collectionView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
                                                                                           id  _Nullable arg) {
-                NSLog(@"");
+                JobsLog(@"");
                 @jobs_strongify(self)
                 self.shakeCell(NO);
                 return nil;
@@ -350,7 +350,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
         }];
         @jobs_weakify(self)
         [_closeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            NSLog(@"关闭");
+            JobsLog(@"关闭");
             @jobs_strongify(self)
             x.selected = !x.selected;
             self.cancelBtnActionForPopView(x);
@@ -375,7 +375,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
                 self.shakeCell(NO);
             })
             .onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.bgView addSubview:_cancelBtn];
         [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -401,7 +401,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
                 self.shakeCell(NO);
             })
             .onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.bgView addSubview:_sureBtn];
         [_sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {

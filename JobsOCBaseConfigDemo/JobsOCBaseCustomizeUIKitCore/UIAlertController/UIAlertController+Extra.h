@@ -31,12 +31,12 @@ NS_INLINE __kindof UIAlertController *_Nonnull JobsMakeAlertControllerBy(JobsAle
      data.alertActionTitle = @"OK";
      data.alertActionStyle = UIAlertActionStyleDefault;
      data.alertActionBlock = ^(__kindof UIAlertAction * _Nullable action) {
-         NSLog(@"OK");
+         JobsLog(@"OK");
      };
      data.cancelAlertActionTitle = @"取消";
      data.cancelAlertActionStyle = UIAlertActionStyleCancel;
      data.cancelAlertActionBlock = ^(__kindof UIAlertAction * _Nullable action) {
-         NSLog(@"Cancel");
+         JobsLog(@"Cancel");
      };
  })));
  */

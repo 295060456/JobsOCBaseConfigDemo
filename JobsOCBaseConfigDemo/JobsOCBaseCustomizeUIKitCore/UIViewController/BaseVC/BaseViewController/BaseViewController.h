@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_END
         _backBtnModel.titleCor = JobsWhiteColor;
         _backBtnModel.selected_titleCor = JobsWhiteColor;
         _backBtnModel.longPressGestureEventBlock = ^id(__kindof UIButton *x) {
-            NSLog(@"按钮的长按事件触发");
+            JobsLog(@"按钮的长按事件触发");
             return nil;
         };
         _backBtnModel.clickEventBlock = ^id(BaseButton *x){

@@ -76,7 +76,7 @@
             }return isValue(value);
         }] subscribeNext:^(NSString * _Nullable x) {
             @jobs_strongify(self)
-            NSLog(@"输入的字符为 = %@",x);
+            JobsLog(@"输入的字符为 = %@",x);
             if (self.objectBlock) self.objectBlock(x);
         }];
         _textField.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
@@ -99,7 +99,7 @@
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_cancelBtn];
         [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {

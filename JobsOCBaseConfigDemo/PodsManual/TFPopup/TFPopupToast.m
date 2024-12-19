@@ -21,7 +21,7 @@
 
 -(void)dealloc{
 #if DEBUG
-    NSLog(@"****** TFPopupToast(已释放) msg:%@ ******",self.msg);
+    JobsLog(@"****** TFPopupToast(已释放) msg:%@ ******",self.msg);
 #endif
 }
 
@@ -40,8 +40,8 @@
 dissmissDuration:(NSTimeInterval)duration
  animationType:(TFAnimationType)animationType
    customBlock:(TFPopupToastBlock)customBlock{
-    if (inView == nil) {NSLog(@"****** %@ %@ ******",[self class],@"inView 不能为空！");return;}
-    if (msg == nil) {NSLog(@"****** %@ %@ ******",[self class],@"msg 不能为空！");return;}
+    if (inView == nil) {JobsLog(@"****** %@ %@ ******",[self class],@"inView 不能为空！");return;}
+    if (msg == nil) {JobsLog(@"****** %@ %@ ******",[self class],@"msg 不能为空！");return;}
     
     TFPopupParam *param = [TFPopupParam new];
     param.disuseBackground = YES;

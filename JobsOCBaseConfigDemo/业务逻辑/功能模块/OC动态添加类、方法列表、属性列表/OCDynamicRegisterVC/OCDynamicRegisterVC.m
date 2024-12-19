@@ -22,7 +22,7 @@
 @implementation OCDynamicRegisterVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
     if (NSClassFromString(@"newClass")) objc_disposeClassPair(newClass);
 }
@@ -100,11 +100,11 @@
     ((void (*)(id, SEL, float)) objc_msgSend)(self, @selector(sendObjMsg:), (float)M_PI);
     /// 有返回值的调用，需要注明返回类型
     id f = ((NSString * (*)(id, SEL, float)) objc_msgSend)(self, @selector(sendObjMsg:), (float)M_PI);
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(NSString *)sendObjMsg: (float)x{
-    NSLog(@"");
+    JobsLog(@"");
     return @"Jobs";
 }
 
@@ -141,7 +141,7 @@
     
     id A = [myobjc performSelector:@selector(setJobsName:) withObject:@"bmw"];
     id B = [myobjc performSelector:@selector(jobsName) withObject:nil];
-    NSLog(@"");
+    JobsLog(@"");
     /// 如果不调用- (void)addMethodForMyClass:(NSString *)string 这个方法，就不会调用static void addMethodForMyClass(id self, SEL _cmd, NSString *test) 函数
 //    [myobjc addMethodForMyClass:@"参数"];
 }
@@ -225,8 +225,8 @@ NSString *jobsName(){
     id intanceOfClass = [newClass.alloc init];
     id PropertyList = printPropertyListByObj(intanceOfClass);
     id MethodList = printMethodListByObj(intanceOfClass);
-    NSLog(@"PropertyList = %@",PropertyList);
-    NSLog(@"MethodList = %@",MethodList);
+    JobsLog(@"PropertyList = %@",PropertyList);
+    JobsLog(@"MethodList = %@",MethodList);
     [intanceOfClass performSelector:@selector(test)];
     return intanceOfClass;
 }
@@ -234,7 +234,7 @@ NSString *jobsName(){
 void funcIMP(Class self, SEL _cmd){
     Class class = [self class];
     // 类： dynaminClass, sel： test.
-    NSLog(@"self: %@ sel: %s", class, _cmd);
+    JobsLog(@"self: %@ sel: %s", class, _cmd);
 }
 /// 封装的添加属性的方法
 void jobs_class_addProperty(Class targetClass , const char *propertyName) {
@@ -268,13 +268,13 @@ static void addMethodForMyClass(id self, SEL _cmd, NSString *test) {
 //   Ivar class_getClassVariable ( Class cls, const charchar *name );
     // 返回名为test的ivar变量的值
     id obj = object_getIvar(self, ivar);
-    NSLog(@"%@",obj);
-    NSLog(@"addMethodForMyClass:参数：%@",test);
-    NSLog(@"ClassName：%@",NSStringFromClass([self class]));
+    JobsLog(@"%@",obj);
+    JobsLog(@"addMethodForMyClass:参数：%@",test);
+    JobsLog(@"ClassName：%@",NSStringFromClass([self class]));
 }
 /// 这个方法实际上没有被调用,但是必须实现否则不会调用下面的方法
 - (void)addMethodForMyClass:(NSString *)string {
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)知识点{

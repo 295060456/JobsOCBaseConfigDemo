@@ -96,7 +96,7 @@ UITextFieldProtocol_synthesize_part2
                                    backgroundColor:model.bgCor
                                            padding:15
                                           callback:^BOOL(MGSwipeTableCell * sender){
-                NSLog(@"Convenience callback received (left).");
+                JobsLog(@"Convenience callback received (left).");
                 return YES;
             }]);
         }
@@ -113,7 +113,7 @@ UITextFieldProtocol_synthesize_part2
                                    backgroundColor:model.bgCor
                                            padding:15
                                           callback:^BOOL(MGSwipeTableCell * sender){
-                NSLog(@"Convenience callback received (left).");
+                JobsLog(@"Convenience callback received (left).");
                 return YES;
             }]);
         }
@@ -149,7 +149,7 @@ UITextFieldProtocol_synthesize_part2
         }) GestureActionBy:^(__kindof UIGestureRecognizer * _Nullable gesture) {
             /// 这里写手势的触发
             if (gesture.state == UIGestureRecognizerStateBegan) {
-                NSLog(@"长按手势做什么");
+                JobsLog(@"长按手势做什么");
             }
         }];self.addGesture(_longPG);
     }return _longPG;

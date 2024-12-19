@@ -27,9 +27,9 @@ UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotification
 [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge)
                       completionHandler:^(BOOL granted, NSError * _Nullable error) {
     if (granted) {
-        NSLog(@"用户授权了通知权限");
+        JobsLog(@"用户授权了通知权限");
     } else {
-        NSLog(@"用户拒绝了通知权限");
+        JobsLog(@"用户拒绝了通知权限");
     }
 }];
 ```
@@ -52,7 +52,7 @@ UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"
 // 添加通知请求到通知中心
 [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
     if (!error) {
-        NSLog(@"本地通知已调度");
+        JobsLog(@"本地通知已调度");
     }
 }];
 ```
@@ -63,7 +63,7 @@ UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center 
        willPresentNotification:(UNNotification *)notification 
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
-    NSLog(@"接收到通知：%@", notification.request.content.userInfo);
+    JobsLog(@"接收到通知：%@", notification.request.content.userInfo);
     completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionSound);
 }
 ```

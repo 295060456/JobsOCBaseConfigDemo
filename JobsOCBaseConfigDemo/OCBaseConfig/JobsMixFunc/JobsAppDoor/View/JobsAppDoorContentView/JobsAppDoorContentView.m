@@ -74,7 +74,7 @@
 //        [JobsNetworkingAPI requestApi:NSObject.authGetVerificationCodeGET.funcName
 //                         parameters:parameters
 //                       successBlock:^(JobsResponseModel *data) {
-//            NSLog(@"用户获取短信验证码成功");
+//            JobsLog(@"用户获取短信验证码成功");
 //            self.jobsToastSuccessMsg(JobsInternationalization(@"Verification send success"));
 //        } failureBlock:^(id data) {
 //            JobsNetworkingAPI.handleError(data);

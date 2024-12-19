@@ -44,7 +44,7 @@
 @defs(Forkable)
 
 - (void)fork {
-    NSLog(@"Forkable protocol extension: I'm forking (%@).", self.github);
+    JobsLog(@"Forkable protocol extension: I'm forking (%@).", self.github);
 }
 
 - (NSString *)github {

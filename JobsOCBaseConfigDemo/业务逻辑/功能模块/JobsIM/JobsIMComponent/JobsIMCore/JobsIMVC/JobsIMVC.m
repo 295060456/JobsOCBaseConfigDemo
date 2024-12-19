@@ -21,7 +21,7 @@
 @implementation JobsIMVC
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -29,9 +29,9 @@
     self.isHiddenNavigationBar = YES;//禁用系统的导航栏
     IQKeyboardManager.sharedManager.enable = NO;//该页面禁用
     [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-        NSLog(@"");
+        JobsLog(@"");
     } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-        NSLog(@"");
+        JobsLog(@"");
     }];
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
@@ -107,16 +107,16 @@
     CGRect beginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat KeyboardOffsetY = beginFrame.origin.y - endFrame.origin.y;// 正则抬起 ，负值下降
-    NSLog(@"KeyboardOffsetY = %f",KeyboardOffsetY);
+    JobsLog(@"KeyboardOffsetY = %f",KeyboardOffsetY);
  
     if (KeyboardOffsetY > 0) {
-        NSLog(@"键盘抬起");
+        JobsLog(@"键盘抬起");
         KeyboardOffsetY -= JobsBottomSafeAreaHeight();
     }else if(KeyboardOffsetY < 0){
-        NSLog(@"键盘收回");
+        JobsLog(@"键盘收回");
         KeyboardOffsetY += JobsBottomSafeAreaHeight();
     }else{
-        NSLog(@"键盘");
+        JobsLog(@"键盘");
     }
     
     self.inputview.inputTextField.TFRiseHeight = self.inputview.mj_y;
@@ -329,13 +329,13 @@ willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
   tappedButtonAtIndex:(NSInteger)index
             direction:(MGSwipeDirection)direction
         fromExpansion:(BOOL)fromExpansion{
-    NSLog(@"Delegate: button tapped, %@ position, index %d, from Expansion: %@",direction == MGSwipeDirectionLeftToRight ? @"left" : @"right", (int)index, fromExpansion ? @"YES" : @"NO");
+    JobsLog(@"Delegate: button tapped, %@ position, index %d, from Expansion: %@",direction == MGSwipeDirectionLeftToRight ? @"left" : @"right", (int)index, fromExpansion ? @"YES" : @"NO");
     return YES;
 }
 
 -(void)tableView:(UITableView *)tableView
 accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"Tapped accessory button");
+    JobsLog(@"Tapped accessory button");
 }
 #pragma mark —— lazyLoad
 -(JobsIMInputview *)inputview{
@@ -373,7 +373,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         [_inputview mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsIMInputviewHeight());
             make.left.right.equalTo(self.view);
-            NSLog(@"%f",JobsBottomSafeAreaHeight());
+            JobsLog(@"%f",JobsBottomSafeAreaHeight());
             make.bottom.equalTo(self.view).offset(-JobsBottomSafeAreaHeight());
         }];
         _inputview.jobsRichViewByModel(nil);
@@ -424,7 +424,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    NSLog(@"上拉加载更多");
+                    JobsLog(@"上拉加载更多");
                     /// 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
                     self.tableView.pagingEnabled = NO;
                     self.tableView.mj_footer.state = MJRefreshStateIdle;
@@ -453,7 +453,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 if (self.objectBlock) self.objectBlock(x);
                 toast(JobsInternationalization(@"正在研发中...敬请期待"));
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _shareBtn.width = JobsWidth(23);
         _shareBtn.height = JobsWidth(23);

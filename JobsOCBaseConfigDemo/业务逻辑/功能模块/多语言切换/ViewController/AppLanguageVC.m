@@ -17,7 +17,7 @@
 @implementation AppLanguageVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 
@@ -47,13 +47,13 @@
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
+            JobsLog(@"SSS = %d",b.boolValue);
         }
-        NSLog(@"通知传递过来的 = %@",notification.object);
+        JobsLog(@"通知传递过来的 = %@",notification.object);
     }];
     
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
-        NSLog(@"退出页面的逻辑");
+        JobsLog(@"退出页面的逻辑");
         return nil;
     };
 }
@@ -65,7 +65,7 @@
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -74,7 +74,7 @@
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -82,7 +82,7 @@
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

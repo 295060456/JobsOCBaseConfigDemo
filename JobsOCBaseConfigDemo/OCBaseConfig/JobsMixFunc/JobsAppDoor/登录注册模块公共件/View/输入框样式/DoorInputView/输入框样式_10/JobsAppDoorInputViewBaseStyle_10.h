@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_END
          @jobs_weakify(self)
          [_inputView actionObjectBlock:^(id data) {
              @jobs_strongify(self)
-             NSLog(@"%@",data);
+             JobsLog(@"%@",data);
              if ([data isKindOfClass:UITextField.class]) {
                  UITextField *textField = (UITextField *)data;
                  if ([textField.requestParams isKindOfClass:JobsAppDoorInputViewTFModel.class]) {

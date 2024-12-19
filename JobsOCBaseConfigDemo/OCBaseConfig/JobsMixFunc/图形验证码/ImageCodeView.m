@@ -18,7 +18,7 @@
 
 @implementation ImageCodeView
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(instancetype)init{
@@ -43,7 +43,7 @@
 //            if ([data isKindOfClass:NSDictionary.class]) {
 //                self.CodeStr = data[@"imgCode"];
 //                self.backgroundColor = self.bgColorBy;
-//                NSLog(@"我是验证码：%@",self.CodeStr);
+//                JobsLog(@"我是验证码：%@",self.CodeStr);
 //                [self setNeedsDisplay];
 //                if (self.imageCodeViewBlock) {
 //                    self.imageCodeViewBlock(data);

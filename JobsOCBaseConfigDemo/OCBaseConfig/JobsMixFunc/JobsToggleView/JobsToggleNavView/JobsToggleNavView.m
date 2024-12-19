@@ -21,7 +21,7 @@
 @implementation JobsToggleNavView
 JobsToggleNavViewProtocolSynthesize
 -(void)dealloc{
-    NSLog(@"");
+    JobsLog(@"");
 }
 #pragma mark —— BaseProtocol
 #pragma mark —— SysMethod
@@ -159,7 +159,7 @@ JobsToggleNavViewProtocolSynthesize
         if(index > self.buttonsArray.count - 1) index = self.buttonsArray.count - 1;
         if(index < 0) index = 0;
         
-        NSLog(@"当前选择：%lu",(unsigned long)index);
+        JobsLog(@"当前选择：%lu",(unsigned long)index);
         self.current_index = index;
         /// 全部还原
         int t = 0;

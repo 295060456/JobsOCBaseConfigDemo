@@ -21,7 +21,7 @@ NSString *appInterfaceTesting;
         request.server = This.BaseUrl;
         request.url = request.server.add(This.appInterfaceTesting.url);
         
-        NSLog(@"request.URLString = %@",request.url);
+        JobsLog(@"request.URLString = %@",request.url);
         
         request.methodType = ZBMethodTypeGET;//默认为GET
         request.apiType = ZBRequestTypeRefresh;//（默认为ZBRequestTypeRefresh 不读取缓存，不存储缓存）
@@ -46,7 +46,7 @@ NSString *appInterfaceTesting;
         }//一些临时的其他的配置
         
     }progress:^(NSProgress * _Nullable progress){
-        NSLog(@"进度 = %f",progress.fractionCompleted * 100);
+        JobsLog(@"进度 = %f",progress.fractionCompleted * 100);
     }success:^(id  _Nullable responseObject,
                ZBURLRequest * _Nullable request){
         [JobsNetworkingAPI networkingSuccessHandleWithData:responseObject
@@ -54,14 +54,14 @@ NSString *appInterfaceTesting;
                                             successBlock:successBlock
                                             failureBlock:failureBlock];
     }failure:^(NSError * _Nullable error){
-        NSLog(@"error = %@",error);
+        JobsLog(@"error = %@",error);
         if (failureBlock) {
             failureBlock(error);
         }
     }finished:^(id  _Nullable responseObject,
                 NSError * _Nullable error,
                 ZBURLRequest * _Nullable request){
-        NSLog(@"请求完成 userInfo:%@",request.userInfo);
+        JobsLog(@"请求完成 userInfo:%@",request.userInfo);
     }];
 }
 

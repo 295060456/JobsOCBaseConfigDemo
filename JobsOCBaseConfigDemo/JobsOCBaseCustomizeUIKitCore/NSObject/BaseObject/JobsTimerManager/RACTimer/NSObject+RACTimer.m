@@ -18,7 +18,7 @@
                      onScheduler:RACScheduler.mainThreadScheduler]
              takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSDate *currentDate) {
         /// 在这里可以处理每次触发的操作
-        NSLog(@"计时器触发时间: %@", currentDate);
+        JobsLog(@"计时器触发时间: %@", currentDate);
         if (doBlock) doBlock();
     }];
 }
@@ -32,7 +32,7 @@
                                     repeatingEvery:heartbeat
                                         withLeeway:0.1
                                           schedule:^{
-        NSLog(@"计时器触发");
+        JobsLog(@"计时器触发");
 //        [disposable dispose];/// 停止定时器
         if (doBlock) doBlock();
     }];
@@ -54,7 +54,7 @@
             isStopped = YES;
         }];
     }] subscribeNext:^(NSDate *currentDate) {
-        NSLog(@"自定义计时器触发时间: %@", currentDate);
+        JobsLog(@"自定义计时器触发时间: %@", currentDate);
         /// 计时器每次触发时要执行的任务
         if (doBlock) doBlock();
     }];
@@ -63,7 +63,7 @@
 /// 延迟delay秒以后执行任务
 -(RACDisposable *_Nonnull)delay:(NSTimeInterval)delay doBlock:(jobsByVoidBlock _Nullable)doBlock{
     return [[[RACSignal return:@(YES)] delay:delay] subscribeNext:^(id x) {
-        NSLog(@"延迟5秒后触发的任务");
+        JobsLog(@"延迟5秒后触发的任务");
         if(doBlock) doBlock();
     }];
 }
@@ -75,7 +75,7 @@
     RACSignal *intervalSignal = [RACSignal interval:heartbeat onScheduler:RACScheduler.mainThreadScheduler];
     RACSignal *combinedSignal = [[initialDelay concat:intervalSignal] takeUntil:self.rac_willDeallocSignal];
     return [combinedSignal subscribeNext:^(id x) {
-        NSLog(@"分段式计时器触发");
+        JobsLog(@"分段式计时器触发");
         if(doBlock) doBlock();
     }];
 }

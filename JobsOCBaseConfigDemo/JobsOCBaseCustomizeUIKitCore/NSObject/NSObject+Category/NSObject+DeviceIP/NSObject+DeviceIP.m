@@ -24,7 +24,7 @@
                 }
             }temp_address = temp_address->ifa_next;
         }
-    }NSLog(@"获取到的IP地址为：%@",address);
+    }JobsLog(@"获取到的IP地址为：%@",address);
     return address;
 }
 /// 获取设备当前本地IP地址
@@ -46,7 +46,7 @@
            IOS_CELLULAR @"/" IP_ADDR_IPv6,
            IOS_CELLULAR @"/" IP_ADDR_IPv4];
         NSDictionary *addresses = self.getIPAddresses;
-        NSLog(@"addresses: %@", addresses);
+        JobsLog(@"addresses: %@", addresses);
         [searchArray enumerateObjectsUsingBlock:^(NSString *key,
                                                   NSUInteger idx,
                                                   BOOL *stop) {
@@ -72,7 +72,7 @@
             if (firstMatch) {
                 NSRange resultRange = firstMatch.rangeAtIndex(0);
                 NSString *result = ipAddress.substringWithRange(resultRange);
-                NSLog(@"%@",result);
+                JobsLog(@"%@",result);
                 return YES;
             }
         }return NO;

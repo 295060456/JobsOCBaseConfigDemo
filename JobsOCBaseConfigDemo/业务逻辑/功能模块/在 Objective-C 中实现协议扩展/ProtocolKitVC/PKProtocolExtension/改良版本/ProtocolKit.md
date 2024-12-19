@@ -152,8 +152,8 @@ __attribute__((constructor)) static void _pk_extension_inject_entry(void) {
 Test:
 
 - (void)testProtocol {
-    NSLog(@"class response : %d", [C instancesRespondToSelector:@selector(logB)]);
-    NSLog(@"instance response : %d", [[C new] respondsToSelector:@selector(logB)]);
+    JobsLog(@"class response : %d", [C instancesRespondToSelector:@selector(logB)]);
+    JobsLog(@"instance response : %d", [[C new] respondsToSelector:@selector(logB)]);
     [[C new] logB];
 }
 

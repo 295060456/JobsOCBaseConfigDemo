@@ -20,7 +20,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -57,12 +57,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -146,13 +146,13 @@
                                                     image:nil
                                                identifier:nil
                                                   handler:^(__kindof UIAction * _Nonnull action) {
-                NSLog(@"Action 1 selected for row %ld", (long)indexPath.row);
+                JobsLog(@"Action 1 selected for row %ld", (long)indexPath.row);
             }];
             UIAction *action2 = [UIAction actionWithTitle:JobsInternationalization(@"Action 2")
                                                     image:nil
                                                identifier:nil
                                                   handler:^(__kindof UIAction * _Nonnull action) {
-                NSLog(@"Action 2 selected for row %ld", (long)indexPath.row);
+                JobsLog(@"Action 2 selected for row %ld", (long)indexPath.row);
             }];
             // 创建并返回菜单
             return [UIMenu menuWithTitle:JobsInternationalization(@"") children:@[action1, action2]];

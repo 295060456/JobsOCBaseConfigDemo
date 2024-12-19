@@ -228,7 +228,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         });
         [_realTextField jobsTextFieldEventFilterBlock:^BOOL(id data) {
 //            @jobs_strongify(self)
-            NSLog(@"");
+            JobsLog(@"");
             return YES;
         } subscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)

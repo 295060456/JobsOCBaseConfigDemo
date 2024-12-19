@@ -310,7 +310,7 @@
                                           borderWidth:data.buttonModel.borderWidth
                                         primaryAction:data.buttonModel.primaryAction
                            longPressGestureEventBlock:data.buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
-            NSLog(@"按钮的长按事件触发");
+            JobsLog(@"按钮的长按事件触发");
             if(x.longPressGestureBlock) x.longPressGestureBlock(x);
             return nil;
         }
@@ -359,7 +359,7 @@
                                           borderWidth:data.borderWidth
                                         primaryAction:data.primaryAction
                            longPressGestureEventBlock:data.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
-            NSLog(@"按钮的长按事件触发");
+            JobsLog(@"按钮的长按事件触发");
             if(x.longPressGestureBlock) x.longPressGestureBlock(x);
             return nil;
         }
@@ -408,7 +408,7 @@
                                           borderWidth:JobsWidth(0)
                                         primaryAction:nil
                            longPressGestureEventBlock:^id(__kindof UIButton *_Nullable x) {
-            NSLog(@"按钮的长按事件触发");
+            JobsLog(@"按钮的长按事件触发");
             if(x.longPressGestureBlock) x.longPressGestureBlock(x);
             return nil;
         }

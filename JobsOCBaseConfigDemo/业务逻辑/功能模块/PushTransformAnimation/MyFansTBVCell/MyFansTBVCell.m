@@ -41,8 +41,8 @@
 }
 
 -(void)setFrame:(CGRect)frame{
-    NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-    NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+    JobsLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+    JobsLog(@"self.offsetYForEach = %f",self.offsetYForEach);
 
     if (!frame.origin.x) {
         frame.origin.x += self.offsetXForEach;
@@ -76,9 +76,9 @@
                              SDImageCacheType cacheType,
                              NSURL * _Nullable imageURL) {
                     if (error) {
-                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        JobsLog(@"aa图片加载失败: %@-%@", error,imageURL);
                     } else {
-                        NSLog(@"图片加载成功");
+                        JobsLog(@"图片加载成功");
                     }
                 }).load();
     };

@@ -54,7 +54,7 @@
     if (self.customDate) {
         return self.customDate.timeIntervalSince1970;
     }else{
-        NSLog(@"自定义某一个时间为null，请检查");
+        JobsLog(@"自定义某一个时间为null，请检查");
         NSAssert(self.customDate, @"自定义某一个时间为null，请检查");
         return 0;
     }

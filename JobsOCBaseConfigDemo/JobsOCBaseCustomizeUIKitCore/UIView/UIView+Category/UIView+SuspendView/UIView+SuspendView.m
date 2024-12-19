@@ -15,7 +15,7 @@ JobsKey(_vc)
 -(UIViewController *)vc{
     UIViewController *VC = Jobs_getAssociatedObject(_vc);
     if (!VC) {
-        NSLog(@"VC 不能为空");
+        JobsLog(@"VC 不能为空");
     }return VC;
 }
 
@@ -94,7 +94,7 @@ JobsKey(_panRcognize)
                     //如果按钮超出屏幕边缘
                     if (stopPoint.y + self.width + 40 >= JobsMainScreen_HEIGHT()) {
                         stopPoint = CGPointMake(stopPoint.x, JobsMainScreen_HEIGHT() - self.width / 2.0 - 49);
-                        NSLog(@"超出屏幕下方了！！"); //这里注意iphoneX的适配。。X的SCREEN高度算法有变化。
+                        JobsLog(@"超出屏幕下方了！！"); //这里注意iphoneX的适配。。X的SCREEN高度算法有变化。
                     }
                     if (stopPoint.x - self.width / 2.0 <= 0) {
                         stopPoint = CGPointMake(self.width / 2.0, stopPoint.y);

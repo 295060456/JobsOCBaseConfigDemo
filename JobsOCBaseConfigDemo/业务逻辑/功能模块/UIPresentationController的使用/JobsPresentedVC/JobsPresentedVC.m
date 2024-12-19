@@ -18,7 +18,7 @@
     [self.view endEditing:YES];
     if (JobsDebug) {
         toast([NSString stringWithFormat:@"%@%@",JobsInternationalization(@"成功销毁了控制器"),NSStringFromClass(self.class)]);
-        NSLog(@"%@",JobsLocalFunc);
+        JobsLog(@"%@",JobsLocalFunc);
         PrintRetainCount(self)
     }
 }
@@ -26,7 +26,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    NSLog(@"%f",self.presentUpHeight);
+    JobsLog(@"%f",self.presentUpHeight);
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches

@@ -139,7 +139,7 @@ UITextFieldProtocol_dynamic
     if (viewController) {
         viewController.comingToPushVCByRequestParams(toPushVC,requestParams);
     }else{
-        NSLog(@"%@强制展现页面%@失败,携带的参数%@",viewController,toPushVC,requestParams);
+        JobsLog(@"%@强制展现页面%@失败,携带的参数%@",viewController,toPushVC,requestParams);
         self.jobsToastErrMsg(JobsInternationalization(@"强制展现页面失败,请检查控制台"));
     }
 }
@@ -178,7 +178,7 @@ UITextFieldProtocol_dynamic
  if ([object isKindOfClass:UIScrollView.class]) {
  UIScrollView *scrollView = (UIScrollView *)object;
  CGPoint point = [((NSValue *)[scrollView valueForKey:@"contentOffset"]) CGPointValue];
- NSLog(@"point.x = %f,point.y = %f",point.x,point.y);
+ JobsLog(@"point.x = %f,point.y = %f",point.x,point.y);
  }
  }
  */
@@ -212,13 +212,13 @@ UITextFieldProtocol_dynamic
                    swizzledSel:(SEL)swizzledSelector {
     Class cls = objc_getClass(className.UTF8String);
     if (!cls) {
-        NSLog(@"交换失败：未找到类 %@", className);
+        JobsLog(@"交换失败：未找到类 %@", className);
         return;
     }
     Method originalMethod = class_getInstanceMethod(cls, originalSelector);
     Method swizzledMethod = class_getInstanceMethod(cls, swizzledSelector);
     if (!originalMethod || !swizzledMethod) {
-        NSLog(@"交换失败：类 %@ 中的方法 %@ 或 %@ 未找到", className, NSStringFromSelector(originalSelector), NSStringFromSelector(swizzledSelector));
+        JobsLog(@"交换失败：类 %@ 中的方法 %@ 或 %@ 未找到", className, NSStringFromSelector(originalSelector), NSStringFromSelector(swizzledSelector));
         return;
     }method_exchangeImplementations(originalMethod, swizzledMethod);
 }
@@ -349,7 +349,7 @@ UITextFieldProtocol_dynamic
             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data.copy
                                                                options:NSJSONWritingPrettyPrinted
                                                                  error:&error];
-            if(error) NSLog(@"%@",error.description);
+            if(error) JobsLog(@"%@",error.description);
             return jsonData;
         }else return nil;
     };
@@ -362,7 +362,7 @@ UITextFieldProtocol_dynamic
             NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
                                                                options:NSJSONReadingMutableContainers
                                                                  error:&error];
-            if(error) NSLog(@"%@",error.description);
+            if(error) JobsLog(@"%@",error.description);
             return jsonData;
         }else return nil;
     };
@@ -375,7 +375,7 @@ UITextFieldProtocol_dynamic
             NSData *jsonData = [NSJSONSerialization JSONObjectWithData:data.copy
                                                                options:kNilOptions
                                                                  error:&error];
-            if(error) NSLog(@"%@",error.description);
+            if(error) JobsLog(@"%@",error.description);
             return jsonData;
         }else return nil;
     };
@@ -423,7 +423,7 @@ UITextFieldProtocol_dynamic
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data
                                                            options:NSJSONWritingPrettyPrinted
                                                              error:&error];
-        if(error) NSLog(@"error = %@",error);
+        if(error) JobsLog(@"error = %@",error);
         return jsonData;
     };
 }
@@ -598,10 +598,10 @@ UITextFieldProtocol_dynamic
 /// 打印YTKBaseRequest
 -(jobsByYTKBaseRequestBlock _Nonnull)checkRequest{
     return ^(YTKBaseRequest *_Nonnull request) {
-        NSLog(@"request.error = %@\n",request.error);
-        NSLog(@"request.requestArgument = %@\n",request.requestArgument);
-        NSLog(@"request.requestUrl = %@\n",request.requestUrl);
-        NSLog(@"request.baseUrl = %@\n",request.baseUrl);
+        JobsLog(@"request.error = %@\n",request.error);
+        JobsLog(@"request.requestArgument = %@\n",request.requestArgument);
+        JobsLog(@"request.requestUrl = %@\n",request.requestUrl);
+        JobsLog(@"request.baseUrl = %@\n",request.baseUrl);
     };
 }
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环
@@ -609,7 +609,7 @@ UITextFieldProtocol_dynamic
                 cycleBlock:(jobsByIntBlock _Nullable)cycleBlock{
     if (ceiling > 0) {
         for (int i = 0 ; i < ceiling; i++) {
-            NSLog(@"Jobs_%d",i);
+            JobsLog(@"Jobs_%d",i);
             if (cycleBlock) cycleBlock(i);
         }
     }
@@ -654,7 +654,7 @@ UITextFieldProtocol_dynamic
                 value = [self valueForKey:key];
             }
             @catch (NSException *exception) {
-                NSLog(@"Exception: %@", exception);
+                JobsLog(@"Exception: %@", exception);
                 value = @"nil"; // or handle the exception as needed
             }
         }return value;
@@ -701,7 +701,7 @@ UITextFieldProtocol_dynamic
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
+            JobsLog(@"SSS = %d",b.boolValue);
         }if (selectorBlock) selectorBlock(weakSelf,arg);
         return nil;
     }, MethodName(self), self) name:notificationName object:nil];
@@ -753,7 +753,7 @@ UITextFieldProtocol_dynamic
             return CompareRes_Equal;
         }
     }else{
-        NSLog(@"数据异常，请检查：versionNumber1 = %@,versionNumber2 = %@",versionNumber1,versionNumber2);
+        JobsLog(@"数据异常，请检查：versionNumber1 = %@,versionNumber2 = %@",versionNumber1,versionNumber2);
         return CompareRes_Error;
     }
 }
@@ -810,35 +810,35 @@ UITextFieldProtocol_dynamic
         ScrollDirection direction = ScrollDirectionNone;
         if (self.lastPoint.x > point.x &&
             self.lastPoint.y == point.y) {
-            NSLog(@"👉🏻");
+            JobsLog(@"👉🏻");
             direction = ScrollDirectionRight;
         }else if (self.lastPoint.x < point.x &&
                   self.lastPoint.y == point.y){
-            NSLog(@"👈🏻");
+            JobsLog(@"👈🏻");
             direction = ScrollDirectionLeft;
         }else if (self.lastPoint.x == point.x &&
                   self.lastPoint.y > point.y){
-            NSLog(@"👇🏻");
+            JobsLog(@"👇🏻");
             direction = ScrollDirectionDown;
         }else if (self.lastPoint.x == point.x &&
                   self.lastPoint.y < point.y){
-            NSLog(@"👆🏻");
+            JobsLog(@"👆🏻");
             direction = ScrollDirectionUp;
         }else if (self.lastPoint.x > point.x &&
                   self.lastPoint.y < point.y){
-            NSLog(@"👉🏻👆🏻");
+            JobsLog(@"👉🏻👆🏻");
             direction = ScrollDirectionRight_UP;
         }else if (self.lastPoint.x < point.x &&
                   self.lastPoint.y < point.y){
-            NSLog(@"👈🏻👆🏻");
+            JobsLog(@"👈🏻👆🏻");
             direction = ScrollDirectionLeft_UP;
         }else if (self.lastPoint.x > point.x &&
                   self.lastPoint.y > point.y){
-            NSLog(@"👉🏻👇🏻");
+            JobsLog(@"👉🏻👇🏻");
             direction = ScrollDirectionRight_Down;
         }else if (self.lastPoint.x < point.x &&
                   self.lastPoint.y > point.y){
-            NSLog(@"👈🏻👇🏻");
+            JobsLog(@"👈🏻👇🏻");
             direction = ScrollDirectionLeft_Down;
         }
         self.lastPoint = point;
@@ -954,14 +954,14 @@ UITextFieldProtocol_dynamic
 /// 打印请求体
 -(JobsReturnURLRequestByURLSessionTaskBlock _Nullable)printURLSessionRequestMessage{
     return ^__kindof NSMutableURLRequest *_Nullable(__kindof NSURLSessionDataTask *_Nullable task) {
-        if(!task){NSLog(@"NSURLSessionDataTask *task 为空,请检查");return nil;}
+        if(!task){JobsLog(@"NSURLSessionDataTask *task 为空,请检查");return nil;}
         return task.originalRequest.print();
     };
 }
 /// 打印URLRequest
 -(JobsReturnMutableURLRequestByURLRequestBlock _Nullable)printRequestMessage{
     return ^__kindof NSMutableURLRequest *_Nullable(__kindof NSURLRequest *_Nullable data) {
-        if (!data) {NSLog(@"NSURLRequest *data 为空,请检查");return nil;}
+        if (!data) {JobsLog(@"NSURLRequest *data 为空,请检查");return nil;}
         return data.print();
     };
 }
@@ -985,9 +985,9 @@ UITextFieldProtocol_dynamic
                                                           .add(toStringByLong(timeModel.currentDay))
                                                           .add(@"-");
     if ([recordToday isEqualToString:today]) {
-        NSLog(@"今天已经启动过");
+        JobsLog(@"今天已经启动过");
     }else{
-        NSLog(@"今天第一次启动");
+        JobsLog(@"今天第一次启动");
         JobsSetUserDefaultKeyWithValue(@"TodayAppFirstLaunch", today);
         JobsUserDefaultSynchronize;//
     }return ![recordToday isEqualToString:today];
@@ -1054,7 +1054,7 @@ UITextFieldProtocol_dynamic
             }
             if (!imageData) return;
             self.saveImageData(imageData);
-        }else NSLog(@"GKPhotoBrowser * 为空");
+        }else JobsLog(@"GKPhotoBrowser * 为空");
     };
 }
 
@@ -1076,10 +1076,10 @@ UITextFieldProtocol_dynamic
             } completionHandler:^(BOOL success,NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (success) {
-                        NSLog(@"保存照片成功");
+                        JobsLog(@"保存照片成功");
                         toast(JobsInternationalization(@"图片保存成功"));
                     } else if (error) {
-                        NSLog(@"保存照片出错:%@",error.localizedDescription);
+                        JobsLog(@"保存照片出错:%@",error.localizedDescription);
                         toastErr(JobsInternationalization(@"保存保存失败"));
                     }
                 });
@@ -1127,11 +1127,11 @@ UITextFieldProtocol_dynamic
                                 id _Nullable arg) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            NSLog(@"我只执行一次");
+            JobsLog(@"我只执行一次");
             /// 在这里写遗言：最后希望去完成的事情
             if (checkBlock) checkBlock(@1);
             [NSThread sleepForTimeInterval:60];
-            NSLog(@"程序被杀死");
+            JobsLog(@"程序被杀死");
         });
     }];
 }
@@ -1402,40 +1402,40 @@ UITextFieldProtocol_dynamic
                                 id _Nullable arg) {
         switch (UIDevice.currentDevice.orientation) {
             case UIDeviceOrientationFaceUp:
-                NSLog(@"屏幕朝上平躺");
+                JobsLog(@"屏幕朝上平躺");
                 break;
             case UIDeviceOrientationFaceDown:
-                NSLog(@"屏幕朝下平躺");
+                JobsLog(@"屏幕朝下平躺");
                 break;
             case UIDeviceOrientationUnknown:
-                NSLog(@"屏幕未知方向");
+                JobsLog(@"屏幕未知方向");
                 break;
             case UIDeviceOrientationLandscapeLeft:
-                NSLog(@"屏幕向左横置");
+                JobsLog(@"屏幕向左横置");
                  JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeRight;
                  JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
                  JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
                 break;
             case UIDeviceOrientationLandscapeRight:
-                NSLog(@"屏幕向右橫置");
+                JobsLog(@"屏幕向右橫置");
                  JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft;
                  JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeLeft;
                  JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
                 break;
             case UIDeviceOrientationPortrait:
-                NSLog(@"屏幕直立");
+                JobsLog(@"屏幕直立");
                  JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortrait;
                  JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortrait;
                  JobsAppTool.jobsDeviceOrientation = DeviceOrientationPortrait;
                 break;
             case UIDeviceOrientationPortraitUpsideDown:
-                NSLog(@"屏幕直立，上下顛倒");
+                JobsLog(@"屏幕直立，上下顛倒");
                  JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationPortraitUpsideDown;
                  JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskPortraitUpsideDown;
                  JobsAppTool.jobsDeviceOrientation = DeviceOrientationPortrait;
                 break;
             default:
-                NSLog(@"屏幕方向无法辨识");
+                JobsLog(@"屏幕方向无法辨识");
                 break;
             }
         if(block)block(weakSelf,arg,@( JobsAppTool.jobsDeviceOrientation));
@@ -1446,17 +1446,17 @@ UITextFieldProtocol_dynamic
  使用方法：
  IQKeyboardManager.sharedManager.enable = NO;
  [self keyboardByUpBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-     NSLog(@"");
+     JobsLog(@"");
  } downBlock:^(NSNotificationKeyboardModel * _Nullable data) {
-     NSLog(@"");
+     JobsLog(@"");
  }];
  [self actionNotificationBlock:^id(NSNotificationKeyboardModel *data) {
      @jobs_strongify(self)
-     NSLog(@"userInfo = %@",data.userInfo);
-     NSLog(@"beginFrame = %@",NSStringFromCGRect(data.beginFrame));
-     NSLog(@"endFrame = %@",NSStringFromCGRect(data.endFrame));
-     NSLog(@"keyboardOffsetY = %f",data.keyboardOffsetY);
-     NSLog(@"notificationName = %@",data.notificationName);
+     JobsLog(@"userInfo = %@",data.userInfo);
+     JobsLog(@"beginFrame = %@",NSStringFromCGRect(data.beginFrame));
+     JobsLog(@"endFrame = %@",NSStringFromCGRect(data.endFrame));
+     JobsLog(@"keyboardOffsetY = %f",data.keyboardOffsetY);
+     JobsLog(@"notificationName = %@",data.notificationName);
      if (data.notificationName.isEqualToString(@"UIKeyboardWillChangeFrameNotification")) {
 
          if (data.keyboardOffsetY >= 0) {
@@ -1468,7 +1468,7 @@ UITextFieldProtocol_dynamic
          }
          
      }else if (data.notificationName.isEqualToString(@"UIKeyboardDidChangeFrameNotification")){
-         NSLog(@"");
+         JobsLog(@"");
      }else{}
      
      return nil;
@@ -1481,7 +1481,7 @@ UITextFieldProtocol_dynamic
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
-        NSLog(@"通知传递过来的 = %@",notification.object);
+        JobsLog(@"通知传递过来的 = %@",notification.object);
         NSNotificationKeyboardModel *model = jobsMakeNotificationKeyboardModel(^(NSNotificationKeyboardModel * _Nullable data) {
             data.userInfo = notification.userInfo;
             data.beginFrame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
@@ -1489,15 +1489,15 @@ UITextFieldProtocol_dynamic
             data.keyboardOffsetY = data.beginFrame.origin.y - data.endFrame.origin.y;// 正则抬起 ，负值下降
             data.notificationName = UIKeyboardWillChangeFrameNotification;
         });
-        NSLog(@"KeyboardOffsetY = %f", model.keyboardOffsetY);
+        JobsLog(@"KeyboardOffsetY = %f", model.keyboardOffsetY);
         if (model.keyboardOffsetY > 0) {
-            NSLog(@"键盘抬起");
+            JobsLog(@"键盘抬起");
             if (upBlock) upBlock(model);
         }else if(model.keyboardOffsetY < 0){
-            NSLog(@"键盘收回");
+            JobsLog(@"键盘收回");
             if (downBlock) downBlock(model);
         }else{
-            NSLog(@"键盘");
+            JobsLog(@"键盘");
         }
     }];
 }

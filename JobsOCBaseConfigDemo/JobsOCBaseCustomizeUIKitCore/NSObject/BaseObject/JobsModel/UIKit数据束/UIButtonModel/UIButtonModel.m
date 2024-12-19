@@ -54,7 +54,7 @@ BaseProtocol_synthesize
 -(JobsReturnRACDisposableByReturnIDByIDBlock _Nullable)jobsReturnedTestBlock{
     if(!_jobsReturnedTestBlock){
         _jobsReturnedTestBlock = ^RACDisposable *_Nonnull(JobsReturnIDByIDBlock _Nullable data) {
-            NSLog(@"JobsTestBlock");
+            JobsLog(@"JobsTestBlock");
             return nil;
         };
     }return _jobsReturnedTestBlock;
@@ -75,7 +75,7 @@ BaseProtocol_synthesize
 -(jobsByVoidBlock _Nullable)jobsTestBlock{
     if (!_jobsTestBlock) {
         _jobsTestBlock = ^{
-            NSLog(@"jobsTestBlock");
+            JobsLog(@"jobsTestBlock");
         };
     }return _jobsTestBlock;
 }

@@ -41,7 +41,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
 @implementation JhtBannerScrollView
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     if (_bannerTimer) {
         [_bannerTimer invalidate];
         _bannerTimer = nil;
@@ -300,7 +300,7 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
 - (void)bsvAutoNextCardView {
     // 更新定时器用到的页数索引
     _timerPageIndex ++;
-//    NSLog(@"_timerPageIndex ==> %ld", _timerPageIndex);
+//    JobsLog(@"_timerPageIndex ==> %ld", _timerPageIndex);
     switch (self.orientation) {
             // 横向
         case BV_Orientation_Horizontal: {
@@ -721,8 +721,8 @@ static const NSString *subviewClassName = @"JhtBannerCardView";
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset {
-//    NSLog(@"velocity ===> %@", NSStringFromCGPoint(velocity));
-//    NSLog(@"scrollViewWillEndDragging --> _timerPageIndex = %ld", _timerPageIndex);
+//    JobsLog(@"velocity ===> %@", NSStringFromCGPoint(velocity));
+//    JobsLog(@"scrollViewWillEndDragging --> _timerPageIndex = %ld", _timerPageIndex);
     
     if (_orginPageCount > 1 &&
         self.isOpenAutoScroll &&

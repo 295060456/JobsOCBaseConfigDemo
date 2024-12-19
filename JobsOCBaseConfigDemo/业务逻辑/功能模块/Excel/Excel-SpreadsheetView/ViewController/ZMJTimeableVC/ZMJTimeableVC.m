@@ -22,7 +22,7 @@
 
 - (void)dealloc{
     JobsNotificationCenter.remove(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -61,12 +61,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -173,7 +173,7 @@
 #pragma mark —— SpreadsheetViewDelegate
 - (void)spreadsheetView:(SpreadsheetView *)spreadsheetView
         didSelectItemAt:(NSIndexPath *)indexPath {
-    NSLog(@"Selected: (row: (%ld), column: (%ld)", indexPath.row, indexPath.column);
+    JobsLog(@"Selected: (row: (%ld), column: (%ld)", indexPath.row, indexPath.column);
 }
 #pragma mark —— lazyLoad
 -(NSMutableArray<NSString *> *)channels{

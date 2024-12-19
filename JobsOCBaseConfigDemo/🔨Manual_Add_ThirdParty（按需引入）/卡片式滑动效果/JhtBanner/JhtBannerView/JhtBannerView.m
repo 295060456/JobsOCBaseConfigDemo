@@ -53,7 +53,7 @@
 /** 滚动到了某一个cardView */
 - (void)bannerView:(JhtBannerScrollView *)bannerView
 didScrollToCardViewWithIndex:(NSInteger)index {
-    NSLog(@"滚动到了第 %ld 页", index);
+    JobsLog(@"滚动到了第 %ld 页", index);
     if (self.scrollBlock) {
         self.scrollBlock(@(index));
     }
@@ -109,9 +109,9 @@ cardViewForBannerViewAtIndex:(NSInteger)index {
                              SDImageCacheType cacheType,
                              NSURL * _Nullable imageURL) {
                     if (error) {
-                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        JobsLog(@"aa图片加载失败: %@-%@", error,imageURL);
                     } else {
-                        NSLog(@"图片加载成功");
+                        JobsLog(@"图片加载成功");
                     }
                 }).load();
         }else{

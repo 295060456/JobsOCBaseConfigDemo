@@ -58,7 +58,7 @@
 }
 #pragma mark —— UIScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x);
+    JobsLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x);
     if (scrollView.contentOffset.x >= 0) {
         /// 防止在数据拉完的情况下，无意义的往左拉动👈🏻
         CGFloat d = (self.excelConfigureData.colNumber * self.excelConfigureData.itemW - self.excelConfigureData.XZExcelW) + self.excelConfigureData.itemW + self.excelConfigureData.scrollOffsetX;
@@ -84,7 +84,7 @@
     MainTableViewCellItem *cell = [MainTableViewCellItem cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
     cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-    NSLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.datas[indexPath.row].title);
+    JobsLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.datas[indexPath.row].title);
     cell.jobsRichElementsCellBy(self.excelConfigureData);
     cell.jobsRichElementsCellByModel(self.datas[indexPath.row]);
     return cell;

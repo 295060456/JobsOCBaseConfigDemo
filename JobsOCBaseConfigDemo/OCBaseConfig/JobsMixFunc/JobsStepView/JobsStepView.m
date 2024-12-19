@@ -92,7 +92,7 @@
                 make.centerY.equalTo(self);
                 make.height.mas_equalTo(self.viewSizeByModel(nil).height);
             }];self.refresh();
-            NSLog(@"");
+            JobsLog(@"");
             if(self.btnMutArr.count){
                 UIView *view = self.btnMutArr.lastObject;
                 CGFloat d = ((self.viewSizeByModel(nil).width - btn.width * self.btnModelMutArr.count - self.offset) / (self.btnModelMutArr.count - 1));

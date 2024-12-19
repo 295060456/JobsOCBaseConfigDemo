@@ -176,7 +176,7 @@
     
     [self customSelectIndex:index];
     
-    NSLog(@"SSS = %lu",(unsigned long)self.selectedIndex);
+    JobsLog(@"SSS = %lu",(unsigned long)self.selectedIndex);
 }
 // 屏幕旋转时调整tabbar
 - (void)viewWillTransitionToSize:(CGSize)size 

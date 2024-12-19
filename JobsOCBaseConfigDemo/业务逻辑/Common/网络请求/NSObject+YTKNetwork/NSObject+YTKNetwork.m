@@ -39,7 +39,7 @@
     }));
     @jobs_weakify(self)
     [batchRequest startWithCompletionBlockWithSuccess:^(YTKBatchRequest *batchRequest) {
-        NSLog(@"succeed");
+        JobsLog(@"succeed");
         if(successBlock) successBlock(batchRequest);
         NSArray <__kindof YTKRequest *>*requests = batchRequest.requestArray;
         GetImageApi *a = (GetImageApi *)requests[0];
@@ -47,7 +47,7 @@
         GetImageApi *c = (GetImageApi *)requests[2];
         GetUserInfoApi *user = (GetUserInfoApi *)requests[3];
         ///deal with requests result ...
-        NSLog(@"%@, %@, %@, %@", a, b, c, user);
+        JobsLog(@"%@, %@, %@, %@", a, b, c, user);
         /// 以下是我们需要的值
 //        a.responseObject;
 //        b.responseObject;
@@ -92,7 +92,7 @@
     /// 解析+处理HTTPResponseCode
     JobsResponseModel *responseModel = JobsMapResponseModelBy(request);
     /// 打印Body参数
-    NSLog(@"%@",request.parameters.jsonString);
+    JobsLog(@"%@",request.parameters.jsonString);
     if(responseModel.code == HTTPResponseCodeSuccess){
         if(successBlock) successBlock(successData ? : responseModel);
         if(actionBlock) actionBlock(responseModel);
@@ -117,7 +117,7 @@
     switch (responseCode) {
         /// 服务器异常
         case HTTPResponseCodeServeError:{
-            NSLog(@"服务器异常");
+            JobsLog(@"服务器异常");
             toast(JobsInternationalization(@"服务器异常"));
         }break;
         /// 令牌不能为空
@@ -126,46 +126,46 @@
         }break;
         /// 登录失败：账密错误
         case HTTPResponseCodeLoginFailed:{
-            NSLog(@"登录失败：账密错误");
+            JobsLog(@"登录失败：账密错误");
             toast(JobsInternationalization(@"登录失败：账密错误"));
         }break;
         /// 授权失败
         case HTTPResponseCodeAuthorizationFailure:{
-            NSLog(@"授权失败");
+            JobsLog(@"授权失败");
             toast(JobsInternationalization(@"授权失败"));
         }break;
         /// 限定时间内超过请求次数
         case HTTPResponseCodeLeakTime:{
-            NSLog(@"限定时间内超过请求次数");
+            JobsLog(@"限定时间内超过请求次数");
             toast(JobsInternationalization(@"限定时间内超过请求次数"));
         }break;
         /// 风险操作
         case HTTPResponseCodeRiskOperation:{
-            NSLog(@"风险操作");
+            JobsLog(@"风险操作");
             toast(JobsInternationalization(@"风险操作"));
         }break;
         /// 未设置交易密码
         case HTTPResponseCodeNoSettingTransactionPassword:{
-            NSLog(@"未设置交易密码");
+            JobsLog(@"未设置交易密码");
             toast(JobsInternationalization(@"未设置交易密码"));
         }break;
         /// 账号已在其他设备登录
         case HTTPResponseCodeOffline:{
-            NSLog(@"账号已在其他设备登录");
+            JobsLog(@"账号已在其他设备登录");
             toast(JobsInternationalization(@"账号已在其他设备登录"));
         }break;
         /// Token 过期：登录已过期，请重新登录
         case HTTPResponseCodeTokenExpire:{
-            NSLog(@"Token 过期");
+            JobsLog(@"Token 过期");
             self.tokenExpire();
         }break;
         /// 手机号码不存在
         case HTTPResponseCodePhoneNumberNotExist:{
-            NSLog(@"手机号码不存在");
+            JobsLog(@"手机号码不存在");
             toast(JobsInternationalization(@"手机号码不存在"));
         }break;
         case HTTPResponseCodeAccountLocked:{
-            NSLog(@"账户被锁");
+            JobsLog(@"账户被锁");
             toast(JobsInternationalization(@"账户被锁，请联系系统管理员"));
         }break;
         /// 服务器返500可能会有很多其他的业务场景定义
@@ -185,18 +185,18 @@
         JobsResponseModel *responseModel = JobsMapResponseModelBy(request);
         /// 打印请求体
         self.printURLSessionRequestMessage(request.requestTask);
-        NSLog(@"error = %@",request.error);
-        NSLog(@"responseModel = %@",responseModel);
+        JobsLog(@"error = %@",request.error);
+        JobsLog(@"responseModel = %@",responseModel);
     };
 }
 ///【请求错误】请求错误的处理
 -(jobsByYTKRequestBlock _Nonnull)handleErr{
     return ^(__kindof YTKRequest *_Nullable request){
-        NSLog(@"打印请求头: %@", request.requestHeaderFieldValueDictionary);
+        JobsLog(@"打印请求头: %@", request.requestHeaderFieldValueDictionary);
         if ([request loadCacheWithError:nil]) {
             NSDictionary *json = request.responseJSONObject;
-//            NSLog(@"可以 = %@", api.parameters);
-//            NSLog(@"打断点 = %@", [json decodeUnicodeLog]);
+//            JobsLog(@"可以 = %@", api.parameters);
+//            JobsLog(@"打断点 = %@", [json decodeUnicodeLog]);
         }
     };
 }
@@ -205,7 +205,7 @@
     @jobs_weakify(self)
     return ^(__kindof YTKBaseRequest *_Nonnull request){
         @jobs_strongify(self)
-        NSLog(@"%@",request.parameters);
+        JobsLog(@"%@",request.parameters);
         /// 打印请求体
         self.printURLSessionRequestMessage(request.requestTask);
     };
@@ -228,12 +228,12 @@
 }
 #pragma mark —— YTKChainRequestDelegate
 -(void)chainRequestFinished:(YTKChainRequest *)chainRequest{
-    NSLog(@"all requests are done");
+    JobsLog(@"all requests are done");
 //    chainRequest.requestArray;
 //    chainRequest.requestAccessories;
     YTKBaseRequest *resultRequest = chainRequest.requestArray.lastObject;
     [self request:resultRequest successBlock:^(JobsResponseModel *_Nullable responseModel){
-        NSLog(@"");
+        JobsLog(@"");
     }];
 }
 
@@ -241,7 +241,7 @@
         failedBaseRequest:(YTKBaseRequest *)request{
     JobsResponseModel *responseModel = JobsResponseModel.byData(request.responseObject);
     self.jobsHandelNoSuccess(request);
-    NSLog(@"请求失败");
+    JobsLog(@"请求失败");
 }
 #pragma mark —— 查询广告列表-支持游客：APP首页右下3Banner【GET】
 -(void)getAds:(jobsByResponseModelBlock _Nullable)successBlock{
@@ -310,11 +310,11 @@
     })) startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         @jobs_strongify(self)
         JobsResponseModel *responseModel = JobsMapResponseModelBy(request);
-        NSLog(@"");
+        JobsLog(@"");
         if(successBlock) successBlock(responseModel);
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         @jobs_strongify(self)
-        NSLog(@"");
+        JobsLog(@"");
     }];
 }
 

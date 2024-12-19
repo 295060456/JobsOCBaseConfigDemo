@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_END
              }];
          }) startRACTimerWithDuration:0.1 byBlock:^{
              // 可以在这里添加每次触发时需要执行的操作
-             NSLog(@"Text has been scrolled.");
+             JobsLog(@"Text has been scrolled.");
          }];
          // 当需要取消定时器时调用
          // [self.timerDisposable dispose];

@@ -14,10 +14,10 @@
  【return】 YES(已经登录)、NO（未登录）
  */
 -(BOOL)isLogin{
-    NSLog(@"userInfo = %@",self.doorModel);
-    NSLog(@"Token = %@",self.doorModel.token);
+    JobsLog(@"userInfo = %@",self.doorModel);
+    JobsLog(@"Token = %@",self.doorModel.token);
     if(isValue(self.doorModel.expireTime)){
-        NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.chinaTime(nil));
+        JobsLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.chinaTime(nil));
     }
     /// 模型都没有建立肯定是没有登录的
     if(!self.doorModel) return NO;
@@ -149,13 +149,13 @@
                                                                    fromData:archivedData
                                                                       error:&error];
                 if (!userModel) {
-                    NSLog(@"解档失败: %@", error.localizedDescription);
+                    JobsLog(@"解档失败: %@", error.localizedDescription);
                     /// 没取到用户数据，就直接跳登录
     //                self.toLogin();
                 }return userModel;
             }
         }else{
-            NSLog(@"解档失败:需要被解档的数据为空");
+            JobsLog(@"解档失败:需要被解档的数据为空");
             return nil;
         }
     };

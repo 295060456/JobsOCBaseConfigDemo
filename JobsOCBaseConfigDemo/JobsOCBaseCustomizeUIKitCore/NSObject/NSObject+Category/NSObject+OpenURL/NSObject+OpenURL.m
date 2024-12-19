@@ -147,7 +147,7 @@ failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock
                 [UIApplication.sharedApplication openURL:openURL
                                                  options:options
                                        completionHandler:^(BOOL success) {
-                    NSLog(@"打开成功");
+                    JobsLog(@"打开成功");
                     if (successCompletionHandlerBlock) successCompletionHandlerBlock();
                 }];return YES;
             }else{

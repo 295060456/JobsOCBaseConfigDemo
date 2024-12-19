@@ -476,7 +476,7 @@ static CGFloat const GX_SpringVelocity     = 0.8f;
         
         return cell;
     }
-    NSLog(@"请先注册cardCell!");
+    JobsLog(@"请先注册cardCell!");
     return nil;
 }
 

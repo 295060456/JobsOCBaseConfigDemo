@@ -46,7 +46,7 @@
 //            value = self.valueForKey(name) ?: @"nil"; //默认值为nil字符串
 //        }
 //        @catch (NSException *exception) {
-//            NSLog(@"Exception: %@", exception);
+//            JobsLog(@"Exception: %@", exception);
 //            value = @"nil"; // or handle the exception as needed
 //        }
 //        [dictionary setObject:value forKey:name];//装载到字典里
@@ -71,7 +71,7 @@
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
     if(error) {
-        NSLog(@"error = %@",error.description);
+        JobsLog(@"error = %@",error.description);
         if (!jsonData) return nil;
         return nil;
     }NSString *jsonString = jsonData.stringByUTF8Encoding;

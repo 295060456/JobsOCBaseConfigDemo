@@ -50,7 +50,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 //    self.updateStatusBarCor(JobsOrangeColor);/// 在具体子类实现，不要写在父类。父类只做提示
-    NSLog(@"%d",self.setupNavigationBarHidden);
+    JobsLog(@"%d",self.setupNavigationBarHidden);
     self.isHiddenNavigationBar = self.setupNavigationBarHidden;
 }
 
@@ -84,7 +84,7 @@
 }
 @synthesize presentUpHeight = _presentUpHeight;
 -(void)updatePreferredContentSizeWithTraitCollection:(UITraitCollection *)traitCollection{
-    NSLog(@"%f",self.presentUpHeight);
+    JobsLog(@"%f",self.presentUpHeight);
     self.preferredContentSize = CGSizeMake(self.view.bounds.size.width,
                                            traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact ? 270 : self.presentUpHeight);/// 上升的高度
 }
@@ -156,7 +156,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         @jobs_weakify(self)
         _backBtnModel = self.makeBackBtnModel;
         _backBtnModel.longPressGestureEventBlock = ^id(__kindof UIButton *x) {
-            NSLog(@"按钮的长按事件触发");
+            JobsLog(@"按钮的长按事件触发");
             return nil;
         };
         _backBtnModel.clickEventBlock = ^id(BaseButton *x){

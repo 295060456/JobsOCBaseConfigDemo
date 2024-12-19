@@ -41,7 +41,7 @@
     NSData *encryptedData = [[message dataUsingEncoding:NSUTF8StringEncoding] AES256EncryptedDataUsingKey:password.UTF8Encoding.SHA256Hash error:&error];
     NSString *base64EncodedString = encryptedData.base64StringFromData;
     if(error){
-        NSLog(@"error = %@",error);
+        JobsLog(@"error = %@",error);
         return @"";
     }else return base64EncodedString;
 }
@@ -52,7 +52,7 @@
     NSData *encryptedData = NSData.dataByBase64String(base64EncodedString);
     NSData *decryptedData = [encryptedData decryptedAES256DataUsingKey:password.UTF8Encoding.SHA256Hash.SHA256Hash error:nil];
     if(error){
-        NSLog(@"error = %@",error);
+        JobsLog(@"error = %@",error);
         return @"";
     }else return [NSString.alloc initWithData:decryptedData encoding:NSUTF8StringEncoding];
 }

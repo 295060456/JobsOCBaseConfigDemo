@@ -153,7 +153,7 @@
                         [self timerFunc];
                     }break;
                     case TimerProcessType_End:{
-                        NSLog(@"我死球了");
+                        JobsLog(@"我死球了");
                     }break;
                         
                     default:
@@ -194,7 +194,7 @@
                         }
                     }break;
                     case TimerProcessType_End:{
-                        NSLog(@"我死球了");
+                        JobsLog(@"我死球了");
                     }break;
                         
                     default:

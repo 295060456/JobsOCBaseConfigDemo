@@ -39,12 +39,12 @@
  
  - (IBAction)changeAppIcon:(id)sender {
      BOOL canChangeAppIcon = [FSAppIconManager canChangeAppIcon];
-     NSLog(@"canChangeAppIcon value: %@", canChangeAppIcon?@"YES":@"NO");
+     JobsLog(@"canChangeAppIcon value: %@", canChangeAppIcon?@"YES":@"NO");
      if (!canChangeAppIcon) {
          return;
      }
      [FSAppIconManager changeAppIconWithIconName:@"male" completionHandler:^(NSError * _Nullable error) {
-         NSLog(@"error: %@", error);
+         JobsLog(@"error: %@", error);
      }];
  }
 

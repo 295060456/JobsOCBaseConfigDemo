@@ -11,7 +11,7 @@
 @implementation UIView (Gesture)
 #pragma mark —— 一些公有方法
 -(void)defaultFunc{
-    NSLog(@"defaultFunc");
+    JobsLog(@"defaultFunc");
 }
 /// 取消注册各种手势对应的方法
 -(void)Dealloc{
@@ -193,7 +193,7 @@ JobsKey(_longPressGR)
     UILongPressGestureRecognizer *LongPressGR = Jobs_getAssociatedObject(_longPressGR);
     if (!LongPressGR) {
         LongPressGR = UILongPressGestureRecognizer.new;
-        NSLog(@"self.target = %@",self.target);
+        JobsLog(@"self.target = %@",self.target);
         LongPressGR.delegate = self.target;
         if (self.minimumPressDuration) {
             LongPressGR.minimumPressDuration = self.minimumPressDuration;// longPressGR最小长按时间,默认0.5
@@ -222,7 +222,7 @@ JobsKey(_tapGR)
     UITapGestureRecognizer *TapGR = Jobs_getAssociatedObject(_tapGR);
     if (!TapGR) {
         TapGR = UITapGestureRecognizer.new;
-        NSLog(@"self.target = %@",self.target);
+        JobsLog(@"self.target = %@",self.target);
         TapGR.delegate = self.target;
         if (self.numberOfTapsRequired) {
             TapGR.numberOfTapsRequired = self.numberOfTapsRequired;// 设置轻拍次数,默认0
@@ -248,7 +248,7 @@ JobsKey(_doubleTapGR)
     UITapGestureRecognizer *DoubleTapGR = Jobs_getAssociatedObject(_doubleTapGR);
     if (!DoubleTapGR) {
         DoubleTapGR = UITapGestureRecognizer.new;
-        NSLog(@"self.target = %@",self.target);
+        JobsLog(@"self.target = %@",self.target);
         DoubleTapGR.delegate = self.target;
         DoubleTapGR.numberOfTapsRequired = 2; // 设置为双击
         DoubleTapGR.numberOfTouchesRequired = self.numberOfTouchesRequired ? self.numberOfTouchesRequired : 1; // 设置手指字数, 默认1
@@ -271,7 +271,7 @@ JobsKey(_swipeGR)
     UISwipeGestureRecognizer *SwipeGR = Jobs_getAssociatedObject(_swipeGR);
     if (!SwipeGR) {
         SwipeGR = UISwipeGestureRecognizer.new;
-        NSLog(@"self.target = %@",self.target);
+        JobsLog(@"self.target = %@",self.target);
         SwipeGR.delegate = self.target;
         SwipeGR.direction = self.swipeGRDirection;// 清扫方向。如果多组可以用|来进行,默认UISwipeGestureRecognizerDirectionRight
         SwipeGR.numberOfTouchesRequired = self.numberOfTouchesRequired;// 设置手指字数,默认1
@@ -294,7 +294,7 @@ JobsKey(_panGR)
     UIPanGestureRecognizer *PanGR = Jobs_getAssociatedObject(_panGR);
     if (!PanGR) {
         PanGR = UIPanGestureRecognizer.new;
-        NSLog(@"self.target = %@",self.target);
+        JobsLog(@"self.target = %@",self.target);
         PanGR.delegate = self.target;
         PanGR.minimumNumberOfTouches = self.minimumNumberOfTouches;
         if (@available(iOS 13.4, *)) {
@@ -320,7 +320,7 @@ JobsKey(_pinchGR)
     UIPinchGestureRecognizer *PinchGR = Jobs_getAssociatedObject(_pinchGR);
     if (!PinchGR) {
         PinchGR = UIPinchGestureRecognizer.new;
-        NSLog(@"self.target = %@",self.target);
+        JobsLog(@"self.target = %@",self.target);
         PinchGR.delegate = self.target;
         PinchGR.scale = self.scale;
         if (self.pinchGR_SelImp.selector) {
@@ -342,7 +342,7 @@ JobsKey(_rotationGR)
     UIRotationGestureRecognizer *RotationGR = Jobs_getAssociatedObject(_rotationGR);
     if (!RotationGR) {
         RotationGR = UIRotationGestureRecognizer.new;
-        NSLog(@"self.target = %@",self.target);
+        JobsLog(@"self.target = %@",self.target);
         RotationGR.delegate = self.target;
         RotationGR.rotation = self.rotate;
         if (self.rotationGR_SelImp.selector) {
@@ -364,7 +364,7 @@ JobsKey(_screenEdgePanGR)
     UIScreenEdgePanGestureRecognizer *ScreenEdgePanGR = Jobs_getAssociatedObject(_screenEdgePanGR);
     if (!ScreenEdgePanGR) {
         ScreenEdgePanGR = UIScreenEdgePanGestureRecognizer.new;
-        NSLog(@"self.target = %@",self.target);
+        JobsLog(@"self.target = %@",self.target);
         ScreenEdgePanGR.delegate = self.target;
         if (self.screenEdgePanGR_SelImp.selector) {
             [ScreenEdgePanGR addTarget:self.target

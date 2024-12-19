@@ -94,7 +94,7 @@
         /// 预处理 请求
         [ZBRequestManager setRequestProcessHandler:^(ZBURLRequest *_Nullable request,
                                                      id _Nullable __autoreleasing *_Nullable setObject) {
-             NSLog(@"请求之前");
+             JobsLog(@"请求之前");
             //比如 我们可以根据参数寻找一个业务的请求 ，给改该请求做一个替换响应数据的操作
             if ([request.userInfo[@"tag"] isEqualToString:@"7777"]) {
                 if (request.apiType != ZBRequestTypeCache) {
@@ -122,7 +122,7 @@
         [ZBRequestManager setResponseProcessHandler:^id(ZBURLRequest *_Nullable request,
                                                         id _Nullable responseObject,
                                                         NSError *_Nullable __autoreleasing *_Nullable error) {
-            NSLog(@"成功回调 数据返回之前");
+            JobsLog(@"成功回调 数据返回之前");
             if ([responseObject isKindOfClass:NSDictionary.class]) {
                 NSDictionary *dataDic = (NSDictionary *)responseObject;
                 JobsResponseModel *model = JobsResponseModel.byData(dataDic);
@@ -136,11 +136,11 @@
         [ZBRequestManager setErrorProcessHandler:^(ZBURLRequest *_Nullable request,
                                                    NSError __autoreleasing *_Nullable error){
             if (error.code == NSURLErrorCancelled){
-                NSLog(@"请求取消❌------------------");
+                JobsLog(@"请求取消❌------------------");
             }else if (error.code == NSURLErrorTimedOut){
-                NSLog(@"请求超时");
+                JobsLog(@"请求超时");
             }else{
-                NSLog(@"请求失败");
+                JobsLog(@"请求失败");
             }
         }];
 #pragma mark —— 证书设置

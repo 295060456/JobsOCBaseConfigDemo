@@ -59,7 +59,7 @@
         NSData *data = [NSData dataWithContentsOfFile:string
                                               options:NSDataReadingMappedIfSafe
                                                 error:&error];
-        if(error) NSLog(@"error = %@",error.description);
+        if(error) JobsLog(@"error = %@",error.description);
         return data;
     };
 }
@@ -70,7 +70,7 @@
         NSData *data = [NSData dataWithContentsOfFile:string
                                               options:NSDataReadingUncached
                                                 error:&error];
-        if(error) NSLog(@"error = %@",error.description);
+        if(error) JobsLog(@"error = %@",error.description);
         return data;
     };
 }
@@ -81,7 +81,7 @@
         NSData *data = [NSData dataWithContentsOfFile:string
                                               options:NSDataReadingMappedAlways
                                                 error:&error];
-        if(error) NSLog(@"error = %@",error.description);
+        if(error) JobsLog(@"error = %@",error.description);
         return data;
     };
 }
@@ -92,7 +92,7 @@
         NSData *data = [NSData dataWithContentsOfURL:url
                                              options:NSDataReadingMappedIfSafe
                                                error:&error];
-        if(error) NSLog(@"error = %@",error.description);
+        if(error) JobsLog(@"error = %@",error.description);
         return data;
     };
 }
@@ -103,7 +103,7 @@
         NSData *data = [NSData dataWithContentsOfURL:url
                                              options:NSDataReadingUncached
                                                error:&error];
-        if(error) NSLog(@"error = %@",error.description);
+        if(error) JobsLog(@"error = %@",error.description);
         return data;
     };
 }
@@ -114,7 +114,7 @@
         NSData *data = [NSData dataWithContentsOfURL:url
                                              options:NSDataReadingMappedAlways
                                                error:&error];
-        if(error) NSLog(@"error = %@",error.description);
+        if(error) JobsLog(@"error = %@",error.description);
         return data;
     };
 }
@@ -126,7 +126,7 @@
     NSData *data = [NSKeyedUnarchiver unarchivedObjectOfClass:NSData.class
                                                      fromData:self
                                                         error:&error];
-    if(error) NSLog(@"%@",error.description);
+    if(error) JobsLog(@"%@",error.description);
     if(data) string = data.stringByUTF8Encoding;
     return string;
 }

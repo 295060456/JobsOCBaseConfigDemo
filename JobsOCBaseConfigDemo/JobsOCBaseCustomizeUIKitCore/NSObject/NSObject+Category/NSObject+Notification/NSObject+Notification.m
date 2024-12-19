@@ -70,7 +70,7 @@
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
         NSNotification *notification = (NSNotification *)arg;
-        NSLog(@"通知传递过来的 = %@",notification.object);
+        JobsLog(@"通知传递过来的 = %@",notification.object);
         if(actionBlock) actionBlock(weakSelf,arg);
     }];
 }

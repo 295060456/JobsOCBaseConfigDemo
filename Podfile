@@ -83,7 +83,8 @@ def appCommon
   pod 'TABAnimated' # https://github.com/tigerAndBull/TABAnimated
   pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool 屏幕旋转
   pod 'YTKNetwork' # https://github.com/yuantiku/YTKNetwork
-#  pod 'ZBNetworking', :git => 'https://github.com/Suzhibin/ZBNetworking.git' # https://github.com/Suzhibin/ZBNetworking
+#  pod 'ZBNetworking', :git =>
+  pod "HTMLReader" # https://github.com/nolanw/HTMLReader 处理 HTML 语法'https://github.com/Suzhibin/ZBNetworking.git' # https://github.com/Suzhibin/ZBNetworking
 end
 ## GK一族
 def gk

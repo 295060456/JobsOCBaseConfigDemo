@@ -28,7 +28,7 @@
     snapShotView.frame = secondFrame;
     secondVC.imageView.hidden = YES;
     cell.imgView.hidden = YES;
-//    NSLog(@"firstFrame = %@, secondFrame = %@, secondVC = %@",NSStringFromCGRect(firstFrame),NSStringFromCGRect(secondFrame), NSStringFromCGRect(secondVC.view.frame));
+//    JobsLog(@"firstFrame = %@, secondFrame = %@, secondVC = %@",NSStringFromCGRect(firstFrame),NSStringFromCGRect(secondFrame), NSStringFromCGRect(secondVC.view.frame));
     
     //------
 //    UIImageView *imgView = cell.imgView;

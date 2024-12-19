@@ -143,7 +143,7 @@
                 [formattedString insertString:JobsSpace atIndex:i];
             }return formattedString;
         }else{
-            NSLog(@"当前字符串为%@,不是纯字符串，无法格式化输出",self);
+            JobsLog(@"当前字符串为%@,不是纯字符串，无法格式化输出",self);
             return @"";
         }
     };
@@ -176,7 +176,7 @@
                                                                   encoding:NSUTF8StringEncoding
                                                                      error:&err];
         if(err){
-            NSLog(@"err = %@",err.description)
+            JobsLog(@"err = %@",err.description)
             return nil;
         }return string;
     };

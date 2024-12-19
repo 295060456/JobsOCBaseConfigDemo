@@ -107,7 +107,7 @@
             navVC.rootViewController.fromVC = fromVC;// 【承上启下】下一个页面记录是从哪里来的
         }else{
             toVC.requestParams = requestParams;
-            NSLog(@"%@",toVC.requestParams);
+            JobsLog(@"%@",toVC.requestParams);
             toVC.fromVC = fromVC;// 【承上启下】下一个页面记录是从哪里来的
         }
         @jobs_weakify(fromVC)
@@ -137,7 +137,7 @@
                 if(presentViewControllerBlock) presentViewControllerBlock();
             }break;
             default:
-                NSLog(@"错误的推进方式");
+                JobsLog(@"错误的推进方式");
                 break;
         }return toVC;
     }else return nil;// 为了防止多次推VC
@@ -238,8 +238,8 @@ JobsKey(_navBar)
                 self.navBarConfig.backBtnModel.jobsOffsetX = self.navBarConfig.backBtnModel.jobsOffsetX ? : JobsWidth(40);
                 self.navBarConfig.closeBtnModel.jobsOffsetX = self.navBarConfig.closeBtnModel.jobsOffsetX ? : JobsWidth(40);
             }
-            NSLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
-            NSLog(@"%f",self.navBarConfig.closeBtnModel.jobsOffsetX);
+            JobsLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
+            JobsLog(@"%f",self.navBarConfig.closeBtnModel.jobsOffsetX);
     //        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
             data.navBarConfig = self.navBarConfig;
             self.view.addSubview(data);

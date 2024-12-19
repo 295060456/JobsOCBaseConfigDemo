@@ -38,10 +38,10 @@
         @try {
             return [self safe_objectAtIndex:index];
         } @catch (NSException *exception) {
-            NSLog(@"不可变数组越界访问");
+            JobsLog(@"不可变数组越界访问");
             return nil;
         }
-    }NSLog(@"不可变数组为空或越界访问");
+    }JobsLog(@"不可变数组为空或越界访问");
     return nil;
 }
 
@@ -50,10 +50,10 @@
         @try {
             return [self safe_objectAtIndexedSubscript:index];
         } @catch (NSException *exception) {
-            NSLog(@"不可变数组越界访问");
+            JobsLog(@"不可变数组越界访问");
             return nil;
         }
-    }NSLog(@"不可变数组为空或越界访问");
+    }JobsLog(@"不可变数组为空或越界访问");
     return nil;
 }
 
@@ -62,10 +62,10 @@
         @try {
             return [self safe_mutableObjectAtIndex:index];
         } @catch (NSException *exception) {
-            NSLog(@"可变数组越界访问");
+            JobsLog(@"可变数组越界访问");
             return nil;
         }
-    }NSLog(@"可变数组为空或越界访问");
+    }JobsLog(@"可变数组为空或越界访问");
     return nil;
 }
 
@@ -74,10 +74,10 @@
         @try {
             return [self safe_mutableObjectAtIndexedSubscript:index];
         } @catch (NSException *exception) {
-            NSLog(@"可变数组越界访问");
+            JobsLog(@"可变数组越界访问");
             return nil;
         }
-    }NSLog(@"可变数组为空或越界访问");
+    }JobsLog(@"可变数组为空或越界访问");
     return nil;
 }
 

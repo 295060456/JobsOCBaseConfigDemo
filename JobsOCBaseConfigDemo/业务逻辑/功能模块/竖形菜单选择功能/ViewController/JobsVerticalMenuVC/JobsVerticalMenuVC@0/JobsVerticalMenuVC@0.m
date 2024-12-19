@@ -24,7 +24,7 @@
 @implementation JobsVerticalMenuVC_0
 
 - (void)dealloc {
-    NSLog(@"%@", JobsLocalFunc);
+    JobsLog(@"%@", JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 
@@ -209,7 +209,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
     }return _customerServiceBtn;
 }
@@ -223,7 +223,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 @jobs_strongify(self)
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
     }return _msgBtn;
 }
@@ -255,7 +255,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //                                                                  data:self.listViewData
 //                                                    motivateViewOffset:JobsWidth(5)
 //                                                           finishBlock:^(UIViewModel *data) {
-//                            NSLog(@"data = %@",data);
+//                            JobsLog(@"data = %@",data);
 //                        }];
 //                    }
 //                }break;
@@ -285,7 +285,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 if (self.objectBlock) self.objectBlock(x);
                 toast(JobsInternationalization(@"编辑"));
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self.view addSubview:_editBtn];
         [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {

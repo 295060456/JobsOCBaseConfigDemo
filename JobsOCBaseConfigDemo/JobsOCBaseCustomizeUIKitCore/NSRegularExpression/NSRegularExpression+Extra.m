@@ -16,7 +16,7 @@
                                                                                options:0
                                                                                  error:&err];
         if(err){
-            NSLog(@"err = %@",err.description);
+            JobsLog(@"err = %@",err.description);
             return nil;
         }return regex;
     };

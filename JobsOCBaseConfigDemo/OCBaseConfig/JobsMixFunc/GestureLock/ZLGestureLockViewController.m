@@ -45,7 +45,7 @@
     [self.view endEditing:YES];
     if (JobsDebug) {
         self.jobsToastMsg(JobsInternationalization(@"成功销毁了控制器:").add(NSStringFromClass(self.class)));
-        NSLog(@"%@",JobsLocalFunc);
+        JobsLog(@"%@",JobsLocalFunc);
         PrintRetainCount(self);
     }
 }
@@ -201,7 +201,7 @@
 - (void)alertView:(UIAlertView *)alertView
 clickedButtonAtIndex:(NSInteger)buttonIndex {
     // 重新登陆
-    NSLog(@"重新登陆");
+    JobsLog(@"重新登陆");
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)headIcon{
@@ -288,7 +288,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         _otherAcountBtn.jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)]);
         _otherAcountBtn.jobsResetBtnTitleCor(RGBA_COLOR(102, 102, 102, 1));
         [_otherAcountBtn jobsBtnClickEventBlock:^id(id data) {
-            NSLog(@"点击其他账号登陆按钮")
+            JobsLog(@"点击其他账号登陆按钮")
             return nil;
         }];
         [self.view addSubview:_otherAcountBtn];
@@ -331,7 +331,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         _forgetPswBtn.jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)]);
         _forgetPswBtn.jobsResetBtnTitleCor(JobsRedColor);
         [_forgetPswBtn jobsBtnClickEventBlock:^id(id data) {
-            NSLog(@"点击忘记手势密码按钮");
+            JobsLog(@"点击忘记手势密码按钮");
             return nil;
         }];
         [self.view addSubview:_forgetPswBtn];

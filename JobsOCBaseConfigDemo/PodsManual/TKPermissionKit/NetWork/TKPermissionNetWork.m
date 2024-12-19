@@ -22,9 +22,9 @@
         cellularData.cellularDataRestrictionDidUpdateNotifier = ^(CTCellularDataRestrictedState state){
             /// 获取联网状态
             switch (state){
-                case kCTCellularDataRestricted: NSLog(@"TKPermission:蜂窝移动网络权限：Restricrted"); break;
-                case kCTCellularDataNotRestricted: NSLog(@"TKPermission:蜂窝移动网络权限：Not Restricted"); break;
-                case kCTCellularDataRestrictedStateUnknown: NSLog(@"TKPermission:蜂窝移动网络权限：Unknown"); break; /// 未知，第一次请求
+                case kCTCellularDataRestricted: JobsLog(@"TKPermission:蜂窝移动网络权限：Restricrted"); break;
+                case kCTCellularDataNotRestricted: JobsLog(@"TKPermission:蜂窝移动网络权限：Not Restricted"); break;
+                case kCTCellularDataRestrictedStateUnknown: JobsLog(@"TKPermission:蜂窝移动网络权限：Unknown"); break; /// 未知，第一次请求
                 default: break;
             };
         };

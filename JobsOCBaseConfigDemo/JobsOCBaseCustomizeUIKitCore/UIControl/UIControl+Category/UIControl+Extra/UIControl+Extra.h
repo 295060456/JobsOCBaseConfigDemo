@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_END
  * 调用示例：
     [self addTarget:self touchUpInsideAction:[self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,
                                                              id  _Nullable arg) {
-        NSLog(@"Hello Jobs");
+        JobsLog(@"Hello Jobs");
         return nil;
     }]];
  */

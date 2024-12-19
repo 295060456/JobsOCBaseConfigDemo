@@ -23,7 +23,7 @@
 @implementation JXCategoryViewWithHeaderViewVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -74,12 +74,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -104,7 +104,7 @@
  */
 - (void)pagerView:(JXPagerView *)pagerView
 mainTableViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"contentOffsetY = %f",scrollView.contentOffset.y);
+    JobsLog(@"contentOffsetY = %f",scrollView.contentOffset.y);
     
     self.gk_navigationBar.alpha = scrollView.contentOffset.y / 200;
     self.gk_navigationBar.hidden = NO;
@@ -206,7 +206,7 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
                 if (self.objectBlock) self.objectBlock(x);
                 toast(JobsInternationalization(@"VIP規則"));
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
     }return _ruleBtn;
 }

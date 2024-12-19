@@ -20,12 +20,12 @@
                                                              requiringSecureCoding:YES
                                                                              error:&error];
                 if (error) {
-                    NSLog(@"归档失败: %@", error.localizedDescription);
+                    JobsLog(@"归档失败: %@", error.localizedDescription);
                 } else {
                     // 步骤2: 将归档数据存储到NSUserDefaults
                     JobsSetUserDefaultKeyWithObject(userDefaultModel.key, archivedData);
                     JobsUserDefaultSynchronize;
-                    NSLog(@"%@",NSString.userDefaultsDir);
+                    JobsLog(@"%@",NSString.userDefaultsDir);
                     return;
                 }
             }
@@ -33,7 +33,7 @@
             if (userDefaultModel.booLValue) {
                 JobsSetUserBoolKeyWithBool(userDefaultModel.key, userDefaultModel.booLValue);
                 JobsUserDefaultSynchronize;
-                NSLog(@"%@",NSString.userDefaultsDir);
+                JobsLog(@"%@",NSString.userDefaultsDir);
                 return;
             }
         }

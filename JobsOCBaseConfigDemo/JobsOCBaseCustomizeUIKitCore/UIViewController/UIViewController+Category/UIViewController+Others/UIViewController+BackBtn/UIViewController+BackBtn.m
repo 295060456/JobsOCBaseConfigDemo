@@ -38,7 +38,7 @@ JobsKey(_backBtnCategory)
                 if (self.objectBlock) self.objectBlock(x);
                 self.backBtnClickEvent(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         Jobs_setAssociatedRETAIN_NONATOMIC(_backBtnCategory, BackBtnCategory)
     }return BackBtnCategory;

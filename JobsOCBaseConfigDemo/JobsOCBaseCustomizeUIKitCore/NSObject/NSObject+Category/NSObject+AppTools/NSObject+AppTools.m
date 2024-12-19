@@ -33,9 +33,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
+            JobsLog(@"SSS = %d",b.boolValue);
         }
-        NSLog(@"通知传递过来的 = %@",notification.object);
+        JobsLog(@"通知传递过来的 = %@",notification.object);
     }];
 }
 /// 【App语言国际化】更改UITabBarItem的标题
@@ -56,9 +56,9 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     return ^(){
         @jobs_strongify(self)
         JobsUserModel *doorModel= self.readUserInfoByUserName(JobsUserModel.class,用户信息);
-        NSLog(@"Token = %@",doorModel.token);
+        JobsLog(@"Token = %@",doorModel.token);
         if(isValue(self.doorModel.expireTime)){
-            NSLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.chinaTime(nil));
+            JobsLog(@"当前时间为:%@, Token过期时间为:%@", NSDate.date, self.doorModel.expireTime.chinaTime(nil));
         }
     };
 }
@@ -278,7 +278,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                                                    NSURLResponse *_Nullable response,
                                                    NSError *_Nullable error) {
         if (error) {
-            NSLog(@"请求失败：%@", error.localizedDescription);
+            JobsLog(@"请求失败：%@", error.localizedDescription);
             return;
         }
         NSError *jsonError;
@@ -286,7 +286,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                                                              options:0
                                                                error:&jsonError];
         if (jsonError) {
-            NSLog(@"JSON解析失败：%@", jsonError.localizedDescription);
+            JobsLog(@"JSON解析失败：%@", jsonError.localizedDescription);
             return;
         }
         // 从响应数据中获取国家代码
@@ -327,7 +327,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
             self.comingToPushVC(MyCollectionVC.new);
             toast(@"联系我们");
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         });
 }
 /// 关闭.按钮
@@ -343,7 +343,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                 [view tf_hide:nil];
             }
         }).onLongPressGestureBy(^(id data){
-            NSLog(@"");
+            JobsLog(@"");
         });
 }
 /// 控制CustomTabBar的显隐
@@ -599,7 +599,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     }else if (currentLanguage().containsString(英文_不带区域组合)){
         return @"English";
     }else{
-        NSLog(@"%@",currentLanguage());
+        JobsLog(@"%@",currentLanguage());
         return @"其他语言";
     }
 }
@@ -610,7 +610,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     }else if (currentLanguage().containsString(英文_不带区域组合)){
         return HTTPRequestHeaderLanguageEn;
     }else{
-        NSLog(@"%@",currentLanguage());
+        JobsLog(@"%@",currentLanguage());
         return HTTPRequestHeaderLanguageOther;
     }
 }
@@ -862,11 +862,11 @@ JobsKey(__立即注册)
                           HEXCOLOR(0x757575))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                NSLog(@"联系客服");
+                JobsLog(@"联系客服");
                 if (self.objectBlock) self.objectBlock(x);
             })
             .onLongPressGestureBy(^(id data){
-                NSLog(@"按钮的长按事件触发");
+                JobsLog(@"按钮的长按事件触发");
             });
         UIViewController *viewController = (UIViewController *)self;
         [viewController.bgImageView addSubview:_立即注册];
@@ -896,11 +896,11 @@ JobsKey(__联系客服)
                           HEXCOLOR(0x757575))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                NSLog(@"联系客服");
+                JobsLog(@"联系客服");
                 if (self.objectBlock) self.objectBlock(x);
             })
             .onLongPressGestureBy(^(id data){
-                NSLog(@"按钮的长按事件触发");
+                JobsLog(@"按钮的长按事件触发");
             });
         UIViewController *viewController = (UIViewController *)self;
         [viewController.bgImageView addSubview:_联系客服];

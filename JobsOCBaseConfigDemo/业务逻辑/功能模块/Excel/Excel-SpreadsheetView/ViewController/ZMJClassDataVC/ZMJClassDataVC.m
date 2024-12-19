@@ -22,13 +22,13 @@
 @implementation ZMJClassDataVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 
 - (instancetype)init{
     if (self = [super init]) {
-        NSLog(@"");
+        JobsLog(@"");
     }return self;
 }
 
@@ -181,7 +181,7 @@
                                             encoding:NSUTF8StringEncoding
                                                error:&error];
         if (!error){
-            NSLog(@"error = %@",error);
+            JobsLog(@"error = %@",error);
         }
     }return _content;
 }

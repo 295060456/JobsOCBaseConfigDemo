@@ -40,7 +40,7 @@ JobsKey(_logOutPopupView)
                                            .JobsBlock1(^(UIButton *data) {
                                                @jobs_strongify(self)
                                                if (data.tag == 666) {// 取消
-                                                   NSLog(@"手滑了");
+                                                   JobsLog(@"手滑了");
                                                }else if (data.tag == 999){// 确定退出
                                                    self.logOut();
                                                    self.jobsToastSuccessMsg(JobsInternationalization(@"Logout succeeded"));

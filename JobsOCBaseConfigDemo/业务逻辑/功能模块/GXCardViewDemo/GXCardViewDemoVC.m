@@ -19,7 +19,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -56,12 +56,12 @@
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -103,7 +103,7 @@ didRemoveLastCell:(GXCardViewCell *)cell
    didRemoveCell:(GXCardViewCell *)cell
    forRowAtIndex:(NSInteger)index
        direction:(GXCardCellSwipeDirection)direction {
-    NSLog(@"didRemoveCell forRowAtIndex = %ld, direction = %ld", index, direction);
+    JobsLog(@"didRemoveCell forRowAtIndex = %ld, direction = %ld", index, direction);
     if (!cardView.isRepeat && index == 8) {
         self.cellCount = 15;
         [cardView reloadMoreDataAnimated:YES];
@@ -113,7 +113,7 @@ didRemoveLastCell:(GXCardViewCell *)cell
 - (void)cardView:(GXCardView *)cardView
   didDisplayCell:(GXCardViewCell *)cell
    forRowAtIndex:(NSInteger)index {
-    NSLog(@"didDisplayCell forRowAtIndex = %ld", index);
+    JobsLog(@"didDisplayCell forRowAtIndex = %ld", index);
 }
 
 - (void)cardView:(GXCardView *)cardView
@@ -125,7 +125,7 @@ didRemoveLastCell:(GXCardViewCell *)cell
     dcell.leftLabel.hidden = !(direction == GXCardCellSwipeDirectionRight);
     dcell.rightLabel.hidden = !(direction == GXCardCellSwipeDirectionLeft);
 
-    NSLog(@"move point = %@,  direction = %ld", NSStringFromCGPoint(point), direction);
+    JobsLog(@"move point = %@,  direction = %ld", NSStringFromCGPoint(point), direction);
 }
 
 - (IBAction)leftButtonClick:(id)sender {

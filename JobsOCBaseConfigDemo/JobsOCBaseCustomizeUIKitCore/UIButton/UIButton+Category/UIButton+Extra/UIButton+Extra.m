@@ -34,8 +34,8 @@
                 self.titleLabel.numberOfLines = 0;
                 self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;/// 自动折行设置【默认】需要提前设置imageTitleSpace
                 self.uninstall(NSLayoutAttributeHeight);
-                NSLog(@"%f,%f",self.width,self.height);
-                NSLog(@"%@",self.titleForNormalState);
+                JobsLog(@"%f,%f",self.width,self.height);
+                JobsLog(@"%@",self.titleForNormalState);
                 CGSize size = [UILabel sizeWithText:self.titleForNormalState
                                                font:self.titleLabel.font
                                             maxSize:CGSizeMake(self.width, MAXFLOAT)];
@@ -76,8 +76,8 @@
                 self.subtitleLabel.numberOfLines = 0;
                 self.subtitleLabel.lineBreakMode = NSLineBreakByWordWrapping;/// 自动折行设置【默认】需要提前设置imageTitleSpace
                 self.uninstall(NSLayoutAttributeHeight);
-                NSLog(@"%f,%f",self.width,self.height);
-                NSLog(@"%@",self.titleForNormalState);
+                JobsLog(@"%f,%f",self.width,self.height);
+                JobsLog(@"%@",self.titleForNormalState);
                 CGSize size = [UILabel sizeWithText:self.titleForNormalState
                                                font:self.subtitleLabel.font
                                             maxSize:CGSizeMake(self.width, MAXFLOAT)];

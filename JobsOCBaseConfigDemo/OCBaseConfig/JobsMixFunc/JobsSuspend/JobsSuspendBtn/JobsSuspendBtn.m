@@ -21,7 +21,7 @@ BaseViewProtocol_synthesize
         [self addTarget:self
     touchUpInsideAction:[self jobsSelectorBlock:^id _Nullable(id _Nullable weakSelf,
                                                               id _Nullable arg) {
-            NSLog(@"Hello Jobs");
+            JobsLog(@"Hello Jobs");
             return nil;
         }]];
         self.cornerCutToCircleWithCornerRadius(JobsWidth(8));

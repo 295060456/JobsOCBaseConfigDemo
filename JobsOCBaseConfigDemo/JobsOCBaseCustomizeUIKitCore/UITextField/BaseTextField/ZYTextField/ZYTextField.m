@@ -36,7 +36,7 @@ UITextFieldProtocol_synthesize
 -(void)setZYTextFieldMasksToBounds:(BOOL)ZYTextFieldMasksToBounds{
     _ZYTextFieldMasksToBounds = ZYTextFieldMasksToBounds;
     if (jobsEqualToZeroRect(self.bounds)) {
-        NSLog(@"self.frame 为空，绘制失败");
+        JobsLog(@"self.frame 为空，绘制失败");
     }else{
         if (_ZYTextFieldMasksToBounds) {
             @jobs_weakify(self)

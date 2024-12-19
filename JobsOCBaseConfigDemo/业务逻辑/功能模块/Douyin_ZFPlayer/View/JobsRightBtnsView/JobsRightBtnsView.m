@@ -52,8 +52,8 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
-                NSLog(@"SSS = %d",b.boolValue);
-            }NSLog(@"通知传递过来的 = %@",notification.object);
+                JobsLog(@"SSS = %d",b.boolValue);
+            }JobsLog(@"通知传递过来的 = %@",notification.object);
         }];
     }return self;
 }
@@ -132,7 +132,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 JobsWidth(5))
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .onClickBy(^(UIButton *x){
-                NSLog(@"我是点赞");
+                JobsLog(@"我是点赞");
                 x.selected = !x.selected;
                 @jobs_weakify(x)
                 [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
@@ -142,7 +142,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     if (self.objectBlock) self.objectBlock(x);
                 }];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_loveBtn];
         [self layoutIfNeeded];
@@ -161,7 +161,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                 JobsWidth(5))
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .onClickBy(^(UIButton *x){
-                NSLog(@"我是评论");
+                JobsLog(@"我是评论");
                 @jobs_weakify(x)
                 [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
                     @jobs_strongify(x)
@@ -179,11 +179,11 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     
                     [self forceComingToPushVC:jobsCommentCoreVC requestParams:JobsInternationalization(@"")];
                     [jobsCommentCoreVC actionObjectBlock:^(id data) {
-                        NSLog(@"您点击了评论");
+                        JobsLog(@"您点击了评论");
                     }];
                 }];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_commentBtn];
         [self layoutIfNeeded];
@@ -200,7 +200,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                                                  JobsWidth(5))
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .onClickBy(^(UIButton *x){
-                NSLog(@"我是分享");
+                JobsLog(@"我是分享");
                 @jobs_weakify(x)
                 [x.imageView addViewAnimationWithCompletionBlock:^(id data) {
                     @jobs_strongify(x)
@@ -212,7 +212,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     if (self.objectBlock) self.objectBlock(x);
                 }];
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_shareBtn];
         [self layoutIfNeeded];

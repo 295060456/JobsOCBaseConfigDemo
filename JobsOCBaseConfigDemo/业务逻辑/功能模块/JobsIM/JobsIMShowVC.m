@@ -17,7 +17,7 @@
 @implementation JobsIMShowVC
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -122,7 +122,7 @@
                 if (self.objectBlock) self.objectBlock(x);
                 toast(JobsInternationalization(@"正在研发中...敬请期待"));
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _shareBtn.width = JobsWidth(23);
         _shareBtn.height = JobsWidth(23);

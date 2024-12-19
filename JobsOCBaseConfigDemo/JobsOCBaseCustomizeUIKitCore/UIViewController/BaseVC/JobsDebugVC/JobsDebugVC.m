@@ -21,7 +21,7 @@
     JobsRemoveNotification(self);
     if (JobsDebug) {
         toast(JobsInternationalization(@"成功销毁了控制器").add(NSStringFromClass(self.class)));
-        NSLog(@"%@",JobsLocalFunc);
+        JobsLog(@"%@",JobsLocalFunc);
         PrintRetainCount(self)
     }
 }

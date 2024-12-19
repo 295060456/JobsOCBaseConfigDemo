@@ -23,7 +23,7 @@
                                                                        error:&err];
         if(err){
             return nil;
-            NSLog(@"%@",err.description);
+            JobsLog(@"%@",err.description);
         }return compressedData;
     };
 }
@@ -36,7 +36,7 @@
                                                                        error:&err];
         if(err){
             return nil;
-            NSLog(@"%@",err.description);
+            JobsLog(@"%@",err.description);
         }return compressedData;
     };
 }

@@ -17,7 +17,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -55,7 +55,7 @@
     [self insertUserWithName:@"Bob" age:30];
     /// 获取所有用户
     NSArray *users = [self fetchAllUsers];
-    NSLog(@"Users: %@", users);
+    JobsLog(@"Users: %@", users);
     /// 更新用户
     if (users.count > 0) {
         NSManagedObject *user = users[0];
@@ -68,17 +68,17 @@
     }
     /// 获取更新后的用户列表
     users = [self fetchAllUsers];
-    NSLog(@"Updated Users: %@", users);
+    JobsLog(@"Updated Users: %@", users);
 }
 
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -108,7 +108,7 @@
     NSError *error = nil;
     NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        NSLog(@"Error fetching users: %@", error);
+        JobsLog(@"Error fetching users: %@", error);
     }return result;
 }
 /// 更新/改正 数据
@@ -128,7 +128,7 @@
 - (void)saveContext {
     NSError *error = nil;
     if (self.context.hasChanges && ![self.context save:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, error.userInfo);
+        JobsLog(@"Unresolved error %@, %@", error, error.userInfo);
         abort();
     }
 }

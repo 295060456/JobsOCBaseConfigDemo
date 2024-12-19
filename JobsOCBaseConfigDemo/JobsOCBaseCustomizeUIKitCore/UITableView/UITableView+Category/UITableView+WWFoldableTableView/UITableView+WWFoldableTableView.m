@@ -83,7 +83,7 @@ JobsKey(_ww_foldState)
         [self reloadSections:[NSIndexSet indexSetWithIndex:section]
             withRowAnimation:UITableViewRowAnimationFade];
     } @catch (NSException *exception) {
-        NSLog(@"%@", exception);
+        JobsLog(@"%@", exception);
         [self reloadData];
     }
 }
@@ -98,7 +98,7 @@ JobsKey(_ww_foldState)
     if(orig && new){
         method_exchangeImplementations(orig, new);
     }else{
-        NSLog(@"swizz instance method failed: %s", sel_getName(methodOrig));
+        JobsLog(@"swizz instance method failed: %s", sel_getName(methodOrig));
     }
 }
 
@@ -108,7 +108,7 @@ JobsKey(_ww_foldState)
     if(orig && new){
         method_exchangeImplementations(orig, new);
     }else{
-        NSLog(@"swizz class method failed: %s", sel_getName(methodOrig));
+        JobsLog(@"swizz class method failed: %s", sel_getName(methodOrig));
     }
 }
 

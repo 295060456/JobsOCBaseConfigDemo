@@ -37,12 +37,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidEnterBackground:(UIApplication *)application{
-    NSLog(@"---applicationDidEnterBackground----");//进入后台
+    JobsLog(@"---applicationDidEnterBackground----");//进入后台
     JobsPostNotification(退到后台停止播放ZFPlayer, nil);
 }
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidBecomeActive:(UIApplication *)application{
-    NSLog(@"---applicationDidBecomeActive----");//进入前台
+    JobsLog(@"---applicationDidBecomeActive----");//进入前台
 }
 
 - (void)application:(UIApplication *)application
@@ -52,7 +52,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 - (void)application:(UIApplication *)application
 didFailToRegisterForRemoteNotificationsWithError:(nonnull NSError *)error {
-    NSLog(@"Fail to register for remote notifications. error:%@",error);
+    JobsLog(@"Fail to register for remote notifications. error:%@",error);
 }
 
 @end

@@ -236,7 +236,7 @@
     @jobs_weakify(self)
     return ^(NSString *_Nonnull str) {
         @jobs_strongify(self)
-        NSLog(@"%@ = %@", str, NSStringFromCGRect(self.frame));
+        JobsLog(@"%@ = %@", str, NSStringFromCGRect(self.frame));
     };
 }
 
@@ -244,7 +244,7 @@
     @jobs_weakify(self)
     return ^(NSString *_Nonnull str) {
         @jobs_strongify(self)
-        NSLog(@"%@ = %@", str, NSStringFromCGPoint(self.Origin));
+        JobsLog(@"%@ = %@", str, NSStringFromCGPoint(self.Origin));
     };
 }
 
@@ -252,7 +252,7 @@
     @jobs_weakify(self)
     return ^(NSString *_Nonnull str) {
         @jobs_strongify(self)
-        NSLog(@"%@ = %@", str, NSStringFromCGSize(self.sizer));
+        JobsLog(@"%@ = %@", str, NSStringFromCGSize(self.sizer));
     };
 }
 #pragma mark —— 键盘事件
@@ -266,8 +266,8 @@
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
-        }NSLog(@"通知传递过来的 = %@",notification.object);
+            JobsLog(@"SSS = %d",b.boolValue);
+        }JobsLog(@"通知传递过来的 = %@",notification.object);
     }];
     
     [self addNotificationName:UIKeyboardWillHideNotification
@@ -277,8 +277,8 @@
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
-            NSLog(@"SSS = %d",b.boolValue);
-        }NSLog(@"通知传递过来的 = %@",notification.object);
+            JobsLog(@"SSS = %d",b.boolValue);
+        }JobsLog(@"通知传递过来的 = %@",notification.object);
     }];
 }
 #pragma mark —— 截屏

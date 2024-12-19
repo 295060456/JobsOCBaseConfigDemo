@@ -35,7 +35,7 @@
 #endif
 
 #ifdef DEBUG
-#define PopupLog(fmt, ...) NSLog((@"\nfunc:%s,line:%d\n" fmt @"\n"), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define PopupLog(fmt, ...) JobsLog((@"\nfunc:%s,line:%d\n" fmt @"\n"), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
 #define PopupLog(...)
 #endif

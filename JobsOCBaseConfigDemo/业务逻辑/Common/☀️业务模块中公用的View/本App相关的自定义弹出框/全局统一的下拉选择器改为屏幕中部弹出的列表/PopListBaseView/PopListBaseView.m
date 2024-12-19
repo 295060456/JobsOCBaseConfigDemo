@@ -58,7 +58,7 @@
             return jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel *_Nullable data1) {
                 data1.jobsWidth = PopListBaseView.CellWidth;
                 data1.jobsHeight = MIN(data.count * PopListBaseView.CellHeight,JobsWidth(259));/// 高度限制在 JobsWidth(259)
-                NSLog(@"KKK = %f-%f",data1.jobsWidth,data1.jobsHeight);
+                JobsLog(@"KKK = %f-%f",data1.jobsWidth,data1.jobsHeight);
             });
         }else return CGSizeMake(JobsWidth(300), JobsWidth(259));
     };

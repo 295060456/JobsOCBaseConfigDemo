@@ -132,7 +132,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _userHeaderBtn.jobsResetBtnTitle(self.readUserInfo.userName
                                          .add(@"    ")
                                          .add(JobsInternationalization(@"VIP 0")));
-        NSLog(@"%@",_userHeaderBtn.titleForNormalState);
+        JobsLog(@"%@",_userHeaderBtn.titleForNormalState);
         _userHeaderBtn.jobsResetBtnImage(JobsIMG(@"默认头像"));
         _userHeaderBtn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
         _userHeaderBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(16));

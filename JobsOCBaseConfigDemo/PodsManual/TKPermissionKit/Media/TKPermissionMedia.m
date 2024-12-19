@@ -33,7 +33,7 @@ static bool safeLock = NO;//防止连续请求lock
             });
         }];
     } else {
-        NSLog(@"当前系统版本低于iOS9.3，直接返回获取到了权限（如果有问题请更改权限获取方式！）");
+        JobsLog(@"当前系统版本低于iOS9.3，直接返回获取到了权限（如果有问题请更改权限获取方式！）");
         completion(YES);
         safeLock = NO;
     }
@@ -46,7 +46,7 @@ static bool safeLock = NO;//防止连续请求lock
             isAuth = YES;
         }
     } else {
-        NSLog(@"当前系统版本低于iOS9.3，直接返回获取到了权限（如果有问题请更改权限获取方式！）");
+        JobsLog(@"当前系统版本低于iOS9.3，直接返回获取到了权限（如果有问题请更改权限获取方式！）");
         isAuth = YES;
     }return isAuth;
 }

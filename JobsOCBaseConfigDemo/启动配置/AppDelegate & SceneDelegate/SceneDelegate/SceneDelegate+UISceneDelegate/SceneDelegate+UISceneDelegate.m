@@ -30,7 +30,7 @@ willConnectToSession:(UISceneSession *)session
 }
 
 - (void)sceneDidBecomeActive:(UIScene *)scene {
-    NSLog(@"---applicationDidBecomeActive----");//进入前台
+    JobsLog(@"---applicationDidBecomeActive----");//进入前台
 }
 
 - (void)sceneWillResignActive:(UIScene *)scene {
@@ -44,7 +44,7 @@ willConnectToSession:(UISceneSession *)session
 }
 
 - (void)sceneDidEnterBackground:(UIScene *)scene {
-    NSLog(@"---applicationDidEnterBackground----"); //进入后台
+    JobsLog(@"---applicationDidEnterBackground----"); //进入后台
     [(AppDelegate *)UIApplication.sharedApplication.delegate saveContext];
     JobsPostNotification(退到后台停止播放ZFPlayer, nil);
 }

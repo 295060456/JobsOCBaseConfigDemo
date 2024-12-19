@@ -29,7 +29,7 @@ SceneDelegate *sceneDelegate;
             @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
             @jobs_strongify(self)
-            NSLog(@"通知传递过来的 = %@",notification.object);
+            JobsLog(@"通知传递过来的 = %@",notification.object);
             self.windowScene = notification.object;
         }];
     }return self;

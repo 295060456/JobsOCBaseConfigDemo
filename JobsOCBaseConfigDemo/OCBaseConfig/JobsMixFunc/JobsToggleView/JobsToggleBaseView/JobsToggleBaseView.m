@@ -23,7 +23,7 @@
 JobsToggleNavViewProtocolSynthesize
 #pragma mark —— SysMethod
 -(void)dealloc{
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(instancetype)init{
@@ -134,7 +134,7 @@ JobsToggleNavViewProtocolSynthesize
                     self.currentSelectedBtn = (BaseButton *)data1;
                     /// 由 self.bgScroll 驱动
                     self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * self.currentSelectedBtn.index,0);
-                    NSLog(@"当前滑动的index = %ld",(long)self.currentSelectedBtn.index);
+                    JobsLog(@"当前滑动的index = %ld",(long)self.currentSelectedBtn.index);
                     self.taggedNavView.selectingOneTagWithIndex(self.currentSelectedBtn.index);
                 }
             }];taggedNavView.jobsRichViewByModel(self.taggedNavDatas);
@@ -189,7 +189,7 @@ JobsToggleNavViewProtocolSynthesize
 }
 #pragma mark —— scrollviewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -208,7 +208,7 @@ JobsToggleNavViewProtocolSynthesize
     if(scrollView_contentOffset_x > scrollView.width * self.scrollContentViews.count - 1)
         scrollView_contentOffset_x = scrollView.width * self.scrollContentViews.count - 1;
     NSInteger selectedIndx = round(scrollView_contentOffset_x / scrollView.width);
-    NSLog(@"当前滑动的index = %ld",(long)selectedIndx)
+    JobsLog(@"当前滑动的index = %ld",(long)selectedIndx)
     self.taggedNavView.selectingOneTagWithIndex(selectedIndx);
 }
 #pragma mark —— lazyLoad

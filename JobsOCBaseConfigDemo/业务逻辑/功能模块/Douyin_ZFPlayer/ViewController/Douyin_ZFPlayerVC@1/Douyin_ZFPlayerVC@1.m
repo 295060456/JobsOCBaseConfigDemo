@@ -16,7 +16,7 @@
 @implementation Douyin_ZFPlayerVC_1
 
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 #pragma mark - Lifecycle
 -(instancetype)init{
@@ -95,7 +95,7 @@
                        parameters:parameters
                      successBlock:^(JobsResponseModel *data) {
         @jobs_strongify(self)
-        NSLog(@"");
+        JobsLog(@"");
         if([data.data isKindOfClass:NSArray.class]){
             NSArray *tempDataArr = (NSArray *)data.data;
             
@@ -152,7 +152,7 @@
     [[[RACObserve(self.tableView, contentOffset) map:^id(id value) {
         if (self.tableView.contentOffset.y < - 50) {
             //下拉刷新方法
-//            NSLog(@"1");
+//            JobsLog(@"1");
             return @"1";
         }
 
@@ -163,18 +163,18 @@
 //            [self.tableView.mj_footer endRefreshingWithNoMoreData]; MJRefreshStateNoMoreData
             self.tableView.mj_footer.state = MJRefreshStateNoMoreData;
             [self.tableView.mj_footer endRefreshing];
-//            NSLog(@"2");
+//            JobsLog(@"2");
             return @"2";
         }else{
-//            NSLog(@"0");
+//            JobsLog(@"0");
             return @"0";
         }
     }] distinctUntilChanged] subscribeNext:^(id x) {
-        NSLog(@"%@",x);
+        JobsLog(@"%@",x);
         if ([x integerValue] == 1) {
-//            NSLog(@"↓");
+//            JobsLog(@"↓");
         }else if ([x integerValue] == 2){
-//            NSLog(@"↑");
+//            JobsLog(@"↑");
         }
     }];
 }
@@ -225,11 +225,11 @@ numberOfRowsInSection:(NSInteger)section{
             self.index = self.dataMutArr.count - 1;
         }
 
-        NSLog(@"MMM = %ld",self.index);
+        JobsLog(@"MMM = %ld",self.index);
         [self roll];
     }];
 
-    NSLog(@"DDD0 = %ld",self.index);
+    JobsLog(@"DDD0 = %ld",self.index);
     return cell;
 }
 
@@ -240,14 +240,14 @@ numberOfRowsInSection:(NSInteger)section{
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(JobsPlayerTBVCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"KKK %ld",(long)indexPath.row);
+    JobsLog(@"KKK %ld",(long)indexPath.row);
     [cell.getPlayer.currentPlayerManager play];
 }
 /// 已经消失的 UITableViewCell
 - (void)tableView:(UITableView *)tableView
 didEndDisplayingCell:(JobsPlayerTBVCell *)cell
 forRowAtIndexPath:(NSIndexPath*)indexPath{
-    NSLog(@"DDDD %ld",(long)indexPath.row);
+    JobsLog(@"DDDD %ld",(long)indexPath.row);
     [cell.getPlayer.currentPlayerManager pause];
 }
 #pragma mark —— lazyLoad
@@ -277,7 +277,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
                 data.loadBlock = ^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    NSLog(@"下拉刷新");
+                    JobsLog(@"下拉刷新");
                     self.currentPage = @(1);
                     @"data".readLocalFileWithName;/// 获取本地的数据
                     self->_tableView.endRefreshing(self.dataMutArr.count);
@@ -292,9 +292,9 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                 data.noMoreDataTitle = JobsInternationalization(@"");
                 data.loadBlock = ^id _Nullable(id _Nullable data1) {
                     @jobs_strongify(self)
-                    NSLog(@"上拉加载更多");
+                    JobsLog(@"上拉加载更多");
                     self.currentPage = @(self.currentPage.integerValue + 1);
-                //    NSLog(@"%@",self.tableView.mj_footer);
+                //    JobsLog(@"%@",self.tableView.mj_footer);
                 //    [self.tableView.mj_footer endRefreshing];
                 //    [self.tableView reloadData];
                 //    //特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开

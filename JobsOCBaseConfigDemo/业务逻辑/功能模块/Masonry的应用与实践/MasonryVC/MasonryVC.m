@@ -17,7 +17,7 @@
 
 - (void)dealloc{
     JobsRemoveNotification(self);
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(void)loadView{
@@ -144,7 +144,7 @@
     }];
     
     [self.view layoutIfNeeded];
-    NSLog(@"ddd = %f",CGRectGetWidth(containerView.frame));
+    JobsLog(@"ddd = %f",CGRectGetWidth(containerView.frame));
     
     // 创建子元素数组
     NSMutableArray<UIView *> *itemViews = [NSMutableArray array];

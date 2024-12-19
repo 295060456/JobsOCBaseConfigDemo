@@ -40,7 +40,7 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
-    NSLog(@"");
+    JobsLog(@"");
     if (self.objectBlock) self.objectBlock(@1);
 }
 /// 专治UITableView相应链断裂【核心代码】
@@ -56,13 +56,13 @@
         NSSet *touches = [event touchesForView:self];
         UITouch *touch = [touches anyObject];
         if (touch.phase == UITouchPhaseBegan) {
-            NSLog(@"Touches began");
+            JobsLog(@"Touches began");
         }else if(touch.phase == UITouchPhaseEnded){
-            NSLog(@"Touches Ended");
+            JobsLog(@"Touches Ended");
         }else if(touch.phase == UITouchPhaseCancelled){
-            NSLog(@"Touches Cancelled");
+            JobsLog(@"Touches Cancelled");
         }else if (touch.phase == UITouchPhaseMoved){
-            NSLog(@"Touches Moved");
+            JobsLog(@"Touches Moved");
         }
     }return [super hitTest:point withEvent:event];
 }

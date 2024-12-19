@@ -23,7 +23,7 @@
 @implementation JobsAppDoorForgotCodeContentView
 #pragma mark - Lifecycle
 - (void)dealloc {
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 }
 
 -(instancetype)init{
@@ -96,7 +96,7 @@
                 [self endEditing:YES];
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         _backToLoginBtn.alpha = 0.7f;
         [self addSubview:_backToLoginBtn];
@@ -120,7 +120,7 @@
                 [self endEditing:YES];
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
         [self addSubview:_contactCustomerServiceBtn];
         [_contactCustomerServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {

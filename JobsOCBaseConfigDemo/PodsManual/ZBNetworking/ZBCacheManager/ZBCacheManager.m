@@ -122,7 +122,7 @@ static const CGFloat unit = 1000.0;
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:NULL];
     } else {
-        NSLog(@"FileDir is exists.%@",path);
+        JobsLog(@"FileDir is exists.%@",path);
         return NO;
     }
 }
@@ -187,7 +187,7 @@ static const CGFloat unit = 1000.0;
     if ([content isKindOfClass:[NSData class]]) {
         return  [(NSData *)content writeToFile:path atomically:YES];
     }else {
-        NSLog(@"文件类型:%@,沙盒存储失败。",NSStringFromClass([content class]));
+        JobsLog(@"文件类型:%@,沙盒存储失败。",NSStringFromClass([content class]));
         return NO;
     }
     return NO;
@@ -350,7 +350,7 @@ static const CGFloat unit = 1000.0;
         NSError *error=nil;
         NSDictionary *dic = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[self homePath] error:&error];
         if (error) {
-            NSLog(@"error: %@", error.localizedDescription);
+            JobsLog(@"error: %@", error.localizedDescription);
         }else{
             NSNumber *systemNumber = [dic objectForKey:NSFileSystemSize];
             size = [systemNumber floatValue];
@@ -365,7 +365,7 @@ static const CGFloat unit = 1000.0;
         NSError *error=nil;
         NSDictionary *dic = [[NSFileManager defaultManager] attributesOfFileSystemForPath:[self homePath] error:&error];
         if (error) {
-            NSLog(@"error: %@", error.localizedDescription);
+            JobsLog(@"error: %@", error.localizedDescription);
         }else{
             NSNumber *freeSystemNumber = [dic objectForKey:NSFileSystemFreeSize];
             size = [freeSystemNumber floatValue];

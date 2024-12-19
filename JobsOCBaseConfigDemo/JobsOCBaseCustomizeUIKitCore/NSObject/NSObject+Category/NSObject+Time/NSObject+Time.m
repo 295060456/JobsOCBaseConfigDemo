@@ -18,7 +18,7 @@
     /// 获取今天零点的时间戳（秒级）
     NSTimeInterval midnightTimestamp = self._zeroTime.timeIntervalSince1970;
     /// 打印零点时间戳
-    NSLog(@"今天零点的时间戳（秒级）：%.0f", midnightTimestamp);
+    JobsLog(@"今天零点的时间戳（秒级）：%.0f", midnightTimestamp);
     return midnightTimestamp;
 }
 /// 获取某天前零点的时间戳（秒级）
@@ -31,7 +31,7 @@
         /// 获取24小时前零点的时间戳（秒级）
         NSTimeInterval dayBeforeMidnightTimestamp = dayBeforeMidnight.timeIntervalSince1970;
         /// 打印24小时前的零点时间戳
-        NSLog(@"24小时前零点的时间戳（秒级）：%.0f", dayBeforeMidnightTimestamp);
+        JobsLog(@"24小时前零点的时间戳（秒级）：%.0f", dayBeforeMidnightTimestamp);
         return dayBeforeMidnightTimestamp;
     };
 }
@@ -399,13 +399,13 @@
     /// 将 startTime 转换为 NSDate
     NSDate *startDate = dateFormatter.dateByString(startTime);
     if (!startDate) {
-        NSLog(@"开始时间格式不正确");
+        JobsLog(@"开始时间格式不正确");
         return 0;
     }
     /// 如果 endTime 未提供，则使用当前时间
     NSDate *endDate = endTime ? dateFormatter.dateByString(endTime) : self.currentDate;
     if (!endDate) {
-        NSLog(@"结束时间格式不正确");
+        JobsLog(@"结束时间格式不正确");
         return 0;
     }return endDate.timeIntervalSinceDate(startDate);/// 计算两个日期之间的时间间隔
 }
@@ -457,7 +457,7 @@
                                                            fromDate:date1
                                                              toDate:date2
                                                             options:0];
-    NSLog(@"两个时间相差%ld年%ld月%ld日%ld小时%ld分钟%ld秒",
+    JobsLog(@"两个时间相差%ld年%ld月%ld日%ld小时%ld分钟%ld秒",
           cmps.year,
           cmps.month,
           cmps.day,
@@ -511,7 +511,7 @@
     if (oldDate) {
         flag = !self.isToday(oldDate);
     }else{
-        NSLog(@"未启动过，今日第一次启动");
+        JobsLog(@"未启动过，今日第一次启动");
         flag = YES;
     }
     /// 保存启动时间

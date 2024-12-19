@@ -48,7 +48,7 @@
         _scrollYView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
         [_scrollYView actionObjectBlock:^(JobsScrollYView *data) {
-            NSLog(@"sss = %f",self->_scrollYView.y);
+            JobsLog(@"sss = %f",self->_scrollYView.y);
             @jobs_strongify(self)
             /// 向下滑动为正
             if(data.jobsPoint.y > 0){

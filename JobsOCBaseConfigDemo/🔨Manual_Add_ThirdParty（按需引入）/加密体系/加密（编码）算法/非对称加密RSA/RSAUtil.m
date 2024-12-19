@@ -248,7 +248,7 @@ static NSData *base64_decode(NSString *str){
     
     NSMutableData *ret = [[NSMutableData alloc] init];
     for(int idx = 0; idx < srclen; idx += src_block_size){
-        //NSLog(@"%d/%d block_size: %d", idx, (int)srclen, (int)block_size);
+        //JobsLog(@"%d/%d block_size: %d", idx, (int)srclen, (int)block_size);
         size_t data_len = srclen - idx;
         if(data_len > src_block_size){
             data_len = src_block_size;
@@ -264,7 +264,7 @@ static NSData *base64_decode(NSString *str){
                                &outlen
                                );
         if (status != 0) {
-            NSLog(@"SecKeyEncrypt fail. Error Code: %d", status);
+            JobsLog(@"SecKeyEncrypt fail. Error Code: %d", status);
             ret = nil;
             break;
         }else{
@@ -305,7 +305,7 @@ static NSData *base64_decode(NSString *str){
     
     NSMutableData *ret = [[NSMutableData alloc] init];
     for(int idx=0; idx<srclen; idx+=src_block_size){
-        //NSLog(@"%d/%d block_size: %d", idx, (int)srclen, (int)block_size);
+        //JobsLog(@"%d/%d block_size: %d", idx, (int)srclen, (int)block_size);
         size_t data_len = srclen - idx;
         if(data_len > src_block_size){
             data_len = src_block_size;
@@ -321,7 +321,7 @@ static NSData *base64_decode(NSString *str){
                                &outlen
                                );
         if (status != 0) {
-            NSLog(@"SecKeyEncrypt fail. Error Code: %d", status);
+            JobsLog(@"SecKeyEncrypt fail. Error Code: %d", status);
             ret = nil;
             break;
         }else{

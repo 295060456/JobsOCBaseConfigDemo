@@ -76,6 +76,12 @@
 #import "FSCalendar.h"
 #endif
 
+#if __has_include(<HTMLReader/HTMLReader.h>)
+#import <HTMLReader/HTMLReader.h>
+#else
+#import "HTMLReader.h"
+#endif
+
 #if __has_include(<ZMJGanttChart/ZMJGanttChart.h>)
 #import <ZMJGanttChart/ZMJGanttChart.h>
 #else
@@ -399,6 +405,8 @@
 #else
 #import "ZFVolumeBrightnessView.h"
 #endif
+
+@import LiveChat;
 
 //暂时用不着的、重复的、过时的
 //#import "PureLayout.h"

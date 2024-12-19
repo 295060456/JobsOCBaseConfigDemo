@@ -177,15 +177,15 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
                   SDImageCacheType cacheType,
                   NSURL * _Nullable imageURL) {
          if (error) {
-             NSLog(@"图片加载失败: %@-%@", error,imageURL);
+             JobsLog(@"图片加载失败: %@-%@", error,imageURL);
          } else {
-             NSLog(@"图片加载成功");
+             JobsLog(@"图片加载成功");
          }
      }).onClickBy(^(UIButton *x){
          @jobs_strongify(self)
          if (self.objectBlock) self.objectBlock(x);
      }).onLongPressGestureBy(^(id data){
-     NSLog(@"");
+     JobsLog(@"");
  }).bgNormalLoad();
  
  _applyNowBtn = BaseButton.jobsInit()
@@ -198,9 +198,9 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
      .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
      .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
      .onClickBy(^(UIButton *x){
-         NSLog(@"");
+         JobsLog(@"");
      }).onLongPressGestureBy(^(id data){
-         NSLog(@"");
+         JobsLog(@"");
      });
  
  -(BaseButton *)applyNowBtn{
@@ -241,7 +241,7 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
                  x.selected = !x.selected;
                  if (self.objectBlock) self.objectBlock(x);
              }).onLongPressGestureBy(^(id data){
-                 NSLog(@"");
+                 JobsLog(@"");
              });
      }return _applyNowBtn;
  }

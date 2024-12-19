@@ -228,9 +228,9 @@ NS_ASSUME_NONNULL_END
      .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
      .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
      .onClickBy(^(UIButton *x){
-         NSLog(@"");
+         JobsLog(@"");
      }).onLongPressGestureBy(^(id data){
-         NSLog(@"");
+         JobsLog(@"");
      });
  
  _headBtn = BaseButton.jobsInit()
@@ -242,15 +242,15 @@ NS_ASSUME_NONNULL_END
                  SDImageCacheType cacheType,
                  NSURL * _Nullable imageURL) {
         if (error) {
-            NSLog(@"图片加载失败: %@-%@", error,imageURL);
+            JobsLog(@"图片加载失败: %@-%@", error,imageURL);
         } else {
-            NSLog(@"图片加载成功");
+            JobsLog(@"图片加载成功");
         }
     }).onClickBy(^(UIButton *x){
         @jobs_strongify(self)
         if (self.objectBlock) self.objectBlock(x);
     }).onLongPressGestureBy(^(id data){
-    NSLog(@"");
+    JobsLog(@"");
  }).bgNormalLoad();
  
  -(BaseButton *)applyNowBtn{
@@ -291,7 +291,7 @@ NS_ASSUME_NONNULL_END
                  x.selected = !x.selected;
                  if (self.objectBlock) self.objectBlock(x);
              }).onLongPressGestureBy(^(id data){
-                 NSLog(@"");
+                 JobsLog(@"");
              });
      }return _applyNowBtn;
  }

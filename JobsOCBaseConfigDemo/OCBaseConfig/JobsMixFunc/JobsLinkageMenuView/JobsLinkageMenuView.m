@@ -89,7 +89,7 @@
 }
 #pragma mark —— MenuButton Method
 -(void)choseMenu:(UIButton __kindof *)button{
-    NSLog(@"%ld==%@",(long)button.tag,button.titleLabel.text);
+    JobsLog(@"%ld==%@",(long)button.tag,button.titleLabel.text);
     int d = 0;
     for (UIButton *btn in self.btnMutArr) {
         btn.jobsResetBtnTitleCor(self.btnConfig.titleCor);
@@ -190,7 +190,7 @@
         }
         
         if (_viewArray.count < self.btnConfig.normal_titles.count) {
-            NSLog(@"Please Add More Views");
+            JobsLog(@"Please Add More Views");
         }
         for (int i = 0; i < _viewArray.count; i++) {
             UIView *view = [_viewArray objectAtIndex:i];
@@ -243,7 +243,7 @@
                 [self choseMenu:x];
                 if (self.objectBlock) self.objectBlock(x);
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });
             menuButton.imageViewFrameResetX = 0;
             

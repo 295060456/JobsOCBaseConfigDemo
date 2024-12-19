@@ -40,8 +40,8 @@ BaseLayerProtocol_synthesize_part3
          // 在具体的子类去实现,分类调用异常
          #pragma mark —— 复写父类方法
          -(void)setFrame:(CGRect)frame{
-         NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-         NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+         JobsLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+         JobsLog(@"self.offsetYForEach = %f",self.offsetYForEach);
          frame.origin.x += self.offsetXForEach;
          frame.origin.y += self.offsetYForEach;
          frame.size.height -= self.offsetYForEach * 2;
@@ -89,8 +89,8 @@ BaseLayerProtocol_synthesize_part3
 }
 // 在具体的子类去实现,分类调用异常
 -(void)setFrame:(CGRect)frame{
-    NSLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-    NSLog(@"self.offsetYForEach = %f",self.offsetYForEach);
+    JobsLog(@"self.offsetXForEach = %f",self.offsetXForEach);
+    JobsLog(@"self.offsetYForEach = %f",self.offsetYForEach);
     frame.origin.x += self.offsetXForEach;
     frame.origin.y += self.offsetYForEach;
     frame.size.height -= self.offsetYForEach * 2;

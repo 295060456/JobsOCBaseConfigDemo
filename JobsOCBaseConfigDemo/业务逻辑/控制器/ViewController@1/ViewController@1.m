@@ -20,13 +20,13 @@ BOOL ISLogin;
 @implementation ViewController_1
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
 }
 
 - (instancetype)init{
     if (self = [super init]) {
-        NSLog(@"");
+        JobsLog(@"");
     }return self;
 }
 
@@ -100,7 +100,7 @@ BOOL ISLogin;
     UIDeviceOrientation f = UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -113,7 +113,7 @@ BOOL ISLogin;
     UIDeviceOrientation f = UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -181,7 +181,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 [self forceComingToPushVC:viewModel.cls.new
                             requestParams:viewModel];// 测试专用
             }).onLongPressGestureBy(^(id data){
-                NSLog(@"");
+                JobsLog(@"");
             });_userHeadBtn.sizer = CGSizeMake(JobsWidth(32), JobsWidth(32));
     }return _userHeadBtn;
 }

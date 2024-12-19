@@ -51,7 +51,7 @@
                                          completionHandler:^(BOOL granted,
                                                              NSError * _Nullable error) {
         @jobs_strongify(self)
-        NSLog(@"granted = %d,error = %@",granted,error);
+        JobsLog(@"granted = %d,error = %@",granted,error);
         [self registerForRemoteNotifications];
     }];
 
@@ -67,22 +67,22 @@
         userNotificationCenter = self.notificationCenter;
     }
     [userNotificationCenter getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
-        NSLog(@"settings = %@",settings);
+        JobsLog(@"settings = %@",settings);
         /*
         UNAuthorizationStatusNotDetermined : 没有做出选择
         UNAuthorizationStatusDenied : 用户未授权
         UNAuthorizationStatusAuthorized ：用户已授权
         */
         if (settings.authorizationStatus == UNAuthorizationStatusNotDetermined){
-            NSLog(@"未选择");
+            JobsLog(@"未选择");
         }else if (settings.authorizationStatus == UNAuthorizationStatusDenied){
-            NSLog(@"未授权");
+            JobsLog(@"未授权");
         }else if (settings.authorizationStatus == UNAuthorizationStatusAuthorized){
-            NSLog(@"已授权");
+            JobsLog(@"已授权");
         }else if (settings.authorizationStatus == UNAuthorizationStatusProvisional){
-            NSLog(@"???");
+            JobsLog(@"???");
         }else if (settings.authorizationStatus == UNAuthorizationStatusEphemeral){
-            NSLog(@"???");
+            JobsLog(@"???");
         }else{}
         if (authorizationStatusBlock) authorizationStatusBlock(@(settings.authorizationStatus));
     }];
@@ -118,7 +118,7 @@
                                                                                                   options:@{@"UNNotificationAttachmentOptionsTypeHintKey":UTTypeImage}
                                                                                                     error:&error];
     if (error) {
-        NSLog(@"attachment error %@", error);
+        JobsLog(@"attachment error %@", error);
     }return notificationAttachment;
 }
 /// 触发模式
@@ -189,7 +189,7 @@
     [notificationCenter addNotificationRequest:notificationRequest
                          withCompletionHandler:^(NSError * _Nullable error) {
         if (error) {
-            NSLog(@"error = %@",error.description);
+            JobsLog(@"error = %@",error.description);
         }
     }];
 }
@@ -238,11 +238,11 @@
 //       [userNotificationCenter removeAllDeliveredNotifications];
 //       - 获取未展示的通知
 //   [userNotificationCenter getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
-//           NSLog(@"%@",requests);
+//           JobsLog(@"%@",requests);
 //   }];
 //    - 获取展示过的通知
 //   [userNotificationCenter getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
-//          NSLog(@"%@",notifications);
+//          JobsLog(@"%@",notifications);
 //       }];
 }
 

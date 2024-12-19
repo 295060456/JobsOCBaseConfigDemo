@@ -12,7 +12,7 @@
 -(FMDatabase *)createDataBaseWithPath:(NSString *_Nullable)dbPath{
     // 数据库访问路径
     if (isNull(dbPath)) dbPath = NSString.documentsDir.addPathComponent(@"test.db");
-    NSLog(@"!!!dbPath = %@",dbPath);
+    JobsLog(@"!!!dbPath = %@",dbPath);
     // 创建对应路径下数据库
     return [FMDatabase databaseWithPath:dbPath];
 }
@@ -70,12 +70,12 @@
             
             NSDate *end = NSDate.date;
             NSTimeInterval time = [end timeIntervalSinceDate:begin];
-            NSLog(@"事务耗时 = %f",time);
+            JobsLog(@"事务耗时 = %f",time);
             
             return rollBack = NO;
         }
     }else{
-        NSLog(@"打开数据库失败");
+        JobsLog(@"打开数据库失败");
         return NO;
     }
 }

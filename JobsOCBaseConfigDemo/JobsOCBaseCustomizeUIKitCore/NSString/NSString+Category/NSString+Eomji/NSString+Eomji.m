@@ -115,7 +115,7 @@
                                        NSRange enclosingRange,
                                        BOOL * _Nonnull stop) {
         const unichar hs = [substring characterAtIndex:0];
-        NSLog(@"hs++++++++%04x",hs);
+        JobsLog(@"hs++++++++%04x",hs);
         if (0xd800 <= hs && hs <=  0xdbff){
             if (substring.length > 1){
                 const unichar ls = [substring characterAtIndex:1];
@@ -123,13 +123,13 @@
                 if (0x1d000 <= uc && uc <= 0x1f77f){
                      isEomji = YES;
                 }
-                NSLog(@"uc++++++++%04x",uc);
+                JobsLog(@"uc++++++++%04x",uc);
             }else if(substring.length > 1){
                 const unichar ls = [substring characterAtIndex:1];
                 if (ls == 0x20e3|| ls ==0xfe0f){
                     isEomji = YES;
                 }
-                NSLog(@"ls++++++++%04x",ls);
+                JobsLog(@"ls++++++++%04x",ls);
             }else{
                 if (0x2100 <= hs && hs <= 0x27ff && hs != 0x263b){
                     isEomji = YES;

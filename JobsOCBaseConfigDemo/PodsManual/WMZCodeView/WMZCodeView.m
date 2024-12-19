@@ -37,7 +37,7 @@
 @implementation WMZCodeView
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
     if (timer) {
         dispatch_source_cancel(timer);
     }
@@ -334,7 +334,7 @@ static dispatch_once_t static_codeViewOnceToken;
         dispatch_source_set_event_handler(timer, ^{
             @jobs_strongify(self)
             self.seconds += 0.1;
-            NSLog(@"%.1f",self.seconds);
+            JobsLog(@"%.1f",self.seconds);
         });
         dispatch_resume(timer);
     }
@@ -367,7 +367,7 @@ static dispatch_once_t static_codeViewOnceToken;
         dispatch_source_set_event_handler(timer, ^{
             @jobs_strongify(self)
             self.seconds += 0.1;
-            NSLog(@"%.1f",self.seconds);
+            JobsLog(@"%.1f",self.seconds);
         });
         dispatch_resume(timer);
     }else if(phase == UITouchPhaseEnded){
@@ -509,7 +509,7 @@ NS_INLINE UIBezierPath *getCodePath(void){
     CGFloat heightMax = self.mainImage.frame.size.height-codeSize*2;
     self.randomPoint = CGPointMake([self getRandomNumber:WMZmargin+codeSize*2 to:widthMax],
                                    [self getRandomNumber:WMZoffset*2 to:heightMax]);
-    NSLog(@"%f %f",self.randomPoint.x,self.randomPoint.y);
+    JobsLog(@"%f %f",self.randomPoint.x,self.randomPoint.y);
 }
 /// 获取一个随机整数，范围在[from, to]，包括from，包括to
 - (int)getRandomNumber:(int)from to:(int)to {

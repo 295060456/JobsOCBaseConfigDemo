@@ -149,9 +149,9 @@ AppToolsProtocol_synthesize
                              SDImageCacheType cacheType,
                              NSURL *_Nullable imageURL) {
                     if (error) {
-                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        JobsLog(@"aa图片加载失败: %@-%@", error,imageURL);
                     }else{
-                        NSLog(@"图片加载成功");
+                        JobsLog(@"图片加载成功");
                     }
                 }).bgNormalLoad();
         }else{
@@ -205,9 +205,9 @@ AppToolsProtocol_synthesize
                              SDImageCacheType cacheType,
                              NSURL * _Nullable imageURL) {
                     if (error) {
-                        NSLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        JobsLog(@"aa图片加载失败: %@-%@", error,imageURL);
                     } else {
-                        NSLog(@"图片加载成功");
+                        JobsLog(@"图片加载成功");
                     }
                 }).bgNormalLoad();
         }else{

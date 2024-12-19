@@ -11,7 +11,7 @@
 @implementation OCDynamic
 
 - (void)dealloc{
-    NSLog(@"%@",JobsLocalFunc);
+    JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
 }
 
@@ -54,11 +54,11 @@
 }
 
 -(void)instanceMethod{
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 +(void)classMethod{
-    NSLog(@"");
+    JobsLog(@"");
 }
 #pragma mark —— IMP调用实例方法
 -(void)invokeIMP{
@@ -71,7 +71,7 @@
 }
 
 -(void)test:(NSString *)testStr{
-    NSLog(@"%@",testStr);
+    JobsLog(@"%@",testStr);
 }
 #pragma mark —— IMP调用类方法
 -(void)InvokeIMP{
@@ -82,11 +82,11 @@
 }
 
 +(void)Test:(NSString *)testStr{
-    NSLog(@"%@",testStr);
+    JobsLog(@"%@",testStr);
 }
 
 +(void)Test{
-    NSLog(@"");
+    JobsLog(@"");
 }
 
 

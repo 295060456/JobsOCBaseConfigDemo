@@ -17,7 +17,7 @@
           completion:(void(^)(BOOL isAuth))completion{
     [TKPermissionPublic alertTips:JobsInternationalization(@"文件与文件夹访问权限不需要请求，直接在info文件中添加描述即可!")];
     NSString *key = @"\n 权限描述(根据需求选取):\n Supports opening documents in place        =  YES \n Supports Document Browser                  =  YES\n Application supports iTunes file sharing   =  YES";
-    NSLog(@"%@",key);
+    JobsLog(@"%@",key);
 }
 
 @end
