@@ -14,12 +14,12 @@
  但是刷机或重装系统后uuid还是会改变。
  */
 -(void)deleteDeviceID{
-    [KeychainHelper remove:UUIDSTRING];
+    KeychainHelper.remove(UUIDSTRING);
 }
 
 -(NSString *)deviceID{
     //0.读取keychain的缓存
-    NSString *deviceID = [KeychainHelper load:UUIDSTRING];
+    NSString *deviceID = KeychainHelper.load(UUIDSTRING);
     if (isNull(deviceID)) {
         deviceID = UIDevice.currentDevice.identifierForVendor.UUIDString;
         [KeychainHelper save:UUIDSTRING data:deviceID];

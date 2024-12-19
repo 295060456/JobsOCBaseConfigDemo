@@ -6,166 +6,411 @@
 //
 
 #import "NSObject+URLManager_3.h"
-/// 来自 http://16.163.191.190:8100/api/promotion/doc.html
+/// 来自 http://18.162.73.145:18097/doc.html
 @implementation NSObject (URLManager_3)
-#pragma mark —— feign-support-controller
-/// 查看是否有流水卷或者存送卷【POST】
--(URLManagerModel *)post_promotion_feign_rolls_list{
-    return JobsURL(@"/api/promotion/feign/rolls/list");
+#pragma mark —— APP游戏首页娱乐城
+/// 菲站APP首页- 受欢迎的游戏列表查询@POST
+-(URLManagerModel *)post_game_home_queryTopGamesList{
+    return JobsURL(@"/api/game/home/app/queryTopGamesList");
 }
-/// 批量使用流水卷或者存送卷【POST】
--(URLManagerModel *)post_promotion_feign_rolls_use{
-    return JobsURL(@"/api/promotion/feign/rolls/use");
+#pragma mark —— CQ9电子游戏接口19
+/// CheckPlayer@GET
+-(JobsReturnURLManagerModelByStringBlock _Nonnull)get_CQ9_checkPlayerByPlayerName{
+    return ^URLManagerModel *_Nullable(NSString *_Nullable playerName){
+        NSString *url = @"api/game/callback/cq9/slot/player/check/{".add(playerName).add(@"}");
+        return JobsURL(url);
+    };
 }
-#pragma mark —— health-controller
-/// hearbeat【GET】
--(URLManagerModel *)get_promotion_heartbeat{
-    return JobsURL(@"/api/promotion/heartbeat");
+/// getBalance@GET
+-(JobsReturnURLManagerModelByStringBlock _Nonnull)get_CQ9_getBalanceByPlayerName{
+    return ^URLManagerModel *_Nullable(NSString *_Nullable playerName){
+        NSString *url = @"/api/game/callback/cq9/slot/transaction/balance/{".add(playerName).add(@"}");
+        return JobsURL(url);
+    };
 }
-#pragma mark —— 大转盘
-/// 查询大转盘活动参数配置【GET】
--(URLManagerModel *)get_promotion_activity_turntable_detail{
-    return JobsURL(@"/api/promotion/activity/turntable/detail");
+/// bet@POST
+-(URLManagerModel *)post_CQ9_bet{
+    return JobsURL(@"/api/game/callback/cq9/slot/transaction/game/bet");
 }
-/// 大转盘抽奖【GET】
--(URLManagerModel *)get_promotion_activity_turntable_prize_get{
-    return JobsURL(@"/api/promotion/activity/turntable/prize/get");
+/// credit@POST
+-(URLManagerModel *)post_CQ9_credit{
+    return JobsURL(@"/api/game/callback/cq9/slot/transaction/game/credit");
 }
-/// 分页查询大转盘活动抽奖记录【POST】
--(URLManagerModel *)post_promotion_activity_turntable_record{
-    return JobsURL(@"/api/promotion/activity/turntable/record");
+/// debit@POST
+-(URLManagerModel *)post_CQ9_debit{
+    return JobsURL(@"/api/game/callback/cq9/slot/transaction/game/debit");
 }
-/// 查询用户大转盘抽奖次数【GET】
--(URLManagerModel *)get_promotion_activity_turntable_user_num{
-    return JobsURL(@"/api/promotion/activity/turntable/user/num");
+/// EndRound@POST
+-(URLManagerModel *)post_CQ9_EndRound{
+    return JobsURL(@"/api/game/callback/cq9/slot/transaction/game/endround");
 }
-/// 查询用户大转盘活动抽奖记录【GET】
--(URLManagerModel *)get_promotion_activity_turntable_user_record{
-    return JobsURL(@"/api/promotion/activity/turntable/user/record");
+/// refund@POST
+-(URLManagerModel *)post_CQ9_refund{
+    return JobsURL(@"/api/game/callback/cq9/slot/transaction/game/refund");
 }
-#pragma mark —— 广告配置所有接口
-/// 查询广告列表-支持游客:活动推广专区【GET】
--(URLManagerModel *)get_promotion_advertise_info_list_activity{
-    return JobsURL(@"/api/promotion/advertise/info/list/activity");
+/// rollin@POST
+-(URLManagerModel *)post_CQ9_rollin{
+    return JobsURL(@"/api/game/callback/cq9/slot/transaction/game/rollin");
 }
-/// 查询广告列表-支持游客:APP首页右下3Banner【GET】
--(URLManagerModel *)get_promotion_advertise_infoP_list_appIndex{
-    return JobsURL(@"/api/promotion/advertise/info/list/app-index");
+/// rollOut@POST
+-(URLManagerModel *)post_CQ9_rollOut{
+    return JobsURL(@"/api/game/callback/cq9/slot/transaction/game/rollout");
 }
-/// 查询广告列表-支持游客:APP会员中心【GET】
--(URLManagerModel *)get_promotion_advertise_info_list_appMember{
-    return JobsURL(@"/api/promotion/advertise/info/list/app-member");
+/// takeAll@POST
+-(URLManagerModel *)post_CQ9_takeAll{
+    return JobsURL(@"/api/game/callback/cq9/slot/transaction/game/takeall");
 }
-/// 查询广告列表-支持游客:首页天顶轮播大Banner【GET】
--(URLManagerModel *)get_promotion_advertise_info_list_index{
-    return JobsURL(@"/api/promotion/advertise/info/list/index");
+/// record@GET
+-(JobsReturnURLManagerModelByStringBlock _Nonnull)get_CQ9_recordByMTCode{
+    return ^URLManagerModel *_Nullable(NSString *_Nullable mtcode){
+        NSString *url = @"/api/game/callback/cq9/slot/transaction/record/{".add(mtcode).add(@"}");
+        return JobsURL(url);
+    };
 }
-/// 查询广告列表-支持游客:导航栏4小Banner【GET】
--(URLManagerModel *)get_promotion_advertise_info_list_navigationBar{
-    return JobsURL(@"/api/promotion/advertise/info/list/navigation-bar");
+/// payoff@POST
+-(URLManagerModel *)post_CQ9_payoff{
+    return JobsURL(@"/api/game/callback/cq9/slot/transaction/user/payoff");
 }
-/// 查询广告列表-支持游客【GET】
--(URLManagerModel *)get_promotion_advertise_list{
-    return JobsURL(@"/api/promotion/advertise/list");
+/// errorHtml@GET
+-(URLManagerModel *)get_CQ9_errorHtml{
+    return JobsURL(@"/error");
 }
-/// 根据类型查询广告列表【GET】
--(URLManagerModel *)get_promotion_advertise_list_type{
-    return JobsURL(@"/api/promotion/advertise/list/type");
+/// errorHtml@POST
+-(URLManagerModel *)post_CQ9_errorHtml{
+    return JobsURL(@"/error");
 }
-#pragma mark —— 新手活动
-/// 查询新手活动参数配置【GET】
--(URLManagerModel *)get_promotion_activity_newbie_detail{
-    return JobsURL(@"/api/promotion/activity/newbie/detail");
+/// errorHtml@PUT
+-(URLManagerModel *)put_CQ9_errorHtml{
+    return JobsURL(@"/error");
 }
-/// 查询登录用户新手大礼包完成情况【GET】
--(URLManagerModel *)get_promotion_get_user_newbie_gift_detail{
-    return JobsURL(@"/api/promotion/get/user/newbie/gift/detail");
+/// errorHtml@DELETE
+-(URLManagerModel *)delete_CQ9_errorHtml{
+    return JobsURL(@"/error");
 }
-/// 查询登录用户参加新手活动资格【GET】
--(URLManagerModel *)get_promotion_get_user_newbie_qualifications{
-    return JobsURL(@"/api/promotion/get/user/newbie/qualifications");
+#pragma mark —— EVO真人游戏接口
+/// balance@POST
+-(URLManagerModel *)post_EVO_balance{
+    return JobsURL(@"/api/game/callback/evo/real/api/balance");
 }
-/// 查询登录用户签到完成情况【GET】
--(URLManagerModel *)get_promotion_get_user_sign_gift_detail{
-    return JobsURL(@"/api/promotion/get/user/sign/gift/detail");
+/// cancel@POST
+-(URLManagerModel *)post_EVO_cancel{
+    return JobsURL(@"/api/game/callback/evo/real/api/cancel");
 }
-/// 新手活动复活大礼包用户领取【GET】
--(URLManagerModel *)get_promotion_newbie_user_resurrection_receive{
-    return JobsURL(@"/api/promotion/newbie/user/resurrection/receive");
+/// check@POST
+-(URLManagerModel *)post_EVO_check{
+    return JobsURL(@"/api/game/callback/evo/real/api/check");
 }
-/// 新手活动用户复活大礼包状态查询【GET】
--(URLManagerModel *)get_promotion_newbie_user_resurrection_statusGet{
-    return JobsURL(@"/api/promotion/newbie/user/resurrection/status/get");
+/// credit@POST
+-(URLManagerModel *)post_EVO_credit{
+    return JobsURL(@"/api/game/callback/evo/real/api/credit");
 }
-/// 新手活动签到大礼包用户签到【GET】
--(URLManagerModel *)get_promotion_newbie_user_sign{
-    return JobsURL(@"/api/promotion/newbie/user/sign");
+/// debit@POST
+-(URLManagerModel *)post_EVO_debit{
+    return JobsURL(@"/api/game/callback/evo/real/api/debit");
 }
-#pragma mark —— 活动相关接口
-/// 存款优惠活动信息【POST】
--(URLManagerModel *)post_promotion_api_client_activity_getActivity{
-    return JobsURL(@"/api/promotion/api/client/activity/getActivity");
+/// promo_payout@POST
+-(URLManagerModel *)post_EVO_promo_payout{
+    return JobsURL(@"/api/game/callback/evo/real/api/promo_payout");
 }
-/// 存款优惠活动信息【POST】
--(URLManagerModel *)post_promotion_api_client_activity_getDepositDiscountActivityRecord{
-    return JobsURL(@"/api/promotion/api/client/activity/getDepositDiscountActivityRecord");
+/// sid@POST
+-(URLManagerModel *)post_EVO_sid{
+    return JobsURL(@"/api/game/callback/evo/real/api/sid");
 }
-/// 会员签到活动信息【POST】
--(URLManagerModel *)post_promotion_api_client_activity_getMemberSignActivityRecord{
-    return JobsURL(@"/api/promotion/api/client/activity/getMemberSignActivityRecord");
+#pragma mark —— FC电子游戏接口
+/// activityReward@POST
+-(URLManagerModel *)post_FC_activityReward{
+    return JobsURL(@"/api/game/callback/fc/slot/activity");
 }
-/// 获取存款金额奖励【POST】
--(URLManagerModel *)post_promotion_api_client_activity_getObtainDepositBonus{
-    return JobsURL(@"/api/promotion/api/client/activity/getObtainDepositBonus");
+/// bet@POST
+-(URLManagerModel *)post_FC_bet{
+    return JobsURL(@"/api/game/callback/fc/slot/bet");
 }
-/// 查询活动信息【POST】
--(URLManagerModel *)post_promotion_api_client_activity_queryActivityInfo{
-    return JobsURL(@"/api/promotion/api/client/activity/queryActivityInfo");
+/// betCancel@POST
+-(URLManagerModel *)post_FC_betCancel{
+    return JobsURL(@"/api/game/callback/fc/slot/betCancel");
 }
-/// 查询用户123存款活动的在途订单数量【POST】
--(URLManagerModel *)post_promotion_api_client_activity_queryInTransit123DepositOrdersCount{
-    return JobsURL(@"/api/promotion/api/client/activity/queryInTransit123DepositOrdersCount");
+/// BetNInfo@POST
+-(URLManagerModel *)post_FC_betNInfo{
+    return JobsURL(@"/api/game/callback/fc/slot/betInfo");
 }
-/// 会员签到【POST】
--(URLManagerModel *)post_promotion_api_client_activity_sign{
-    return JobsURL(@"/api/promotion/api/client/activity/sign");
+/// CancelBetNInfo@POST
+-(URLManagerModel *)post_FC_cancelBetNInfo{
+    return JobsURL(@"/api/game/callback/fc/slot/cancelBetInfo");
 }
-/// 首存活动-查询累计流水【GET】
--(URLManagerModel *)get_promotion_event_activity_bet_total{
-    return JobsURL(@"/api/promotion/event/activity/bet/total");
+/// 余额回调@POST
+-(URLManagerModel *)post_FC_getBalance{
+    return JobsURL(@"/api/game/callback/fc/slot/getBalance");
 }
-/// 活动领取-传返回记录的id【POST】
--(URLManagerModel *)post_promotion_event_activity_claimp{
-    return JobsURL(@"/api/promotion/event/activity/claim");
+/// settle@POST
+-(URLManagerModel *)post_FC_settle{
+    return JobsURL(@"/api/game/callback/fc/slot/settle");
 }
-/// 查询首存活动记录【GET】
--(URLManagerModel *)get_promotion_event_activity_record{
-    return JobsURL(@"/api/promotion/event/activity/record");
+#pragma mark —— JDB
+/// 捕鱼游戏接口@POST
+-(URLManagerModel *)post_JDB_fish{
+    return JobsURL(@"/api/game/callback/jdb/fish");
 }
-/// 会员签到【POST】
--(URLManagerModel *)post_promotion_event_memberSign{
-    return JobsURL(@"/api/promotion/event/memberSign");
+/// 棋牌游戏接口@POST
+-(URLManagerModel *)post_JDB_poker{
+    return JobsURL(@"/api/game/callback/jdb/poker");
 }
-/// 会员签到活动信息【POST】
--(URLManagerModel *)post_promotion_event_memberSignEvent{
-    return JobsURL(@"/api/promotion/event/memberSignEvent");
+/// 电子接口@POST
+-(URLManagerModel *)post_JDB_{
+    return JobsURL(@"/api/game/callback/jdb");
 }
-#pragma mark —— 福利中心所有接口
-/// 福利领取 ，目前只限2现金券 3存送卷 4流水卷【GET】
--(URLManagerModel *)get_promotion_welfare_claim{
-    return JobsURL(@"/api/promotion/welfare/claim");
+/// 电子游戏接口@POST
+-(URLManagerModel *)post_JDB_slot{
+    return JobsURL(@"/api/game/callback/jdb/slot");
 }
-/// 用户查询福利中心列表【POST】
--(URLManagerModel *)post_promotion_welfare_list{
-    return JobsURL(@"/api/promotion/welfare/list");
+#pragma mark —— JiLi
+/// slot_auth@POST
+-(URLManagerModel *)post_JiLi_slot_auth{
+    return JobsURL(@"/api/game/callback/jili/slot/auth");
 }
-/// 用户福利中心统计【GET】
--(URLManagerModel *)get_promotion_welfare_statistic{
-    return JobsURL(@"/api/promotion/welfare/statistic");
+/// slot_bet@POST
+-(URLManagerModel *)post_JiLi_slot_bet{
+    return JobsURL(@"/api/game/callback/jili/slot/bet");
 }
-/// vip模块领取福利【POST】
--(URLManagerModel *)post_promotion_welfare_vip_claim{
-    return JobsURL(@"/api/promotion/welfare/vip/claim");
+/// slot_cancelBet@POST
+-(URLManagerModel *)post_JiLi_slot_cancelBet{
+    return JobsURL(@"/api/game/callback/jili/slot/cancelBet");
+}
+/// slot_cancelSessionBet@POST
+-(URLManagerModel *)post_JiLi_slot_cancelSessionBet{
+    return JobsURL(@"/api/game/callback/jili/slot/cancelSessionBet");
+}
+/// slot_sessionBet@POST
+-(URLManagerModel *)post_JiLi_slot_sessionBet{
+    return JobsURL(@"/api/game/callback/jili/slot/sessionBet");
+}
+#pragma mark —— KA电子游戏接口
+/// balance@POST
+-(URLManagerModel *)post_KA_balance{
+    return JobsURL(@"/api/game/callback/ka/balance");
+}
+/// credit@POST
+-(URLManagerModel *)post_KA_credit{
+    return JobsURL(@"/api/game/callback/ka/credit");
+}
+/// end@POST
+-(URLManagerModel *)post_KA_end{
+    return JobsURL(@"/api/game/callback/ka/end");
+}
+/// play@POST
+-(URLManagerModel *)post_KA_play{
+    return JobsURL(@"/api/game/callback/ka/play");
+}
+/// revoke@POST
+-(URLManagerModel *)post_KA_revoke{
+    return JobsURL(@"/api/game/callback/ka/revoke");
+}
+/// start@POST
+-(URLManagerModel *)post_KA_start{
+    return JobsURL(@"/api/game/callback/ka/start");
+}
+#pragma mark —— PB体育游戏接口
+/// ping@POST
+-(URLManagerModel *)post_PB_ping{
+    return JobsURL(@"/api/game/callback/pingbo/sports/ping");
+}
+/// wagering⚠️@POST
+-(URLManagerModel *)post_PB_wagering{
+    return JobsURL(@"/api/game/callback/pingbo/sports/{agentcode}/wagering/usercode/{usercode}/request/{requestid}");
+}
+#pragma mark —— PG电子游戏接口
+/// cashAdjustment@POST
+-(URLManagerModel *)post_PG_cashAdjustment{
+    return JobsURL(@"/api/game/callback/pg/slot/Cash/Adjustment");
+}
+/// cashGet@POST
+-(URLManagerModel *)post_PG_cashGet{
+    return JobsURL(@"/api/game/callback/pg/slot/Cash/Get");
+}
+/// cashTransferInOut@POST
+-(URLManagerModel *)post_PG_cashTransferInOut{
+    return JobsURL(@"/api/game/callback/pg/slot/Cash/TransferInOut");
+}
+/// verifySession@POST
+-(URLManagerModel *)post_PG_verifySession{
+    return JobsURL(@"/api/game/callback/pg/slot/VerifySession");
+}
+#pragma mark —— 个人中心
+/// 一键回收 返回中心钱包余额@POST
+-(URLManagerModel *)post_game_fund_collect{
+    return JobsURL(@"/api/game/fund/collect");
+}
+/// 转入@POST
+-(URLManagerModel *)post_game_fund_transferIn{
+    return JobsURL(@"/api/game/fund/transferIn");
+}
+/// 获取会员与转账场馆余额：缓存3秒@POST
+-(URLManagerModel *)post_game_fund_wallet{
+    return JobsURL(@"/api/game/fund/wallet");
+}
+#pragma mark —— 全平台投注记录相关接口
+/// 跟单记录@POST
+-(URLManagerModel *)post_game_bet_followList{
+    return JobsURL(@"/api/game/bet/followList");
+}
+/// mageXcess审计@GET
+-(URLManagerModel *)get_game_bet_mageXcess_queryRecord{
+    return JobsURL(@"/api/game/bet/mageXcess/queryRecord");
+}
+/// 根据传入的天数计算，返回超过days天数未登录的用户idlist@POST
+-(URLManagerModel *)post_game_bet_noLoginMemberIdList{
+    return JobsURL(@"/api/game/bet/noLoginMemberIdList");
+}
+/// 按时间范围查询注单@POST
+-(URLManagerModel *)post_game_bet_orders{
+    return JobsURL(@"/api/game/bet/orders");
+}
+/// 全平台投注记录列表@POST
+-(URLManagerModel *)post_game_bet_pageList{
+    return JobsURL(@"/api/game/bet/pageList");
+}
+#pragma mark —— 场馆转入转出记录列表
+/// 场馆转入转出记录列表@POST
+-(URLManagerModel *)post_game_pay_pageList{
+    return JobsURL(@"/api/game/pay/pageList");
+}
+#pragma mark —— 子游戏数据导入测试
+/// 游戏gameLobby数据导入@GET
+-(URLManagerModel *)get_game_pagcor_gameLobbyImport{
+    return JobsURL(@"/api/game/pagcor/gameLobbyImport");
+}
+#pragma mark —— 对接PAGCOR的API
+/// 游戏gameLobby数据导入@GET
+-(URLManagerModel *)get_game_pagcor_order_list{
+    return JobsURL(@"/api/game/pagcor/order/list");
+}
+#pragma mark —— 数据同步相关
+/// 同步厅方订单数据@POST
+-(URLManagerModel *)post_game_job_fetchBetOrders{
+    return JobsURL(@"/api/game/job/fetchBetOrders");
+}
+/// 查询是否已经生成用户钱包@POST
+-(URLManagerModel *)post_game_syncData_checkExistWallet{
+    return JobsURL(@"/api/game/syncData/checkExistWallet");
+}
+/// 同步用户钱包数据@POST
+-(URLManagerModel *)post_game_syncData_syncFundWallet{
+    return JobsURL(@"/api/game/syncData/syncFundWallet");
+}
+#pragma mark —— 游戏数据统计
+/// 统计注单流水稽核金额@POST
+-(URLManagerModel *)post_game_statis_queryAuditAmount{
+    return JobsURL(@"/api/game/statis/queryAuditAmount");
+}
+/// 查询会员投注记录统计@POST
+-(URLManagerModel *)post_game_statis_queryBetByLobbyName{
+    return JobsURL(@"/api/game/statis/queryBetByLobbyName");
+}
+/// 统计下注会员数&投注金额@POST
+-(URLManagerModel *)post_game_statis_queryBetInfoByAgent{
+    return JobsURL(@"/api/game/statis/queryBetInfoByAgent");
+}
+/// 查询游戏投注记录@POST
+-(URLManagerModel *)post_game_statis_queryBetListByPage{
+    return JobsURL(@"/api/game/statis/queryBetListByPage");
+}
+/// 查询投注会员详情@POST
+-(URLManagerModel *)post_game_statis_queryGameOrderBetByPage{
+    return JobsURL(@"/api/game/statis/queryGameOrderBetByPage");
+}
+/// 统计会员输赢@POST
+-(URLManagerModel *)post_game_statis_queryProfit{
+    return JobsURL(@"/api/game/statis/queryProfit");
+}
+/// 查询会员总输赢@POST
+-(URLManagerModel *)post_game_statis_queryUserProfitLoss{
+    return JobsURL(@"/api/game/statis/queryUserProfitLoss");
+}
+/// 统计游戏有效投注额@POST
+-(URLManagerModel *)post_game_statis_queryValidBet{
+    return JobsURL(@"/api/game/statis/queryValidBet");
+}
+/// 统计游戏有效投注额@POST
+-(URLManagerModel *)post_game_statis_queryValidBet2{
+    return JobsURL(@"/api/game/statis/queryValidBet2");
+}
+#pragma mark —— 游戏配置模块
+/// 获取游戏场馆大类信息@GET
+-(URLManagerModel *)get_game_lobby_getTopGameLobbyList{
+    return JobsURL(@"/api/game/lobby/getTopGameLobbyList");
+}
+#pragma mark —— 游戏首页娱乐城
+/// 游戏导航列表：缓存1分钟@GET(仅适用于PC端)
+-(URLManagerModel *)get_game_home_bar_list{
+    return JobsURL(@"/api/game/home/bar/list");
+}
+/// H5/APP 游戏导航列表：缓存10分钟 (仅适用于H5、App端)@GET
+-(URLManagerModel *)get_api_game_home_bar_mobile{
+    return JobsURL(@"/api/game/home/bar/mobile");
+}
+/// 游戏大厅喜爱的游戏-添加@POST
+-(URLManagerModel *)post_game_home_favoriteGames_add{
+    return JobsURL(@"/api/game/home/favoriteGames/add");
+}
+/// 菲站首页- 查询游戏收藏列表 仅适用于app端@POST
+-(URLManagerModel *)post_game_home_favoriteGames_app{
+    return JobsURL(@"/api/game/home/favoriteGames/app");
+}
+/// 游戏大厅喜爱的游戏-删除@DELETE
+-(URLManagerModel *)delete_game_home_favoriteGames_delete{
+    return JobsURL(@"/api/game/home/favoriteGames/delete");
+}
+/// 菲站首页- 查询游戏收藏列表 仅适用于H5端@POST
+-(URLManagerModel *)post_game_home_favoriteGames_h5{
+    return JobsURL(@"/api/game/home/favoriteGames/h5");
+}
+/// 菲站首页- 查询所有厂商提供的老虎机游戏收藏列表@POST
+-(URLManagerModel *)post_game_home_favoriteGames_query{
+    return JobsURL(@"/api/game/home/favoriteGames/query");
+}
+/// 菲站游戏大厅-模糊查询@POST
+-(URLManagerModel *)post_game_home_gameZone_fuzzyQuery{
+    return JobsURL(@"/api/game/home/gameZone/fuzzyQuery");
+}
+/// 菲站首页大厅场馆对应游戏列表-查询@POST
+-(URLManagerModel *)post_game_home_homeLobbyGame_query{
+    return JobsURL(@"/api/game/home/homeLobbyGame/query");
+}
+/// 菲站首页大厅场馆对应累加资金-查询@POST
+-(URLManagerModel *)post_game_home_jackpotsGamesFunds_query{
+    return JobsURL(@"/api/game/home/jackpotsGamesFunds/query");
+}
+/// 菲站热门游戏/百家乐/轮盘/21点-查询@POST
+-(URLManagerModel *)post_game_home_liveCasino_quer{
+    return JobsURL(@"/api/game/home/liveCasino/query");
+}
+/// 菲站首页- 受欢迎的游戏列表查询@POST
+-(URLManagerModel *)post_game_home_popularGames_query{
+    return JobsURL(@"/api/game/home/popularGames/query");
+}
+/// 菲站电子游戏页面/热门游戏及最新游戏-查询@POST
+-(URLManagerModel *)post_game_home_slot_query{
+    return JobsURL(@"/api/game/home/slot/query");
+}
+/// 前端- 查询所有厂商提供的老虎机游戏列表@POST
+-(URLManagerModel *)post_game_home_sub_list{
+    return JobsURL(@"/api/game/home/sub/list");
+}
+/// 前端- 查询所有场馆提供的游戏列表 (仅适用于H5、App端)@POST
+-(URLManagerModel *)post_api_game_home_sub_mobile{
+    return JobsURL(@"/api/game/home/sub/mobile");
+}
+#pragma mark —— 进出游戏相关接口
+/// 查询我的游戏注单详情@POST
+-(URLManagerModel *)post_game_bet_order_mybet_detail{
+    return JobsURL(@"/api/game/bet/order/mybet/detail");
+}
+/// 查询我的游戏注单@POST
+-(URLManagerModel *)post_game_bet_order_mybet_sum{
+    return JobsURL(@"/api/game/bet/order/mybet/sum");
+}
+/// 获取游戏url@POST
+-(URLManagerModel *)post_game_bet_single_wallet_jump{
+    return JobsURL(@"/api/game/bet/single-wallet/jump");
 }
 
 @end

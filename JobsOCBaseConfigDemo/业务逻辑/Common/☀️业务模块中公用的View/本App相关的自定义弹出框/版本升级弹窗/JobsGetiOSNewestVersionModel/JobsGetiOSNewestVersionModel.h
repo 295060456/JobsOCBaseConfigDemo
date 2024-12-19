@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)JobsUpdateType isForced;// 强制更新：1、是 ; 2、否
 @property(nonatomic,copy)NSString *name;// 版本名称
 @property(nonatomic,copy)NSString *remark;// 备注
-@property(nonatomic,assign)JobsTerminalType terminalType;// 终端类型 : 1、Android ; 2、iOS
+@property(nonatomic,assign)JobsOperationType terminalType;// 终端类型
 @property(nonatomic,strong)NSNumber *updateBy;
 @property(nonatomic,copy)NSString *updateTime;
 @property(nonatomic,copy)NSString *versionNumber;// 版本号

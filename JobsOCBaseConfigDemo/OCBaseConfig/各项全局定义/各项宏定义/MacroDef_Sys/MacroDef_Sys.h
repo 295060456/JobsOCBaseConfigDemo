@@ -7,7 +7,39 @@
 
 #ifndef MacroDef_Sys_h
 #define MacroDef_Sys_h
-#pragma mark —— 懒加载
+/// BaseURL
+#ifndef server_URL
+#define server_URL NSObject.BaseUrl
+#endif /* server_URL */
+/// 服务器相关
+#ifndef HTTPRequestTokenKey
+#define HTTPRequestTokenKey @"token"
+#endif /* HTTPRequestTokenKey */
+/// 签名key
+#ifndef HTTPServiceSignKey
+#define HTTPServiceSignKey @"sign"
+#endif /* HTTPServiceSignKey */
+/// 私钥key
+#ifndef HTTPServiceKey
+#define HTTPServiceKey @"privatekey"
+#endif /* HTTPServiceKey */
+/// 私钥Value
+#ifndef HTTPServiceKeyValue
+#define HTTPServiceKeyValue @"/** 你的私钥 **/"
+#endif /* HTTPServiceKeyValue */
+/// 状态码key
+#ifndef HTTPServiceResponseCodeKey
+#define HTTPServiceResponseCodeKey @"code"
+#endif /* HTTPServiceResponseCodeKey */
+/// 消息key
+#ifndef HTTPServiceResponseMsgKey
+#define HTTPServiceResponseMsgKey @"msg"
+#endif /* HTTPServiceResponseMsgKey */
+/// 数据data
+#ifndef HTTPServiceResponseDataKey
+#define HTTPServiceResponseDataKey @"data"
+#endif /* HTTPServiceResponseDataKey */
+/// 懒加载
 #ifndef Jobs_Lazy_Load_Property
 #define Jobs_Lazy_Load_Property(PropertyType, Name, InitCode) \
 - (PropertyType *)Name { \
@@ -16,7 +48,7 @@
     } return _##Name; \
 }
 #endif /* Jobs_Lazy_Load_Property */
-#pragma mark —— 用于分类定义属性Set和Get方法
+/// 用于分类定义属性Set和Get方法
 /// Key
 #ifndef JobsKey
 #define JobsKey(key) static void *key = &key;
@@ -61,7 +93,7 @@
                              (Object), \
                              OBJC_ASSOCIATION_COPY);
 #endif /* Jobs_setAssociatedCOPY */
-#pragma mark —— 二次封装分类挂载属性的set/get方法
+/// 二次封装分类挂载属性的set/get方法
 /// 对象
 #ifndef PROP_STRONG_OBJECT_TYPE
 #define PROP_STRONG_OBJECT_TYPE(type, varName, VarName) \

@@ -70,16 +70,20 @@ typedef NS_ENUM(NSInteger, JobsAppStatus) {
 };
 #endif /* JOBS_APP_STATUS_ENUM_DEFINED */
 /// 终端类型
-#ifndef JOBS_TERMINAL_TYPE_ENUM_DEFINED
-#define JOBS_TERMINAL_TYPE_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, JobsTerminalType) {
-    JobsTerminalType_Undefined = 0,/// 保留字段
-    JobsTerminalType_Android,/// 安卓平台
-    JobsTerminalType_iOS,/// iOS平台
-    JobsTerminalType_Web,/// Web平台
-    JobsTerminalType_All
+#ifndef JOBS_OPERATION_TYPE_ENUM_DEFINED
+#define JOBS_OPERATION_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, JobsOperationType) {
+    JobsOperationType_Undefined = 0, /// 未定义
+    JobsOperationType_PC, /// PC端
+    JobsOperationType_iOSNative, /// 原生iOS
+    JobsOperationType_iOSWebView, /// iOS内嵌WebView网页
+    JobsOperationType_iOSBrowser, /// iOS浏览器网页
+    JobsOperationType_AndroidNative, /// 原生Android
+    JobsOperationType_AndroidWebView, /// Android内嵌WebView网页
+    JobsOperationType_AndroidBrowser, /// Android浏览器网页
+    JobsOperationType_Unknown, /// 未知
 };
-#endif /* JOBS_TERMINAL_TYPE_ENUM_DEFINED */
+#endif /* JOBS_OPERATION_TYPE_ENUM_DEFINED */
 /// 控制器的推进方式
 #ifndef COMING_STYLE_ENUM_DEFINED
 #define COMING_STYLE_ENUM_DEFINED
@@ -193,6 +197,7 @@ typedef NS_ENUM(NSInteger, ComponentType) {
     ComponentTypeViewController/// 控制器
 };
 #endif /* MyEnums_h */
+/// 时区
 #ifndef JOBS_TimeZoneType
 #define JOBS_TimeZoneType
 typedef NS_ENUM(NSInteger, TimeZoneType) {
@@ -277,10 +282,8 @@ typedef NS_ENUM(NSInteger, PicToStrStyle) {
 #ifndef JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
 #define JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, JhtBannerViewOrientation) {
-    // 横向
-    BV_Orientation_Horizontal,
-    // 纵向
-    BV_Orientation_Vertical,
+    BV_Orientation_Horizontal,/// 横向
+    BV_Orientation_Vertical,/// 纵向
 };
 #endif /* JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED */
 /// ShadowDirection
@@ -314,38 +317,6 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
     UIBorderSideTypeRight = 1 << 3,
 };
 #endif /* UIBorderSideType_h */
-/// BaseURL
-#ifndef server_URL
-#define server_URL NSObject.BaseUrl
-#endif /* server_URL */
-/// 服务器相关
-#ifndef HTTPRequestTokenKey
-#define HTTPRequestTokenKey @"token"
-#endif /* HTTPRequestTokenKey */
-/// 签名key
-#ifndef HTTPServiceSignKey
-#define HTTPServiceSignKey @"sign"
-#endif /* HTTPServiceSignKey */
-/// 私钥key
-#ifndef HTTPServiceKey
-#define HTTPServiceKey @"privatekey"
-#endif /* HTTPServiceKey */
-/// 私钥Value
-#ifndef HTTPServiceKeyValue
-#define HTTPServiceKeyValue @"/** 你的私钥 **/"
-#endif /* HTTPServiceKeyValue */
-/// 状态码key
-#ifndef HTTPServiceResponseCodeKey
-#define HTTPServiceResponseCodeKey @"code"
-#endif /* HTTPServiceResponseCodeKey */
-/// 消息key
-#ifndef HTTPServiceResponseMsgKey
-#define HTTPServiceResponseMsgKey @"msg"
-#endif /* HTTPServiceResponseMsgKey */
-/// 数据data
-#ifndef HTTPServiceResponseDataKey
-#define HTTPServiceResponseDataKey @"data"
-#endif /* HTTPServiceResponseDataKey */
 /**
  后台定义：
  
@@ -361,9 +332,9 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
  
  【需要权限的接口】请求头加上authorization字段，值为服务器颁发的jwt令牌。令牌无感刷新，需实时更新
  */
+/// 请求数据返回的状态码、根据自己的服务端数据来
 #ifndef HTTP_RESPONSE_CODE_ENUM_DEFINED
 #define HTTP_RESPONSE_CODE_ENUM_DEFINED
-/// 请求数据返回的状态码、根据自己的服务端数据来
 typedef NS_ENUM(NSInteger, HTTPResponseCode) {
     HTTPResponseCodeServeError = 10005,/// 服务器异常
     HTTPResponseCodeSuccess = 200,/// 请求成功
@@ -378,10 +349,11 @@ typedef NS_ENUM(NSInteger, HTTPResponseCode) {
     HTTPResponseCodePhoneNumberNotExist = 1002000034,/// 手机号码不存在
     HTTPResponseCodeNoOK = 500,/// 服务器错误
     HTTPResponseCodeAccountLocked = 1002000035,/// 账户被锁
+    HTTPResponseCodeWithDrawMaintenance = 1006000014 /// 提现功能维护
     ///其他代号，展示msg内容即可
 };
 #endif /* HTTP_RESPONSE_CODE_ENUM_DEFINED */
-///
+/// 语言
 #ifndef HTTP_REQUEST_HEADER_LANGUAGE_TYPE_ENUM_DEFINED
 #define HTTP_REQUEST_HEADER_LANGUAGE_TYPE_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, HTTPRequestHeaderLanguageType) {
@@ -390,7 +362,7 @@ typedef NS_ENUM(NSInteger, HTTPRequestHeaderLanguageType) {
     HTTPRequestHeaderLanguageOther/// 其他语言
 };
 #endif /* HTTP_REQUEST_HEADER_LANGUAGE_TYPE_ENUM_DEFINED */
-///
+/// 抖音模式
 #ifndef MK_RIGHT_BTN_VIEW_BTN_TYPE_ENUM_DEFINED
 #define MK_RIGHT_BTN_VIEW_BTN_TYPE_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, MKRightBtnViewBtnType) {
@@ -399,7 +371,7 @@ typedef NS_ENUM(NSInteger, MKRightBtnViewBtnType) {
     MKRightBtnViewBtnType_shareBtn/// 分享
 };
 #endif /* MK_RIGHT_BTN_VIEW_BTN_TYPE_ENUM_DEFINED */
-///
+/// 滑动方向
 #ifndef MOVE_DIRECTION_ENUM_DEFINED
 #define MOVE_DIRECTION_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, MoveDirection){
@@ -409,7 +381,22 @@ typedef NS_ENUM(NSInteger, MoveDirection){
     MoveDirection_horizont_right   /// 水平方向(向右)滑动
 };
 #endif /* MOVE_DIRECTION_ENUM_DEFINED */
-
+/// 滚动方向
+#ifndef SCROLL_DIRECTION_ENUM_DEFINED
+#define SCROLL_DIRECTION_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, ScrollDirection) {
+    ScrollDirectionNone = 0,
+    ScrollDirectionRight,/// 右👉🏻
+    ScrollDirectionLeft,/// 左👈🏻
+    ScrollDirectionUp,/// 上面👆🏻
+    ScrollDirectionDown,/// 下面👇🏻
+    ScrollDirectionRight_UP,/// 右上👉🏻👆🏻
+    ScrollDirectionLeft_UP,/// 左上👈🏻👆🏻
+    ScrollDirectionRight_Down,/// 右下👉🏻👇🏻
+    ScrollDirectionLeft_Down,/// 左下👈🏻👇🏻
+};
+#endif /* SCROLL_DIRECTION_ENUM_DEFINED */
+///
 #ifndef JOBS_INDEX_PATH_STRUCT_DEFINED
 #define JOBS_INDEX_PATH_STRUCT_DEFINED
 typedef struct {
@@ -435,22 +422,6 @@ typedef NS_ENUM(NSInteger, JobsSearchStrategy) {
     JobsSearchStrategy_Fuzzy/// 模糊查询
 };
 #endif /* JOBS_SEARCH_STRATEGY_ENUM_DEFINED */
-/// 滚动方向
-#ifndef SCROLL_DIRECTION_ENUM_DEFINED
-#define SCROLL_DIRECTION_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, ScrollDirection) {
-    ScrollDirectionNone = 0,
-    ScrollDirectionRight,/// 右👉🏻
-    ScrollDirectionLeft,/// 左👈🏻
-    ScrollDirectionUp,/// 上面👆🏻
-    ScrollDirectionDown,/// 下面👇🏻
-    ScrollDirectionRight_UP,/// 右上👉🏻👆🏻
-    ScrollDirectionLeft_UP,/// 左上👈🏻👆🏻
-    ScrollDirectionRight_Down,/// 右下👉🏻👇🏻
-    ScrollDirectionLeft_Down,/// 左下👈🏻👇🏻
-};
-#endif /* SCROLL_DIRECTION_ENUM_DEFINED */
-
 #pragma mark —— 订单相关
 /// 时间定义
 #ifndef JOBS_ORDER_DATE_ENUM_DEFINED
@@ -635,7 +606,7 @@ typedef NS_ENUM(NSInteger, AccountStyle) {
     AccountStyle_Bank,/// 银行
 };
 #endif /* AccountStyle_DEFINED */
-
+///
 #ifndef MOVE_DIRECTION_ENUM_DEFINED
 #define MOVE_DIRECTION_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, FM_action_type){
@@ -648,7 +619,7 @@ typedef NS_ENUM(NSInteger, FM_action_type){
     M_action_type_Withdraw,   /// 提现
 };
 #endif /* MOVE_DIRECTION_ENUM_DEFINED */
-
+///
 #ifndef FMGAMELISTSTYLE
 #define FMGAMELISTSTYLE
 typedef NS_ENUM(NSInteger, FMGameListStyle){
@@ -658,10 +629,9 @@ typedef NS_ENUM(NSInteger, FMGameListStyle){
     FMGameListStyle_Fav = 3,   /// 最爱
 };
 #endif /* FMGAMELISTSTYLE */
-
+/// 广告类型
 #ifndef FMADSTYPE
 #define FMADSTYPE
-/// 广告类型
 typedef NS_ENUM(NSInteger, FMAdsType){
     FMAdsType_homeBanner = 0, /// 首页天顶轮播大Banner
     FMAdsType_ = 1, /// 导航栏4小Banner
@@ -671,10 +641,9 @@ typedef NS_ENUM(NSInteger, FMAdsType){
     FMAdsType_announcement = 5 /// 公告
 };
 #endif /* FMAFMADSTYPEdsType */
-
+/// 账号类型
 #ifndef FMACCOUNTTYPE
 #define FMACCOUNTTYPE
-/// 账号类型
 typedef NS_ENUM(NSInteger, FMAccType){
     FMAccType_ALL_MEMBER = 0, /// 所有会员
     FMAccType_DESIGNATED_MEMBER = 1, /// 指定会员
@@ -682,10 +651,9 @@ typedef NS_ENUM(NSInteger, FMAccType){
     FMAccType_DESIGNATED_AGENCY = 3, /// 指定代理线
 };
 #endif /* FMACCOUNTTYPE */
-
+/// 跳转类型
 #ifndef FMJUMPTYPE
 #define FMJUMPTYPE
-/// 跳转类型
 typedef NS_ENUM(NSInteger, FMJumpType){
     FMJumpType_DESIGNATED_GAME = 0, /// 指定游戏
     FMJumpType_STADIUM = 1, /// 场馆大厅
@@ -694,19 +662,18 @@ typedef NS_ENUM(NSInteger, FMJumpType){
     FMJumpType_NO = 4, /// 不跳转
 };
 #endif /* FMJUMPTYPE */
-/// 记录是什么触发登录操作的（登录成功继续进行流程）
+/// 跳转类型：记录是什么触发登录操作的（登录成功继续进行流程）
 #ifndef FMLOGINWORK
 #define FMLOGINWORK
-/// 跳转类型
 typedef NS_ENUM(NSInteger, FMLoginWork){
     FMLoginWork_Default = 0,
     FMLoginWork_MyFav,
     FMLoginWork_MyBank
 };
 #endif /* FMLOGINWORK */
+/// KYC状态
 #ifndef KYCSTATUS
 #define KYCSTATUS
-/// KYC状态
 typedef NS_ENUM(NSInteger, KYCStatus){
     KYCStatus_待审核 = 0,
     KYCStatus_通过,
@@ -714,19 +681,25 @@ typedef NS_ENUM(NSInteger, KYCStatus){
     KYCStatus_未提交
 };
 #endif /* KYCSTATUS */
-
+/// 提现额度
+#ifndef JOBS_WITHDRAWAL_TYPE_ENUM_DEFINED
+#define JOBS_WITHDRAWAL_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, JobsWithdrawalAmountType) {
+    JobsWithdrawalAmountType_Normal = 0, /// 普通提现
+    JobsWithdrawalAmountType_LargeAmount = 1, /// 大额提现
+};
+#endif /* JOBS_WITHDRAWAL_TYPE_ENUM_DEFINED */
+/// 是否已KYC验证
 #ifndef KYCOK
 #define KYCOK
-/// 是否已KYC验证
 typedef NS_ENUM(NSInteger, KYCok){
     KYCOK_未通过 = 0,
     KYCOK_已经通过 = 1
 };
 #endif /* KYCOK */
-
+/// 首页游戏列表名
 #ifndef HOMEBARLISTSTYLE
 #define HOMEBARLISTSTYLE
-/// 首页游戏列表名
 typedef NS_ENUM(NSInteger, HomeBarListStyle){
     HomeBarListStyle_Sports = 1001101, /// Sports 体育
     HomeBarListStyle_LiveCasino = 1001102, /// Live Casino 真人
@@ -736,27 +709,24 @@ typedef NS_ENUM(NSInteger, HomeBarListStyle){
     HomeBarListStyle_ESport = 1001106 /// ESport 电竞
 };
 #endif /* HOMEBARLISTSTYLE */
-
+/// 绑定状态
 #ifndef BINDSTYLE
 #define BINDSTYLE
-/// 绑定状态
 typedef NS_ENUM(NSInteger, BindStyle){
     NoBinded = 0,/// 未绑定
     Binded = 1/// 已绑定
 };
 #endif /* BINDSTYLE */
-
-
+/// 绑定状态
 #ifndef NEEDREALNAME
 #define NEEDREALNAME
-/// 绑定状态
 typedef NS_ENUM(NSInteger, NeedRealName){
     NEEDREALNAME_NONEED = 0,/// 不需要
     NEEDREALNAME_NEED1 = 1,/// 需要-单姓名
     NEEDREALNAME_NEEDMORE = 2/// 需要-可以多姓名
 };
 #endif /* NEEDREALNAME */
-
+/// ID 类型
 #ifndef IDTYPEENUM
 #define IDTYPEENUM
 typedef NS_ENUM(NSInteger, IdTypeEnum){
@@ -781,38 +751,34 @@ typedef NS_ENUM(NSInteger, IdTypeEnum){
     ICR_ID = 19/// Immigrant Certificate of Registration
 };
 #endif /* IDTYPEENUM */
-
+/// 活动类型：1、日常； 2、签到 ；3、存款优惠
 #ifndef ACTIVITYTYPE
 #define ACTIVITYTYPE
-/// 活动类型：1、日常； 2、签到 ；3、存款优惠
 typedef NS_ENUM(NSInteger, ActivityType){
     ACTIVITYTYPE_NORMAL = 0,/// 日常
     NEEDREALNAME_SIGNIN = 1,/// 签到
     NEEDREALNAME_DEPOSITPROMO = 2/// 存款优惠
 };
 #endif /* ACTIVITYTYPE */
-
+/// 奖励发放：1、自动发放；2、人工审核
 #ifndef REWARDDISTRIBUTIONTYPE
 #define REWARDDISTRIBUTIONTYPE
-/// 奖励发放：1、自动发放；2、人工审核
 typedef NS_ENUM(NSInteger, RewardDistributionType) {
     REWARDDISTRIBUTIONTYPE_AUTO = 1,        /// 自动发放
     REWARDDISTRIBUTIONTYPE_MANUAL = 2       /// 人工审核
 };
 #endif /* REWARDDISTRIBUTIONTYPE */
-
+/// 活动周期：1、长期有效；2、指定时间
 #ifndef ACTIVITYDURATION
 #define ACTIVITYDURATION
-/// 活动周期：1、长期有效；2、指定时间
 typedef NS_ENUM(NSInteger, ActivityDuration) {
     ACTIVITYDURATION_LONGTERM = 1,          /// 长期有效
     ACTIVITYDURATION_SPECIFIEDTIME = 2      /// 指定时间
 };
 #endif /* ACTIVITYDURATION */
-
+/// 活动分类：0、新手；1、日常；2、优惠；3、限时
 #ifndef ACTIVITYCATEGORY
 #define ACTIVITYCATEGORY
-/// 活动分类：0、新手；1、日常；2、优惠；3、限时
 typedef NS_ENUM(NSInteger, ActivityCategory) {
     ACTIVITYCATEGORY_NEWBIE = 0,            /// 新手
     ACTIVITYCATEGORY_DAILY = 1,             /// 日常
@@ -820,10 +786,9 @@ typedef NS_ENUM(NSInteger, ActivityCategory) {
     ACTIVITYCATEGORY_LIMITEDTIME = 3        /// 限时
 };
 #endif /* ACTIVITYCATEGORY */
-
+/// 活动状态：-2、删除；-1、过期；0、禁用；1、预热；2、开启
 #ifndef ACTIVITYSTATUS
 #define ACTIVITYSTATUS
-/// 活动状态：-2、删除；-1、过期；0、禁用；1、预热；2、开启
 typedef NS_ENUM(NSInteger, ActivityStatus) {
     ACTIVITYSTATUS_DELETED = -2,            /// 删除
     ACTIVITYSTATUS_EXPIRED = -1,            /// 过期
@@ -832,56 +797,50 @@ typedef NS_ENUM(NSInteger, ActivityStatus) {
     ACTIVITYSTATUS_OPEN = 2                 /// 开启
 };
 #endif /* ACTIVITYSTATUS */
-
+/// 代理线设置：1、全部参与；2、排除代理线；3、指定代理线
 #ifndef AGENTLINESETTING
 #define AGENTLINESETTING
-/// 代理线设置：1、全部参与；2、排除代理线；3、指定代理线
 typedef NS_ENUM(NSInteger, AgentLineSetting) {
     AGENTLINESETTING_ALL = 1,               /// 全部参与
     AGENTLINESETTING_EXCLUDE = 2,           /// 排除代理线
     AGENTLINESETTING_SPECIFIED = 3          /// 指定代理线
 };
 #endif /* AGENTLINESETTING */
-
+/// 是否有子游戏：1.有 0.没有
 #ifndef HASSUBSETTING
 #define HASSUBSETTING
-/// 是否有子游戏：1.有 0.没有
 typedef NS_ENUM(NSInteger, HasSubSetting) {
     HASSUBSETTING_NO = 0,     /// 没有子游戏
     HASSUBSETTING_YES = 1     /// 有子游戏
 };
 #endif /* HASSUBSETTING */
-
+/// 是否热门：0.是 1.否
 #ifndef ISHOTGAMESETTING
 #define ISHOTGAMESETTING
-/// 是否热门：0.是 1.否
 typedef NS_ENUM(NSInteger, IsHotGameSetting) {
     ISHOTGAMESETTING_HOT = 0,     /// 是热门游戏
     ISHOTGAMESETTING_NOT_HOT = 1  /// 不是热门游戏
 };
 #endif /* ISHOTGAMESETTING */
-
+/// 状态：0.开始 1.禁用
 #ifndef STATUSSETTING
 #define STATUSSETTING
-/// 状态：0.开始 1.禁用
 typedef NS_ENUM(NSInteger, StatusSetting) {
     STATUSSETTING_STARTED = 0,     /// 开始
     STATUSSETTING_DISABLED = 1     /// 禁用
 };
 #endif /* STATUSSETTING */
-
+/// 电子标签类型：1. Hot 2. New
 #ifndef ELECTRONICLABELTYPESETTING
 #define ELECTRONICLABELTYPESETTING
-/// 电子标签类型：1. Hot 2. New
 typedef NS_ENUM(NSInteger, ElectronicLabelTypeSetting) {
     ELECTRONICLABELTYPE_HOT = 1,  /// 热门
     ELECTRONICLABELTYPE_NEW = 2   /// 新品
 };
 #endif /* ELECTRONICLABELTYPESETTING */
-
+/// 用户类型设置
 #ifndef USERTYPESETTING
 #define USERTYPESETTING
-/// 用户类型设置
 typedef NS_ENUM(NSInteger, UserTypeSetting) {
     USERTYPE_REGISTER = 1,           /// 注册
     USERTYPE_LOGIN = 2,              /// 登录
@@ -896,9 +855,9 @@ typedef NS_ENUM(NSInteger, UserTypeSetting) {
     USERTYPE_BIND_E_WALLET = 11      /// 绑定电子钱包
 };
 #endif /* USERTYPESETTING */
+/// 业务来源
 #ifndef BUSINESSSOURCESETTING
 #define BUSINESSSOURCESETTING
-/// 业务来源
 typedef NS_ENUM(NSInteger, BusinessSourceSetting) {
     BUSINESSSOURCE_MEMBER = 1,  /// 会员（默认）
     BUSINESSSOURCE_AGENT = 2    /// 代理
@@ -976,6 +935,7 @@ typedef NS_ENUM(NSInteger, JobsTransactionDirection) {
     JobsTransactionDirection_Expense     /// 支出
 };
 #endif /* JOBS_TRANSACTION_DIRECTION_DEFINED */
+/// 线上支付渠道
 #ifndef FM_WALLET_TYPE_DEFINED
 #define FM_WALLET_TYPE_DEFINED
 typedef NS_ENUM(NSInteger, FMWalletType) {

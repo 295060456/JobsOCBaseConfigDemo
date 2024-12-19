@@ -9,14 +9,26 @@
 #define URLManager_h
 /// 域名列表：
 /// https://docs.google.com/spreadsheets/d/1Iijk6KwNVXMhuu5VeQXaWZhXogKnuj1Ms1V6dWmz_ik/edit?gid=0#gid=0
-/// 体育接口文档：
-/// http://16.163.191.190:8093/doc.html （URLManager@1）
-/// http://16.163.191.190:8100/api/promotion/doc.html （URLManager@2）
-/// http://16.163.191.190:8097/doc.html （URLManager@3）
-/// http://16.163.191.190:8099/doc.html （URLManager@4）
-/// http://16.163.191.190:8193/doc.html#/default/
-/// http://16.163.191.190:9201/doc.html#/default/%E5%BB%A3%E5%91%8A%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3/addUsingPOST_1
+/// H5接口文档汇总：
 /// https://docs.google.com/spreadsheets/d/19VaLjdQpYvGk_Gcfng5KhRXa9MxALuKGpNy9_3qGh4A/edit?gid=833582610#gid=833582610
+/// 体育接口文档：
+/// sports-fund:                 http://18.162.73.145:18193/doc.html ✅
+/// sports-data-sync:        http://18.162.73.145:18200/api/data/sync/doc.html
+/// sports-user:                 http://18.162.73.145:18093/doc.html ✅
+/// sports-operation:         http://18.162.73.145:18099/doc.html ✅
+/// sports-promotion:        http://18.162.73.145:18100/api/promotion/doc.html
+/// sports-risk:                   http://18.162.73.145:19205/doc.html#/home ✅
+/// sports-oms:                  http://18.162.73.145:19201/doc.html#/home ✅
+/// sports-agent:                http://18.162.73.145:18400/api/agent/doc.html
+/// sports-game:                http://18.162.73.145:18097/doc.html ✅
+
+/// http://18.162.73.145:18093/doc.html#/default （URLManager@1）
+/// http://18.162.73.145:18100/api/promotion/doc.html#/default （URLManager@2）
+/// http://18.162.73.145:18097/doc.html （URLManager@3）
+/// http://18.162.73.145:18099/doc.html#/default （URLManager@4）
+/// http://18.162.73.145:18193/doc.html#/default/ （URLManager@5）
+/// http://18.162.73.145:19201/doc.html#/home （URLManager@6）
+
 /// 接口文档会因为后端开发而同步，使用时务必进行确认
 NS_INLINE JobsNetworkingEnvir NetworkingEnvir(void) {
 //    static JobsNetworkingEnvir _networkingEnvir =  JobsNetworkingEnvir_Dev;/// 开发环境

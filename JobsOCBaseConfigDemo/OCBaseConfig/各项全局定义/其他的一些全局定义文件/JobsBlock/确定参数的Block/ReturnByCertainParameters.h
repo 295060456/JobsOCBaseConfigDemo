@@ -26,8 +26,8 @@ typedef id _Nullable(^JobsReturnIDByNotificationBlock)(NSNotification *_Nullable
 typedef id _Nullable(^JobsReturnIDByObjBlock)(NSObject *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByArrBlock)(NSArray *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByDataBlock)(NSData *_Nullable data);
-typedef id _Nullable(^JobsReturnIDByStringBlock)(NSString *_Nullable data);
-typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(NSString *_Nullable salt);
+typedef id _Nullable(^JobsReturnIDByStringBlock)(__kindof NSString *_Nullable data);
+typedef id _Nonnull(^JobsReturnIDBySaltStrBlock)(__kindof NSString *_Nullable salt);
 typedef id _Nullable(^JobsReturnIDBySELBlock)(SEL _Nullable data);
 typedef id _Nullable(^JobsReturnIDByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByDicBlock)(__kindof NSDictionary *_Nullable data);
@@ -96,9 +96,9 @@ typedef NSValue *_Nullable(^JobsReturnValueByEdgeInsetsBlock)(UIEdgeInsets
  data);
 typedef NSValue *_Nullable(^JobsReturnValueByDirectionalEdgeInsetsBlock)(NSDirectionalEdgeInsets
  data);
-typedef NSValue *_Nullable(^JobsReturnValueByOffsetBlock)(UIOffset
- data);
-
+typedef NSValue *_Nullable(^JobsReturnValueByOffsetBlock)(UIOffset data);
+#pragma mark —— 关于贝塞尔曲线
+typedef UIBezierPath *_Nullable(^JobsReturnBezierPathByCGRectBlock)(CGRect data);
 #pragma mark —— 关于按钮配置信息
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByFontBlock)(UIFont *_Nullable data);
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByButtonConfigurationBlock)(UIButtonConfiguration *_Nullable config);
@@ -139,7 +139,7 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewBySwipeGestureBlock)(UISwipeGe
 typedef __kindof UIView *_Nullable(^JobsReturnViewByPanGestureBlock)(UIPanGestureRecognizer *_Nullable gesture);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByPinchGestureBlock)(UIPinchGestureRecognizer *_Nullable gesture);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable gesture);
-#pragma mark —— 关于Layer
+#pragma mark —— 关于 Layer
 typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCALayerBlock)(CALayer *_Nullable data);
 #pragma mark —— 关于 View
 typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlock)(void);
@@ -253,6 +253,7 @@ typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayo
 
 #pragma mark —— 关于 UICollectionViewCell
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
+typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByIndexPathBlock)(NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于 UIScrollView
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray *_Nullable data);
@@ -270,7 +271,7 @@ typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByVCBlock)(_
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByWebViewBlock)(__kindof WKWebView *_Nonnull webView);
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByActionBlock)(UIAlertAction *_Nullable data);
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByStringBlock)(NSString *_Nullable data);
-#pragma mark —— 关于富文本
+#pragma mark —— 关于 富文本
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByVoidBlock)(void);
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByNSUIntegerBlock)(NSUInteger data);
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString *_Nullable data);

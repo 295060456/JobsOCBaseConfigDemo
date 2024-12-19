@@ -71,7 +71,7 @@ typedef void(^jobsByMutableSetBlock)(__kindof NSMutableSet *_Nullable data);
 typedef void(^jobsByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef void(^jobsByMutableDictionarycBlock)(__kindof NSMutableDictionary *_Nullable data);
 #pragma mark —— 关于（富）文本
-typedef void(^jobsByStringBlock)(NSString *_Nullable data);
+typedef void(^jobsByStringBlock)(__kindof NSString *_Nullable data);
 typedef void(^jobsByAttributedStringBlock)(__kindof NSAttributedString *_Nullable data);
 typedef void(^jobsByMutableParagraphStyleBlock)(NSMutableParagraphStyle *_Nullable data);
 typedef void(^jobsByTextAttachmentBlock)(NSTextAttachment *_Nullable data);

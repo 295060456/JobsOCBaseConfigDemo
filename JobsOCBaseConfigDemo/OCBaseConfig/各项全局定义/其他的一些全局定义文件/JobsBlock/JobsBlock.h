@@ -209,6 +209,9 @@ typedef __kindof FMDoorModel *_Nullable(^JobsReturnDoorModelByGTCaptcha4ModelBlo
 @class FMNameModel;
 typedef void(^jobsByNameModelBlock)(__kindof FMNameModel *_Nullable model);
 
+@class FMWithDrawModel;
+typedef void(^jobsByWithDrawModelBlock)(__kindof FMWithDrawModel *_Nullable model);
+
 @class JobsTimeModel;
 typedef void(^jobsByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);
 typedef NSString *_Nullable(^JobsReturnStringByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);
