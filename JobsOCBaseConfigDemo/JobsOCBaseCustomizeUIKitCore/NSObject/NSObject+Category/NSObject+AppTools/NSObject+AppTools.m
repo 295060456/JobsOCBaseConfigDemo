@@ -64,7 +64,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 }
 #pragma mark —— 一些公共设置
 /// HTML 必要标签
-- (__kindof NSArray<NSString *> *)requiredHTMLTags{
+- (__kindof NSMutableArray<NSString *> *)requiredHTMLTags{
     return jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable arr) {
         arr.add(@"<html>").add(@"</html>");
         arr.add(@"<head>").add(@"</head>");

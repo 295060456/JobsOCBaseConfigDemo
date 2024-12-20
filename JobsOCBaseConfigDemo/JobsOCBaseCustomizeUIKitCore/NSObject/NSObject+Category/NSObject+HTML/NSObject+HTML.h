@@ -11,8 +11,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (HTML)
 
--(jobsByStringBlock _Nonnull)formatAndPrintHTML;
-
 @end
 
 NS_ASSUME_NONNULL_END

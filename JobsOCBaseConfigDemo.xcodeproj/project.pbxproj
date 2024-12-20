@@ -117,7 +117,6 @@
 		84A9112E2CFF1A85003BD1CB /* UIStackView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9112C2CFF1A85003BD1CB /* UIStackView+Extra.m */; };
 		84A978592D1453980002A2BA /* HTMLDocument+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A978572D1453980002A2BA /* HTMLDocument+Extra.m */; };
 		84A9785D2D14539E0002A2BA /* NSXMLParser+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9785B2D14539E0002A2BA /* NSXMLParser+Extra.m */; };
-		84A978612D1454320002A2BA /* HTMLFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9785F2D1454320002A2BA /* HTMLFormatter.m */; };
 		84A978652D1454630002A2BA /* NSObject+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A978632D1454630002A2BA /* NSObject+HTML.m */; };
 		84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60B92CA82C2D006D67A7 /* NSArray+Safety.m */; };
 		84B1BA202CEDCA2A0001562D /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA002CEDC9410001562D /* FSCalendar.m */; };
@@ -1477,8 +1476,6 @@
 		84A978572D1453980002A2BA /* HTMLDocument+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HTMLDocument+Extra.m"; sourceTree = "<group>"; };
 		84A9785A2D14539E0002A2BA /* NSXMLParser+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSXMLParser+Extra.h"; sourceTree = "<group>"; };
 		84A9785B2D14539E0002A2BA /* NSXMLParser+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSXMLParser+Extra.m"; sourceTree = "<group>"; };
-		84A9785E2D1454320002A2BA /* HTMLFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLFormatter.h; sourceTree = "<group>"; };
-		84A9785F2D1454320002A2BA /* HTMLFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLFormatter.m; sourceTree = "<group>"; };
 		84A978622D1454630002A2BA /* NSObject+HTML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+HTML.h"; sourceTree = "<group>"; };
 		84A978632D1454630002A2BA /* NSObject+HTML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HTML.m"; sourceTree = "<group>"; };
 		84AA8F462CE330310004501A /* JobsMakes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMakes.h; sourceTree = "<group>"; };
@@ -4931,15 +4928,6 @@
 				84A9785B2D14539E0002A2BA /* NSXMLParser+Extra.m */,
 			);
 			path = NSXMLParser;
-			sourceTree = "<group>";
-		};
-		84A978602D1454320002A2BA /* HTMLFormatter */ = {
-			isa = PBXGroup;
-			children = (
-				84A9785E2D1454320002A2BA /* HTMLFormatter.h */,
-				84A9785F2D1454320002A2BA /* HTMLFormatter.m */,
-			);
-			path = HTMLFormatter;
 			sourceTree = "<group>";
 		};
 		84A978642D1454630002A2BA /* NSObject+HTML */ = {
@@ -11480,7 +11468,6 @@
 		CE5A61842CA82C2D006D67A7 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
-				84A978602D1454320002A2BA /* HTMLFormatter */,
 				84E401412CC60E7100C8303A /* This */,
 				CE5A61522CA82C2D006D67A7 /* JobsModel */,
 				CE5A61582CA82C2D006D67A7 /* 雪花算法 */,
@@ -17025,7 +17012,6 @@
 				CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */,
 				CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */,
 				CE260F472CAE671C00233F0F /* NSString+Time.m in Sources */,
-				84A978612D1454320002A2BA /* HTMLFormatter.m in Sources */,
 				8461A4FA2D08040E0081C41D /* NSObject+RAC.m in Sources */,
 				CE260F482CAE671C00233F0F /* NSString+FilteringSpecialCharacters.m in Sources */,
 				CE260F492CAE671C00233F0F /* NSString+Path.m in Sources */,

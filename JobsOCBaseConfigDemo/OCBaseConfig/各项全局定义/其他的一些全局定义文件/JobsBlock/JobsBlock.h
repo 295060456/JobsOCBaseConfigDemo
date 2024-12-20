@@ -218,9 +218,6 @@ typedef NSString *_Nullable(^JobsReturnStringByTimeModelBlock)(__kindof JobsTime
 typedef JobsTimeModel *_Nullable(^JobsReturnTimeModelByIntegerBlock)(NSInteger timeSec);
 typedef JobsTimeModel *_Nullable(^JobsReturnTimeModelByStringBlock)(NSString *_Nullable dateFormat);
 
-@class HTMLFormatter;
-typedef void(^jobsByHTMLFormatterBlock)(__kindof HTMLFormatter *_Nullable formatter);
-
 @class VideoModel_Core;
 typedef void(^jobsByVideoModelCoreBlock)(__kindof VideoModel_Core *_Nullable data);
 

@@ -11,7 +11,6 @@
 #import "HTMLReader.h"
 #endif
 
-#import "HTMLDocument+Extra.h"
 #import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HTMLDocument (Extra)
 
 +(JobsReturnHTMLDocumentByStringBlock _Nonnull)initBy;
+/// 提取 HTML 里面的有效文字内容
++(JobsReturnStringByStringBlock _Nonnull)formatHTML;
 
 @end
 

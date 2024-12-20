@@ -58,7 +58,7 @@ AppToolsProtocol
 -(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
 /// HTML 必要标签
-- (__kindof NSArray<NSString *> *)requiredHTMLTags;
+- (__kindof NSMutableArray<NSString *> *)requiredHTMLTags;
 /// HTML 标签
 -(__kindof NSArray <__kindof NSString *>*)htmlTags;
 /// 选择电话号码区位

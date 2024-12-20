@@ -35,8 +35,6 @@
 #import "JobsTuple.h"
 
 #import "JobsModel.h"
-/// 格式化 HTML 字符串
-#import "HTMLFormatter.h"
 
 #pragma mark —— Category【3rd】
 /// 平替UIPickerView
