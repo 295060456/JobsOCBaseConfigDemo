@@ -106,6 +106,12 @@
 #import "ZMJTipView.h"
 #endif
 
+#if __has_include(<SocketRocket/SocketRocket.h>)
+#import <SocketRocket/SocketRocket.h>
+#else
+#import "SocketRocket.h"
+#endif
+
 //#if __has_include(<VerifyCode/NTESVerifyCodeManager.h>)
 //#import <VerifyCode/NTESVerifyCodeManager.h>
 //#else

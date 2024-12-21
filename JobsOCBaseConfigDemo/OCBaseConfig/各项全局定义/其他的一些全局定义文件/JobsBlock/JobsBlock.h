@@ -369,6 +369,9 @@ typedef void(^jobsByMJRefreshFooterBlock)(MJRefreshFooter *_Nullable view);
 typedef LOTAnimationMJRefreshHeader *_Nonnull(^JobsReturnLOTAnimationMJRefreshHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
 typedef void(^jobsByLOTAnimationMJRefreshHeaderBlock)(LOTAnimationMJRefreshHeader *_Nullable view);
 
+@class SRWebSocket;
+typedef SRWebSocket *_Nonnull(^JobsReturnSRWebSocketByNSURLRequestBlock)(NSURLRequest *_Nullable webSocket);
+
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByVoidBlock)(void);
 typedef void(^jobsByRACDisposableBlock)(RACDisposable *_Nullable data);

@@ -10,12 +10,30 @@
 #import "DefineConstString.h" /// 常量字符串的定义
 #import "JobsBlock.h"
 
-#define GETMethod httpMethod(YTKRequestMethodGET);
-#define POSTMethod httpMethod(YTKRequestMethodPOST);
-#define PUTMethod httpMethod(YTKRequestMethodPUT);
-#define DELETEMethod httpMethod(YTKRequestMethodDELETE);
-#define PATCHMethod httpMethod(YTKRequestMethodPATCH);
-#define HEADMethod httpMethod(YTKRequestMethodHEAD);
+#ifndef GETMethod
+#define GETMethod httpMethod(YTKRequestMethodGET)
+#endif
+
+#ifndef POSTMethod
+#define POSTMethod httpMethod(YTKRequestMethodPOST)
+#endif
+
+#ifndef PUTMethod
+#define PUTMethod httpMethod(YTKRequestMethodPUT)
+#endif
+
+#ifndef DELETEMethod
+#define DELETEMethod httpMethod(YTKRequestMethodDELETE)
+#endif
+
+#ifndef PATCHMethod
+#define PATCHMethod httpMethod(YTKRequestMethodPATCH)
+#endif
+
+#ifndef HEADMethod
+#define HEADMethod httpMethod(YTKRequestMethodHEAD)
+#endif
+
 
 NS_INLINE void JobsPrintURLRequest(NSURLRequest *_Nonnull request){
     if (!request) return;
@@ -54,6 +72,7 @@ NS_INLINE NSString * _Nullable httpMethod(YTKRequestMethod method){
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSURLRequest (Extra)
++(JobsReturnURLRequestByURLBlock _Nonnull)initBy;
 /// 打印NSURLRequest有效内容，并转化为NSMutableURLRequest对外输出
 -(JobsReturnMutableURLRequestByVoidBlock _Nonnull)print;
 

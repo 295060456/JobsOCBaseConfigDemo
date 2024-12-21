@@ -139,6 +139,10 @@
 		84B58BED2D115A4D0034C49D /* UIImpactFeedbackGenerator+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58BEB2D115A4D0034C49D /* UIImpactFeedbackGenerator+Extra.m */; };
 		84B8A9542D0ACE220079336D /* UIEditMenuInteraction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8A9522D0ACE220079336D /* UIEditMenuInteraction+Extra.m */; };
 		84B8A9582D0ACECE0079336D /* UITextItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8A9562D0ACECE0079336D /* UITextItem+Extra.m */; };
+		84B9C32F2D16C2B4002FE9F5 /* SocketRocketUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1C422CA82510002AF25B /* SocketRocketUtility.m */; };
+		84B9C3332D16C32F002FE9F5 /* SRWebSocket+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B9C3312D16C32F002FE9F5 /* SRWebSocket+Extra.m */; };
+		84B9C3372D16C372002FE9F5 /* NSString+ID.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B9C3352D16C372002FE9F5 /* NSString+ID.m */; };
+		84B9C33B2D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B9C3392D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
@@ -1521,6 +1525,13 @@
 		84B8A9522D0ACE220079336D /* UIEditMenuInteraction+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIEditMenuInteraction+Extra.m"; sourceTree = "<group>"; };
 		84B8A9552D0ACECE0079336D /* UITextItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextItem+Extra.h"; sourceTree = "<group>"; };
 		84B8A9562D0ACECE0079336D /* UITextItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextItem+Extra.m"; sourceTree = "<group>"; };
+		84B9C3302D16C32F002FE9F5 /* SRWebSocket+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SRWebSocket+Extra.h"; sourceTree = "<group>"; };
+		84B9C3312D16C32F002FE9F5 /* SRWebSocket+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SRWebSocket+Extra.m"; sourceTree = "<group>"; };
+		84B9C3342D16C372002FE9F5 /* NSString+ID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ID.h"; sourceTree = "<group>"; };
+		84B9C3352D16C372002FE9F5 /* NSString+ID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ID.m"; sourceTree = "<group>"; };
+		84B9C3382D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewLayoutAttributes+Extra.h"; sourceTree = "<group>"; };
+		84B9C3392D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewLayoutAttributes+Extra.m"; sourceTree = "<group>"; };
+		84B9C33C2D16C43C002FE9F5 /* TMSCollectionViewLayoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMSCollectionViewLayoutDelegate.h; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
 		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
@@ -3774,6 +3785,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				84B9C3322D16C32F002FE9F5 /* SRWebSocket */,
 				84A978582D1453980002A2BA /* HTMLDocument */,
 				8461A4F42D0801370081C41D /* SZTextView */,
 				8478DF612D04172C004E8B90 /* HXPhotoManager */,
@@ -5023,6 +5035,33 @@
 			path = UITextItem;
 			sourceTree = "<group>";
 		};
+		84B9C3322D16C32F002FE9F5 /* SRWebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				84B9C3302D16C32F002FE9F5 /* SRWebSocket+Extra.h */,
+				84B9C3312D16C32F002FE9F5 /* SRWebSocket+Extra.m */,
+			);
+			path = SRWebSocket;
+			sourceTree = "<group>";
+		};
+		84B9C3362D16C372002FE9F5 /* NSString+ID */ = {
+			isa = PBXGroup;
+			children = (
+				84B9C3342D16C372002FE9F5 /* NSString+ID.h */,
+				84B9C3352D16C372002FE9F5 /* NSString+ID.m */,
+			);
+			path = "NSString+ID";
+			sourceTree = "<group>";
+		};
+		84B9C33A2D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				84B9C3382D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.h */,
+				84B9C3392D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m */,
+			);
+			path = UICollectionViewLayoutAttributes;
+			sourceTree = "<group>";
+		};
 		84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5299,6 +5338,7 @@
 		CE260F432CAE671C00233F0F /* NSString+Category */ = {
 			isa = PBXGroup;
 			children = (
+				84B9C3362D16C372002FE9F5 /* NSString+ID */,
 				8461A4FE2D0804990081C41D /* NSString+Reachability */,
 				8461A5012D0804990081C41D /* NSString+Menu */,
 				8461D32F2CF1BC8600446E4F /* NSString+NSUserDefaults */,
@@ -6167,6 +6207,7 @@
 		CE4F1C402CA82510002AF25B /* WalletLayout */ = {
 			isa = PBXGroup;
 			children = (
+				84B9C33C2D16C43C002FE9F5 /* TMSCollectionViewLayoutDelegate.h */,
 				CE4F1C372CA82510002AF25B /* TMSCollectionViewLayout */,
 				CE4F1C3A2CA82510002AF25B /* TMSWalletCollectionReusableView */,
 				CE4F1C3D2CA82510002AF25B /* TMSWalletCollectionViewCell */,
@@ -13953,6 +13994,7 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				84B9C33A2D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes */,
 				84A9785C2D14539E0002A2BA /* NSXMLParser */,
 				84B58BEC2D115A4D0034C49D /* UIImpactFeedbackGenerator */,
 				84EB570E2D102C7700AC56B0 /* NSSet */,
@@ -16435,6 +16477,8 @@
 				CE5A65242CA83155006D67A7 /* BaseImageView.m in Sources */,
 				CE61AD5A2C9EAB26002DF138 /* JobsNetworkingAPI+DemoTestApi.m in Sources */,
 				CE5A65D22CA833E6006D67A7 /* JobsImageNumberView.m in Sources */,
+				84B9C3332D16C32F002FE9F5 /* SRWebSocket+Extra.m in Sources */,
+				84B9C33B2D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m in Sources */,
 				84A9112A2CFF1A0E003BD1CB /* NSObject+Path.m in Sources */,
 				CE5A65D32CA833E6006D67A7 /* JobsImageNumberViewCVCell.m in Sources */,
 				CECE7E932C450E5B00764AF5 /* WebSocket.m in Sources */,
@@ -16443,6 +16487,7 @@
 				CE5A64702CA82C65006D67A7 /* NSValue+Extra.m in Sources */,
 				CE4F2A6B2CA829A3002AF25B /* JobsGetiOSNewestVersionModel.m in Sources */,
 				CE5A64ED2CA83058006D67A7 /* NSURL+Others.m in Sources */,
+				84B9C32F2D16C2B4002FE9F5 /* SocketRocketUtility.m in Sources */,
 				CEB8FA5F2CA837BF00CCFDF8 /* UIImage+Base85.m in Sources */,
 				CEB8FA602CA837BF00CCFDF8 /* NSString+Base85.m in Sources */,
 				CEB8FA612CA837BF00CCFDF8 /* NSData+Base85.m in Sources */,
@@ -16999,6 +17044,7 @@
 				CE4F28052CA825CD002AF25B /* ZMJClassDataVC.m in Sources */,
 				CE4F28062CA825CD002AF25B /* VideoModel.m in Sources */,
 				CE4F28072CA825CD002AF25B /* CoreTextLearningVC.m in Sources */,
+				84B9C3372D16C372002FE9F5 /* NSString+ID.m in Sources */,
 				CE5A64A72CA82E7A006D67A7 /* JobsSnowflake.m in Sources */,
 				CE4F28082CA825CD002AF25B /* JobsIMVC.m in Sources */,
 				CE4F28092CA825CD002AF25B /* CXBVC.m in Sources */,

@@ -22,7 +22,7 @@
 #  ]
 #}
 
-# plugin 'cocoapods-repo-update'
+#plugin 'cocoapods-repo-update'
 
 ## 指明依赖库的来源地址
 #source 'https://cdn.cocoapods.org/'
@@ -64,13 +64,13 @@ end
 # 几乎每个App都会用到的
 def appCommon
 #  pod 'JobsBlock' # https://github.com/295060456/JobsBlock
-  pod 'FTroulette' # https://github.com/520coding/FTdashboad
+  pod 'FTroulette' # https://github.com/520coding/FTdashboad 一个仪表盘
   pod 'UITextView+Placeholder' # https://github.com/devxoul/UITextView-Placeholder A missing placeholder for UITextView.
   pod 'XYColorOC' # https://github.com/RayJiang16/XYColor 适配iOS 13夜间模式/深色外观(Dark Mode)
   pod 'IQKeyboardManager' # https://github.com/hackiftekhar/IQKeyboardManager Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more.
   pod 'Masonry' # https://github.com/SnapKit/Masonry NO_SMP
 #  pod 'SDAutoLayout' # https://github.com/gsdios/SDAutoLayout
-#  pod 'AFNetworking' # https://github.com/AFNetworking/AFNetworking YES_SMP ⚠️作者停止维护
+  pod 'AFNetworking' # https://github.com/AFNetworking/AFNetworking YES_SMP ⚠️作者停止维护
   pod 'Reachability'  # https://github.com/tonymillion/Reachability 检查联网情况 NO_SMP
   pod 'ReactiveObjC' # https://github.com/ReactiveCocoa/ReactiveObjC NO_SMP
   pod 'XZMRefresh' # https://github.com/xiezhongmin/XZMRefresh 横向刷新
@@ -83,8 +83,9 @@ def appCommon
   pod 'TABAnimated' # https://github.com/tigerAndBull/TABAnimated
   pod 'HXRotationTool' # https://github.com/TheLittleBoy/HXRotationTool 屏幕旋转
   pod 'YTKNetwork' # https://github.com/yuantiku/YTKNetwork
-#  pod 'ZBNetworking', :git =>
-  pod "HTMLReader" # https://github.com/nolanw/HTMLReader 处理 HTML 语法'https://github.com/Suzhibin/ZBNetworking.git' # https://github.com/Suzhibin/ZBNetworking
+  pod "HTMLReader" # https://github.com/nolanw/HTMLReader 处理 HTML 语法
+  pod 'SocketRocket' # https://github.com/facebookincubator/SocketRocket
+#  pod 'ZBNetworking', :git => 'https://github.com/Suzhibin/ZBNetworking.git' # https://github.com/Suzhibin/ZBNetworking
 end
 ## GK一族
 def gk
@@ -193,12 +194,12 @@ end
 # 基础的公共配置
 def cocoPodsConfig
   # ❤️新工程需要修改这里❤️
-  target 'JobsOCBaseConfigDemoTests' do
+  target 'FMTests' do
     inherit! :search_paths # abstract! 指示当前的target是抽象的，因此不会直接链接Xcode target。与其相对应的是 inherit！
     # Pods for testing
   end
   # ❤️新工程需要修改这里❤️
-  target 'JobsOCBaseConfigDemoUITests' do
+  target 'FMUITests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -254,8 +255,8 @@ def cocoPodsConfig
   end
 end
 # ❤️新工程需要修改这里❤️
-target 'JobsOCBaseConfigDemo' do
-  # Pods for JobsOCBaseConfigDemo
+target 'FM' do
+  # Pods for FM
 #  testApp # 单元测试框架
   longConnection # 长链接框架
   debugPods # 调试框架

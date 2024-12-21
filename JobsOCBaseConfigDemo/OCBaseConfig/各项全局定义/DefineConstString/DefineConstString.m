@@ -83,6 +83,14 @@ NSString *const 俄语字母 = @"АБВГДЕЁЖЗИЙКЛМНОПРСТУФХ�
 NSString *const 汉语拼音 = @"āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜüêɑńňɡㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩ";
 NSString *const 中文字符 = @"零壹贰叁肆伍陆柒捌玖拾佰仟万亿吉太拍艾分厘毫微卍卐卄巜弍弎弐朤氺曱甴囍兀々〆のぁ〡〢〣〤〥〦〧〨〩㊎㊍㊌㊋㊏㊚㊛㊐㊊㊣㊤㊥㊦㊧㊨㊒㊫㊑㊓㊔㊕㊖㊗㊘㊜㊝㊞㊟㊠㊡㊢㊩㊪㊬㊭㊮㊯㊰㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉";
 NSString *const 日文平假名和片假名 = @"ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾヿ゠ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ";
+/// TMSCollectionView
+NSString * const TMSCollectionViewSectionHeader = @"NTCollectionViewSectionHeader";
+NSString * const TMSCollectionViewSectionFooter = @"NTCollectionViewSectionFooter";
+/// WebSocket
+NSString * const kNeedPayOrderNote               = @"kNeedPayOrderNote";
+NSString * const kWebSocketDidOpenNote           = @"kWebSocketDidOpenNote";
+NSString * const kWebSocketDidCloseNote          = @"kWebSocketDidCloseNote";
+NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageNote";
 /// 默认占位
 NSString *const 主标题文字默认占位内容;
 NSString *const 副标题文字默认占位内容;

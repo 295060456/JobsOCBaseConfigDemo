@@ -171,6 +171,8 @@
 #import "UIImpactFeedbackGenerator+Extra.h"
 #pragma mark —— NSXMLParser
 #import "NSXMLParser+Extra.h"
+#pragma mark —— UICollectionViewLayoutAttributes
+#import "UICollectionViewLayoutAttributes+Extra.h"
 
 #import "JobsMakes.h"
 

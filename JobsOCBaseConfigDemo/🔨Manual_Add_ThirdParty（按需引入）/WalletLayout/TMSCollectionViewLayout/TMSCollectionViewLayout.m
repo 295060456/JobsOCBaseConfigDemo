@@ -8,9 +8,6 @@
 
 #import "TMSCollectionViewLayout.h"
 
-NSString * const TMSCollectionViewSectionHeader = @"NTCollectionViewSectionHeader";
-NSString * const TMSCollectionViewSectionFooter = @"NTCollectionViewSectionFooter";
-
 static CGFloat const itemH = 76; // cell高度
 static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距离
 
@@ -25,11 +22,11 @@ static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距�
 @end
 
 @implementation TMSCollectionViewLayout
-
+#pragma mark —— 覆写 UICollectionViewLayout 父类方法
 -(void)prepareLayout {
     [super prepareLayout];
     [self.attrubutesArray removeAllObjects];
-    NSInteger section = [self.collectionView numberOfSections];
+    NSInteger section = self.collectionView.numberOfSections;
     for (NSInteger i = 0; i < section; i++) {
         NSInteger itemsCount = [self.collectionView numberOfItemsInSection:i];
         UICollectionViewLayoutAttributes *headerAttributes = [self layoutAttributesForSupplementaryViewOfKind:TMSCollectionViewSectionHeader
@@ -52,7 +49,7 @@ static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距�
 }
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewLayoutAttributes *attribute = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+    UICollectionViewLayoutAttributes *attribute = UICollectionViewLayoutAttributes.initBy(indexPath);
     UICollectionViewLayoutAttributes *lastAttributes = self.attrubutesArray.lastObject;
     attribute.zIndex = indexPath.item * 2;
     CGRect frame;
@@ -66,21 +63,19 @@ static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距�
 
 -(UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind
                                                                     atIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+    UICollectionViewLayoutAttributes *attributes = elementKind.initCollectionViewLayoutAttributesForSupplementaryViewBy(indexPath);
     UICollectionViewLayoutAttributes *lastAttributes = self.attrubutesArray.lastObject;
     CGRect frame;
     if([elementKind isEqual:TMSCollectionViewSectionHeader]){
         CGFloat headerViewH = [self.layout_delegate collectionView:self.collectionView resuableHeaderViewHeightForIndexPath:indexPath];
         if (headerViewH <= 0) {
             return nil;
-        }
-        frame.size = CGSizeMake(JobsMainScreen_WIDTH(), headerViewH);
+        }frame.size = CGSizeMake(JobsMainScreen_WIDTH(), headerViewH);
     } else {
         CGFloat footerViewH = [self.layout_delegate collectionView:self.collectionView resuableFooterViewHeightForIndexPath:indexPath];
         if (footerViewH <= 0) {
             return nil;
-        }
-        frame.size = CGSizeMake(JobsMainScreen_WIDTH(), footerViewH);
+        }frame.size = CGSizeMake(JobsMainScreen_WIDTH(), footerViewH);
     }
     frame.origin = CGPointMake(0, CGRectGetMaxY(lastAttributes.frame));
     attributes.frame = frame;
@@ -99,6 +94,11 @@ static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距�
     return self.attrubutesArray;
 }
 
+//- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
+//    return YES;
+//}
+#pragma mark —— 一些公有方法
+/// 点击item
 -(void)didClickWithIndexPath:(NSIndexPath *)clickIndexPath isExpand:(BOOL)isExpand {
     self.isExpand = isExpand;
     self.clickIndexPath = self.isExpand ? clickIndexPath : nil;
@@ -115,10 +115,6 @@ static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距�
 //        [self invalidateLayout];
 //    }];
 }
-
-//- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
-//    return YES;
-//}
 #pragma mark —— lazyLoad
 -(NSMutableArray<UICollectionViewLayoutAttributes *> *)attrubutesArray{
     if (!_attrubutesArray) {

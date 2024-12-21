@@ -15,7 +15,6 @@
 @end
 
 @implementation TMSWalletCollectionViewCell
-
 @synthesize viewModel = _viewModel;
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
@@ -32,8 +31,7 @@
     if (!cell) {
         collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class,@"");
         cell = (TMSWalletCollectionViewCell *)[collectionView collectionViewCellClass:TMSWalletCollectionViewCell.class forIndexPath:indexPath];
-    }
-    cell.indexPath = indexPath;
+    }cell.indexPath = indexPath;
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -58,7 +56,10 @@
                 make.top.equalTo(self.contentView).offset(20);
             }];
         });
-    }_titleLabel.text = [NSString stringWithFormat:@"indexPath:%zd--%zd selected:%@", self.indexPath.section,self.indexPath.row,self.viewModel.jobsSelected ? @"YES" : @"NO"];
+    }_titleLabel.text = [NSString stringWithFormat:@"indexPath:%zd--%zd selected:%@",
+                         self.indexPath.section,
+                         self.indexPath.row,
+                         self.viewModel.jobsSelected ? @"YES" : @"NO"];
     return _titleLabel;
 }
 

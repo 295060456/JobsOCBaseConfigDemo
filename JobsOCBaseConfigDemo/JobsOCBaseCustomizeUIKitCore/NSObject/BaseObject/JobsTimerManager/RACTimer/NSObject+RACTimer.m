@@ -71,12 +71,27 @@
 -(RACDisposable *_Nonnull)delay:(NSTimeInterval)delay
                       heartbeat:(NSTimeInterval)heartbeat
                         doBlock:(jobsByVoidBlock _Nullable)doBlock{
-    RACSignal *initialDelay = [[RACSignal return:@(YES)] delay:delay];
-    RACSignal *intervalSignal = [RACSignal interval:heartbeat onScheduler:RACScheduler.mainThreadScheduler];
+    RACSignal *initialDelay = [[RACSignal return:@(YES)] delay:delay];/// 创建初次执行的信号
+    RACSignal *intervalSignal = [RACSignal interval:heartbeat onScheduler:RACScheduler.mainThreadScheduler];/// 创建心跳间隔信号
     RACSignal *combinedSignal = [[initialDelay concat:intervalSignal] takeUntil:self.rac_willDeallocSignal];
     return [combinedSignal subscribeNext:^(id x) {
         JobsLog(@"分段式计时器触发");
         if(doBlock) doBlock();
+    }];
+}
+/// 先执行一次任务再根据 heartbeat 的频率执行
+-(RACDisposable *_Nonnull)delay:(NSTimeInterval)delay
+                    byHeartbeat:(NSTimeInterval)heartbeat
+                        doBlock:(jobsByVoidBlock _Nullable)doBlock{
+    RACSignal *initialDelay = [[RACSignal return:@(YES)] delay:delay];/// 创建初次执行的信号
+    RACSignal *intervalSignal = [RACSignal interval:heartbeat onScheduler:RACScheduler.mainThreadScheduler];/// 创建心跳间隔信号
+    
+    RACSignal *combinedSignal = [[[initialDelay concat:[RACSignal return:@(YES)]]
+                                  concat:intervalSignal] takeUntil:self.rac_willDeallocSignal];/// 合并信号，使得第一个信号执行一次任务
+    /// 订阅信号并执行任务
+    return [combinedSignal subscribeNext:^(id x) {
+        JobsLog(@"分段式计时器触发");
+        if (doBlock) doBlock();
     }];
 }
 #pragma mark —— 停止定时器

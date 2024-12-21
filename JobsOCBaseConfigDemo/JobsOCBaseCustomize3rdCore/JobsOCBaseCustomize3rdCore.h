@@ -60,6 +60,12 @@
 #import "HTMLReader.h"
 #endif
 
+#if __has_include(<SocketRocket/SocketRocket.h>)
+#import <SocketRocket/SocketRocket.h>
+#else
+#import "SocketRocket.h"
+#endif
+
 #import "AFSecurityPolicy+Extra.h"
 #import "IQKeyboardManager+Extra.h"
 #import "Reachability+Extra.h"
@@ -67,6 +73,7 @@
 #import "HXPhotoManager+Extra.h"
 #import "SZTextView+Extra.h"
 #import "HTMLDocument+Extra.h"
+#import "SRWebSocket+Extra.h"
 
 #endif /* JobsOCBaseCustomize3rdCore_h */
 

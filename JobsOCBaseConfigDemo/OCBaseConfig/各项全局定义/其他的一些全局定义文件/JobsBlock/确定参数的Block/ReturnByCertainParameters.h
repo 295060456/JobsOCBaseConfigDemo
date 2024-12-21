@@ -7,7 +7,6 @@
 
 #ifndef ReturnByCertainParameters_h
 #define ReturnByCertainParameters_h
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
 #import <JavaScriptCore/JavaScriptCore.h>
@@ -253,7 +252,8 @@ typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCls_SaltSt
 #pragma mark —— 关于 UICollectionView
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByLayoutBlock)(__kindof UICollectionViewLayout *_Nullable data);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable data);
-
+#pragma mark —— 关于 UICollectionViewLayoutAttributes
+typedef __kindof UICollectionViewLayoutAttributes *_Nullable(^JobsReturnCollectionViewLayoutAttributesByNSIndexPathBlock)(__kindof NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于 UICollectionViewCell
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByIndexPathBlock)(NSIndexPath *_Nullable indexPath);

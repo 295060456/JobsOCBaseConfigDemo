@@ -8,6 +8,7 @@
 #ifndef WalletLayout_h
 #define WalletLayout_h
 
+#import "TMSCollectionViewLayoutDelegate.h"
 #import "TMSCollectionViewLayout.h"
 #import "TMSWalletCollectionReusableView.h"
 #import "TMSWalletCollectionViewCell.h"

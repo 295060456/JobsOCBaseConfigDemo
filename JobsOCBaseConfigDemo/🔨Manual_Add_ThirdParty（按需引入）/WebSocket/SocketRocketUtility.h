@@ -7,32 +7,35 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <SocketRocket.h>
 #import "MacroDef_Notification.h"
+#import "JobsBlock.h"
 #import "NSString+Others.h"
+#import "DefineConstString.h" /// 常量字符串的定义
+#import "NSObject+RACTimer.h"
+#import "NSString+Conversion.h"
 
-#define dispatch_main_async_safe(block)\
-if (NSThread.isMainThread) {\
-block();\
-} else {\
-dispatch_async(dispatch_get_main_queue(), block);\
-}
+#if __has_include(<SocketRocket/SocketRocket.h>)
+#import <SocketRocket/SocketRocket.h>
+#else
+#import "SocketRocket.h"
+#endif
 
-extern NSString * const kNeedPayOrderNote;
-extern NSString * const kWebSocketDidOpenNote;
-extern NSString * const kWebSocketDidCloseNote;
-extern NSString * const kWebSocketdidReceiveMessageNote;
+#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
+#import <ReactiveObjC/ReactiveObjC.h>
+#else
+#import "ReactiveObjC.h"
+#endif
 
 @interface SocketRocketUtility : NSObject<SRWebSocketDelegate>
-/** 获取连接状态 */
+/// 获取连接状态
 @property(nonatomic,assign,readonly)SRReadyState socketReadyState;
-/** 开始连接 */
--(void)SRWebSocketOpenWithURLString:(NSString *)urlString;
-/** 关闭连接 */
--(void)SRWebSocketClose;
-/** 发送数据 */
--(void)sendData:(id)data;
 
 +(SocketRocketUtility *)instance;
+/// 开始连接
+-(jobsByStringBlock _Nonnull)SRWebSocketOpenWithURLString;
+/// 关闭连接
+-(void)SRWebSocketClose;
+/// 发送数据
+-(jobsByIDBlock _Nonnull)sendData;
 
 @end
