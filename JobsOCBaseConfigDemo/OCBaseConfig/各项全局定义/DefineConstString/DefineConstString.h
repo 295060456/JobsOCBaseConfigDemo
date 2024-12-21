@@ -10,6 +10,8 @@
 FOUNDATION_EXTERN NSString *_Nonnull const 应用程序的发布版本号;
 FOUNDATION_EXTERN NSString *_Nonnull const APP编译构建的版本号;
 FOUNDATION_EXTERN NSString *_Nonnull const APP的名字;
+/// 🔑钥匙串记录
+FOUNDATION_EXTERN NSString *_Nonnull const 设备ID;
 /// 多语言
 FOUNDATION_EXTERN NSString *_Nonnull const 菲律宾语_不带区域组合;
 FOUNDATION_EXTERN NSString *_Nonnull const 菲律宾语_菲律宾;
@@ -84,3 +86,4 @@ FOUNDATION_EXTERN NSString *_Nonnull const 日文平假名和片假名;
 /// 默认占位
 FOUNDATION_EXTERN NSString *_Nonnull const 主标题文字默认占位内容;
 FOUNDATION_EXTERN NSString *_Nonnull const 副标题文字默认占位内容;
+FOUNDATION_EXTERN NSString *_Nonnull const B体育;

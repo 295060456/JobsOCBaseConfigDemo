@@ -10,6 +10,8 @@
 NSString *const 应用程序的发布版本号 = @"CFBundleShortVersionString";
 NSString *const APP编译构建的版本号 = @"CFBundleVersion";
 NSString *const APP的名字 = @"CFBundleExecutable";
+/// 🔑钥匙串记录
+NSString *const 设备ID = @"设备ID";
 /// 多语言
 NSString *const 菲律宾语_不带区域组合 = @"fil";
 NSString *const 菲律宾语_菲律宾 = @"fil-PH";
@@ -84,3 +86,4 @@ NSString *const 日文平假名和片假名 = @"ぁあぃいぅうぇえぉお�
 /// 默认占位
 NSString *const 主标题文字默认占位内容;
 NSString *const 副标题文字默认占位内容;
+NSString *const B体育;
