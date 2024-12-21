@@ -156,11 +156,14 @@ typedef void(^jobsByMutableDataBlock)(__kindof NSMutableData *_Nullable data);
 typedef void(^jobsByMutableStringBlock)(__kindof NSMutableString *_Nullable data);
 typedef void(^jobsByBezierPathBlock)(__kindof UIBezierPath *_Nullable data);
 typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable notification);
+typedef void(^jobsByAlertActionBlock)(__kindof UIAlertAction *_Nullable action);
+typedef void(^jobsByPasteboardBlock)(__kindof UIPasteboard *_Nullable pasteboard);
 #import <UserNotifications/UserNotifications.h>
 typedef void(^jobsByUNUserNotificationCenterBlock)(__kindof UNUserNotificationCenter *_Nullable center);
 typedef void(^jobsByUNMutableNotificationContentBlock)(__kindof UNMutableNotificationContent *_Nullable content);
-typedef void(^jobsByAlertActionBlock)(__kindof UIAlertAction *_Nullable action);
-typedef void(^jobsByPasteboardBlock)(__kindof UIPasteboard *_Nullable pasteboard);
+#import <NetworkExtension/NetworkExtension.h>
+typedef void(^jobsByNEVPNManagerBlock)(__kindof NEVPNManager *_Nullable VPNManager);
+typedef void(^jobsByNEVPNProtocolIKEv2Block)(__kindof NEVPNProtocolIKEv2 *_Nullable VPNProtocolIKEv2);
 
 typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;
 typedef void(^jobsByThreeIDBlock)Jobs_3_Arguments;

@@ -16,9 +16,7 @@
 }
 /// 提取 HTML 里面的有效文字内容
 +(JobsReturnStringByStringBlock _Nonnull)formatHTML{
-    @jobs_weakify(self)
     return ^ __kindof NSString *_Nullable(__kindof NSString *_Nullable htmlString){
-        @jobs_strongify(self)
         NSError *error = nil;
         // 使用 NSAttributedString 从 HTML 中创建富文本
         NSData *data = htmlString.UTF8Encoding;

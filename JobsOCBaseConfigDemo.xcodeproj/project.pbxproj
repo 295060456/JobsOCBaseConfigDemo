@@ -118,6 +118,7 @@
 		84A978592D1453980002A2BA /* HTMLDocument+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A978572D1453980002A2BA /* HTMLDocument+Extra.m */; };
 		84A9785D2D14539E0002A2BA /* NSXMLParser+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9785B2D14539E0002A2BA /* NSXMLParser+Extra.m */; };
 		84A978652D1454630002A2BA /* NSObject+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A978632D1454630002A2BA /* NSObject+HTML.m */; };
+		84A97BE12D1687B50002A2BA /* JobsVPN.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A97BDF2D1687B50002A2BA /* JobsVPN.m */; };
 		84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60B92CA82C2D006D67A7 /* NSArray+Safety.m */; };
 		84B1BA202CEDCA2A0001562D /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA002CEDC9410001562D /* FSCalendar.m */; };
 		84B1BA212CEDCA4C0001562D /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA042CEDC9410001562D /* FSCalendarCalculator.m */; };
@@ -1478,6 +1479,8 @@
 		84A9785B2D14539E0002A2BA /* NSXMLParser+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSXMLParser+Extra.m"; sourceTree = "<group>"; };
 		84A978622D1454630002A2BA /* NSObject+HTML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+HTML.h"; sourceTree = "<group>"; };
 		84A978632D1454630002A2BA /* NSObject+HTML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HTML.m"; sourceTree = "<group>"; };
+		84A97BDE2D1687B50002A2BA /* JobsVPN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsVPN.h; sourceTree = "<group>"; };
+		84A97BDF2D1687B50002A2BA /* JobsVPN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsVPN.m; sourceTree = "<group>"; };
 		84AA8F462CE330310004501A /* JobsMakes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMakes.h; sourceTree = "<group>"; };
 		84B1B9FF2CEDC9410001562D /* FSCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
 		84B1BA002CEDC9410001562D /* FSCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
@@ -4939,6 +4942,15 @@
 			path = "NSObject+HTML";
 			sourceTree = "<group>";
 		};
+		84A97BE02D1687B50002A2BA /* VPN */ = {
+			isa = PBXGroup;
+			children = (
+				84A97BDE2D1687B50002A2BA /* JobsVPN.h */,
+				84A97BDF2D1687B50002A2BA /* JobsVPN.m */,
+			);
+			path = VPN;
+			sourceTree = "<group>";
+		};
 		84B1BA1F2CEDC9410001562D /* FSCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -6248,6 +6260,7 @@
 		CE4F1C642CA82510002AF25B /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				84A97BE02D1687B50002A2BA /* VPN */,
 				CE4F1B592CA82510002AF25B /* 弹出的日历选择页面 */,
 				CE4F1B5C2CA82510002AF25B /* 电影倒计时特效 */,
 				CE4F1BE12CA82510002AF25B /* 加密体系 */,
@@ -17025,6 +17038,7 @@
 				CE4F28102CA825CD002AF25B /* PointLabTestVC.m in Sources */,
 				CE4F28112CA825CD002AF25B /* FindCodeFlowChartView.m in Sources */,
 				CE5A661D2CA8367B006D67A7 /* BaseView.m in Sources */,
+				84A97BE12D1687B50002A2BA /* JobsVPN.m in Sources */,
 				CE8C147C2CB927540056090E /* NSObject+URLManager_3.m in Sources */,
 				CE8C147D2CB927540056090E /* NSObject+URLManager_6.m in Sources */,
 				CE8C147E2CB927540056090E /* NSObject+URLManager_4.m in Sources */,

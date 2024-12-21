@@ -174,6 +174,18 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
     return data;
 }
 
+NS_INLINE __kindof NEVPNManager *_Nonnull jobsMakeVPNManager(jobsByNEVPNManagerBlock _Nonnull block){
+    NEVPNManager *data = NEVPNManager.sharedManager;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof NEVPNProtocolIKEv2 *_Nonnull jobsMakeNEVPNProtocolIKEv2(jobsByNEVPNProtocolIKEv2Block _Nonnull block){
+    NEVPNProtocolIKEv2 *data = NEVPNProtocolIKEv2.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UIStackView *_Nonnull jobsMakeStackView(jobsByStackViewBlock _Nonnull block){
     UIStackView *data = UIStackView.alloc.init;
     if (block) block(data);
