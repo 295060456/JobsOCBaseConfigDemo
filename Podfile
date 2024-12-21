@@ -184,22 +184,22 @@ end
 def database
   pod 'Realm'
   
-  pod 'FMDB' # https://github.com/ccgus/fmdb
-#  pod 'JQFMDB' # https://github.com/gaojunquan/JQFMDB 对 FMDB进行的二次封装
-  # pod 'FMDB/FTS'   # FMDB with FTS
-  # pod 'FMDB/standalone'   # FMDB with latest SQLite amalgamation source
-  # pod 'FMDB/standalone/FTS'   # FMDB with latest SQLite amalgamation source and FTS
-  # pod 'FMDB/SQLCipher'   # FMDB with SQLCipher
+  pod 'JobsOCBaseConfigDemoDB' # https://github.com/ccgus/JobsOCBaseConfigDemodb
+#  pod 'JQJobsOCBaseConfigDemoDB' # https://github.com/gaojunquan/JQJobsOCBaseConfigDemoDB 对 JobsOCBaseConfigDemoDB进行的二次封装
+  # pod 'JobsOCBaseConfigDemoDB/FTS'   # JobsOCBaseConfigDemoDB with FTS
+  # pod 'JobsOCBaseConfigDemoDB/standalone'   # JobsOCBaseConfigDemoDB with latest SQLite amalgamation source
+  # pod 'JobsOCBaseConfigDemoDB/standalone/FTS'   # JobsOCBaseConfigDemoDB with latest SQLite amalgamation source and FTS
+  # pod 'JobsOCBaseConfigDemoDB/SQLCipher'   # JobsOCBaseConfigDemoDB with SQLCipher
 end
 # 基础的公共配置
 def cocoPodsConfig
   # ❤️新工程需要修改这里❤️
-  target 'FMTests' do
+  target 'JobsOCBaseConfigDemoTests' do
     inherit! :search_paths # abstract! 指示当前的target是抽象的，因此不会直接链接Xcode target。与其相对应的是 inherit！
     # Pods for testing
   end
   # ❤️新工程需要修改这里❤️
-  target 'FMUITests' do
+  target 'JobsOCBaseConfigDemoUITests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -255,8 +255,8 @@ def cocoPodsConfig
   end
 end
 # ❤️新工程需要修改这里❤️
-target 'FM' do
-  # Pods for FM
+target 'JobsOCBaseConfigDemo' do
+  # Pods for JobsOCBaseConfigDemo
 #  testApp # 单元测试框架
   longConnection # 长链接框架
   debugPods # 调试框架
