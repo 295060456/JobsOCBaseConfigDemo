@@ -12,7 +12,7 @@
 #import "NSObject+Extras.h"
 #import "UIView+Extras.h"
 #import "AppDelegate+TabBarCtr.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 
 #import "AppDelegate.h"
 #import "JobsAppDoorVC.h"

@@ -7,10 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsKeychainHelper.h"
-
-#ifndef UUIDSTRING
-#define UUIDSTRING @"UUIDSTRING"
-#endif
+#import "DefineConstString.h" /// 常量字符串的定义
 
 NS_ASSUME_NONNULL_BEGIN
 

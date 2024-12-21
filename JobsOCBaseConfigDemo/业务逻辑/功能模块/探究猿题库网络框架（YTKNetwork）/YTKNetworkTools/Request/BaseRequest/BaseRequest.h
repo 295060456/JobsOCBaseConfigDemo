@@ -23,7 +23,7 @@
 
 #import "YTKCustomBaseRequest.h"
 #import "YTKBaseRequest+Extra.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 #import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN

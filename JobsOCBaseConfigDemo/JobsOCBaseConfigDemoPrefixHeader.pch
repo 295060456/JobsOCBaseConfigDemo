@@ -37,7 +37,7 @@
 //#import "FM-Bridging-Header.h"
 #pragma mark —— 各项全局定义
 /// 各项宏定义
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 #import "DefineProperty.h"
 
 #import "MacroDef_Size.h"

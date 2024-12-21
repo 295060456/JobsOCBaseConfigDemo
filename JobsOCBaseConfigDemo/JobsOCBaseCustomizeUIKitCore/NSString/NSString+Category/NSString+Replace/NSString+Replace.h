@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MacroDef_SysWarning.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 #import "JobsBlock.h"
 #import "NSNumber+Extra.h"
 #import "NSString+Others.h"

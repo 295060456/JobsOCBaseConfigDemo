@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 #import "MacroDef_Func.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 

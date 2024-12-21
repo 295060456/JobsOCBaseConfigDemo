@@ -10,7 +10,7 @@
 #import "UITextModelProtocol.h"
 #import "UIViewModelOthersProtocol.h"
 #import "UILocationProtocol.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 
 #import "JobsBlock.h"
 #import "JobsTimerManager.h"/// 时间管理

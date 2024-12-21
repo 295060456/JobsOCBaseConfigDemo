@@ -9,7 +9,7 @@
 #import "JobsBlock.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "JobsUserDefaultDefine.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 #import "NSBundle+Extra.h"
 
 NS_ASSUME_NONNULL_BEGIN

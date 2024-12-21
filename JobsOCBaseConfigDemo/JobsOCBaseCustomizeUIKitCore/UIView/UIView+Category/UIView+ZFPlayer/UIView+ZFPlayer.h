@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "JobsBlock.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 
 #pragma mark —— ZFPlayer 播放器相关
 /// Core

@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NSObject+Extras.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 
 NS_ASSUME_NONNULL_BEGIN
 /// 获取系统环境变量

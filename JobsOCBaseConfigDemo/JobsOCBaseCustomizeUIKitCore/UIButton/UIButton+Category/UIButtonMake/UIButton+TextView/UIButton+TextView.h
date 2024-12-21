@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "BaseTextView.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 #import "NSObject+Extras.h"
 #import "JobsKeyValueModel.h"
 

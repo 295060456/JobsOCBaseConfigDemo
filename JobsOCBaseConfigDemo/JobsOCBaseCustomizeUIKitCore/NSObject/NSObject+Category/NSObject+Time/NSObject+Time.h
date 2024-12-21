@@ -14,7 +14,7 @@
 #import "NSString+Conversion.h"
 #import "NSMutableArray+Extra.h"
 #import "JobsTimeModel.h"
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 
 NS_ASSUME_NONNULL_BEGIN
 

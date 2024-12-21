@@ -5,7 +5,7 @@
 //  Created by Jobs on 2021/12/13.
 //
 
-#import "DefineConstString.h" /// 常亮字符串的定义
+#import "DefineConstString.h" /// 常量字符串的定义
 /// 系统环境一览
 NSString *const 应用程序的发布版本号 = @"CFBundleShortVersionString";
 NSString *const APP编译构建的版本号 = @"CFBundleVersion";
