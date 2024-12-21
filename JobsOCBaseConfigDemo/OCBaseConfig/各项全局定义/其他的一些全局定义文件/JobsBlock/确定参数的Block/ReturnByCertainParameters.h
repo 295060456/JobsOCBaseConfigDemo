@@ -74,6 +74,9 @@ typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIDBlock)(id _Nullable
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByDataBlock)(NSData *_Nullable data);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByVoidBlock)(void);
+typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByDicBlock)(__kindof NSDictionary *_Nullable dic);
+typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
+typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
 
 typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByIDBlock)(id _Nullable data);
 typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByArrBlock)(__kindof NSArray *_Nullable data);

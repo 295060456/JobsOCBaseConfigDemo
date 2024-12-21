@@ -9,23 +9,30 @@
 
 @implementation NSMutableDictionary (Extra)
 
--(jobsKeyValueBlock _Nonnull)add{
+-(JobsReturnMutableDicByKeyValueBlock _Nonnull)add{
     @jobs_weakify(self)
-    return ^(id <NSCopying>_Nonnull key,id _Nonnull value) {
+    return ^NSMutableDictionary *_Nonnull(id <NSCopying>_Nonnull key,id _Nonnull value) {
         @jobs_strongify(self)
-        if(isNull(key)) return;
-        if(!value) return;
-        if(key && value) [self setObject:value forKey:key];
+        if(isValue(key) && value)[self setObject:value forKey:key];
+        return self;
     };
 }
 
--(jobsByIDBlock _Nonnull)saveDataBy{
+-(JobsReturnMutableDicByDicBlock _Nonnull)addByDic{
     @jobs_weakify(self)
-    return ^(JobsKeyValueModel *_Nullable model){
+    return ^NSMutableDictionary *_Nonnull(__kindof NSDictionary *_Nullable dic){
         @jobs_strongify(self)
-        if (isValue(model.key)) {
-            [self setObject:model.data forKey:model.key];
-        }
+        [self addEntriesFromDictionary:dic];
+        return self;
+    };
+}
+
+-(JobsReturnMutableDicByKeyValueModelBlock _Nonnull)saveDataBy{
+    @jobs_weakify(self)
+    return ^NSMutableDictionary *_Nonnull(JobsKeyValueModel *_Nullable model){
+        @jobs_strongify(self)
+        if (isValue(model.key)) [self setObject:model.data forKey:model.key];
+        return self;
     };
 }
 /// 打印的结果可以直接用于Postman
@@ -36,7 +43,7 @@
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
     if (error) {
-        JobsLog(@"JSON转换失败: %@", error);
+        JobsLog(@"JSON转换失败: %@", error.description);
     } else {
         jsonString = NSString.initByUTF8Data(jsonData);
         JobsLog(@"%@", jsonString);

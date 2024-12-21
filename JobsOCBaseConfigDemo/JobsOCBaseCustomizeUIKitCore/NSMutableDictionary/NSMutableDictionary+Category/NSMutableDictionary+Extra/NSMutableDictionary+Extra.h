@@ -8,13 +8,15 @@
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
 #import "JobsModel.h"
+#import "JobsKeyValueModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableDictionary (Extra)
 
--(jobsKeyValueBlock _Nonnull)add;
--(jobsByIDBlock _Nonnull)saveDataBy;
+-(JobsReturnMutableDicByKeyValueBlock _Nonnull)add;
+-(JobsReturnMutableDicByDicBlock _Nonnull)addByDic;
+-(JobsReturnMutableDicByKeyValueModelBlock _Nonnull)saveDataBy;
 /// 打印的结果可以直接用于Postman
 -(NSString *)jsonString;
 

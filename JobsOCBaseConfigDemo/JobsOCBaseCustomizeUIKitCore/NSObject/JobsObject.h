@@ -7,7 +7,6 @@
 
 #ifndef JobsObject_h
 #define JobsObject_h
-
 #pragma mark —— Base
 /// 完整的文件名 = 文件名 + 后缀名
 #import "FileNameModel.h"
@@ -33,9 +32,10 @@
 #import "JobsSEL_IMP.h"
 /// 用Objective-C仿写Swift中的元祖
 #import "JobsTuple.h"
-
+/// 钥匙串🔑
+#import "JobsKeychainHelper.h"
+/// 数据模型
 #import "JobsModel.h"
-
 #pragma mark —— Category【3rd】
 /// 平替UIPickerView
 #import "NSObject+BRPickerView.h"

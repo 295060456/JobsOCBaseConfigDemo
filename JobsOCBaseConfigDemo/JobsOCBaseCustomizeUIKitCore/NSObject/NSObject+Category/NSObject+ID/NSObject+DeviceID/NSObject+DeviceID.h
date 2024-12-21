@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KeychainHelper.h"
+#import "JobsKeychainHelper.h"
 
 #ifndef UUIDSTRING
 #define UUIDSTRING @"UUIDSTRING"

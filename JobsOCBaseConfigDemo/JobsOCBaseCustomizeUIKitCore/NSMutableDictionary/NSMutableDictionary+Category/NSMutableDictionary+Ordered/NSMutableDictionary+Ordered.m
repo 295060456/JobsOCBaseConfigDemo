@@ -16,7 +16,7 @@ static BOOL isHasBeenRemoved;
  */
 @implementation NSMutableDictionary (Ordered)
 
-+(void)load {
++(void)initialize {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @autoreleasepool {
@@ -56,17 +56,14 @@ static const void *OrderedDictionaryKeys = (void *)@"OrderedDictionaryKeys";
                 [self.keys removeObjectAtIndex:idx];
                 *stop = YES;
             }
-        }];
-        [self.keys addObject:aKey];
-    }
-    [self swizzled_setObject:anObject forKey:aKey];
+        }];[self.keys addObject:aKey];
+    }[self swizzled_setObject:anObject forKey:aKey];
 }
 /// 移除给定key键值对
 -(void)swizzled_removeObjectForKey:(id)aKey{
     if (!isHasBeenRemoved) {
         [self.keys removeObject:aKey];
-    }
-    isHasBeenRemoved = NO;
+    }isHasBeenRemoved = NO;
     [self swizzled_removeObjectForKey:aKey];
 }
 /// 移除全部键值对
@@ -78,15 +75,13 @@ static const void *OrderedDictionaryKeys = (void *)@"OrderedDictionaryKeys";
 -(void)swizzled_removeObjectsForKeys:(NSArray<id> *)keyArray{
     for (id obj in keyArray) {
         [self.keys removeObject:obj];
-    }
-    [self swizzled_removeObjectsForKeys:keyArray];
+    }[self swizzled_removeObjectsForKeys:keyArray];
 }
 /// 获取给定index的对象
 - (id)objectAtIndex:(NSUInteger)index {
     if (index >= self.keys.count) {
         return nil;
-    }
-    return [self objectForKey:self.keys[index]];
+    }return [self objectForKey:self.keys[index]];
 }
 /// 插入键值对至给定index
 -(void)insertObject:(id)anObject
@@ -104,8 +99,7 @@ static const void *OrderedDictionaryKeys = (void *)@"OrderedDictionaryKeys";
                 [self removeObjectForKey:obj];
                 *stop = YES;
             }
-        }];
-        [self setObject:anObject forKey:aKey];
+        }];[self setObject:anObject forKey:aKey];
     }
 }
 /// 移除最后一个键值对

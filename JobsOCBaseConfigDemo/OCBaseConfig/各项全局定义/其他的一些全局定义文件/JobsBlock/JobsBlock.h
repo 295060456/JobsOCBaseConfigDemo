@@ -244,6 +244,7 @@ typedef void(^jobsByExcelLeftListViewBlock)(__kindof JobsExcelLeftListView *_Nul
 
 @class JobsKeyValueModel;
 typedef void(^jobsByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);
+typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);
 
 @class JobsToggleNavView;
 typedef void(^jobsByToggleNavViewBlock)(__kindof JobsToggleNavView *_Nullable taggedNavView);

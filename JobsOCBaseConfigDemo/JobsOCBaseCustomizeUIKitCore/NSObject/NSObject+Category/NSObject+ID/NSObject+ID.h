@@ -9,8 +9,6 @@
 #ifndef NSObject_ID_h
 #define NSObject_ID_h
 
-#import "KeychainHelper.h"
-
 #import "NSObject+DeviceID.h"
 #import "NSObject+UUID.h"
 #import "NSObject+IDFV.h"

@@ -119,6 +119,7 @@
 		84A9785D2D14539E0002A2BA /* NSXMLParser+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A9785B2D14539E0002A2BA /* NSXMLParser+Extra.m */; };
 		84A978652D1454630002A2BA /* NSObject+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A978632D1454630002A2BA /* NSObject+HTML.m */; };
 		84A97BE12D1687B50002A2BA /* JobsVPN.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A97BDF2D1687B50002A2BA /* JobsVPN.m */; };
+		84A97CDE2D16A7FC0002A2BA /* JobsKeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A97CDB2D16A4CE0002A2BA /* JobsKeychainHelper.m */; };
 		84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60B92CA82C2D006D67A7 /* NSArray+Safety.m */; };
 		84B1BA202CEDCA2A0001562D /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA002CEDC9410001562D /* FSCalendar.m */; };
 		84B1BA212CEDCA4C0001562D /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B1BA042CEDC9410001562D /* FSCalendarCalculator.m */; };
@@ -521,7 +522,6 @@
 		CE5A64C52CA82F56006D67A7 /* NSObject+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A61BC2CA82C2D006D67A7 /* NSObject+Extras.m */; };
 		CE5A64C62CA82F5C006D67A7 /* NSObject+GKPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A61BF2CA82C2D006D67A7 /* NSObject+GKPhotoBrowser.m */; };
 		CE5A64C72CA82F63006D67A7 /* NSObject+HXPhotoPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A61C22CA82C2D006D67A7 /* NSObject+HXPhotoPicker.m */; };
-		CE5A64C82CA82F6C006D67A7 /* KeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A61C52CA82C2D006D67A7 /* KeychainHelper.m */; };
 		CE5A64C92CA82F74006D67A7 /* NSObject+DeviceID.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A61C92CA82C2D006D67A7 /* NSObject+DeviceID.m */; };
 		CE5A64CA2CA82F79006D67A7 /* NSObject+IDFA.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A61CC2CA82C2D006D67A7 /* NSObject+IDFA.m */; };
 		CE5A64CB2CA82F7E006D67A7 /* NSObject+IDFV.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A61CF2CA82C2D006D67A7 /* NSObject+IDFV.m */; };
@@ -915,7 +915,6 @@
 		CEB8FA7B2CA8384300CCFDF8 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1C1F2CA82510002AF25B /* TBCityIconInfo.m */; };
 		CEB8FA7C2CA8385200CCFDF8 /* JobsUploadingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1C272CA82510002AF25B /* JobsUploadingProgressView.m */; };
 		CEB8FA7D2CA8385200CCFDF8 /* LongPressToDeleteImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1C2E2CA82510002AF25B /* LongPressToDeleteImageView.m */; };
-		CEB8FA7E2CA8385200CCFDF8 /* ZHKeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1C2B2CA82510002AF25B /* ZHKeyChainManager.m */; };
 		CEB8FA7F2CA8385C00CCFDF8 /* RYCuteView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1C322CA82510002AF25B /* RYCuteView.m */; };
 		CEB8FA812CA8386D00CCFDF8 /* XLChannelItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1C4D2CA82510002AF25B /* XLChannelItem.m */; };
 		CEB8FA822CA8386D00CCFDF8 /* XLChannelHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F1C4B2CA82510002AF25B /* XLChannelHeader.m */; };
@@ -1481,6 +1480,9 @@
 		84A978632D1454630002A2BA /* NSObject+HTML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HTML.m"; sourceTree = "<group>"; };
 		84A97BDE2D1687B50002A2BA /* JobsVPN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsVPN.h; sourceTree = "<group>"; };
 		84A97BDF2D1687B50002A2BA /* JobsVPN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsVPN.m; sourceTree = "<group>"; };
+		84A97CDA2D16A4CE0002A2BA /* JobsKeychainHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsKeychainHelper.h; sourceTree = "<group>"; };
+		84A97CDB2D16A4CE0002A2BA /* JobsKeychainHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsKeychainHelper.m; sourceTree = "<group>"; };
+		84A97CDC2D16A4CE0002A2BA /* JobsKeychainHelper.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = JobsKeychainHelper.webp; sourceTree = "<group>"; };
 		84AA8F462CE330310004501A /* JobsMakes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsMakes.h; sourceTree = "<group>"; };
 		84B1B9FF2CEDC9410001562D /* FSCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FSCalendar.h; sourceTree = "<group>"; };
 		84B1BA002CEDC9410001562D /* FSCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSCalendar.m; sourceTree = "<group>"; };
@@ -1743,8 +1745,6 @@
 		CE4F1C262CA82510002AF25B /* JobsUploadingProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsUploadingProgressView.h; sourceTree = "<group>"; };
 		CE4F1C272CA82510002AF25B /* JobsUploadingProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsUploadingProgressView.m; sourceTree = "<group>"; };
 		CE4F1C282CA82510002AF25B /* JobsUploadingProgressView.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = JobsUploadingProgressView.md; sourceTree = "<group>"; };
-		CE4F1C2A2CA82510002AF25B /* ZHKeyChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHKeyChainManager.h; sourceTree = "<group>"; };
-		CE4F1C2B2CA82510002AF25B /* ZHKeyChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHKeyChainManager.m; sourceTree = "<group>"; };
 		CE4F1C2D2CA82510002AF25B /* LongPressToDeleteImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LongPressToDeleteImageView.h; sourceTree = "<group>"; };
 		CE4F1C2E2CA82510002AF25B /* LongPressToDeleteImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LongPressToDeleteImageView.m; sourceTree = "<group>"; };
 		CE4F1C2F2CA82510002AF25B /* LongPressToDeleteImageView.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LongPressToDeleteImageView.md; sourceTree = "<group>"; };
@@ -2735,9 +2735,6 @@
 		CE5A61BF2CA82C2D006D67A7 /* NSObject+GKPhotoBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GKPhotoBrowser.m"; sourceTree = "<group>"; };
 		CE5A61C12CA82C2D006D67A7 /* NSObject+HXPhotoPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+HXPhotoPicker.h"; sourceTree = "<group>"; };
 		CE5A61C22CA82C2D006D67A7 /* NSObject+HXPhotoPicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HXPhotoPicker.m"; sourceTree = "<group>"; };
-		CE5A61C42CA82C2D006D67A7 /* KeychainHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeychainHelper.h; sourceTree = "<group>"; };
-		CE5A61C52CA82C2D006D67A7 /* KeychainHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeychainHelper.m; sourceTree = "<group>"; };
-		CE5A61C62CA82C2D006D67A7 /* KeychainHelper.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = KeychainHelper.webp; sourceTree = "<group>"; };
 		CE5A61C82CA82C2D006D67A7 /* NSObject+DeviceID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeviceID.h"; sourceTree = "<group>"; };
 		CE5A61C92CA82C2D006D67A7 /* NSObject+DeviceID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeviceID.m"; sourceTree = "<group>"; };
 		CE5A61CB2CA82C2D006D67A7 /* NSObject+IDFA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+IDFA.h"; sourceTree = "<group>"; };
@@ -4951,6 +4948,16 @@
 			path = VPN;
 			sourceTree = "<group>";
 		};
+		84A97CDD2D16A4CE0002A2BA /* JobsKeychainHelper */ = {
+			isa = PBXGroup;
+			children = (
+				84A97CDA2D16A4CE0002A2BA /* JobsKeychainHelper.h */,
+				84A97CDB2D16A4CE0002A2BA /* JobsKeychainHelper.m */,
+				84A97CDC2D16A4CE0002A2BA /* JobsKeychainHelper.webp */,
+			);
+			path = JobsKeychainHelper;
+			sourceTree = "<group>";
+		};
 		84B1BA1F2CEDC9410001562D /* FSCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -6110,15 +6117,6 @@
 			path = JobsUploadingProgressView;
 			sourceTree = "<group>";
 		};
-		CE4F1C2C2CA82510002AF25B /* KeyChainManager */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F1C2A2CA82510002AF25B /* ZHKeyChainManager.h */,
-				CE4F1C2B2CA82510002AF25B /* ZHKeyChainManager.m */,
-			);
-			path = KeyChainManager;
-			sourceTree = "<group>";
-		};
 		CE4F1C302CA82510002AF25B /* LongPressToDeleteImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -6280,7 +6278,6 @@
 				CE4F1C222CA82510002AF25B /* IconFont */,
 				CE4F1C252CA82510002AF25B /* JobsMakeLocalNotification */,
 				CE4F1C292CA82510002AF25B /* JobsUploadingProgressView */,
-				CE4F1C2C2CA82510002AF25B /* KeyChainManager */,
 				CE4F1C302CA82510002AF25B /* LongPressToDeleteImageView */,
 				CE4F1C342CA82510002AF25B /* RYCuteView */,
 				CE4F1C402CA82510002AF25B /* WalletLayout */,
@@ -11481,19 +11478,20 @@
 		CE5A61842CA82C2D006D67A7 /* BaseObject */ = {
 			isa = PBXGroup;
 			children = (
-				84E401412CC60E7100C8303A /* This */,
-				CE5A61522CA82C2D006D67A7 /* JobsModel */,
+				CE5A61832CA82C2D006D67A7 /* BaseObject.md */,
 				CE5A61582CA82C2D006D67A7 /* 雪花算法 */,
 				CE5A615C2CA82C2D006D67A7 /* FileFolderHandleTool */,
 				CE5A615F2CA82C2D006D67A7 /* JobsAppTools */,
+				84A97CDD2D16A4CE0002A2BA /* JobsKeychainHelper */,
 				CE5A61622CA82C2D006D67A7 /* JobsLanguageManager */,
+				CE5A61522CA82C2D006D67A7 /* JobsModel */,
 				CE5A61662CA82C2D006D67A7 /* JobsMonitorNetwoking */,
 				CE5A61692CA82C2D006D67A7 /* JobsOnceExecutor */,
 				CE5A616C2CA82C2D006D67A7 /* JobsSEL_IMP */,
 				CE5A617B2CA82C2D006D67A7 /* JobsTimerManager */,
 				CE5A617E2CA82C2D006D67A7 /* JobsTuple */,
+				84E401412CC60E7100C8303A /* This */,
 				CE5A61822CA82C2D006D67A7 /* TouchID */,
-				CE5A61832CA82C2D006D67A7 /* BaseObject.md */,
 			);
 			path = BaseObject;
 			sourceTree = "<group>";
@@ -11685,16 +11683,6 @@
 			path = "NSObject+HXPhotoPicker";
 			sourceTree = "<group>";
 		};
-		CE5A61C72CA82C2D006D67A7 /* KeychainHelper */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A61C42CA82C2D006D67A7 /* KeychainHelper.h */,
-				CE5A61C52CA82C2D006D67A7 /* KeychainHelper.m */,
-				CE5A61C62CA82C2D006D67A7 /* KeychainHelper.webp */,
-			);
-			path = KeychainHelper;
-			sourceTree = "<group>";
-		};
 		CE5A61CA2CA82C2D006D67A7 /* NSObject+DeviceID */ = {
 			isa = PBXGroup;
 			children = (
@@ -11743,7 +11731,6 @@
 		CE5A61D92CA82C2D006D67A7 /* NSObject+ID */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A61C72CA82C2D006D67A7 /* KeychainHelper */,
 				CE5A61CA2CA82C2D006D67A7 /* NSObject+DeviceID */,
 				CE5A61CD2CA82C2D006D67A7 /* NSObject+IDFA */,
 				CE5A61D02CA82C2D006D67A7 /* NSObject+IDFV */,
@@ -16472,7 +16459,6 @@
 				CE5A65552CA8321D006D67A7 /* BaseTextView.m in Sources */,
 				CECE7EA62C450E5B00764AF5 /* KTVHCDownload.m in Sources */,
 				CE5A64B22CA82EBF006D67A7 /* JobsTuple.m in Sources */,
-				CE5A64C82CA82F6C006D67A7 /* KeychainHelper.m in Sources */,
 				CECE7E7E2C450E5B00764AF5 /* JXCategoryTimelineView.m in Sources */,
 				CECE7E812C450E5B00764AF5 /* JXCategoryTitleBackgroundView.m in Sources */,
 				CECE7E832C450E5B00764AF5 /* DDNumber.m in Sources */,
@@ -16946,7 +16932,6 @@
 				CEB8FA7C2CA8385200CCFDF8 /* JobsUploadingProgressView.m in Sources */,
 				8405D19C2D0865E100DE33FE /* UITabBarItem+Extra.m in Sources */,
 				CEB8FA7D2CA8385200CCFDF8 /* LongPressToDeleteImageView.m in Sources */,
-				CEB8FA7E2CA8385200CCFDF8 /* ZHKeyChainManager.m in Sources */,
 				8474A4B02CF8696900112B4B /* IQKeyboardManager+Extra.m in Sources */,
 				CE5A65282CA83166006D67A7 /* PointLabBaseView.m in Sources */,
 				CE4F27FA2CA825CD002AF25B /* JobsPushView.m in Sources */,
@@ -17080,6 +17065,7 @@
 				84AA8F442CE32ACC0004501A /* NSArray+Safety.m in Sources */,
 				CECE7ECC2C450E5B00764AF5 /* WMZBannerView.m in Sources */,
 				CECE7EB72C450E5B00764AF5 /* TKPermissionHealth.m in Sources */,
+				84A97CDE2D16A7FC0002A2BA /* JobsKeychainHelper.m in Sources */,
 				CECE7E7D2C450E5B00764AF5 /* JXCategoryTimelineCellModel.m in Sources */,
 				CECE7EAA2C450E5B00764AF5 /* KTVHCPathTool.m in Sources */,
 				CE5A65492CA831FE006D67A7 /* ZYTextField.m in Sources */,
