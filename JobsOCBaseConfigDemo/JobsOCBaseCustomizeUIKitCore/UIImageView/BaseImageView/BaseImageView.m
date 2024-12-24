@@ -15,6 +15,8 @@
 @implementation BaseImageView
 #pragma mark —— BaseProtocol
 BaseProtocol_synthesize
+#pragma mark —— RACProtocol
+RACProtocol_synthesize
 #pragma mark —— BaseViewProtocol
 BaseViewProtocol_synthesize
 -(instancetype)init{

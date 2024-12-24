@@ -185,7 +185,9 @@ typedef enum : NSUInteger {
 typedef NS_ENUM(NSInteger, TimerProcessType) {
     TimerProcessType_Ready = 0,  /// 准备状态
     TimerProcessType_Running,    /// 运行状态
-    TimerProcessType_End         /// 结束状态
+    TimerProcessType_Pause,      /// 暂停运行状态
+    TimerProcessType_Resume,     /// 恢复运行状态
+    TimerProcessType_Stop        /// 结束状态
 };
 #endif /* TIMER_PROCESS_TYPE_ENUM_DEFINED */
 /// 当前类型

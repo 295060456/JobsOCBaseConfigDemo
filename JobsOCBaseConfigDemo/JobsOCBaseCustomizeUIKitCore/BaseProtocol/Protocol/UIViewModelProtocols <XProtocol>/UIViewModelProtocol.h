@@ -74,6 +74,7 @@ UITextFieldProtocol_synthesize_part2 \
 #define UIViewModelProtocol_synthesize \
 \
 BaseProtocol_synthesize \
+RACProtocol_synthesize \
 UIViewModelProtocol_synthesize_part1 \
 UIViewModelProtocol_synthesize_part2 \
 

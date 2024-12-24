@@ -45,6 +45,7 @@
 #import "SDWebImageModel.h"
 #import "GTCaptcha4Model.h"
 #import "MasonryModel.h"
+#import "RACModel.h"
 #pragma mark —— Json处理
 #import "IncomeSourceModel.h"
 #import "JobsCountriesModel.h"

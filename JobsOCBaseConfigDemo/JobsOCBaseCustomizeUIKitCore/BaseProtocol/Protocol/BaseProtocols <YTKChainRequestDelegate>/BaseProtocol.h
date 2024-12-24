@@ -7,14 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "RACProtocol.h"
 #import "DefineProperty.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
-
-#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
-#import <ReactiveObjC/ReactiveObjC.h>
-#else
-#import "ReactiveObjC.h"
-#endif
 
 #if __has_include(<YTKNetwork/YTKNetwork.h>)
 #import <YTKNetwork/YTKNetwork.h>
@@ -24,31 +19,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BaseProtocol <YTKChainRequestDelegate>
+@protocol BaseProtocol <YTKChainRequestDelegate,RACProtocol>
 @optional
-#pragma mark —— RAC
-/// 用于释放资源
-Prop_strong(nullable)RACDisposable *racDisposable;
-/// 用于手动控制发送事件
-Prop_strong(nonnull)RACSubject *racSubject;
-/// 信号通常是持久存在的
-Prop_strong(nullable)RACSignal *reqSignal;
-/// 通常绑定到按钮操作或用户输入
-Prop_strong(nullable)RACCommand *actionCommand;
-/// 适用于处理集合数据
-Prop_strong(nullable)RACSequence *dataSequence;
-/// 用于控制信号的多订阅行为
-Prop_strong(nullable)RACMulticastConnection *dataConnection;
-/// 管理信号的调度线程
-Prop_strong(nonnull)RACScheduler *mainScheduler;
-Prop_strong(nonnull)RACScheduler *backgroundScheduler;
-/// 传递多个值
-Prop_strong(nullable)RACTuple *dataTuple;
 #pragma mark —— 一些状态
 Prop_assign()BOOL isLock;
 Prop_assign()BOOL becomeFirstResponder;
 Prop_assign()AppLanguage appLanguage;
-Prop_assign()TimerProcessType timerProcessType;
+/// 关于计时器
+Prop_assign()BOOL start;
+Prop_assign()BOOL pause;
+Prop_assign()BOOL resume;
+Prop_assign()BOOL stop;
+Prop_assign()TimerProcessType timerProcessType; /// 计时器运行状态
 #pragma mark —— Data
 Prop_strong(nullable)NSURL *url;
 Prop_copy(nullable)NSString *internationalizationKEY;/// 国际化的key
@@ -95,18 +77,13 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseProtocol_synthesize
 #define BaseProtocol_synthesize \
 \
-@synthesize racDisposable = _racDisposable;\
-@synthesize racSubject = _racSubject;\
-@synthesize reqSignal = _reqSignal;\
-@synthesize actionCommand = actionCommand;\
-@synthesize dataSequence = dataSequence;\
-@synthesize dataConnection = dataConnection;\
-@synthesize mainScheduler = mainScheduler;\
-@synthesize backgroundScheduler = backgroundScheduler;\
-@synthesize dataTuple = dataTuple;\
 @synthesize isLock = _isLock;\
 @synthesize becomeFirstResponder = _becomeFirstResponder;\
 @synthesize appLanguage = _appLanguage;\
+@synthesize start = _start;\
+@synthesize pause = _pause;\
+@synthesize resume = _resume;\
+@synthesize stop = _stop;\
 @synthesize timerProcessType = _timerProcessType;\
 @synthesize internationalizationKEY = _internationalizationKEY;\
 @synthesize jobsDataMutSet = _jobsDataMutSet;\
@@ -124,18 +101,13 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseProtocol_dynamic
 #define BaseProtocol_dynamic \
 \
-@dynamic racDisposable = _racDisposable;\
-@dynamic racSubject = _racSubject;\
-@dynamic reqSignal = _reqSignal;\
-@dynamic actionCommand = actionCommand;\
-@dynamic dataSequence = dataSequence;\
-@dynamic dataConnection = dataConnection;\
-@dynamic mainScheduler = mainScheduler;\
-@dynamic backgroundScheduler = backgroundScheduler;\
-@dynamic dataTuple = dataTuple;\
 @dynamic isLock;\
 @dynamic becomeFirstResponder;\
 @dynamic appLanguage;\
+@dynamic start;\
+@dynamic pause;\
+@dynamic resume;\
+@dynamic stop;\
 @dynamic timerProcessType;\
 @dynamic internationalizationKEY;\
 @dynamic jobsDataMutSet;\

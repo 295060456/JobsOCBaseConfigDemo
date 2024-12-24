@@ -85,6 +85,12 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextMo
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTextModelBlock)(UITextModel *_Nullable data);
 typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
 
+@class RACModel;
+typedef void(^jobsByRACModelBlock)(RACModel *_Nullable data);
+
+@class JobsIMChatInfoModel;
+typedef void(^jobsByIMChatInfoModelBlock)(JobsIMChatInfoModel *_Nullable data);
+
 @class NSTimerManager;
 typedef void(^jobsByTimerManagerBlock)(NSTimerManager *_Nullable data);
 

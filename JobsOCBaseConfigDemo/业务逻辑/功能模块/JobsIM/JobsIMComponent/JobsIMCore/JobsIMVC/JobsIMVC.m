@@ -346,24 +346,23 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             @jobs_strongify(self)
             if ([data isKindOfClass:ZYTextField.class]){
                 ZYTextField *tf = (ZYTextField *)data;
-                
                 {/// 装填我方数据并刷新UI
-                    JobsIMChatInfoModel *chatInfoModel = JobsIMChatInfoModel.new;
-                    chatInfoModel.chatTextStr = tf.text;
                     JobsTimeModel *timeModel = self.makeSpecificTime;
-                    chatInfoModel.chatTextTimeStr = [NSString stringWithFormat:@"%ld:%ld:%ld",timeModel.currentHour,timeModel.currentMin,timeModel.currentSec];
-                    chatInfoModel.userIconIMG = JobsBuddleIMG(@"bundle", @"头像", nil, @"头像_1");//我自己的头像
-                    chatInfoModel.identification = @"我是我自己";
-                    chatInfoModel.userNameStr = @"Jobs";
-                    
-                    [self.chatInfoModelMutArr addObject:chatInfoModel];
-                    [self.tableView reloadData];
+                    self.chatInfoModelMutArr.add(jobsMakeIMChatInfoModel(^(JobsIMChatInfoModel * _Nullable data) {
+                        data.chatTextStr = tf.text;
+                        data.chatTextTimeStr = toStringByNSInteger(timeModel.currentHour)
+                            .add(@":")
+                            .add(toStringByNSInteger(timeModel.currentMin))
+                            .add(@":")
+                            .add(toStringByNSInteger(timeModel.currentSec));
+                        data.userIconIMG = JobsBuddleIMG(@"bundle", @"头像", nil, @"头像_1");//我自己的头像
+                        data.identification = @"我是我自己";
+                        data.userNameStr = @"Jobs";
+                    }));[self.tableView reloadData];
                 }
-                
                 /// 模拟服务器请求对方数据
                 @jobs_weakify(self)
-                [self delay:1
-                      doSth:^(id data) {
+                [self delay:1 doSth:^(id data) {
                     @jobs_strongify(self)
                     [self simulateServer];
                 }];

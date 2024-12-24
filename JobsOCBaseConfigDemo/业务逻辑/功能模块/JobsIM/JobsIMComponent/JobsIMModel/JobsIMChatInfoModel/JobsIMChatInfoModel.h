@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsIMDefine.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -26,3 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsIMChatInfoModel *_Nonnull jobsMakeIMChatInfoModel(jobsByIMChatInfoModelBlock _Nonnull block){
+    JobsIMChatInfoModel *data = JobsIMChatInfoModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

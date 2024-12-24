@@ -2,73 +2,95 @@
 
 ```mermaid
 classDiagram
+    class RACProtocol {
+        NSObject 
+    }
+    
+    class YTKChainRequestDelegate {
+        pod 'YTKNetwork'
+            #import "YTKNetwork.h"
+    }
+    
     class BaseProtocol {
-        <<protocol>>
+        YTKChainRequestDelegate
+        RACProtocol
     }
     class AppToolsProtocol {
-        <<protocol>>
+        BaseProtocol
     }
     class XProtocol {
-        <<protocol>>
+        NSObject
+        BaseLayerProtocol
+        UILocationProtocol
+        UIMarkProtocol
+        UIPictureAndBackGroundCorProtocol
+        UITextModelProtocol
+        UIViewModelOthersProtocol
+        BaseButtonProtocol
+        UITextFieldProtocol
     }
     class UITextFieldProtocol {
-        <<protocol>>
+        NSObject
     }
     class BaseButtonProtocol {
-        <<protocol>>
+        NSObject
     }
     class BaseLayerProtocol {
-        <<protocol>>
+        NSObject
     }
     class UILocationProtocol {
-        <<protocol>>
+        NSObject
     }
     class UIMarkProtocol {
-        <<protocol>>
+        NSObject
     }
     class UIPictureAndBackGroundCorProtocol {
-        <<protocol>>
+        NSObject
     }
     class UITextModelProtocol {
-        <<protocol>>
+        NSObject
     }
     class UIViewModelOthersProtocol {
-        <<protocol>>
+        NSObject
     }
     class UIViewModelProtocol {
-        <<protocol>>
+        XProtocol
     }
     class BaseViewProtocol {
-        <<protocol>>
+        UIViewModelProtocol
     }
     class BaseViewControllerProtocol {
-        <<protocol>>
+        BaseViewProtocol
     }
     class BaseCellProtocol {
-        <<protocol>>
+        BaseViewProtocol
     }
     class UICollectionViewCellProtocol {
-        <<protocol>>
+        BaseCellProtocol
     }
     class UITableViewCellProtocol {
-        <<protocol>>
+        BaseCellProtocol
     }
 
-    AppToolsProtocol --|> BaseProtocol
-    XProtocol --|> BaseLayerProtocol
-    XProtocol --|> UILocationProtocol
-    XProtocol --|> UIMarkProtocol
-    XProtocol --|> UIPictureAndBackGroundCorProtocol
-    XProtocol --|> UITextModelProtocol
-    XProtocol --|> UIViewModelOthersProtocol
-    XProtocol --|> BaseButtonProtocol
-    XProtocol --|> UITextFieldProtocol
-
-    UIViewModelProtocol --|> XProtocol
-    BaseViewProtocol --|> UIViewModelProtocol
-    BaseViewControllerProtocol --|> BaseViewProtocol
-    BaseCellProtocol --|> BaseViewProtocol
-    UICollectionViewCellProtocol --|> BaseCellProtocol
-    UITableViewCellProtocol --|> BaseCellProtocol
+    RACProtocol --|> BaseProtocol
+    YTKChainRequestDelegate --|> BaseProtocol
+    BaseProtocol --|> AppToolsProtocol
+    
+    BaseLayerProtocol --|> XProtocol
+    UILocationProtocol --|> XProtocol
+    UIMarkProtocol --|> XProtocol
+    UIPictureAndBackGroundCorProtocol --|> XProtocol
+    UITextModelProtocol --|> XProtocol
+    UIViewModelOthersProtocol --|> XProtocol
+    BaseButtonProtocol --|> XProtocol
+    UITextFieldProtocol --|> XProtocol
+    
+    XProtocol --|> UIViewModelProtocol
+    UIViewModelProtocol --|> BaseViewProtocol
+    BaseViewProtocol --|> BaseViewControllerProtocol
+    BaseViewProtocol --|> BaseCellProtocol
+    BaseCellProtocol --|> UICollectionViewCellProtocol
+    BaseCellProtocol --|> UITableViewCellProtocol
 
 ```
+

@@ -9,6 +9,7 @@
 
 @implementation JobsUserModel
 BaseProtocol_synthesize
+RACProtocol_synthesize
 #pragma mark —— MJKeyValue
 - (id)mj_newValueFromOldValue:(id)oldValue
                      property:(MJProperty *)property{

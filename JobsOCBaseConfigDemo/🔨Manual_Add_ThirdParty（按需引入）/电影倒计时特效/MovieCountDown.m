@@ -76,7 +76,7 @@
                     [self getCuntDown:(NSInteger)timerManager.anticlockwiseTime];
                 }else if ([data isKindOfClass:UIButtonModel.class]){
                     UIButtonModel *model = (UIButtonModel *)data;
-                    if (model.timerProcessType == TimerProcessType_End) {
+                    if (model.timerProcessType == TimerProcessType_Stop) {
                         if (self.objectBlock) self.objectBlock(data);
                     }
                 }else{}

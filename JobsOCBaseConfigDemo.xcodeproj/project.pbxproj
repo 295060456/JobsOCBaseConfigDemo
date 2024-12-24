@@ -143,6 +143,7 @@
 		84B9C3332D16C32F002FE9F5 /* SRWebSocket+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B9C3312D16C32F002FE9F5 /* SRWebSocket+Extra.m */; };
 		84B9C3372D16C372002FE9F5 /* NSString+ID.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B9C3352D16C372002FE9F5 /* NSString+ID.m */; };
 		84B9C33B2D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B9C3392D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m */; };
+		84CF6DD52D1AB6200060C97D /* RACModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6DD32D1AB6200060C97D /* RACModel.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
@@ -1532,6 +1533,10 @@
 		84B9C3382D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewLayoutAttributes+Extra.h"; sourceTree = "<group>"; };
 		84B9C3392D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewLayoutAttributes+Extra.m"; sourceTree = "<group>"; };
 		84B9C33C2D16C43C002FE9F5 /* TMSCollectionViewLayoutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMSCollectionViewLayoutDelegate.h; sourceTree = "<group>"; };
+		84CF6DD12D1AB5BB0060C97D /* RACProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACProtocol.h; sourceTree = "<group>"; };
+		84CF6DD22D1AB6200060C97D /* RACModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACModel.h; sourceTree = "<group>"; };
+		84CF6DD32D1AB6200060C97D /* RACModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACModel.m; sourceTree = "<group>"; };
+		84CF6DD62D1AB7300060C97D /* RYCuteView.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = RYCuteView.webp; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
 		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
@@ -3873,6 +3878,7 @@
 		8442D6B22D0C7BBC00286913 /* BaseProtocols <YTKChainRequestDelegate> */ = {
 			isa = PBXGroup;
 			children = (
+				84CF6DD12D1AB5BB0060C97D /* RACProtocol.h */,
 				8442D6B02D0C7BBC00286913 /* BaseProtocol.h */,
 				8442D6B12D0C7BBC00286913 /* AppToolsProtocol.h */,
 			);
@@ -4466,6 +4472,7 @@
 		8478D89F2D01CBE0004E8B90 /* 关于第三方 */ = {
 			isa = PBXGroup;
 			children = (
+				84CF6DD42D1AB6200060C97D /* RACModel */,
 				8478DBFB2D02ED74004E8B90 /* HXPhotoPickerModel */,
 				8478D8952D01CBE0004E8B90 /* MJRefreshConfigModel */,
 				8478D8982D01CBE0004E8B90 /* SDWebImageModel */,
@@ -5060,6 +5067,15 @@
 				84B9C3392D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m */,
 			);
 			path = UICollectionViewLayoutAttributes;
+			sourceTree = "<group>";
+		};
+		84CF6DD42D1AB6200060C97D /* RACModel */ = {
+			isa = PBXGroup;
+			children = (
+				84CF6DD22D1AB6200060C97D /* RACModel.h */,
+				84CF6DD32D1AB6200060C97D /* RACModel.m */,
+			);
+			path = RACModel;
 			sourceTree = "<group>";
 		};
 		84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */ = {
@@ -6173,6 +6189,7 @@
 				CE4F1C312CA82510002AF25B /* RYCuteView.h */,
 				CE4F1C322CA82510002AF25B /* RYCuteView.m */,
 				CE4F1C332CA82510002AF25B /* RYCuteView.md */,
+				84CF6DD62D1AB7300060C97D /* RYCuteView.webp */,
 			);
 			path = RYCuteView;
 			sourceTree = "<group>";
@@ -16535,6 +16552,7 @@
 				CECE7E9B2C450E5B00764AF5 /* KTVHCDataLoader.m in Sources */,
 				CECE7ECB2C450E5B00764AF5 /* WMZBannerParam.m in Sources */,
 				CECE7E8A2C450E5B00764AF5 /* HTTPDynamicFileResponse.m in Sources */,
+				84CF6DD52D1AB6200060C97D /* RACModel.m in Sources */,
 				CECE7E892C450E5B00764AF5 /* HTTPDataResponse.m in Sources */,
 				CE4F27632CA825CD002AF25B /* LandscapeSwitchVC.m in Sources */,
 				CE4F27642CA825CD002AF25B /* CtrlClipboardCueVC.m in Sources */,

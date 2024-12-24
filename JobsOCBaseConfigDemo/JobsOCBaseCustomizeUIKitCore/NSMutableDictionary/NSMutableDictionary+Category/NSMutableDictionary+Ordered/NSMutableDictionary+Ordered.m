@@ -16,7 +16,7 @@ static BOOL isHasBeenRemoved;
  */
 @implementation NSMutableDictionary (Ordered)
 
-+(void)initialize {
++(void)load{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @autoreleasepool {

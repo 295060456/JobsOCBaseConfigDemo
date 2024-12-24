@@ -14,6 +14,7 @@
 
 @implementation BaseView
 BaseProtocol_synthesize
+RACProtocol_synthesize
 BaseViewProtocol_synthesize
 UIPictureAndBackGroundCorProtocol_synthesize
 UITextFieldProtocol_synthesize_part2

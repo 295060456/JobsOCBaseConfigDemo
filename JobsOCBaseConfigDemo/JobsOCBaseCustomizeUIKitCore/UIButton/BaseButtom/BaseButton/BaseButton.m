@@ -13,6 +13,7 @@
 
 @implementation BaseButton
 BaseProtocol_synthesize
+RACProtocol_synthesize
 UIMarkProtocol_synthesize_part1
 BaseButtonProtocol_synthesize
 #pragma mark —— Sys

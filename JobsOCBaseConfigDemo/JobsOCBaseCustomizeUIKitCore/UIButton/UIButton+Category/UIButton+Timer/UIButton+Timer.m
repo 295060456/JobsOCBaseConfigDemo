@@ -358,7 +358,7 @@ JobsKey(_btnTimerConfig)
                 JobsLog(@"DDD = %f",data.anticlockwiseTime);
                 self.timerRuning((long)data.anticlockwiseTime);/// 倒计时方法
             }break;
-            case TimerProcessType_End:{
+            case TimerProcessType_Stop:{
                 self.timerDestroy();
             }break;
             default:

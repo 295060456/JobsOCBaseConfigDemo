@@ -152,7 +152,7 @@
                     case TimerProcessType_Running:{
                         [self timerFunc];
                     }break;
-                    case TimerProcessType_End:{
+                    case TimerProcessType_Stop:{
                         JobsLog(@"我死球了");
                     }break;
                         
@@ -193,7 +193,7 @@
                             [self.nsTimerManager_length nsTimeDestroy];//销毁
                         }
                     }break;
-                    case TimerProcessType_End:{
+                    case TimerProcessType_Stop:{
                         JobsLog(@"我死球了");
                     }break;
                         

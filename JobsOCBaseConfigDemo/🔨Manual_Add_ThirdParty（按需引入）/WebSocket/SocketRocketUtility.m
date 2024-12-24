@@ -19,6 +19,7 @@
 
 @implementation SocketRocketUtility
 BaseProtocol_synthesize
+RACProtocol_synthesize
 - (void)dealloc {
     JobsRemoveNotification(self);
 }
@@ -125,7 +126,7 @@ BaseProtocol_synthesize
             @jobs_strongify(self)
             /// 和服务端约定好发送什么作为心跳标识，尽可能的减小心跳包大小
             self.sendData(@"heart");
-        }];
+        }].racDisposable;
     })
 }
 /// pingPong

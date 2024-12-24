@@ -14,6 +14,7 @@ BaseLayerProtocol_synthesize_part3
 BaseButtonProtocol_synthesize_part2
 AppToolsProtocol_synthesize
 BaseProtocol_synthesize
+RACProtocol_synthesize
 
 -(NSTextAlignment)textAlignment{
     if (!_textAlignment) {

@@ -175,7 +175,7 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
                     case TimerProcessType_Running:{
                         [self bitsSpeedMonitor];
                     }break;
-                    case TimerProcessType_End:{
+                    case TimerProcessType_Stop:{
                         JobsLog(@"我死球了");
                     }break;
                         

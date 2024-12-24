@@ -98,6 +98,7 @@
 #ifndef PROP_STRONG_OBJECT_TYPE
 #define PROP_STRONG_OBJECT_TYPE(type, varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(type *)varName{ \
     return objc_getAssociatedObject(self, &_##varName); \
 } \
@@ -112,6 +113,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_COPY_OBJECT_TYPE
 #define PROP_COPY_OBJECT_TYPE(type, varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(type *)varName{ \
     return objc_getAssociatedObject(self, &_##varName); \
 } \
@@ -126,6 +128,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_ASSIGN_OBJECT_TYPE
 #define PROP_ASSIGN_OBJECT_TYPE(type, varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(type)varName{ \
     return objc_getAssociatedObject(self, &_##varName); \
 } \
@@ -141,6 +144,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_CGFloat
 #define PROP_CGFloat(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(CGFloat)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) byFloat]; \
 } \
@@ -155,6 +159,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_CHAR
 #define PROP_CHAR(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(char)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) charValue]; \
 } \
@@ -168,6 +173,7 @@ static void * _##varName = &_##varName; \
 #endif /* PROP_CHAR */
 #ifndef PROP_UNSIGNED_CHAR
 #define PROP_UNSIGNED_CHAR(varName, VarName) \
+@dynamic varName;\
 static void * _##varName = &_##varName; \
 -(unsigned char)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) unsignedCharValue]; \
@@ -182,6 +188,7 @@ static void * _##varName = &_##varName; \
 #endif /* PROP_UNSIGNED_CHAR */
 #ifndef PROP_SHORT
 #define PROP_SHORT(varName, VarName) \
+@dynamic varName;\
 static void * _##varName = &_##varName; \
 -(short)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) shortValue]; \
@@ -196,6 +203,7 @@ static void * _##varName = &_##varName; \
 #endif /* PROP_SHORT */
 #ifndef PROP_UNSIGNED_SHORT
 #define PROP_UNSIGNED_SHORT(varName, VarName) \
+@dynamic varName;\
 static void * _##varName = &_##varName; \
 -(unsigned short)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) unsignedShortValue]; \
@@ -211,6 +219,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_INT
 #define PROP_INT(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(int)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) intValue]; \
 } \
@@ -224,6 +233,7 @@ static void * _##varName = &_##varName; \
 #endif /* PROP_INT */
 #ifndef PROP_UNSIGNED_INT
 #define PROP_UNSIGNED_INT(varName, VarName) \
+@dynamic varName;\
 static void * _##varName = &_##varName; \
 -(unsigned int)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) unsignedIntValue]; \
@@ -239,6 +249,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_LONG
 #define PROP_LONG(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(long)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) longValue]; \
 } \
@@ -253,6 +264,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_UNSIGNED_LONG
 #define PROP_UNSIGNED_LONG(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(unsigned long)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) unsignedLongValue]; \
 } \
@@ -267,6 +279,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_LONG_LONG
 #define PROP_LONG_LONG(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(long long)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) longLongValue]; \
 } \
@@ -281,6 +294,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_UNSIGNED_LONG_LONG
 #define PROP_UNSIGNED_LONG_LONG(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(unsigned long long)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) unsignedLongLongValue]; \
 } \
@@ -295,6 +309,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_FLOAT
 #define PROP_FLOAT(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(float)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) floatValue]; \
 } \
@@ -309,6 +324,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_DOUBLE
 #define PROP_DOUBLE(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(double)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) doubleValue]; \
 } \
@@ -323,6 +339,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_BOOL
 #define PROP_BOOL(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(BOOL)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) boolValue]; \
 } \
@@ -337,6 +354,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_NSInteger
 #define PROP_NSInteger(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(NSInteger)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) integerValue]; \
 } \
@@ -351,6 +369,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_NSUInteger
 #define PROP_NSUInteger(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(NSUInteger)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) unsignedIntegerValue]; \
 } \
@@ -366,6 +385,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_CGPOINT
 #define PROP_CGPOINT(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(CGPoint)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) CGPointValue]; \
 } \
@@ -380,6 +400,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_CGSIZE
 #define PROP_CGSIZE(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(CGSize)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) CGSizeValue]; \
 } \
@@ -394,6 +415,7 @@ static void * _##varName = &_##varName; \
 #ifndef PROP_CGRECT
 #define PROP_CGRECT(varName, VarName) \
 static void * _##varName = &_##varName; \
+@dynamic varName;\
 -(CGRect)varName{ \
     return [objc_getAssociatedObject(self, &_##varName) CGRectValue]; \
 } \

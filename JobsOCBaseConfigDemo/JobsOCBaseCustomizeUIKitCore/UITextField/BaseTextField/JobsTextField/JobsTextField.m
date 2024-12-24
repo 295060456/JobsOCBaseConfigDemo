@@ -17,6 +17,7 @@
 BaseViewProtocol_synthesize
 UITextFieldProtocol_synthesize
 BaseProtocol_synthesize
+RACProtocol_synthesize
 #pragma mark —— SysMethod
 -(instancetype)init{
     if (self = [super init]) {

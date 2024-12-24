@@ -18,6 +18,7 @@
 
 @implementation JobsInfoTBVCell
 BaseProtocol_synthesize
+RACProtocol_synthesize
 UITextFieldProtocol_synthesize_part2
 #pragma mark —— UITableViewCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
