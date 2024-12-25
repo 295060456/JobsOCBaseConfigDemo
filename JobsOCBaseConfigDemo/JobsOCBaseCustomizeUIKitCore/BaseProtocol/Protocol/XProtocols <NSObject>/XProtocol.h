@@ -15,6 +15,7 @@
 #import "UIViewModelOthersProtocol.h"
 #import "BaseButtonProtocol.h"
 #import "UITextFieldProtocol.h"
+#import "RACProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +29,8 @@ UIPictureAndBackGroundCorProtocol, /// <NSObject>： UIPictureAndBackGroundCorPr
 UITextModelProtocol, /// <NSObject>：UITextModelProtocol_synthesize、UITextModelProtocol_dynamic
 UIViewModelOthersProtocol, /// <NSObject>：UIViewModelOthersProtocol_synthesize、UIViewModelOthersProtocol_dynamic
 BaseButtonProtocol, /// <NSObject>：
-UITextFieldProtocol /// <NSObject>：
+UITextFieldProtocol, /// <NSObject>：
+RACProtocol /// <NSObject>：
 >
 
 @end

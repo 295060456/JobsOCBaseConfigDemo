@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
+#import "NSObject+Extras.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -20,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(__kindof UIGestureRecognizer *)gestureActionBy:(jobsByVoidBlock _Nonnull)block;
 -(__kindof UIGestureRecognizer *)GestureActionBy:(jobsByGestureRecognizerBlock _Nonnull)block;
+
+-(jobsBySELBlock _Nonnull)removeAction;
+-(jobsBySELBlock _Nonnull)addAction;
 
 @end
 

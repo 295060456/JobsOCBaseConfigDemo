@@ -99,7 +99,7 @@
         dimmingView.opaque = NO;
         dimmingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
-        dimmingView.target = self;
+        dimmingView.weak_target = self;
         dimmingView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                   UITapGestureRecognizer *_Nullable arg) {
             [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];

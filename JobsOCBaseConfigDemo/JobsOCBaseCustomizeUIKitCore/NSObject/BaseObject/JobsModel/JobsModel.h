@@ -7,7 +7,6 @@
 
 #ifndef JobsModel_h
 #define JobsModel_h
-
 #pragma mark —— 富文本处理
 #import "JobsParagraphStyleModel.h"
 #import "JobsRichTextConfig.h"
@@ -22,6 +21,7 @@
 #import "JobsAppDoorInputViewBaseStyle.h"
 #import "JobsAppDoorInputViewBaseStyleModel.h"
 #pragma mark —— UIKit数据束
+#import "JobsGestureModel.h" /// 手势配置数据源
 #import "JobsTimeModel.h" /// 时间/日期/日历的处理
 #import "URLManagerModel.h"
 #import "JobsKeyValueModel.h"

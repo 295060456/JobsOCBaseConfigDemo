@@ -61,8 +61,7 @@ NS_ASSUME_NONNULL_END
 
 /** 调用示例
  
- -(__kindof UIButton *)makeSendSMSCodeBtn{
-     @jobs_weakify(self)
+ -(__kindof UIButton *)makeSendSMSCodeBtnByClickBlock:(jobsByBtnBlock _Nullable)clickBlock{
      return UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
          /// 一些通用的设置
          data.count = 10;
@@ -101,19 +100,13 @@ NS_ASSUME_NONNULL_END
              model.backgroundImage = JobsIMG(@"获取验证码背景图");
          });
      })).onClickBy(^(__kindof UIButton *x){
-         @jobs_strongify(self)
-         x.startTimer();//选择时机、触发启动
-         if (self.objectBlock) self.objectBlock(x);
+         /// 回调到外层取值，以满足后续业务需要
+         if(clickBlock) clickBlock(x);
      }).onLongPressGestureBy(^(id data){
          JobsLog(@"");
      }).heartBeatBy(^(NSTimerManager *_Nullable data){
          JobsLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
      });
  }
- 
- /// 开始 self.authCodeBtn.startTimer();
- /// 暂停 self.authCodeBtn.timerSuspend();
- /// 继续 self.authCodeBtn.timerContinue();
- /// 结束 self.authCodeBtn.timerDestroy();
 
  */

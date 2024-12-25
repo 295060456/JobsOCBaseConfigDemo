@@ -104,13 +104,13 @@ typedef void(^jobsByVCBlock)(__kindof UIViewController *_Nullable data);
 typedef void(^jobsByVCAndDataBlock)(__kindof UIViewController *_Nullable viewController,id _Nullable data);
 #pragma mark —— 关于手势
 typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable gesture);
-typedef void(^jobsByPanGestureRecognizerBlock)(__kindof UIPanGestureRecognizer *_Nullable data);
-typedef void(^jobsByTapGestureRecognizerBlock)(__kindof UITapGestureRecognizer *_Nullable data);
-typedef void(^jobsByLongPressGestureRecognizerBlock)(__kindof UILongPressGestureRecognizer *_Nullable data);
-typedef void(^jobsBySwipeGestureRecognizerBlock)(__kindof UISwipeGestureRecognizer *_Nullable data);
-typedef void(^jobsByPinchGestureRecognizerBlock)(__kindof UIPinchGestureRecognizer *_Nullable data);
-typedef void(^jobsByRotationGestureRecognizerBlock)(__kindof UIRotationGestureRecognizer *_Nullable data);
-typedef void(^jobsByScreenEdgePanGestureRecognizerBlock)(__kindof UIScreenEdgePanGestureRecognizer *_Nullable data);
+typedef void(^jobsByPanGestureRecognizerBlock)(__kindof UIPanGestureRecognizer *_Nullable gesture);
+typedef void(^jobsByTapGestureRecognizerBlock)(__kindof UITapGestureRecognizer *_Nullable gesture);
+typedef void(^jobsByLongPressGestureRecognizerBlock)(__kindof UILongPressGestureRecognizer *_Nullable gesture);
+typedef void(^jobsBySwipeGestureRecognizerBlock)(__kindof UISwipeGestureRecognizer *_Nullable gesture);
+typedef void(^jobsByPinchGestureRecognizerBlock)(__kindof UIPinchGestureRecognizer *_Nullable gesture);
+typedef void(^jobsByRotationGestureRecognizerBlock)(__kindof UIRotationGestureRecognizer *_Nullable gesture);
+typedef void(^jobsByScreenEdgePanGestureRecognizerBlock)(__kindof UIScreenEdgePanGestureRecognizer *_Nullable gesture);
 #pragma mark —— 关于方位
 typedef void(^jobsByFrameBlock)(CGRect frame);
 typedef void(^jobsByPointBlock)(CGPoint point);
@@ -141,14 +141,6 @@ typedef void(^jobsByDateComponentsBlock)(NSDateComponents *_Nullable dateCompone
 typedef void(^jobsByTimerBlock)(NSTimer *_Nullable timer);
 typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable dateFormatter);
 typedef void(^jobsByNotificationResponseBlock)(UNNotificationResponse *_Nullable response);
-#pragma mark —— 手势
-typedef void(^jobsByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
-typedef void(^jobsByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);
-typedef void(^jobsByLongPressGestureBlock)(UILongPressGestureRecognizer *_Nullable gesture);
-typedef void(^jobsBySwipeGestureBlock)(UISwipeGestureRecognizer *_Nullable gesture);
-typedef void(^jobsByPanGestureBlock)(UIPanGestureRecognizer *_Nullable gesture);
-typedef void(^jobsByPinchGestureBlock)(UIPinchGestureRecognizer *_Nullable gesture);
-typedef void(^jobsByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable gesture);
 #pragma mark —— 其他
 typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);

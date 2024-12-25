@@ -8,33 +8,32 @@
 #ifndef JobsTimerManager_DefineStructure_h
 #define JobsTimerManager_DefineStructure_h
 /// 倒计时模式
-typedef enum : NSUInteger {
-    /// 顺时针模式
-    TimerStyle_clockwise = 0,
-    /// 逆时针模式（倒计时模式）
-    TimerStyle_anticlockwise
-} TimerStyle;
+#ifndef TimerStyle_h
+#define TimerStyle_h
+typedef NS_ENUM(NSUInteger, TimerStyle) {
+    TimerStyle_clockwise = 0,/// 顺时针模式
+    TimerStyle_anticlockwise/// 逆时针模式（倒计时模式）
+};
+#endif /* TimerStyle_h */
 /// 用哪一种模式进行初始化NSTimer定时器
-typedef enum : NSUInteger {
-    /// scheduledTimerWithTimeInterval/repeats/block
-    ScheduledTimerType_0 = 0,
-    /// scheduledTimerWithTimeInterval/invocation/repeats
-    ScheduledTimerType_1,
-    /// scheduledTimerWithTimeInterval/target/selector/userInfo/repeats
-    ScheduledTimerType_2
-} ScheduledTimerType;
+#ifndef ScheduledTimerType_h
+#define ScheduledTimerType_h
+typedef NS_ENUM(NSUInteger, ScheduledTimerType) {
+    ScheduledTimerType_0 = 0,/// scheduledTimerWithTimeInterval/repeats/block
+    ScheduledTimerType_1,/// scheduledTimerWithTimeInterval/invocation/repeats
+    ScheduledTimerType_2/// scheduledTimerWithTimeInterval/target/selector/userInfo/repeats
+};
+#endif /* ScheduledTimerType_h */
 /// NSTimer定时器当前状态
-typedef enum : NSUInteger {
-    /// 定时器未知状态
-    NSTimerCurrentStatusUnknow = 0,
-    /// 定时器正在运行
-    NSTimerCurrentStatusRun = 1,
-    /// 定时器停止
-    NSTimerCurrentStatusStop = 2,
-    /// 定时器暂停
-    NSTimerCurrentStatusPause = 3,
-    /// 定时器销毁
-    NSTimerCurrentStatusDestroy = 4
-} NSTimerCurrentStatus;
+#ifndef NSTimerCurrentStatus_h
+#define NSTimerCurrentStatus_h
+typedef NS_ENUM(NSUInteger, NSTimerCurrentStatus) {
+    NSTimerCurrentStatusUnknow = 0, /// 定时器未知状态
+    NSTimerCurrentStatusRun, /// 定时器正在运行
+    NSTimerCurrentStatusStop, /// 定时器停止
+    NSTimerCurrentStatusPause, /// 定时器暂停
+    NSTimerCurrentStatusDestroy/// 定时器销毁
+};
+#endif /* NSTimerCurrentStatus_h */
 
 #endif /* JobsTimerManager_DefineStructure_h */

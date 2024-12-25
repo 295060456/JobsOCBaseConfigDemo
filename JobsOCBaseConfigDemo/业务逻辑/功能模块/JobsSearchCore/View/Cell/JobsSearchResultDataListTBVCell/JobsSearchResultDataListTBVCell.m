@@ -9,8 +9,6 @@
 
 @interface JobsSearchResultDataListTBVCell ()
 
-@property(nonatomic,strong)UITapGestureRecognizer *tapGR;
-
 @end
 
 @implementation JobsSearchResultDataListTBVCell
@@ -55,6 +53,7 @@
     self.objectBlock(self.textLabel.text);
 }
 #pragma mark —— lazyLoad
+@synthesize tapGR = _tapGR;
 -(UITapGestureRecognizer *)tapGR{//单击一下
     if (!_tapGR) {
         _tapGR = [UITapGestureRecognizer.alloc initWithTarget:self

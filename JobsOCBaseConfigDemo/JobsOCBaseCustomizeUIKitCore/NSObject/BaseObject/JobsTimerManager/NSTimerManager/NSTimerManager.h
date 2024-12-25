@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
+#import "BaseProtocol.h"
+#import "JobsDefineAllEnumHeader.h"
 #import "JobsTimerManager_DefineStructure.h"
 #import "JobsTimeModel.h"
 #import "NSObject+Time.h"
 #import "MacroDef_Func.h"
+#import "DefineProperty.h"
 
 @class NSTimerManager;
 /**
@@ -23,21 +26,7 @@
  */
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSTimerManager : NSObject
-
-@property(nonatomic,strong)NSInvocation *invocation;
-@property(nonatomic,strong,nullable)id target;
-@property(nonatomic,assign,nullable)SEL selector;
-@property(nonatomic,strong,nullable)id userInfo;
-@property(nonatomic,assign)ScheduledTimerType timerType;
-@property(nonatomic,assign)TimerStyle timerStyle;/// 逆时针模式?顺时针模式？
-@property(nonatomic,assign)CGFloat anticlockwiseTime;/// ❤️【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】
-@property(nonatomic,assign,readonly)NSTimerCurrentStatus timerCurrentStatus;// 定时器当前状态
-
-@property(nonatomic,assign)NSTimeInterval timeSecIntervalSinceDate;/// 推移时间，秒数
-@property(nonatomic,assign)NSTimeInterval timeInterval;/// 时间间距
-@property(nonatomic,assign)BOOL repeats;
-@property(nonatomic,strong,nullable)NSTimer *__block nsTimer;
+@interface NSTimerManager : NSObject <BaseProtocol>
 /// 定时器启动 手动添加定时器到RunLoop
 -(jobsByRunLoopBlock _Nonnull)nsTimeStartWithRunLoop;/// currentRunLoop可调用子线程；mainrunloop主线程
 /// 定时器启动：newTimer + 系统自动添加到RunLoop

@@ -54,8 +54,8 @@
     }];
 }
 ///【监听所有通知】用 selector
--(void)monitorNotification:(nonnull NSString *)notificationName
-              withSelector:(nonnull SEL)selector{
+-(void)monitorNotification:(NSString *_Nonnull)notificationName
+              withSelector:(SEL _Nonnull)selector{
     if (isNull(notificationName)) return;
     JobsAddNotification(self,
                     @selector(selector),
@@ -63,8 +63,8 @@
                     nil);
 }
 ///【监听所有通知】用 Block
--(void)monitorNotification:(nonnull NSString *)notificationName
-                 withBlock:(nonnull JobsReturnIDBySelectorBlock)actionBlock{
+-(void)monitorNotification:(NSString *_Nonnull)notificationName
+                 withBlock:(JobsReturnIDBySelectorBlock _Nonnull)actionBlock{
     if (isNull(notificationName)) return;
     [self addNotificationName:notificationName
                         block:^(id _Nullable weakSelf,
@@ -77,8 +77,8 @@
 ///【监听通知】设置App语言环境
 -(void)monitorAppLanguage{
     [self monitorNotification:语言切换
-                    withBlock:^id _Nullable(id  _Nullable weakSelf,
-                                            id  _Nullable arg) {
+                    withBlock:^id _Nullable(id _Nullable weakSelf,
+                                            id _Nullable arg) {
         return nil;
     }];
 }

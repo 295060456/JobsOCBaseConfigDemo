@@ -275,7 +275,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             _collectionView.numberOfTouchesRequired = 1;
             _collectionView.allowableMovement = 1;
             _collectionView.userInteractionEnabled = YES;
-            _collectionView.target = self;
+            _collectionView.weak_target = self;
             @jobs_weakify(self)
             _collectionView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                                 UILongPressGestureRecognizer *_Nullable arg) {

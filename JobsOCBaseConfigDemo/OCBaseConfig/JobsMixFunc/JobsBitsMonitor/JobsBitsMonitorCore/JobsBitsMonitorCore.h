@@ -6,26 +6,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <arpa/inet.h>                            /// 提供与网络地址相关的函数，例如 IP 地址的转换（从字符串到二进制格式，反之亦然）。
+#include <ifaddrs.h>                              /// 提供用于获取网络接口地址的信息的接口，例如获取设备所有网络接口的 IP 地址。
+#include <net/if.h>                               /// 定义网络接口的常量和结构体，用于处理网络接口的配置。
+#include <net/if_dl.h>                            /// 提供网络接口的链路层地址信息，例如 MAC 地址。
 
-#include <arpa/inet.h>
-#include <ifaddrs.h>
-#include <net/if.h>
-#include <net/if_dl.h>
-
-#import "NSTimerManager.h"
-#import "MacroDef_Notification.h"
 #import "BaseProtocol.h"
-
-typedef enum : NSUInteger {
-    BitsMonitorAutoRun = 0,/// 自启动模式
-    BitsMonitorManualRun = 1/// 手动启动模式
-} BitsMonitorRunMode;
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "MacroDef_Notification.h"
+#import "DefineConstString.h"
+#import "NSTimerManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-extern NSString *const GSDownloadNetworkSpeedNotificationKey;/// 下载通知的key
-extern NSString *const GSUploadNetworkSpeedNotificationKey;/// 上传通知的key
-extern NSString *const GSUploadAndDownloadNetworkSpeedNotificationKey;/// 上传和下载 通知的key
 
 @interface JobsBitsMonitorCore : NSObject<BaseProtocol>
 

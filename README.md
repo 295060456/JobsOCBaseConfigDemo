@@ -3644,90 +3644,122 @@ static const uint32_t kSequenceBits = 12;
   * **BaseButtonProtocol.h**
   
     ```objective-c
-    @protocol BaseButtonProtocol <BaseViewProtocol>
+    @protocol BaseButtonProtocol <NSObject>
     @optional
-    #pragma mark —— UIButton + UI
     /// 为了迎合点语法而故意把下列方法属性化
-    /// Common
-    @property(nonatomic,strong)UIButtonConfiguration *buttonConfiguration;
-    @property(nonatomic,strong)UIBackgroundConfiguration *backgroundConfiguration;
-    @property(nonatomic,assign)NSTextAlignment titleAlignment;
-    @property(nonatomic,assign)UIButtonConfigurationTitleAlignment buttonConfigurationTitleAlignment;
-    @property(nonatomic,assign)BOOL jobsSelected;
-    #pragma mark —— JobsBtnModel
-    @property(nonatomic,strong)UIColor *btnBackgroundColor;
-    @property(nonatomic,assign)CGSize imageSize;
-    /// 结合下列属性来实现改变Button文字位置
-    @property(nonatomic,assign)UIControlContentHorizontalAlignment contentHorizontalAlignment;
-    @property(nonatomic,assign)UIControlContentVerticalAlignment contentVerticalAlignment;
-    @property(nonatomic,assign)NSDirectionalRectEdge directionalRectEdge;
-    @property(nonatomic,assign)UIEdgeInsets contentEdgeInsets;/// iOS 15以前可以用
-    @property(nonatomic,readwrite,assign)NSDirectionalEdgeInsets contentInsets;/// iOS 15以后 结合UIButtonConfiguration 以替换属性：UIEdgeInsets contentEdgeInsets;
-    @property(nonatomic,assign)CGFloat contentSpacing;
-    @property(nonatomic,assign)NSLineBreakMode lineBreakMode;
-    @property(nonatomic,assign)NSLineBreakMode subLineBreakMode;
-    @property(nonatomic,assign)CGFloat btnWidth;/// 预设值，父视图的宽度不能大于这个值
-    #pragma mark —— 以前的
+    /// UIButton + UI
+    #pragma mark —— 配置信息
+    /// 关于系统对于按钮的配置信息
+    Prop_strong(nullable)UIButtonConfiguration *buttonConfiguration API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos) NS_SWIFT_UI_ACTOR;/// 来自新Api的配置文件。UIButtonConfiguration.filledButtonConfiguration;
+    Prop_strong(nullable)UIBackgroundConfiguration *backgroundConfiguration API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos) NS_SWIFT_UI_ACTOR;/// 自定义按钮背景的配置
+    Prop_assign()UIControlContentHorizontalAlignment contentHorizontalAlignment API_UNAVAILABLE(watchos); /// 针对内容的横向对齐方式
+    Prop_assign()UIControlContentVerticalAlignment contentVerticalAlignment API_UNAVAILABLE(watchos); /// 针对内容的竖向对齐方式
+    Prop_assign()NSDirectionalEdgeInsets contentInsets API_AVAILABLE(ios(11.0),tvos(11.0),watchos(4.0)); /// 定位内边距的方向。iOS 15以后 结合UIButtonConfiguration 以替换属性：UIEdgeInsets
+    Prop_assign()UIEdgeInsets contentEdgeInsets;/// iOS 15以前可以用
+    Prop_strong(nullable)UIColor *baseBackgroundColor;/// 背景颜色
+    /// 关于按钮的图文关系
+    Prop_assign()CGFloat imagePadding;/// 图像与标题之间的间距
+    Prop_assign()CGFloat titlePadding;/// 标题和副标题标签之间的距离
+    Prop_assign()NSDirectionalRectEdge imagePlacement;/// ❤️图片和文字的位置关系❤️
+    /// 一些自定义的配置信息
+    Prop_assign()UILabelShowingType titleShowingType;/// 主标题的显示方式
+    Prop_assign()UILabelShowingType subTitleShowingType;/// 副标题的显示方式
+    Prop_assign()BOOL jobsSelected; /// 避免与系统方法冲突
+    Prop_assign()BOOL jobsEnabled; /// 避免与系统方法冲突
+    Prop_assign()CGSize imageSize;
+    Prop_assign()CGFloat contentSpacing;
+    Prop_assign()CGFloat btnWidth; /// 预设值，父视图的宽度不能大于这个值
+    #pragma mark —— 普通文本
+    Prop_copy(nullable)NSString *title; /// 主标题
+    Prop_copy(nullable)NSString *subTitle API_AVAILABLE(ios(16.0)); ///（新Api才有的）副标题
+    /**
+     在 iOS 16 中，UIButtonConfiguration 使用 titleTextAttributesTransformer 来调整按钮标题的字体和颜色
+     但直接访问字体并不像从 titleLabel 那样简单
+     */
+    /// 普通文本的字体
+    Prop_strong(nullable)UIFont *titleFont;
+    Prop_strong(nullable)UIFont *subTitleFont API_AVAILABLE(ios(16.0));
+    /// 普通文本的文字颜色
+    Prop_strong(nullable)UIColor *titleCor;/// 主标题文字颜色
+    Prop_strong(nullable)UIColor *subTitleCor;/// 副标题文字颜色
+    /// 普通文本的对齐方式
+    Prop_assign()NSTextAlignment titleAlignment;/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】。也对应新Api里面的title的对齐方式
+    Prop_assign()NSTextAlignment subTitleAlignment;/// 也对应新Api里面的subTitle的对齐方式
+    Prop_assign()UIButtonConfigurationTitleAlignment buttonConfigurationTitleAlignment API_AVAILABLE(ios(15.0)) API_UNAVAILABLE(watchos);/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+    /// 普通文本的换行方式
+    Prop_assign()NSLineBreakMode titleLineBreakMode;/// 主标题换行模式
+    Prop_assign()NSLineBreakMode subtitleLineBreakMode;///（新Api才有的）副标题换行模式
+    #pragma mark —— 图片
+    Prop_strong(nullable)UIImage *backgroundImage;/// 背景图片
+    Prop_strong(nullable)UIImage *normalImage;/// 正常情况下的image
+    Prop_strong(nullable)UIImage *highlightImage;/// = selected_Image 高亮情况下的image
+    #pragma mark —— 富文本
+    Prop_strong(nullable)NSAttributedString *attributedTitle;/// 主标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
+    Prop_strong(nullable)NSAttributedString *selectedAttributedTitle;///（只限于老Api，新Api里面没有）UIControlStateSelected状态下的标题富文本。设置富文本，请关注：#import "NSObject+RichText.h"
+    Prop_strong(nullable)NSAttributedString *attributedSubTitle;///（新Api才有的）副标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
+    #pragma mark —— 对UIButton子控件的约束
     /// ⚠️执行return的顺序依照下列👇🏻属性的排序⚠️
     ///【组 1】UIButton 单独自定义设置系统自带控件的Frame【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
-    @property(nonatomic,assign)CGRect textLabelFrame;
-    @property(nonatomic,assign)CGRect subTextLabelFrame;
-    @property(nonatomic,assign)CGRect imageViewFrame;
+    Prop_assign()CGRect textLabelFrame;
+    Prop_assign()CGRect subTextLabelFrame;
+    Prop_assign()CGRect imageViewFrame;
     ///【组 2】UIButton 单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
-    @property(nonatomic,assign)CGSize textLabelSize;
-    @property(nonatomic,assign)CGFloat textLabelFrameResetX;
-    @property(nonatomic,assign)CGFloat textLabelFrameResetY;
+    Prop_assign()CGSize textLabelSize;
+    Prop_assign()CGFloat textLabelFrameResetX;
+    Prop_assign()CGFloat textLabelFrameResetY;
     
-    @property(nonatomic,assign)CGSize subTextLabelSize;
-    @property(nonatomic,assign)CGFloat subTextLabelFrameResetX;
-    @property(nonatomic,assign)CGFloat subTextLabelFrameResetY;
+    Prop_assign()CGSize subTextLabelSize;
+    Prop_assign()CGFloat subTextLabelFrameResetX;
+    Prop_assign()CGFloat subTextLabelFrameResetY;
     
-    @property(nonatomic,assign)CGSize imageViewSize;
-    @property(nonatomic,assign)CGFloat imageViewFrameResetX;
-    @property(nonatomic,assign)CGFloat imageViewFrameResetY;
+    Prop_assign()CGSize imageViewSize;
+    Prop_assign()CGFloat imageViewFrameResetX;
+    Prop_assign()CGFloat imageViewFrameResetY;
     ///【组 3】UIButton 单独自定义设置系统自带控件的长宽【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、2属性互斥❤️
-    @property(nonatomic,assign)CGFloat textLabelWidth;
-    @property(nonatomic,assign)CGFloat subTextLabelWidth;
-    @property(nonatomic,assign)CGFloat imageViewWidth;
-    @property(nonatomic,assign)CGFloat textLabelHeight;
-    @property(nonatomic,assign)CGFloat subTextLabelHeight;
-    @property(nonatomic,assign)CGFloat imageViewHeight;
+    Prop_assign()CGFloat textLabelWidth;
+    Prop_assign()CGFloat subTextLabelWidth;
+    Prop_assign()CGFloat imageViewWidth;
+    Prop_assign()CGFloat textLabelHeight;
+    Prop_assign()CGFloat subTextLabelHeight;
+    Prop_assign()CGFloat imageViewHeight;
     /// UIButton 单独自定义设置系统自带控件的偏移量 ❤️与其他组属性不互斥❤️
-    // 关于 textLabel 的偏移
-    @property(nonatomic,assign)CGFloat textLabelFrameOffsetX;
-    @property(nonatomic,assign)CGFloat textLabelFrameOffsetY;
-    @property(nonatomic,assign)CGFloat textLabelFrameOffsetWidth;
-    @property(nonatomic,assign)CGFloat textLabelFrameOffsetHeight;
-    // 关于 subTextLabel 的偏移
-    @property(nonatomic,assign)CGFloat subTextLabelFrameOffsetX;
-    @property(nonatomic,assign)CGFloat subTextLabelFrameOffsetY;
-    @property(nonatomic,assign)CGFloat subTextLabelFrameOffsetWidth;
-    @property(nonatomic,assign)CGFloat subTextLabelFrameOffsetHeight;
-    // 关于 imageView 的偏移
-    @property(nonatomic,assign)CGFloat imageViewFrameOffsetX;
-    @property(nonatomic,assign)CGFloat imageViewFrameOffsetY;
-    @property(nonatomic,assign)CGFloat imageViewFrameOffsetWidth;
-    @property(nonatomic,assign)CGFloat imageViewFrameOffsetHeight;
-    //具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-    -(void)richElementsInButtonWithModel:(id _Nullable)model;
+    /// 关于 textLabel 的偏移
+    Prop_assign()CGFloat textLabelFrameOffsetX;
+    Prop_assign()CGFloat textLabelFrameOffsetY;
+    Prop_assign()CGFloat textLabelFrameOffsetWidth;
+    Prop_assign()CGFloat textLabelFrameOffsetHeight;
+    /// 关于 subTextLabel 的偏移
+    Prop_assign()CGFloat subTextLabelFrameOffsetX;
+    Prop_assign()CGFloat subTextLabelFrameOffsetY;
+    Prop_assign()CGFloat subTextLabelFrameOffsetWidth;
+    Prop_assign()CGFloat subTextLabelFrameOffsetHeight;
+    /// 关于 imageView 的偏移
+    Prop_assign()CGFloat imageViewFrameOffsetX;
+    Prop_assign()CGFloat imageViewFrameOffsetY;
+    Prop_assign()CGFloat imageViewFrameOffsetWidth;
+    Prop_assign()CGFloat imageViewFrameOffsetHeight;
     #pragma mark —— 用类方法定义
-    //具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-    +(CGFloat)buttonWidthWithModel:(id _Nullable)model;
-    //具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-    +(CGFloat)buttonHeightWithModel:(id _Nullable)model;
-    //具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-    +(CGSize)buttonSizeWithModel:(id _Nullable)model;
-    //具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-    +(CGRect)buttonFrameWithModel:(id _Nullable)model;
+    /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    +(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel;
+    /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    +(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel;
+    /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    +(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel;
+    /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    +(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel;
     #pragma mark —— 用实例方法定义
-    //具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-    -(CGFloat)buttonWidthWithModel:(id _Nullable)model;
-    //具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-    -(CGFloat)buttonHeightWithModel:(id _Nullable)model;
-    //具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-    -(CGSize)buttonSizeWithModel:(id _Nullable)model;
-    //具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-    -(CGRect)buttonFrameWithModel:(id _Nullable)model;
+    /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel;
+    /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel;
+    /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel;
+    /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel;
+    /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+    -(jobsByIDBlock _Nonnull)richButtonByModel;
+    
+    @end
     ```
   
 * 系统配置文件
@@ -3903,8 +3935,10 @@ static const uint32_t kSequenceBits = 12;
 * 对按钮各项属性的设置
 
   * ```objective-c
+    #pragma mark —— 一些通用修改（Api已做向下兼容）
     /// 主标题是否多行显示
     -(jobsByBOOLBlock _Nonnull)makeNewLineShows;
+    #pragma mark —— 一些通用修改.主标题（Api已做向下兼容）
     ///【兼容】重设Btn主标题的文字内容 优先级高于jobsResetTitle
     -(JobsReturnButtonByStringBlock _Nonnull)jobsResetBtnTitle;
     ///【兼容】重设Btn主标题的文字颜色
@@ -3920,8 +3954,6 @@ static const uint32_t kSequenceBits = 12;
     -(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
     ///【兼容】重设Btn的副标题字体
     -(JobsReturnButtonByFontBlock _Nonnull)jobsResetBtnSubTitleFont;
-    ///【最新的Api】修改副标题的对齐方式
-    -(JobsReturnButtonByTextAlignmentBlock _Nonnull)jobsResetSubTitleTextAlignment API_AVAILABLE(ios(16.0));
     #pragma mark —— 一些通用修改.按钮图片
     ///【兼容】重设Btn.Image
     -(JobsReturnButtonByImageBlock _Nonnull)jobsResetBtnImage;
@@ -3932,8 +3964,8 @@ static const uint32_t kSequenceBits = 12;
     ///【兼容】重设Btn的背景颜色
     -(JobsReturnButtonByColorBlock _Nonnull)jobsResetBtnBgCor;
     #pragma mark —— 一些通用修改.Layer
-    ///【合并】重设Btn的描边：线宽和线段的颜色
-    -(JobsReturnButtonByColor_FloatBlock _Nonnull)jobsResetBtnLayerBorderCorAndWidth;
+    ///【合并】统一设置按钮Layer的线宽+颜色+圆切角
+    -(JobsReturnViewByLocationModelBlock _Nonnull)jobsResetBtnLayerBy;
     ///【兼容】重设Btn的圆切角
     -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnCornerRadiusValue;
     ///【兼容】重设Btn的描边线段的颜色
@@ -3941,50 +3973,93 @@ static const uint32_t kSequenceBits = 12;
     ///【兼容】重设Btn的描边线段的宽度
     -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetBtnLayerBorderWidth;
     #pragma mark —— 一些通用修改.富文本
-    ///【兼容】重设Btn富文本
+    ///【兼容】重设Btn主标题富文本
     -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedTitle;
+    ///【兼容】重设Btn副标题富文本
+    -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnNormalAttributedSubTitle;
+    /// 用 UITextView 替换 UIButton.titleLabel
+    -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnTextViewNormalAttributedTitle;
+    /// 用 UITextView 替换 UIButton.subtitleLabel
+    -(JobsReturnButtonByAttributedStringBlock _Nonnull)jobsResetBtnTextViewNormalAttributedSubTitle;
     #pragma mark —— 一些通用修改.间距
     ///【兼容】重设Btn的图文间距和相对位置
     -(JobsReturnButtonByImagePlacementAndPaddingBlock _Nonnull)jobsResetImagePlacement_Padding API_AVAILABLE(ios(16.0));
-    ///【最新的Api】重设Btn的图文相对位置
-    -(JobsReturnButtonByImagePlacementBlock _Nonnull)jobsResetImagePlacement API_AVAILABLE(ios(16.0));
-    ///【最新的Api】重设Btn的图文间距
-    -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetImagePadding API_AVAILABLE(ios(16.0));
-    ///【最新的Api】重设Btn主标题与副标题之间的距离
-    -(JobsReturnButtonByCGFloatBlock _Nonnull)jobsResetTitlePadding API_AVAILABLE(ios(16.0));
+    ///【兼容】获取按钮图片（普通状态下）
+    -(UIImage *_Nullable)imageForNormalState;
+    ///【兼容】获取按钮背景图片（普通状态下）
+    -(UIImage *_Nullable)backgroundImageForNormalState;
+    ///【兼容】获取按钮富文本字符串内容
+    -(NSString *_Nullable)titleForConfigurationAttributedText;
+    ///【兼容】获取按钮富文本内容（更通用）
+    -(NSAttributedString *_Nullable)titleForConfigurationAttributed;
+    ///【兼容】获取按钮富文本内容（普通状态下）
+    -(NSAttributedString *_Nullable)attributedTitleForNormalState;
+    ///【兼容】获取按钮主文字内容
+    -(NSString *_Nullable)titleForNormalState;
+    ///【兼容】获取按钮主文字颜色
+    -(UIColor *_Nullable)titleColorForNormalState;
     ```
     
   * ```objective-c
-    -(JobsReturnButtonByTitleAlignmentBlock _Nonnull)jobsResetTitleAlignment API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonByBOOLBlock _Nonnull)jobsResetAutomaticallyUpdateForSelection API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)jobsResetBackground API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetBackgroundImage API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)jobsResetCornerStyle API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationBySizeBlock _Nonnull)jobsResetButtonSize API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByMacIdiomStyleBlock _Nonnull)jobsResetMacIdiomStyle API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByBaseBackgroundColorBlock _Nonnull)jobsResetBaseBackgroundColor API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByImageBlock _Nonnull)jobsResetImage API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByImageColorTransformerBlock _Nonnull)jobsResetImageColorTransformer API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByPreferredSymbolConfigurationForImageBlock _Nonnull)jobsResetPreferredSymbolConfigurationForImage API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByShowsActivityIndicatorBlock _Nonnull)jobsResetShowsActivityIndicator API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByActivityIndicatorColorTransformerBlock _Nonnull)jobsResetActivityIndicatorColorTransformer API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetTitle API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByTitleBlock _Nonnull)jobsResetSubTitle API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByAttributedTitleBlock _Nonnull)jobsResetAttributedTitle API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByTitleTextAttributesTransformerBlock _Nonnull)jobsResetTitleTextAttributesTransformer API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetTitleLineBreakMode API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)jobsResetSubTitleLineBreakMode API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationBySubtitleBlock _Nonnull)jobsResetSubtitle API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByAttributedSubtitleBlock _Nonnull)jobsResetAttributedSubtitle API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationBySubtitleTextAttributesTransformerBlock _Nonnull)jobsResetSubtitleTextAttributesTransformer API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationBySubtitleLineBreakModeBlock _Nonnull)jobsResetSubtitleLineBreakMode API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByIndicatorBlock _Nonnull)jobsResetIndicator API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByIndicatorColorTransformerBlock _Nonnull)jobsResetIndicatorColorTransformer API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByContentInsetsBlock _Nonnull)jobsResetContentInsets API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)jobsResetSubTitleBaseForegroundColor API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetTitleFont API_AVAILABLE(ios(16.0));
-    -(JobsReturnButtonConfigurationByFontBlock _Nonnull)jobsResetSubTitleFont API_AVAILABLE(ios(16.0));
+    #pragma mark —— 对老Api进行二次封装
+    +(JobsReturnButtonByNSIntegerBlock _Nonnull)initByType;
+    +(__kindof UIButton *)initByCustomType;
+    +(__kindof UIButton *)initBySysType API_AVAILABLE(ios(7.0));
+    +(__kindof UIButton *)initByDetailDisclosureType;
+    +(__kindof UIButton *)initByInfoLightType;
+    +(__kindof UIButton *)initByInfoDarkType;
+    +(__kindof UIButton *)initByContactAddType;
+    +(__kindof UIButton *)initByPlainType API_AVAILABLE(tvos(11.0)) API_UNAVAILABLE(ios, watchos);
+    +(__kindof UIButton *)initByCloseType API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos, watchos);
+    #pragma mark —— 依靠单一数据进行简单创建
+    /// 仅仅依靠主标题内容（普通文本）进行创建
+    +(JobsReturnButtonByStringBlock _Nonnull)initByTitle;
+    /// 仅仅依靠主标题富文本内容进行创建
+    +(JobsReturnButtonByAttributedStringBlock _Nonnull)initByAttributedString;
+    /// 仅仅靠按钮图片进行创建
+    +(JobsReturnButtonByImageBlock _Nonnull)initByNormalImage;
+    /// 仅仅依靠按钮背景图进行创建
+    +(JobsReturnButtonByImageBlock _Nonnull)initByBackgroundImage;
+    #pragma mark —— 对副标题进行创建
+    /// 仅仅依靠（主/副）标题内容（普通文本）进行创建
+    +(JobsReturnButtonByTitlesBlock _Nonnull)initByTitles;
+    /// 仅仅依靠（主标题+副标题）富文本内容进行创建
+    +(JobsReturnButtonByAttributedStringsBlock _Nonnull)initByAttributedStrings;
+    #pragma mark —— 依靠多数据进行较为复杂的创建
+    /// 依靠标题内容和字体大小进行创建
+    +(JobsReturnButtonByStyle1Block _Nonnull)initByTitle_font;
+    /// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
+    +(JobsReturnButtonByStyle2Block _Nonnull)initByStyle1;
+    /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
+    +(JobsReturnButtonByStyle3Block _Nonnull)initByStyle2;
+    /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
+    +(JobsReturnButtonByStyle4Block _Nonnull)initByStyle3;
+    /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
+    +(JobsReturnButtonByStyle5Block _Nonnull)initByStyle4;
+    /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
+    +(JobsReturnButtonByStyle3Block _Nonnull)initByStyle5;
+    /// 图文混排（图片在上边 ）
+    +(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleTop;
+    /// 图文混排（图片在左边 ）
+    +(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleLeft;
+    /// 图文混排（图片在下边 ）
+    +(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleBottom;
+    /// 图文混排（图片在右边 ）
+    +(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleRight;
+    #pragma mark —— 依靠数据束进行创建
+    +(JobsReturnButtonByVoidBlock _Nonnull)jobsInit;
+    /// 依靠UIViewModel进行创建
+    +(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel;
+    /// 依靠UIButtonModel进行创建
+    +(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel;
+    /// 依靠UITextModel进行创建
+    +(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel;
+    #pragma mark —— 一些公有方法
+    -(JobsReturnButtonByClickBlock _Nonnull)onClickBy;
+    -(JobsReturnButtonByClickBlock _Nonnull)onLongPressGestureBy;
+    -(JobsReturnButtonByTimerManagerBlock _Nonnull)heartBeatBy;
+    -(JobsReturnButtonByColorBlock _Nonnull)bgColorBy;
+    -(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValueBy;
     ```
   
 * 资料来源：
@@ -4001,9 +4076,7 @@ static const uint32_t kSequenceBits = 12;
 * 调用示例
 
   ```objective-c
-  /// 带倒计时功能的发送短信验证码按钮
-  -(__kindof UIButton *)makeSendSMSCodeBtn{
-      @jobs_weakify(self)
+  -(__kindof UIButton *)makeSendSMSCodeBtnByClickBlock:(jobsByBtnBlock _Nullable)clickBlock{
       return UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
           /// 一些通用的设置
           data.count = 10;
@@ -4041,14 +4114,13 @@ static const uint32_t kSequenceBits = 12;
               model.titleFont = bayonRegular(JobsWidth(12));
               model.backgroundImage = JobsIMG(@"获取验证码背景图");
           });
-      })).onClick(^(__kindof UIButton *x){
-          @jobs_strongify(self)
-          x.startTimer();//选择时机、触发启动
-          if (self.objectBlock) self.objectBlock(x);
-      }).onLongPressGesture(^(id data){
-          NSLog(@"");
-      }).heartBeat(^(NSTimerManager *_Nullable data){
-          NSLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
+      })).onClickBy(^(__kindof UIButton *x){
+          /// 回调到外层取值，以满足后续业务需要
+          if(clickBlock) clickBlock(x);
+      }).onLongPressGestureBy(^(id data){
+          JobsLog(@"");
+      }).heartBeatBy(^(NSTimerManager *_Nullable data){
+          JobsLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
       });
   }
   ```
@@ -4141,33 +4213,40 @@ static const uint32_t kSequenceBits = 12;
   }];
   ```
   
-*  对Masonry约束Block进行存储，一般一个View对应一个约束。先addSubview，再利用存储的约束进行绘制UI
-*  ```objective-c
+* 对Masonry约束Block进行存储，一般一个View对应一个约束。先addSubview，再利用存储的约束进行绘制UI
+
+  ```objective-c
   -(JobsReturnViewByButtonModelBlock _Nonnull)showEmptyButtonBy{
+      @jobs_weakify(self)
       return ^__kindof UIView *_Nullable(UIButtonModel *model){
-          @jobs_weakify(self)
-          return jobsMakeView(^(__kindof UIView *_Nullable view) {
-              @jobs_strongify(self)
-              view.frame = self.bounds;
-              self.addSubview(view);
-              view.cleanSubview();
-              view.addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                  data.title = JobsInternationalization(@"No Datas");
-                  data.titleCor = JobsWhiteColor;
-                  data.titleFont = bayonRegular(JobsWidth(30));
-                  data.normalImage = JobsIMG(@"暂无数据");
-                  data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-              })).setMasonryBy(^(MASConstraintMaker *make){
+          @jobs_strongify(self)
+          if(self.hasData){
+              self.cleanSubviewBy(BaseView.class);
+              return nil;
+          }else{
+              return jobsMakeBaseView(^(__kindof BaseView *_Nullable view) {
                   @jobs_strongify(self)
-                  make.centerX.equalTo(self).offset(model.btn_offset_x);
-                  make.centerY.equalTo(self).offset(model.btn_offset_y);
-                  make.width.equalTo(self);
-              }));
-          });
+                  view.frame = self.bounds;
+                  self.cleanSubviewBy(BaseView.class);
+                  self.addSubview(view);
+                  view.addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                      data.title = JobsInternationalization(@"No Datas");
+                      data.titleCor = JobsWhiteColor;
+                      data.titleFont = bayonRegular(JobsWidth(30));
+                      data.normalImage = JobsIMG(@"暂无数据");
+                      data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+                  })).setMasonryBy(^(MASConstraintMaker *make){
+                      @jobs_strongify(self)
+                      make.centerX.equalTo(self).offset(model.jobsOffsetX);
+                      make.centerY.equalTo(self).offset(model.jobsOffsetY);
+                      make.width.equalTo(self);
+                  }));
+              });
+          }
       };
   }
   ```
-  
+
 * 将以前的约束全部清除，用最新的`mas_remakeConstraints`
   
 * 如果在已有的约束基础上，再更新约束`mas_updateConstraints`
@@ -4321,20 +4400,39 @@ static const uint32_t kSequenceBits = 12;
   ```
   
   ```objective-c
-  ///【子类需要覆写 】创建返回键的点击事件
-  -(void)backBtnClickEvent:(UIButton *_Nullable)sender{
-      if (self.jobsBackBlock) self.jobsBackBlock(sender);
-      switch (self.pushOrPresent) {
-          case ComingStyle_PRESENT:{
-              [self dismissViewControllerAnimated:YES completion:nil];
-          }break;
-          case ComingStyle_PUSH:{
-              self.navigationController ? [self.navigationController popViewControllerAnimated:YES] : [self dismissViewControllerAnimated:YES completion:nil];
-          }break;
-              
-          default:
-              break;
-      }
+  -(jobsByBtnBlock _Nonnull)backBtnClickEvent{
+      @jobs_weakify(self)
+      return ^(UIButton *_Nullable sender) {
+          @jobs_strongify(self)
+          self.jobsBackBtnClickEvent(sender);
+      };
+  }
+  
+  -(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent{
+      @jobs_weakify(self)
+      return ^(__kindof UIButton *_Nullable sender) {
+          @jobs_strongify(self)
+          if (self.jobsBackBlock) self.jobsBackBlock(sender);
+          UIViewController *vc = nil;
+          if (KindOfVCCls(self)) {
+              vc = (UIViewController *)self;
+          }else if (KindOfViewCls(self)){
+              UIView *view = (UIView *)self;
+              vc = self.getViewControllerByView(view);
+          }else return;
+          
+          switch (self.pushOrPresent) {
+              case ComingStyle_PRESENT:{
+                  [vc dismissViewControllerAnimated:YES completion:nil];
+              }break;
+              case ComingStyle_PUSH:{
+                  vc.navigationController ? [vc.navigationController popViewControllerAnimated:YES] : [vc dismissViewControllerAnimated:YES completion:nil];
+              }break;
+                  
+              default:
+                  break;
+          }
+      };
   }
   ```
 
@@ -4429,7 +4527,7 @@ static const uint32_t kSequenceBits = 12;
    ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
    ///   - target: 执行目标
    SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
-                                NSString *_Nullable selectorName,
+                                NSString *_Nullable selectorName,// MethodName(self)
                                 NSObject *_Nonnull target) {
        if (!block) {
            toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
@@ -4440,7 +4538,7 @@ static const uint32_t kSequenceBits = 12;
            .add(toStringByID(target.makeSnowflake))
            .add(@"_")
            .add(selectorName);
-       NSLog(@"selName = %@", selName);
+       JobsLog(@"selName = %@", selName);
        SEL sel = NSSelectorFromString(selName);
        /// 检查缓存
        static NSMutableDictionary *methodCache;
@@ -4463,23 +4561,18 @@ static const uint32_t kSequenceBits = 12;
         */
        /// 检查目标类是否已有该方法
        if (class_getInstanceMethod([target class], sel)) {
-           NSLog(@"方法曾经已经被成功添加，再次添加会崩溃");
+           JobsLog(@"方法曾经已经被成功添加，再次添加会崩溃");
            return sel;
        } else {
            /// 动态添加方法
            if (class_addMethod([target class], sel, (IMP)selectorImp, "v@:@@")) {
                objc_setAssociatedObject(target, sel, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
-               methodCache[selName] = NSValue.byPoint(sel);
+               methodCache[selName] = NSValue.byPointer(sel);
            } else {
                [NSException raise:JobsInternationalization(@"添加方法失败")
                            format:@"%@ selectorBlock error", target];
            }
        }return sel;
-   }
-   /// 内部调用无需暴露
-   static void selectorImp(id target, SEL _cmd, id arg) {
-       JobsReturnIDBySelectorBlock block = objc_getAssociatedObject(target, _cmd);
-       if (block) block(target, arg);
    }
    ```
 </details>
@@ -4499,7 +4592,7 @@ static const uint32_t kSequenceBits = 12;
       @jobs_weakify(self)
       return ^(id _Nullable data){
           @jobs_strongify(self)
-          [NSNotificationCenter.defaultCenter postNotificationName:self object:data];
+          [JobsNotificationCenter postNotificationName:self object:data];
       };
   }
   
@@ -4507,9 +4600,9 @@ static const uint32_t kSequenceBits = 12;
       @jobs_weakify(self)
       return ^(NotificationModel *_Nullable data){
           @jobs_strongify(self)
-          [NSNotificationCenter.defaultCenter postNotificationName:self
-                                                            object:data.anObject
-                                                          userInfo:data.userInfo];
+          [JobsNotificationCenter postNotificationName:self
+                                                object:data.anObject
+                                              userInfo:data.userInfo];
       };
   }
   
@@ -4529,6 +4622,15 @@ static const uint32_t kSequenceBits = 12;
           });
       };
   }
+  /// 在主线程上带参发通知
+  -(jobsByKeyValueModelBlock _Nonnull)JobsPostBy{
+      return ^(JobsKeyValueModel *_Nullable data){
+          dispatch_async(dispatch_get_main_queue(), ^{
+              NSString *key = (NSString *)data.key;
+              key.postNotificationBy(data.value);
+          });
+      };
+  }
   /// 在主线程上不带参发通知
   -(jobsByStringBlock _Nonnull)jobsPost{
       return ^(NSString *_Nonnull key){
@@ -4538,7 +4640,7 @@ static const uint32_t kSequenceBits = 12;
       };
   }
   ```
-
+  
 * 
   ```objective-c
   /// 2.1、不带参数的发送通知
@@ -5000,29 +5102,42 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         }return _closeBtnModel;
     }
     
+    /// 导航返回键的配置
+    -(UIButtonModel *)makeBackBtnModel{
+        @jobs_weakify(self)
+        return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+            @jobs_strongify(self)
+    //        data.backgroundImage = JobsIMG(@"返回");
+            data.selected_backgroundImage = JobsIMG(@"返回");
+            data.highlightImage = JobsIMG(@"返回");
+            data.normalImage = JobsIMG(@"返回");
+            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+            data.title = self.viewModel.backBtnTitleModel.text;
+            data.font = self.viewModel.backBtnTitleModel.font;
+            data.titleCor = JobsBlackColor;
+            data.selected_titleCor = JobsBlackColor;
+            data.roundingCorners = UIRectCornerAllCorners;
+            data.imagePlacement = NSDirectionalRectEdgeLeading;
+            data.imagePadding = JobsWidth(5);
+        });
+    }
+    
+    @synthesize backBtnModel = _backBtnModel;
     -(UIButtonModel *)backBtnModel{
         if(!_backBtnModel){
-            _backBtnModel = UIButtonModel.new;
-    //        _backBtnModel.backgroundImage = JobsIMG(@"返回");
-    //        _backBtnModel.selected_backgroundImage = JobsIMG(@"返回");
-            _backBtnModel.normalImage = JobsIMG(@"返回");
-            _backBtnModel.highlightImage = JobsIMG(@"返回");
-            _backBtnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-            _backBtnModel.title = self.viewModel.backBtnTitleModel.text;
-            _backBtnModel.titleCor = JobsBlackColor;
-            _backBtnModel.selected_titleCor = JobsBlackColor;
-            _backBtnModel.roundingCorners = UIRectCornerAllCorners;
-            _backBtnModel.imagePlacement = NSDirectionalRectEdgeLeading;
-            _backBtnModel.imagePadding = JobsWidth(5);
             @jobs_weakify(self)
-            _backBtnModel.longPressGestureEventBlock = ^(id  _Nullable weakSelf,
-                                                         id  _Nullable arg) {
-                NSLog(@"按钮的长按事件触发");
+            _backBtnModel = self.makeBackBtnModel;
+            _backBtnModel.titleFont = bayonRegular(JobsWidth(18));
+            _backBtnModel.titleCor = JobsWhiteColor;
+            _backBtnModel.selected_titleCor = JobsWhiteColor;
+            _backBtnModel.longPressGestureEventBlock = ^id(__kindof UIButton *x) {
+                JobsLog(@"按钮的长按事件触发");
+                return nil;
             };
             _backBtnModel.clickEventBlock = ^id(BaseButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
-                self.backBtnClickEvent(x);
+                self.jobsBackBtnClickEvent(x);
+                self.popToRootVCBy(YES);
                 return nil;
             };
         }return _backBtnModel;
@@ -5347,43 +5462,43 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 存数据
 
-  * 设置 `UserDefault` 值（Value）
+  * 设置 `UserDefault` 值（<font color=red>**Value**</font>）
 
     ```objective-c
     JobsSetUserDefaultKeyWithValue
     ```
 
-  * 设置 `UserDefault` 对象（Object）
+  * 设置 `UserDefault` 对象（<font color=red>**Object**</font>）
 
     ```objective-c
     JobsSetUserDefaultKeyWithObject
     ```
 
-  * 设置 `UserDefault` 布尔值（Bool）
+  * 设置 `UserDefault` 布尔值（<font color=red>**Bool**</font>）
 
     ```objective-c
     JobsSetUserBoolKeyWithBool
     ```
 
-  * 设置  `UserDefault`  整数值（Integer）
+  * 设置  `UserDefault`  整数值（<font color=red>**Integer**</font>）
 
     ```objective-c
     JobsSetUserDefaultKeyWithInteger
     ```
 
-  * 设置  `UserDefault`  浮点数值（Float）
+  * 设置  `UserDefault`  浮点数值（<font color=red>**Float**</font>）
 
     ```objective-c
     JobsSetUserDefaultKeyWithFloat
     ```
 
-  * 设置  `UserDefault`  双精度浮点数值（Double）
+  * 设置  `UserDefault`  双精度浮点数值（<font color=red>**Double**</font>）
 
     ```objective-c
     JobsSetUserDefaultKeyWithDouble
     ```
 
-  * 设置  `UserDefault`  URL（URL）
+  * 设置  `UserDefault`  URL（<font color=red>**URL**</font>）
 
     ```objective-c
     JobsSetUserDefaultKeyWithURL
@@ -5391,43 +5506,43 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 读取数据
 
-  * 获取 `UserDefault` 值（Value）
+  * 获取 `UserDefault` 值（<font color=red>**Value**</font>）
 
     ```objective-c
     JobsGetUserDefaultValueForKey
     ```
 
-  * 获取 `UserDefault` 对象（Object）
+  * 获取 `UserDefault` 对象（<font color=red>**Object**</font>）
 
     ```objective-c
     JobsGetUserDefaultObjForKey
     ```
 
-  * 获取 `UserDefault` 布尔值（Bool）
+  * 获取 `UserDefault` 布尔值（<font color=red>**Bool**</font>）
 
     ```objective-c
     JobsGetUserDefaultBoolForKey
     ```
 
-  * 获取 `UserDefault` 整数值（Integer）
+  * 获取 `UserDefault` 整数值（<font color=red>**Integer**</font>）
 
     ```objective-c
     JobsGetUserDefaultIntegerForKey
     ```
 
-  * 获取 `UserDefault` 浮点数值（Float）
+  * 获取 `UserDefault` 浮点数值（<font color=red>**Float**</font>）
 
     ```objective-c
     JobsGetUserDefaultFloatForKey
     ```
 
-  * 获取 `UserDefault` 双精度浮点数值（Double）
+  * 获取 `UserDefault` 双精度浮点数值（<font color=red>**Double**</font>）
 
     ```objective-c
     JobsGetUserDefaultDoubleForKey
     ```
 
-  * 获取 `UserDefault` URL（URL）
+  * 获取 `UserDefault` URL（<font color=red>**URL**</font>）
 
     ```objective-c
     JobsGetUserDefaultURLForKey

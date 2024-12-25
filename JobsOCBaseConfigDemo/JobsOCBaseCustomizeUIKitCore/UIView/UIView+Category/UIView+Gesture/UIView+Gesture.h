@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
+#import "JobsBlock.h"
+#import "GestureProtocol.h"
 #import "JobsString.h"
 #import "NSObject+Extras.h"
 #import "NSObject+DynamicInvoke.h"
@@ -58,44 +60,9 @@
  并且当任何手指抬起时手势识别器结束（UIGestureRecognizerStateEnded）。
  *
  */
-
 NS_ASSUME_NONNULL_BEGIN
-
 #warning —— 本类不实现UIGestureRecognizerDelegate的原因说明:覆盖了UISCrollView 里面对应的方法
-
-@interface UIView (Gesture)
-// config
-@property(nonatomic,weak,nullable)id target;
-@property(nonatomic,assign)NSUInteger minimumNumberOfTouches API_UNAVAILABLE(tvos);
-@property(nonatomic,assign)NSUInteger maximumNumberOfTouches API_UNAVAILABLE(tvos);
-@property(nonatomic,assign)NSUInteger numberOfTapsRequired;/// 设置轻拍次数【UILongPressGestureRecognizer】【UITapGestureRecognizer】⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
-@property(nonatomic,assign)NSUInteger numberOfTouchesRequired;/// 设置手指字数【UILongPressGestureRecognizer】【UITapGestureRecognizer】
-@property(nonatomic,assign)NSTimeInterval minimumPressDuration;/// longPressGR最小长按时间【UILongPressGestureRecognizer】
-@property(nonatomic,assign)CGFloat allowableMovement;///【UILongPressGestureRecognizer】
-@property(nonatomic,assign)UISwipeGestureRecognizerDirection swipeGRDirection;/// swipe手势清扫方向
-@property(nonatomic,assign)UIScrollTypeMask allowedScrollTypesMask API_AVAILABLE(ios(13.4));
-@property(nonatomic,assign)CGFloat scale;/// 捏合范围
-@property(nonatomic,assign)CGFloat rotate;/// 旋转角度
-// UIGestureRecognizer
-@property(nonatomic,strong)UILongPressGestureRecognizer *longPressGR;/// 长按手势
-@property(nonatomic,strong)UITapGestureRecognizer *tapGR;/// 点击手势
-@property(nonatomic,strong)UITapGestureRecognizer *doubleTapGR;/// 双击手势
-@property(nonatomic,strong)UISwipeGestureRecognizer *swipeGR;/// 轻扫手势
-@property(nonatomic,strong)UIPanGestureRecognizer *panGR;/// 平移手势
-@property(nonatomic,strong)UIPinchGestureRecognizer *pinchGR;/// 捏合（缩放）手势
-@property(nonatomic,strong)UIRotationGestureRecognizer *rotationGR;/// 旋转手势
-@property(nonatomic,strong)UIScreenEdgePanGestureRecognizer *screenEdgePanGR;/// 屏幕边缘平移
-// action
-@property(nonatomic,strong)JobsSEL_IMP *longPressGR_SelImp;
-@property(nonatomic,strong)JobsSEL_IMP *tapGR_SelImp;
-@property(nonatomic,strong)JobsSEL_IMP *doubleTapGR_SelImp;
-@property(nonatomic,strong)JobsSEL_IMP *swipeGR_SelImp;
-@property(nonatomic,strong)JobsSEL_IMP *panGR_SelImp;
-@property(nonatomic,strong)JobsSEL_IMP *pinchGR_SelImp;
-@property(nonatomic,strong)JobsSEL_IMP *rotationGR_SelImp;
-@property(nonatomic,strong)JobsSEL_IMP *screenEdgePanGR_SelImp;
-
--(void)Dealloc;
+@interface UIView (Gesture)<GestureProtocol>
 
 @end
 
@@ -110,7 +77,7 @@ NS_ASSUME_NONNULL_END
      _adView.numberOfTouchesRequired = 1;
      _adView.allowableMovement = 1;
      _adView.userInteractionEnabled = YES;
-     _adView.target = self;/// ⚠️注意：任何手势这一句都要写
+     _adView.weak_target = self;/// ⚠️注意：任何手势这一句都要写
 
      {
          _adView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable weakSelf,

@@ -110,6 +110,28 @@ static void * _##varName = &_##varName; \
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
 }
 #endif /* PROP_STRONG_OBJECT_TYPE */
+#ifndef PROP_STRONG_OBJECT_Default_TYPE
+#define PROP_STRONG_OBJECT_Default_TYPE(type, varName, VarName) \
+static void * _##varName = &_##varName; \
+@dynamic varName;\
+-(type *)varName{ \
+    type *obj = objc_getAssociatedObject(self, &_##varName); \
+    if (!obj) { \
+        obj = type.alloc.init; \
+        objc_setAssociatedObject(self, \
+                                 &_##varName, \
+                                 obj, \
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+    } return obj; \
+} \
+\
+- (void)set##VarName:(type *)varName { \
+    objc_setAssociatedObject(self, \
+                             &_##varName, \
+                             varName, \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_STRONG_OBJECT_Default_TYPE */
 #ifndef PROP_COPY_OBJECT_TYPE
 #define PROP_COPY_OBJECT_TYPE(type, varName, VarName) \
 static void * _##varName = &_##varName; \
@@ -125,6 +147,28 @@ static void * _##varName = &_##varName; \
                              OBJC_ASSOCIATION_COPY_NONATOMIC); \
 }
 #endif /* PROP_COPY_OBJECT_TYPE */
+#ifndef PROP_COPY_OBJECT_Default_TYPE
+#define PROP_COPY_OBJECT_Default_TYPE(type, varName, VarName) \
+static void * _##varName = &_##varName; \
+@dynamic varName;\
+-(type *)varName{ \
+    type *obj = objc_getAssociatedObject(self, &_##varName); \
+    if (!obj) { \
+        obj = type.alloc.init; \
+        objc_setAssociatedObject(self, \
+                                 &_##varName, \
+                                 obj, \
+                                 OBJC_ASSOCIATION_COPY_NONATOMIC); \
+    } return obj; \
+} \
+\
+-(void)set##VarName:(type *)varName{ \
+    objc_setAssociatedObject(self,\
+                             &_##varName,\
+                             varName,\
+                             OBJC_ASSOCIATION_COPY_NONATOMIC); \
+}
+#endif /* PROP_COPY_OBJECT_Default_TYPE */
 #ifndef PROP_ASSIGN_OBJECT_TYPE
 #define PROP_ASSIGN_OBJECT_TYPE(type, varName, VarName) \
 static void * _##varName = &_##varName; \

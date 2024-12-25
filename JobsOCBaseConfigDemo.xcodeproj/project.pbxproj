@@ -144,6 +144,7 @@
 		84B9C3372D16C372002FE9F5 /* NSString+ID.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B9C3352D16C372002FE9F5 /* NSString+ID.m */; };
 		84B9C33B2D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B9C3392D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes+Extra.m */; };
 		84CF6DD52D1AB6200060C97D /* RACModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6DD32D1AB6200060C97D /* RACModel.m */; };
+		84CF6FDA2D1C42D90060C97D /* JobsGestureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6FD82D1C42D90060C97D /* JobsGestureModel.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
@@ -1537,6 +1538,10 @@
 		84CF6DD22D1AB6200060C97D /* RACModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACModel.h; sourceTree = "<group>"; };
 		84CF6DD32D1AB6200060C97D /* RACModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RACModel.m; sourceTree = "<group>"; };
 		84CF6DD62D1AB7300060C97D /* RYCuteView.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = RYCuteView.webp; sourceTree = "<group>"; };
+		84CF6FD52D1C423E0060C97D /* GestureProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureProtocol.h; sourceTree = "<group>"; };
+		84CF6FD62D1C424B0060C97D /* RACProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACProtocol.h; sourceTree = "<group>"; };
+		84CF6FD72D1C42D90060C97D /* JobsGestureModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsGestureModel.h; sourceTree = "<group>"; };
+		84CF6FD82D1C42D90060C97D /* JobsGestureModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsGestureModel.m; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
 		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
@@ -3879,6 +3884,7 @@
 			isa = PBXGroup;
 			children = (
 				84CF6DD12D1AB5BB0060C97D /* RACProtocol.h */,
+				84CF6FD52D1C423E0060C97D /* GestureProtocol.h */,
 				8442D6B02D0C7BBC00286913 /* BaseProtocol.h */,
 				8442D6B12D0C7BBC00286913 /* AppToolsProtocol.h */,
 			);
@@ -3896,6 +3902,7 @@
 				8442D6B92D0C7BBC00286913 /* UIPictureAndBackGroundCorProtocol.h */,
 				8442D6BA2D0C7BBC00286913 /* UITextModelProtocol.h */,
 				8442D6BB2D0C7BBC00286913 /* UIViewModelOthersProtocol.h */,
+				84CF6FD62D1C424B0060C97D /* RACProtocol.h */,
 			);
 			path = "XProtocol <NSObject>";
 			sourceTree = "<group>";
@@ -4647,24 +4654,25 @@
 		8478D8D62D01CBE0004E8B90 /* UIKit数据束 */ = {
 			isa = PBXGroup;
 			children = (
-				8478D8A22D01CBE0004E8B90 /* JobsTimeModel */,
-				8478D8A52D01CBE0004E8B90 /* URLManagerModel */,
-				8478D8A82D01CBE0004E8B90 /* JobsKeyValueModel */,
-				8478D8AB2D01CBE0004E8B90 /* NSNotificationKeyboardModel */,
-				8478D8AE2D01CBE0004E8B90 /* JobsAlertModel */,
-				8478D8B12D01CBE0004E8B90 /* UserDefaultModel */,
-				8478D8B42D01CBE0004E8B90 /* JobsCorModel */,
 				8478D8B72D01CBE0004E8B90 /* BaseModel */,
-				8478D8BA2D01CBE0004E8B90 /* JobsImageModel */,
-				8478D8BD2D01CBE0004E8B90 /* UNNotificationRequestModel */,
-				8478D8C02D01CBE0004E8B90 /* NotificationModel */,
-				8478D8C32D01CBE0004E8B90 /* JobsLocationModel */,
+				8478D8AE2D01CBE0004E8B90 /* JobsAlertModel */,
 				8478D8C62D01CBE0004E8B90 /* JobsBaseModel */,
-				8478D8C92D01CBE0004E8B90 /* UITextFieldModel */,
+				8478D8B42D01CBE0004E8B90 /* JobsCorModel */,
+				84CF6FD92D1C42D90060C97D /* JobsGestureModel */,
 				8478D8CC2D01CBE0004E8B90 /* JobsHeaderFooterViewModel */,
+				8478D8BA2D01CBE0004E8B90 /* JobsImageModel */,
+				8478D8A82D01CBE0004E8B90 /* JobsKeyValueModel */,
+				8478D8C32D01CBE0004E8B90 /* JobsLocationModel */,
+				8478D8A22D01CBE0004E8B90 /* JobsTimeModel */,
+				8478D8C02D01CBE0004E8B90 /* NotificationModel */,
+				8478D8AB2D01CBE0004E8B90 /* NSNotificationKeyboardModel */,
 				8478D8CF2D01CBE0004E8B90 /* UIButtonModel */,
+				8478D8C92D01CBE0004E8B90 /* UITextFieldModel */,
 				8478D8D22D01CBE0004E8B90 /* UITextModel */,
 				8478D8D52D01CBE0004E8B90 /* UIViewModel */,
+				8478D8BD2D01CBE0004E8B90 /* UNNotificationRequestModel */,
+				8478D8A52D01CBE0004E8B90 /* URLManagerModel */,
+				8478D8B12D01CBE0004E8B90 /* UserDefaultModel */,
 			);
 			path = "UIKit数据束";
 			sourceTree = "<group>";
@@ -5076,6 +5084,15 @@
 				84CF6DD32D1AB6200060C97D /* RACModel.m */,
 			);
 			path = RACModel;
+			sourceTree = "<group>";
+		};
+		84CF6FD92D1C42D90060C97D /* JobsGestureModel */ = {
+			isa = PBXGroup;
+			children = (
+				84CF6FD72D1C42D90060C97D /* JobsGestureModel.h */,
+				84CF6FD82D1C42D90060C97D /* JobsGestureModel.m */,
+			);
+			path = JobsGestureModel;
 			sourceTree = "<group>";
 		};
 		84DFE2C82CC69BBB00AB099C /* FMBannerAdsModel */ = {
@@ -16916,6 +16933,7 @@
 				CE4F27DA2CA825CD002AF25B /* TimeTitleCell.m in Sources */,
 				CE4F27DB2CA825CD002AF25B /* ZFDouYinControlView.m in Sources */,
 				84B8A9582D0ACECE0079336D /* UITextItem+Extra.m in Sources */,
+				84CF6FDA2D1C42D90060C97D /* JobsGestureModel.m in Sources */,
 				CE4F27DC2CA825CD002AF25B /* JXCategoryViewWithHeaderViewVC.m in Sources */,
 				CE4F27DD2CA825CD002AF25B /* JobsExcelLeftListView.m in Sources */,
 				CE5A64CC2CA82F86006D67A7 /* NSObject+UDID.m in Sources */,

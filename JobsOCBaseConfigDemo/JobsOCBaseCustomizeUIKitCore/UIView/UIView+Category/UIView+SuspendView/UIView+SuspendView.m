@@ -32,7 +32,7 @@ JobsKey(_panRcognize)
         self.panGR.minimumNumberOfTouches = 1;
         self.panGR.delaysTouchesEnded = YES;
         self.panGR.cancelsTouchesInView = YES;
-        self.target = self;/// ⚠️注意：任何手势这一句都要写
+        self.weak_target = self;/// ⚠️注意：任何手势这一句都要写
         @jobs_weakify(self)
         self.panGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
                                                                            UIPanGestureRecognizer *_Nullable recognizer) {

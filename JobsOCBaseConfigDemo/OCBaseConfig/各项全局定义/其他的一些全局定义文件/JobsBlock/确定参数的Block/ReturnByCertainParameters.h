@@ -133,6 +133,7 @@ typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitleAl
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock)(BOOL data) API_AVAILABLE(ios(16.0));
 #pragma mark —— 关于手势
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidBlock)(void);
+typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidStarBlock)(void *_Nullable key);
 typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);

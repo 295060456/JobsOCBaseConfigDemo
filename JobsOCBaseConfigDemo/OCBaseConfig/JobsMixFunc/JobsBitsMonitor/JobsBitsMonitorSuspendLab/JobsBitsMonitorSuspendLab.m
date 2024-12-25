@@ -55,7 +55,7 @@
             self.allowableMovement = 1;
             self.userInteractionEnabled = YES;
             @jobs_weakify(self)
-            self.target = weak_self;
+            self.weak_target = weak_self;
             self.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                UITapGestureRecognizer *_Nullable arg) {
                 @jobs_strongify(self)

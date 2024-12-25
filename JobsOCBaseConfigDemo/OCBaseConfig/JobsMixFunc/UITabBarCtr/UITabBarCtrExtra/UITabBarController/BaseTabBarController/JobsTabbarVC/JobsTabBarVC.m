@@ -175,7 +175,7 @@ static dispatch_once_t onceToken;
         self.view.numberOfTouchesRequired = 1;
         self.view.allowableMovement = 1;
         self.view.userInteractionEnabled = YES;
-        self.view.target = self;
+        self.view.weak_target = self;
         @jobs_weakify(self)
         self.view.panGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
                                                                                 UIPanGestureRecognizer *_Nullable pan) {
@@ -343,7 +343,7 @@ static dispatch_once_t onceToken;
         subView.numberOfTouchesRequired = 1;
         subView.allowableMovement = 1;
         subView.userInteractionEnabled = YES;
-        subView.target = self;
+        subView.weak_target = self;
         subView.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                     UILongPressGestureRecognizer *_Nullable longPressGR) {
             if(self.gestureRecognizerBlock) self.gestureRecognizerBlock(longPressGR);

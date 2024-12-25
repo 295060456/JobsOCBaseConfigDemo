@@ -1501,28 +1501,25 @@ UITextFieldProtocol_dynamic
         }
     }];
 }
-#pragma mark —— @property(nonatomic,assign)CGPoint lastPoint;
-JobsKey(_lastPoint)
-@dynamic lastPoint;
--(CGPoint)lastPoint{
-    CGPoint LastPoint = [Jobs_getAssociatedObject(_lastPoint) CGPointValue];
-    return LastPoint;
+/// Prop_weak(nullable)id weak_target;/// 描述方法实现的位置
+JobsKey(_weak_target)
+@dynamic weak_target;
+-(id)weak_target{
+    id weakTarget = Jobs_getAssociatedObject(_weak_target);
+    if (!weakTarget) {
+        @jobs_weakify(self)
+        Jobs_setAssociatedRETAIN_NONATOMIC(_weak_target, weak_self)
+    }return weakTarget;
 }
 
--(void)setLastPoint:(CGPoint)lastPoint{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_lastPoint, [NSValue valueWithCGPoint:lastPoint])
+-(void)setWeak_target:(id)weak_target{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_weak_target, weak_target)
 }
+/// @property(nonatomic,assign)CGPoint lastPoint;
+PROP_CGPOINT(lastPoint, LastPoint)
 #pragma mark —— @property(nonatomic,strong)NSIndexPath *indexPath;
-JobsKey(_indexPath)
-@dynamic indexPath;
--(NSIndexPath *)indexPath{
-    return Jobs_getAssociatedObject(_indexPath);
-}
-
--(void)setIndexPath:(NSIndexPath *)indexPath{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_indexPath, indexPath)
-}
-#pragma mark —— @property(nonatomic,assign)NSInteger currentPage;
+PROP_STRONG_OBJECT_TYPE(NSIndexPath, indexPath, IndexPath)
+/// @property(nonatomic,assign)NSInteger currentPage;
 JobsKey(_currentPage)
 @dynamic currentPage;
 -(NSInteger)currentPage{
@@ -1550,40 +1547,11 @@ JobsKey(_pageSize)
 -(void)setPageSize:(NSInteger)pageSize{
     Jobs_setAssociatedRETAIN_NONATOMIC(_pageSize, @(pageSize))
 }
-#pragma mark —— @property(nonatomic,assign)NSInteger index;
-JobsKey(_index)
-@dynamic index;
--(NSInteger)index{
-    return [Jobs_getAssociatedObject(_index) integerValue];
-}
-
--(void)setIndex:(NSInteger)index{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_index, @(index))
-}
-#pragma mark —— @property(nonatomic,strong)UIViewModel *viewModel;
-JobsKey(_viewModel)
-@dynamic viewModel;
--(UIViewModel *)viewModel{
-    UIViewModel *ViewModel = Jobs_getAssociatedObject(_viewModel);
-    if (!ViewModel) {
-        ViewModel = UIViewModel.new;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, ViewModel)
-    }return ViewModel;
-}
-
--(void)setViewModel:(UIViewModel *)viewModel{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, viewModel)
-}
-#pragma mark —— @property(nonatomic,copy)NSString *internationalizationKEY;/// 国际化的key
-JobsKey(_internationalizationKEY)
-@dynamic internationalizationKEY;
--(NSString *)internationalizationKEY{
-    NSString *InternationalizationKEY = Jobs_getAssociatedObject(_internationalizationKEY);
-    return InternationalizationKEY;
-}
-
--(void)setInternationalizationKEY:(NSString *)internationalizationKEY{
-    Jobs_setAssociatedCOPY_NONATOMIC(_internationalizationKEY, internationalizationKEY)
-}
+/// @property(nonatomic,assign)NSInteger index;
+PROP_NSInteger(index, Index)
+/// @property(nonatomic,strong)UIViewModel *viewModel;
+PROP_STRONG_OBJECT_Default_TYPE(UIViewModel, viewModel, ViewModel)
+/// @property(nonatomic,copy)NSString *internationalizationKEY;/// 国际化的key
+PROP_COPY_OBJECT_TYPE(NSString, internationalizationKEY, InternationalizationKEY)
 
 @end

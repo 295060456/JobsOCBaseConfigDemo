@@ -21,4 +21,20 @@
     }];return self;
 }
 
+-(jobsBySELBlock _Nonnull)removeAction{
+    @jobs_weakify(self)
+    return ^(SEL _Nullable data){
+        @jobs_strongify(self)
+        if(data) [self removeTarget:self.target action:data];
+    };
+}
+
+-(jobsBySELBlock _Nonnull)addAction{
+    @jobs_weakify(self)
+    return ^(SEL _Nullable data){
+        @jobs_strongify(self)
+        if(data) [self addTarget:self.target action:data];
+    };
+}
+
 @end

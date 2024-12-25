@@ -63,7 +63,7 @@
     self.numberOfTouchesRequired = 1;
     self.allowableMovement = 1;
     self.userInteractionEnabled = YES;
-    self.target = self;
+    self.weak_target = self;
     @jobs_weakify(self)
     self.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                              UITapGestureRecognizer *_Nullable arg) {
@@ -139,7 +139,7 @@
             _coverView.numberOfTouchesRequired = 1;
             _coverView.allowableMovement = 1;
             _coverView.userInteractionEnabled = YES;
-            _coverView.target = self;
+            _coverView.weak_target = self;
             @jobs_weakify(self)
             _coverView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                      UITapGestureRecognizer *_Nullable arg) {

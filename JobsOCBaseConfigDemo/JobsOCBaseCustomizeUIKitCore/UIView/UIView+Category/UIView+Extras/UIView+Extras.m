@@ -660,7 +660,7 @@ JobsKey(_cornerRadii)
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIGestureRecognizer *_Nonnull gesture) {
         @jobs_strongify(self)
-        [self addGestureRecognizer:gesture];
+        if(gesture)[self addGestureRecognizer:gesture];
         return self;
     };
 }
@@ -755,7 +755,7 @@ JobsKey(_cornerRadii)
         self.numberOfTouchesRequired = 1;
         self.allowableMovement = 1;
         self.userInteractionEnabled = YES;
-        self.target = target;
+        self.weak_target = target;
     };
 }
 /// popView取消按钮常规处理方法

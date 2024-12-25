@@ -18,7 +18,7 @@
     self.numberOfTouchesRequired = 1;
     self.allowableMovement = 1;
     self.userInteractionEnabled = YES;
-    self.target = self;
+    self.weak_target = self;
     self.longPressGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                              UILongPressGestureRecognizer *_Nullable arg) {
         JobsLog(@"UILabel 的 长按 手势");

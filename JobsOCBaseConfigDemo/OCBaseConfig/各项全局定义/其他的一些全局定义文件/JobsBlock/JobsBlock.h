@@ -88,6 +88,9 @@ typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
 @class RACModel;
 typedef void(^jobsByRACModelBlock)(RACModel *_Nullable data);
 
+@class JobsGestureModel;
+typedef void(^jobsByGestureModelBlock)(JobsGestureModel *_Nullable data);
+
 @class JobsIMChatInfoModel;
 typedef void(^jobsByIMChatInfoModelBlock)(JobsIMChatInfoModel *_Nullable data);
 

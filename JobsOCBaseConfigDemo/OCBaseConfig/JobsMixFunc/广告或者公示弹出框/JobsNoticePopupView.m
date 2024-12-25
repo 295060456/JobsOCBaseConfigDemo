@@ -47,7 +47,7 @@
                 imageView.numberOfTouchesRequired = 1;
                 imageView.allowableMovement = 1;
                 imageView.userInteractionEnabled = YES;
-                imageView.target = self;
+                imageView.weak_target = self;
                 @jobs_weakify(self)
                 imageView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                         UITapGestureRecognizer *_Nullable arg) {

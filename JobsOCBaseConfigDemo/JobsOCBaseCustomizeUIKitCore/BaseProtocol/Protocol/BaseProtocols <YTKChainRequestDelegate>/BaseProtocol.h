@@ -25,7 +25,17 @@ NS_ASSUME_NONNULL_BEGIN
 Prop_assign()BOOL isLock;
 Prop_assign()BOOL becomeFirstResponder;
 Prop_assign()AppLanguage appLanguage;
-/// 关于计时器
+#pragma mark —— 关于计时器
+Prop_strong(nullable)NSInvocation *invocation;
+Prop_strong(nullable)id userInfo;
+Prop_assign()ScheduledTimerType timerType; /// 用哪一种模式进行初始化NSTimer定时器
+Prop_assign()TimerStyle timerStyle;/// 逆时针模式?顺时针模式？
+Prop_assign()CGFloat anticlockwiseTime;/// ❤️【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】
+Prop_assign(readonly)NSTimerCurrentStatus timerCurrentStatus;// 定时器当前状态
+Prop_assign()NSTimeInterval timeSecIntervalSinceDate;/// 推移时间，秒数
+Prop_assign()NSTimeInterval timeInterval;/// 时间间距
+Prop_assign()BOOL repeats;
+Prop_strong(nullable)NSTimer *timer;
 Prop_assign()BOOL start;
 Prop_assign()BOOL pause;
 Prop_assign()BOOL resume;
@@ -38,6 +48,18 @@ Prop_strong(nullable)NSMutableSet *jobsDataMutSet;/// 绑定的数据源，数�
 Prop_strong(nullable)NSMutableArray *jobsDataMutArr;/// 绑定的数据源，数据类型NSMutableArray
 Prop_strong(nullable)NSMutableDictionary *jobsDataMutDic;/// 绑定的数据源，数据类型NSMutableDictionary
 Prop_strong(nullable)Class cls;/// 绑定的class
+/**
+ SEL：就是一个字符串（Char*类型），表示方法的名字
+ IMP：就是指向方法实现首地址的指针
+ Method：是一个结构体，包含一个SEL表示方法名、一个IMP指向函数的实现地址、一个Char*表示函数的类型（包括返回值和参数类型）
+ SEL、IMP、Method之间的关系可以这么理解：
+ 一个类（Class）持有一系列的方法（Method），在load类时，runtime会将所有方法的选择器（SEL）hash后映射到一个集合（NSSet）中（NSSet里的元素不能重复）
+ 当需要发消息时，会根据选择器（SEL）去查找方法；找到之后，用Method结构体里的函数指针（IMP）去调用方法。这样在运行时查找selecter的速度就会非常快
+ */
+Prop_assign(nullable)SEL selector;
+Prop_assign(nullable)IMP implementation;
+Prop_strong(nullable)id target;
+Prop_weak(nullable)id weak_target;
 /// 强引用数据源
 Prop_strong(nullable)id data;/// 【强引用】绑定的数据源，数据类型id
 Prop_strong(nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
@@ -49,11 +71,11 @@ Prop_weak(nullable)id requestParams_weak;/// 【弱引用】绑定的数据源�
 #pragma mark —— iOS 通知
 ///【监听所有通知】
 ///【监听所有通知】用 selector
--(void)monitorNotification:(nonnull NSString *)notificationName
-              withSelector:(nonnull SEL)selector;
+-(void)monitorNotification:(NSString *_Nonnull)notificationName
+              withSelector:(SEL _Nonnull)selector;
 ///【监听所有通知】用 Block
--(void)monitorNotification:(nonnull NSString *)notificationName
-                 withBlock:(nonnull JobsReturnIDBySelectorBlock)actionBlock;
+-(void)monitorNotification:(NSString * _Nonnull)notificationName
+                 withBlock:(JobsReturnIDBySelectorBlock _Nonnull)actionBlock;
 ///【通知监听】国际化语言修改UI
 /// @param target 需要铆定监听通知的对象
 /// @param aSelector 相关逻辑
@@ -74,27 +96,62 @@ Prop_weak(nullable)id requestParams_weak;/// 【弱引用】绑定的数据源�
 
 NS_ASSUME_NONNULL_END
 
-#ifndef BaseProtocol_synthesize
-#define BaseProtocol_synthesize \
+#ifndef BaseProtocol_synthesize_state
+#define BaseProtocol_synthesize_state \
 \
 @synthesize isLock = _isLock;\
 @synthesize becomeFirstResponder = _becomeFirstResponder;\
 @synthesize appLanguage = _appLanguage;\
+
+#endif /* BaseProtocol_synthesize_state */
+
+#ifndef BaseProtocol_synthesize_timer
+#define BaseProtocol_synthesize_timer \
+\
+@synthesize invocation = _invocation;\
+@synthesize userInfo = _userInfo;\
+@synthesize timerType = _timerType;\
+@synthesize timerStyle = _timerStyle;\
+@synthesize anticlockwiseTime = _anticlockwiseTime;\
+@synthesize timerCurrentStatus = _timerCurrentStatus;\
+@synthesize timeSecIntervalSinceDate = _timeSecIntervalSinceDate;\
+@synthesize timeInterval = _timeInterval;\
+@synthesize repeats = _repeats;\
+@synthesize timer = _timer;\
 @synthesize start = _start;\
 @synthesize pause = _pause;\
 @synthesize resume = _resume;\
 @synthesize stop = _stop;\
 @synthesize timerProcessType = _timerProcessType;\
+
+#endif /* BaseProtocol_synthesize_timer */
+
+#ifndef BaseProtocol_synthesize_data
+#define BaseProtocol_synthesize_data \
+\
+@synthesize url = _url;\
 @synthesize internationalizationKEY = _internationalizationKEY;\
 @synthesize jobsDataMutSet = _jobsDataMutSet;\
 @synthesize jobsDataMutArr = _jobsDataMutArr;\
 @synthesize jobsDataMutDic = _jobsDataMutDic;\
 @synthesize cls = _cls;\
+@synthesize selector = _selector;\
+@synthesize implementation = _implementation;\
+@synthesize target = _target;\
+@synthesize weak_target = _weak_target;\
 @synthesize data = _data;\
 @synthesize data_weak = _data_weak;\
 @synthesize requestParams = _requestParams;\
 @synthesize requestParams_weak = _requestParams_weak;\
-@synthesize url = _url;\
+
+#endif /* BaseProtocol_synthesize_data */
+
+#ifndef BaseProtocol_synthesize
+#define BaseProtocol_synthesize \
+\
+BaseProtocol_synthesize_state \
+BaseProtocol_synthesize_timer \
+BaseProtocol_synthesize_data \
 
 #endif /* BaseProtocol_synthesize */
 
@@ -104,20 +161,34 @@ NS_ASSUME_NONNULL_END
 @dynamic isLock;\
 @dynamic becomeFirstResponder;\
 @dynamic appLanguage;\
+@dynamic invocation;\
+@dynamic userInfo;\
+@dynamic timerType;\
+@dynamic timerStyle;\
+@dynamic anticlockwiseTime;\
+@dynamic timerCurrentStatus;\
+@dynamic timeSecIntervalSinceDate;\
+@dynamic timeInterval;\
+@dynamic repeats;\
+@dynamic timer;\
 @dynamic start;\
 @dynamic pause;\
 @dynamic resume;\
 @dynamic stop;\
 @dynamic timerProcessType;\
+@dynamic url;\
 @dynamic internationalizationKEY;\
 @dynamic jobsDataMutSet;\
 @dynamic jobsDataMutArr;\
 @dynamic jobsDataMutDic;\
 @dynamic cls;\
+@dynamic selector;\
+@dynamic implementation;\
+@dynamic target;\
+@dynamic weak_target;\
 @dynamic data;\
-@dynamic requestParams;\
 @dynamic data_weak;\
+@dynamic requestParams;\
 @dynamic requestParams_weak;\
-@dynamic url;\
 
 #endif /* BaseProtocol_dynamic */

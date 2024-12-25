@@ -18,6 +18,9 @@ classDiagram
     class AppToolsProtocol {
         BaseProtocol
     }
+    class GestureProtocol {
+        BaseProtocol
+    }
     class XProtocol {
         NSObject
         BaseLayerProtocol
@@ -75,6 +78,7 @@ classDiagram
     RACProtocol --|> BaseProtocol
     YTKChainRequestDelegate --|> BaseProtocol
     BaseProtocol --|> AppToolsProtocol
+    BaseProtocol --|> GestureProtocol
     
     BaseLayerProtocol --|> XProtocol
     UILocationProtocol --|> XProtocol

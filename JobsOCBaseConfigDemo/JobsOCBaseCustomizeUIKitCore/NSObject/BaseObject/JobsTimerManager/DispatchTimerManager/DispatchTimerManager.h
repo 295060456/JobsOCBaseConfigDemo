@@ -7,15 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MacroDef_Func.h"
-
-#ifndef DISPATCH_TIMER_STATE_ENUM_DEFINED
-#define DISPATCH_TIMER_STATE_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, DispatchTimerState) {
-    DispatchTimerState_init = 0,
-    DispatchTimerState_resume,
-    DispatchTimerState_suspend
-};
-#endif /* DISPATCH_TIMER_STATE_ENUM_DEFINED */
+#import "JobsDefineAllEnumHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /**
@@ -112,7 +104,7 @@ NS_ASSUME_NONNULL_END
          self.dispatchTimer = DispatchTimerManager.new;
          self.dispatchTimer.start = 3;
          self.dispatchTimer.timeInterval = 1;
-         self.dispatchTimer.target = self;
+         self.dispatchTimer.weak_target = self;
          self.dispatchTimer.selector = @selector(demo1:);
          self.dispatchTimer.repeats = YES;
 

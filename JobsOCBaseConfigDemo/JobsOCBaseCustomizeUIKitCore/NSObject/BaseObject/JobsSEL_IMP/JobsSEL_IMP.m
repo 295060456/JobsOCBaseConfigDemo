@@ -12,5 +12,7 @@
 @end
 
 @implementation JobsSEL_IMP
+@synthesize selector = _selector;
+@synthesize implementation = _implementation;
 
 @end

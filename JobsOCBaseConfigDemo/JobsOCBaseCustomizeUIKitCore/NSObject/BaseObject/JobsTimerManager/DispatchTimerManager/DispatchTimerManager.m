@@ -80,7 +80,7 @@
         self.start = start;
         self.timeInterval = interval;
         self.repeats = repeats;
-        self.target = target;
+        self.weak_target = target;
         self.selector = selector;
         self.userInfo = userInfo;
         [self createDispatchTimer];
@@ -103,13 +103,13 @@
 
 - (void)fire {
     if (!_valid) {return;}
-    if (!self.target) {
+    if (!self.weak_target) {
         [self invalidate];
     } else {
         // 执行selector
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self.target performSelector:self.selector withObject:self];
+        [self.weak_target performSelector:self.selector withObject:self];
 #pragma clang diagnostic pop
         if (!self.repeats) {
             [self invalidate];

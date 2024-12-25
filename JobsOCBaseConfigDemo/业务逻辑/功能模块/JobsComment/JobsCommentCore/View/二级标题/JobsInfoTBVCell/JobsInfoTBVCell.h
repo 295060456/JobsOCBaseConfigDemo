@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseCellProtocol.h"
-
-#import "RBCLikeButton.h"
+#import "UIImage+YBGIF.h"
 
 #import "JobsCommentConfig.h"
 #import "JobsCommentModel.h"
-
-#import "UIImage+YBGIF.h"
+#import "RBCLikeButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsInfoTBVCell : UITableViewCell<BaseCellProtocol>
+
+@property(nonatomic,strong,readonly)RBCLikeButton *likeBtn;
 
 @end
 

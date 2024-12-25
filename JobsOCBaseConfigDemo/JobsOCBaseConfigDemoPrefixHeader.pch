@@ -9,6 +9,10 @@
 #define JobsOCBaseConfigPrefixHeader_pch
 #pragma mark —— 系统SDK
 #import <Foundation/Foundation.h>                 /// 提供Objective-C的基本数据类型、集合和实用工具类。
+#include <arpa/inet.h>                            /// 提供与网络地址相关的函数，例如 IP 地址的转换（从字符串到二进制格式，反之亦然）。
+#include <ifaddrs.h>                              /// 提供用于获取网络接口地址的信息的接口，例如获取设备所有网络接口的 IP 地址。
+#include <net/if.h>                               /// 定义网络接口的常量和结构体，用于处理网络接口的配置。
+#include <net/if_dl.h>                            /// 提供网络接口的链路层地址信息，例如 MAC 地址。
 #import <JavaScriptCore/JavaScriptCore.h>         /// 处理 JavaScript
 #import <CoreText/CoreText.h>                     /// iOS 和 macOS 提供的底层文本布局和渲染框架，支持高级的字体管理和排版功能。相比 UIKit 中的 NSAttributedString，Core Text 更灵活，但也更复杂，适合需要精准控制文本显示的场景。
 #import <WebKit/WebKit.h>                         /// 用于嵌入和管理网页内容，例如加载和显示网页。
@@ -32,7 +36,6 @@
 #import <EventKit/EventKit.h>                     /// 用于读取、修改和创建日历事件。
 #import <MapKit/MapKit.h>                         /// 用于在 iOS 或 macOS 应用程序中处理地图和地理位置相关的功能
 #import <UserNotifications/UserNotifications.h> /// 用于处理通知（包括本地通知和远程推送通知）的功能。它引入了一套现代化的 API，用来替代较早的 UILocalNotification 和旧的远程推送通知机制。
-
 #pragma mark —— OC-Swift 桥接头文件
 //#import "FM-Bridging-Header.h"
 #pragma mark —— 各项全局定义

@@ -7,7 +7,6 @@
 
 #ifndef JobsBaseProtocolHeader_h
 #define JobsBaseProtocolHeader_h
-
 #pragma mark —— BaseProtocols <YTKChainRequestDelegate>
 #import "BaseProtocol.h"
 #import "AppToolsProtocol.h"
@@ -20,6 +19,5 @@
 /// BaseCellProtocol
 #import "UICollectionViewCellProtocol.h"
 #import "UITableViewCellProtocol.h"
-
 
 #endif /* JobsBaseProtocolHeader_h */

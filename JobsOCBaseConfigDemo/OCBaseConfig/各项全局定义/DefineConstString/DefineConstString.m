@@ -10,6 +10,10 @@
 NSString *const 应用程序的发布版本号 = @"CFBundleShortVersionString";
 NSString *const APP编译构建的版本号 = @"CFBundleVersion";
 NSString *const APP的名字 = @"CFBundleExecutable";
+/// 网速监控
+NSString *const GSDownloadNetworkSpeedNotificationKey = @"GSDownloadNetworkSpeedNotificationKey";
+NSString *const GSUploadNetworkSpeedNotificationKey = @"GSUploadNetworkSpeedNotificationKey";
+NSString *const GSUploadAndDownloadNetworkSpeedNotificationKey = @"GSUploadAndDownloadNetworkSpeedNotificationKey";
 /// 🔑钥匙串记录
 NSString *const 设备ID = @"设备ID";
 /// 多语言

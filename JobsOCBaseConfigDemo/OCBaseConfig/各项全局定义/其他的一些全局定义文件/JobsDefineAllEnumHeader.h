@@ -4,8 +4,8 @@
 //
 //  Created by Jobs Hi on 10/10/23.
 //
-#pragma mark —— 此文件用来存储记录全局的一些枚举
 
+/// 此文件用来存储记录全局的一些枚举
 #ifndef JobsDefineAllEnumHeader_h
 #define JobsDefineAllEnumHeader_h
 #pragma mark —— 系统相关
@@ -20,6 +20,22 @@ typedef NS_ENUM(NSInteger, JobsNetworkingEnvir) {
     JobsNetworkingEnvir_Product,/// 生产环境
 };
 #endif /* JOBS_NETWORKING_ENVIR_ENUM_DEFINED */
+#ifndef BitsMonitorRunMode_h
+#define BitsMonitorRunMode_h
+typedef NS_ENUM(NSUInteger, BitsMonitorRunMode) {
+    BitsMonitorAutoRun = 0,  /// 自启动模式
+    BitsMonitorManualRun = 1 /// 手动启动模式
+};
+#endif /* BitsMonitorRunMode_h */
+///
+#ifndef DISPATCH_TIMER_STATE_ENUM_DEFINED
+#define DISPATCH_TIMER_STATE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, DispatchTimerState) {
+    DispatchTimerState_init = 0,
+    DispatchTimerState_resume,
+    DispatchTimerState_suspend
+};
+#endif /* DISPATCH_TIMER_STATE_ENUM_DEFINED */
 /// 屏幕分辨率
 #ifndef iPhScrPxType_h
 #define iPhScrPxType_h
@@ -108,6 +124,34 @@ typedef enum : NSUInteger {
     WGradientProgressType_colorRoll        /// 色彩在不断的翻滚
 } WGradientProgressType;
 #endif /* WGradientProgressType_h */
+/// 倒计时模式
+#ifndef TimerStyle_h
+#define TimerStyle_h
+typedef NS_ENUM(NSUInteger, TimerStyle) {
+    TimerStyle_clockwise = 0,/// 顺时针模式
+    TimerStyle_anticlockwise/// 逆时针模式（倒计时模式）
+};
+#endif /* TimerStyle_h */
+/// 用哪一种模式进行初始化NSTimer定时器
+#ifndef ScheduledTimerType_h
+#define ScheduledTimerType_h
+typedef NS_ENUM(NSUInteger, ScheduledTimerType) {
+    ScheduledTimerType_0 = 0,/// scheduledTimerWithTimeInterval/repeats/block
+    ScheduledTimerType_1,/// scheduledTimerWithTimeInterval/invocation/repeats
+    ScheduledTimerType_2/// scheduledTimerWithTimeInterval/target/selector/userInfo/repeats
+};
+#endif /* ScheduledTimerType_h */
+/// NSTimer定时器当前状态
+#ifndef NSTimerCurrentStatus_h
+#define NSTimerCurrentStatus_h
+typedef NS_ENUM(NSUInteger, NSTimerCurrentStatus) {
+    NSTimerCurrentStatusUnknow = 0, /// 定时器未知状态
+    NSTimerCurrentStatusRun, /// 定时器正在运行
+    NSTimerCurrentStatusStop, /// 定时器停止
+    NSTimerCurrentStatusPause, /// 定时器暂停
+    NSTimerCurrentStatusDestroy/// 定时器销毁
+};
+#endif /* NSTimerCurrentStatus_h */
 /// 登录方式
 #ifndef LOGINMODE
 #define LOGINMODE

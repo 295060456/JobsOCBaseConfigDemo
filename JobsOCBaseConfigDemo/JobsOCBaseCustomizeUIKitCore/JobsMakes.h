@@ -96,38 +96,44 @@ NS_INLINE __kindof CAGradientLayer *_Nonnull jobsMakeCAGradientLayer(jobsByCAGra
 }
 #pragma mark —— 关于手势的创建
 /// Tap Gesture (点击手势)
-NS_INLINE __kindof UITapGestureRecognizer *_Nonnull jobsMakeTapGesture(jobsByTapGestureBlock _Nullable block) {
+NS_INLINE __kindof UITapGestureRecognizer *_Nonnull jobsMakeTapGesture(jobsByTapGestureRecognizerBlock _Nullable block) {
     UITapGestureRecognizer *gesture = UITapGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Long Press Gesture (长按手势)
-NS_INLINE __kindof UILongPressGestureRecognizer *_Nonnull jobsMakeLongPressGesture(jobsByLongPressGestureBlock _Nullable block) {
+NS_INLINE __kindof UILongPressGestureRecognizer *_Nonnull jobsMakeLongPressGesture(jobsByLongPressGestureRecognizerBlock _Nullable block) {
     UILongPressGestureRecognizer *gesture = UILongPressGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Swipe Gesture (滑动手势)
-NS_INLINE __kindof UISwipeGestureRecognizer *_Nonnull jobsMakeSwipeGesture(jobsBySwipeGestureBlock _Nullable block) {
+NS_INLINE __kindof UISwipeGestureRecognizer *_Nonnull jobsMakeSwipeGesture(jobsBySwipeGestureRecognizerBlock _Nullable block) {
     UISwipeGestureRecognizer *gesture = UISwipeGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Pan Gesture (拖动手势)
-NS_INLINE __kindof UIPanGestureRecognizer *_Nonnull jobsMakePanGesture(jobsByPanGestureBlock _Nullable block) {
+NS_INLINE __kindof UIPanGestureRecognizer *_Nonnull jobsMakePanGesture(jobsByPanGestureRecognizerBlock _Nullable block) {
     UIPanGestureRecognizer *gesture = UIPanGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Pinch Gesture (捏合手势)
-NS_INLINE __kindof UIPinchGestureRecognizer *_Nonnull jobsMakePinchGesture(jobsByPinchGestureBlock _Nullable block) {
+NS_INLINE __kindof UIPinchGestureRecognizer *_Nonnull jobsMakePinchGesture(jobsByPinchGestureRecognizerBlock _Nullable block) {
     UIPinchGestureRecognizer *gesture = UIPinchGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
 /// Rotation Gesture (旋转手势)
-NS_INLINE __kindof UIRotationGestureRecognizer *_Nonnull jobsMakeRotationGesture(jobsByRotationGestureBlock _Nullable block) {
+NS_INLINE __kindof UIRotationGestureRecognizer *_Nonnull jobsMakeRotationGesture(jobsByRotationGestureRecognizerBlock _Nullable block) {
     UIRotationGestureRecognizer *gesture = UIRotationGestureRecognizer.alloc.init;
+    if (block) block(gesture);
+    return gesture;
+}
+
+NS_INLINE __kindof UIScreenEdgePanGestureRecognizer *_Nonnull jobsMakeScreenEdgePanGestureRecognizer(jobsByScreenEdgePanGestureRecognizerBlock _Nullable block) {
+    UIScreenEdgePanGestureRecognizer *gesture = UIScreenEdgePanGestureRecognizer.alloc.init;
     if (block) block(gesture);
     return gesture;
 }
@@ -170,6 +176,18 @@ NS_INLINE __kindof UIView *_Nonnull jobsMakeView(jobsByViewBlock _Nonnull block)
 
 NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull block){
     UILabel *data = UILabel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof NSRunLoop *_Nonnull jobsMakeMainRunLoop(jobsByRunLoopBlock _Nonnull block) API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)){
+    NSRunLoop *data = NSRunLoop.mainRunLoop;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof NSRunLoop *_Nonnull jobsMakeCurrentRunLoop(jobsByRunLoopBlock _Nonnull block) NS_SWIFT_UNAVAILABLE_FROM_ASYNC("currentRunLoop cannot be used from async contexts."){
+    NSRunLoop *data = NSRunLoop.currentRunLoop;
     if (block) block(data);
     return data;
 }

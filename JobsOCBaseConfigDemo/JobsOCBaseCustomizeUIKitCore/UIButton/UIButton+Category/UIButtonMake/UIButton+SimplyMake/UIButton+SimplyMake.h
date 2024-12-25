@@ -7,16 +7,16 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-#import "UIButton+UI.h"
 #import "JobsBlock.h"
+#import "DefineProperty.h"
+#import "UIButton+UI.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 对按钮创建方法的二次封装
 @interface UIButton (SimplyMake)
-
-@property(nonatomic,copy)jobsByTimerManagerBlock heartBeatBlock;/// 用于计时器
-@property(nonatomic,copy)jobsByBtnBlock clickBlock;
-@property(nonatomic,copy)jobsByBtnBlock longPressGestureBlock;
+Prop_copy(nullable)jobsByTimerManagerBlock heartBeatBlock;/// 用于计时器
+Prop_copy(nullable)jobsByBtnBlock clickBlock;
+Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 #pragma mark —— 对老Api进行二次封装
 +(JobsReturnButtonByNSIntegerBlock _Nonnull)initByType;
 +(__kindof UIButton *)initByCustomType;
@@ -52,7 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsReturnButtonByStyle4Block _Nonnull)initByStyle3;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
 +(JobsReturnButtonByStyle5Block _Nonnull)initByStyle4;
-
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
 +(JobsReturnButtonByStyle3Block _Nonnull)initByStyle5;
 /// 图文混排（图片在上边 ）

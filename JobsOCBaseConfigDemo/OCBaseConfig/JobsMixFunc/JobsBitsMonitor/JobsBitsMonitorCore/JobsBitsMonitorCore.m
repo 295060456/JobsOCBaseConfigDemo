@@ -7,10 +7,6 @@
 
 #import "JobsBitsMonitorCore.h"
 
-NSString *const GSDownloadNetworkSpeedNotificationKey = @"GSDownloadNetworkSpeedNotificationKey";
-NSString *const GSUploadNetworkSpeedNotificationKey = @"GSUploadNetworkSpeedNotificationKey";
-NSString *const GSUploadAndDownloadNetworkSpeedNotificationKey = @"GSUploadAndDownloadNetworkSpeedNotificationKey";
-
 @interface JobsBitsMonitorCore (){
     //总网速
     uint32_t _iBytes;
@@ -118,7 +114,6 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
             wifiOBytes += if_data->ifi_obytes;
             wifiFlow = wifiIBytes + wifiOBytes;
         }
-        
         // 3G or gprs
         if (!strcmp(ifa->ifa_name, "pdp_ip0")) {
             struct if_data* if_data = (struct if_data*)ifa->ifa_data;
@@ -161,7 +156,9 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
 #pragma mark —— lazyLoad
 -(NSTimerManager *)nsTimerManager{
     if (!_nsTimerManager) {
+        @jobs_weakify(self)
         _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
+            @jobs_strongify(self)
             // 顺时针:每一个时间间隔为 1 秒
             data.timerStyle = TimerStyle_clockwise;
             data.timeInterval = 1;

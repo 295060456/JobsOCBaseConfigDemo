@@ -41,6 +41,7 @@
 //#pragma clang diagnostic ignored "-Wempty-body" /// 忽略“空代码块”的警告
 //#pragma clang diagnostic ignored "-Wshadow" /// 忽略“变量名遮蔽（shadowing）其他变量”的警告
 //#pragma clang diagnostic ignored "-Wshorten-64-to-32" /// 忽略“将 64 位类型转换为 32 位类型时数据丢失”的警告
+//#pragma clang diagnostic ignored "-Wobjc-mismatched-parameter-types" /// 忽略方法的声明和实现之间，参数类型不一致的警告
 //#pragma clang diagnostic pop /// 恢复之前保存的警告状态
 
 /// ⚠️ 在category中重写了原类的方法
@@ -269,5 +270,15 @@
         _Pragma("clang diagnostic pop") \
     } while (0)
 #endif /* SuppressWshorten64To32Warning */
+/// ⚠️抑制方法的声明和实现之间，参数类型不一致的警告
+#ifndef SuppressWobjcMismatchedParameterTypesWarning
+#define SuppressWobjcMismatchedParameterTypesWarning(Stuff) \
+    do { \
+        _Pragma("clang diagnostic push") \
+        _Pragma("clang diagnostic ignored \"-Wobjc-mismatched-parameter-types\"") \
+        Stuff; \
+        _Pragma("clang diagnostic pop") \
+    } while (0)
+#endif /* SuppressWobjcMismatchedParameterTypesWarning */
 
 #endif /* MacroDef_SysWarning_h */

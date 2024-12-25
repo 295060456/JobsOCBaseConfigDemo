@@ -27,7 +27,7 @@ UILocationProtocol_synthesize
             self.minimumPressDuration = 0.1;
             self.numberOfTouchesRequired = 1;
             self.allowableMovement = 1;
-            self.target = self;
+            self.weak_target = self;
             self.userInteractionEnabled = YES;
             @jobs_weakify(self)
             self.longPressGR_SelImp.selector = selectorBlocks(^id _Nullable(id _Nullable weakSelf,

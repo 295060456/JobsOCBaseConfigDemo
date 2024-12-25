@@ -85,7 +85,7 @@ static dispatch_once_t static_scrollYViewOnceToken;
 #pragma mark —— 一些私有方法
 - (void)setupGesture {
     self.userInteractionEnabled = YES;
-    self.target = self;
+    self.weak_target = self;
     @jobs_weakify(self)
     self.panGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable weakSelf,
                                                                        UIPanGestureRecognizer *_Nullable sender) {

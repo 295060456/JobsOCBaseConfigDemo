@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /**
@@ -20,10 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  当需要发消息时，会根据选择器（SEL）去查找方法；找到之后，用Method结构体里的函数指针（IMP）去调用方法。这样在运行时查找selecter的速度就会非常快
  
  */
-@interface JobsSEL_IMP : NSObject
-
-@property(nonatomic,assign)SEL selector;
-@property(nonatomic,assign)IMP implementation;
+@interface JobsSEL_IMP : NSObject <BaseProtocol>
 
 @end
 

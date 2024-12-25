@@ -153,7 +153,7 @@ viewForHeaderInSection:(NSInteger)section{
         header.numberOfTouchesRequired = 1;
         header.allowableMovement = 1;
         header.userInteractionEnabled = YES;
-        header.target = self;
+        header.weak_target = self;
         header.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                              UITapGestureRecognizer *_Nullable arg) {
             MSCommentTableHeaderFooterView *header = (MSCommentTableHeaderFooterView *)arg.view;

@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <ImageIO/ImageIO.h>
-#import "NSMutableArray+Extra.h"
 #import "JobsBlock.h"
+#import "NSMutableArray+Extra.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

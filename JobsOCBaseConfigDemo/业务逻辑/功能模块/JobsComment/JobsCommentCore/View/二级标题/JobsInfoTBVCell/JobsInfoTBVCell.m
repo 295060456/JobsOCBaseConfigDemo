@@ -17,9 +17,6 @@
 @end
 
 @implementation JobsInfoTBVCell
-BaseProtocol_synthesize
-RACProtocol_synthesize
-UITextFieldProtocol_synthesize_part2
 #pragma mark —— UITableViewCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
@@ -82,10 +79,6 @@ UITextFieldProtocol_synthesize_part2
     
     self.detailTextLabel.resetOriginX(JobsWidth(110));
 }
-#pragma mark —— 一些公有方法
--(RBCLikeButton *)getLikeBtn{
-    return _likeBtn;
-}
 #pragma mark —— lazyLoad
 -(RBCLikeButton *)likeBtn{
     if(!_likeBtn){
@@ -123,7 +116,9 @@ UITextFieldProtocol_synthesize_part2
         }];
     }
     _likeBtn.selected = self.childCommentModel.isPraise.boolValue;
-    _likeBtn.thumpNum = self.childCommentModel.praiseNum;    _likeBtn.jobsResetTitle([NSString stringWithFormat:@"%ld",_likeBtn.thumpNum]);
+    _likeBtn.thumpNum = self.childCommentModel.praiseNum;
+    
+    _likeBtn.jobsResetTitle(toStringByNSInteger(_likeBtn.thumpNum));
     _likeBtn.jobsResetBtnTitleCor(_likeBtn.selected ? JobsRedColor : JobsGrayColor);
     _likeBtn.jobsResetBtnImage(_likeBtn.selected ? JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like_red") :JobsBuddleIMG(nil, @"RBCLikeButton", nil, @"day_like"));
     _likeBtn.makeBtnTitleByShowingType(UILabelShowingType_03);

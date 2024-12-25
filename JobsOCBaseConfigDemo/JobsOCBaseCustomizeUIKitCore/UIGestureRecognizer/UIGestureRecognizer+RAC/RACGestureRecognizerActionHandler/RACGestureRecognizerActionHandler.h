@@ -19,6 +19,6 @@
 
 @interface RACGestureRecognizerActionHandler : NSObject
 
--(jobsByGestureRecognizer _Nonnull)rac_handleGesture;
+-(jobsByGestureRecognizerBlock _Nonnull)rac_handleGesture;
 
 @end
