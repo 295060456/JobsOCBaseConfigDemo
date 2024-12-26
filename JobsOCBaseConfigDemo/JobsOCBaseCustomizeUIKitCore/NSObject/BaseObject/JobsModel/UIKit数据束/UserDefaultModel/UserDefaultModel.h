@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserDefaultModel : NSObject
+@interface UserDefaultModel : BaseModel
 // 对象
 @property(nonatomic,strong,nullable)__kindof NSObject <NSCoding>*obj;
 // 基本数据类型

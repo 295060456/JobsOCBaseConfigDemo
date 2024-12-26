@@ -6,16 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NotificationModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSNotificationKeyboardModel : NSObject
+@interface NSNotificationKeyboardModel : NotificationModel
 
-@property(nonatomic,strong,nullable)NSDictionary *userInfo;
 @property(nonatomic,assign)CGRect beginFrame;
 @property(nonatomic,assign)CGRect endFrame;
 @property(nonatomic,assign)CGFloat keyboardOffsetY;
-@property(nonatomic,copy,nonnull)NSString *notificationName;
 
 @end
 

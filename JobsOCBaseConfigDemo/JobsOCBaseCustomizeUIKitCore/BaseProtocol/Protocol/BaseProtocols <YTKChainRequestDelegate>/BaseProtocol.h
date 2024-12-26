@@ -27,19 +27,25 @@ Prop_assign()BOOL becomeFirstResponder;
 Prop_assign()AppLanguage appLanguage;
 #pragma mark —— 关于计时器
 Prop_strong(nullable)NSInvocation *invocation;
+Prop_strong(nullable)NSTimer *timer;
 Prop_strong(nullable)id userInfo;
-Prop_assign()ScheduledTimerType timerType; /// 用哪一种模式进行初始化NSTimer定时器
-Prop_assign()TimerStyle timerStyle;/// 逆时针模式?顺时针模式？
+Prop_retain()dispatch_semaphore_t semaphore;
+Prop_retain()dispatch_source_t dispatchTimer;
 Prop_assign()CGFloat anticlockwiseTime;/// ❤️【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】
-Prop_assign(readonly)NSTimerCurrentStatus timerCurrentStatus;// 定时器当前状态
 Prop_assign()NSTimeInterval timeSecIntervalSinceDate;/// 推移时间，秒数
+Prop_assign()NSTimeInterval startTime;
 Prop_assign()NSTimeInterval timeInterval;/// 时间间距
 Prop_assign()BOOL repeats;
-Prop_strong(nullable)NSTimer *timer;
+Prop_assign(readonly,getter=isValid)BOOL valid;
 Prop_assign()BOOL start;
+Prop_assign()BOOL running;
 Prop_assign()BOOL pause;
 Prop_assign()BOOL resume;
 Prop_assign()BOOL stop;
+Prop_assign()DispatchTimerState state;
+Prop_assign()ScheduledTimerType timerType; /// 用哪一种模式进行初始化NSTimer定时器
+Prop_assign()TimerStyle timerStyle;/// 逆时针模式?顺时针模式？
+Prop_assign(readonly)NSTimerCurrentStatus timerCurrentStatus;/// 定时器当前状态
 Prop_assign()TimerProcessType timerProcessType; /// 计时器运行状态
 #pragma mark —— Data
 Prop_strong(nullable)NSURL *url;
@@ -109,19 +115,25 @@ NS_ASSUME_NONNULL_END
 #define BaseProtocol_synthesize_timer \
 \
 @synthesize invocation = _invocation;\
+@synthesize timer = _timer;\
 @synthesize userInfo = _userInfo;\
-@synthesize timerType = _timerType;\
-@synthesize timerStyle = _timerStyle;\
+@synthesize semaphore = _semaphore;\
+@synthesize dispatchTimer = _dispatchTimer;\
 @synthesize anticlockwiseTime = _anticlockwiseTime;\
-@synthesize timerCurrentStatus = _timerCurrentStatus;\
 @synthesize timeSecIntervalSinceDate = _timeSecIntervalSinceDate;\
+@synthesize startTime = _startTime;\
 @synthesize timeInterval = _timeInterval;\
 @synthesize repeats = _repeats;\
-@synthesize timer = _timer;\
+@synthesize valid = _valid;\
 @synthesize start = _start;\
+@synthesize running = _running;\
 @synthesize pause = _pause;\
 @synthesize resume = _resume;\
 @synthesize stop = _stop;\
+@synthesize state = _state;\
+@synthesize timerType = _timerType;\
+@synthesize timerStyle = _timerStyle;\
+@synthesize timerCurrentStatus = _timerCurrentStatus;\
 @synthesize timerProcessType = _timerProcessType;\
 
 #endif /* BaseProtocol_synthesize_timer */
@@ -162,19 +174,25 @@ BaseProtocol_synthesize_data \
 @dynamic becomeFirstResponder;\
 @dynamic appLanguage;\
 @dynamic invocation;\
+@dynamic timer;\
 @dynamic userInfo;\
-@dynamic timerType;\
-@dynamic timerStyle;\
+@dynamic semaphore;\
+@dynamic dispatchTimer;\
 @dynamic anticlockwiseTime;\
-@dynamic timerCurrentStatus;\
 @dynamic timeSecIntervalSinceDate;\
+@dynamic startTime;\
 @dynamic timeInterval;\
 @dynamic repeats;\
-@dynamic timer;\
+@dynamic valid;\
 @dynamic start;\
+@dynamic running;\
 @dynamic pause;\
 @dynamic resume;\
 @dynamic stop;\
+@dynamic state;\
+@dynamic timerType;\
+@dynamic timerStyle;\
+@dynamic timerCurrentStatus;\
 @dynamic timerProcessType;\
 @dynamic url;\
 @dynamic internationalizationKEY;\

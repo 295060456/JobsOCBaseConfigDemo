@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UNNotificationRequestModel : NSObject
+@interface UNNotificationRequestModel : BaseModel
 
 @property(nonatomic,copy)NSString *identifier;
 @property(nonatomic,strong)UNNotificationContent *content;

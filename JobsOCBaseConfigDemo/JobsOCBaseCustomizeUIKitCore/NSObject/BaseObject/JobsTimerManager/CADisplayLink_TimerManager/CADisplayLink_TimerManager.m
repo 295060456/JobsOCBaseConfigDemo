@@ -22,7 +22,7 @@
     self.CADisplayLinkTimerManagerBlock = CADisplayLinkTimerManagerBlock;
 }
 #pragma mark —— lazyLoad
-//CAD 目前有且仅有这一个初始化方法
+/// CAD 目前有且仅有这一个初始化方法
 -(CADisplayLink *)displayLink{
     if (!_displayLink) {
         @jobs_weakify(self)

@@ -4,7 +4,6 @@
 //
 //  Created by Jobs Hi on 10/10/23.
 //
-
 /// 此文件用来存储记录全局的一些枚举
 #ifndef JobsDefineAllEnumHeader_h
 #define JobsDefineAllEnumHeader_h
@@ -20,6 +19,26 @@ typedef NS_ENUM(NSInteger, JobsNetworkingEnvir) {
     JobsNetworkingEnvir_Product,/// 生产环境
 };
 #endif /* JOBS_NETWORKING_ENVIR_ENUM_DEFINED */
+/// 文件类型枚举定义
+#ifndef FILE_TYPE_ENUM_DEFINED
+#define FILE_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, FileType) {
+    FileType_TXT = 0,      /// 文本文件
+    FileType_IMAGE,        /// 图片文件
+    FileType_VIDEO,        /// 视频文件
+    FileType_SOUND,        /// 音频文件
+    FileType_PLIST         /// 属性列表文件
+};
+#endif /* FILE_TYPE_ENUM_DEFINED */
+/// 图片填充模式
+#ifndef DW_CONTENT_MODE_ENUM_DEFINED
+#define DW_CONTENT_MODE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, DWContentMode) {
+    DWContentModeScaleAspectFit,   /// 适应模式
+    DWContentModeScaleAspectFill,  /// 填充模式
+    DWContentModeScaleToFill       /// 拉伸模式
+};
+#endif /* DW_CONTENT_MODE_ENUM_DEFINED */
 #ifndef BitsMonitorRunMode_h
 #define BitsMonitorRunMode_h
 typedef NS_ENUM(NSUInteger, BitsMonitorRunMode) {

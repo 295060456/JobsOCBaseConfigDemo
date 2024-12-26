@@ -10,6 +10,9 @@
 NSString *const 应用程序的发布版本号 = @"CFBundleShortVersionString";
 NSString *const APP编译构建的版本号 = @"CFBundleVersion";
 NSString *const APP的名字 = @"CFBundleExecutable";
+/// App 首次启动
+NSString *const APP安装以后首次启动 = @"APP安装以后首次启动";
+NSString *const APP今日首次启动 = @"APP今日首次启动";
 /// 网速监控
 NSString *const GSDownloadNetworkSpeedNotificationKey = @"GSDownloadNetworkSpeedNotificationKey";
 NSString *const GSUploadNetworkSpeedNotificationKey = @"GSUploadNetworkSpeedNotificationKey";
@@ -23,15 +26,26 @@ NSString *const 简体中文 = @"zh-Hans";
 NSString *const 繁体中文 = @"zh-Hant";
 NSString *const 英文_不带区域组合 = @"en";
 /// HTTP 协议
+NSString *const HTTP = @"http";
+NSString *const HTTPS = @"https";
+NSString *const HTTP分割符 = @"://";
 NSString *const GET = @"GET";
 NSString *const POST = @"POST";
 NSString *const PUT = @"PUT";
 NSString *const DELETE = @"DELETE";
 NSString *const PATCH = @"PATCH";
 NSString *const HEAD = @"HEAD";
+NSString *const APP_JSON = @"application/json";
 /// 网络请求参数
 NSString *const ContentType = @"Content-Type";
 NSString *const Authorization = @"Authorization";
+/// 网络数据处理后的标志位
+NSString *const HTTPServiceErrorDomain = @"HTTPServiceErrorDomain";/// The Http request error domain
+NSString *const HTTPServiceErrorResponseCodeKey = @"HTTPServiceErrorResponseCodeKey";/// 请求成功，但statusCode != 0
+NSString *const HTTPServiceErrorRequestURLKey = @"HTTPServiceErrorRequestURLKey";/// 请求地址错误
+NSString *const HTTPServiceErrorHTTPStatusCodeKey = @"HTTPServiceErrorHTTPStatusCodeKey";/// 请求错误的code码key: 请求成功了，但code码是错误提示的code,比如参数错误
+NSString *const HTTPServiceErrorDescriptionKey = @"HTTPServiceErrorDescriptionKey";/// 请求错误，详细描述key
+NSString *const HTTPServiceErrorMessagesKey = @"HTTPServiceErrorMessagesKey";/// 服务端错误提示，信息key
 /// 特殊字符串
 NSString *const 回车符号转义字符 = @"\r";       /// 回车符号转义字符
 NSString *const 零宽转义字符 = @"\u200B";      /// 零宽转义字符

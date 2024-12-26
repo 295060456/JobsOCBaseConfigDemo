@@ -37,3 +37,21 @@ NS_INLINE __kindof HXPhotoConfiguration *_Nonnull jobsMakeHXPhotoConfiguration(j
     if (block) block(data);
     return data;
 }
+
+NS_INLINE __kindof HXPhotoManager *_Nonnull jobsMakeHXPhotoManagerBySelectedTypePhoto(jobsByHXPhotoManagerBlock _Nonnull block){
+    HXPhotoManager *data = HXPhotoManager.initByTypePhoto;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof HXPhotoManager *_Nonnull jobsMakeHXPhotoManagerBySelectedTypeVideo(jobsByHXPhotoManagerBlock _Nonnull block){
+    HXPhotoManager *data = HXPhotoManager.initByTypeVideo;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof HXPhotoManager *_Nonnull jobsMakeHXPhotoManagerBySelectedTypePhotoAndVideo(jobsByHXPhotoManagerBlock _Nonnull block){
+    HXPhotoManager *data = HXPhotoManager.initByTypePhotoAndVideo;
+    if (block) block(data);
+    return data;
+}

@@ -10,6 +10,9 @@
 FOUNDATION_EXTERN NSString *_Nonnull const 应用程序的发布版本号;
 FOUNDATION_EXTERN NSString *_Nonnull const APP编译构建的版本号;
 FOUNDATION_EXTERN NSString *_Nonnull const APP的名字;
+/// App 首次启动
+FOUNDATION_EXTERN NSString *_Nonnull const APP安装以后首次启动;
+FOUNDATION_EXTERN NSString *_Nonnull const APP今日首次启动;
 /// 网速监控
 FOUNDATION_EXTERN NSString *_Nonnull const GSDownloadNetworkSpeedNotificationKey;/// 下载通知的key
 FOUNDATION_EXTERN NSString *_Nonnull const GSUploadNetworkSpeedNotificationKey;/// 上传通知的key
@@ -23,15 +26,26 @@ FOUNDATION_EXTERN NSString *_Nonnull const 简体中文;
 FOUNDATION_EXTERN NSString *_Nonnull const 繁体中文;
 FOUNDATION_EXTERN NSString *_Nonnull const 英文_不带区域组合;
 /// HTTP 协议
+FOUNDATION_EXTERN NSString *_Nonnull const HTTP;
+FOUNDATION_EXTERN NSString *_Nonnull const HTTPS;
+FOUNDATION_EXTERN NSString *_Nonnull const HTTP分割符;
 FOUNDATION_EXTERN NSString *_Nonnull const GET;
 FOUNDATION_EXTERN NSString *_Nonnull const POST;
 FOUNDATION_EXTERN NSString *_Nonnull const PUT;
 FOUNDATION_EXTERN NSString *_Nonnull const DELETE;
 FOUNDATION_EXTERN NSString *_Nonnull const PATCH;
 FOUNDATION_EXTERN NSString *_Nonnull const HEAD;
+FOUNDATION_EXTERN NSString *_Nonnull const APP_JSON;
 /// 网络请求参数
 FOUNDATION_EXTERN NSString *_Nonnull const ContentType;
 FOUNDATION_EXTERN NSString *_Nonnull const Authorization;
+/// 网络数据处理后的标志位
+FOUNDATION_EXTERN NSString *_Nonnull const HTTPServiceErrorDomain;/// The Http request error domain
+FOUNDATION_EXTERN NSString *_Nonnull const HTTPServiceErrorResponseCodeKey;/// 请求成功，但statusCode != 0
+FOUNDATION_EXTERN NSString *_Nonnull const HTTPServiceErrorRequestURLKey;/// 请求地址错误
+FOUNDATION_EXTERN NSString *_Nonnull const HTTPServiceErrorHTTPStatusCodeKey;/// 请求错误的code码key: 请求成功了，但code码是错误提示的code,比如参数错误
+FOUNDATION_EXTERN NSString *_Nonnull const HTTPServiceErrorDescriptionKey;/// 请求错误，详细描述key
+FOUNDATION_EXTERN NSString *_Nonnull const HTTPServiceErrorMessagesKey;/// 服务端错误提示，信息key
 /// 特殊字符串
 FOUNDATION_EXTERN NSString *_Nonnull const 回车符号转义字符;       /// 回车符号转义字符
 FOUNDATION_EXTERN NSString *_Nonnull const 零宽转义字符;          /// 零宽转义字符

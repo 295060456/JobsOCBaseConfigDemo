@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsCorModel : NSObject
+@interface JobsCorModel : BaseModel
 
 @property(nonatomic,assign)CGFloat red;
 @property(nonatomic,assign)CGFloat green;
@@ -21,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGFloat saturation;
 @property(nonatomic,assign)CGFloat brightness;
 
-@property(nonatomic,copy)NSString *corStr;/// 十六进制字符串
+@property(nonatomic,copy)NSString *corStr; /// 十六进制字符串
 
 @end
 

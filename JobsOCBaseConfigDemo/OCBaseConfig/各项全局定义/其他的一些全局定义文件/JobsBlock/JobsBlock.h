@@ -143,6 +143,9 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelArrayBlock)(__kin
 @class JobsImageModel;
 typedef void(^jobsByImageModelBlock)(__kindof JobsImageModel *_Nullable model);
 
+@class FileFolderHandleModel;
+typedef void(^jobsByFileFolderHandleModelBlock)(__kindof FileFolderHandleModel *_Nullable model);
+
 @class JobsNavBarConfig;
 typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,
@@ -255,6 +258,9 @@ typedef void(^jobsByExcelLeftListViewBlock)(__kindof JobsExcelLeftListView *_Nul
 typedef void(^jobsByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);
 
+@class SPAlertControllerConfig;
+typedef void(^jobsBySPAlertControllerConfigBlock)(__kindof SPAlertControllerConfig *_Nullable config);
+
 @class JobsToggleNavView;
 typedef void(^jobsByToggleNavViewBlock)(__kindof JobsToggleNavView *_Nullable taggedNavView);
 
@@ -295,10 +301,15 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBloc
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
+@class HXPhotoView;
+@class HXPhotoManager;
+typedef HXPhotoView *_Nullable(^JobsReturnHXPhotoViewByPhotoManagerBlock)(HXPhotoManager *_Nullable manager);
+
 @class HTMLDocument;
 typedef HTMLDocument *_Nullable(^JobsReturnHTMLDocumentByStringBlock)(__kindof NSString *_Nullable string);
 
 @class HXPhotoManager;
+typedef void(^jobsByHXPhotoManagerBlock)(__kindof HXPhotoManager *_Nullable manager);
 typedef __kindof HXPhotoManager *_Nonnull(^JobsReturnHXPhotoManagerByNSUIntegerBlock)(NSUInteger type);
 @class HXPhotoConfiguration;
 typedef void(^jobsByHXPhotoConfigurationBlock)(__kindof HXPhotoConfiguration *_Nullable config);

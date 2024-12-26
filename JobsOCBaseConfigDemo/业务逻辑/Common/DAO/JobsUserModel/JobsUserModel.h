@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JobsDefineAllEnumHeader.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "BaseProtocol.h"
 #import "JobsObject.h"
 #import "BaseModel.h"
@@ -15,12 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsUserModel : BaseModel
-<
-NSCoding,/// 编码
-NSSecureCoding,/// 解码
-BaseProtocol
->
+@interface JobsUserModel : BaseModel <BaseProtocol>
 
 @property(nonatomic,copy)NSString *userName;
 @property(nonatomic,copy)NSString *userHeader;/// 用户头像URL

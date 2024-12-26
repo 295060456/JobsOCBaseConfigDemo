@@ -10,6 +10,7 @@
 #import "UIViewModelOthersProtocol.h"
 #import "UILocationProtocol.h"
 #import "JobsBlock.h"
+#import "BaseModel.h"
 
 #ifndef TextModelDataString
 #define TextModelDataString JobsInternationalization(主标题文字默认占位内容)
@@ -18,7 +19,6 @@
 #ifndef TextModelDataString2
 #define TextModelDataString2 JobsInternationalization(副标题文字默认占位内容)
 #endif /* TextModelDataString2 */
-
 /// 数据归位
 #ifndef MakeDataNull // 如果未定义 MakeDataNull
 #define MakeDataNull \
@@ -32,7 +32,7 @@ if ([self.viewModel.subTextModel.text isEqualToString:JobsInternationalization(T
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITextModel : NSObject
+@interface UITextModel : BaseModel
 <
 UITextModelProtocol
 ,UILocationProtocol

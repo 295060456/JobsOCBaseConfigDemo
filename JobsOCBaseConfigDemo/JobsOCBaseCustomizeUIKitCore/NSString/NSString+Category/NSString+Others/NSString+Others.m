@@ -48,17 +48,17 @@
  解决方法：可能存在复制源里面的文字带了空白url编码%E2%80%8B，空白编码没有宽度，虽然看不到但是会影响结果无法正确匹配对应的中文字。可以把文字重新url编码即可。
  */
 -(NSString *_Nonnull)urlProtect{
-    if ([self containsString:@"\u200B"]) {
+    if ([self containsString:零宽转义字符]) {
         return self.remove200BMark;
     }else return self;
 }
 
 -(NSString *_Nonnull)byHttp{
-    return HTTP.add(self).urlProtect;
+    return HTTPHeader.add(self).urlProtect;
 }
 
 -(NSString *_Nonnull)byHttps{
-    return HTTPS.add(self).urlProtect;
+    return HTTPSHeader.add(self).urlProtect;
 }
 #pragma mark —— 关于滤镜
 /// 根据字符串生成二维码图像
@@ -254,6 +254,32 @@
 +(JobsReturnStringByUIntegerBlock _Nonnull)initByCapacity{
     return ^NSMutableString *_Nullable(NSUInteger data){
         return [NSMutableString stringWithCapacity:data];
+    };
+}
+/// 对系统方法 - (nullable instancetype)initWithContentsOfFile:(NSString *)path encoding:(NSStringEncoding)enc error:(NSError **)error; 的二次封装
++(JobsReturnStringByStringBlock _Nonnull)initByContentsOfFile{
+    return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable filePath){
+        NSError *error = nil;
+        NSString *string = [NSString.alloc initWithContentsOfFile:filePath
+                                                         encoding:NSUTF8StringEncoding
+                                                            error:&error];
+        if(error){
+            JobsLog(@"error = %@",error);
+            return nil;
+        }else return string;
+    };
+}
+/// 对系统方法 - (nullable instancetype)initWithContentsOfURL:(NSURL *)url encoding:(NSStringEncoding)enc error:(NSError **)error; 的二次封装
++(JobsReturnStringByURLBlock _Nonnull)initByContentsOfURL{
+    return ^__kindof NSString *_Nullable(NSURL *_Nullable url){
+        NSError *error = nil;
+        NSString *string = [NSString.alloc initWithContentsOfURL:url
+                                                        encoding:NSUTF8StringEncoding
+                                                           error:&error];
+        if(error){
+            JobsLog(@"error = %@",error);
+            return nil;
+        }else return string;
     };
 }
 

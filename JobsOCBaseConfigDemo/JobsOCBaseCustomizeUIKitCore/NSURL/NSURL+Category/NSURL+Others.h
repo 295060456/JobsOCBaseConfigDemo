@@ -6,10 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsBlock.h"
+#import "DefineConstString.h" /// 常量字符串的定义
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSURL (Others)
+/// 对系统方法 fileURLWithPath 的二次封装
++(JobsReturnURLByStringBlock _Nonnull)fileURLWithPath;
 ///  能否正常打开Url
 -(BOOL)jobsCanOpenUrl;
 /// 图片URL路径补齐

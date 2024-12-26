@@ -9,18 +9,22 @@
 
 @implementation AVURLAsset (Extra)
 /// 获取视频第一帧
--(UIImage *_Nonnull)videoPreViewImage{
-    AVAssetImageGenerator *assetGen = [AVAssetImageGenerator.alloc initWithAsset:self];
+-(UIImage *_Nullable)videoPreViewImage{
+    AVAssetImageGenerator *assetGen = AVAssetImageGenerator.initBy(self);
     assetGen.appliesPreferredTrackTransform = YES;
-    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
     NSError *error = nil;
     CMTime actualTime;
-    CGImageRef image = [assetGen copyCGImageAtTime:time
+    CGImageRef image = [assetGen copyCGImageAtTime:CMTimeMakeWithSeconds(0.0, 600)
                                         actualTime:&actualTime
                                              error:&error];
-    UIImage *videoImage = [UIImage.alloc initWithCGImage:image];
-    CGImageRelease(image);
-    return videoImage;
+    if(error){
+        JobsLog(@"error = %@",error.description);
+        return nil;
+    }else{
+        UIImage *videoImage = UIImage.imageWithCGImage(image);
+        CGImageRelease(image);
+        return videoImage;
+    }
 }
 
 @end

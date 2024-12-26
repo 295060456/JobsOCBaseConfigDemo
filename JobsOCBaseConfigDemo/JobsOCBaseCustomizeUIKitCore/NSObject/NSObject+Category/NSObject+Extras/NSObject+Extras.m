@@ -967,15 +967,15 @@ UITextFieldProtocol_dynamic
 }
 /// 判断是否是此版本App的首次启动
 -(BOOL)isAppFirstLaunch{
-    BOOL isFirstLaunch = JobsGetUserDefaultBoolForKey(@"AppFirstLaunch");
+    BOOL isFirstLaunch = JobsGetUserDefaultBoolForKey(APP安装以后首次启动);
     if (!isFirstLaunch) {
-        JobsSetUserBoolKeyWithBool(@"AppFirstLaunch", YES);
+        JobsSetUserBoolKeyWithBool(APP安装以后首次启动, YES);
         JobsUserDefaultSynchronize;
     }return !isFirstLaunch;
 }
 /// 判断是否是App今日的首次启动
 -(BOOL)isTodayAppFirstLaunch{
-    NSString *recordToday = JobsUserDefaults.valueForKey(@"TodayAppFirstLaunch");
+    NSString *recordToday = JobsUserDefaults.valueForKey(@"APP今日首次启动");
     JobsTimeModel *timeModel = JobsTimeModel.new;
     NSString *today = toStringByLong(timeModel.currentEra).add(@"-")
                                                           .add(toStringByLong(timeModel.currentYear))
@@ -984,13 +984,13 @@ UITextFieldProtocol_dynamic
                                                           .add(@"-")
                                                           .add(toStringByLong(timeModel.currentDay))
                                                           .add(@"-");
-    if ([recordToday isEqualToString:today]) {
+    if (recordToday.isEqualToString(today)) {
         JobsLog(@"今天已经启动过");
     }else{
         JobsLog(@"今天第一次启动");
-        JobsSetUserDefaultKeyWithValue(@"TodayAppFirstLaunch", today);
+        JobsSetUserDefaultKeyWithValue(@"APP今日首次启动", today);
         JobsUserDefaultSynchronize;//
-    }return ![recordToday isEqualToString:today];
+    }return !recordToday.isEqualToString(today);
 }
 /// 震动特效反馈
 - (jobsByViewBlock _Nonnull)feedbackGenerator {
@@ -1110,13 +1110,13 @@ UITextFieldProtocol_dynamic
 /// 读取本地的plist文件到内存  【 plist ——> NSDictionary * 】
 -(JobsReturnDicByStringBlock _Nonnull)readLocalPlistWithFileName{
     /// fileName Plist文件名
-    return ^(NSString * _Nullable fileName) {
+    return ^__kindof NSDictionary *_Nullable(NSString * _Nullable fileName) {
         NSString *filePath = JobsPathForResource(nil,
                                                  fileName,
                                                  nil,
                                                  @"plist");
         if (FileFolderHandleTool.isExistsAtPath(filePath)) {
-            return [NSDictionary.alloc initWithContentsOfFile:filePath];
+            return NSDictionary.initByContentsOfFile(filePath);
         }return (NSDictionary *)nil;
     };
 }

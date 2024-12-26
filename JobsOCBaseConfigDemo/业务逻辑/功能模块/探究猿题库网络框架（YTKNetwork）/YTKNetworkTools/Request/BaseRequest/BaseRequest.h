@@ -25,6 +25,7 @@
 #import "YTKBaseRequest+Extra.h"
 #import "DefineConstString.h" /// 常量字符串的定义
 #import "JobsBlock.h"
+#import "NSMutableDictionary+Extra.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 用于普通数据的交互

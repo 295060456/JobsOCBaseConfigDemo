@@ -5,13 +5,14 @@
 //  Created by Admin on 19/12/2024.
 //
 
+#import <UIKit/UIKit.h>
+#import "JobsBlock.h"
+
 #if __has_include(<HTMLReader/HTMLReader.h>)
 #import <HTMLReader/HTMLReader.h>
 #else
 #import "HTMLReader.h"
 #endif
-
-#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

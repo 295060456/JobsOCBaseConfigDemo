@@ -71,6 +71,7 @@
 #import "Reachability+Extra.h"
 #import "BRStringPickerView+Extra.h"
 #import "HXPhotoManager+Extra.h"
+#import "HXPhotoView+Extra.h"
 #import "SZTextView+Extra.h"
 #import "HTMLDocument+Extra.h"
 #import "SRWebSocket+Extra.h"

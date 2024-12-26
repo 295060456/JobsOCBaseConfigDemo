@@ -8,10 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "GestureProtocol.h"
 #import "JobsBlock.h"
+#import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsGestureModel : NSObject <GestureProtocol>
+@interface JobsGestureModel : BaseModel <GestureProtocol>
 
 @end
 

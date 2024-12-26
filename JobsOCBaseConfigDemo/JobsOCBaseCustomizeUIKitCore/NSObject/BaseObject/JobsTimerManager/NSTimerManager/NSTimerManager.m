@@ -151,14 +151,6 @@ BaseProtocol_synthesize_timer
     };
 }
 #pragma mark —— lazyLoad
-//@synthesize target = _target;
-//-(id)target{
-//    @jobs_weakify(self)
-//    if (!_target) {
-//        _target = weak_self;
-//    }return _target;
-//}
-
 -(NSTimer *)timer{
     if (!_timer) {
         @jobs_weakify(self)
@@ -209,6 +201,16 @@ BaseProtocol_synthesize_timer
 -(NSInvocation *)invocation{
     if (!_invocation) {
         /// TODO
+        /**
+         1. 创建方法签名
+         SEL selector = @selector(timerFired:);
+         NSMethodSignature *methodSignature = [MyClass instanceMethodSignatureForSelector:selector];
+                
+         2. 创建 NSInvocation
+         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+         invocation.target = obj;  // 设置目标
+         invocation.selector = selector;  // 设置方法
+         */
     }return _invocation;
 }
 

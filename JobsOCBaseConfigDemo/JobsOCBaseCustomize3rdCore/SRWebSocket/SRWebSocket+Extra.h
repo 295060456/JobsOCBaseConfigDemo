@@ -5,6 +5,7 @@
 //  Created by Admin on 21/12/2024.
 //
 
+#import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 
 #if __has_include(<SocketRocket/SocketRocket.h>)

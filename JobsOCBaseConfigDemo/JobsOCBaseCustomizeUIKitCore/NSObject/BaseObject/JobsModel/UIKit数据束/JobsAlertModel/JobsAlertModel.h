@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsAlertModel : NSObject
+@interface JobsAlertModel : BaseModel
 /// UIAlertController
 @property(nonatomic,copy)NSString *alertControllerTitle;
 @property(nonatomic,copy)NSString *message;

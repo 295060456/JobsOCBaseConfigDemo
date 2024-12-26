@@ -6,24 +6,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JobsBlock.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "DefineConstString.h" /// 常量字符串的定义
 #import "NSObject+Extras.h"
 #import "NSString+Check.h"
-#import "JobsBlock.h"
 #import "FileNameModel.h"
 
 #if __has_include(<SDWebImage/SDWebImage.h>)
 #import <SDWebImage/SDWebImage.h>
 #else
 #import "SDWebImage.h"
-#endif
-
-#ifndef HTTP
-#define HTTP @"http://"
-#endif
-
-#ifndef HTTPS
-#define HTTPS @"https://"
 #endif
 
 NS_INLINE NSMutableString *_Nonnull JobsMutableString(NSString * _Nonnull str){
@@ -67,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 返回文件路径相关的NSURL *
 /// 增加file://
 -(NSURL *_Nonnull)jobsFileUrl;
-///  能否正常打开Url
+/// 能否正常打开Url
 -(BOOL)jobsCanOpenUrl;
 /**
  问题：直接其他地方复制过来的中文字进行网页搜索、或者中文字识别排序等情况的，会出现搜索不到的情况。
@@ -135,6 +128,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnUnsignedShortByNSUIntegerBlock _Nonnull)characterAtIndex;
 /// 对系统方法 stringWithCapacity 的二次封装
 +(JobsReturnStringByUIntegerBlock _Nonnull)initByCapacity;
+/// 对系统方法 - (nullable instancetype)initWithContentsOfFile:(NSString *)path encoding:(NSStringEncoding)enc error:(NSError **)error; 的二次封装
++(JobsReturnStringByStringBlock _Nonnull)initByContentsOfFile;
+/// 对系统方法 - (nullable instancetype)initWithContentsOfURL:(NSURL *)url encoding:(NSStringEncoding)enc error:(NSError **)error; 的二次封装
++(JobsReturnStringByURLBlock _Nonnull)initByContentsOfURL;
 
 @end
 

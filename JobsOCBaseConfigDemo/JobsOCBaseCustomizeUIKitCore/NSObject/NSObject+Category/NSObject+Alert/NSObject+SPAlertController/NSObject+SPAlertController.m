@@ -8,18 +8,14 @@
 
 #import "NSObject+SPAlertController.h"
 
-@implementation SPAlertControllerConfig
-
-@end
-
 @implementation NSObject (SPAlertController)
 /// 自定义的Alert
 /// @param config 配置文件
 /// @param alertVCBlock alertVCBlock
 /// @param completionBlock completionBlock
 +(SPAlertController *)showSPAlertControllerConfig:(SPAlertControllerConfig *)config
-                                     alertVCBlock:(nullable jobsByTwoIDBlock)alertVCBlock
-                                  completionBlock:(nullable jobsByVoidBlock)completionBlock{
+                                     alertVCBlock:(jobsByTwoIDBlock _Nullable)alertVCBlock
+                                  completionBlock:(jobsByVoidBlock _Nullable)completionBlock{
     SPAlertController *vc = nil;
     switch (config.SPAlertControllerInitType) {
         case NSObject_SPAlertControllerInitType_1:{
@@ -118,9 +114,7 @@
             JobsLog(@"DDD = %ld",action.index);
             [vc addAction:action];
             mutArr.add(action);
-        }
-        
-        if (alertVCBlock) alertVCBlock(vc,mutArr);
+        }if (alertVCBlock) alertVCBlock(vc,mutArr);
     }else{
         self.jobsToastErrMsg(JobsInternationalization(@"参数配置错误，请检查"));
         return nil;

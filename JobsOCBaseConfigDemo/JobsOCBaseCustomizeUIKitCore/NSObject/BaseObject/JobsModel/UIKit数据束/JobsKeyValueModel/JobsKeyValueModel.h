@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsKeyValueModel <__covariant KeyType, __covariant ObjectType> : NSObject
+@interface JobsKeyValueModel <__covariant KeyType, __covariant ObjectType> : BaseModel
 
 @property(nonatomic,copy)KeyType key;
 @property(nonatomic,strong)ObjectType value;

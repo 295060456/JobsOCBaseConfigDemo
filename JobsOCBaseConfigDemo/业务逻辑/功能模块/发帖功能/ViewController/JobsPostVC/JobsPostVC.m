@@ -67,7 +67,7 @@
         self.historyPhotoDataArr = [self.photoManager getLocalModelsInFileWithAddData:YES];
         if (isValue(JobsUserModel.sharedManager.postDraftURLStr)) {
             self.inputDataHistoryString = [FileFolderHandleTool filePath:JobsUserModel.sharedManager.postDraftURLStr
-                                                                fileType:TXT];
+                                                                fileType:FileType_TXT];
         }JobsLog(@"%@",self.inputDataHistoryString);
     }
 }
@@ -159,7 +159,7 @@
     JobsLog(@"%@",JobsUserModel.sharedManager.postDraftURLStr);
     [self.view hx_showLoadingHUDText:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        BOOL success = [self.photoManager saveLocalModelsToFile];//保存图片
+        BOOL success = [self.photoManager saveLocalModelsToFile];/// 保存图片
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.view hx_handleLoading];
             if (success) {
@@ -178,29 +178,28 @@
 }
 
 -(void)saveDoc{
-    SPAlertControllerConfig *config = SPAlertControllerConfig.new;
-    config.SPAlertControllerInitType = NSObject_SPAlertControllerInitType_2;
-    config.title = JobsInternationalization(@"提示");
-    config.message = JobsInternationalization(@"是否将当前内容保存为草稿？");
-    config.preferredStyle = SPAlertControllerStyleAlert;
-    config.animationType = SPAlertAnimationTypeDefault;
-    config.alertActionTitleArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-        data.add(JobsInternationalization(@"不保存"));
-        data.add(JobsInternationalization(@"保存"));
-    });
-    config.alertActionStyleArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-        data.add(@(SPAlertActionStyleDestructive));
-        data.add(@(SPAlertActionStyleDefault));
-    });
-    config.alertBtnActionArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-        data.add(JobsInternationalization(@"不保留文字"));
-        data.add(JobsInternationalization(@"保留文字"));
-    });
-    config.targetVC = self;
-    config.funcInWhere = self;
-    config.animated = YES;
-    
-    [NSObject showSPAlertControllerConfig:config
+    [NSObject showSPAlertControllerConfig:jobsMakeSPAlertControllerConfig(^(__kindof SPAlertControllerConfig * _Nullable config) {
+        config.SPAlertControllerInitType = NSObject_SPAlertControllerInitType_2;
+        config.title = JobsInternationalization(@"提示");
+        config.message = JobsInternationalization(@"是否将当前内容保存为草稿？");
+        config.preferredStyle = SPAlertControllerStyleAlert;
+        config.animationType = SPAlertAnimationTypeDefault;
+        config.alertActionTitleArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(JobsInternationalization(@"不保存"));
+            data.add(JobsInternationalization(@"保存"));
+        });
+        config.alertActionStyleArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(@(SPAlertActionStyleDestructive));
+            data.add(@(SPAlertActionStyleDefault));
+        });
+        config.alertBtnActionArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            data.add(JobsInternationalization(@"不保留文字"));
+            data.add(JobsInternationalization(@"保留文字"));
+        });
+        config.targetVC = self;
+        config.funcInWhere = self;
+        config.animated = YES;
+    })
                            alertVCBlock:^(SPAlertController *data,
                                           NSMutableArray <SPAlertAction *>*data2) {
         
@@ -393,7 +392,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
 
 -(HXPhotoView *)postPhotoView{
     if (!_postPhotoView) {
-        _postPhotoView = [HXPhotoView photoManager:self.photoManager];
+        _postPhotoView = HXPhotoView.initBy(self.photoManager);
         _postPhotoView.spacing = 20.f;
         _postPhotoView.delegate = self;
         _postPhotoView.deleteCellShowAlert = NO;
@@ -410,20 +409,21 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
 
 -(HXPhotoManager *)photoManager {
     if (!_photoManager) {
-        _photoManager = [HXPhotoManager.alloc initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
-        _photoManager.configuration.localFileName = jobsCurrentAppName();// 设置保存的文件名称
-        _photoManager.configuration.type = HXConfigurationTypeWXChat;
-        _photoManager.configuration.showOriginalBytes = YES;
-        _photoManager.configuration.showOriginalBytesLoading = YES;
-        _photoManager.configuration.videoMaximumSelectDuration = -1;
-        _photoManager.configuration.limitVideoSize = 100 * 1024 * 1024;
-        _photoManager.configuration.selectVideoLimitSize = YES;
-        _photoManager.configuration.selectVideoBeyondTheLimitTimeAutoEdit = NO;
-        _photoManager.configuration.specialModeNeedHideVideoSelectBtn = NO;
-        _photoManager.configuration.videoMaxNum = 1;
-        _photoManager.configuration.maxNum = 9;
-        _photoManager.configuration.photoMaxNum = 9;
-        _photoManager.configuration.selectTogether = NO;
+        _photoManager = jobsMakeHXPhotoManagerBySelectedTypePhotoAndVideo(^(__kindof HXPhotoManager * _Nullable manager) {
+            manager.configuration.localFileName = jobsCurrentAppName();// 设置保存的文件名称
+            manager.configuration.type = HXConfigurationTypeWXChat;
+            manager.configuration.showOriginalBytes = YES;
+            manager.configuration.showOriginalBytesLoading = YES;
+            manager.configuration.videoMaximumSelectDuration = -1;
+            manager.configuration.limitVideoSize = 100 * 1024 * 1024;
+            manager.configuration.selectVideoLimitSize = YES;
+            manager.configuration.selectVideoBeyondTheLimitTimeAutoEdit = NO;
+            manager.configuration.specialModeNeedHideVideoSelectBtn = NO;
+            manager.configuration.videoMaxNum = 1;
+            manager.configuration.maxNum = 9;
+            manager.configuration.photoMaxNum = 9;
+            manager.configuration.selectTogether = NO;
+        });
     }return _photoManager;
 }
 

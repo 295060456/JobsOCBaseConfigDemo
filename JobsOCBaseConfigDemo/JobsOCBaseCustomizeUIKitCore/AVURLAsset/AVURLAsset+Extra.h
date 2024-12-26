@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AVURLAsset (Extra)
 /// 获取视频第一帧
--(UIImage *_Nonnull)videoPreViewImage;
+-(UIImage *_Nullable)videoPreViewImage;
 
 @end
 

@@ -14,12 +14,7 @@
 #import "JobsBlock.h"
 #import "UIView+Measure.h"
 #import "NSObject+Extras.h"
-/// 图片填充模式
-typedef NS_ENUM(NSInteger,DWContentMode){
-    DWContentModeScaleAspectFit,/// 适应模式
-    DWContentModeScaleAspectFill,/// 填充模式
-    DWContentModeScaleToFill/// 拉伸模式
-};
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -63,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsReturnImageByDataBlock _Nonnull)imageWithData;
 /// 对系统方法 imageWithCGImage 的二次封装
 +(JobsReturnImageByCGImageRefBlock _Nonnull)imageWithCGImage;
+/// 对系统方法 imageWithContentsOfFile 的二次封装
++(JobsReturnImageByStringBlock _Nonnull)imageWithContentsOfFile;
 
 @end
 

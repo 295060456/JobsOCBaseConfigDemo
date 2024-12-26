@@ -33,7 +33,7 @@
     @jobs_weakify(self)
     return ^__kindof YTKBaseRequest *_Nonnull(NSDictionary *_Nullable data){
         @jobs_strongify(self)
-        [self.customHTTPHeader addEntriesFromDictionary:data];
+        self.customHTTPHeader.addByDic(data);
         JobsLog(@"请求头: %@", self.requestHeaderFieldValueDictionary);
         return self;
     };
@@ -92,7 +92,7 @@
         _customHTTPHeader = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable headers) {
             @jobs_strongify(self)
             /// 设置 Content-Type
-            [headers setValue:@"application/json"
+            [headers setValue:APP_JSON
                        forKey:ContentType];
             /// 设置 Authorization
             if(self.doorModel) [headers setValue:self.doorModel.token

@@ -72,59 +72,60 @@ static dispatch_once_t static_userModelOnceToken;
     }
 }
 
-//- (nullable instancetype)initWithCoder:(NSCoder *)coder {
-//    if (self = [super init]) {
-//        _userName = coder.decodeStringBy(@"userName");
-//        _userHeader = coder.decodeStringBy(@"userHeader");
-//        _userHeaderIMG = coder.decodeImageBy(@"userHeaderIMG");
-//        _userRacnkClass = coder.decodeStringBy(@"userRacnkClass");
-//        _password = coder.decodeStringBy(@"password");
-//        _token = coder.decodeStringBy(@"token");
-//        _uid = coder.decodeStringBy(@"uid");
-//        _deviceId = coder.decodeStringBy(@"deviceId");
-//        _validate = coder.decodeStringBy(@"validate");
-//        _resourcesAddress = coder.decodeStringBy(@"resourcesAddress");
-//        _postDraftURLStr = coder.decodeStringBy(@"postDraftURLStr");
-//        _account = coder.decodeStringBy(@"account");
-//        _domain = coder.decodeStringBy(@"domain");
-//        _email = coder.decodeStringBy(@"email");
-//        _headImg = coder.decodeStringBy(@"headImg");
-//        _inviteCode = coder.decodeStringBy(@"inviteCode");
-//        _name = coder.decodeStringBy(@"name");
-//        _phone = coder.decodeStringBy(@"phone");
-//        _qq = coder.decodeStringBy(@"qq");
-//        _realName = coder.decodeStringBy(@"realName");
-//        _superiorAccount = coder.decodeStringBy(@"superiorAccount");
-//        _userId = coder.decodeNumberBy(@"userId");
-//        _webChat = coder.decodeStringBy(@"webChat");
+//- (nullable instancetype)initWithCoder:(NSCoder *)decoder {
+//    if (self = [super initWithCoder:decoder]) {
+//        _userName = decoder.decodeStringBy(@"userName");
+//        _userHeader = decoder.decodeStringBy(@"userHeader");
+//        _userHeaderIMG = decoder.decodeImageBy(@"userHeaderIMG");
+//        _userRacnkClass = decoder.decodeStringBy(@"userRacnkClass");
+//        _password = decoder.decodeStringBy(@"password");
+//        _token = decoder.decodeStringBy(@"token");
+//        _uid = decoder.decodeStringBy(@"uid");
+//        _deviceId = decoder.decodeStringBy(@"deviceId");
+//        _validate = decoder.decodeStringBy(@"validate");
+//        _resourcesAddress = decoder.decodeStringBy(@"resourcesAddress");
+//        _postDraftURLStr = decoder.decodeStringBy(@"postDraftURLStr");
+//        _account = decoder.decodeStringBy(@"account");
+//        _domain = decoder.decodeStringBy(@"domain");
+//        _email = decoder.decodeStringBy(@"email");
+//        _headImg = decoder.decodeStringBy(@"headImg");
+//        _inviteCode = decoder.decodeStringBy(@"inviteCode");
+//        _name = decoder.decodeStringBy(@"name");
+//        _phone = decoder.decodeStringBy(@"phone");
+//        _qq = decoder.decodeStringBy(@"qq");
+//        _realName = decoder.decodeStringBy(@"realName");
+//        _superiorAccount = decoder.decodeStringBy(@"superiorAccount");
+//        _userId = decoder.decodeNumberBy(@"userId");
+//        _webChat = decoder.decodeStringBy(@"webChat");
 //        // 解码更多属性...
 //    }return self;
 //}
 //
-//- (void)encodeWithCoder:(NSCoder *)coder {
-//    [coder encodeObject:self.userName forKey:@"userName"];
-//    [coder encodeObject:self.userHeader forKey:@"userHeader"];
-//    [coder encodeObject:self.userHeaderIMG forKey:@"userHeaderIMG"];
-//    [coder encodeObject:self.userRacnkClass forKey:@"userRacnkClass"];
-//    [coder encodeObject:self.password forKey:@"password"];
-//    [coder encodeObject:self.token forKey:@"token"];
-//    [coder encodeObject:self.uid forKey:@"uid"];
-//    [coder encodeObject:self.deviceId forKey:@"deviceId"];
-//    [coder encodeObject:self.validate forKey:@"validate"];
-//    [coder encodeObject:self.resourcesAddress forKey:@"resourcesAddress"];
-//    [coder encodeObject:self.postDraftURLStr forKey:@"postDraftURLStr"];
-//    [coder encodeObject:self.account forKey:@"account"];
-//    [coder encodeObject:self.domain forKey:@"domain"];
-//    [coder encodeObject:self.email forKey:@"email"];
-//    [coder encodeObject:self.headImg forKey:@"headImg"];
-//    [coder encodeObject:self.inviteCode forKey:@"inviteCode"];
-//    [coder encodeObject:self.name forKey:@"name"];
-//    [coder encodeObject:self.phone forKey:@"phone"];
-//    [coder encodeObject:self.qq forKey:@"qq"];
-//    [coder encodeObject:self.realName forKey:@"realName"];
-//    [coder encodeObject:self.superiorAccount forKey:@"superiorAccount"];
-//    [coder encodeObject:self.userId forKey:@"userId"];
-//    [coder encodeObject:self.webChat forKey:@"webChat"];
+//- (void)encodeWithCoder:(NSCoder *)encoder {
+//    [super encodeWithCoder:encoder];
+//    [encoder encodeObject:self.userName forKey:@"userName"];
+//    [encoder encodeObject:self.userHeader forKey:@"userHeader"];
+//    [encoder encodeObject:self.userHeaderIMG forKey:@"userHeaderIMG"];
+//    [encoder encodeObject:self.userRacnkClass forKey:@"userRacnkClass"];
+//    [encoder encodeObject:self.password forKey:@"password"];
+//    [encoder encodeObject:self.token forKey:@"token"];
+//    [encoder encodeObject:self.uid forKey:@"uid"];
+//    [encoder encodeObject:self.deviceId forKey:@"deviceId"];
+//    [encoder encodeObject:self.validate forKey:@"validate"];
+//    [encoder encodeObject:self.resourcesAddress forKey:@"resourcesAddress"];
+//    [encoder encodeObject:self.postDraftURLStr forKey:@"postDraftURLStr"];
+//    [encoder encodeObject:self.account forKey:@"account"];
+//    [encoder encodeObject:self.domain forKey:@"domain"];
+//    [encoder encodeObject:self.email forKey:@"email"];
+//    [encoder encodeObject:self.headImg forKey:@"headImg"];
+//    [encoder encodeObject:self.inviteCode forKey:@"inviteCode"];
+//    [encoder encodeObject:self.name forKey:@"name"];
+//    [encoder encodeObject:self.phone forKey:@"phone"];
+//    [encoder encodeObject:self.qq forKey:@"qq"];
+//    [encoder encodeObject:self.realName forKey:@"realName"];
+//    [encoder encodeObject:self.superiorAccount forKey:@"superiorAccount"];
+//    [encoder encodeObject:self.userId forKey:@"userId"];
+//    [encoder encodeObject:self.webChat forKey:@"webChat"];
 //    // 编码更多属性
 //}
 #pragma mark —— NSSecureCoding

@@ -111,11 +111,11 @@
 /// 当用户拍照完成后，这个方法会被调用
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    // 获取编辑后的图片（如果 allowsEditing 为 NO，则获取原图）
+    /// 获取编辑后的图片（如果 allowsEditing 为 NO，则获取原图）
     UIImage *selectedImage = info[UIImagePickerControllerEditedImage] ? : info[UIImagePickerControllerOriginalImage];
-    // 在此处处理拍照得到的图片，例如保存到相册或显示在界面上
+    /// 在此处处理拍照得到的图片，例如保存到相册或显示在界面上
     if(self.objectBlock) self.objectBlock(selectedImage);
-    // 关闭相机界面
+    /// 关闭相机界面
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 /// 用户取消拍照时调用这个方法
@@ -167,7 +167,7 @@ JobsKey(_historyPhotoDataMutArr)
         /// 保存本地的方法都是在主线程调用
         /// 获取保存在本地文件的模型数组
         /// @param addData 是否添加到manager的数据中
-        HistoryPhotoDataMutArr = [NSMutableArray arrayWithArray:[self.photoManager getLocalModelsInFileWithAddData:YES]];
+        HistoryPhotoDataMutArr = NSMutableArray.initBy([self.photoManager getLocalModelsInFileWithAddData:YES]);
         Jobs_setAssociatedRETAIN_NONATOMIC(_historyPhotoDataMutArr, HistoryPhotoDataMutArr)
     }return HistoryPhotoDataMutArr;
 }

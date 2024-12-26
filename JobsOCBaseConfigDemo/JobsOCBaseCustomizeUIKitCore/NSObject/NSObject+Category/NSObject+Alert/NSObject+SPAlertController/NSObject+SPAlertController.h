@@ -12,6 +12,7 @@
 #import "NSObject+WHToast.h"//提示
 #import "JobsString.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "SPAlertControllerConfig.h"
 
 #if __has_include(<SPAlertController/SPAlertController.h>)
 #import <SPAlertController/SPAlertController.h>
@@ -26,37 +27,15 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-/// 配置文件
 /// pod 'SPAlertController'# https://github.com/SPStore/SPAlertController 深度定制AlertController
-@interface SPAlertControllerConfig : NSObject
-
-@property(nonatomic,assign)NSObject_SPAlertControllerInitType SPAlertControllerInitType;// SPAlertControllerInitType 初始化模式
-@property(nonatomic,copy,nullable)NSString *title;//  标题，没有可传nil，如果传空字符@“”会多处一行空白
-@property(nonatomic,copy,nullable)NSString *message;// 副标题，没有可传nil，如果传空字符@“”会多处一行空白
-@property(nonatomic,strong,nullable)UIView *customAlertView; // 允许传入自定义的View
-@property(nonatomic,strong,nullable)UIView *customHeaderView;// 允许传入自定义的HeaderView
-@property(nonatomic,strong,nullable)UIView *customActionSequenceView;// 允许传入自定义的customActionSequenceView
-@property(nonatomic,assign)SPAlertControllerStyle preferredStyle;// 从单侧弹出(顶/左/底/右)  还是  从中间弹出
-@property(nonatomic,assign)SPAlertAnimationType animationType;// 动画模式
-@property(nonatomic,weak)UIViewController *targetVC;// 作用域,alertBtnActionArr在targetVC的m文件去找对应的方法，没有则向外抛出崩溃
-@property(nonatomic,weak,nullable)id funcInWhere;// 执行方法的位置，它可以是VC、view、也可以是任意NSObject子类。当不传值的时候 funcInWhere == targetVC
-@property(nonatomic,assign)BOOL animated;// 是否动效present
-// 核心参数
-@property(nonatomic,strong,nullable)NSArray <NSString *>*alertActionTitleArr;// 按钮名
-@property(nonatomic,strong,nullable)NSArray <NSNumber *>*alertActionStyleArr;// 按钮Style
-@property(nonatomic,strong,nullable)NSArray <NSString *>*alertBtnActionArr;// 按钮触发方法
-@property(nonatomic,strong,nullable)NSArray <NSMutableArray *>*parametersArr;// @【所有的参数形成数据束，一个方法对应一个数据束的形式，包装成方法的第一个参数】
-
-@end
-
 @interface NSObject (SPAlertController)
 /// 自定义的Alert
 /// @param config 配置文件
 /// @param alertVCBlock alertVCBlock
 /// @param completionBlock completionBlock
 +(SPAlertController *)showSPAlertControllerConfig:(SPAlertControllerConfig *)config
-                                     alertVCBlock:(nullable jobsByTwoIDBlock)alertVCBlock
-                                  completionBlock:(nullable jobsByVoidBlock)completionBlock;
+                                     alertVCBlock:(jobsByTwoIDBlock _Nullable)alertVCBlock
+                                  completionBlock:(jobsByVoidBlock _Nullable)completionBlock;
 
 @end
 

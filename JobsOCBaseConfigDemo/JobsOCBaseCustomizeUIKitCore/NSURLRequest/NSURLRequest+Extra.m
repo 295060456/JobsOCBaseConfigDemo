@@ -10,7 +10,7 @@
 @implementation NSURLRequest (Extra)
 
 +(JobsReturnURLRequestByURLBlock _Nonnull)initBy{
-    return ^ __kindof NSURLRequest *_Nullable(NSURL *_Nullable url){
+    return ^__kindof NSURLRequest *_Nullable(NSURL *_Nullable url){
         return [NSURLRequest requestWithURL:url];
     };
 }

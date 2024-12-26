@@ -7,10 +7,8 @@
 
 #ifndef VoidByCertainParameters_h
 #define VoidByCertainParameters_h
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
-
 ///【 确定入参个数 并且 没有返回值的Block定义】
 typedef void(^jobsByVoidBlock)(void);
 typedef void(^jobsByIDBlock)(id _Nullable data);
@@ -143,6 +141,10 @@ typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable date
 typedef void(^jobsByNotificationResponseBlock)(UNNotificationResponse *_Nullable response);
 #pragma mark —— 其他
 typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
+typedef void(^jobsByPHFetchOptionsBlock)(PHFetchOptions *_Nullable options);
+typedef void(^jobsByPHVideoRequestOptionsBlock)(PHVideoRequestOptions *_Nullable options);
+typedef void(^jobsByPHImageRequestOptionsBlock)(PHImageRequestOptions *_Nullable options);
+typedef void(^jobsByPHImageManagerBlock)(PHImageManager *_Nullable imageManager);
 typedef void(^jobsByDataBlock)(NSData *_Nullable data);
 typedef void(^jobsByMutableDataBlock)(__kindof NSMutableData *_Nullable data);
 typedef void(^jobsByMutableStringBlock)(__kindof NSMutableString *_Nullable data);

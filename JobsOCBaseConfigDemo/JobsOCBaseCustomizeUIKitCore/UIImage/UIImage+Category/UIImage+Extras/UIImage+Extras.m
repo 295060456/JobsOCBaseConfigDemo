@@ -247,5 +247,11 @@
         return [UIImage imageWithCGImage:data];
     };
 }
+/// 对系统方法 imageWithContentsOfFile 的二次封装
++(JobsReturnImageByStringBlock _Nonnull)imageWithContentsOfFile{
+    return ^UIImage *_Nonnull(__kindof NSString *_Nullable data){
+        return [UIImage imageWithContentsOfFile:data];
+    };
+}
 
 @end

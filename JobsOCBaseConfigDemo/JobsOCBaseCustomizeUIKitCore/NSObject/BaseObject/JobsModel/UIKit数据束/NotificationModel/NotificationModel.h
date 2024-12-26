@@ -6,14 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NotificationModel : NSObject
+@interface NotificationModel : BaseModel
 
 @property(nonatomic,copy)NSString *notificationName;
-@property(nonatomic,strong)id anObject;
 @property(nonatomic,strong)NSDictionary *userInfo;
+@property(nonatomic,strong)id anObject;
 
 @end
 

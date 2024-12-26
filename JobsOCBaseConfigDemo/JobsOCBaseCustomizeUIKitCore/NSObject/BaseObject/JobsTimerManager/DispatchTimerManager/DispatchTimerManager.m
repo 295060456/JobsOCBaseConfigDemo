@@ -7,25 +7,18 @@
 
 #import "DispatchTimerManager.h"
 
-#define lock(...) \
-    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER);\
-    __VA_ARGS__;\
-    dispatch_semaphore_signal(self.semaphore);
-
 @interface DispatchTimerManager ()
 
-@property(nonatomic,retain)dispatch_source_t dispatchTimer;
-@property(nonatomic,assign)BOOL valid;
-@property(nonatomic,assign)BOOL running;
+Prop_assign()BOOL valid;
 
 @end
 
 @implementation DispatchTimerManager
-
+BaseProtocol_synthesize_timer
+@synthesize target = _target;
 -(void)dealloc {
     JobsLog(@"%@",JobsLocalFunc);
     JobsRemoveNotification(self);
-
     /*
      dispatch_suspend 和 dispatch_resume 应该是成对出现的。
      两者分别会减少和增加 dispatch 对象的挂起计数
@@ -77,7 +70,7 @@
                            userInfo:(nullable id)userInfo
                             repeats:(BOOL)repeats {
     if (self = [super init]) {
-        self.start = start;
+        self.startTime = start;
         self.timeInterval = interval;
         self.repeats = repeats;
         self.weak_target = target;
@@ -91,7 +84,7 @@
     self.state = DispatchTimerState_init;
     self.valid = YES;
     dispatch_source_set_timer(self.dispatchTimer,
-                              dispatch_time(DISPATCH_TIME_NOW, self.start * NSEC_PER_SEC),
+                              dispatch_time(DISPATCH_TIME_NOW, self.startTime * NSEC_PER_SEC),
                               self.timeInterval * NSEC_PER_SEC,
                               0);
     @jobs_weakify(self)

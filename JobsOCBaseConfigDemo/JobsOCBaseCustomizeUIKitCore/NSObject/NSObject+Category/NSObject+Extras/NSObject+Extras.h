@@ -30,6 +30,7 @@
 
 #import "FileFolderHandleTool.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "DefineConstString.h" /// 常量字符串的定义
 #import "JobsAppTools.h"
 #import "JobsSnowflake.h"
 #import "JobsModel.h"

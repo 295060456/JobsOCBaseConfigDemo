@@ -4,38 +4,48 @@
 //
 //  Created by Jobs on 2020/9/24.
 //
-
+#import "DefineConstString.h" /// 常量字符串的定义
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+/// 服务器相关
 #ifndef NetworkingConstant_h
 #define NetworkingConstant_h
+/// http://
+#ifndef HTTPHeader
+#define HTTPHeader @"http://"
+#endif
+/// https://
+#ifndef HTTPSHeader
+#define HTTPSHeader @"https://"
+#endif
 /// BaseURL
 #ifndef SERVER_URL
 #define SERVER_URL NSObject.BaseUrl
 #endif /* SERVER_URL_DEFINED */
-/// 服务器相关
+/// Token
 #ifndef HTTPRequestTokenKey
 #define HTTPRequestTokenKey @"token"
 #endif /* HTTPRequestTokenKey */
-/// 签名key
+/// 签名：key
 #ifndef HTTPServiceSignKey
 #define HTTPServiceSignKey @"sign"
 #endif /* HTTPServiceSignKey */
-/// 私钥key
+/// 私钥：key
 #ifndef HTTPServiceKey
 #define HTTPServiceKey @"privatekey"
 #endif /* HTTPServiceKey */
-/// 私钥Value
+/// 私钥：Value
 #ifndef HTTPServiceKeyValue
 #define HTTPServiceKeyValue @"/** 你的私钥 **/"
 #endif /* HTTPServiceKeyValue */
-/// 状态码key
+/// 状态码：key
 #ifndef HTTPServiceResponseCodeKey
 #define HTTPServiceResponseCodeKey @"code"
 #endif /* HTTPServiceResponseCodeKey */
-/// 消息key
+/// 消息：key
 #ifndef HTTPServiceResponseMsgKey
 #define HTTPServiceResponseMsgKey @"msg"
 #endif /* HTTPServiceResponseMsgKey */
-/// 数据data
+/// 数据：data
 #ifndef HTTPServiceResponseDataKey
 #define HTTPServiceResponseDataKey @"data"
 #endif /* HTTPServiceResponseDataKey */
@@ -83,12 +93,5 @@ typedef NS_ENUM(NSUInteger, HTTPRequestHeaderLanguageType) {
     HTTPRequestHeaderLanguageOther/// 其他语言
 };
 #endif /* HTTP_REQUEST_HEADER_LANGUAGE_TYPE_ENUM_DEFINED */
-
-static NSString *const HTTPServiceErrorDomain = @"HTTPServiceErrorDomain";/// The Http request error domain
-static NSString *const HTTPServiceErrorResponseCodeKey = @"HTTPServiceErrorResponseCodeKey";/// 请求成功，但statusCode != 0
-static NSString *const HTTPServiceErrorRequestURLKey = @"HTTPServiceErrorRequestURLKey";//请求地址错误
-static NSString *const HTTPServiceErrorHTTPStatusCodeKey = @"HTTPServiceErrorHTTPStatusCodeKey";//请求错误的code码key: 请求成功了，但code码是错误提示的code,比如参数错误
-static NSString *const HTTPServiceErrorDescriptionKey = @"HTTPServiceErrorDescriptionKey";//请求错误，详细描述key
-static NSString *const HTTPServiceErrorMessagesKey = @"HTTPServiceErrorMessagesKey";//服务端错误提示，信息key
 
 #endif /* NetworkingConstant_h */

@@ -6,10 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsImageModel : NSObject
+@interface JobsImageModel : BaseModel
 
 @property(nonatomic,strong,nullable)UIImage *image;
 @property(nonatomic,strong,nullable)NSDictionary *info;

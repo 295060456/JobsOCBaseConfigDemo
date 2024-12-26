@@ -173,6 +173,22 @@
 #import "NSXMLParser+Extra.h"
 #pragma mark —— UICollectionViewLayoutAttributes
 #import "UICollectionViewLayoutAttributes+Extra.h"
+#pragma mark —— PHFetchResult
+#import "PHFetchResult+Extra.h"
+#pragma mark —— PHAsset
+#import "PHAsset+Extra.h"
+#pragma mark —— PHCollectionList
+#import "PHCollectionList+Extra.h"
+#pragma mark —— PHAssetChangeRequest
+#import "PHAssetChangeRequest+Extra.h"
+#pragma mark —— PHAssetCollectionChangeRequest
+#import "PHAssetCollectionChangeRequest+Extra.h"
+#pragma mark —— AVAssetImageGenerator
+#import "AVAssetImageGenerator+Extra.h"
+#pragma mark —— AVAsset
+#import "AVAsset+Extra.h"
+#pragma mark —— PHAssetResource
+#import "PHAssetResource+Extra.h"
 
 #import "JobsMakes.h"
 

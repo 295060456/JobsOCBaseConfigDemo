@@ -62,6 +62,7 @@ typedef id _Nullable(^JobsReturnIDByEightIDBlock)Jobs_8_Arguments;
 typedef id _Nullable(^JobsReturnIDByNineIDBlock)Jobs_9_Arguments;
 typedef id _Nullable(^JobsReturnIDByTenIDBlock)Jobs_10_Arguments;
 #pragma mark —— 关于数据容器
+/// 数组
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByVoidBlock)(void);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIDBlock)(id _Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByStringBlock)(__kindof NSString *_Nullable data);
@@ -69,18 +70,18 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrayByArrayBlock)(__kindof NSArr
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIntegerBlock)(NSInteger data);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
 typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIDBlock)(id _Nullable data);
-
+/// 字典
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByDataBlock)(NSData *_Nullable data);
+typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByURLBlock)(NSURL *_Nullable url);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByVoidBlock)(void);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByDicBlock)(__kindof NSDictionary *_Nullable dic);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
-
+/// 集合
 typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByIDBlock)(id _Nullable data);
 typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByArrBlock)(__kindof NSArray *_Nullable data);
 typedef NSMutableSet *_Nullable(^JobsReturnNSMutableSetByIDBlock)(id _Nullable data);
-
 #pragma mark —— 关于 NSBundle
 typedef NSBundle *_Nullable(^JobsReturnBundleByStringBlock)(__kindof NSString *_Nullable data);
 typedef NSBundle *_Nullable(^JobsReturnBundleByURLBlock)(NSURL *_Nullable data);
@@ -345,7 +346,7 @@ typedef __kindof UNCalendarNotificationTrigger *_Nullable(^JobsReturnCalendarNot
 typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByStringBlock)(__kindof NSString *_Nullable data);
 typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByIntegerBlock)(NSInteger data);
 #pragma mark —— 关于URL
-typedef NSURL *_Nullable(^JobsReturnURLByStringBlock)(NSString *_Nullable data);
+typedef NSURL *_Nullable(^JobsReturnURLByStringBlock)(__kindof NSString *_Nullable data);
 typedef NSURL *_Nullable(^JobsReturnURLByURLBlock)(NSURL *_Nullable data);
 typedef NSURL *_Nullable(^JobsReturnURLByVoidBlock)(void);
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByVoidBlock)(void);
@@ -589,6 +590,14 @@ typedef UIImpactFeedbackGenerator *_Nonnull(^JobsReturnImpactFeedbackGeneratorBy
 typedef UIImpactFeedbackGenerator *_Nonnull(^JobsReturnImpactFeedbackGeneratorByNSIntegerBlock)(NSInteger data);
 typedef UIImpactFeedbackGenerator *_Nonnull(^JobsReturnImpactFeedbackGeneratorByViewBlock)(__kindof UIView *_Nullable view);
 typedef __kindof NSXMLParser *_Nonnull(^JobsReturnNSXMLParserByNSDataBlock)(__kindof NSData *_Nullable data);
+typedef __kindof PHFetchResult <__kindof PHCollection *>*_Nonnull(^JobsReturnPHFetchResultWithPHCollectionByPHFetchOptionsBlock)(__kindof PHFetchOptions *_Nullable options);
+typedef __kindof PHFetchResult <PHAsset *>*_Nonnull(^JobsReturnPHFetchResultWithPHAssetByPHFetchOptionsBlock)(__kindof PHFetchOptions *_Nullable options);
+typedef PHAssetChangeRequest *_Nonnull(^JobsReturnPHAssetChangeRequestByURLBlock)(NSURL *_Nullable url);
+typedef __kindof PHAssetCollectionChangeRequest *_Nonnull(^JobsReturnPHAssetCollectionChangeRequestByPHAssetCollectionBlock)(__kindof PHAssetCollection *_Nullable data);
+typedef __kindof PHAssetCollectionChangeRequest *_Nonnull(^JobsReturnPHAssetCollectionChangeRequestByStringBlock)(__kindof NSString *_Nullable data);
+typedef PHAssetCollectionChangeRequest *_Nullable(^JobsReturnPHAssetCollectionChangeRequestByIDBlock)(id<NSFastEnumeration> _Nullable data);
+typedef __kindof AVAssetImageGenerator *_Nonnull(^JobsReturnAVAssetImageGeneratorByAVURLAssetBlock)(__kindof AVURLAsset *_Nullable data);
+typedef __kindof NSArray <PHAssetResource *>*_Nonnull(^JobsReturnArrayByPHAssetBlock)(__kindof PHAsset *_Nullable data);
 
 #pragma clang diagnostic pop
 

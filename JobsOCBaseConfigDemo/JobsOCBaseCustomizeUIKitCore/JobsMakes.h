@@ -180,6 +180,30 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
     return data;
 }
 
+NS_INLINE __kindof PHFetchOptions *_Nonnull jobsMakePHFetchOptions(jobsByPHFetchOptionsBlock _Nonnull block){
+    PHFetchOptions *data = PHFetchOptions.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof PHVideoRequestOptions *_Nonnull jobsMakePHVideoRequestOptions(jobsByPHVideoRequestOptionsBlock _Nonnull block){
+    PHVideoRequestOptions *data = PHVideoRequestOptions.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof PHImageManager *_Nonnull jobsMakePHImageManager(jobsByPHImageManagerBlock _Nonnull block){
+    PHImageManager *data = PHImageManager.defaultManager;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof PHImageRequestOptions *_Nonnull jobsMakePHImageRequestOptions(jobsByPHImageRequestOptionsBlock _Nonnull block){
+    PHImageRequestOptions *data = PHImageRequestOptions.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof NSRunLoop *_Nonnull jobsMakeMainRunLoop(jobsByRunLoopBlock _Nonnull block) API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)){
     NSRunLoop *data = NSRunLoop.mainRunLoop;
     if (block) block(data);

@@ -9,17 +9,11 @@
 #import "NSObject+Extras.h"
 #import "URLManagerModel.h"
 #import "JobsBlock.h"
-
-#ifndef HTTP
-#define HTTP @"http://"
-#endif
-
-#ifndef HTTPS
-#define HTTPS @"https://"
-#endif
+#import "NetworkingConstant.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// 域名列表
+/// https://conf.betzz.cc/pages/viewpage.action?pageId=918653
 @interface This (URLManager_Base)
 #pragma mark —— BaseURL
 +(NSString *)BaseUrl;

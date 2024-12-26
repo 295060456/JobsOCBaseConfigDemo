@@ -10,10 +10,11 @@
 #import "BaseViewProtocol.h"
 #import "UIMarkProtocol.h"
 #import "BaseLayerProtocol.h"
+#import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsLocationModel : NSObject
+@interface JobsLocationModel : BaseModel
 <
 UILocationProtocol
 ,BaseViewProtocol

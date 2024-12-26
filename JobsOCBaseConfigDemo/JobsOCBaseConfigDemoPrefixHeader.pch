@@ -42,6 +42,7 @@
 /// 各项宏定义
 #import "DefineConstString.h" /// 常量字符串的定义
 #import "DefineProperty.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 
 #import "MacroDef_Size.h"
 #import "MacroDef_App.h"
@@ -60,7 +61,6 @@
 ///  其他的一些全局定义文件
 #import "JobsBlock.h"
 #import "APIKey.h"
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #pragma mark —— JobsBaseCustomizeUIKitCore
 #import "JobsBaseCustomizeUIKitCoreHeader.h"
 #pragma mark —— JobsOCBaseCustomize3rdCore

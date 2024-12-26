@@ -6,8 +6,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseProtocol.h"
 #import "MacroDef_Func.h"
 #import "JobsDefineAllEnumHeader.h"
+
+#ifndef LOCK_MACRO_DEFINED
+#define LOCK_MACRO_DEFINED
+#define lock(...) \
+    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER); \
+    __VA_ARGS__; \
+    dispatch_semaphore_signal(self.semaphore);
+
+#endif /* LOCK_MACRO_DEFINED */
 
 NS_ASSUME_NONNULL_BEGIN
 /**
@@ -20,18 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
     计时准确
     可以使用子线程，解决定时间跑在主线程上卡UI问题
  */
-@interface DispatchTimerManager : NSObject
-
-@property(nonatomic,assign)BOOL repeats;
-@property(readonly,getter=isValid)BOOL valid;
-@property(nonatomic,assign)NSTimeInterval start;
-@property(nonatomic,assign)NSTimeInterval timeInterval;
-@property(nonatomic,retain)dispatch_semaphore_t semaphore;
-@property(nonatomic,assign)SEL selector;
-@property(nonatomic,nullable,retain)id userInfo;
-@property(nonatomic,weak)id target;
-@property(nonatomic,assign)DispatchTimerState state;
-
+@interface DispatchTimerManager : NSObject <BaseProtocol>
 /// 同下面的方法，不过自动开始执行
 +(DispatchTimerManager *)scheduledTimerWithTimeInterval:(NSTimeInterval)interval
                                                  target:(id)aTarget

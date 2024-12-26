@@ -17,6 +17,17 @@
 		8405D1972D08656100DE33FE /* UIButton+UIControlState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D1912D08656100DE33FE /* UIButton+UIControlState.m */; };
 		8405D19C2D0865E100DE33FE /* UITabBarItem+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405D19A2D0865E100DE33FE /* UITabBarItem+Extra.m */; };
 		84170B002CD0BF5D0007E303 /* YTKBatchRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */; };
+		8432B6262D1DAE6A00ADE9FF /* HXPhotoView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B6242D1DAE6A00ADE9FF /* HXPhotoView+Extra.m */; };
+		8432B63F2D1DAEAE00ADE9FF /* PHAsset+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B63A2D1DAEAE00ADE9FF /* PHAsset+Extra.m */; };
+		8432B6402D1DAEAE00ADE9FF /* PHFetchResult+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B63D2D1DAEAE00ADE9FF /* PHFetchResult+Extra.m */; };
+		8432B6412D1DAEAE00ADE9FF /* PHCollectionList+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B6372D1DAEAE00ADE9FF /* PHCollectionList+Extra.m */; };
+		8432B6422D1DAEAE00ADE9FF /* AVAsset+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B62B2D1DAEAE00ADE9FF /* AVAsset+Extra.m */; };
+		8432B6432D1DAEAE00ADE9FF /* PHAssetResource+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B6282D1DAEAE00ADE9FF /* PHAssetResource+Extra.m */; };
+		8432B6442D1DAEAE00ADE9FF /* PHAssetCollectionChangeRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B6312D1DAEAE00ADE9FF /* PHAssetCollectionChangeRequest+Extra.m */; };
+		8432B6452D1DAEAE00ADE9FF /* PHAssetChangeRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B6342D1DAEAE00ADE9FF /* PHAssetChangeRequest+Extra.m */; };
+		8432B6462D1DAEAE00ADE9FF /* AVAssetImageGenerator+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B62E2D1DAEAE00ADE9FF /* AVAssetImageGenerator+Extra.m */; };
+		8432B64A2D1DAFC900ADE9FF /* FileFolderHandleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B6482D1DAFC900ADE9FF /* FileFolderHandleModel.m */; };
+		8432B64E2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B64C2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m */; };
 		84392BDC2CF4A47A000D441F /* UIAlertController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD62CF4A47A000D441F /* UIAlertController+Extra.m */; };
 		84392BDD2CF4A47A000D441F /* UIAlertAction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD32CF4A47A000D441F /* UIAlertAction+Extra.m */; };
 		84392BDE2CF4A47A000D441F /* UNUserNotificationCenter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD92CF4A47A000D441F /* UNUserNotificationCenter+Extra.m */; };
@@ -1259,6 +1270,28 @@
 		8415A2342CE4729600A09C67 /* JobsExcelView的使用.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "JobsExcelView的使用.md"; sourceTree = "<group>"; };
 		84170AFD2CD0BF5D0007E303 /* YTKBatchRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBatchRequest+Extra.h"; sourceTree = "<group>"; };
 		84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBatchRequest+Extra.m"; sourceTree = "<group>"; };
+		8432B6232D1DAE6A00ADE9FF /* HXPhotoView+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HXPhotoView+Extra.h"; sourceTree = "<group>"; };
+		8432B6242D1DAE6A00ADE9FF /* HXPhotoView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HXPhotoView+Extra.m"; sourceTree = "<group>"; };
+		8432B6272D1DAEAE00ADE9FF /* PHAssetResource+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAssetResource+Extra.h"; sourceTree = "<group>"; };
+		8432B6282D1DAEAE00ADE9FF /* PHAssetResource+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAssetResource+Extra.m"; sourceTree = "<group>"; };
+		8432B62A2D1DAEAE00ADE9FF /* AVAsset+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVAsset+Extra.h"; sourceTree = "<group>"; };
+		8432B62B2D1DAEAE00ADE9FF /* AVAsset+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVAsset+Extra.m"; sourceTree = "<group>"; };
+		8432B62D2D1DAEAE00ADE9FF /* AVAssetImageGenerator+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AVAssetImageGenerator+Extra.h"; sourceTree = "<group>"; };
+		8432B62E2D1DAEAE00ADE9FF /* AVAssetImageGenerator+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AVAssetImageGenerator+Extra.m"; sourceTree = "<group>"; };
+		8432B6302D1DAEAE00ADE9FF /* PHAssetCollectionChangeRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAssetCollectionChangeRequest+Extra.h"; sourceTree = "<group>"; };
+		8432B6312D1DAEAE00ADE9FF /* PHAssetCollectionChangeRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAssetCollectionChangeRequest+Extra.m"; sourceTree = "<group>"; };
+		8432B6332D1DAEAE00ADE9FF /* PHAssetChangeRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAssetChangeRequest+Extra.h"; sourceTree = "<group>"; };
+		8432B6342D1DAEAE00ADE9FF /* PHAssetChangeRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAssetChangeRequest+Extra.m"; sourceTree = "<group>"; };
+		8432B6362D1DAEAE00ADE9FF /* PHCollectionList+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHCollectionList+Extra.h"; sourceTree = "<group>"; };
+		8432B6372D1DAEAE00ADE9FF /* PHCollectionList+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHCollectionList+Extra.m"; sourceTree = "<group>"; };
+		8432B6392D1DAEAE00ADE9FF /* PHAsset+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHAsset+Extra.h"; sourceTree = "<group>"; };
+		8432B63A2D1DAEAE00ADE9FF /* PHAsset+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHAsset+Extra.m"; sourceTree = "<group>"; };
+		8432B63C2D1DAEAE00ADE9FF /* PHFetchResult+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHFetchResult+Extra.h"; sourceTree = "<group>"; };
+		8432B63D2D1DAEAE00ADE9FF /* PHFetchResult+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHFetchResult+Extra.m"; sourceTree = "<group>"; };
+		8432B6472D1DAFC900ADE9FF /* FileFolderHandleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileFolderHandleModel.h; sourceTree = "<group>"; };
+		8432B6482D1DAFC900ADE9FF /* FileFolderHandleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileFolderHandleModel.m; sourceTree = "<group>"; };
+		8432B64B2D1DB0EA00ADE9FF /* SPAlertControllerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAlertControllerConfig.h; sourceTree = "<group>"; };
+		8432B64C2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAlertControllerConfig.m; sourceTree = "<group>"; };
 		84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsOCBaseCustomize3rdCore.h; sourceTree = "<group>"; };
 		84392BBE2CF4A3AF000D441F /* Reachability+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reachability+Extra.h"; sourceTree = "<group>"; };
 		84392BBF2CF4A3AF000D441F /* Reachability+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Reachability+Extra.m"; sourceTree = "<group>"; };
@@ -3764,6 +3797,105 @@
 			path = "YTKBatchRequest+Extra";
 			sourceTree = "<group>";
 		};
+		8432B6252D1DAE6A00ADE9FF /* HXPhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				8432B6232D1DAE6A00ADE9FF /* HXPhotoView+Extra.h */,
+				8432B6242D1DAE6A00ADE9FF /* HXPhotoView+Extra.m */,
+			);
+			path = HXPhotoView;
+			sourceTree = "<group>";
+		};
+		8432B6292D1DAEAE00ADE9FF /* PHAssetResource */ = {
+			isa = PBXGroup;
+			children = (
+				8432B6272D1DAEAE00ADE9FF /* PHAssetResource+Extra.h */,
+				8432B6282D1DAEAE00ADE9FF /* PHAssetResource+Extra.m */,
+			);
+			path = PHAssetResource;
+			sourceTree = "<group>";
+		};
+		8432B62C2D1DAEAE00ADE9FF /* AVAsset */ = {
+			isa = PBXGroup;
+			children = (
+				8432B62A2D1DAEAE00ADE9FF /* AVAsset+Extra.h */,
+				8432B62B2D1DAEAE00ADE9FF /* AVAsset+Extra.m */,
+			);
+			path = AVAsset;
+			sourceTree = "<group>";
+		};
+		8432B62F2D1DAEAE00ADE9FF /* AVAssetImageGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				8432B62D2D1DAEAE00ADE9FF /* AVAssetImageGenerator+Extra.h */,
+				8432B62E2D1DAEAE00ADE9FF /* AVAssetImageGenerator+Extra.m */,
+			);
+			path = AVAssetImageGenerator;
+			sourceTree = "<group>";
+		};
+		8432B6322D1DAEAE00ADE9FF /* PHAssetCollectionChangeRequest */ = {
+			isa = PBXGroup;
+			children = (
+				8432B6302D1DAEAE00ADE9FF /* PHAssetCollectionChangeRequest+Extra.h */,
+				8432B6312D1DAEAE00ADE9FF /* PHAssetCollectionChangeRequest+Extra.m */,
+			);
+			path = PHAssetCollectionChangeRequest;
+			sourceTree = "<group>";
+		};
+		8432B6352D1DAEAE00ADE9FF /* PHAssetChangeRequest */ = {
+			isa = PBXGroup;
+			children = (
+				8432B6332D1DAEAE00ADE9FF /* PHAssetChangeRequest+Extra.h */,
+				8432B6342D1DAEAE00ADE9FF /* PHAssetChangeRequest+Extra.m */,
+			);
+			path = PHAssetChangeRequest;
+			sourceTree = "<group>";
+		};
+		8432B6382D1DAEAE00ADE9FF /* PHCollectionList */ = {
+			isa = PBXGroup;
+			children = (
+				8432B6362D1DAEAE00ADE9FF /* PHCollectionList+Extra.h */,
+				8432B6372D1DAEAE00ADE9FF /* PHCollectionList+Extra.m */,
+			);
+			path = PHCollectionList;
+			sourceTree = "<group>";
+		};
+		8432B63B2D1DAEAE00ADE9FF /* PHAsset */ = {
+			isa = PBXGroup;
+			children = (
+				8432B6392D1DAEAE00ADE9FF /* PHAsset+Extra.h */,
+				8432B63A2D1DAEAE00ADE9FF /* PHAsset+Extra.m */,
+			);
+			path = PHAsset;
+			sourceTree = "<group>";
+		};
+		8432B63E2D1DAEAE00ADE9FF /* PHFetchResult */ = {
+			isa = PBXGroup;
+			children = (
+				8432B63C2D1DAEAE00ADE9FF /* PHFetchResult+Extra.h */,
+				8432B63D2D1DAEAE00ADE9FF /* PHFetchResult+Extra.m */,
+			);
+			path = PHFetchResult;
+			sourceTree = "<group>";
+		};
+		8432B6492D1DAFC900ADE9FF /* FileFolderHandleModel */ = {
+			isa = PBXGroup;
+			children = (
+				8432B6472D1DAFC900ADE9FF /* FileFolderHandleModel.h */,
+				8432B6482D1DAFC900ADE9FF /* FileFolderHandleModel.m */,
+			);
+			path = FileFolderHandleModel;
+			sourceTree = "<group>";
+		};
+		8432B64D2D1DB0EA00ADE9FF /* SPAlertControllerConfig */ = {
+			isa = PBXGroup;
+			children = (
+				8432B64B2D1DB0EA00ADE9FF /* SPAlertControllerConfig.h */,
+				8432B64C2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m */,
+			);
+			path = SPAlertControllerConfig;
+			sourceTree = "<group>";
+		};
 		84392BC02CF4A3AF000D441F /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -3795,6 +3927,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				8432B6252D1DAE6A00ADE9FF /* HXPhotoView */,
 				84B9C3322D16C32F002FE9F5 /* SRWebSocket */,
 				84A978582D1453980002A2BA /* HTMLDocument */,
 				8461A4F42D0801370081C41D /* SZTextView */,
@@ -4479,6 +4612,7 @@
 		8478D89F2D01CBE0004E8B90 /* 关于第三方 */ = {
 			isa = PBXGroup;
 			children = (
+				8432B64D2D1DB0EA00ADE9FF /* SPAlertControllerConfig */,
 				84CF6DD42D1AB6200060C97D /* RACModel */,
 				8478DBFB2D02ED74004E8B90 /* HXPhotoPickerModel */,
 				8478D8952D01CBE0004E8B90 /* MJRefreshConfigModel */,
@@ -4654,6 +4788,7 @@
 		8478D8D62D01CBE0004E8B90 /* UIKit数据束 */ = {
 			isa = PBXGroup;
 			children = (
+				8432B6492D1DAFC900ADE9FF /* FileFolderHandleModel */,
 				8478D8B72D01CBE0004E8B90 /* BaseModel */,
 				8478D8AE2D01CBE0004E8B90 /* JobsAlertModel */,
 				8478D8C62D01CBE0004E8B90 /* JobsBaseModel */,
@@ -14028,6 +14163,14 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				8432B6292D1DAEAE00ADE9FF /* PHAssetResource */,
+				8432B62C2D1DAEAE00ADE9FF /* AVAsset */,
+				8432B62F2D1DAEAE00ADE9FF /* AVAssetImageGenerator */,
+				8432B6322D1DAEAE00ADE9FF /* PHAssetCollectionChangeRequest */,
+				8432B6352D1DAEAE00ADE9FF /* PHAssetChangeRequest */,
+				8432B6382D1DAEAE00ADE9FF /* PHCollectionList */,
+				8432B63B2D1DAEAE00ADE9FF /* PHAsset */,
+				8432B63E2D1DAEAE00ADE9FF /* PHFetchResult */,
 				84B9C33A2D16C3EC002FE9F5 /* UICollectionViewLayoutAttributes */,
 				84A9785C2D14539E0002A2BA /* NSXMLParser */,
 				84B58BEC2D115A4D0034C49D /* UIImpactFeedbackGenerator */,
@@ -16380,6 +16523,14 @@
 				CE5A66282CA83723006D67A7 /* NSData+Base16.m in Sources */,
 				CE5A650D2CA830F5006D67A7 /* JobsImageViewStyleCVCell.m in Sources */,
 				CE5A650E2CA830F5006D67A7 /* JobsBtnStyleCVCell.m in Sources */,
+				8432B63F2D1DAEAE00ADE9FF /* PHAsset+Extra.m in Sources */,
+				8432B6402D1DAEAE00ADE9FF /* PHFetchResult+Extra.m in Sources */,
+				8432B6412D1DAEAE00ADE9FF /* PHCollectionList+Extra.m in Sources */,
+				8432B6422D1DAEAE00ADE9FF /* AVAsset+Extra.m in Sources */,
+				8432B6432D1DAEAE00ADE9FF /* PHAssetResource+Extra.m in Sources */,
+				8432B6442D1DAEAE00ADE9FF /* PHAssetCollectionChangeRequest+Extra.m in Sources */,
+				8432B6452D1DAEAE00ADE9FF /* PHAssetChangeRequest+Extra.m in Sources */,
+				8432B6462D1DAEAE00ADE9FF /* AVAssetImageGenerator+Extra.m in Sources */,
 				CE5A650F2CA830F5006D67A7 /* JobsTextFieldStyleCVCell.m in Sources */,
 				CE5A65102CA830F5006D67A7 /* JobsBtnsStyleCVCell.m in Sources */,
 				CECE7EA22C450E5B00764AF5 /* KTVHCDataUnit.m in Sources */,
@@ -16391,6 +16542,7 @@
 				CECE7E8D2C450E5B00764AF5 /* HTTPRedirectResponse.m in Sources */,
 				CE5A64CD2CA82F8E006D67A7 /* NSObject+UUID.m in Sources */,
 				CECE7E8C2C450E5B00764AF5 /* HTTPFileResponse.m in Sources */,
+				8432B64A2D1DAFC900ADE9FF /* FileFolderHandleModel.m in Sources */,
 				CECE7EC22C450E5B00764AF5 /* TKPermissionPublic.m in Sources */,
 				CE5A64AD2CA82EA0006D67A7 /* JobsSEL_IMP.m in Sources */,
 				CECE7EE12C450E5B00764AF5 /* ZWPullMenuModel.m in Sources */,
@@ -16434,6 +16586,7 @@
 				8474A4B12CF8696D00112B4B /* Reachability+Extra.m in Sources */,
 				CECE7EB92C450E5B00764AF5 /* TKPermissionLocationAlways.m in Sources */,
 				CECE7EBE2C450E5B00764AF5 /* TKPermissionNetWork.m in Sources */,
+				8432B64E2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m in Sources */,
 				CECE7EBF2C450E5B00764AF5 /* TKPermissionNotification.m in Sources */,
 				CECE7ED12C450E5B00764AF5 /* WMZCodeView.m in Sources */,
 				CE5A648D2CA82DD7006D67A7 /* NSNumber+Extra.m in Sources */,
@@ -16975,6 +17128,7 @@
 				CE5A64AC2CA82E9B006D67A7 /* JobsOnceExecutor.m in Sources */,
 				CE4F27EA2CA825CD002AF25B /* UITBVCellFoldVC.m in Sources */,
 				CE4F27EB2CA825CD002AF25B /* JobsIMChatInfoTBVCell.m in Sources */,
+				8432B6262D1DAE6A00ADE9FF /* HXPhotoView+Extra.m in Sources */,
 				CE4F27EC2CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_04.m in Sources */,
 				CE4F27ED2CA825CD002AF25B /* ZMJChartBarCell.m in Sources */,
 				CE5A64B32CA82EC6006D67A7 /* TouchID.m in Sources */,
