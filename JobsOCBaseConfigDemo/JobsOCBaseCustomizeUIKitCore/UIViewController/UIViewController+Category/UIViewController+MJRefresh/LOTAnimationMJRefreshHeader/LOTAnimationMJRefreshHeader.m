@@ -81,12 +81,12 @@ static const CGFloat OffsetBetweenStateLabelAndAnimationView = 5;//StateLabel �
 
 - (void)beginRefreshing{
     [super beginRefreshing];
-    if (self.objectBlock) self.objectBlock(@(RefreshingType_beginRefreshing));
+    if (self.objBlock) self.objBlock(@(RefreshingType_beginRefreshing));
 }
 
 - (void)endRefreshing{
     [super endRefreshing];
-    if (self.objectBlock) self.objectBlock(@(RefreshingType_endRefreshing));
+    if (self.objBlock) self.objBlock(@(RefreshingType_endRefreshing));
 }
 #pragma mark —— lazyLoad
 - (LOTAnimationView *)animationView{

@@ -354,7 +354,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
             .jobsResetBtnCornerRadiusValue(JobsWidth(23 / 2))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 [self.view endEditing:YES];
                 [self networking_checkHadRoleGET];
             }).onLongPressGestureBy(^(id data){
@@ -380,7 +380,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         }];
         _textView.jobsRichViewByModel(self.textModel);
         @jobs_weakify(self)
-        [_textView actionObjectBlock:^(id data) {
+        [_textView actionObjBlock:^(id data) {
             @jobs_strongify(self)
             NSString *x = (NSString *)data;
             self.inputDataString = x;

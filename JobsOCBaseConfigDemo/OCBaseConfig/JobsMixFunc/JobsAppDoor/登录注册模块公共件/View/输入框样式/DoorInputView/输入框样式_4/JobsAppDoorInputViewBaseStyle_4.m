@@ -74,7 +74,7 @@
 
     textField.requestParams = self.textFieldInputModel;
     
-    if (self.objectBlock) self.objectBlock(textField);// 对外统一传出TF
+    if (self.objBlock) self.objBlock(textField);// 对外统一传出TF
 }
 #pragma mark —— UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -123,8 +123,7 @@
             make.bottom.equalTo(self).offset(-JobsWidth(5));
             make.right.equalTo(self).offset(-JobsWidth(10));
             make.width.mas_equalTo(80);
-        }];
-        [self layoutIfNeeded];
+        }];self.refresh();
         _imageCodeView.cornerCutToCircleWithCornerRadius(JobsWidth(20));
     }return _imageCodeView;
 }
@@ -136,15 +135,14 @@
         @jobs_weakify(self)
         [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
             @jobs_strongify(self)
-            return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
+            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(id _Nullable x) {
             @jobs_strongify(self)
             JobsLog(@"MMM = %@",x);
             [self block:self->_textField
                   value:x];
         }];
-        [self addSubview:_textField];
-        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_textField) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.top.bottom.equalTo(self);
             make.right.equalTo(self.imageCodeView.mas_left);
         }];

@@ -206,10 +206,28 @@ UITextFieldProtocol_dynamic
     };
 }
 #pragma mark —— 功能性的
+/// 销毁视图
+-(jobsByViewBlock _Nonnull)removeView{
+    return ^(__kindof UIView *_Nullable view){
+        if (view && view.isKindOfClass(UIView.class)) {
+            [view removeFromSuperview];
+            view = nil;
+        }
+    };
+}
+/// 定时器的销毁
+-(jobsByTimerBlock _Nonnull)destroyTimer{
+    return ^(NSTimer *_Nullable timer){
+        if (timer) {
+            [timer invalidate];
+            timer = nil;
+        }
+    };
+}
 /// runtime方法交换
-+ (void)exchangeMethodForClass:(NSString *)className
-                   originalSel:(SEL)originalSelector
-                   swizzledSel:(SEL)swizzledSelector {
++(void)exchangeMethodForClass:(NSString *_Nonnull)className
+                  originalSel:(SEL _Nonnull)originalSelector
+                  swizzledSel:(SEL _Nonnull)swizzledSelector{
     Class cls = objc_getClass(className.UTF8String);
     if (!cls) {
         JobsLog(@"交换失败：未找到类 %@", className);
@@ -870,7 +888,7 @@ UITextFieldProtocol_dynamic
                                        finishBlock:(jobsByIDBlock _Nullable)finishBlock{
     JobsDropDownListView *dropDownListView = JobsDropDownListView.new;
     dropDownListView.direction = jobsDropDownListViewDirection;
-    [dropDownListView actionObjectBlock:^(id data) {
+    [dropDownListView actionObjBlock:^(id data) {
         if ([motivateFromView isKindOfClass:UIButton.class]) {
             UIButton *btn = (UIButton *)motivateFromView;
             btn.selected = !btn.selected;

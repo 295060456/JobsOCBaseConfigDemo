@@ -109,7 +109,7 @@
             .jobsResetBtnSubTitle(JobsInternationalization(@"切换App图标"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
     //            x.selected = !x.selected;
     //            NSString *appIconToName = x.selected ? @"AlternateIcon2" : @"AlternateIcon1";
     //            [self changeAppIconToName:appIconToName];

@@ -9,40 +9,30 @@
 //  Copyright © 2017年 JhtBannerScrollView. All rights reserved.
 //
 
+#import "JobsBlock.h"
 #ifndef JhtBannerScrollViewProtocol_h
 #define JhtBannerScrollViewProtocol_h
-
 @class JhtBannerScrollView;
-
-#pragma mark - JhtBannerScrollViewDelegate
+#pragma mark —— JhtBannerScrollViewDelegate
 @protocol JhtBannerScrollViewDelegate <NSObject>
-
 @optional
-/** 当前显示cardView Size */
-- (CGSize)sizeForCurrentCardViewInBannerView:(JhtBannerScrollView *)bannerView;
-
-/** 滚动到了某一个cardView */
-- (void)bannerView:(JhtBannerScrollView *)bannerView
-didScrollToCardViewWithIndex:(NSInteger)index;
-
-/** 点击了第几个cardView
- *  index: 点击bannerCardView index
- */
-- (void)bannerView:(JhtBannerScrollView *)bannerView
- didSelectCardView:(UIView *)cardView
- withCardViewIndex:(NSInteger)index;
+/// 当前显示cardView Size
+-(JobsReturnCGSizeByJhtBannerScrollView _Nonnull)sizeForCurrentCardViewInBannerView;
+/// 滚动到了某一个cardView
+- (void)bannerView:(JhtBannerScrollView *_Nonnull)bannerView didScrollToCardViewWithIndex:(NSInteger)index;
+/// 点击了第几个cardView
+-(void)bannerView:(JhtBannerScrollView *_Nonnull)bannerView
+didSelectCardView:(UIView *_Nonnull)cardView
+withCardViewIndex:(NSInteger)index;
 
 @end
-
-#pragma mark - JhtBannerScrollViewDataSource
+#pragma mark —— JhtBannerScrollViewDataSource
 @protocol JhtBannerScrollViewDataSource <NSObject>
 @required
-/** 显示cardView 个数 */
-- (NSInteger)numberOfCardViewInBannerView:(JhtBannerScrollView *)bannerView;
-
-/** 单个cardView */
-- (UIView *)bannerView:(JhtBannerScrollView *)bannerView
-cardViewForBannerViewAtIndex:(NSInteger)index;
+/// 显示cardView 个数
+-(JobsReturnNSIntegerByJhtBannerScrollView _Nonnull)numberOfCardViewInBannerView;
+/// 单个cardView
+-(UIView *_Nonnull)bannerView:(JhtBannerScrollView *_Nonnull)bannerView cardViewForBannerViewAtIndex:(NSInteger)index;
 
 @end
 

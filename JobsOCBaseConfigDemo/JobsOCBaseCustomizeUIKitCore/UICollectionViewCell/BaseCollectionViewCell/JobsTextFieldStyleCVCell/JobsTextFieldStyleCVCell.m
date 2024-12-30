@@ -70,7 +70,7 @@
 //    self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeHolderStr;
 //    textField.requestParams = self.textFieldInputModel;
 //
-    if (self.objectBlock) self.objectBlock(textField);// 对外统一传出TF
+    if (self.objBlock) self.objBlock(textField);// 对外统一传出TF
 }
 #pragma mark —— lazyLoad
 -(ZYTextField *)textField{

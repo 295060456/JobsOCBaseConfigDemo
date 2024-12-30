@@ -83,7 +83,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.lab.textColor = viewModel.selectedTextCor;
 //    id text = cell.viewModel.text;
 //    id placeholder = cell.viewModel.placeholder;
-    if (self.objectBlock) self.objectBlock(cell);/// 数据在cell.viewModel
+    if (self.objBlock) self.objBlock(cell);/// 数据在cell.viewModel
     [self tf_hide:nil];
 }
 

@@ -323,7 +323,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     return BaseButton.initByBackgroundImage(JobsIMG(@"联系我们"))
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             self.comingToPushVC(MyCollectionVC.new);
             toast(@"联系我们");
         }).onLongPressGestureBy(^(id data){
@@ -336,7 +336,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     return BaseButton.initByBackgroundImage(JobsIMG(@"关闭"))
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             if(actionBlock) actionBlock();
             if (KindOfViewCls(self)) {
                 UIView *view = (UIView *)self;
@@ -641,7 +641,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 //    testPopupView.size = CasinoUpgradePopupView.viewSizeByModel(nil);
 //    testPopupView.jobsRichViewByModel(viewModel ? : self.testPopViewData);
 //    @jobs_weakify(popupView)
-//    [testPopupView actionObjectBlock:^(UIButton *data) {
+//    [testPopupView actionObjBlock:^(UIButton *data) {
 //        @jobs_strongify(popupView)
 //        if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Cancel")]) {
 //
@@ -664,7 +664,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     // popupView.size = popViewClass.viewSizeByModel(nil);
     popupView.jobsRichViewByModel(Jobs3TO(viewModel, self.testPopViewData));
     @jobs_weakify(popupView)
-    [popupView actionObjectBlock:^(__kindof UIButton *data) {
+    [popupView actionObjBlock:^(__kindof UIButton *data) {
         @jobs_strongify(popupView)
         if([data.titleForNormalState isKindOfClass:NSString.class]){
             if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"取消"))) {
@@ -863,7 +863,7 @@ JobsKey(__立即注册)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 JobsLog(@"联系客服");
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             })
             .onLongPressGestureBy(^(id data){
                 JobsLog(@"按钮的长按事件触发");
@@ -897,7 +897,7 @@ JobsKey(__联系客服)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 JobsLog(@"联系客服");
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             })
             .onLongPressGestureBy(^(id data){
                 JobsLog(@"按钮的长按事件触发");

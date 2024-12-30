@@ -71,7 +71,7 @@ BaseLayerProtocol_synthesize_part3
             .cornerRadiusValueBy(JobsWidth(8))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -128,7 +128,7 @@ BaseLayerProtocol_synthesize_part3
             .cornerRadiusValueBy(JobsWidth(8))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });;

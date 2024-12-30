@@ -49,7 +49,7 @@ BaseViewProtocol_synthesize
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
-    if (self.objectBlock) self.objectBlock(@1);
+    if (self.objBlock) self.objBlock(@1);
 }
 #pragma mark —— BaseViewProtocol
 /**

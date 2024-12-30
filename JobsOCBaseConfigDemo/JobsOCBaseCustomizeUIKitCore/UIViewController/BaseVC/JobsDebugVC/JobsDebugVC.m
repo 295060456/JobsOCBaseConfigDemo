@@ -74,7 +74,7 @@
         UIViewModel *viewModel = UIViewModel.new;
         viewModel.data = nil;
         viewModel.requestParams = lifeCycle;
-        if(self.objectBlock) self.objectBlock(viewModel);
+        if(self.objBlock) self.objBlock(viewModel);
     };
 }
 #pragma mark —— lazyLoad

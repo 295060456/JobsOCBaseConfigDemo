@@ -61,7 +61,7 @@
 /// 询问委托人文本字段是否应处理按下返回按钮
 - (BOOL)textFieldShouldReturn:(ZYTextField *)textField{
     [self endEditing:YES];
-    if (self.objectBlock) self.objectBlock(textField);
+    if (self.objBlock) self.objBlock(textField);
     return YES;
 }
 #pragma mark —— lazyLoad
@@ -79,11 +79,11 @@
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 x.jobsResetBtnBgImage(JobsLightGrayColor.image);
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 [self endEditing:YES];
                 if (isValue(self.inputTextField.text)) {
                     self.playSoundEffect(@"Sound.wav");
-                    if (self.objectBlock) self.objectBlock(self.inputTextField);
+                    if (self.objBlock) self.objBlock(self.inputTextField);
                 }
                 self.inputTextField.text = JobsInternationalization(@"");
                 x.enabled = NO;

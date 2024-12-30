@@ -342,7 +342,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     if (!_inputview) {
         _inputview = JobsIMInputview.new;
         @jobs_weakify(self)
-        [_inputview actionObjectBlock:^(id data) {
+        [_inputview actionObjBlock:^(id data) {
             @jobs_strongify(self)
             if ([data isKindOfClass:ZYTextField.class]){
                 ZYTextField *tf = (ZYTextField *)data;
@@ -449,7 +449,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             .jobsResetBtnImage(JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"分享"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 toast(JobsInternationalization(@"正在研发中...敬请期待"));
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");

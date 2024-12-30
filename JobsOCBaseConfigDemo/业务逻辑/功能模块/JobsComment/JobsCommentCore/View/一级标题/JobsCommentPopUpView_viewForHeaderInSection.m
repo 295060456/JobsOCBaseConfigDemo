@@ -31,7 +31,7 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
-    if (self.objectBlock) self.objectBlock(@1);
+    if (self.objBlock) self.objBlock(@1);
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -66,7 +66,7 @@
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -134,7 +134,7 @@
                 }
                 x.jobsResetTitle(toStringByNSInteger(x.thumpNum));
                 x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

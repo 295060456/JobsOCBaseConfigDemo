@@ -4,16 +4,22 @@
 //
 //  Created by Jobs on 2022/1/4.
 //
+/**
+  * 全局的Block块定义
+  * 基本数据类型尽量的用NSNumber进行二次封装成对象对外输出
+ */
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+/// 定义确定参数的Block
+#import "ReturnByCertainParameters.h"
+#import "VoidByCertainParameters.h"
+/// 定义不确定参数的Block
+#import "ReturnByUnCertainParameters.h"
+#import "VoidByUnCertainParameters.h"
 
 #ifndef JobsBlock_h
 #define JobsBlock_h
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
-/**
-    全局的Block块定义
-    基本数据类型尽量的用NSNumber进行二次封装成对象对外输出
- */
 #define Jobs_2_Arguments (id _Nullable data,id _Nullable data2)
 #define Jobs_3_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3)
 #define Jobs_4_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4)
@@ -23,14 +29,7 @@
 #define Jobs_8_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4,id _Nullable data5,id _Nullable data6,id _Nullable data7,id _Nullable data8)
 #define Jobs_9_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4,id _Nullable data5,id _Nullable data6,id _Nullable data7,id _Nullable data8,id _Nullable data9)
 #define Jobs_10_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4,id _Nullable data5,id _Nullable data6,id _Nullable data7,id _Nullable data8,id _Nullable data9,id _Nullable data10)
-
-#pragma mark —— 定义确定参数的Block
-#import "ReturnByCertainParameters.h"
-#import "VoidByCertainParameters.h"
-#pragma mark —— 定义不确定参数的Block
-#import "ReturnByUnCertainParameters.h"
-#import "VoidByUnCertainParameters.h"
-#pragma mark —— 涉及到自定义类的Block定义
+/// 涉及到自定义类的Block定义
 typedef ComponentType(^JobsReturnComponentTypeByVoidBlock)(void);
 typedef DeviceOrientation(^JobsReturnDeviceOrientationByVoidBlock)(void);
 typedef AppLanguage(^JobsReturnAppLanguageByVoidBlock)(void);
@@ -300,7 +299,27 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBl
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBlock _Nullable data);
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
-#pragma mark —— 涉及到第三方类的Block定义
+/// 涉及到第三方类的Block定义
+@class GDFadeView;
+typedef void(^jobsByGDFadeViewBlock)(__kindof GDFadeView *_Nullable view);
+
+@class CFGradientLabel;
+typedef void(^jobsByCFGradientLabelBlock)(__kindof CFGradientLabel *_Nullable label);
+
+@class WGradientProgressModel;
+typedef void(^jobsByWGradientProgressModelBlock)(__kindof WGradientProgressModel *_Nullable model);
+
+@class JhtBannerScrollView;
+typedef JhtBannerScrollView *_Nullable(^JobsReturnJhtBannerScrollViewByFrame)(CGRect frame);
+typedef CGSize(^JobsReturnCGSizeByJhtBannerScrollView)(JhtBannerScrollView *_Nullable view);
+typedef NSInteger(^JobsReturnNSIntegerByJhtBannerScrollView)(JhtBannerScrollView *_Nullable view);
+
+@class JhtBannerCardView;
+typedef JhtBannerCardView *_Nullable(^JobsReturnJhtBannerCardViewByFrame)(CGRect frame);
+
+@class FSCalendar;
+typedef void(^jobsByFSCalendarBlock)(__kindof FSCalendar *_Nullable calendar);
+
 @class HXPhotoView;
 @class HXPhotoManager;
 typedef HXPhotoView *_Nullable(^JobsReturnHXPhotoViewByPhotoManagerBlock)(HXPhotoManager *_Nullable manager);
@@ -318,7 +337,6 @@ typedef void(^jobsByHXPhotoConfigurationBlock)(__kindof HXPhotoConfiguration *_N
 @class BRAddressPickerView;
 @class BRStringPickerView;
 @class BRPickerStyle;
-//@class BRStringPickerMode;
 typedef void(^jobsByBRPickerStyleBlock)(__kindof BRPickerStyle *_Nullable pickerStyle);
 typedef void(^jobsByBRDatePickerViewBlock)(__kindof BRDatePickerView *_Nullable datePickerView);
 typedef void(^jobsByBRAddressPickerViewBlock)(__kindof BRAddressPickerView *_Nullable addressPickerView);
@@ -430,7 +448,6 @@ typedef void(^jobsByYTKBatchRequestBlock)(__kindof YTKBatchRequest *_Nullable da
 typedef __kindof YTKBatchRequest *_Nullable(^JobsReturnBatchRequestByArrBlock)(__kindof NSArray <YTKRequest *>*_Nullable data);
 
 @class YTKBaseRequest;
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
 typedef JobsResponseModel *_Nullable(^JobsReturnResponseModelByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
 typedef void(^JobsHandelNoSuccessBlock)(__kindof YTKBaseRequest *_Nonnull request);
@@ -443,8 +460,7 @@ typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullabl
 
 @class ZFIJKPlayerManager;
 typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nullable data);
-
-#pragma mark —— 关于业务（不与JobsOCBaseConfigDemo同步）
+/// 关于业务（不与JobsOCBaseConfigDemo同步）
 @class KYCModel;
 typedef void(^jobsByKYCModelBlock)(__kindof KYCModel *_Nullable model);
 

@@ -172,7 +172,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1;
     headerView.jobsRichViewByModel(UIViewModel.new);
 //        @jobs_weakify(self)
-    [headerView actionObjectBlock:^(id data) {
+    [headerView actionObjBlock:^(id data) {
 //            @jobs_strongify(self)
     }];return headerView;
 }

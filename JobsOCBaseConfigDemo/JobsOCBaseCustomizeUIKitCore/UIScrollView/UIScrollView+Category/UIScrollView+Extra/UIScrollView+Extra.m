@@ -51,17 +51,55 @@
     }return cells;
 }
 /// 依据index得到cell
--(UIView *_Nullable)scrollViewCellsAtIndex:(NSUInteger)index{
-    UIView *cell = nil;
-    if(self){
-        if (self.isKindOfClass(UICollectionView.class)) {
-            UICollectionView *collectionView = (UICollectionView *)self;
-            cell = [collectionView.visibleCells objectAtIndex:index];
-        }else if (self.isKindOfClass(UITableView.class)){
-            UITableView *tableView = (UITableView *)self;
-            cell = [tableView.visibleCells objectAtIndex:index];
-        }else{}
-    }return cell;
+-(JobsReturnViewByNSUIntegerBlock _Nonnull)scrollViewCellsByIndex{
+    return ^__kindof UIView *_Nullable(NSUInteger index){
+        UIView *cell = nil;
+        if(self){
+            if (self.isKindOfClass(UICollectionView.class)) {
+                UICollectionView *collectionView = (UICollectionView *)self;
+                cell = [collectionView.visibleCells objectAtIndex:index];
+            }else if (self.isKindOfClass(UITableView.class)){
+                UITableView *tableView = (UITableView *)self;
+                cell = [tableView.visibleCells objectAtIndex:index];
+            }else{}
+        }return cell;
+    };
+}
+/// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
+-(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByYES{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(CGPoint data){
+        @jobs_strongify(self)
+        [self setContentOffset:data animated:YES];
+        return self;
+    };
+}
+/// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
+-(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByNO{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(CGPoint data){
+        @jobs_strongify(self)
+        [self setContentOffset:data animated:NO];
+        return self;
+    };
+}
+/// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;   的二次封装
+-(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(CGRect data){
+        @jobs_strongify(self)
+        [self scrollRectToVisible:data animated:YES];
+        return self;
+    };
+}
+/// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;  的二次封装
+-(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(CGRect data){
+        @jobs_strongify(self)
+        [self scrollRectToVisible:data animated:NO];
+        return self;
+    };
 }
 
 @end

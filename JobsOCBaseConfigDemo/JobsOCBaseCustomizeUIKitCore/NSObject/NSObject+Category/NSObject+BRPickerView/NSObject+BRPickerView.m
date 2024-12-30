@@ -144,12 +144,12 @@
 //    self.stringPickerView.resultModelBlock = ^(BRResultModel *resultModel) {
 ////            JobsLog(@"选择的值：%@", resultModel.selectValue);
 //        @jobs_strongify(self)
-//        if (self.objectBlock) self.objectBlock(resultModel);
+//        if (self.objBlock) self.objBlock(resultModel);
 //    };
 //    /** 选择结果的回调【多列】 */
 //    self.stringPickerView.resultModelArrayBlock = ^(NSArray<BRResultModel *> * _Nullable resultModelArr) {
 //        @jobs_strongify(self)
-//        if (self.objectBlock) self.objectBlock(resultModelArr);
+//        if (self.objBlock) self.objBlock(resultModelArr);
 //    };
 //
 //    [self.stringPickerView show];

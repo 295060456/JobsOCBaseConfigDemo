@@ -6,6 +6,8 @@
 //
 
 #import "DefineConstString.h" /// 常量字符串的定义
+///
+NSRange const NSRangeZero = (NSRange){0, 0};/// 使用结构体直接赋值
 /// 系统环境一览
 NSString *const 应用程序的发布版本号 = @"CFBundleShortVersionString";
 NSString *const APP编译构建的版本号 = @"CFBundleVersion";
@@ -110,6 +112,6 @@ NSString * const kWebSocketDidOpenNote           = @"kWebSocketDidOpenNote";
 NSString * const kWebSocketDidCloseNote          = @"kWebSocketDidCloseNote";
 NSString * const kWebSocketdidReceiveMessageNote = @"kWebSocketdidReceiveMessageNote";
 /// 默认占位
-NSString *const 主标题文字默认占位内容;
-NSString *const 副标题文字默认占位内容;
-NSString *const B体育;
+NSString *const 主标题文字默认占位内容 = @"主标题文字默认占位内容";
+NSString *const 副标题文字默认占位内容 = @"副标题文字默认占位内容";
+NSString *const B体育 = @"B体育";

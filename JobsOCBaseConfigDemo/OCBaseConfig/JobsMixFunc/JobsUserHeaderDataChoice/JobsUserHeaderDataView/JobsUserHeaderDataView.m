@@ -126,7 +126,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.objectBlock) self.objectBlock([tableView cellForRowAtIndexPath:indexPath]);
+    if (self.objBlock) self.objBlock([tableView cellForRowAtIndexPath:indexPath]);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -161,7 +161,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         headerView.section = section;
         headerView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [headerView actionObjectBlock:^(id data) {
+        [headerView actionObjBlock:^(id data) {
             @jobs_strongify(self)
         }];return headerView;
     }return nil;

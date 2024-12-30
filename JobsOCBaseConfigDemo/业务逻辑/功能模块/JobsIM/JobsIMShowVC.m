@@ -94,7 +94,7 @@
         _listView = JobsIMListView.new;
         @jobs_weakify(self)
         _listView.jobsRichViewByModel(nil);
-        [_listView actionObjectBlock:^(JobsIMListDataModel *data) {
+        [_listView actionObjBlock:^(JobsIMListDataModel *data) {
             @jobs_strongify(self)
             self.comingToPushVCByRequestParams(JobsIMVC.new,[self makeData:data]);
         }];
@@ -119,7 +119,7 @@
             .jobsResetBtnImage(JobsBuddleIMG(@"⚽️PicResource", @"Others", nil, @"分享"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 toast(JobsInternationalization(@"正在研发中...敬请期待"));
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");

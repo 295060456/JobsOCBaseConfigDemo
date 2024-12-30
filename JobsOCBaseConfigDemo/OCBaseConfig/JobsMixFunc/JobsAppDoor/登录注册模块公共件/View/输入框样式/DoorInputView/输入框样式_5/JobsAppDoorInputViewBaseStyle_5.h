@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_END
          }];
          _inputView.jobsRichViewByModel(self.inputViewStyleModel);
          @jobs_weakify(self)
-         [_inputView actionObjectBlock:^(id data) {
+         [_inputView actionObjBlock:^(id data) {
              @jobs_strongify(self)
          }];
      }return _inputView;

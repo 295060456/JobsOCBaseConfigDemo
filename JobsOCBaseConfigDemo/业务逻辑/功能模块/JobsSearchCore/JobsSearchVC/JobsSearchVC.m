@@ -255,7 +255,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                     cell.indexPath = indexPath;
                     cell.jobsRichElementsCellBy(self.hotSearchMutArr);
                     /// 点击的哪个btn？
-                    [cell actionObjectBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
+                    [cell actionObjBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
                         @jobs_strongify(self)
                         self.jobsSearchBar.textField.text = cell.getViewModel.textModel.text;
                     }];return cell;
@@ -264,7 +264,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                     JobsSearchTBVCell *cell = JobsSearchTBVCell.cellStyleValue1WithTableView(tableView);
                     cell.indexPath = indexPath;
                     cell.jobsRichElementsCellBy(self.hotSearchMutArr);
-                    [cell actionObjectBlock:^(UIViewModel *data) {
+                    [cell actionObjBlock:^(UIViewModel *data) {
                         @jobs_strongify(self)
                         self.jobsSearchBar.textField.text = data.textModel.text;
                         /// 点选了推荐，则映入输入框＋存入历史
@@ -311,7 +311,7 @@ heightForHeaderInSection:(NSInteger)section{
     if (section == 1) {
         header.delBtn.jobsVisible = YES;
         @jobs_weakify(self)
-        [header actionObjectBlock:^(id data) {
+        [header actionObjBlock:^(id data) {
             @jobs_strongify(self)
 //            [self.view endEditing:YES];
             [self.tableView ww_foldSection:section
@@ -403,7 +403,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             }));
         }
         
-        [_tableView actionObjectBlock:^(id data) {
+        [_tableView actionObjBlock:^(id data) {
             @jobs_strongify(self)
             [self endDropDownListView];
         }];
@@ -437,7 +437,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         _jobsSearchBar.sizer = JobsSearchBar.viewSizeByModel(nil);
         _jobsSearchBar.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [_jobsSearchBar actionObjectBlock:^(NSString *data) {
+        [_jobsSearchBar actionObjBlock:^(NSString *data) {
             @jobs_strongify(self)
 
         }];
@@ -473,7 +473,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             .initByNormalImage(JobsIMG(@"扫描"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 toast(JobsInternationalization(@"此功能尚未开发"));
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");

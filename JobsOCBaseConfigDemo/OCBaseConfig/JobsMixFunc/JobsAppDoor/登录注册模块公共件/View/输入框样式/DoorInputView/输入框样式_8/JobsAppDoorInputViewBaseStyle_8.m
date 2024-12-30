@@ -75,7 +75,7 @@
 
     textField.requestParams = self.textFieldInputModel;
     
-    if (self.objectBlock) self.objectBlock(textField);
+    if (self.objBlock) self.objBlock(textField);
 }
 #pragma mark —— UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -117,7 +117,7 @@
             .initByNormalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 x.selected = !x.selected;
                 x.jobsResetBtnImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
                 self.textField.secureTextEntry = x.selected;
@@ -143,7 +143,7 @@
         @jobs_weakify(self)
         [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
             @jobs_strongify(self)
-            return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
+            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(NSString *_Nullable x) {
             @jobs_strongify(self)
             JobsLog(@"输入的字符为 = %@",x);

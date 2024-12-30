@@ -237,7 +237,7 @@
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 /// 调取系统相册
                 @jobs_weakify(self)
                 [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
@@ -289,7 +289,7 @@
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 if(isNull(self->_resultStr)){
                     /// 存在于内存里面的编码，转变成图像对外进行输出
                     self.picForStr(self->_resultStr);

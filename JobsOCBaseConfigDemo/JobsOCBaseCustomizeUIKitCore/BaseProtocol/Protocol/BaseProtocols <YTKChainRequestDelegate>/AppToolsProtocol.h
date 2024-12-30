@@ -48,9 +48,9 @@ Prop_strong(nullable)UIViewModel *titleModel;
 /// 配置GKNavigationBar的返回按钮
 -(jobsByBtnBlock _Nonnull)setGKNavBackBtn;
 /// 返回按钮的回调
--(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock _Nullable)objectBlock;
+-(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock _Nullable)objBlock;
 /// 关闭按钮的回调
--(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock _Nullable)objectBlock;
+-(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock _Nullable)objBlock;
 #pragma mark —— 获取绑定的数据源
 -(UIViewModel *_Nullable)getViewModel;
 -(__kindof UIButtonModel *_Nullable)getButtonModel;

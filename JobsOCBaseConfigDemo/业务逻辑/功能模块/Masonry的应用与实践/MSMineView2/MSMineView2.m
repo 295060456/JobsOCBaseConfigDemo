@@ -94,7 +94,7 @@ static dispatch_once_t static_mineView2OnceToken;
             .cornerRadiusValueBy(JobsWidth(8))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -117,7 +117,7 @@ static dispatch_once_t static_mineView2OnceToken;
             .cornerRadiusValueBy(JobsWidth(14))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

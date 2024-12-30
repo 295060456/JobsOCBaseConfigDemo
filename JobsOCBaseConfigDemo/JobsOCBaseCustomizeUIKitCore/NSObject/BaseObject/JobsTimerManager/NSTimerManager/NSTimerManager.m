@@ -33,7 +33,7 @@ BaseProtocol_synthesize_timer
     return ^() {
         @jobs_strongify(self)
         self.timerProcessType = TimerProcessType_Running;
-        if (self.objectBlock) self.objectBlock(self);
+        if (self.objBlock) self.objBlock(self);
     };
 }
 
@@ -42,7 +42,7 @@ BaseProtocol_synthesize_timer
     return ^() {
         @jobs_strongify(self)
         self.timerProcessType = TimerProcessType_Stop;
-        if (self.objectBlock) self.objectBlock(self);
+        if (self.objBlock) self.objBlock(self);
     };
 }
 /// 定时器启动：newTimer + 系统自动添加到RunLoop

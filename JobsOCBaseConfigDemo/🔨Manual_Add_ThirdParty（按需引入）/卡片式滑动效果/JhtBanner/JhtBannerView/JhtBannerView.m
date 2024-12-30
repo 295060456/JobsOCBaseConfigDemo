@@ -34,64 +34,84 @@
 }
 
 -(void)drawRect:(CGRect)rect{
-   
+    [super drawRect:rect];
 }
-#pragma mark - Public Method
--(void)clickScrollViewInsideCardView:(jobsByIDBlock)clickBlock{
+#pragma mark —— 一些私有方法
+/// 添加pageControl
+-(void)bavAddPageControl{
+    /// 置空
+    self.removeView(_bannerView.pageControl);
+    if (!_bannerView.pageControl) {
+        @jobs_weakify(self)
+        [self.addSubview(jobsMakePageControl(^(UIPageControl * _Nullable pageControl) {
+            @jobs_strongify(self)
+            pageControl.center = CGPointMake(self.center.x,pageControl.center.y);
+            pageControl.numberOfPages = self.dataArr.count;
+            self.bannerView.pageControl = pageControl;
+        })) mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.mas_centerX);
+            make.size.mas_equalTo(CGSizeMake(100, 8));
+            make.bottom.equalTo(self);
+        }];
+    }
+}
+#pragma mark —— 一些公有方法
+-(void)clickScrollViewInsideCardView:(jobsByIDBlock _Nonnull)clickBlock{
     self.clickBlock = clickBlock;
 }
 
--(void)scrollViewIndex:(jobsByIDBlock)scrollBlock{
+-(void)scrollViewIndex:(jobsByIDBlock _Nonnull)scrollBlock{
     self.scrollBlock = scrollBlock;
 }
-#pragma mark - JhtBannerViewDelegate
+#pragma mark —— JhtBannerViewDelegate
 /** 当前显示cardView的Size */
-- (CGSize)sizeForCurrentCardViewInBannerView:(JhtBannerScrollView *)bannerView {
-    return CGSizeMake(self.JhtBannerCardViewSize.width,
-                      self.JhtBannerCardViewSize.height);
+-(JobsReturnCGSizeByJhtBannerScrollView _Nonnull)sizeForCurrentCardViewInBannerView{
+    @jobs_weakify(self)
+    return ^CGSize(JhtBannerScrollView *_Nullable bannerView){
+        @jobs_strongify(self)
+        return CGSizeMake(self.JhtBannerCardViewSize.width,self.JhtBannerCardViewSize.height);
+    };
 }
 /** 滚动到了某一个cardView */
-- (void)bannerView:(JhtBannerScrollView *)bannerView
+- (void)bannerView:(JhtBannerScrollView *_Nonnull)bannerView
 didScrollToCardViewWithIndex:(NSInteger)index {
     JobsLog(@"滚动到了第 %ld 页", index);
-    if (self.scrollBlock) {
-        self.scrollBlock(@(index));
-    }
+    if (self.scrollBlock) self.scrollBlock(@(index));
 }
 /** 点击了第几个cardView
  *  bannerCardView: 点击cardView
  *  index: 点击bannerCardView的index
  */
-- (void)bannerView:(JhtBannerScrollView *)bannerView
+- (void)bannerView:(JhtBannerScrollView *_Nonnull)bannerView
  didSelectCardView:(UIView *)cardView
  withCardViewIndex:(NSInteger)index {
-    if (self.clickBlock) {
-        self.clickBlock(@(index));
-    }
+    if (self.clickBlock) self.clickBlock(@(index));
 }
-#pragma mark - JhtBannerViewDataSource
-/** 显示cardView的个数 */
-- (NSInteger)numberOfCardViewInBannerView:(JhtBannerScrollView *)bannerView {
-    return self.dataArr.count;
+#pragma mark —— JhtBannerViewDataSource
+/// 显示cardView的个数
+-(JobsReturnNSIntegerByJhtBannerScrollView _Nonnull)numberOfCardViewInBannerView{
+    @jobs_weakify(self)
+    return ^NSInteger(JhtBannerScrollView *_Nullable view){
+        @jobs_strongify(self)
+        return self.dataArr.count;
+    };
 }
 
 -(CGSize)JhtBannerCardViewSize{
-    if (CGSizeEqualToSize(CGSizeZero, _JhtBannerCardViewSize)) {
-        _JhtBannerCardViewSize = CGSizeMake(JobsMainScreen_WIDTH() / self.dataArr.count, self.mj_h);
-    }return _JhtBannerCardViewSize;
+    if (CGSizeEqualToSize(CGSizeZero,_JhtBannerCardViewSize)) _JhtBannerCardViewSize = CGSizeMake(JobsMainScreen_WIDTH() / self.dataArr.count, self.mj_h);
+    return _JhtBannerCardViewSize;
 }
-
-/** 单个cardView */
-- (UIView *)bannerView:(JhtBannerScrollView *)bannerView
-cardViewForBannerViewAtIndex:(NSInteger)index {
+/// 单个cardView
+- (UIView *_Nonnull)bannerView:(JhtBannerScrollView *_Nonnull)bannerView
+  cardViewForBannerViewAtIndex:(NSInteger)index {
     JhtBannerCardView *cardView = (JhtBannerCardView *)[bannerView dequeueReusableView];
     if (!cardView) {
-        cardView = [[JhtBannerCardView alloc] initWithFrame:CGRectMake(0,
-                                                                       0,
-                                                                       self.JhtBannerCardViewSize.width,
-                                                                       self.JhtBannerCardViewSize.height)];
-        
-        cardView.tag = index;
+        @jobs_weakify(self)
+        cardView = JhtBannerCardView.initByFrame(jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable model) {
+            @jobs_strongify(self)
+            model.jobsWidth = self.JhtBannerCardViewSize.width;
+            model.jobsHeight = self.JhtBannerCardViewSize.height;
+        }));cardView.tag = index;
     }
     /// data
     if ([self.dataArr.firstObject isKindOfClass:UIImage.class]) {
@@ -99,7 +119,7 @@ cardViewForBannerViewAtIndex:(NSInteger)index {
     }else if ([self.dataArr.firstObject isKindOfClass:NSString.class]){
         NSString *str = self.dataArr[index];
         /// 单纯的字符串 或者是 网址
-        if ([str containsString:@"http"]) {
+        if ([str containsString:HTTP]) {
             cardView.cardImageView
                 .imageURL(str.jobsUrl.imageURLPlus)
                 .placeholderImage(JobsIMG(self.placeholderImageName))
@@ -114,18 +134,16 @@ cardViewForBannerViewAtIndex:(NSInteger)index {
                         JobsLog(@"图片加载成功");
                     }
                 }).load();
-        }else{
-            cardView.cardLab.text = JobsNonnullString(self.dataArr[index], self.placeholderName);
-        }
+        }else cardView.cardLab.text = JobsNonnullString(self.dataArr[index], self.placeholderName);
     }return cardView;
 }
 #pragma mark - Getter
 - (JhtBannerScrollView *)bannerView {
     if (!_bannerView) {
-        _bannerView = [[JhtBannerScrollView alloc] initWithFrame:CGRectMake(0,
-                                                                            0,
-                                                                            CGRectGetWidth(self.frame),
-                                                                            CGRectGetHeight(self.frame))];
+        _bannerView = JhtBannerScrollView.initByFrame(CGRectMake(0,
+                                                                 0,
+                                                                 CGRectGetWidth(self.frame),
+                                                                 CGRectGetHeight(self.frame)));
         _bannerView.delegate = self;
         _bannerView.dataSource = self;
         _bannerView.autoTime = 3.0;
@@ -142,29 +160,5 @@ cardViewForBannerViewAtIndex:(NSInteger)index {
     [_bannerView reloadData];
     [self bavAddPageControl];
 }
-#pragma mark Setter Method
-/** 添加pageControl */
-- (void)bavAddPageControl {
-    //置空
-    if (_bannerView.pageControl) {
-        [_bannerView.pageControl removeFromSuperview];
-        _bannerView.pageControl = nil;
-    }
-    
-    if (!_bannerView.pageControl) {
-        UIPageControl *pageControl = UIPageControl.new;
-        pageControl.center = CGPointMake(self.center.x,
-                                         pageControl.center.y);
-        pageControl.numberOfPages = _dataArr.count;
-        self.bannerView.pageControl = pageControl;
-        [self addSubview:self.bannerView.pageControl];
-        [self.bannerView.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.mas_centerX);
-            make.size.mas_equalTo(CGSizeMake(100, 8));
-            make.bottom.equalTo(self);
-        }];
-    }
-}
-
 
 @end

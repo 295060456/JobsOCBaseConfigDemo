@@ -111,7 +111,7 @@ static dispatch_once_t static_scrollYViewOnceToken;
             JobsLog(@"translation = %f",translation.y);// 向上为负、向下为正
             JobsLog(@"fdfd = %f",self.center.y);//541.333328 703.666672
             // 在手势结束时，检查视图的位置并执行你想要的操作
-            if(self.objectBlock) self.objectBlock(self);
+            if(self.objBlock) self.objBlock(self);
         }return nil;
     }];self.panGR.enabled = YES;
 }

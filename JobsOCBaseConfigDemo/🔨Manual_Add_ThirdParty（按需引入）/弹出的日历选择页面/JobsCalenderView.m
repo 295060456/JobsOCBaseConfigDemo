@@ -108,12 +108,11 @@
 //}
 
 -(NSDate *)minimumDateForCalendar:(FSCalendar *)calendar{
-    return [NSDate dateWithTimeIntervalSinceNow:-365*24*60*60]; // 一年前
+    return NSDate.dateSince(-平年一年的秒数);/// 一年前
 }
 
 -(NSDate *)maximumDateForCalendar:(FSCalendar *)calendar{
-//    return NSDate.date;
-    return [NSDate dateWithTimeIntervalSinceNow:365*24*60*60]; // 一年后
+    return NSDate.dateSince(平年一年的秒数);/// 一年后
 }
 
 //-(__kindof FSCalendarCell *)calendar:(FSCalendar *)calendar
@@ -136,7 +135,7 @@
 -(void)calendar:(FSCalendar *)calendar
   didSelectDate:(NSDate *)date
 atMonthPosition:(FSCalendarMonthPosition)monthPosition{
-    if(self.objectBlock) self.objectBlock(date);
+    if(self.objBlock) self.objBlock(date);
 }
 
 //-(BOOL)calendar:(FSCalendar *)calendar
@@ -148,7 +147,7 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
 -(void)calendar:(FSCalendar *)calendar
 didDeselectDate:(NSDate *)date
 atMonthPosition:(FSCalendarMonthPosition)monthPosition{
-//    if(self.objectBlock) self.objectBlock(date);
+//    if(self.objBlock) self.objBlock(date);
 }
 
 -(void)calendar:(FSCalendar *)calendar
@@ -173,24 +172,26 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
 #pragma mark —— lazyLoad
 -(FSCalendar *)calendar{
     if(!_calendar){
-        _calendar = [FSCalendar.alloc initWithFrame:CGRectZero];
-//        _calendar.calendarHeaderView.backgroundColor = JobsRedColor;
-//        _calendar.calendarWeekdayView.backgroundColor = JobsYellowColor;
-        _calendar.dataSource = self;
-        _calendar.delegate = self;
-        _calendar.calendarHeaderView.backgroundColor = JobsLightGrayColor.colorWithAlphaComponentBy(.1f);
-        _calendar.appearance.headerMinimumDissolvedAlpha = 1;
-        _calendar.appearance.headerDateFormat = @"yyyy年MM月";
-        _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
-        _calendar.appearance.headerTitleFont = [UIFont boldSystemFontOfSize:20];
-        _calendar.appearance.headerTitleColor = [UIColor blackColor];
-        _calendar.swipeToChooseGesture.enabled = YES;
-        _calendar.allowsMultipleSelection = YES;
-        
-        [self addSubview:_calendar];
-        [_calendar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];_calendar.refresh();
+        @jobs_weakify(self)
+        _calendar = jobsMakeFSCalendar(^(__kindof FSCalendar * _Nullable calendar) {
+            @jobs_strongify(self)
+//            calendar.calendarHeaderView.backgroundColor = JobsRedColor;
+//            calendar.calendarWeekdayView.backgroundColor = JobsYellowColor;
+            calendar.dataSource = self;
+            calendar.delegate = self;
+            calendar.calendarHeaderView.backgroundColor = JobsLightGrayColor.colorWithAlphaComponentBy(.1f);
+            calendar.appearance.headerMinimumDissolvedAlpha = 1;
+            calendar.appearance.headerDateFormat = @"yyyy年MM月";
+            calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
+            calendar.appearance.headerTitleFont = [UIFont boldSystemFontOfSize:20];
+            calendar.appearance.headerTitleColor = [UIColor blackColor];
+            calendar.swipeToChooseGesture.enabled = YES;
+            calendar.allowsMultipleSelection = YES;
+            [self addSubview:calendar];
+            [calendar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];calendar.refresh();
+        });
     }return _calendar;
 }
 

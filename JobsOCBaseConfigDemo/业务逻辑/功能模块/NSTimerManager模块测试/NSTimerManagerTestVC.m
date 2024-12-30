@@ -139,7 +139,7 @@
             
             data.timeInterval = .5f;
             @jobs_weakify(self)
-            [data actionObjectBlock:^(id data) {
+            [data actionObjBlock:^(id data) {
                 @jobs_strongify(self)
                 if ([data isKindOfClass:UIButtonModel.class]) {
                     UIButtonModel *model = (UIButtonModel *)data;

@@ -42,7 +42,7 @@
                 [self mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.height.mas_equalTo(size.height + self.imageView.height + self.imageTitleSpace);// 文字 + 图片 + 手动偏移量
                 }];
-                if (self.objectBlock) self.objectBlock(@(size.height));
+                if (self.objBlock) self.objBlock(@(size.height));
             }break;
                 
             default:
@@ -84,7 +84,7 @@
                 [self mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.height.mas_equalTo(size.height + self.imageView.height + self.imageTitleSpace);// 文字 + 图片 + 手动偏移量
                 }];
-                if (self.objectBlock) self.objectBlock(@(size.height));
+                if (self.objBlock) self.objBlock(@(size.height));
             }break;
                 
             default:

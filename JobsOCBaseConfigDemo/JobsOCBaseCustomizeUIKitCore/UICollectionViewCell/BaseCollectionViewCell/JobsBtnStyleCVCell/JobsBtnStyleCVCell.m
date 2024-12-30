@@ -128,7 +128,7 @@ AppToolsProtocol_synthesize
         /// 点击事件
         [_btn jobsBtnClickEventBlock:viewModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         }];
         /// 长按事件
@@ -244,7 +244,7 @@ AppToolsProtocol_synthesize
         _btn.userInteractionEnabled = YES;
         _btn.onClickBy(^(UIButton *x){
             @jobs_strongify(self)
-            if(self.objectBlock) self.objectBlock(x);
+            if(self.objBlock) self.objBlock(x);
         });[self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:self.masMakerBlock];
     }return _btn;

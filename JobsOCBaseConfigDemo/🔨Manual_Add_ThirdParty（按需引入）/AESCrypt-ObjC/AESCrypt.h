@@ -4,7 +4,7 @@
 //
 //  Created by Gurpartap Singh on 06/05/12.
 //  Copyright (c) 2012 Gurpartap Singh
-// 
+//
 // 	MIT License
 // 
 // 	Permission is hereby granted, free of charge, to any person obtaining
@@ -28,16 +28,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSData+Base64.h"
+#import "NSString+Base64.h"
+#import "NSData+CommonCrypto.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AESCrypt : NSObject
-
-+ (NSString *)encrypt:(NSString *)message
-             password:(NSString *)password;
-
-+ (NSString *)decrypt:(NSString *)base64EncodedString
-             password:(NSString *)password;
+///
++(NSString *)encrypt:(NSString *)message password:(NSString *)password;
+///
++(NSString *)decrypt:(NSString *)base64EncodedString password:(NSString *)password;
 
 @end
 

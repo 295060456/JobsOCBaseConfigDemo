@@ -145,7 +145,7 @@
         inputView.jobsRichViewByModel(self.loginDoorInputViewBaseStyleModelMutArr[i]);
         @jobs_weakify(self)
         //【用户名 & 密码 输入回调，共享注册与登录两个界面】
-        [inputView actionObjectBlock:^(UITextField *data) {
+        [inputView actionObjBlock:^(UITextField *data) {
             @jobs_strongify(self)
             JobsAppDoorInputViewTFModel *textFieldInputModel = (JobsAppDoorInputViewTFModel *)data.requestParams;
             if ([textFieldInputModel.PlaceHolder isEqualToString:JobsInternationalization(@"User")]) {
@@ -153,7 +153,7 @@
             }else if ([textFieldInputModel.PlaceHolder isEqualToString:JobsInternationalization(@"Code")]){
                 self.appDoorModel.password = data.text;
             }else{}
-            if (self.objectBlock) self.objectBlock(self.appDoorModel);
+            if (self.objBlock) self.objBlock(self.appDoorModel);
             [self allRise:data];
         }];
         [self addSubview:inputView];
@@ -308,11 +308,11 @@
             [self.registerDoorInputViewBaseStyleMutArr addObject:inputView];
             inputView.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);
             @jobs_weakify(self)
-            [inputView actionObjectBlock:^(UITextField *data) {
+            [inputView actionObjBlock:^(UITextField *data) {
                 @jobs_strongify(self)
                 UITextField *textField = (UITextField *)data;
                 self.appDoorModel.confirmPassword = textField.text;
-                if (self.objectBlock) self.objectBlock(self.appDoorModel);
+                if (self.objBlock) self.objBlock(self.appDoorModel);
                 [self allRise:data];
             }];
         }else if (i == self.loginDoorInputViewBaseStyleMutArr.count + 1){// 手机号码
@@ -322,11 +322,11 @@
             [self.registerDoorInputViewBaseStyleMutArr addObject:inputView_7];
             inputView_7.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);
             @jobs_weakify(self)
-            [inputView_7 actionObjectBlock:^(UITextField *data) {
+            [inputView_7 actionObjBlock:^(UITextField *data) {
                 @jobs_strongify(self)
                 UITextField *textField = (UITextField *)data;
                 self.appDoorModel.tel = textField.text;
-                if (self.objectBlock) self.objectBlock(self.appDoorModel);
+                if (self.objBlock) self.objBlock(self.appDoorModel);
                 [self allRise:data];
             }];
         }else if (i == self.loginDoorInputViewBaseStyleMutArr.count + 2){// 手机验证码
@@ -336,12 +336,12 @@
             [self.registerDoorInputViewBaseStyleMutArr addObject:inputView];
             inputView.jobsRichViewByModel(self.registerDoorInputViewBaseStyleModelMutArr[i]);
             @jobs_weakify(self)
-            [inputView actionObjectBlock:^(id data) {
+            [inputView actionObjBlock:^(id data) {
                 @jobs_strongify(self)
                 if ([data isKindOfClass:UITextField.class]) {
                     UITextField *textField = (UITextField *)data;
                     self.appDoorModel.verificationCode = textField.text;
-                    if (self.objectBlock) self.objectBlock(self.appDoorModel);
+                    if (self.objBlock) self.objBlock(self.appDoorModel);
                     [self allRise:data];
                 }else if ([data isKindOfClass:UIButton.class]){
                     [self getCellPhoneVerificationCodeWithCountry:nil
@@ -359,7 +359,7 @@
 }
 /// 公共方法
 -(void)animationCommon{
-    if (self.objectBlock) self.objectBlock(self.toRegisterBtn);
+    if (self.objBlock) self.objBlock(self.toRegisterBtn);
     self.toRegisterBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTop,JobsWidth(8));
     // 一些UI逻辑
     if (self.registerDoorInputViewBaseStyleMutArr.count == 5) {
@@ -459,7 +459,7 @@
         @jobs_weakify(self)
         [_abandonLoginBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         }];[self addSubview:_abandonLoginBtn];
     }return _abandonLoginBtn;
@@ -473,7 +473,7 @@
             @jobs_strongify(self)
             [self endEditing:YES];
             x.requestParams = self.appDoorModel;
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         }];
         [self addSubview:_sendBtn];
@@ -504,7 +504,7 @@
         [_storeCodeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         }];
     }return _storeCodeBtn;
@@ -527,7 +527,7 @@
         @jobs_weakify(self)
         [_findCodeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         }];
     }return _findCodeBtn;

@@ -9,14 +9,46 @@
 
 @implementation NSRunLoop (Extra)
 
--(jobsByTimerBlock)commonModesByTimer{
++(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByCommonModes{
+    return ^__kindof NSTimer *_Nullable(NSTimer *_Nonnull timer){
+        NSRunLoop.mainRunLoop.commonModesByTimer(timer);
+        return timer;
+    };
+}
+
++(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByDefaultRunLoopMode{
+    return ^__kindof NSTimer *_Nullable(NSTimer *_Nonnull timer){
+        NSRunLoop.mainRunLoop.defaultModeByTimer(timer);
+        return timer;
+    };
+}
+
++(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByCommonModes{
+    return ^__kindof NSTimer *_Nullable(NSTimer *_Nonnull timer){
+        NSRunLoop.currentRunLoop.commonModesByTimer(timer);
+        return timer;
+    };
+}
+
++(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByDefaultRunLoopMode{
+    return ^__kindof NSTimer *_Nullable(NSTimer *_Nonnull timer){
+        NSRunLoop.currentRunLoop.defaultModeByTimer(timer);
+        return timer;
+    };
+}
+
+-(jobsByTimerBlock _Nonnull)commonModesByTimer{
+    @jobs_weakify(self)
     return ^(NSTimer *_Nullable data){
+        @jobs_strongify(self)
         [self addTimer:data forMode:NSRunLoopCommonModes];
     };
 }
 
--(jobsByTimerBlock)defaultModeByTimer{
+-(jobsByTimerBlock _Nonnull)defaultModeByTimer{
+    @jobs_weakify(self)
     return ^(NSTimer *_Nullable data){
+        @jobs_strongify(self)
         [self addTimer:data forMode:NSDefaultRunLoopMode];
     };
 }

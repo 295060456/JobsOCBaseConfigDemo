@@ -26,7 +26,7 @@ NS_INLINE NSMutableArray<NSString *> *printIvarListByClass(Class cls) {
     unsigned int count;
     NSMutableArray <NSString *>*tempDataMutArr = NSMutableArray.array;
     Ivar *ivarList = class_copyIvarList(cls, &count);
-    // 创建一个默认对象的实例
+    /// 创建一个默认对象的实例
     id instance = [[cls alloc] init];
     for (unsigned int i = 0; i < count; i++) {
         Ivar myIvar = ivarList[i];
@@ -38,19 +38,27 @@ NS_INLINE NSMutableArray<NSString *> *printIvarListByClass(Class cls) {
     }free(ivarList);
     return tempDataMutArr;
 }
-// 返回并打印属性列表及其值
+/// 返回并打印属性列表及其值
 NS_INLINE NSMutableArray<NSString *> *printPropertyListByClass(Class cls) {
     unsigned int count;
     NSMutableArray <NSString *>*tempDataMutArr = NSMutableArray.array;
     objc_property_t *propertyList = class_copyPropertyList(cls, &count);
-    // 创建一个默认对象的实例
+    /// 创建一个默认对象的实例
     id instance = [[cls alloc] init];
     for (unsigned int i = 0; i < count; i++) {
         const char *propertyName = property_getName(propertyList[i]);
-        id value = [instance valueForKey:[NSString stringWithUTF8String:propertyName]]; // 获取属性值
-        // 打印属性名和对应的值
-        JobsLog(@"property(%d) : %@ = %@", i, [NSString stringWithUTF8String:propertyName], value);
-        [tempDataMutArr addObject:[NSString stringWithFormat:@"%s: %@", propertyName, value]];
+        NSString *key = [NSString stringWithUTF8String:propertyName];
+        Ivar ivar = class_getInstanceVariable(cls, propertyName);
+        if (ivar) {
+            /// 这里本来可以使用 valueForKey
+            /// 但是如果没有实现协议里面定义的属性的getter方法（@dynamic），会崩溃
+            id value = object_getIvar(instance, ivar);
+            JobsLog(@"property(%d) : %@ = %@", i, key, value ?: @"(nil)");
+            [tempDataMutArr addObject:[NSString stringWithFormat:@"%s: %@", propertyName, value ?: @"(nil)"]];
+        } else {
+            JobsLog(@"property(%d) : %@ does not exist", i, key);
+            [tempDataMutArr addObject:[NSString stringWithFormat:@"%s: (not found)", propertyName]];
+        }
     }free(propertyList);
     return tempDataMutArr;
 }

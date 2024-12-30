@@ -17,6 +17,12 @@
 @property(nonatomic,strong,nullable)UIColor *foreColor;
 @property(nonatomic,strong,nullable)UIFont *font;
 
--(jobsByTimeIntervalBlock _Nonnull)iPhoneFadeWithDuration;
+-(JobsReturnViewByTimeIntervalBlock _Nonnull)iPhoneFadeWithDuration;
 
 @end
+
+NS_INLINE __kindof GDFadeView *_Nonnull jobsMakeGDFadeView(jobsByGDFadeViewBlock _Nonnull block){
+    GDFadeView *data = GDFadeView.alloc.init;
+    if (block) block(data);
+    return data;
+}

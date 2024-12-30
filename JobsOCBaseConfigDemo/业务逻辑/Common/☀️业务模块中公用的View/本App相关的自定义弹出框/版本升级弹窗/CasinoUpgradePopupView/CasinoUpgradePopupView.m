@@ -69,9 +69,9 @@
     if (!_upgradeContentView) {
         _upgradeContentView = CasinoUpgradeContentView.new;
         @jobs_weakify(self)
-        [_upgradeContentView actionObjectBlock:^(id data) {
+        [_upgradeContentView actionObjBlock:^(id data) {
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(data);
+            if (self.objBlock) self.objBlock(data);
         }];
         [self addSubview:_upgradeContentView];
         [_upgradeContentView mas_makeConstraints:^(MASConstraintMaker *make) {

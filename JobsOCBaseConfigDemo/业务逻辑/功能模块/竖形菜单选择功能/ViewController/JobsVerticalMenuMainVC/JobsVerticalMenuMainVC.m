@@ -147,7 +147,7 @@ viewForHeaderInSection:(NSInteger)section{
 //        }
         headerView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [headerView actionObjectBlock:^(id data) {
+        [headerView actionObjBlock:^(id data) {
             @jobs_strongify(self)
         }];return headerView;
     }return nil;
@@ -167,7 +167,7 @@ viewForHeaderInSection:(NSInteger)section{
         tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [tbvFooterView actionObjectBlock:^(id data) {
+        [tbvFooterView actionObjBlock:^(id data) {
             @jobs_strongify(self)
         }];return tbvFooterView;
     }return nil;

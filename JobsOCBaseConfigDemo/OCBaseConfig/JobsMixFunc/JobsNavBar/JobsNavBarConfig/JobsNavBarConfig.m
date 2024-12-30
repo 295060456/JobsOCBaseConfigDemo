@@ -33,7 +33,7 @@ static dispatch_once_t static_navBarConfigOnceToken;
         };
         _backBtnModel.clickEventBlock = ^id(BaseButton *x){
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         };
     }return _backBtnModel;
@@ -55,7 +55,7 @@ static dispatch_once_t static_navBarConfigOnceToken;
             };
             data.clickEventBlock = ^id(BaseButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 return nil;
             };
         });

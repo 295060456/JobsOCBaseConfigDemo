@@ -110,9 +110,9 @@
             @jobs_strongify(self)
             if ([data isEqualToString:@"gestureEndedPan:panDirection:panLocation:"]) {
                 if (data2.intValue == ZFPanMovingDirectionTop) {
-                    if(self.objectBlock)self.objectBlock([JobsTuple.alloc initWithValues:@0,@(self.index), nil]);
+                    if(self.objBlock)self.objBlock([JobsTuple.alloc initWithValues:@0,@(self.index), nil]);
                 }else if (data2.intValue == ZFPanMovingDirectionBottom){
-                    if(self.objectBlock)self.objectBlock([JobsTuple.alloc initWithValues:@1,@(self.index), nil]);
+                    if(self.objBlock)self.objBlock([JobsTuple.alloc initWithValues:@1,@(self.index), nil]);
                 }else{}
             }
         }];

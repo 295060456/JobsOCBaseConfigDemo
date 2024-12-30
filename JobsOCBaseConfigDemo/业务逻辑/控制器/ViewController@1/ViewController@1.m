@@ -76,7 +76,7 @@ BOOL ISLogin;
     
     self.tableView.reloadDatas();
     self.suspendBtn.alpha = 1;
-    self.objectBlock = ^(id data) {
+    self.objBlock = ^(id data) {
         @jobs_strongify(self)
         if ([data isKindOfClass:JobsSuspendBtn.class]) {
             JobsSuspendBtn *suspendBtn = (JobsSuspendBtn *)data;
@@ -172,7 +172,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 UIViewModel *viewModel = self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                     model.title = JobsInternationalization(@"用户信息展示(开发测试专用)");
                     model.subTitle = @"";

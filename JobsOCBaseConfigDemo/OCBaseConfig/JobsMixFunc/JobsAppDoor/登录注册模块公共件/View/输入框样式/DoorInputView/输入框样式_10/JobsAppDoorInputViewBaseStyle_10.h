@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_END
      if (!_inputView) {
          _inputView = [JobsAppDoorInputViewBaseStyle_10.alloc initWithSize:inputViewSize];
          @jobs_weakify(self)
-         [_inputView actionObjectBlock:^(id data) {
+         [_inputView actionObjBlock:^(id data) {
              @jobs_strongify(self)
              JobsLog(@"%@",data);
              if ([data isKindOfClass:UITextField.class]) {

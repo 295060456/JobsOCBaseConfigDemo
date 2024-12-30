@@ -1,5 +1,5 @@
 //
-//  HotLabel.m
+//  JobsHotLabelBySingleLine.m
 //  JobsSearch
 //
 //  Created by Jobs on 2020/10/4.
@@ -118,10 +118,10 @@
             @jobs_strongify(self)
             [self changeButtonState];
             x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         }];
-        [btn actionObjectBlock:^(id data) {
+        [btn actionObjBlock:^(id data) {
             @jobs_strongify(self)
             self.btnHeightMutArr.add(data);
         }];

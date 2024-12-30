@@ -169,7 +169,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.imageView.jobsVisible = !cell.imageView.jobsVisible;
     
-    if (self.objectBlock) self.objectBlock(self.dataMutArr[indexPath.row]);
+    if (self.objBlock) self.objBlock(self.dataMutArr[indexPath.row]);
     [self tf_hide:nil];
 }
 

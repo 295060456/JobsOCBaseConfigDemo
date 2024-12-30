@@ -5,6 +5,11 @@
 //  Created by Jobs on 2022/1/27.
 //
 
+#import <QuartzCore/QuartzCore.h>
+#import <JavaScriptCore/JavaScriptCore.h>
+#import <UserNotifications/UserNotifications.h>
+#import <NetworkExtension/NetworkExtension.h>
+
 #ifndef VoidByCertainParameters_h
 #define VoidByCertainParameters_h
 #pragma clang diagnostic push
@@ -29,18 +34,17 @@ typedef void(^jobsByCAShapeLayerBlock)(__kindof CAShapeLayer *_Nullable layer);
 typedef void(^jobsByCALayerBlock)(__kindof CALayer *_Nullable layer);
 typedef void(^jobsByCATransitionBlock)(__kindof CATransition *_Nullable transition);
 #pragma mark —— 关于Animation
-#import <QuartzCore/QuartzCore.h>
 typedef void(^jobsByCAKeyframeAnimationBlock)(__kindof CAKeyframeAnimation *_Nullable animation);
 typedef void(^jobsByCAGradientLayerBlock)(__kindof CAGradientLayer *_Nullable layer);
 typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable animation);
 #pragma mark —— 关于View
 typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
+typedef void(^jobsByPageControlBlock)(UIPageControl *_Nullable pageControl);
 typedef void(^jobsByScrollViewBlock)(__kindof UIScrollView *_Nullable scrollView);
 typedef void(^jobsByBtnBlock)(__kindof UIButton *_Nullable btn);
 typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable data);
 typedef void(^jobsByLabelBlock)(__kindof UILabel *_Nullable label);
 typedef void(^jobsByWKWebViewBlock)(__kindof WKWebView *_Nullable webView);
-#import <JavaScriptCore/JavaScriptCore.h>
 typedef void(^jobsByJSContextBlock)(__kindof JSContext *_Nullable context);
 typedef void(^jobsByProgressViewBlock)(__kindof UIProgressView *_Nullable progressView);
 typedef void(^jobsBySwitchBlock)(__kindof UISwitch *_Nullable Switch);
@@ -140,7 +144,7 @@ typedef void(^jobsByTimerBlock)(NSTimer *_Nullable timer);
 typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable dateFormatter);
 typedef void(^jobsByNotificationResponseBlock)(UNNotificationResponse *_Nullable response);
 #pragma mark —— 其他
-typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable data);
+typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable runLoop);
 typedef void(^jobsByPHFetchOptionsBlock)(PHFetchOptions *_Nullable options);
 typedef void(^jobsByPHVideoRequestOptionsBlock)(PHVideoRequestOptions *_Nullable options);
 typedef void(^jobsByPHImageRequestOptionsBlock)(PHImageRequestOptions *_Nullable options);
@@ -152,30 +156,20 @@ typedef void(^jobsByBezierPathBlock)(__kindof UIBezierPath *_Nullable data);
 typedef void(^jobsByNotificationBlock)(NSNotification *_Nullable notification);
 typedef void(^jobsByAlertActionBlock)(__kindof UIAlertAction *_Nullable action);
 typedef void(^jobsByPasteboardBlock)(__kindof UIPasteboard *_Nullable pasteboard);
-#import <UserNotifications/UserNotifications.h>
 typedef void(^jobsByUNUserNotificationCenterBlock)(__kindof UNUserNotificationCenter *_Nullable center);
 typedef void(^jobsByUNMutableNotificationContentBlock)(__kindof UNMutableNotificationContent *_Nullable content);
-#import <NetworkExtension/NetworkExtension.h>
 typedef void(^jobsByNEVPNManagerBlock)(__kindof NEVPNManager *_Nullable VPNManager);
 typedef void(^jobsByNEVPNProtocolIKEv2Block)(__kindof NEVPNProtocolIKEv2 *_Nullable VPNProtocolIKEv2);
-
-typedef void(^jobsByTwoIDBlock)Jobs_2_Arguments;
-typedef void(^jobsByThreeIDBlock)Jobs_3_Arguments;
-typedef void(^jobsByFourIDBlock)Jobs_4_Arguments;
-typedef void(^jobsByFiveIDBlock)Jobs_5_Arguments;
-typedef void(^jobsBySixIDBlock)Jobs_6_Arguments;
-typedef void(^jobsBySevenIDBlock)Jobs_7_Arguments;
-typedef void(^jobsByEightIDBlock)Jobs_8_Arguments;
-typedef void(^jobsByNineIDBlock)Jobs_9_Arguments;
-typedef void(^jobsByTenIDBlock)Jobs_10_Arguments;
 /// weakSelf 方便使用，用来打破循环引用。使用时需要改成实际类型，否则没有代码提示
 /// selector 实际调用的方法
 /// arg 事件默认传递的对象，比如`NSNotification`，`UIButton`
-typedef void(^_Nullable JobsSelectorBlock)(id _Nullable weakSelf,
-                                           id _Nullable arg);
+typedef void(^_Nullable JobsSelectorBlock)(id _Nullable weakSelf, id _Nullable arg);
 typedef void(^_Nullable JobsSelectorBlock1)(id _Nullable weakSelf,
                                             id _Nullable arg,
                                             id _Nullable data);
+
+typedef void(^jobsByTwoIDBlock)(id _Nullable data,id _Nullable data2);
+
 #pragma clang diagnostic pop
 
 #endif /* VoidByCertainParameters_h */

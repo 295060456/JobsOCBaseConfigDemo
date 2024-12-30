@@ -9,10 +9,10 @@
 #define JobsOCBaseConfigPrefixHeader_pch
 #pragma mark —— 系统SDK
 #import <Foundation/Foundation.h>                 /// 提供Objective-C的基本数据类型、集合和实用工具类。
-#include <arpa/inet.h>                            /// 提供与网络地址相关的函数，例如 IP 地址的转换（从字符串到二进制格式，反之亦然）。
-#include <ifaddrs.h>                              /// 提供用于获取网络接口地址的信息的接口，例如获取设备所有网络接口的 IP 地址。
-#include <net/if.h>                               /// 定义网络接口的常量和结构体，用于处理网络接口的配置。
-#include <net/if_dl.h>                            /// 提供网络接口的链路层地址信息，例如 MAC 地址。
+#import <arpa/inet.h>                            /// 提供与网络地址相关的函数，例如 IP 地址的转换（从字符串到二进制格式，反之亦然）。
+#import <ifaddrs.h>                              /// 提供用于获取网络接口地址的信息的接口，例如获取设备所有网络接口的 IP 地址。
+#import <net/if.h>                               /// 定义网络接口的常量和结构体，用于处理网络接口的配置。
+#import <net/if_dl.h>                            /// 提供网络接口的链路层地址信息，例如 MAC 地址。
 #import <JavaScriptCore/JavaScriptCore.h>         /// 处理 JavaScript
 #import <CoreText/CoreText.h>                     /// iOS 和 macOS 提供的底层文本布局和渲染框架，支持高级的字体管理和排版功能。相比 UIKit 中的 NSAttributedString，Core Text 更灵活，但也更复杂，适合需要精准控制文本显示的场景。
 #import <WebKit/WebKit.h>                         /// 用于嵌入和管理网页内容，例如加载和显示网页。
@@ -49,6 +49,7 @@
 #import "MacroDef_Cor.h"
 #import "MacroDef_Func.h"
 #import "MacroDef_Sys.h"
+#import "MacroDef_SDK.h"
 #import "MacroDef_Font.h"
 #import "MacroDef_String.h"
 #import "MacroDef_Singleton.h"

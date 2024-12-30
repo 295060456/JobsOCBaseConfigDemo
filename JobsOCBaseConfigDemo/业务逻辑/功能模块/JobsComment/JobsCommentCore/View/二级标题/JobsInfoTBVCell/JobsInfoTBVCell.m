@@ -103,7 +103,7 @@
                 }
                 x.jobsResetTitle(toStringByNSInteger(x.thumpNum));
                 x.jobsResetBtnTitleCor(x.selected ? JobsRedColor : JobsGrayColor);
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

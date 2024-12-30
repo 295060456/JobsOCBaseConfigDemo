@@ -82,7 +82,7 @@
 
     textField.requestParams = self.textFieldInputModel;
     
-    if (self.objectBlock) self.objectBlock(textField);// 对外统一传出TF
+    if (self.objBlock) self.objBlock(textField);// 对外统一传出TF
 }
 #pragma mark —— UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -124,7 +124,7 @@
 #pragma mark —— UITextFieldDelegate
 /// 获得焦点成为第一响应者，此时 textField.isEditing == YES
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-    if (self.objectBlock) self.objectBlock(textField);// 对外统一传出TF
+    if (self.objBlock) self.objBlock(textField);// 对外统一传出TF
 }
 #pragma mark —— lazyLoad
 -(UIButton *)securityModeBtn{
@@ -158,7 +158,7 @@
         [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
             JobsLog(@"SSS = %@",self.textFieldInputModel.PlaceHolder);
             @jobs_strongify(self)
-            return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
+            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(NSString *_Nullable x) {
             @jobs_strongify(self)
             JobsLog(@"输入的字符为 = %@",x);

@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "BaseProtocol.h"
-#import "JobsDefineAllEnumHeader.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "JobsTimerManager_DefineStructure.h"
 #import "JobsTimeModel.h"
 #import "NSObject+Time.h"
@@ -85,7 +85,7 @@ NS_INLINE NSTimerManager *_Nonnull jobsMakeTimerManager(jobsByTimerManagerBlock 
          
          _nsTimerManager.timeInterval = .5f;
          @jobs_weakify(self)
-         [_nsTimerManager actionObjectBlock:^(id data) {
+         [_nsTimerManager actionObjBlock:^(id data) {
              @jobs_strongify(self)
              if ([data isKindOfClass:UIButtonModel.class]) {
                  UIButtonModel *model = (UIButtonModel *)data;

@@ -93,7 +93,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.objectBlock) self.objectBlock(self.dataMutArr[indexPath.row]);
+    if (self.objBlock) self.objBlock(self.dataMutArr[indexPath.row]);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView

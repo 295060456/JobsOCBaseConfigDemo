@@ -135,7 +135,7 @@
 -(void)calendar:(FSCalendar *)calendar
   didSelectDate:(NSDate *)date
 atMonthPosition:(FSCalendarMonthPosition)monthPosition{
-    if(self.objectBlock) self.objectBlock(date);
+    if(self.objBlock) self.objBlock(date);
 }
 
 //-(BOOL)calendar:(FSCalendar *)calendar
@@ -147,7 +147,7 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
 -(void)calendar:(FSCalendar *)calendar
 didDeselectDate:(NSDate *)date
 atMonthPosition:(FSCalendarMonthPosition)monthPosition{
-    if(self.objectBlock) self.objectBlock(date);
+    if(self.objBlock) self.objBlock(date);
 }
 
 -(void)calendar:(FSCalendar *)calendar

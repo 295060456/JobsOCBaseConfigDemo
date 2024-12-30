@@ -203,7 +203,7 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
             .jobsResetBtnTitle(JobsInternationalization(@"VIP規則"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 toast(JobsInternationalization(@"VIP規則"));
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");

@@ -60,9 +60,9 @@
         [self.loginDoorInputViewBaseStyleMutArr addObject:inputView];
         inputView.jobsRichViewByModel(self.loginDoorInputViewBaseStyleModelMutArr[i]);
         @jobs_weakify(self)
-        [inputView actionObjectBlock:^(id data) {
+        [inputView actionObjBlock:^(id data) {
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(data);//data：监测输入字符回调 和 激活的textField
+            if (self.objBlock) self.objBlock(data);//data：监测输入字符回调 和 激活的textField
         }];
 
         [self addSubview:inputView];
@@ -110,7 +110,7 @@
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             [self endEditing:YES];
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
         }).onLongPressGestureBy(^(id data){
             JobsLog(@"");
         });
@@ -149,7 +149,7 @@
             .bgColorBy(JobsBlackColor)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -174,7 +174,7 @@
             .bgColorBy(JobsSystemPinkColor.colorWithAlphaComponentBy(.7f))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 toast(x.titleForNormalState);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
@@ -200,7 +200,7 @@
                              JobsWidth(3))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 x.selected = !x.selected;
                 x.selected ? x.jobsResetBtnImage(JobsIMG(@"记住密码")) : x.jobsResetBtnImage(JobsIMG(@"没有记住密码"));
             }).onLongPressGestureBy(^(id data){
@@ -225,7 +225,7 @@
             .initByStyle1(Title3,UIFontWeightRegularSize(12),JobsBlueColor)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             })
             .onLongPressGestureBy(^(id data){
             JobsLog(@"");

@@ -4,9 +4,7 @@
 //
 //  Created by Jobs on 2020/7/26.
 //  Copyright © 2020 Jobs. All rights reserved.
-//
-
-//UITableViewCell 右侧的小箭头 白色
+//  UITableViewCell 右侧的小箭头 白色
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
@@ -28,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UIImage *img;
 @property(nonatomic,assign)CGSize arrows_size;
 /// 必须 self.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 打开后才可以启用
--(void)customAccessoryView:(jobsByIDBlock)customAccessoryViewBlock;
+-(void)customAccessoryView:(jobsByIDBlock _Nullable)customAccessoryViewBlock;
 
 @end
 

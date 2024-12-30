@@ -270,7 +270,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
         [self.view addSubview:_forgotCodeContentView];
         _forgotCodeContentView.jobsRichViewByModel(UIViewModel.new);
         @jobs_weakify(self)
-        [_forgotCodeContentView actionObjectBlock:^(id data) {
+        [_forgotCodeContentView actionObjBlock:^(id data) {
             @jobs_strongify(self)
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
@@ -307,7 +307,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
         _jobsAppDoorContentView.backgroundColor = Cor2;
         @jobs_weakify(self)
         //监测输入字符回调 和 激活的textField 和 toRegisterBtn/abandonLoginBtn点击事件
-        [_jobsAppDoorContentView actionObjectBlock:^(id data) {
+        [_jobsAppDoorContentView actionObjBlock:^(id data) {
             @jobs_strongify(self)
             if ([data isKindOfClass:UIButton.class]) {
                 [self.view endEditing:YES];

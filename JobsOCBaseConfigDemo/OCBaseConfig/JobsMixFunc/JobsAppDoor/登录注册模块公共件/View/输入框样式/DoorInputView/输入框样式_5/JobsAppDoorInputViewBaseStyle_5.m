@@ -146,7 +146,7 @@
         _securityModeBtn = BaseButton
             .initByNormalImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image)
             .onClickBy(^(UIButton *x){
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 x.selected = !x.selected;
                 if(x.selected){
                     x.jobsResetBtnImage(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
@@ -256,7 +256,7 @@
         })).onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             if (x.selected) {
                 self->dropDownListView = [self motivateFromView:x
                                   jobsDropDownListViewDirection:JobsDropDownListViewDirection_UP
@@ -289,14 +289,14 @@
         @jobs_weakify(self)
         [_textField jobsTextFieldEventFilterBlock:^BOOL(NSString * _Nullable data) {
             @jobs_strongify(self)
-            return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
+            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             self.securityModeBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
             if (x.isContainsSpecialSymbolsString(nil)) {
                 toast(JobsInternationalization(@"Do not enter special characters"));
             }else{
-                if (self.objectBlock) self.objectBlock(self->_textField);
+                if (self.objBlock) self.objBlock(self->_textField);
             }
         }];
         [self addSubview:_textField];

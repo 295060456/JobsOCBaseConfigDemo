@@ -26,14 +26,19 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.backLabel.alpha = 1;
-        self.frontLabel.alpha = 1;
-        self.createMask();
+
     }return self;
 }
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
+}
+
+-(void)setFrame:(CGRect)frame{
+    [super setFrame:frame];
+    self.backLabel.alpha = 1;
+    self.frontLabel.alpha = 1;
+    self.createMask();
 }
 #pragma mark —— 一些私有方法
 -(jobsByVoidBlock _Nonnull)createMask{
@@ -42,26 +47,25 @@
         @jobs_strongify(self)
         self.cagradientLayer.frame = self.bounds;
         self.cagradientLayer.colors = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            data.add((id)JobsClearColor.CGColor);
-            data.add((id)JobsRedColor.CGColor);
-            data.add((id)JobsClearColor.CGColor);
+            data.add((id)JobsClearColor.CGColor)
+                .add((id)JobsRedColor.CGColor)
+                .add((id)JobsClearColor.CGColor);
         });
         self.cagradientLayer.locations = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-            data.add(@(0.25));
-            data.add(@(0.5));
-            data.add(@(0.75));
+            data.add(@(0.25))
+                .add(@(0.5))
+                .add(@(0.75));
         });
-        self.cagradientLayer.startPoint = CGPointMake(0, 0);
+        self.cagradientLayer.startPoint = CGPointZero;
         self.cagradientLayer.endPoint = CGPointMake(1, 0);
         self.frontLabel.layer.mask = self.cagradientLayer;
-        self.cagradientLayer.position = CGPointMake(-self.bounds.size.width/4.0,
-                                                    self.bounds.size.height/2.0);
+        self.cagradientLayer.position = CGPointMake(-self.bounds.size.width/4.0,self.bounds.size.height/2.0);
     };
 }
 
--(jobsByTimeIntervalBlock _Nonnull)iPhoneFadeWithDuration{
+-(JobsReturnViewByTimeIntervalBlock _Nonnull)iPhoneFadeWithDuration{
     @jobs_weakify(self)
-    return ^(NSTimeInterval duration){
+    return ^__kindof UIView *_Nullable(NSTimeInterval duration){
         @jobs_strongify(self)
         [self.frontLabel.layer.mask addAnimation:jobsMakeCABasicAnimation(^(__kindof CABasicAnimation * _Nullable animation) {
             @jobs_strongify(self)
@@ -72,7 +76,7 @@
             animation.repeatCount = MAXFLOAT;//LONG_MAX
             animation.removedOnCompletion = NO;
             animation.fillMode = kCAFillModeForwards;
-        }) forKey:nil];
+        }) forKey:nil];return self.frontLabel;
     };
 }
 #pragma mark —— Set方法

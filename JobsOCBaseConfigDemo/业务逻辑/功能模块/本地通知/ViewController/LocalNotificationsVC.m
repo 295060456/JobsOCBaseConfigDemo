@@ -88,7 +88,7 @@
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 [JobsMakeLocalNotification.new triggerLocalNotification:JobsLocalNotificationModel.new];
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");

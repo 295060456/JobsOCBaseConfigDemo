@@ -28,6 +28,8 @@
 		8432B6462D1DAEAE00ADE9FF /* AVAssetImageGenerator+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B62E2D1DAEAE00ADE9FF /* AVAssetImageGenerator+Extra.m */; };
 		8432B64A2D1DAFC900ADE9FF /* FileFolderHandleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B6482D1DAFC900ADE9FF /* FileFolderHandleModel.m */; };
 		8432B64E2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B64C2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m */; };
+		8432B8D02D2049D200ADE9FF /* FSCalendar+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B8CE2D2049D200ADE9FF /* FSCalendar+Extra.m */; };
+		8432B8D42D204DD700ADE9FF /* WGradientProgressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B8D22D204DD700ADE9FF /* WGradientProgressModel.m */; };
 		84392BDC2CF4A47A000D441F /* UIAlertController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD62CF4A47A000D441F /* UIAlertController+Extra.m */; };
 		84392BDD2CF4A47A000D441F /* UIAlertAction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD32CF4A47A000D441F /* UIAlertAction+Extra.m */; };
 		84392BDE2CF4A47A000D441F /* UNUserNotificationCenter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD92CF4A47A000D441F /* UNUserNotificationCenter+Extra.m */; };
@@ -1292,6 +1294,11 @@
 		8432B6482D1DAFC900ADE9FF /* FileFolderHandleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileFolderHandleModel.m; sourceTree = "<group>"; };
 		8432B64B2D1DB0EA00ADE9FF /* SPAlertControllerConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPAlertControllerConfig.h; sourceTree = "<group>"; };
 		8432B64C2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPAlertControllerConfig.m; sourceTree = "<group>"; };
+		8432B8CD2D2049D200ADE9FF /* FSCalendar+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FSCalendar+Extra.h"; sourceTree = "<group>"; };
+		8432B8CE2D2049D200ADE9FF /* FSCalendar+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar+Extra.m"; sourceTree = "<group>"; };
+		8432B8D12D204DD700ADE9FF /* WGradientProgressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WGradientProgressModel.h; sourceTree = "<group>"; };
+		8432B8D22D204DD700ADE9FF /* WGradientProgressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WGradientProgressModel.m; sourceTree = "<group>"; };
+		8432B9552D2074D100ADE9FF /* MacroDef_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDef_SDK.h; sourceTree = "<group>"; };
 		84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsOCBaseCustomize3rdCore.h; sourceTree = "<group>"; };
 		84392BBE2CF4A3AF000D441F /* Reachability+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reachability+Extra.h"; sourceTree = "<group>"; };
 		84392BBF2CF4A3AF000D441F /* Reachability+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Reachability+Extra.m"; sourceTree = "<group>"; };
@@ -3896,6 +3903,24 @@
 			path = SPAlertControllerConfig;
 			sourceTree = "<group>";
 		};
+		8432B8CF2D2049D200ADE9FF /* FSCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				8432B8CD2D2049D200ADE9FF /* FSCalendar+Extra.h */,
+				8432B8CE2D2049D200ADE9FF /* FSCalendar+Extra.m */,
+			);
+			path = FSCalendar;
+			sourceTree = "<group>";
+		};
+		8432B8D32D204DD700ADE9FF /* WGradientProgressModel */ = {
+			isa = PBXGroup;
+			children = (
+				8432B8D12D204DD700ADE9FF /* WGradientProgressModel.h */,
+				8432B8D22D204DD700ADE9FF /* WGradientProgressModel.m */,
+			);
+			path = WGradientProgressModel;
+			sourceTree = "<group>";
+		};
 		84392BC02CF4A3AF000D441F /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -3927,6 +3952,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				8432B8CF2D2049D200ADE9FF /* FSCalendar */,
 				8432B6252D1DAE6A00ADE9FF /* HXPhotoView */,
 				84B9C3322D16C32F002FE9F5 /* SRWebSocket */,
 				84A978582D1453980002A2BA /* HTMLDocument */,
@@ -6184,6 +6210,7 @@
 		CE4F1BF42CA82510002AF25B /* 水平进度条 */ = {
 			isa = PBXGroup;
 			children = (
+				8432B8D32D204DD700ADE9FF /* WGradientProgressModel */,
 				84E3EB642D0C075800D1B98B /* WGradientProgressView */,
 				84E3EB632D0C075200D1B98B /* WGradientProgress */,
 			);
@@ -9728,6 +9755,7 @@
 		CE4F28962CA8286D002AF25B /* MacroDef_Sys */ = {
 			isa = PBXGroup;
 			children = (
+				8432B9552D2074D100ADE9FF /* MacroDef_SDK.h */,
 				CE4F28932CA8286D002AF25B /* MacroDef_Log.h */,
 				CE4F28942CA8286D002AF25B /* MacroDef_Sys.h */,
 				CE4F28952CA8286D002AF25B /* MacroDef_SysWarning.h */,
@@ -16697,6 +16725,7 @@
 				CECE7E9F2C450E5B00764AF5 /* KTVHCDataResponse.m in Sources */,
 				CECE7EB82C450E5B00764AF5 /* TKPermissionHome.m in Sources */,
 				CE5A64DB2CA82FFB006D67A7 /* NSObject+Time.m in Sources */,
+				8432B8D42D204DD700ADE9FF /* WGradientProgressModel.m in Sources */,
 				CE5A64822CA82D67006D67A7 /* NSCache+Extra.m in Sources */,
 				CECE7EB42C450E5B00764AF5 /* TKPermissionCamera.m in Sources */,
 				CEDC58E32CA190BC00C7772C /* MJRefreshAutoGifFooter+Extra.m in Sources */,
@@ -17208,6 +17237,7 @@
 				CE5A65582CA8325F006D67A7 /* UIView+Extras.m in Sources */,
 				CE5A65592CA8325F006D67A7 /* UIView+Gesture.m in Sources */,
 				CE5A655A2CA8325F006D67A7 /* UIView+BackgroundLabel.m in Sources */,
+				8432B8D02D2049D200ADE9FF /* FSCalendar+Extra.m in Sources */,
 				CE5A655B2CA8325F006D67A7 /* UIView+AOP.m in Sources */,
 				CE5A655C2CA8325F006D67A7 /* UIView+SuspendView.m in Sources */,
 				CE5A655D2CA8325F006D67A7 /* UIView+Measure.m in Sources */,

@@ -8,15 +8,15 @@
 #import "JobsBitsMonitorCore.h"
 
 @interface JobsBitsMonitorCore (){
-    //总网速
+    /// 总网速
     uint32_t _iBytes;
     uint32_t _oBytes;
     uint32_t _allFlow;
-    //wifi网速
+    /// wifi网速
     uint32_t _wifiIBytes;
     uint32_t _wifiOBytes;
     uint32_t _wifiFlow;
-    //3G网速
+    /// 3G网速
     uint32_t _wwanIBytes;
     uint32_t _wwanOBytes;
     uint32_t _wwanFlow;
@@ -163,7 +163,7 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
             data.timerStyle = TimerStyle_clockwise;
             data.timeInterval = 1;
             @jobs_weakify(self)
-            [data actionObjectBlock:^(UIButtonModel *data) {
+            [data actionObjBlock:^(UIButtonModel *data) {
                 @jobs_strongify(self)
                 switch (data.timerProcessType) {
                     case TimerProcessType_Ready:{

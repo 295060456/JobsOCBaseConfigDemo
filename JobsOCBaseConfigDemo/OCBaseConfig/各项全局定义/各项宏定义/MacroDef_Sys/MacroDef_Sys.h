@@ -132,20 +132,24 @@ static void * _##varName = &_##varName; \
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
 }
 #endif /* PROP_STRONG_OBJECT_Default_TYPE */
-#ifndef PROP_COPY_OBJECT_TYPE
-#define PROP_COPY_OBJECT_TYPE(type, varName, VarName) \
+#ifndef PROP_COPY_OBJECT_TYPE2
+#define PROP_COPY_OBJECT_TYPE2(type, varName, VarName) \
 static void * _##varName = &_##varName; \
 @dynamic varName;\
--(type *)varName{ \
+-(type)varName{ \
     return objc_getAssociatedObject(self, &_##varName); \
 } \
 \
--(void)set##VarName:(type *)varName{ \
+-(void)set##VarName:(type)varName{ \
     objc_setAssociatedObject(self,\
                              &_##varName,\
                              varName,\
                              OBJC_ASSOCIATION_COPY_NONATOMIC); \
 }
+#endif /* PROP_COPY_OBJECT_TYPE2 */
+#ifndef PROP_COPY_OBJECT_TYPE
+#define PROP_COPY_OBJECT_TYPE(type, varName, VarName) \
+PROP_COPY_OBJECT_TYPE2(type *, varName, VarName)
 #endif /* PROP_COPY_OBJECT_TYPE */
 #ifndef PROP_COPY_OBJECT_Default_TYPE
 #define PROP_COPY_OBJECT_Default_TYPE(type, varName, VarName) \
@@ -471,5 +475,16 @@ static void * _##varName = &_##varName; \
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
 }
 #endif /* PROP_CGRECT */
+#ifndef DEFINE_ACTION_METHOD
+#define DEFINE_ACTION_METHOD(type, varName, VarName) \
+- (void)action##VarName:(type _Nullable)varName { \
+    self.varName = varName; \
+}
+#endif /* DEFINE_ACTION_METHOD */
+#ifndef JobsDynamicPropSetAndGet
+#define JobsDynamicPropSetAndGet(type, varName, VarName) \
+PROP_COPY_OBJECT_TYPE2(type, varName, VarName) \
+DEFINE_ACTION_METHOD(type, varName, VarName)
+#endif /* JobsDynamicPropSetAndGet */
 
 #endif /* MacroDef_Sys_h */

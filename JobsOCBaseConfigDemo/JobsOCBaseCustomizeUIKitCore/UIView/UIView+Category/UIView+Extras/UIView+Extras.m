@@ -224,12 +224,12 @@
     };
 }
 
--(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock)objectBlock{
-    self.backBtnClickAction = objectBlock;
+-(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock)objBlock{
+    self.backBtnClickAction = objBlock;
 }
     
--(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock)objectBlock{
-    self.closeBtnClickAction = objectBlock;
+-(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock)objBlock{
+    self.closeBtnClickAction = objBlock;
 }
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame{
@@ -750,7 +750,7 @@ JobsKey(_cornerRadii)
     return ^(id _Nullable target){
         @jobs_strongify(self)
         self.numberOfTouchesRequired = 1;
-        self.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
+        self.numberOfTapsRequired = 1; ///⚠️ 注意：如果要设置长按手势，此属性必须设置为0⚠️
         self.minimumPressDuration = 0.1;
         self.numberOfTouchesRequired = 1;
         self.allowableMovement = 1;
@@ -765,7 +765,7 @@ JobsKey(_cornerRadii)
         @jobs_strongify(self)
         [self tf_hide:nil];
         [self.class destroySingleton];
-        if(self.objectBlock) self.objectBlock(object);
+        if(self.objBlock) self.objBlock(object);
     };
 }
 /// 顺时针旋转radians度【依据中心点进行旋转】

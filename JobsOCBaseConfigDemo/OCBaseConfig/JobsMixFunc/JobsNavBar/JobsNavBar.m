@@ -92,19 +92,19 @@
     };
 }
 #pragma mark —— BaseViewProtocol
--(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock)objectBlock{
-    self.backBtnClickAction = objectBlock;
+-(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock)objBlock{
+    self.backBtnClickAction = objBlock;
 }
     
--(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock)objectBlock{
-    self.closeBtnClickAction = objectBlock;
+-(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock)objBlock{
+    self.closeBtnClickAction = objBlock;
 }
 #pragma mark —— lazyLoad
 -(JobsNavBarConfig *)navBarConfig{
     @jobs_weakify(self)
     if(!_navBarConfig){
         _navBarConfig = jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable data) {
-            [data actionObjectBlock:^(id _Nullable data) {
+            [data actionObjBlock:^(id _Nullable data) {
                 @jobs_strongify(self)
                 if([data isKindOfClass:UIButton.class]){
                     UIButton *btn = (UIButton *)data;

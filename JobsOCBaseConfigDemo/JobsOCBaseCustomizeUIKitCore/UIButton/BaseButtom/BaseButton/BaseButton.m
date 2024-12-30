@@ -63,7 +63,7 @@ BaseButtonProtocol_synthesize
     }
     for (UIView *subview in self.subviews) {
         if ([subview isKindOfClass:UITextView.class]) {
-            if(self.objectBlock) self.objectBlock(subview);
+            if(self.objBlock) self.objBlock(subview);
             CGPoint subPoint = [subview convertPoint:point fromView:self];
             if ([subview pointInside:subPoint withEvent:event]) {
                 return subview; /// 返回 UITextView

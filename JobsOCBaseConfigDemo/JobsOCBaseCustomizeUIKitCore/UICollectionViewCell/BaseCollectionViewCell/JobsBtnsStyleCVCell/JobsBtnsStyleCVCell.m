@@ -76,7 +76,7 @@ BaseLayerProtocol_synthesize_part3
             .jobsInit()
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -130,7 +130,7 @@ BaseLayerProtocol_synthesize_part3
             .jobsInit()
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
         }).onLongPressGestureBy(^(id data){
             JobsLog(@"");
         });_rightBtn.tag = 2;

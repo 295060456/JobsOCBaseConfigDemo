@@ -126,7 +126,7 @@ UILocationProtocol_synthesize
                     x.jobsResetBtnImage(JobsIMG(@"已点赞"));
                     self.dataModel.jobsSelected = x.selected;
                 }
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

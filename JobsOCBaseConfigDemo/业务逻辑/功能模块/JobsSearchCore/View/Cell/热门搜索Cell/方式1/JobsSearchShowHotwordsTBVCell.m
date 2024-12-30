@@ -14,7 +14,6 @@
 @end
 
 @implementation JobsSearchShowHotwordsTBVCell
-
 #pragma mark —— BaseCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
@@ -63,9 +62,9 @@
     if (!_jobsHotLabel) {
         _jobsHotLabel = JobsHotLabelByMultiLine.new;
         @jobs_weakify(self)
-        [_jobsHotLabel actionObjectBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
+        [_jobsHotLabel actionObjBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(cell);
+            if (self.objBlock) self.objBlock(cell);
         }];
         [self.contentView addSubview:_jobsHotLabel];
         [_jobsHotLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -170,10 +170,14 @@ AppToolsProtocol
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
+/// 销毁视图
+-(jobsByViewBlock _Nonnull)removeView;
+/// 定时器的销毁
+-(jobsByTimerBlock _Nonnull)destroyTimer;
 /// runtime方法交换
-+(void)exchangeMethodForClass:(NSString *)className
-                  originalSel:(SEL)originalSelector
-                  swizzledSel:(SEL)swizzledSelector;
++(void)exchangeMethodForClass:(NSString *_Nonnull)className
+                  originalSel:(SEL _Nonnull)originalSelector
+                  swizzledSel:(SEL _Nonnull)swizzledSelector;
 /// UIAlertController + UIAlertAction
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
 -(JobsReturnAlertControllerByAlertModelBlock _Nonnull)makeAlertControllerByAlertModel;

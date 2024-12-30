@@ -35,7 +35,7 @@ JobsKey(_backBtnCategory)
             .jobsResetBtnTitle(self.viewModel.backBtnTitleModel.text)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 self.backBtnClickEvent(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");

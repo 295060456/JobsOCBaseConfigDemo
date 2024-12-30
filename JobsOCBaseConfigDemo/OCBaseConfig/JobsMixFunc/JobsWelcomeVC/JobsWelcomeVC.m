@@ -9,7 +9,6 @@
 
 @interface JobsWelcomeVC ()
 // UI
-//@property(nonatomic,strong)UIScrollView *scrollView;
 @property(nonatomic,strong)UIPageControl *pageControl;
 // Data
 @property(nonatomic,strong)NSMutableArray <NSString *>*dataMutArr;
@@ -82,7 +81,7 @@
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (self.scrollView.contentOffset.x > JobsMainScreen_WIDTH() * 2.8){
-        if (self.objectBlock) self.objectBlock(@1);
+        if (self.objBlock) self.objBlock(@1);
     }
 }
 

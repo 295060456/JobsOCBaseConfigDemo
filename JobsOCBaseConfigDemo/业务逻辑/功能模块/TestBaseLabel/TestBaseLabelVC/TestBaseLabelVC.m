@@ -83,12 +83,12 @@
             make.height.mas_equalTo(JobsWidth(26));
         }];
 
-        [_titleLab.getLabel actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+        [_titleLab.getLabel actionRetIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
             JobsLog(@"JobsBaseLabel的Tap手势");
             return @1;
         }];
         
-        [_titleLab.getLabel actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+        [_titleLab.getLabel actionRetIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
             JobsLog(@"JobsBaseLabel的LongPress手势");
             return @1;
         }];
@@ -115,11 +115,11 @@
                 make.left.equalTo(self.view).offset(JobsWidth(100));
                 make.height.mas_equalTo(JobsWidth(26));
             }];
-            [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+            [label actionRetIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
                 JobsLog(@"BaseLabel的Tap手势");
                 return @1;
             }];
-            [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+            [label actionRetIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
                 JobsLog(@"BaseLabel的LongPress手势");
                 return @1;
             }];

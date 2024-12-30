@@ -61,7 +61,7 @@
 -(void)makeJobsCommentCoreVC{    //触发
     JobsCommentCoreVC *jobsCommentCoreVC = JobsCommentCoreVC.new;
 //        @jobs_weakify(self)
-    [jobsCommentCoreVC actionObjectBlock:^(id data) {
+    [jobsCommentCoreVC actionObjBlock:^(id data) {
 //            @jobs_strongify(self)
         JobsLog(@"您点击了关注");
     }];

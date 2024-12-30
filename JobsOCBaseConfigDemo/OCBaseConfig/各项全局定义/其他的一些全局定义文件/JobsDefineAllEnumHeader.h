@@ -151,6 +151,14 @@ typedef NS_ENUM(NSUInteger, TimerStyle) {
     TimerStyle_anticlockwise/// 逆时针模式（倒计时模式）
 };
 #endif /* TimerStyle_h */
+/// 排序方向
+#ifndef SortingTypeDefinition
+#define SortingTypeDefinition
+typedef NS_ENUM(NSInteger, SortingType) {
+    SortingType_Positive = 0,/// 排序方向-正序
+    SortingType_Reverse/// 排序方向-倒序
+};
+#endif
 /// 用哪一种模式进行初始化NSTimer定时器
 #ifndef ScheduledTimerType_h
 #define ScheduledTimerType_h

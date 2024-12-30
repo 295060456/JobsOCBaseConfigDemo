@@ -14,7 +14,7 @@
 
 @interface XWCountryCodeController () {
     UITableView *_tableView;
-    //    UISearchController *_searchController;
+    // UISearchController *_searchController;
     NSDictionary *_sortedNameDict;
     NSArray *_indexArray;
     NSMutableArray *_results;
@@ -27,7 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsWhiteColor;
-    
     [self creatSubviews];
 }
 

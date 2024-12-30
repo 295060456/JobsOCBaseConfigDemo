@@ -139,7 +139,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     @jobs_strongify(self)
                     @jobs_strongify(x)
                     x.tag = MKRightBtnViewBtnType_loveBtn;//写在block外部，此值异常
-                    if (self.objectBlock) self.objectBlock(x);
+                    if (self.objBlock) self.objBlock(x);
                 }];
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
@@ -167,7 +167,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     @jobs_strongify(x)
                     @jobs_strongify(self)
                     x.tag = MKRightBtnViewBtnType_commentBtn;//写在block外部，此值异常
-                    if (self.objectBlock) self.objectBlock(x);
+                    if (self.objBlock) self.objBlock(x);
                     
                     JobsCommentCoreVC *jobsCommentCoreVC = JobsCommentCoreVC.new;
                     JobsPresentationCtrl *presentationController NS_VALID_UNTIL_END_OF_SCOPE;
@@ -178,7 +178,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     jobsCommentCoreVC.transitioningDelegate = presentationController;
                     
                     [self forceComingToPushVC:jobsCommentCoreVC requestParams:JobsInternationalization(@"")];
-                    [jobsCommentCoreVC actionObjectBlock:^(id data) {
+                    [jobsCommentCoreVC actionObjBlock:^(id data) {
                         JobsLog(@"您点击了评论");
                     }];
                 }];
@@ -209,7 +209,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     JobsShareView *shareView = JobsShareView.new;
                     shareView.jobsRichViewByModel(nil);
                     self.popupShowSlideWithView(shareView);
-                    if (self.objectBlock) self.objectBlock(x);
+                    if (self.objBlock) self.objBlock(x);
                 }];
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");

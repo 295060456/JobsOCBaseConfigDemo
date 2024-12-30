@@ -20,7 +20,7 @@ static JobsTabBarVC *_tabBarVC = nil;
         _tabBarVC.isOpenScrollTabbar = NO;
     //    _tabBarVC.isShakerAnimation = YES;
         @jobs_weakify(self)
-        [_tabBarVC actionReturnBoolByNSUIntegerBlock:^BOOL(NSUInteger data) {
+        [_tabBarVC actionRetBoolByUIntegerBlock:^BOOL(NSUInteger data) {
             @jobs_strongify(self)
             for (JobsTabBarItemConfig *tabBarItemConfig in self.tabBarItemConfigMutArr) {
                 if(tabBarItemConfig.isNeedjump){
@@ -260,7 +260,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
 //                         [self isLogin:^{
 //                             @jobs_strongify(self)
 //                             [AppDelegate button:x index:0];
-//                             if (self.objectBlock) self.objectBlock(x);
+//                             if (self.objBlock) self.objBlock(x);
 //                         }];
                          [AppDelegate button:x index:0];
                      }).onLongPressGestureBy(^(id data){
@@ -286,7 +286,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
 //                         [self isLogin:^{
 //                             @jobs_strongify(self)
 //                             [AppDelegate button:x index:1];
-//                             if (self.objectBlock) self.objectBlock(x);
+//                             if (self.objBlock) self.objBlock(x);
 //                         }];
                          [AppDelegate button:x index:1];
                      }).onLongPressGestureBy(^(id data){
@@ -310,7 +310,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          @jobs_strongify(self)
                          x.selected = !x.selected;
                          [AppDelegate button:x index:2];
-                         if (self.objectBlock) self.objectBlock(x);
+                         if (self.objBlock) self.objBlock(x);
                      }).onLongPressGestureBy(^(id data){
                          JobsLog(@"");
                      }));
@@ -333,7 +333,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          JobsAppTool.loginWork = FMLoginWork_Default;
                          x.selected = !x.selected;
                          [AppDelegate button:x index:3];
-                         if (self.objectBlock) self.objectBlock(x);
+                         if (self.objBlock) self.objBlock(x);
                      }).onLongPressGestureBy(^(id data){
                          JobsLog(@"");
                      }));
@@ -354,7 +354,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          @jobs_strongify(self)
                          x.selected = !x.selected;
                          [AppDelegate button:x index:4];
-                         if (self.objectBlock) self.objectBlock(x);
+                         if (self.objBlock) self.objBlock(x);
                      }).onLongPressGestureBy(^(id data){
                          JobsLog(@"");
                      }));

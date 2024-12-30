@@ -23,7 +23,6 @@
 @end
 
 @implementation JobsUploadingProgressView
-
 static JobsUploadingProgressView *static_uploadingProgressView = nil;
 +(instancetype)sharedManager{
     @synchronized(self){
@@ -88,7 +87,7 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
         _nsTimerManager.timerStyle = TimerStyle_clockwise;
         _nsTimerManager.timeInterval = .5f;
         @jobs_weakify(self)
-        [_nsTimerManager actionObjectBlock:^(id data) {
+        [_nsTimerManager actionObjBlock:^(id data) {
             @jobs_strongify(self)
             self.refreshLabel.text.add(@".");
             self.refreshLabel.text = self.refreshLabel.text.isEqualToString(JobsInternationalization(@"正在上传...")) ? JobsInternationalization(@"正在上传") : self.refreshLabel.text.add(JobsDot);

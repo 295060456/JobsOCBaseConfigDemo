@@ -1,5 +1,5 @@
 //
-//  HotLabel.h
+//  JobsHotLabelBySingleLine.h
 //  JobsSearch
 //
 //  Created by Jobs on 2020/10/4.
@@ -31,17 +31,17 @@ NS_ASSUME_NONNULL_END
  uses
  
  // Data
- @property(nonatomic,strong)JobsHotLabelBySingleLine *hl;
+ @property(nonatomic,strong)JobsHotLabelWithSingleLine *hl;
  @property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
  
- -(JobsHotLabelBySingleLine *)hl{
+ -(JobsHotLabelWithSingleLine *)hl{
      if (!_hl) {
-         _hl = JobsHotLabelBySingleLine.new;
+         _hl = JobsHotLabelWithSingleLine.new;
          _hl.backgroundColor = JobsClearColor;
          _hl.labelShowingType = UILabelShowingType_05;
          _hl.hotLabelDefaultHeight = JobsWidth(30);
          @jobs_weakify(self)
-         [_hl actionObjectBlock:^(UIButton *btn) {
+         [_hl actionObjBlock:^(UIButton *btn) {
              @jobs_strongify(self)
              if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"Top-up check in progress")]) {
                  self.chargeOrderType = ChargeOrderType_processing;

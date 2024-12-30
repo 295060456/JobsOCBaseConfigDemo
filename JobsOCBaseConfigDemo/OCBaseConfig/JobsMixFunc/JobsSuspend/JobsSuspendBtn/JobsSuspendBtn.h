@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_END
              x.selected = !x.selected;
              JobsLog(@"%@",x.selected ? JobsInternationalization(@"开始旋转") : JobsInternationalization(@"停止旋转"));
              // x.旋转动画(x.selected);
-             if (self.objectBlock) self.objectBlock(x);
+             if (self.objBlock) self.objBlock(x);
              return nil;
          }];
          self.view.vc = weak_self;

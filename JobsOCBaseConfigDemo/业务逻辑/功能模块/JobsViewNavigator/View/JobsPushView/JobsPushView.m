@@ -42,7 +42,7 @@
             .jobsResetBtnTitle(JobsInternationalization(@"点击按钮push出view"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 
     //            JobsViewNavigator *navigator = JobsViewNavigator.new;
     //            navigator.frame = self.bounds;
@@ -84,7 +84,7 @@
             .jobsResetBtnTitle(JobsInternationalization(@"点我pop当前view"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 JobsLog(@"%@",self.navigator);
                 if(self.navigator) self.navigator.popViewAnimated(YES);
             }).onLongPressGestureBy(^(id data){

@@ -68,7 +68,7 @@
     self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeholder;
     textField.requestParams = self.textFieldInputModel;
     
-    if (self.objectBlock) self.objectBlock(textField);// 对外统一传出TF
+    if (self.objBlock) self.objBlock(textField);// 对外统一传出TF
 }
 /// 倒计时按钮（需要销毁定时器）
 -(UIButton *)getCountDownBtn{
@@ -135,7 +135,7 @@
             @jobs_strongify(self)
             x.startTimer();//选择时机、触发启动
 //            JobsLog(@"SSSSS = 获取验证码");
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
         }).heartBeatBy(^(id _Nullable data){
             if ([data isKindOfClass:UIButtonModel.class]) {
                 UIButtonModel *model = (UIButtonModel *)data;
@@ -158,7 +158,7 @@
         @jobs_weakify(self)
         [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
             @jobs_strongify(self)
-            return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
+            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(id _Nullable x) {
             @jobs_strongify(self)
             JobsLog(@"MMM = %@",x);

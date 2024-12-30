@@ -103,12 +103,12 @@ static dispatch_once_t static_baseLabelOnceToken;
                 make.edges.equalTo(self);
             }];
             
-            [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+            [label actionRetIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
                 JobsLog(@"JobsBaseLabel的Tap手势");
                 return @1;
             }];
             
-            [label actionReturnIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
+            [label actionRetIDByGestureRecognizerBlock:^id(UIGestureRecognizer *data) {
                 JobsLog(@"JobsBaseLabel的LongPress手势");
                 return @1;
             }];

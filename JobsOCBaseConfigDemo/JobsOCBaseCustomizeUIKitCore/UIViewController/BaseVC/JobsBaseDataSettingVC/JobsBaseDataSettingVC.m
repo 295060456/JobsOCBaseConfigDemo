@@ -161,7 +161,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         };
         _backBtnModel.clickEventBlock = ^id(BaseButton *x){
             @jobs_strongify(self)
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             self.backBtnClickEvent(x);
             return nil;
         };

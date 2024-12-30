@@ -31,7 +31,7 @@
 -(void)loadView{
     [super loadView];
     @jobs_weakify(self)
-    [MainWindow actionObjectBlock:^(id data) {
+    [MainWindow actionObjBlock:^(id data) {
         @jobs_strongify(self)
         [self dismissViewControllerAnimated:YES
                                  completion:Nil];
@@ -143,7 +143,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         JobsInfoTBVCell *cell = JobsInfoTBVCell.cellStyleValue1WithTableView(tableView);
         cell.jobsRichElementsCellBy(childCommentModel);
 //        @jobs_weakify(self)
-        [cell actionObjectBlock:^(id data) {
+        [cell actionObjBlock:^(id data) {
 //            @jobs_strongify(self)
         }];return cell;
     }else{
@@ -152,7 +152,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             JobsInfoTBVCell *cell = JobsInfoTBVCell.cellStyleValue1WithTableView(tableView);
             cell.jobsRichElementsCellBy(childCommentModel);
 //            @jobs_weakify(self)
-            [cell actionObjectBlock:^(id data) {
+            [cell actionObjBlock:^(id data) {
 //                @jobs_strongify(self)
             }];return cell;
         }else{
@@ -181,7 +181,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
     header.jobsRichViewByModel(self.mjModel.listDataArr[section]);/// 一级评论数据 展示在viewForHeaderInSection
     @jobs_weakify(self)
     // 一级标题点击事件
-    [header actionObjectBlock:^(id data) {
+    [header actionObjBlock:^(id data) {
         @jobs_strongify(self)
         [self 一级标题点击事件];
     }];return header;
@@ -192,7 +192,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
         _titleHeaderView = JobsCommentTitleHeaderView.new;
         _titleHeaderView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [_titleHeaderView actionObjectBlock:^(id data) {
+        [_titleHeaderView actionObjBlock:^(id data) {
             @jobs_strongify(self)
             [self dismissViewControllerAnimated:YES
                                      completion:Nil];

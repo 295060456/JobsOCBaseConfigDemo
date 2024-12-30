@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_END
          _选择区号并输入手机号 = JobsAppDoorInputViewBaseStyle_7.new;
          [self.view addSubview:_选择区号并输入手机号];
          @jobs_weakify(self)
-         [_选择区号并输入手机号 actionObjectBlock:^(JobsAppDoorInputViewTFModel *data) {
+         [_选择区号并输入手机号 actionObjBlock:^(JobsAppDoorInputViewTFModel *data) {
              @jobs_strongify(self)
  //            if ([data isKindOfClass:JobsAppDoorInputViewTFModel.class]) {
  //                JobsAppDoorInputViewTFModel *model = (JobsAppDoorInputViewTFModel *)data;

@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_END
          _获取并输入手机验证码.countDownBtnWidth = JobsWidth(80);
          _获取并输入手机验证码.textFieldWidth = JobsWidth(220);
          @jobs_weakify(self)
-         [_获取并输入手机验证码 actionObjectBlock:^(JobsAppDoorInputViewTFModel *data) {
+         [_获取并输入手机验证码 actionObjBlock:^(JobsAppDoorInputViewTFModel *data) {
              @jobs_strongify(self)
  //            if ([data isKindOfClass:JobsAppDoorInputViewTFModel.class]) {
  //                JobsAppDoorInputViewTFModel *model = (JobsAppDoorInputViewTFModel *)data;

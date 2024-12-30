@@ -92,7 +92,7 @@
             .cornerRadiusValueBy(JobsWidth(8))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 JobsLog(@"AAA = %@",self.dropDownListView);
                 x.selected = !x.selected;
                 if (x.selected) {

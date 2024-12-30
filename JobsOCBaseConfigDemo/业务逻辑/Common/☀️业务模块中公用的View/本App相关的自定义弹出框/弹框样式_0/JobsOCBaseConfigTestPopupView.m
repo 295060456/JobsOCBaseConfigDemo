@@ -74,7 +74,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -105,7 +105,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
             @jobs_strongify(self)
             x.selected = !x.selected;
             [self tf_hide:nil];
-            if(self.objectBlock) self.objectBlock(x);
+            if(self.objBlock) self.objBlock(x);
             return nil;
         }];
     }return _testPopupViewSureBtn;

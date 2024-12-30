@@ -47,7 +47,7 @@
         _scrollYView.sizer = _scrollYView.viewSizeByModel(nil);
         _scrollYView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [_scrollYView actionObjectBlock:^(JobsScrollYView *data) {
+        [_scrollYView actionObjBlock:^(JobsScrollYView *data) {
             JobsLog(@"sss = %f",self->_scrollYView.y);
             @jobs_strongify(self)
             /// 向下滑动为正

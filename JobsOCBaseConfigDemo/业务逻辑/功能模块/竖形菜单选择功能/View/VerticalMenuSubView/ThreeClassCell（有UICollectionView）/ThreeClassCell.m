@@ -141,7 +141,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.objectBlock) self.objectBlock([self.dataArray objectAtIndex:indexPath.row]);
+    if (self.objBlock) self.objBlock([self.dataArray objectAtIndex:indexPath.row]);
 
 }
 

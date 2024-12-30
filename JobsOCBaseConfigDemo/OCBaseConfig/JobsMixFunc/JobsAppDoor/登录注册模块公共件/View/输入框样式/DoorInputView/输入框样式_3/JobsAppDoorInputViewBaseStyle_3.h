@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_END
      if (!_用户名输入框) {
          _用户名输入框 = JobsAppDoorInputViewBaseStyle_3.new;
          @jobs_weakify(self)
-         [_用户名输入框 actionObjectBlock:^(JobsAppDoorInputViewTFModel *data) {
+         [_用户名输入框 actionObjBlock:^(JobsAppDoorInputViewTFModel *data) {
              @jobs_strongify(self)
  //            if ([data isKindOfClass:JobsAppDoorInputViewTFModel.class]) {
  //                JobsAppDoorInputViewTFModel *model = (JobsAppDoorInputViewTFModel *)data;

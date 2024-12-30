@@ -16,14 +16,20 @@
 @end
 
 @implementation JhtBannerCardView
-//这里只用init方法行不通
+///
++(JobsReturnJhtBannerCardViewByFrame _Nonnull)initByFrame{
+    return ^JhtBannerCardView *_Nullable(CGRect frame){
+        return [JhtBannerCardView.alloc initWithFrame:frame];
+    };
+}
+/// 这里只用init方法行不通
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         
         self.cardLab.alpha = 1;
         self.cardImageView.alpha = 1;
 
-        // 覆盖在mainImageView上的view（蒙板）
+        /// 覆盖在mainImageView上的view（蒙板）
         self.coverView.alpha = 1;
         self.cornerCutToCircleWithCornerRadius(8.f);
     }return self;

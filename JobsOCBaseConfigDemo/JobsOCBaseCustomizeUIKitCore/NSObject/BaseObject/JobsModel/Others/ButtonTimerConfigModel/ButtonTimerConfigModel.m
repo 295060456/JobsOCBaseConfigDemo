@@ -29,11 +29,11 @@ UILocationProtocol_synthesize
             data.timerStyle = self.countDownBtnType;
             data.anticlockwiseTime = self.count;//【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】
             //倒计时启动
-            [data actionObjectBlock:^(NSTimerManager *data) {
+            [data actionObjBlock:^(NSTimerManager *data) {
                 @jobs_strongify(self)
                 JobsLog(@"正在倒计时...");
-                JobsLog(@"SSS = %@",self.objectBlock);
-                if (self.objectBlock) self.objectBlock(data);
+                JobsLog(@"SSS = %@",self.objBlock);
+                if (self.objBlock) self.objBlock(data);
             }];
         });
     }return _timerManager;

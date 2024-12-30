@@ -24,7 +24,7 @@ UIPictureAndBackGroundCorProtocol_synthesize
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
     @jobs_weakify(self)
-    if (self.objectBlock) self.objectBlock(weak_self);
+    if (self.objBlock) self.objBlock(weak_self);
 }
 /// 由具体的子类进行覆写
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel{

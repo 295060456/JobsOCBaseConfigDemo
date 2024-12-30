@@ -106,9 +106,9 @@
             JobsAppDoorInputViewBaseStyle *inputView = cls.new;
             [self.registerDoorInputViewBaseStyleMutArr addObject:inputView];
             @jobs_weakify(self)
-            [inputView actionObjectBlock:^(id data) {
+            [inputView actionObjBlock:^(id data) {
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(data);
+                if (self.objBlock) self.objBlock(data);
             }];return inputView;
         }return nil;
     };
@@ -127,7 +127,7 @@
             .jobsResetBtnTitle(Title1)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 [self endEditing:YES];
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
@@ -169,7 +169,7 @@
             .jobsResetBtnCornerRadiusValue(ThingsHeight / 2)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 [self endEditing:YES];
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");

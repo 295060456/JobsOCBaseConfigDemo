@@ -69,7 +69,7 @@
             @jobs_strongify(self)
             data.timerStyle = TimerStyle_anticlockwise;
             data.anticlockwiseTime = self.countDownTime;
-            [data actionObjectBlock:^(id data) {
+            [data actionObjBlock:^(id data) {
                 @jobs_strongify(self)
                 if ([data isKindOfClass:NSTimerManager.class]) {
                     NSTimerManager *timerManager = (NSTimerManager *)data;
@@ -77,7 +77,7 @@
                 }else if ([data isKindOfClass:UIButtonModel.class]){
                     UIButtonModel *model = (UIButtonModel *)data;
                     if (model.timerProcessType == TimerProcessType_Stop) {
-                        if (self.objectBlock) self.objectBlock(data);
+                        if (self.objBlock) self.objBlock(data);
                     }
                 }else{}
             }];

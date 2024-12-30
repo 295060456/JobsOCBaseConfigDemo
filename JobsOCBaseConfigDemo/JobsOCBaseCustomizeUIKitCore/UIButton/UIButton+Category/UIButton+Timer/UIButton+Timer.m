@@ -347,7 +347,7 @@ JobsKey(_btnTimerConfig)
     }
     /// 定时器运行时的Block
     @jobs_weakify(self)
-    [BtnTimerConfig actionObjectBlock:^(NSTimerManager *data) {
+    [BtnTimerConfig actionObjBlock:^(NSTimerManager *data) {
         @jobs_strongify(self)
         switch (data.timerProcessType) {
             case TimerProcessType_Ready:{

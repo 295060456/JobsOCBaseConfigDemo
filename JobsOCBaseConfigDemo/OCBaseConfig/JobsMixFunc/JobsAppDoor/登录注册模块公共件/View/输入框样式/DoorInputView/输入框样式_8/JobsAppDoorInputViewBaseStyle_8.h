@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_END
          _inputView = [JobsAppDoorInputViewBaseStyle_8.alloc initWithSize:self.inputViewSize];
          _inputView.backgroundColor = HEXCOLOR(0xFFFCF7);
          @jobs_weakify(self)
-         [_inputView actionObjectBlock:^(UITextField *data) {
+         [_inputView actionObjBlock:^(UITextField *data) {
  //            JobsAppDoorInputViewTFModel *textFieldInputModel = (JobsAppDoorInputViewTFModel *)data.requestParams;
              @jobs_strongify(self)
          }];

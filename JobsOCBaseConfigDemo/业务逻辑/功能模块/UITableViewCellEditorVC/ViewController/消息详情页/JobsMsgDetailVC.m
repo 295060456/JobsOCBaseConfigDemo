@@ -198,7 +198,7 @@
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 self.backBtnClickEvent(x);
-                if (self.objectBlock) self.objectBlock(self.msgDataModel);
+                if (self.objBlock) self.objBlock(self.msgDataModel);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

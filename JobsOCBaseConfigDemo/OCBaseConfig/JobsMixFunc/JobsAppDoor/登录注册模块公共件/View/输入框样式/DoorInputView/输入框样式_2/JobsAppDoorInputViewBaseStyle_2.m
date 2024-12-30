@@ -80,7 +80,7 @@
 
     textField.requestParams = self.textFieldInputModel;
     
-    if (self.objectBlock) self.objectBlock(textField);// 对外统一传出TF
+    if (self.objBlock) self.objBlock(textField);// 对外统一传出TF
 }
 #pragma mark —— UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -139,7 +139,7 @@
         @jobs_weakify(self)
         [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
             @jobs_strongify(self)
-            return self.returnBoolByIDBlock ? self.returnBoolByIDBlock(data) : YES;
+            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(id _Nullable x) {
             @jobs_strongify(self)
             JobsLog(@"MMM = %@",x);

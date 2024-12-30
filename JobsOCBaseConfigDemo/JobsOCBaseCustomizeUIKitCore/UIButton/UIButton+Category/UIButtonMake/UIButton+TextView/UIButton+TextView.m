@@ -29,7 +29,7 @@
       primaryActionForTextItem:(UITextItem *)textItem
                  defaultAction:(UIAction *)defaultAction API_AVAILABLE(ios(17.0)){
     textItem.textView = textView;
-    if(self.objectBlock) self.objectBlock(textItem);
+    if(self.objBlock) self.objBlock(textItem);
     return defaultAction; /// 默认行为
 }
 #pragma mark —— @property(nonatomic,strong)BaseTextView *titleTextView;

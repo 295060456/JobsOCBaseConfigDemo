@@ -124,7 +124,7 @@ static dispatch_once_t static_textViewOnceToken;
             self.textModel.curWordCount = x.length;
             self.updateWordCount(0);
             /// 向外回调目前的textView的字符串
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
         }];
     }
     _textView.text = self.textModel.text;

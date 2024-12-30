@@ -304,7 +304,7 @@ static dispatch_once_t onceToken;
                                     self.selectedIndex += 2;
                                 }
                                 // 向外回调需要做的事
-                                if (self.returnBoolByNSUIntegerBlock) self->A = self.returnBoolByNSUIntegerBlock(d);
+                                if (self.retBoolByUIntegerBlock) self->A = self.retBoolByUIntegerBlock(d);
                             }return;
                         }
                         // 手势从右到左
@@ -312,11 +312,9 @@ static dispatch_once_t onceToken;
                             if (translation.x < 0.f && self.selectedIndex + 1 < self.viewControllers.count) {
                                 self.selectedIndex ++;
                             }else{
-                                if (self.isJumpToNextVC) {
-                                    self.selectedIndex -= 2;
-                                }
+                                if (self.isJumpToNextVC) self.selectedIndex -= 2;
                                 // 向外回调需要做的事
-                                if (self.returnBoolByNSUIntegerBlock) self->A = self.returnBoolByNSUIntegerBlock(d);
+                                if (self.retBoolByUIntegerBlock) self->A = self.retBoolByUIntegerBlock(d);
                             }return;
                         }
                     }
@@ -375,8 +373,7 @@ static dispatch_once_t onceToken;
                 default:
                     break;
             }return nil;
-        }];
-        subView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+        }];subView.longPressGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
     }
 }
 #pragma mark —— UITabBarDelegate
@@ -417,7 +414,7 @@ static dispatch_once_t onceToken;
  
     ②- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController；
  
- 【📢注意】在①中，如果对self.selectedIndex进行修改，那么在②中，设置返回值为NO无效
+ 📢【注意】在①中，如果对self.selectedIndex进行修改，那么在②中，设置返回值为NO无效
  */
 - (BOOL)tabBarController:(UITabBarController *)tabBarController
 shouldSelectViewController:(UIViewController *)viewController {
@@ -427,7 +424,7 @@ shouldSelectViewController:(UIViewController *)viewController {
         [viewController lottieImagePlay];
     }
     
-    if (self.returnBoolByNSUIntegerBlock) A = self.returnBoolByNSUIntegerBlock(index);
+    if (self.retBoolByUIntegerBlock) A = self.retBoolByUIntegerBlock(index);
     return self.forcedLoginIndex(index) ? (A && self.isLogin) : A;
 }
 
@@ -459,11 +456,12 @@ shouldSelectViewController:(UIViewController *)viewController {
 @synthesize viewModel = _viewModel;
 -(UIViewModel *)viewModel{
     if (!_viewModel) {
-        _viewModel = UIViewModel.new;
-        _viewModel.bgCor = JobsWhiteColor;
-//        _viewModel.bgImage = isiPhoneX_series() ? JobsIMG(@"底部导航栏背景(刘海屏)") : JobsIMG(@"底部导航栏背景(非刘海屏)");
-        _viewModel.isTranslucent = NO;
-        _viewModel.offsetHeight = JobsWidth(5);
+        _viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.bgCor = JobsWhiteColor;
+    //        data.bgImage = isiPhoneX_series() ? JobsIMG(@"底部导航栏背景(刘海屏)") : JobsIMG(@"底部导航栏背景(非刘海屏)");
+            data.isTranslucent = NO;
+            data.offsetHeight = JobsWidth(5);
+        });
     }return _viewModel;
 }
 @synthesize myTabBar = _myTabBar;
@@ -480,13 +478,13 @@ shouldSelectViewController:(UIViewController *)viewController {
     }return _myTabBar;
 }
 
--(NSMutableArray<UIView *> *)UITabBarButtonMutArr{
+-(NSMutableArray <UIView *>*)UITabBarButtonMutArr{
     if (!_UITabBarButtonMutArr) {
         _UITabBarButtonMutArr = NSMutableArray.array;
     }return _UITabBarButtonMutArr;
 }
 
--(NSMutableArray<UIViewModel *> *)pullListAutoSizeViewMutArr{
+-(NSMutableArray <UIViewModel *>*)pullListAutoSizeViewMutArr{
     if (!_pullListAutoSizeViewMutArr) {
         _pullListAutoSizeViewMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {

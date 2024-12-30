@@ -32,9 +32,9 @@ NS_ASSUME_NONNULL_END
          _menuView = [JobsLinkageMenuView.alloc initWithFrame:self.bounds
                                                     btnConfig:self.buttonModel];
          @jobs_weakify(self)
-         [_menuView actionObjectBlock:^(id  _Nullable x) {
+         [_menuView actionObjBlock:^(id  _Nullable x) {
              @jobs_strongify(self)
-             if (self.objectBlock) self.objectBlock(x);
+             if (self.objBlock) self.objBlock(x);
          }];
          [self addSubview:_menuView];
      }return _menuView;

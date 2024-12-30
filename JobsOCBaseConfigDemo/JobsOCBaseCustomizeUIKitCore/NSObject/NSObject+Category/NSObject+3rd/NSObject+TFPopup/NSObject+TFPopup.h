@@ -107,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 /**
  @jobs_strongify(self)
- if (self.objectBlock) self.objectBlock(x);
+ if (self.objBlock) self.objBlock(x);
  [self tf_hide:^{
      @jobs_strongify(self)
      ShowTips(AccBindSuccessTipView

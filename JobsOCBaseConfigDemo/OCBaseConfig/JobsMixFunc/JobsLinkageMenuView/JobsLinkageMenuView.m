@@ -241,7 +241,7 @@
             })).onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 [self choseMenu:x];
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

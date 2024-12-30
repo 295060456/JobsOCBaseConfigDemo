@@ -23,7 +23,7 @@
                 data.add(JobsInternationalization(@"响应事件").initMenuItemBy(selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                                                        id _Nullable arg) {
                     @jobs_strongify(self)
-                    if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf,arg);
+                    if (self.retIDBySelectorBlock) self.retIDBySelectorBlock(weakSelf,arg);
                     return nil;
                 }, MethodName(self), self)));
             });

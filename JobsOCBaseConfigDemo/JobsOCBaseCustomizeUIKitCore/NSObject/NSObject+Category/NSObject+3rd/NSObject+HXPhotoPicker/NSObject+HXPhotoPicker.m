@@ -114,7 +114,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     /// 获取编辑后的图片（如果 allowsEditing 为 NO，则获取原图）
     UIImage *selectedImage = info[UIImagePickerControllerEditedImage] ? : info[UIImagePickerControllerOriginalImage];
     /// 在此处处理拍照得到的图片，例如保存到相册或显示在界面上
-    if(self.objectBlock) self.objectBlock(selectedImage);
+    if(self.objBlock) self.objBlock(selectedImage);
     /// 关闭相机界面
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

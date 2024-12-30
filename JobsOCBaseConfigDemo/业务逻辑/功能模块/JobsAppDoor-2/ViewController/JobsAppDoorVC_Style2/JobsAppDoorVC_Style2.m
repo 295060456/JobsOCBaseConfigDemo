@@ -189,7 +189,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         [self.view addSubview:_loginContentView];
         _loginContentView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [_loginContentView actionObjectBlock:^(id data) {
+        [_loginContentView actionObjBlock:^(id data) {
             @jobs_strongify(self)
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
@@ -243,7 +243,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         [self.view addSubview:_registerContentView];
         _registerContentView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [_registerContentView actionObjectBlock:^(id data) {
+        [_registerContentView actionObjBlock:^(id data) {
             @jobs_strongify(self)
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
@@ -279,7 +279,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
         [self.view addSubview:_forgotCodeContentView];
         _forgotCodeContentView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [_forgotCodeContentView actionObjectBlock:^(id data) {
+        [_forgotCodeContentView actionObjBlock:^(id data) {
             @jobs_strongify(self)
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;

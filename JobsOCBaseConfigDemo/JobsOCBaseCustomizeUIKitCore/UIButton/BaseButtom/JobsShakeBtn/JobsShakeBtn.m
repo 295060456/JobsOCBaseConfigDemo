@@ -89,7 +89,7 @@
 }
 /// 点击右上角按钮
 - (void)iconClick{
-    if(self.objectBlock)self.objectBlock(self);
+    if(self.objBlock)self.objBlock(self);
 }
 #pragma mark —— lazyLoad
 - (UIImageView *)iconBtn {

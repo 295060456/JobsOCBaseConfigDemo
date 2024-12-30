@@ -77,7 +77,7 @@
         }] subscribeNext:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             JobsLog(@"输入的字符为 = %@",x);
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
         }];
         _textField.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
             model.jobsWidth = .05f;
@@ -97,7 +97,7 @@
             .jobsResetBtnTitle(JobsInternationalization(@"取消"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

@@ -83,7 +83,7 @@ static dispatch_once_t static_filtrationViewOnceToken;
     if (!_hotLabel) {
         _hotLabel = JobsHotLabelByMultiLine.new;
         _hotLabel.jobsRichViewByModel(self.hotLabelModel);
-        [_hotLabel actionObjectBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
+        [_hotLabel actionObjBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
             
         }];
         [self addSubview:_hotLabel];

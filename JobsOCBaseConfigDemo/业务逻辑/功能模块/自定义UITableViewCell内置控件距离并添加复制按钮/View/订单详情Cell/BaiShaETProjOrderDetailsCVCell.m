@@ -130,7 +130,7 @@ heightForFooterInSectionByModel:(NSInteger)section{
     tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xFFFFFF);
     tbvFooterView.jobsRichViewByModel(nil);
     @jobs_weakify(self)
-    [tbvFooterView actionObjectBlock:^(id data) {
+    [tbvFooterView actionObjBlock:^(id data) {
         @jobs_strongify(self)
     }];return tbvFooterView;
 }

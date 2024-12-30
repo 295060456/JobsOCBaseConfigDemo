@@ -89,7 +89,7 @@
         @jobs_weakify(self)
         [_cancelBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
-            if(self.objectBlock) self.objectBlock(x);
+            if(self.objBlock) self.objBlock(x);
             return nil;
         }];
         [self addSubview:_cancelBtn];
@@ -111,7 +111,7 @@
         @jobs_weakify(self)
         [_sureBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
-            if(self.objectBlock) self.objectBlock(x);
+            if(self.objBlock) self.objBlock(x);
             return nil;
         }];
         [self addSubview:_sureBtn];

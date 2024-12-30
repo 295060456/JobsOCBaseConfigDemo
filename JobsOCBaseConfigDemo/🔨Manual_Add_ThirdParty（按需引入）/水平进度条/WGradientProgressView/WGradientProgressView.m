@@ -26,11 +26,11 @@ static dispatch_once_t dispatchOnce;
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
+    @jobs_weakify(self)
     dispatch_once(&dispatchOnce, ^{
-        if (self.img) {
-            self.imgV.alpha = 1;
-        }
-        self.titleLab.alpha = 1;
+        @jobs_strongify(self)
+        if (self.img) self.imgV.jobsVisible = YES;
+        self.titleLab.jobsVisible = YES;
     });
 }
 #pragma mark —— lazyLoad

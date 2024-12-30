@@ -234,7 +234,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         } subscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             self.realTextField.text = x;
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
         }];
     }return _realTextField;
 }

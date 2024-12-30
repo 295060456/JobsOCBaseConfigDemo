@@ -98,7 +98,7 @@ shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     JobsLog(@"%s", __FUNCTION__);
     JobsSearchDataCVCell *cvcell = (JobsSearchDataCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if (self.objectBlock) self.objectBlock(cvcell.viewModel);
+    if (self.objBlock) self.objBlock(cvcell.viewModel);
     /// 点击即存入数据
     JobsSearchStorageData(cvcell.viewModel.textModel.text);
 }

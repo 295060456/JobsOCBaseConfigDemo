@@ -114,7 +114,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
                     self.jobsOpenURL(self.customerContactModel.onlineUrl.customerAccount);
                 }
                 [self endEditing:YES];
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -136,7 +136,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
             .jobsResetBtnBgImage(JobsIMG(@"客服_关闭按钮"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

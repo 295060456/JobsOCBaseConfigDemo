@@ -5,11 +5,12 @@
 //  Created by Jobs on 2022/1/27.
 //
 
+#import <JavaScriptCore/JavaScriptCore.h>
+
 #ifndef ReturnByCertainParameters_h
 #define ReturnByCertainParameters_h
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
-#import <JavaScriptCore/JavaScriptCore.h>
 ///【 确定入参个数 并且 有返回值的Block定义】
 #pragma mark —— 关于 id
 typedef id _Nullable(^JobsReturnIDByVoidBlock)(void);
@@ -52,15 +53,8 @@ typedef id _Nullable(^JobsReturnIDBySelectorBlock)(id _Nullable weakSelf,id _Nul
 typedef id _Nullable(^JobsReturnIDBySelectorBlock2)(id _Nullable weakSelf,
                                                     id _Nullable arg,
                                                     id _Nullable data);
-typedef id _Nullable(^JobsReturnIDByTwoIDBlock)Jobs_2_Arguments;
-typedef id _Nullable(^JobsReturnIDByThreeIDBlock)Jobs_3_Arguments;
-typedef id _Nullable(^JobsReturnIDByFourIDBlock)Jobs_4_Arguments;
-typedef id _Nullable(^JobsReturnIDByFiveIDBlock)Jobs_5_Arguments;
-typedef id _Nullable(^JobsReturnIDBySixIDBlock)Jobs_6_Arguments;
-typedef id _Nullable(^JobsReturnIDBySevenIDBlock)Jobs_7_Arguments;
-typedef id _Nullable(^JobsReturnIDByEightIDBlock)Jobs_8_Arguments;
-typedef id _Nullable(^JobsReturnIDByNineIDBlock)Jobs_9_Arguments;
-typedef id _Nullable(^JobsReturnIDByTenIDBlock)Jobs_10_Arguments;
+#pragma mark —— 关于 NSRunLoop
+typedef __kindof NSRunLoop *_Nullable(^JobsReturnRunLoopByTimerBlock)(NSTimer *_Nonnull timer);
 #pragma mark —— 关于数据容器
 /// 数组
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByVoidBlock)(void);
@@ -132,17 +126,6 @@ typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByImagePa
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitlePaddingBlock)(CGFloat data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock)(BOOL data) API_AVAILABLE(ios(16.0));
-#pragma mark —— 关于手势
-typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidBlock)(void);
-typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidStarBlock)(void *_Nullable key);
-typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByLongPressGestureBlock)(UILongPressGestureRecognizer *_Nullable gesture);
-typedef __kindof UIView *_Nullable(^JobsReturnViewBySwipeGestureBlock)(UISwipeGestureRecognizer *_Nullable gesture);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByPanGestureBlock)(UIPanGestureRecognizer *_Nullable gesture);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByPinchGestureBlock)(UIPinchGestureRecognizer *_Nullable gesture);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable gesture);
 #pragma mark —— 关于 Layer
 typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCALayerBlock)(CALayer *_Nullable data);
 #pragma mark —— 关于 View
@@ -162,6 +145,7 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByPointBlock)(CGPoint data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByCenterBlock)(CGFloat x,CGFloat y);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByClassBlock)(Class _Nonnull cls);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTableViewHeaderFooterViewBlock)(__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByTimeIntervalBlock)(NSTimeInterval data);
 typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByViewBlock)(__kindof UIView *_Nullable view);
 typedef __kindof UIBarButtonItem *_Nullable(^JobsReturnBarButtonItemByVoidBlock)(void);
 typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByImageBlock)(UIImage *_Nullable data);
@@ -171,6 +155,18 @@ typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByWindowSceneBlock)(UIWind
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemByIDBlock)(id _Nullable data);
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemBySELBlock)(SEL _Nullable data);
 typedef UIEditMenuInteraction *_Nullable(^JobsReturnUIEditMenuInteractionByIDBlock)(id<UIEditMenuInteractionDelegate>_Nullable data);
+/// UIView + UIGestureRecognizer
+typedef __kindof UIView *_Nullable(^JobsReturnViewByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByLongPressGestureBlock)(UILongPressGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewBySwipeGestureBlock)(UISwipeGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByPanGestureBlock)(UIPanGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByPinchGestureBlock)(UIPinchGestureRecognizer *_Nullable gesture);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable gesture);
+#pragma mark —— 关于手势
+typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable data);
+typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidBlock)(void);
+typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidStarBlock)(void *_Nullable key);
 #pragma mark —— 关于按钮
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByControlStateBlock)(UIControlState data);
@@ -261,6 +257,8 @@ typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellBy
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByIndexPathBlock)(NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于 UIScrollView
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByPointBlock)(CGPoint data);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByRectBlock)(CGRect data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray *_Nullable data);
 #pragma mark —— 关于 WKWebView
 #import <WebKit/WebKit.h>
@@ -333,6 +331,7 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSStr
 typedef __kindof NSRegularExpression *_Nullable(^JobsReturnRegularExpressionByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于时间（格式）/日历/计时器/间隔时间
 typedef __kindof NSTimer *_Nullable(^JobsReturnTimerByVoidBlock)(void);
+typedef __kindof NSTimer *_Nullable(^JobsReturnTimerByTimerBlock)(NSTimer *_Nullable timer);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateFormatterBlock)(NSDateFormatter *_Nullable data);
 typedef NSTimeInterval(^JobsReturnTimeIntervalByDateBlock)(NSDate *_Nullable data);
 typedef __kindof NSDate *_Nullable(^JobsReturnDateByStringBlock)(NSString *_Nullable data);
@@ -429,16 +428,6 @@ typedef CGSize(^JobsReturnSizeByUnsignedCharBlock)(unsigned char data);
 typedef CGSize(^JobsReturnSizeByUnsignedShortBlock)(unsigned short data);
 typedef CGSize(^JobsReturnSizeByUnsignedLongBlock)(unsigned long data);
 typedef CGSize(^JobsReturnSizeByUnsignedLongLongBlock)(unsigned long long data);
-/// 多参数
-typedef CGSize(^JobsReturnCGSizeByTwoIDBlock)Jobs_2_Arguments;
-typedef CGSize(^JobsReturnCGSizeByThreeIDBlock)Jobs_3_Arguments;
-typedef CGSize(^JobsReturnCGSizeByFourIDBlock)Jobs_4_Arguments;
-typedef CGSize(^JobsReturnCGSizeByFiveIDBlock)Jobs_5_Arguments;
-typedef CGSize(^JobsReturnCGSizeBySixIDBlock)Jobs_6_Arguments;
-typedef CGSize(^JobsReturnCGSizeBySevenIDBlock)Jobs_7_Arguments;
-typedef CGSize(^JobsReturnCGSizeByEightIDBlock)Jobs_8_Arguments;
-typedef CGSize(^JobsReturnCGSizeByNineIDBlock)Jobs_9_Arguments;
-typedef CGSize(^JobsReturnCGSizeByTenIDBlock)Jobs_10_Arguments;
 
 typedef CGRect(^JobsReturnCGRectByVoidBlock)(void);
 typedef CGRect(^JobsReturnCGRectByArrBlock)(__kindof NSArray <__kindof UIView *>*_Nullable arr);
@@ -464,15 +453,6 @@ typedef CGRect(^JobsReturnCGRectByIDBlock)(id _Nullable data);
 typedef CGRect(^JobsReturnRectByViewBlock)(__kindof UIView *_Nonnull data);
 /// 多参数
 typedef CGRect(^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,__kindof UIView *_Nonnull superView);
-typedef CGRect(^JobsReturnCGRectByTwoIDBlock)Jobs_2_Arguments;
-typedef CGRect(^JobsReturnCGRectByThreeIDBlock)Jobs_3_Arguments;
-typedef CGRect(^JobsReturnCGRectByFourIDBlock)Jobs_4_Arguments;
-typedef CGRect(^JobsReturnCGRectByFiveIDBlock)Jobs_5_Arguments;
-typedef CGRect(^JobsReturnCGRectBySixIDBlock)Jobs_6_Arguments;
-typedef CGRect(^JobsReturnCGRectBySevenIDBlock)Jobs_7_Arguments;
-typedef CGRect(^JobsReturnCGRectByEightIDBlock)Jobs_8_Arguments;
-typedef CGRect(^JobsReturnCGRectByNineIDBlock)Jobs_9_Arguments;
-typedef CGRect(^JobsReturnCGRectByTenIDBlock)Jobs_10_Arguments;
 
 typedef CGPoint(^JobsReturnCGPointByVoidBlock)(void);
 typedef CGPoint(^JobsReturnCGPointByBOOLBlock)(BOOL data);
@@ -491,16 +471,6 @@ typedef CGPoint(^JobsReturnCGPointByNSIntegerBlock)(NSInteger data);
 typedef CGPoint(^JobsReturnCGPointByUIntegerBlock)(NSUInteger data);
 typedef CGPoint(^JobsReturnCGPointByCGFloatBlock)(CGFloat data);
 typedef CGPoint(^JobsReturnCGPointByIDBlock)(id _Nullable data);
-/// 多参数
-typedef CGPoint(^JobsReturnCGPointByTwoIDBlock)Jobs_2_Arguments;
-typedef CGPoint(^JobsReturnCGPointByThreeIDBlock)Jobs_3_Arguments;
-typedef CGPoint(^JobsReturnCGPointByFourIDBlock)Jobs_4_Arguments;
-typedef CGPoint(^JobsReturnCGPointByFiveIDBlock)Jobs_5_Arguments;
-typedef CGPoint(^JobsReturnCGPointBySixIDBlock)Jobs_6_Arguments;
-typedef CGPoint(^JobsReturnCGPointBySevenIDBlock)Jobs_7_Arguments;
-typedef CGPoint(^JobsReturnCGPointByEightIDBlock)Jobs_8_Arguments;
-typedef CGPoint(^JobsReturnCGPointByNineIDBlock)Jobs_9_Arguments;
-typedef CGPoint(^JobsReturnCGPointByTenIDBlock)Jobs_10_Arguments;
 #pragma mark —— 关于数据类型
 typedef NSInteger(^JobsReturnNSIntegerByVoidBlock)(void);
 typedef NSInteger(^JobsReturnByNSIntegerBlock)(NSInteger data);
@@ -598,6 +568,9 @@ typedef __kindof PHAssetCollectionChangeRequest *_Nonnull(^JobsReturnPHAssetColl
 typedef PHAssetCollectionChangeRequest *_Nullable(^JobsReturnPHAssetCollectionChangeRequestByIDBlock)(id<NSFastEnumeration> _Nullable data);
 typedef __kindof AVAssetImageGenerator *_Nonnull(^JobsReturnAVAssetImageGeneratorByAVURLAssetBlock)(__kindof AVURLAsset *_Nullable data);
 typedef __kindof NSArray <PHAssetResource *>*_Nonnull(^JobsReturnArrayByPHAssetBlock)(__kindof PHAsset *_Nullable data);
+
+typedef id _Nullable(^JobsReturnIDByTwoIDBlock)(id _Nullable data,id _Nullable data2);
+typedef id _Nullable(^JobsReturnIDByThreeIDBlock)(id _Nullable data,id _Nullable data2,id _Nullable data3);
 
 #pragma clang diagnostic pop
 

@@ -79,7 +79,7 @@
         _rbView = JobsRightBtnsView.new;
         _rbView.jobsRichViewByModel(nil);
 //        @jobs_weakify(self)
-        [_rbView actionObjectBlock:^(id data) {
+        [_rbView actionObjBlock:^(id data) {
 //            @jobs_strongify(self)
         }];
         [self.contentView addSubview:_rbView];

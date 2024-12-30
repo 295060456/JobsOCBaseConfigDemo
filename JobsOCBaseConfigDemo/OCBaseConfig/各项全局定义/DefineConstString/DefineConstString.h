@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+///
+FOUNDATION_EXTERN const NSRange NSRangeZero;
 /// 系统环境一览
 FOUNDATION_EXTERN NSString *_Nonnull const 应用程序的发布版本号;
 FOUNDATION_EXTERN NSString *_Nonnull const APP编译构建的版本号;

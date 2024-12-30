@@ -182,7 +182,7 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
          }
      }).onClickBy(^(UIButton *x){
          @jobs_strongify(self)
-         if (self.objectBlock) self.objectBlock(x);
+         if (self.objBlock) self.objBlock(x);
      }).onLongPressGestureBy(^(id data){
      JobsLog(@"");
  }).bgNormalLoad();
@@ -238,7 +238,7 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
              .onClickBy(^(UIButton *x){
                  @jobs_strongify(self)
                  x.selected = !x.selected;
-                 if (self.objectBlock) self.objectBlock(x);
+                 if (self.objBlock) self.objBlock(x);
              }).onLongPressGestureBy(^(id data){
                  JobsLog(@"");
              });

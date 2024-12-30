@@ -95,7 +95,7 @@ static dispatch_once_t static_countdownViewOnceToken;
             data.anticlockwiseTime = 30 * 60;
             data.timeInterval = 1;
             @jobs_weakify(self)
-            [data actionObjectBlock:^(id data) {
+            [data actionObjBlock:^(id data) {
                 @jobs_strongify(self)
                 if ([data isKindOfClass:UIButtonModel.class]) {
                     self.timerProcessModel = (UIButtonModel *)data;

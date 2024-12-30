@@ -52,7 +52,7 @@
 #pragma mark —— SET 方法
 -(void)setStr:(NSString *)str{
     self.label.text = str ? : JobsInternationalization(@"跳过");
-    [self.label sizeToFit];//刷新视图，否则label.frame为0
+    [self.label sizeToFit];/// 刷新视图，否则label.frame为0
 }
 
 -(void)setFont:(UIFont *)font{
@@ -93,7 +93,7 @@
 
 -(CABasicAnimation *)animation{
     if (!_animation) {
-        _animation = [CABasicAnimation animationWithKeyPath:@"strokeStart"];
+        _animation = @"strokeStart".basicAnimation;
         _animation.duration = self.time;
         _animation.fromValue = @(0.f);
         _animation.toValue = @(1.f);

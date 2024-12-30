@@ -29,32 +29,26 @@
 
 #import "AESCrypt.h"
 
-#import "NSData+Base64.h"
-#import "NSString+Base64.h"
-#import "NSData+CommonCrypto.h"
-
 @implementation AESCrypt
-
-+(NSString *)encrypt:(NSString *)message
-            password:(NSString *)password{
+///
++(NSString *)encrypt:(NSString *)message password:(NSString *)password{
     NSError *error = nil;
-    NSData *encryptedData = [[message dataUsingEncoding:NSUTF8StringEncoding] AES256EncryptedDataUsingKey:password.UTF8Encoding.SHA256Hash error:&error];
+    NSData *encryptedData = [message.UTF8Encoding AES256EncryptedDataUsingKey:password.UTF8Encoding.SHA256Hash error:&error];
     NSString *base64EncodedString = encryptedData.base64StringFromData;
     if(error){
         JobsLog(@"error = %@",error);
         return @"";
     }else return base64EncodedString;
 }
-
-+(NSString *)decrypt:(NSString *)base64EncodedString
-            password:(NSString *)password {
+///
++(NSString *)decrypt:(NSString *)base64EncodedString password:(NSString *)password {
     NSError *error = nil;
     NSData *encryptedData = NSData.dataByBase64String(base64EncodedString);
-    NSData *decryptedData = [encryptedData decryptedAES256DataUsingKey:password.UTF8Encoding.SHA256Hash.SHA256Hash error:nil];
+    NSData *decryptedData = [encryptedData decryptedAES256DataUsingKey:password.UTF8Encoding.SHA256Hash.SHA256Hash error:&error];
     if(error){
         JobsLog(@"error = %@",error);
         return @"";
-    }else return [NSString.alloc initWithData:decryptedData encoding:NSUTF8StringEncoding];
+    }else return NSString.initByUTF8Data(decryptedData);
 }
 
 @end

@@ -180,6 +180,12 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
     return data;
 }
 
+NS_INLINE __kindof UIPageControl *_Nonnull jobsMakePageControl(jobsByPageControlBlock _Nonnull block){
+    UIPageControl *data = UIPageControl.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof PHFetchOptions *_Nonnull jobsMakePHFetchOptions(jobsByPHFetchOptionsBlock _Nonnull block){
     PHFetchOptions *data = PHFetchOptions.alloc.init;
     if (block) block(data);

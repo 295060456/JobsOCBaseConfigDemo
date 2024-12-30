@@ -207,7 +207,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             .jobsResetBtnImage(JobsIMG(@"人工客服"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -221,7 +221,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             .jobsResetBtnImage(JobsIMG(@"消息"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -234,7 +234,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         _searchView.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
         _searchView.jobsRichViewByModel(nil);
 //        @jobs_weakify(self)
-        [_searchView actionObjectBlock:^(NSString *data) {
+        [_searchView actionObjBlock:^(NSString *data) {
 //            @jobs_strongify(self)
         }];
         
@@ -282,7 +282,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             .jobsResetBtnTitle(JobsInternationalization(@"编辑"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 toast(JobsInternationalization(@"编辑"));
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");

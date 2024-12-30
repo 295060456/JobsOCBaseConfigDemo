@@ -9,9 +9,6 @@
 #import "UIViewController+Shake.h"
 
 @implementation UIViewController (Shake)
-
-#pragma mark —— 一些公有方法
-
 #pragma mark —— 系统方法
 -(void)invokeWhenViewDidLoadUsingSysFunc{
     //设置允许摇一摇功能
@@ -22,7 +19,7 @@
 - (void)motionBegan:(UIEventSubtype)motion
           withEvent:(UIEvent *)event {
     if (motion == UIEventSubtypeMotionShake) {// 判断是否是摇动事件
-        if (self.objectBlock) self.objectBlock(@(motion));
+        if (self.objBlock) self.objBlock(@(motion));
     }
 }
 /// 摇一摇摇动结束
@@ -32,13 +29,12 @@
     if (motion == UIEventSubtypeMotionShake) {
         JobsLog(@"摇一摇结束~~~~~");
         //摇动结束添加事件
-        if (self.objectBlock) self.objectBlock(@(UIViewControllerShakeEndType));
+        if (self.objBlock) self.objBlock(@(UIViewControllerShakeEndType));
     }
 }
 /// 摇一摇取消摇动
-- (void)motionCancelled:(UIEventSubtype)motion
-              withEvent:(UIEvent *)event {
-    if (self.objectBlock) self.objectBlock(@(UIViewControllerShakeCancelType));
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    if (self.objBlock) self.objBlock(@(UIViewControllerShakeCancelType));
 }
 #pragma mark —— 加速仪
 -(void)invokeWhenViewDidAppearUsingCMMotionManager{
@@ -104,7 +100,7 @@
             //设置开始摇晃时震动
             [NSObject shake];
             //加载动画
-            if (self.objectBlock) self.objectBlock(@(UIViewControllerShakeBeganType));
+            if (self.objBlock) self.objBlock(@(UIViewControllerShakeBeganType));
         });
     }
 }

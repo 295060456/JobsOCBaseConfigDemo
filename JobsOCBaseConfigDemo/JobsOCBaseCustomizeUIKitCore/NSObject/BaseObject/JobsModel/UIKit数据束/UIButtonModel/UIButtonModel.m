@@ -91,20 +91,20 @@ RACProtocol_synthesize
     _normalBgImageURL = JobsUrl(self.normalBgImageURLString);
 }
 
--(NSString *)title{
-    if (!_title) {
-#ifdef DEBUG
-        _title = JobsInternationalization(TextModelDataString);
-#endif
-    }return _title;
-}
-
--(NSString *)subTitle{
-    if(!_subTitle){
-#ifdef DEBUG
-        _subTitle = JobsInternationalization(TextModelDataString2);
-#endif
-    }return _subTitle;
-}
+//-(NSString *)title{
+//    if (!_title) {
+//#ifdef DEBUG
+//        _title = JobsInternationalization(TextModelDataString);
+//#endif
+//    }return _title;
+//}
+//
+//-(NSString *)subTitle{
+//    if(!_subTitle){
+//#ifdef DEBUG
+//        _subTitle = JobsInternationalization(TextModelDataString2);
+//#endif
+//    }return _subTitle;
+//}
 
 @end

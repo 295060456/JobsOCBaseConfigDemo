@@ -205,7 +205,7 @@ numberOfRowsInSection:(NSInteger)section{
     
     self.index = indexPath.row;
     @jobs_weakify(self)
-    [cell actionObjectBlock:^(JobsTuple *data) {
+    [cell actionObjBlock:^(JobsTuple *data) {
         @jobs_strongify(self)
         NSNumber *direction = data.jobsTupleValueArr[0];
         NSNumber *index = data.jobsTupleValueArr[1];

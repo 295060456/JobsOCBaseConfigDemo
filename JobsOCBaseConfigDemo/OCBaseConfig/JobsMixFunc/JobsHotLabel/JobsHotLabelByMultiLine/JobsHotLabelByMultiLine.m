@@ -8,8 +8,6 @@
 #import "JobsHotLabelByMultiLine.h"
 
 @interface JobsHotLabelByMultiLine ()
-/// UI
-//@property(nonatomic,strong)UICollectionView *collectionView;
 /// Data
 @property(nonatomic,strong)NSMutableArray <__kindof UICollectionViewCell *>*cvcellMutArr;
 @property(nonatomic,strong)JobsHotLabelWithMultiLineModel *dataModel;
@@ -163,7 +161,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _cell.textLab.textColor = HEXCOLOR(0xAE8330);
     _cell.textLab.backgroundColor = HEXCOLOR(0xFFEABA);
     
-    if (self.objectBlock) self.objectBlock(_cell);
+    if (self.objBlock) self.objBlock(_cell);
 }
 /// 取消选中操作
 -(void)collectionView:(UICollectionView *)collectionView

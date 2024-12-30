@@ -9,6 +9,7 @@
 #import <objc/runtime.h>
 
 #import "JobsBlock.h"
+#import "JobsDefineAllEnumHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +21,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// 得到visibleCells
 -(NSArray <UIView *>*_Nullable)scrollViewCells;
 /// 依据index得到cell
--(UIView *_Nullable)scrollViewCellsAtIndex:(NSUInteger)index;
+-(JobsReturnViewByNSUIntegerBlock _Nonnull)scrollViewCellsByIndex;
+/// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
+-(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByYES;
+/// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
+-(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByNO;
+/// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;   的二次封装
+-(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES;
+/// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;  的二次封装
+-(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO;
 
 @end
 

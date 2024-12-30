@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,9 +19,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-/*使用示例
+NS_INLINE __kindof CFGradientLabel *_Nonnull jobsMakeCFGradientLabel(jobsByCFGradientLabelBlock _Nonnull block){
+    CFGradientLabel *data = CFGradientLabel.alloc.init;
+    if (block) block(data);
+    return data;
+}
 
-CFGradientLabel *lable = CFGradientLabel.new;
-lable.colors = @[(id)HEXCOLOR(0xF78361).CGColor,(id)HEXCOLOR(0xF54B64).CGColor];
+/*
+ * 使用示例
+
+ jobsMakeCFGradientLabel(^(__kindof CFGradientLabel * _Nullable label) {
+     label.colors = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+         arr.add((id)HEXCOLOR(0xF78361).CGColor)
+             .add((id)HEXCOLOR(0xF54B64).CGColor);
+     });
+ });
 
 */

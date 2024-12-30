@@ -279,7 +279,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.jobsRichElementsCellBy(self.rightDataArray);
     [cell reloadData];
 //    @jobs_weakify(self)
-    [cell actionObjectBlock:^(GoodsClassModel *model) {
+    [cell actionObjBlock:^(GoodsClassModel *model) {
 //        @jobs_strongify(self)
         JobsLog(@"pid : %@", model.idField);
         JobsLog(@"选中id : %@", model.idField);
@@ -402,7 +402,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
             .jobsResetBtnImage(JobsIMG(@"人工客服"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -416,7 +416,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
             .jobsResetBtnImage(JobsIMG(@"消息"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });;
@@ -429,7 +429,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
         _searchView.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
         _searchView.jobsRichViewByModel(nil);
 //        @jobs_weakify(self)
-        [_searchView actionObjectBlock:^(NSString *data) {
+        [_searchView actionObjBlock:^(NSString *data) {
 //            @jobs_strongify(self)
 
         }];
@@ -478,7 +478,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
             .jobsResetBtnTitle(JobsInternationalization(@"编辑"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
     //            toast(JobsInternationalization(@"编辑"));
                 self.popupParameter.dragEnable = YES;
                 self.popupParameter.disuseBackgroundTouchHide = NO;
@@ -556,7 +556,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                 self.popupView.shakeCell(NO);
             }
         }];
-        [_popupView actionObjectBlock:^(id data) {
+        [_popupView actionObjBlock:^(id data) {
             @strongify(self)
             if ([data isKindOfClass:NSMutableArray.class]) {
                 NSMutableArray <UIViewModel *>*dataMutArr = NSMutableArray.array;

@@ -130,7 +130,7 @@ BaseViewControllerProtocol_synthesize
 //        };
 //        _backBtnModel.clickEventBlock = ^id(BaseButton *x){
 //            @jobs_strongify(self)
-//            if (self.objectBlock) self.objectBlock(x);
+//            if (self.objBlock) self.objBlock(x);
 //            self.showTabBar(YES);
 //            self.backTo(2);
 //            return nil;

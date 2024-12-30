@@ -33,13 +33,13 @@ UILocationProtocol_synthesize
             self.longPressGR_SelImp.selector = selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                             id _Nullable arg) {
                 @jobs_strongify(self)
-                if (self.returnObjectByGestureRecognizerBlock) self.returnObjectByGestureRecognizerBlock(arg);
+                if (self.retIDByGestureRecognizerBlock) self.retIDByGestureRecognizerBlock(arg);
                 return nil;
             }, MethodName(self), self);
             self.tapGR_SelImp.selector = selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                       id _Nullable arg) {
                 @jobs_strongify(self)
-                if (self.returnObjectByGestureRecognizerBlock) self.returnObjectByGestureRecognizerBlock(arg);
+                if (self.retIDByGestureRecognizerBlock) self.retIDByGestureRecognizerBlock(arg);
                 return nil;
             }, MethodName(self), self);
         }
@@ -70,7 +70,7 @@ UILocationProtocol_synthesize
                               identifier:nil
                                  handler:^(__kindof UIAction * _Nonnull action) {
                     @jobs_strongify(self)
-                    if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(self, text);
+                    if (self.retIDBySelectorBlock) self.retIDBySelectorBlock(self, text);
                     self.copyText(text);
                 }]
             ]];
@@ -88,7 +88,7 @@ UILocationProtocol_synthesize
                     data.add(JobsInternationalization(@"请复制").initMenuItemBy(selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                                                           id _Nullable arg) {
                         @jobs_strongify(self)
-                        if (self.returnIDBySelectorBlock) self.returnIDBySelectorBlock(weakSelf, arg);
+                        if (self.retIDBySelectorBlock) self.retIDBySelectorBlock(weakSelf, arg);
                         self.copyText(text);
                         return nil;
                     }, @"copyText", self)));
@@ -152,7 +152,7 @@ UILocationProtocol_synthesize
     return !NSStringFromClass(touch.view.class).isEqualToString(@"UITableViewCellContentView");
 }
 #pragma mark —— 复写相关父类方法
-- (void)drawRect:(CGRect)rect{
+-(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
 }
 

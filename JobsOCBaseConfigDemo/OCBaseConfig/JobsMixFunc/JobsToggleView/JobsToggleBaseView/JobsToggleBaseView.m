@@ -127,9 +127,9 @@ JobsToggleNavViewProtocolSynthesize
             taggedNavView.backgroundColor = self.taggedNavViewBgColor;
             [self addSubview:taggedNavView];
             /// 切换联动
-            [taggedNavView actionObjectBlock:^(id _Nullable data1) {
+            [taggedNavView actionObjBlock:^(id _Nullable data1) {
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(data1);
+                if (self.objBlock) self.objBlock(data1);
                 if(KindOfBaseButtonCls(data1)){
                     self.currentSelectedBtn = (BaseButton *)data1;
                     /// 由 self.bgScroll 驱动

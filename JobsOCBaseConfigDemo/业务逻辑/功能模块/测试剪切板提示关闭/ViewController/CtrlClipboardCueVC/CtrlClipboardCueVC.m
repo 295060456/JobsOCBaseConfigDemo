@@ -135,7 +135,7 @@
             label.textAlignment = NSTextAlignmentCenter;
             label.longPressGR.enabled = YES;
             label.tapGR.enabled = YES;
-            [label actionReturnIDByGestureRecognizerBlock:^id _Nullable(UIGestureRecognizer * _Nullable data) {
+            [label actionRetIDByGestureRecognizerBlock:^id _Nullable(UIGestureRecognizer * _Nullable data) {
                 if(data.state == UIGestureRecognizerStateBegan){
                     @jobs_strongify(self)
                     [self becomeFirstResponder];

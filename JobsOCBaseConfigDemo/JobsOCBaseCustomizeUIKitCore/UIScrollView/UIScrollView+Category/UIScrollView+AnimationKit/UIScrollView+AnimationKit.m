@@ -13,25 +13,21 @@
              cells:(NSArray *)cells
              block:(jobsByNSUIntegerBlock)block{
     if (sortingType == SortingType_Positive) {
-        for (NSUInteger i = 0; i < cells.count; i++) {
-            if (block) block(i);
-        }
+        for (NSUInteger i = 0; i < cells.count; i++) if (block) block(i);
     }else if (sortingType == SortingType_Reverse){
-        for (NSUInteger i = cells.count - 1; i > 0; i--) {
-            if (block) block(i);
-        }
+        for (NSUInteger i = cells.count - 1; i > 0; i--) if (block) block(i);
     }else{}
 }
 #pragma mark —— moveAnimation
 -(void)moveAnimWithSortingType:(SortingType)sortingType
-                animationBlock:(nullable jobsByVoidBlock)animationBlock
-               completionBlock:(nullable jobsByIDBlock)completionBlock{
+                animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+               completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray *cells = self.scrollViewCells;
     CGFloat totalTime = 0.3;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         cell.transform = CGAffineTransformMakeTranslation(-JobsMainScreen_WIDTH(), 0);
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.25
@@ -51,20 +47,20 @@
 }
 #pragma mark —— moveSpringAnimation
 -(void)moveSpringAnimWithSortingType:(SortingType)sortingType
-                      animationBlock:(nullable jobsByVoidBlock)animationBlock
-                     completionBlock:(nullable jobsByIDBlock)completionBlock{
+                      animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+                     completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray <UIView *>*cells = self.scrollViewCells;
     CGFloat totalTime = 0.4;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         cell.transform = CGAffineTransformMakeTranslation(-JobsMainScreen_WIDTH(), 0);
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.4
-                              delay:i*(totalTime/cells.count)
+                              delay:i * (totalTime/cells.count)
              usingSpringWithDamping:0.7
-              initialSpringVelocity:1/0.7
+              initialSpringVelocity:1 / 0.7
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
             @jobs_strongify(cell)
@@ -80,19 +76,18 @@
 }
 #pragma mark —— alphaAnimation
 -(void)alphaAnimWithSortingType:(SortingType)sortingType
-                 animationBlock:(nullable jobsByVoidBlock)animationBlock
-                completionBlock:(nullable jobsByIDBlock)completionBlock{
+                 animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+                completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray *cells = self.scrollViewCells;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
         UIView *cell = nil;
         if (sortingType == SortingType_Positive) {
-            cell = [self scrollViewCellsAtIndex:i];
+            cell = self.scrollViewCellsByIndex(i);
         }else if (sortingType == SortingType_Reverse){
-            cell = [self scrollViewCellsAtIndex:self.scrollViewCells.count - 1 - i];
+            cell = self.scrollViewCellsByIndex(self.scrollViewCells.count - 1 - i);
         }else{}
-        
         cell.alpha = 0.0;
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.3
@@ -112,14 +107,14 @@
 }
 #pragma mark —— fallAnimation
 -(void)fallAnimWithSortingType:(SortingType)sortingType
-                animationBlock:(nullable jobsByVoidBlock)animationBlock
-               completionBlock:(nullable jobsByIDBlock)completionBlock{
+                animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+               completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray *cells = self.scrollViewCells;
     NSTimeInterval totalTime = 0.8;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         cell.transform = CGAffineTransformMakeTranslation(0, - JobsMainScreen_HEIGHT());
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.3
@@ -139,13 +134,13 @@
 }
 #pragma mark —— shakeAnimation
 -(void)shakeAnimWithSortingType:(SortingType)sortingType
-                 animationBlock:(nullable jobsByVoidBlock)animationBlock
-                completionBlock:(nullable jobsByIDBlock)completionBlock{
+                 animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+                completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray *cells = self.scrollViewCells;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         if (i % 2 == 0) {
             cell.transform = CGAffineTransformMakeTranslation(-JobsMainScreen_WIDTH(),0);
         }else {
@@ -171,14 +166,14 @@
 }
 #pragma mark —— overTurnAnimation
 -(void)overTurnAnimWithSortingType:(SortingType)sortingType
-                    animationBlock:(nullable jobsByVoidBlock)animationBlock
-                   completionBlock:(nullable jobsByIDBlock)completionBlock{
+                    animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+                   completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray *cells = self.scrollViewCells;
     NSTimeInterval totalTime = 0.7;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         cell.layer.opacity = 0.0;
         cell.layer.transform = CATransform3DMakeRotation(M_PI, 1, 0, 0);
         @jobs_weakify(cell)
@@ -200,14 +195,14 @@
 }
 #pragma mark —— toTopAnimation
 -(void)toTopAnimWithSortingType:(SortingType)sortingType
-                 animationBlock:(nullable jobsByVoidBlock)animationBlock
-                completionBlock:(nullable jobsByIDBlock)completionBlock{
+                 animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+                completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray *cells = self.scrollViewCells;
     NSTimeInterval totalTime = 0.8;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         cell.transform = CGAffineTransformMakeTranslation(0,JobsMainScreen_HEIGHT());
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.35
@@ -227,14 +222,14 @@
 }
 #pragma mark —— springListAnimation
 -(void)springListAnimWithSortingType:(SortingType)sortingType
-                      animationBlock:(nullable jobsByVoidBlock)animationBlock
-                     completionBlock:(nullable jobsByIDBlock)completionBlock{
+                      animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+                     completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray *cells = self.scrollViewCells;
     NSTimeInterval totalTime = 1.0;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         cell.layer.opacity = 0.7;
         cell.layer.transform = CATransform3DMakeTranslation(0, -JobsMainScreen_HEIGHT(), 20);
         @jobs_weakify(cell)
@@ -258,12 +253,12 @@
 }
 #pragma mark —— shrinkToTopAnimation
 -(void)shrinkToTopAnimWithSortingType:(SortingType)sortingType
-                       animationBlock:(nullable jobsByVoidBlock)animationBlock{
+                       animationBlock:(jobsByVoidBlock _Nullable)animationBlock{
     NSArray *cells = self.scrollViewCells;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         CGRect rect = [cell convertRect:cell.bounds fromView:self];
         cell.transform = CGAffineTransformMakeTranslation(0, -rect.origin.y);
         @jobs_weakify(cell)
@@ -280,17 +275,17 @@
 }
 #pragma mark —— layDownAnimation
 -(void)layDownAnimWithSortingType:(SortingType)sortingType
-                   animationBlock:(nullable jobsByVoidBlock)animationBlock
-                  completionBlock:(nullable jobsByIDBlock)completionBlock{
+                   animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+                  completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray *cells = self.scrollViewCells;
     NSMutableArray *rectArr = NSMutableArray.array;
     NSTimeInterval totalTime = 0.8;
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block1 = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         CGRect rect = cell.frame;
-        [rectArr addObject:[NSValue valueWithCGRect:rect]];
+        rectArr.add(NSValue.byRect(rect));
         rect.origin.y = i * 10;
         cell.frame = rect;
         cell.layer.transform = CATransform3DMakeTranslation(0, 0, i * 5);
@@ -298,13 +293,12 @@
     
     jobsByNSUIntegerBlock block2 = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
-        CGRect rect = [[rectArr objectAtIndex:i] CGRectValue];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         @jobs_weakify(cell)
         [UIView animateWithDuration:(totalTime/cells.count) * i
                          animations:^{
             @jobs_strongify(cell)
-            cell.frame = rect;
+            cell.frame = [rectArr.objectAt(i) CGRectValue];;
             if (animationBlock) animationBlock();
         } completion:^(BOOL finished) {
             @jobs_strongify(cell)
@@ -321,10 +315,10 @@
 }
 #pragma mark —— roteAnimation
 -(void)roteAnimWithSortingType:(SortingType)sortingType
-                animationBlock:(nullable jobsByVoidBlock)animationBlock
-               completionBlock:(nullable jobsByIDBlock)completionBlock{
+                animationBlock:(jobsByVoidBlock _Nullable)animationBlock
+               completionBlock:(jobsByIDBlock _Nullable)completionBlock{
     NSArray *cells = self.scrollViewCells;
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
+    CABasicAnimation *animation = @"transform.rotation.y".basicAnimation;
     animation.fromValue = @(-M_PI);
     animation.toValue = 0;
     animation.duration = 0.3;
@@ -335,7 +329,7 @@
     @jobs_weakify(self)
     jobsByNSUIntegerBlock block = ^(NSUInteger i){
         @jobs_strongify(self)
-        UIView *cell = [self scrollViewCellsAtIndex:i];
+        UIView *cell = self.scrollViewCellsByIndex(i);
         cell.alpha = 0.0;
         @jobs_weakify(cell)
         [UIView animateWithDuration:0.1

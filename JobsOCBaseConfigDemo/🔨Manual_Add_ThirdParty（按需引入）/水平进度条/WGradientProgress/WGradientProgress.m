@@ -12,7 +12,7 @@
 /// UI
 @property(nonatomic,strong)CALayer *roadLayer;//跑道 即将运行的轨迹
 @property(nonatomic,strong)CALayer *fenceLayer;//栅栏
-@property(nonatomic,strong)CAGradientLayer *__block gradLayer;//通过改变layer的宽度来实现进度 运动员
+@property(nonatomic,strong)CAGradientLayer *gradLayer;//通过改变layer的宽度来实现进度 运动员
 /// Data
 @property(nonatomic,strong)NSTimerManager *nsTimerManager_color;//主管线条颜色的翻滚
 @property(nonatomic,strong)NSTimerManager *nsTimerManager_length;//主管线条长度的递增
@@ -44,21 +44,13 @@
 }
 
 -(void)showOnParent{
-    if (self.isShowRoad) {
-        self.roadLayer.hidden = NO;
-    }
-    
+    if (self.isShowRoad) self.roadLayer.hidden = NO;
     self.gradLayer.hidden = NO;
-    
-    if (self.isShowFence) {
-        self.fenceLayer.hidden = NO;
-    }
+    if (self.isShowFence) self.fenceLayer.hidden = NO;
 }
 /// 开始
 -(void)start{
-    if (self.progressType == WGradientProgressType_colorRoll) {
-        [self makeTimer_color];
-    }
+    if (self.progressType == WGradientProgressType_colorRoll) [self makeTimer_color];
     [self makeTimer_length];
 }
 /// 暂停
@@ -71,27 +63,21 @@
 }
 /// 归位
 -(void)reset{
-    //定时器归位
+    /// 定时器归位
     [self.nsTimerManager_color nsTimeDestroy];
     [self.nsTimerManager_length nsTimeDestroy];
-    //UI归位
+    /// UI归位
     self.gradLayer.frame = CGRectZero;
 }
 
 -(void)hide{
     [self.nsTimerManager_color nsTimePause];
-    if ([self superview]) {
-        [self removeFromSuperview];
-    }
+    if ([self superview]) [self removeFromSuperview];
 }
 
 -(void)setProgress:(CGFloat)progress{
-    if (progress < 0) {
-        progress = 0;
-    }
-    if (progress > 1) {
-        progress = 1;
-    }
+    if (progress < 0) progress = 0;
+    if (progress > 1) progress = 1;
     _progress = progress;
     self.gradLayer.frame = CGRectMake(0,
                                       0,
@@ -102,7 +88,7 @@
 -(void)timerFunc{
     CAGradientLayer *gradLayer = self.gradLayer;
     NSMutableArray *copyArray = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-        [data addObjectsFromArray:gradLayer.colors];
+        data.addBy(gradLayer.colors);
     });
     UIColor *lastColor = copyArray.lastObject;
     [copyArray removeLastObject];
@@ -143,7 +129,7 @@
             data.timeInterval = self.color_timeInterval;
             data.timerStyle = TimerStyle_clockwise;
             @jobs_weakify(self)
-            [data actionObjectBlock:^(UIButtonModel *data) {
+            [data actionObjBlock:^(UIButtonModel *data) {
                 @jobs_strongify(self)
                 switch (data.timerProcessType) {
                     case TimerProcessType_Ready:{
@@ -172,7 +158,7 @@
             data.timeInterval = self.length_timeInterval;
             data.timeSecIntervalSinceDate = self.length_timeSecIntervalSinceDate;
             data.timerStyle = TimerStyle_clockwise;
-            [data actionObjectBlock:^(UIButtonModel *data) {
+            [data actionObjBlock:^(UIButtonModel *data) {
                 @jobs_strongify(self)
                 switch (data.timerProcessType) {
                     case TimerProcessType_Ready:{
@@ -181,17 +167,14 @@
                     case TimerProcessType_Running:{
                         if (self.progress < 1) {
                             [self start];
-                            
-                            WGradientProgressModel *model = WGradientProgressModel.new;
-                            model.progress = self.progress;
-                            model.gradLayer = self.gradLayer;
-                            
-                            if (self.objectBlock) self.objectBlock(model);
+                            if (self.objBlock) self.objBlock(jobsMakeWGradientProgressModel(^(__kindof WGradientProgressModel * _Nullable model) {
+                                @jobs_strongify(self)
+                                model.progress = self.progress;
+                                model.gradLayer = self.gradLayer;
+                            }));
                             
                             self.progress += self.increment;
-                        }else{
-                            [self.nsTimerManager_length nsTimeDestroy];//销毁
-                        }
+                        }else [self.nsTimerManager_length nsTimeDestroy];/// 销毁
                     }break;
                     case TimerProcessType_Stop:{
                         JobsLog(@"我死球了");
@@ -233,10 +216,11 @@
             @jobs_strongify(self)
             data.frame = CGRectZero;
             data.borderWidth = 1;
-            data.startPoint = CGPointMake(0, 0);
+            data.startPoint = CGPointZero;
             data.endPoint = CGPointMake(1, 1);
             data.colors = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-                [data addObjectsFromArray:self.colors];
+                @jobs_strongify(self)
+                data.addBy(self.colors);
             });[self.layer addSublayer:data];
         });
     }return _gradLayer;
@@ -293,8 +277,4 @@
     }return _progressColor;
 }
 
-@end
-
-@implementation WGradientProgressModel
- 
 @end

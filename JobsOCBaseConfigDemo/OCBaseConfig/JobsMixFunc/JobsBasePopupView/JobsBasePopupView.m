@@ -102,7 +102,7 @@
                           JobsIMG(@"弹窗取消按钮背景图"),
                           NSDirectionalRectEdgeNone)
             .onClickBy(^(UIButton *x){
-                if(self.objectBlock) self.objectBlock(x);
+                if(self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -128,7 +128,7 @@
                           NSDirectionalRectEdgeNone)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if(self.objectBlock) self.objectBlock(x);
+                if(self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

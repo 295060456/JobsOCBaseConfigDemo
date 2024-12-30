@@ -17,7 +17,7 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
-    if (self.objectBlock) self.objectBlock(self);
+    if (self.objBlock) self.objBlock(self);
 }
 /// 横屏模式下的Window（宽高互换）
 -(__kindof UIWindow *)landscape{

@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UIFont *titleFont;
 @property(nonatomic,strong)UIColor *titleColor;
 
-
 @end
 
 NS_ASSUME_NONNULL_END

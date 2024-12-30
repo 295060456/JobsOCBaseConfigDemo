@@ -163,7 +163,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     }else{
         JobsMsgDetailVC *msgDetailVC = JobsMsgDetailVC.new;
         @jobs_weakify(self)
-        [msgDetailVC actionObjectBlock:^(JobsMsgDataModel *data) {
+        [msgDetailVC actionObjBlock:^(JobsMsgDataModel *data) {
             @jobs_strongify(self)
             [self.dataMutArr removeObject:data];
             [self.tableView reloadData];
@@ -216,7 +216,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             .jobsResetBtnTitle(JobsInternationalization(@"編輯"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
     //            toast(x.titleForNormalState);
                 x.selected = !x.selected;
                 x.jobsResetBtnTitle(x.selected ? JobsInternationalization(@"完成") : JobsInternationalization(@"編輯"));
@@ -295,7 +295,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _msgEditBoardView.jobsRichViewByModel(nil);
         _msgEditBoardView.getDeleteBtn.enabledBlock(self.selectedDataMutArr.count);
         @jobs_weakify(self)
-        [_msgEditBoardView actionObjectBlock:^(id data) {
+        [_msgEditBoardView actionObjBlock:^(id data) {
             @jobs_strongify(self)
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;

@@ -149,7 +149,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
         [_allChooseBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         }];
     }return _allChooseBtn;
@@ -172,7 +172,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
         [_markToReadBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         }];
     }return _markToReadBtn;
@@ -196,7 +196,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
         [_deleteBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
             x.selected = !x.selected;
-            if (self.objectBlock) self.objectBlock(x);
+            if (self.objBlock) self.objBlock(x);
             return nil;
         }];
     }return _deleteBtn;

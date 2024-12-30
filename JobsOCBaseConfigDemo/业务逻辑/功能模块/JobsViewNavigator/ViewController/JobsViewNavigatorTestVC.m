@@ -103,7 +103,7 @@
             .jobsResetBtnLayerBorderWidth(JobsWidth(1))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 
     //            JobsViewNavigator *navigator = JobsViewNavigator.new;
     //            navigator.frame = self.view.bounds;

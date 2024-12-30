@@ -107,7 +107,7 @@ AppToolsProtocol_synthesize
     /// 点击事件
     [_btn jobsBtnClickEventBlock:viewModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
         @jobs_strongify(self)
-        if (self.objectBlock) self.objectBlock(x);
+        if (self.objBlock) self.objBlock(x);
         return nil;
     }];
     /// 长按事件
@@ -221,7 +221,7 @@ AppToolsProtocol_synthesize
         _btn.userInteractionEnabled = YES;
         _btn.onClickBy(^(UIButton *x){
             @jobs_strongify(self)
-            if(self.objectBlock) self.objectBlock(x);
+            if(self.objBlock) self.objBlock(x);
         });[self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);/// 如果这里用self.contentView，在某些情况下，约束会失灵。因为self.contentView的生命周期的缘故，还没有完全展开

@@ -230,7 +230,7 @@ ratio:(CGFloat)ratio {
             .jobsResetBtnTitle(JobsInternationalization(@"篩選"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 x.selected = !x.selected;
                 self.jobsToastMsg(JobsInternationalization(@"篩選"));
                 [x changeAction:x.selected];
@@ -267,7 +267,7 @@ ratio:(CGFloat)ratio {
             .jobsResetBtnTitle(JobsInternationalization(@"自定义"))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
-                if (self.objectBlock) self.objectBlock(x);
+                if (self.objBlock) self.objBlock(x);
                 x.selected = !x.selected;
                 x.jobsResetBtnTitleCor(x.selected ? HEXCOLOR(0xAE8330) : HEXCOLOR(0x3D4A58));
                 self.jobsToastMsg(JobsInternationalization(@"自定义"));

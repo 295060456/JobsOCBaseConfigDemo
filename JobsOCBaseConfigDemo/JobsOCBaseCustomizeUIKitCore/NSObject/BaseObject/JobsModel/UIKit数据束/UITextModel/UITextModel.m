@@ -23,21 +23,21 @@ UIViewModelOthersProtocol_synthesize
     }return _font;
 }
 
--(NSString *)text{
-    if (!_text) {
-#ifdef DEBUG
-        _text = JobsInternationalization(TextModelDataString);
-#endif
-    }return _text;
-}
-
--(NSString *)subText{
-    if(!_subText){
-#ifdef DEBUG
-        _subText = JobsInternationalization(TextModelDataString2);
-#endif
-    }return _subText;
-}
+//-(NSString *)text{
+//    if (!_text) {
+//#ifdef DEBUG
+//        _text = JobsInternationalization(TextModelDataString);
+//#endif
+//    }return _text;
+//}
+//
+//-(NSString *)subText{
+//    if(!_subText){
+//#ifdef DEBUG
+//        _subText = JobsInternationalization(TextModelDataString2);
+//#endif
+//    }return _subText;
+//}
 
 -(UILabelShowingType)labelShowingType{
     if (!_labelShowingType) {
