@@ -582,3 +582,22 @@ typedef void(^jobsByFMAccModelBlock)(__kindof FMAccModel *_Nullable model);
     }];
 
 */
+
+/**
+ Block 的三种类型
+ 在 Objective-C 中，block 有三种存储类型：
+
+ Stack Block（栈区 block）：
+
+ 默认创建的 block 存储在栈中。
+ 生命周期与作用域绑定，当作用域结束时，栈上的 block 会被销毁。
+ Malloc Block（堆区 block）：
+
+ 通过 copy 操作将栈上的 block 拷贝到堆中，拥有更长的生命周期，直到引用计数为 0。
+ Global Block（全局 block）：
+
+ 不捕获任何外部变量的 block，存储在全局内存区，不需要 copy。
+ 
+ ❤️assign 是一种非强引用的修饰符，直接指向内存地址，并不会增加 block 的引用计数。
+ 如果 block 是存储在栈上的（即 Stack Block），在作用域结束时，block 会被销毁，指针指向的内存随之变为野指针，从而导致程序崩溃。❤️
+ */

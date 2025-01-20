@@ -127,5 +127,7 @@
 #import "NSObject+SysInfo.h"
 /// 处理 HTML 字符串
 #import "NSObject+HTML.h"
+/// 锁🔐
+#import "JobsLocker.h"
 
 #endif /* JobsObject_h */

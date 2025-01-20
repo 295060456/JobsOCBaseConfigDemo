@@ -1269,6 +1269,8 @@
 		8405D1942D08656100DE33FE /* UIButton+UIButtonConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonConfiguration.m"; sourceTree = "<group>"; };
 		8405D1992D0865E100DE33FE /* UITabBarItem+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+Extra.h"; sourceTree = "<group>"; };
 		8405D19A2D0865E100DE33FE /* UITabBarItem+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+Extra.m"; sourceTree = "<group>"; };
+		840745FE2D3E6E9500DE65E8 /* JobsLocker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLocker.h; sourceTree = "<group>"; };
+		840745FF2D3E6E9500DE65E8 /* JobsLocker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsLocker.m; sourceTree = "<group>"; };
 		8415A2342CE4729600A09C67 /* JobsExcelView的使用.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "JobsExcelView的使用.md"; sourceTree = "<group>"; };
 		84170AFD2CD0BF5D0007E303 /* YTKBatchRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKBatchRequest+Extra.h"; sourceTree = "<group>"; };
 		84170AFE2CD0BF5D0007E303 /* YTKBatchRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKBatchRequest+Extra.m"; sourceTree = "<group>"; };
@@ -3793,6 +3795,15 @@
 				8405D19A2D0865E100DE33FE /* UITabBarItem+Extra.m */,
 			);
 			path = UITabBarItem;
+			sourceTree = "<group>";
+		};
+		840746002D3E6E9500DE65E8 /* JobsLocker */ = {
+			isa = PBXGroup;
+			children = (
+				840745FE2D3E6E9500DE65E8 /* JobsLocker.h */,
+				840745FF2D3E6E9500DE65E8 /* JobsLocker.m */,
+			);
+			path = JobsLocker;
 			sourceTree = "<group>";
 		};
 		84170AFF2CD0BF5D0007E303 /* YTKBatchRequest+Extra */ = {
@@ -11717,6 +11728,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A61832CA82C2D006D67A7 /* BaseObject.md */,
+				840746002D3E6E9500DE65E8 /* JobsLocker */,
 				CE5A61582CA82C2D006D67A7 /* 雪花算法 */,
 				CE5A615C2CA82C2D006D67A7 /* FileFolderHandleTool */,
 				CE5A615F2CA82C2D006D67A7 /* JobsAppTools */,

@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <os/lock.h>
 #import "JobsBlock.h"
 #import "RACProtocol.h"
 #import "DefineProperty.h"
@@ -21,6 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseProtocol <YTKChainRequestDelegate,RACProtocol>
 @optional
+#pragma mark —— 锁🔐
+Prop_strong(nullable)NSLock *lock; /// Foundation 框架提供的互斥锁。更灵活，性能比 @synchronized 高。需要手动管理加锁和解锁。
+Prop_strong(nullable)NSRecursiveLock *recursiveLock; /// 递归锁，同一线程可以多次获得锁而不会导致死锁
+Prop_assign(readonly)os_unfair_lock os_lock; /// Apple 推荐的轻量级锁，性能极高。替代 OSSpinLock。不需要显式销毁
+Prop_assign(readonly)pthread_mutex_t mutex; /// pthread_mutex_t是底层的非对象类型，不支持 ARC（自动引用计数）的内存管理规则。pthread_mutex_init(&_mutex, NULL); // 初始化互斥锁
 #pragma mark —— 一些状态
 Prop_assign()BOOL isLock;
 Prop_assign()BOOL becomeFirstResponder;
@@ -29,7 +35,7 @@ Prop_assign()AppLanguage appLanguage;
 Prop_strong(nullable)NSInvocation *invocation;
 Prop_strong(nullable)NSTimer *timer;
 Prop_strong(nullable)id userInfo;
-Prop_retain()dispatch_semaphore_t semaphore;
+Prop_retain()dispatch_semaphore_t semaphore;/// 也可以作为锁
 Prop_retain()dispatch_source_t dispatchTimer;
 Prop_assign()CGFloat anticlockwiseTime;/// ❤️【逆时针模式：到这个时间点结束】、【顺时针模式：从这个时间点开始】
 Prop_assign()NSTimeInterval timeSecIntervalSinceDate;/// 推移时间，秒数
@@ -102,6 +108,16 @@ Prop_weak(nullable)id requestParams_weak;/// 【弱引用】绑定的数据源�
 
 NS_ASSUME_NONNULL_END
 
+#ifndef BaseProtocol_synthesize_lock
+#define BaseProtocol_synthesize_lock \
+\
+@synthesize lock = _lock;\
+@synthesize recursiveLock = _recursiveLock;\
+@synthesize os_lock = _os_lock;\
+@synthesize mutex = _mutex;\
+
+#endif /* BaseProtocol_synthesize_lock */
+
 #ifndef BaseProtocol_synthesize_state
 #define BaseProtocol_synthesize_state \
 \
@@ -161,6 +177,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseProtocol_synthesize
 #define BaseProtocol_synthesize \
 \
+BaseProtocol_synthesize_lock \
 BaseProtocol_synthesize_state \
 BaseProtocol_synthesize_timer \
 BaseProtocol_synthesize_data \
@@ -170,6 +187,10 @@ BaseProtocol_synthesize_data \
 #ifndef BaseProtocol_dynamic
 #define BaseProtocol_dynamic \
 \
+@dynamic lock;\
+@dynamic recursiveLock;\
+@dynamic os_lock;\
+@dynamic mutex;\
 @dynamic isLock;\
 @dynamic becomeFirstResponder;\
 @dynamic appLanguage;\
