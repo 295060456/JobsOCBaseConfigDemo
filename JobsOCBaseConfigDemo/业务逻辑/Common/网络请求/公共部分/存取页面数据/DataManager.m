@@ -10,7 +10,7 @@
 
 @interface DataManager()
 
-@property(nonatomic,strong)NSMutableDictionary *dataInfo;
+@property(nonatomic,copy)NSMutableDictionary *dataInfo;
 
 @end
 

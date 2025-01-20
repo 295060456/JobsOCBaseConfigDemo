@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)BRAddressPickerView *addressPickerView;/// 地址选择器
 /// Data
 @property(nonatomic,assign)BRStringPickerMode brStringPickerMode;
-@property(nonatomic,strong)NSMutableArray *BRStringPickerViewDataMutArr;
+@property(nonatomic,copy)NSMutableArray *BRStringPickerViewDataMutArr;
 @property(nonatomic,strong)BRPickerStyle *customStyle;
 /// 时间选择器
 //-(void)makeDatePickerDoneBlock:(BRDoneClickBlock)clickDoneBlock

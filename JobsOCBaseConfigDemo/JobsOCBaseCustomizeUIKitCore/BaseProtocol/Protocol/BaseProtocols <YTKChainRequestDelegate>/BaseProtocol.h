@@ -56,9 +56,9 @@ Prop_assign()TimerProcessType timerProcessType; /// 计时器运行状态
 #pragma mark —— Data
 Prop_strong(nullable)NSURL *url;
 Prop_copy(nullable)NSString *internationalizationKEY;/// 国际化的key
-Prop_strong(nullable)NSMutableSet *jobsDataMutSet;/// 绑定的数据源，数据类型NSMutableSet
-Prop_strong(nullable)NSMutableArray *jobsDataMutArr;/// 绑定的数据源，数据类型NSMutableArray
-Prop_strong(nullable)NSMutableDictionary *jobsDataMutDic;/// 绑定的数据源，数据类型NSMutableDictionary
+Prop_copy(nullable)NSMutableSet *jobsDataMutSet;/// 绑定的数据源，数据类型NSMutableSet
+Prop_copy(nullable)NSMutableArray *jobsDataMutArr;/// 绑定的数据源，数据类型NSMutableArray
+Prop_copy(nullable)NSMutableDictionary *jobsDataMutDic;/// 绑定的数据源，数据类型NSMutableDictionary
 Prop_strong(nullable)Class cls;/// 绑定的class
 /**
  SEL：就是一个字符串（Char*类型），表示方法的名字

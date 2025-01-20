@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CFGradientLabel : UILabel
 
-@property(nonatomic,strong)NSArray *colors;
+@property(nonatomic,copy)NSArray *colors;
 
 @end
 

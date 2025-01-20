@@ -16,7 +16,7 @@
 @property(nonatomic,assign)CGFloat sectionInsetRight;
 @property(nonatomic,assign)CGFloat minimumLineSpacing;/// 上下行间距
 @property(nonatomic,assign)CGFloat minimumInteritemSpacing;/// 左右列间距
-@property(nonatomic,strong)NSMutableArray *dataArray;/// 总共有多少个cell
+@property(nonatomic,copy)NSMutableArray *dataArray;/// 总共有多少个cell
 @property(nonatomic,assign)CGFloat itemHeight;/// 一个cell 的高度
 @property(nonatomic,assign)NSInteger columns;/// 一行有多少列
 @property(nonatomic,assign)NSInteger rowCount;/// 一共有都是行

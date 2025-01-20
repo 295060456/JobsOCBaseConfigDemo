@@ -66,12 +66,12 @@
     }
     [self tl_setSelectedItem:selectedItem];
 }
-#pragma mark —— @property(nonatomic,strong,readonly)NSMutableArray *btns;
+#pragma mark —— @property(nonatomic,copy,readonly)NSMutableArray *btns;
 - (void)setBtns:(NSMutableArray *)btns {
     objc_setAssociatedObject(self,
                              @selector(btns),
                              btns,
-                             OBJC_ASSOCIATION_RETAIN);
+                             OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (NSMutableArray *)btns {
@@ -82,7 +82,7 @@
         objc_setAssociatedObject(self,
                                  @selector(btns),
                                  Btns,
-                                 OBJC_ASSOCIATION_RETAIN);
+                                 OBJC_ASSOCIATION_COPY_NONATOMIC);
     }return Btns;
 }
 #pragma mark —— @property(nonatomic,assign,readonly)NSUInteger selectedIndex;

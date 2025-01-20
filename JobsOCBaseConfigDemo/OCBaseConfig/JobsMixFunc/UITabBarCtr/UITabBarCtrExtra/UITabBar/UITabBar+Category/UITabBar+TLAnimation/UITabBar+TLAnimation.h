@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITabBar (TLAnimation)
 
-@property(nonatomic,strong,readonly)NSMutableArray *btns;
+@property(nonatomic,copy,readonly)NSMutableArray *btns;
 @property(nonatomic,assign,readonly)NSUInteger selectedIndex;
 
 /** Tips1:

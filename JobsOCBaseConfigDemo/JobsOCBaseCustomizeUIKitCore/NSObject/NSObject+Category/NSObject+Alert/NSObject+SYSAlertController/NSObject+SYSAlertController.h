@@ -10,7 +10,7 @@
 #import "JobsBlock.h"
 #import "JobsString.h"
 #import "NSObject+Extras.h"
-#import "NSObject+WHToast.h"//提示
+#import "NSObject+WHToast.h"/// 提示
 
 #if __has_include(<ReactiveObjC/RACmetamacros.h>)
 #import <ReactiveObjC/RACmetamacros.h>
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 核心参数
 @property(nonatomic,strong,nullable)NSArray <NSString*>*btnTitleArr;// 按钮名称的数组
 @property(nonatomic,strong,nullable)NSArray <NSString*>*alertBtnActionArr;// 与btnTitleArr相对的按钮的触发事件，如果带形参，则只写方法名，形参的传递在具体的调用类里面实现。取消方法直接传@“”，方法内部做默认处理
-@property(nonatomic,strong,nullable)NSArray *parametersArr;// @【所有的参数形成数据束，一个方法对应一个数据束的形式，包装成方法的第一个参数】
+@property(nonatomic,copy,nullable)NSArray *parametersArr;// @【所有的参数形成数据束，一个方法对应一个数据束的形式，包装成方法的第一个参数】
 
 @end
 

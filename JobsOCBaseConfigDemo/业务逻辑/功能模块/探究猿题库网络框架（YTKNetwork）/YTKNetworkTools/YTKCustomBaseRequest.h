@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 @property(nonatomic,strong,nullable)id urlParameters;
-@property(nonatomic,strong,nullable)NSMutableDictionary *parameters;
-@property(nonatomic,strong,nullable)NSMutableDictionary *customHTTPHeader;
+@property(nonatomic,copy,nullable)NSMutableDictionary *parameters;
+@property(nonatomic,copy,nullable)NSMutableDictionary *customHTTPHeader;
 
 @end
 

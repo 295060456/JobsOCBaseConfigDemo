@@ -10,13 +10,13 @@
 
 @interface WGradientProgress ()
 /// UI
-@property(nonatomic,strong)CALayer *roadLayer;//跑道 即将运行的轨迹
-@property(nonatomic,strong)CALayer *fenceLayer;//栅栏
-@property(nonatomic,strong)CAGradientLayer *gradLayer;//通过改变layer的宽度来实现进度 运动员
+@property(nonatomic,strong)CALayer *roadLayer;/// 跑道 即将运行的轨迹
+@property(nonatomic,strong)CALayer *fenceLayer;/// 栅栏
+@property(nonatomic,strong)CAGradientLayer *gradLayer;/// 通过改变layer的宽度来实现进度 运动员
 /// Data
-@property(nonatomic,strong)NSTimerManager *nsTimerManager_color;//主管线条颜色的翻滚
-@property(nonatomic,strong)NSTimerManager *nsTimerManager_length;//主管线条长度的递增
-@property(nonatomic,strong)NSMutableArray *colors;
+@property(nonatomic,strong)NSTimerManager *nsTimerManager_color;/// 主管线条颜色的翻滚
+@property(nonatomic,strong)NSTimerManager *nsTimerManager_length;/// 主管线条长度的递增
+@property(nonatomic,copy)NSMutableArray *colors;
 
 @end
 
@@ -25,21 +25,21 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = JobsBrownColor;
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth;//自动调整view的宽度，保证左边距和右边距不变
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth;/// 自动调整view的宽度，保证左边距和右边距不变
     }return self;
 }
 
 -(void)makeTimer_color{
-    //启动方式——1
+    /// 启动方式——1
     self.nsTimerManager_color.nsTimeStartWithRunLoop(nil);
-    //启动方式——2
+    /// 启动方式——2
 //    self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
 }
 
 -(void)makeTimer_length{
-    //启动方式——1
+    /// 启动方式——1
     self.nsTimerManager_length.nsTimeStartWithRunLoop(nil);
-    //启动方式——2
+    /// 启动方式——2
 //    self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
 }
 

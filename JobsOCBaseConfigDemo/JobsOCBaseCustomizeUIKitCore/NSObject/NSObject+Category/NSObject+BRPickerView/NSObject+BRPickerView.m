@@ -233,19 +233,19 @@ JobsKey(_brStringPickerMode)
 -(void)setBrStringPickerMode:(BRStringPickerMode)brStringPickerMode{
     Jobs_setAssociatedRETAIN_NONATOMIC(_brStringPickerMode, @(brStringPickerMode))
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableArray *BRStringPickerViewDataMutArr;
+#pragma mark —— @property(nonatomic,copy)NSMutableArray *BRStringPickerViewDataMutArr;
 JobsKey(_BRStringPickerViewDataMutArr)
 @dynamic BRStringPickerViewDataMutArr;
 -(NSMutableArray *)BRStringPickerViewDataMutArr{
     NSMutableArray *brStringPickerViewDataMutArr = Jobs_getAssociatedObject(_BRStringPickerViewDataMutArr);
     if (!brStringPickerViewDataMutArr) {
         brStringPickerViewDataMutArr = NSMutableArray.array;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_BRStringPickerViewDataMutArr, brStringPickerViewDataMutArr)
+        Jobs_setAssociatedCOPY_NONATOMIC(_BRStringPickerViewDataMutArr, brStringPickerViewDataMutArr)
     }return brStringPickerViewDataMutArr;
 }
 
 -(void)setBRStringPickerViewDataMutArr:(NSMutableArray *)BRStringPickerViewDataMutArr{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_BRStringPickerViewDataMutArr, BRStringPickerViewDataMutArr)
+    Jobs_setAssociatedCOPY_NONATOMIC(_BRStringPickerViewDataMutArr, BRStringPickerViewDataMutArr)
 }
 
 @end

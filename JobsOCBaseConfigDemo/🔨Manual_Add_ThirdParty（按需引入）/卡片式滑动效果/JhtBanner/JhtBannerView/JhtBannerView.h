@@ -22,7 +22,7 @@ JhtBannerScrollViewDelegate
 /** 图片数组
  *  tips: [imageStr containsString:@"http"] ? 网络图片 : 本地图片（不会使用placeholderImageName作为占位图）
  */
-@property(nonatomic,strong,nonnull)NSArray *dataArr; /// 可以是UIImage 也可以是NSString
+@property(nonatomic,copy,nonnull)NSArray *dataArr; /// 可以是UIImage 也可以是NSString
 @property(nonatomic,strong,nonnull)JhtBannerScrollView *bannerView;
 /// 占位图片名（本地）
 @property(nonatomic,copy,nullable)NSString *placeholderImageName;

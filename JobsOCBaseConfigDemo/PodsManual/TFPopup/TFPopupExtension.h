@@ -10,7 +10,6 @@
 #import <Foundation/Foundation.h>
 #import "TFPopupParam.h"
 
-
 typedef NS_ENUM(NSInteger,DelegateProcess) {
     DelegateProcessWillGetConfiguration = 0,//将要获取弹出配置
     DelegateProcessDidGetConfiguration,//已经获取弹出配置
@@ -34,8 +33,8 @@ typedef void(^TFDelegateProcessBlock)(UIView *pop,DelegateProcess pro);
 
 @property(nonatomic,strong)UIButton *defaultBackgroundView;
 @property(nonatomic,assign)NSInteger backgroundViewCount;
-@property(nonatomic,strong)NSMutableArray *backgroundViewArray;
-@property(nonatomic,strong)NSMutableArray *backgroundViewFrameArray;
+@property(nonatomic,copy)NSMutableArray *backgroundViewArray;
+@property(nonatomic,copy)NSMutableArray *backgroundViewFrameArray;
 
 @property(nonatomic,assign)BOOL disuseShowAlphaAnimation;
 @property(nonatomic,assign)CGFloat showFromAlpha;

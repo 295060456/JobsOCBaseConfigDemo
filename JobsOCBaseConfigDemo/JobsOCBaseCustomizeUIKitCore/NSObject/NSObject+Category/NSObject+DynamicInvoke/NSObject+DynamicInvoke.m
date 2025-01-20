@@ -12,8 +12,8 @@
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
 /// @param targetObj 靶点，方法在哪里
 /// @param methodName 不带参数的方法名
-+(void)targetObj:(nonnull NSObject *)targetObj
-callingMethodWithName:(nullable NSString *)methodName{
++(void)targetObj:(NSObject *_Nonnull)targetObj
+callingMethodWithName:(NSString *_Nullable)methodName{
     if ([NSObject judgementObj:targetObj existMethodWithName:methodName]) {
         SuppressWarcPerformSelectorLeaksWarning([targetObj performSelector:NSSelectorFromString(methodName)]);
     }else{
@@ -104,8 +104,7 @@ callingMethodWithName:(nullable NSString *)methodName{
 /// 获取方法返回值
 /// @param inv inv
 /// @param sig 方法签名
-+(id)getMethodReturnValueWithInv:(NSInvocation *)inv
-                             sig:(NSMethodSignature *)sig{
++(id)getMethodReturnValueWithInv:(NSInvocation *)inv sig:(NSMethodSignature *)sig{
     const char *returnType = sig.methodReturnType;
     __autoreleasing id returnValue = nil;
     if(strcmp(returnType, @encode(void)) == 0){
@@ -157,8 +156,8 @@ callingMethodWithName:(nullable NSString *)methodName{
     };
 }
 /// 判断某个实例对象是否存在某个【不带参数的方法】
-+(BOOL)judgementObj:(nonnull NSObject *)obj
-existMethodWithName:(nullable NSString *)methodName{
++(BOOL)judgementObj:(NSObject *_Nonnull)obj
+existMethodWithName:(NSString *_Nullable)methodName{
     if (!obj || isNull(methodName)) {
         return NO;
     }else{
@@ -167,7 +166,7 @@ existMethodWithName:(nullable NSString *)methodName{
     }
 }
 /// 用block来代替selector
--(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock{
+-(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock _Nullable)selectorBlock{
     return selectorBlocks(selectorBlock, nil, self);
 }
 /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
@@ -244,19 +243,19 @@ JobsKey(_selImp)
 -(void)setSelImp:(JobsSEL_IMP *)selImp{
     Jobs_setAssociatedRETAIN_NONATOMIC(_selImp, selImp)
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableDictionary *methodCache;
+#pragma mark —— @property(nonatomic,copy)NSMutableDictionary *methodCache;
 JobsKey(_methodCache)
 @dynamic methodCache;
 -(NSMutableDictionary<NSString *,NSValue *> *)methodCache{
     NSMutableDictionary *MethodCache = Jobs_getAssociatedObject(_methodCache);
     if (!MethodCache) {
         MethodCache = NSMutableDictionary.dictionary;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_methodCache, MethodCache)
+        Jobs_setAssociatedCOPY_NONATOMIC(_methodCache, MethodCache)
     }return MethodCache;
 }
 
 -(void)setMethodCache:(NSMutableDictionary<NSString *,NSValue *> *)methodCache{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_methodCache, methodCache)
+    Jobs_setAssociatedCOPY_NONATOMIC(_methodCache, methodCache)
 }
 /// 是否存在这样的属性，有则返回
 -(JobsReturnIDByStringBlock _Nonnull)property {

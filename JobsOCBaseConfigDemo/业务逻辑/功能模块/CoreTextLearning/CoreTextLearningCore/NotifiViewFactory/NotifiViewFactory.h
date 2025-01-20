@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NotifiViewFactory : NSObject
 
-@property(nonatomic,readonly,strong)NSArray *notifiViews;
+@property(nonatomic,readonly,copy)NSArray *notifiViews;
 
 +(instancetype)shared;
 

@@ -18,9 +18,9 @@ static const UIEdgeInsets LMHDefaultEdgeInsets = {10,10,10,10};
 
 @interface LMHWaterFallLayout()
 /// 存放所有的布局属性
-@property(nonatomic,strong)NSMutableArray *attrsArr;
+@property(nonatomic,copy)NSMutableArray *attrsArr;
 /// 存放所有列的当前高度
-@property(nonatomic,strong)NSMutableArray *columnHeights;
+@property(nonatomic,copy)NSMutableArray *columnHeights;
 /// 内容的高度
 @property(nonatomic,assign)CGFloat contentHeight;
 
@@ -136,10 +136,10 @@ static const UIEdgeInsets LMHDefaultEdgeInsets = {10,10,10,10};
  
 //    CGFloat maxColumnHeight = [self.columnHeights[0] doubleValue];
 //    for (int i = 0; i < LMHDefaultColunmCount; i++) {
-//        
+//
 //        // 取得第i列的高度
 //        CGFloat columnHeight = [self.columnHeights[i] doubleValue];
-//        
+//
 //        if (maxColumnHeight < columnHeight) {
 //            maxColumnHeight = columnHeight;
 //        }

@@ -19,12 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (DynamicInvoke)
 
 @property(nonatomic,strong)JobsSEL_IMP *selImp;
-@property(nonatomic,strong)NSMutableDictionary <NSString *, NSValue *>*methodCache;/// 定义一个全局字典来缓存已经添加的方法
+@property(nonatomic,copy)NSMutableDictionary <NSString *, NSValue *>*methodCache;/// 定义一个全局字典来缓存已经添加的方法
 #pragma mark —— 参数 和 相关调用
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
 /// @param targetObj 靶点，方法在哪里
 /// @param methodName 不带参数的方法名
-+(void)targetObj:(nonnull NSObject *)targetObj callingMethodWithName:(nullable NSString *)methodName;
++(void)targetObj:(NSObject *_Nonnull)targetObj callingMethodWithName:(NSString *_Nullable)methodName;
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
 -(jobsByStringBlock _Nonnull)callingMethodWithName;
 /// 使用 dispatch_once 来执行只需运行一次的线程安全代码
@@ -43,9 +43,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 判断本程序是否存在某个类
 +(JobsReturnBOOLByStringBlock _Nonnull)judgementAppExistClassWithName;
 /// 判断某个实例对象是否存在某个【不带参数的方法】
-+(BOOL)judgementObj:(nonnull NSObject *)obj existMethodWithName:(nullable NSString *)methodName;
++(BOOL)judgementObj:(NSObject *_Nonnull)obj existMethodWithName:(NSString *_Nullable)methodName;
 /// 用block来代替selector。
--(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock)selectorBlock;
+-(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock _Nullable)selectorBlock;
 /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
 /// - Parameters:
 ///   - block: 最终的执行体

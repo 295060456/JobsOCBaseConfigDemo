@@ -22,7 +22,7 @@
 @property(nonatomic,strong)WMZSlider *WMZSlider;              //自定义滑动
 @property(nonatomic,strong)WMZSlider *slider;                 //滑动
 /// Data
-@property(nonatomic,strong)NSMutableArray *btnArr;            //按钮数组
+@property(nonatomic,copy)NSMutableArray *btnArr;              //按钮数组
 @property(nonatomic,copy)NSString *name;                      //文本图片 默认图片“A”
 @property(nonatomic,copy)NSString *allChinese;                //所显示的所有中文
 @property(nonatomic,copy)NSString *factChinese;               //实际需要点击的中文

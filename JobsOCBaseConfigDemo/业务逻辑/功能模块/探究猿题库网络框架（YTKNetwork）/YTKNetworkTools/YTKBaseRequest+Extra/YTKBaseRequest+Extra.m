@@ -102,7 +102,7 @@ JobsKey(_urlParameters)
 -(void)setUrlParameters:(id)urlParameters{
     Jobs_setAssociatedRETAIN_NONATOMIC(_urlParameters, urlParameters)
 }
-#pragma mark —— @property(nonatomic,strong,nullable)NSMutableDictionary *parameters;
+#pragma mark —— @property(nonatomic,copy,nullable)NSMutableDictionary *parameters;
 JobsKey(_parameters)
 @dynamic parameters;
 -(NSMutableDictionary *)parameters{
@@ -110,10 +110,10 @@ JobsKey(_parameters)
 }
 
 -(void)setParameters:(NSMutableDictionary *)parameters{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_parameters, parameters)
+    Jobs_setAssociatedCOPY_NONATOMIC(_parameters, parameters)
 }
 
-#pragma mark —— @property(nonatomic,strong,nullable)NSMutableDictionary *customHTTPHeader;
+#pragma mark —— @property(nonatomic,copy,nullable)NSMutableDictionary *customHTTPHeader;
 JobsKey(_customHTTPHeader)
 @dynamic customHTTPHeader;
 -(NSMutableDictionary *)customHTTPHeader{
@@ -121,7 +121,7 @@ JobsKey(_customHTTPHeader)
 }
 
 -(void)setCustomHTTPHeader:(NSMutableDictionary *)customHTTPHeader{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_customHTTPHeader, customHTTPHeader)
+    Jobs_setAssociatedCOPY_NONATOMIC(_customHTTPHeader, customHTTPHeader)
 }
 
 @end
