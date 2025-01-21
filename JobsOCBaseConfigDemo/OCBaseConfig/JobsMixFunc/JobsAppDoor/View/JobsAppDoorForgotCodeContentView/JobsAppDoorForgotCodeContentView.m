@@ -173,7 +173,7 @@
 /**
     在 @interface NSObject (AppTools)<AppToolsProtocol>里
     对下列属性进行统一管理
-    @property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
+    @property(nonatomic,copy)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
     @property(nonatomic,strong)BaiShaETProjCustomerContactModel *customerContactModel;
  */
 //-(NSMutableArray<UIViewModel *> *)hotLabelDataMutArr{

@@ -9,7 +9,7 @@
 
 @interface Douyin_ZFPlayerVC_1 ()
 
-@property(nonatomic,strong)NSMutableArray <VideoModel_Core *>*__block dataMutArr;
+@property(nonatomic,copy)NSMutableArray <VideoModel_Core *>*__block dataMutArr;
 
 @end
 

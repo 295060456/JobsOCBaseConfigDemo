@@ -13,8 +13,8 @@
 @property(nonatomic,strong)__kindof UIView *sliderView;
 /// Data
 @property(nonatomic,assign)NSUInteger current_index;
-@property(nonatomic,strong)NSMutableArray <UIButtonModel *>*buttonModels;
-@property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*buttonsArray;
+@property(nonatomic,copy)NSMutableArray <UIButtonModel *>*buttonModels;
+@property(nonatomic,copy)NSMutableArray <__kindof UIButton *>*buttonsArray;
 
 @end
 

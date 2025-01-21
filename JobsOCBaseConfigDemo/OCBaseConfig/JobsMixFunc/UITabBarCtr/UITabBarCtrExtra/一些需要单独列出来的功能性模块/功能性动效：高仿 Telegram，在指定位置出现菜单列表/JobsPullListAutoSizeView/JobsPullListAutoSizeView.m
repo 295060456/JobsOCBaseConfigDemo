@@ -12,7 +12,7 @@
 //@property(nonatomic,strong)UITableView *tableView;//content
 @property(nonatomic,strong)UIView *targetView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 

@@ -43,7 +43,7 @@
 //下面是自定义的layout
 @interface KFZShopCatoryFlowLayput  ()
 //存放新的layouttAttributes
-@property(nonatomic,strong)NSMutableArray<UICollectionViewLayoutAttributes *> *decorationViewAttrs;
+@property(nonatomic,copy)NSMutableArray<UICollectionViewLayoutAttributes *> *decorationViewAttrs;
 
 @end
 

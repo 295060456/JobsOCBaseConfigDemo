@@ -12,8 +12,8 @@
 @property(nonatomic,strong)BaseButton *editBtn;
 @property(nonatomic,strong)MsgEditBoardView *msgEditBoardView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <JobsMsgDataModel *>*dataMutArr;
-@property(nonatomic,strong)NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsMsgDataModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
 
 @end
 

@@ -13,9 +13,9 @@
 @property(nonatomic,strong)JobsSearchBar *jobsSearchBar;
 @property(nonatomic,strong)JobsDropDownListView *dropDownListView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*sectionTitleMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotSearchMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*listViewData;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*sectionTitleMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*hotSearchMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*listViewData;
 @property(nonatomic,strong)UIColor *bgColour;
 @property(nonatomic,copy)NSString *titleStr;//标题
 @property(nonatomic,assign)CGRect tableViewRect;

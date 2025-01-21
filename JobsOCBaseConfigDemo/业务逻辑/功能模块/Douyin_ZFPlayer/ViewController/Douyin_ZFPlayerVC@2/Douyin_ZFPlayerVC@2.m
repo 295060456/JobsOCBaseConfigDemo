@@ -15,7 +15,7 @@
 @property(nonatomic,strong)ZFCustomControlView *fullControlView;
 @property(nonatomic,strong)JobsBitsMonitorSuspendLab *bitsMonitorSuspendLab;
 /// Data
-@property(nonatomic,strong)NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
+@property(nonatomic,copy)NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
 
 @end
 

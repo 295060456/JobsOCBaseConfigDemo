@@ -10,7 +10,7 @@
 @interface MSCommentView ()
 /// UI
 /// Data
-@property(nonatomic,strong)NSMutableArray <MSCommentModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <MSCommentModel *>*dataMutArr;
 
 @end
 

@@ -13,10 +13,10 @@
 @property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
 @property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
 /// Data
-@property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
-@property(nonatomic,strong)NSMutableArray <NSString *>*titleMutArr;
-//@property(nonatomic,strong)NSMutableArray <NSString *>*imageNames;
-//@property(nonatomic,strong)NSMutableArray <NSString *>*selectedImageNames;
+@property(nonatomic,copy)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*titleMutArr;
+//@property(nonatomic,copy)NSMutableArray <NSString *>*imageNames;
+//@property(nonatomic,copy)NSMutableArray <NSString *>*selectedImageNames;
 
 @end
 

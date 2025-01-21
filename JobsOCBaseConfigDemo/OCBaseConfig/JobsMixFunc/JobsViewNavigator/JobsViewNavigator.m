@@ -9,7 +9,7 @@
 
 @interface JobsViewNavigator ()
 
-@property(nonatomic,strong)NSMutableArray<__kindof UIView *> *viewStack;
+@property(nonatomic,copy)NSMutableArray<__kindof UIView *> *viewStack;
 
 @end
 

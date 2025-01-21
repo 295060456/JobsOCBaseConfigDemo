@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_END
  
  // Data
  @property(nonatomic,strong)JobsHotLabelWithSingleLine *hl;
- @property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
+ @property(nonatomic,copy)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
  
  -(JobsHotLabelWithSingleLine *)hl{
      if (!_hl) {

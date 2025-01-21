@@ -18,7 +18,7 @@
 @property(nonatomic,strong)BaseButton *chooseBtn;
 /// Data
 @property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
 @property(nonatomic,assign)CGSize chooseBtnSize;
 @property(nonatomic,strong)UIViewModel *chooseBtnViewModel;
 

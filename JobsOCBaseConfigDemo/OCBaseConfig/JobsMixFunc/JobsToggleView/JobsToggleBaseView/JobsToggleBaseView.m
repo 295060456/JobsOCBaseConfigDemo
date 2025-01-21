@@ -13,9 +13,9 @@
 @property(nonatomic,strong)JobsToggleNavView *taggedNavView;
 @property(nonatomic,strong)UIScrollView *bgScroll;
 /// Data
-@property(nonatomic,strong)NSMutableArray <NSString *>*tempTitles;
-@property(nonatomic,strong)NSMutableArray <__kindof UIView <BaseViewProtocol>*>*tempLabs;
-@property(nonatomic,strong)NSMutableArray <UIButtonModel *>*taggedNavDatas;
+@property(nonatomic,copy)NSMutableArray <NSString *>*tempTitles;
+@property(nonatomic,copy)NSMutableArray <__kindof UIView <BaseViewProtocol>*>*tempLabs;
+@property(nonatomic,copy)NSMutableArray <UIButtonModel *>*taggedNavDatas;
 
 @end
 

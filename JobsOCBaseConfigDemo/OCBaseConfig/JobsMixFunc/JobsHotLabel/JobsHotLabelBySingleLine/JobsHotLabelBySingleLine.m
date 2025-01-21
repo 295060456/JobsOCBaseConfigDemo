@@ -13,10 +13,10 @@
 }
 /// UI
 @property(nonatomic,strong)UIStackView *stackView;/// 放在滚动视图上，可以滚动的UIStackView
-@property(nonatomic,strong)NSMutableArray <UIButton *>*btnMutArr;
+@property(nonatomic,copy)NSMutableArray <UIButton *>*btnMutArr;
 /// Data
 @property(nonatomic,strong)NSArray <UIViewModel *>*viewModelDataArr;// 数据源
-@property(nonatomic,strong)NSMutableArray <NSNumber *>*btnHeightMutArr;
+@property(nonatomic,copy)NSMutableArray <NSNumber *>*btnHeightMutArr;
 
 @end
 

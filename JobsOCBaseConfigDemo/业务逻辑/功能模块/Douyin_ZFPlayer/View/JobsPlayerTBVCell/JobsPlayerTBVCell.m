@@ -15,7 +15,7 @@
 /// Data
 @property(nonatomic,strong,nullable)ZFAVPlayerManager *playerManager;
 @property(nonatomic,strong)VideoModel_Core *videoModel_Core;
-@property(nonatomic,strong)NSMutableArray <NSURL *>*assetURLs;
+@property(nonatomic,copy)NSMutableArray <NSURL *>*assetURLs;
 
 @end
 

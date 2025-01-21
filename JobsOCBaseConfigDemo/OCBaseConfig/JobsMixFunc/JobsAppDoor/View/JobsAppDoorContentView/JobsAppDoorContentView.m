@@ -20,9 +20,9 @@
 @property(nonatomic,strong)UIButton *storeCodeBtn;/// 记住密码
 @property(nonatomic,strong)UIButton *findCodeBtn;/// 忘记密码
 /// Data
-@property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
-@property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
-@property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
 
 @end
 

@@ -17,7 +17,7 @@
 @property(nonatomic,strong)UIImageView *rightIMGV;
 @property(nonatomic,strong)JobsHotLabelBySingleLine *hl;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
 @property(nonatomic,strong)CasinoCustomerContactModel *customerContactModel;
 
 @end

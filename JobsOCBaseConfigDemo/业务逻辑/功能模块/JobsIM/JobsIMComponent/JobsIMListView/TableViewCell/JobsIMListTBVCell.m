@@ -12,8 +12,8 @@
 @property(nonatomic,strong)UILabel *timeLab;
 @property(nonatomic,strong)UILongPressGestureRecognizer *longPG;
 
-@property(nonatomic,strong)NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
-@property(nonatomic,strong)NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
+@property(nonatomic,copy)NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
+@property(nonatomic,copy)NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
 @property(nonatomic,copy)NSString *usernameStr;
 @property(nonatomic,copy)NSString *contentStr;
 @property(nonatomic,copy)NSString *timeStr;

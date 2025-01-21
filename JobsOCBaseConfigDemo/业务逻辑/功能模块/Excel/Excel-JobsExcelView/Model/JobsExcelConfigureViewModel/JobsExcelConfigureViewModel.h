@@ -54,8 +54,8 @@
 @property(nonatomic,strong,null_resettable)NSMutableArray <UIButtonModel *>*leftListDatas;
 
 @property(nonatomic,strong,nonnull)NSMutableArray <NSMutableArray <NSString *>*>*contentTitles;
-@property(nonatomic,strong)NSMutableArray <NSString *>*_Nullable topHeaderTitles;
-@property(nonatomic,strong)NSMutableArray <NSString *>*_Nullable leftTitles;
+@property(nonatomic,copy)NSMutableArray <NSString *>*_Nullable topHeaderTitles;
+@property(nonatomic,copy)NSMutableArray <NSString *>*_Nullable leftTitles;
 
 @end
 

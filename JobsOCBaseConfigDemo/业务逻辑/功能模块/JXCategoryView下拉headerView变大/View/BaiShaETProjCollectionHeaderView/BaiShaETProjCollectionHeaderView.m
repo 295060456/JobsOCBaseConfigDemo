@@ -16,11 +16,11 @@
 @property(nonatomic,strong)JobsAnimationLabel *animationLab;
 /// Data
 @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
-@property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
 
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <NSString *>*>*richTextMutArr2;
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <JobsRichTextConfig *>*>*richTextConfigMutArr2;
+@property(nonatomic,copy)NSMutableArray <NSMutableArray <NSString *>*>*richTextMutArr2;
+@property(nonatomic,copy)NSMutableArray <NSMutableArray <JobsRichTextConfig *>*>*richTextConfigMutArr2;
 
 @end
 

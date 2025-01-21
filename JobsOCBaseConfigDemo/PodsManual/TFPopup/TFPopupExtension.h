@@ -98,7 +98,7 @@ typedef void(^TFDelegateProcessBlock)(UIView *pop,DelegateProcess pro);
 @class TFPopupPoolBridge;
 @interface TFPopupPool : NSObject
 //已经弹出的弹窗，弱引用记录
-@property(nonatomic,strong)NSMutableArray <TFPopupPoolBridge *>*pool;
+@property(nonatomic,copy)NSMutableArray <TFPopupPoolBridge *>*pool;
 
 +(void)refreshPool;
 +(void)addToPool:(UIView *)popupView;

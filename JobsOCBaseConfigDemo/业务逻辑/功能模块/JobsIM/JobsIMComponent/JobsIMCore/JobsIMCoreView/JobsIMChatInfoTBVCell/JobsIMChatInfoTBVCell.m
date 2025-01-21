@@ -15,8 +15,8 @@
 @property(nonatomic,strong)UILabel *chatContentLab;/// 聊天信息承接
 @property(nonatomic,strong)UILabel *timeLab;
 @property(nonatomic,strong)UILongPressGestureRecognizer *longPG;
-@property(nonatomic,strong)NSMutableArray <UIImage *>*chatBubbleMutArr;
-@property(nonatomic,strong)NSMutableArray <UIMenuItem *>*menuItemMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*chatBubbleMutArr;
+@property(nonatomic,copy)NSMutableArray <UIMenuItem *>*menuItemMutArr;
 /// data
 @property(nonatomic,copy)NSString *senderChatTextStr;/// 该聊天的文本信息
 @property(nonatomic,copy)NSString *senderChatTextTimeStr;/// 该聊天的时间戳
@@ -26,8 +26,8 @@
 @property(nonatomic,assign)CGFloat contentHeight;/// 内容高
 @property(nonatomic,assign)CGFloat contentWidth;/// 内容宽
 @property(nonatomic,assign)InfoLocation infoLocation;
-@property(nonatomic,strong)NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
-@property(nonatomic,strong)NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
+@property(nonatomic,copy)NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
+@property(nonatomic,copy)NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
 
 @end
 

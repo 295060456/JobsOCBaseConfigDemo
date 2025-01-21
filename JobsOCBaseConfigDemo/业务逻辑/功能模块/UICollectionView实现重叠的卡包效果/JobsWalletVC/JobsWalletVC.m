@@ -12,9 +12,9 @@
 
 /// Data
 @property(nonatomic,strong)TMSCollectionViewLayout *tms_layout;
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <UIViewModel *>*>*dataSourceMutArr;/// Cell的数据源
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*sectionHeaderDataSource;/// sectionHeader的数据源
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*sectionFooterDataSource;/// sectionFooter的数据源
+@property(nonatomic,copy)NSMutableArray <NSMutableArray <UIViewModel *>*>*dataSourceMutArr;/// Cell的数据源
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*sectionHeaderDataSource;/// sectionHeader的数据源
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*sectionFooterDataSource;/// sectionFooter的数据源
 
 @end
 

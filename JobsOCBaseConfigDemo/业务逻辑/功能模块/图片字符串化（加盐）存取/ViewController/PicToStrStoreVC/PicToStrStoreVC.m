@@ -9,8 +9,8 @@
 
 @interface PicToStrStoreVC ()
 /// Data
-@property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
-@property(nonatomic,strong)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
+@property(nonatomic,copy)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 

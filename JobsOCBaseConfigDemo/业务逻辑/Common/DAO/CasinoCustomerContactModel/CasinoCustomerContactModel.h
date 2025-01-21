@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CasinoCustomerContactModel : BaseModel
 
-@property(nonatomic,strong)NSMutableArray <CasinoCustomerContactElementModel *>*customerList;
+@property(nonatomic,copy)NSMutableArray <CasinoCustomerContactElementModel *>*customerList;
 @property(nonatomic,strong)CasinoCustomerContactElementModel *onlineUrl;
 @property(nonatomic,strong)CasinoCustomerContactElementModel *telephone;
 

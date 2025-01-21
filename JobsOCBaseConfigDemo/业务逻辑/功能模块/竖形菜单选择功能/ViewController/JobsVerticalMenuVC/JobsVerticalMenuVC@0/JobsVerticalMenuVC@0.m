@@ -14,9 +14,9 @@
 @property(nonatomic,strong)BaseButton *editBtn;
 @property(nonatomic,strong)JobsSearchBar *searchView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <__kindof UIView *>*rightViewArray; /// 右侧的视图数组
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*titleMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*leftDataArray; /// 左边的数据源
+@property(nonatomic,copy)NSMutableArray <__kindof UIView *>*rightViewArray; /// 右侧的视图数组
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*titleMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*leftDataArray; /// 左边的数据源
 @property(nonatomic,strong)UIViewModel *leftViewCurrentSelectModel;
 
 @end

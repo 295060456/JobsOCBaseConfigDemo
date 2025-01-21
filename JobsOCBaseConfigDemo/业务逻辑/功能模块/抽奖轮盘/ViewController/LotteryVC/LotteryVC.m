@@ -10,8 +10,8 @@
 @interface LotteryVC ()
 /// UI
 /// Data
-@property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvSectionRowCellMutArr;
-@property(nonatomic,strong)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <__kindof UITableViewCell *>*tbvSectionRowCellMutArr;
+@property(nonatomic,copy)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 

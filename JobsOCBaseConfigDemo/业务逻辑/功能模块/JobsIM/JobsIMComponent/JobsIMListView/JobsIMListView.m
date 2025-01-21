@@ -11,7 +11,7 @@
 /// UI
 @property(nonatomic,strong)UIColor *bgColour;
 /// Data
-@property(nonatomic,strong)NSMutableArray <JobsIMListDataModel *>*jobsIMListMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsIMListDataModel *>*jobsIMListMutArr;
 
 @end
 

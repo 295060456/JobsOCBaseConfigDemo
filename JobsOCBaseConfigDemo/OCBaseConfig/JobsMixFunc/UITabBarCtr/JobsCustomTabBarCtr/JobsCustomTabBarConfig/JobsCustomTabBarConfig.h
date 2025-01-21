@@ -21,8 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGRect tabBarFrame;
 @property(nonatomic,strong,nullable)UIColor *tabBarBackgroundColor;
 @property(nonatomic,strong,nullable)UIImage *tabBarBackgroundImage;
-@property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*tabBarItems;
-@property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*viewControllers;
+@property(nonatomic,copy)NSMutableArray <__kindof UIButton *>*tabBarItems;
+@property(nonatomic,copy)NSMutableArray <__kindof UIViewController *>*viewControllers;
 @property(nonatomic,strong,null_resettable)NSMutableArray <__kindof NSNumber *>*tabBarItemYOffsets;
 
 @end

@@ -17,8 +17,8 @@
 @property(nonatomic,strong)UIButtonModel *timerProcessModel;
 @property(nonatomic,copy)NSString *minutesStr;
 @property(nonatomic,copy)NSString *secondStr;
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
-@property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
 @property(nonatomic,strong)NSMutableParagraphStyle *paragraphStyle;
 
 @end

@@ -11,7 +11,7 @@
 // UI
 @property(nonatomic,strong)SpreadsheetView *spreadsheetView;
 // Data
-@property(nonatomic,strong)NSMutableArray <CasinoFlowDetailsModel *>*dataMutArr;//记录每一行的数据
+@property(nonatomic,copy)NSMutableArray <CasinoFlowDetailsModel *>*dataMutArr;//记录每一行的数据
 
 @end
 

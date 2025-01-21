@@ -13,7 +13,7 @@
 @property(nonatomic,strong)BaseButton *btn;
 @property(nonatomic,strong)UISwitch *switcher;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*listViewData;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*listViewData;
 @property(nonatomic,strong)UIColor *cor;
 @property(nonatomic,assign)JobsDropDownListViewDirection dropDownListViewDirection;
 

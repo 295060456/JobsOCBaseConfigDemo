@@ -11,8 +11,8 @@
 /// UI
 @property(nonatomic,strong)JobsHotLabelByMultiLine *hotLabel;
 /// Data
-@property(nonatomic,strong)NSMutableArray <NSString *>*btnTitleMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*btnTitleMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
 @property(nonatomic,strong)JobsHotLabelWithMultiLineModel *hotLabelModel;
 @property(nonatomic,strong)JobsHeaderFooterViewModel *headerViewModel;
 @property(nonatomic,strong)JobsHeaderFooterViewModel *footerViewModel;

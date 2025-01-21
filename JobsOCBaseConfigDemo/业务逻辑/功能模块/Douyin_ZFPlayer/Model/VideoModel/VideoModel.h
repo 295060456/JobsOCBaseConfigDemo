@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VideoModel : BaseModel
 
-@property(nonatomic,strong)NSMutableArray <VideoModel_Core *>*listMutArr;
+@property(nonatomic,copy)NSMutableArray <VideoModel_Core *>*listMutArr;
 
 @end
 

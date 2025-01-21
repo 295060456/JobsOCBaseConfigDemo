@@ -9,9 +9,9 @@
 
 @interface PopListBaseView ()
 /// Data
-@property(nonatomic,strong)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
-@property(nonatomic,strong)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
-@property(nonatomic,strong)NSMutableArray <__kindof NSString *>*datas;
+@property(nonatomic,copy)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
+@property(nonatomic,copy)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <__kindof NSString *>*datas;
 
 @end
 

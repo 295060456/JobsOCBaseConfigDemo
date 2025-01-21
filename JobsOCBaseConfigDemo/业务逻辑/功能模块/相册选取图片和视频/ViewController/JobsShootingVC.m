@@ -13,7 +13,7 @@
 @property(nonatomic,strong)UIButton *photoAlbumBtn;
 @property(nonatomic,strong)UIImageView *imageView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIImage *>*photosImageMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*photosImageMutArr;
 
 @end
 

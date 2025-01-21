@@ -9,8 +9,8 @@
 
 @interface JobsStepView ()
 
-@property(nonatomic,strong)NSMutableArray <BaseButton *>*btnMutArr;
-@property(nonatomic,strong)NSMutableArray <UIButtonModel *>*btnModelMutArr;
+@property(nonatomic,copy)NSMutableArray <BaseButton *>*btnMutArr;
+@property(nonatomic,copy)NSMutableArray <UIButtonModel *>*btnModelMutArr;
 
 @end
 

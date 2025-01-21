@@ -11,9 +11,9 @@
 /// UI
 @property(nonatomic,strong)UIButton *countDownBtn;
 @property(nonatomic,strong)JobsCountdownView *countdownView;
-@property(nonatomic,strong)NSMutableArray <UIButton *>*btnMutArr;
+@property(nonatomic,copy)NSMutableArray <UIButton *>*btnMutArr;
 /// Data
-@property(nonatomic,strong)NSMutableArray <NSString *>*btnTitleMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*btnTitleMutArr;
 
 @end
 

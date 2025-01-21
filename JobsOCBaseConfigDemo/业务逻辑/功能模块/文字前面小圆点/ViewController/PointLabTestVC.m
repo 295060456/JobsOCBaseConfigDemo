@@ -14,7 +14,7 @@
 /// Data
 @property(nonatomic,strong)NSMutableAttributedString *attributedString;
 @property(nonatomic,strong)NSMutableAttributedString *attributedString2;
-@property(nonatomic,strong)NSMutableArray<NSString *> *items;
+@property(nonatomic,copy)NSMutableArray<NSString *> *items;
 @property(nonatomic,copy)NSString *dot;
 
 @end

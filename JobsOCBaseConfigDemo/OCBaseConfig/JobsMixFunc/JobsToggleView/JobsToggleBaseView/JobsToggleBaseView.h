@@ -30,7 +30,7 @@ JobsToggleNavViewProtocol
 @property(nonatomic,assign)CGFloat taggedNavView_width;/// 一整个导航栏的宽度
 @property(nonatomic,assign)CGFloat taggedNavView_bgScroll_offset;/// 导航栏和可滑动子视图之间垂直方向上的距离
 @property(nonatomic,strong)UIColor *taggedNavViewBgColor;/// 导航栏的背景颜色
-@property(nonatomic,strong)NSMutableArray <__kindof UIView<BaseViewProtocol> *>*scrollContentViews;/// 可滑动的子视图的【唯一的】数据源
+@property(nonatomic,copy)NSMutableArray <__kindof UIView<BaseViewProtocol> *>*scrollContentViews;/// 可滑动的子视图的【唯一的】数据源
 @property(nonatomic,weak)__kindof UIButton *currentSelectedBtn;
 /// 当前显示的View
 -(jobsByNSIntegerBlock _Nonnull)switchViewsBy;

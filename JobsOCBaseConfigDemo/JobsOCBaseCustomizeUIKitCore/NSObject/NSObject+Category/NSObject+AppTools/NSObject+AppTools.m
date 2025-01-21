@@ -796,7 +796,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         telNum.isContainBlank;/// 不包含空格
     };
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableArray<UIViewModel *> *hotLabelDataMutArr;
+#pragma mark —— @property(nonatomic,copy)NSMutableArray<UIViewModel *> *hotLabelDataMutArr;
 JobsKey(_hotLabelDataMutArr)
 @dynamic hotLabelDataMutArr;
 -(NSMutableArray<UIViewModel *> *)hotLabelDataMutArr{
@@ -931,7 +931,7 @@ JobsKey(_attributedStringData)
 -(void)setAttributedStringData:(NSMutableAttributedString *)attributedStringData{
     Jobs_setAssociatedRETAIN_NONATOMIC(_attributedStringData, attributedStringData)
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
+#pragma mark —— @property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
 JobsKey(_richTextMutArr)
 @dynamic richTextMutArr;
 -(NSMutableArray<NSString *> *)richTextMutArr{
@@ -949,7 +949,7 @@ JobsKey(_richTextMutArr)
 -(void)setRichTextMutArr:(NSMutableArray<NSString *> *)richTextMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, richTextMutArr)
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+#pragma mark —— @property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 JobsKey(_richTextConfigMutArr)
 @dynamic richTextConfigMutArr;
 -(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
@@ -1016,7 +1016,7 @@ JobsKey(_connectionTipsTV)
 -(void)setConnectionTipsTV:(UITextView *)connectionTipsTV{
     Jobs_setAssociatedRETAIN_NONATOMIC(_connectionTipsTV, connectionTipsTV)
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
+#pragma mark —— @property(nonatomic,copy)NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
 JobsKey(_jxCategoryViewTitleMutArr)
 @dynamic jxCategoryViewTitleMutArr;
 -(NSMutableArray <NSString *>*)jxCategoryViewTitleMutArr{

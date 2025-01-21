@@ -26,9 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///当前流程序号 从0开始
 @property(nonatomic,assign)NSInteger currentFlowSerialNum;
 
-@property(nonatomic,strong)NSMutableArray <NSString *>*titleMutArr;
-@property(nonatomic,strong)NSMutableArray <NSString *>*subTitleMutArr;
-@property(nonatomic,strong)NSMutableArray <UIImage *>*backImageMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*titleMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*subTitleMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*backImageMutArr;
 
 @end
 

@@ -10,8 +10,8 @@
 @interface JobsVerticalMenuMainVC ()
 /// UI
 /// Data
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
+@property(nonatomic,copy)NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
 
 @end
 

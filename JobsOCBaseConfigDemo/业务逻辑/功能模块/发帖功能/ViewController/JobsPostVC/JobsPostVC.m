@@ -26,7 +26,7 @@
 @property(nonatomic,copy)NSString *pictures;
 @property(nonatomic,copy)NSString *videos;
 @property(nonatomic,copy)NSString *coverVideo;
-@property(nonatomic,strong)NSMutableArray <UIImage *>*photosImageMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*photosImageMutArr;
 @property(nonatomic,strong)NSData *videosData;
 @property(nonatomic,strong)NSURL *videosUrl;
 @property(nonatomic,assign)BOOL isUpload;

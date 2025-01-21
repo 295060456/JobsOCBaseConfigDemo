@@ -18,7 +18,7 @@
 @property(nonatomic,strong)UIView *bottomView;
 @property(nonatomic,strong)UIView *lineView;
 @property(nonatomic,strong)UIView *rightview;
-@property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*btnMutArr;
+@property(nonatomic,copy)NSMutableArray <__kindof UIButton *>*btnMutArr;
 @property(nonatomic,strong)NSArray <__kindof UIView *>*viewArray;
 /// Data
 @property(nonatomic,assign)NSInteger newChoseTag;  /// 选择的button tag

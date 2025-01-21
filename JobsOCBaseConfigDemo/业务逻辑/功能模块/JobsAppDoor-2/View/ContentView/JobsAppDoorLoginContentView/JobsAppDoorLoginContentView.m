@@ -17,8 +17,8 @@
 @property(nonatomic,strong)BaseButton *storeCodeBtn;/// 记住密码
 @property(nonatomic,strong)BaseButton *findCodeBtn;/// 忘记密码
 /// Data
-@property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
-@property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
 
 @end
 

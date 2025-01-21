@@ -18,8 +18,8 @@
 @property(nonatomic,strong)BaiShaETProjChoiceStadiumView *choiceStadiumView;
 //@property(nonatomic,strong)UICollectionView *collectionView;
 // Data
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
-@property(nonatomic,strong)NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*cvcellMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*cvcellMutArr;
 
 @end
 

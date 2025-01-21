@@ -11,8 +11,8 @@
 /// UI
 @property(nonatomic,strong)BaiShaETProjChoiceStadiumTBVHeaderView *tbvHeaderView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
-@property(nonatomic,strong)NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
 
 @end
 

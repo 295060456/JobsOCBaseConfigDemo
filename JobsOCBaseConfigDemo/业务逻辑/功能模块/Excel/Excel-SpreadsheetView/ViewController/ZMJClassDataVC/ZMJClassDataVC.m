@@ -13,8 +13,8 @@
 @property(nonatomic,assign)SortedColumn sortedColumn;
 /// data
 @property(nonatomic,strong)NSArray<NSString *> *header;
-@property(nonatomic,strong)NSMutableArray <NSArray<NSString *> *>*excelData;
-@property(nonatomic,strong)NSMutableArray <NSArray<NSString *> *>*original_excelData;
+@property(nonatomic,copy)NSMutableArray <NSArray<NSString *> *>*excelData;
+@property(nonatomic,copy)NSMutableArray <NSArray<NSString *> *>*original_excelData;
 @property(nonatomic,copy)NSString *content;
 
 @end

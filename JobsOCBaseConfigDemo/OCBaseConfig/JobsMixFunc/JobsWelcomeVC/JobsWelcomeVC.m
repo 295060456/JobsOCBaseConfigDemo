@@ -11,7 +11,7 @@
 // UI
 @property(nonatomic,strong)UIPageControl *pageControl;
 // Data
-@property(nonatomic,strong)NSMutableArray <NSString *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*dataMutArr;
 
 @end
 

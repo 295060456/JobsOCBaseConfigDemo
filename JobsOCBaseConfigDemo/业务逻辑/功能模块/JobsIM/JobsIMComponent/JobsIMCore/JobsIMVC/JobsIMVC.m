@@ -13,7 +13,7 @@
 @property(nonatomic,strong)BaseButton *shareBtn;
 @property(nonatomic,strong)UIColor *bgColour;
 /// data
-@property(nonatomic,strong)NSMutableArray <JobsIMChatInfoModel *>*chatInfoModelMutArr;//聊天信息
+@property(nonatomic,copy)NSMutableArray <JobsIMChatInfoModel *>*chatInfoModelMutArr;//聊天信息
 @property(nonatomic,strong)JobsIMChatInfoModel *chatInfoModel;
 
 @end

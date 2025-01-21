@@ -16,7 +16,7 @@
 @property(nonatomic,strong)BaseButton *sureBtn;
 @property(nonatomic,strong)UIView *bgView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
 @property(nonatomic,assign)NSInteger selectedIndex;
 
 @end

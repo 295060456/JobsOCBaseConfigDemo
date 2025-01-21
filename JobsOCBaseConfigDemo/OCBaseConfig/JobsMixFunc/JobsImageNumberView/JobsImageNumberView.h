@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_END
  【137 宽度包含5个数组一个小数点，一个数字差不多22.5宽】
  
  // Data
- @property(nonatomic,strong)NSMutableArray <UIImage *>*dataMutArr;
+ @property(nonatomic,copy)NSMutableArray <UIImage *>*dataMutArr;
  
  // Data -> View
  UIViewModel *viewModel = UIViewModel.new;

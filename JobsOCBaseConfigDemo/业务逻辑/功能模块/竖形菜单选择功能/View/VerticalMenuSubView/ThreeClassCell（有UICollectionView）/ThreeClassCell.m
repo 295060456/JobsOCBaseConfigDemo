@@ -21,7 +21,7 @@
 @property(nonatomic,assign)NSInteger columns;/// 一行有多少列
 @property(nonatomic,assign)NSInteger rowCount;/// 一共有都是行
 @property(nonatomic,strong)UICollectionViewFlowLayout *flowLayout;
-@property(nonatomic,strong)NSMutableArray <GoodsClassModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <GoodsClassModel *>*dataMutArr;
 
 @end
 

@@ -47,12 +47,12 @@ AppToolsProtocol
 @property(nonatomic,strong)UILabel *separateLab;/// 分割线
 @property(nonatomic,strong)UITextView *connectionTipsTV;/// 承接富文本:如需幫助，請聯繫專屬客服
 /// Data
-@property(nonatomic,strong)NSMutableArray<UIViewModel *> *hotLabelDataMutArr;
-@property(nonatomic,strong)NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
+@property(nonatomic,copy)NSMutableArray<UIViewModel *> *hotLabelDataMutArr;
+@property(nonatomic,copy)NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
 // 关于富文本:如需幫助，請聯繫專屬客服
 @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
-@property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 #pragma mark —— 测试调试专用
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;

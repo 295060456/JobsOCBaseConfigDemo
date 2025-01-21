@@ -15,8 +15,8 @@
 @property(nonatomic,strong)JXPagerView *pagerView;
 @property(nonatomic,strong)BaiShaETProjCollectionHeaderView *collectionHeaderView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <NSString *>*titleMutArr;
-@property(nonatomic,strong)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+@property(nonatomic,copy)NSMutableArray <NSString *>*titleMutArr;
+@property(nonatomic,copy)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
 
 @end
 

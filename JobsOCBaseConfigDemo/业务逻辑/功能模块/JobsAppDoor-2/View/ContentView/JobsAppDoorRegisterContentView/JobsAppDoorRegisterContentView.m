@@ -16,8 +16,8 @@
 @property(nonatomic,strong)UILabel *titleLab;/// 标题
 @property(nonatomic,strong)BaseButton *sendBtn;/// 注册按钮
 /// Data
-@property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
-@property(nonatomic,strong)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
+@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
 
 @end
 

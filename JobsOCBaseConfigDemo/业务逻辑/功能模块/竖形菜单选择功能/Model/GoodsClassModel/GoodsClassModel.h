@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *iconUrl;
 @property(nonatomic,copy)NSString *showUrl;
 @property(nonatomic,copy)NSString *productUrl;
-@property(nonatomic,strong)NSMutableArray <GoodsClassModel *>*childrenList;
+@property(nonatomic,copy)NSMutableArray <GoodsClassModel *>*childrenList;
 
 @end
 

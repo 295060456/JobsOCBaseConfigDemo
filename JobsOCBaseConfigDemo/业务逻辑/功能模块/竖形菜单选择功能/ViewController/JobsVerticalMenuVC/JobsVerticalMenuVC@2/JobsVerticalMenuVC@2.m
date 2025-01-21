@@ -16,13 +16,13 @@
 @property(nonatomic,strong)JobsSearchBar *searchView;
 @property(nonatomic,strong)BaiShaETProjPopupView10 *popupView;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*titleMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*popupViewDataMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*leftDataArray;/// 左边的数据源
-@property(nonatomic,strong)NSMutableArray <GoodsClassModel *>*rightDataArray;/// 右边的数据源
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*titleMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*popupViewDataMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*leftDataArray;/// 左边的数据源
+@property(nonatomic,copy)NSMutableArray <GoodsClassModel *>*rightDataArray;/// 右边的数据源
 @property(nonatomic,strong)GoodsClassModel *rightViewCurrentSelectModel;
 @property(nonatomic,strong)UIViewModel *leftViewCurrentSelectModel;
-@property(nonatomic,strong)NSMutableArray <UIImage *>*imageDataMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*imageDataMutArr;
 @property(nonatomic,assign)NSUInteger thisIndex;
 
 @end

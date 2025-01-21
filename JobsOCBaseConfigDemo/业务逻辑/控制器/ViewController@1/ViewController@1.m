@@ -12,8 +12,8 @@ BOOL ISLogin;
 /// UI
 @property(nonatomic,strong)BaseButton *userHeadBtn;
 /// Data
-@property(nonatomic,strong)NSMutableArray <UITableViewCell *>*tbvCellMutArr;
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*dataMutArr;
+@property(nonatomic,copy)NSMutableArray <UITableViewCell *>*tbvCellMutArr;
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 

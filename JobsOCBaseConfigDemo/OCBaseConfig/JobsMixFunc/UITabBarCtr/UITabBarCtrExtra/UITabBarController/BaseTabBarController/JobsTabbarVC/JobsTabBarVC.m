@@ -16,8 +16,8 @@
 /// Data
 @property(nonatomic,assign)BOOL isOpenPPBadge;
 @property(nonatomic,assign)NSInteger subViewControllerCount;
-@property(nonatomic,strong)NSMutableArray <UIView *>*UITabBarButtonMutArr;/// UITabBarButton 是内部类 直接获取不到，需要间接获取
-@property(nonatomic,strong)NSMutableArray <UIViewModel *>*pullListAutoSizeViewMutArr;
+@property(nonatomic,copy)NSMutableArray <UIView *>*UITabBarButtonMutArr;/// UITabBarButton 是内部类 直接获取不到，需要间接获取
+@property(nonatomic,copy)NSMutableArray <UIViewModel *>*pullListAutoSizeViewMutArr;
 
 @end
 

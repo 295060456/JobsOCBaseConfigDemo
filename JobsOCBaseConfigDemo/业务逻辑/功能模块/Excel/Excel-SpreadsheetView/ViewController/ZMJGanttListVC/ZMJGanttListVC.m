@@ -17,12 +17,12 @@
 @property(nonatomic,assign)ZMJDisplayMode displayMode;
 @property(nonatomic,strong)NSDate *startDate;
 @property(nonatomic,strong)NSDate *endDate;
-@property(nonatomic,strong)NSMutableArray<NSDate *> *years;
-@property(nonatomic,strong)NSMutableArray<NSDate *> *weeks;
-@property(nonatomic,strong)NSMutableArray<NSDate *> *months;
-@property(nonatomic,strong)NSMutableArray<NSDate *> *days;
-@property(nonatomic,strong)NSMutableArray<ZMJTask *> *tasks;
-@property(nonatomic,strong)NSMutableArray<UIColor *> *colors;
+@property(nonatomic,copy)NSMutableArray<NSDate *> *years;
+@property(nonatomic,copy)NSMutableArray<NSDate *> *weeks;
+@property(nonatomic,copy)NSMutableArray<NSDate *> *months;
+@property(nonatomic,copy)NSMutableArray<NSDate *> *days;
+@property(nonatomic,copy)NSMutableArray<ZMJTask *> *tasks;
+@property(nonatomic,copy)NSMutableArray<UIColor *> *colors;
 
 @end
 

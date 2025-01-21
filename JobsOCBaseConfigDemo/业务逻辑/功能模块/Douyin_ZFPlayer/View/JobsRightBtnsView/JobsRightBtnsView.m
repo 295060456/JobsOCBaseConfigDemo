@@ -14,7 +14,7 @@
 @property(nonatomic,strong)BaseButton *commentBtn;/// 评论
 @property(nonatomic,strong)BaseButton *shareBtn;/// 分享
 /// Data
-@property(nonatomic,strong)NSMutableArray <__kindof UIButton *>*masonryViewArr;
+@property(nonatomic,copy)NSMutableArray <__kindof UIButton *>*masonryViewArr;
 @property(nonatomic,assign)BOOL isSelected;
 
 @end

@@ -735,23 +735,21 @@ classDiagram
 
   ```objective-c
   -(UILabel *)titleLab{
-      @jobs_weakify(self)
       if(!_titleLab){
-          _titleLab = UILabel.new;
-          _titleLab.text = NavBarConfig.title;
-          if(NavBarConfig.attributedTitle){
-              _titleLab.attributedText = NavBarConfig.attributedTitle;
-          }
-          _titleLab.font = NavBarConfig.font;
-          _titleLab.textColor = NavBarConfig.titleCor;
-          [self addSubview:_titleLab];
-          [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.center.equalTo(self);
-              make.height.mas_equalTo(self.height);
-          }];
-          _titleLab.makeLabelByShowingType(UILabelShowingType_03);
-          [self layoutIfNeeded];
-          NSLog(@"");
+          @jobs_weakify(self)
+          _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+              @jobs_strongify(self)
+              if(NavBarConfig.attributedTitle) label.attributedText = NavBarConfig.attributedTitle;
+              label.text = NavBarConfig.title;
+              label.font = NavBarConfig.font;
+              label.textColor = NavBarConfig.titleCor;
+              self.addSubview(label);
+              [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                  make.center.equalTo(self);
+                  make.height.mas_equalTo(self.height);
+              }];label.makeLabelByShowingType(UILabelShowingType_03);
+              self.refresh();
+          });
       }return _titleLab;
   }
   ```
@@ -830,12 +828,16 @@ classDiagram
 
 * ```objective-c
   -(JobsReturnStringByStringBlock _Nonnull)add{
-      return ^(NSString *_Nonnull str) {
-          return [self stringByAppendingString:str];
+      @jobs_weakify(self)
+      return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
+          @jobs_strongify(self)
+          if(!str) str = @"";
+          // 系统的stringByAppendingString方法在参数为nil的时候会崩溃
+          return JobsMutableString([self stringByAppendingString:str]);/// 原始字符串不会改变，输出一个新的字符串
       };
   }
   ```
-
+  
   ```objective-c
   config_01.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
   ```
@@ -963,16 +965,18 @@ classDiagram
   ```objective-c
   -(UILabel *)titleLab{
       if(!_titleLab){
-          _titleLab = UILabel.new;
-          _titleLab.text = JobsInternationalization(@"LOGIN");
-          _titleLab.font = bayonRegular(20);
-          _titleLab.textColor = JobsCor(@"FFC700");
-          [self addSubview:_titleLab];
-          [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.centerX.equalTo(self);
-              make.top.equalTo(self).offset(JobsWidth(13));
-          }];
-          _titleLab.makeLabelByShowingType(UILabelShowingType_03);
+          @jobs_weakify(self)
+          _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+              @jobs_strongify(self)
+              label.text = JobsInternationalization(@"LOGIN");
+              label.font = bayonRegular(20);
+              label.textColor = JobsCor(@"FFC700");
+              [self addSubview:label];
+              [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                  make.centerX.equalTo(self);
+                  make.top.equalTo(self).offset(JobsWidth(13));
+              }];label.makeLabelByShowingType(UILabelShowingType_03);
+          });
       }return _titleLab;
   }
   ```
@@ -1267,89 +1271,46 @@ classDiagram
   -(JobsTextField *)textField_phone{
       if(!_textField_phone){
           @jobs_weakify(self)
-          _textField_phone = JobsTextField.new;
-          _textField_phone.backgroundColor = JobsBlackCor(0.5f);
-          _textField_phone.alpha = 0.5f;
-          // 只针对真实的textField配置
-          _textField_phone.realTextFieldBgCor = JobsClearColor;
-          _textField_phone.leftViewByOutLineOffset = JobsWidth(4);
-          _textField_phone.leftViewByTextFieldOffset = JobsWidth(4);
-          _textField_phone.rightViewByTextFieldOffset = JobsWidth(4);
-          _textField_phone.rightViewByOutLineOffset = JobsWidth(14);
-          _textField_phone.returnKeyType = UIReturnKeyDefault;
-          _textField_phone.keyboardAppearance = UIKeyboardAppearanceDefault;
-          _textField_phone.keyboardType = UIKeyboardTypeDefault;
-          _textField_phone.leftViewMode = UITextFieldViewModeNever;
-          _textField_phone.rightViewMode = UITextFieldViewModeNever;
-          _textField_phone.leftView = self.choose_zone_code_btn;
-          _textField_phone.placeholder = JobsInternationalization(@"Validate phone no. starts with 0 and must be 11 digits");
-          _textField_phone.placeholderColor = JobsCor(@"#6A6A6A");
-          _textField_phone.placeholderFont = UIFontWeightSemiboldSize(10);
-  //        _textField_phone.attributedPlaceholder = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
-  //            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-  //                @jobs_strongify(self)
-  //                data1.font = UIFontWeightRegularSize(JobsWidth(12));
-  //                data1.textCor = JobsBlueColor;
-  //                data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(@"\n");
-  //                data1.textBgCor = JobsBrownColor;
-  //                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
-  //                    data2.alignment = NSTextAlignmentJustified;
-  //                    data2.paragraphSpacing = 0;//段距，取值 float
-  //                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
-  //                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-  //                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-  //                    data2.lineSpacing = 0;//行距，取值 float
-  //                });
-  //            }));
-  //            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-  //                @jobs_strongify(self)
-  //                data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
-  //                data1.textCor = JobsWhiteColor;
-  //                data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(@"\n");
-  //                data1.textBgCor = JobsBrownColor;
-  //                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
-  //                    data2.alignment = NSTextAlignmentJustified;
-  //                    data2.paragraphSpacing = 0;//段距，取值 float
-  //                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
-  //                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-  //                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-  //                    data2.lineSpacing = 0;//行距，取值 float
-  //                });
-  //            }));
-  //            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-  //                @jobs_strongify(self)
-  //                data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
-  //                data1.textCor = JobsGreenColor;
-  //                data1.targetString = JobsInternationalization(@"APP的业务。");
-  //                data1.textBgCor = JobsBrownColor;
-  //                data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
-  //                    data2.alignment = NSTextAlignmentJustified;
-  //                    data2.paragraphSpacing = 0;//段距，取值 float
-  //                    data2.paragraphSpacingBefore = 0;//段首空间，取值 float
-  //                    data2.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-  //                    data2.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-  //                    data2.lineSpacing = 0;//行距，取值 float
-  //                });
-  //            }));
-  //        }));
-          _textField_phone.layoutSubviewsRectCorner = UIRectCornerAllCorners;
-          _textField_phone.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
-          // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
-          [_textField_phone actionObjectBlock:^(id  _Nullable data) {
-              NSLog(@"ddf = %@",data);
-          }];
-          
-          [self addSubview:_textField_phone];;
-          [_textField_phone mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.size.mas_equalTo(CGSizeMake(JobsWidth(200), JobsWidth(32)));
-              make.top.equalTo(self.titleLab_phone.mas_bottom);
-              make.left.equalTo(self.titleLab_phone);
-          }];
-          _textField_phone.jobsRichViewByModel(nil);
-          // 最外层的UI-描边
-          _textField_phone.layerByBorderCor(JobsCor(@"#FFC700")).layerByBorderWidth(1);
-          // 最外层的UI-切全角
-          _textField_phone.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+          _textField_phone = makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
+              @jobs_strongify(self)
+              data.backgroundColor = JobsBlackCor(0.5f);
+              // 只针对真实的textField配置
+              data.realTextFieldBgCor = JobsClearColor;
+              data.titleCor = JobsCor(@"#FAFF00");
+              data.leftViewByOutLineOffset = JobsWidth(4);
+              data.leftViewByTextFieldOffset = JobsWidth(4);
+              data.rightViewByTextFieldOffset = JobsWidth(4);
+              data.rightViewByOutLineOffset = JobsWidth(14);
+              data.returnKeyType = UIReturnKeyDefault;
+              data.keyboardAppearance = UIKeyboardAppearanceDefault;
+              data.keyboardType = UIKeyboardTypePhonePad;
+              data.leftViewMode = UITextFieldViewModeNever;
+              data.rightViewMode = UITextFieldViewModeNever;
+              data.leftView = [self zoneCodeBtnByBlock:^(id _Nullable x) {
+                  @jobs_strongify(self)
+                  if (self.objBlock) self.objBlock(x);
+              }];
+              data.textFieldPlaceholder = JobsInternationalization(@"Validate phone no. starts with 0 and must be 11 digits");
+              data.placeholderColor = JobsCor(@"#6A6A6A");
+              data.placeholderFont = UIFontWeightSemiboldSize(10);
+              data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
+              data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
+              // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
+              [data actionObjBlock:^(id  _Nullable data) {
+                  JobsLog(@"ddf = %@",data);
+              }];
+              [self addSubview:data];;
+              [data mas_makeConstraints:^(MASConstraintMaker *make) {
+                  make.size.mas_equalTo(CGSizeMake(JobsWidth(200), JobsWidth(32)));
+                  make.top.equalTo(self.titleLab_phone.mas_bottom);
+                  make.left.equalTo(self.titleLab_phone);
+              }];
+              data.jobsRichViewByModel(nil);
+              // 最外层的UI-描边
+              data.layerByBorderCor(JobsCor(@"#FFC700")).layerByBorderWidth(1);
+              // 最外层的UI-切全角
+              data.cornerCutToCircleWithCornerRadius(JobsWidth(8));
+          });
       }return _textField_phone;
   }
   ```
@@ -1357,17 +1318,19 @@ classDiagram
   ```objective-c
   -(UIImageView *)textFieldLeftView{
       if(!_textFieldLeftView){
-          _textFieldLeftView = UIImageView.new;
-          _textFieldLeftView.image = JobsIMG(@"UserLogoTextFieldLeftImage");
-          _textFieldLeftView.size = CGSizeMake(JobsWidth(15), JobsWidth(15));
+          _textFieldLeftView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+              imageView.image = JobsIMG(@"UserLogoTextFieldLeftImage");
+              imageView.sizer = CGSizeMake(JobsWidth(15), JobsWidth(15));
+          });
       }return _textFieldLeftView;
   }
   
   -(UIImageView *)textFieldRightView{
       if(!_textFieldRightView){
-          _textFieldRightView = UIImageView.new;
-          _textFieldRightView.image = JobsIMG(@"UserLogoTextFieldRightImage");
-          _textFieldLeftView.size = CGSizeMake(JobsWidth(16), JobsWidth(16));
+          _textFieldRightView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+              imageView.image = JobsIMG(@"UserLogoTextFieldRightImage");
+              imageView.sizer = CGSizeMake(JobsWidth(16), JobsWidth(16));
+          });
       }return _textFieldRightView;
   }
   ```
@@ -1729,31 +1692,34 @@ classDiagram
 
   ```objective-c
   /// 模拟用户数据
-  -(void)simulateUserData{
-      JobsUserModel *userModel = JobsUserModel.new;
-      userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
-      userModel.userName = @"张三丰";
-      userModel.phone = @"134****0000";
-      self.saveUserInfo(userModel);
-      
-      id f = self.readUserInfo;
-      NSLog(JobsInternationalization(@""));
+  -(jobsByVoidBlock _Nonnull)simulateUserData{
+      return ^(){
+          self.saveUserInfo(jobsMakeUserModel(^(__kindof JobsUserModel<NSCoding> * _Nullable userModel) {
+              userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
+              userModel.userName = @"张三丰";
+              userModel.phone = @"13487878787".encryptedChineseTele;
+          }));
+          id f = self.readUserInfo;
+          JobsLog(@"");
+      };
   }
   /// 存取用户信息Demo
-  -(void)saveAndReadUserInfoDemo{
-      JobsUserModel *userModel = JobsUserModel.new;
-      userModel.token = @"12345";
-      userModel.uid = @"54321";
-      
-      self.saveUserInfo(userModel);
-      NSLog(JobsInternationalization(@""));
-      JobsUserModel *f = self.readUserInfo();
-      NSLog(JobsInternationalization(@""));
+  -(jobsByVoidBlock _Nonnull)saveAndReadUserInfoDemo{
+      @jobs_weakify(self)
+      return ^(){
+          @jobs_strongify(self)
+          self.saveUserInfo(jobsMakeUserModel(^(__kindof JobsUserModel<NSCoding> * _Nullable userModel) {
+              userModel.token = @"12345";
+              userModel.uid = @"54321";
+          }));
+  //        JobsUserModel *f = self.readUserInfo;
+  //        JobsLog(@"");
+      };
   }
   ```
   
   ```objective-c
-  -(jobsByVoidBlock)loginByAccAndPwd{
+  -(jobsByVoidBlock _Nonnull)loginByAccAndPwd{
       return ^(){
           FM_loginByVerificationCode_api *api = [FM_loginByVerificationCode_api.alloc initWithParameters:@{
               @"captcha_id": @"",
@@ -1820,7 +1786,7 @@ classDiagram
 
 ### 21、iOS横竖屏切换 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-* [**相关文档：iOS 横竖屏切换**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md)
+* [**相关文档：iOS 横竖屏切换**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md)
 
 * <font color=red>**相关经验总结**</font>
   
@@ -2381,13 +2347,13 @@ classDiagram
   @property(nonatomic,strong)UITableView *tableView; /// 左侧的标题
   @property(nonatomic,strong)UIImageView *topImageView;
   /// Data
-  @property(nonatomic,strong)NSMutableArray <UIViewModel *>*titleMutArr;
-  @property(nonatomic,strong)NSMutableArray <__kindof UIView *>*subViewMutArr;/// 右侧的视图数组
-  @property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
-  @property(nonatomic,strong)NSMutableArray <UIImage *>*normal_titleImageMutArr;
-  @property(nonatomic,strong)NSMutableArray <UIImage *>*select_titleBgImageMutArr;
-  @property(nonatomic,strong)NSMutableArray <UIImage *>*bgImageMutArr1; /// 底图
-  @property(nonatomic,strong)NSMutableArray <UIImage *>*bgImageMutArr2; /// 最上面的小图
+  @property(nonatomic,copy)NSMutableArray <UIViewModel *>*titleMutArr;
+  @property(nonatomic,copy)NSMutableArray <__kindof UIView *>*subViewMutArr;/// 右侧的视图数组
+  @property(nonatomic,copy)NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
+  @property(nonatomic,copy)NSMutableArray <UIImage *>*normal_titleImageMutArr;
+  @property(nonatomic,copy)NSMutableArray <UIImage *>*select_titleBgImageMutArr;
+  @property(nonatomic,copy)NSMutableArray <UIImage *>*bgImageMutArr1; /// 底图
+  @property(nonatomic,copy)NSMutableArray <UIImage *>*bgImageMutArr2; /// 最上面的小图
   
   @end
   
@@ -5862,27 +5828,41 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```objective-c
     -(NSMutableAttributedString *)attributedString{
         if(!_attributedString){
-            _attributedString = NSMutableAttributedString.new;
-            _attributedString.add(JobsAttributedString(self.dot
-                                                           .add(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人")
-                                                           .add(@"\n")));
-                                                           
-            _attributedString.add(JobsAttributedString(self.dot
-                                                           .add(@"你是日本人你是日本人你是日本人你是日本人你是日本人你是日本人")
-                                                           .add(@"\n")));
-    
-            /// 设置段落
-            [_attributedString addAttribute:NSParagraphStyleAttributeName
-                                      value:self.paragraphStyle
-                                      range:NSMakeRange(0, self.attributedString.length)];
-            /// 设置小圆点的颜色
-            [_attributedString addAttribute:NSForegroundColorAttributeName
-                                      value:JobsRedColor
-                                      range:NSMakeRange(0, 1)]; // 第一个圆点
-            [_attributedString addAttribute:NSForegroundColorAttributeName
-                                      value:JobsYellowColor
-                                      range:NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1)]; // 第二个圆点
-            
+            _attributedString = jobsMakeMutableAttributedString(^(__kindof NSMutableAttributedString *_Nullable data) {
+                data.add(JobsAttributedString(self.dot
+                                              .add(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人")
+                                              .add(@"\n")));
+                                                               
+                data.add(JobsAttributedString(self.dot
+                                              .add(@"你是日本人你是日本人你是日本人你是日本人你是日本人你是日本人")
+                                              .add(@"\n")));
+                /// 设置段落
+                data.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                    data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data1) {
+                        data1.headIndent = 10; // 设置文本的缩进，使其与圆点对齐
+                        data1.firstLineHeadIndent = 0; // 第一行不缩进
+                    });
+                    data.range = NSMakeRange(0, self.attributedString.length);
+                }));
+                /// 设置小圆点的颜色
+                data.addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
+                    data1.value = JobsRedColor;
+                    data1.range = NSMakeRange(0, 1);// 第一个圆点
+                }));
+                data.addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
+                    data1.value = JobsYellowColor;
+                    data1.range = NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1);// 第二个圆点
+                }));
+                /// 设置文本颜色
+                data.addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
+                    data1.value = JobsCor(@"#D0D0D0");
+                    data1.range = NSMakeRange(1, data.length - 1);
+                }));
+                data.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
+                    data1.value = UIFontWeightRegularSize(JobsWidth(12));
+                    data1.range = NSMakeRange(0, data.length);
+                }));
+            });
         }return _attributedString;
     }
     
@@ -5967,25 +5947,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ```
     
     ```objective-c
-    -(UITextView *)tipsTextView{
-        if (!_tipsTextView) {
-            _tipsTextView = UITextView.new;
-            _tipsTextView.textContainer.lineFragmentPadding = 0;
-            _tipsTextView.layoutManager.allowsNonContiguousLayout = YES;
-            _tipsTextView.delegate = self;
-            _tipsTextView.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
-            _tipsTextView.scrollEnabled = NO;/// 可选的，视具体情况而定
-            _tipsTextView.linkTextAttributes = @{NSForegroundColorAttributeName:HEXCOLOR(0xCCB17E)};/// 链接文字颜色
-            _tipsTextView.attributedText = self.richTextWithDataConfigMutArr(self.richLabelDataStringsMutArr_2);
-            _tipsTextView.userInteractionEnabled = YES;
-            [self addSubview:_tipsTextView];
-            [_tipsTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(self);
-                make.top.equalTo(self.toggleBaseView.mas_bottom).offset(JobsWidth(5));
-                make.height.mas_equalTo(JobsWidth(20));
-            }];
-        }return _tipsTextView;
-    }
+     -(UITextView *)tipsTextView{
+         if (!_tipsTextView) {
+             @jobs_weakify(self)
+             _tipsTextView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
+                 @jobs_strongify(self)
+                 textView.delegate = self;
+                 textView.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
+                 textView.scrollEnabled = NO;/// 可选的，视具体情况而定
+                 textView.linkTextAttributes = @{NSForegroundColorAttributeName:HEXCOLOR(0xCCB17E)};/// 链接文字颜色
+                 textView.attributedText = self.attributedStringData;
+                 textView.userInteractionEnabled = YES;
+                 self.contentView.addSubview(textView);
+                 [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+                     make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(30)));
+                     make.centerX.equalTo(self.contentView);
+                     make.bottom.equalTo(self.contentView).offset(-JobsWidth(38));
+                 }];
+             });
+         }return _tipsTextView;
+     }
     ```
     
   * **UITextViewDelegate**
@@ -6049,10 +6030,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * 字符串时间戳转化为可读
 
   ```objective-c
-    @"1701761400000".readableTimeByFormatter(@"yyyy-MM-dd");
-    @"1701761400".readableTimeByFormatter(@"yyyy-MM-dd");
+  @"1701761400000".readableTimeByFormatter(@"yyyy-MM-dd");
+  @"1701761400".readableTimeByFormatter(@"yyyy-MM-dd");
   ```
-* NSDate 类型的时间转化为可读
+*  `NSDate`类型的时间转化为可读
 
   ```objective-c
   NSDate.date.toReadableTime(jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
@@ -6063,7 +6044,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   
   NSDate.date.toReadableTimeBy(@"yyyy".add(@"-").add(@"MM"));
   ```
-* NSTimeInterval 类型的时间转化为可读（无论是秒级还是毫秒级时间戳，经过必要的处理后，最终的 NSTimeInterval 都是相同的）
+* `NSTimeInterval` 类型的时间转化为可读（无论是秒级还是毫秒级时间戳，经过必要的处理后，最终的 NSTimeInterval 都是相同的）
 
   ```objective-c
   self.toReadableTimeBy(timeInterval);
@@ -6076,7 +6057,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 *  在`*.h`文件中定义
    
   ```objective-c
-   FOUNDATION_EXTERN NSString *const 皇冠符号;
+  FOUNDATION_EXTERN NSString *const 皇冠符号;
   ```
   
   在`*.m`文件中定义

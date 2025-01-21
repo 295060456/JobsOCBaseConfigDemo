@@ -10,8 +10,8 @@
 
 @interface JobsTabBar ()
 
-@property(nonatomic,strong)NSMutableArray <__kindof UIView *>*tabBarButtons;
-@property(nonatomic,strong)NSMutableArray <__kindof LOTAnimationView *>*lOTAnimationViews;
+@property(nonatomic,copy)NSMutableArray <__kindof UIView *>*tabBarButtons;
+@property(nonatomic,copy)NSMutableArray <__kindof LOTAnimationView *>*lOTAnimationViews;
 
 @end
 

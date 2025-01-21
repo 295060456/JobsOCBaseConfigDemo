@@ -49,11 +49,11 @@ typedef enum : NSInteger {
 @property(nonatomic,copy)NSString *willRefreshTitle;
 @property(nonatomic,copy)NSString *noMoreDataTitle;
 #pragma mark —— 静态图内部拼接出的动效，而非Gif
-@property(nonatomic,strong)NSMutableArray <UIImage *>*stateIdlePicsMutArr;
-@property(nonatomic,strong)NSMutableArray <UIImage *>*pullingPicsMutArr;
-@property(nonatomic,strong)NSMutableArray <UIImage *>*refreshingPicsMutArr;
-@property(nonatomic,strong)NSMutableArray <UIImage *>*willRefreshPicsMutArr;
-@property(nonatomic,strong)NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*stateIdlePicsMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*pullingPicsMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*refreshingPicsMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*willRefreshPicsMutArr;
+@property(nonatomic,copy)NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
 #pragma mark —— Lottie配置
 @property(nonatomic,copy)NSString *jsonLottiefilePaths;
 @property(nonatomic,copy)JobsReturnIDByIDBlock loadBlock;

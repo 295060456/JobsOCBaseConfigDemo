@@ -78,8 +78,8 @@ NS_ASSUME_NONNULL_END
  @property(nonatomic,strong)UITextView *connectionTipsTV;
  
  @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
- @property(nonatomic,strong)NSMutableArray <NSString *>*richTextMutArr;
- @property(nonatomic,strong)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+ @property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
+ @property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
  
  -(UILabel *)connectionTipsLab{
      if (!_connectionTipsLab) {
