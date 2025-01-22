@@ -8617,69 +8617,39 @@ x
 * 切整个View的4个角为统一的切角参数
 
   ```objective-c
-  -(jobsByCGFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
+  -(JobsReturnViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
       @jobs_weakify(self)
       return ^(CGFloat cornerRadiusValue) {
+          @jobs_strongify(self)
           self.layer.cornerRadius = cornerRadiusValue;
           self.layer.masksToBounds = YES;
+          return self;
       };
   }
   ```
 
-* 指定圆切角（方法一）
+* 指定圆切角
 
   ⚠️这种写法存在一定的弊端：如果在某个View上添加子View，并对这个View使用如下方法的圆切角，则这个View上的子视图不可见⚠️
 
   ```objective-c
-  -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners
-                                       cornerRadii:(CGSize)cornerRadii{
+  -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii{
       // 设置切哪个直角
       //    UIRectCornerTopLeft     = 1 << 0,  左上角
       //    UIRectCornerTopRight    = 1 << 1,  右上角
       //    UIRectCornerBottomLeft  = 1 << 2,  左下角
       //    UIRectCornerBottomRight = 1 << 3,  右下角
       //    UIRectCornerAllCorners  = ~0UL     全部角
-      if (CGSizeEqualToSize(cornerRadii, CGSizeZero)) {
-          cornerRadii = CGSizeMake(self.width / 2,self.height / 2);
-      }
       /// 得到view的遮罩路径
       UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                      byRoundingCorners:corners
                                                            cornerRadii:cornerRadii];
-      /// 创建 layer
-      CAShapeLayer *maskLayer = CAShapeLayer.new;
-      maskLayer.frame = self.bounds;
-      /// 赋值
-      maskLayer.path = maskPath.CGPath;
-      self.layer.mask = maskLayer;
-  }
-  ```
-
-* 指定圆切角（方法二），避免了（方法一）的弊端
-
-  作用于需要切的View的子类里面的`-(void)layoutSubviews`方法
-
-  ```objective-c
-  -(void)layoutSubviewsCutCnrByRoundingCorners:(UIRectCorner)corners
-                                   cornerRadii:(CGSize)cornerRadii{
-      //    设置切哪个直角
-      //    UIRectCornerTopLeft     = 1 << 0,  左上角
-      //    UIRectCornerTopRight    = 1 << 1,  右上角
-      //    UIRectCornerBottomLeft  = 1 << 2,  左下角
-      //    UIRectCornerBottomRight = 1 << 3,  右下角
-      //    UIRectCornerAllCorners  = ~0UL     全部角
-      
-      if (CGSizeEqualToSize(cornerRadii, CGSizeZero)) {
-          cornerRadii = CGSizeMake(self.width / 2,self.height / 2);
-      }
-      
-      UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                     byRoundingCorners:corners
-                                                           cornerRadii:cornerRadii];
-      CAShapeLayer *maskLayer = CAShapeLayer.layer;
-      maskLayer.frame = self.bounds;
-      maskLayer.path = maskPath.CGPath;
-      self.layer.mask = maskLayer;
+      @jobs_weakify(self)
+      self.layer.mask = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable data) {
+          @jobs_strongify(self)
+          data.frame = self.bounds;
+          data.path = maskPath.CGPath;
+      });
   }
   ```
 
@@ -10262,13 +10232,15 @@ x
   ```objective-c
   -(UIScrollView *)scrollView{
       if (!_scrollView) {
-          _scrollView = UIScrollView.new;
-          _scrollView.delegate = self;
-          _scrollView.frame = self.bounds;
-          _scrollView.resetContentSizeWidth(1000);
-          _scrollView.showsVerticalScrollIndicator = NO;
-          _scrollView.showsHorizontalScrollIndicator = NO;
-          [self addSubview:_scrollView];
+          @jobs_weakify(self)
+          _scrollView = self.addSubview(jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
+              @jobs_strongify(self)
+              scrollView.delegate = self;
+              scrollView.frame = self.bounds;
+              scrollView.resetContentSizeWidth(1000);
+              scrollView.showsVerticalScrollIndicator = NO;
+              scrollView.showsHorizontalScrollIndicator = NO;
+          }));
       }return _scrollView;
   }
   ```
@@ -10306,7 +10278,7 @@ x
     }];  
     ```
 
-#### 40.1、[**Masonry**](https://github.com/SnapKit/Masonry)
+#### 40.1、[**`Masonry`**](https://github.com/SnapKit/Masonry)
 
 * 基于自动布局的轻量级封装，允许通过链式语法设置约束
 
@@ -10332,7 +10304,7 @@ x
   
   * 也就意味着：<font color=red>如果执行`- (void)removeFromSuperview;`即便之后再将这些子视图加载到父视图，约束也需要重新加载，否则约束会有问题</font>
 
-#### 40.2、[**SDAutoLayout**](https://github.com/gsdios/SDAutoLayout)
+#### 40.2、[**`SDAutoLayout`**](https://github.com/gsdios/SDAutoLayout)
 
 * 基于链式语法的简单自动布局框架
 
@@ -10364,172 +10336,9 @@ x
 
 ### 42、数据模型的封装调用 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
-#### 42.1、封装系统Api
+#### 42.1、封装系统Api（关注[**`JobsMakes.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/JobsMakes.h)）
 
-* 对于类的封装
-
-  ```objective-c
-  NS_INLINE __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
-      NSMutableArray *data = NSMutableArray.array;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE __kindof NSSet *_Nonnull jobsMakeMutSet(jobsBySetBlock _Nonnull block){
-      NSMutableSet *data = NSMutableSet.set;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE __kindof NSMutableDictionary *_Nonnull jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
-      NSMutableDictionary *data = NSMutableDictionary.dictionary;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE __kindof NSDateFormatter *_Nonnull jobsMakeDateFormatter(jobsByDateFormatterBlock _Nonnull block){
-      NSDateFormatter *data = NSDateFormatter.alloc.init;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE UICollectionViewFlowLayout *_Nonnull jobsMakeCollectionViewFlowLayout(jobsByCollectionViewFlowLayoutBlock _Nonnull block){
-      UICollectionViewFlowLayout *data = UICollectionViewFlowLayout.alloc.init;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE UICollectionViewFlowLayout *_Nonnull jobsMakeHorizontalCollectionViewFlowLayout(jobsByCollectionViewFlowLayoutBlock _Nonnull block){
-      UICollectionViewFlowLayout *data = UICollectionViewFlowLayout.alloc.init;
-      data.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE UICollectionViewFlowLayout *_Nonnull jobsMakeVerticalCollectionViewFlowLayout(jobsByCollectionViewFlowLayoutBlock _Nonnull block){
-      UICollectionViewFlowLayout *data = UICollectionViewFlowLayout.alloc.init;
-      data.scrollDirection = UICollectionViewScrollDirectionVertical;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE __kindof NotificationModel *_Nonnull jobsMakeNotificationModel(jobsByNotificationModelBlock _Nonnull block){
-      NotificationModel *data = NotificationModel.alloc.init;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
-      NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE NSTextAttachment *_Nonnull jobsMakeTextAttachment(jobsByTextAttachmentBlock _Nonnull block){
-      NSTextAttachment *data = NSTextAttachment.alloc.init;
-      if (block) block(data);
-      return data;
-  }
-  
-  NS_INLINE NSMutableParagraphStyle *_Nonnull jobsMakeParagraphStyle(jobsByParagraphStyleBlock _Nonnull block){
-      NSMutableParagraphStyle *data = NSMutableParagraphStyle.alloc.init;
-      /**
-       
-       常见的属性及说明
-       alignment               对齐方式，取值枚举常量 NSTextAlignment
-       firstLineHeadIndent     首行缩进，取值 float
-       headIndent              缩进，取值 float
-       tailIndent              尾部缩进，取值 float
-       ineHeightMultiple       可变行高,乘因数，取值 float
-       maximumLineHeight       最大行高，取值 float
-       minimumLineHeight       最小行高，取值 float
-       lineSpacing             行距，取值 float
-       paragraphSpacing        段距，取值 float
-       paragraphSpacingBefore  段首空间，取值 float
-  
-       baseWritingDirection    句子方向，取值枚举常量 NSWritingDirection
-       lineBreakMode           断行方式，取值枚举常量 NSLineBreakMode
-       hyphenationFactor       连字符属性，在iOS，唯一支持的值分别为0和1
-       
-       */
-      if (block) block(data);
-      return data;
-  }
-  ```
-
-* 对于结构体的封装
-
-  ```objective-c
-  #pragma mark —— UIEdgeInsets
-  NS_INLINE UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-      JobsLocationModel *data = JobsLocationModel.alloc.init;
-      if (block) block(data);
-      return UIEdgeInsetsMake(data.jobsTop,
-                              data.jobsLeft,
-                              data.jobsBottom,
-                              data.jobsRight);
-  }
-  /// 构建一个四边距离相等的 UIEdgeInsets
-  NS_INLINE UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
-      return jobsMakeEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
-          data.jobsTop = insets;
-          data.jobsLeft = insets;
-          data.jobsBottom = insets;
-          data.jobsRight = insets;
-      });
-  }
-  #pragma mark —— NSDirectionalEdgeInsets
-  NS_INLINE NSDirectionalEdgeInsets jobsMakeDirectionalEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-      JobsLocationModel *data = JobsLocationModel.alloc.init;
-      if (block) block(data);
-      return NSDirectionalEdgeInsetsMake(data.jobsTop,
-                                         data.jobsLeft,
-                                         data.jobsBottom,
-                                         data.jobsRight);
-  }
-  /// 构建一个内边距相等的 NSDirectionalEdgeInsets
-  NS_INLINE NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
-      return jobsMakeDirectionalEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
-          data.jobsTop = x;
-          data.jobsLeft = x;
-          data.jobsBottom = x;
-          data.jobsRight = x;
-      });
-  }
-  #pragma mark —— CGRect
-  NS_INLINE CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-      JobsLocationModel *data = JobsLocationModel.alloc.init;
-      if (block) block(data);
-      return CGRectMake(data.jobsX,
-                        data.jobsY,
-                        data.jobsWidth,
-                        data.jobsHeight);
-  }
-  
-  NS_INLINE CGRect jobsMakeFrameByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-      return jobsMakeCGRectByLocationModelBlock(block);
-  }
-  #pragma mark —— CGPoint
-  NS_INLINE CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-      JobsLocationModel *data = JobsLocationModel.alloc.init;
-      if (block) block(data);
-      return CGPointMake(data.jobsX, data.jobsY);
-  }
-  #pragma mark —— CGSize
-  NS_INLINE CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-      JobsLocationModel *data = JobsLocationModel.alloc.init;
-      if (block) block(data);
-      return CGSizeMake(data.jobsWidth, data.jobsHeight);
-  }
-  #pragma mark —— NSRange
-  NS_INLINE NSRange jobsMakeRangeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-      JobsLocationModel *data = JobsLocationModel.alloc.init;
-      if (block) block(data);
-      return NSMakeRange(data.location, data.length);
-  }
-  ```
-
-#### 42.2、封装自建Api
+#### 42.2、封装自建Api（持续更新中...）
 
 ```objective-c
 NS_INLINE ButtonTimerConfigModel *_Nonnull jobsMakeButtonTimerConfigModel(jobsByButtonTimerConfigModelBlock _Nonnull block){
@@ -10643,7 +10452,7 @@ NS_INLINE __kindof VideoModel_Core *_Nonnull jobsMakeVideoModelCore(jobsByVideoM
 
 #### 42.3、`UIAlertController` + `UIAlertAction`
 
-* UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
+* `UIAlertController` 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
 
   ```objective-c
   self.getCurrentViewController.comingToPresentVC(self.makeAlertControllerByAlertModel(jobsMakeAlertModel(^(JobsAlertModel * _Nullable data) {
@@ -10776,9 +10585,9 @@ NS_INLINE __kindof VideoModel_Core *_Nonnull jobsMakeVideoModelCore(jobsByVideoM
   * iOS.Widget
 * Demo里面有些因为Api升级而没有来得及对齐的，目前打开会崩溃
 * 对多场景**SceneDelegate**的深入研究和支持
-* JobsPostVC报错解决
+* `JobsPostVC`报错解决
 * DebugLogDescription 会崩溃：`id value = self.valueForKeyBlock(name) ? : @"nil";//默认值为nil字符串`
-* 侧滑菜单：JXCategoryView垂直表达
+* 侧滑菜单：`JXCategoryView`垂直表达
 * 其他
 ## 八、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 * 浏览器打开并输入 
