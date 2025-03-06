@@ -82,7 +82,7 @@
         objc_setAssociatedObject(self,
                                  @selector(btns),
                                  Btns,
-                                 OBJC_ASSOCIATION_COPY_NONATOMIC);
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }return Btns;
 }
 #pragma mark —— @property(nonatomic,assign,readonly)NSUInteger selectedIndex;
