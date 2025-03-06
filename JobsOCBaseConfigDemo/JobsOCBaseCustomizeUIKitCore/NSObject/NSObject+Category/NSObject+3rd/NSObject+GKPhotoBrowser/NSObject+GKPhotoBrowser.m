@@ -35,7 +35,7 @@ NS_INLINE __kindof GKPhotoBrowser *_Nonnull jobsMakeGKPhotoBrowserByPhotosArray(
         browser.configure.showStyle           = GKPhotoBrowserShowStyleNone;
         browser.configure.hideStyle           = GKPhotoBrowserHideStyleZoomScale;
         browser.configure.isSingleTapDisabled = YES;  // 不响应默认单击事件
-        browser.isStatusBarShow     = YES;  // 显示状态栏
+        [browser setStatusBarShow:YES]; // 显示状态栏
         browser.configure.isHideSourceView    = NO;
         browser.delegate            = self;
         browser.configure.isFollowSystemRotation = !(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone);
