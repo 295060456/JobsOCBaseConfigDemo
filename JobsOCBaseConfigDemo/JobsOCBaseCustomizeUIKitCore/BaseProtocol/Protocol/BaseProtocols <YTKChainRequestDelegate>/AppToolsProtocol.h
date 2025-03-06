@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "DefineProperty.h"
 #import "BaseProtocol.h"
+#import "XProtocol.h"
 #import "JobsBlock.h"
 #import "JobsAppDoorConfig.h"
 #import "NetworkingConstant.h"
@@ -21,7 +22,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 /// App工具协议
-@protocol AppToolsProtocol <BaseProtocol>
+@protocol AppToolsProtocol <BaseProtocol,XProtocol>
 @optional
 #pragma mark —— 关于挂载的数据资料
 Prop_strong(nullable)UIViewModel *viewModel;

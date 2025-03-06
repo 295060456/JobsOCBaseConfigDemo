@@ -9,6 +9,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <WebKit/WebKit.h>
 #import "JobsBlock.h"
+#import "NSObject+HTML.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

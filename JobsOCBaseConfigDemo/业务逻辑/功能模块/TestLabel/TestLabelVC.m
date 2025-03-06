@@ -9,21 +9,21 @@
 
 @interface TestLabelVC ()
 /// UILabel
-@property(nonatomic,strong)BaseLabel *lab1;///【UILabelShowingType_01】 一行显示。定宽、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
-@property(nonatomic,strong)BaseLabel *lab2;///【UILabelShowingType_02】 一行显示普通文本。定宽、定字体。多余部分scrollerView ❤️集成@implementation UILabel (AutoScroll)❤️
-@property(nonatomic,strong)BaseLabel *lab3;///【UILabelShowingType_03】 一行显示普通文本。定字体，不定宽。宽度自适应
-@property(nonatomic,strong)BaseLabel *lab4;///【UILabelShowingType_04】 一行显示普通文本。缩小字体方式全展示
-@property(nonatomic,strong)BaseLabel *lab5;///【UILabelShowingType_05】 多行显示普通文本，自动提行。定宽、定字体
-@property(nonatomic,strong)BaseLabel *lab6;///【UILabelShowingType_05】 多行显示普通文本，手动\n提行。定宽、定字体
-@property(nonatomic,strong)BaseLabel *lab7;///【UILabelShowingType_05】 多行显示富文本，手动\n提行。定宽、定字体
+Prop_strong()BaseLabel *lab1;///【UILabelShowingType_01】 一行显示。定宽、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
+Prop_strong()BaseLabel *lab2;///【UILabelShowingType_02】 一行显示普通文本。定宽、定字体。多余部分scrollerView ❤️集成@implementation UILabel (AutoScroll)❤️
+Prop_strong()BaseLabel *lab3;///【UILabelShowingType_03】 一行显示普通文本。定字体，不定宽。宽度自适应
+Prop_strong()BaseLabel *lab4;///【UILabelShowingType_04】 一行显示普通文本。缩小字体方式全展示
+Prop_strong()BaseLabel *lab5;///【UILabelShowingType_05】 多行显示普通文本，自动提行。定宽、定字体
+Prop_strong()BaseLabel *lab6;///【UILabelShowingType_05】 多行显示普通文本，手动\n提行。定宽、定字体
+Prop_strong()BaseLabel *lab7;///【UILabelShowingType_05】 多行显示富文本，手动\n提行。定宽、定字体
 /// UIButton
-@property(nonatomic,strong)BaseButton *btn1;///【UILabelShowingType_01】 一行显示普通文本。定宽、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
-@property(nonatomic,strong)BaseButton *btn2;///【UILabelShowingType_02】 一行显示普通文本。定宽、定字体。多余部分scrollerView ❤️集成@implementation UILabel (AutoScroll)❤️
-@property(nonatomic,strong)BaseButton *btn3;///【UILabelShowingType_03】 一行显示普通文本。定字体，不定宽。宽度自适应
-@property(nonatomic,strong)BaseButton *btn4;///【UILabelShowingType_04】 一行显示普通文本。缩小字体方式全展示
-@property(nonatomic,strong)BaseButton *btn5;///【UILabelShowingType_05】 多行显示普通文本，自动提行。定宽、定字体
-@property(nonatomic,strong)BaseButton *btn6;///【UILabelShowingType_05】 多行显示普通文本，手动\n提行。定宽、定字体
-@property(nonatomic,strong)BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文本，手动\n提行。定宽、定字体
+Prop_strong()BaseButton *btn1;///【UILabelShowingType_01】 一行显示普通文本。定宽、定字体。多余部分用…表示（省略号的位置由NSLineBreakMode控制）
+Prop_strong()BaseButton *btn2;///【UILabelShowingType_02】 一行显示普通文本。定宽、定字体。多余部分scrollerView ❤️集成@implementation UILabel (AutoScroll)❤️
+Prop_strong()BaseButton *btn3;///【UILabelShowingType_03】 一行显示普通文本。定字体，不定宽。宽度自适应
+Prop_strong()BaseButton *btn4;///【UILabelShowingType_04】 一行显示普通文本。缩小字体方式全展示
+Prop_strong()BaseButton *btn5;///【UILabelShowingType_05】 多行显示普通文本，自动提行。定宽、定字体
+Prop_strong()BaseButton *btn6;///【UILabelShowingType_05】 多行显示普通文本，手动\n提行。定宽、定字体
+Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文本，手动\n提行。定宽、定字体
 
 @end
 

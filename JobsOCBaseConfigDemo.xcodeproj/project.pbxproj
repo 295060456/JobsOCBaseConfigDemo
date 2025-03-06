@@ -1604,6 +1604,8 @@
 		84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SysInfo.m"; sourceTree = "<group>"; };
 		84EB570C2D102C7700AC56B0 /* NSSet+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSSet+Extra.h"; sourceTree = "<group>"; };
 		84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSSet+Extra.m"; sourceTree = "<group>"; };
+		84FF23112D79A7180060E317 /* JobsBizBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBizBlock.h; sourceTree = "<group>"; };
+		84FF23952D79A8ED0060E317 /* CommonViews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonViews.h; sourceTree = "<group>"; };
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -9808,6 +9810,7 @@
 			children = (
 				CE4F289A2CA8286D002AF25B /* 不定参数的Block */,
 				CE4F289D2CA8286D002AF25B /* 确定参数的Block */,
+				84FF23112D79A7180060E317 /* JobsBizBlock.h */,
 				CE4F289E2CA8286D002AF25B /* JobsBlock.h */,
 				CE4F289F2CA8286D002AF25B /* JobsBlock.md */,
 			);
@@ -14685,7 +14688,7 @@
 			path = "弹框样式_0";
 			sourceTree = "<group>";
 		};
-		CECE7D162C450CCD00764AF5 /* 本App相关的自定义弹出框 */ = {
+		CECE7D162C450CCD00764AF5 /* 自定义弹框 */ = {
 			isa = PBXGroup;
 			children = (
 				CE2E88CB2C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表 */,
@@ -14693,14 +14696,15 @@
 				CECE7D142C450CCD00764AF5 /* 弹框样式_0 */,
 				CECE7D152C450CCD00764AF5 /* JobsOCBaseConfigPopupViewHeader.h */,
 			);
-			path = "本App相关的自定义弹出框";
+			path = "自定义弹框";
 			sourceTree = "<group>";
 		};
 		CECE7D202C450CCD00764AF5 /* ☀️业务模块中公用的View */ = {
 			isa = PBXGroup;
 			children = (
+				84FF23952D79A8ED0060E317 /* CommonViews.h */,
 				CE9076C82C54B60F00CD902B /* 自定义视图 */,
-				CECE7D162C450CCD00764AF5 /* 本App相关的自定义弹出框 */,
+				CECE7D162C450CCD00764AF5 /* 自定义弹框 */,
 			);
 			path = "☀️业务模块中公用的View";
 			sourceTree = "<group>";

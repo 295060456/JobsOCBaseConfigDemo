@@ -8,9 +8,10 @@
 #import <UIKit/UIKit.h>
 
 #import "JobsHeaderFooterView.h"
-
+#import "TMSWalletCollectionReusableView.h"
 #import "JobsBaseCollectionViewCell.h"
 #import "BaseCollectionViewCell.h"
+
 #import "JobsSearchDataCVCell.h"
 #import "JobsHotLabelByMultiLineCVCell.h"
 #import "JobsBtnStyleCVCell.h"

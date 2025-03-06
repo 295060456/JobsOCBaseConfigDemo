@@ -17,7 +17,9 @@
 #import "AppDelegate.h"
 #import "JobsAppDoorVC.h"
 #import "AppLanguageVC.h"
+
 #import "JobsHotLabelBySingleLine.h"
+#import "JobsCustomTabBar.h"
 //#import "CasinoUpgradePopupView.h"
 
 #import "JobsNetworkingHeader.h"
@@ -57,10 +59,6 @@ AppToolsProtocol
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
-/// HTML 必要标签
-- (__kindof NSMutableArray<NSString *> *)requiredHTMLTags;
-/// HTML 标签
--(__kindof NSArray <__kindof NSString *>*)htmlTags;
 /// 选择电话号码区位
 -(__kindof UIButton *)zoneCodeBtnByBlock:(jobsByIDBlock _Nonnull)block;
 /// 配置弹窗数据

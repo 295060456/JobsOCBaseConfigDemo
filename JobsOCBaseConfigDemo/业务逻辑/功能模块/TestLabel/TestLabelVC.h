@@ -7,6 +7,8 @@
 
 #import "BaseViewController.h"
 #import "BaseLabel.h"
+#import "DefineProperty.h"
+#import "NSObject+AppTools.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

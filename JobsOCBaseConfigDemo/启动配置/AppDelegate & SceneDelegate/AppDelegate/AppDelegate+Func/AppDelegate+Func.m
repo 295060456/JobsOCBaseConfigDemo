@@ -159,11 +159,11 @@
 }
 #pragma mark —— 读取Plist配置文件
 -(jobsByVoidBlock _Nonnull)readPlistConfig{
-    @jobs_weakify(self)
     return ^(){
-        @jobs_strongify(self)
+        @jobs_weakify(self)
         static dispatch_once_t readPlistConfigDispatchOnce;
         dispatch_once(&readPlistConfigDispatchOnce, ^{
+            @jobs_strongify(self)
             id plistConfig = self.readLocalPlistWithFileName(@"MetaData");
             JobsLog(@"plistConfig = %@",plistConfig);
         });

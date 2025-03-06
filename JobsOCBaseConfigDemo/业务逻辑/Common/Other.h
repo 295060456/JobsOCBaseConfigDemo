@@ -30,13 +30,13 @@
 
 #import "JobsOCBaseConfigPopupViewHeader.h"/// 本App相关的自定义弹出框
 
-// 测试专用
+/// 测试专用
 #import "JobsShowObjInfoVC.h"/// 查看对象
 
-// App 的所有网络请求Api
+/// App 的所有网络请求Api
 #import "JobsNetworkingHeader.h"
 
-// 相关功能模块组测试控制器
+/// 相关功能模块组测试控制器
 #import "JobsProgressVC.h"
 #import "A_VC.h"
 #import "TransparentRegionVC.h"
@@ -95,5 +95,7 @@
 #import "PointLabTestVC.h"
 #import "CalendarVC.h"/// 日历功能
 #import "JobsScrollLabelVC.h" /// 当文本超出的时候，滚动展现文字的Label
+/// 公共图
+#import "CommonViews.h"
 
 #endif /* Other_h */
