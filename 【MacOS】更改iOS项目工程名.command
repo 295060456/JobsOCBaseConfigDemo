@@ -447,8 +447,8 @@ rename_file() {
 # 其他的一些自定义的，需要手动配置的
 others() {
     ## 数据库
-    mv "$DESKTOP_PATH/$NEW_PROJECT_NAME/Others/系统创建/${default_old_project_name}.xcdatamodeld" \
-       "$DESKTOP_PATH/$NEW_PROJECT_NAME/Others/系统创建/${NEW_PROJECT_NAME}.xcdatamodeld"
+    mv "$DESKTOP_PATH/$NEW_PROJECT_NAME/其他/CoreData/${default_old_project_name}.xcdatamodeld" \
+       "$DESKTOP_PATH/$NEW_PROJECT_NAME/其他/CoreData/${NEW_PROJECT_NAME}.xcdatamodeld"
 
     ## pch文件
     rename_file "$DESKTOP_PATH/$NEW_PROJECT_NAME/${default_old_project_name}PrefixHeader.pch" \
