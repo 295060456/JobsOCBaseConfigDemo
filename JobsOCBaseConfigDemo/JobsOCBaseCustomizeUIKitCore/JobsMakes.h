@@ -168,6 +168,12 @@ NS_INLINE __kindof UIWindow *_Nonnull jobsMakeWindow(jobsByWindowBlock _Nonnull 
     return data;
 }
 
+NS_INLINE __kindof UIWindow *_Nonnull jobsMakeAppDelegateWindow(jobsByWindowBlock _Nonnull block){
+    UIWindow *data = JobsAppTools.sharedManager.makeAppDelegateWindow;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UIView *_Nonnull jobsMakeView(jobsByViewBlock _Nonnull block){
     UIView *data = UIView.alloc.init;
     if (block) block(data);

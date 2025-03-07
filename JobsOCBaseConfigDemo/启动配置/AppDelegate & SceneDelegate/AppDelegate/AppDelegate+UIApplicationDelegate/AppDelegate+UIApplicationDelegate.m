@@ -23,10 +23,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.launchFunc2();
     AppDelegate.launchFunc1();
 
-    self.window = JobsAppTools.sharedManager.makeAppDelegateWindow;
-    self.window.rootViewController = RootViewController;
     AppDelegate.tabBarVC.ppBadge(YES);
-    [self.window makeKeyAndVisible];
+    
+    self.window = jobsMakeAppDelegateWindow(^(__kindof UIWindow * _Nullable window) {
+        window.rootViewController = RootViewController;
+        [window makeKeyAndVisible];
+    });
 
     return YES;
 }

@@ -24,6 +24,8 @@ typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
 typedef void(^jobsBySelectorBlock)(id _Nullable weakSelf,id _Nullable arg);
 typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
+#pragma mark —— 关于锁🔐
+typedef void(^jobsByLockBlock)(NSLock *_Nullable lock);
 #pragma mark —— 关于错误
 typedef void(^jobsByErrorBlock)(NSError *_Nullable error);
 typedef void(^jobsByErrBlock)(jobsByErrorBlock _Nullable block);
@@ -42,7 +44,7 @@ typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
 typedef void(^jobsByPageControlBlock)(UIPageControl *_Nullable pageControl);
 typedef void(^jobsByScrollViewBlock)(__kindof UIScrollView *_Nullable scrollView);
 typedef void(^jobsByBtnBlock)(__kindof UIButton *_Nullable btn);
-typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable data);
+typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable window);
 typedef void(^jobsByLabelBlock)(__kindof UILabel *_Nullable label);
 typedef void(^jobsByWKWebViewBlock)(__kindof WKWebView *_Nullable webView);
 typedef void(^jobsByJSContextBlock)(__kindof JSContext *_Nullable context);
@@ -63,6 +65,7 @@ typedef void(^jobsByViewAndAnimatedBlock)(__kindof UIView *_Nullable view,BOOL a
 typedef void(^jobsByViewAndDataBlock)(__kindof UIView *_Nullable view,id _Nullable data);
 typedef void(^jobsByView2Block)(__kindof UIView *_Nullable superview,UIView *_Nullable view);
 #pragma mark —— 关于 控制器
+typedef void(^jobsByViewControllerBlock)(__kindof UIViewController *_Nullable viewController);
 typedef void(^jobsByMenuControllerBlock)(__kindof UIMenuController *_Nullable menuController);
 typedef void(^jobsByImagePickerControllerBlock)(__kindof UIImagePickerController *_Nullable imagePickerController);
 #pragma mark —— 关于数据容器
