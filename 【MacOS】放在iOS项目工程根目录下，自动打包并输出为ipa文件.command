@@ -1,104 +1,75 @@
 #!/bin/zsh
+# 该脚本放在工程根目录下运行，无需手动输入路径
 
-print_color() {
-    local COLOR="$1"
-    local TEXT="$2"
-    local RESET="\033[0m"
-    echo "${COLOR}${TEXT}${RESET}"
-}
+# 使用 $HOME 代表当前用户的主目录，工程目录即当前工作目录
+PROJECT_DIR="$(pwd)"
+USER_HOME="$HOME"
 
-_JobsPrint_Red() {
-    print_color "\033[1;31m" "$1"
-}
+# 预先定义 .app 文件所在的完整路径（请根据实际情况修改 DerivedData 目录后缀）
+APP_PATH="${USER_HOME}/Library/Developer/Xcode/DerivedData/FMOnlyH5-dxjnpdwuyccqembprekctjsakccg/Build/Products/Debug-iphoneos/FMOnlyH5.app"
 
-_JobsPrint_Green() {
-    print_color "\033[1;32m" "$1"
-}
-# 打印 "Jobs" logo
-jobs_logo() {
-    local border="=="
-    local width=49  # 根据logo的宽度调整
-    local top_bottom_border=$(printf '%0.1s' "${border}"{1..$width})
-    local logo="
-||${top_bottom_border}||
-||  JJJJJJJJ     oooooo    bb          SSSSSSSSSS  ||
-||        JJ    oo    oo   bb          SS      SS  ||
-||        JJ    oo    oo   bb          SS          ||
-||        JJ    oo    oo   bbbbbbbbb   SSSSSSSSSS  ||
-||  J     JJ    oo    oo   bb      bb          SS  ||
-||  JJ    JJ    oo    oo   bb      bb  SS      SS  ||
-||   JJJJJJ      oooooo     bbbbbbbb   SSSSSSSSSS  ||
-||${top_bottom_border}||
-"
-    _JobsPrint_Green "$logo"
-}
-# 自述信息
-self_intro() {
-    _JobsPrint_Green "【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.）"
-    _JobsPrint_Red "按回车键继续..."
-    read
-}
+# 1. 检查是否安装 Xcode
+if [ ! -d "/Applications/Xcode.app" ]; then
+    echo "未检测到 Xcode，请安装后再试。"
+    exit 1
+fi
 
-setup_xcode() {
-    local XCODE_DIR="/Applications/Xcode.app"
-    if [ ! -d "$XCODE_DIR" ]; then
-        _JobsPrint_Red "Xcode.app not found in Applications."
-        exit 1
-    fi
-    _JobsPrint_Green "Found Xcode.app at: $XCODE_DIR"
-}
+# 2. 检查工程目录是否存在（通常脚本在工程目录下运行）
+if [ ! -d "$PROJECT_DIR" ]; then
+    echo "工程目录不存在，请检查路径：$PROJECT_DIR"
+    exit 2
+fi
 
-install_package_application() {
-    local PACKAGE_DIR="$1/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin"
-    local PACKAGE_NAME="PackageApplication"
-    local PACKAGE_ZIP="${PACKAGE_NAME}.zip"
-    local PACKAGE_PATH="${PACKAGE_DIR}/${PACKAGE_NAME}"
+# 3. 检查 .app 文件是否存在
+if [ ! -d "$APP_PATH" ]; then
+    echo "未找到 .app 文件，请先接入真机并进行打包：$APP_PATH"
+    exit 3
+fi
 
-    if [ ! -f "$PACKAGE_PATH" ]; then
-        curl -# -OL "https://github.com/JackSteven/PackageApplication/raw/master/${PACKAGE_ZIP}" && unzip -o "$PACKAGE_ZIP" && mv "$PACKAGE_NAME" "$PACKAGE_DIR" && rm "$PACKAGE_ZIP"
-        if [ $? -ne 0 ]; then
-            _JobsPrint_Red "Failed to install $PACKAGE_NAME."
-            exit 2
-        fi
-        sudo xcode-select -switch "$1/Contents/Developer/"
-        chmod +x "$PACKAGE_PATH"
-        _JobsPrint_Green "$PACKAGE_NAME installed successfully!"
-    fi
-}
+# 4. 获取主程序名（去除 .app 后缀）
+APP_NAME=$(basename "$APP_PATH" .app)
+echo "检测到的程序名：$APP_NAME"
 
-build_app() {
-    local build_command="xcodebuild"
-    local workspace=$(find . -name "*.xcworkspace" -print -quit)
-    local project=$(find . -name "*.xcodeproj" -print -quit)
+# 5. 创建一个临时工作目录（在工程目录下创建 temp_package 文件夹）
+WORK_DIR="${PROJECT_DIR}/temp_package"
+mkdir -p "$WORK_DIR"
 
-    if [[ -n "$workspace" ]]; then
-        scheme="${workspace%%.*}"
-        build_command+=" -workspace $workspace -scheme $scheme"
-    elif [[ -n "$project" ]]; then
-        scheme="${project%%.*}"
-        build_command+=" -project $project -scheme $scheme"
-    else
-        _JobsPrint_Red "No workspace or project found."
-        exit 3
-    fi
+# 6. 将 .app 文件复制到工作目录中，并保留原文件夹名称
+TARGET_APP_FOLDER="${WORK_DIR}/${APP_NAME}.app"
+cp -R "$APP_PATH" "$TARGET_APP_FOLDER"
+if [ $? -ne 0 ]; then
+    echo "拷贝 .app 文件失败，请检查路径和权限。"
+    exit 4
+fi
 
-    local sdk=$(xcodebuild -showBuildSettings | awk '/SDK_NAME =/ {print $3}')
-    build_command+=" -configuration Release -sdk $sdk"
-    echo "Executing build command: $build_command"
-    if ! $build_command; then
-        _JobsPrint_Red "Build failed, please check!"
-        exit 4
-    fi
-}
+# 7. 压缩包含 .app 的文件夹，压缩后生成 APP_NAME.app.zip
+cd "$WORK_DIR"
+zip -r "${APP_NAME}.app.zip" "${APP_NAME}.app"
+if [ $? -ne 0 ]; then
+    echo "压缩文件失败。"
+    exit 5
+fi
 
-main() {
-    _JobsPrint_Green "正在开始编译打包 ipa"
-    jobs_logo
-    self_intro
-    setup_xcode
-    install_package_application "/Applications/Xcode.app"
-    build_app
-    _JobsPrint_Green "编译打包 ipa 成功完成！！！"
-}
+# 8. 将 .zip 文件重命名为 .ipa 文件
+IPA_FILE="${APP_NAME}.ipa"
+mv "${APP_NAME}.app.zip" "$IPA_FILE"
+if [ $? -ne 0 ]; then
+    echo "重命名为 ipa 文件失败。"
+    exit 6
+fi
 
-main
+# 9. 将 ipa 文件移动到系统桌面
+DESKTOP_DIR="${USER_HOME}/Desktop"
+mv "$IPA_FILE" "${DESKTOP_DIR}/${IPA_FILE}"
+if [ $? -ne 0 ]; then
+    echo "移动 ipa 文件到桌面失败。"
+    exit 7
+fi
+
+echo "打包成功，ipa 文件位于桌面：${DESKTOP_DIR}/${IPA_FILE}"
+
+# 10. 清理临时工作目录
+cd "$PROJECT_DIR"
+rm -rf "$WORK_DIR"
+
+exit 0
