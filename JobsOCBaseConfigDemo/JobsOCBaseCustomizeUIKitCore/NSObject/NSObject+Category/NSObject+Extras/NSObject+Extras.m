@@ -295,6 +295,12 @@ UITextFieldProtocol_dynamic
         });
     };
 }
+/// 通过 WKWebViewConfiguration 配置一个无Frame的 WKWebView
+-(JobsReturnWKWebViewByConfigurationBlock _Nonnull)makeWebViewByConfig{
+    return ^__kindof WKWebView *_Nullable(WKWebViewConfiguration *_Nullable configuration){
+        return [WKWebView.alloc initWithFrame:CGRectZero configuration:configuration];
+    };
+}
 /// 在导航栏堆栈里面，是否存在同样类型的控制器
 -(JobsReturnBOOLByViewControllerBlock _Nonnull)isSameVCBy{
     @jobs_weakify(self)

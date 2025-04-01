@@ -57,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 关于URL
 /// 返回网址相关的NSURL *
 -(NSURL *_Nonnull)jobsUrl;
+/// NSString => NSURLRequest
+-(NSMutableURLRequest *_Nonnull)URLRequest;
 /// 返回文件路径相关的NSURL *
 /// 增加file://
 -(NSURL *_Nonnull)jobsFileUrl;

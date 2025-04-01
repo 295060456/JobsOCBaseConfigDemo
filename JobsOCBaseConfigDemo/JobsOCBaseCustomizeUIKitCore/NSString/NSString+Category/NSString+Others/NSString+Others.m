@@ -34,6 +34,10 @@
 -(NSURL *_Nonnull)jobsUrl{
     return [NSURL URLWithString:self];
 }
+/// NSString => NSURLRequest
+-(NSMutableURLRequest *_Nonnull)URLRequest{
+    return NSURLRequest.initBy(self.jobsUrl).mutableCopy;
+}
 /// 返回文件路径相关的NSURL *
 /// 增加file://
 -(NSURL *_Nonnull)jobsFileUrl{
