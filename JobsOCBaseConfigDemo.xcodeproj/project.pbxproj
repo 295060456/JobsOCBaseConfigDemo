@@ -159,6 +159,8 @@
 		84CF6DD52D1AB6200060C97D /* RACModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6DD32D1AB6200060C97D /* RACModel.m */; };
 		84CF6FDA2D1C42D90060C97D /* JobsGestureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CF6FD82D1C42D90060C97D /* JobsGestureModel.m */; };
 		84DFE2C92CC69BBB00AB099C /* FMBannerAdsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */; };
+		84E19D092D9EDD4F00A9F793 /* ASport.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E19D072D9EDD4F00A9F793 /* ASport.png */; };
+		84E19D0A2D9EDD4F00A9F793 /* JobsLaunchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E19D062D9EDD4F00A9F793 /* JobsLaunchVC.m */; };
 		84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */; };
 		84E401422CC60F4900C8303A /* This.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E401402CC60E7100C8303A /* This.m */; };
 		84E9992E2CEB2D1C00ABE463 /* NSObject+TEST.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E999262CEB2D1C00ABE463 /* NSObject+TEST.m */; };
@@ -1586,6 +1588,9 @@
 		84CF6FD82D1C42D90060C97D /* JobsGestureModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsGestureModel.m; sourceTree = "<group>"; };
 		84DFE2C62CC69BBB00AB099C /* FMBannerAdsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMBannerAdsModel.h; sourceTree = "<group>"; };
 		84DFE2C72CC69BBB00AB099C /* FMBannerAdsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMBannerAdsModel.m; sourceTree = "<group>"; };
+		84E19D052D9EDD4F00A9F793 /* JobsLaunchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLaunchVC.h; sourceTree = "<group>"; };
+		84E19D062D9EDD4F00A9F793 /* JobsLaunchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsLaunchVC.m; sourceTree = "<group>"; };
+		84E19D072D9EDD4F00A9F793 /* ASport.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ASport.png; sourceTree = "<group>"; };
 		84E4013B2CC60D3100C8303A /* This+URLManager_Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "This+URLManager_Base.h"; sourceTree = "<group>"; };
 		84E4013C2CC60D3100C8303A /* This+URLManager_Base.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "This+URLManager_Base.m"; sourceTree = "<group>"; };
 		84E4013F2CC60E7100C8303A /* This.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = This.h; sourceTree = "<group>"; };
@@ -5278,6 +5283,16 @@
 			path = FMBannerAdsModel;
 			sourceTree = "<group>";
 		};
+		84E19D082D9EDD4F00A9F793 /* 启动页面 */ = {
+			isa = PBXGroup;
+			children = (
+				84E19D052D9EDD4F00A9F793 /* JobsLaunchVC.h */,
+				84E19D062D9EDD4F00A9F793 /* JobsLaunchVC.m */,
+				84E19D072D9EDD4F00A9F793 /* ASport.png */,
+			);
+			path = "启动页面";
+			sourceTree = "<group>";
+		};
 		84E3EB632D0C075200D1B98B /* WGradientProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -6508,6 +6523,7 @@
 		CE4F1C642CA82510002AF25B /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				84E19D082D9EDD4F00A9F793 /* 启动页面 */,
 				84A97BE02D1687B50002A2BA /* VPN */,
 				CE4F1B592CA82510002AF25B /* 弹出的日历选择页面 */,
 				CE4F1B5C2CA82510002AF25B /* 电影倒计时特效 */,
@@ -16215,6 +16231,7 @@
 				CE4F28332CA825CD002AF25B /* JobsIM【Outlines 06】.png in Resources */,
 				CE4F28342CA825CD002AF25B /* JobsSearchResultDataListTBVCell.md in Resources */,
 				CE5A66002CA8348D006D67A7 /* TabbaritemImage.bundle in Resources */,
+				84E19D092D9EDD4F00A9F793 /* ASport.png in Resources */,
 				CE4F28352CA825CD002AF25B /* JobsSearch【OutLines 04】.png in Resources */,
 				CE4F28362CA825CD002AF25B /* image-20240622130146666.png in Resources */,
 				CE4F28372CA825CD002AF25B /* BaiShaETProjBankAccMgmtCVCell.png in Resources */,
@@ -16686,6 +16703,7 @@
 				CE5A656E2CA83272006D67A7 /* JobsDebugVC.m in Sources */,
 				CE5A656F2CA83272006D67A7 /* BaseViewController.m in Sources */,
 				CE61AD552C9EAB26002DF138 /* RequestTool.m in Sources */,
+				84E19D0A2D9EDD4F00A9F793 /* JobsLaunchVC.m in Sources */,
 				CE5A65FA2CA83483006D67A7 /* TLTabBarAnimation.m in Sources */,
 				CE5A65FB2CA83483006D67A7 /* TransitionController.m in Sources */,
 				CE5A65FC2CA83483006D67A7 /* JobsPullListTBVCell.m in Sources */,

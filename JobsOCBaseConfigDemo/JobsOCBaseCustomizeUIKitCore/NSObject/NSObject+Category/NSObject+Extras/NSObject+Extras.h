@@ -170,6 +170,8 @@ AppToolsProtocol
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
+/// 切换到主VC
+-(jobsByVCBlock _Nonnull)switchToMainVC;
 /// 销毁视图
 -(jobsByViewBlock _Nonnull)removeView;
 /// 定时器的销毁
