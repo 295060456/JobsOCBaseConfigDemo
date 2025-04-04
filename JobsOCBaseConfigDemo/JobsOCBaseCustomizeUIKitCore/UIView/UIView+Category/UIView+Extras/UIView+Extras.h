@@ -114,6 +114,7 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 -(JobsReturnViewByGestureRecognizer _Nonnull)addGesture;
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
 -(JobsReturnViewByViewBlock _Nonnull)addSubview;
+-(JobsReturnViewByViewBlock _Nonnull)bringSubviewToFront;
 -(JobsReturnViewByViewBlock _Nonnull)sendSubviewToBack;
 -(JobsReturnViewByVoidBlock _Nonnull)remove;
 /// 针对数据源是UIImage  *的GKPhotoBrowser

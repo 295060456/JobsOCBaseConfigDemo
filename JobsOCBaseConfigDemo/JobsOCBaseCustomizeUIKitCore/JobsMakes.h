@@ -192,6 +192,18 @@ NS_INLINE __kindof UIPageControl *_Nonnull jobsMakePageControl(jobsByPageControl
     return data;
 }
 
+NS_INLINE __kindof WKUserContentController *_Nonnull jobsMakeUserContentController(jobsByUserContentControllerBlock _Nonnull block){
+    WKUserContentController *data = WKUserContentController.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof WKWebViewConfiguration *_Nonnull jobsMakeWebViewConfiguration(jobsByWKWebViewConfigurationBlock _Nonnull block){
+    WKWebViewConfiguration *data = WKWebViewConfiguration.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof PHFetchOptions *_Nonnull jobsMakePHFetchOptions(jobsByPHFetchOptionsBlock _Nonnull block){
     PHFetchOptions *data = PHFetchOptions.alloc.init;
     if (block) block(data);

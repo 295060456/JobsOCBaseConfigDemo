@@ -685,6 +685,15 @@ JobsKey(_cornerRadii)
     };
 }
 
+-(JobsReturnViewByViewBlock _Nonnull)bringSubviewToFront{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
+        @jobs_strongify(self)
+        [self bringSubviewToFront:subView];
+        return subView;
+    };
+}
+
 -(JobsReturnViewByViewBlock _Nonnull)sendSubviewToBack{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {

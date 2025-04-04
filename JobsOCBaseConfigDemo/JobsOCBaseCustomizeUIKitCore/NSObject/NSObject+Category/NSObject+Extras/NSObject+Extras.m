@@ -206,6 +206,19 @@ UITextFieldProtocol_dynamic
     };
 }
 #pragma mark —— 功能性的
+/// 切换到主VC
+-(jobsByVCBlock _Nonnull)switchToMainVC{
+    return ^(__kindof UIViewController *_Nullable mainVC){
+        UIWindow *window = jobsGetMainWindow();
+        [UIView transitionWithView:window
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            window.rootViewController = mainVC;
+                        }
+                        completion:nil];
+    };
+}
 /// 销毁视图
 -(jobsByViewBlock _Nonnull)removeView{
     return ^(__kindof UIView *_Nullable view){
@@ -293,12 +306,6 @@ UITextFieldProtocol_dynamic
         return jobsMakeWKWebView(^(__kindof WKWebView * _Nullable webView) {
             [webView loadRequest:URL.URLRequest];
         });
-    };
-}
-/// 通过 WKWebViewConfiguration 配置一个无Frame的 WKWebView
--(JobsReturnWKWebViewByConfigurationBlock _Nonnull)makeWebViewByConfig{
-    return ^__kindof WKWebView *_Nullable(WKWebViewConfiguration *_Nullable configuration){
-        return [WKWebView.alloc initWithFrame:CGRectZero configuration:configuration];
     };
 }
 /// 在导航栏堆栈里面，是否存在同样类型的控制器

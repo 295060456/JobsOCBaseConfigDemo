@@ -24,8 +24,6 @@ typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
 typedef void(^jobsBySelectorBlock)(id _Nullable weakSelf,id _Nullable arg);
 typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
-#pragma mark —— 关于锁🔐
-typedef void(^jobsByLockBlock)(NSLock *_Nullable lock);
 #pragma mark —— 关于错误
 typedef void(^jobsByErrorBlock)(NSError *_Nullable error);
 typedef void(^jobsByErrBlock)(jobsByErrorBlock _Nullable block);
@@ -39,6 +37,9 @@ typedef void(^jobsByCATransitionBlock)(__kindof CATransition *_Nullable transiti
 typedef void(^jobsByCAKeyframeAnimationBlock)(__kindof CAKeyframeAnimation *_Nullable animation);
 typedef void(^jobsByCAGradientLayerBlock)(__kindof CAGradientLayer *_Nullable layer);
 typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable animation);
+#pragma mark —— 关于WKWebView.JS配置
+typedef void(^jobsByUserContentControllerBlock)(__kindof WKUserContentController *_Nullable data);
+typedef void(^jobsByWKWebViewConfigurationBlock)(__kindof WKWebViewConfiguration *_Nullable config);
 #pragma mark —— 关于View
 typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
 typedef void(^jobsByPageControlBlock)(UIPageControl *_Nullable pageControl);
@@ -90,8 +91,6 @@ typedef void(^jobsByFontBlock)(UIFont *_Nullable font);
 typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
 typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
 #pragma mark —— 关于UI配置
-/// WKWebView配置
-typedef void(^jobsByWKWebViewConfigurationBlock)(WKWebViewConfiguration * _Nullable config);
 /// 按钮配置
 typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
 typedef void(^jobsByBackgroundConfigurationBlock)(UIBackgroundConfiguration * _Nullable config);

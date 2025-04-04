@@ -348,6 +348,7 @@ typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByIntegerBlock)(NSInteger data)
 typedef NSURL *_Nullable(^JobsReturnURLByStringBlock)(__kindof NSString *_Nullable data);
 typedef NSURL *_Nullable(^JobsReturnURLByURLBlock)(NSURL *_Nullable data);
 typedef NSURL *_Nullable(^JobsReturnURLByVoidBlock)(void);
+typedef void(^jobsByURLRequestBlock)(__kindof NSURLRequest *_Nonnull request);
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByVoidBlock)(void);
 typedef NSMutableURLRequest *_Nullable(^JobsReturnMutableURLRequestByVoidBlock)(void);
 typedef __kindof NSURLRequest *_Nullable(^JobsReturnURLRequestByURLBlock)(NSURL *_Nullable url);

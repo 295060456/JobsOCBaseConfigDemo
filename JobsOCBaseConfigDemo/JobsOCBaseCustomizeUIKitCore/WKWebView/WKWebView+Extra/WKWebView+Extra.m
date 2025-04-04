@@ -15,4 +15,12 @@
     };
 }
 
+-(jobsByURLRequestBlock _Nonnull)loadRequest{
+    @jobs_weakify(self)
+    return ^(__kindof NSURLRequest *_Nullable request){
+        @jobs_strongify(self)
+        [self loadRequest:request];
+    };
+}
+
 @end
