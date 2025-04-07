@@ -30,6 +30,7 @@
 		8432B64E2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B64C2D1DB0EA00ADE9FF /* SPAlertControllerConfig.m */; };
 		8432B8D02D2049D200ADE9FF /* FSCalendar+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B8CE2D2049D200ADE9FF /* FSCalendar+Extra.m */; };
 		8432B8D42D204DD700ADE9FF /* WGradientProgressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432B8D22D204DD700ADE9FF /* WGradientProgressModel.m */; };
+		843697522DA3A61900DE80E3 /* FMHomeWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843697502DA3A61900DE80E3 /* FMHomeWebVC.m */; };
 		84392BDC2CF4A47A000D441F /* UIAlertController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD62CF4A47A000D441F /* UIAlertController+Extra.m */; };
 		84392BDD2CF4A47A000D441F /* UIAlertAction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD32CF4A47A000D441F /* UIAlertAction+Extra.m */; };
 		84392BDE2CF4A47A000D441F /* UNUserNotificationCenter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BD92CF4A47A000D441F /* UNUserNotificationCenter+Extra.m */; };
@@ -1303,6 +1304,8 @@
 		8432B8D12D204DD700ADE9FF /* WGradientProgressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WGradientProgressModel.h; sourceTree = "<group>"; };
 		8432B8D22D204DD700ADE9FF /* WGradientProgressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WGradientProgressModel.m; sourceTree = "<group>"; };
 		8432B9552D2074D100ADE9FF /* MacroDef_SDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDef_SDK.h; sourceTree = "<group>"; };
+		8436974F2DA3A61900DE80E3 /* FMHomeWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMHomeWebVC.h; sourceTree = "<group>"; };
+		843697502DA3A61900DE80E3 /* FMHomeWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMHomeWebVC.m; sourceTree = "<group>"; };
 		84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsOCBaseCustomize3rdCore.h; sourceTree = "<group>"; };
 		84392BBE2CF4A3AF000D441F /* Reachability+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reachability+Extra.h"; sourceTree = "<group>"; };
 		84392BBF2CF4A3AF000D441F /* Reachability+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Reachability+Extra.m"; sourceTree = "<group>"; };
@@ -3937,6 +3940,15 @@
 				8432B8D22D204DD700ADE9FF /* WGradientProgressModel.m */,
 			);
 			path = WGradientProgressModel;
+			sourceTree = "<group>";
+		};
+		843697512DA3A61900DE80E3 /* FMHomeWebVC */ = {
+			isa = PBXGroup;
+			children = (
+				8436974F2DA3A61900DE80E3 /* FMHomeWebVC.h */,
+				843697502DA3A61900DE80E3 /* FMHomeWebVC.m */,
+			);
+			path = FMHomeWebVC;
 			sourceTree = "<group>";
 		};
 		84392BC02CF4A3AF000D441F /* Reachability */ = {
@@ -14635,6 +14647,7 @@
 		CECE7BF12C450C5000764AF5 /* 控制器 */ = {
 			isa = PBXGroup;
 			children = (
+				843697512DA3A61900DE80E3 /* FMHomeWebVC */,
 				CE4F2A502CA82914002AF25B /* ViewController@1 */,
 				CE4F2A532CA82914002AF25B /* ViewController@2 */,
 				CE4F2A562CA82914002AF25B /* ViewController@3 */,
@@ -16879,6 +16892,7 @@
 				CE5A64C12CA82F35006D67A7 /* NSObject+JobsDeployCellConfig.m in Sources */,
 				CE4F27852CA825CD002AF25B /* JobsProgressVC.m in Sources */,
 				CE5A64C72CA82F63006D67A7 /* NSObject+HXPhotoPicker.m in Sources */,
+				843697522DA3A61900DE80E3 /* FMHomeWebVC.m in Sources */,
 				CE5A654F2CA8320D006D67A7 /* UITextField+Placeholder.m in Sources */,
 				845813E62CDE024B00B3C038 /* WKWebView+Extra.m in Sources */,
 				CE5A65502CA8320D006D67A7 /* UITextField+Animation.m in Sources */,

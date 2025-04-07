@@ -174,6 +174,12 @@ NS_INLINE __kindof UIWindow *_Nonnull jobsMakeAppDelegateWindow(jobsByWindowBloc
     return data;
 }
 
+NS_INLINE __kindof NSLock *_Nonnull jobsMakeLock(jobsByLockBlock _Nullable block){
+    NSLock *data = NSLock.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UIView *_Nonnull jobsMakeView(jobsByViewBlock _Nonnull block){
     UIView *data = UIView.alloc.init;
     if (block) block(data);

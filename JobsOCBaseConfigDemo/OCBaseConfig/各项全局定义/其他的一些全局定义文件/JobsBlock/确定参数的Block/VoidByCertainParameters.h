@@ -146,6 +146,7 @@ typedef void(^jobsByTimerBlock)(NSTimer *_Nullable timer);
 typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable dateFormatter);
 typedef void(^jobsByNotificationResponseBlock)(UNNotificationResponse *_Nullable response);
 #pragma mark —— 其他
+typedef void(^jobsByLockBlock)(NSLock *_Nullable lock);
 typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable runLoop);
 typedef void(^jobsByPHFetchOptionsBlock)(PHFetchOptions *_Nullable options);
 typedef void(^jobsByPHVideoRequestOptionsBlock)(PHVideoRequestOptions *_Nullable options);
