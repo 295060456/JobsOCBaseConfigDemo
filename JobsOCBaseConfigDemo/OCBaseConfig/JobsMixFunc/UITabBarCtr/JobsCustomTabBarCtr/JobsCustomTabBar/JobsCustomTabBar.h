@@ -8,10 +8,11 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "JobsCustomTabBarConfig.h"
+#import "BaseView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsCustomTabBar : UIView
+@interface JobsCustomTabBar : BaseView
 
 -(jobsByVoidBlock _Nonnull)setup;
 -(jobsByViewBlock _Nonnull)configMasonryBy;

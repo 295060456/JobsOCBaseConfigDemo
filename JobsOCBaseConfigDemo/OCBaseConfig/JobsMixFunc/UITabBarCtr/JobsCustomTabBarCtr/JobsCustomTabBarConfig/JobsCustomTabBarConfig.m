@@ -55,10 +55,13 @@ static dispatch_once_t JobsCustomTabBarConfigOnceToken;
 
 -(NSMutableArray<__kindof NSNumber *> *)tabBarItemYOffsets{
     if(!_tabBarItemYOffsets){
-        _tabBarItemYOffsets = NSMutableArray.array;
-        for (int d = 0; d < self.tabBarItems.count; d++) {
-            [_tabBarItemYOffsets addObject:@(0)];
-        }
+        @jobs_weakify(self)
+        _tabBarItemYOffsets = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            @jobs_strongify(self)
+            for (int d = 0; d < self.tabBarItems.count; d++) {
+                arr.add(@(0));
+            }
+        });
     }return _tabBarItemYOffsets;
 }
 

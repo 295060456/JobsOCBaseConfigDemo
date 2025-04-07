@@ -42,11 +42,14 @@
             UIView *item = config.tabBarItems[index];
             CGFloat xPosition = itemWidth * index;
             CGFloat yOffset = (index < config.tabBarItemYOffsets.count) ? [config.tabBarItemYOffsets[index] floatValue] : 0;
+            CGFloat offset = 0;
+            if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationPortrait &&
+               UIDevice.isBangScreen) offset = JobsBottomSafeAreaHeight();
             item.frame = CGRectMake(xPosition,
-                                    yOffset,
+                                    yOffset - offset,
                                     itemWidth,
-                                    config.tabBarHeight);
-            [self addSubview:item];
+                                    config.tabBarHeight + offset);
+            self.addSubview(item);
         }
     };
 }
@@ -91,8 +94,7 @@
                     // 这里使用 JobsCustomTabBarConfig.sharedManager.tabBarWidth 会崩
                     make.width.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarWidth);
                 }
-            }];
-            [view layoutIfNeeded];
+            }];[view layoutIfNeeded];
         }
     };
 }

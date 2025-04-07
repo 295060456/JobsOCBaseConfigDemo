@@ -82,6 +82,7 @@
                      roundingCornersRadii:(CGSize)roundingCornersRadii
                            layerBorderCor:(UIColor *_Nullable)layerBorderCor
                               borderWidth:(CGFloat)borderWidth
+                                 selected:(BOOL)selected
                             primaryAction:(UIAction *_Nullable)primaryAction
                longPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock
                           clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
@@ -89,6 +90,7 @@
     if(!background) background = UIBackgroundConfiguration.clearConfiguration;
     self.titleFont = titleFont;
     self.subTitleFont = subTitleFont;
+    self.selected = selected;
     @jobs_weakify(self)
     {/// 一般的文字
         btnConfiguration.title = title;

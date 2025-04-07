@@ -283,31 +283,32 @@
                                         textAlignment:data.textAlignment//NSTextAlignmentCenter
                                      subTextAlignment:data.subTextAlignment//NSTextAlignmentCenter
                                           normalImage:data.image
-                                       highlightImage:data.buttonModel.highlightImage
-                                      attributedTitle:data.buttonModel.attributedTitle
-                              selectedAttributedTitle:data.buttonModel.selectedAttributedTitle
-                                   attributedSubtitle:data.buttonModel.attributedSubTitle
-                                                title:data.buttonModel.title
-                                             subTitle:data.buttonModel.subTitle
-                                            titleFont:data.buttonModel.titleFont
-                                         subTitleFont:data.buttonModel.subTitleFont
-                                             titleCor:data.buttonModel.titleCor
-                                          subTitleCor:data.buttonModel.subTitleCor
-                                   titleLineBreakMode:data.buttonModel.titleLineBreakMode// NSLineBreakByWordWrapping
-                                subtitleLineBreakMode:data.buttonModel.subtitleLineBreakMode//NSLineBreakByWordWrapping
-                                  baseBackgroundColor:data.buttonModel.baseBackgroundColor//JobsWhiteColor
-                                      backgroundImage:data.buttonModel.backgroundImage
-                                         imagePadding:data.buttonModel.imagePadding
-                                         titlePadding:data.buttonModel.titlePadding
-                                       imagePlacement:data.buttonModel.imagePlacement//NSDirectionalRectEdgeNone
-                           contentHorizontalAlignment:data.buttonModel.contentHorizontalAlignment//UIControlContentHorizontalAlignmentCenter
-                             contentVerticalAlignment:data.buttonModel.contentVerticalAlignment//UIControlContentVerticalAlignmentCenter
-                                        contentInsets:data.buttonModel.contentInsets
-                                    cornerRadiusValue:data.buttonModel.cornerRadiusValue
+                                       highlightImage:data.highlightImage
+                                      attributedTitle:data.attributedTitle
+                              selectedAttributedTitle:data.selectedAttributedTitle
+                                   attributedSubtitle:data.attributedSubTitle
+                                                title:data.title
+                                             subTitle:data.subTitle
+                                            titleFont:data.titleFont
+                                         subTitleFont:data.subTitleFont
+                                             titleCor:data.titleCor
+                                          subTitleCor:data.subTitleCor
+                                   titleLineBreakMode:data.titleLineBreakMode// NSLineBreakByWordWrapping
+                                subtitleLineBreakMode:data.subtitleLineBreakMode//NSLineBreakByWordWrapping
+                                  baseBackgroundColor:data.baseBackgroundColor//JobsWhiteColor
+                                      backgroundImage:data.backgroundImage
+                                         imagePadding:data.imagePadding
+                                         titlePadding:data.titlePadding
+                                       imagePlacement:data.imagePlacement//NSDirectionalRectEdgeNone
+                           contentHorizontalAlignment:data.contentHorizontalAlignment//UIControlContentHorizontalAlignmentCenter
+                             contentVerticalAlignment:data.contentVerticalAlignment//UIControlContentVerticalAlignmentCenter
+                                        contentInsets:data.contentInsets
+                                    cornerRadiusValue:data.cornerRadiusValue
                                       roundingCorners:UIRectCornerAllCorners
                                  roundingCornersRadii:data.buttonModel.roundingCornersRadii
                                        layerBorderCor:data.buttonModel.layerBorderCor
                                           borderWidth:data.buttonModel.borderWidth
+                                             selected:data.jobsSelected
                                         primaryAction:data.buttonModel.primaryAction
                            longPressGestureEventBlock:data.buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
             JobsLog(@"按钮的长按事件触发");
@@ -357,6 +358,7 @@
                                  roundingCornersRadii:data.roundingCornersRadii
                                        layerBorderCor:data.layerBorderCor
                                           borderWidth:data.borderWidth
+                                             selected:data.jobsSelected
                                         primaryAction:data.primaryAction
                            longPressGestureEventBlock:data.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
             JobsLog(@"按钮的长按事件触发");
@@ -406,6 +408,7 @@
                                  roundingCornersRadii:CGSizeZero
                                        layerBorderCor:nil
                                           borderWidth:JobsWidth(0)
+                                             selected:NO
                                         primaryAction:nil
                            longPressGestureEventBlock:^id(__kindof UIButton *_Nullable x) {
             JobsLog(@"按钮的长按事件触发");

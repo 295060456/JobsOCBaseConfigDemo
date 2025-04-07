@@ -63,6 +63,7 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
     [super viewWillAppear:animated];
     extern NSUInteger DefaultIndex;
     self.selectedIndex = DefaultIndex;
+    [AppDelegate button:AppDelegate.tabBarItemMutArr[DefaultIndex] index:DefaultIndex];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

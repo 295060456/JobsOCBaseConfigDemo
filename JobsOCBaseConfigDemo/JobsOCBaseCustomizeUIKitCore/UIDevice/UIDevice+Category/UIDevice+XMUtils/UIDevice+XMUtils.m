@@ -198,6 +198,13 @@
     NSString *str = UIDevice.platformNameStr;
     return str.isEqualToString(@"iPhone Simulator");
 }
+/// 判断当前手机设备是否为刘海屏（兼容iOS模拟器）
++(BOOL)isBangScreen{
+    if (@available(iOS 11.0, *)) {
+        CGFloat topInset = jobsGetMainWindow().safeAreaInsets.top;
+        return topInset > 20.0;
+    }return NO;
+}
 /// 判断当前iOS机型
 +(NSString * _Nullable)machineName{
     size_t size;
@@ -216,7 +223,7 @@
     free(machine);
     return machineString;
 }
-/// 判定当前设备是否为iPhone
+/// 判定当前设备是否为iPhone（iOS模拟器也被视作为iPhone）
 +(BOOL)isiPhone{
     return UIDevice.currentDevice.model.hasPrefix(@"iPhone");
 }

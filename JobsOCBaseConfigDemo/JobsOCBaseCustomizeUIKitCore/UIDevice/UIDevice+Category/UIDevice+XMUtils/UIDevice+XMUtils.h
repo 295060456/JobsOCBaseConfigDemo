@@ -41,9 +41,11 @@
 +(BOOL)isFullScreen;
 /// 判断当前是否是iOS模拟器
 +(BOOL)isSimulator;
+/// 判断当前手机设备是否为刘海屏（兼容iOS模拟器）
++(BOOL)isBangScreen;
 /// 判断当前iOS机型
 +(NSString * _Nullable)machineName;
-/// 判定当前设备是否为iPhone
+/// 判定当前设备是否为iPhone（iOS模拟器也被视作为iPhone）
 +(BOOL)isiPhone;
 /// 判断当前iOS模拟器所模拟的机型
 +(NSString * _Nullable)simulatorModel;

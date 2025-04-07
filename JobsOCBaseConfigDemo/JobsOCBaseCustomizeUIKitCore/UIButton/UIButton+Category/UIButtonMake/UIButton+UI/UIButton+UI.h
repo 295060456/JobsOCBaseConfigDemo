@@ -71,6 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - roundingCornersRadii: 圆切角—指定方位的Size大小
 ///   - layerBorderCor: 描边的颜色
 ///   - borderWidth: 描边线的宽度
+///   - selected:选中状态
 ///   - primaryAction: 新Api的点击事件
 ///   - longPressGestureEventBlock: 按钮的长按事件
 ///   - clickEventBlock: 老Api的点击事件，利用RAC实现
@@ -106,6 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
                      roundingCornersRadii:(CGSize)roundingCornersRadii
                            layerBorderCor:(UIColor *_Nullable)layerBorderCor
                               borderWidth:(CGFloat)borderWidth
+                                 selected:(BOOL)selected
                             primaryAction:(UIAction *_Nullable)primaryAction
                longPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock
                           clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock;

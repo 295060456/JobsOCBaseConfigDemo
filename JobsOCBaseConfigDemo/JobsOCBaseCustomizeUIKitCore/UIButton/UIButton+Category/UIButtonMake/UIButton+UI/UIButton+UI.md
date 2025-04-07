@@ -102,6 +102,7 @@
                                            roundingCornersRadii:CGSizeZero
                                                  layerBorderCor:nil
                                                     borderWidth:JobsWidth(0)
+                                                       selected:data.jobsSelected
                                                   primaryAction:nil
                                      longPressGestureEventBlock:^(__kindof UIButton *x) {
            JobsLog(@"按钮的长按事件触发");

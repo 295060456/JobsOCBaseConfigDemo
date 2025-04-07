@@ -64,7 +64,8 @@
                                      (int64_t)(time * NSEC_PER_SEC)),
                        dispatch_get_main_queue(), ^{
             @jobs_strongify(self)
-            self.switchToMainVC(UINavigationController.initByRootVC(FMHomeWebVC.new));
+//            self.switchToMainVC(UINavigationController.initByRootVC(FMHomeWebVC.new));
+            self.switchToMainVC(AppDelegate.jobsCustomTabBarNavCtrl);
         });
     };
 }
