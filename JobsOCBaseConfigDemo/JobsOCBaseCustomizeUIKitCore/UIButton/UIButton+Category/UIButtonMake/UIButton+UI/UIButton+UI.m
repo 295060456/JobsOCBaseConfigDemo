@@ -482,6 +482,9 @@
         if (@available(iOS 16.0, *)) {
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration *_Nullable config) {
                 config.background.strokeColor = layerBorderCor;
+                if (@available(iOS 16.0, *)) {
+                    if(!config.background.strokeWidth) config.background.strokeWidth = 0.5f;
+                }else if(!self.layer.borderWidth) self.layer.borderWidth = 0.5f;
             }];
         } else self.layer.borderColor = layerBorderCor.CGColor;
         return self;
