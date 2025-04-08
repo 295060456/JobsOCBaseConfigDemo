@@ -5969,6 +5969,54 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      }
     ```
     
+  * <font color=red>**对富文本里面超链接的自定义设定问题**</font>
+  
+    * ```objective-c
+      /// 超链接的文字以及下划线的颜色设置
+      -(__kindof NSDictionary <NSAttributedStringKey,id>*)makeLinkTextAttributes{
+          return @{
+              NSForegroundColorAttributeName: JobsCor(@"#FFCC00"),/// 自定义超链接文本的颜色（系统默认蓝色）
+              NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),/// 显示下划线
+              NSUnderlineColorAttributeName: JobsCor(@"#FFCC00"),/// 下划线颜色
+          };
+      }
+      ```
+    
+      ```objective-c
+      /// 修改textView超链接的文字颜色
+      /// UITextView 默认会对 NSLinkAttributeName 使用蓝色和下划线，如果不设置 linkTextAttributes 会覆盖你自定义的颜色。
+      textView.linkTextAttributes = self.makeLinkTextAttributes;
+      ```
+    
+      ```objective-c
+                  textView.attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray *_Nullable data) {
+                      data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
+                          @jobs_strongify(self)
+                          data1.font = UIFontWeightBoldSize(JobsWidth(14));
+                          data1.textCor = JobsCor(@"#6B6B6B");
+                          data1.targetString = JobsInternationalization(@"Please read our ").uppercaseString;
+                          data1.paragraphStyle = self.defaultParagraphStyle;
+                      }));
+                      data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
+                          @jobs_strongify(self)
+                          data1.font = UIFontWeightBoldSize(JobsWidth(14));
+                          data1.textCor = JobsCor(@"#FFCC00");
+                          data1.targetString = JobsInternationalization(@"RESPONSIBLE GAMING");
+                          data1.underlineCor = JobsCor(@"#FFCC00");
+                          data1.underlineStyle = NSUnderlineStyleSingle;
+                          data1.paragraphStyle = self.defaultParagraphStyle;
+                          data1.urlStr = @"myapp://responsible_gaming";/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
+                      }));
+                      data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
+                          @jobs_strongify(self)
+                          data1.font = UIFontWeightBoldSize(JobsWidth(14));
+                          data1.textCor = JobsCor(@"#6B6B6B");;
+                          data1.targetString = JobsInternationalization(@" carefully:").uppercaseString;
+                          data1.paragraphStyle = self.defaultParagraphStyle;
+                      }));
+                  }));
+      ```
+    
   * **UITextViewDelegate**
   
     * iOS 17 之后弃用
@@ -6022,10 +6070,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 20、时间戳的处理 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
- 时间为2024-12-05 15:30:00（北京时间，UTC+8）。
- 秒级时间戳：1701761400
- 毫秒级别时间戳：1701761400000
- 其对应的 NSTimeInterval timeInterval : 1701761400.0
+ 时间为`2024-12-05 15:30:00（北京时间，UTC+8）`
+ 秒级时间戳：`1701761400`
+ 毫秒级别时间戳：`1701761400000`
+ 其对应的 **NSTimeInterval** timeInterval : `1701761400.0`
 
 * 字符串时间戳转化为可读
 

@@ -95,6 +95,13 @@
                     data.range = config.range;
                 }));
             }
+            /// 设置下划线的颜色
+            if (config.underlineCor) {
+                attrString.addUnderlineColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+                    data.value = config.underlineCor;
+                    data.range = config.range;
+                }));
+            }
             /// 添加段落样式 & 设置作用域
             if (config.paragraphStyle) {
                 attrString.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {

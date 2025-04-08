@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)UIColor *textCor;/// 添加文字颜色
 @property(nonatomic,strong)UIColor *textBgCor;/// 添加文字背景颜色
 @property(nonatomic,assign)NSUnderlineStyle underlineStyle;/// 添加下划线
+@property(nonatomic,strong)UIColor *underlineCor;/// 添加下划线的颜色
 @property(nonatomic,strong,null_resettable)NSMutableParagraphStyle *paragraphStyle;/// 添加段落样式
 @property(nonatomic,copy)NSString *urlStr;/// 添加链接可点击
 @property(nonatomic,assign)NSRange range;/// 设置作用域

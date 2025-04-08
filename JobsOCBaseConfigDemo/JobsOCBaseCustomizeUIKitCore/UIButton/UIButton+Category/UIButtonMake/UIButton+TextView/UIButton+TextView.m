@@ -21,6 +21,12 @@
         textView.textAlignment = NSTextAlignmentCenter;
         textView.selectable = YES; /// 确保可以选择
         textView.dataDetectorTypes = UIDataDetectorTypeLink; /// 启用链接检测
+        /// 对于 textView ，只有通过下面的方法，才可以完整的修改超链接的（文字+下划线）的颜色
+//        textView.linkTextAttributes = @{
+//            NSForegroundColorAttributeName: UIColor.yellowColor,
+//            NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+//            NSUnderlineColorAttributeName: UIColor.yellowColor
+//        };
         self.addSubview(textView);
     };
 }

@@ -77,7 +77,7 @@
                      range:data.range];
     };
 }
-/// 下划线
+/// 设置下划线
 -(jobsByParagraphStyleModelBlock _Nonnull)addUnderlineStyleAttributeNameByParagraphStyleModel{
     @jobs_weakify(self)
     return ^(__kindof JobsParagraphStyleModel *_Nullable data){
@@ -88,7 +88,23 @@
         /// 校验 range
         NSRange range = data.range;
         if (range.location == NSNotFound || NSMaxRange(range) > self.length) return;/// 下划线属性 range 无效
-        [self addAttribute:NSFontAttributeName
+        [self addAttribute:NSUnderlineStyleAttributeName
+                     value:data.value
+                     range:data.range];
+    };
+}
+/// 设置下划线的颜色
+-(jobsByParagraphStyleModelBlock _Nonnull)addUnderlineColorAttributeNameByParagraphStyleModel{
+    @jobs_weakify(self)
+    return ^(__kindof JobsParagraphStyleModel *_Nullable data){
+        @jobs_strongify(self)
+        if(!data.value) return;
+        /// 校验数据
+        if (!data || !data.value || ![data.value isKindOfClass:NSNumber.class]) return;/// 下划线属性无效
+        /// 校验 range
+        NSRange range = data.range;
+        if (range.location == NSNotFound || NSMaxRange(range) > self.length) return;/// 下划线属性 range 无效
+        [self addAttribute:NSUnderlineColorAttributeName
                      value:data.value
                      range:data.range];
     };

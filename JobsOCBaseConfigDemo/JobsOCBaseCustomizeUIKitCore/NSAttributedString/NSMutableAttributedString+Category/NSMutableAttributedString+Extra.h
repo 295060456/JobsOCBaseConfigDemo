@@ -25,8 +25,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByParagraphStyleModelBlock _Nonnull)addForegroundColorAttributeNameByParagraphStyleModel;
 /// 字体
 -(jobsByParagraphStyleModelBlock _Nonnull)addFontAttributeNameByParagraphStyleModel;
-/// 下划线
+/// 设置下划线
 -(jobsByParagraphStyleModelBlock _Nonnull)addUnderlineStyleAttributeNameByParagraphStyleModel;
+/// 设置下划线的颜色
+-(jobsByParagraphStyleModelBlock _Nonnull)addUnderlineColorAttributeNameByParagraphStyleModel;
 /// 超链接
 -(jobsByParagraphStyleModelBlock _Nonnull)addLinkAttributeNameByParagraphStyleModel;
 /// 设置富文本的字符间距

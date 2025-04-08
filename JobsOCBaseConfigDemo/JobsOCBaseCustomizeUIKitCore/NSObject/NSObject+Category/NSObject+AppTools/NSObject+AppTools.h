@@ -59,6 +59,8 @@ AppToolsProtocol
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
+/// 超链接的文字以及下划线的颜色设置
+-(__kindof NSDictionary <NSAttributedStringKey,id>*)makeLinkTextAttributes;
 /// 选择电话号码区位
 -(__kindof UIButton *)zoneCodeBtnByBlock:(jobsByIDBlock _Nonnull)block;
 /// 配置弹窗数据

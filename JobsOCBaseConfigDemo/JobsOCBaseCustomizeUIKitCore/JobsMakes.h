@@ -140,6 +140,7 @@ NS_INLINE __kindof UIScreenEdgePanGestureRecognizer *_Nonnull jobsMakeScreenEdge
 #pragma mark —— 关于UIView的创建
 NS_INLINE __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock _Nonnull block){
     UIImageView *data = UIImageView.alloc.init;
+    data.userInteractionEnabled = YES;
     if (block) block(data);
     return data;
 }
