@@ -63,6 +63,7 @@
 		8461D4D22CF1EF1100446E4F /* IP_api.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D4CD2CF1EF1100446E4F /* IP_api.m */; };
 		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
+		846C4D262DA624D00074D1CB /* JobsNavBarWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C4D242DA624D00074D1CB /* JobsNavBarWebVC.m */; };
 		8474A3B32CF866B100112B4B /* UILabel+Scroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474A3B12CF866B100112B4B /* UILabel+Scroll.m */; };
 		8474A3BA2CF8672200112B4B /* JobsScrollLabelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474A3B62CF8672200112B4B /* JobsScrollLabelVC.m */; };
 		8474A4AF2CF8696400112B4B /* AFSecurityPolicy+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84392BC52CF4A3AF000D441F /* AFSecurityPolicy+Extra.m */; };
@@ -1397,6 +1398,8 @@
 		8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACTimer.m"; sourceTree = "<group>"; };
 		8464A5A12CDB74D20030409A /* FMDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDoorModel.h; sourceTree = "<group>"; };
 		8464A5A22CDB74D20030409A /* FMDoorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDoorModel.m; sourceTree = "<group>"; };
+		846C4D232DA624D00074D1CB /* JobsNavBarWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNavBarWebVC.h; sourceTree = "<group>"; };
+		846C4D242DA624D00074D1CB /* JobsNavBarWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsNavBarWebVC.m; sourceTree = "<group>"; };
 		8474A3B02CF866B100112B4B /* UILabel+Scroll.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Scroll.h"; sourceTree = "<group>"; };
 		8474A3B12CF866B100112B4B /* UILabel+Scroll.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Scroll.m"; sourceTree = "<group>"; };
 		8474A3B52CF8672200112B4B /* JobsScrollLabelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsScrollLabelVC.h; sourceTree = "<group>"; };
@@ -4410,6 +4413,15 @@
 			path = FMDoorModel;
 			sourceTree = "<group>";
 		};
+		846C4D252DA624D00074D1CB /* JobsNavBarWebVC */ = {
+			isa = PBXGroup;
+			children = (
+				846C4D232DA624D00074D1CB /* JobsNavBarWebVC.h */,
+				846C4D242DA624D00074D1CB /* JobsNavBarWebVC.m */,
+			);
+			path = JobsNavBarWebVC;
+			sourceTree = "<group>";
+		};
 		8474A3B22CF866B100112B4B /* UILabel+Scroll */ = {
 			isa = PBXGroup;
 			children = (
@@ -6535,6 +6547,7 @@
 		CE4F1C642CA82510002AF25B /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				846C4D252DA624D00074D1CB /* JobsNavBarWebVC */,
 				84E19D082D9EDD4F00A9F793 /* 启动页面 */,
 				84A97BE02D1687B50002A2BA /* VPN */,
 				CE4F1B592CA82510002AF25B /* 弹出的日历选择页面 */,
@@ -16830,6 +16843,7 @@
 				CE5A65E72CA83430006D67A7 /* JobsToggleNavView.m in Sources */,
 				CE5A66292CA83735006D67A7 /* MF_Base32Codec.m in Sources */,
 				CE5A662A2CA83735006D67A7 /* NSString+Base32.m in Sources */,
+				846C4D262DA624D00074D1CB /* JobsNavBarWebVC.m in Sources */,
 				CE5A662B2CA83735006D67A7 /* NSData+Base32.m in Sources */,
 				CE5A662C2CA83735006D67A7 /* UIImage+Base32.m in Sources */,
 				CE4F276E2CA825CD002AF25B /* UITableViewCellEditorVC.m in Sources */,

@@ -83,7 +83,7 @@
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
-            data.buttonModel.backgroundImage = image;
+            data.backgroundImage = image;
         })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
@@ -120,8 +120,8 @@
                                          UIFont *_Nullable font){
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
-            data.buttonModel.title = title;
-            data.buttonModel.titleFont = font;
+            data.title = title;
+            data.titleFont = font;
         })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
@@ -133,9 +133,9 @@
                                          UIColor *_Nullable titleCor){
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
-            data.buttonModel.title = title;
-            data.buttonModel.titleFont = font;
-            data.buttonModel.titleCor = titleCor;
+            data.title = title;
+            data.titleFont = font;
+            data.titleCor = titleCor;
         })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
@@ -151,11 +151,11 @@
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel *_Nullable data) {
             data.image = image;
-            data.buttonModel.title = title;
-            data.buttonModel.titleFont = font;
-            data.buttonModel.titleCor = titleCor;
-            data.buttonModel.imagePlacement = imagePlacement;
-            data.buttonModel.imagePadding = x;
+            data.title = title;
+            data.titleFont = font;
+            data.titleCor = titleCor;
+            data.imagePlacement = imagePlacement;
+            data.imagePadding = x;
         })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
@@ -168,10 +168,10 @@
                                          UIImage *_Nonnull backgroundImage){
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
-            data.buttonModel.title = title;
-            data.buttonModel.titleFont = font;
-            data.buttonModel.titleCor = titleCor;
-            data.buttonModel.backgroundImage = backgroundImage;
+            data.title = title;
+            data.titleFont = font;
+            data.titleCor = titleCor;
+            data.backgroundImage = backgroundImage;
         })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
@@ -187,11 +187,11 @@
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.image = image;
-            data.buttonModel.title = title;
-            data.buttonModel.titleFont = font;
-            data.buttonModel.titleCor = titleCor;
-            data.buttonModel.backgroundImage = backgroundImage;
-            data.buttonModel.imagePlacement = imagePlacement;
+            data.title = title;
+            data.titleFont = font;
+            data.titleCor = titleCor;
+            data.backgroundImage = backgroundImage;
+            data.imagePlacement = imagePlacement;
         })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
@@ -207,11 +207,11 @@
         @jobs_strongify(self)
         return self.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.image = image;
-            data.buttonModel.title = title;
-            data.buttonModel.titleFont = font;
-            data.buttonModel.titleCor = titleCor;
-            data.buttonModel.imagePlacement = directionalRectEdge;
-            data.buttonModel.imagePadding = x;
+            data.title = title;
+            data.titleFont = font;
+            data.titleCor = titleCor;
+            data.imagePlacement = directionalRectEdge;
+            data.imagePadding = x;
         })).bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
@@ -305,17 +305,17 @@
                                         contentInsets:data.contentInsets
                                     cornerRadiusValue:data.cornerRadiusValue
                                       roundingCorners:UIRectCornerAllCorners
-                                 roundingCornersRadii:data.buttonModel.roundingCornersRadii
-                                       layerBorderCor:data.buttonModel.layerBorderCor
-                                          borderWidth:data.buttonModel.borderWidth
+                                 roundingCornersRadii:data.roundingCornersRadii
+                                       layerBorderCor:data.layerBorderCor
+                                          borderWidth:data.borderWidth
                                              selected:data.jobsSelected
-                                        primaryAction:data.buttonModel.primaryAction
-                           longPressGestureEventBlock:data.buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
+                                        primaryAction:data.primaryAction
+                           longPressGestureEventBlock:data.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
             JobsLog(@"按钮的长按事件触发");
             if(x.longPressGestureBlock) x.longPressGestureBlock(x);
             return nil;
         }
-                                      clickEventBlock:data.buttonModel.clickEventBlock ? : ^id(__kindof UIButton *x){
+                                      clickEventBlock:data.clickEventBlock ? : ^id(__kindof UIButton *x){
             if(x.clickBlock) x.clickBlock(x);
             return nil;
         }];
