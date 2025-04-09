@@ -16,7 +16,11 @@ typedef void(^jobsByTableHeaderView1Block)(__kindof FMTableHeaderView1 *_Nullabl
 
 @class FMBannerAdsModel;
 @class WMZBannerParam;
+@class JobsBtnStyleCVCell;
 typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);
+typedef void(^jobsByBannerAdsModelAndCellBlock)(__kindof FMBannerAdsModel *_Nullable
+                                                data,JobsBtnStyleCVCell *_Nonnull cell);
+
 typedef WMZBannerParam *_Nonnull(^JobsReturnWMZBannerParamByArrBlock)(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data);
 typedef WMZBannerParam *_Nonnull(^JobsReturnWMZBannerParamByArrAndADTypeBlock)(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data,FMAdsType ADType);
 typedef void(^jobsByWMZBannerParamBlock)(WMZBannerParam *_Nullable data);

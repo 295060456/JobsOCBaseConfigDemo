@@ -16,6 +16,23 @@
         return instance;
     };
 }
+#pragma mark —— 控件居中的时候，相对于全屏的X和Y值
+/// 当控件相对于整个设备屏幕居中的时候，控件的X值
+-(JobsReturnCGFloatByVoidBlock _Nonnull)xWhenViewInScreenCenter{
+    @jobs_weakify(self)
+    return ^CGFloat(){
+        @jobs_strongify(self)
+        return (JobsMainScreen_WIDTH() - self.width) / 2;
+    };
+}
+/// 当控件相对于整个设备屏幕居中的时候，控件的Y值
+-(JobsReturnCGFloatByVoidBlock _Nonnull)yWhenViewInScreenCenter{
+    @jobs_weakify(self)
+    return ^CGFloat(){
+        @jobs_strongify(self)
+        return (JobsMainScreen_HEIGHT() - self.height) / 2;
+    };
+}
 #pragma mark —— 刷新UI
 -(jobsByVoidBlock _Nonnull)jobsRefreshUI{
     @jobs_weakify(self)

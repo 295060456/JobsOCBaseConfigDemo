@@ -19,6 +19,19 @@ UIMarkProtocol_dynamic_part2 /// 标记📌
                superview:(CGFloat)superview{
     return (superview - subview) / 2;
 }
+#pragma mark —— 控件居中的时候，相对于全屏的X和Y值
+/// 当控件相对于整个设备屏幕居中的时候，控件的X值
++(JobsReturnCGFloatByCGFloatBlock _Nonnull)xWhenViewInScreenCenter{
+    return ^CGFloat(CGFloat width){
+        return (JobsMainScreen_WIDTH() - width) / 2;
+    };
+}
+/// 当控件相对于整个设备屏幕居中的时候，控件的Y值
++(JobsReturnCGFloatByCGFloatBlock _Nonnull)yWhenViewInScreenCenter{
+    return ^CGFloat(CGFloat height){
+        return (JobsMainScreen_HEIGHT() - height) / 2;
+    };
+}
 #pragma mark —— 几何数据类型的比较
 /// 比较 size ？= CGSizeZero
 -(JobsReturnBOOLBySizeBlock _Nonnull)isSizeZero{

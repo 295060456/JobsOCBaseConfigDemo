@@ -26,6 +26,11 @@ UIViewModelOthersProtocol /// UIViewModelOthersProtocol_synthesize、UIViewModel
 /// @param superview 父控件的宽 或者 高
 +(CGFloat)measureSubview:(CGFloat)subview
                superview:(CGFloat)superview;
+#pragma mark —— 控件居中的时候，相对于全屏的X和Y值
+/// 当控件相对于整个设备屏幕居中的时候，控件的X值
++(JobsReturnCGFloatByCGFloatBlock _Nonnull)xWhenViewInScreenCenter;
+/// 当控件相对于整个设备屏幕居中的时候，控件的Y值
++(JobsReturnCGFloatByCGFloatBlock _Nonnull)yWhenViewInScreenCenter;
 #pragma mark —— 几何数据类型的比较
 /// 比较 size ？= CGSizeZero
 -(JobsReturnBOOLBySizeBlock _Nonnull)isSizeZero;

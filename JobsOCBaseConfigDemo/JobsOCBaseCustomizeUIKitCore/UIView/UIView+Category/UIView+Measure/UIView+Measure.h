@@ -43,6 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)CGPoint Origin;
 #pragma mark —— 初始化方法封装
 +(JobsReturnViewByClassBlock _Nonnull)build;
+#pragma mark —— 控件居中的时候，相对于全屏的X和Y值
+/// 当控件相对于整个设备屏幕居中的时候，控件的X值
+-(JobsReturnCGFloatByVoidBlock _Nonnull)xWhenViewInScreenCenter;
+/// 当控件相对于整个设备屏幕居中的时候，控件的Y值
+-(JobsReturnCGFloatByVoidBlock _Nonnull)yWhenViewInScreenCenter;
 #pragma mark —— 刷新UI
 -(jobsByVoidBlock _Nonnull)jobsRefreshUI;
 #pragma mark —— 交换宽高
