@@ -17,12 +17,44 @@
     };
 }
 #pragma mark —— 控件居中的时候，相对于全屏的X和Y值
+/// 当控件相对于view居中的时候，控件的X值
+-(JobsReturnCGFloatByViewBlock _Nonnull)xWhenViewInViewCenter{
+    @jobs_weakify(self)
+    return ^CGFloat(UIView *_Nullable view){
+        @jobs_strongify(self)
+        return (view.width - self.width) / 2;
+    };
+}
+/// 当控件相对于view居中的时候，控件的Y值
+-(JobsReturnCGFloatByViewBlock _Nonnull)yWhenViewInViewCenter{
+    @jobs_weakify(self)
+    return ^CGFloat(UIView *_Nullable view){
+        @jobs_strongify(self)
+        return (view.height - self.height) / 2;
+    };
+}
+/// 当控件相对于一个特定的值居中的时候，控件的X值
+-(JobsReturnCGFloatByCGFloatBlock _Nonnull)xWhenViewInViewCenterBy{
+    @jobs_weakify(self)
+    return ^CGFloat(CGFloat data){
+        @jobs_strongify(self)
+        return (data - self.width) / 2;
+    };
+}
+/// 当控件相对于一个特定的值居中的时候，控件的Y值
+-(JobsReturnCGFloatByCGFloatBlock _Nonnull)yWhenViewInViewCenterBy{
+    @jobs_weakify(self)
+    return ^CGFloat(CGFloat data){
+        @jobs_strongify(self)
+        return (data - self.height) / 2;
+    };
+}
 /// 当控件相对于整个设备屏幕居中的时候，控件的X值
 -(JobsReturnCGFloatByVoidBlock _Nonnull)xWhenViewInScreenCenter{
     @jobs_weakify(self)
     return ^CGFloat(){
         @jobs_strongify(self)
-        return (JobsMainScreen_WIDTH() - self.width) / 2;
+        return self.xWhenViewInViewCenterBy(JobsMainScreen_WIDTH());
     };
 }
 /// 当控件相对于整个设备屏幕居中的时候，控件的Y值
@@ -30,7 +62,7 @@
     @jobs_weakify(self)
     return ^CGFloat(){
         @jobs_strongify(self)
-        return (JobsMainScreen_HEIGHT() - self.height) / 2;
+        return self.yWhenViewInViewCenterBy(JobsMainScreen_WIDTH());
     };
 }
 #pragma mark —— 刷新UI

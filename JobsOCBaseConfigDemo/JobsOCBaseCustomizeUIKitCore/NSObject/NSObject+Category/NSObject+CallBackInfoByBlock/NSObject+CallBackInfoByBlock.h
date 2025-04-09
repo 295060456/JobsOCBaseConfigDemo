@@ -111,7 +111,7 @@ Prop_copy(nullable)JobsReturnUnsignedLongLongByIDBlock retUnsignedLongLongByIDBl
 Prop_copy(nullable)JobsReturnIDByIDBlock retObjBlock;/// 返回值为ID的回调
 Prop_copy(nullable)JobsReturnByNSIntegerBlock retIntegerBlock;/// 返回值为NSInteger的回调
 Prop_copy(nullable)JobsReturnByNSUIntegerBlock retUIntegerBlock;/// 返回值为UInteger的回调
-Prop_copy(nullable)JobsReturnByCGFloatBlock retCGFloatBlock;/// 返回值为CGFloat的回调
+Prop_copy(nullable)JobsReturnCGFloatByCGFloatBlock retCGFloatBlock;/// 返回值为CGFloat的回调
 Prop_copy(nullable)JobsReturnBOOLByBOOLBlock retBoolBlock;/// 返回值为BOOL的回调
 Prop_copy(nullable)JobsReturnBOOLByNSUIntegerBlock retBoolByUIntegerBlock;/// 入参为NSUInteger，返回值为BOOL的回调
 Prop_copy(nullable)JobsReturnIntByIntBlock retIntBlock;/// 返回值为Int的回调
@@ -128,7 +128,7 @@ Prop_copy(nullable)JobsReturnByUnsignedLongLongBlock retUnsignedLongLongBlock;//
 -(void)actionRetObjBlock:(JobsReturnIDByIDBlock _Nullable)retObjBlock;
 -(void)actionRetIntegerBlock:(JobsReturnByNSIntegerBlock _Nullable)retIntegerBlock;
 -(void)actionRetUIntegerBlock:(JobsReturnByNSUIntegerBlock _Nullable)retUIntegerBlock;
--(void)actionRetCGFloatBlock:(JobsReturnByCGFloatBlock _Nullable)retCGFloatBlock;
+-(void)actionRetCGFloatBlock:(JobsReturnCGFloatByCGFloatBlock _Nullable)retCGFloatBlock;
 -(void)actionRetBoolBlock:(JobsReturnBOOLByBOOLBlock _Nullable)retBoolBlock;
 -(void)actionRetBoolByUIntegerBlock:(JobsReturnBOOLByNSUIntegerBlock _Nullable)retBoolByUIntegerBlock;
 -(void)actionRetIntBlock:(JobsReturnIntByIntBlock _Nullable)retIntBlock;

@@ -484,7 +484,7 @@ typedef NSUInteger(^JobsReturnByNSUIntegerBlock)(NSUInteger data);
 typedef NSUInteger(^JobsReturnNSUIntegerByIDBlock)(id _Nullable data);
 
 typedef CGFloat(^JobsReturnCGFloatByVoidBlock)(void);
-typedef CGFloat(^JobsReturnByCGFloatBlock)(CGFloat data);
+typedef CGFloat(^JobsReturnCGFloatByViewBlock)(UIView *_Nullable view);
 typedef CGFloat(^JobsReturnCGFloatByCGFloatBlock)(CGFloat data);
 typedef CGFloat(^JobsReturnByCGPointBlock)(CGPoint data);
 typedef CGFloat(^JobsReturnCGFloatByIDBlock)(id _Nullable data);

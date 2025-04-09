@@ -44,6 +44,14 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 初始化方法封装
 +(JobsReturnViewByClassBlock _Nonnull)build;
 #pragma mark —— 控件居中的时候，相对于全屏的X和Y值
+/// 当控件相对于view居中的时候，控件的X值
+-(JobsReturnCGFloatByViewBlock _Nonnull)xWhenViewInViewCenter;
+/// 当控件相对于view居中的时候，控件的Y值
+-(JobsReturnCGFloatByViewBlock _Nonnull)yWhenViewInViewCenter;
+/// 当控件相对于一个特定的值居中的时候，控件的X值
+-(JobsReturnCGFloatByCGFloatBlock _Nonnull)xWhenViewInViewCenterBy;
+/// 当控件相对于一个特定的值居中的时候，控件的Y值
+-(JobsReturnCGFloatByCGFloatBlock _Nonnull)yWhenViewInViewCenterBy;
 /// 当控件相对于整个设备屏幕居中的时候，控件的X值
 -(JobsReturnCGFloatByVoidBlock _Nonnull)xWhenViewInScreenCenter;
 /// 当控件相对于整个设备屏幕居中的时候，控件的Y值

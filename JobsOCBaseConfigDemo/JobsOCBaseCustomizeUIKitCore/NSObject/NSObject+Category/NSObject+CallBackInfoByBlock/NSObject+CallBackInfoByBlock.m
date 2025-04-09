@@ -81,7 +81,7 @@ JobsDynamicPropSetAndGet(JobsReturnUnsignedLongLongByIDBlock, retUnsignedLongLon
 JobsDynamicPropSetAndGet(JobsReturnIDByIDBlock, retObjBlock, RetObjBlock)
 JobsDynamicPropSetAndGet(JobsReturnByNSIntegerBlock, retIntegerBlock, RetIntegerBlock)
 JobsDynamicPropSetAndGet(JobsReturnByNSUIntegerBlock, retUIntegerBlock, RetUIntegerBlock)
-JobsDynamicPropSetAndGet(JobsReturnByCGFloatBlock, retCGFloatBlock, RetCGFloatBlock)
+JobsDynamicPropSetAndGet(JobsReturnCGFloatByCGFloatBlock, retCGFloatBlock, RetCGFloatBlock)
 JobsDynamicPropSetAndGet(JobsReturnBOOLByBOOLBlock, retBoolBlock, RetBoolBlock)
 JobsDynamicPropSetAndGet(JobsReturnBOOLByNSUIntegerBlock, retBoolByUIntegerBlock, RetBoolByUIntegerBlock)
 JobsDynamicPropSetAndGet(JobsReturnIntByIntBlock, retIntBlock, RetIntBlock)
