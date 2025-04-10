@@ -141,5 +141,33 @@ NS_INLINE UIFont *fontName(NSString *fontName,CGFloat fontSize) {
 NS_INLINE UIFont *bayonRegular(CGFloat fontSize){
     return fontName(@"Bayon-Regular", JobsWidth(fontSize));
 }
+#pragma mark —— PingFangHK 字体
+NS_INLINE UIFont *pingFangHKRegular(CGFloat fontSize){
+    return fontName(@"PingFangHK-Regular", JobsWidth(fontSize));
+}
+
+NS_INLINE UIFont *pingFangHKMedium(CGFloat fontSize){
+    return fontName(@"PingFangHK-Medium", JobsWidth(fontSize));
+}
+
+NS_INLINE UIFont *pingFangHKSemibold(CGFloat fontSize){
+    return fontName(@"PingFangHK-Semibold", JobsWidth(fontSize));
+}
+
+NS_INLINE UIFont *pingFangHKBold(CGFloat fontSize){
+    return fontName(@"PingFangHK-Bold", JobsWidth(fontSize));
+}
+
+NS_INLINE UIFont *pingFangHKUltralight(CGFloat fontSize){
+    return fontName(@"PingFangHK-Ultralight", JobsWidth(fontSize));
+}
+
+NS_INLINE UIFont *pingFangHKThin(CGFloat fontSize){
+    return fontName(@"PingFangHK-Thin", JobsWidth(fontSize));
+}
+
+NS_INLINE UIFont *pingFangHKLight(CGFloat fontSize){
+    return fontName(@"PingFangHK-Light", JobsWidth(fontSize));
+}
 
 #endif /* MacroDef_Font_h */

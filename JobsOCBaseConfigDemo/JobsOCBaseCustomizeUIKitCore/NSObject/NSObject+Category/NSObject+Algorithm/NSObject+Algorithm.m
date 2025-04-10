@@ -188,5 +188,37 @@
         });
     };
 }
+/// 通用格式化方法：整数或浮点数，每三位加逗号，小数保留2位
+- (JobsReturnStringByCGFloatBlock _Nonnull)manualFormatNumber{
+    return ^__kindof NSString *_Nullable(CGFloat num){
+        return jobsMakeMutString(^(__kindof NSMutableString *_Nullable result) {
+            // 取整和小数部分
+            NSInteger integerPart = (NSInteger)num;
+            double decimalPart = num - integerPart;
+            // 整数部分转字符串
+            NSString *intStr = [NSString stringWithFormat:@"%ld", (long)labs(integerPart)];
+            NSInteger length = intStr.length;
+            NSInteger count = 0;
+
+            for (NSInteger i = length - 1; i >= 0; i--) {
+                unichar c = [intStr characterAtIndex:i];
+                [result insertString:[NSString stringWithFormat:@"%C", c] atIndex:0];
+                count++;
+                if (count % 3 == 0 && i != 0) {
+                    [result insertString:JobsComma atIndex:0];
+                }
+            }
+            // 负号处理
+            if (num < 0) {
+                [result insertString:JobsDash atIndex:0];
+            }
+            // 小数部分保留两位（四舍五入）
+            double roundedDecimal = round(decimalPart * 100.0) / 100.0;
+            NSString *decimalStr = [NSString stringWithFormat:@".%02d", (int)(roundedDecimal * 100) % 100];
+            [result appendString:decimalStr];
+        });
+    };
+}
+
 
 @end

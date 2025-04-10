@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnStringByIntegerBlock _Nonnull)whatDayOfWeekDistanceNow;
 /// 随机生成验证码字符串
 -(JobsReturnStringByArrAndNSIntegerBlock _Nonnull)randomCodeBy;
+/// 通用格式化方法：整数或浮点数，每三位加逗号，小数保留2位
+- (JobsReturnStringByCGFloatBlock _Nonnull)manualFormatNumber;
 
 @end
 

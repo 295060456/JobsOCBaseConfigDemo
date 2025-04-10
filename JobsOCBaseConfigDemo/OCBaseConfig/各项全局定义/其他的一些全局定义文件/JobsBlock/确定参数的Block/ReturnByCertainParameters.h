@@ -305,6 +305,7 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegersBlock)(NSInteger
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCharBlock)(char *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCharacterSetBlock)(NSCharacterSet *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByCGFloatBlock)(CGFloat data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByUIntegerBlock)(NSUInteger data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByRangeBlock)(NSRange data);

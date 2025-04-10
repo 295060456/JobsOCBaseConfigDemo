@@ -80,6 +80,7 @@ FOUNDATION_EXTERN NSString *_Nonnull const 获取极验验证码成功;
 FOUNDATION_EXTERN NSString *_Nonnull const 获取极验验证码失败;
 FOUNDATION_EXTERN NSString *_Nonnull const JobsLanguageKey;
 FOUNDATION_EXTERN NSString *_Nonnull const KYC状态;
+FOUNDATION_EXTERN NSString *_Nonnull const 菲律宾货币符号;
 /*
  * 常用符号大全
  * 特殊符号 编号序号 数学符号 爱心符号 标点符号 单位符号 货币符号 箭头符号 符号图案 制表符 皇冠符号
