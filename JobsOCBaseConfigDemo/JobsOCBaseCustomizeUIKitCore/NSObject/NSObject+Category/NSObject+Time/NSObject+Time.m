@@ -13,6 +13,36 @@
 -(NSDate *)currentDate{
     return NSDate.date;
 }
+/// 获取当前手机时区的当前时间，返回 NSString 格式
+-(JobsReturnStringByStringBlock _Nonnull)currentTimeStringBy{
+    return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable data){
+        return [self.dateFormatterBy(data) stringFromDate:self.currentDate];
+    };
+}
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日 时:分:秒
+-(NSString *)currentTimeStringByStyle1{
+    return self.currentTimeStringBy(nil);
+}
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日 时:分
+-(NSString *)currentTimeStringByStyle2{
+    return self.currentTimeStringBy(@"yyyy-MM-dd HH:mm");
+}
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日 时
+-(NSString *)currentTimeStringByStyle3{
+    return self.currentTimeStringBy(@"yyyy-MM-dd HH");
+}
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日
+-(NSString *)currentTimeStringByStyle4{
+    return self.currentTimeStringBy(@"yyyy-MM-dd");
+}
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月
+-(NSString *)currentTimeStringByStyle5{
+    return self.currentTimeStringBy(@"yyyy-MM");
+}
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年
+-(NSString *)currentTimeStringByStyle6{
+    return self.currentTimeStringBy(@"yyyy");
+}
 /// 获取当日零点的时间戳（秒级）
 -(NSTimeInterval)todayZeroTime{
     /// 获取今天零点的时间戳（秒级）

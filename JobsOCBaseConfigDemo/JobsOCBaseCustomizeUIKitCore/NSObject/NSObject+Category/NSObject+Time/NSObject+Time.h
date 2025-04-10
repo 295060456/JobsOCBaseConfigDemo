@@ -21,6 +21,20 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (Time)
 /// 获取当前时间
 -(NSDate *)currentDate;
+/// 获取当前手机时区的当前时间，返回 NSString 格式
+-(JobsReturnStringByStringBlock _Nonnull)currentTimeStringBy;
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日 时:分:秒
+-(NSString *)currentTimeStringByStyle1;
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日 时:分
+-(NSString *)currentTimeStringByStyle2;
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日 时
+-(NSString *)currentTimeStringByStyle3;
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日
+-(NSString *)currentTimeStringByStyle4;
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月
+-(NSString *)currentTimeStringByStyle5;
+/// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年
+-(NSString *)currentTimeStringByStyle6;
 /// 获取当日零点的时间戳（秒级）
 -(NSTimeInterval)todayZeroTime;
 /// 获取某天前零点的时间戳（秒级）
