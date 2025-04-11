@@ -187,7 +187,7 @@ layout:(UICollectionViewLayout *)collectionViewLayout
 sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(JobsWidth(106), JobsWidth(30));
 }
-/// 定义的是元素垂直之间的间距
+/// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
 - (CGFloat)collectionView:(__kindof UICollectionView *)collectionView
                    layout:(__kindof UICollectionViewLayout *)collectionViewLayout
     minimumLineSpacingForSectionAtIndex:(NSInteger)section {

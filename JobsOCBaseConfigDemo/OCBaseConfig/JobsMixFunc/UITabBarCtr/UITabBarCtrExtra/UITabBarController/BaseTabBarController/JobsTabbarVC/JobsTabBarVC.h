@@ -84,3 +84,15 @@ BaseProtocol
 -(jobsByBOOLBlock _Nonnull)ppBadge;
 
 @end
+
+NS_INLINE __kindof JobsTabBarVC *_Nonnull jobsMakeSharedManagerTabBarVC(jobsByTabBarVCBlock _Nonnull block){
+    JobsTabBarVC *data = JobsTabBarVC.sharedManager;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JobsTabBarVC *_Nonnull jobsMakeNormalTabBarVC(jobsByTabBarVCBlock _Nonnull block){
+    JobsTabBarVC *data = JobsTabBarVC.alloc.init;
+    if (block) block(data);
+    return data;
+}

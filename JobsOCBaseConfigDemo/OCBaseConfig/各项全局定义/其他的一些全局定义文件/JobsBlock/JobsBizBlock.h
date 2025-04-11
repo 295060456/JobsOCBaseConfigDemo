@@ -8,6 +8,15 @@
 #ifndef JobsBizBlock_h
 #define JobsBizBlock_h
 
+@class JobsTabBarVC;
+typedef void(^jobsByTabBarVCBlock)(__kindof JobsTabBarVC *_Nullable tabBarVC);
+
+@class JobsCustomTabBarVC;
+typedef void(^jobsByCustomTabBarVCBlock)(__kindof JobsCustomTabBarVC *_Nullable tabBarVC);
+
+@class JobsCustomTabBarConfig;
+typedef void(^jobsByCustomTabBarConfigBlock)(__kindof JobsCustomTabBarConfig *_Nullable tabBarConfig);
+
 @class KYCModel;
 typedef void(^jobsByKYCModelBlock)(__kindof KYCModel *_Nullable model);
 

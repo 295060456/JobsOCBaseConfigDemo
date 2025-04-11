@@ -97,7 +97,7 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return JobsImageNumberViewCVCell.cellSizeByModel(self.dataMutArr[indexPath.row]);
 }
-/// 定义的是元素垂直之间的间距
+/// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {

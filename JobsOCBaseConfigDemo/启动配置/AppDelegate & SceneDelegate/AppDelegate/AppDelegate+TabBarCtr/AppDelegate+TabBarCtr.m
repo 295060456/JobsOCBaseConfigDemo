@@ -13,22 +13,23 @@ NSUInteger DefaultIndex = 2; /// 默认从第3个开始初始显示
 static JobsTabBarVC *_tabBarVC = nil;
 +(JobsTabBarVC *)tabBarVC{
     if(!_tabBarVC){
-        _tabBarVC = JobsTabBarVC.sharedManager;
-        _tabBarVC.isAnimationAlert = YES;//OK
-        _tabBarVC.isPlaySound = YES;
-        _tabBarVC.isFeedbackGenerator = YES;
-        _tabBarVC.isOpenScrollTabbar = NO;
-    //    _tabBarVC.isShakerAnimation = YES;
         @jobs_weakify(self)
-        [_tabBarVC actionRetBoolByUIntegerBlock:^BOOL(NSUInteger data) {
-            @jobs_strongify(self)
-            for (JobsTabBarItemConfig *tabBarItemConfig in self.tabBarItemConfigMutArr) {
-                if(tabBarItemConfig.isNeedjump){
-                    toast(@"这个跳开");
-                    return NO;
-                }
-            }return YES;
-        }];
+        _tabBarVC = jobsMakeSharedManagerTabBarVC(^(__kindof JobsTabBarVC * _Nullable tabBarVC) {
+            tabBarVC.isAnimationAlert = YES;//OK
+            tabBarVC.isPlaySound = YES;
+            tabBarVC.isFeedbackGenerator = YES;
+            tabBarVC.isOpenScrollTabbar = NO;
+        //    tabBarVC.isShakerAnimation = YES;
+            [tabBarVC actionRetBoolByUIntegerBlock:^BOOL(NSUInteger data) {
+                @jobs_strongify(self)
+                for (JobsTabBarItemConfig *tabBarItemConfig in self.tabBarItemConfigMutArr) {
+                    if(tabBarItemConfig.isNeedjump){
+                        toast(@"这个跳开");
+                        return NO;
+                    }
+                }return YES;
+            }];
+        });
     }return _tabBarVC;
 }
 
@@ -39,8 +40,9 @@ static JobsTabBarVC *_tabBarVC = nil;
 static JobsCustomTabBarVC *_jobsCustomTabBarVC = nil;
 +(JobsCustomTabBarVC *)jobsCustomTabBarVC{
     if(!_jobsCustomTabBarVC){
-        _jobsCustomTabBarVC = JobsCustomTabBarVC.sharedManager;
-        _jobsCustomTabBarVC.viewControllers = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr;
+        _jobsCustomTabBarVC = jobsMakeSharedManagerCustomTabBarVC(^(__kindof JobsCustomTabBarVC * _Nullable tabBarVC) {
+            tabBarVC.viewControllers = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr;
+        });
     }return _jobsCustomTabBarVC;
 }
 
@@ -122,20 +124,20 @@ static LZTabBarConfig *_lZTabBarConfig = nil;
 @dynamic jobsCustomTabBarConfig;
 static JobsCustomTabBarConfig *_jobsCustomTabBarConfig = nil;
 +(JobsCustomTabBarConfig *)jobsCustomTabBarConfig{
-    _jobsCustomTabBarConfig = JobsCustomTabBarConfig.sharedManager;
-    _jobsCustomTabBarConfig.tabBarHeight = JobsWidth(60);
-    _jobsCustomTabBarConfig.tabBarWidth = JobsWidth(389);
-//    _jobsCustomTabBarConfig.tabBarX = JobsWidth(0);
-//    _jobsCustomTabBarConfig.tabBarY = JobsWidth(0);
-//    _jobsCustomTabBarConfig.tabBarSize = CGSizeMake(JobsWidth(0), JobsWidth(0));
-//    _jobsCustomTabBarConfig.tabBarOrigin = CGPointMake(JobsWidth(0), JobsWidth(0));
-//    _jobsCustomTabBarConfig.tabBarFrame = CGRectMake(JobsWidth(0), JobsWidth(0), JobsWidth(0), JobsWidth(0));
-    _jobsCustomTabBarConfig.tabBarBackgroundColor = JobsCyanColor;
-    _jobsCustomTabBarConfig.tabBarBackgroundImage = nil;//JobsIMG(@"");
-    _jobsCustomTabBarConfig.tabBarItems = self.tabBarItemMutArr;
-    _jobsCustomTabBarConfig.viewControllers = self.viewCtrlByTabBarCtrlConfigMutArr;
-    _jobsCustomTabBarConfig.tabBarItemYOffsets = nil;
-    return _jobsCustomTabBarConfig;
+    _jobsCustomTabBarConfig = jobsMakeSharedManagerCustomTabBarConfig(^(__kindof JobsCustomTabBarConfig * _Nullable tabBarConfig) {
+        tabBarConfig.tabBarHeight = JobsWidth(60);
+        tabBarConfig.tabBarWidth = JobsWidth(389);
+    //    tabBarConfig.tabBarX = JobsWidth(0);
+    //    tabBarConfig.tabBarY = JobsWidth(0);
+    //    tabBarConfig.tabBarSize = CGSizeMake(JobsWidth(0), JobsWidth(0));
+    //    tabBarConfig.tabBarOrigin = CGPointMake(JobsWidth(0), JobsWidth(0));
+    //    tabBarConfig.tabBarFrame = CGRectMake(JobsWidth(0), JobsWidth(0), JobsWidth(0), JobsWidth(0));
+        tabBarConfig.tabBarBackgroundColor = JobsCyanColor;
+        tabBarConfig.tabBarBackgroundImage = nil;//JobsIMG(@"");
+        tabBarConfig.tabBarItems = self.tabBarItemMutArr;
+        tabBarConfig.viewControllers = self.viewCtrlByTabBarCtrlConfigMutArr;
+        tabBarConfig.tabBarItemYOffsets = nil;
+    });return _jobsCustomTabBarConfig;
 }
 
 +(void)setJobsCustomTabBarConfig:(JobsCustomTabBarConfig *)jobsCustomTabBarConfig{

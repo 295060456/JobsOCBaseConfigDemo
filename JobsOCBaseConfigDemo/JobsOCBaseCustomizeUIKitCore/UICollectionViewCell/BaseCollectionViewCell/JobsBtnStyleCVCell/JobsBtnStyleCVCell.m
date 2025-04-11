@@ -78,22 +78,20 @@ AppToolsProtocol_synthesize
     return ^(id _Nullable model) {
         @jobs_strongify(self)
         if(KindOfViewModelCls(model)){
-            self.viewModel = model;
             if(self.viewModel.textModel.text.isHTMLString ||
                self.viewModel.subTextModel.text.isHTMLString){
                 self.webView.jobsVisible = YES;
             }else{
                 self.btn.data = model;
-            }
+            }self.viewModel = model;
         }
         if(KindOfButtonModelCls(model)){
-            self.buttonModel = model;
             if(self.buttonModel.title.isHTMLString ||
                self.buttonModel.subTitle.isHTMLString){
                 self.webView.jobsVisible = YES;
             }else{
                 self.btn.data = model;
-            }
+            }self.buttonModel = model;
         }
     };
 }

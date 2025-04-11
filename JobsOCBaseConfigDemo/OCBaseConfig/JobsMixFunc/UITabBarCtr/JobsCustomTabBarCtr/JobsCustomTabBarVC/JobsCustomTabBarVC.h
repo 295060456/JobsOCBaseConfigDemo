@@ -23,3 +23,15 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsCustomTabBarVC *_Nonnull jobsMakeSharedManagerCustomTabBarVC(jobsByCustomTabBarVCBlock _Nonnull block){
+    JobsCustomTabBarVC *data = JobsCustomTabBarVC.sharedManager;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JobsCustomTabBarVC *_Nonnull jobsMakeNormalCustomTabBarVC(jobsByCustomTabBarVCBlock _Nonnull block){
+    JobsCustomTabBarVC *data = JobsCustomTabBarVC.alloc.init;
+    if (block) block(data);
+    return data;
+}

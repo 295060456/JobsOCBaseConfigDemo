@@ -7158,7 +7158,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
        return [JobsImageNumberViewCVCell cellSizeWithModel:self.dataMutArr[indexPath.row]];
    }
-   /// 定义的是元素垂直之间的间距
+   /// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
    - (CGFloat)collectionView:(UICollectionView *)collectionView
                       layout:(UICollectionViewLayout *)collectionViewLayout
    minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -7167,6 +7167,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    /// 定义的是UICollectionViewScrollDirectionVertical下，元素水平之间的间距。
    /// UICollectionViewScrollDirectionHorizontal下，垂直和水平正好相反
    /// Api自动计算一行的Cell个数，只有当间距小于此定义的最小值时才会换行，最小执行单元是Section（每个section里面的样式是统一的）
+   /// 定义的是元素（垂直方向滚动的时候）水平之间的间距 或者 是元素（水平方向滚动的时候）垂直之间的间距
    - (CGFloat)collectionView:(UICollectionView *)collectionView
                       layout:(UICollectionViewLayout *)collectionViewLayout
    minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
