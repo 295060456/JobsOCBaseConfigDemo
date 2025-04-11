@@ -82,6 +82,7 @@
     };
 }
 #pragma mark —— 设置普通图片的方法
+/// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)normalLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -89,7 +90,7 @@
         return self.baseLoadImageBy(UIControlStateNormal);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)highlightedlLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -97,7 +98,7 @@
         return self.baseLoadImageBy(UIControlStateHighlighted);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)disabledLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -105,7 +106,7 @@
         return self.baseLoadImageBy(UIControlStateDisabled);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)selectedLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -113,7 +114,7 @@
         return self.baseLoadImageBy(UIControlStateSelected);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)focusedLoad API_AVAILABLE(ios(9.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -122,6 +123,7 @@
     };
 }
 /// additional flags available for application use
+/// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)applicationLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -129,7 +131,7 @@
         return self.baseLoadImageBy(UIControlStateApplication);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)reservedLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -138,6 +140,7 @@
     };
 }
 #pragma mark —— 设置背景图片的方法
+/// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)bgNormalLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -145,7 +148,7 @@
         return self.baseLoadBgImageBy(UIControlStateNormal);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)bgHighlightedlLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -153,7 +156,7 @@
         return self.baseLoadBgImageBy(UIControlStateHighlighted);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)bgDisabledLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -161,7 +164,7 @@
         return self.baseLoadBgImageBy(UIControlStateDisabled);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)bgSelectedLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -169,7 +172,7 @@
         return self.baseLoadBgImageBy(UIControlStateSelected);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)bgFocusedLoad API_AVAILABLE(ios(9.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -178,6 +181,7 @@
     };
 }
 /// additional flags available for application use
+/// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)bgApplicationLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{
@@ -185,7 +189,7 @@
         return self.baseLoadBgImageBy(UIControlStateApplication);
     };
 }
-
+/// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
 -(JobsReturnButtonByVoidBlock _Nonnull)bgReservedLoad{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable{

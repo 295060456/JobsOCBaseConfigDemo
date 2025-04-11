@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonBySDExternalCompletionBlock completed;
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonBySDImageLoaderProgressBlock progress;
 #pragma mark —— 设置普通图片的方法
+/// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock normalLoad;
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock highlightedlLoad;
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock disabledLoad;
@@ -39,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock applicationLoad;
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock reservedLoad;
 #pragma mark —— 设置背景图片的方法
+/// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgNormalLoad;
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgHighlightedlLoad;
 @property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgDisabledLoad;

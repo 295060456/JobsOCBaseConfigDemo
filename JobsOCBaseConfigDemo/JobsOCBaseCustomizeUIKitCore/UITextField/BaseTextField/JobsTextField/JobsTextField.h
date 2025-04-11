@@ -31,7 +31,7 @@ UITextFieldDelegate
 /// UI
 Prop_strong(nonnull) UITextField *realTextField;
 /// Data
-Prop_assign() CGFloat leftViewByOutLineOffset;
+Prop_assign() CGFloat leftViewByOutLineOffset; /// 这个值需要在leftView之前设置才有效
 Prop_assign() CGFloat leftViewByTextFieldOffset;
 Prop_assign() CGFloat rightViewByOutLineOffset;
 Prop_assign() CGFloat rightViewByTextFieldOffset;

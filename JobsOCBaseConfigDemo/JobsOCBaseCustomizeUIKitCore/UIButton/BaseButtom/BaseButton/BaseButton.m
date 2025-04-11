@@ -16,6 +16,7 @@ BaseProtocol_synthesize
 RACProtocol_synthesize
 UIMarkProtocol_synthesize_part1
 BaseButtonProtocol_synthesize
+@synthesize isAllowDrag = _isAllowDrag;
 #pragma mark —— Sys
 -(instancetype)init{
     if (self = [super init]) {
@@ -36,6 +37,7 @@ BaseButtonProtocol_synthesize
 
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
+    self.panRcognize.enabled = self.isAllowDrag;// 悬浮按钮的关键代码
 }
 /// 【形成Frame后直接return，避免被其他中间过程修改】
 -(void)layoutSubviews{
