@@ -210,6 +210,7 @@
     @jobs_weakify(self)
     return ^__kindof GoodsClassModel *_Nullable(int iFlag){
         return jobsMakeGoodsClassModel(^(GoodsClassModel * _Nullable model) {
+            @jobs_strongify(self)
             model.idField = toStringByInt(iFlag);
             model.pid = toStringByInt(iFlag);
             model.name = JobsInternationalization(@"随机").add(@"-").add(toStringByInt(iFlag));
@@ -217,7 +218,6 @@
             model.subTextModel.text = toStringByInt(iFlag).add(JobsInternationalization(@"球桌球"));
             model.bgImage = self.imageDataMutArr[iFlag];
             JobsLog(@"%@",model.bgImage);
-            @jobs_strongify(self)
             model.childrenList = jobsMakeMutArr(^(__kindof NSMutableArray <GoodsClassModel *>*_Nullable arr) {
                 @jobs_strongify(self)
                 /// 每个section里面的item数量

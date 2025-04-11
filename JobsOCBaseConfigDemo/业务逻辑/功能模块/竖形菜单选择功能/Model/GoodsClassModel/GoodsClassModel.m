@@ -8,7 +8,9 @@
 #import "GoodsClassModel.h"
 
 @implementation GoodsClassModel
-
+AppToolsProtocol_synthesize
+UIPictureAndBackGroundCorProtocol_synthesize
+UIViewModelOthersProtocol_synthesize
 +(NSDictionary *)mj_replacedKeyFromPropertyName {
     NSMutableDictionary *dict = [super mj_replacedKeyFromPropertyName].mutableCopy;
     dict[@"idField"] = @"id";
