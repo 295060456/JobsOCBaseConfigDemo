@@ -280,7 +280,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                        layout:(UICollectionViewLayout *)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
-    return jobsSameEdgeInset(JobsWidth(8));
+    return jobsMakeSameEdgeInset(JobsWidth(8));
 }
 #pragma mark —— lazyLoad
 -(BaiShaETProjChoiceStadiumView *)choiceStadiumView{

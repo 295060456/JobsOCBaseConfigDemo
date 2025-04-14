@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseProtocol.h"
+#import "BaseButtonProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 对整个TabBar的配置
-@interface JobsCustomTabBarConfig : NSObject<BaseProtocol>
+@interface JobsCustomTabBarConfig : NSObject<BaseProtocol,BaseButtonProtocol>
 
 Prop_assign()CGFloat tabBarHeight;
 Prop_assign()CGFloat tabBarWidth;

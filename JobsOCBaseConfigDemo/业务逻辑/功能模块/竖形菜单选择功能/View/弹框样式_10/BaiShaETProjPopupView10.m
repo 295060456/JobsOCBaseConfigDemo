@@ -205,7 +205,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 -(UIEdgeInsets)collectionView:(__kindof UICollectionView *)collectionView
                        layout:(UICollectionViewLayout *)collectionViewLayout
        insetForSectionAtIndex:(NSInteger)section {
-    return jobsSameEdgeInset(JobsWidth(16));
+    return jobsMakeSameEdgeInset(JobsWidth(16));
 }
 #pragma mark ——  iOS9的新特性实现UICollectionViewCell拖拽
 /// 开始移动的时候调用此方法，可以获取相应的datasource方法设置特殊的indexpath 能否移动,如果能移动返回的是YES ,不能移动返回的是NO

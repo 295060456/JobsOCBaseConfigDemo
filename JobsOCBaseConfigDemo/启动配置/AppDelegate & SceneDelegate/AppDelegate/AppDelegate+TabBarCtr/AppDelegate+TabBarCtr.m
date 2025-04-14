@@ -242,18 +242,19 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
     if(!_tabBarItemMutArr){
         _tabBarItemMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
             @jobs_weakify(self)
-            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            data.add(BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 @jobs_strongify(self)
-                viewModel.image = self.imageUnSelectedMutArr[0];
-                viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[0];
-                viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[0];
-                viewModel.buttonModel.titleFont = bayonRegular(14);
-                viewModel.buttonModel.titleCor = JobsCor(@"#FFFFFF");
-                viewModel.imagePlacement = NSDirectionalRectEdgeTop;
-                viewModel.textAlignment = NSTextAlignmentCenter;
-                viewModel.subTextAlignment = NSTextAlignmentCenter;
-                viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == 0 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.normalImage = self.imageUnSelectedMutArr[0];
+                buttonModel.highlightImage = self.imageSelectedMutArr[0];
+                buttonModel.title = AppDelegate.tabBarItemTitleMutArr[0];
+                buttonModel.titleFont = bayonRegular(14);
+                buttonModel.titleCor = JobsCor(@"#FFFFFF");
+                buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
+                buttonModel.textAlignment = NSTextAlignmentCenter;
+                buttonModel.subTextAlignment = NSTextAlignmentCenter;
+                buttonModel.imagePadding = JobsWidth(5);
+                buttonModel.baseBackgroundColor = JobsClearColor;
+                buttonModel.backgroundImage = DefaultIndex == 0 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
                      .onClickBy(^(__kindof UIButton *x){
                          x.selected = !x.selected;
@@ -268,18 +269,19 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                      }).onLongPressGestureBy(^(id data){
                          JobsLog(@"");
                      }));
-            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            data.add(BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 @jobs_strongify(self)
-                viewModel.image = self.imageUnSelectedMutArr[1];
-                viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[1];
-                viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[1];
-                viewModel.buttonModel.titleFont = bayonRegular(14);
-                viewModel.buttonModel.titleCor = JobsCor(@"#FFFFFF");
-                viewModel.imagePlacement = NSDirectionalRectEdgeTop;
-                viewModel.textAlignment = NSTextAlignmentCenter;
-                viewModel.subTextAlignment = NSTextAlignmentCenter;
-                viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == 1 ? JobsIMG(@"TabBarItem选中的背景色")  :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.normalImage = self.imageUnSelectedMutArr[1];
+                buttonModel.highlightImage = self.imageSelectedMutArr[1];
+                buttonModel.title = AppDelegate.tabBarItemTitleMutArr[1];
+                buttonModel.titleFont = bayonRegular(14);
+                buttonModel.titleCor = JobsCor(@"#FFFFFF");
+                buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
+                buttonModel.textAlignment = NSTextAlignmentCenter;
+                buttonModel.subTextAlignment = NSTextAlignmentCenter;
+                buttonModel.imagePadding = JobsWidth(5);
+                buttonModel.baseBackgroundColor = JobsClearColor;
+                buttonModel.backgroundImage = DefaultIndex == 1 ? JobsIMG(@"TabBarItem选中的背景色")  :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
                      .onClickBy(^(__kindof UIButton *x){
                          x.selected = !x.selected;
@@ -294,18 +296,19 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                      }).onLongPressGestureBy(^(id data){
                          JobsLog(@"");
                      }));
-            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            data.add(BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 @jobs_strongify(self)
-                viewModel.image = self.imageUnSelectedMutArr[2];
-                viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[2];
-                viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[2];
-                viewModel.buttonModel.titleFont = bayonRegular(14);
-                viewModel.buttonModel.titleCor = JobsCor(@"#FFFFFF");
-                viewModel.imagePlacement = NSDirectionalRectEdgeTop;
-                viewModel.textAlignment = NSTextAlignmentCenter;
-                viewModel.subTextAlignment = NSTextAlignmentCenter;
-                viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.normalImage = self.imageUnSelectedMutArr[2];
+                buttonModel.highlightImage = self.imageSelectedMutArr[2];
+                buttonModel.title = AppDelegate.tabBarItemTitleMutArr[2];
+                buttonModel.titleFont = bayonRegular(14);
+                buttonModel.titleCor = JobsCor(@"#FFFFFF");
+                buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
+                buttonModel.textAlignment = NSTextAlignmentCenter;
+                buttonModel.subTextAlignment = NSTextAlignmentCenter;
+                buttonModel.imagePadding = JobsWidth(5);
+                buttonModel.baseBackgroundColor = JobsClearColor;
+                buttonModel.backgroundImage = JobsIMG(@"TabBarItem选中的背景色（透明）");
 //                DefaultIndex == 2 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
                      .onClickBy(^(__kindof UIButton *x){
@@ -317,18 +320,19 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                          JobsLog(@"");
                      }));
             
-            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            data.add(BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 @jobs_strongify(self)
-                viewModel.image = self.imageUnSelectedMutArr[3];
-                viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[3];
-                viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[3];
-                viewModel.buttonModel.titleFont = bayonRegular(14);
-                viewModel.buttonModel.titleCor = JobsCor(@"#FFFFFF");
-                viewModel.imagePlacement = NSDirectionalRectEdgeTop;
-                viewModel.textAlignment = NSTextAlignmentCenter;
-                viewModel.subTextAlignment = NSTextAlignmentCenter;
-                viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == 3 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.normalImage = self.imageUnSelectedMutArr[3];
+                buttonModel.highlightImage = self.imageSelectedMutArr[3];
+                buttonModel.title = AppDelegate.tabBarItemTitleMutArr[3];
+                buttonModel.titleFont = bayonRegular(14);
+                buttonModel.titleCor = JobsCor(@"#FFFFFF");
+                buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
+                buttonModel.textAlignment = NSTextAlignmentCenter;
+                buttonModel.subTextAlignment = NSTextAlignmentCenter;
+                buttonModel.imagePadding = JobsWidth(5);
+                buttonModel.baseBackgroundColor = JobsClearColor;
+                buttonModel.backgroundImage = DefaultIndex == 3 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
                      .onClickBy(^(__kindof UIButton *x){
                          @jobs_strongify(self)
@@ -339,18 +343,19 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                      }).onLongPressGestureBy(^(id data){
                          JobsLog(@"");
                      }));
-            data.add(BaseButton.initByViewModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            data.add(BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 @jobs_strongify(self)
-                viewModel.image = self.imageUnSelectedMutArr[4];
-                viewModel.buttonModel.highlightImage = self.imageSelectedMutArr[4];
-                viewModel.buttonModel.title = AppDelegate.tabBarItemTitleMutArr[4];
-                viewModel.buttonModel.titleFont = bayonRegular(14);
-                viewModel.buttonModel.titleCor = JobsCor(@"#FFFFFF");
-                viewModel.imagePlacement = NSDirectionalRectEdgeTop;
-                viewModel.textAlignment = NSTextAlignmentCenter;
-                viewModel.subTextAlignment = NSTextAlignmentCenter;
-                viewModel.buttonModel.baseBackgroundColor = JobsClearColor;
-                viewModel.buttonModel.backgroundImage = DefaultIndex == 4 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.normalImage = self.imageUnSelectedMutArr[4];
+                buttonModel.highlightImage = self.imageSelectedMutArr[4];
+                buttonModel.title = AppDelegate.tabBarItemTitleMutArr[4];
+                buttonModel.titleFont = bayonRegular(14);
+                buttonModel.titleCor = JobsCor(@"#FFFFFF");
+                buttonModel.imagePlacement = NSDirectionalRectEdgeTop;
+                buttonModel.textAlignment = NSTextAlignmentCenter;
+                buttonModel.subTextAlignment = NSTextAlignmentCenter;
+                buttonModel.imagePadding = JobsWidth(5);
+                buttonModel.baseBackgroundColor = JobsClearColor;
+                buttonModel.backgroundImage = DefaultIndex == 4 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
             }))
                      .onClickBy(^(__kindof UIButton *x){
                          @jobs_strongify(self)

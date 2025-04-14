@@ -20,6 +20,7 @@ UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
 BaseLayerProtocol_synthesize_part3
 AppToolsProtocol_synthesize
+@synthesize contentEdgeInsets = _contentEdgeInsets;
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
@@ -69,12 +70,8 @@ AppToolsProtocol_synthesize
     return ^(id _Nullable model) {
         @jobs_strongify(self)
         self.btn.data = model;
-        if(KindOfViewModelCls(model)){
-            self.viewModel = model;
-        }
-        if(KindOfButtonModelCls(model)){
-            self.buttonModel = model;
-        }
+        if(KindOfViewModelCls(model)) self.viewModel = model;
+        if(KindOfButtonModelCls(model)) self.buttonModel = model;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -224,7 +221,7 @@ AppToolsProtocol_synthesize
             if(self.objBlock) self.objBlock(x);
         });[self.contentView addSubview:_btn];
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);/// 如果这里用self.contentView，在某些情况下，约束会失灵。因为self.contentView的生命周期的缘故，还没有完全展开
+            make.edges.equalTo(self).insets(self.contentEdgeInsets);/// 如果这里用self.contentView，在某些情况下，约束会失灵。因为self.contentView的生命周期的缘故，还没有完全展开
         }];
     }return _btn;
 }

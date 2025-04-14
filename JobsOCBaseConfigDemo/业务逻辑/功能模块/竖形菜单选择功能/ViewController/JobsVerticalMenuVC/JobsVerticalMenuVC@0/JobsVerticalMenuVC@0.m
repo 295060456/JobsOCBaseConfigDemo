@@ -164,10 +164,11 @@
 - (__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     LeftCell *cell = LeftCell.cellStyleDefaultWithTableView(tableView);
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
-    cell.jobsRichElementsCellBy(viewModel);
-    return cell;
+    @jobs_weakify(self)
+    cell.jobsRichElementsCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        @jobs_strongify(self)
+        viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
+    }));return cell;
 }
 
 - (CGFloat)tableView:(__kindof UITableView *)tableView

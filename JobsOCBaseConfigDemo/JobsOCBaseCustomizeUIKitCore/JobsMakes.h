@@ -384,7 +384,7 @@ NS_INLINE UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationMode
                             data.jobsRight);
 }
 /// 构建一个四边距离相等的 UIEdgeInsets
-NS_INLINE UIEdgeInsets jobsSameEdgeInset(CGFloat insets){
+NS_INLINE UIEdgeInsets jobsMakeSameEdgeInset(CGFloat insets){
     return jobsMakeEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
         data.jobsTop = insets;
         data.jobsLeft = insets;

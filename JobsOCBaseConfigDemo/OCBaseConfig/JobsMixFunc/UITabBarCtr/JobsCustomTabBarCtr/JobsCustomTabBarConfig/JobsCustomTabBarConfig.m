@@ -12,6 +12,8 @@
 @end
 
 @implementation JobsCustomTabBarConfig
+BaseButtonProtocol_synthesize
+BaseProtocol_synthesize
 static JobsCustomTabBarConfig *JobsCustomTabBarConfigInstance = nil;
 static dispatch_once_t JobsCustomTabBarConfigOnceToken;
 +(instancetype)sharedManager {
