@@ -71,7 +71,7 @@ static dispatch_once_t static_popupView10OnceToken;
     };
 }
 #pragma mark —— 一些公有方法
--(jobsByBOOLBlock)shakeCell{
+-(jobsByBOOLBlock _Nonnull)shakeCell{
     @jobs_weakify(self)
     return ^(BOOL start) {
         @jobs_strongify(self)

@@ -17,11 +17,17 @@ typedef void(^jobsByCustomTabBarVCBlock)(__kindof JobsCustomTabBarVC *_Nullable 
 @class JobsCustomTabBarConfig;
 typedef void(^jobsByCustomTabBarConfigBlock)(__kindof JobsCustomTabBarConfig *_Nullable tabBarConfig);
 
+@class FMHomeMainBizSubView;
+typedef void(^jobsByBizSubViewBlock)(__kindof FMHomeMainBizSubView *_Nullable subView);
+
 @class KYCModel;
 typedef void(^jobsByKYCModelBlock)(__kindof KYCModel *_Nullable model);
 
 @class FMTableHeaderView1;
 typedef void(^jobsByTableHeaderView1Block)(__kindof FMTableHeaderView1 *_Nullable tableHeaderView);
+
+@class ThreeClassCell;
+typedef void(^jobsByThreeClassCellBlock)(__kindof ThreeClassCell *_Nullable cell);
 
 @class FMBannerAdsModel;
 @class WMZBannerParam;

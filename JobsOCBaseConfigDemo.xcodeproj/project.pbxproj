@@ -63,6 +63,7 @@
 		8461D4D22CF1EF1100446E4F /* IP_api.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461D4CD2CF1EF1100446E4F /* IP_api.m */; };
 		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
+		846559EF2DAD5B4F00D00A30 /* FMHomeMainBizSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 846559EE2DAD5B4F00D00A30 /* FMHomeMainBizSubView.m */; };
 		846C4D262DA624D00074D1CB /* JobsNavBarWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C4D242DA624D00074D1CB /* JobsNavBarWebVC.m */; };
 		846C6B2E2DA905C20074D1CB /* JobsRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C6B2C2DA905C20074D1CB /* JobsRightMenuView.m */; };
 		8474A3B32CF866B100112B4B /* UILabel+Scroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474A3B12CF866B100112B4B /* UILabel+Scroll.m */; };
@@ -1399,6 +1400,8 @@
 		8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RACTimer.m"; sourceTree = "<group>"; };
 		8464A5A12CDB74D20030409A /* FMDoorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDoorModel.h; sourceTree = "<group>"; };
 		8464A5A22CDB74D20030409A /* FMDoorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDoorModel.m; sourceTree = "<group>"; };
+		846559ED2DAD5B4F00D00A30 /* FMHomeMainBizSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMHomeMainBizSubView.h; sourceTree = "<group>"; };
+		846559EE2DAD5B4F00D00A30 /* FMHomeMainBizSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMHomeMainBizSubView.m; sourceTree = "<group>"; };
 		846C4D232DA624D00074D1CB /* JobsNavBarWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNavBarWebVC.h; sourceTree = "<group>"; };
 		846C4D242DA624D00074D1CB /* JobsNavBarWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsNavBarWebVC.m; sourceTree = "<group>"; };
 		846C6B2B2DA905C20074D1CB /* JobsRightMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsRightMenuView.h; sourceTree = "<group>"; };
@@ -4414,6 +4417,15 @@
 				8464A5A22CDB74D20030409A /* FMDoorModel.m */,
 			);
 			path = FMDoorModel;
+			sourceTree = "<group>";
+		};
+		846559EC2DAD5B3D00D00A30 /* FMHomeMainBizSubView（可独立使用） */ = {
+			isa = PBXGroup;
+			children = (
+				846559ED2DAD5B4F00D00A30 /* FMHomeMainBizSubView.h */,
+				846559EE2DAD5B4F00D00A30 /* FMHomeMainBizSubView.m */,
+			);
+			path = "FMHomeMainBizSubView（可独立使用）";
 			sourceTree = "<group>";
 		};
 		846C4D252DA624D00074D1CB /* JobsNavBarWebVC */ = {
@@ -7498,6 +7510,7 @@
 		CE4F24FF2CA825CD002AF25B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				846559EC2DAD5B3D00D00A30 /* FMHomeMainBizSubView（可独立使用） */,
 				CE4F24ED2CA825CD002AF25B /* JobsVerticalMenuSubView */,
 				CE4F24F12CA825CD002AF25B /* 弹框样式_10 */,
 				CE4F24F42CA825CD002AF25B /* BaiShaETProjSearchView */,
@@ -17381,6 +17394,7 @@
 				CE4F28162CA825CD002AF25B /* YTKAnimatingRequestAccessory.m in Sources */,
 				CE5A65D42CA833F7006D67A7 /* JobsLinkageMenuView.m in Sources */,
 				CE5A65D52CA833F7006D67A7 /* JobsMenuSubView@1.m in Sources */,
+				846559EF2DAD5B4F00D00A30 /* FMHomeMainBizSubView.m in Sources */,
 				CEDE32122CB6A468005256B2 /* DebugLogDescription.m in Sources */,
 				CE5A65D62CA833F7006D67A7 /* JobsMenuSubView@3.m in Sources */,
 				CE5A65D72CA833F7006D67A7 /* JobsMenuSubView@4.m in Sources */,

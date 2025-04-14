@@ -78,7 +78,7 @@ typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByAlertM
 @class GoodsClassModel;
 typedef void(^jobsByGoodsClassModelBlock)(GoodsClassModel *_Nullable model);
 typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByIntBlock)(int data);
-
+typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByInt2Block)(NSUInteger data1,int data2);
 @class UITextModel;
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTextModelBlock)(UITextModel *_Nullable data);

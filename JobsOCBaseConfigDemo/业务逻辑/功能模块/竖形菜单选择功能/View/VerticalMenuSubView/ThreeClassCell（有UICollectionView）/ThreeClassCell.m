@@ -20,7 +20,6 @@
 @property(nonatomic,assign)CGFloat itemHeight;/// 一个cell 的高度
 @property(nonatomic,assign)NSInteger columns;/// 一行有多少列
 @property(nonatomic,assign)NSInteger rowCount;/// 一共有都是行
-@property(nonatomic,strong)UICollectionViewFlowLayout *flowLayout;
 @property(nonatomic,copy)NSMutableArray <GoodsClassModel *>*dataMutArr;
 
 @end
@@ -59,9 +58,7 @@
     return ^(id _Nullable model) {
         @jobs_strongify(self)
         self.dataMutArr = model;
-        if (self.dataMutArr) {
-            self.collectionView.reloadDatas();
-        }
+        if (self.dataMutArr) self.collectionView.reloadDatas();
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -72,7 +69,9 @@
 }
 #pragma mark —— 一些公有方法
 -(JobsReturnCGFloatByArrBlock _Nonnull)getCollectionHeight{
+    @jobs_weakify(self)
     return ^CGFloat(NSMutableArray *_Nullable data){
+        @jobs_strongify(self)
         self.dataArray = data;
         NSInteger a = self.dataArray.count % self.columns;
         self.rowCount = a ? (self.dataArray.count / self.columns) + 1 : self.dataArray.count / self.columns;
@@ -84,46 +83,6 @@
 
 -(void)reloadData{
     [self.collectionView reloadData];
-}
-#pragma mark —— lazyLoad
--(UICollectionViewFlowLayout *)flowLayout{
-    if (!_flowLayout) {
-        @jobs_weakify(self)
-        _flowLayout = jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
-            @jobs_strongify(self)
-            data.minimumInteritemSpacing = self.minimumInteritemSpacing;
-            data.minimumLineSpacing = self.minimumLineSpacing;
-            data.itemSize = TreeClassItemCell.cellSizeByModel(nil);
-            data.sectionInset = UIEdgeInsetsMake(self.sectionInsetTop,
-                                                 self.sectionInsetLeft,
-                                                 self.sectionInsetBottom,
-                                                 self.sectionInsetRight);
-        });
-    }return _flowLayout;
-}
-/// BaseViewProtocol
-@synthesize collectionView = _collectionView;
--(UICollectionView *)collectionView{
-    if (!_collectionView){
-        _collectionView = UICollectionView.initByLayout(self.flowLayout);
-        _collectionView.frame = CGRectMake(JobsWidth(8.76),
-                                           0,
-                                           self.frame.size.width - JobsWidth(17.52),
-                                           self.frame.size.height);
-        _collectionView.scrollEnabled = NO;
-        _collectionView.dataLink(self);
-
-        _collectionView.backgroundColor = ThreeClassCellBgCor;
-        _collectionView.layer.backgroundColor = ThreeClassCellBgCor.CGColor;
-        _collectionView.layer.shadowColor = RGBA_COLOR(0, 0, 0, 0.08).CGColor;
-        _collectionView.layer.shadowOffset = CGSizeZero;
-        _collectionView.layer.shadowOpacity = 1;
-        _collectionView.layer.shadowRadius = JobsWidth(5);
-        _collectionView.layer.masksToBounds = NO;
-        _collectionView.contentInset = UIEdgeInsetsMake(JobsWidth(10), 0, 0, 0);
-        _collectionView.registerCollectionViewCellClass(TreeClassItemCell.class,@"");
-        [self.contentView addSubview:_collectionView];
-    }return _collectionView;
 }
 #pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -143,6 +102,41 @@
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (self.objBlock) self.objBlock([self.dataArray objectAtIndex:indexPath.row]);
 
+}
+#pragma mark —— lazyLoad
+/// BaseViewProtocol
+@synthesize collectionView = _collectionView;
+-(UICollectionView *)collectionView{
+    if (!_collectionView){
+        @jobs_weakify(self)
+        _collectionView = UICollectionView.initByLayout(jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+            @jobs_strongify(self)
+            data.minimumInteritemSpacing = self.minimumInteritemSpacing;
+            data.minimumLineSpacing = self.minimumLineSpacing;
+            data.itemSize = TreeClassItemCell.cellSizeByModel(nil);
+            data.sectionInset = UIEdgeInsetsMake(self.sectionInsetTop,
+                                                 self.sectionInsetLeft,
+                                                 self.sectionInsetBottom,
+                                                 self.sectionInsetRight);
+        }));
+        _collectionView.frame = CGRectMake(JobsWidth(8.76),
+                                           0,
+                                           self.frame.size.width - JobsWidth(17.52),
+                                           self.frame.size.height);
+        _collectionView.scrollEnabled = NO;
+        _collectionView.dataLink(self);
+
+        _collectionView.backgroundColor = ThreeClassCellBgCor;
+        _collectionView.layer.backgroundColor = ThreeClassCellBgCor.CGColor;
+        _collectionView.layer.shadowColor = RGBA_COLOR(0, 0, 0, 0.08).CGColor;
+        _collectionView.layer.shadowOffset = CGSizeZero;
+        _collectionView.layer.shadowOpacity = 1;
+        _collectionView.layer.shadowRadius = JobsWidth(5);
+        _collectionView.layer.masksToBounds = NO;
+        _collectionView.contentInset = UIEdgeInsetsMake(JobsWidth(10), 0, 0, 0);
+        _collectionView.registerCollectionViewCellClass(TreeClassItemCell.class,@"");
+        self.contentView.addSubview(_collectionView);
+    }return _collectionView;
 }
 
 @end

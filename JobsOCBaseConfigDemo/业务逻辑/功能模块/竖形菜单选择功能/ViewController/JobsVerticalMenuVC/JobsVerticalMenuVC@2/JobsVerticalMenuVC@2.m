@@ -9,21 +9,22 @@
 
 @interface JobsVerticalMenuVC_2 ()
 /// UI
-@property(nonatomic,strong)BaseButton *customerServiceBtn;
-@property(nonatomic,strong)BaseButton *msgBtn;
-@property(nonatomic,strong)BaseButton *editBtn;
-@property(nonatomic,strong)ThreeClassCell *tempCell;
-@property(nonatomic,strong)JobsSearchBar *searchView;
-@property(nonatomic,strong)BaiShaETProjPopupView10 *popupView;
+Prop_strong()BaseButton *customerServiceBtn;
+Prop_strong()BaseButton *msgBtn;
+Prop_strong()BaseButton *editBtn;
+Prop_strong()ThreeClassCell *tempCell;
+Prop_strong()JobsSearchBar *searchView;
+Prop_strong()BaiShaETProjPopupView10 *popupView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*titleMutArr;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*popupViewDataMutArr;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*leftDataArray;/// 左边的数据源
-@property(nonatomic,copy)NSMutableArray <GoodsClassModel *>*rightDataArray;/// 右边的数据源
-@property(nonatomic,strong)GoodsClassModel *rightViewCurrentSelectModel;
-@property(nonatomic,strong)UIViewModel *leftViewCurrentSelectModel;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*imageDataMutArr;
-@property(nonatomic,assign)NSUInteger thisIndex;
+Prop_copy()NSMutableArray <UIViewModel *>*titleMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*popupViewDataMutArr;
+Prop_copy()NSMutableArray <GoodsClassModel *>*leftDataArray;/// 左边的数据源
+Prop_copy()NSMutableArray <GoodsClassModel *>*rightDataArray;/// 右边的数据源
+Prop_strong()GoodsClassModel *rightViewCurrentSelectModel;
+Prop_strong()UIViewModel *leftViewCurrentSelectModel;
+Prop_copy()NSMutableArray <UIButtonModel *>*cellDataMutArr;
+Prop_copy()NSMutableArray <NSString *>*cellTitleMutArr;
+Prop_assign()NSUInteger thisIndex;
 
 @end
 
@@ -73,6 +74,8 @@
     self.editBtn.alpha = 1;
     self.collectionView.reloadDatas();
     self.refreshLeftView();
+    [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    self.actionBy(0);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -96,18 +99,44 @@
     [super viewWillDisappear:animated];
 }
 #pragma mark —— 一些私有方法
--(NSUInteger)thisIndex{
-    return self.leftViewCurrentSelectModel ? self.leftDataArray.indexBy(self.leftViewCurrentSelectModel) : 0;
+-(jobsByMutArrayBlock _Nonnull)makeCellData{
+    @jobs_weakify(self)
+    return ^(__kindof NSMutableArray *_Nullable arr){
+        @jobs_strongify(self)
+        for (int i = 0; i < self.thisIndex + 1; i++) {
+            arr.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+                model.backgroundImage = JobsIMG(self.cellTitleMutArr[self.thisIndex].add(已点击));
+                model.titleCor = HEXCOLOR(0xC4C4C4);
+                model.titleFont = UIFontWeightRegularSize(12);
+                model.baseBackgroundColor = JobsRedColor;
+                model.imagePadding = JobsWidth(5);
+            }));
+        }
+    };
 }
 
--(jobsByVoidBlock _Nonnull)loadData{
+-(JobsReturnButtonModelByString _Nonnull)makeLeftCellData{
+//    @jobs_weakify(self)
+    return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable data){
+//        @jobs_strongify(self)
+        return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.backgroundImage = JobsIMG(data.add(未点击));
+            model.title = @"";
+            model.subTitle = @"";
+            model.baseBackgroundColor = JobsClearColor;
+        });
+    };
+}
+
+-(jobsByNSUIntegerBlock _Nonnull)actionBy{
     @jobs_weakify(self)
-    return ^(){
+    return ^(NSUInteger index){
         @jobs_strongify(self)
-        /// 这里可以调用接口去获取一级目录分类的数据
-        for (int i = 0; i < self.titleMutArr.count; i++){
-            self.leftDataArray.add(self.createOneModel(i));
-        }
+        self.thisIndex = index;
+        self.getGoodsClassByPid(self.rightViewCurrentSelectModel.idField,index);
+        if (self.rightDataArray.count) self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(index);
+        if (self.leftDataArray.count) self.leftViewCurrentSelectModel = self.leftDataArray.objectAt(index);
+        [self.collectionView setContentOffset:CGPointMake(0, JobsWidth(-5)) animated:YES];
     };
 }
 /// 最初默认的数据
@@ -123,30 +152,32 @@
 }
 
 -(NSMutableArray<UIViewModel *> *)makePopViewDataMutArr{
-    NSMutableArray <UIViewModel *>*titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-            data1.textModel.text = JobsInternationalization(@"收藏");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-            data1.textModel.text = JobsInternationalization(@"真人");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-            data1.textModel.text = JobsInternationalization(@"体育");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-            data1.textModel.text = JobsInternationalization(@"电子");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-            data1.textModel.text = JobsInternationalization(@"棋牌");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-            data1.textModel.text = JobsInternationalization(@"彩票");
-        }));
-    });return titleMutArr;
+   return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+           data1.textModel.text = JobsInternationalization(@"收藏");
+       }));
+       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+           data1.textModel.text = JobsInternationalization(@"真人");
+       }));
+       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+           data1.textModel.text = JobsInternationalization(@"体育");
+       }));
+       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+           data1.textModel.text = JobsInternationalization(@"电子");
+       }));
+       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+           data1.textModel.text = JobsInternationalization(@"棋牌");
+       }));
+       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+           data1.textModel.text = JobsInternationalization(@"彩票");
+       }));
+   });
 }
 
 -(jobsByVoidBlock _Nonnull)refreshLeftView{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         [self.tableView reloadData];
         if (self.leftDataArray.count){
             @jobs_weakify(self)
@@ -175,48 +206,62 @@
     };
 }
 /// 根据一级目录的id 获取二三级的分类数据
--(jobsByStringBlock _Nonnull)getGoodsClassWithPid{
+-(jobsByStringAndNSUIntegerBlock _Nonnull)getGoodsClassByPid{
     @jobs_weakify(self)
-    return ^(NSString *_Nullable data){
+    return ^(__kindof NSString *_Nullable data1,NSUInteger data2){
         @jobs_strongify(self)
         self.rightDataArray.clean();
+        self.cellDataMutArr.clean();
+        self.cellDataMutArr = nil;
         /// 每个子页面的section个数
-        for (int i = 0; i < self.imageDataMutArr.count; i++){
-            self.rightDataArray.add(self.createTwoModel(i));
+        for (int i = 0; i < self.cellDataMutArr.count; i++){
+            self.rightDataArray.add(self.createTwoModel(data2,i));
         }
         [self.collectionView reloadData];
         if (self.rightDataArray.count){
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+            [self.collectionView scrollToItemAtIndexPath:jobsMakeIndexPathZero()
                                         atScrollPosition:UICollectionViewScrollPositionTop
                                                 animated:NO];
         }
     };
 }
 
--(JobsReturnGoodsClassModelByIntBlock _Nonnull)createOneModel{
+-(jobsByVoidBlock _Nonnull)loadData{
     @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        /// 这里可以调用接口去获取一级目录分类的数据
+        for (int i = 0; i < self.titleMutArr.count; i++){
+            self.leftDataArray.add(self.createOneModel(i));
+        }
+    };
+}
+
+-(JobsReturnGoodsClassModelByIntBlock _Nonnull)createOneModel{
+//    @jobs_weakify(self)
     return ^__kindof GoodsClassModel *_Nullable(int iflag){
         return jobsMakeGoodsClassModel(^(GoodsClassModel * _Nullable model) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             model.idField = toStringByInt(iflag);
             model.pid = @"0";
             model.name = JobsInternationalization(@"一级目录").add(toStringByInt(iflag));
-            model.textModel.text = self.titleMutArr[iflag].textModel.text;
+            model.textModel.text = @"";
         });
     };
 }
 
--(JobsReturnGoodsClassModelByIntBlock _Nonnull)createTwoModel{
+-(JobsReturnGoodsClassModelByInt2Block _Nonnull)createTwoModel{
     @jobs_weakify(self)
-    return ^__kindof GoodsClassModel *_Nullable(int iFlag){
+    return ^__kindof GoodsClassModel *_Nullable(NSUInteger data1,int iFlag){
         return jobsMakeGoodsClassModel(^(GoodsClassModel * _Nullable model) {
             @jobs_strongify(self)
             model.idField = toStringByInt(iFlag);
             model.pid = toStringByInt(iFlag);
-            model.name = JobsInternationalization(@"随机").add(@"-").add(toStringByInt(iFlag));
+            model.name = JobsInternationalization(@"随机").add(JobsDash).add(toStringByInt(iFlag));
             model.textModel.text = @"1234";
             model.subTextModel.text = toStringByInt(iFlag).add(JobsInternationalization(@"球桌球"));
-            model.bgImage = self.imageDataMutArr[iFlag];
+            model.bgImage = self.cellDataMutArr[iFlag].backgroundImage;
+            model.title = self.cellTitleMutArr[data1];
             JobsLog(@"%@",model.bgImage);
             model.childrenList = jobsMakeMutArr(^(__kindof NSMutableArray <GoodsClassModel *>*_Nullable arr) {
                 @jobs_strongify(self)
@@ -262,14 +307,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(void)tableView:(__kindof UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-    if (self.rightDataArray.count) {
-        self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(indexPath.row);
-    }
-    if (self.leftDataArray.count) {
-        self.leftViewCurrentSelectModel = self.leftDataArray.objectAt(indexPath.row);
-    }
-    self.getGoodsClassWithPid(self.rightViewCurrentSelectModel.idField);
-    [self.collectionView setContentOffset:CGPointMake(0, JobsWidth(-5)) animated:YES];
+    self.actionBy(indexPath.row);
 }
 #pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource ThreeTopBannerCell
 -(__kindof UICollectionViewCell *)collectionView:(__kindof UICollectionView *)collectionView
@@ -299,27 +337,27 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UICollectionReusableView *)collectionView:(__kindof UICollectionView *)collectionView
                     viewForSupplementaryElementOfKind:(NSString *)kind
                                           atIndexPath:(NSIndexPath *)indexPath{
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]){
+    if (kind.isEqualToString(UICollectionElementKindSectionHeader)){
         UICollectionReusableView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:UICollectionReusableView.class
                                                                                             forIndexPath:indexPath];
-        UILabel *label = [headerView viewWithTag:666];
+        UILabel *label = headerView.viewWithTag(666);
         if (!label){
             label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
                 label.frame = CGRectMake(10,
                                          20,
                                          headerView.width - 20.f,
                                          17.f);
-                label.font = [UIFont systemFontOfSize:12.f];
+                label.font = JobsFontBold(JobsWidth(12));
                 label.textColor = JobsGrayColor;
                 label.tag = 666;
             });headerView.addSubview(label);
         }
         
-        GoodsClassModel *rightModel = [self.rightDataArray objectAtIndex:indexPath.section];
+        GoodsClassModel *rightModel = self.rightDataArray.objectAt(indexPath.section);
         label.text = rightModel.name ? : JobsInternationalization(@"");
         
         return headerView;
-    }else if ([kind isEqualToString:UICollectionElementKindSectionFooter]){
+    }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)){
         // 底部视图
         UICollectionReusableView *footView = [collectionView UICollectionElementKindSectionFooterClass:UICollectionReusableView.class
                                                                                           forIndexPath:indexPath];
@@ -350,16 +388,19 @@ referenceSizeForFooterInSection:(NSInteger)section{
 @synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView){
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.dataLink(self);
-        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
-        _tableView.frame = CGRectMake(0,
-                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
-                                      TableViewWidth,
-                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self.view addSubview:_tableView];
+        @jobs_weakify(self)
+        _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.bounces = NO;
+            tableView.backgroundColor = JobsClearColor;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.frame = CGRectMake(0,
+                                         JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
+                                         TableViewWidth,
+                                         JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
+        }));
     }return _tableView;
 }
 /// BaseViewProtocol
@@ -386,12 +427,13 @@ referenceSizeForFooterInSection:(NSInteger)section{
 
 -(ThreeClassCell *)tempCell{
     if (!_tempCell){
-        _tempCell = ThreeClassCell.new;
-        _tempCell.backgroundColor = JobsRedColor;
-        _tempCell.frame = CGRectMake(0,
-                                     0,
-                                     ThreeClassCell.cellSizeByModel(nil).width,
-                                     ThreeClassCell.cellSizeByModel(nil).height);
+        _tempCell = jobsMakeThreeClassCell(^(__kindof ThreeClassCell * _Nullable cell) {
+            cell.backgroundColor = JobsRedColor;
+            cell.frame = CGRectMake(0,
+                                    0,
+                                    ThreeClassCell.cellSizeByModel(nil).width,
+                                    ThreeClassCell.cellSizeByModel(nil).height);
+        });
     }return _tempCell;
 }
 
@@ -498,52 +540,15 @@ referenceSizeForFooterInSection:(NSInteger)section{
     }return _editBtn;
 }
 
--(NSMutableArray<UIViewModel *> *)leftDataArray{
-    if (!_leftDataArray) {
-        _leftDataArray = NSMutableArray.array;
-    }return _leftDataArray;
-}
-
--(NSMutableArray<GoodsClassModel *> *)rightDataArray{
-    if (!_rightDataArray) {
-        _rightDataArray = NSMutableArray.array;
-    }return _rightDataArray;
-}
-
--(NSMutableArray<UIImage *> *)imageDataMutArr{
-    if (_imageDataMutArr) {
-        _imageDataMutArr.clean();
-    }else _imageDataMutArr = NSMutableArray.array;
-    /// 装载假数据
-    if (self.thisIndex == 0) {
-        for (int i = 1; i < 9; i++) {
-            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
-        }
-    }else if (self.thisIndex == 1){
-        for (int i = 1; i < 8; i++) {
-            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
-        }
-    }else if (self.thisIndex == 2){
-        for (int i = 1; i < 7; i++) {
-            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
-        }
-    }else if (self.thisIndex == 3){
-        for (int i = 1; i < 6; i++) {
-            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
-        }
-    }else if (self.thisIndex == 4){
-        for (int i = 1; i < 5; i++) {
-            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
-        }
-    }else if (self.thisIndex == 5){
-        for (int i = 1; i < 4; i++) {
-            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
-        }
-    }else{
-        for (int i = 1; i < 3; i++) {
-            _imageDataMutArr.add(JobsIMG(@"体育".add(@"0").add(toStringByInt(i))));
-        }
-    }return _imageDataMutArr;
+-(NSMutableArray<UIButtonModel *> *)cellDataMutArr{
+    if (!_cellDataMutArr) {
+        /// 装载假数据
+        @jobs_weakify(self)
+        _cellDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+            @jobs_strongify(self)
+            self.makeCellData(arr);
+        });
+    }return _cellDataMutArr;
 }
 
 -(BaiShaETProjPopupView10 *)popupView{
@@ -560,15 +565,17 @@ referenceSizeForFooterInSection:(NSInteger)section{
         [_popupView actionObjBlock:^(id data) {
             @strongify(self)
             if ([data isKindOfClass:NSMutableArray.class]) {
-                NSMutableArray <UIViewModel *>*dataMutArr = NSMutableArray.array;
-                dataMutArr.add(self.titleMutArr[0]);
-                [dataMutArr addObjectsFromArray:(NSMutableArray *)data];
+                NSMutableArray <UIViewModel *>*dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                    @strongify(self)
+                    arr.add(self.titleMutArr[0]);
+                    arr.addBy(data);
+                });
 #ifdef DEBUG
-                NSMutableArray <NSString *>*mutArr = NSMutableArray.array;
-                for (UIViewModel *viewModel in dataMutArr) {
-                    mutArr.add(viewModel.textModel.text);
-                }
-                JobsLog(@"%@",mutArr);
+                JobsLog(@"%@",jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
+                    for (UIViewModel *viewModel in dataMutArr) {
+                        arr.add(viewModel.textModel.text);
+                    }
+                }));
 #endif
                 self.titleMutArr = dataMutArr;
             }else if ([data isKindOfClass:UIButton.class]){
@@ -583,13 +590,35 @@ referenceSizeForFooterInSection:(NSInteger)section{
         }];
     }
     JobsLog(@"self.thisIndex = %ld",self.thisIndex);
-    
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.index = self.thisIndex;
-    viewModel.data = self.popupViewDataMutArr;
-    
-    _popupView.jobsRichViewByModel(viewModel);
-    return _popupView;
+    @jobs_weakify(self)
+    _popupView.jobsRichViewByModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        @jobs_strongify(self)
+        viewModel.index = self.thisIndex;
+        viewModel.data = self.popupViewDataMutArr;
+    }));return _popupView;
+}
+
+-(NSMutableArray<NSString *> *)cellTitleMutArr{
+    if(!_cellTitleMutArr){
+        _cellTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
+            arr.add(@"BTG")
+                .add(@"SA")
+                .add(@"RTG")
+                .add(@"RedTiger")
+                .add(@"PP")
+                .add(@"PG")
+                .add(@"NLC")
+                .add(@"NE")
+                .add(@"KA")
+                .add(@"JILI")
+                .add(@"JDB")
+                .add(@"FP")
+                .add(@"FC")
+                .add(@"Ezugi")
+                .add(@"EVO")
+                .add(@"CQ9");
+        });
+    }return _cellTitleMutArr;
 }
 
 -(NSMutableArray<UIViewModel *> *)popupViewDataMutArr{
@@ -602,6 +631,18 @@ referenceSizeForFooterInSection:(NSInteger)section{
     if (!_titleMutArr) {
         _titleMutArr = self.makeTitleMutArr;
     }return _titleMutArr;
+}
+
+-(NSMutableArray<GoodsClassModel *> *)leftDataArray{
+    if (!_leftDataArray) {
+        _leftDataArray = NSMutableArray.array;
+    }return _leftDataArray;
+}
+
+-(NSMutableArray<GoodsClassModel *> *)rightDataArray{
+    if (!_rightDataArray) {
+        _rightDataArray = NSMutableArray.array;
+    }return _rightDataArray;
 }
 
 @end

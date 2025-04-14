@@ -113,6 +113,7 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 -(JobsReturnViewByNSIntegerBlock _Nonnull)viewByID;
 -(JobsReturnViewByGestureRecognizer _Nonnull)addGesture;
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
+-(JobsReturnViewByNSIntegerBlock _Nonnull)viewWithTag;
 -(JobsReturnViewByViewBlock _Nonnull)addSubview;
 -(JobsReturnViewByViewBlock _Nonnull)bringSubviewToFront;
 -(JobsReturnViewByViewBlock _Nonnull)sendSubviewToBack;

@@ -27,3 +27,9 @@ UICollectionViewDelegate
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof ThreeClassCell *_Nonnull jobsMakeThreeClassCell(jobsByThreeClassCellBlock _Nonnull block){
+    ThreeClassCell *data = ThreeClassCell.alloc.init;
+    if (block) block(data);
+    return data;
+}

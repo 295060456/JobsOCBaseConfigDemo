@@ -9,6 +9,7 @@
 #import "JobsBlock.h"
 #import "AppToolsProtocol.h"
 #import "BaseModel.h"
+#import "BaseButtonProtocol.h"
 
 #if __has_include(<MJExtension/MJExtension.h>)
 #import <MJExtension/MJExtension.h>
@@ -18,7 +19,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GoodsClassModel : BaseModel <AppToolsProtocol>
+@interface GoodsClassModel : BaseModel <AppToolsProtocol,BaseButtonProtocol>
 
 @property(nonatomic,copy)NSString *idField;
 @property(nonatomic,copy)NSString *pid;

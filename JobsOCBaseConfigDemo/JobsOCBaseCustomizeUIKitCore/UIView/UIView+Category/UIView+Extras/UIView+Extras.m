@@ -673,6 +673,14 @@ JobsKey(_cornerRadii)
     };
 }
 
+-(JobsReturnViewByNSIntegerBlock _Nonnull)viewWithTag{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(NSInteger data) {
+        @jobs_strongify(self)
+        return [self viewWithTag:data];
+    };
+}
+
 -(JobsReturnViewByViewBlock _Nonnull)addSubview{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {

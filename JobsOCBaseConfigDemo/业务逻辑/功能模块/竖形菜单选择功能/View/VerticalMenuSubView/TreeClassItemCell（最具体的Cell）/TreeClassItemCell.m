@@ -113,30 +113,31 @@ UILocationProtocol_synthesize
         _btn = BaseButton.jobsInit()
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePadding(JobsWidth(5))
-            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-            .jobsResetBtnBgImage(JobsIMG(@"未点赞"))
-            .jobsResetBtnTitleCor(HEXCOLOR(0xC4C4C4))
-            .jobsResetBtnTitleFont(UIFontWeightRegularSize(12))
-            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+            .jobsResetImagePadding(self.dataModel.imagePadding)/// JobsWidth(5)
+            .jobsResetBtnImage(self.dataModel.normalImage)
+            .jobsResetBtnBgImage(self.dataModel.backgroundImage)
+            .jobsResetBtnBgCor(self.dataModel.baseBackgroundColor)
+            .jobsResetBtnTitleCor(self.dataModel.titleCor)/// HEXCOLOR(0xC4C4C4)
+            .jobsResetBtnTitleFont(self.dataModel.titleFont)/// UIFontWeightRegularSize(12)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
                 if(x.selected){
-                    x.jobsResetBtnImage(JobsIMG(@"已点赞"));
+                    x.jobsResetBtnImage(self.dataModel.highlightImage);
                     self.dataModel.jobsSelected = x.selected;
                 }
                 if (self.objBlock) self.objBlock(x);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self.contentView addSubview:_btn];
+        self.contentView.addSubview(_btn);
         [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(12));
             make.centerX.equalTo(self.contentView);
             make.bottom.equalTo(self.contentView).offset(JobsWidth(-5));
         }];
     }
+    _btn.jobsResetBtnTitle(self.dataModel.title);
     _btn.selected = self.dataModel.jobsSelected;
     _btn.makeBtnTitleByShowingType(UILabelShowingType_03);
     return _btn;
