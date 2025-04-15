@@ -6,8 +6,13 @@
 //
 
 #import "JobsBaseTableViewCell.h"
-#import "UIButtonModel.h"
 #import "BaseButtonProtocol.h"
+#import "DefineProperty.h"
+#import "JobsBlock.h"
+#import "UIButton+UI.h"
+#import "UIButton+SimplyMake.h"
+#import "UIButtonModel.h"
+#import "UIViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 将一个按钮整个覆盖到TableViewCell上面，以实现图文混排

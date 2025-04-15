@@ -20,18 +20,6 @@ Prop_assign()CGFloat leftViewWidth;
 Prop_assign()CGFloat rightViewWidth;
 Prop_assign()CGFloat titleWidth;
 Prop_assign()CGFloat subTitleWidth;
-#pragma mark —— 对系统方法的补充
-Prop_copy(nullable)NSString *selected_title;
-Prop_copy(nullable)NSString *selected_subTitle;
-Prop_strong(nullable)UIFont *selected_titleFont;
-Prop_strong(nullable)UIFont *selected_subTitleFont;
-Prop_strong(nullable)NSAttributedString *selected_attributedSubtitle;
-Prop_strong(nullable)UIImage *selected_backgroundImage;
-Prop_strong(nullable)UIColor *selected_baseBackgroundColor;
-Prop_strong(nullable)UIColor *selected_titleCor;
-Prop_strong(nullable)UIColor *selected_subtitleCor;
-Prop_strong(nullable)UIColor *selected_layerBorderCor;/// 描边的颜色
-Prop_assign()CGFloat selected_borderWidth;/// 描边线的宽度
 #pragma mark —— 针对批量设置的UIButton的数据源
 /// 未选择状态的数据源
 Prop_strong(nullable)NSArray <NSString *>*normal_titles;// title
@@ -49,18 +37,18 @@ Prop_strong(nullable)NSArray <UIImage *>*normal_backgroundImages;// backgroundIm
 Prop_strong(nullable)NSArray <UIImage *>*normal_images;// jobsResetBtnImage
 Prop_strong(nullable)NSArray <NSNumber *>*imagePaddings;// imagePadding 图像与标题之间的间距
 /// 已选择状态的数据源
-Prop_strong(nullable)NSArray <NSString *>*selected_titles;// selected_title
-Prop_strong(nullable)NSArray <UIFont *>*selected_titleFonts;// selected_titleFont
-Prop_strong(nullable)NSArray <UIColor *>*selected_titleCors;// selected_titleCor
-Prop_strong(nullable)NSArray <NSAttributedString *>*selected_attributedTitles;// selected_attributedSubtitle
+Prop_strong(nullable)NSArray <NSString *>*selected_titles;// selectedTitle
+Prop_strong(nullable)NSArray <UIFont *>*selected_titleFonts;// selectedTitleFont
+Prop_strong(nullable)NSArray <UIColor *>*selected_titleCors;// selectedTitleCor
+Prop_strong(nullable)NSArray <NSAttributedString *>*selected_attributedTitles;// selectedAttributedSubTitle
 
-Prop_strong(nullable)NSArray <NSString *>*selected_subTitles;// selected_subTitle
-Prop_strong(nullable)NSArray <UIFont *>*selected_subTitleFonts;// selected_subTitleFont
-Prop_strong(nullable)NSArray <UIColor *>*selected_subTitleCors;// selected_subtitleCor
+Prop_strong(nullable)NSArray <NSString *>*selected_subTitles;// selectedSubTitle
+Prop_strong(nullable)NSArray <UIFont *>*selected_subTitleFonts;// selectedSubTitleFont
+Prop_strong(nullable)NSArray <UIColor *>*selected_subTitleCors;// selectedSubTitleCor
 Prop_strong(nullable)NSArray <NSAttributedString *>*selected_attributedSubtitles;// normal_attributedSubtitles
 
-Prop_strong(nullable)NSArray <UIColor *>*selected_baseBackgroundColors;// selected_baseBackgroundColor
-Prop_strong(nullable)NSArray <UIImage *>*selected_backgroundImages;// selected_backgroundImage
+Prop_strong(nullable)NSArray <UIColor *>*selected_baseBackgroundColors;// selectedBaseBackgroundColor
+Prop_strong(nullable)NSArray <UIImage *>*selected_backgroundImages;// highlightBackgroundImage
 Prop_strong(nullable)NSArray <UIImage *>*selected_Images;// highlightImage
 Prop_strong(nullable)NSArray <NSNumber *>*selected_imagePaddings;// imagePadding 图像与标题之间的间距
 #pragma mark —— 点击事件

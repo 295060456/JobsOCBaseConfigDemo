@@ -206,7 +206,7 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
         _backBtnModel = self.makeBackBtnModel;
         _backBtnModel.titleFont = bayonRegular(JobsWidth(18));
         _backBtnModel.titleCor = JobsRedColor;
-        _backBtnModel.selected_titleCor = JobsWhiteColor;
+        _backBtnModel.selectedTitleCor = JobsWhiteColor;
         _backBtnModel.longPressGestureEventBlock = ^id(__kindof UIButton *x) {
             JobsLog(@"按钮的长按事件触发");
             return nil;

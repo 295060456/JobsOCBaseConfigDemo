@@ -22,7 +22,7 @@ UICollectionViewDelegate
 >
 #pragma mark —— 一些公有方法
 -(JobsReturnCGFloatByArrBlock _Nonnull)getCollectionHeight;
--(void)reloadData;
+-(jobsByVoidBlock _Nonnull)reloadDatas;
 
 @end
 

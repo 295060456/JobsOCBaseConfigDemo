@@ -318,14 +318,14 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
         @jobs_strongify(self)
 //        data.backgroundImage = JobsIMG(@"返回");
-        data.selected_backgroundImage = JobsIMG(@"返回");
+        data.highlightBackgroundImage = JobsIMG(@"返回");
         data.highlightImage = JobsIMG(@"返回");
         data.normalImage = JobsIMG(@"返回");
         data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         data.title = self.viewModel.backBtnTitleModel.text;
         data.font = self.viewModel.backBtnTitleModel.font;
         data.titleCor = JobsBlackColor;
-        data.selected_titleCor = JobsBlackColor;
+        data.selectedTitleCor = JobsBlackColor;
         data.roundingCorners = UIRectCornerAllCorners;
         data.imagePlacement = NSDirectionalRectEdgeLeading;
         data.imagePadding = JobsWidth(5);

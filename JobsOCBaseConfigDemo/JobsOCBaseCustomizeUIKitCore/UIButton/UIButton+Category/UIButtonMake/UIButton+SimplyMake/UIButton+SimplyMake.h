@@ -76,6 +76,9 @@ Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 -(JobsReturnButtonByTimerManagerBlock _Nonnull)heartBeatBy;
 -(JobsReturnButtonByColorBlock _Nonnull)bgColorBy;
 -(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValueBy;
+#pragma mark —— 依据数据源进行按钮的统一重设
+-(jobsByViewModelAndBOOLBlock _Nonnull)resetByViewModel;
+-(jobsByButtonModelAndBOOLBlock _Nonnull)resetByButtonModel;
 
 @end
 

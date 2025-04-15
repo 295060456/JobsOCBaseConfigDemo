@@ -81,8 +81,12 @@ Prop_copy()NSMutableArray <GoodsClassModel *>*dataMutArr;
     };
 }
 
--(void)reloadData{
-    [self.collectionView reloadData];
+-(jobsByVoidBlock _Nonnull)reloadDatas{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        [self.collectionView reloadData];
+    };
 }
 #pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView

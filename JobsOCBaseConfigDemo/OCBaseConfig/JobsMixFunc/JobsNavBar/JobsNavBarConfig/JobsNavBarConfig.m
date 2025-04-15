@@ -44,10 +44,10 @@ static dispatch_once_t static_navBarConfigOnceToken;
         @jobs_weakify(self)
         _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
             data.backgroundImage = JobsIMG(@"关闭");
-            data.selected_backgroundImage = JobsIMG(@"关闭");
+            data.highlightBackgroundImage = JobsIMG(@"关闭");
             data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
             data.titleCor = JobsClearColor;
-            data.selected_titleCor = JobsClearColor;
+            data.selectedTitleCor = JobsClearColor;
             data.roundingCorners = UIRectCornerAllCorners;
             data.longPressGestureEventBlock = ^id(__kindof UIButton *x) {
                 JobsLog(@"按钮的长按事件触发");

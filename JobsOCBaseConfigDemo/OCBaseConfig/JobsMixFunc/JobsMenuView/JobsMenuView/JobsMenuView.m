@@ -91,7 +91,7 @@
             @jobs_strongify(self)
             data.normal_titles = self.titleMutArr;
             data.titleCor = JobsWhiteColor;
-            data.selected_titleCor = JobsClearColor;
+            data.selectedTitleCor = JobsClearColor;
             data.normal_backgroundImages = self.normal_titleBgImageMutArr;
             data.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
             data.normal_images = self.normal_titleImageMutArr;

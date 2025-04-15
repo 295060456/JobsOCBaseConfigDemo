@@ -116,7 +116,7 @@ AppToolsProtocol_synthesize
     if(!_closeBtnModel){
         _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             data.backgroundImage = JobsIMG(@"联系我们");
-    //        data.selected_backgroundImage = JobsIMG(@"联系我们");
+    //        data.highlightBackgroundImage = JobsIMG(@"联系我们");
     //        data.jobsResetBtnImage = JobsIMG(@"联系我们");
     //        data.highlightImage = JobsIMG(@"联系我们");
     //        data.imagePadding = JobsWidth(5);

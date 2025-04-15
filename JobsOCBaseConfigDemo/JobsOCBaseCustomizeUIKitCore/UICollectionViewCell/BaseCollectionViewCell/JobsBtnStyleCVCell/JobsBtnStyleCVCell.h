@@ -7,7 +7,11 @@
 
 #import "JobsBaseCollectionViewCell.h"
 #import "JobsBlock.h"
+#import "DefineProperty.h"
+#import "UIButtonModel.h"
+#import "UIViewModel.h"
 #import "UIButton+UI.h"
+#import "UIButton+SimplyMake.h"
 #import "UIButton+SDWebImage.h"
 #import "UIViewModelProtocol.h"
 #import "NSObject+CallBackInfoByBlock.h"
@@ -19,8 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 同 JobsBtnStyleTBVCell
 @interface JobsBtnStyleCVCell : JobsBaseCollectionViewCell
 
-@property(nonatomic,strong,readonly)BaseButton *btn;
-@property(nonatomic,strong,readonly)WKWebView *webView;
+Prop_strong(readonly)BaseButton *btn;
+Prop_strong(readonly)WKWebView *webView;
 
 @end
 

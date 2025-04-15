@@ -116,19 +116,19 @@ JobsToggleNavViewProtocolSynthesize
         /// 设置按钮为选中状态
         self.buttonsArray[0].selected = YES;
         /// 重设按钮纯文本标题
-        self.buttonsArray[0].jobsResetBtnTitle(Jobs3TO(self.buttonModels[0].selected_title,
+        self.buttonsArray[0].jobsResetBtnTitle(Jobs3TO(self.buttonModels[0].selectedTitle,
                                                        self.buttonModels[0].title));
         /// 重设按钮纯文本标题字体
-        self.buttonsArray[0].jobsResetTitleFont(Jobs3TO(self.buttonModels[0].selected_titleFont,
+        self.buttonsArray[0].jobsResetTitleFont(Jobs3TO(self.buttonModels[0].selectedTitleFont,
                                                         self.buttonModels[0].titleFont));
         /// 重设按钮纯文本标题文字颜色
-        self.buttonsArray[0].jobsResetBtnTitleCor(Jobs3TO(self.buttonModels[0].selected_titleCor,
+        self.buttonsArray[0].jobsResetBtnTitleCor(Jobs3TO(self.buttonModels[0].selectedTitleCor,
                                                           self.buttonModels[0].titleCor));
         /// 重设按钮图片
         self.buttonsArray[0].jobsResetBtnImage(Jobs3TO(self.buttonModels[0].highlightImage,
                                                        self.buttonModels[0].normalImage));
         /// 重设按钮背景图片
-        self.buttonsArray[0].jobsResetBtnBgImage(Jobs3TO(self.buttonModels[0].selected_backgroundImage,
+        self.buttonsArray[0].jobsResetBtnBgImage(Jobs3TO(self.buttonModels[0].highlightBackgroundImage,
                                                          self.buttonModels[0].backgroundImage));
     };
 }
@@ -182,19 +182,19 @@ JobsToggleNavViewProtocolSynthesize
     
         self.sliderView.resetCenterX(currentBtn.centerX);
         /// 重设按钮纯文本标题
-        currentBtn.jobsResetBtnTitle(Jobs3TO(self.buttonModels[index].selected_title,
+        currentBtn.jobsResetBtnTitle(Jobs3TO(self.buttonModels[index].selectedTitle,
                                              self.buttonModels[index].title));
         /// 重设按钮纯文本标题字体
-        currentBtn.jobsResetTitleFont(Jobs3TO(self.buttonModels[index].selected_titleFont,
+        currentBtn.jobsResetTitleFont(Jobs3TO(self.buttonModels[index].selectedTitleFont,
                                               self.buttonModels[index].titleFont));
         /// 重设按钮纯文本标题文字颜色
-        currentBtn.jobsResetBtnTitleCor(Jobs3TO(self.buttonModels[index].selected_titleCor,
+        currentBtn.jobsResetBtnTitleCor(Jobs3TO(self.buttonModels[index].selectedTitleCor,
                                                 self.buttonModels[index].titleCor));
         /// 重设按钮图片
         currentBtn.jobsResetBtnImage(Jobs3TO(self.buttonModels[index].highlightImage,
                                              self.buttonModels[index].normalImage));
         /// 重设按钮背景图片
-        currentBtn.jobsResetBtnBgImage(Jobs3TO(self.buttonModels[index].selected_backgroundImage,
+        currentBtn.jobsResetBtnBgImage(Jobs3TO(self.buttonModels[index].highlightBackgroundImage,
                                                self.buttonModels[index].backgroundImage));
     };
 }

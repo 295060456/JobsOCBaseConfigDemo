@@ -100,7 +100,7 @@
         d++;
     }
     
-    button.jobsResetBtnTitleCor(self.btnConfig.selected_titleCor);
+    button.jobsResetBtnTitleCor(self.btnConfig.selectedTitleCor);
     button.jobsResetBtnImage(nil);
     button.jobsResetBtnBgImage(self.btnConfig.selected_backgroundImages[button.tag - 1]);
     

@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_END
              @jobs_strongify(self)
              data.normal_titles = self.titleMutArr;
              data.titleCor = JobsClearColor;
-             data.selected_titleCor = JobsClearColor;
+             data.selectedTitleCor = JobsClearColor;
              data.normal_backgroundImages = self.normal_titleBgImageMutArr;
              data.selected_backgroundImages = self.select_titleBgImageMutArr;// TODO
              data.data = self.subViewMutArr;

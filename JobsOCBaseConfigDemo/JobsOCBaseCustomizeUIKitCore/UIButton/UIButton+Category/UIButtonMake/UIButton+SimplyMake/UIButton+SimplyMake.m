@@ -466,6 +466,60 @@
         return self;
     };
 }
+#pragma mark —— 依据数据源进行按钮的统一重设
+-(jobsByViewModelAndBOOLBlock _Nonnull)resetByViewModel{
+    @jobs_weakify(self)
+    return ^(__kindof UIViewModel *_Nonnull viewModel,BOOL selected){
+        @jobs_strongify(self)
+        /// 图（背景颜色）
+        self.jobsResetBtnBgCor(selected ? viewModel.bgSelectedCor : viewModel.bgCor);/// 更改：按钮背景色
+        self.jobsResetBtnBgImage(selected ? viewModel.highlightBackgroundImage : viewModel.backgroundImage);/// 更改：按钮背景图片
+        self.jobsResetBtnImage(selected ? viewModel.selectedImage_ : viewModel.image);/// 更改：按钮图片
+        /// 主标题
+        if(viewModel.attributedTitle){/// 主标题（富文本）
+            self.jobsResetBtnNormalAttributedTitle(selected ? viewModel.selectedAttributedSubTitle : viewModel.attributedTitle);
+        }else{/// 主标题（普通文本）
+            self.jobsResetBtnTitle(selected ? viewModel.textModel.selectedText : viewModel.textModel.text);
+            self.jobsResetBtnTitleCor(selected ? viewModel.textModel.selectedTextCor : viewModel.textModel.textCor);
+            self.jobsResetBtnTitleFont(selected ? viewModel.textModel.selectedFont : viewModel.textModel.font);
+        }
+        /// 副标题
+        if(viewModel.attributedSubTitle){/// 副标题（富文本）
+            self.jobsResetBtnNormalAttributedTitle(selected ? viewModel.selectedAttributedSubTitle : viewModel.attributedSubTitle);
+        }else{/// 副标题（普通文本）
+            self.jobsResetBtnSubTitle(selected ? viewModel.subTextModel.selectedSubText : viewModel.subTextModel.subText);
+            self.jobsResetBtnSubTitleCor(selected ? viewModel.subTextModel.selectedSubTextCor : viewModel.subTextModel.subTextCor);
+            self.jobsResetBtnSubTitleFont(selected ? viewModel.subTextModel.selectedSubFont : viewModel.subTextModel.subFont);
+        }
+    };
+}
+
+-(jobsByButtonModelAndBOOLBlock _Nonnull)resetByButtonModel{
+    @jobs_weakify(self)
+    return ^(__kindof UIButtonModel *_Nonnull buttonModel,BOOL selected){
+        @jobs_strongify(self)
+        /// 图（背景颜色）
+        self.jobsResetBtnBgCor(selected ? buttonModel.baseBackgroundColor : buttonModel.baseBackgroundColor);/// 更改：按钮背景色
+        self.jobsResetBtnBgImage(selected ? buttonModel.highlightBackgroundImage : buttonModel.backgroundImage);/// 更改：按钮背景图片
+        self.jobsResetBtnImage(selected ? buttonModel.highlightImage : buttonModel.normalImage);/// 更改：按钮图片
+        /// 主标题
+        if(buttonModel.attributedTitle){/// 主标题（富文本）
+            self.jobsResetBtnNormalAttributedTitle(selected ? buttonModel.selectedAttributedSubTitle : buttonModel.attributedTitle);
+        }else{/// 主标题（普通文本）
+            self.jobsResetBtnTitle(selected ? buttonModel.selectedTitle : buttonModel.title);
+            self.jobsResetBtnTitleCor(selected ? buttonModel.selectedTitleCor : buttonModel.titleCor);
+            self.jobsResetBtnTitleFont(selected ? buttonModel.selectedTitleFont : buttonModel.titleFont);
+        }
+        /// 副标题
+        if(buttonModel.attributedSubTitle){/// 副标题（富文本）
+            self.jobsResetBtnNormalAttributedTitle(selected ? buttonModel.selectedAttributedSubTitle : buttonModel.attributedSubTitle);
+        }else{/// 副标题（普通文本）
+            self.jobsResetBtnSubTitle(selected ? buttonModel.selectedSubTitle : buttonModel.subTitle);
+            self.jobsResetBtnSubTitleCor(selected ? buttonModel.selectedSubTitleCor : buttonModel.subTitleCor);
+            self.jobsResetBtnSubTitleFont(selected ? buttonModel.selectedSubTitleFont : buttonModel.subTitleFont);
+        }
+    };
+}
 #pragma mark —— @property(nonatomic,copy)jobsByBtnBlock clickBlock;
 JobsKey(_clickBlock)
 @dynamic clickBlock;
