@@ -29,6 +29,12 @@ typedef void(^jobsByTableHeaderView1Block)(__kindof FMTableHeaderView1 *_Nullabl
 @class ThreeClassCell;
 typedef void(^jobsByThreeClassCellBlock)(__kindof ThreeClassCell *_Nullable cell);
 
+@class GoodsClassModel;
+typedef void(^jobsByGoodsClassModelBlock)(GoodsClassModel *_Nullable model);
+typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByIntBlock)(int data);
+typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByInt2Block)(NSUInteger data1,int data2);
+typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByIntStringBlock)(int data1,NSString *_Nullable data2);
+
 @class FMBannerAdsModel;
 @class WMZBannerParam;
 @class JobsBtnStyleCVCell;

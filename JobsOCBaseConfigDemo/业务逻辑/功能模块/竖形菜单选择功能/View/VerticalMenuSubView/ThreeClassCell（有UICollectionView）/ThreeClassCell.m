@@ -10,17 +10,17 @@
 @interface ThreeClassCell()
 /// UI
 /// Data
-@property(nonatomic,assign)CGFloat sectionInsetTop;
-@property(nonatomic,assign)CGFloat sectionInsetLeft;
-@property(nonatomic,assign)CGFloat sectionInsetBottom;
-@property(nonatomic,assign)CGFloat sectionInsetRight;
-@property(nonatomic,assign)CGFloat minimumLineSpacing;/// 上下行间距
-@property(nonatomic,assign)CGFloat minimumInteritemSpacing;/// 左右列间距
-@property(nonatomic,copy)NSMutableArray *dataArray;/// 总共有多少个cell
-@property(nonatomic,assign)CGFloat itemHeight;/// 一个cell 的高度
-@property(nonatomic,assign)NSInteger columns;/// 一行有多少列
-@property(nonatomic,assign)NSInteger rowCount;/// 一共有都是行
-@property(nonatomic,copy)NSMutableArray <GoodsClassModel *>*dataMutArr;
+Prop_assign()CGFloat sectionInsetTop;
+Prop_assign()CGFloat sectionInsetLeft;
+Prop_assign()CGFloat sectionInsetBottom;
+Prop_assign()CGFloat sectionInsetRight;
+Prop_assign()CGFloat minimumLineSpacing;/// 上下行间距
+Prop_assign()CGFloat minimumInteritemSpacing;/// 左右列间距
+Prop_copy()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个cell
+Prop_assign()CGFloat itemHeight;/// 一个cell 的高度
+Prop_assign()NSInteger columns;/// 一行有多少列
+Prop_assign()NSInteger rowCount;/// 一共有都是行
+Prop_copy()NSMutableArray <GoodsClassModel *>*dataMutArr;
 
 @end
 
@@ -70,7 +70,7 @@
 #pragma mark —— 一些公有方法
 -(JobsReturnCGFloatByArrBlock _Nonnull)getCollectionHeight{
     @jobs_weakify(self)
-    return ^CGFloat(NSMutableArray *_Nullable data){
+    return ^CGFloat(NSMutableArray <GoodsClassModel *>*_Nullable data){
         @jobs_strongify(self)
         self.dataArray = data;
         NSInteger a = self.dataArray.count % self.columns;
@@ -100,7 +100,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.objBlock) self.objBlock([self.dataArray objectAtIndex:indexPath.row]);
+    if (self.objBlock) self.objBlock(self.dataArray.objectAt(indexPath.row));
 
 }
 #pragma mark —— lazyLoad

@@ -107,7 +107,9 @@ Prop_assign()NSUInteger thisIndex;
 }
 
 -(jobsByNSUIntegerBlock _Nonnull)actionBy{
+    @jobs_weakify(self)
     return ^(NSUInteger index){
+        @jobs_strongify(self)
         self.thisIndex = index;
         self.getGoodsClassByPid(self.rightViewCurrentSelectModel.idField,index);
         if (self.rightDataArray.count) self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(index);
@@ -117,19 +119,22 @@ Prop_assign()NSUInteger thisIndex;
 }
 
 -(jobsByVoidBlock _Nonnull)refreshLeftView{
+    @jobs_weakify(self)
     return ^(){
+        @jobs_strongify(self)
         [self.tableView reloadData];
         if (self.leftDataArray.count){
             @jobs_weakify(self)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)),
                            dispatch_get_main_queue(), ^{
                 @jobs_strongify(self)
-                [self.tableView selectRowAtIndexPath:jobsMakeIndexPathZero()
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                [self.tableView selectRowAtIndexPath:indexPath
                                             animated:NO
                                       scrollPosition:UITableViewScrollPositionNone];
                 if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]){
                     [self.tableView.delegate tableView:self.tableView
-                               didSelectRowAtIndexPath:jobsMakeIndexPathZero()];
+                               didSelectRowAtIndexPath:indexPath];
                 }
             });
         }
@@ -206,19 +211,21 @@ Prop_assign()NSUInteger thisIndex;
                 @jobs_strongify(self)
                 /// 每个section里面的item数量
                 for (int i = 0; i < 9; i++){
-                    arr.add(self.createThreeModel(i));
+                    arr.add(self.createThreeModel(i,model.title));
                 }
             });JobsLog(@"LKL = %ld",model.childrenList.count);
         });
     };
 }
 
--(JobsReturnGoodsClassModelByIntBlock _Nonnull)createThreeModel{
-    return ^__kindof GoodsClassModel *_Nullable(int iflag){
+-(JobsReturnGoodsClassModelByIntStringBlock _Nonnull)createThreeModel{
+    return ^__kindof GoodsClassModel *_Nullable(int iflag,NSString *_Nullable string){
         return jobsMakeGoodsClassModel(^(GoodsClassModel * _Nullable model) {
             model.idField = toStringByInt(iflag);
             model.pid = toStringByInt(iflag);
-            model.name = JobsInternationalization(@"三级目录").add(toStringByInt(iflag));
+            model.name = string.add(JobsDot)
+                .add(JobsInternationalization(@"三级目录")).add(JobsDot)
+                .add(toStringByInt(iflag));
         });
     };
 }
@@ -246,7 +253,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     self.actionBy(indexPath.row);
 }
-#pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource ThreeTopBannerCell
+#pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource
 -(__kindof UICollectionViewCell *)collectionView:(__kindof UICollectionView *)collectionView
                           cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ThreeClassCell *cell = [ThreeClassCell cellWithCollectionView:collectionView forIndexPath:indexPath];
@@ -257,8 +264,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    @jobs_weakify(self)
     [cell actionObjBlock:^(GoodsClassModel *model) {
 //        @jobs_strongify(self)
-        JobsLog(@"pid : %@", model.idField);
-        JobsLog(@"选中id : %@", model.idField);
+        toast(model.name);
+        JobsLog(@"选中的id : %@", model.idField);
     }];return cell;
 }
 
@@ -350,7 +357,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                                            self.tableView.top,
                                            JobsMainScreen_WIDTH() - self.tableView.width,
                                            JobsWidth(300));
-        _collectionView.backgroundColor = JobsRandomColor;// ThreeClassCellBgCor;
+        _collectionView.backgroundColor = ThreeClassCellBgCor;
         _collectionView.alwaysBounceVertical = YES;
         _collectionView.registerCollectionViewClass();
 //        collectionView.registerCollectionViewCellClass(ThreeClassCell.class);
@@ -411,22 +418,22 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(NSMutableArray<NSString *> *)cellTitleMutArr{
     if(!_cellTitleMutArr){
         _cellTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
-            arr.add(@"BTG");
-            arr.add(@"SA");
-            arr.add(@"RTG");
-            arr.add(@"RedTiger");
-            arr.add(@"PP");
-            arr.add(@"PG");
-            arr.add(@"NLC");
-            arr.add(@"NE");
-            arr.add(@"KA");
-            arr.add(@"JILI");
-            arr.add(@"JDB");
-            arr.add(@"FP");
-            arr.add(@"FC");
-            arr.add(@"Ezugi");
-            arr.add(@"EVO");
-            arr.add(@"CQ9");
+            arr.add(@"BTG")
+                .add(@"SA")
+                .add(@"RTG")
+                .add(@"RedTiger")
+                .add(@"PP")
+                .add(@"PG")
+                .add(@"NLC")
+                .add(@"NE")
+                .add(@"KA")
+                .add(@"JILI")
+                .add(@"JDB")
+                .add(@"FP")
+                .add(@"FC")
+                .add(@"Ezugi")
+                .add(@"EVO")
+                .add(@"CQ9");
         });
     }return _cellTitleMutArr;
 }
