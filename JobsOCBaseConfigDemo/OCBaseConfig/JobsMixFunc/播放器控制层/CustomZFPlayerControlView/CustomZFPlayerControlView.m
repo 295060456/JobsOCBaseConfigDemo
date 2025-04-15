@@ -31,7 +31,7 @@
            panLocation:(ZFPanLocation)location{
     JobsLog(@"");
 //    //UITableViewCell自动滚动到顶部
-//    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+//    [tableView scrollToRowAtIndexPath:jobsMakeIndexPathZero()
 //                     atScrollPosition:UITableViewScrollPositionTop
 //                             animated:YES];
 

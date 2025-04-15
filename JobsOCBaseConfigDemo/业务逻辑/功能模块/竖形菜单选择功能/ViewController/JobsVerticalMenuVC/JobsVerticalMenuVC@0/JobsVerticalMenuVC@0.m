@@ -143,7 +143,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)),
                            dispatch_get_main_queue(), ^{
                 @jobs_strongify(self)
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                NSIndexPath *indexPath = jobsMakeIndexPathZero();
                 [self.tableView selectRowAtIndexPath:indexPath
                                             animated:NO
                                       scrollPosition:UITableViewScrollPositionNone];

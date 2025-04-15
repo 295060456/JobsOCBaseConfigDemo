@@ -375,7 +375,7 @@ NS_INLINE NSIndexPath *_Nonnull jobsMakeIndexPathByLocationModelBlock(jobsByLoca
     return [NSIndexPath indexPathForRow:data.row inSection:data.section];
 }
 
-NS_INLINE NSIndexPath *_Nonnull jobsMakeIndexPathZero(){
+NS_INLINE NSIndexPath *_Nonnull jobsMakeIndexPathZero(void){
     return [NSIndexPath indexPathForRow:0 inSection:0];
 }
 #pragma mark —— UIEdgeInsets

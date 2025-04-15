@@ -90,7 +90,7 @@ BOOL ISLogin;
                                       atScrollPosition:UITableViewScrollPositionBottom
                                               animated:YES];/// 滚动到最后一行
             }else{
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];/// 取第一行数据
+                NSIndexPath *indexPath = jobsMakeIndexPathZero();/// 取第一行数据
                 [self.tableView scrollToRowAtIndexPath:indexPath
                                       atScrollPosition:UITableViewScrollPositionTop
                                               animated:YES];/// 滚动到第一行

@@ -128,13 +128,12 @@ Prop_assign()NSUInteger thisIndex;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)),
                            dispatch_get_main_queue(), ^{
                 @jobs_strongify(self)
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-                [self.tableView selectRowAtIndexPath:indexPath
+                [self.tableView selectRowAtIndexPath:jobsMakeIndexPathZero()
                                             animated:NO
                                       scrollPosition:UITableViewScrollPositionNone];
                 if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]){
                     [self.tableView.delegate tableView:self.tableView
-                               didSelectRowAtIndexPath:indexPath];
+                               didSelectRowAtIndexPath:jobsMakeIndexPathZero()];
                 }
             });
         }
@@ -384,22 +383,22 @@ referenceSizeForFooterInSection:(NSInteger)section{
         @jobs_weakify(self)
         _leftCellDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>* _Nullable arr) {
             @jobs_strongify(self)
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[0]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[1]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[2]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[3]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[4]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[5]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[6]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[7]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[8]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[9]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[10]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[11]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[12]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[13]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[14]));
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[15]));
+            arr.add(self.makeLeftCellData(self.cellTitleMutArr[0]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[1]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[2]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[3]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[4]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[5]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[6]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[7]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[8]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[9]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[10]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[11]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[12]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[13]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[14]))
+            .add(self.makeLeftCellData(self.cellTitleMutArr[15]));
         });
     }return _leftCellDataMutArr;
 }
