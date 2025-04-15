@@ -72,6 +72,12 @@
 #import "FSCalendar.h"
 #endif
 
+#if __has_include(<JXCategoryView/JXCategoryView.h>)
+#import <JXCategoryView/JXCategoryView.h>
+#else
+#import "JXCategoryView.h"
+#endif
+
 #import "AFSecurityPolicy+Extra.h"
 #import "IQKeyboardManager+Extra.h"
 #import "Reachability+Extra.h"
@@ -82,6 +88,7 @@
 #import "HTMLDocument+Extra.h"
 #import "SRWebSocket+Extra.h"
 #import "FSCalendar+Extra.h"
+#import "JXCategoryView.h"
 
 #endif /* JobsOCBaseCustomize3rdCore_h */
 

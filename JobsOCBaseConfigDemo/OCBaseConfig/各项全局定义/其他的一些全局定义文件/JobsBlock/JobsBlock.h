@@ -459,6 +459,19 @@ typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullabl
 @class ZFIJKPlayerManager;
 typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nullable data);
 
+@class JXCategoryTitleView;
+@class JXCategoryImageView;
+@class JXCategoryDotView;
+@class JXCategoryNumberView;
+@class JXCategoryIndicatorBackgroundView;
+@class JXCategoryIndicatorLineView;
+typedef void(^jobsByCategoryTitleViewBlock)(JXCategoryTitleView *_Nullable view);
+typedef void(^jobsByCategoryImageViewBlock)(JXCategoryImageView *_Nullable view);
+typedef void(^jobsByCategoryDotViewBlock)(JXCategoryDotView *_Nullable view);
+typedef void(^jobsByCategoryNumberViewBlock)(JXCategoryNumberView *_Nullable view);
+typedef void(^jobsByCategoryIndicatorBackgroundViewBlock)(JXCategoryIndicatorBackgroundView *_Nullable view);
+typedef void(^jobsCategoryIndicatorLineViewBlock)(JXCategoryIndicatorLineView *_Nullable view);
+
 #import "JobsBizBlock.h" /// 关于业务（不与JobsOCBaseConfigDemo同步）
 
 #endif /* JobsBlock_h */

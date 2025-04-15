@@ -64,6 +64,7 @@
 		8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A59E2CDB73C30030409A /* NSObject+RACTimer.m */; };
 		8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8464A5A22CDB74D20030409A /* FMDoorModel.m */; };
 		846559EF2DAD5B4F00D00A30 /* FMHomeMainBizSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 846559EE2DAD5B4F00D00A30 /* FMHomeMainBizSubView.m */; };
+		84656A1D2DAEBCEA00D00A30 /* JXCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84656A1B2DAEBCEA00D00A30 /* JXCategoryView.m */; };
 		846C4D262DA624D00074D1CB /* JobsNavBarWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C4D242DA624D00074D1CB /* JobsNavBarWebVC.m */; };
 		846C6B2E2DA905C20074D1CB /* JobsRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 846C6B2C2DA905C20074D1CB /* JobsRightMenuView.m */; };
 		8474A3B32CF866B100112B4B /* UILabel+Scroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 8474A3B12CF866B100112B4B /* UILabel+Scroll.m */; };
@@ -1402,6 +1403,8 @@
 		8464A5A22CDB74D20030409A /* FMDoorModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDoorModel.m; sourceTree = "<group>"; };
 		846559ED2DAD5B4F00D00A30 /* FMHomeMainBizSubView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMHomeMainBizSubView.h; sourceTree = "<group>"; };
 		846559EE2DAD5B4F00D00A30 /* FMHomeMainBizSubView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMHomeMainBizSubView.m; sourceTree = "<group>"; };
+		84656A1A2DAEBCEA00D00A30 /* JXCategoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JXCategoryView.h; sourceTree = "<group>"; };
+		84656A1B2DAEBCEA00D00A30 /* JXCategoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JXCategoryView.m; sourceTree = "<group>"; };
 		846C4D232DA624D00074D1CB /* JobsNavBarWebVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNavBarWebVC.h; sourceTree = "<group>"; };
 		846C4D242DA624D00074D1CB /* JobsNavBarWebVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsNavBarWebVC.m; sourceTree = "<group>"; };
 		846C6B2B2DA905C20074D1CB /* JobsRightMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsRightMenuView.h; sourceTree = "<group>"; };
@@ -3991,6 +3994,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				84656A1C2DAEBCEA00D00A30 /* JXCategoryView */,
 				8432B8CF2D2049D200ADE9FF /* FSCalendar */,
 				8432B6252D1DAE6A00ADE9FF /* HXPhotoView */,
 				84B9C3322D16C32F002FE9F5 /* SRWebSocket */,
@@ -4426,6 +4430,15 @@
 				846559EE2DAD5B4F00D00A30 /* FMHomeMainBizSubView.m */,
 			);
 			path = "FMHomeMainBizSubView（可独立使用）";
+			sourceTree = "<group>";
+		};
+		84656A1C2DAEBCEA00D00A30 /* JXCategoryView */ = {
+			isa = PBXGroup;
+			children = (
+				84656A1A2DAEBCEA00D00A30 /* JXCategoryView.h */,
+				84656A1B2DAEBCEA00D00A30 /* JXCategoryView.m */,
+			);
+			path = JXCategoryView;
 			sourceTree = "<group>";
 		};
 		846C4D252DA624D00074D1CB /* JobsNavBarWebVC */ = {
@@ -16965,6 +16978,7 @@
 				CE5A657F2CA832AD006D67A7 /* UIViewController+Lottie.m in Sources */,
 				CE4F278E2CA825CD002AF25B /* CustomBtnVC.m in Sources */,
 				CE4F278F2CA825CD002AF25B /* CutomView.m in Sources */,
+				84656A1D2DAEBCEA00D00A30 /* JXCategoryView.m in Sources */,
 				CE4F27902CA825CD002AF25B /* MainTableViewCellItem.m in Sources */,
 				84B8A9542D0ACE220079336D /* UIEditMenuInteraction+Extra.m in Sources */,
 				CE4F27912CA825CD002AF25B /* BaiShaETProjCollectionHeaderView.m in Sources */,
