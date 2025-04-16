@@ -259,7 +259,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(indexPath.section);
     cell.getCollectionHeight(self.rightViewCurrentSelectModel.childrenList);
     cell.jobsRichElementsCellBy(self.rightDataArray);// GoodsClassModel
-    [cell reloadData];
+    cell.reloadDatas();
 //    @jobs_weakify(self)
     [cell actionObjBlock:^(GoodsClassModel *model) {
 //        @jobs_strongify(self)
