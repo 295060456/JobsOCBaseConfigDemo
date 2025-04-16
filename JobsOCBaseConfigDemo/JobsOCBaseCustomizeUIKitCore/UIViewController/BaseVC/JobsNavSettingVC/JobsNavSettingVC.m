@@ -109,13 +109,31 @@
         }else{
             self.setGKNav(nil);
             self.setGKNavBackBtn(nil);
-            self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
+            if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
             self.gk_navRightBarButtonItems = self.rightBarButtonItems;
             self.gk_navigationBar.hidden = !data;
             self.gk_navigationBar.alpha = data;
         }
     };
 }
-#pragma mark —— lazyLoad
+
+-(jobsByNavBarConfigBlock _Nonnull)makeNavByConfig{
+    @jobs_weakify(self)
+    return ^(__kindof JobsNavBarConfig *_Nullable config){
+        @jobs_strongify(self)
+        if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+            self.makeNavBarConfig(nil,nil);
+            self.navBar.hidden = !config.alpha;
+            self.navBar.alpha = config.alpha;
+        }else{
+            self.setGKNav(config.viewModel);
+            self.setGKNavBackBtnBy(config.backBtn);
+            if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
+            self.gk_navRightBarButtonItems = self.rightBarButtonItems;
+            self.gk_navigationBar.hidden = !config.alpha;
+            self.gk_navigationBar.alpha = config.alpha;
+        }
+    };
+}
 
 @end

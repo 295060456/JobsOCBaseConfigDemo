@@ -38,6 +38,15 @@ typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByTypeBlock)(TimeZoneType timeZ
 typedef id _Nullable(^JobsReturnIDByAppLanguageBlock)(AppLanguage data);
 typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType componentType,
                                                                  __kindof UIView *_Nullable data);
+@class JobsTabBarVC;
+typedef void(^jobsByTabBarVCBlock)(__kindof JobsTabBarVC *_Nullable tabBarVC);
+
+@class JobsCustomTabBarVC;
+typedef void(^jobsByCustomTabBarVCBlock)(__kindof JobsCustomTabBarVC *_Nullable tabBarVC);
+
+@class JobsCustomTabBarConfig;
+typedef void(^jobsByCustomTabBarConfigBlock)(__kindof JobsCustomTabBarConfig *_Nullable tabBarConfig);
+
 @class MGSwipeButtonModel;
 typedef void(^jobsByMGSwipeButtonModelBlock)(__kindof MGSwipeButtonModel *_Nullable model);
 

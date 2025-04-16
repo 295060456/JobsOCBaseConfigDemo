@@ -9,22 +9,26 @@
 #import "UIButtonModel.h"
 #import "BaseProtocol.h"
 #import "JobsBlock.h"
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 extern JobsNavBarConfig *static_navBarConfig;
 @interface JobsNavBarConfig : NSObject<BaseProtocol>
 #pragma mark —— 对Bar的配置
-@property(nonatomic,strong,null_resettable)UIColor *bgCor;
-@property(nonatomic,strong)UIImage *bgImage;/// 无默认值，优先级 bgImage > bgCor
+Prop_assign()CGFloat alpha;
+Prop_strong(null_resettable)UIColor *bgCor;
+Prop_strong()UIImage *bgImage;/// 无默认值，优先级 bgImage > bgCor
+Prop_strong(null_resettable)UIViewModel *viewModel;
 #pragma mark —— backBtn 的配置
-@property(nonatomic,strong,null_resettable)UIButtonModel *backBtnModel;
+Prop_strong(null_resettable)UIButtonModel *backBtnModel;
+Prop_strong()__kindof UIButton *backBtn;
 #pragma mark —— 对标题的设置
-@property(nonatomic,copy)NSAttributedString *attributedTitle;
-@property(nonatomic,copy,null_resettable)NSString *title;
-@property(nonatomic,strong,null_resettable)UIFont *font;
-@property(nonatomic,strong,null_resettable)UIColor *titleCor;
+Prop_copy()NSAttributedString *attributedTitle;
+Prop_copy(null_resettable)NSString *title;
+Prop_strong(null_resettable)UIFont *font;
+Prop_strong(null_resettable)UIColor *titleCor;
 #pragma mark —— closeBtn 的配置
-@property(nonatomic,strong,null_resettable)UIButtonModel *closeBtnModel;
+Prop_strong(null_resettable)UIButtonModel *closeBtnModel;
 
 @end
 

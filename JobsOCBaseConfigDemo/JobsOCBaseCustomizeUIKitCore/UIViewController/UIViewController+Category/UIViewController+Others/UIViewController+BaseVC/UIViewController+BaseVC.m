@@ -45,16 +45,24 @@
         [self hideNavLine];
     };
 }
-/// 配置GKNavigationBar的返回按钮
+/// 配置GKNavigationBar的返回按钮（从上个页面推过来才有返回键）
 -(jobsByBtnBlock _Nonnull)setGKNavBackBtn{
     @jobs_weakify(self)
     return ^(__kindof UIButton *_Nullable btn) {
         @jobs_strongify(self)
-        if (self.navigationController.viewControllers.count - 1) {//从上个页面推过来才有返回键，直接的个人中心是没有的
-            self.gk_backImage = JobsIMG(@"全局返回箭头");/// 设置返回按钮图片（优先级高于gk_backStyle）
-            self.gk_backStyle = GKNavigationBarBackStyleBlack;
-            self.gk_navLeftBarButtonItem = UIBarButtonItem.initBy(btn ? : self.backBtnCategory);
+        if (self.navigationController.viewControllers.count - 1) {/// 从上个页面推过来才有返回键
+            self.setGKNavBackBtnBy(btn);
         }
+    };
+}
+/// 配置GKNavigationBar的返回按钮
+-(jobsByBtnBlock _Nonnull)setGKNavBackBtnBy{
+    @jobs_weakify(self)
+    return ^(__kindof UIButton *_Nullable btn) {
+        @jobs_strongify(self)
+        self.gk_backImage = JobsIMG(@"全局返回箭头");/// 设置返回按钮图片（优先级高于gk_backStyle）
+        self.gk_backStyle = GKNavigationBarBackStyleBlack;
+        self.gk_navLeftBarButtonItem = UIBarButtonItem.initBy(btn ? : self.backBtnCategory);
     };
 }
 /// 铺满全屏展示的策略
