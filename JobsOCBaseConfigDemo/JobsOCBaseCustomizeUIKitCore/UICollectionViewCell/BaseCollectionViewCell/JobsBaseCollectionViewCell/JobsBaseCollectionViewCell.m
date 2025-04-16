@@ -8,9 +8,6 @@
 #import "JobsBaseCollectionViewCell.h"
 
 @interface JobsBaseCollectionViewCell ()
-/// UI
-@property(nonatomic,strong)UILabel *label;
-@property(nonatomic,strong)BaseButton *bgBtn;
 
 @end
 
