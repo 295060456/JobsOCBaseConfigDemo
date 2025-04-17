@@ -123,6 +123,32 @@ run_pod_install() {
         _JobsPrint_Red "没找到 Podfile 文件，pod install 操作自动终止"
     fi
 }
+# 将 .xcworkspace 文件快捷方式创建到桌面
+create_xcworkspace_shortcut_to_desktop() {
+    local desktop_path=~/Desktop
+    local found_any=false
+
+    for workspace in "$CURRENT_DIRECTORY"/*.xcworkspace; do
+        if [ -e "$workspace" ]; then
+            local basename=$(basename "$workspace")
+            local link_path="$desktop_path/$basename"
+
+            # 如果桌面上已经存在同名链接或文件，先删除
+            if [ -L "$link_path" ] || [ -e "$link_path" ]; then
+                _JobsPrint_Red "桌面已存在 $basename，将被覆盖..."
+                rm -rf "$link_path"
+            fi
+
+            ln -s "$workspace" "$link_path"
+            _JobsPrint_Green "已创建快捷方式：$basename → 桌面"
+            found_any=true
+        fi
+    done
+
+    if [ "$found_any" = false ]; then
+        _JobsPrint_Red "未找到任何 .xcworkspace 文件，未创建快捷方式。"
+    fi
+}
 # 主流程
 main() {
     jobs_logo # 打印 "Jobs" logo
@@ -131,6 +157,7 @@ main() {
     install_or_upgrade_jq # HomeBrew 安装或升级 jq
     check_and_set_mirror # 检查和设置镜像
     run_pod_install # 运行 pod install
+    create_xcworkspace_shortcut_to_desktop # 将 .xcworkspace 文件快捷方式创建到桌面
 }
 # 调用主函数
 main
