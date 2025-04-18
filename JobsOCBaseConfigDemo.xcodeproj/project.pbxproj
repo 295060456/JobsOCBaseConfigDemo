@@ -176,6 +176,7 @@
 		84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */; };
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
 		C5D4AB922DB24601006ED3F6 /* UIViewController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */; };
+		C5D4ADAE2DB25D74006ED3F6 /* ZFPlayerExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
 		CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3E2CAE671C00233F0F /* NSString+Replace.m */; };
 		CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F412CAE671C00233F0F /* NSString+Statistics.m */; };
@@ -1632,6 +1633,8 @@
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		C5D4AB8F2DB24601006ED3F6 /* UIViewController+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extra.h"; sourceTree = "<group>"; };
 		C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extra.m"; sourceTree = "<group>"; };
+		C5D4ADAB2DB25D74006ED3F6 /* ZFPlayerExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPlayerExtras.h; sourceTree = "<group>"; };
+		C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerExtras.m; sourceTree = "<group>"; };
 		CE260F282CAE671C00233F0F /* NSString+Time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Time.h"; sourceTree = "<group>"; };
 		CE260F292CAE671C00233F0F /* NSString+Time.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Time.m"; sourceTree = "<group>"; };
 		CE260F2B2CAE671C00233F0F /* NSString+Conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Conversion.h"; sourceTree = "<group>"; };
@@ -3997,6 +4000,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				C5D4ADAD2DB25D74006ED3F6 /* ZFPlayer */,
 				84656A1C2DAEBCEA00D00A30 /* JXCategoryView */,
 				8432B8CF2D2049D200ADE9FF /* FSCalendar */,
 				8432B6252D1DAE6A00ADE9FF /* HXPhotoView */,
@@ -5547,6 +5551,15 @@
 				C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */,
 			);
 			path = "UIViewController+Extra";
+			sourceTree = "<group>";
+		};
+		C5D4ADAD2DB25D74006ED3F6 /* ZFPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				C5D4ADAB2DB25D74006ED3F6 /* ZFPlayerExtras.h */,
+				C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */,
+			);
+			path = ZFPlayer;
 			sourceTree = "<group>";
 		};
 		CE260F2A2CAE671C00233F0F /* NSString+Time */ = {
@@ -17106,6 +17119,7 @@
 				CE4F27BC2CA825CD002AF25B /* ZMJHeaderCell.m in Sources */,
 				CE4F27BD2CA825CD002AF25B /* ZMJTimeableVC.m in Sources */,
 				CE5A65762CA8329D006D67A7 /* UIViewController+BackBtn.m in Sources */,
+				C5D4ADAE2DB25D74006ED3F6 /* ZFPlayerExtras.m in Sources */,
 				CE5A65772CA8329D006D67A7 /* UIViewController+BaseNavigationBar.m in Sources */,
 				CE5A65782CA8329D006D67A7 /* UIViewController+EmptyData.m in Sources */,
 				CE5A65792CA8329D006D67A7 /* UIViewController+BaseVC.m in Sources */,

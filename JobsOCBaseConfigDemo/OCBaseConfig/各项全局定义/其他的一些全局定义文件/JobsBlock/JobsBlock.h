@@ -39,6 +39,16 @@ typedef id _Nullable(^JobsReturnIDByAppLanguageBlock)(AppLanguage data);
 typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType componentType,
                                                                  __kindof UIView *_Nullable data);
 
+@class ZFAVPlayerManager;
+@class ZFDouYinControlView;
+@class ZFCustomControlView;
+typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullable label);
+typedef void(^jobsByZFDouYinControlViewBlock)(__kindof ZFDouYinControlView *_Nullable label);
+typedef void(^jobsByZFCustomControlViewBlock)(__kindof ZFCustomControlView *_Nullable label);
+
+@class JobsBitsMonitorSuspendLab;
+typedef void(^jobsByBitsMonitorSuspendLabBlock)(__kindof JobsBitsMonitorSuspendLab *_Nullable label);
+
 @class BaseView;
 typedef void(^jobsByBaseViewBlock)(__kindof BaseView *_Nullable view);
 
@@ -99,6 +109,11 @@ typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByAlertM
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTextModelBlock)(UITextModel *_Nullable data);
 typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
+
+@class MSCommentDetailModel;
+@class MSCommentModel;
+typedef void(^jobsByCommentDetailModelBlock)(MSCommentDetailModel *_Nullable data);
+typedef void(^jobsByCommentModelBlock)(MSCommentModel *_Nullable data);
 
 @class RACModel;
 typedef void(^jobsByRACModelBlock)(RACModel *_Nullable data);

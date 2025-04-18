@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "JobsBlock.h"
 #import "DefineConstString.h" /// 常量字符串的定义
+#import "DefineProperty.h"
 
 #pragma mark —— ZFPlayer 播放器相关
 /// Core
@@ -109,28 +110,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (ZFPlayer)
 /// 友情提醒，注意代码规范，先配置后播放，否则可能出现各种错
-@property(nonatomic,strong,nullable)ZFPlayerController *playerCtr;
-@property(nonatomic,strong,nullable)ZFAVPlayerManager *avPlayerManager;//默认不支持FLV流视频格式的
-@property(nonatomic,strong,nullable)ZFIJKPlayerManager *ijkPlayerManager;//ZFPlayer的作者告诉我：如果要兼容FLV流视频格式请用这个
-@property(nonatomic,strong,nullable)CustomZFPlayerControlView *customPlayerControlView;
+Prop_strong(nullable)ZFPlayerController *playerCtr;
+Prop_strong(nullable)ZFAVPlayerManager *avPlayerManager;//默认不支持FLV流视频格式的
+Prop_strong(nullable)ZFIJKPlayerManager *ijkPlayerManager;//ZFPlayer的作者告诉我：如果要兼容FLV流视频格式请用这个
+Prop_strong(nullable)CustomZFPlayerControlView *customPlayerControlView;
 
 -(void)enterBackgroundStopPlayer;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-NS_INLINE __kindof ZFAVPlayerManager *_Nonnull jobsMakeZFAVPlayerManager(jobsByZFAVPlayerManagerBlock _Nonnull block){
-    ZFAVPlayerManager *data = ZFAVPlayerManager.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof ZFIJKPlayerManager *_Nonnull jobsMakeZFIJKPlayerManager(jobsByZFIJKPlayerManagerBlock _Nonnull block){
-    ZFIJKPlayerManager *data = ZFIJKPlayerManager.alloc.init;
-    if (block) block(data);
-    return data;
-}
 
 /** 用法
  self.playerManager.assetURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"iph_X" ofType:@"mp4"]];

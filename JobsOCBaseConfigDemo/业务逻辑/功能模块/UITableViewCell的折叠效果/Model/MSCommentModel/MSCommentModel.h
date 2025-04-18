@@ -11,15 +11,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MSCommentDetailModel : BaseModel
 
-@property(nonatomic,copy)NSString *rowTitle;
+Prop_copy()NSString *rowTitle;
 
 @end
 
 @interface MSCommentModel : BaseModel
 
-@property(nonatomic,copy)NSString *sectionTitle;
-@property(nonatomic,copy)NSMutableArray <MSCommentDetailModel *>*commentDataMutArr;
+Prop_copy()NSString *sectionTitle;
+Prop_copy()NSMutableArray <MSCommentDetailModel *>*commentDataMutArr;
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof MSCommentDetailModel *_Nonnull jobsMakeCommentDetailModel(jobsByCommentDetailModelBlock _Nonnull block){
+    MSCommentDetailModel *data = MSCommentDetailModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof MSCommentModel *_Nonnull jobsMakeCommentModel(jobsByCommentModelBlock _Nonnull block){
+    MSCommentModel *data = MSCommentModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

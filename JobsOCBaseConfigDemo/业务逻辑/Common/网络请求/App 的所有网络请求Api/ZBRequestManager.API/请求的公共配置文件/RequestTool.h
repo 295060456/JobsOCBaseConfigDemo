@@ -41,3 +41,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof RequestTool *_Nonnull jobsMakeRequestTool(jobsByRequestToolBlock _Nonnull block){
+    RequestTool *data = RequestTool.alloc.init;
+    if (block) block(data);
+    return data;
+}

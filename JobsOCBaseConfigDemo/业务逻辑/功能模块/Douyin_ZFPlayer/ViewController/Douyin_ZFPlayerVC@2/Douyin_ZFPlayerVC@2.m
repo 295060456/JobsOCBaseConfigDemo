@@ -10,7 +10,6 @@
 @interface Douyin_ZFPlayerVC_2 ()
 /// UI
 Prop_strong()ZFPlayerController *player;
-Prop_strong()ZFAVPlayerManager *playerManager;
 Prop_strong()ZFDouYinControlView *controlView;
 Prop_strong()ZFCustomControlView *fullControlView;
 Prop_strong()JobsBitsMonitorSuspendLab *bitsMonitorSuspendLab;
@@ -137,7 +136,7 @@ Prop_copy()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
     [self.controlView resetControlView];
     [self.controlView showCoverViewWithUrl:data.thumbnail_url];
     [self.fullControlView showTitle:JobsInternationalization(@"custom landscape controlView")
-                     coverURLString:data.thumbnail_url //data.videoImg
+                     coverURLString:data.thumbnail_url /// data.videoImg
                      fullScreenMode:ZFFullScreenModeLandscape];
 }
 /// 指定到某一行播放
@@ -236,15 +235,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 #pragma mark —— lazyLoad
 -(JobsBitsMonitorSuspendLab *)bitsMonitorSuspendLab{
     if (!_bitsMonitorSuspendLab) {
-        _bitsMonitorSuspendLab = JobsBitsMonitorSuspendLab.new;
-        _bitsMonitorSuspendLab.font = UIFontWeightBoldSize(10);
-        _bitsMonitorSuspendLab.backgroundColor = JobsLightGrayColor;
-        _bitsMonitorSuspendLab.textColor = JobsRedColor;
         @jobs_weakify(self)
-        _bitsMonitorSuspendLab.vc = weak_self;
-        _bitsMonitorSuspendLab.isAllowDrag = YES;//悬浮效果必须要的参数
-        [self.view addSubview:_bitsMonitorSuspendLab];
-        _bitsMonitorSuspendLab.frame = JobsBitsMonitorSuspendLab.viewFrameByModel(nil);
+        _bitsMonitorSuspendLab = jobsMakeBitsMonitorSuspendLab(^(__kindof JobsBitsMonitorSuspendLab * _Nullable label) {
+            @jobs_strongify(self)
+            label.font = UIFontWeightBoldSize(10);
+            label.backgroundColor = JobsLightGrayColor;
+            label.textColor = JobsRedColor;
+            label.vc = weak_self;
+            label.isAllowDrag = YES;/// 悬浮效果必须要的参数
+            label.frame = JobsBitsMonitorSuspendLab.viewFrameByModel(nil);
+            self.view.addSubview(label);
+        });
     }return _bitsMonitorSuspendLab;
 }
 /// BaseViewProtocol
@@ -319,7 +320,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!_player) {
         /// player,tag值必须在cell里设置
         _player = [ZFPlayerController playerWithScrollView:self.tableView
-                                             playerManager:self.playerManager
+                                             playerManager:jobsMakeZFAVPlayerManager(^(__kindof ZFAVPlayerManager * _Nullable data) {})
                                           containerViewTag:kPlayerViewTag];
         _player.disableGestureTypes = ZFPlayerDisableGestureTypesPan | ZFPlayerDisableGestureTypesPinch;
         _player.controlView = self.controlView;
@@ -383,28 +384,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 /// 加载下一页数据
 //                [self requestData:YES];
                 [self requestData];
-                [self.tableView reloadData];
+                self.tableView.reloadDatas();
             }[self playTheVideoAtIndexPath:indexPath];
         };
     }return _player;
-}
-
--(ZFAVPlayerManager *)playerManager{
-    if (!_playerManager) {
-        _playerManager = ZFAVPlayerManager.new;
-    }return _playerManager;
-}
-
--(ZFDouYinControlView *)controlView{
-    if (!_controlView){
-        _controlView = ZFDouYinControlView.new;
-    }return _controlView;
-}
-
--(ZFCustomControlView *)fullControlView{
-    if (!_fullControlView) {
-        _fullControlView = ZFCustomControlView.new;
-    }return _fullControlView;
 }
 
 -(NSMutableArray <VideoModel_Core *>*)dataMutArr{
@@ -479,71 +462,88 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         _pageSize = @(6);
     }return _pageSize;
 }
+
+-(ZFDouYinControlView *)controlView{
+    if (!_controlView){
+        _controlView = jobsMakeZFDouYinControlView(^(__kindof ZFDouYinControlView * _Nullable label) {
+            
+        });
+    }return _controlView;
+}
+
+-(ZFCustomControlView *)fullControlView{
+    if (!_fullControlView) {
+        _fullControlView = jobsMakeZFCustomControlView(^(__kindof ZFCustomControlView * _Nullable label) {
+            
+        });
+    }return _fullControlView;
+}
 #pragma mark —— 暂时用不到的
--(void)requestData:(BOOL)isLoadMore{
-    /// 下拉时候一定要停止当前播放，不然有新数据，播放位置会错位。
-    [self.player stopCurrentPlayingCell];
-    JobsLog(@"当前是否有网：%d 状态：%ld",ZBRequestManager.isNetworkReachable,ZBRequestManager.networkReachability);
-    DataManager.sharedManager.tag = ReuseIdentifier;
-    /**
-     公共配置
-     插件机制
-     证书设置
-     */
-    RequestTool *config = RequestTool.new;
-    config.languageType = HTTPRequestHeaderLanguageCN;
-    RequestTool.setupPublicParametersBy(config);
-    
+-(jobsByBOOLBlock _Nonnull)requestDataBy{
     @jobs_weakify(self)
-    extern NSString *appInterfaceTesting;
-    [JobsNetworkingAPI requestApi:This.appInterfaceTesting.funcName
-                     parameters:@{@"pageSize":self.pageSize,
-                                  @"pageNum":self.currentPage}
-                   successBlock:^(JobsResponseModel *data) {
+    return ^(BOOL isLoadMore){
         @jobs_strongify(self)
-        JobsLog(@"");
-        if([data.data isKindOfClass:NSArray.class]){
-            NSArray *tempDataArr = (NSArray *)data.data;
-            {// 数据组装
-                /**
-                    上拉加载更多
-                    请求到有实际意义上的数据 ——> 上拉加载更多
-                    请求到没有有实际意义上的数据 ——>  没有更多数据了
-                 */
-                
-                /**
-                 下拉刷新
-                    请求到有实际意义上的数据 ——> 清除以前的旧的数据 下拉可以刷新
-                    请求到没有有实际意义上的数据 ——> 不清除以前的旧的数据 下拉可以刷新
-                 */
-                
-                // 如果当前操作是下拉刷新 并且 请求到的数组里面有值——>清除已有的数据
-                if (!isLoadMore && tempDataArr.count) {
-                    [self.dataMutArr removeAllObjects];
-                }
-                
-                if (isLoadMore) {
-                    if (tempDataArr.count) {
-                        [self.dataMutArr addObjectsFromArray:tempDataArr];
-                        self->_tableView.endRefreshing(self.dataMutArr.count);//上拉加载更多
-                    }else{
-                        self->_tableView.endRefreshingWithNoMoreData(self.dataMutArr.count);//没有更多数据了
+        /// 下拉时候一定要停止当前播放，不然有新数据，播放位置会错位。
+        [self.player stopCurrentPlayingCell];
+        JobsLog(@"当前是否有网：%d 状态：%ld",ZBRequestManager.isNetworkReachable,ZBRequestManager.networkReachability);
+        DataManager.sharedManager.tag = ReuseIdentifier;
+        /**
+         公共配置
+         插件机制
+         证书设置
+         */
+        RequestTool.setupPublicParametersBy(jobsMakeRequestTool(^(__kindof RequestTool * _Nullable tool) {
+            tool.languageType = HTTPRequestHeaderLanguageCN;
+        }));
+        
+        @jobs_weakify(self)
+        extern NSString *appInterfaceTesting;
+        [JobsNetworkingAPI requestApi:This.appInterfaceTesting.funcName
+                         parameters:@{@"pageSize":self.pageSize,
+                                      @"pageNum":self.currentPage}
+                       successBlock:^(JobsResponseModel *data) {
+            @jobs_strongify(self)
+            JobsLog(@"");
+            if([data.data isKindOfClass:NSArray.class]){
+                NSArray *tempDataArr = (NSArray *)data.data;
+                {// 数据组装
+                    /**
+                        上拉加载更多
+                        请求到有实际意义上的数据 ——> 上拉加载更多
+                        请求到没有有实际意义上的数据 ——>  没有更多数据了
+                     */
+                    
+                    /**
+                     下拉刷新
+                        请求到有实际意义上的数据 ——> 清除以前的旧的数据 下拉可以刷新
+                        请求到没有有实际意义上的数据 ——> 不清除以前的旧的数据 下拉可以刷新
+                     */
+                    
+                    // 如果当前操作是下拉刷新 并且 请求到的数组里面有值——>清除已有的数据
+                    if (!isLoadMore && tempDataArr.count) [self.dataMutArr removeAllObjects];
+                    if (isLoadMore) {
+                        if (tempDataArr.count) {
+                            self.dataMutArr.addBy(tempDataArr);
+                            self->_tableView.endRefreshing(self.dataMutArr.count);//上拉加载更多
+                        }else{
+                            self->_tableView.endRefreshingWithNoMoreData(self.dataMutArr.count);//没有更多数据了
+                        }
                     }
                 }
+                /// 找到可以播放的视频并播放
+                @jobs_weakify(self)
+                [self.player zf_filterShouldPlayCellWhileScrolled:^(NSIndexPath *indexPath) {
+                    @jobs_strongify(self)
+                    [self playTheVideoAtIndexPath:indexPath];
+                }];
             }
-            /// 找到可以播放的视频并播放
-            @jobs_weakify(self)
-            [self.player zf_filterShouldPlayCellWhileScrolled:^(NSIndexPath *indexPath) {
-                @jobs_strongify(self)
-                [self playTheVideoAtIndexPath:indexPath];
-            }];
-        }
-    }failureBlock:^(id data) {
-        @jobs_strongify(self)
-        if (self.currentPage.integerValue > 1) {
-            self.currentPage = @(self.currentPage.integerValue - 1);
-        }
-    }];
+        }failureBlock:^(id data) {
+            @jobs_strongify(self)
+            if (self.currentPage.integerValue > 1) {
+                self.currentPage = @(self.currentPage.integerValue - 1);
+            }
+        }];
+    };
 }
 //#pragma mark - ZFTableViewCellDelegate
 //-(void)zf_playTheVideoAtIndexPath:(NSIndexPath *)indexPath{

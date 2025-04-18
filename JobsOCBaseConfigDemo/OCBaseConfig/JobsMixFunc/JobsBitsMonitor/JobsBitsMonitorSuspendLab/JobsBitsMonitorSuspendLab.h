@@ -25,3 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsBitsMonitorSuspendLab *_Nonnull jobsMakeBitsMonitorSuspendLab(jobsByBitsMonitorSuspendLabBlock _Nonnull block){
+    JobsBitsMonitorSuspendLab *data = JobsBitsMonitorSuspendLab.alloc.init;
+    if (block) block(data);
+    return data;
+}

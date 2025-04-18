@@ -7,10 +7,17 @@
 
 #import "BaseViewController.h"
 #import "MacroDef_Func.h"
+#import "ZFPlayerExtras.h"
 
 #import "ZFCustomControlView.h"
 #import "ZFDouYinControlView.h"
 #import "JobsVideoTBVCell.h"
+
+#if __has_include(<ZFPlayer/ZFPlayer.h>)
+#import <ZFPlayer/ZFPlayer.h>
+#else
+#import "ZFPlayer.h"
+#endif
 
 #if __has_include(<KTVHTTPCache/KTVHTTPCache.h>)
 #import <KTVHTTPCache/KTVHTTPCache.h>

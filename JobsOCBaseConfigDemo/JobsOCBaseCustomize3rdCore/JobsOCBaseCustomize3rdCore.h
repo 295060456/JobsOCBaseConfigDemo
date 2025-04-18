@@ -89,6 +89,7 @@
 #import "SRWebSocket+Extra.h"
 #import "FSCalendar+Extra.h"
 #import "JXCategoryView.h"
+#import "ZFPlayerExtras.h"
 
 #endif /* JobsOCBaseCustomize3rdCore_h */
 
