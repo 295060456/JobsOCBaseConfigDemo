@@ -9,10 +9,10 @@
 
 @interface JobsAppDoorInputViewBaseStyle_6 ()
 /// UI
-@property(nonatomic,strong)JobsMagicTextField *textField;
-@property(nonatomic,strong)AuthCodeLab *authCodeLab;
+Prop_strong()JobsMagicTextField *textField;
+Prop_strong()AuthCodeLab *authCodeLab;
 /// Data
-@property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
+Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 
 @end
 
@@ -128,9 +128,7 @@
         _authCodeLab.alpha = 0.7;
         _authCodeLab.textColor = JobsWhiteColor;
         _authCodeLab.backgroundColor = JobsBlackColor;
-
-        [self addSubview:_authCodeLab];
-        [_authCodeLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_authCodeLab) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(self);
             make.right.equalTo(self);
             make.width.mas_equalTo(80);
@@ -140,23 +138,23 @@
 
 -(JobsMagicTextField *)textField{
     if (!_textField) {
-        _textField = JobsMagicTextField.new;
-        _textField.delegate = self;
         @jobs_weakify(self)
-        [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
+        _textField = jobsMakeMagicTextField(^(__kindof JobsMagicTextField * _Nullable textField) {
             @jobs_strongify(self)
-            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
-        } subscribeNextBlock:^(id _Nullable x) {
-            @jobs_strongify(self)
-            JobsLog(@"MMM = %@",x);
-            [self block:self->_textField
-                  value:x];
-        }];
-        [self addSubview:_textField];
-        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.bottom.equalTo(self);
-            make.right.equalTo(self.authCodeLab.mas_left).offset(-JobsWidth(3));
-        }];
+            textField.delegate = self;
+            [textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
+                @jobs_strongify(self)
+                return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
+            } subscribeNextBlock:^(id _Nullable x) {
+                @jobs_strongify(self)
+                JobsLog(@"MMM = %@",x);
+                [self block:textField value:x];
+            }];
+            [self.addSubview(textField) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.top.bottom.equalTo(self);
+                make.right.equalTo(self.authCodeLab.mas_left).offset(-JobsWidth(3));
+            }];
+        });
     }return _textField;
 }
 

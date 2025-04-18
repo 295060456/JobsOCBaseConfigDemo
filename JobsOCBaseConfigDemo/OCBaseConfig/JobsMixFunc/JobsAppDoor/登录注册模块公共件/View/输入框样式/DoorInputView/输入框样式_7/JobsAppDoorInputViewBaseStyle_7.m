@@ -11,14 +11,14 @@
     JobsDropDownListView *dropDownListView;
 }
 /// UI
-@property(nonatomic,strong)JobsMagicTextField *textField;
-@property(nonatomic,strong)UIImageView *leftIMGV;
-@property(nonatomic,strong)UIButton *chooseBtn;
+Prop_strong()JobsMagicTextField *textField;
+Prop_strong()UIImageView *leftIMGV;
+Prop_strong()UIButton *chooseBtn;
 /// Data
-@property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
-@property(nonatomic,strong)UIViewModel *chooseBtnViewModel;
-@property(nonatomic,assign)CGSize chooseBtnSize;
+Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
+Prop_copy()NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
+Prop_strong()UIViewModel *chooseBtnViewModel;
+Prop_assign()CGSize chooseBtnSize;
 
 @end
 
@@ -71,8 +71,7 @@
     _textField.fieldEditorOffset = self.doorInputViewBaseStyleModel.fieldEditorOffset ? : JobsWidth(50);
 }
 
--(void)block:(JobsMagicTextField *)textField
-       value:(NSString *)value{
+-(void)block:(JobsMagicTextField *)textField value:(NSString *)value{
     
     self.textFieldInputModel.resString = value;
     self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeholder;
@@ -135,7 +134,7 @@
 
 -(NSMutableArray<UIViewModel *> *)jobsPageViewDataMutArr{
     if (!_jobsPageViewDataMutArr) {
-        _jobsPageViewDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+        _jobsPageViewDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable arr) {
             arr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
                 data.textModel.text = JobsInternationalization(@"請選擇區號");
                 data.textModel.textCor = HEXCOLOR(0xC4C4C4);
@@ -160,44 +159,48 @@
 
 -(UIButton *)chooseBtn{
     if (!_chooseBtn) {
-        _chooseBtn = UIButton.new;
-        _chooseBtn.jobsResetBtnImage(self.chooseBtnViewModel.image);
-        _chooseBtn.jobsResetBtnTitleCor(self.chooseBtnViewModel.textModel.textCor);
-        _chooseBtn.jobsResetBtnTitle(self.chooseBtnViewModel.textModel.text);
-        _chooseBtn.jobsResetBtnTitleFont(self.chooseBtnViewModel.textModel.font);
-        [self addSubview:_chooseBtn];
-        [_chooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @jobs_weakify(self)
+        _chooseBtn = BaseButton.jobsInit()
+            .bgColorBy(JobsWhiteColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeTrailing)
+            .jobsResetImagePadding(JobsWidth(8))
+            .jobsResetBtnImage(self.chooseBtnViewModel.image)
+            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnTitleCor(self.chooseBtnViewModel.textModel.textCor)
+            .jobsResetBtnTitleFont(self.chooseBtnViewModel.textModel.font)
+            .jobsResetBtnTitle(self.chooseBtnViewModel.textModel.text)
+            .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                if (x.selected) {
+                    self->dropDownListView = [self motivateFromView:x
+                                      jobsDropDownListViewDirection:JobsDropDownListViewDirection_UP
+                                                               data:self.jobsPageViewDataMutArr
+                                                 motivateViewOffset:0
+                                                        finishBlock:^(UIViewModel *data) {
+                        JobsLog(@"data = %@",data);
+                        JobsLog(@"data = %@",data.data);
+                        x.jobsResetBtnTitle(data.textModel.text.add(data.subTextModel.text));
+                    }];
+                }else self->dropDownListView.dropDownListViewDisappear(x);
+            }).onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            });
+        [self.addSubview(_chooseBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.leftIMGV.mas_right).offset(JobsWidth(20));
             make.centerY.equalTo(self);
             make.height.mas_equalTo(JobsWidth(16));
 #warning 这里需要被修改
 //            make.width.mas_equalTo([UIView widthByData:self.jobsPageViewDataMutArr[0]]);
         }];
-        @jobs_weakify(self)
-        [_chooseBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (x.selected) {
-                self->dropDownListView = [self motivateFromView:x
-                                  jobsDropDownListViewDirection:JobsDropDownListViewDirection_UP
-                                                           data:self.jobsPageViewDataMutArr
-                                             motivateViewOffset:0
-                                                    finishBlock:^(UIViewModel *data) {
-//                    @jobs_strongify(self)
-                    JobsLog(@"data = %@",data);
-                    JobsLog(@"data = %@",data.data);
-                    x.jobsResetBtnTitle(data.textModel.text.add(data.subTextModel.text));
-                }];
-            }else{
-                self->dropDownListView.dropDownListViewDisappear(x);
-            }return nil;
-        }];_chooseBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTrailing,JobsWidth(8));
     }return _chooseBtn;
 }
 
 -(UIViewModel *)chooseBtnViewModel{
     if (!_chooseBtnViewModel) {
+        @jobs_weakify(self)
         _chooseBtnViewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            @jobs_strongify(self)
             data.textModel.text = JobsInternationalization(@"請選擇區號");
             data.textModel.textCor = HEXCOLOR(0xC4C4C4);
             data.textModel.textLineSpacing = 0;
@@ -212,24 +215,24 @@
 
 -(JobsMagicTextField *)textField{
     if (!_textField) {
-        _textField = JobsMagicTextField.new;
-        _textField.delegate = self;
         @jobs_weakify(self)
-        [_textField jobsTextFieldEventFilterBlock:^BOOL(NSString * _Nullable data) {
+        _textField = jobsMakeMagicTextField(^(__kindof JobsMagicTextField * _Nullable textField) {
             @jobs_strongify(self)
-            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
-        } subscribeNextBlock:^(NSString * _Nullable x) {
-            @jobs_strongify(self)
-            JobsLog(@"输入的字符为 = %@",x);
-            [self block:self->_textField
-                  value:x];
-        }];
-        [self addSubview:_textField];
-        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.equalTo(self);
-            make.right.equalTo(self).offset(-JobsWidth(17));
-            make.left.equalTo(self.chooseBtn.mas_right).offset(JobsWidth(2));
-        }];
+            textField.delegate = self;
+            [textField jobsTextFieldEventFilterBlock:^BOOL(NSString * _Nullable data) {
+                @jobs_strongify(self)
+                return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
+            } subscribeNextBlock:^(NSString * _Nullable x) {
+                @jobs_strongify(self)
+                JobsLog(@"输入的字符为 = %@",x);
+                [self block:self->_textField value:x];
+            }];
+            [self.addSubview(textField) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.bottom.equalTo(self);
+                make.right.equalTo(self).offset(-JobsWidth(17));
+                make.left.equalTo(self.chooseBtn.mas_right).offset(JobsWidth(2));
+            }];
+        });
     }return _textField;
 }
 

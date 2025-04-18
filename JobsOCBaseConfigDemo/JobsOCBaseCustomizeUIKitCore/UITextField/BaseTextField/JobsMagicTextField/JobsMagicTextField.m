@@ -10,7 +10,7 @@
 
 @interface JobsMagicTextField ()
 
-@property(nonatomic,strong)UILabel *placeholderAnimationLbl;
+Prop_strong()UILabel *placeholderAnimationLbl;
 
 @end
 
@@ -109,21 +109,24 @@
 #pragma mark —— lazyLoad
 -(UILabel *)placeholderAnimationLbl{
     if (!_placeholderAnimationLbl) {
-        _placeholderAnimationLbl = UILabel.new;
-        _placeholderAnimationLbl.jobsVisible = YES;
-        _placeholderAnimationLbl.frame = CGRectMake(self.placeHolderOffset + self.leftViewOffsetX,
-                                                    self.y,
-                                                    self.width,
-                                                    self.height);
-        _placeholderAnimationLbl.backgroundColor = JobsClearColor;
-        _placeholderAnimationLbl.textAlignment = self.textAlignment;///❤️
-        if (self.attributedPlaceholder && !self.placeholder) {
-            _placeholderAnimationLbl.attributedText = self.attributedPlaceholder;
-        }else{
-            _placeholderAnimationLbl.text = self.placeholder;
-            _placeholderAnimationLbl.font = self.font;
-        }
-        [self addSubview:_placeholderAnimationLbl];
+        @jobs_weakify(self)
+        _placeholderAnimationLbl = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.jobsVisible = YES;
+            label.frame = CGRectMake(self.placeHolderOffset + self.leftViewOffsetX,
+                                     self.y,
+                                     self.width,
+                                     self.height);
+            label.backgroundColor = JobsClearColor;
+            label.textAlignment = self.textAlignment;///❤️
+            if (self.attributedPlaceholder && !self.placeholder) {
+                label.attributedText = self.attributedPlaceholder;
+            }else{
+                label.text = self.placeholder;
+                label.font = self.font;
+            }
+            self.addSubview(label);
+        });
     }return _placeholderAnimationLbl;
 }
 

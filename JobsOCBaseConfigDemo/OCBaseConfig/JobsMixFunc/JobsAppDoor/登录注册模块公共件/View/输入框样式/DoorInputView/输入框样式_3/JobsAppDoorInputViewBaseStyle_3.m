@@ -10,10 +10,10 @@
 
 @interface JobsAppDoorInputViewBaseStyle_3 ()
 /// UI
-@property(nonatomic,strong)UIButton *securityModeBtn;
-@property(nonatomic,strong)JobsMagicTextField *textField;
+Prop_strong()UIButton *securityModeBtn;
+Prop_strong()JobsMagicTextField *textField;
 /// Data
-@property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
+Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 
 @end
 
@@ -151,34 +151,34 @@
 
 -(JobsMagicTextField *)textField{
     if (!_textField) {
-        _textField = JobsMagicTextField.new;
-        _textField.delegate = self;
-        _textField.secureTextEntry = self.doorInputViewBaseStyleModel.isShowSecurityBtn;
         @jobs_weakify(self)
-        [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
-            JobsLog(@"SSS = %@",self.textFieldInputModel.PlaceHolder);
+        _textField = jobsMakeMagicTextField(^(__kindof JobsMagicTextField * _Nullable textField) {
             @jobs_strongify(self)
-            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
-        } subscribeNextBlock:^(NSString *_Nullable x) {
-            @jobs_strongify(self)
-            JobsLog(@"输入的字符为 = %@",x);
-            self.securityModeBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
-            if (x.isContainsSpecialSymbolsString(nil)) {
-                self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));
-            }else{
-                [self block:self->_textField
-                      value:x];
-            }
-        }];
-        [self addSubview:_textField];
-        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.bottom.equalTo(self);
-            if (self.doorInputViewBaseStyleModel.isShowSecurityBtn) {
-                make.right.equalTo(self.securityModeBtn.mas_left);
-            }else{
-                make.right.equalTo(self);
-            }
-        }];
+            textField.delegate = self;
+            textField.secureTextEntry = self.doorInputViewBaseStyleModel.isShowSecurityBtn;
+            [textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
+                JobsLog(@"SSS = %@",self.textFieldInputModel.PlaceHolder);
+                @jobs_strongify(self)
+                return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
+            } subscribeNextBlock:^(NSString *_Nullable x) {
+                @jobs_strongify(self)
+                JobsLog(@"输入的字符为 = %@",x);
+                self.securityModeBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
+                if (x.isContainsSpecialSymbolsString(nil)) {
+                    self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));
+                }else{
+                    [self block:textField value:x];
+                }
+            }];
+            [self.addSubview(textField) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.left.bottom.equalTo(self);
+                if (self.doorInputViewBaseStyleModel.isShowSecurityBtn) {
+                    make.right.equalTo(self.securityModeBtn.mas_left);
+                }else{
+                    make.right.equalTo(self);
+                }
+            }];
+        });
     }return _textField;
 }
 

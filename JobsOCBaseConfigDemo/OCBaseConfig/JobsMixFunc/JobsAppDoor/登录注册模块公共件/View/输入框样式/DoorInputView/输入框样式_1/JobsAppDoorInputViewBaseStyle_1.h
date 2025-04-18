@@ -17,8 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsAppDoorInputViewBaseStyle_1 : JobsAppDoorInputViewBaseStyle
 
-@property(nonatomic,assign)CGFloat countDownBtnWidth;
-@property(nonatomic,assign)CGFloat textFieldWidth;
+Prop_assign()CGFloat countDownBtnWidth;
+Prop_assign()CGFloat textFieldWidth;
 /// 倒计时按钮（需要销毁定时器）
 -(UIButton *)getCountDownBtn;
 /**

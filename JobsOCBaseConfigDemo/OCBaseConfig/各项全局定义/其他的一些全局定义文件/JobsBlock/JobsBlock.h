@@ -115,6 +115,9 @@ typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
 typedef void(^jobsByCommentDetailModelBlock)(MSCommentDetailModel *_Nullable data);
 typedef void(^jobsByCommentModelBlock)(MSCommentModel *_Nullable data);
 
+@class JobsMagicTextField;
+typedef void(^jobsByMagicTextFieldBlock)(__kindof JobsMagicTextField *_Nullable textField);
+
 @class RACModel;
 typedef void(^jobsByRACModelBlock)(RACModel *_Nullable data);
 

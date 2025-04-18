@@ -10,12 +10,12 @@
 
 @interface JobsAppDoorInputViewBaseStyle_1 ()
 /// UI
-@property(nonatomic,strong)UIButton *countDownBtn;
-@property(nonatomic,strong)JobsMagicTextField *textField;
+Prop_strong()UIButton *countDownBtn;
+Prop_strong()JobsMagicTextField *textField;
 /// Data
-@property(nonatomic,copy)NSString *titleStr_1;
-@property(nonatomic,copy)NSString *titleStr_2;
-@property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
+Prop_copy()NSString *titleStr_1;
+Prop_copy()NSString *titleStr_2;
+Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 
 @end
 
@@ -181,23 +181,23 @@
 
 -(JobsMagicTextField *)textField{
     if (!_textField) {
-        _textField = JobsMagicTextField.new;
-        _textField.delegate = self;
         @jobs_weakify(self)
-        [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
+        _textField = jobsMakeMagicTextField(^(__kindof JobsMagicTextField * _Nullable textField) {
             @jobs_strongify(self)
-            return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
-        } subscribeNextBlock:^(id _Nullable x) {
-            @jobs_strongify(self)
-            JobsLog(@"MMM = %@",x);
-            [self block:self->_textField
-                  value:x];
-        }];
-        [self addSubview:_textField];
-        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.left.bottom.equalTo(self);
-//            make.right.equalTo(self.countDownBtn.mas_left);
-        }];
+            textField.delegate = self;
+            [textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
+                @jobs_strongify(self)
+                return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
+            } subscribeNextBlock:^(id _Nullable x) {
+                @jobs_strongify(self)
+                JobsLog(@"MMM = %@",x);
+                [self block:textField value:x];
+            }];
+            [self.addSubview(textField) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.left.bottom.equalTo(self);
+    //            make.right.equalTo(self.countDownBtn.mas_left);
+            }];
+        });
     }return _textField;
 }
 
