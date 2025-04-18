@@ -9,7 +9,7 @@
 
 @interface BaiShaETProjChoiceStadiumTBVHeaderView ()
 
-@property(nonatomic,strong)UIColor *cor;
+Prop_strong()UIColor *cor;
 
 @end
 
@@ -61,11 +61,11 @@
 
 @interface BaiShaETProjChoiceStadiumView ()
 /// UI
-@property(nonatomic,strong)UITableView *tableView;
-@property(nonatomic,strong)BaiShaETProjChoiceStadiumTBVHeaderView *tbvHeaderView;
+Prop_strong()UITableView *tableView;
+Prop_strong()BaiShaETProjChoiceStadiumTBVHeaderView *tbvHeaderView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
-@property(nonatomic,copy)NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
 
 @end
 
@@ -135,24 +135,24 @@ static dispatch_once_t static_choiceStadiumViewOnceToken;
         data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG體育");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG真人");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG電子");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG彩票");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DA電子");
             viewModel.subTextModel.text = JobsInternationalization(@"");
         }));
@@ -193,12 +193,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
     cell.textLabel.textColor = HEXCOLOR(0x757575);
     cell.textLabel.font = UIFontWeightRegularSize(16);
-    cell.textLabelFrameOffsetX = JobsWidth(16);
-    cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH() - JobsWidth(50);
     cell.imageView.image = JobsIMG(@"红色的对勾");
     cell.imageView.jobsVisible = NO;
-    
     cell.backgroundColor = cell.contentView.backgroundColor = HEXCOLOR(0xFFFCF7);
+    cell.textLabelFrameOffsetX = JobsWidth(16);
+    cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH() - JobsWidth(50);
     return cell;
 }
 #pragma mark —— lazyLoad
@@ -207,61 +206,44 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = UITableView.initWithStyleGrouped;
-        _tableView.backgroundColor = JobsWhiteColor;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.scrollEnabled = NO;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableHeaderView = self.tbvHeaderView;/// 这里接入的就是一个UIView的派生类
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        _tableView = jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView){
+            @jobs_strongify(self)
+            tableView.backgroundColor = JobsWhiteColor;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.scrollEnabled = NO;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.delegate = self;
+            tableView.dataSource = self;
+            tableView.tableHeaderView = self.tbvHeaderView;/// 这里接入的就是一个UIView的派生类
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
+            [tableView registerTableViewClass];
+            
+            {
+                tableView.mj_header = self.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                    @jobs_strongify(self )
+                    JobsLog(@"下拉刷新");
+                    self.currentPage = @(1);
+                    return nil;
+                }]);
+                tableView.mj_footer = self.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
+                    JobsLog(@"上拉加载更多");
+                    tableView.endRefreshing(YES);
+                    return nil;
+                }]);tableView.mj_footer.hidden = NO;
+            }
+            
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }
+            self.addSubview(tableView);
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
         });
-        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-        [_tableView registerTableViewClass];
-        
-        {
-            _tableView.mj_header = self.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    self.feedbackGenerator(nil);//震动反馈
-                //    if (data.count) {
-                //        self.endRefreshing(self->_tableView);
-                //    }else{
-                //        self.endRefreshingWithNoMoreData(self->_tableView);
-                //    }
-                    return nil;
-                };
-            }));
-            _tableView.mj_footer = self.MJRefreshAutoNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    self->_tableView.endRefreshing(YES);
-                    return nil;
-                };
-            }));
-        }
-        
-        if(@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        [self addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
     }return _tableView;
 }
 
@@ -285,7 +267,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<JobsBaseTableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
-        _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        @jobs_weakify(self)
+        _tbvCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <JobsBaseTableViewCell *>* _Nullable data) {
+            @jobs_strongify(self)
             for (UIViewModel *viewModel in self.dataMutArr) {
                 data.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
             }

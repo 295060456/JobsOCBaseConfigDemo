@@ -9,13 +9,13 @@
 
 @interface Douyin_ZFPlayerVC_2 ()
 /// UI
-@property(nonatomic,strong)ZFPlayerController *player;
-@property(nonatomic,strong)ZFAVPlayerManager *playerManager;
-@property(nonatomic,strong)ZFDouYinControlView *controlView;
-@property(nonatomic,strong)ZFCustomControlView *fullControlView;
-@property(nonatomic,strong)JobsBitsMonitorSuspendLab *bitsMonitorSuspendLab;
+Prop_strong()ZFPlayerController *player;
+Prop_strong()ZFAVPlayerManager *playerManager;
+Prop_strong()ZFDouYinControlView *controlView;
+Prop_strong()ZFCustomControlView *fullControlView;
+Prop_strong()JobsBitsMonitorSuspendLab *bitsMonitorSuspendLab;
 /// Data
-@property(nonatomic,copy)NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
+Prop_copy()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
 
 @end
 
@@ -252,50 +252,36 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 - (UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.pagingEnabled = YES;
-        _tableView.backgroundColor = JobsLightGrayColor;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.scrollsToTop = NO;
-        
-        if (@available(iOS 11.0, *)) {
-            _tableView.estimatedRowHeight = 0;
-            _tableView.estimatedSectionFooterHeight = 0;
-            _tableView.estimatedSectionHeaderHeight = 0;
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        } else {
-            SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
-        }
-        
-        {
-            _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-                data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-                data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.pagingEnabled = YES;
+            tableView.backgroundColor = JobsLightGrayColor;
+            tableView.delegate = self;
+            tableView.dataSource = self;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.scrollsToTop = NO;
+            
+            if (@available(iOS 11.0, *)) {
+                tableView.estimatedRowHeight = 0;
+                tableView.estimatedSectionFooterHeight = 0;
+                tableView.estimatedSectionHeaderHeight = 0;
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            } else {
+                SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
+            }
+            
+            {
+                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                    @jobs_strongify(self )
                     JobsLog(@"下拉刷新");
                     self.currentPage = @(1);
                     [self requestData];
                 //    [self requestData:NO];
                 //    [self playVideo];
                     return nil;
-                };
-            }));
-            _tableView.mj_footer = self.view.MJRefreshAutoNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel *_Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"上拉加载数据");
-                data.pullingTitle = JobsInternationalization(@"上拉加载数据");
-                data.refreshingTitle = JobsInternationalization(@"正在加载数据");
-                data.willRefreshTitle = JobsInternationalization(@"加载数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"没有更多数据");
-                data.loadBlock = ^id _Nullable(id _Nullable data) {
-                    @jobs_strongify(self)
+                }]);
+                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
                     JobsLog(@"上拉加载更多");
                     self.currentPage = @(self.currentPage.integerValue + 1);
                     [self requestData];
@@ -303,30 +289,29 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 //    [self requestData:YES];
                 //    [self playVideo];
                     return nil;
-                };
-            }));
-            _tableView.mj_footer.hidden = NO;
-        }
-        
-//        {// 设置tabAnimated相关属性
-//            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-//                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
-//            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
-//            _tableView.tabAnimated.canLoadAgain = YES;
-////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
-////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
-//            [_tableView tab_startAnimation];   // 开启动画
-//        }
-        
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.view);
-            if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
-                make.top.equalTo(self.gk_navigationBar.mas_bottom);
-            }else{
-                make.top.equalTo(self.view.mas_top);
-            }make.bottom.equalTo(self.view.mas_bottom);
-        }];
+                }]);tableView.mj_footer.hidden = NO;
+            }
+
+    //        {// 设置tabAnimated相关属性
+    //            tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
+    //                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
+    //            tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
+    //            tableView.tabAnimated.canLoadAgain = YES;
+    ////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+    ////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
+    //            [tableView tab_startAnimation];   // 开启动画
+    //        }
+            
+            self.view.addSubview(tableView);
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self.view);
+                if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
+                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                }else{
+                    make.top.equalTo(self.view.mas_top);
+                }make.bottom.equalTo(self.view.mas_bottom);
+            }];
+        });
     }return _tableView;
 }
 
@@ -430,57 +415,57 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 data1.videoIdcUrl = @"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4";
                 data1.videoTitle = JobsInternationalization(@"第1条视频");
                 data1.videoImg = @"视频封面.jpg";
-            }));
+            }))
             /// 第2条视频
-            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
+            .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4";
                 data1.videoTitle = JobsInternationalization(@"第2条视频");
                 data1.videoImg = @"视频封面.jpg";
-            }));
+            }))
             /// 第3条视频
-            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
+            .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/peter/mac-peter-tpl-cc-us-2018_1280x720h.mp4";
                 data1.videoTitle = JobsInternationalization(@"第3条视频");
                 data1.videoImg = @"视频封面.jpg";
-            }));
+            }))
             /// 第4条视频
-            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
+            .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/grimes/mac-grimes-tpl-cc-us-2018_1280x720h.mp4";
                 data1.videoTitle = JobsInternationalization(@"第4条视频");
                 data1.videoImg = @"视频封面.jpg";
-            }));
+            }))
             /// 第5条视频
-            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
+            .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7194236f31b2e1e3da0fe06cfed4ba2b.mp4";
                 data1.videoTitle = JobsInternationalization(@"第5条视频");
                 data1.videoImg = @"视频封面.jpg";
-            }));
+            }))
             /// 第6条视频
-            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
+            .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
                 data1.videoTitle = JobsInternationalization(@"第6条视频");
                 data1.videoImg = @"视频封面.jpg";
-            }));
+            }))
             /// 第7条视频
-            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
+            .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"http://vjs.zencdn.net/v/oceans.mp4";
                 data1.videoTitle = JobsInternationalization(@"第7条视频");
                 data1.videoImg = @"视频封面.jpg";
-            }));
+            }))
             /// 第8条视频
-            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
+            .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
                 data1.videoTitle = JobsInternationalization(@"第8条视频");
                 data1.videoImg = @"视频封面.jpg";
-            }));
+            }))
             /// 第9条视频
-            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
+            .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4";
                 data1.videoTitle = JobsInternationalization(@"第9条视频");
                 data1.videoImg = @"视频封面.jpg";
-            }));
+            }))
             /// 第10条视频
-            data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
+            .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_2mb.mp4";
                 data1.videoTitle = JobsInternationalization(@"第10条视频");
                 data1.videoImg = @"视频封面.jpg";

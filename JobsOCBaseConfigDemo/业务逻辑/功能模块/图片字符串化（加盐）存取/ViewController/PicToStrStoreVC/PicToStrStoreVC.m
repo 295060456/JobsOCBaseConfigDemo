@@ -9,8 +9,8 @@
 
 @interface PicToStrStoreVC ()
 /// Data
-@property(nonatomic,copy)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
-@property(nonatomic,copy)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
+Prop_copy()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 
@@ -131,10 +131,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self )
+            tableView.dataLink(self);
             tableView.backgroundColor = JobsWhiteColor;
             tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
             tableView.showsVerticalScrollIndicator = NO;
-            tableView.dataLink(self);
             tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
                 /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
             });
@@ -152,34 +152,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                       JobsWidth(100),
                                                       JobsWidth(0));
             {
-                tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                    data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                    data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                    data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                    data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                    data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                        @jobs_strongify(self)
-                        self.feedbackGenerator(nil);//震动反馈
-                        self->_tableView.endRefreshing(YES);
-                        return nil;
-                    };
-                }));
-                tableView.mj_footer = self.view.MJRefreshAutoNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"");
-                    data.pullingTitle = JobsInternationalization(@"");
-                    data.refreshingTitle = JobsInternationalization(@"");
-                    data.willRefreshTitle = JobsInternationalization(@"");
-                    data.noMoreDataTitle = JobsInternationalization(@"");
-                    data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                        @jobs_strongify(self)
-                        self->_tableView.endRefreshing(YES);
-                        return nil;
-                    };
-                }));
+                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                    @jobs_strongify(self )
+                    self.feedbackGenerator(nil);/// 震动反馈
+                    tableView.endRefreshing(YES);
+                    return nil;
+                }]);
+                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
+                    tableView.endRefreshing(YES);
+                    return nil;
+                }]);
             }
-            [self.view addSubview:tableView];
+            self.view.addSubview(tableView);
             [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
                 if (self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 系统、GK均隐藏
                     make.edges.equalTo(self.view);

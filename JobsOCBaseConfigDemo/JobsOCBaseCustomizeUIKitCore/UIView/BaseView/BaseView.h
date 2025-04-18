@@ -33,7 +33,7 @@ AppToolsProtocol
 
 NS_ASSUME_NONNULL_END
 
-NS_INLINE __kindof UIView *_Nonnull jobsMakeBaseView(jobsByViewBlock _Nonnull block){
+NS_INLINE __kindof UIView *_Nonnull jobsMakeBaseView(jobsByBaseViewBlock _Nonnull block){
     BaseView *data = BaseView.alloc.init;
     if (block) block(data);
     return data;

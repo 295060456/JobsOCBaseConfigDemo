@@ -21,6 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
+NS_INLINE __kindof JXPagerView *_Nonnull jobsMakeCategoryPagerView(id<JXPagerViewDelegate> _Nonnull delegate){
+    JXPagerView *data = [JXPagerView.alloc initWithDelegate:delegate];
+    return data;
+}
+
 NS_INLINE __kindof JXCategoryTitleView *_Nonnull jobsMakeCategoryTitleView(jobsByCategoryTitleViewBlock _Nullable block){
     JXCategoryTitleView *data = JXCategoryTitleView.alloc.init;
     if (block) block(data);
@@ -57,13 +62,13 @@ NS_INLINE __kindof JXCategoryIndicatorLineView *_Nonnull jobsMakeCategoryIndicat
     return data;
 }
 
-NS_INLINE __kindof JXCategoryListContainerView *_Nonnull jobsMakeCategoryListContainerViewByScrollViewStyle(id<JXCategoryListContainerViewDelegate> delegate){
+NS_INLINE __kindof JXCategoryListContainerView *_Nonnull jobsMakeCategoryListContainerViewByScrollViewStyle(id<JXCategoryListContainerViewDelegate> _Nonnull delegate){
     JXCategoryListContainerView *data = [JXCategoryListContainerView.alloc initWithType:JXCategoryListContainerType_ScrollView
                                                                                delegate:delegate];
     return data;
 }
 
-NS_INLINE __kindof JXCategoryListContainerView *_Nonnull jobsMakeCategoryListContainerViewByCollectionViewStyle(id<JXCategoryListContainerViewDelegate> delegate){
+NS_INLINE __kindof JXCategoryListContainerView *_Nonnull jobsMakeCategoryListContainerViewByCollectionViewStyle(id<JXCategoryListContainerViewDelegate> _Nonnull delegate){
     JXCategoryListContainerView *data = [JXCategoryListContainerView.alloc initWithType:JXCategoryListContainerType_CollectionView
                                                                                delegate:delegate];
     return data;

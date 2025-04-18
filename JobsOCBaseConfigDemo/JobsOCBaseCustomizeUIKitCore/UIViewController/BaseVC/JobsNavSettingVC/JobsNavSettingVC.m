@@ -110,7 +110,7 @@
             self.setGKNav(nil);
             self.setGKNavBackBtn(nil);
             if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
-            self.gk_navRightBarButtonItems = self.rightBarButtonItems;
+            if(self.rightBarButtonItems.count) self.gk_navRightBarButtonItems = self.rightBarButtonItems;
             self.gk_navigationBar.hidden = !data;
             self.gk_navigationBar.alpha = data;
         }
@@ -129,7 +129,7 @@
             self.setGKNav(config.viewModel);
             self.setGKNavBackBtnBy(config.backBtn);
             if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
-            self.gk_navRightBarButtonItems = self.rightBarButtonItems;
+            if(self.rightBarButtonItems.count) self.gk_navRightBarButtonItems = self.rightBarButtonItems;
             self.gk_navigationBar.hidden = !config.alpha;
             self.gk_navigationBar.alpha = config.alpha;
         }

@@ -847,7 +847,7 @@ classDiagram
 * **字符串相等**
 
   ```objective-c
-  -(JobsReturnBOOLByIDBlock)isEqualToString{
+  -(JobsReturnBOOLByIDBlock _Nullable)isEqualToString{
       @jobs_weakify(self)
       return ^(NSString *data){
           @jobs_strongify(self)
@@ -861,7 +861,7 @@ classDiagram
 * **字符串包含**
 
   ```objective-c
-  -(JobsReturnBOOLByIDBlock)containsString{
+  -(JobsReturnBOOLByIDBlock _Nullable)containsString{
       @jobs_weakify(self)
       return ^(NSString *data){
           @jobs_strongify(self)
@@ -1318,7 +1318,9 @@ classDiagram
   ```objective-c
   -(UIImageView *)textFieldLeftView{
       if(!_textFieldLeftView){
+          @jobs_weakify(self)
           _textFieldLeftView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+              @jobs_strongify(self)
               imageView.image = JobsIMG(@"UserLogoTextFieldLeftImage");
               imageView.sizer = CGSizeMake(JobsWidth(15), JobsWidth(15));
           });
@@ -1327,7 +1329,9 @@ classDiagram
   
   -(UIImageView *)textFieldRightView{
       if(!_textFieldRightView){
+          @jobs_weakify(self)
           _textFieldRightView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+              @jobs_strongify(self)
               imageView.image = JobsIMG(@"UserLogoTextFieldRightImage");
               imageView.sizer = CGSizeMake(JobsWidth(16), JobsWidth(16));
           });
@@ -1414,7 +1418,6 @@ classDiagram
          _textField.placeholderRectForBounds = CGRectMake(JobsWidth(10), JobsWidth(10), JobsWidth(255 - 20 - 40 - 5), JobsWidth(12));
          _textField.textRectForBounds = CGRectMake(JobsWidth(10), 0, JobsWidth(255 - 20 - 40 - 10), 100);
          _textField.editingRectForBounds = CGRectMake(JobsWidth(10), 0, JobsWidth(255 - 20 - 40 - 10), 100);
-  
          @jobs_weakify(self)
          [_textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
   //            @jobs_strongify(self)
@@ -1693,7 +1696,9 @@ classDiagram
   ```objective-c
   /// 模拟用户数据
   -(jobsByVoidBlock _Nonnull)simulateUserData{
+   	 @jobs_weakify(self)
       return ^(){
+      	  @jobs_strongify(self)
           self.saveUserInfo(jobsMakeUserModel(^(__kindof JobsUserModel<NSCoding> * _Nullable userModel) {
               userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
               userModel.userName = @"张三丰";
@@ -2075,7 +2080,7 @@ classDiagram
   @implementation NSObject (Data)
   #pragma mark —— 关于数据（MJExtension）解析
   /// 对待输入参数是含字典的数组
-  +(JobsReturnArrByArrBlock)byDataArr{
+  +(JobsReturnArrByArrBlock _Nullable)byDataArr{
       @jobs_weakify(self)
       return ^__kindof NSArray *_Nullable(__kindof NSArray <NSDictionary *>*_Nullable data){
           @jobs_strongify(self)
@@ -2083,7 +2088,7 @@ classDiagram
       };
   }
   /// 对待输入参数是字典
-  +(JobsReturnIDByDicBlock)byDataDic{
+  +(JobsReturnIDByDicBlock _Nullable)byDataDic{
       @jobs_weakify(self)
       return ^id _Nullable(__kindof NSDictionary *_Nullable data){
           @jobs_strongify(self)
@@ -2091,7 +2096,7 @@ classDiagram
       };
   }
   /// 万能解析
-  +(JobsReturnIDByIDBlock)byData{
+  +(JobsReturnIDByIDBlock _Nullable)byData{
       @jobs_weakify(self)
       return ^id _Nullable(id _Nullable data){
           @jobs_strongify(self)
@@ -2137,7 +2142,6 @@ classDiagram
 
     ```objective-c
     @property(nonatomic,strong)NSArray<FMGameListModel *> *gameList; 
-    
     // 告诉 MJExtension "gameList" 是一个 FMGameListModel 数组
     + (NSDictionary *)mj_objectClassInArray {
         return @{
@@ -2227,7 +2231,6 @@ classDiagram
 
     ```objective-c
     @property(nonatomic,strong)JobsMenuView *menuView;
-    
     -(JobsMenuView *)menuView{
         if(!_menuView){
             _menuView = JobsMenuView.new;
@@ -2308,7 +2311,7 @@ classDiagram
          }];
      }
     ```
-
+  
 * [**`JobsVerticalMenuVC@0`**]() <font color=red>**强烈推荐**</font>
 
   * 右边点选进行切换的子View一定要继承自 JobsVerticalMenuSubView，否则点选的时候无法移除。
@@ -2522,14 +2525,17 @@ classDiagram
   
   -(UIImageView *)topImageView{
       if(!_topImageView){
-          _topImageView = UIImageView.new;
-          _topImageView.image = self.bgImageMutArr2[0];
-          [self.bgImageView addSubview:_topImageView];
-          [_topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.top.equalTo(self.view);
-              make.centerX.equalTo(self.view);
-              make.size.mas_equalTo(CGSizeMake(JobsWidth(182), JobsWidth(65)));
-          }];
+          @jobs_weakify(self)
+          _topImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+              @jobs_strongify(self)
+              imageView.image = self.bgImageMutArr2[0];
+              self.bgImageView.addSubview(imageView);
+              [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                  make.top.equalTo(self.view);
+                  make.centerX.equalTo(self.view);
+                  make.size.mas_equalTo(CGSizeMake(JobsWidth(182), JobsWidth(65)));
+              }];
+          });
       }return _topImageView;
   }
   
@@ -2579,25 +2585,25 @@ classDiagram
   -(NSMutableArray<__kindof UIView *> *)subViewMutArr{
       if(!_subViewMutArr){
           @jobs_weakify(self)
-          _subViewMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+          _subViewMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UIView *>* _Nullable data) {
               @jobs_strongify(self)
-              data.add(self.makeSubViews(FMIncentiveAllView.class));
-              data.add(self.makeSubViews(FMIncentiveSlotGamesView.class));
-              data.add(self.makeSubViews(FMIncentiveLiveCasinoView.class));
-              data.add(self.makeSubViews(FMIncentiveSportsView.class));
-              data.add(self.makeSubViews(FMIncentiveOthersView.class));
+              data.add(self.makeSubViews(FMIncentiveAllView.class))
+              .add(self.makeSubViews(FMIncentiveSlotGamesView.class))
+              .add(self.makeSubViews(FMIncentiveLiveCasinoView.class))
+              .add(self.makeSubViews(FMIncentiveSportsView.class))
+              .add(self.makeSubViews(FMIncentiveOthersView.class));
           });
       }return _subViewMutArr;
   }
   
   -(NSMutableArray<UIImage *> *)normal_titleBgImageMutArr{
       if(!_normal_titleBgImageMutArr){
-          _normal_titleBgImageMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-              data.add(JobsIMG(@"Top_Games_menu_未点击"));
-              data.add(JobsIMG(@"Slot_Games_menu_未点击"));
-              data.add(JobsIMG(@"Live_Casino_menu_未点击"));
-              data.add(JobsIMG(@"Table_Games_menu_未点击"));
-              data.add(JobsIMG(@"Sport_Menu_未点击"));
+          _normal_titleBgImageMutArr = jobsMakeMutArr(^(NSMutableArray <UIImage *>* _Nullable data) {
+              data.add(JobsIMG(@"Top_Games_menu_未点击"))
+              .add(JobsIMG(@"Slot_Games_menu_未点击"))
+              .add(JobsIMG(@"Live_Casino_menu_未点击"))
+              .add(JobsIMG(@"Table_Games_menu_未点击"))
+              .add(JobsIMG(@"Sport_Menu_未点击"));
   //            data.add(JobsIMG(@"Fishing_menu_未点击"));
           });
       }return _normal_titleBgImageMutArr;
@@ -2605,12 +2611,12 @@ classDiagram
   
   -(NSMutableArray<UIImage *> *)normal_titleImageMutArr{
       if(!_normal_titleImageMutArr){
-          _normal_titleImageMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-              data.add(JobsIMG(@"Top_Games_小图标_未点击"));
-              data.add(JobsIMG(@"Slot_Games_小图标_未点击"));
-              data.add(JobsIMG(@"Live_Casino_小图标_未点击"));
-              data.add(JobsIMG(@"Table_Games_小图标_未点击"));
-              data.add(JobsIMG(@"Sport_小图标_未点击"));
+          _normal_titleImageMutArr = jobsMakeMutArr(^(NSMutableArray <UIImage *>* _Nullable data) {
+              data.add(JobsIMG(@"Top_Games_小图标_未点击"))
+              .add(JobsIMG(@"Slot_Games_小图标_未点击"))
+              .add(JobsIMG(@"Live_Casino_小图标_未点击"))
+              .add(JobsIMG(@"Table_Games_小图标_未点击"))
+              .add(JobsIMG(@"Sport_小图标_未点击"));
   //            data.add(JobsIMG(@"Fishing_小图标_未点击"));
           });
       }return _normal_titleImageMutArr;
@@ -2618,25 +2624,25 @@ classDiagram
   
   -(NSMutableArray<UIImage *> *)select_titleBgImageMutArr{
       if(!_select_titleBgImageMutArr){
-          _select_titleBgImageMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-              data.add(JobsIMG(@"Top_Games_menu_已点击"));
-              data.add(JobsIMG(@"Slot_Games_menu_已点击"));
-              data.add(JobsIMG(@"Live_Casino_menu_已点击"));
-              data.add(JobsIMG(@"Table_Games_menu_已点击"));
-              data.add(JobsIMG(@"Sport_Menu_已点击"));
-  //            data.add(JobsIMG(@"Fishing_menu_已点击"));
+          _select_titleBgImageMutArr = jobsMakeMutArr(^(NSMutableArray <UIImage *>* _Nullable data) {
+              data.add(JobsIMG(@"Top_Games_menu_已点击"))
+              .add(JobsIMG(@"Slot_Games_menu_已点击"))
+              .add(JobsIMG(@"Live_Casino_menu_已点击"))
+              .add(JobsIMG(@"Table_Games_menu_已点击"))
+              .add(JobsIMG(@"Sport_Menu_已点击"));
+  //            .add(JobsIMG(@"Fishing_menu_已点击"));
           });
       }return _select_titleBgImageMutArr;
   }
   /// 底图
   -(NSMutableArray<UIImage *> *)bgImageMutArr1{
       if(!_bgImageMutArr1){
-          _bgImageMutArr1 = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-              data.add(JobsIMG(@"TOP GAMES"));
-              data.add(JobsIMG(@"SLOT GAMES"));
-              data.add(JobsIMG(@"LIVE CASINO"));
-              data.add(JobsIMG(@"TABLE GAMES"));
-              data.add(JobsIMG(@"SPORTS"));
+          _bgImageMutArr1 = jobsMakeMutArr(^(NSMutableArray <UIImage *>* _Nullable data) {
+              data.add(JobsIMG(@"TOP GAMES"))
+              .add(JobsIMG(@"SLOT GAMES"))
+              .add(JobsIMG(@"LIVE CASINO"))
+              .add(JobsIMG(@"TABLE GAMES"))
+              .add(JobsIMG(@"SPORTS"));
   //            data.add(JobsIMG(@"FINSHING"));
           });
       }return _bgImageMutArr1;
@@ -2644,44 +2650,46 @@ classDiagram
   /// 最上面的小图
   -(NSMutableArray<UIImage *> *)bgImageMutArr2{
       if(!_bgImageMutArr2){
-          _bgImageMutArr2 = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-              data.add(JobsIMG(@"Top_Games"));
-              data.add(JobsIMG(@"Slot_Games"));
-              data.add(JobsIMG(@"Live_Casino"));
-              data.add(JobsIMG(@"Table_Games"));
-              data.add(JobsIMG(@"Sports"));
-  //            data.add(JobsIMG(@"Fishing"));
+          _bgImageMutArr2 = jobsMakeMutArr(^(NSMutableArray <UIImage *>* _Nullable data) {
+              data.add(JobsIMG(@"Top_Games"))
+              .add(JobsIMG(@"Slot_Games"))
+              .add(JobsIMG(@"Live_Casino"))
+              .add(JobsIMG(@"Table_Games"))
+              .add(JobsIMG(@"Sports"));
+  //            .add(JobsIMG(@"Fishing"));
           });
       }return _bgImageMutArr2;
   }
   @synthesize backBtnModel = _backBtnModel;
   -(UIButtonModel *)backBtnModel{
       if(!_backBtnModel){
-          _backBtnModel = UIButtonModel.new;
-  //        _backBtnModel.backgroundImage = JobsIMG(@"返回");
-  //        _backBtnModel.selected_backgroundImage = JobsIMG(@"返回");
-          _backBtnModel.normalImage = JobsIMG(@"返回");
-          _backBtnModel.highlightImage = JobsIMG(@"返回");
-          _backBtnModel.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
-          _backBtnModel.title = self.viewModel.backBtnTitleModel.text;
-          _backBtnModel.titleFont = bayonRegular(JobsWidth(18));
-          _backBtnModel.titleCor = JobsWhiteColor;
-          _backBtnModel.selected_titleCor = JobsWhiteColor;
-          _backBtnModel.roundingCorners = UIRectCornerAllCorners;
-          _backBtnModel.imagePlacement = NSDirectionalRectEdgeLeading;
-          _backBtnModel.imagePadding = JobsWidth(5);
           @jobs_weakify(self)
-          _backBtnModel.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
-                                                         id _Nullable arg) {
-              NSLog(@"按钮的长按事件触发");
-              return nil;
-          };
-          _backBtnModel.clickEventBlock = ^id(BaseButton *x){
-              @jobs_strongify(self)
-              if (self.objectBlock) self.objectBlock(x);
-              self.jobsBackBtnClickEvent(x);
-              return nil;
-          };
+          _backBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+              model.backgroundImage = JobsIMG(@"返回");
+              model.selected_backgroundImage = JobsIMG(@"返回");
+              model.normalImage = JobsIMG(@"返回");
+              model.highlightImage = JobsIMG(@"返回");
+              model.baseBackgroundColor = JobsClearColor.colorWithAlphaComponent(0);
+              model.title = self.viewModel.backBtnTitleModel.text;
+              model.titleFont = bayonRegular(JobsWidth(18));
+              model.titleCor = JobsWhiteColor;
+              model.selected_titleCor = JobsWhiteColor;
+              model.roundingCorners = UIRectCornerAllCorners;
+              model.imagePlacement = NSDirectionalRectEdgeLeading;
+              model.imagePadding = JobsWidth(5);
+              @jobs_weakify(self)
+              model.longPressGestureEventBlock = ^id(id _Nullable weakSelf,
+                                                     id _Nullable arg) {
+                  NSLog(@"按钮的长按事件触发");
+                  return nil;
+              };
+              model.clickEventBlock = ^id(BaseButton *x){
+                  @jobs_strongify(self)
+                  if (self.objectBlock) self.objectBlock(x);
+                  self.jobsBackBtnClickEvent(x);
+                  return nil;
+              };
+          });
       }return _backBtnModel;
   }
   
@@ -3179,8 +3187,10 @@ static const uint32_t kSequenceBits = 12;
       };
   }
   /// 元素包含
-  -(JobsReturnBOOLByIDBlock)containsObject{
+  -(JobsReturnBOOLByIDBlock _Nonnull)containsObject{
+    @jobs_weakify(self)
       return ^BOOL((id _Nullable data)){
+      @jobs_strongify(self)
           return [self containsObject:data];
       };
   }
@@ -3193,7 +3203,7 @@ static const uint32_t kSequenceBits = 12;
       };
   }
   /// 数组取下标
-  -(JobsReturnNSUIntegerByIDBlock)indexBy{
+  -(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy{
       @jobs_weakify(self)
       return ^NSUInteger(id _Nullable data){
           @jobs_strongify(self)
@@ -3227,7 +3237,7 @@ static const uint32_t kSequenceBits = 12;
       };
   }
   ```
-
+  
   ```objective-c
   /// 可变数组的方便调用
   NS_INLINE __kindof NSArray *_Nonnull jobsMakeMutArr(jobsByMutableArrayBlock _Nonnull block){
@@ -3300,10 +3310,10 @@ static const uint32_t kSequenceBits = 12;
     -(UIViewModel *)viewModel{
         UIViewModel *VM = Jobs_getAssociatedObject(_viewModel);
         if(!VM){
-            VM = UIViewModel.new;
-            VM.textModel.textCor = HEXCOLOR(0x3D4A58);
-            VM.textModel.font = UIFontWeightRegularSize(16);
-            Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, VM);
+            VM = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
+                vm.textModel.textCor = HEXCOLOR(0x3D4A58);
+                vm.textModel.font = UIFontWeightRegularSize(16);
+            });Jobs_setAssociatedRETAIN_NONATOMIC(_viewModel, VM);
         }return VM;
     }
     
@@ -3350,9 +3360,10 @@ static const uint32_t kSequenceBits = 12;
   @synthesize viewModel = _viewModel;
   -(UIViewModel *)viewModel{
       if (!_viewModel) {
-          _viewModel = UIViewModel.new;
-          _viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-          _viewModel.textModel.font = UIFontWeightRegularSize(16);
+          _viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
+              vm.textModel.textCor = HEXCOLOR(0x3D4A58);
+              vm.textModel.font = UIFontWeightRegularSize(16);
+          });
       }return _viewModel;
   }
   ```
@@ -3365,12 +3376,25 @@ static const uint32_t kSequenceBits = 12;
 
 * ```objective-c
   -(void)Test{
-      Ivar ivar = class_getInstanceVariable([BRDatePickerView class], "_monthNames");//必须是下划线接属性
-      NSArray *_monthNames = @[@"一月份", @"二月份", @"三月份", @"四月份", @"五月份", @"六月份", @"七月份", @"八月份", @"九月份", @"十月份", @"十一月份", @"十二月份"];
-      object_setIvar(self.datePickerView, ivar, _monthNames);
+      object_setIvar(self.datePickerView,
+                     class_getInstanceVariable([BRDatePickerView class], "_monthNames"),/// 必须是下划线接属性
+                     jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
+          arr.add(JobsInternationalization(@"一月份"))
+              .add(JobsInternationalization(@"二月份"))
+              .add(JobsInternationalization(@"三月份"))
+              .add(JobsInternationalization(@"四月份"))
+              .add(JobsInternationalization(@"五月份"))
+              .add(JobsInternationalization(@"六月份"))
+              .add(JobsInternationalization(@"七月份"))
+              .add(JobsInternationalization(@"八月份"))
+              .add(JobsInternationalization(@"九月份"))
+              .add(JobsInternationalization(@"十月份"))
+              .add(JobsInternationalization(@"十一月份"))
+              .add(JobsInternationalization(@"十二月份"));
+      }));
   }
   ```
-
+  
 * 也可以用`KVC`。比方说有一个变量叫**aaa**，然后我用 变量 = [对象 valueForKey：@"aaa"]来取.顺序是这样的：
 
   * 看是否有`-aaa{}`，如果有就调用
@@ -3545,7 +3569,7 @@ static const uint32_t kSequenceBits = 12;
 
 * 删除`Info.plist`中，关于多场景的键值对
 
-  ```objective-c
+  ```xml
   <key>UIApplicationSceneManifest</key>
   <dict>
     <key>UIApplicationSupportsMultipleScenes</key>
@@ -3622,7 +3646,13 @@ static const uint32_t kSequenceBits = 12;
     Prop_assign()UIControlContentVerticalAlignment contentVerticalAlignment API_UNAVAILABLE(watchos); /// 针对内容的竖向对齐方式
     Prop_assign()NSDirectionalEdgeInsets contentInsets API_AVAILABLE(ios(11.0),tvos(11.0),watchos(4.0)); /// 定位内边距的方向。iOS 15以后 结合UIButtonConfiguration 以替换属性：UIEdgeInsets
     Prop_assign()UIEdgeInsets contentEdgeInsets;/// iOS 15以前可以用
-    Prop_strong(nullable)UIColor *baseBackgroundColor;/// 背景颜色
+    Prop_strong(nullable)UIColor *baseBackgroundColor;/// 背景颜色（普通）
+    Prop_strong(nullable)UIColor *selectedBaseBackgroundColor;/// 背景颜色（已选择）
+    /// 关于按钮描边（也可以通过父类UIView进行处理）
+    Prop_strong(nullable)UIColor *layerBorderCor;/// 描边的颜色（普通）
+    Prop_strong(nullable)UIColor *selectedLayerBorderCor;/// 描边的颜色（已选择）
+    Prop_assign()CGFloat normalBorderWidth;/// 描边线的宽度（普通）
+    Prop_assign()CGFloat selectedBorderWidth;/// 描边线的宽度（已选择）
     /// 关于按钮的图文关系
     Prop_assign()CGFloat imagePadding;/// 图像与标题之间的间距
     Prop_assign()CGFloat titlePadding;/// 标题和副标题标签之间的距离
@@ -3636,33 +3666,48 @@ static const uint32_t kSequenceBits = 12;
     Prop_assign()CGFloat contentSpacing;
     Prop_assign()CGFloat btnWidth; /// 预设值，父视图的宽度不能大于这个值
     #pragma mark —— 普通文本
-    Prop_copy(nullable)NSString *title; /// 主标题
-    Prop_copy(nullable)NSString *subTitle API_AVAILABLE(ios(16.0)); ///（新Api才有的）副标题
     /**
      在 iOS 16 中，UIButtonConfiguration 使用 titleTextAttributesTransformer 来调整按钮标题的字体和颜色
      但直接访问字体并不像从 titleLabel 那样简单
      */
-    /// 普通文本的字体
-    Prop_strong(nullable)UIFont *titleFont;
-    Prop_strong(nullable)UIFont *subTitleFont API_AVAILABLE(ios(16.0));
-    /// 普通文本的文字颜色
-    Prop_strong(nullable)UIColor *titleCor;/// 主标题文字颜色
-    Prop_strong(nullable)UIColor *subTitleCor;/// 副标题文字颜色
-    /// 普通文本的对齐方式
+    /// 未选择（普通）
+    Prop_copy(nullable)NSString *title; /// 主标题
+    Prop_copy(nullable)NSString *subTitle API_AVAILABLE(ios(16.0)); ///（新Api才有的）副标题
+    Prop_strong(nullable)UIFont *titleFont;/// 普通主标题文本的字体
+    Prop_strong(nullable)UIFont *subTitleFont API_AVAILABLE(ios(16.0));/// 普通副标题文本的字体
+    Prop_strong(nullable)UIColor *titleCor;/// 普通主标题文本文字颜色
+    Prop_strong(nullable)UIColor *subTitleCor;/// 普通副标题文本文字颜色
     Prop_assign()NSTextAlignment titleAlignment;/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】。也对应新Api里面的title的对齐方式
     Prop_assign()NSTextAlignment subTitleAlignment;/// 也对应新Api里面的subTitle的对齐方式
     Prop_assign()UIButtonConfigurationTitleAlignment buttonConfigurationTitleAlignment API_AVAILABLE(ios(15.0)) API_UNAVAILABLE(watchos);/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
-    /// 普通文本的换行方式
     Prop_assign()NSLineBreakMode titleLineBreakMode;/// 主标题换行模式
     Prop_assign()NSLineBreakMode subtitleLineBreakMode;///（新Api才有的）副标题换行模式
+    /// 已选择
+    Prop_copy(nullable)NSString *selectedTitle; /// 主标题
+    Prop_copy(nullable)NSString *selectedSubTitle API_AVAILABLE(ios(16.0)); ///（新Api才有的）副标题
+    Prop_strong(nullable)UIFont *selectedTitleFont;/// 普通主标题文本的字体
+    Prop_strong(nullable)UIFont *selectedSubTitleFont API_AVAILABLE(ios(16.0));/// 普通副标题文本的字体
+    Prop_strong(nullable)UIColor *selectedTitleCor;/// 普通主标题文本文字颜色
+    Prop_strong(nullable)UIColor *selectedSubTitleCor;/// 普通副标题文本文字颜色
+    Prop_assign()NSTextAlignment selectedTitleAlignment;/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】。也对应新Api里面的title的对齐方式
+    Prop_assign()NSTextAlignment selectedSubTitleAlignment;/// 也对应新Api里面的subTitle的对齐方式
+    Prop_assign()UIButtonConfigurationTitleAlignment selectedButtonConfigurationTitleAlignment API_AVAILABLE(ios(15.0)) API_UNAVAILABLE(watchos);/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+    Prop_assign()NSLineBreakMode selectedTitleLineBreakMode;/// 主标题换行模式
+    Prop_assign()NSLineBreakMode selectedSubtitleLineBreakMode;///（新Api才有的）副标题换行模式
     #pragma mark —— 图片
-    Prop_strong(nullable)UIImage *backgroundImage;/// 背景图片
-    Prop_strong(nullable)UIImage *normalImage;/// 正常情况下的image
-    Prop_strong(nullable)UIImage *highlightImage;/// = selected_Image 高亮情况下的image
+    /// 未选择（普通）
+    Prop_strong(nullable)UIImage *backgroundImage;///（普通）背景图片
+    Prop_strong(nullable)UIImage *normalImage;/// 正常情况下（普通）的image
+    /// 已选择
+    Prop_strong(nullable)UIImage *highlightBackgroundImage;/// （选中）背景图片
+    Prop_strong(nullable)UIImage *highlightImage;/// = selected_Image （选中）高亮情况下的image
     #pragma mark —— 富文本
+    /// 未选择（普通）
     Prop_strong(nullable)NSAttributedString *attributedTitle;/// 主标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
-    Prop_strong(nullable)NSAttributedString *selectedAttributedTitle;///（只限于老Api，新Api里面没有）UIControlStateSelected状态下的标题富文本。设置富文本，请关注：#import "NSObject+RichText.h"
     Prop_strong(nullable)NSAttributedString *attributedSubTitle;///（新Api才有的）副标题的富文本（优先级高于普通文本）。设置富文本，请关注：#import "NSObject+RichText.h"
+    /// 已选择
+    Prop_strong(nullable)NSAttributedString *selectedAttributedTitle;///（只限于老Api，新Api里面没有）UIControlStateSelected状态下的标题富文本。设置富文本，请关注：#import "NSObject+RichText.h"
+    Prop_strong(nullable)NSAttributedString *selectedAttributedSubTitle;
     #pragma mark —— 对UIButton子控件的约束
     /// ⚠️执行return的顺序依照下列👇🏻属性的排序⚠️
     ///【组 1】UIButton 单独自定义设置系统自带控件的Frame【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️

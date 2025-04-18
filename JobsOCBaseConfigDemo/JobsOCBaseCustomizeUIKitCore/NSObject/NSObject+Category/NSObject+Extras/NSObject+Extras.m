@@ -206,6 +206,29 @@ UITextFieldProtocol_dynamic
     };
 }
 #pragma mark —— 功能性的
+/// 刷新控件的头部数据
+-(MJRefreshConfigModel *_Nonnull)refreshHeaderDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock{
+    return jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+        data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
+        data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
+        data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
+        data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+        data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+        data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
+        data.loadBlock = loadBlock;
+    });
+}
+/// 刷新控件的尾部数据
+-(MJRefreshConfigModel *_Nonnull)refreshFooterDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock{
+    return jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+        data.stateIdleTitle = JobsInternationalization(@"");
+        data.pullingTitle = JobsInternationalization(@"");
+        data.refreshingTitle = JobsInternationalization(@"");
+        data.willRefreshTitle = JobsInternationalization(@"");
+        data.noMoreDataTitle = JobsInternationalization(@"");
+        data.loadBlock = loadBlock;
+    });
+}
 /// 切换到主VC
 -(jobsByVCBlock _Nonnull)switchToMainVC{
     return ^(__kindof UIViewController *_Nullable mainVC){
@@ -612,7 +635,12 @@ UITextFieldProtocol_dynamic
             UIView *view = (UIView *)self;
             vc = self.getViewControllerByView(view);
         }else return;
-        
+        self.backViewControllerCore(vc);
+    };
+}
+/// 返回控制器的核心逻辑
+-(jobsByViewControllerBlock _Nonnull)backViewControllerCore{
+    return ^(__kindof UIViewController *_Nullable vc){
         switch (self.pushOrPresent) {
             case ComingStyle_PRESENT:{
                 [vc dismissViewControllerAnimated:YES completion:nil];

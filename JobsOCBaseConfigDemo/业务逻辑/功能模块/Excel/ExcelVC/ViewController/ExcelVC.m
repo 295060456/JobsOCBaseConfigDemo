@@ -9,8 +9,8 @@
 
 @interface ExcelVC ()
 /// Data
-@property(nonatomic,copy)NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
-@property(nonatomic,copy)NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
+Prop_copy()NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
+Prop_copy()NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
 
 @end
 
@@ -209,8 +209,7 @@ viewForHeaderInSection:(NSInteger)section{
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView hideSeparatorLineAtLast:indexPath
-                                  cell:cell];
+    [tableView hideSeparatorLineAtLast:indexPath cell:cell];
     cell.img = JobsIMG(@"向右的箭头（大）");
 //    @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {
@@ -232,75 +231,69 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 @synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = JobsBlueColor;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.separatorColor = HEXCOLOR(0xEEE2C8);
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.scrollEnabled = YES;
-        _tableView.dataLink(self);
-        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-        [_tableView registerTableViewClass];
-        if(@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }else{
-            SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
-        }
-        
-        {
-            _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-            }));
-            _tableView.mj_footer = self.view.MJRefreshAutoNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-            }));
-        }
+        @jobs_weakify(self)
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.backgroundColor = JobsBlueColor;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.separatorColor = HEXCOLOR(0xEEE2C8);
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.scrollEnabled = YES;
+            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
+            [tableView registerTableViewClass];
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }else{
+                SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
+            }
+            
+            {
+                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                    tableView.endRefreshing(YES);
+                    return nil;
+                }]);
+                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
+                    tableView.endRefreshing(YES);
+                    return nil;
+                }]);
+            }
 
-        
-//        {// 设置tabAnimated相关属性
-//            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-//                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
-//            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
-//            _tableView.tabAnimated.canLoadAgain = YES;
-////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
-////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
-//            [_tableView tab_startAnimation];   // 开启动画
-//        }
-        
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self.view);
-            make.top.equalTo(self.navBar.mas_bottom);
-        }];
-        
+    //        {// 设置tabAnimated相关属性
+    //            tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
+    //                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
+    //            tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
+    //            tableView.tabAnimated.canLoadAgain = YES;
+    ////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+    ////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
+    //            [tableView tab_startAnimation];   // 开启动画
+    //        }
+            
+            self.view.addSubview(tableView);
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.equalTo(self.view);
+                make.top.equalTo(self.navBar.mas_bottom);
+            }];
+        });
     }return _tableView;
 }
 
 -(NSMutableArray<NSMutableArray<__kindof UITableViewCell *> *> *)tbvSectionRowCellMutArr{
     if(!_tbvSectionRowCellMutArr){
         @jobs_weakify(self)
-        _tbvSectionRowCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable rowCellMutArr) {
+        _tbvSectionRowCellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSMutableArray<__kindof UITableViewCell *> *>* _Nullable data) {
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UITableViewCell *>* _Nullable rowCellMutArr) {
                 @jobs_strongify(self)
-                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
-                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
+                rowCellMutArr.add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView))
+                .add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView))
+                .add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView))
+                .add(JobsBaseTableViewCell.cellStyleValue1WithTableView(self.tableView));
             }));
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable rowCellMutArr) {
                 @jobs_strongify(self)
@@ -315,24 +308,24 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSMutableArray<__kindof UIViewModel *> *>*_Nullable data) {
             @jobs_strongify(self)
-            data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
+            data.add(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIViewModel *>* _Nullable data1) {
                 @jobs_strongify(self)
                 data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                     model.title = JobsInternationalization(@"ZMJClassData");
                     model.subTitle = JobsInternationalization(@"正常");
                     model.cls = ZMJClassDataVC.class;
-                })));
-                data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                })))
+                .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                     model.title = JobsInternationalization(@"ZMJTimeable");
                     model.subTitle = JobsInternationalization(@"正常");
                     model.cls = ZMJTimeableVC.class;
-                })));
-                data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                })))
+                .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                     model.title = JobsInternationalization(@"ZMJSchedule");
                     model.subTitle = JobsInternationalization(@"正常");
                     model.cls = ZMJScheduleVC.class;
-                })));
-                data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                })))
+                .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                     model.title = JobsInternationalization(@"ZMJGanttList");
                     model.subTitle = JobsInternationalization(@"有崩溃，需要修复");
                     model.cls = ZMJGanttListVC.class;

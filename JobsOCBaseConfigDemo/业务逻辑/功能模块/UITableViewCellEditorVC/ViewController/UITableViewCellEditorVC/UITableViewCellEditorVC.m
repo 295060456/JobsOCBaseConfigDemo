@@ -9,11 +9,11 @@
 
 @interface UITableViewCellEditorVC ()
 /// UI
-@property(nonatomic,strong)BaseButton *editBtn;
-@property(nonatomic,strong)MsgEditBoardView *msgEditBoardView;
+Prop_strong()BaseButton *editBtn;
+Prop_strong()MsgEditBoardView *msgEditBoardView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <JobsMsgDataModel *>*dataMutArr;
-@property(nonatomic,copy)NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
+Prop_copy()NSMutableArray <JobsMsgDataModel *>*dataMutArr;
+Prop_copy()NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
 
 @end
 
@@ -48,11 +48,11 @@
     [super viewDidLoad];
     
     @jobs_weakify(self)
-    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-        @jobs_strongify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
+//        @jobs_strongify(self)
 //        data.add(UIBarButtonItem.initBy(self.aboutBtn));
     });
-    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
         @jobs_strongify(self)
         data.add(UIBarButtonItem.initBy(self.editBtn));
     });
@@ -105,12 +105,10 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         cell.selected = YES;
-        
         if ([self.tableView.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
             [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPath];
         }
     }
-    
     /// Data层
     [self.selectedDataMutArr removeAllObjects];
     [self.selectedDataMutArr addObjectsFromArray:self.dataMutArr];
@@ -162,7 +160,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         self.msgEditBoardView.getMarkToReadBtn.enabledBlock(dataMutArr.count);
     }else{
         JobsMsgDetailVC *msgDetailVC = JobsMsgDetailVC.new;
-        @jobs_weakify(self)
         [msgDetailVC actionObjBlock:^(JobsMsgDataModel *data) {
             @jobs_strongify(self)
             [self.dataMutArr removeObject:data];
@@ -232,59 +229,43 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = JobsWhiteColor;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-//        _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-        [_tableView registerTableViewClass];
-        if(@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }else{
-            SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
-        }
-        
-        {
-            _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    self->_tableView.endRefreshing(YES);
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.backgroundColor = JobsWhiteColor;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.delegate = self;
+            tableView.dataSource = self;
+            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+    //        _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
+            [tableView registerTableViewClass];
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }else{
+                SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
+            }
+            
+            {
+                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                    tableView.endRefreshing(YES);
                     return nil;
-                };
-            }));
-            _tableView.mj_footer = self.view.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    self->_tableView.endRefreshing(YES);
+                }]);
+                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
+                    tableView.endRefreshing(YES);
                     return nil;
-                };
-            }));
-        }
-        
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
+                }]);
+            }
+            self.view.addSubview(tableView);
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
+        });
     }return _tableView;
 }
 
@@ -302,7 +283,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 if ([btn.jobsResetBtnTitle isEqualToString:JobsInternationalization(@"全選")]) {
                     btn.selected ? [self allChoose] : [self allCancelChoose];
                 }else if ([btn.jobsResetBtnTitle isEqualToString:JobsInternationalization(@"標記為已讀")]){
-                    
                     for (JobsMsgDataModel *model in self.selectedDataMutArr) {//dataMutArr
                         model.isRead = YES;
                         NSUInteger index = [self.dataMutArr indexOfObject:model];
@@ -329,24 +309,24 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 viewModel.time = JobsInternationalization(@"05-13 18:20");
                 viewModel.isDraw = NO;
                 viewModel.isRead = NO;
-            }));
-            data.add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
+            }))
+            .add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
                 viewModel.msgStyle = JobsMsgType_Activity;/// 活动
                 viewModel.textModel.text = JobsInternationalization(@"6月1日13:00點");
                 viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
                 viewModel.time = JobsInternationalization(@"05-13 18:20");
                 viewModel.isDraw = YES;
                 viewModel.isRead = YES;
-            }));
-            data.add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
+            }))
+            .add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
                 viewModel.msgStyle = JobsMsgType_Notice;/// 公告
                 viewModel.textModel.text = JobsInternationalization(@"6月1日");
                 viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
                 viewModel.time = JobsInternationalization(@"05-13 18:20");
                 viewModel.isDraw = NO;
                 viewModel.isRead = NO;
-            }));
-            data.add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
+            }))
+            .add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
                 viewModel.msgStyle = JobsMsgType_Bonus;/// 红利
                 viewModel.textModel.text = JobsInternationalization(@"wowowowowo");
                 viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");

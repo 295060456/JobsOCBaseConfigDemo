@@ -10,7 +10,7 @@
 @interface AppLanguageVC ()
 /// UI
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 
@@ -94,15 +94,15 @@
         /// 清除缓存以确保新图片被加载
         [SDImageCache.sharedImageCache clearMemory];
         [SDImageCache.sharedImageCache clearDiskOnCompletion:nil];
-        
-        UIImageView *imageView = UIImageView.new;
-        imageView.image = JobsIMG(JobsInternationalization(@"6.59"));
-        [headerFooterView addSubview:imageView];
-        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(headerFooterView);
-            make.size.mas_equalTo(CGSizeMake(BaseTableViewHeaderFooterView.heightForHeaderInSection(nil),
-                                             BaseTableViewHeaderFooterView.heightForHeaderInSection(nil)));
-        }];return imageView;
+        return jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            imageView.image = JobsIMG(JobsInternationalization(@"6.59"));
+            headerFooterView.addSubview(imageView);
+            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(headerFooterView);
+                make.size.mas_equalTo(CGSizeMake(BaseTableViewHeaderFooterView.heightForHeaderInSection(nil),
+                                                 BaseTableViewHeaderFooterView.heightForHeaderInSection(nil)));
+            }];
+        });
     };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource
@@ -182,27 +182,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = UITableView.new;
-        _tableView.dataLink(self);
-        _tableView.backgroundColor = JobsWhiteColor;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        {
-            _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉刷新");
-                data.refreshingTitle = JobsInternationalization(@"立即释放刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉刷新");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.backgroundColor = JobsWhiteColor;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+            {
+                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
                     // 刷新本界面
                     if (self.dataMutArr.count) {
@@ -223,27 +217,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                   animationBlock:nil
                                                  completionBlock:nil];
                     }];return nil;
-                };
-            }));
-            _tableView.mj_footer = self.view.MJRefreshAutoNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id _Nullable data) {
-                    @jobs_strongify(self)
+                }]);
+                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
                     self->_tableView.endRefreshing(YES);
                     return nil;
-                };
-            }));
-        }
-        
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.gk_navigationBar.mas_bottom);
-            make.left.right.bottom.equalTo(self.view);
-        }];
+                }]);
+            }
+            self.view.addSubview(tableView);
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                make.left.right.bottom.equalTo(self.view);
+            }];
+        });
     }return _tableView;
 }
 
@@ -253,16 +238,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.appLanguage = AppLanguageBySys;
                 data1.text = JobsInternationalization(@"跟随系统");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.appLanguage = AppLanguageBySys;
                 data1.text = JobsInternationalization(@"中文");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.appLanguage = AppLanguageBySys;
                 data1.text = JobsInternationalization(@"英文");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.appLanguage = AppLanguageBySys;
                 data1.text = JobsInternationalization(@"他加禄语");
             }));

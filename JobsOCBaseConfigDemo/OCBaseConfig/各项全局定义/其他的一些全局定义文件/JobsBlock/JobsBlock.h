@@ -38,6 +38,10 @@ typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByTypeBlock)(TimeZoneType timeZ
 typedef id _Nullable(^JobsReturnIDByAppLanguageBlock)(AppLanguage data);
 typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType componentType,
                                                                  __kindof UIView *_Nullable data);
+
+@class BaseView;
+typedef void(^jobsByBaseViewBlock)(__kindof BaseView *_Nullable view);
+
 @class JobsTabBarVC;
 typedef void(^jobsByTabBarVCBlock)(__kindof JobsTabBarVC *_Nullable tabBarVC);
 
@@ -72,6 +76,12 @@ typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(__kindof UIViewModel *_Nullabl
 typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable data);
+
+@class BaseTableView;
+typedef void(^jobsByBaseTableViewBlock)(__kindof BaseTableView *_Nullable tableView);
+
+@class JobsSearchBar;
+typedef void(^jobsBySearchBarBlock)(__kindof JobsSearchBar *_Nullable searchBar);
 
 @class JobsAppDoorModel;
 typedef void(^jobsByAppDoorModelBlock)(__kindof JobsAppDoorModel *_Nullable model);

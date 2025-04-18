@@ -175,6 +175,7 @@
 		84E99A442CEB4EE100ABE463 /* JobsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */; };
 		84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */; };
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
+		C5D4AB922DB24601006ED3F6 /* UIViewController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
 		CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3E2CAE671C00233F0F /* NSString+Replace.m */; };
 		CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F412CAE671C00233F0F /* NSString+Statistics.m */; };
@@ -1629,6 +1630,8 @@
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
+		C5D4AB8F2DB24601006ED3F6 /* UIViewController+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extra.h"; sourceTree = "<group>"; };
+		C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extra.m"; sourceTree = "<group>"; };
 		CE260F282CAE671C00233F0F /* NSString+Time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Time.h"; sourceTree = "<group>"; };
 		CE260F292CAE671C00233F0F /* NSString+Time.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Time.m"; sourceTree = "<group>"; };
 		CE260F2B2CAE671C00233F0F /* NSString+Conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Conversion.h"; sourceTree = "<group>"; };
@@ -5535,6 +5538,15 @@
 				87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5D4AB912DB24601006ED3F6 /* UIViewController+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				C5D4AB8F2DB24601006ED3F6 /* UIViewController+Extra.h */,
+				C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */,
+			);
+			path = "UIViewController+Extra";
 			sourceTree = "<group>";
 		};
 		CE260F2A2CAE671C00233F0F /* NSString+Time */ = {
@@ -14205,6 +14217,7 @@
 		CE5A645C2CA82C2D006D67A7 /* UIViewController+Others */ = {
 			isa = PBXGroup;
 			children = (
+				C5D4AB912DB24601006ED3F6 /* UIViewController+Extra */,
 				CE5A643F2CA82C2D006D67A7 /* UIViewController+BackBtn */,
 				CE5A64422CA82C2D006D67A7 /* UIViewController+BaseNavigationBar */,
 				CE5A64452CA82C2D006D67A7 /* UIViewController+BaseVC */,
@@ -16568,8 +16581,12 @@
 			);
 			inputFileListPaths = (
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -16678,6 +16695,7 @@
 				CECE7EA12C450E5B00764AF5 /* KTVHCDataStorage.m in Sources */,
 				CECE7EC62C450E5B00764AF5 /* TKPermissionTracking.m in Sources */,
 				CECE7E7C2C450E5B00764AF5 /* JXCategoryTimelineCell.m in Sources */,
+				C5D4AB922DB24601006ED3F6 /* UIViewController+Extra.m in Sources */,
 				CE5A64CF2CA82FAF006D67A7 /* NSObject+Notification.m in Sources */,
 				CE410FEA2C57B8B400AB9402 /* ZBRequestManager.m in Sources */,
 				CECE7E922C450E5B00764AF5 /* HTTPServer.m in Sources */,

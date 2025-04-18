@@ -10,7 +10,7 @@
 @interface LandscapeSwitchVC ()
 /// UI
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 
@@ -244,7 +244,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
     return CGSizeMake(JobsMainScreen_WIDTH() / 2 - 20, JobsMainScreen_WIDTH() / 2 - 20);
 //    return CGSizeMake(JobsMainScreen_WIDTH() / 3 - 20 * 2, JobsMainScreen_WIDTH() / 3 - 20 * 2);
 }
-/// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
+/// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -292,31 +292,16 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class,@"");
         
         {
-            _collectionView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    self.feedbackGenerator(nil);//震动反馈
-                    return nil;
-                };
-            }));
-            _collectionView.mj_footer = self.view.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id _Nullable data) {
-                    @jobs_strongify(self)
-                    self->_collectionView.endRefreshing(self.dataMutArr.count);
-                    return nil;
-                };
-            }));
+            _collectionView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                self.feedbackGenerator(nil);//震动反馈
+                return nil;
+            }]);
+            _collectionView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                self->_collectionView.endRefreshing(self.dataMutArr.count);
+                return nil;
+            }]);
         }
         
 //        {
@@ -339,7 +324,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     @jobs_weakify(self)
     if (!_dataMutArr) {
-        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIViewModel *>* _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data2) {
                     data2.text = JobsInternationalization(@"检测当前屏幕方向");
@@ -356,8 +341,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                         return CGSizeZero;
                     }];return nil;
                 };
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data2) {
                     data2.text = JobsInternationalization(@"锁定横屏:\n设备可以处于任意横屏（Landscape）模式，包括左横屏和右横屏");
                     data2.textCor = JobsRedColor;
@@ -372,8 +357,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                     [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
                     return nil;
                 };
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
                 data.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data2) {
                     data2.text = JobsInternationalization(@"解除锁定:\n设备可以处于所有方向，包括竖屏、左横屏、右横屏和倒竖屏");
                     data2.textCor = JobsRedColor;
@@ -391,8 +376,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                     [self hx_setNeedsUpdateOfSupportedInterfaceOrientations];
                     return nil;
                 };
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data2) {
                     data2.text = JobsInternationalization(@"设备左横屏");
                     data2.textCor = JobsRedColor;
@@ -407,8 +392,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                     [self hx_rotateToInterfaceOrientation:JobsAppTool.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
                     return nil;
                 };
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data2) {
                     data2.text = JobsInternationalization(@"设备右横屏");
                     data2.textCor = JobsRedColor;
@@ -423,8 +408,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                     [self hx_rotateToInterfaceOrientation:JobsAppTool.currentInterfaceOrientation];/// 设备处于竖屏（Portrait）模式，即设备的顶部朝上
                     return nil;
                 };
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data2) {
                     data2.text = JobsInternationalization(@"设备竖直向上\n Home 按钮在下方");
                     data2.textCor = JobsRedColor;
@@ -440,7 +425,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                     return nil;
                 };
             }));
-//            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+//            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
 //                data1.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data2) {
 //                    data2.text = JobsInternationalization(@"设备竖直向下\n Home 按钮在上方");
 //                    data2.textCor = JobsRedColor;

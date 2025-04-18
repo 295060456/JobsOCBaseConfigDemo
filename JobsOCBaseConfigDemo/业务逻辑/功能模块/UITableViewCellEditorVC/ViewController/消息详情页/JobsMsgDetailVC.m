@@ -9,14 +9,14 @@
 
 @interface JobsMsgDetailVC ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UILabel *subTitleLab;
-@property(nonatomic,strong)UIButton *drawBtn;
-@property(nonatomic,strong)UILabel *lineLab;
-@property(nonatomic,strong)UITextView *textView;
-@property(nonatomic,strong)BaseButton *deleteBtn;
+Prop_strong()UILabel *titleLab;
+Prop_strong()UILabel *subTitleLab;
+Prop_strong()UIButton *drawBtn;
+Prop_strong()UILabel *lineLab;
+Prop_strong()UITextView *textView;
+Prop_strong()BaseButton *deleteBtn;
 /// Data
-@property(nonatomic,strong)JobsMsgDataModel *msgDataModel;
+Prop_strong()JobsMsgDataModel *msgDataModel;
 
 @end
 
@@ -52,11 +52,11 @@
     [super viewDidLoad];
     
     @jobs_weakify(self)
-    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
         @jobs_strongify(self)
 //        data.add(UIBarButtonItem.initBy(self.shareBtn));
     });
-    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
         @jobs_strongify(self)
         data.add(UIBarButtonItem.initBy(self.deleteBtn));
     });

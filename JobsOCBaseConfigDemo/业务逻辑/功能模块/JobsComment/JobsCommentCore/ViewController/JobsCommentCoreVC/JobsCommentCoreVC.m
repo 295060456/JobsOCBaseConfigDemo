@@ -9,10 +9,10 @@
 
 @interface JobsCommentCoreVC ()
 /// UI
-@property(nonatomic,strong)JobsCommentTitleHeaderView *titleHeaderView;
+Prop_strong()JobsCommentTitleHeaderView *titleHeaderView;
 /// Data
-@property(nonatomic,strong)JobsCommentModel *mjModel;
-@property(nonatomic,strong)JobsCommentModel *yyModel;
+Prop_strong()JobsCommentModel *mjModel;
+Prop_strong()JobsCommentModel *yyModel;
 
 @end
 
@@ -33,8 +33,7 @@
     @jobs_weakify(self)
     [MainWindow actionObjBlock:^(id data) {
         @jobs_strongify(self)
-        [self dismissViewControllerAnimated:YES
-                                 completion:Nil];
+        [self dismissViewControllerAnimated:YES completion:Nil];
     }];
 }
 
@@ -43,11 +42,11 @@
     
     self.view.backgroundColor = JobsOrangeColor;
 //    @jobs_weakify(self)
-//    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
 //        @jobs_strongify(self)
 //        data.add(UIBarButtonItem.initBy(self.userHeadBtn));
 //    });
-//    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
 //        @jobs_strongify(self)
 ////        data.add(UIBarButtonItem.initBy(self.deleteBtn));
 //    });
@@ -197,7 +196,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
             [self dismissViewControllerAnimated:YES
                                      completion:Nil];
         }];
-        [self.view addSubview:_titleHeaderView];
+        self.view.addSubview(_titleHeaderView);
         [_titleHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self.view);
             make.height.mas_equalTo(JobsWidth(50));
@@ -209,83 +208,85 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        // UITableViewStyleGrouped 取消悬停效果
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = HEXCOLOR(0x242A37);
-        _tableView.dataLink(self);
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.showsHorizontalScrollIndicator = NO;
-        _tableView.estimatedSectionFooterHeight = 0;
-        _tableView.estimatedSectionHeaderHeight = 0;
-        _tableView.mj_header = self.mjRefreshGifHeader;
-        _tableView.mj_footer = self.mjRefreshBackNormalFooter;
-        _tableView.mj_footer.hidden = NO;
-        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, self.popUpHeight, 0);
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.separatorColor = JobsWhiteColor;
-        
-        {
-            _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                data.title = JobsInternationalization(@"没有评论");
-                data.subTitle = JobsInternationalization(@"来发布第一条吧");
-                data.titleCor = JobsWhiteColor;
-                data.titleFont = bayonRegular(JobsWidth(30));
-                data.normalImage = JobsIMG(@"暂无数据");
-                data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+        /// UITableViewStyleGrouped 取消悬停效果
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.backgroundColor = HEXCOLOR(0x242A37);
+            tableView.dataLink(self);
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.showsHorizontalScrollIndicator = NO;
+            tableView.estimatedSectionFooterHeight = 0;
+            tableView.estimatedSectionHeaderHeight = 0;
+            tableView.mj_header = self.mjRefreshGifHeader;
+            tableView.mj_footer = self.mjRefreshBackNormalFooter;
+            tableView.mj_footer.hidden = NO;
+            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
             });
-        }
-        {
-            // 用值
-            _tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-                data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-                data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
-                data.loadBlock = ^id _Nullable(id _Nullable data) {
-                    @jobs_strongify(self)
-                    /// 装载本地假数据
-                    NSDictionary *dic = @"CommentData".readLocalFileWithName;
-                    self.mjModel = [JobsCommentModel mj_objectWithKeyValues:dic[@"data"]];
-                //    self.yyModel = [MKCommentModel yy_modelWithDictionary:dic[@"data"]];
-                    JobsLog(@"self.mjModel = %@",self.mjModel);
-                    self.tableView.endRefreshing(self.mjModel.listDataArr.count);
-                    // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
-                    self.tableView.pagingEnabled = NO;
-                    self.tableView.mj_footer.state = MJRefreshStateIdle;
-                    self.tableView.mj_footer.hidden = YES;
-                    self.tableView.pagingEnabled = YES;
-                    
-                    return nil;
-                };
-            }));
-            _tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id _Nullable data) {
-                    @jobs_strongify(self)
-                    JobsLog(@"上拉加载更多");
-                    self.tableView.endRefreshing(self.mjModel.listDataArr.count);
-                    return nil;
-                };
-            }));
-            _tableView.mj_footer.backgroundColor = JobsRedColor;
-            self.view.mjRefreshTargetView = _tableView;
-        }
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.titleHeaderView.mas_bottom);
-            make.bottom.left.right.equalTo(self.view);
-        }];
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, self.popUpHeight, 0);
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.separatorColor = JobsWhiteColor;
+            
+            {
+                tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                    data.title = JobsInternationalization(@"没有评论");
+                    data.subTitle = JobsInternationalization(@"来发布第一条吧");
+                    data.titleCor = JobsWhiteColor;
+                    data.titleFont = bayonRegular(JobsWidth(30));
+                    data.normalImage = JobsIMG(@"暂无数据");
+                    data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+                });
+            }
+            {
+                // 用值
+                tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                    data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
+                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                    data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.loadBlock = ^id _Nullable(id _Nullable data) {
+                        @jobs_strongify(self)
+                        /// 装载本地假数据
+                        NSDictionary *dic = @"CommentData".readLocalFileWithName;
+                        self.mjModel = [JobsCommentModel mj_objectWithKeyValues:dic[@"data"]];
+                    //    self.yyModel = [MKCommentModel yy_modelWithDictionary:dic[@"data"]];
+                        JobsLog(@"self.mjModel = %@",self.mjModel);
+                        self.tableView.endRefreshing(self.mjModel.listDataArr.count);
+                        // 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
+                        self.tableView.pagingEnabled = NO;
+                        self.tableView.mj_footer.state = MJRefreshStateIdle;
+                        self.tableView.mj_footer.hidden = YES;
+                        self.tableView.pagingEnabled = YES;
+                        
+                        return nil;
+                    };
+                }));
+                tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                    data.stateIdleTitle = JobsInternationalization(@"");
+                    data.pullingTitle = JobsInternationalization(@"");
+                    data.refreshingTitle = JobsInternationalization(@"");
+                    data.willRefreshTitle = JobsInternationalization(@"");
+                    data.noMoreDataTitle = JobsInternationalization(@"");
+                    data.loadBlock = ^id _Nullable(id _Nullable data) {
+                        @jobs_strongify(self)
+                        JobsLog(@"上拉加载更多");
+                        self.tableView.endRefreshing(self.mjModel.listDataArr.count);
+                        return nil;
+                    };
+                }));
+                tableView.mj_footer.backgroundColor = JobsRedColor;
+                self.view.mjRefreshTargetView = tableView;
+            }
+            self.view.addSubview(tableView);
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.titleHeaderView.mas_bottom);
+                make.bottom.left.right.equalTo(self.view);
+            }];
+        });
     }return _tableView;
 }
 

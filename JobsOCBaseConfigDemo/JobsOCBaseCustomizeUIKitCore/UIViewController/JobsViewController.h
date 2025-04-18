@@ -41,5 +41,6 @@
 #import "UIViewController+Lottie.h"
 #import "UIViewController+SuspendBtn.h"
 #import "UIViewController+TFPopupView.h"
+#import "UIViewController+Extra.h"
 
 #endif /* JobsViewController_h */

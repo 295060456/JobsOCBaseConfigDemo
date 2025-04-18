@@ -9,8 +9,8 @@
 
 @interface JobsIMShowVC ()
 
-@property(nonatomic,strong)BaseButton *shareBtn;
-@property(nonatomic,strong)JobsIMListView *listView;
+Prop_strong()BaseButton *shareBtn;
+Prop_strong()JobsIMListView *listView;
 
 @end
 
@@ -47,11 +47,11 @@
     self.view.backgroundColor = JobsYellowColor;
     {
         @jobs_weakify(self)
-        self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
             @jobs_strongify(self)
     //        data.add(UIBarButtonItem.initBy(self.aboutBtn));
         });
-        self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
             @jobs_strongify(self)
             data.add(UIBarButtonItem.initBy(self.shareBtn));
         });

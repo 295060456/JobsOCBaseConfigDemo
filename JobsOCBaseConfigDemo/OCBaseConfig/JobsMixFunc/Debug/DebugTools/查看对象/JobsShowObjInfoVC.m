@@ -9,7 +9,7 @@
 
 @interface JobsShowObjInfoVC ()
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 
@@ -106,30 +106,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 -(BaseTableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = BaseTableView.new;
-        _tableView.dataLink(self);
-        _tableView.backgroundColor = JobsWhiteColor;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        
-        {
-            _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+        _tableView = jobsMakeBaseTableViewByPlain(^(__kindof BaseTableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.backgroundColor = JobsWhiteColor;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+            {
+                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
                     self.feedbackGenerator(nil);/// 震动反馈
-                    if (self.dataMutArr.count) {
-                        [self.dataMutArr removeAllObjects];
-                    }
+                    if (self.dataMutArr.count) [self.dataMutArr removeAllObjects];
                     /// 装载数据
                     if ([self.viewModel.requestParams isKindOfClass:NSObject.class]) {
                         NSObject *requestParams = (NSObject *)self.viewModel.requestParams;
@@ -165,24 +156,16 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                   animationBlock:nil
                                                  completionBlock:nil];
                     }];return nil;
-                };
-            }));
-            _tableView.mj_footer = self.view.MJRefreshAutoNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id _Nullable data) {
+                }]);
+                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
                     self->_tableView.endRefreshing(self.dataMutArr.count);
                     return nil;
-                };
-            }));
-        }
-        
-        [self.view addSubview:_tableView];
-        [self fullScreenConstraintTargetView:_tableView topViewOffset:0];
+                }]);
+            }
+            self.view.addSubview(tableView);
+            [self fullScreenConstraintTargetView:tableView topViewOffset:0];
+        });
     }return _tableView;
 }
 

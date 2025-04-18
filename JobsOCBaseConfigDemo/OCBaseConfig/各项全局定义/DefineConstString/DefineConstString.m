@@ -80,7 +80,7 @@ NSString *const 获取极验验证码成功 = @"获取极验验证码成功";
 NSString *const 获取极验验证码失败 = @"获取极验验证码失败";
 NSString *const JobsLanguageKey = @"JobsLanguageKey";
 NSString *const KYC状态 = @"KYC状态";
-NSString *const 菲律宾货币符号 = @"P";
+NSString *const 菲律宾货币符号 = @"₱";
 NSString *const 已点击 = @"已点击";
 NSString *const 未点击 = @"未点击";
 /*

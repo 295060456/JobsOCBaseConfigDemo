@@ -20,3 +20,9 @@ JobsDoorInputViewProtocol
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsSearchBar *_Nonnull jobsMakeSearchBar(jobsBySearchBarBlock _Nonnull block){
+    JobsSearchBar *data = JobsSearchBar.alloc.init;
+    if (block) block(data);
+    return data;
+}

@@ -10,7 +10,7 @@
 @interface MSCommentView ()
 /// UI
 /// Data
-@property(nonatomic,copy)NSMutableArray <MSCommentModel *>*dataMutArr;
+Prop_copy()NSMutableArray <MSCommentModel *>*dataMutArr;
 
 @end
 
@@ -21,7 +21,6 @@
     static_commentViewOnceToken = 0;
     static_commentView = nil;
 }
-
 static MSCommentView *static_commentView = nil;
 static dispatch_once_t static_commentViewOnceToken;
 +(instancetype)sharedManager{
@@ -68,11 +67,13 @@ static dispatch_once_t static_commentViewOnceToken;
 /// 设置headerView
 -(void)headerView:(UITableViewHeaderFooterView *)headerView
           section:(NSInteger)section{
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.textModel.text = self.dataMutArr[section].sectionTitle;
-    viewModel.textModel.font = UIFontWeightBoldSize(16);
-    viewModel.textModel.textCor = JobsCor(@"#333333");
-    headerView.jobsRichViewByModel(viewModel);
+    @jobs_weakify(self)
+    headerView.jobsRichViewByModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        @jobs_strongify(self)
+        viewModel.textModel.text = self.dataMutArr[section].sectionTitle;
+        viewModel.textModel.font = UIFontWeightBoldSize(16);
+        viewModel.textModel.textCor = JobsCor(@"#333333");
+    }));
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -160,10 +161,8 @@ viewForHeaderInSection:(NSInteger)section{
             NSInteger section = header.tag;
             [tableView ww_foldSection:section fold:![tableView ww_isSectionFolded:section]];
             return nil;
-        }];
-        header.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
-    }
-    header.tag = section;
+        }];header.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+    }header.tag = section;
     return header;
 }
 
@@ -179,68 +178,52 @@ willDisplayHeaderView:(UIView *)view
 -(BaseTableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = BaseTableView.initWithStyleGrouped;
-        _tableView.ww_foldable = YES;
-        _tableView.dataLink(self);
-        _tableView.backgroundColor = JobsCor(@"#FFFFFF");
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.separatorColor = HEXCOLOR(0xEEE2C8);
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.scrollEnabled = YES;
-        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,@"");
-        if(@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        
-        {
-            _tableView.mj_header = self.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+        _tableView = jobsMakeBaseTableViewByGrouped(^(__kindof BaseTableView * _Nullable tableView) {
+            tableView.ww_foldable = YES;
+            tableView.dataLink(self);
+            tableView.backgroundColor = JobsCor(@"#FFFFFF");
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.separatorColor = HEXCOLOR(0xEEE2C8);
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.scrollEnabled = YES;
+            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,@"");
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }
+            
+            {
+                tableView.mj_header = self.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
                     self.feedbackGenerator(nil);//震动反馈
                     return nil;
-                };
-            }));
-            _tableView.mj_footer = self.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                }]);
+                tableView.mj_footer = self.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self->_tableView.endRefreshing(YES);
+                    tableView.endRefreshing(YES);
                     return nil;
-                };
-            }));
-        }
-        
-//        {// 设置tabAnimated相关属性
-//            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-//                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
-//            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
-//            _tableView.tabAnimated.canLoadAgain = YES;
-////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
-////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
-//            [_tableView tab_startAnimation];   // 开启动画
-//        }
-        
-        [self addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
-
+                }]);tableView.mj_footer.hidden = NO;
+            }
+    //        {// 设置tabAnimated相关属性
+    //            _tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
+    //                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
+    //            _tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
+    //            _tableView.tabAnimated.canLoadAgain = YES;
+    ////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+    ////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
+    //            [_tableView tab_startAnimation];   // 开启动画
+    //        }
+            
+            self.addSubview(tableView);
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+        });
     }return _tableView;
 }
 

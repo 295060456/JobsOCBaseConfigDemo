@@ -9,14 +9,13 @@
 
 @interface JXCategoryViewWithHeaderViewVC ()
 /// UI
-@property(nonatomic,strong)BaseButton *ruleBtn;
-@property(nonatomic,strong)JXCategoryTitleView *categoryView;/// 文字
-@property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
-@property(nonatomic,strong)JXPagerView *pagerView;
-@property(nonatomic,strong)BaiShaETProjCollectionHeaderView *collectionHeaderView;
+Prop_strong()BaseButton *ruleBtn;
+Prop_strong()JXCategoryTitleView *categoryView;/// 文字
+Prop_strong()JXPagerView *pagerView;
+Prop_strong()BaiShaETProjCollectionHeaderView *collectionHeaderView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <NSString *>*titleMutArr;
-@property(nonatomic,copy)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+Prop_copy()NSMutableArray <NSString *>*titleMutArr;
+Prop_copy()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
 
 @end
 
@@ -56,7 +55,7 @@
         @jobs_strongify(self)
 //        data.add(UIBarButtonItem.initBy(self.aboutBtn));
     });
-    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
         @jobs_strongify(self)
         data.add(UIBarButtonItem.initBy(self.ruleBtn));
     });
@@ -141,8 +140,8 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
 #pragma mark —— lazyLoad
 -(JXPagerView *)pagerView{
     if (!_pagerView) {
-        _pagerView = [JXPagerView.alloc initWithDelegate:self];
-        [self.view addSubview:_pagerView];
+        _pagerView = jobsMakeCategoryPagerView(self);
+        self.view.addSubview(_pagerView);
         _pagerView.frame = CGRectMake(0,
                                       JobsNavigationBarAndStatusBarHeight(nil) + self.getTopLineLabSize.height,
                                       JobsMainScreen_WIDTH(),
@@ -165,32 +164,38 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
 
 -(JXCategoryTitleView *)categoryView{
     if (!_categoryView) {
-        _categoryView = JXCategoryTitleView.new;
-        _categoryView.backgroundColor = JobsClearColor;
-        _categoryView.titleSelectedColor = HEXCOLOR(0xAE8330);
-        _categoryView.titleColor = HEXCOLOR(0x757575);
-        _categoryView.titleFont = UIFontWeightBoldSize(12);
-        _categoryView.titleSelectedFont = UIFontWeightBoldSize(12);
-        _categoryView.delegate = self;
-        _categoryView.titles = self.titleMutArr;
-        _categoryView.titleColorGradientEnabled = YES;
-        _categoryView.indicators = @[self.lineView];//
-        _categoryView.defaultSelectedIndex = 1;// 默认从第二个开始显示
-        _categoryView.cellSpacing = JobsWidth(-20);
-        _categoryView.listContainer = (id<JXCategoryViewListContainer>)self.pagerView.listContainerView;
-        [self.view addSubview:_categoryView];
-        [self.view layoutIfNeeded];
-    }return _categoryView;
-}
+        @jobs_weakify(self)
+        _categoryView = jobsMakeCategoryTitleView(^(JXCategoryTitleView * _Nullable view) {
+            @jobs_strongify(self)
+            view.backgroundColor = JobsClearColor;
+            view.titleSelectedColor = JobsWhiteColor;
+            view.titleColor = JobsWhiteColor;
+            view.titleFont = UIFontWeightRegularSize(JobsWidth(18));
+            view.titleSelectedFont = UIFontWeightRegularSize(JobsWidth(28));
+            view.delegate = self;
+            view.titles = self.titleMutArr;
+            view.titleColorGradientEnabled = YES;
+            /// 跟随的指示器
+            view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
+                    view.indicatorColor = HEXCOLOR(0xFFEABA);
+                    view.indicatorHeight = JobsWidth(4);
+                    view.indicatorWidthIncrement = JobsWidth(10);
+                    view.verticalMargin = 0;
+                }));
+            });
+            view.defaultSelectedIndex = 1;// 默认从第二个开始显示
+            view.cellSpacing = JobsWidth(-20);
+            view.listContainer = (id<JXCategoryViewListContainer>)self.pagerView.listContainerView;
+            self.view.addSubview(view);
+            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
+                make.left.right.equalTo(self.view);
+                make.height.mas_equalTo(listContainerViewDefaultOffset);
+            }];[self.view layoutIfNeeded];
+        });
 
--(JXCategoryIndicatorLineView *)lineView{
-    if (!_lineView) {
-        _lineView = JXCategoryIndicatorLineView.new;
-        _lineView.indicatorColor = HEXCOLOR(0xAE8330);
-        _lineView.indicatorHeight = JobsWidth(4);
-        _lineView.indicatorWidthIncrement = JobsWidth(10);
-        _lineView.verticalMargin = 0;
-    }return _lineView;
+    }return _categoryView;
 }
 
 -(BaseButton *)ruleBtn{

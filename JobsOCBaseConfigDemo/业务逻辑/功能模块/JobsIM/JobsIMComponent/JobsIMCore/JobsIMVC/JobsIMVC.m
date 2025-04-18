@@ -9,12 +9,12 @@
 
 @interface JobsIMVC ()
 /// UI
-@property(nonatomic,strong)JobsIMInputview *inputview;
-@property(nonatomic,strong)BaseButton *shareBtn;
-@property(nonatomic,strong)UIColor *bgColour;
+Prop_strong()JobsIMInputview *inputview;
+Prop_strong()BaseButton *shareBtn;
+Prop_strong()UIColor *bgColour;
 /// data
-@property(nonatomic,copy)NSMutableArray <JobsIMChatInfoModel *>*chatInfoModelMutArr;//聊天信息
-@property(nonatomic,strong)JobsIMChatInfoModel *chatInfoModel;
+Prop_copy()NSMutableArray <JobsIMChatInfoModel *>*chatInfoModelMutArr;//聊天信息
+Prop_strong()JobsIMChatInfoModel *chatInfoModel;
 
 @end
 
@@ -36,7 +36,7 @@
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
         self.chatInfoModel = (JobsIMChatInfoModel *)self.viewModel.data;
-        [self.chatInfoModelMutArr addObject:self.chatInfoModel];
+        self.chatInfoModelMutArr.add(self.chatInfoModel);
         
         self.viewModel.textModel.text = self.chatInfoModel.userNameStr;
         self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"聊天列表");
@@ -48,11 +48,11 @@
     self.view.backgroundColor = JobsWhiteColor;
     {
         @jobs_weakify(self)
-        self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
             @jobs_strongify(self)
     //        data.add(UIBarButtonItem.initBy(self.shareBtn));
         });
-        self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
             @jobs_strongify(self)
             data.add(UIBarButtonItem.initBy(self.shareBtn));
         });
@@ -86,17 +86,14 @@
         UIViewModel *viewModel = (UIViewModel *)self.requestParams;
         if ([viewModel.data isKindOfClass:JobsIMChatInfoModel.class]) {
             JobsIMChatInfoModel *requestParamsChatInfoModel = (JobsIMChatInfoModel *)viewModel.data;
-            
-            JobsIMChatInfoModel *chatInfoModel = JobsIMChatInfoModel.new;
-            chatInfoModel.chatTextStr = @"有内鬼，取消交易";
-            JobsTimeModel *timeModel = self.makeSpecificTime;
-            chatInfoModel.chatTextTimeStr = [NSString stringWithFormat:@"%ld:%ld:%ld",timeModel.currentHour,timeModel.currentMin,timeModel.currentSec];
-            chatInfoModel.userIconIMG = requestParamsChatInfoModel.userIconIMG;
-            chatInfoModel.identification = @"我是服务器";
-            chatInfoModel.userNameStr = requestParamsChatInfoModel.userNameStr;
-            
-            [self.chatInfoModelMutArr addObject:chatInfoModel];
-            [self.tableView reloadData];
+            self.chatInfoModelMutArr.add(jobsMakeIMChatInfoModel(^(JobsIMChatInfoModel * _Nullable chatInfoModel) {
+                chatInfoModel.chatTextStr = @"有内鬼，取消交易";
+                JobsTimeModel *timeModel = self.makeSpecificTime;
+                chatInfoModel.chatTextTimeStr = [NSString stringWithFormat:@"%ld:%ld:%ld",timeModel.currentHour,timeModel.currentMin,timeModel.currentSec];
+                chatInfoModel.userIconIMG = requestParamsChatInfoModel.userIconIMG;
+                chatInfoModel.identification = @"我是服务器";
+                chatInfoModel.userNameStr = requestParamsChatInfoModel.userNameStr;
+            }));self.tableView.reloadDatas();
         }
     }
 }
@@ -383,60 +380,62 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = UITableView.new;
-        _tableView.backgroundColor = self.bgColour;
-        _tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.dataLink(self);
-        [self.view insertSubview:_tableView belowSubview:self.inputview];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
-                make.top.equalTo(self.gk_navigationBar.mas_bottom);
-            }else{
-                make.top.equalTo(self.view.mas_top);
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.backgroundColor = self.bgColour;
+            tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.dataLink(self);
+            [self.view insertSubview:tableView belowSubview:self.inputview];
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
+                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                }else{
+                    make.top.equalTo(self.view.mas_top);
+                }
+                make.left.right.equalTo(self.view);
+                make.bottom.equalTo(self.inputview.mas_top);
+            }];
+            [self.view layoutIfNeeded];
+            tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            
+            {
+                tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                    data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
+                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                    data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.loadBlock = ^id _Nullable(id _Nullable data) {
+                        @jobs_strongify(self)
+                        self.tableView.endRefreshing(self.chatInfoModelMutArr.count);
+                        return nil;
+                    };
+                }));
+                tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                    data.stateIdleTitle = JobsInternationalization(@"");
+                    data.pullingTitle = JobsInternationalization(@"");
+                    data.refreshingTitle = JobsInternationalization(@"");
+                    data.willRefreshTitle = JobsInternationalization(@"");
+                    data.noMoreDataTitle = JobsInternationalization(@"");
+                    data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                        @jobs_strongify(self)
+                        JobsLog(@"上拉加载更多");
+                        /// 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
+                        self.tableView.pagingEnabled = NO;
+                        self.tableView.mj_footer.state = MJRefreshStateIdle;
+                        self.tableView.mj_footer.hidden = YES;
+                        self.tableView.pagingEnabled = YES;
+                        self->_tableView.endRefreshingWithNoMoreData(self.chatInfoModelMutArr.count);
+                        return nil;
+                    };
+                }));
+                tableView.mj_footer.backgroundColor = JobsRedColor;
+                tableView.mj_footer.hidden = NO;
+                self.view.mjRefreshTargetView = tableView;
             }
-            make.left.right.equalTo(self.view);
-            make.bottom.equalTo(self.inputview.mas_top);
-        }];
-        [self.view layoutIfNeeded];
-        _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        
-        {
-            _tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-                data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-                data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
-                data.loadBlock = ^id _Nullable(id _Nullable data) {
-                    @jobs_strongify(self)
-                    self.tableView.endRefreshing(self.chatInfoModelMutArr.count);
-                    return nil;
-                };
-            }));
-            _tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    JobsLog(@"上拉加载更多");
-                    /// 特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
-                    self.tableView.pagingEnabled = NO;
-                    self.tableView.mj_footer.state = MJRefreshStateIdle;
-                    self.tableView.mj_footer.hidden = YES;
-                    self.tableView.pagingEnabled = YES;
-                    self->_tableView.endRefreshingWithNoMoreData(self.chatInfoModelMutArr.count);
-                    return nil;
-                };
-            }));
-            _tableView.mj_footer.backgroundColor = JobsRedColor;
-            _tableView.mj_footer.hidden = NO;
-            self.view.mjRefreshTargetView = _tableView;
-        }
+        });
     }return _tableView;
 }
 

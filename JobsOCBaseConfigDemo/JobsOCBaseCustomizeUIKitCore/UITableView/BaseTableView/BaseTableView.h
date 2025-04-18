@@ -17,6 +17,28 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface BaseTableView : UITableView
 
++(instancetype)initWithStylePlain;
++(instancetype)initWithStyleGrouped;
++(instancetype)initWithStyleInsetGrouped API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos);
+
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeBaseTableViewByGrouped(jobsByBaseTableViewBlock _Nonnull block){
+    BaseTableView *data = BaseTableView.initWithStyleGrouped;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UITableView *_Nonnull jobsMakeBaseTableViewByPlain(jobsByBaseTableViewBlock _Nonnull block){
+    BaseTableView *data = BaseTableView.initWithStylePlain;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UITableView *_Nonnull jobsMakebaseTableViewByInsetGrouped(jobsByBaseTableViewBlock _Nonnull block){
+    BaseTableView *data = BaseTableView.initWithStyleInsetGrouped;
+    if (block) block(data);
+    return data;
+}

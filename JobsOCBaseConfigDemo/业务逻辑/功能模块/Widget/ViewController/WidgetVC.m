@@ -41,11 +41,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = JobsRandomColor;
 //    @jobs_weakify(self)
-//    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
 //        @jobs_strongify(self)
 ////        data.add(UIBarButtonItem.initBy(self.aboutBtn));
 //    });
-//    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
 //        @jobs_strongify(self)
 //        data.add(UIBarButtonItem.initBy(self.editBtn));
 //    });

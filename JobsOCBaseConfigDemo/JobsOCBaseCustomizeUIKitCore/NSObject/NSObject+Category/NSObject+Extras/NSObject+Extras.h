@@ -170,6 +170,10 @@ AppToolsProtocol
 /// 添加监听【针对UIScrollView 的 ContentOffset 属性】
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
+/// 刷新控件的头部数据
+-(MJRefreshConfigModel *_Nonnull)refreshHeaderDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock;
+/// 刷新控件的尾部数据
+-(MJRefreshConfigModel *_Nonnull)refreshFooterDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock;
 /// 切换到主VC
 -(jobsByVCBlock _Nonnull)switchToMainVC;
 /// 销毁视图
@@ -248,6 +252,8 @@ AppToolsProtocol
 /// GKNavigationBar 返回按钮点击方法
 ///【子类需要覆写 】创建返回键的点击事件
 -(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent;
+/// 返回控制器的核心逻辑
+-(jobsByViewControllerBlock _Nonnull)backViewControllerCore;
 /// 打印YTKBaseRequest
 -(jobsByYTKBaseRequestBlock _Nonnull)checkRequest;
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环

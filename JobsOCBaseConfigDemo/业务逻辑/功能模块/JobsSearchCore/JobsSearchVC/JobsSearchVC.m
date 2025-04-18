@@ -9,18 +9,18 @@
 
 @interface JobsSearchVC ()
 /// UI
-@property(nonatomic,strong)BaseButton *scanBtn;
-@property(nonatomic,strong)JobsSearchBar *jobsSearchBar;
-@property(nonatomic,strong)JobsDropDownListView *dropDownListView;
+Prop_strong()BaseButton *scanBtn;
+Prop_strong()JobsSearchBar *jobsSearchBar;
+Prop_strong()JobsDropDownListView *dropDownListView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*sectionTitleMutArr;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*hotSearchMutArr;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*listViewData;
-@property(nonatomic,strong)UIColor *bgColour;
-@property(nonatomic,copy)NSString *titleStr;//标题
-@property(nonatomic,assign)CGRect tableViewRect;
-@property(nonatomic,assign)CGFloat gk_navigationBarHeight;
-@property(nonatomic,assign)HotSearchStyle hotSearchStyle;
+Prop_copy()NSMutableArray <__kindof UIViewModel *>*sectionTitleMutArr;
+Prop_copy()NSMutableArray <__kindof UIViewModel *>*hotSearchMutArr;
+Prop_copy()NSMutableArray <__kindof UIViewModel *>*listViewData;
+Prop_strong()UIColor *bgColour;
+Prop_copy()NSString *titleStr;//标题
+Prop_assign()CGRect tableViewRect;
+Prop_assign()CGFloat gk_navigationBarHeight;
+Prop_assign()HotSearchStyle hotSearchStyle;
 
 @end
 
@@ -67,7 +67,7 @@
 //        @jobs_strongify(self)
 ////        data.add(UIBarButtonItem.initBy(self.aboutBtn));
 //    });
-//    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+//    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
 //        @jobs_strongify(self)
 //        data.add(UIBarButtonItem.initBy(self.scanBtn));
 //    });
@@ -109,6 +109,17 @@
     [self endDropDownListView];
 }
 #pragma mark —— 一些私有化方法
+/// 数据包装
+-(JobsReturnViewModelByStringBlock _Nonnull)makeViewModelBy{
+    return ^__kindof UIViewModel *_Nullable(NSString *_Nullable data){
+        return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = data;
+            viewModel.textModel.textCor = JobsRandomColor;
+            viewModel.bgCor = JobsRandomColor;
+            viewModel.textModel.font = JobsFontRegular(20);
+        });
+    };
+}
 /// 移除掉这个下拉列表
 -(void)endDropDownListView{
 //    [self.view endEditing:YES];
@@ -141,9 +152,7 @@
     NSString *str1 = [self checkTargetObj:viewModel.textModel propertyName:propertyName];
     for (UIViewModel *vm in dataArr) {
         NSString *str2 = [self checkTargetObj:vm.textModel propertyName:propertyName];
-        if ([str1 isEqualToString:str2]) {
-            return YES;
-        }
+        if (str1.isEqualToString(str2)) return YES;
     }return NO;
 }
 
@@ -360,109 +369,96 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         /// 值得注意：只能用这样的初始化方式传入UITableViewStyleGrouped进行
         /// 否则viewForHeaderInSection 和 tableHeaderView 之间会有一段距离
-        _tableView = BaseTableView.initWithStyleGrouped;
-        _tableView.backgroundColor = self.bgColour;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.tableHeaderView = self.jobsSearchBar;/// 这里接入的就是一个UIView的派生类
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.ww_foldable = YES;//设置可折叠
-        [_tableView registerTableViewClass];
-
-        {
-            _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id _Nullable data) {
-                    @jobs_strongify(self)
+        _tableView = jobsMakeBaseTableViewByGrouped(^(__kindof BaseTableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.backgroundColor = self.bgColour;
+            tableView.delegate = self;
+            tableView.dataSource = self;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.tableHeaderView = self.jobsSearchBar;/// 这里接入的就是一个UIView的派生类
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.ww_foldable = YES;//设置可折叠
+            [tableView registerTableViewClass];
+            
+            {
+                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
                     self.feedbackGenerator(nil);//震动反馈
-                    self->_tableView.endRefreshing(YES);
+                    tableView.endRefreshing(YES);
     //                self.endRefreshingWithNoMoreData(self->_tableView);
                     return nil;
-                };
-            }));
-            _tableView.mj_footer = self.view.MJRefreshAutoNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id _Nullable data) {
-                    @jobs_strongify(self)
-                    self->_tableView.endRefreshing(YES);
+                }]);
+                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
+//                    @jobs_strongify(self)
+                    tableView.endRefreshing(YES);
                     return nil;
-                };
-            }));
-        }
-        
-        [_tableView actionObjBlock:^(id data) {
-            @jobs_strongify(self)
-            [self endDropDownListView];
-        }];
-        
-        if(@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }else{
-            SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
-        }
-
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.view);
-            if (self.gk_navBarAlpha &&
-                !self.gk_navigationBar.hidden &&
-                isNull(self.titleStr)) {//显示
-                make.top.equalTo(self.gk_navigationBar.mas_bottom);
-            }else{
-                make.top.equalTo(self.view);
+                }]);
             }
-            make.bottom.equalTo(self.view);
-        }];
-        [self.view layoutIfNeeded];
-        self.tableViewRect = _tableView.frame;
+            [tableView actionObjBlock:^(id data) {
+                @jobs_strongify(self)
+                [self endDropDownListView];
+            }];
+            
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }else{
+                SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
+            }
+
+            self.view.addSubview(tableView);
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self.view);
+                if (self.gk_navBarAlpha &&
+                    !self.gk_navigationBar.hidden &&
+                    isNull(self.titleStr)) {//显示
+                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                }else{
+                    make.top.equalTo(self.view);
+                }
+                make.bottom.equalTo(self.view);
+            }];
+            self.view.refresh();
+            self.tableViewRect = tableView.frame;
+        });
     }return _tableView;
 }
 
 -(JobsSearchBar *)jobsSearchBar{
     if (!_jobsSearchBar) {
-        _jobsSearchBar = JobsSearchBar.new;
-        _jobsSearchBar.sizer = JobsSearchBar.viewSizeByModel(nil);
-        _jobsSearchBar.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [_jobsSearchBar actionObjBlock:^(NSString *data) {
+        _jobsSearchBar = jobsMakeSearchBar(^(__kindof JobsSearchBar * _Nullable searchBar) {
             @jobs_strongify(self)
+            searchBar.sizer = JobsSearchBar.viewSizeByModel(nil);
+            searchBar.jobsRichViewByModel(nil);
+            @jobs_weakify(self)
+            [searchBar actionObjBlock:^(NSString *data) {
+                @jobs_strongify(self)
+            }];
 
-        }];
-        
-//        [_jobsSearchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
-//            @jobs_strongify(self)
-//            switch (data) {
-//                case UITextFieldGetFocus:{/// 输入框获得焦点
-//                    if (self.listViewData.count) {
-//                        /// 必须先移除，否则反复添加无法正常移除
-//                        self.dropDownListView = [self motivateFromView:weak_self.jobsSearchBar
-//                                                                  data:self.listViewData
-//                                                    motivateViewOffset:JobsWidth(5)
-//                                                           finishBlock:^(UIViewModel *data) {
-//                            JobsLog(@"data = %@",data);
-//                        }];
-//                    }
-//                }break;
-//                case UITextFieldLoseFocus:{/// 输入框失去焦点
-//                    [self endDropDownListView];
-//                }break;
-//                default:
-//                    break;
-//            }
-//        }];
+//            [searchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
+//                @jobs_strongify(self)
+//                switch (data) {
+//                    case UITextFieldGetFocus:{/// 输入框获得焦点
+//                        if (self.listViewData.count) {
+//                            /// 必须先移除，否则反复添加无法正常移除
+//                            self.dropDownListView = [self motivateFromView:weak_self.jobsSearchBar
+//                                                                      data:self.listViewData
+//                                                        motivateViewOffset:JobsWidth(5)
+//                                                               finishBlock:^(UIViewModel *data) {
+//                                JobsLog(@"data = %@",data);
+//                            }];
+//                        }
+//                    }break;
+//                    case UITextFieldLoseFocus:{/// 输入框失去焦点
+//                        [self endDropDownListView];
+//                    }break;
+//                    default:
+//                        break;
+//                }
+//            }];
+        });
     }return _jobsSearchBar;
 }
 
@@ -487,30 +483,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
     }return _bgColour;
 }
 
--(NSMutableArray<UIViewModel *> *)listViewData{
-    if (!_listViewData) {
-        _listViewData = NSMutableArray.new;
-    }return _listViewData;
-}
-
--(NSMutableArray<UIViewModel *> *)sectionTitleMutArr{
+-(NSMutableArray<__kindof UIViewModel *> *)sectionTitleMutArr{
     if (!_sectionTitleMutArr) {
         @jobs_weakify(self)
         _sectionTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"热门搜索");
-                viewModel.textModel.textCor = JobsLightGrayColor;
-                viewModel.bgCor = JobsWhiteColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
             @jobs_strongify(self)
+            data.add(self.makeViewModelBy(JobsInternationalization(@"热门搜索")));
             if (self.listViewData.count) {
-                data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                    viewModel.textModel.text = JobsInternationalization(@"搜索历史");
-                    viewModel.textModel.textCor = JobsLightGrayColor;
-                    viewModel.bgCor = JobsWhiteColor;
-                    viewModel.textModel.font = JobsFontRegular(20);
-                }));
+                data.add(self.makeViewModelBy(JobsInternationalization(@"搜索历史")));
             }
         });
     }return _sectionTitleMutArr;
@@ -518,93 +498,31 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 -(NSMutableArray<UIViewModel *> *)hotSearchMutArr{
     if (!_hotSearchMutArr) {
+        @jobs_weakify(self)
         _hotSearchMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"Java");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"Python");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"Objective-C");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"Swift");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"C");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"C++");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"C#");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"PHP");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"Perl");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"Go");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"JavaScript");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"Ruby");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"R");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.textModel.text = JobsInternationalization(@"MATLAB");
-                viewModel.textModel.textCor = JobsRandomColor;
-                viewModel.bgCor = JobsRandomColor;
-                viewModel.textModel.font = JobsFontRegular(20);
-            }));
+            @jobs_strongify(self)
+            data.add(self.makeViewModelBy(JobsInternationalization(@"Java")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"Python")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"Objective-C")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"Swift")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"C")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"C++")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"C#")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"PHP")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"Perl")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"Go")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"JavaScript")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"Ruby")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"R")))
+                .add(self.makeViewModelBy(JobsInternationalization(@"MATLAB")));
         });
     }return _hotSearchMutArr;
+}
+
+-(NSMutableArray<__kindof UIViewModel *> *)listViewData{
+    if (!_listViewData) {
+        _listViewData = NSMutableArray.array;
+    }return _listViewData;
 }
 
 @end

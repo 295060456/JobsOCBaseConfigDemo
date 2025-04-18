@@ -9,9 +9,9 @@
 
 @interface JobsShareView ()
 /// UI
-@property(nonatomic,strong)BaseButton *cancelBtn;
+Prop_strong()BaseButton *cancelBtn;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 
@@ -23,7 +23,6 @@
     static_shareViewOnceToken = 0;
     static_shareView = nil;
 }
-
 static JobsShareView *static_shareView = nil;
 static dispatch_once_t static_shareViewOnceToken;
 +(instancetype)sharedManager{
@@ -49,8 +48,7 @@ static dispatch_once_t static_shareViewOnceToken;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
                 JobsLog(@"SSS = %d",b.boolValue);
-            }
-            JobsLog(@"通知传递过来的 = %@",notification.object);
+            }JobsLog(@"通知传递过来的 = %@",notification.object);
         }];
 //        [self netWorking];
     }return self;
@@ -91,7 +89,7 @@ static dispatch_once_t static_shareViewOnceToken;
     };
 }
 #pragma mark —— 一些私有方法
-
+/// TODO
 #pragma mark —— UICollectionViewCell 部署策略
 //见 @interface NSObject (JobsDeployCellConfig)
 #pragma mark —— UICollectionViewDataSource
@@ -144,7 +142,6 @@ shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     UIViewModel *viewModel = self.dataMutArr[indexPath.item];
     self.jobsToastMsg(viewModel.textModel.text);
-
     {
         if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"个人资料"))){
             
@@ -184,7 +181,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
         data.cls = self.class;
     }));
 }
-/// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
+/// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
 layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -238,8 +235,8 @@ insetForSectionAtIndex:(NSInteger)section {
     if (!_collectionView) {
         @jobs_weakify(self)
         _collectionView = BaseCollectionView.initByLayout(self.verticalLayout);
-        _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
         _collectionView.dataLink(self);
+        _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.bounces = NO;
@@ -248,35 +245,19 @@ insetForSectionAtIndex:(NSInteger)section {
         _collectionView.registerCollectionViewCellClass(MSMineView6CVCell.class,@"");
         
         {
-            _collectionView.mj_header = self.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                data.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    self.feedbackGenerator(nil);//震动反馈
-                    self->_collectionView.endRefreshing(YES);
-                    return nil;
-                };
-            }));
-            _collectionView.mj_footer = self.MJRefreshBackNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    self->_collectionView.endRefreshing(YES);
-                    return nil;
-                };
-            }));
+            _collectionView.mj_header = self.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                self.feedbackGenerator(nil);//震动反馈
+                self->_collectionView.endRefreshing(YES);
+                return nil;
+            }]);
+            _collectionView.mj_footer = self.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
+                @jobs_strongify(self)
+                self->_collectionView.endRefreshing(YES);
+                return nil;
+            }]);
         }
-        
-        [self addSubview:_collectionView];
+        self.addSubview(_collectionView);
         [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self);
             make.height.mas_equalTo(JobsWidth(102));
@@ -290,16 +271,16 @@ insetForSectionAtIndex:(NSInteger)section {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"钱包");
                 data1.image = JobsIMG(@"钱包");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"我的店铺");
                 data1.image = JobsIMG(@"我的店铺");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"我的团队");
                 data1.image = JobsIMG(@"我的团队");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"信用分数");
                 data1.image = JobsIMG(@"信用分数");
             }));

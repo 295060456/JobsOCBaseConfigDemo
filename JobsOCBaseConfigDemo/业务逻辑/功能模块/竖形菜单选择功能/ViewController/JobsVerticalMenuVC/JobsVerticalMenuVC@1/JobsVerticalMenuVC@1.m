@@ -9,14 +9,14 @@
 
 @interface JobsVerticalMenuVC_1 ()
 /// UI
-@property(nonatomic,strong)BaseButton *customerServiceBtn;
-@property(nonatomic,strong)BaseButton *msgBtn;
-@property(nonatomic,strong)BaseButton *editBtn;
-@property(nonatomic,strong)JobsSearchBar *searchView;
+Prop_strong()BaseButton *customerServiceBtn;
+Prop_strong()BaseButton *msgBtn;
+Prop_strong()BaseButton *editBtn;
+Prop_strong()JobsSearchBar *searchView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*titleMutArr;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*leftDataArray;/// 左边的数据源
-@property(nonatomic,strong)UIViewModel *leftViewCurrentSelectModel;
+Prop_copy()NSMutableArray <UIViewModel *>*titleMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*leftDataArray;/// 左边的数据源
+Prop_strong()UIViewModel *leftViewCurrentSelectModel;
 
 @end
 
@@ -50,11 +50,11 @@
     [super viewDidLoad];
     
     @jobs_weakify(self)
-    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-        @jobs_strongify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
+//        @jobs_strongify(self)
 //        data.add(UIBarButtonItem.initBy(self.aboutBtn));
     });
-    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
         @jobs_strongify(self)
         data.add(UIBarButtonItem.initBy(self.msgBtn));
         data.add(UIBarButtonItem.initBy(self.customerServiceBtn));
@@ -112,11 +112,11 @@
             [vc removeFromParentViewController];
         }
         /// 添加新视图控制器
-        [self addChildViewController:viewController];
+        self.addChildViewController(viewController);
         viewController.view.frame = self.view.bounds;
         viewController.view.resetOriginX(self.tableView.right);
         viewController.view.resetWidth(self.view.width - self.tableView.width);
-        [self.view addSubview:viewController.view];
+        self.view.addSubview(viewController.view);
         [viewController didMoveToParentViewController:self];
     };
 }
@@ -127,20 +127,20 @@
         _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"收藏");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"真人");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"体育");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"电子");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"棋牌");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"彩票");
             }));
         });
@@ -148,8 +148,10 @@
 }
 
 -(jobsByVoidBlock)refreshLeftView{
+    @jobs_weakify(self)
     return ^(){
-        [self.tableView reloadData];
+        @jobs_strongify(self )
+        self.tableView.reloadDatas();
         if (self.leftDataArray.count){
             @jobs_weakify(self)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)),
@@ -176,11 +178,10 @@ numberOfRowsInSection:(NSInteger)section{
 -(__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LeftCell *cell = LeftCell.cellStyleDefaultWithTableView(tableView);
-    @jobs_weakify(self)
-    cell.jobsRichElementsCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-        @jobs_strongify(self)
-        viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
-    }));return cell;
+    UIViewModel *viewModel = UIViewModel.new;
+    viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
+    cell.jobsRichElementsCellBy(viewModel);
+    return cell;
 }
 
 -(CGFloat)tableView:(__kindof UITableView *)tableView
@@ -197,16 +198,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 @synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView){
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
-        _tableView.dataLink(self);
-        _tableView.frame = CGRectMake(0,
-                                      JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
-                                      TableViewWidth,
-                                      JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self.view addSubview:_tableView];
+        @jobs_weakify(self)
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
+            tableView.dataLink(self);
+            tableView.frame = CGRectMake(0,
+                                         JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
+                                         TableViewWidth,
+                                         JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            self.view.addSubview(tableView);
+        });
     }return _tableView;
 }
 
@@ -241,42 +245,43 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(JobsSearchBar *)searchView{
     if (!_searchView) {
-        _searchView = JobsSearchBar.new;
-        _searchView.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
-        _searchView.jobsRichViewByModel(nil);
-//        @jobs_weakify(self)
-        [_searchView actionObjBlock:^(NSString *data) {
-//            @jobs_strongify(self)
-        }];
-        
-        [self.gk_navigationBar addSubview:_searchView];
-        [_searchView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
-            make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
-            make.centerY.equalTo(self.gk_navigationBar);
-        }];
-        
-//        [_jobsSearchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
-//            @jobs_strongify(self)
-//            switch (data) {
-//                case UITextFieldGetFocus:{/// 输入框获得焦点
-//                    if (self.listViewData.count) {
-//                        /// 必须先移除，否则反复添加无法正常移除
-//                        self.dropDownListView = [self motivateFromView:weak_self.jobsSearchBar
-//                                                                  data:self.listViewData
-//                                                    motivateViewOffset:JobsWidth(5)
-//                                                           finishBlock:^(UIViewModel *data) {
-//                            JobsLog(@"data = %@",data);
-//                        }];
-//                    }
-//                }break;
-//                case UITextFieldLoseFocus:{/// 输入框失去焦点
-//                    [self endDropDownListView];
-//                }break;
-//                default:
-//                    break;
-//            }
-//        }];
+        @jobs_weakify(self)
+        _searchView = jobsMakeSearchBar(^(__kindof JobsSearchBar * _Nullable searchBar) {
+            @jobs_strongify(self)
+            searchBar.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
+            searchBar.jobsRichViewByModel(nil);
+            [searchBar actionObjBlock:^(NSString *data) {
+//                @jobs_strongify(self)
+            }];
+            self.gk_navigationBar.addSubview(searchBar);
+            [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
+                make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
+                make.centerY.equalTo(self.gk_navigationBar);
+            }];
+            
+//            [searchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
+//                @jobs_strongify(self)
+//                switch (data) {
+//                    case UITextFieldGetFocus:{/// 输入框获得焦点
+//                        if (self.listViewData.count) {
+//                            /// 必须先移除，否则反复添加无法正常移除
+//                            self.dropDownListView = [self motivateFromView:weak_self.jobsSearchBar
+//                                                                      data:self.listViewData
+//                                                        motivateViewOffset:JobsWidth(5)
+//                                                               finishBlock:^(UIViewModel *data) {
+//                                JobsLog(@"data = %@",data);
+//                            }];
+//                        }
+//                    }break;
+//                    case UITextFieldLoseFocus:{/// 输入框失去焦点
+//                        [self endDropDownListView];
+//                    }break;
+//                    default:
+//                        break;
+//                }
+//            }];
+        });
     }return _searchView;
 }
 

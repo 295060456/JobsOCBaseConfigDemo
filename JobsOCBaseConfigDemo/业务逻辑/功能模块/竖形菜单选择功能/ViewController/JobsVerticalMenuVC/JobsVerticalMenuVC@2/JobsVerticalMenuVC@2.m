@@ -58,11 +58,11 @@ Prop_assign()NSUInteger thisIndex;
 - (void)viewDidLoad {
     [super viewDidLoad];
     @jobs_weakify(self)
-    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-        @jobs_strongify(self)
+    self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
+//        @jobs_strongify(self)
 //        data.add(UIBarButtonItem.initBy(self.aboutBtn));
     });
-    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+    self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
         @jobs_strongify(self)
         data.add(UIBarButtonItem.initBy(self.msgBtn));
         data.add(UIBarButtonItem.initBy(self.customerServiceBtn));
@@ -101,7 +101,7 @@ Prop_assign()NSUInteger thisIndex;
 #pragma mark —— 一些私有方法
 -(jobsByMutArrayBlock _Nonnull)makeCellData{
     @jobs_weakify(self)
-    return ^(__kindof NSMutableArray *_Nullable arr){
+    return ^(__kindof NSMutableArray <__kindof UIButtonModel *>*_Nullable arr){
         @jobs_strongify(self)
         for (int i = 0; i < self.thisIndex + 1; i++) {
             arr.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
@@ -152,23 +152,23 @@ Prop_assign()NSUInteger thisIndex;
 }
 
 -(NSMutableArray<UIViewModel *> *)makePopViewDataMutArr{
-   return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+   return jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIViewModel *>* _Nullable data) {
        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
            data1.textModel.text = JobsInternationalization(@"收藏");
-       }));
-       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+       }))
+       .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
            data1.textModel.text = JobsInternationalization(@"真人");
-       }));
-       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+       }))
+       .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
            data1.textModel.text = JobsInternationalization(@"体育");
-       }));
-       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+       }))
+       .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
            data1.textModel.text = JobsInternationalization(@"电子");
-       }));
-       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+       }))
+       .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
            data1.textModel.text = JobsInternationalization(@"棋牌");
-       }));
-       data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+       }))
+       .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
            data1.textModel.text = JobsInternationalization(@"彩票");
        }));
    });
@@ -178,7 +178,7 @@ Prop_assign()NSUInteger thisIndex;
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        [self.tableView reloadData];
+        self.tableView.reloadDatas();
         if (self.leftDataArray.count){
             @jobs_weakify(self)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)),
@@ -468,43 +468,43 @@ referenceSizeForFooterInSection:(NSInteger)section{
 
 -(JobsSearchBar *)searchView{
     if (!_searchView) {
-        _searchView = JobsSearchBar.new;
-        _searchView.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
-        _searchView.jobsRichViewByModel(nil);
-//        @jobs_weakify(self)
-        [_searchView actionObjBlock:^(NSString *data) {
-//            @jobs_strongify(self)
-
-        }];
-        
-        [self.gk_navigationBar addSubview:_searchView];
-        [_searchView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
-            make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
-            make.centerY.equalTo(self.gk_navigationBar);
-        }];
-        
-//        [_jobsSearchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
-//            @jobs_strongify(self)
-//            switch (data) {
-//                case UITextFieldGetFocus:{/// 输入框获得焦点
-//                    if (self.listViewData.count) {
-//                        /// 必须先移除，否则反复添加无法正常移除
-//                        self.dropDownListView = [self motivateFromView:weak_self.jobsSearchBar
-//                                                                  data:self.listViewData
-//                                                    motivateViewOffset:JobsWidth(5)
-//                                                           finishBlock:^(UIViewModel *data) {
-//                            JobsLog(@"data = %@",data);
-//                        }];
-//                    }
-//                }break;
-//                case UITextFieldLoseFocus:{/// 输入框失去焦点
-//                    [self endDropDownListView];
-//                }break;
-//                default:
-//                    break;
-//            }
-//        }];
+        @jobs_weakify(self)
+        _searchView = jobsMakeSearchBar(^(__kindof JobsSearchBar * _Nullable searchBar) {
+            @jobs_strongify(self)
+            searchBar.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
+            searchBar.jobsRichViewByModel(nil);
+            [searchBar actionObjBlock:^(NSString *data) {
+//                @jobs_strongify(self)
+            }];
+            self.gk_navigationBar.addSubview(searchBar);
+            [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
+                make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
+                make.centerY.equalTo(self.gk_navigationBar);
+            }];
+            
+//            [searchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
+//                @jobs_strongify(self)
+//                switch (data) {
+//                    case UITextFieldGetFocus:{/// 输入框获得焦点
+//                        if (self.listViewData.count) {
+//                            /// 必须先移除，否则反复添加无法正常移除
+//                            self.dropDownListView = [self motivateFromView:weak_self.jobsSearchBar
+//                                                                      data:self.listViewData
+//                                                        motivateViewOffset:JobsWidth(5)
+//                                                               finishBlock:^(UIViewModel *data) {
+//                                JobsLog(@"data = %@",data);
+//                            }];
+//                        }
+//                    }break;
+//                    case UITextFieldLoseFocus:{/// 输入框失去焦点
+//                        [self endDropDownListView];
+//                    }break;
+//                    default:
+//                        break;
+//                }
+//            }];
+        });
     }return _searchView;
 }
 
