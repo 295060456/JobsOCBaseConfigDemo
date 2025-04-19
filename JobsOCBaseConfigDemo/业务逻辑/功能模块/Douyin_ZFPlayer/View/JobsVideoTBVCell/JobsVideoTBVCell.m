@@ -86,17 +86,19 @@ Prop_strong()VideoModel_Core *core_data;
 
 -(JobsRightBtnsView *)rbView{
     if (!_rbView) {
-        _rbView = JobsRightBtnsView.new;
-        _rbView.jobsRichViewByModel(nil);
-//        @jobs_weakify(self)
-        [_rbView actionObjBlock:^(id data) {
-//            @jobs_strongify(self)
-        }];
-        [self.contentView.addSubview(_rbView) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.contentView);
-            make.bottom.equalTo(self.contentView).offset(JobsWidth(-150));
-            make.size.mas_equalTo(JobsRightBtnsView.viewSizeByModel(nil));
-        }];
+        @jobs_weakify(self)
+        _rbView = jobsMakeRightBtnsView(^(__kindof JobsRightBtnsView * _Nullable view) {
+            @jobs_strongify(self)
+            view.jobsRichViewByModel(nil);
+            [view actionObjBlock:^(id data) {
+                
+            }];
+            [self.contentView.addSubview(view) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(self.contentView);
+                make.bottom.equalTo(self.contentView).offset(JobsWidth(-150));
+                make.size.mas_equalTo(JobsRightBtnsView.viewSizeByModel(nil));
+            }];
+        });
     }return _rbView;
 }
 

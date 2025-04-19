@@ -24,8 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsRightBtnsView : BaseView
 
--(NSMutableArray <UIButton *>*)getButtonArr;
+-(NSMutableArray <__kindof UIButton *>*)getButtonArr;
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsRightBtnsView *_Nonnull jobsMakeRightBtnsView(jobsByRightBtnsViewBlock _Nonnull block){
+    JobsRightBtnsView *data = JobsRightBtnsView.alloc.init;
+    if (block) block(data);
+    return data;
+}

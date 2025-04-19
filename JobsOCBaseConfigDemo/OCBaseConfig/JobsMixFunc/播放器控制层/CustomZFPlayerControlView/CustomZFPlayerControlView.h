@@ -110,3 +110,9 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof CustomZFPlayerControlView *_Nonnull jobsMakeCustomZFPlayerControlView(jobsByCustomZFPlayerControlViewBlock _Nonnull block){
+    CustomZFPlayerControlView *data = CustomZFPlayerControlView.alloc.init;
+    if (block) block(data);
+    return data;
+}

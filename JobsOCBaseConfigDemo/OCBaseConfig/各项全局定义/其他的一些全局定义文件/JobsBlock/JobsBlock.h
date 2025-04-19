@@ -42,9 +42,14 @@ typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType c
 @class ZFAVPlayerManager;
 @class ZFDouYinControlView;
 @class ZFCustomControlView;
-typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullable label);
-typedef void(^jobsByZFDouYinControlViewBlock)(__kindof ZFDouYinControlView *_Nullable label);
-typedef void(^jobsByZFCustomControlViewBlock)(__kindof ZFCustomControlView *_Nullable label);
+@class CustomZFPlayerControlView;
+typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullable manager);
+typedef void(^jobsByZFDouYinControlViewBlock)(__kindof ZFDouYinControlView *_Nullable controlView);
+typedef void(^jobsByZFCustomControlViewBlock)(__kindof ZFCustomControlView *_Nullable controlView);
+typedef void(^jobsByCustomZFPlayerControlViewBlock)(__kindof CustomZFPlayerControlView *_Nullable controlView);
+
+@class JobsRightBtnsView;
+typedef void(^jobsByRightBtnsViewBlock)(__kindof JobsRightBtnsView *_Nullable view);
 
 @class JobsBitsMonitorSuspendLab;
 typedef void(^jobsByBitsMonitorSuspendLabBlock)(__kindof JobsBitsMonitorSuspendLab *_Nullable label);

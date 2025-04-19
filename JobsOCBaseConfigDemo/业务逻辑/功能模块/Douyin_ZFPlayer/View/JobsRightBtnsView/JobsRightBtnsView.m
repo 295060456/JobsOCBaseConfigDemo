@@ -91,7 +91,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
     };
 }
 #pragma mark —— 一些公有方法
--(NSMutableArray <UIButton *>*)getButtonArr{
+-(NSMutableArray <__kindof UIButton *>*)getButtonArr{
     return self.masonryViewArr;
 }
 #pragma mark —— 一些私有方法
@@ -224,9 +224,9 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         @jobs_weakify(self)
         _masonryViewArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
-            data.add(self.loveBtn);
-            data.add(self.commentBtn);
-            data.add(self.shareBtn);
+            data.add(self.loveBtn)
+            .add(self.commentBtn)
+            .add(self.shareBtn);
         });
     }return _masonryViewArr;
 }

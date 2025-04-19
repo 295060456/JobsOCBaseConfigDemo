@@ -103,18 +103,19 @@ Prop_copy()NSMutableArray <NSURL *>*assetURLs;
 
 -(CustomZFPlayerControlView *)customPlayerControlView{
     if (!_customPlayerControlView) {
-        _customPlayerControlView = CustomZFPlayerControlView.new;
         @jobs_weakify(self)
-        [_customPlayerControlView actionCustomZFPlayerControlViewBlock:^(NSString *data, NSNumber *data2) {
-            @jobs_strongify(self)
-            if ([data isEqualToString:@"gestureEndedPan:panDirection:panLocation:"]) {
-                if (data2.intValue == ZFPanMovingDirectionTop) {
-                    if(self.objBlock)self.objBlock([JobsTuple.alloc initWithValues:@0,@(self.index), nil]);
-                }else if (data2.intValue == ZFPanMovingDirectionBottom){
-                    if(self.objBlock)self.objBlock([JobsTuple.alloc initWithValues:@1,@(self.index), nil]);
-                }else{}
-            }
-        }];
+        _customPlayerControlView = jobsMakeCustomZFPlayerControlView(^(__kindof CustomZFPlayerControlView * _Nullable controlView) {
+            [controlView actionCustomZFPlayerControlViewBlock:^(NSString *data, NSNumber *data2) {
+                @jobs_strongify(self)
+                if ([data isEqualToString:@"gestureEndedPan:panDirection:panLocation:"]) {
+                    if (data2.intValue == ZFPanMovingDirectionTop) {
+                        if(self.objBlock)self.objBlock([JobsTuple.alloc initWithValues:@0,@(self.index), nil]);
+                    }else if (data2.intValue == ZFPanMovingDirectionBottom){
+                        if(self.objBlock)self.objBlock([JobsTuple.alloc initWithValues:@1,@(self.index), nil]);
+                    }else{}
+                }
+            }];
+        });
     }return _customPlayerControlView;
 }
 
