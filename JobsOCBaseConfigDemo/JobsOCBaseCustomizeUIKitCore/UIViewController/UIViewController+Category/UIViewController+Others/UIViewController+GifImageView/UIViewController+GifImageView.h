@@ -26,10 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIViewController (GifImageView)
 
 #pragma mark —— BaseVC+GifImageView
-@property(nonatomic,strong)UIImageView *gifImageView;
-@property(nonatomic,copy)NSString *path;
-@property(nonatomic,strong)NSData *data;
-@property(nonatomic,strong)UIImage *image;
+Prop_strong()UIImageView *gifImageView;
+Prop_copy()NSString *path;
+Prop_strong()NSData *data;
+Prop_strong()UIImage *image;
 
 @end
 

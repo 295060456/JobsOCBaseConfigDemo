@@ -17,9 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZMJCell (CustomView)
 
-@property(nonatomic,strong)UIButton *btn;
-@property(nonatomic,strong)UIView *colorBarView;
-@property(nonatomic,strong)UIColor *color;
+Prop_strong()UIButton *btn;
+Prop_strong()UIView *colorBarView;
+Prop_strong()UIColor *color;
 
 @end
 

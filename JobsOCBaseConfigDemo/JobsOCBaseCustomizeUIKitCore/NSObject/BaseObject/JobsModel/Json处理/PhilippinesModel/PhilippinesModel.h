@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PhilippinesModel : IncomeSourceModel
 
-@property(nonatomic,assign)NSInteger state_id;
-@property(nonatomic,copy)NSString *state_name;
+Prop_assign()NSInteger state_id;
+Prop_copy()NSString *state_name;
 
 @end
 

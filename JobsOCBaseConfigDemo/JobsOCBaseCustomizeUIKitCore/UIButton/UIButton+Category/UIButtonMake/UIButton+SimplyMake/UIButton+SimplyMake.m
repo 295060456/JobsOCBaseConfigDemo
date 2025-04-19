@@ -520,7 +520,7 @@
         }
     };
 }
-#pragma mark —— @property(nonatomic,copy)jobsByBtnBlock clickBlock;
+#pragma mark —— Prop_copy()jobsByBtnBlock clickBlock;
 JobsKey(_clickBlock)
 @dynamic clickBlock;
 -(jobsByBtnBlock)clickBlock{
@@ -540,7 +540,7 @@ JobsKey(_longPressGestureBlock)
 -(void)setLongPressGestureBlock:(jobsByBtnBlock)longPressGestureBlock{
     Jobs_setAssociatedRETAIN_NONATOMIC(_longPressGestureBlock, longPressGestureBlock);
 }
-#pragma mark —— @property(nonatomic,copy)jobsByTimerManagerBlock heartBeatBlock;
+#pragma mark —— Prop_copy()jobsByTimerManagerBlock heartBeatBlock;
 JobsKey(_heartBeatBlock)
 @dynamic heartBeatBlock;
 -(jobsByTimerManagerBlock)heartBeatBlock{

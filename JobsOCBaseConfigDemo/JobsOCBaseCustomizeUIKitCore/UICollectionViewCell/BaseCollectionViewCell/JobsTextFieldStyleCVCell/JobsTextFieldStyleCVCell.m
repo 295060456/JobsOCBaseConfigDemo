@@ -9,7 +9,7 @@
 
 @interface JobsTextFieldStyleCVCell ()
 /// UI
-@property(nonatomic,strong)ZYTextField *textField;
+Prop_strong()ZYTextField *textField;
 /// Data
 
 @end

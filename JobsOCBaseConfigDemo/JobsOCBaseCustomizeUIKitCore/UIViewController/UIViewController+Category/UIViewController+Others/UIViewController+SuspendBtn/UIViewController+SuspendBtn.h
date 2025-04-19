@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (SuspendBtn)
 
-@property(nonatomic,strong)JobsSuspendBtn *suspendBtn;
+Prop_strong()JobsSuspendBtn *suspendBtn;
 
 @end
 

@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, UIViewControllerShakeType) {
 
 @interface UIViewController (Shake)
 
-@property(nonatomic,strong)CMMotionManager *motionManager;
+Prop_strong()CMMotionManager *motionManager;
 
 -(void)invokeWhenViewDidLoadUsingSysFunc;
 -(void)invokeWhenViewDidAppearUsingCMMotionManager;

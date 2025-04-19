@@ -12,8 +12,8 @@
     NSTimeInterval reConnectTime;
 }
 
-@property(nonatomic,strong)SRWebSocket *socket;
-@property(nonatomic,copy)NSString *urlString;
+Prop_strong()SRWebSocket *socket;
+Prop_copy()NSString *urlString;
 
 @end
 

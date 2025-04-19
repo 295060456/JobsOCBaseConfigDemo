@@ -9,17 +9,17 @@
 
 @interface JobsCountdownView ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UILabel *countdownTimeLab;
+Prop_strong()UILabel *titleLab;
+Prop_strong()UILabel *countdownTimeLab;
 /// Data
-@property(nonatomic,strong)NSTimerManager *nsTimerManager;
-@property(nonatomic,strong)JobsTimeModel *formatTime;
-@property(nonatomic,strong)UIButtonModel *timerProcessModel;
-@property(nonatomic,copy)NSString *minutesStr;
-@property(nonatomic,copy)NSString *secondStr;
-@property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
-@property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,strong)NSMutableParagraphStyle *paragraphStyle;
+Prop_strong()NSTimerManager *nsTimerManager;
+Prop_strong()JobsTimeModel *formatTime;
+Prop_strong()UIButtonModel *timerProcessModel;
+Prop_copy()NSString *minutesStr;
+Prop_copy()NSString *secondStr;
+Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
+Prop_strong()NSMutableParagraphStyle *paragraphStyle;
 
 @end
 

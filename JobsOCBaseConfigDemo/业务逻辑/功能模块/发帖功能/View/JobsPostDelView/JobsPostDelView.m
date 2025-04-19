@@ -9,7 +9,7 @@
 
 @interface JobsPostDelView ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
+Prop_strong()UILabel *titleLab;
 /// Data
 
 @end

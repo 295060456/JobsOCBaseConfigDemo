@@ -13,16 +13,16 @@
     JobsAppDoorInputViewBaseStyle_7 *inputView_7;
 }
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;/// 标题
-@property(nonatomic,strong)UIButton *abandonLoginBtn;/// 返回首页按钮
-@property(nonatomic,strong)UIButton *toRegisterBtn;/// 去注册
-@property(nonatomic,strong)UIButton *sendBtn;/// 登录 & 注册按钮 （本页面请求可以不用jobsAppDoorContentViewBlock回调）
-@property(nonatomic,strong)UIButton *storeCodeBtn;/// 记住密码
-@property(nonatomic,strong)UIButton *findCodeBtn;/// 忘记密码
+Prop_strong()UILabel *titleLab;/// 标题
+Prop_strong()UIButton *abandonLoginBtn;/// 返回首页按钮
+Prop_strong()UIButton *toRegisterBtn;/// 去注册
+Prop_strong()UIButton *sendBtn;/// 登录 & 注册按钮 （本页面请求可以不用jobsAppDoorContentViewBlock回调）
+Prop_strong()UIButton *storeCodeBtn;/// 记住密码
+Prop_strong()UIButton *findCodeBtn;/// 忘记密码
 /// Data
-@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
-@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
-@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
+Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
+Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
+Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
 
 @end
 

@@ -21,8 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy,nullable)NSString *chatTextStr;/// 发出该聊天的文本信息
 /// 全局ID
 @property(nonatomic,copy,nullable)NSString *identification;/// 该聊天对应的数据库坐标ID
-@property(nonatomic,assign)JobsIMChatMessageType messageType;/// 消息类型:1、文本, 2、礼物, 3、表情
-@property(nonatomic,assign)JobsIMChatInfoDirection chatInfoDirection;/// 消息的发送方向
+Prop_assign()JobsIMChatMessageType messageType;/// 消息类型:1、文本, 2、礼物, 3、表情
+Prop_assign()JobsIMChatInfoDirection chatInfoDirection;/// 消息的发送方向
 
 @end
 

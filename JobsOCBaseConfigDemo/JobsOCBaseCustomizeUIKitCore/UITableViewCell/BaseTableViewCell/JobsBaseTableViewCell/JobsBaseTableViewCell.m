@@ -10,7 +10,7 @@
 
 @interface JobsBaseTableViewCell ()
 /// Data
-@property(nonatomic,assign)BOOL isSetTBVCellOffset;
+Prop_assign()BOOL isSetTBVCellOffset;
 
 @end
 

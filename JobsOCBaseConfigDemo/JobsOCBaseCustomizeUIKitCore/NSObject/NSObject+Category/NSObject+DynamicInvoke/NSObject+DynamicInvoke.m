@@ -229,7 +229,7 @@ static void selectorImp(id target, SEL _cmd, id arg) {
     if (block) block(target, arg);
 }
 /// 对 SEL和IMP的统一管理
-#pragma mark —— @property(nonatomic,strong)JobsSEL_IMP *selImp;
+#pragma mark —— Prop_strong()JobsSEL_IMP *selImp;
 JobsKey(_selImp)
 @dynamic selImp;
 -(JobsSEL_IMP *)selImp{
@@ -243,7 +243,7 @@ JobsKey(_selImp)
 -(void)setSelImp:(JobsSEL_IMP *)selImp{
     Jobs_setAssociatedRETAIN_NONATOMIC(_selImp, selImp)
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableDictionary *methodCache;
+#pragma mark —— Prop_copy()NSMutableDictionary *methodCache;
 JobsKey(_methodCache)
 @dynamic methodCache;
 -(NSMutableDictionary<NSString *,NSValue *> *)methodCache{

@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsMsgDataModel : UIViewModel
 
-@property(nonatomic,assign)JobsMsgType msgStyle;
-@property(nonatomic,copy)NSString *time;
-@property(nonatomic,assign)BOOL isDraw;/// 是否已经被领取？
-@property(nonatomic,assign)BOOL isRead;/// 已读
+Prop_assign()JobsMsgType msgStyle;
+Prop_copy()NSString *time;
+Prop_assign()BOOL isDraw;/// 是否已经被领取？
+Prop_assign()BOOL isRead;/// 已读
 
 @end
 

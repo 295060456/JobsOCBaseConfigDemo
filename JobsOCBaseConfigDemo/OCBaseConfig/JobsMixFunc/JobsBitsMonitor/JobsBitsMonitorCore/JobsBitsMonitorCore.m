@@ -22,8 +22,8 @@
     uint32_t _wwanFlow;
 }
 
-@property(nonatomic,copy)NSString *downloadNetworkSpeed;
-@property(nonatomic,copy)NSString *uploadNetworkSpeed;
+Prop_copy()NSString *downloadNetworkSpeed;
+Prop_copy()NSString *uploadNetworkSpeed;
 
 @end
 

@@ -39,15 +39,15 @@ UICollectionViewDelegate
 
 @interface Collectioncell : UICollectionViewCell
 
-@property(nonatomic,strong)UIImageView *icon;
-@property(nonatomic,strong)WMZBannerParam *param;
+Prop_strong()UIImageView *icon;
+Prop_strong()WMZBannerParam *param;
 
 @end
 
 @interface CollectionTextCell : UICollectionViewCell
 
-@property(nonatomic,strong)UILabel *label;
-@property(nonatomic,strong)WMZBannerParam *param;
+Prop_strong()UILabel *label;
+Prop_strong()WMZBannerParam *param;
 
 @end
 

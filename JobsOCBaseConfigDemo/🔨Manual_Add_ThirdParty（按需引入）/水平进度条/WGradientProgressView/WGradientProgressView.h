@@ -12,11 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 进度条上方的指示标签，可以作为动态跟随，也可以作为固定在栅栏的上方
 @interface WGradientProgressView : UIView
 
-@property(nonatomic,copy)NSString *titleStr;
-@property(nonatomic,strong)UIImage *img;
+Prop_copy()NSString *titleStr;
+Prop_strong()UIImage *img;
 
-@property(nonatomic,strong)UIFont *titleFont;
-@property(nonatomic,strong)UIColor *titleColor;
+Prop_strong()UIFont *titleFont;
+Prop_strong()UIColor *titleColor;
 
 @end
 

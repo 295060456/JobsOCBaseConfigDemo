@@ -214,7 +214,7 @@
         self._showTipsCore(view);
     };
 }
-#pragma mark —— @property(nonatomic,strong)TFPopupParam *popupParameter;
+#pragma mark —— Prop_strong()TFPopupParam *popupParameter;
 JobsKey(_popupParameter)
 @dynamic popupParameter;
 -(TFPopupParam *)popupParameter{
@@ -228,7 +228,7 @@ JobsKey(_popupParameter)
 -(void)setPopupParameter:(TFPopupParam *)popupParameter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_popupParameter, popupParameter)
 }
-#pragma mark —— @property(nonatomic,strong)TFPopupParam *tipsParameter;
+#pragma mark —— Prop_strong()TFPopupParam *tipsParameter;
 JobsKey(_tipsParameter)
 @dynamic tipsParameter;
 -(TFPopupParam *)tipsParameter{

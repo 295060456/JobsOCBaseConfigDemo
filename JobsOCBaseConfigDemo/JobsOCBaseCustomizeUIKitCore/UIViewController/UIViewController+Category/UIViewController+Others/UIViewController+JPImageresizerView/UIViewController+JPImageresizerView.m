@@ -8,7 +8,7 @@
 #import "UIViewController+JPImageresizerView.h"
 
 @implementation UIViewController (JPImageresizerView)
-#pragma mark —— @property(nonatomic,strong)JPImageresizerConfigure *configure;
+#pragma mark —— Prop_strong()JPImageresizerConfigure *configure;
 JobsKey(_configure)
 @dynamic configure;
 -(JPImageresizerConfigure *)configure{
@@ -213,7 +213,7 @@ JobsKey(_configure)
 -(void)setConfigure:(JPImageresizerConfigure *)configure{
     Jobs_setAssociatedRETAIN_NONATOMIC(_configure, configure)
 }
-#pragma mark —— @property(nonatomic,strong)JPImageresizerView *imageresizerView;
+#pragma mark —— Prop_strong()JPImageresizerView *imageresizerView;
 JobsKey(_imageresizerView)
 @dynamic imageresizerView;
 -(JPImageresizerView *)imageresizerView{
@@ -234,7 +234,7 @@ JobsKey(_imageresizerView)
 -(void)setImageresizerView:(JPImageresizerView *)imageresizerView{
     Jobs_setAssociatedRETAIN_NONATOMIC(_imageresizerView, imageresizerView)
 }
-#pragma mark —— @property(nonatomic,assign)JPImageresizerConfigureType *configureType;
+#pragma mark —— Prop_assign()JPImageresizerConfigureType *configureType;
 JobsKey(_configureType)
 @dynamic configureType;
 -(JPImageresizerConfigureType)configureType{
@@ -244,7 +244,7 @@ JobsKey(_configureType)
 -(void)setConfigureType:(JPImageresizerConfigureType)configureType{
     Jobs_setAssociatedRETAIN_NONATOMIC(_configureType, @(configureType))
 }
-#pragma mark —— @property(nonatomic,strong)NSData *JPImageresizerView_data;
+#pragma mark —— Prop_strong()NSData *JPImageresizerView_data;
 JobsKey(_JPImageresizerView_data)
 @dynamic JPImageresizerView_data;
 -(NSData *)JPImageresizerView_data{
@@ -254,7 +254,7 @@ JobsKey(_JPImageresizerView_data)
 -(void)setJPImageresizerView_data:(NSData *)JPImageresizerView_data{
     Jobs_setAssociatedRETAIN_NONATOMIC(_JPImageresizerView_data, JPImageresizerView_data)
 }
-#pragma mark ——@property(nonatomic,strong)UIImage *JPImageresizerView_img; BaseVC_JPImageresizerView_JPImageresizerView_img
+#pragma mark ——Prop_strong()UIImage *JPImageresizerView_img; BaseVC_JPImageresizerView_JPImageresizerView_img
 JobsKey(_JPImageresizerView_img)
 @dynamic JPImageresizerView_img;
 -(UIImage *)JPImageresizerView_img{
@@ -264,7 +264,7 @@ JobsKey(_JPImageresizerView_img)
 -(void)setJPImageresizerView_img:(UIImage *)JPImageresizerView_img{
     Jobs_setAssociatedRETAIN_NONATOMIC(_JPImageresizerView_img, JPImageresizerView_img)
 }
-#pragma mark —— @property(nonatomic,strong)NSURL *JPImageresizerView_url; BaseVC_JPImageresizerView_JPImageresizerView_url
+#pragma mark —— Prop_strong()NSURL *JPImageresizerView_url; BaseVC_JPImageresizerView_JPImageresizerView_url
 JobsKey(_JPImageresizerView_url)
 @dynamic JPImageresizerView_url;
 -(NSURL *)JPImageresizerView_url{
@@ -274,7 +274,7 @@ JobsKey(_JPImageresizerView_url)
 -(void)setJPImageresizerView_url:(NSURL *)JPImageresizerView_url{
     Jobs_setAssociatedRETAIN_NONATOMIC(_JPImageresizerView_url, JPImageresizerView_url)
 }
-#pragma mark —— @property(nonatomic,strong)AVURLAsset *JPImageresizerView_avURLAsset; BaseVC_JPImageresizerView_JPImageresizerView_avURLAsset
+#pragma mark —— Prop_strong()AVURLAsset *JPImageresizerView_avURLAsset; BaseVC_JPImageresizerView_JPImageresizerView_avURLAsset
 JobsKey(_JPImageresizerView_avURLAsset)
 @dynamic JPImageresizerView_avURLAsset;
 -(AVURLAsset *)JPImageresizerView_avURLAsset{
@@ -284,7 +284,7 @@ JobsKey(_JPImageresizerView_avURLAsset)
 -(void)setJPImageresizerView_avURLAsset:(AVURLAsset *)JPImageresizerView_avURLAsset{
     Jobs_setAssociatedRETAIN_NONATOMIC(_JPImageresizerView_avURLAsset, JPImageresizerView_avURLAsset)
 }
-#pragma mark —— @property(nonatomic,copy)jobsByIDBlock makeBlock;
+#pragma mark —— Prop_copy()jobsByIDBlock makeBlock;
 JobsKey(_makeBlock)
 @dynamic makeBlock;
 -(jobsByIDBlock _Nonnull)makeBlock{
@@ -294,7 +294,7 @@ JobsKey(_makeBlock)
 -(void)setMakeBlock:(jobsByIDBlock)makeBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_makeBlock, makeBlock)
 }
-#pragma mark —— @property(nonatomic,copy)jobsByIDBlock fixErrorBlock;
+#pragma mark —— Prop_copy()jobsByIDBlock fixErrorBlock;
 JobsKey(_fixErrorBlock)
 @dynamic fixErrorBlock;
 -(jobsByIDBlock _Nonnull)fixErrorBlock{
@@ -304,7 +304,7 @@ JobsKey(_fixErrorBlock)
 -(void)setFixErrorBlock:(jobsByIDBlock)fixErrorBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_fixErrorBlock, fixErrorBlock)
 }
-#pragma mark —— @property(nonatomic,copy)jobsByIDBlock fixStartBlock;
+#pragma mark —— Prop_copy()jobsByIDBlock fixStartBlock;
 JobsKey(_fixStartBlock)
 @dynamic fixStartBlock;
 -(jobsByIDBlock _Nonnull)fixStartBlock{
@@ -314,7 +314,7 @@ JobsKey(_fixStartBlock)
 -(void)setFixStartBlock:(jobsByIDBlock)fixStartBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_fixStartBlock, fixStartBlock)
 }
-#pragma mark —— @property(nonatomic,copy)jobsByIDBlock fixProgressBlock;
+#pragma mark —— Prop_copy()jobsByIDBlock fixProgressBlock;
 JobsKey(_fixProgressBlock)
 @dynamic fixProgressBlock;
 -(jobsByIDBlock _Nonnull)fixProgressBlock{
@@ -324,7 +324,7 @@ JobsKey(_fixProgressBlock)
 -(void)setFixProgressBlock:(jobsByIDBlock)fixProgressBlock{
     Jobs_setAssociatedCOPY_NONATOMIC(_fixProgressBlock, fixProgressBlock)
 }
-#pragma mark —— @property(nonatomic,copy)jobsByIDBlock fixCompleteBlock;
+#pragma mark —— Prop_copy()jobsByIDBlock fixCompleteBlock;
 JobsKey(_fixCompleteBlock)
 @dynamic fixCompleteBlock;
 -(jobsByIDBlock _Nonnull)fixCompleteBlock{

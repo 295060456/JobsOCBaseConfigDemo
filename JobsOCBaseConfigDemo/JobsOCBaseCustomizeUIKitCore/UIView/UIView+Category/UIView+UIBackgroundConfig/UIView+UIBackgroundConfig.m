@@ -8,7 +8,7 @@
 #import "UIView+UIBackgroundConfig.h"
 
 @implementation UIView (UIBackgroundConfig)
-#pragma mark —— @property(nonatomic,strong)UIBackgroundConfiguration *backgroundConfig;
+#pragma mark —— Prop_strong()UIBackgroundConfiguration *backgroundConfig;
 JobsKey(_backgroundConfig)
 @dynamic backgroundConfig;
 -(UIBackgroundConfiguration *)backgroundConfig{

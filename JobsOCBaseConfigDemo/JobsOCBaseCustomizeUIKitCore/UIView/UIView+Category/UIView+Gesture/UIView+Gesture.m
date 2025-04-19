@@ -41,27 +41,27 @@
     [self gesture:self.deallocBy(_rotationGR) action:self.rotationGR_SelImp.selector]; /// UIRotationGestureRecognizer
     [self gesture:self.deallocBy(_screenEdgePanGR)  action:self.screenEdgePanGR_SelImp.selector]; /// UIScreenEdgePanGestureRecognizer
 }
-/// @property(nonatomic,assign)NSUInteger minimumNumberOfTouches API_UNAVAILABLE(tvos);
+/// Prop_assign()NSUInteger minimumNumberOfTouches API_UNAVAILABLE(tvos);
 PROP_NSUInteger(minimumNumberOfTouches, MinimumNumberOfTouches)
-/// @property(nonatomic,assign)NSUInteger maximumNumberOfTouches API_UNAVAILABLE(tvos);
+/// Prop_assign()NSUInteger maximumNumberOfTouches API_UNAVAILABLE(tvos);
 PROP_NSUInteger(maximumNumberOfTouches, MaximumNumberOfTouches)
-/// @property(nonatomic,assign)NSUInteger numberOfTapsRequired;// 设置轻拍次数【UILongPressGestureRecognizer】【UITapGestureRecognizer】
+/// Prop_assign()NSUInteger numberOfTapsRequired;// 设置轻拍次数【UILongPressGestureRecognizer】【UITapGestureRecognizer】
 PROP_NSUInteger(numberOfTapsRequired, NumberOfTapsRequired)
-/// @property(nonatomic,assign)NSUInteger numberOfTouchesRequired;// 设置手指字数【UILongPressGestureRecognizer】【UITapGestureRecognizer】
+/// Prop_assign()NSUInteger numberOfTouchesRequired;// 设置手指字数【UILongPressGestureRecognizer】【UITapGestureRecognizer】
 PROP_NSUInteger(numberOfTouchesRequired, NumberOfTouchesRequired)
-///@property(nonatomic,assign)NSTimeInterval minimumPressDuration;// longPressGR最小长按时间【UILongPressGestureRecognizer】
+///Prop_assign()NSTimeInterval minimumPressDuration;// longPressGR最小长按时间【UILongPressGestureRecognizer】
 PROP_DOUBLE(minimumPressDuration, MinimumPressDuration)
-/// @property(nonatomic,assign)CGFloat allowableMovement;//【UILongPressGestureRecognizer】
+/// Prop_assign()CGFloat allowableMovement;//【UILongPressGestureRecognizer】
 PROP_CGFloat(allowableMovement, AllowableMovement)
-/// @property(nonatomic,assign)UISwipeGestureRecognizerDirection swipeGRDirection;// swipe手势清扫方向
+/// Prop_assign()UISwipeGestureRecognizerDirection swipeGRDirection;// swipe手势清扫方向
 PROP_NSUInteger(swipeGRDirection, SwipeGRDirection)
-/// @property(nonatomic,assign)UIScrollTypeMask allowedScrollTypesMask;
+/// Prop_assign()UIScrollTypeMask allowedScrollTypesMask;
 PROP_NSInteger(allowedScrollTypesMask, AllowedScrollTypesMask)
-/// @property(nonatomic,assign)CGFloat scale;
+/// Prop_assign()CGFloat scale;
 PROP_CGFloat(scale, Scale)
-/// @property(nonatomic,assign)CGFloat rotate;
+/// Prop_assign()CGFloat rotate;
 PROP_CGFloat(rotate, Rotate)
-#pragma mark —— @property(nonatomic,strong)UILongPressGestureRecognizer *longPressGR;// 长按手势
+#pragma mark —— Prop_strong()UILongPressGestureRecognizer *longPressGR;// 长按手势
 JobsKey(_longPressGR)
 @dynamic longPressGR;
 -(UILongPressGestureRecognizer *)longPressGR{
@@ -86,7 +86,7 @@ JobsKey(_longPressGR)
 -(void)setLongPressGR:(UILongPressGestureRecognizer *)longPressGR{
     Jobs_setAssociatedRETAIN_NONATOMIC(_longPressGR, longPressGR)
 }
-#pragma mark —— @property(nonatomic,strong)UITapGestureRecognizer *tapGR;// 点击手势
+#pragma mark —— Prop_strong()UITapGestureRecognizer *tapGR;// 点击手势
 JobsKey(_tapGR)
 @dynamic tapGR;
 -(UITapGestureRecognizer *)tapGR{
@@ -109,7 +109,7 @@ JobsKey(_tapGR)
 -(void)setTapGR:(UITapGestureRecognizer *)tapGR{
     Jobs_setAssociatedRETAIN_NONATOMIC(_tapGR, tapGR)
 }
-#pragma mark —— @property(nonatomic,strong)UITapGestureRecognizer *doubleTapGR;/// 双击手势
+#pragma mark —— Prop_strong()UITapGestureRecognizer *doubleTapGR;/// 双击手势
 JobsKey(_doubleTapGR)
 @dynamic doubleTapGR;
 -(UITapGestureRecognizer *)doubleTapGR{
@@ -132,7 +132,7 @@ JobsKey(_doubleTapGR)
 -(void)setDoubleTapGR:(UITapGestureRecognizer *)doubleTapGR{
     Jobs_setAssociatedRETAIN_NONATOMIC(_doubleTapGR, doubleTapGR)
 }
-#pragma mark —— @property(nonatomic,strong)UISwipeGestureRecognizer *swipeGR;// 轻扫手势
+#pragma mark —— Prop_strong()UISwipeGestureRecognizer *swipeGR;// 轻扫手势
 JobsKey(_swipeGR)
 @dynamic swipeGR;
 -(UISwipeGestureRecognizer *)swipeGR{
@@ -155,7 +155,7 @@ JobsKey(_swipeGR)
 -(void)setSwipeGR:(UISwipeGestureRecognizer *)swipeGR{
     Jobs_setAssociatedRETAIN_NONATOMIC(_swipeGR, swipeGR)
 }
-#pragma mark —— @property(nonatomic,strong)UIPanGestureRecognizer *panGR;// 平移手势
+#pragma mark —— Prop_strong()UIPanGestureRecognizer *panGR;// 平移手势
 JobsKey(_panGR)
 @dynamic panGR;
 -(UIPanGestureRecognizer *)panGR{
@@ -178,7 +178,7 @@ JobsKey(_panGR)
 -(void)setPanGR:(UIPanGestureRecognizer *)panGR{
     Jobs_setAssociatedRETAIN_NONATOMIC(_panGR, panGR)
 }
-#pragma mark —— @property(nonatomic,strong)UIPinchGestureRecognizer *pinchGR;// 捏合（缩放）手势
+#pragma mark —— Prop_strong()UIPinchGestureRecognizer *pinchGR;// 捏合（缩放）手势
 JobsKey(_pinchGR)
 @dynamic pinchGR;
 -(UIPinchGestureRecognizer *)pinchGR{
@@ -200,7 +200,7 @@ JobsKey(_pinchGR)
 -(void)setPinchGR:(UIPinchGestureRecognizer *)pinchGR{
     Jobs_setAssociatedRETAIN_NONATOMIC(_pinchGR, pinchGR)
 }
-#pragma mark —— @property(nonatomic,strong)UIRotationGestureRecognizer *rotationGR;// 旋转手势
+#pragma mark —— Prop_strong()UIRotationGestureRecognizer *rotationGR;// 旋转手势
 JobsKey(_rotationGR)
 @dynamic rotationGR;
 -(UIRotationGestureRecognizer *)rotationGR{
@@ -222,7 +222,7 @@ JobsKey(_rotationGR)
 -(void)setRotationGR:(UIRotationGestureRecognizer *)rotationGR{
     Jobs_setAssociatedRETAIN_NONATOMIC(_rotationGR, rotationGR)
 }
-#pragma mark —— @property(nonatomic,strong)UIScreenEdgePanGestureRecognizer *screenEdgePanGR;// 屏幕边缘平移
+#pragma mark —— Prop_strong()UIScreenEdgePanGestureRecognizer *screenEdgePanGR;// 屏幕边缘平移
 JobsKey(_screenEdgePanGR)
 @dynamic screenEdgePanGR;
 -(UIScreenEdgePanGestureRecognizer *)screenEdgePanGR{
@@ -243,21 +243,21 @@ JobsKey(_screenEdgePanGR)
 -(void)setScreenEdgePanGR:(UIScreenEdgePanGestureRecognizer *)screenEdgePanGR{
     Jobs_setAssociatedRETAIN_NONATOMIC(_screenEdgePanGR, screenEdgePanGR)
 }
-/// @property(nonatomic,strong)JobsSEL_IMP *longPressGR_SelImp;
+/// Prop_strong()JobsSEL_IMP *longPressGR_SelImp;
 PROP_STRONG_OBJECT_Default_TYPE(JobsSEL_IMP, longPressGR_SelImp, LongPressGR_SelImp)
-/// @property(nonatomic,strong)JobsSEL_IMP *tapGR_SelImp;
+/// Prop_strong()JobsSEL_IMP *tapGR_SelImp;
 PROP_STRONG_OBJECT_Default_TYPE(JobsSEL_IMP, tapGR_SelImp, TapGR_SelImp)
-/// @property(nonatomic,strong)JobsSEL_IMP *doubleTapGR_SelImp;
+/// Prop_strong()JobsSEL_IMP *doubleTapGR_SelImp;
 PROP_STRONG_OBJECT_Default_TYPE(JobsSEL_IMP, doubleTapGR_SelImp, DoubleTapGR_SelImp)
-/// @property(nonatomic,strong)JobsSEL_IMP *swipeGR_SelImp;
+/// Prop_strong()JobsSEL_IMP *swipeGR_SelImp;
 PROP_STRONG_OBJECT_Default_TYPE(JobsSEL_IMP, swipeGR_SelImp, SwipeGR_SelImp)
-/// @property(nonatomic,strong)JobsSEL_IMP *panGR_SelImp;
+/// Prop_strong()JobsSEL_IMP *panGR_SelImp;
 PROP_STRONG_OBJECT_Default_TYPE(JobsSEL_IMP, panGR_SelImp, PanGR_SelImp)
-/// @property(nonatomic,strong)JobsSEL_IMP *pinchGR_SelImp;
+/// Prop_strong()JobsSEL_IMP *pinchGR_SelImp;
 PROP_STRONG_OBJECT_Default_TYPE(JobsSEL_IMP, pinchGR_SelImp, PinchGR_SelImp)
-/// @property(nonatomic,strong)JobsSEL_IMP *rotationGR_SelImp;
+/// Prop_strong()JobsSEL_IMP *rotationGR_SelImp;
 PROP_STRONG_OBJECT_Default_TYPE(JobsSEL_IMP, rotationGR_SelImp, RotationGR_SelImp)
-/// @property(nonatomic,strong)JobsSEL_IMP *screenEdgePanGR_SelImp;
+/// Prop_strong()JobsSEL_IMP *screenEdgePanGR_SelImp;
 PROP_STRONG_OBJECT_Default_TYPE(JobsSEL_IMP, screenEdgePanGR_SelImp, ScreenEdgePanGR_SelImp)
 
 @end

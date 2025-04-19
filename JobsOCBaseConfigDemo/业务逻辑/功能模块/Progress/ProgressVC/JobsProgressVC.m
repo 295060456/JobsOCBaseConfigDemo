@@ -9,7 +9,7 @@
 
 @interface JobsProgressVC ()
 
-@property(nonatomic,strong)PHCycleView *progressView;
+Prop_strong()PHCycleView *progressView;
 
 @end
 

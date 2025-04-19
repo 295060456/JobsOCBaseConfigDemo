@@ -12,13 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol JobsToggleNavViewProtocol <NSObject>
 @optional
 /// 滑块之间的距离
-@property(nonatomic,assign)CGFloat btn_each_offset;
+Prop_assign()CGFloat btn_each_offset;
 /// 滑块颜色
-@property(nonatomic,strong)UIColor *sliderColor;
+Prop_strong()UIColor *sliderColor;
 /// 滑块宽度
-@property(nonatomic,assign)CGFloat sliderW;
+Prop_assign()CGFloat sliderW;
 /// 滑块高度
-@property(nonatomic,assign)CGFloat sliderH;
+Prop_assign()CGFloat sliderH;
 /// 当前选择的标签按钮 index
 @property(nonatomic,assign,readonly)NSUInteger current_index;
 

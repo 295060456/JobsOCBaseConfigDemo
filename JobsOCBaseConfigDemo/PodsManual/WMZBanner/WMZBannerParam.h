@@ -132,9 +132,9 @@ WMZBannerPropStatementAndPropSetFuncStatement(copy,   WMZBannerParam, BannerScro
 /* =========================================Events==============================================*/
 
 /* =========================================custom==============================================*/
-@property(nonatomic,assign)NSInteger myCurrentPath;
+Prop_assign()NSInteger myCurrentPath;
 
-@property(nonatomic,assign)NSInteger overFactPath;
+Prop_assign()NSInteger overFactPath;
 /* =========================================custom==============================================*/
 
 @end

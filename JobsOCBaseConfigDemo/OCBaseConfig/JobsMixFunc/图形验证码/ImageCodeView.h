@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageCodeView : UIView
 
-@property(nonatomic,copy)__kindof NSArray <NSString *>*CodeArr;
-@property(nonatomic,copy)NSString *CodeStr;
+Prop_copy()__kindof NSArray <NSString *>*CodeArr;
+Prop_copy()NSString *CodeStr;
 
-@property(nonatomic,strong)UIColor *color;
-@property(nonatomic,strong)UIFont *font;
-@property(nonatomic,strong)UIColor *bgColor;//外界不传值定义内部即用随机色彩
+Prop_strong()UIColor *color;
+Prop_strong()UIFont *font;
+Prop_strong()UIColor *bgColor;//外界不传值定义内部即用随机色彩
 
 -(void)actionBlockImageCodeView:(jobsByIDBlock _Nullable)imageCodeViewBlock;
 

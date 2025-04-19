@@ -9,7 +9,7 @@
 
 @interface CasinoUpgradePopupView ()
 /// UI
-@property(nonatomic,strong)CasinoUpgradeContentView *upgradeContentView;
+Prop_strong()CasinoUpgradeContentView *upgradeContentView;
 /// Data
 
 @end

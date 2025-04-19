@@ -26,7 +26,7 @@ UITableViewDelegate,
 UITableViewDataSource
 >
 
-@property(nonatomic,assign)BOOL isOpenLetterCase;//模糊查询时，是否开启输入字母大小写检测？默认开启
+Prop_assign()BOOL isOpenLetterCase;//模糊查询时，是否开启输入字母大小写检测？默认开启
 
 @end
 

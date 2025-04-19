@@ -11,8 +11,8 @@ static NSInteger defaultTag = 100000;
 
 @interface LZTabBarItem ()
 
-@property(nonatomic,strong)UIImageView *iconImageView;
-@property(nonatomic,strong)UILabel *titleLabel;
+Prop_strong()UIImageView *iconImageView;
+Prop_strong()UILabel *titleLabel;
 
 @end
 

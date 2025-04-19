@@ -18,26 +18,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GTCaptcha4ResultModel : NSObject
 /// 成功
-@property(nonatomic,copy)NSString *pass_token;
-@property(nonatomic,copy)NSString *gen_time;
-@property(nonatomic,copy)NSString *captcha_output;
-@property(nonatomic,copy)NSString *captcha_id;
-@property(nonatomic,copy)NSString *lot_number;
+Prop_copy()NSString *pass_token;
+Prop_copy()NSString *gen_time;
+Prop_copy()NSString *captcha_output;
+Prop_copy()NSString *captcha_id;
+Prop_copy()NSString *lot_number;
 /// 失败
-@property(nonatomic,copy)NSString *challenge;
-@property(nonatomic,assign)NSInteger failCount;
-@property(nonatomic,copy)NSString *lotNumber;
-@property(nonatomic,copy)NSString *captchaType;
-@property(nonatomic,copy)NSString *captchaId;
+Prop_copy()NSString *challenge;
+Prop_assign()NSInteger failCount;
+Prop_copy()NSString *lotNumber;
+Prop_copy()NSString *captchaType;
+Prop_copy()NSString *captchaId;
 
 @end
 
 @interface GTCaptcha4Model : BaseModel
 
-@property(nonatomic,strong)GTCaptcha4Session *captcha4Session;
-@property(nonatomic,strong)GTCaptcha4ResultModel *result;
-@property(nonatomic,copy)NSString *status;
-@property(nonatomic,strong)GTC4Error *error;
+Prop_strong()GTCaptcha4Session *captcha4Session;
+Prop_strong()GTCaptcha4ResultModel *result;
+Prop_copy()NSString *status;
+Prop_strong()GTC4Error *error;
 @property(nonatomic,weak)__kindof UIView *targetView;
 
 @end

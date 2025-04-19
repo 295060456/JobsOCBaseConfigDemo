@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIScrollView (JobsEmptyData)
 
-@property(nonatomic,strong)UITextModel *textModelEmptyData;
-@property(nonatomic,strong)UIButtonModel *buttonModelEmptyData;
+Prop_strong()UITextModel *textModelEmptyData;
+Prop_strong()UIButtonModel *buttonModelEmptyData;
 
 @end
 

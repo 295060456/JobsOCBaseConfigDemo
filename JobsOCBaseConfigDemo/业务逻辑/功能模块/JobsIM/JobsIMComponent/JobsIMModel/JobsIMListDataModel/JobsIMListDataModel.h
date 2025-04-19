@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsIMListDataModel : NSObject
 
-@property(nonatomic,copy)NSString *usernameStr;
-@property(nonatomic,copy)NSString *contentStr;
-@property(nonatomic,copy)NSString *timeStr;
-@property(nonatomic,strong)UIImage *userHeaderIMG;
+Prop_copy()NSString *usernameStr;
+Prop_copy()NSString *contentStr;
+Prop_copy()NSString *timeStr;
+Prop_strong()UIImage *userHeaderIMG;
 
 @end
 

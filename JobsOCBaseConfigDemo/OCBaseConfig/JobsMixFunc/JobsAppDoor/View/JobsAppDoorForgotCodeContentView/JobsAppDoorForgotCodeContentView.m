@@ -11,11 +11,11 @@
 
 @interface JobsAppDoorForgotCodeContentView ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;// 标题
-@property(nonatomic,strong)BaseButton *backToLoginBtn;// 返回登录
-@property(nonatomic,strong)BaseButton *contactCustomerServiceBtn;// 联系客服按钮
-@property(nonatomic,strong)UILabel *subTitleLab;// 副标题
-@property(nonatomic,strong)JobsHotLabelBySingleLine *hl;
+Prop_strong()UILabel *titleLab;// 标题
+Prop_strong()BaseButton *backToLoginBtn;// 返回登录
+Prop_strong()BaseButton *contactCustomerServiceBtn;// 联系客服按钮
+Prop_strong()UILabel *subTitleLab;// 副标题
+Prop_strong()JobsHotLabelBySingleLine *hl;
 /// Data
 
 @end
@@ -173,8 +173,8 @@
 /**
     在 @interface NSObject (AppTools)<AppToolsProtocol>里
     对下列属性进行统一管理
-    @property(nonatomic,copy)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
-    @property(nonatomic,strong)BaiShaETProjCustomerContactModel *customerContactModel;
+    Prop_copy()NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
+    Prop_strong()BaiShaETProjCustomerContactModel *customerContactModel;
  */
 //-(NSMutableArray<UIViewModel *> *)hotLabelDataMutArr{
 //    if (!_hotLabelDataMutArr) {

@@ -104,7 +104,7 @@
         });
     }
 }
-#pragma mark —— @property(nonatomic,strong)CMMotionManager *motionManager;
+#pragma mark —— Prop_strong()CMMotionManager *motionManager;
 JobsKey(_motionManager)
 @dynamic motionManager;
 -(CMMotionManager *)motionManager{

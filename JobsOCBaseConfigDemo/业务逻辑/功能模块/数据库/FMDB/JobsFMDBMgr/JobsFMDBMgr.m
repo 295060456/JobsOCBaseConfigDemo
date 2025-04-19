@@ -9,7 +9,7 @@
 
 @interface JobsFMDBMgr ()
 
-@property(nonatomic,strong)FMDatabaseQueue *databaseQueue;
+Prop_strong()FMDatabaseQueue *databaseQueue;
 
 @end
 

@@ -11,7 +11,7 @@
 /// UI
 
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 

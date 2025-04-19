@@ -612,7 +612,7 @@
         return self.configuration.baseForegroundColor ? : self.titleColorByNormalState;
     } else return self.titleColorByNormalState;
 }
-#pragma mark —— <BaseProtocol> @property(nonatomic,strong)RACDisposable *racDisposable;
+#pragma mark —— <BaseProtocol> Prop_strong()RACDisposable *racDisposable;
 JobsKey(_racDisposable)
 @dynamic racDisposable;
 -(RACDisposable *)racDisposable{
@@ -622,7 +622,7 @@ JobsKey(_racDisposable)
 -(void)setRacDisposable:(RACDisposable *)racDisposable{
     Jobs_setAssociatedRETAIN_NONATOMIC(_racDisposable, racDisposable)
 }
-#pragma mark —— <BaseButtonProtocol> @property(nonatomic,strong)UIFont *titleFont;
+#pragma mark —— <BaseButtonProtocol> Prop_strong()UIFont *titleFont;
 JobsKey(_titleFont)
 @dynamic titleFont;
 -(UIFont *_Nullable)titleFont{
@@ -632,7 +632,7 @@ JobsKey(_titleFont)
 -(void)setTitleFont:(UIFont *)titleFont{
     Jobs_setAssociatedRETAIN_NONATOMIC(_titleFont, titleFont)
 }
-#pragma mark —— <BaseButtonProtocol> @property(nonatomic,strong)UIFont *subTitleFont;
+#pragma mark —— <BaseButtonProtocol> Prop_strong()UIFont *subTitleFont;
 JobsKey(_subTitleFont)
 @dynamic subTitleFont;
 -(UIFont *_Nullable)subTitleFont API_AVAILABLE(ios(16.0)){

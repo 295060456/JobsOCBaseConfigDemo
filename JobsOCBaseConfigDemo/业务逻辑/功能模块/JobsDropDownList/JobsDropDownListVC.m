@@ -9,13 +9,13 @@
 
 @interface JobsDropDownListVC ()
 /// UI
-@property(nonatomic,strong)JobsDropDownListView *dropDownListView;
-@property(nonatomic,strong)BaseButton *btn;
-@property(nonatomic,strong)UISwitch *switcher;
+Prop_strong()JobsDropDownListView *dropDownListView;
+Prop_strong()BaseButton *btn;
+Prop_strong()UISwitch *switcher;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*listViewData;
-@property(nonatomic,strong)UIColor *cor;
-@property(nonatomic,assign)JobsDropDownListViewDirection dropDownListViewDirection;
+Prop_copy()NSMutableArray <UIViewModel *>*listViewData;
+Prop_strong()UIColor *cor;
+Prop_assign()JobsDropDownListViewDirection dropDownListViewDirection;
 
 @end
 

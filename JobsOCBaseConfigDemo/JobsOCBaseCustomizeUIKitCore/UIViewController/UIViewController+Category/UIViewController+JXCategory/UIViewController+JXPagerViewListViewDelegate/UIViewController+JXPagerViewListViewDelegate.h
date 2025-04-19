@@ -28,9 +28,9 @@ JXPagerViewListViewDelegate,
 UIScrollViewDelegate
 >
 
-@property(nonatomic,strong)UIScrollView *scrollView;//这个属性一旦有值，说明开启UITableViewHeaderFooterView不悬停。系统在UITableViewStylePlain模式下是默认悬停的
-@property(nonatomic,strong)Class scrollViewClass;
-@property(nonatomic,copy)void(^scrollCallback)(UIScrollView *scrollView);
+Prop_strong()UIScrollView *scrollView;//这个属性一旦有值，说明开启UITableViewHeaderFooterView不悬停。系统在UITableViewStylePlain模式下是默认悬停的
+Prop_strong()Class scrollViewClass;
+Prop_copy()void(^scrollCallback)(UIScrollView *scrollView);
 
 @end
 
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_END
                    toRightIndex:(NSInteger)rightIndex
                          ratio:(CGFloat)ratio ;
  2、舍弃属性类 JXCategoryListContainerView
-    2.1、舍弃 @property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController@property(nonatomic,strong)
+    2.1、舍弃 Prop_strong()JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewControllerProp_strong()
     2.1 、舍弃
          -(JXCategoryListContainerView *)listContainerView{
              if (!_listContainerView) {
@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_END
     3.2、在 JXPagerView 模式下 ,不用设置JXCategoryTitleView的height、size、frame。而是在JXPagingViewDelegate代理方法里面设置
  
  4、_categoryView新增属性：_categoryView.listContainer = (id<JXCategoryViewListContainer>)self.pagerView.listContainerView;
- 5、全局新增属性：@property(nonatomic,strong)JXPagerView *pagerView;
+ 5、全局新增属性：Prop_strong()JXPagerView *pagerView;
  6、新增JXPagingViewDelegate代理协议的实现
      6.1、- (UIView *)tableHeaderViewInPagerView:(JXPagerView *)pagerView;
      6.2、- (void)pagerView:(JXPagerView *)pagerView

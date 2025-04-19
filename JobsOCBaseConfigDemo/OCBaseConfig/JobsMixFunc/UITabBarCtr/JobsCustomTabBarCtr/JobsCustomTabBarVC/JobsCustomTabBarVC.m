@@ -9,7 +9,7 @@
 
 @interface JobsCustomTabBarVC ()
 
-@property(nonatomic,strong)JobsCustomTabBar *customTabBar;
+Prop_strong()JobsCustomTabBar *customTabBar;
 
 @end
 

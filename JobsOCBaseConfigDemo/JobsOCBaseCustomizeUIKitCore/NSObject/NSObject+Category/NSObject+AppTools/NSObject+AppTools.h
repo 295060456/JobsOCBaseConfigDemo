@@ -44,17 +44,17 @@ AppToolsProtocol
 >
 /// UI
 @property(nonatomic,strong,nullable)JobsUserModel *doorModel;
-@property(nonatomic,strong)BaseButton *联系客服;
-@property(nonatomic,strong)BaseButton *立即注册;
-@property(nonatomic,strong)UILabel *separateLab;/// 分割线
-@property(nonatomic,strong)UITextView *connectionTipsTV;/// 承接富文本:如需幫助，請聯繫專屬客服
+Prop_strong()BaseButton *联系客服;
+Prop_strong()BaseButton *立即注册;
+Prop_strong()UILabel *separateLab;/// 分割线
+Prop_strong()UITextView *connectionTipsTV;/// 承接富文本:如需幫助，請聯繫專屬客服
 /// Data
-@property(nonatomic,copy)NSMutableArray<__kindof UIViewModel *> *hotLabelDataMutArr;
-@property(nonatomic,copy)NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
+Prop_copy()NSMutableArray<__kindof UIViewModel *> *hotLabelDataMutArr;
+Prop_copy()NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
 // 关于富文本:如需幫助，請聯繫專屬客服
-@property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
-@property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+Prop_strong()NSMutableAttributedString *attributedStringData;
+Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
+Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 #pragma mark —— 测试调试专用
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;

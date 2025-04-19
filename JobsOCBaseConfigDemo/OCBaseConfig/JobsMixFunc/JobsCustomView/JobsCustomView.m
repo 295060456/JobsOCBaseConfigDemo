@@ -9,18 +9,18 @@
 
 @interface JobsCustomView ()
 /// UI
-@property(nonatomic,strong)UIImageView *indicatorIMGV;
-@property(nonatomic,strong)UILabel *tipsLab;
-@property(nonatomic,strong)UIButton *cancelBtn;
-@property(nonatomic,strong)UIButton *sureBtn;
-@property(nonatomic,strong)BaseView *containFromView;/// fromDatePickerView的承接视图
-@property(nonatomic,strong)BaseView *containToView;/// toDatePickerView的承接视图
-@property(nonatomic,strong)BRDatePickerView *fromDatePickerView;
-@property(nonatomic,strong)BRDatePickerView *toDatePickerView;
-@property(nonatomic,strong)UILabel *segmentationLine;
-@property(nonatomic,strong)UIColor *cancelBtnBgCor;
-@property(nonatomic,strong)UIColor *sureBtnBgCor;
-@property(nonatomic,assign)CGSize btnSize;
+Prop_strong()UIImageView *indicatorIMGV;
+Prop_strong()UILabel *tipsLab;
+Prop_strong()UIButton *cancelBtn;
+Prop_strong()UIButton *sureBtn;
+Prop_strong()BaseView *containFromView;/// fromDatePickerView的承接视图
+Prop_strong()BaseView *containToView;/// toDatePickerView的承接视图
+Prop_strong()BRDatePickerView *fromDatePickerView;
+Prop_strong()BRDatePickerView *toDatePickerView;
+Prop_strong()UILabel *segmentationLine;
+Prop_strong()UIColor *cancelBtnBgCor;
+Prop_strong()UIColor *sureBtnBgCor;
+Prop_assign()CGSize btnSize;
 /// Data
 
 @end

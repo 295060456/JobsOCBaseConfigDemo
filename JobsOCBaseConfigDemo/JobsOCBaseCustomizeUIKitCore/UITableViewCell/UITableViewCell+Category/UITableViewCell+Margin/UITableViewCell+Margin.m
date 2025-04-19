@@ -206,9 +206,9 @@ UILocationProtocol_dynamic
         }
     };
 }
-/// <UIViewModelProtocol> @property(nonatomic,strong)NSIndexPath *indexPath;
+/// <UIViewModelProtocol> Prop_strong()NSIndexPath *indexPath;
 PROP_STRONG_OBJECT_TYPE(NSIndexPath, indexPath, IndexPath)
-/// <UIMarkProtocol> @property(nonatomic,assign)NSInteger index;
+/// <UIMarkProtocol> Prop_assign()NSInteger index;
 PROP_NSInteger(index, Index)
 /// <UITableViewCellProtocol> @property(nonatomic, assign)CGRect textLabelFrame;
 PROP_CGRECT(textLabelFrame, TextLabelFrame)

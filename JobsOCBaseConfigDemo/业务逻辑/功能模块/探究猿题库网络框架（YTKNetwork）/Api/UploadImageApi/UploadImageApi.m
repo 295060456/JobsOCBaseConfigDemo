@@ -10,7 +10,7 @@
 
 @interface UploadImageApi ()
 
-@property(nonatomic,strong)UIImage *image;
+Prop_strong()UIImage *image;
 
 @end
 

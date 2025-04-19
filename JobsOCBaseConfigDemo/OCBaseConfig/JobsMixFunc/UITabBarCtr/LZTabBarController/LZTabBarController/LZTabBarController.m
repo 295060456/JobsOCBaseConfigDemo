@@ -10,8 +10,8 @@
 
 @interface LZTabBarController ()
 
-@property(nonatomic,strong)LZTabBar *customTabBar;
-@property(nonatomic,strong)LZTabBarConfig *config;
+Prop_strong()LZTabBar *customTabBar;
+Prop_strong()LZTabBarConfig *config;
 
 @end
 

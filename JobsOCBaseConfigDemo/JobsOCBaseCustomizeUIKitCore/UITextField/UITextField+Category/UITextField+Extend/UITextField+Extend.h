@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITextField (Extend)
 
-@property(nonatomic,strong)UIButton *customSysClearBtn;
+Prop_strong()UIButton *customSysClearBtn;
 /// RAC 回调封装
 -(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock _Nonnull)filterBlock
                              subscribeNextBlock:(jobsByIDBlock _Nonnull)subscribeNextBlock;

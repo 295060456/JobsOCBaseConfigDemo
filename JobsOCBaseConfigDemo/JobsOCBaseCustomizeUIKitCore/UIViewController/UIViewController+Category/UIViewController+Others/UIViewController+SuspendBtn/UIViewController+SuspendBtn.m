@@ -8,7 +8,7 @@
 #import "UIViewController+SuspendBtn.h"
 
 @implementation UIViewController (SuspendBtn)
-#pragma mark —— @property(nonatomic,strong)JobsSuspendBtn *suspendBtn;
+#pragma mark —— Prop_strong()JobsSuspendBtn *suspendBtn;
 JobsKey(_suspendBtn)
 @dynamic suspendBtn;
 -(JobsSuspendBtn *)suspendBtn{

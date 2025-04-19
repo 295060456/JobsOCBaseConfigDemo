@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///思路：先获取到总的流量信息，然后用当前的总下行流量减去上一秒的下行流量得到网速！
 @interface JobsMonitorNetwoking : NSObject
 
-@property(nonatomic,strong)JobsSuspendLab *rateLabel;
+Prop_strong()JobsSuspendLab *rateLabel;
 
 +(JobsMonitorNetwoking *)sharedManager;
 -(long long)getInterfaceBytes;

@@ -17,7 +17,7 @@
         self.jobsBackBtnClickEvent(sender);
     };
 }
-#pragma mark —— @property(nonatomic,strong)BaseButton *backBtnCategory;
+#pragma mark —— Prop_strong()BaseButton *backBtnCategory;
 JobsKey(_backBtnCategory)
 @dynamic backBtnCategory;
 -(BaseButton *)backBtnCategory{
@@ -47,7 +47,7 @@ JobsKey(_backBtnCategory)
 -(void)setBackBtnCategory:(UIButton *)backBtnCategory{
     Jobs_setAssociatedRETAIN_NONATOMIC(_backBtnCategory, backBtnCategory)
 }
-#pragma mark —— @property(nonatomic,strong)UIBarButtonItem *backBtnCategoryItem;
+#pragma mark —— Prop_strong()UIBarButtonItem *backBtnCategoryItem;
 JobsKey(_backBtnCategoryItem)
 @dynamic backBtnCategoryItem;
 -(UIBarButtonItem *)backBtnCategoryItem{

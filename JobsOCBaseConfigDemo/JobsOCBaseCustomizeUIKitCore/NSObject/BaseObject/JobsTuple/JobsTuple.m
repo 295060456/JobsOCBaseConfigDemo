@@ -9,7 +9,7 @@
 
 @interface JobsTuple ()
 
-@property(nonatomic,copy)NSMutableArray *valueMutArr;
+Prop_copy()NSMutableArray *valueMutArr;
 
 @end
 

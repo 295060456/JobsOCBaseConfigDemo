@@ -23,9 +23,9 @@
 #define kDefaultMinDragDirectionDiscernDistance 10.0//需要在用户拖动10个像素内确定用户想要的拖动方向
 
 @interface TFPopupPrivateExtension : NSObject
-@property(nonatomic,assign)BOOL currentIsShowState;
-@property(nonatomic,assign)NSInteger showAnimationCount;
-@property(nonatomic,assign)NSInteger hideAnimationCount;
+Prop_assign()BOOL currentIsShowState;
+Prop_assign()NSInteger showAnimationCount;
+Prop_assign()NSInteger hideAnimationCount;
 @end
 @implementation TFPopupPrivateExtension
 @end
@@ -681,11 +681,11 @@
 
 
 #pragma mark - 拖动部分
-//@property(nonatomic,assign)BOOL dragEnable;//是否可拖拽
-//@property(nonatomic,assign)DragStyle dragStyle;//拖拽类型
-//@property(nonatomic,assign)BOOL dragBouncesEnable;//是否可弹性
-//@property(nonatomic,assign)BOOL discernScrollEnable;//识别滚动
-//@property(nonatomic,assign)NSUInteger dragAutoDissmissMinDistance;//最小拖动消失距离
+//Prop_assign()BOOL dragEnable;//是否可拖拽
+//Prop_assign()DragStyle dragStyle;//拖拽类型
+//Prop_assign()BOOL dragBouncesEnable;//是否可弹性
+//Prop_assign()BOOL discernScrollEnable;//识别滚动
+//Prop_assign()NSUInteger dragAutoDissmissMinDistance;//最小拖动消失距离
 //规则
 //1.先识别方向再作操作相当于一个方向了
 //2.存在对冲方向不存在弹性和阻止，非对冲方向存在弹性和阻止

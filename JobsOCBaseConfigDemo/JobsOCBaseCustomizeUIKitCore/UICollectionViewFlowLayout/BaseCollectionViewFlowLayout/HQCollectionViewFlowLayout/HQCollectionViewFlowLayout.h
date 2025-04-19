@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// UICollectionView 实现类似于UITableView的悬停效果
 @interface HQCollectionViewFlowLayout : UICollectionViewFlowLayout
 
-@property(nonatomic,assign)CGFloat naviHeight;
+Prop_assign()CGFloat naviHeight;
 
 @end
 

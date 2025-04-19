@@ -9,10 +9,10 @@
 
 @interface JobsTextView()
 /// UI
-@property(nonatomic,strong)SZTextView *textView;
-@property(nonatomic,strong)UILabel *countLabel;
+Prop_strong()SZTextView *textView;
+Prop_strong()UILabel *countLabel;
 /// Data
-@property(nonatomic,strong)UITextModel *textModel;
+Prop_strong()UITextModel *textModel;
 
 @end
 

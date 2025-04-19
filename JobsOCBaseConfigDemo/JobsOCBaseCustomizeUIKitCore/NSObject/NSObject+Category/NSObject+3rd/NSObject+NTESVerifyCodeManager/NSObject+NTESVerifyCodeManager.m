@@ -45,7 +45,7 @@
 - (void)verifyCodeCloseWindow:(NTESVerifyCodeClose)close {
     
 }
-#pragma mark —— @property(nonatomic,strong)NTESVerifyCodeManager *verifyCodeManager;
+#pragma mark —— Prop_strong()NTESVerifyCodeManager *verifyCodeManager;
 JobsKey(_verifyCodeManager)
 @dynamic verifyCodeManager;
 -(NTESVerifyCodeManager *)verifyCodeManager{
@@ -106,7 +106,7 @@ JobsKey(_verifyCodeManager)
 -(void)setVerifyCodeManager:(NTESVerifyCodeManager *)verifyCodeManager{
     Jobs_setAssociatedRETAIN_NONATOMIC(_verifyCodeManager, verifyCodeManager)
 }
-#pragma mark —— @property(nonatomic,strong)NTESVerifyCodeStyleConfig *verifyCodeStyleConfig;
+#pragma mark —— Prop_strong()NTESVerifyCodeStyleConfig *verifyCodeStyleConfig;
 JobsKey(_verifyCodeStyleConfig)
 @dynamic verifyCodeStyleConfig;
 -(NTESVerifyCodeStyleConfig *)verifyCodeStyleConfig{

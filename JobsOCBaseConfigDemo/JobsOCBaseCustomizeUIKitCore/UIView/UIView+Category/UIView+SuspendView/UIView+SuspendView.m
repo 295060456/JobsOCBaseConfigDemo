@@ -22,7 +22,7 @@ JobsKey(_vc)
 -(void)setVc:(UIViewController *)vc{
     Jobs_setAssociatedRETAIN_NONATOMIC(_vc, vc)
 }
-#pragma mark —— @property(nonatomic,strong)UIPanGestureRecognizer *panRcognize;
+#pragma mark —— Prop_strong()UIPanGestureRecognizer *panRcognize;
 JobsKey(_panRcognize)
 @dynamic panRcognize;
 -(UIPanGestureRecognizer *)panRcognize{

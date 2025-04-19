@@ -9,10 +9,10 @@
 
 @interface JobsPullListAutoSizeView ()
 /// UI
-//@property(nonatomic,strong)UITableView *tableView;//content
-@property(nonatomic,strong)UIView *targetView;
+//Prop_strong()UITableView *tableView;//content
+Prop_strong()UIView *targetView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 

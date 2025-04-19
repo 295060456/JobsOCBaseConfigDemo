@@ -9,14 +9,14 @@
 
 @interface JXCategoryViewVerticalShowVC ()
 /// UI
-@property(nonatomic,strong)JXCategoryTitleView *categoryView;/// 文字
-@property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
-@property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
+Prop_strong()JXCategoryTitleView *categoryView;/// 文字
+Prop_strong()JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
+Prop_strong()JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
 /// Data
-@property(nonatomic,copy)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
-@property(nonatomic,copy)NSMutableArray <NSString *>*titleMutArr;
-//@property(nonatomic,copy)NSMutableArray <NSString *>*imageNames;
-//@property(nonatomic,copy)NSMutableArray <NSString *>*selectedImageNames;
+Prop_copy()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+Prop_copy()NSMutableArray <NSString *>*titleMutArr;
+//Prop_copy()NSMutableArray <NSString *>*imageNames;
+//Prop_copy()NSMutableArray <NSString *>*selectedImageNames;
 
 @end
 

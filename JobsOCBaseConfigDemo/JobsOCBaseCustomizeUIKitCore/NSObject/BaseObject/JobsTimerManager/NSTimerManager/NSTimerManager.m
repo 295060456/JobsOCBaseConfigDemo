@@ -10,8 +10,8 @@
 
 @interface NSTimerManager ()
 /// Data
-@property(nonatomic,strong)NSDate *date;
-@property(nonatomic,assign)NSTimerCurrentStatus timerCurrentStatus;// 定时器当前状态
+Prop_strong()NSDate *date;
+Prop_assign()NSTimerCurrentStatus timerCurrentStatus;// 定时器当前状态
 
 @end
 

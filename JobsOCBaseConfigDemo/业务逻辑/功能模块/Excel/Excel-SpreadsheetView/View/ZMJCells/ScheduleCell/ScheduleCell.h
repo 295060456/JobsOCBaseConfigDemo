@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleCell : ZMJCell
 
-@property(nonatomic,strong)UIColor *color;
+Prop_strong()UIColor *color;
 
 @end
 

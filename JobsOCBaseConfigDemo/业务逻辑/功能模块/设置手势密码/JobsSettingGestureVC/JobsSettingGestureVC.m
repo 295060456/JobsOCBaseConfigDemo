@@ -9,7 +9,7 @@
 
 @interface JobsSettingGestureVC ()
 
-@property(nonatomic,strong)UILabel *topLineLab;
+Prop_strong()UILabel *topLineLab;
 
 @end
 

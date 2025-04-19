@@ -184,7 +184,7 @@
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [self.layer addAnimation:animation forKey:@"kViewShakerAnimationKey"];
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat rotateChangeAngle;
+#pragma mark —— Prop_assign()CGFloat rotateChangeAngle;
 JobsKey(_rotateChangeAngle)
 @dynamic rotateChangeAngle;
 -(CGFloat)rotateChangeAngle{
@@ -198,7 +198,7 @@ JobsKey(_rotateChangeAngle)
 -(void)setRotateChangeAngle:(CGFloat)rotateChangeAngle{
     Jobs_setAssociatedRETAIN_NONATOMIC(_rotateChangeAngle, @(rotateChangeAngle))
 }
-#pragma mark —— @property(nonatomic,assign)__block CGFloat currentAngle;
+#pragma mark —— Prop_assign()__block CGFloat currentAngle;
 JobsKey(_currentAngle)
 @dynamic currentAngle;
 -(CGFloat)currentAngle{
@@ -208,7 +208,7 @@ JobsKey(_currentAngle)
 -(void)setCurrentAngle:(CGFloat)currentAngle{
     Jobs_setAssociatedRETAIN_NONATOMIC(_currentAngle, @(currentAngle))
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat durationTime;
+#pragma mark —— Prop_assign()CGFloat durationTime;
 JobsKey(_durationTime)
 @dynamic durationTime;
 -(CGFloat)durationTime{
@@ -221,7 +221,7 @@ JobsKey(_durationTime)
 -(void)setDurationTime:(CGFloat)durationTime{
     Jobs_setAssociatedRETAIN_NONATOMIC(_durationTime, @(durationTime))
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat delayTime;
+#pragma mark —— Prop_assign()CGFloat delayTime;
 JobsKey(_delayTime)
 @dynamic delayTime;
 -(CGFloat)delayTime{
@@ -235,7 +235,7 @@ JobsKey(_delayTime)
 -(void)setDelayTime:(CGFloat)delayTime{
     Jobs_setAssociatedRETAIN_NONATOMIC(_delayTime, @(delayTime))
 }
-#pragma mark —— @property(nonatomic,assign)BOOL isStopRotateAnimation;//默认值为NO（一直旋转）
+#pragma mark —— Prop_assign()BOOL isStopRotateAnimation;//默认值为NO（一直旋转）
 JobsKey(_isStopRotateAnimation)
 @dynamic isStopRotateAnimation;
 -(BOOL)isStopRotateAnimation{
@@ -245,7 +245,7 @@ JobsKey(_isStopRotateAnimation)
 -(void)setIsStopRotateAnimation:(BOOL)isStopRotateAnimation{
     Jobs_setAssociatedRETAIN_NONATOMIC(_isStopRotateAnimation, @(isStopRotateAnimation))
 }
-#pragma mark —— @property(nonatomic,strong)CAKeyframeAnimation *shakeAnim;
+#pragma mark —— Prop_strong()CAKeyframeAnimation *shakeAnim;
 JobsKey(_shakeAnim)
 @dynamic shakeAnim;
 -(CAKeyframeAnimation *)shakeAnim{

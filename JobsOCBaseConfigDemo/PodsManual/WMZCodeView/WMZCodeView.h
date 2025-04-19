@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WMZSlider : UISlider
 
-@property(nonatomic,strong)UILabel *label;
+Prop_strong()UILabel *label;
 
 @end
 

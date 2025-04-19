@@ -15,11 +15,11 @@
     BaiShaETProjVIPSubCVCell_05 *cell05;
 }
 /// UI
-@property(nonatomic,strong)BaiShaETProjChoiceStadiumView *choiceStadiumView;
-//@property(nonatomic,strong)UICollectionView *collectionView;
+Prop_strong()BaiShaETProjChoiceStadiumView *choiceStadiumView;
+//Prop_strong()UICollectionView *collectionView;
 // Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
-@property(nonatomic,copy)NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*cvcellMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*cvcellMutArr;
 
 @end
 

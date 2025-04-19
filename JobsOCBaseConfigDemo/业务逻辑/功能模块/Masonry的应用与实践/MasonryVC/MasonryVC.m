@@ -9,7 +9,7 @@
 
 @interface MasonryVC ()
 /// UI
-@property(nonatomic,strong)MSMineView2 *view2;
+Prop_strong()MSMineView2 *view2;
 
 @end
 

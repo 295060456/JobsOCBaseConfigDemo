@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsIMChatInfoTBVCell : MGSwipeTableCell<BaseCellProtocol>
 
-@property(nonatomic,assign)BOOL isShowChatUserName;//是否显示每一个聊天的用户的用户名？默认不显示
+Prop_assign()BOOL isShowChatUserName;//是否显示每一个聊天的用户的用户名？默认不显示
 
 -(NSArray *)createLeftButtons;
 -(NSArray *)createRightButtons;

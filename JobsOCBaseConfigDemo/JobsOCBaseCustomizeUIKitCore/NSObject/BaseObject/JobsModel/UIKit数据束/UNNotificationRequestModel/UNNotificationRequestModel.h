@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UNNotificationRequestModel : BaseModel
 
-@property(nonatomic,copy)NSString *identifier;
-@property(nonatomic,strong)UNNotificationContent *content;
-@property(nonatomic,strong)UNNotificationTrigger *trigger;
+Prop_copy()NSString *identifier;
+Prop_strong()UNNotificationContent *content;
+Prop_strong()UNNotificationTrigger *trigger;
 
 @end
 

@@ -10,9 +10,9 @@
 
 @interface JobsShakeBtn ()
 /// UI
-@property(nonatomic,strong)UIView *coverView;/// 遮盖，在抖动时出现
-@property(nonatomic,strong)UITapGestureRecognizer *iconBtnTap;
-@property(nonatomic,strong)CAKeyframeAnimation *anim;
+Prop_strong()UIView *coverView;/// 遮盖，在抖动时出现
+Prop_strong()UITapGestureRecognizer *iconBtnTap;
+Prop_strong()CAKeyframeAnimation *anim;
 
 @end
 

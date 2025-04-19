@@ -9,7 +9,7 @@
 
 @interface BaseContentView ()
 
-@property(nonatomic,assign)CGRect initialContentViewRect;// 登录框 初始frame值
+Prop_assign()CGRect initialContentViewRect;// 登录框 初始frame值
 
 @end
 

@@ -20,8 +20,8 @@ typedef NS_ENUM(NSInteger, RBCLikeButtonStatus) {
 /// 高仿抖音点赞动画
 @interface RBCLikeButton : UIButton <BaseButtonProtocol>
 
-@property(nonatomic,assign)NSInteger thumpNum;/// 点赞数
-@property(nonatomic,assign)RBCLikeButtonStatus thumbStatus;/// 按钮状态
+Prop_assign()NSInteger thumpNum;/// 点赞数
+Prop_assign()RBCLikeButtonStatus thumbStatus;/// 按钮状态
 
 -(void)recoverLike;/// 恢复点赞
 -(void)cancelLike;/// 取消点赞

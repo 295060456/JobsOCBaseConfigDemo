@@ -35,10 +35,10 @@ HXCustomNavigationControllerDelegate
 ,UINavigationControllerDelegate
 >
 
-@property(nonatomic,strong)HXPhotoManager *photoManager;//选取图片的数据管理类
-@property(nonatomic,copy)NSMutableArray <HXPhotoModel *>*historyPhotoDataMutArr;/// 与之相对应的是self.photoManager.afterSelectedArray
-@property(nonatomic,copy)NSMutableArray <HXPhotoModel *>*photosDataMutArr;
-@property(nonatomic,copy)NSMutableArray <HXPhotoModel *>*videosDataMutArr;
+Prop_strong()HXPhotoManager *photoManager;//选取图片的数据管理类
+Prop_copy()NSMutableArray <HXPhotoModel *>*historyPhotoDataMutArr;/// 与之相对应的是self.photoManager.afterSelectedArray
+Prop_copy()NSMutableArray <HXPhotoModel *>*photosDataMutArr;
+Prop_copy()NSMutableArray <HXPhotoModel *>*videosDataMutArr;
 /// HXPhotoPicker 弹出系统相册选择页面
 -(void)hx_invokeSysPhotoAlbumSuccessBlock:(jobsByIDBlock _Nullable)successBlock
                                 failBlock:(jobsByIDBlock _Nullable)failBlock;

@@ -9,8 +9,8 @@
 
 @interface MSMineView2 ()
 /// UI
-@property(nonatomic,strong)BaseButton *btn1;
-@property(nonatomic,strong)BaseButton *btn2;
+Prop_strong()BaseButton *btn1;
+Prop_strong()BaseButton *btn2;
 
 @end
 

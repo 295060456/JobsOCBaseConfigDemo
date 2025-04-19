@@ -12,25 +12,25 @@
     dispatch_source_t timer; //定时器
 }
 /// UI
-@property(nonatomic,strong)UILabel *tipLabel;                 //提示文本
-@property(nonatomic,strong)UIImageView *mainImage;            //背景图片
-@property(nonatomic,strong)UIImageView *moveImage;            //可移动图片
-@property(nonatomic,strong)CAShapeLayer *maskLayer;           //遮罩层layer
-@property(nonatomic,strong)UIButton *refresh;                 //刷新按钮
-@property(nonatomic,strong)UIView *maskView;                  //遮罩层
-@property(nonatomic,strong)UIView *nineView;                  //九宫格view
-@property(nonatomic,strong)WMZSlider *WMZSlider;              //自定义滑动
-@property(nonatomic,strong)WMZSlider *slider;                 //滑动
+Prop_strong()UILabel *tipLabel;                 //提示文本
+Prop_strong()UIImageView *mainImage;            //背景图片
+Prop_strong()UIImageView *moveImage;            //可移动图片
+Prop_strong()CAShapeLayer *maskLayer;           //遮罩层layer
+Prop_strong()UIButton *refresh;                 //刷新按钮
+Prop_strong()UIView *maskView;                  //遮罩层
+Prop_strong()UIView *nineView;                  //九宫格view
+Prop_strong()WMZSlider *WMZSlider;              //自定义滑动
+Prop_strong()WMZSlider *slider;                 //滑动
 /// Data
-@property(nonatomic,copy)NSMutableArray *btnArr;              //按钮数组
-@property(nonatomic,copy)NSString *name;                      //文本图片 默认图片“A”
-@property(nonatomic,copy)NSString *allChinese;                //所显示的所有中文
-@property(nonatomic,copy)NSString *factChinese;               //实际需要点击的中文
-@property(nonatomic,copy)NSString *selectChinese;             //点击的中文
-@property(nonatomic,assign)CodeType type;                     //类型
-@property(nonatomic,assign)int tapCount;                      //点击数量
-@property(nonatomic,assign)CGFloat seconds;                   //秒数
-@property(nonatomic,assign)CGPoint randomPoint;               //随机位置
+Prop_copy()NSMutableArray *btnArr;              //按钮数组
+Prop_copy()NSString *name;                      //文本图片 默认图片“A”
+Prop_copy()NSString *allChinese;                //所显示的所有中文
+Prop_copy()NSString *factChinese;               //实际需要点击的中文
+Prop_copy()NSString *selectChinese;             //点击的中文
+Prop_assign()CodeType type;                     //类型
+Prop_assign()int tapCount;                      //点击数量
+Prop_assign()CGFloat seconds;                   //秒数
+Prop_assign()CGPoint randomPoint;               //随机位置
 
 @end
 

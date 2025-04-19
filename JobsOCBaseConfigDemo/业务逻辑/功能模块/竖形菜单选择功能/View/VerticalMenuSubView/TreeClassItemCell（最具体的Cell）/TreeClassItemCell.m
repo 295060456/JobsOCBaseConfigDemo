@@ -9,12 +9,12 @@
 
 @interface TreeClassItemCell ()
 /// UI
-@property(nonatomic,strong)UIImageView *logoImgView;
-@property(nonatomic,strong)UILabel *nameLabel;
-@property(nonatomic,strong)BaseButton *btn;
+Prop_strong()UIImageView *logoImgView;
+Prop_strong()UILabel *nameLabel;
+Prop_strong()BaseButton *btn;
 /// Data
-@property(nonatomic,assign)CGFloat imageWidth;
-@property(nonatomic,strong)GoodsClassModel *dataModel;
+Prop_assign()CGFloat imageWidth;
+Prop_strong()GoodsClassModel *dataModel;
 
 @end
 

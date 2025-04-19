@@ -9,7 +9,7 @@
 
 @interface JobsScrollLabelVC ()
 
-@property(nonatomic,strong)RACDisposable *timerDisposable;
+Prop_strong()RACDisposable *timerDisposable;
 
 @end
 

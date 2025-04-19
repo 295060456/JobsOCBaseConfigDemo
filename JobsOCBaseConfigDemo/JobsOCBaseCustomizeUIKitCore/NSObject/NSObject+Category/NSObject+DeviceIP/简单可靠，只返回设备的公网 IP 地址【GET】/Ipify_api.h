@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IpifyModel : NSObject
 
-@property(nonatomic,copy)NSString *ip;
+Prop_copy()NSString *ip;
 
 @end
 

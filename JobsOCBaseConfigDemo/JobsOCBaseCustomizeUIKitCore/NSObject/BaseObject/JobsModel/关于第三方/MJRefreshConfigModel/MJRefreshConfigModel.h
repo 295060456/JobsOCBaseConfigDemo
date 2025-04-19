@@ -33,34 +33,34 @@ typedef enum : NSInteger {
 @interface MJRefreshConfigModel : NSObject
 
 #pragma mark —— Font
-@property(nonatomic,strong)UIFont *font;
+Prop_strong()UIFont *font;
 #pragma mark —— TextColor
-@property(nonatomic,strong)UIColor *textColor;
+Prop_strong()UIColor *textColor;
 #pragma mark —— duration
-@property(nonatomic,assign)CGFloat stateIdleDuration;
-@property(nonatomic,assign)CGFloat pullingDuration;
-@property(nonatomic,assign)CGFloat refreshingDuration;
-@property(nonatomic,assign)CGFloat willRefreshDuration;
-@property(nonatomic,assign)CGFloat noMoreDataDuration;
+Prop_assign()CGFloat stateIdleDuration;
+Prop_assign()CGFloat pullingDuration;
+Prop_assign()CGFloat refreshingDuration;
+Prop_assign()CGFloat willRefreshDuration;
+Prop_assign()CGFloat noMoreDataDuration;
 #pragma mark —— title
-@property(nonatomic,copy)NSString *stateIdleTitle;
-@property(nonatomic,copy)NSString *pullingTitle;
-@property(nonatomic,copy)NSString *refreshingTitle;
-@property(nonatomic,copy)NSString *willRefreshTitle;
-@property(nonatomic,copy)NSString *noMoreDataTitle;
+Prop_copy()NSString *stateIdleTitle;
+Prop_copy()NSString *pullingTitle;
+Prop_copy()NSString *refreshingTitle;
+Prop_copy()NSString *willRefreshTitle;
+Prop_copy()NSString *noMoreDataTitle;
 #pragma mark —— 静态图内部拼接出的动效，而非Gif
-@property(nonatomic,copy)NSMutableArray <UIImage *>*stateIdlePicsMutArr;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*pullingPicsMutArr;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*refreshingPicsMutArr;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*willRefreshPicsMutArr;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
+Prop_copy()NSMutableArray <UIImage *>*stateIdlePicsMutArr;
+Prop_copy()NSMutableArray <UIImage *>*pullingPicsMutArr;
+Prop_copy()NSMutableArray <UIImage *>*refreshingPicsMutArr;
+Prop_copy()NSMutableArray <UIImage *>*willRefreshPicsMutArr;
+Prop_copy()NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
 #pragma mark —— Lottie配置
-@property(nonatomic,copy)NSString *jsonLottiefilePaths;
-@property(nonatomic,copy)JobsReturnIDByIDBlock loadBlock;
+Prop_copy()NSString *jsonLottiefilePaths;
+Prop_copy()JobsReturnIDByIDBlock loadBlock;
 #pragma mark —— 其他
 /** 根据拖拽比例自动切换透明度 */
 @property(assign,nonatomic,getter=isAutomaticallyChangeAlpha)BOOL automaticallyChangeAlpha;
-@property(nonatomic,assign)BOOL isShake;/// 是否需要震动反馈？默认不需要
+Prop_assign()BOOL isShake;/// 是否需要震动反馈？默认不需要
 
 @end
 

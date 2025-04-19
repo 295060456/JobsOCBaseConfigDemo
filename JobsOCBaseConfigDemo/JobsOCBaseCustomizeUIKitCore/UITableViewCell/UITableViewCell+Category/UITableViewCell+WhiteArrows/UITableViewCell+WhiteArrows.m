@@ -26,7 +26,7 @@
         self.accessoryView = btn;
     }
 }
-#pragma mark —— @property(nonatomic,strong)UIImage *img;
+#pragma mark —— Prop_strong()UIImage *img;
 JobsKey(_img)
 @dynamic img;
 -(UIImage *)img{
@@ -40,7 +40,7 @@ JobsKey(_img)
 -(void)setImg:(UIImage *)img{
     Jobs_setAssociatedRETAIN_NONATOMIC(_img, img)
 }
-#pragma mark —— @property(nonatomic,assign)CGSize arrows_size;
+#pragma mark —— Prop_assign()CGSize arrows_size;
 JobsKey(_arrows_size)
 @dynamic arrows_size;
 -(CGSize)arrows_size{

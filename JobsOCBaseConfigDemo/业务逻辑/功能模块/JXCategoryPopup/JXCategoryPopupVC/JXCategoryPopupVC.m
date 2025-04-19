@@ -9,18 +9,18 @@
 
 @interface JXCategoryPopupVC ()
 /// UI
-@property(nonatomic,strong)JXCategoryTitleView *categoryView;
-@property(nonatomic,strong)JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
-@property(nonatomic,strong)JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
-@property(nonatomic,strong)BaseButton *filterBtn;
-@property(nonatomic,strong)BaseButton *customBtn;
+Prop_strong()JXCategoryTitleView *categoryView;
+Prop_strong()JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
+Prop_strong()JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
+Prop_strong()BaseButton *filterBtn;
+Prop_strong()BaseButton *customBtn;
 @property(nonatomic,weak)UIView *popUpFiltrationView;
 @property(nonatomic,weak)UIView *popUpCustomView;
 @property(nonatomic,weak)NSNumber *currentIndex;
 @property(nonatomic,weak)JXCategoryPopupSubVC *vc;
 /// Data
-@property(nonatomic,copy)NSMutableArray <NSString *>*titleMutArr;
-@property(nonatomic,copy)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+Prop_copy()NSMutableArray <NSString *>*titleMutArr;
+Prop_copy()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
 
 @end
 

@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (BackgroundImage)
 
-@property(nonatomic,strong)UIImageView *backgroundImageView;
+Prop_strong()UIImageView *backgroundImageView;
 
 @end
 

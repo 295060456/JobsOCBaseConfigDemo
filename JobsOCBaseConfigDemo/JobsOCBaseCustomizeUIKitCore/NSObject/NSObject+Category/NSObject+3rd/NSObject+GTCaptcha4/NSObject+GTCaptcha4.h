@@ -20,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (GTCaptcha4)<GTCaptcha4SessionTaskDelegate>
 /// Data
-@property(nonatomic,strong)GTCaptcha4Model *captcha4Model;
-@property(nonatomic,strong)GTCaptcha4Session *captchaSession;
+Prop_strong()GTCaptcha4Model *captcha4Model;
+Prop_strong()GTCaptcha4Session *captchaSession;
 /// 显示验证码
 -(jobsByVoidBlock _Nonnull)show_verifyCode_GTCaptcha4;
 

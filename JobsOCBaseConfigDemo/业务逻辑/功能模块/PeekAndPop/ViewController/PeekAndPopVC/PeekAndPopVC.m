@@ -9,7 +9,7 @@
 
 @interface PeekAndPopVC ()
 
-@property(nonatomic,strong)BaseButton *switchBtn;
+Prop_strong()BaseButton *switchBtn;
 
 @end
 

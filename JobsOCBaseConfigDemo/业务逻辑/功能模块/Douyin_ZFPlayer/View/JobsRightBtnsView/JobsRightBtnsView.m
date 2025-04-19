@@ -10,12 +10,12 @@
 
 @interface JobsRightBtnsView ()
 /// UI
-@property(nonatomic,strong)RBCLikeButton *loveBtn;/// 点赞
-@property(nonatomic,strong)BaseButton *commentBtn;/// 评论
-@property(nonatomic,strong)BaseButton *shareBtn;/// 分享
+Prop_strong()RBCLikeButton *loveBtn;/// 点赞
+Prop_strong()BaseButton *commentBtn;/// 评论
+Prop_strong()BaseButton *shareBtn;/// 分享
 /// Data
-@property(nonatomic,copy)NSMutableArray <__kindof UIButton *>*masonryViewArr;
-@property(nonatomic,assign)BOOL isSelected;
+Prop_copy()NSMutableArray <__kindof UIButton *>*masonryViewArr;
+Prop_assign()BOOL isSelected;
 
 @end
 

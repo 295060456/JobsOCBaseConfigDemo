@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsAppDoorInputViewTFModel : NSObject
 
-@property(nonatomic,copy)NSString *resString;
-@property(nonatomic,copy)NSString *PlaceHolder;
+Prop_copy()NSString *resString;
+Prop_copy()NSString *PlaceHolder;
 
 @end
 
@@ -26,7 +26,7 @@ JobsDoorInputViewProtocol
 ,UITextFieldDelegate
 >
 
-@property(nonatomic,strong)JobsAppDoorInputViewTFModel *textFieldInputModel;
+Prop_strong()JobsAppDoorInputViewTFModel *textFieldInputModel;
 
 /**
  

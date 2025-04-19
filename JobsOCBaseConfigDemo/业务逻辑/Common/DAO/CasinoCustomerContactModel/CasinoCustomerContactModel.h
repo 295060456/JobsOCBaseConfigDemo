@@ -11,25 +11,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CasinoCustomerContactElementModel : BaseModel
 
-@property(nonatomic,copy)NSString *appIconUrl; // 移动端图标
-@property(nonatomic,copy)NSString *namecreateBy;
-@property(nonatomic,copy)NSString *createTime;
-@property(nonatomic,copy)NSString *customer; // 客服平台
-@property(nonatomic,copy)NSString *customerAccount; // 客服账号
-@property(nonatomic,assign)JobsCustomerContactStyle customerMark; // 客服平台标识
-@property(nonatomic,copy)NSString *ID;
-@property(nonatomic,copy)NSString *pcIconUrl; // PC端图标
-@property(nonatomic,assign)JobsSwitchType state;// 客服平台状态
-@property(nonatomic,copy)NSString *updateBy;
-@property(nonatomic,copy)NSString *updateTime;
+Prop_copy()NSString *appIconUrl; // 移动端图标
+Prop_copy()NSString *namecreateBy;
+Prop_copy()NSString *createTime;
+Prop_copy()NSString *customer; // 客服平台
+Prop_copy()NSString *customerAccount; // 客服账号
+Prop_assign()JobsCustomerContactStyle customerMark; // 客服平台标识
+Prop_copy()NSString *ID;
+Prop_copy()NSString *pcIconUrl; // PC端图标
+Prop_assign()JobsSwitchType state;// 客服平台状态
+Prop_copy()NSString *updateBy;
+Prop_copy()NSString *updateTime;
 
 @end
 
 @interface CasinoCustomerContactModel : BaseModel
 
-@property(nonatomic,copy)NSMutableArray <CasinoCustomerContactElementModel *>*customerList;
-@property(nonatomic,strong)CasinoCustomerContactElementModel *onlineUrl;
-@property(nonatomic,strong)CasinoCustomerContactElementModel *telephone;
+Prop_copy()NSMutableArray <CasinoCustomerContactElementModel *>*customerList;
+Prop_strong()CasinoCustomerContactElementModel *onlineUrl;
+Prop_strong()CasinoCustomerContactElementModel *telephone;
 
 @end
 

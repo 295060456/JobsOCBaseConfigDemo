@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FileNameModel : NSObject
 
-@property(nonatomic,copy)NSString *name;
-@property(nonatomic,copy)NSString *type;
+Prop_copy()NSString *name;
+Prop_copy()NSString *type;
 
 @end
 

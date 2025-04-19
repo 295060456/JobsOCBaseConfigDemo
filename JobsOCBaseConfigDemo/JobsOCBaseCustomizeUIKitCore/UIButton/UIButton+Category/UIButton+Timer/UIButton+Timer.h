@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (Timer)
 /// 计时器专用数据源
-@property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfig;
+Prop_strong()ButtonTimerConfigModel *btnTimerConfig;
 -(UIButtonModel *_Nonnull)readyPlayValue;
 -(UIButtonModel *_Nonnull)runningValue;
 -(UIButtonModel *_Nonnull)endValue;

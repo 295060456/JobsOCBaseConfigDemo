@@ -8,7 +8,7 @@
 #import "NSObject+PopViewToLogOut.h"
 
 @implementation NSObject (PopViewToLogOut)
-#pragma mark —— @property(nonatomic,strong)UIViewModel *logOutPopupVM;
+#pragma mark —— Prop_strong()UIViewModel *logOutPopupVM;
 JobsKey(_logOutPopupVM)
 @dynamic logOutPopupVM;
 -(UIViewModel *)logOutPopupVM{
@@ -27,7 +27,7 @@ JobsKey(_logOutPopupVM)
 -(void)setLogOutPopupVM:(UIViewModel *)logOutPopupVM{
     Jobs_setAssociatedRETAIN_NONATOMIC(_logOutPopupVM, logOutPopupVM)
 }
-#pragma mark —— @property(nonatomic,strong)JobsBasePopupView *logOutPopupView;
+#pragma mark —— Prop_strong()JobsBasePopupView *logOutPopupView;
 JobsKey(_logOutPopupView)
 @dynamic logOutPopupView;
 -(JobsBasePopupView *)logOutPopupView{

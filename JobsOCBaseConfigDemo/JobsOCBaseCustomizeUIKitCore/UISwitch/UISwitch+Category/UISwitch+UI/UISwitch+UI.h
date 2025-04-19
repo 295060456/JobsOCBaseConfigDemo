@@ -26,9 +26,9 @@ NS_ASSUME_NONNULL_END
 
 /**
  /// UI
- @property(nonatomic,strong)UISwitch *switcher;
+ Prop_strong()UISwitch *switcher;
  /// Data
- @property(nonatomic,strong)UIColor *cor;
+ Prop_strong()UIColor *cor;
  
  -(UISwitch *)switcher{
      if (!_switcher) {

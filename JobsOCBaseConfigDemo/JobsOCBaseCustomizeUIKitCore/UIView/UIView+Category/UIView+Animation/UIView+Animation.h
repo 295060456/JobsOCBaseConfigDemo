@@ -39,12 +39,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (Animation)
 
-@property(nonatomic,assign)CGFloat rotateChangeAngle;
-@property(nonatomic,assign)CGFloat currentAngle;
-@property(nonatomic,assign)CGFloat durationTime;
-@property(nonatomic,assign)CGFloat delayTime;
-@property(nonatomic,assign)BOOL isStopRotateAnimation;//默认值为NO（一直旋转）
-@property(nonatomic,strong)CAKeyframeAnimation *shakeAnim;
+Prop_assign()CGFloat rotateChangeAngle;
+Prop_assign()CGFloat currentAngle;
+Prop_assign()CGFloat durationTime;
+Prop_assign()CGFloat delayTime;
+Prop_assign()BOOL isStopRotateAnimation;//默认值为NO（一直旋转）
+Prop_strong()CAKeyframeAnimation *shakeAnim;
 #pragma mark —— 一些功能方法
 -(JobsReturnViewByBOOLBlock _Nonnull)抖动动画;
 -(JobsReturnViewByBOOLBlock _Nonnull)旋转动画;

@@ -13,6 +13,6 @@
 @interface UITableViewHeaderFooterView (Attribute)
 
 @property(nonatomic,weak)UITableView *tableView;
-@property(nonatomic,assign)NSUInteger section;
+Prop_assign()NSUInteger section;
 
 @end

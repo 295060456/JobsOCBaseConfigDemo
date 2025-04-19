@@ -9,7 +9,7 @@
 
 @interface CalendarVC ()
 /// UI
-@property(nonatomic,strong)FSCalendar *calendar;
+Prop_strong()FSCalendar *calendar;
 
 @end
 

@@ -9,7 +9,7 @@
 
 @interface JobsSearchShowHotwordsTBVCell ()
 
-@property(nonatomic,strong)JobsHotLabelByMultiLine *jobsHotLabel;
+Prop_strong()JobsHotLabelByMultiLine *jobsHotLabel;
 
 @end
 

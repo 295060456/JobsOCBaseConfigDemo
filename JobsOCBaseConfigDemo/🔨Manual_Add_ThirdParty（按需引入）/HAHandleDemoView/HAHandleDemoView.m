@@ -14,10 +14,10 @@ static const NSTimeInterval shrinkDuration = 0.1f;
 
 @interface HAHandleDemoView ()
 
-@property(nonatomic,strong)UIButton *handleDemoBtn;
-@property(nonatomic,strong)UIView *bgView;
-@property(nonatomic,strong)NSTimer *enlangerTimer;
-@property(nonatomic,strong)NSTimer *shrinkTimer;
+Prop_strong()UIButton *handleDemoBtn;
+Prop_strong()UIView *bgView;
+Prop_strong()NSTimer *enlangerTimer;
+Prop_strong()NSTimer *shrinkTimer;
 
 @end
 

@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NotificationModel : BaseModel
 
-@property(nonatomic,copy)NSString *notificationName;
-@property(nonatomic,strong)NSDictionary *userInfo;
-@property(nonatomic,strong)id anObject;
+Prop_copy()NSString *notificationName;
+Prop_strong()NSDictionary *userInfo;
+Prop_strong()id anObject;
 
 @end
 

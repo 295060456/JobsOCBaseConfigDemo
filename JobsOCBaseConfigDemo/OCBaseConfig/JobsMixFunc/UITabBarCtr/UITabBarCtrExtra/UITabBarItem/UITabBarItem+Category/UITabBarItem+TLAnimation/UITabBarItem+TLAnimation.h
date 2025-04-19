@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITabBarItem (TLAnimation)
 
-@property(nonatomic,strong)id <TLAnimationProtocol>animation;
+Prop_strong()id <TLAnimationProtocol>animation;
 
 @end
 

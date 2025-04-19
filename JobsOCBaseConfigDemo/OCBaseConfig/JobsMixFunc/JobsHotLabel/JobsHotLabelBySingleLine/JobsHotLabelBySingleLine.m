@@ -12,11 +12,11 @@
     CGFloat width;
 }
 /// UI
-@property(nonatomic,strong)UIStackView *stackView;/// 放在滚动视图上，可以滚动的UIStackView
-@property(nonatomic,copy)NSMutableArray <UIButton *>*btnMutArr;
+Prop_strong()UIStackView *stackView;/// 放在滚动视图上，可以滚动的UIStackView
+Prop_copy()NSMutableArray <UIButton *>*btnMutArr;
 /// Data
-@property(nonatomic,strong)NSArray <UIViewModel *>*viewModelDataArr;// 数据源
-@property(nonatomic,copy)NSMutableArray <NSNumber *>*btnHeightMutArr;
+Prop_strong()NSArray <UIViewModel *>*viewModelDataArr;// 数据源
+Prop_copy()NSMutableArray <NSNumber *>*btnHeightMutArr;
 
 @end
 

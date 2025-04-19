@@ -10,13 +10,13 @@
 
 @interface PHCycleView()
 
-@property(nonatomic,strong)CAShapeLayer *outLayer;
-@property(nonatomic,strong)CAShapeLayer *progressLayer;
-@property(nonatomic,strong)UILabel *progressLabel;
-@property(nonatomic,strong)UILabel *describeLabel;
-@property(nonatomic,strong)UIBezierPath *outsidePath;
-@property(nonatomic,strong)UIBezierPath *insidePath;
-@property(nonatomic,strong)CAShapeLayer *insideLayer;
+Prop_strong()CAShapeLayer *outLayer;
+Prop_strong()CAShapeLayer *progressLayer;
+Prop_strong()UILabel *progressLabel;
+Prop_strong()UILabel *describeLabel;
+Prop_strong()UIBezierPath *outsidePath;
+Prop_strong()UIBezierPath *insidePath;
+Prop_strong()CAShapeLayer *insideLayer;
 
 @end
 

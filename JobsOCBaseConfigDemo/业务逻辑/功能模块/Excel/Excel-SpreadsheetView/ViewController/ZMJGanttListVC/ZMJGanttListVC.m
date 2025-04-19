@@ -9,20 +9,20 @@
 
 @interface ZMJGanttListVC ()
 /// UI
-@property(nonatomic,strong)SpreadsheetView *spreadsheetView;
-@property(nonatomic,strong)ZMJTipView *tipView;
-@property(nonatomic,strong)ZMJPreferences *preferences;
-@property(nonatomic,strong)ZMJTaskView *taskView;
+Prop_strong()SpreadsheetView *spreadsheetView;
+Prop_strong()ZMJTipView *tipView;
+Prop_strong()ZMJPreferences *preferences;
+Prop_strong()ZMJTaskView *taskView;
 /// Data
-@property(nonatomic,assign)ZMJDisplayMode displayMode;
-@property(nonatomic,strong)NSDate *startDate;
-@property(nonatomic,strong)NSDate *endDate;
-@property(nonatomic,copy)NSMutableArray<NSDate *> *years;
-@property(nonatomic,copy)NSMutableArray<NSDate *> *weeks;
-@property(nonatomic,copy)NSMutableArray<NSDate *> *months;
-@property(nonatomic,copy)NSMutableArray<NSDate *> *days;
-@property(nonatomic,copy)NSMutableArray<ZMJTask *> *tasks;
-@property(nonatomic,copy)NSMutableArray<UIColor *> *colors;
+Prop_assign()ZMJDisplayMode displayMode;
+Prop_strong()NSDate *startDate;
+Prop_strong()NSDate *endDate;
+Prop_copy()NSMutableArray<NSDate *> *years;
+Prop_copy()NSMutableArray<NSDate *> *weeks;
+Prop_copy()NSMutableArray<NSDate *> *months;
+Prop_copy()NSMutableArray<NSDate *> *days;
+Prop_copy()NSMutableArray<ZMJTask *> *tasks;
+Prop_copy()NSMutableArray<UIColor *> *colors;
 
 @end
 

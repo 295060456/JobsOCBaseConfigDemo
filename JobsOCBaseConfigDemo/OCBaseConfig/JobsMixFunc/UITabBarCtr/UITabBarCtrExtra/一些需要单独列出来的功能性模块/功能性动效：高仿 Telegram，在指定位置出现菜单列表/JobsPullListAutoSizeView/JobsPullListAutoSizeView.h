@@ -19,10 +19,10 @@ UITableViewDelegate
 ,UITableViewDataSource
 >
 
-@property(nonatomic,assign)CGFloat listTbVWidth;
-@property(nonatomic,assign)CGFloat listTbVCellHeight;
-@property(nonatomic,assign)CGFloat listTbVOffset;
-@property(nonatomic,strong)UIColor *bgColorListTBV;
+Prop_assign()CGFloat listTbVWidth;
+Prop_assign()CGFloat listTbVCellHeight;
+Prop_assign()CGFloat listTbVOffset;
+Prop_strong()UIColor *bgColorListTBV;
 
 + (instancetype)initWithTargetView:(UIView *__nonnull)targetView
                         dataMutArr:(NSArray <UIViewModel *>*__nonnull)dataMutArr;

@@ -40,7 +40,7 @@
         [view tf_hide:nil];
     };
 }
-#pragma mark —— @property(nonatomic,strong)JobsFiltrationView *filtrationView;/// 过滤
+#pragma mark —— Prop_strong()JobsFiltrationView *filtrationView;/// 过滤
 JobsKey(_filtrationView)
 @dynamic filtrationView;
 -(JobsFiltrationView *)filtrationView{
@@ -55,7 +55,7 @@ JobsKey(_filtrationView)
 -(void)setFiltrationView:(JobsFiltrationView *)filtrationView{
     Jobs_setAssociatedRETAIN_NONATOMIC(_filtrationView, filtrationView)
 }
-#pragma mark —— @property(nonatomic,strong)JobsCustomView *customView;/// 自定义
+#pragma mark —— Prop_strong()JobsCustomView *customView;/// 自定义
 JobsKey(_customView)
 @dynamic customView;
 -(JobsCustomView *)customView{

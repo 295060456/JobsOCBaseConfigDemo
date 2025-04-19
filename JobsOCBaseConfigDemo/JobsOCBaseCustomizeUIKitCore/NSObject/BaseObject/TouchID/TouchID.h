@@ -28,8 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TouchID : NSObject
 
-@property(nonatomic,copy)void(^MyBlock_TouchID_Style_Details)(TouchID_Style_Details);
-@property(nonatomic,copy)void(^MyBlock_TouchID_Success_Or_Error)(TouchID_Success_Or_Error);
+Prop_copy()void(^MyBlock_TouchID_Style_Details)(TouchID_Style_Details);
+Prop_copy()void(^MyBlock_TouchID_Success_Or_Error)(TouchID_Success_Or_Error);
 
 +(instancetype)Touch_ID;
 

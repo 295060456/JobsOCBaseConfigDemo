@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 建立此类的目的：防止外层调用funcName的时候因为手滑出错不易检查，导致崩溃
 @interface URLManagerModel : BaseModel
 
-@property(nonatomic,copy)NSString *url;
-@property(nonatomic,copy)NSString *funcName;
+Prop_copy()NSString *url;
+Prop_copy()NSString *funcName;
 
 @end
 

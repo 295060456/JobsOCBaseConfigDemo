@@ -14,23 +14,23 @@
     UITextField *lastEditTextField;// 上一次处于编辑状态的TextField
 }
 /// UI
-@property(nonatomic,strong)JobsAppDoorLogoContentView *logoContentView;
-@property(nonatomic,strong)JobsAppDoorContentView *jobsAppDoorContentView;/// 登录和注册
+Prop_strong()JobsAppDoorLogoContentView *logoContentView;
+Prop_strong()JobsAppDoorContentView *jobsAppDoorContentView;/// 登录和注册
 @property(nonatomic,strong,nullable)JobsAppDoorForgotCodeContentView *forgotCodeContentView;/// 忘记密码
-@property(nonatomic,strong)UIButton *customerServiceBtn;
+Prop_strong()UIButton *customerServiceBtn;
 @property(nonatomic,strong,nullable)UIImageView *bgImgV;
 @property(nonatomic,strong,nullable)ZFPlayerController *player;
 @property(nonatomic,strong,nullable)ZFAVPlayerManager *playerManager;
 @property(nonatomic,strong,nullable)CustomZFPlayerControlView *customPlayerControlView;
 /// Data
-@property(nonatomic,assign)BOOL registerDoorInputEditing;
-@property(nonatomic,assign)CGFloat logoContentViewY;/// 初始高度
-@property(nonatomic,assign)CGFloat forgotCodeContentViewY;/// 初始高度
-@property(nonatomic,assign)CGFloat jobsAppDoorContentViewY;/// 初始高度
-@property(nonatomic,assign)CGFloat customerServiceBtnY;/// 初始高度
-@property(nonatomic,assign)NSInteger currentActivateTFIndex;/// 当前被激活的输入框的序列号
-@property(nonatomic,assign)NSInteger lastTimeActivateTFIndex;/// 上一时刻被激活的输入框的序列号
-@property(nonatomic,strong)JobsAppDoorModel *appDoorModel;
+Prop_assign()BOOL registerDoorInputEditing;
+Prop_assign()CGFloat logoContentViewY;/// 初始高度
+Prop_assign()CGFloat forgotCodeContentViewY;/// 初始高度
+Prop_assign()CGFloat jobsAppDoorContentViewY;/// 初始高度
+Prop_assign()CGFloat customerServiceBtnY;/// 初始高度
+Prop_assign()NSInteger currentActivateTFIndex;/// 当前被激活的输入框的序列号
+Prop_assign()NSInteger lastTimeActivateTFIndex;/// 上一时刻被激活的输入框的序列号
+Prop_strong()JobsAppDoorModel *appDoorModel;
 
 @end
 

@@ -10,7 +10,7 @@
 
 @interface CustomZFPlayerControlView ()
 
-@property(nonatomic,copy)jobsByTwoIDBlock customZFPlayerControlViewBlock;
+Prop_copy()jobsByTwoIDBlock customZFPlayerControlViewBlock;
 
 @end
 

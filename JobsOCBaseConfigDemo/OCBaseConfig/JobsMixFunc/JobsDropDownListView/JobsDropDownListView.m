@@ -11,10 +11,10 @@
     CGFloat CellHeight;
 }
 /// UI
-@property(nonatomic,strong)Class <UITableViewCellProtocol>tbvCell_cls;
+Prop_strong()Class <UITableViewCellProtocol>tbvCell_cls;
 /// Data
-@property(nonatomic,copy)NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
-@property(nonatomic,copy)NSMutableArray <__kindof UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
+Prop_copy()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 

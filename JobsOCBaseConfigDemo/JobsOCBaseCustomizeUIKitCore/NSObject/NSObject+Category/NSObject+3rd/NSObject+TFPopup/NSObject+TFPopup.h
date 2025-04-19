@@ -66,8 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 弹出一个弹窗
 @interface NSObject (TFPopup)
 /// Data
-@property(nonatomic,strong)TFPopupParam *popupParameter;
-@property(nonatomic,strong)TFPopupParam *tipsParameter;
+Prop_strong()TFPopupParam *popupParameter;
+Prop_strong()TFPopupParam *tipsParameter;
 #pragma mark —— 保证弹窗一定是被初始化
 -(__kindof UIView *)checkByView:(UIView *)view action:(jobsByVoidBlock _Nullable)action;
 #pragma mark —— 关闭所有的弹出提示框

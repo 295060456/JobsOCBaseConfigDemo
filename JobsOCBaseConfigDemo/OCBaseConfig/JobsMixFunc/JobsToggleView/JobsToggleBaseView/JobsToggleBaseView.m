@@ -10,12 +10,12 @@
 
 @interface JobsToggleBaseView ()
 /// UI
-@property(nonatomic,strong)JobsToggleNavView *taggedNavView;
-@property(nonatomic,strong)UIScrollView *bgScroll;
+Prop_strong()JobsToggleNavView *taggedNavView;
+Prop_strong()UIScrollView *bgScroll;
 /// Data
-@property(nonatomic,copy)NSMutableArray <NSString *>*tempTitles;
-@property(nonatomic,copy)NSMutableArray <__kindof UIView <BaseViewProtocol>*>*tempLabs;
-@property(nonatomic,copy)NSMutableArray <UIButtonModel *>*taggedNavDatas;
+Prop_copy()NSMutableArray <NSString *>*tempTitles;
+Prop_copy()NSMutableArray <__kindof UIView <BaseViewProtocol>*>*tempLabs;
+Prop_copy()NSMutableArray <UIButtonModel *>*taggedNavDatas;
 
 @end
 

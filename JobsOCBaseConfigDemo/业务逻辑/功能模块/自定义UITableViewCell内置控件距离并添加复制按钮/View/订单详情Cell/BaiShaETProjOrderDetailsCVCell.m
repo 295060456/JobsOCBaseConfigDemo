@@ -9,7 +9,7 @@
 
 @interface BaiShaETProjOrderDetailsCVCell ()
 /// UI
-@property(nonatomic,strong)UIButton *jobsCopyBtn;
+Prop_strong()UIButton *jobsCopyBtn;
 
 @end
 

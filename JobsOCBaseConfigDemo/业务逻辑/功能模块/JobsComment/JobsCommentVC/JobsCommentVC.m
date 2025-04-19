@@ -9,7 +9,7 @@
 
 @interface JobsCommentVC ()
 
-@property(nonatomic,strong)UIButton *contactCustomerServiceBtn;// 联系客服按钮
+Prop_strong()UIButton *contactCustomerServiceBtn;// 联系客服按钮
 
 @end
 

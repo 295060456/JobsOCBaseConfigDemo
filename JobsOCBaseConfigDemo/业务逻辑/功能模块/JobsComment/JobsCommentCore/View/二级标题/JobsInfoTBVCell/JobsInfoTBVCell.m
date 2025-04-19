@@ -10,9 +10,9 @@
 
 @interface JobsInfoTBVCell ()
 /// UI
-@property(nonatomic,strong)RBCLikeButton *likeBtn;
+Prop_strong()RBCLikeButton *likeBtn;
 /// Data
-@property(nonatomic,strong)JobsChildCommentModel *childCommentModel;
+Prop_strong()JobsChildCommentModel *childCommentModel;
 
 @end
 

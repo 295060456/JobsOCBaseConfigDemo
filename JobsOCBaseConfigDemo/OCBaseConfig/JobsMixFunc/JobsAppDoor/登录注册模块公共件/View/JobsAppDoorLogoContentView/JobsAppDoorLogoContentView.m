@@ -10,7 +10,7 @@
 
 @interface JobsAppDoorLogoContentView ()
 
-@property(nonatomic,strong)UIImageView *mainImgV;
+Prop_strong()UIImageView *mainImgV;
 
 @end
 

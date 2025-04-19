@@ -21,8 +21,8 @@
 
 @interface UIGestureRecognizer (ReactiveCocoaProtected)
 /// private: To retain UIGestureDelegate. The GestureRecognizer's delegate will be
-@property(nonatomic,strong)RACGestureRecognizerActionHandler *rac_gestureHandler;
+Prop_strong()RACGestureRecognizerActionHandler *rac_gestureHandler;
 /// protected: To retain subject while recognizing gestures.
-@property(nonatomic,strong)RACSubject *rac_subject;
+Prop_strong()RACSubject *rac_subject;
 
 @end

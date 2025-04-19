@@ -9,13 +9,13 @@
 
 @interface ZMJClassDataVC ()
 /// UI
-@property(nonatomic,strong)SpreadsheetView *spreadsheetView;
-@property(nonatomic,assign)SortedColumn sortedColumn;
+Prop_strong()SpreadsheetView *spreadsheetView;
+Prop_assign()SortedColumn sortedColumn;
 /// data
-@property(nonatomic,strong)NSArray<NSString *> *header;
-@property(nonatomic,copy)NSMutableArray <NSArray<NSString *> *>*excelData;
-@property(nonatomic,copy)NSMutableArray <NSArray<NSString *> *>*original_excelData;
-@property(nonatomic,copy)NSString *content;
+Prop_strong()NSArray<NSString *> *header;
+Prop_copy()NSMutableArray <NSArray<NSString *> *>*excelData;
+Prop_copy()NSMutableArray <NSArray<NSString *> *>*original_excelData;
+Prop_copy()NSString *content;
 
 @end
 

@@ -9,9 +9,9 @@
 
 @interface CasinoFlowDetailsVC ()
 // UI
-@property(nonatomic,strong)SpreadsheetView *spreadsheetView;
+Prop_strong()SpreadsheetView *spreadsheetView;
 // Data
-@property(nonatomic,copy)NSMutableArray <CasinoFlowDetailsModel *>*dataMutArr;//记录每一行的数据
+Prop_copy()NSMutableArray <CasinoFlowDetailsModel *>*dataMutArr;//记录每一行的数据
 
 @end
 

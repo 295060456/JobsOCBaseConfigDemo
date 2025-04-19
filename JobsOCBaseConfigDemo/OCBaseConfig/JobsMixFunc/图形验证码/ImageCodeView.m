@@ -12,7 +12,7 @@
 
 @interface ImageCodeView ()
 
-@property(nonatomic,copy)jobsByIDBlock imageCodeViewBlock;
+Prop_copy()jobsByIDBlock imageCodeViewBlock;
 
 @end
 

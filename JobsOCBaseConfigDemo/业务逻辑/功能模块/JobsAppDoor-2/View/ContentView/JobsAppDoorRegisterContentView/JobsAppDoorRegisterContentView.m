@@ -12,12 +12,12 @@
 
 @interface JobsAppDoorRegisterContentView ()
 /// UI
-@property(nonatomic,strong)BaseButton *backToLoginBtn;/// 返回登录
-@property(nonatomic,strong)UILabel *titleLab;/// 标题
-@property(nonatomic,strong)BaseButton *sendBtn;/// 注册按钮
+Prop_strong()BaseButton *backToLoginBtn;/// 返回登录
+Prop_strong()UILabel *titleLab;/// 标题
+Prop_strong()BaseButton *sendBtn;/// 注册按钮
 /// Data
-@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
-@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
+Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
+Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
 
 @end
 

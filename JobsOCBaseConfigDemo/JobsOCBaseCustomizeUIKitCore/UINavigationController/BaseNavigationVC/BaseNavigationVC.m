@@ -10,7 +10,7 @@
 
 @interface BaseNavigationVC ()
 
-@property(nonatomic,strong)NSShadow *shadow;
+Prop_strong()NSShadow *shadow;
 
 @end
 

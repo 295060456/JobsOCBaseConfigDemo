@@ -1574,11 +1574,11 @@ JobsKey(_weak_target)
 -(void)setWeak_target:(id)weak_target{
     Jobs_setAssociatedRETAIN_NONATOMIC(_weak_target, weak_target)
 }
-/// @property(nonatomic,assign)CGPoint lastPoint;
+/// Prop_assign()CGPoint lastPoint;
 PROP_CGPOINT(lastPoint, LastPoint)
-#pragma mark —— @property(nonatomic,strong)NSIndexPath *indexPath;
+#pragma mark —— Prop_strong()NSIndexPath *indexPath;
 PROP_STRONG_OBJECT_TYPE(NSIndexPath, indexPath, IndexPath)
-/// @property(nonatomic,assign)NSInteger currentPage;
+/// Prop_assign()NSInteger currentPage;
 JobsKey(_currentPage)
 @dynamic currentPage;
 -(NSInteger)currentPage{
@@ -1592,7 +1592,7 @@ JobsKey(_currentPage)
 -(void)setCurrentPage:(NSInteger)currentPage{
     Jobs_setAssociatedRETAIN_NONATOMIC(_currentPage, @(currentPage))
 }
-#pragma mark —— @property(nonatomic,assign)NSInteger pageSize;
+#pragma mark —— Prop_assign()NSInteger pageSize;
 JobsKey(_pageSize)
 @dynamic pageSize;
 -(NSInteger)pageSize{
@@ -1606,11 +1606,11 @@ JobsKey(_pageSize)
 -(void)setPageSize:(NSInteger)pageSize{
     Jobs_setAssociatedRETAIN_NONATOMIC(_pageSize, @(pageSize))
 }
-/// @property(nonatomic,assign)NSInteger index;
+/// Prop_assign()NSInteger index;
 PROP_NSInteger(index, Index)
-/// @property(nonatomic,strong)UIViewModel *viewModel;
+/// Prop_strong()UIViewModel *viewModel;
 PROP_STRONG_OBJECT_Default_TYPE(UIViewModel, viewModel, ViewModel)
-/// @property(nonatomic,copy)NSString *internationalizationKEY;/// 国际化的key
+/// Prop_copy()NSString *internationalizationKEY;/// 国际化的key
 PROP_COPY_OBJECT_TYPE(NSString, internationalizationKEY, InternationalizationKEY)
 
 @end

@@ -9,7 +9,7 @@
 
 @interface LocalNotificationsVC ()
 /// UI
-@property(nonatomic,strong)BaseButton *btn;
+Prop_strong()BaseButton *btn;
 /// Data
 
 @end

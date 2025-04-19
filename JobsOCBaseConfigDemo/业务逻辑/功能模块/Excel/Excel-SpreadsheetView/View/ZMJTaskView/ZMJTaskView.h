@@ -17,8 +17,8 @@
 
 @interface ZMJTaskView : UIView<ZMJTipCustomViewProtocol>
 
-@property(nonatomic,copy)NSString *taskTitle;
-@property(nonatomic,copy)NSString *startTime;
-@property(nonatomic,copy)NSString *endTime;
+Prop_copy()NSString *taskTitle;
+Prop_copy()NSString *startTime;
+Prop_copy()NSString *endTime;
 
 @end

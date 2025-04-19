@@ -9,8 +9,8 @@
 
 @interface LeftCell()
 /// UI
-@property(nonatomic,strong)UIView *flagView;
-@property(nonatomic,strong)UILabel *titleLabel;
+Prop_strong()UIView *flagView;
+Prop_strong()UILabel *titleLabel;
 
 @end
 

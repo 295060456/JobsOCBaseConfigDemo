@@ -9,7 +9,7 @@
 
 @interface JobsAdNoticeView ()
 
-@property(nonatomic,strong)UILabel *adNoticeLab;
+Prop_strong()UILabel *adNoticeLab;
 
 @end
 

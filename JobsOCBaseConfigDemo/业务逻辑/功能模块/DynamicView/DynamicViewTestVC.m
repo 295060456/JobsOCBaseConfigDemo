@@ -9,8 +9,8 @@
 
 @interface DynamicViewTestVC ()
 
-@property(nonatomic,strong)UIImageView *gifImageView;
-@property(nonatomic,copy)NSString *path;
+Prop_strong()UIImageView *gifImageView;
+Prop_copy()NSString *path;
 
 @end
 

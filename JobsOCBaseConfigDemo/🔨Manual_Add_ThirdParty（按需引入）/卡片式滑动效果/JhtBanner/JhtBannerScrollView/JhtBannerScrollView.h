@@ -30,19 +30,19 @@ static const NSString * _Nullable subviewClassName = @"JhtBannerCardView";
 /// banner view（整条view）
 @interface JhtBannerScrollView : UIView <UIScrollViewDelegate>
 /// 滚动方向：default: BV_Orientation_Horizontal
-@property(nonatomic,assign)JhtBannerViewOrientation orientation;
+Prop_assign()JhtBannerViewOrientation orientation;
 /// 非当前页的透明比例（蒙板View alpha）default: 0.4
-@property(nonatomic,assign)CGFloat minCoverViewAlpha;
+Prop_assign()CGFloat minCoverViewAlpha;
 /// View之间 左右间距 default: 20.0
-@property(nonatomic,assign)CGFloat leftRightMargin;
+Prop_assign()CGFloat leftRightMargin;
 /// 两侧小View与中间View 高度差 default: 15.0
-@property(nonatomic,assign)CGFloat topBottomMargin;
+Prop_assign()CGFloat topBottomMargin;
 /// 是否开启自动滚动 default: YES
-@property(nonatomic,assign)BOOL isOpenAutoScroll;
+Prop_assign()BOOL isOpenAutoScroll;
 /// 是否开启无限轮播 default: YES
-@property(nonatomic,assign)BOOL isCarousel;
+Prop_assign()BOOL isCarousel;
 /// 自动切换视图 时间 default: 3.0
-@property(nonatomic,assign)NSTimeInterval autoTime;
+Prop_assign()NSTimeInterval autoTime;
 /// 当前是第几页
 @property(nonatomic,assign,readonly)NSInteger currentIndex;
 /// pageControl（自定义扩展）

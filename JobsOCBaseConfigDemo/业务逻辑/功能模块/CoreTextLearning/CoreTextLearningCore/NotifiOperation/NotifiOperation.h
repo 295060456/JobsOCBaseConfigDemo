@@ -12,13 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NotifiOperation : NSOperation
 
-@property(nonatomic,strong)id data;
+Prop_strong()id data;
 /** 通知展示的父view */
-@property(nonatomic,strong)UIView *fatherView;
+Prop_strong()UIView *fatherView;
 /** block */
-@property(nonatomic,copy)FinishBlock finishBlock;
+Prop_copy()FinishBlock finishBlock;
 /** showview */
-@property(nonatomic,strong)NotifiView *showView;
+Prop_strong()NotifiView *showView;
 /**
  增加一个操作
  @param fatherView 通知要显示在的父view

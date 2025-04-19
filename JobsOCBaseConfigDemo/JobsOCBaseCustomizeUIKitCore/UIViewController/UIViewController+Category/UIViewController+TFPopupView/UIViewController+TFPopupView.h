@@ -22,8 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (TFPopupView)
 
-@property(nonatomic,strong)JobsFiltrationView *filtrationView;/// 过滤
-@property(nonatomic,strong)JobsCustomView *customView;/// 自定义
+Prop_strong()JobsFiltrationView *filtrationView;/// 过滤
+Prop_strong()JobsCustomView *customView;/// 自定义
 /// 弹出筛选视图
 -(__kindof UIView *)popUpFiltrationView;
 /// 弹出自定义视图
@@ -38,13 +38,13 @@ NS_ASSUME_NONNULL_END
  
  调用示例：
  
- @property(nonatomic,strong)UIButton *filterBtn;
- @property(nonatomic,strong)UIButton *customBtn;
+ Prop_strong()UIButton *filterBtn;
+ Prop_strong()UIButton *customBtn;
  @property(nonatomic,weak)UIView *popUpFiltrationView;
  @property(nonatomic,weak)UIView *popUpCustomView;
  @property(nonatomic,weak)NSNumber *currentIndex;
  @property(nonatomic,weak)BaiShaETProjAlreadySettledSubBaseVC *vc;
- @property(nonatomic,copy)NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+ Prop_copy()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
  
  -(NSMutableArray<UIViewController *> *)childVCMutArr{
      if (!_childVCMutArr) {

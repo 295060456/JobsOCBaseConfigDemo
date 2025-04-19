@@ -29,7 +29,7 @@ JhtBannerScrollViewDelegate
 /// 占位名（本地）
 @property(nonatomic,copy,nullable)NSString *placeholderName;
 /// 当前显示cardView的Size
-@property(nonatomic,assign)CGSize JhtBannerCardViewSize;
+Prop_assign()CGSize JhtBannerCardViewSize;
 /// 点击ScrollView内部卡片
 -(void)clickScrollViewInsideCardView:(jobsByIDBlock _Nonnull)clickBlock;
 /** 滚动ScrollView内部卡片 */

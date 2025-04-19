@@ -9,14 +9,14 @@
 
 @interface JobsCommentConfig ()
 
-@property(nonatomic,assign)CGSize headerImageViewSize;/// 发表此评论的用户的头像大小
-@property(nonatomic,strong)UIFont *titleFont;/// 发表此评论的用户的名字字体大小
-@property(nonatomic,strong)UIFont *subTitleFont;/// 具体的评论内容的字体大小
-@property(nonatomic,strong)UIColor *titleCor;/// 发表此评论的用户的名字字体颜色
-@property(nonatomic,strong)UIColor *subTitleCor;/// 具体的评论内容的字体颜色
-@property(nonatomic,assign)UIColor *bgCor;/// 显示评论的承载cell背景色
-@property(nonatomic,assign)CGFloat cellHeight;/// 显示评论的承载cell高度
-@property(nonatomic,assign)CGFloat secondLevelCommentOffset;/// 二级标题相对于一级标题控件的偏移量
+Prop_assign()CGSize headerImageViewSize;/// 发表此评论的用户的头像大小
+Prop_strong()UIFont *titleFont;/// 发表此评论的用户的名字字体大小
+Prop_strong()UIFont *subTitleFont;/// 具体的评论内容的字体大小
+Prop_strong()UIColor *titleCor;/// 发表此评论的用户的名字字体颜色
+Prop_strong()UIColor *subTitleCor;/// 具体的评论内容的字体颜色
+Prop_assign()UIColor *bgCor;/// 显示评论的承载cell背景色
+Prop_assign()CGFloat cellHeight;/// 显示评论的承载cell高度
+Prop_assign()CGFloat secondLevelCommentOffset;/// 二级标题相对于一级标题控件的偏移量
 
 @end
 

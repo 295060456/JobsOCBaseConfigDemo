@@ -8,10 +8,10 @@
 //
 #import "WMZBannerOverLayout.h"
 @interface WMZBannerOverLayout()
-@property(nonatomic,assign)CGPoint collectionContenOffset;
-@property(nonatomic,assign)CGSize collectionContenSize;
-@property(nonatomic,assign)CGFloat last;
-@property(nonatomic,assign)BOOL right;
+Prop_assign()CGPoint collectionContenOffset;
+Prop_assign()CGSize collectionContenSize;
+Prop_assign()CGFloat last;
+Prop_assign()BOOL right;
 @end
 @implementation WMZBannerOverLayout
 - (instancetype)initConfigureWithModel:(WMZBannerParam *)param{

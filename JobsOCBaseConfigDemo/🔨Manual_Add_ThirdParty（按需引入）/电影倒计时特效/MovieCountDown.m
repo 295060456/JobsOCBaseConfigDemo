@@ -10,10 +10,10 @@
 
 @interface MovieCountDown ()
 /// UI
-@property(nonatomic,strong)UILabel *countDown;
-@property(nonatomic,strong)UIView *aphView;
+Prop_strong()UILabel *countDown;
+Prop_strong()UIView *aphView;
 /// Data
-@property(nonatomic,strong)NSTimerManager *nsTimerManager;
+Prop_strong()NSTimerManager *nsTimerManager;
 
 @end
 

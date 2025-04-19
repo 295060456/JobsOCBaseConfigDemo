@@ -21,8 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (NTESVerifyCodeManager)<NTESVerifyCodeManagerDelegate>
 
-@property(nonatomic,strong)NTESVerifyCodeManager *verifyCodeManager;
-@property(nonatomic,strong)NTESVerifyCodeStyleConfig *verifyCodeStyleConfig;
+Prop_strong()NTESVerifyCodeManager *verifyCodeManager;
+Prop_strong()NTESVerifyCodeStyleConfig *verifyCodeStyleConfig;
 
 -(jobsByVoidBlock)show_verifyCode_NTES;
 

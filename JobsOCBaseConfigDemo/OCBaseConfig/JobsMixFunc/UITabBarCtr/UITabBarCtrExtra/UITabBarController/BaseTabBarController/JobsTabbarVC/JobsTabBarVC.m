@@ -14,10 +14,10 @@
 /// UI
 @property(nonatomic,strong,readwrite)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
 /// Data
-@property(nonatomic,assign)BOOL isOpenPPBadge;
-@property(nonatomic,assign)NSInteger subViewControllerCount;
-@property(nonatomic,copy)NSMutableArray <UIView *>*UITabBarButtonMutArr;/// UITabBarButton 是内部类 直接获取不到，需要间接获取
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*pullListAutoSizeViewMutArr;
+Prop_assign()BOOL isOpenPPBadge;
+Prop_assign()NSInteger subViewControllerCount;
+Prop_copy()NSMutableArray <UIView *>*UITabBarButtonMutArr;/// UITabBarButton 是内部类 直接获取不到，需要间接获取
+Prop_copy()NSMutableArray <UIViewModel *>*pullListAutoSizeViewMutArr;
 
 @end
 

@@ -11,7 +11,7 @@
 
 @interface TFPopupToast ()<TFPopupDelegate>
 
-@property(nonatomic,assign)CGRect inViewFrame;
+Prop_assign()CGRect inViewFrame;
 @property(nonatomic,  copy)NSString *msg;
 @property(nonatomic,  copy)TFPopupToastBlock cusBlock;
 

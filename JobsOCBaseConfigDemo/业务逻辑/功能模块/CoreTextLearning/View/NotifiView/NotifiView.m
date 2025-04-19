@@ -9,9 +9,9 @@
 
 @interface NotifiView()
 
-@property(nonatomic,strong)UILabel* contentLabel;
-@property(nonatomic,assign)CGFloat offsetX;
-@property(nonatomic,copy)FinishBlock finishBlock;
+Prop_strong()UILabel* contentLabel;
+Prop_assign()CGFloat offsetX;
+Prop_copy()FinishBlock finishBlock;
 
 @end
 

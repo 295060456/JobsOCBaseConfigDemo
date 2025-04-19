@@ -17,7 +17,7 @@
                                  completion:nil];
     }
 }
-#pragma mark —— @property(nonatomic,strong)NavigationBar *navigationBar;
+#pragma mark —— Prop_strong()NavigationBar *navigationBar;
 JobsKey(_navigationBar)
 @dynamic navigationBar;
 -(BaseNavigationBar *)navigationBar{
@@ -54,7 +54,7 @@ JobsKey(_navigationBar)
 -(void)setNavigationBar:(BaseNavigationBar *)navigationBar{
     Jobs_setAssociatedRETAIN_NONATOMIC(_navigationBar, navigationBar)
 }
-#pragma mark —— @property(nonatomic,strong)UIBarButtonItem *leftBarButtonItem_back;
+#pragma mark —— Prop_strong()UIBarButtonItem *leftBarButtonItem_back;
 JobsKey(_leftBarButtonItem_back)
 @dynamic leftBarButtonItem_back;
 -(UIBarButtonItem *)leftBarButtonItem_back{
@@ -79,7 +79,7 @@ JobsKey(_leftBarButtonItem_back)
 - (void)setLeftBarButtonItem_back:(UIBarButtonItem *)leftBarButtonItem_back{
     Jobs_setAssociatedRETAIN_NONATOMIC(_leftBarButtonItem_back, leftBarButtonItem_back)
 }
-#pragma mark —— @property(nonatomic,strong)UIColor *bgCor;
+#pragma mark —— Prop_strong()UIColor *bgCor;
 JobsKey(_bgCor)
 @dynamic bgCor;
 -(UIColor *)bgCor{
@@ -93,7 +93,7 @@ JobsKey(_bgCor)
 -(void)setBgCor:(UIColor *)bgCor{
     Jobs_setAssociatedRETAIN_NONATOMIC(_bgCor, bgCor)
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat jobsNavigationBarHeight;
+#pragma mark —— Prop_assign()CGFloat jobsNavigationBarHeight;
 JobsKey(_jobsNavigationBarHeight)
 @dynamic jobsNavigationBarHeight;
 -(CGFloat)jobsNavigationBarHeight{
@@ -107,7 +107,7 @@ JobsKey(_jobsNavigationBarHeight)
 -(void)setJobsNavigationBarHeight:(CGFloat)jobsNavigationBarHeight{
     Jobs_setAssociatedRETAIN_NONATOMIC(_jobsNavigationBarHeight, @(jobsNavigationBarHeight));
 }
-#pragma mark —— @property(nonatomic,assign)BOOL isHiddenNavigationBar
+#pragma mark —— Prop_assign()BOOL isHiddenNavigationBar
 JobsKey(_isHiddenNavigationBar)
 @dynamic isHiddenNavigationBar;
 -(BOOL)isHiddenNavigationBar{//默认不显示
@@ -118,7 +118,7 @@ JobsKey(_isHiddenNavigationBar)
     [self.navigationController setNavigationBarHidden:isHiddenNavigationBar animated:true];
     Jobs_setAssociatedRETAIN_NONATOMIC(_isHiddenNavigationBar, @(isHiddenNavigationBar))
 }
-#pragma mark —— @property(nonatomic,assign)BOOL isBarTranslucent;
+#pragma mark —— Prop_assign()BOOL isBarTranslucent;
 JobsKey(_isBarTranslucent)
 @dynamic isBarTranslucent;
 -(BOOL)isBarTranslucent{//默认
@@ -128,7 +128,7 @@ JobsKey(_isBarTranslucent)
 -(void)setIsBarTranslucent:(BOOL)isBarTranslucent{
     Jobs_setAssociatedRETAIN_NONATOMIC(_isBarTranslucent, @(isBarTranslucent))
 }
-#pragma mark —— @property(nonatomic,strong)NSShadow *shadow;
+#pragma mark —— Prop_strong()NSShadow *shadow;
 JobsKey(_shadow)
 @dynamic shadow;
 -(NSShadow *)shadow{
@@ -144,7 +144,7 @@ JobsKey(_shadow)
 -(void)setShadow:(NSShadow *)shadow{
     Jobs_setAssociatedRETAIN_NONATOMIC(_shadow, shadow)
 }
-#pragma mark —— @property(nonatomic,strong)UINavigationItem *navItem;
+#pragma mark —— Prop_strong()UINavigationItem *navItem;
 JobsKey(_navItem)
 @dynamic navItem;
 -(UINavigationItem *)navItem{
@@ -160,7 +160,7 @@ JobsKey(_navItem)
 -(void)setNavItem:(UINavigationItem *)navItem{
     Jobs_setAssociatedRETAIN_NONATOMIC(_navItem, navItem)
 }
-#pragma mark —— @property(nonatomic,strong)UIColor *foregroundColorAttributeNameCor;
+#pragma mark —— Prop_strong()UIColor *foregroundColorAttributeNameCor;
 JobsKey(_foregroundColorAttributeNameCor)
 @dynamic foregroundColorAttributeNameCor;
 -(UIColor *)foregroundColorAttributeNameCor{
@@ -174,7 +174,7 @@ JobsKey(_foregroundColorAttributeNameCor)
 -(void)setForegroundColorAttributeNameCor:(UIColor *)foregroundColorAttributeNameCor{
     Jobs_setAssociatedRETAIN_NONATOMIC(_foregroundColorAttributeNameCor, foregroundColorAttributeNameCor)
 }
-#pragma mark —— @property(nonatomic,strong)UIFont *fontAttributeName;
+#pragma mark —— Prop_strong()UIFont *fontAttributeName;
 JobsKey(_fontAttributeName)
 @dynamic fontAttributeName;
 -(UIFont *)fontAttributeName{
@@ -188,7 +188,7 @@ JobsKey(_fontAttributeName)
 -(void)setFontAttributeName:(UIFont *)fontAttributeName{
     Jobs_setAssociatedRETAIN_NONATOMIC(_fontAttributeName, fontAttributeName)
 }
-#pragma mark —— @property(nonatomic,strong)UIColor *tintColor;
+#pragma mark —— Prop_strong()UIColor *tintColor;
 JobsKey(_tintColor)
 @dynamic tintColor;
 -(UIColor *)tintColor{
@@ -202,7 +202,7 @@ JobsKey(_tintColor)
 -(void)setTintColor:(UIColor *)tintColor{
     Jobs_setAssociatedRETAIN_NONATOMIC(_tintColor, tintColor)
 }
-#pragma mark —— @property(nonatomic,strong)UIColor *barTintColor;
+#pragma mark —— Prop_strong()UIColor *barTintColor;
 JobsKey(_barTintColor)
 @dynamic barTintColor;
 -(UIColor *)barTintColor{
@@ -216,7 +216,7 @@ JobsKey(_barTintColor)
 -(void)setBarTintColor:(UIColor *)barTintColor{
     Jobs_setAssociatedRETAIN_NONATOMIC(_barTintColor, barTintColor)
 }
-#pragma mark —— @property(nonatomic,copy)NSString *title;
+#pragma mark —— Prop_copy()NSString *title;
 JobsKey(_title)
 @dynamic title;
 -(NSString *)title{
@@ -226,7 +226,7 @@ JobsKey(_title)
 -(void)setTitle:(NSString *)title{
     Jobs_setAssociatedRETAIN_NONATOMIC(_title, title)
 }
-#pragma mark —— @property(nonatomic,strong)UIColor *shadowCor;
+#pragma mark —— Prop_strong()UIColor *shadowCor;
 JobsKey(_shadowCor)
 @dynamic shadowCor;
 -(UIColor *)shadowCor{

@@ -9,15 +9,15 @@
 
 @interface JobsIMListTBVCell ()
 
-@property(nonatomic,strong)UILabel *timeLab;
-@property(nonatomic,strong)UILongPressGestureRecognizer *longPG;
+Prop_strong()UILabel *timeLab;
+Prop_strong()UILongPressGestureRecognizer *longPG;
 
-@property(nonatomic,copy)NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
-@property(nonatomic,copy)NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
-@property(nonatomic,copy)NSString *usernameStr;
-@property(nonatomic,copy)NSString *contentStr;
-@property(nonatomic,copy)NSString *timeStr;
-@property(nonatomic,strong)UIImage *userHeaderIMG;
+Prop_copy()NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
+Prop_copy()NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
+Prop_copy()NSString *usernameStr;
+Prop_copy()NSString *contentStr;
+Prop_copy()NSString *timeStr;
+Prop_strong()UIImage *userHeaderIMG;
 
 @end
 

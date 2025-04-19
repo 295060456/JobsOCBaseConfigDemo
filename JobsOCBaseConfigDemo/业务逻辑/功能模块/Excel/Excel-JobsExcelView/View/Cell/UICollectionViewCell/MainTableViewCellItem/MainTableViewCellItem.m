@@ -10,8 +10,8 @@
 
 @interface MainTableViewCellItem()
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureData;
-@property(nonatomic,assign)CGSize size;
+Prop_strong()JobsExcelConfigureViewModel *excelConfigureData;
+Prop_assign()CGSize size;
 
 @end
 

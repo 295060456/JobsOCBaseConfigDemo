@@ -39,7 +39,7 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 #endif /* DestroyView */
 
 @interface UIView (Extras) <BaseViewProtocol>
-@property(nonatomic,assign)BOOL jobsVisible;
+Prop_assign()BOOL jobsVisible;
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame;
 -(jobsByStringBlock _Nonnull)jobsLogPoint;

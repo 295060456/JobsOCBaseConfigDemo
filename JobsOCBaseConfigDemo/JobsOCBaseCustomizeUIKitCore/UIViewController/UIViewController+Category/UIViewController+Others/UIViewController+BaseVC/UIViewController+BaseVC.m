@@ -160,7 +160,7 @@ JobsKey(_fromVC)
 -(void)setFromVC:(UIViewController *)fromVC{
     Jobs_setAssociatedASSIGN(_fromVC, fromVC)
 }
-#pragma mark —— <BaseViewControllerProtocol> @property(nonatomic,assign)ComingStyle pushOrPresent;
+#pragma mark —— <BaseViewControllerProtocol> Prop_assign()ComingStyle pushOrPresent;
 JobsKey(_pushOrPresent)
 @dynamic pushOrPresent;
 -(ComingStyle)pushOrPresent{
@@ -170,7 +170,7 @@ JobsKey(_pushOrPresent)
 -(void)setPushOrPresent:(ComingStyle)pushOrPresent{
     Jobs_setAssociatedRETAIN_NONATOMIC(_pushOrPresent, @(pushOrPresent))
 }
-#pragma mark —— <UIViewModelProtocol> @property(nonatomic,strong)id requestParams;
+#pragma mark —— <UIViewModelProtocol> Prop_strong()id requestParams;
 JobsKey(_requestParams)
 @dynamic requestParams;
 -(id)requestParams{
@@ -180,7 +180,7 @@ JobsKey(_requestParams)
 -(void)setRequestParams:(id)requestParams{
     Jobs_setAssociatedRETAIN_NONATOMIC(_requestParams, requestParams)
 }
-#pragma mark —— <UIViewModelProtocol> @property(nonatomic,strong)UIImage *bgImage;
+#pragma mark —— <UIViewModelProtocol> Prop_strong()UIImage *bgImage;
 JobsKey(_bgImage)
 @dynamic bgImage;
 -(UIImage *)bgImage{
@@ -194,7 +194,7 @@ JobsKey(_bgImage)
 -(void)setBgImage:(UIImage *)bgImage{
     Jobs_setAssociatedRETAIN_NONATOMIC(_bgImage, bgImage)
 }
-#pragma mark —— @property(nonatomic,assign)BOOL setupNavigationBarHidden;
+#pragma mark —— Prop_assign()BOOL setupNavigationBarHidden;
 JobsKey(_setupNavigationBarHidden)
 @dynamic setupNavigationBarHidden;
 -(BOOL)setupNavigationBarHidden{
@@ -204,7 +204,7 @@ JobsKey(_setupNavigationBarHidden)
 -(void)setSetupNavigationBarHidden:(BOOL)setupNavigationBarHidden{
     Jobs_setAssociatedRETAIN_NONATOMIC(_setupNavigationBarHidden, @(setupNavigationBarHidden));
 }
-#pragma mark —— @property(nonatomic,assign)NSUInteger __block jobsTag;
+#pragma mark —— Prop_assign()NSUInteger __block jobsTag;
 JobsKey(_jobsTag)
 @dynamic jobsTag;
 -(NSUInteger)jobsTag{
@@ -214,7 +214,7 @@ JobsKey(_jobsTag)
 -(void)setJobsTag:(NSUInteger)jobsTag{
     Jobs_setAssociatedRETAIN_NONATOMIC(_jobsTag, @(jobsTag))
 }
-#pragma mark —— @property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
+#pragma mark —— Prop_strong()JobsNavBarConfig *navBarConfig;
 JobsKey(_navBarConfig)
 @dynamic navBarConfig;
 -(void)setNavBarConfig:(JobsNavBarConfig *)navBarConfig{
@@ -229,7 +229,7 @@ JobsKey(_navBarConfig)
         }))
     }return NavBarConfig;
 }
-#pragma mark —— @property(nonatomic,strong)JobsNavBar *navBar;
+#pragma mark —— Prop_strong()JobsNavBar *navBar;
 JobsKey(_navBar)
 @dynamic navBar;
 -(void)setNavBar:(JobsNavBar *)navBar{

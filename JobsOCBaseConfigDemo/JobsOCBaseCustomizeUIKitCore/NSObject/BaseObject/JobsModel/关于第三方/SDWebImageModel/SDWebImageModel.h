@@ -19,11 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SDWebImageModel : NSObject
 
-@property(nonatomic,strong)NSURL *url;
-@property(nonatomic,strong)UIImage *placeholder;
-@property(nonatomic,assign)SDWebImageOptions options;
-@property(nonatomic,copy)SDExternalCompletionBlock completion;
-@property(nonatomic,copy)SDImageLoaderProgressBlock progress;
+Prop_strong()NSURL *url;
+Prop_strong()UIImage *placeholder;
+Prop_assign()SDWebImageOptions options;
+Prop_copy()SDExternalCompletionBlock completion;
+Prop_copy()SDImageLoaderProgressBlock progress;
 
 @end
 

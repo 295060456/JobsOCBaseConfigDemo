@@ -45,7 +45,7 @@
     self.tipsLab.alpha = checkSubviews();
 #endif
 }
-#pragma mark —— @property(nonatomic,strong)UILabel *tipsLab;
+#pragma mark —— Prop_strong()UILabel *tipsLab;
 JobsKey(_tipsLab)
 @dynamic tipsLab;
 -(UILabel *)tipsLab{
@@ -71,7 +71,7 @@ JobsKey(_tipsLab)
 -(void)setTipsLab:(UILabel *)tipsLab{
     Jobs_setAssociatedRETAIN_NONATOMIC(_tipsLab, tipsLab)
 }
-#pragma mark —— @property(nonatomic,copy)NSString *tipsTitle;
+#pragma mark —— Prop_copy()NSString *tipsTitle;
 JobsKey(_tipsTitle)
 @dynamic tipsTitle;
 -(NSString *)tipsTitle{

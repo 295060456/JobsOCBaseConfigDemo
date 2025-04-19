@@ -9,9 +9,9 @@
 
 @interface MSCommentTBVCell ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
+Prop_strong()UILabel *titleLab;
 /// Data
-@property(nonatomic,strong)MSCommentDetailModel *commentDetailModel;
+Prop_strong()MSCommentDetailModel *commentDetailModel;
 
 @end
 

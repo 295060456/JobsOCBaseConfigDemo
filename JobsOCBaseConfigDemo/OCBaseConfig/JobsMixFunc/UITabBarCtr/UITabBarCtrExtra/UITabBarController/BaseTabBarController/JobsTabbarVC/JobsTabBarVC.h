@@ -62,12 +62,12 @@ BaseProtocol
 /// UI
 @property(nonatomic,strong,readonly)JobsTabBar * _Nonnull myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
 /// Data
-@property(nonatomic,assign)BOOL isOpenScrollTabbar;/// 是否开启手势横向滚动子VC联动Tabbar切换，默认开启
-@property(nonatomic,assign)BOOL isAnimationAlert;/// 图片从小放大
-@property(nonatomic,assign)BOOL isShakerAnimation;/// 重力弹跳动画效果
-@property(nonatomic,assign)BOOL isPlaySound;// 点击声
-@property(nonatomic,assign)BOOL isFeedbackGenerator;/// 振动反馈
-@property(nonatomic,assign)BOOL isJumpToNextVC;/// 当需要跳开的item,是否是需要直接跳到下一个VC？默认NO
+Prop_assign()BOOL isOpenScrollTabbar;/// 是否开启手势横向滚动子VC联动Tabbar切换，默认开启
+Prop_assign()BOOL isAnimationAlert;/// 图片从小放大
+Prop_assign()BOOL isShakerAnimation;/// 重力弹跳动画效果
+Prop_assign()BOOL isPlaySound;// 点击声
+Prop_assign()BOOL isFeedbackGenerator;/// 振动反馈
+Prop_assign()BOOL isJumpToNextVC;/// 当需要跳开的item,是否是需要直接跳到下一个VC？默认NO
 #pragma mark —— 初始化方法
 ///【单例模式】使用外界自定义的JobsTabBar
 +(instancetype _Nonnull)sharedInstanceWithJobsTabBar:(JobsTabBar *_Nullable)tabBar;

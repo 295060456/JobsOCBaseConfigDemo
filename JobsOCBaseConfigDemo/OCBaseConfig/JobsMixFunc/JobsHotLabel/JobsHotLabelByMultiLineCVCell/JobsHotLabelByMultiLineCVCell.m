@@ -9,7 +9,7 @@
 
 @interface JobsHotLabelByMultiLineCVCell ()
 
-@property(nonatomic,strong)UILabel *textLab;
+Prop_strong()UILabel *textLab;
 
 @end
 

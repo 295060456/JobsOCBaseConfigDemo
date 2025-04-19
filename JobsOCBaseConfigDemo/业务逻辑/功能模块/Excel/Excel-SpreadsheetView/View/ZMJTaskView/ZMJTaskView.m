@@ -24,13 +24,13 @@
 
 @interface ZMJTaskView () 
 
-@property(nonatomic,strong)UILabel *taskTitleLabel;
-@property(nonatomic,strong)UILabel *startTimeTitleLabel;
-@property(nonatomic,strong)UILabel *startTimeLabel;
-@property(nonatomic,strong)UILabel *endTimeTitleLabel;
-@property(nonatomic,strong)UILabel *endTimeLabel;
-@property(nonatomic,strong)UIView  *separatorLine;
-@property(nonatomic,strong)UILabel *viewDetailLabel;
+Prop_strong()UILabel *taskTitleLabel;
+Prop_strong()UILabel *startTimeTitleLabel;
+Prop_strong()UILabel *startTimeLabel;
+Prop_strong()UILabel *endTimeTitleLabel;
+Prop_strong()UILabel *endTimeLabel;
+Prop_strong()UIView  *separatorLine;
+Prop_strong()UILabel *viewDetailLabel;
 
 @end
 

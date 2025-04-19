@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsKeyValueModel <__covariant KeyType, __covariant ObjectType> : BaseModel
 
-@property(nonatomic,copy)KeyType key;
-@property(nonatomic,strong)ObjectType value;
+Prop_copy()KeyType key;
+Prop_strong()ObjectType value;
 
 @end
 

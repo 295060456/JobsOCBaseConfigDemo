@@ -9,7 +9,7 @@
 
 @interface PointLabBaseView ()
 /// UI
-@property(nonatomic,strong)UIView *pointView;
+Prop_strong()UIView *pointView;
 
 @end
 

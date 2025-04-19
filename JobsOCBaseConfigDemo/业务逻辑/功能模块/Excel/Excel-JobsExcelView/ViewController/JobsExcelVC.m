@@ -9,7 +9,7 @@
 
 @interface JobsExcelVC ()
 /// UI
-@property(nonatomic,strong)JobsExcelView *excelView;
+Prop_strong()JobsExcelView *excelView;
 /// Data
 
 @end

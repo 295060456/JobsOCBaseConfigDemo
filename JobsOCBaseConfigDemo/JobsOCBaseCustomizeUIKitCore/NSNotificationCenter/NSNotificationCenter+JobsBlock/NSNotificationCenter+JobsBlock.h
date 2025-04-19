@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSNotificationCenter (JobsBlock)
 
-@property(nonatomic,copy)jobsByNotificationBlock jobsNotificationBlock;
+Prop_copy()jobsByNotificationBlock jobsNotificationBlock;
 
 -(jobsByIDBlock _Nonnull)remove;
 -(jobsByKey_ValueBlock _Nonnull)Remove;

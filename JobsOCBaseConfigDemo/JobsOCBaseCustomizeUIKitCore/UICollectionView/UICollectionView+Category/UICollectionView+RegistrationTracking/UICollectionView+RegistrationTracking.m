@@ -83,7 +83,7 @@
         return [self.registeredIdentifiers containsObject:reuseIdentifier];
     };
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableSet *registeredIdentifiers;/// 自定义标志位
+#pragma mark —— Prop_strong()NSMutableSet *registeredIdentifiers;/// 自定义标志位
 JobsKey(_registeredIdentifiers)
 @dynamic registeredIdentifiers;
 -(NSMutableSet<NSString *> *)registeredIdentifiers{

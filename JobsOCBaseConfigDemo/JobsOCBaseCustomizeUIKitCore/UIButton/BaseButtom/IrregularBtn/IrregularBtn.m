@@ -10,8 +10,8 @@
 
 @interface IrregularBtn()
 /// UI
-@property(nonatomic,strong)UIBezierPath *path;
-@property(nonatomic,strong)CAShapeLayer *shapLayer;
+Prop_strong()UIBezierPath *path;
+Prop_strong()CAShapeLayer *shapLayer;
 
 @end
 

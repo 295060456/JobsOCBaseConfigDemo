@@ -9,8 +9,8 @@
 
 @interface JobsCommentTitleHeaderView ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UIButton *cancelBtn;
+Prop_strong()UILabel *titleLab;
+Prop_strong()UIButton *cancelBtn;
 
 @end
 

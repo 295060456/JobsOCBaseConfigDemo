@@ -653,7 +653,7 @@
  MJRefreshStateNoMoreData   //   所有数据加载完毕，没有更多的数据了
  */
 #pragma mark —— MJRefreshHeader
-#pragma mark —— @property(nonatomic,strong)LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader;
+#pragma mark —— Prop_strong()LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader;
 JobsKey(_lotAnimMJRefreshHeader)
 @dynamic lotAnimMJRefreshHeader;
 -(LOTAnimationMJRefreshHeader *)lotAnimMJRefreshHeader{
@@ -667,7 +667,7 @@ JobsKey(_lotAnimMJRefreshHeader)
 -(void)setLotAnimMJRefreshHeader:(LOTAnimationMJRefreshHeader *)lotAnimMJRefreshHeader{
     Jobs_setAssociatedRETAIN_NONATOMIC(_lotAnimMJRefreshHeader, lotAnimMJRefreshHeader);
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshNormalHeader *mjRefreshNormalHeader;
+#pragma mark —— Prop_strong()MJRefreshNormalHeader *mjRefreshNormalHeader;
 JobsKey(_mjRefreshNormalHeader)
 @dynamic mjRefreshNormalHeader;
 -(MJRefreshNormalHeader *)mjRefreshNormalHeader{
@@ -681,7 +681,7 @@ JobsKey(_mjRefreshNormalHeader)
 -(void)setMjRefreshNormalHeader:(MJRefreshNormalHeader *)mjRefreshNormalHeader{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshNormalHeader, mjRefreshNormalHeader)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshStateHeader *mjRefreshStateHeader;
+#pragma mark —— Prop_strong()MJRefreshStateHeader *mjRefreshStateHeader;
 JobsKey(_mjRefreshStateHeader)
 @dynamic mjRefreshStateHeader;
 -(MJRefreshStateHeader *)mjRefreshStateHeader{
@@ -695,7 +695,7 @@ JobsKey(_mjRefreshStateHeader)
 -(void)setMjRefreshStateHeader:(MJRefreshStateHeader *)mjRefreshStateHeader{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshStateHeader, mjRefreshStateHeader)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshHeader *mjRefreshHeader;
+#pragma mark —— Prop_strong()MJRefreshHeader *mjRefreshHeader;
 JobsKey(_mjRefreshHeader)
 @dynamic mjRefreshHeader;
 -(MJRefreshHeader *)mjRefreshHeader{
@@ -709,7 +709,7 @@ JobsKey(_mjRefreshHeader)
 -(void)setMjRefreshHeader:(MJRefreshHeader *)mjRefreshHeader{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshHeader, mjRefreshHeader)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshGifHeader *mjRefreshGifHeader;
+#pragma mark —— Prop_strong()MJRefreshGifHeader *mjRefreshGifHeader;
 JobsKey(_mjRefreshGifHeader)
 @dynamic mjRefreshGifHeader;
 -(MJRefreshGifHeader *)mjRefreshGifHeader{
@@ -724,7 +724,7 @@ JobsKey(_mjRefreshGifHeader)
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshGifHeader, mjRefreshGifHeader)
 }
 #pragma mark —— MJRefreshFooter
-#pragma mark —— @property(nonatomic,strong)MJRefreshAutoGifFooter *mjRefreshAutoGifFooter;
+#pragma mark —— Prop_strong()MJRefreshAutoGifFooter *mjRefreshAutoGifFooter;
 JobsKey(_mjRefreshAutoGifFooter)
 @dynamic mjRefreshAutoGifFooter;
 -(MJRefreshAutoGifFooter *)mjRefreshAutoGifFooter{
@@ -738,7 +738,7 @@ JobsKey(_mjRefreshAutoGifFooter)
 -(void)setMjRefreshAutoGifFooter:(MJRefreshAutoGifFooter *)mjRefreshAutoGifFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoGifFooter, mjRefreshAutoGifFooter)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshBackNormalFooter *mjRefreshBackNormalFooter;
+#pragma mark —— Prop_strong()MJRefreshBackNormalFooter *mjRefreshBackNormalFooter;
 JobsKey(_mjRefreshBackNormalFooter)
 @dynamic mjRefreshBackNormalFooter;
 -(MJRefreshBackNormalFooter *)mjRefreshBackNormalFooter{
@@ -752,7 +752,7 @@ JobsKey(_mjRefreshBackNormalFooter)
 -(void)setMjRefreshBackNormalFooter:(MJRefreshBackNormalFooter *)mjRefreshBackNormalFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackNormalFooter, mjRefreshBackNormalFooter)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshAutoNormalFooter *mjRefreshAutoNormalFooter;
+#pragma mark —— Prop_strong()MJRefreshAutoNormalFooter *mjRefreshAutoNormalFooter;
 JobsKey(_mjRefreshAutoNormalFooter)
 @dynamic mjRefreshAutoNormalFooter;
 -(MJRefreshAutoNormalFooter *)mjRefreshAutoNormalFooter{
@@ -766,7 +766,7 @@ JobsKey(_mjRefreshAutoNormalFooter)
 -(void)setMjRefreshAutoNormalFooter:(MJRefreshAutoNormalFooter *)mjRefreshAutoNormalFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoNormalFooter, mjRefreshAutoNormalFooter)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshAutoStateFooter *mjRefreshAutoStateFooter;
+#pragma mark —— Prop_strong()MJRefreshAutoStateFooter *mjRefreshAutoStateFooter;
 JobsKey(_mjRefreshAutoStateFooter)
 @dynamic mjRefreshAutoStateFooter;
 -(MJRefreshAutoStateFooter *)mjRefreshAutoStateFooter{
@@ -780,7 +780,7 @@ JobsKey(_mjRefreshAutoStateFooter)
 -(void)setMjRefreshAutoStateFooter:(MJRefreshAutoStateFooter *)mjRefreshAutoStateFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoStateFooter, mjRefreshAutoStateFooter)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshAutoFooter *mjRefreshAutoFooter;
+#pragma mark —— Prop_strong()MJRefreshAutoFooter *mjRefreshAutoFooter;
 JobsKey(_mjRefreshAutoFooter)
 @dynamic mjRefreshAutoFooter;
 -(MJRefreshAutoFooter *)mjRefreshAutoFooter{
@@ -794,7 +794,7 @@ JobsKey(_mjRefreshAutoFooter)
 -(void)setMjRefreshAutoFooter:(MJRefreshAutoFooter *)mjRefreshAutoFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoFooter, mjRefreshAutoFooter)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshBackGifFooter *mjRefreshBackGifFooter;
+#pragma mark —— Prop_strong()MJRefreshBackGifFooter *mjRefreshBackGifFooter;
 JobsKey(_mjRefreshBackGifFooter)
 @dynamic mjRefreshBackGifFooter;
 -(MJRefreshBackGifFooter *)mjRefreshBackGifFooter{
@@ -808,7 +808,7 @@ JobsKey(_mjRefreshBackGifFooter)
 -(void)setMjRefreshBackGifFooter:(MJRefreshBackGifFooter *)mjRefreshBackGifFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackGifFooter, mjRefreshBackGifFooter);
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshBackStateFooter *mjRefreshBackStateFooter;
+#pragma mark —— Prop_strong()MJRefreshBackStateFooter *mjRefreshBackStateFooter;
 JobsKey(_mjRefreshBackStateFooter)
 @dynamic mjRefreshBackStateFooter;
 -(MJRefreshBackStateFooter *)mjRefreshBackStateFooter{
@@ -822,7 +822,7 @@ JobsKey(_mjRefreshBackStateFooter)
 -(void)setMjRefreshBackStateFooter:(MJRefreshBackStateFooter *)mjRefreshBackStateFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackStateFooter, mjRefreshBackStateFooter)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshBackFooter *mjRefreshBackFooter;
+#pragma mark —— Prop_strong()MJRefreshBackFooter *mjRefreshBackFooter;
 JobsKey(_mjRefreshBackFooter)
 @dynamic mjRefreshBackFooter;
 -(MJRefreshBackFooter *)mjRefreshBackFooter{
@@ -836,7 +836,7 @@ JobsKey(_mjRefreshBackFooter)
 -(void)setMjRefreshBackFooter:(MJRefreshBackFooter *)mjRefreshBackFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackFooter, mjRefreshBackFooter);
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshFooter *mjRefreshFooter;
+#pragma mark —— Prop_strong()MJRefreshFooter *mjRefreshFooter;
 JobsKey(_mjRefreshFooter)
 @dynamic mjRefreshFooter;
 -(MJRefreshFooter *)mjRefreshFooter{
@@ -860,7 +860,7 @@ JobsKey(_mjRefreshTargetView)
 -(void)setMjRefreshTargetView:(UIScrollView *)mjRefreshTargetView{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshTargetView, mjRefreshTargetView)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshConfigModel *refreshConfigHeader;//头部的配置信息
+#pragma mark —— Prop_strong()MJRefreshConfigModel *refreshConfigHeader;//头部的配置信息
 JobsKey(_refreshConfigHeader)
 @dynamic refreshConfigHeader;
 -(MJRefreshConfigModel *)refreshConfigHeader{
@@ -874,7 +874,7 @@ JobsKey(_refreshConfigHeader)
 -(void)setRefreshConfigHeader:(MJRefreshConfigModel *)refreshConfigHeader{
     Jobs_setAssociatedRETAIN_NONATOMIC(_refreshConfigHeader, refreshConfigHeader)
 }
-#pragma mark —— @property(nonatomic,strong)MJRefreshConfigModel *refreshConfigFooter;//尾部的配置信息
+#pragma mark —— Prop_strong()MJRefreshConfigModel *refreshConfigFooter;//尾部的配置信息
 JobsKey(_refreshConfigFooter)
 @dynamic refreshConfigFooter;
 -(MJRefreshConfigModel *)refreshConfigFooter{

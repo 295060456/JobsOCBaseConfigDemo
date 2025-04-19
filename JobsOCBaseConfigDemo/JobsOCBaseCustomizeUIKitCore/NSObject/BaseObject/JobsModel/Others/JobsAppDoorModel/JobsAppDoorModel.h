@@ -12,11 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsAppDoorModel : NSObject
 
-@property(nonatomic,copy)NSString *userName;/// 用户名
-@property(nonatomic,copy)NSString *password;/// 密码
-@property(nonatomic,copy)NSString *confirmPassword;/// 确认密码
-@property(nonatomic,copy)NSString *tel;/// 电话号码
-@property(nonatomic,copy)NSString *verificationCode;/// 手机验证码
+Prop_copy()NSString *userName;/// 用户名
+Prop_copy()NSString *password;/// 密码
+Prop_copy()NSString *confirmPassword;/// 确认密码
+Prop_copy()NSString *tel;/// 电话号码
+Prop_copy()NSString *verificationCode;/// 手机验证码
 
 @end
 

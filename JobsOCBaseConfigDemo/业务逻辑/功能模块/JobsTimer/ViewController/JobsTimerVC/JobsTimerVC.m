@@ -9,11 +9,11 @@
 
 @interface JobsTimerVC ()
 /// UI
-@property(nonatomic,strong)UIButton *countDownBtn;
-@property(nonatomic,strong)JobsCountdownView *countdownView;
-@property(nonatomic,copy)NSMutableArray <UIButton *>*btnMutArr;
+Prop_strong()UIButton *countDownBtn;
+Prop_strong()JobsCountdownView *countdownView;
+Prop_copy()NSMutableArray <UIButton *>*btnMutArr;
 /// Data
-@property(nonatomic,copy)NSMutableArray <NSString *>*btnTitleMutArr;
+Prop_copy()NSMutableArray <NSString *>*btnTitleMutArr;
 
 @end
 

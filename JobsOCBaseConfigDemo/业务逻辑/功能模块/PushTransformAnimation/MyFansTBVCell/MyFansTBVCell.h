@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MyFansTBVCell : UITableViewCell<BaseCellProtocol>
 
-@property(nonatomic,strong)UIImageView *imgView;
+Prop_strong()UIImageView *imgView;
 
 @end
 

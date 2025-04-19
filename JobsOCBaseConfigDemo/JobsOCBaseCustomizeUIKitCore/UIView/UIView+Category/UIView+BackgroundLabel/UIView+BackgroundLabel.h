@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (BackgroundLabel)
 
-@property(nonatomic,strong)UILabel *backgroundLabel;
+Prop_strong()UILabel *backgroundLabel;
 
 @end
 

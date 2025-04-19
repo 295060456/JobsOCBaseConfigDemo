@@ -9,9 +9,9 @@
 
 @interface JobsIMInputview ()
 /// UI
-@property(nonatomic,strong)UIImageView *imgView;
-@property(nonatomic,strong)JobsAdNoticeView *adNoticeView;
-@property(nonatomic,strong)BaseButton *sendBtn;
+Prop_strong()UIImageView *imgView;
+Prop_strong()JobsAdNoticeView *adNoticeView;
+Prop_strong()BaseButton *sendBtn;
 /// Data
 
 @end

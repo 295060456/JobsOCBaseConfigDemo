@@ -16,7 +16,7 @@
  如果上面覆盖一个按钮，则需要[self.contentView addSubview:self.backgroundImageView];
  否则按钮点击事件被截断
  */
-#pragma mark —— @property(nonatomic,strong)UIImageView *backgroundImageView;
+#pragma mark —— Prop_strong()UIImageView *backgroundImageView;
 JobsKey(_backgroundImageView)
 @dynamic backgroundImageView;
 -(UIImageView *)backgroundImageView{

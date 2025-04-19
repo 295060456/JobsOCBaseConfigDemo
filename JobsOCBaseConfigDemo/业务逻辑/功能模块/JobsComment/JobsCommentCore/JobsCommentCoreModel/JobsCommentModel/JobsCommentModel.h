@@ -12,57 +12,57 @@ NS_ASSUME_NONNULL_BEGIN
 //对应字段 child
 @interface JobsChildCommentModel : BaseModel
 
-@property(nonatomic,copy)NSString *ID;
-@property(nonatomic,copy)NSString *parentId;
-@property(nonatomic,copy)NSString *headImg;
-@property(nonatomic,copy)NSString *userId;
-@property(nonatomic,copy)NSString *nickname;
-@property(nonatomic,copy)NSString *content;
-@property(nonatomic,copy)NSString *commentDate;
-@property(nonatomic,assign)NSInteger praiseNum;
-@property(nonatomic,copy)NSString *toReplyUserId;
-@property(nonatomic,copy)NSString *toReplyUserImg;
-@property(nonatomic,copy)NSString *toReplyUserName;
-@property(nonatomic,copy)NSString *commentId;
-@property(nonatomic,copy)NSString *isPraise;
-@property(nonatomic,assign)NSInteger isVip;
-@property(nonatomic,assign)NSInteger toIsVip;
+Prop_copy()NSString *ID;
+Prop_copy()NSString *parentId;
+Prop_copy()NSString *headImg;
+Prop_copy()NSString *userId;
+Prop_copy()NSString *nickname;
+Prop_copy()NSString *content;
+Prop_copy()NSString *commentDate;
+Prop_assign()NSInteger praiseNum;
+Prop_copy()NSString *toReplyUserId;
+Prop_copy()NSString *toReplyUserImg;
+Prop_copy()NSString *toReplyUserName;
+Prop_copy()NSString *commentId;
+Prop_copy()NSString *isPraise;
+Prop_assign()NSInteger isVip;
+Prop_assign()NSInteger toIsVip;
 
 @end
 // 对应字段 list
 @interface JobsFirstCommentModel : BaseModel
 
-@property(nonatomic,copy)NSString *ID;
-@property(nonatomic,copy)NSString *parentId;
-@property(nonatomic,copy)NSString *headImg;
-@property(nonatomic,copy)NSString *userId;
-@property(nonatomic,copy)NSString *nickname;
-@property(nonatomic,copy)NSString *content;
-@property(nonatomic,copy)NSString *commentDate;
-@property(nonatomic,assign)NSInteger praiseNum;
-@property(nonatomic,assign)NSInteger replyNum;
-@property(nonatomic,strong)NSArray <JobsChildCommentModel *>*childDataArr;//二级评论
-@property(nonatomic,copy)NSString *videoId;
-@property(nonatomic,copy)NSString *commentId;
-@property(nonatomic,assign)NSInteger isPraise;
-@property(nonatomic,assign)BOOL isVip;
+Prop_copy()NSString *ID;
+Prop_copy()NSString *parentId;
+Prop_copy()NSString *headImg;
+Prop_copy()NSString *userId;
+Prop_copy()NSString *nickname;
+Prop_copy()NSString *content;
+Prop_copy()NSString *commentDate;
+Prop_assign()NSInteger praiseNum;
+Prop_assign()NSInteger replyNum;
+Prop_strong()NSArray <JobsChildCommentModel *>*childDataArr;//二级评论
+Prop_copy()NSString *videoId;
+Prop_copy()NSString *commentId;
+Prop_assign()NSInteger isPraise;
+Prop_assign()BOOL isVip;
 
 @end
 /// 对应字段 data
 @interface JobsCommentModel : BaseModel
 
-@property(nonatomic,strong)NSArray <JobsFirstCommentModel *>*listDataArr;//一级评论
+Prop_strong()NSArray <JobsFirstCommentModel *>*listDataArr;//一级评论
 
 @end
 
 @interface JobsFirstCommentCustomCofigModel : BaseModel
 
-@property(nonatomic,strong)NSArray <JobsChildCommentModel *>*childDataArr;//二级评论
+Prop_strong()NSArray <JobsChildCommentModel *>*childDataArr;//二级评论
 #pragma mask —— 自定义字段
-@property(nonatomic,assign)BOOL isFullShow;//是否全显示 默认不全显示
-@property(nonatomic,assign)NSInteger preMax;//显示控制，二级数据默认最多显示多少个 默认3
-@property(nonatomic,assign)NSInteger firstShowNum;//在满足限制条件的情况下，第一次显示的数据条数 （数据库有但小于PreMax）
-@property(nonatomic,assign)NSInteger loadMoreDataNum;//加载更多数据,一次加载的个数，为0全加载
+Prop_assign()BOOL isFullShow;//是否全显示 默认不全显示
+Prop_assign()NSInteger preMax;//显示控制，二级数据默认最多显示多少个 默认3
+Prop_assign()NSInteger firstShowNum;//在满足限制条件的情况下，第一次显示的数据条数 （数据库有但小于PreMax）
+Prop_assign()NSInteger loadMoreDataNum;//加载更多数据,一次加载的个数，为0全加载
 
 @end
 

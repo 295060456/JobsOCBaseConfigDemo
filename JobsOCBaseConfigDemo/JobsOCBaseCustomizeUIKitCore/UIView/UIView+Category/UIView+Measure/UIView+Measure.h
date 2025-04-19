@@ -29,18 +29,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (Measure)
 #pragma mark —— 简捷获得控件坐标
-@property(nonatomic,assign)CGFloat x;
-@property(nonatomic,assign)CGFloat y;
-@property(nonatomic,assign)CGFloat width;
-@property(nonatomic,assign)CGFloat height;
-@property(nonatomic,assign)CGFloat centerX;
-@property(nonatomic,assign)CGFloat centerY;
-@property(nonatomic,assign)CGFloat left;
-@property(nonatomic,assign)CGFloat right;
-@property(nonatomic,assign)CGFloat top;
-@property(nonatomic,assign)CGFloat bottom;
-@property(nonatomic,assign)CGSize sizer;/// 避免与size冲突
-@property(nonatomic,assign)CGPoint Origin;
+Prop_assign()CGFloat x;
+Prop_assign()CGFloat y;
+Prop_assign()CGFloat width;
+Prop_assign()CGFloat height;
+Prop_assign()CGFloat centerX;
+Prop_assign()CGFloat centerY;
+Prop_assign()CGFloat left;
+Prop_assign()CGFloat right;
+Prop_assign()CGFloat top;
+Prop_assign()CGFloat bottom;
+Prop_assign()CGSize sizer;/// 避免与size冲突
+Prop_assign()CGPoint Origin;
 #pragma mark —— 初始化方法封装
 +(JobsReturnViewByClassBlock _Nonnull)build;
 #pragma mark —— 控件居中的时候，相对于全屏的X和Y值

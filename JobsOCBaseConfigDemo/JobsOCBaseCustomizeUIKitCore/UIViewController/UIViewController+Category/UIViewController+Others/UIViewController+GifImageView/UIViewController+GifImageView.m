@@ -8,7 +8,7 @@
 #import "UIViewController+GifImageView.h"
 
 @implementation UIViewController (GifImageView)
-#pragma mark —— @property(nonatomic,strong)UIImageView *gifImageView;
+#pragma mark —— Prop_strong()UIImageView *gifImageView;
 JobsKey(_gifImageView)
 @dynamic gifImageView;
 -(UIImageView *)gifImageView{
@@ -30,7 +30,7 @@ JobsKey(_gifImageView)
     Jobs_setAssociatedRETAIN_NONATOMIC(_gifImageView, gifImageView)
 }
 
-#pragma mark —— @property(nonatomic,copy)NSString *path;
+#pragma mark —— Prop_copy()NSString *path;
 JobsKey(_path)
 @dynamic path;
 -(NSString *)path{
@@ -44,7 +44,7 @@ JobsKey(_path)
 -(void)setPath:(NSString *)path{
     Jobs_setAssociatedCOPY_NONATOMIC(_path, path)
 }
-#pragma mark —— @property(nonatomic,strong)NSData *data;
+#pragma mark —— Prop_strong()NSData *data;
 JobsKey(_data)
 @dynamic data;
 -(NSData *)data{
@@ -58,7 +58,7 @@ JobsKey(_data)
 -(void)setData:(NSData *)data{
     Jobs_setAssociatedRETAIN_NONATOMIC(_data, data);
 }
-#pragma mark —— @property(nonatomic,strong)UIImage *image;
+#pragma mark —— Prop_strong()UIImage *image;
 JobsKey(_image)
 @dynamic image;
 -(UIImage *)image{

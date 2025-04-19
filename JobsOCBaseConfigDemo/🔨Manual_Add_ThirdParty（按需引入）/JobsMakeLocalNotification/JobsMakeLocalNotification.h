@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsLocalNotificationModel : NSObject
 
-@property(nonatomic,copy)NSString *identifier;
-@property(nonatomic,copy)NSString *title;
-@property(nonatomic,copy)NSString *body;
-@property(nonatomic,strong)UNNotificationSound *sound API_UNAVAILABLE(tvos);
-@property(nonatomic,assign)NSTimeInterval triggerWithTimeInterval;// 时间间隔必须大于0，否则崩溃
-@property(nonatomic,assign)BOOL repeats;
+Prop_copy()NSString *identifier;
+Prop_copy()NSString *title;
+Prop_copy()NSString *body;
+Prop_strong()UNNotificationSound *sound API_UNAVAILABLE(tvos);
+Prop_assign()NSTimeInterval triggerWithTimeInterval;// 时间间隔必须大于0，否则崩溃
+Prop_assign()BOOL repeats;
 
 @end
 

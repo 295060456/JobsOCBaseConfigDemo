@@ -8,7 +8,7 @@
 #import "ZMJCell+CustomView.h"
 
 @implementation ZMJCell (CustomView)
-#pragma mark —— @property(nonatomic,strong)UIButton *btn;
+#pragma mark —— Prop_strong()UIButton *btn;
 JobsKey(_btn)
 @dynamic btn;
 -(void)setBtn:(UIButton *)btn{
@@ -29,7 +29,7 @@ JobsKey(_btn)
         Jobs_setAssociatedRETAIN_NONATOMIC(_btn, Btn);
     }return Btn;
 }
-#pragma mark —— @property(nonatomic,strong)UIView *colorBarView;
+#pragma mark —— Prop_strong()UIView *colorBarView;
 JobsKey(_colorBarView)
 @dynamic colorBarView;
 -(void)setColorBarView:(UIView *)colorBarView{
@@ -48,7 +48,7 @@ JobsKey(_colorBarView)
         });Jobs_setAssociatedRETAIN_NONATOMIC(_colorBarView, ColorBarView);
     }return ColorBarView;
 }
-#pragma mark —— @property(nonatomic,strong)UIColor *color;
+#pragma mark —— Prop_strong()UIColor *color;
 JobsKey(_color)
 @dynamic color;
 -(void)setColor:(UIColor *)color{

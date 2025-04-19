@@ -13,8 +13,8 @@
 
 @interface JhtBannerView ()
 
-@property(nonatomic,copy)jobsByIDBlock scrollBlock;
-@property(nonatomic,copy)jobsByIDBlock clickBlock;
+Prop_copy()jobsByIDBlock scrollBlock;
+Prop_copy()jobsByIDBlock clickBlock;
 
 @end
 

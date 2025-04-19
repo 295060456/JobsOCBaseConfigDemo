@@ -35,11 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NotifiView : UIView
 
-@property(nonatomic,assign)NotifiViewState state;
-@property(nonatomic,assign)BOOL canAddtionTime;
-@property(nonatomic,assign)NSTimeInterval duration;
+Prop_assign()NotifiViewState state;
+Prop_assign()BOOL canAddtionTime;
+Prop_assign()NSTimeInterval duration;
 @property(nonatomic,readonly,strong) NSDictionary* data;  // @{@"key":@"xxx", @"data" : {NSDictionary class]}
-@property(nonatomic,copy)NSString* key;    ///当前可用的key值，  不能重复
+Prop_copy()NSString* key;    ///当前可用的key值，  不能重复
 
 - (void)updateWithData:(NSDictionary*)data
                 finish:(FinishBlock)finishBlock;

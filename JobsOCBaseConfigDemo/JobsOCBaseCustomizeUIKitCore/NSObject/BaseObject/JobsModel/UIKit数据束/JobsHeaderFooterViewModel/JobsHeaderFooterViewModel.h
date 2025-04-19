@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsHeaderFooterViewModel : UIViewModel
 
-@property(nonatomic,assign)BOOL useHeaderView;
-@property(nonatomic,assign)BOOL useFooterView;
+Prop_assign()BOOL useHeaderView;
+Prop_assign()BOOL useFooterView;
 
 @end
 

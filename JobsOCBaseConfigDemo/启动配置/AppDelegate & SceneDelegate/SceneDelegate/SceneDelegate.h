@@ -17,8 +17,8 @@ API_AVAILABLE(ios(13.0))
 
 @interface SceneDelegate : UIResponder <UIWindowSceneDelegate>
 
-@property(nonatomic,strong)UIWindow *window;
-@property(nonatomic,strong)UIWindowScene *windowScene;
+Prop_strong()UIWindow *window;
+Prop_strong()UIWindowScene *windowScene;
 
 @end
 

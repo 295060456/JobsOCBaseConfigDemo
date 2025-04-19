@@ -35,7 +35,7 @@
         }return nil;
     }
 }
-#pragma mark —— @property(nonatomic,assign)BOOL ableRespose
+#pragma mark —— Prop_assign()BOOL ableRespose
 - (void)setAbleRespose:(BOOL)ableRespose {
     objc_setAssociatedObject(self,
                              _cmd,

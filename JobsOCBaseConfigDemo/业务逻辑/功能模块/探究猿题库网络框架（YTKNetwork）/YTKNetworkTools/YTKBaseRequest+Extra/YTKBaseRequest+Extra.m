@@ -75,7 +75,7 @@
         return self;
     };
 }
-#pragma mark —— @property(nonatomic,strong)JobsResponseModel *responseModel;
+#pragma mark —— Prop_strong()JobsResponseModel *responseModel;
 JobsKey(_responseModel)
 @dynamic responseModel;
 -(JobsResponseModel *)responseModel{

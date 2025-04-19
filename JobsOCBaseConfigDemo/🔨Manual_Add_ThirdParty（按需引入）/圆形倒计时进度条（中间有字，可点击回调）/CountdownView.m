@@ -10,9 +10,9 @@
 
 @interface CountdownView ()
 
-@property(nonatomic,strong)CAShapeLayer *shapeLayer;
-@property(nonatomic,strong)CABasicAnimation *animation;
-@property(nonatomic,strong)UILabel *label;
+Prop_strong()CAShapeLayer *shapeLayer;
+Prop_strong()CABasicAnimation *animation;
+Prop_strong()UILabel *label;
 
 @end
 

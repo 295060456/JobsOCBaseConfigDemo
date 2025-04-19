@@ -11,16 +11,16 @@
     JobsDropDownListView *dropDownListView;
 }
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UIButton *authCodeBtn;
-@property(nonatomic,strong)BaseButton *securityModeBtn;
-@property(nonatomic,strong)ZYTextField *textField;
-@property(nonatomic,strong)BaseButton *chooseBtn;
+Prop_strong()UILabel *titleLab;
+Prop_strong()UIButton *authCodeBtn;
+Prop_strong()BaseButton *securityModeBtn;
+Prop_strong()ZYTextField *textField;
+Prop_strong()BaseButton *chooseBtn;
 /// Data
-@property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
-@property(nonatomic,assign)CGSize chooseBtnSize;
-@property(nonatomic,strong)UIViewModel *chooseBtnViewModel;
+Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
+Prop_copy()NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
+Prop_assign()CGSize chooseBtnSize;
+Prop_strong()UIViewModel *chooseBtnViewModel;
 
 @end
 

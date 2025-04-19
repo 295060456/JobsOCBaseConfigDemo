@@ -9,8 +9,8 @@
 
 @interface JobsOCBaseConfigTestPopupView ()
 /// UI
-@property(nonatomic,strong)BaseButton *containerView;
-@property(nonatomic,strong)UIButton *testPopupViewSureBtn;
+Prop_strong()BaseButton *containerView;
+Prop_strong()UIButton *testPopupViewSureBtn;
 /// Data
 
 @end

@@ -9,7 +9,7 @@
 
 @interface JobsTextStyleTBVCell ()
 /// UI
-@property(nonatomic,strong)UILabel *lab;
+Prop_strong()UILabel *lab;
 
 @end
 

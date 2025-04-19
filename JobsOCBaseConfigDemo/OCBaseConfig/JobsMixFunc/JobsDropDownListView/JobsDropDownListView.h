@@ -19,7 +19,7 @@ UITableViewDelegate
 ,UITableViewDataSource
 >
 
-@property(nonatomic,assign)JobsDropDownListViewDirection direction;
+Prop_assign()JobsDropDownListViewDirection direction;
 
 -(jobsByControlBlock _Nonnull)dropDownListViewDisappear;
 -(instancetype)initWithTableViewClass:(Class <UITableViewCellProtocol>_Nonnull)tableViewClass;// 要链接自定义的cell用这个初始化方法

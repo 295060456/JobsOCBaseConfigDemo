@@ -9,8 +9,8 @@
 
 @interface BaiShaETProjBankAccMgmtCVCell ()
 /// UI
-@property(nonatomic,strong)BaseButton *titleBtn;
-@property(nonatomic,strong)UILabel *detailLab;
+Prop_strong()BaseButton *titleBtn;
+Prop_strong()UILabel *detailLab;
 
 @end
 

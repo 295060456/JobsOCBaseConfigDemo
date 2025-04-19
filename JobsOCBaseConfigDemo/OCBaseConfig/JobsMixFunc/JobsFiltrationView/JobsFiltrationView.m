@@ -9,13 +9,13 @@
 
 @interface JobsFiltrationView ()
 /// UI
-@property(nonatomic,strong)JobsHotLabelByMultiLine *hotLabel;
+Prop_strong()JobsHotLabelByMultiLine *hotLabel;
 /// Data
-@property(nonatomic,copy)NSMutableArray <NSString *>*btnTitleMutArr;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
-@property(nonatomic,strong)JobsHotLabelWithMultiLineModel *hotLabelModel;
-@property(nonatomic,strong)JobsHeaderFooterViewModel *headerViewModel;
-@property(nonatomic,strong)JobsHeaderFooterViewModel *footerViewModel;
+Prop_copy()NSMutableArray <NSString *>*btnTitleMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_strong()JobsHotLabelWithMultiLineModel *hotLabelModel;
+Prop_strong()JobsHeaderFooterViewModel *headerViewModel;
+Prop_strong()JobsHeaderFooterViewModel *footerViewModel;
 
 @end
 

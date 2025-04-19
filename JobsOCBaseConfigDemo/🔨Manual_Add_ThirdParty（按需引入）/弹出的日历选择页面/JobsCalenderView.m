@@ -9,7 +9,7 @@
 
 @interface JobsCalenderView ()
 /// UI
-@property(nonatomic,strong)FSCalendar *calendar;
+Prop_strong()FSCalendar *calendar;
 /// Data
 
 @end

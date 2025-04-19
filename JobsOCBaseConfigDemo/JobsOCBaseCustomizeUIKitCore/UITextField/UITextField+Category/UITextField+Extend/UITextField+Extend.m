@@ -39,7 +39,7 @@
         self.rightViewMode = UITextFieldViewModeWhileEditing;
     };
 }
-#pragma mark —— @property(nonatomic,strong)UIButton *customSysClearBtn;
+#pragma mark —— Prop_strong()UIButton *customSysClearBtn;
 JobsKey(_customSysClearBtn)
 @dynamic customSysClearBtn;
 -(UIButton *)customSysClearBtn{

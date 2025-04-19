@@ -21,7 +21,7 @@ UIViewControllerAnimatedTransitioning
 ,CAAnimationDelegate
 >
 /// 转场方式：进入/返回
-@property(nonatomic,assign)XLBubbleTransitionType transitionType;
+Prop_assign()XLBubbleTransitionType transitionType;
 /// 初始化方法
 +(instancetype)transitionWithAnchorRect:(CGRect)anchorRect;
 

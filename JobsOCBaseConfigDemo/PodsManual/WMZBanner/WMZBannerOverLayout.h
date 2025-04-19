@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WMZBannerOverLayout : UICollectionViewFlowLayout
-@property(nonatomic,strong)WMZBannerParam *param;
+Prop_strong()WMZBannerParam *param;
 - (instancetype)initConfigureWithModel:(WMZBannerParam *)param;
 @end
 

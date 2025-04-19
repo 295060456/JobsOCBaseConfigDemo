@@ -9,8 +9,8 @@
 
 @interface JobsHotLabelByMultiLine ()
 /// Data
-@property(nonatomic,copy)NSMutableArray <__kindof UICollectionViewCell *>*cvcellMutArr;
-@property(nonatomic,strong)JobsHotLabelWithMultiLineModel *dataModel;
+Prop_copy()NSMutableArray <__kindof UICollectionViewCell *>*cvcellMutArr;
+Prop_strong()JobsHotLabelWithMultiLineModel *dataModel;
 
 @end
 

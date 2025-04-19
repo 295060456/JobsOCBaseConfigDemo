@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IncomeSourceModel : BaseModel
 
-@property(nonatomic,copy)NSString *ID;
-@property(nonatomic,copy)NSString *name;
+Prop_copy()NSString *ID;
+Prop_copy()NSString *name;
 
 @end
 

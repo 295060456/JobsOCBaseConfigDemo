@@ -14,13 +14,13 @@
     NSString *_showStr;/// 对外显示的字符串
 }
 /// UI
-@property(nonatomic,strong)BaseButton *btn_1;
-@property(nonatomic,strong)BaseButton *btn_2;
-@property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
-@property(nonatomic,strong)UITextView *textView;
+Prop_strong()BaseButton *btn_1;
+Prop_strong()BaseButton *btn_2;
+Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
+Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+Prop_strong()UITextView *textView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIImage *>*photosImageMutArr;
+Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
 
 @end
 

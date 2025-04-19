@@ -16,11 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 // 对象
 @property(nonatomic,strong,nullable)__kindof NSObject <NSCoding>*obj;
 // 基本数据类型
-@property(nonatomic,assign)int intValue;
-@property(nonatomic,assign)float floatValue;
-@property(nonatomic,assign)BOOL booLValue;
-@property(nonatomic,assign)NSInteger NSIntValue;
-@property(nonatomic,assign)CGFloat CGfloatValue;
+Prop_assign()int intValue;
+Prop_assign()float floatValue;
+Prop_assign()BOOL booLValue;
+Prop_assign()NSInteger NSIntValue;
+Prop_assign()CGFloat CGfloatValue;
 // key
 @property(nonatomic,copy,nonnull)NSString *key;
 

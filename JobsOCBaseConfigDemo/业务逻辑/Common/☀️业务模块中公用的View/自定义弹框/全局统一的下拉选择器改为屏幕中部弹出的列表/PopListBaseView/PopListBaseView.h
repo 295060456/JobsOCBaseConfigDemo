@@ -16,8 +16,8 @@ UITableViewDelegate
 ,UITableViewDataSource
 >
 
-//@property(nonatomic,assign)CGFloat cellHeight;
-//@property(nonatomic,assign)CGFloat cellWidth;
+//Prop_assign()CGFloat cellHeight;
+//Prop_assign()CGFloat cellWidth;
 
 -(UITableView *)tableView;
 
@@ -32,8 +32,8 @@ NS_INLINE __kindof PopListBaseView *_Nonnull jobsMakePopListBaseView(jobsByPopLi
 }
 /**
  
- @property(nonatomic,strong)PopListBaseView *nationalPopListView;
- @property(nonatomic,copy)NSMutableArray <__kindof UIViewModel *>*nationalPopList_dataMutArr;
+ Prop_strong()PopListBaseView *nationalPopListView;
+ Prop_copy()NSMutableArray <__kindof UIViewModel *>*nationalPopList_dataMutArr;
  
  -(PopListBaseView *)nationalPopListView{
      if(!_nationalPopListView){

@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface UICollectionHeaderFooterView : BaseView
 
-@property(nonatomic,assign)BOOL isZoom;
+Prop_assign()BOOL isZoom;
 
 -(void)scrollViewDidScrollWithContentOffsetY:(CGFloat)contentOffsetY;
 

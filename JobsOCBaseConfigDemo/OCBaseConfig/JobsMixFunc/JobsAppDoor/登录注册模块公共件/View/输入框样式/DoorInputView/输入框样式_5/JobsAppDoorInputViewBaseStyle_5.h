@@ -20,7 +20,7 @@ typedef enum : NSUInteger {
 
 @interface JobsAppDoorInputViewBaseStyle_5 : JobsAppDoorInputViewBaseStyle
 
-@property(nonatomic,assign)InputViewStyle_5 style_5;
+Prop_assign()InputViewStyle_5 style_5;
 /**
  
  * 其实并不建议用init方法,而是期望带参数初始化，比如对应BaseViewProtocol里面的 - (instancetype)initWithSize:(CGSize)thisViewSize

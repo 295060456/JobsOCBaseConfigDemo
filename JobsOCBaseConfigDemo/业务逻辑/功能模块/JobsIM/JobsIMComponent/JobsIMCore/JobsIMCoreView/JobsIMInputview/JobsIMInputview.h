@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 UITextFieldDelegate
 >
 
-@property(nonatomic,strong)ZYTextField *inputTextField;
+Prop_strong()ZYTextField *inputTextField;
 
 -(jobsByStringBlock _Nonnull)someChangeUIBy;
 

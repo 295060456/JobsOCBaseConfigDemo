@@ -10,11 +10,11 @@
 
 @interface TKPermissionHealth ()
 
-@property(nonatomic,strong)HKHealthStore *healthStore;
-@property(nonatomic,copy)TKPermissionBlock block;
-@property(nonatomic,assign)BOOL isAlert;
-@property(nonatomic,strong)NSSet *writeTypes;
-@property(nonatomic,strong)NSSet *readTypes;
+Prop_strong()HKHealthStore *healthStore;
+Prop_copy()TKPermissionBlock block;
+Prop_assign()BOOL isAlert;
+Prop_strong()NSSet *writeTypes;
+Prop_strong()NSSet *readTypes;
 @property(class,nonatomic,strong,readonly)TKPermissionHealth *shared;
 
 @end

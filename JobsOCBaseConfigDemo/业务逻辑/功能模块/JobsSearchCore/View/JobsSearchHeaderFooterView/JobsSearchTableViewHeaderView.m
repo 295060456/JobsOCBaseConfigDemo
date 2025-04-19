@@ -9,8 +9,8 @@
 
 @interface JobsSearchTableViewHeaderView()
 
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UIButton *delBtn;
+Prop_strong()UILabel *titleLab;
+Prop_strong()UIButton *delBtn;
 
 @end
 

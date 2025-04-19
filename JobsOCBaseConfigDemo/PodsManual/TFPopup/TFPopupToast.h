@@ -14,8 +14,8 @@ typedef void(^TFPopupToastBlock)(TFPopupToast *toast);
 
 @interface TFPopupToast : UIView
 
-@property(nonatomic,assign)UIEdgeInsets edge;
-@property(nonatomic,strong)UILabel  *msgLabel;
+Prop_assign()UIEdgeInsets edge;
+Prop_strong()UILabel  *msgLabel;
 
 //注释同下
 +(void)tf_show:(UIView *)inView msg:(NSString *)msg animationType:(TFAnimationType)animationType;

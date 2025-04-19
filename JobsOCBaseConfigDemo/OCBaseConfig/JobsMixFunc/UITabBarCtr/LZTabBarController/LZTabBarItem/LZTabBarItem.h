@@ -19,11 +19,11 @@ typedef enum : NSUInteger {
 
 @interface LZTabBarItem : UIView
 
-@property(nonatomic,copy)NSString *icon;
-@property(nonatomic,copy)NSString *title;
-@property(nonatomic,strong)UIColor *titleColor;
-@property(nonatomic,assign)LZTabBarItemType type;
-@property(nonatomic,assign)id <LZTabBarItemDelegate> delegate;
+Prop_copy()NSString *icon;
+Prop_copy()NSString *title;
+Prop_strong()UIColor *titleColor;
+Prop_assign()LZTabBarItemType type;
+Prop_assign()id <LZTabBarItemDelegate> delegate;
 @end
 
 @protocol LZTabBarItemDelegate <NSObject>

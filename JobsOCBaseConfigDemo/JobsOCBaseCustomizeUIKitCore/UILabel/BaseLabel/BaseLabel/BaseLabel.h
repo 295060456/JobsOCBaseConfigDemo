@@ -26,7 +26,7 @@ UIGestureRecognizerDelegate,
 UIEditMenuInteractionDelegate
 >
 
-@property(nonatomic,assign)UIEdgeInsets edgeInsets;
+Prop_assign()UIEdgeInsets edgeInsets;
 
 #pragma mark —— 一些公有方法
 /// UILabel文字的复制

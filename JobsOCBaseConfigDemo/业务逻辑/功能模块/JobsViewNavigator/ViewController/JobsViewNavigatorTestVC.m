@@ -9,8 +9,8 @@
 
 @interface JobsViewNavigatorTestVC ()
 
-@property(nonatomic,strong)JobsPushView *pushView;
-@property(nonatomic,strong)BaseButton *btn;
+Prop_strong()JobsPushView *pushView;
+Prop_strong()BaseButton *btn;
 
 @end
 

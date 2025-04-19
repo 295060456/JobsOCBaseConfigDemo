@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface UIView (UIBackgroundConfig)
 
-@property(nonatomic,strong)UIBackgroundConfiguration *backgroundConfig API_AVAILABLE(ios(14.0));
+Prop_strong()UIBackgroundConfiguration *backgroundConfig API_AVAILABLE(ios(14.0));
 
 @end
 

@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用UIBezierPath实现果冻效果
 @interface RYCuteView : UIView
 
-@property(nonatomic,assign)CGFloat MIN_HEIGHT;
+Prop_assign()CGFloat MIN_HEIGHT;
 
 @end
 

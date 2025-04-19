@@ -10,7 +10,7 @@
 
 @interface GifLoopPlayView ()
 
-@property(nonatomic,strong)UIImageView *imageView;
+Prop_strong()UIImageView *imageView;
 
 @end
 

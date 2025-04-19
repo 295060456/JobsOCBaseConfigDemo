@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsSuspendLab : UILabel
 
-@property(nonatomic,assign)BOOL isAllowDrag;/// 是否允许托拽手势
+Prop_assign()BOOL isAllowDrag;/// 是否允许托拽手势
 
 @end
 

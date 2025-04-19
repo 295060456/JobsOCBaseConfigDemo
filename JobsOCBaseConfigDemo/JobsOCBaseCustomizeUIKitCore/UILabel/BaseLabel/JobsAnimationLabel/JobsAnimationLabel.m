@@ -9,14 +9,14 @@
 
 @interface JobsAnimationLabel ()
 
-@property(nonatomic,strong)CADisplayLink *playLink;
-@property(nonatomic,assign)NSInteger displayPerSecond;
-@property(nonatomic,assign)CGFloat valueStart;
-@property(nonatomic,assign)CGFloat valueEnd;
-@property(nonatomic,assign)CGFloat valueLast;
-@property(nonatomic,assign)CGFloat valueStep;
-@property(nonatomic,assign)NSTimeInterval duration;
-@property(nonatomic,copy)void (^complete)(UILabel *label, CGFloat value);
+Prop_strong()CADisplayLink *playLink;
+Prop_assign()NSInteger displayPerSecond;
+Prop_assign()CGFloat valueStart;
+Prop_assign()CGFloat valueEnd;
+Prop_assign()CGFloat valueLast;
+Prop_assign()CGFloat valueStep;
+Prop_assign()NSTimeInterval duration;
+Prop_copy()void (^complete)(UILabel *label, CGFloat value);
 
 @end
 

@@ -47,24 +47,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (MJRefresh)
 #pragma mark —— 配置信息
-@property(nonatomic,strong)MJRefreshConfigModel *refreshConfigHeader;/// 头部的配置信息
-@property(nonatomic,strong)MJRefreshConfigModel *refreshConfigFooter;/// 尾部的配置信息
+Prop_strong()MJRefreshConfigModel *refreshConfigHeader;/// 头部的配置信息
+Prop_strong()MJRefreshConfigModel *refreshConfigFooter;/// 尾部的配置信息
 #pragma mark —— MJRefreshHeader
-@property(nonatomic,strong)LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader;
-@property(nonatomic,strong)MJRefreshNormalHeader *mjRefreshNormalHeader;
-@property(nonatomic,strong)MJRefreshStateHeader *mjRefreshStateHeader;
-@property(nonatomic,strong)MJRefreshHeader *mjRefreshHeader;
-@property(nonatomic,strong)MJRefreshGifHeader *mjRefreshGifHeader;
+Prop_strong()LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader;
+Prop_strong()MJRefreshNormalHeader *mjRefreshNormalHeader;
+Prop_strong()MJRefreshStateHeader *mjRefreshStateHeader;
+Prop_strong()MJRefreshHeader *mjRefreshHeader;
+Prop_strong()MJRefreshGifHeader *mjRefreshGifHeader;
 #pragma mark —— MJRefreshFooter
-@property(nonatomic,strong)MJRefreshAutoGifFooter *mjRefreshAutoGifFooter;
-@property(nonatomic,strong)MJRefreshBackNormalFooter *mjRefreshBackNormalFooter;
-@property(nonatomic,strong)MJRefreshAutoNormalFooter *mjRefreshAutoNormalFooter;
-@property(nonatomic,strong)MJRefreshAutoStateFooter *mjRefreshAutoStateFooter;
-@property(nonatomic,strong)MJRefreshAutoFooter *mjRefreshAutoFooter;
-@property(nonatomic,strong)MJRefreshBackGifFooter *mjRefreshBackGifFooter;
-@property(nonatomic,strong)MJRefreshBackStateFooter *mjRefreshBackStateFooter;
-@property(nonatomic,strong)MJRefreshBackFooter *mjRefreshBackFooter;
-@property(nonatomic,strong)MJRefreshFooter *mjRefreshFooter;
+Prop_strong()MJRefreshAutoGifFooter *mjRefreshAutoGifFooter;
+Prop_strong()MJRefreshBackNormalFooter *mjRefreshBackNormalFooter;
+Prop_strong()MJRefreshAutoNormalFooter *mjRefreshAutoNormalFooter;
+Prop_strong()MJRefreshAutoStateFooter *mjRefreshAutoStateFooter;
+Prop_strong()MJRefreshAutoFooter *mjRefreshAutoFooter;
+Prop_strong()MJRefreshBackGifFooter *mjRefreshBackGifFooter;
+Prop_strong()MJRefreshBackStateFooter *mjRefreshBackStateFooter;
+Prop_strong()MJRefreshBackFooter *mjRefreshBackFooter;
+Prop_strong()MJRefreshFooter *mjRefreshFooter;
 
 @end
 

@@ -11,18 +11,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsCountriesModel : NSObject
 
-@property(nonatomic,copy)NSString *abbr;
-@property(nonatomic,copy)NSString *chinese;
-@property(nonatomic,copy)NSString *code;
-@property(nonatomic,copy)NSString *english;
-@property(nonatomic,copy)NSString *spell;
-@property(nonatomic,copy)NSString *state;
-@property(nonatomic,copy)NSString *french;
-@property(nonatomic,copy)NSString *italian;
-@property(nonatomic,copy)NSString *spanish;
-@property(nonatomic,copy)NSString *japanese;
-@property(nonatomic,copy)NSString *russian;
-@property(nonatomic,copy)NSString *germen;
+Prop_copy()NSString *abbr;
+Prop_copy()NSString *chinese;
+Prop_copy()NSString *code;
+Prop_copy()NSString *english;
+Prop_copy()NSString *spell;
+Prop_copy()NSString *state;
+Prop_copy()NSString *french;
+Prop_copy()NSString *italian;
+Prop_copy()NSString *spanish;
+Prop_copy()NSString *japanese;
+Prop_copy()NSString *russian;
+Prop_copy()NSString *germen;
 
 @end
 

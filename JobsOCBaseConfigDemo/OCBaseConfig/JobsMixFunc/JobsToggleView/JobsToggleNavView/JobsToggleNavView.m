@@ -10,11 +10,11 @@
 
 @interface JobsToggleNavView ()
 /// UI
-@property(nonatomic,strong)__kindof UIView *sliderView;
+Prop_strong()__kindof UIView *sliderView;
 /// Data
-@property(nonatomic,assign)NSUInteger current_index;
-@property(nonatomic,copy)NSMutableArray <UIButtonModel *>*buttonModels;
-@property(nonatomic,copy)NSMutableArray <__kindof UIButton *>*buttonsArray;
+Prop_assign()NSUInteger current_index;
+Prop_copy()NSMutableArray <UIButtonModel *>*buttonModels;
+Prop_copy()NSMutableArray <__kindof UIButton *>*buttonsArray;
 
 @end
 

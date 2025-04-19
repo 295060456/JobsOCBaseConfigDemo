@@ -9,8 +9,8 @@
 
 @interface JobsMonitorNetwoking ()
 
-@property(nonatomic,assign)long long int lastBytes;
-@property(nonatomic,assign)BOOL isFirstRate;
+Prop_assign()long long int lastBytes;
+Prop_assign()BOOL isFirstRate;
 
 @end
 

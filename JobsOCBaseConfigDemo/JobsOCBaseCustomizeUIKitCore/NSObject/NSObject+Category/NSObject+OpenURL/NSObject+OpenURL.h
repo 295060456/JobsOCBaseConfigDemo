@@ -25,8 +25,8 @@ MFMessageComposeViewControllerDelegate
 ,MFMailComposeViewControllerDelegate
 >
 /// 发短信、发邮件系统专用VC
-@property(nonatomic,strong)MFMessageComposeViewController *messageComposeVC;
-@property(nonatomic,strong)MFMailComposeViewController *mailComposeVC;
+Prop_strong()MFMessageComposeViewController *messageComposeVC;
+Prop_strong()MFMailComposeViewController *mailComposeVC;
 #pragma mark —— 发送邮件
 /// @param mailComposeVC 外界自定义的发送邮件的VC，如传nil则用默认值
 -(void)jobsSendMailWithComposeVC:(MFMailComposeViewController *_Nullable)mailComposeVC

@@ -22,10 +22,10 @@
 
 @interface ZYTextField : UITextField <UITextFieldProtocol>
 
-@property(nonatomic,assign)CGFloat ZYTextFieldCornerRadius;
-@property(nonatomic,assign)CGFloat ZYTextFieldBorderWidth;
+Prop_assign()CGFloat ZYTextFieldCornerRadius;
+Prop_assign()CGFloat ZYTextFieldBorderWidth;
 @property(nonatomic,assign,nullable)UIColor *ZYTextFieldBorderColor;
-@property(nonatomic,assign)BOOL ZYTextFieldMasksToBounds;
+Prop_assign()BOOL ZYTextFieldMasksToBounds;
 
 @end
 

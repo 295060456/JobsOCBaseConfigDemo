@@ -14,11 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JXCategoryTimelineView : JXCategoryTitleView
 
-@property(nonatomic,strong)NSArray <NSString *> *timeTitles;
-@property(nonatomic,strong)UIColor *timeTitleNormalColor;
-@property(nonatomic,strong)UIColor *timeTitleSelectedColor;
-@property(nonatomic,strong)UIFont *timeTitleFont;
-@property(nonatomic,strong)UIFont *timeTitleSelectedFont;
+Prop_strong()NSArray <NSString *> *timeTitles;
+Prop_strong()UIColor *timeTitleNormalColor;
+Prop_strong()UIColor *timeTitleSelectedColor;
+Prop_strong()UIFont *timeTitleFont;
+Prop_strong()UIFont *timeTitleSelectedFont;
 
 @end
 

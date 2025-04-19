@@ -11,8 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WMZBannerFadeLayout : UICollectionViewFlowLayout
-@property(nonatomic,strong)WMZBannerParam *param;
-@property(nonatomic,assign)BOOL right;
+Prop_strong()WMZBannerParam *param;
+Prop_assign()BOOL right;
 - (instancetype)initConfigureWithModel:(WMZBannerParam *)param;
 @end
 

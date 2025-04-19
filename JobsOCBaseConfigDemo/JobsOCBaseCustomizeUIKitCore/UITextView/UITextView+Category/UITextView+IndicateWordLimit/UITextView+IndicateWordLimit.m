@@ -8,7 +8,7 @@
 #import "UITextView+IndicateWordLimit.h"
 
 @implementation UITextView (IndicateWordLimit)
-#pragma mark —— @property(nonatomic,strong)UILabel *indicateWordLimitLab;
+#pragma mark —— Prop_strong()UILabel *indicateWordLimitLab;
 JobsKey(_indicateWordLimitLab)
 @dynamic indicateWordLimitLab;
 -(UILabel *)indicateWordLimitLab{
@@ -33,7 +33,7 @@ JobsKey(_indicateWordLimitLab)
 -(void)setIndicateWordLimitLab:(UILabel *)indicateWordLimitLab{
     Jobs_setAssociatedRETAIN_NONATOMIC(_indicateWordLimitLab, indicateWordLimitLab)
 }
-#pragma mark —— @property(nonatomic,assign)NSInteger currentWordNum;//当前输入的字符数
+#pragma mark —— Prop_assign()NSInteger currentWordNum;//当前输入的字符数
 JobsKey(_currentWordNum)
 @dynamic currentWordNum;
 -(NSInteger)currentWordNum{
@@ -45,7 +45,7 @@ JobsKey(_currentWordNum)
     self.indicateWordLimitLab.makeLabelByShowingType(UILabelShowingType_03);
     Jobs_setAssociatedRETAIN_NONATOMIC(_currentWordNum, @(currentWordNum))
 }
-#pragma mark —— @property(nonatomic,assign)NSInteger wordimitNum;//字符输入上限
+#pragma mark —— Prop_assign()NSInteger wordimitNum;//字符输入上限
 JobsKey(_wordLimitNum)
 @dynamic wordLimitNum;
 -(NSInteger)wordLimitNum{
@@ -59,7 +59,7 @@ JobsKey(_wordLimitNum)
 -(void)setWordLimitNum:(NSInteger)wordLimitNum{
     Jobs_setAssociatedRETAIN_NONATOMIC(_wordLimitNum, @(wordLimitNum))
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat offsetX;
+#pragma mark —— Prop_assign()CGFloat offsetX;
 JobsKey(_offsetX)
 @dynamic offsetX;
 -(CGFloat)offsetX{
@@ -73,7 +73,7 @@ JobsKey(_offsetX)
 -(void)setOffsetX:(CGFloat)offsetX{
     Jobs_setAssociatedRETAIN_NONATOMIC(_offsetX, @(offsetX))
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat offsetY;
+#pragma mark —— Prop_assign()CGFloat offsetY;
 JobsKey(_offsetY)
 @dynamic offsetY;
 -(CGFloat)offsetY{

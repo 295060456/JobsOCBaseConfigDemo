@@ -20,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (EmptyData)
 
-@property(nonatomic,strong)UILabel *tipsLab;
-@property(nonatomic,copy)NSString *tipsTitle;
+Prop_strong()UILabel *tipsLab;
+Prop_copy()NSString *tipsTitle;
 
 -(jobsByVoidBlock _Nonnull)cleanSubview;
 -(jobsByClassBlock _Nonnull)cleanSubviewBy;

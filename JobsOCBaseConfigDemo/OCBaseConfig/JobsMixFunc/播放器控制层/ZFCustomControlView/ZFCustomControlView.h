@@ -21,9 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFCustomControlView : UIView <ZFPlayerMediaControl>
 /// 控制层自动隐藏的时间，默认2.5秒
-@property(nonatomic,assign)NSTimeInterval autoHiddenTimeInterval;
+Prop_assign()NSTimeInterval autoHiddenTimeInterval;
 /// 控制层显示、隐藏动画的时长，默认0.25秒
-@property(nonatomic,assign)NSTimeInterval autoFadeTimeInterval;
+Prop_assign()NSTimeInterval autoFadeTimeInterval;
 /**
  设置标题、封面、全屏模式
  

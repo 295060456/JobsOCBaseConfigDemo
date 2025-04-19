@@ -9,7 +9,7 @@
 
 @interface JobsImageNumberViewCVCell ()
 
-@property(nonatomic,strong)UIImageView *textIMGV;
+Prop_strong()UIImageView *textIMGV;
 
 @end
 

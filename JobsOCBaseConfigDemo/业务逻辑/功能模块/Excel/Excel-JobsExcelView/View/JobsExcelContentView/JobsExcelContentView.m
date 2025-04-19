@@ -11,7 +11,7 @@
 @interface JobsExcelContentView()
 /// Data
 @property(nonatomic,strong,nonnull)JobsExcelConfigureViewModel *excelConfigureData;
-@property(nonatomic,assign)CGPoint contentOffenset;
+Prop_assign()CGPoint contentOffenset;
 
 @end
 

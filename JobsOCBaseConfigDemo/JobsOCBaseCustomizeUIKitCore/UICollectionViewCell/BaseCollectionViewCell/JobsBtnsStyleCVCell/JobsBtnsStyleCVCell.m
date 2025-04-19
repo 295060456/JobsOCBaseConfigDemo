@@ -9,11 +9,11 @@
 
 @interface JobsBtnsStyleCVCell ()
 /// UI
-@property(nonatomic,strong)BaseButton *leftBtn;
-@property(nonatomic,strong)BaseButton *rightBtn;
+Prop_strong()BaseButton *leftBtn;
+Prop_strong()BaseButton *rightBtn;
 /// Data
-@property(nonatomic,strong)UIButtonModel *leftBtnVM;
-@property(nonatomic,strong)UIButtonModel *rightBtnVM;
+Prop_strong()UIButtonModel *leftBtnVM;
+Prop_strong()UIButtonModel *rightBtnVM;
 
 @end
 

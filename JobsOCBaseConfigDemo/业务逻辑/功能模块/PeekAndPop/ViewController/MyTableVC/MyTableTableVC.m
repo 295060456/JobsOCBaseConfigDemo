@@ -9,10 +9,10 @@
 
 @interface MyTableTableVC ()
 /// UI
-@property(nonatomic,strong)BaiShaETProjChoiceStadiumTBVHeaderView *tbvHeaderView;
+Prop_strong()BaiShaETProjChoiceStadiumTBVHeaderView *tbvHeaderView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
-@property(nonatomic,copy)NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
 
 @end
 

@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DataManager : NSObject
 
-@property(nonatomic,copy)NSString *cacheKey;
-@property(nonatomic,copy)NSString *tag;
+Prop_copy()NSString *cacheKey;
+Prop_copy()NSString *tag;
 /// 数据管理对象单例
 +(instancetype)sharedManager;
 /// 保存页面数据

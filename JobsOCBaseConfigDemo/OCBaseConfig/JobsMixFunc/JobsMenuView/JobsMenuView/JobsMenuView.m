@@ -9,7 +9,7 @@
 
 @interface JobsMenuView ()
 /// UI
-@property(nonatomic,strong)JobsLinkageMenuView *menuView;
+Prop_strong()JobsLinkageMenuView *menuView;
 
 @end
 

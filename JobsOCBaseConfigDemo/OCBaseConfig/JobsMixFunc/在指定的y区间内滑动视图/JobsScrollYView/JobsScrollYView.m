@@ -9,7 +9,7 @@
 
 @interface JobsScrollYView ()
 
-@property(nonatomic,assign)CGPoint initialTouchPoint;
+Prop_assign()CGPoint initialTouchPoint;
 
 @end
 

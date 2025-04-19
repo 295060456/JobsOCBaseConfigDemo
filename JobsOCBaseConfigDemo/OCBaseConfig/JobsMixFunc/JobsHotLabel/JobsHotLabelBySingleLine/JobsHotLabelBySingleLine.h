@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface JobsHotLabelBySingleLine : BaseView
 
-@property(nonatomic,assign)CGSize elementDefaultSize;/// 内置元素Size的预设值
+Prop_assign()CGSize elementDefaultSize;/// 内置元素Size的预设值
 
 @end
 
@@ -31,8 +31,8 @@ NS_ASSUME_NONNULL_END
  uses
  
  // Data
- @property(nonatomic,strong)JobsHotLabelWithSingleLine *hl;
- @property(nonatomic,copy)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
+ Prop_strong()JobsHotLabelWithSingleLine *hl;
+ Prop_copy()NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
  
  -(JobsHotLabelWithSingleLine *)hl{
      if (!_hl) {

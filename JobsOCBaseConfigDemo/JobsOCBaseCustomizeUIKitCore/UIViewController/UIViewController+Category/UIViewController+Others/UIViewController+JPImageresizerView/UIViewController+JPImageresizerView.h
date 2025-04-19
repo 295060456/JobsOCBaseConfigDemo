@@ -47,20 +47,20 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIViewController (JPImageresizerView)
 
 #pragma mark —— BaseVC+JPImageresizerView
-@property(nonatomic,strong)JPImageresizerConfigure *configure;
-@property(nonatomic,strong)JPImageresizerView *imageresizerView;
-@property(nonatomic,assign)JPImageresizerConfigureType configureType;
+Prop_strong()JPImageresizerConfigure *configure;
+Prop_strong()JPImageresizerView *imageresizerView;
+Prop_assign()JPImageresizerConfigureType configureType;
 ///一些资源文件
-@property(nonatomic,strong)NSData *JPImageresizerView_data;
-@property(nonatomic,strong)UIImage *JPImageresizerView_img;
-@property(nonatomic,strong)NSURL *JPImageresizerView_url;
-@property(nonatomic,strong)AVURLAsset *JPImageresizerView_avURLAsset;
+Prop_strong()NSData *JPImageresizerView_data;
+Prop_strong()UIImage *JPImageresizerView_img;
+Prop_strong()NSURL *JPImageresizerView_url;
+Prop_strong()AVURLAsset *JPImageresizerView_avURLAsset;
 ///Block回调
-@property(nonatomic,copy)jobsByIDBlock makeBlock;
-@property(nonatomic,copy)jobsByIDBlock fixErrorBlock;
-@property(nonatomic,copy)jobsByIDBlock fixStartBlock;
-@property(nonatomic,copy)jobsByIDBlock fixProgressBlock;
-@property(nonatomic,copy)jobsByIDBlock fixCompleteBlock;
+Prop_copy()jobsByIDBlock makeBlock;
+Prop_copy()jobsByIDBlock fixErrorBlock;
+Prop_copy()jobsByIDBlock fixStartBlock;
+Prop_copy()jobsByIDBlock fixProgressBlock;
+Prop_copy()jobsByIDBlock fixCompleteBlock;
 
 @end
 

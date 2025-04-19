@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, AlignmentType) {
 // 超过 6 个 系统会变成更多，过不了审核
 @interface JobsTabBar : UITabBar
 
-@property(nonatomic,assign)AlignmentType alignmentType;
+Prop_assign()AlignmentType alignmentType;
 
 -(CGFloat)customTabBarOffsetHeight;
 

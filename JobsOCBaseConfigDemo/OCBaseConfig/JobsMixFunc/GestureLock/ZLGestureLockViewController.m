@@ -32,7 +32,7 @@
 /// 忘记手势密码按钮
 @property(strong,nonatomic)UIButton *forgetPswBtn;
 /// 创建的手势密码
-@property(nonatomic,copy)NSString *lastGesturePsw;
+Prop_copy()NSString *lastGesturePsw;
 /// 创建/校验 手势密码
 @property(nonatomic)ZLUnlockType unlockType;
 

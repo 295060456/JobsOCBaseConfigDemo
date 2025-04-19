@@ -10,35 +10,35 @@
 
 @interface ZFCustomControlView ()<ZFSliderViewDelegate>
 /// 底部工具栏
-@property(nonatomic,strong)UIView *bottomToolView;
+Prop_strong()UIView *bottomToolView;
 /// 顶部工具栏
-@property(nonatomic,strong)UIView *topToolView;
+Prop_strong()UIView *topToolView;
 /// 标题
-@property(nonatomic,strong)UILabel *titleLabel;
+Prop_strong()UILabel *titleLabel;
 /// 播放或暂停按钮
-@property(nonatomic,strong)UIButton *playOrPauseBtn;
+Prop_strong()UIButton *playOrPauseBtn;
 /// 播放的当前时间
-@property(nonatomic,strong)UILabel *currentTimeLabel;
+Prop_strong()UILabel *currentTimeLabel;
 /// 滑杆
-@property(nonatomic,strong)ZFSliderView *slider;
+Prop_strong()ZFSliderView *slider;
 /// 视频总时间
-@property(nonatomic,strong)UILabel *totalTimeLabel;
+Prop_strong()UILabel *totalTimeLabel;
 /// 全屏按钮
-@property(nonatomic,strong)UIButton *fullScreenBtn;
+Prop_strong()UIButton *fullScreenBtn;
 
-@property(nonatomic,assign)BOOL isShow;
+Prop_assign()BOOL isShow;
 
-@property(nonatomic,assign)BOOL controlViewAppeared;
+Prop_assign()BOOL controlViewAppeared;
 
-@property(nonatomic,strong)dispatch_block_t afterBlock;
+Prop_strong()dispatch_block_t afterBlock;
 
-@property(nonatomic,assign)NSTimeInterval sumTime;
+Prop_assign()NSTimeInterval sumTime;
 /// 底部播放进度
-@property(nonatomic,strong)ZFSliderView *bottomPgrogress;
+Prop_strong()ZFSliderView *bottomPgrogress;
 /// 加载loading
-@property(nonatomic,strong)ZFSpeedLoadingView *activity;
+Prop_strong()ZFSpeedLoadingView *activity;
 /// 封面图
-@property(nonatomic,strong)UIImageView *coverImageView;
+Prop_strong()UIImageView *coverImageView;
 
 @end
 

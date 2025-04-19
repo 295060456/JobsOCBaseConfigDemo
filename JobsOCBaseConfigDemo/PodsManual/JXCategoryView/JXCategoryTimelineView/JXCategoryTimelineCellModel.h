@@ -12,11 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JXCategoryTimelineCellModel : JXCategoryTitleCellModel
 
-@property(nonatomic,copy)NSString *timeTitle;
-@property(nonatomic,strong)UIColor *timeTitleNormalColor;
-@property(nonatomic,strong)UIColor *timeTitleSelectedColor;
-@property(nonatomic,strong)UIFont *timeTitleFont;
-@property(nonatomic,strong)UIFont *timeTitleSelectedFont;
+Prop_copy()NSString *timeTitle;
+Prop_strong()UIColor *timeTitleNormalColor;
+Prop_strong()UIColor *timeTitleSelectedColor;
+Prop_strong()UIFont *timeTitleFont;
+Prop_strong()UIFont *timeTitleSelectedFont;
 
 @end
 

@@ -9,12 +9,12 @@
 
 @interface ZMJTimeableVC ()
 
-@property(nonatomic,strong)SpreadsheetView *spreadsheetView;
-@property(nonatomic,copy)NSMutableArray<NSString *> *channels;
-@property(nonatomic,assign)NSInteger numberOfRows;
-@property(nonatomic,strong)NSMutableDictionary<NSIndexPath *, NSArray<NSNumber *> *> *slotInfo;
-@property(nonatomic,strong)NSDateFormatter *hourFormatter;
-@property(nonatomic,strong)NSDateFormatter *twelveHourFormatter;
+Prop_strong()SpreadsheetView *spreadsheetView;
+Prop_copy()NSMutableArray<NSString *> *channels;
+Prop_assign()NSInteger numberOfRows;
+Prop_strong()NSMutableDictionary<NSIndexPath *, NSArray<NSNumber *> *> *slotInfo;
+Prop_strong()NSDateFormatter *hourFormatter;
+Prop_strong()NSDateFormatter *twelveHourFormatter;
 
 @end
 

@@ -9,7 +9,7 @@
 
 @interface JobsPageView ()
 /// Data
-@property(nonatomic,strong)NSArray <UIViewModel *>*dataArr;
+Prop_strong()NSArray <UIViewModel *>*dataArr;
 
 @end
 

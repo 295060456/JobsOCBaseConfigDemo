@@ -10,11 +10,11 @@
 
 @interface JobsAppDoorInputViewBaseStyle_8 ()
 /// UI
-@property(nonatomic,strong)BaseButton *securityModelBtn;
-@property(nonatomic,strong)ZYTextField *textField;
-@property(nonatomic,strong)UILabel *titleLab;
+Prop_strong()BaseButton *securityModelBtn;
+Prop_strong()ZYTextField *textField;
+Prop_strong()UILabel *titleLab;
 /// Data
-@property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
+Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 
 @end
 

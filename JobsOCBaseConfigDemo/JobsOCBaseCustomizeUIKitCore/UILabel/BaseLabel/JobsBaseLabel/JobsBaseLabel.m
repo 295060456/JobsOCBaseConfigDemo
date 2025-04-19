@@ -9,10 +9,10 @@
 
 @interface JobsBaseLabel ()
 /// UI
-@property(nonatomic,strong)UIImageView *bgImageView;
-@property(nonatomic,strong)BaseLabel *label;
+Prop_strong()UIImageView *bgImageView;
+Prop_strong()BaseLabel *label;
 /// Data
-@property(nonatomic,assign)CGRect thisFrame;
+Prop_assign()CGRect thisFrame;
 
 @end
 

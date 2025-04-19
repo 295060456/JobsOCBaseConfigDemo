@@ -10,8 +10,8 @@
 
 @interface ZFDouYinControlView ()
 
-@property(nonatomic,strong)UIButton *playBtn;
-@property(nonatomic,strong)ZFSliderView *sliderView;
+Prop_strong()UIButton *playBtn;
+Prop_strong()ZFSliderView *sliderView;
 
 @end
 

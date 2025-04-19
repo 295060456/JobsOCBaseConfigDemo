@@ -57,12 +57,12 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 @property(strong,nonatomic)FSCalendarTransitionCoordinator *transitionCoordinator;
 @property(strong,nonatomic)FSCalendarCalculator       *calculator;
 @property(strong,nonatomic)FSCalendarHeaderTouchDeliver *deliver;
-@property(nonatomic,assign)BOOL needsAdjustingViewFrame;
-@property(nonatomic,assign)BOOL needsRequestingBoundingDates;
-@property(nonatomic,assign)CGFloat preferredHeaderHeight;
-@property(nonatomic,assign)CGFloat preferredWeekdayHeight;
-@property(nonatomic,assign)CGFloat preferredRowHeight;
-@property(nonatomic,assign)FSCalendarOrientation orientation;
+Prop_assign()BOOL needsAdjustingViewFrame;
+Prop_assign()BOOL needsRequestingBoundingDates;
+Prop_assign()CGFloat preferredHeaderHeight;
+Prop_assign()CGFloat preferredWeekdayHeight;
+Prop_assign()CGFloat preferredRowHeight;
+Prop_assign()FSCalendarOrientation orientation;
 @property(strong,nonatomic)NSMutableArray <NSOperation *>*didLayoutOperations;
 @property(nonatomic,assign,readonly) BOOL floatingMode;
 @property(nonatomic,assign,readonly) BOOL hasValidateVisibleLayout;
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
 @property(strong,nonatomic)FSCalendarDelegationProxy *delegateProxy;
 @property(strong,nonatomic)NSIndexPath *lastPressedIndexPath;
 @property(strong,nonatomic)NSMapTable *visibleSectionHeaders;
-@property(nonatomic,strong)FSCalendarAppearance *appearance;
+Prop_strong()FSCalendarAppearance *appearance;
 
 - (void)orientationDidChange:(NSNotification *)notification;
 

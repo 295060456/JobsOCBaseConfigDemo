@@ -14,26 +14,26 @@
 
 @interface JobsLinkageMenuView()
 /// UI
-@property(nonatomic,strong)UIScrollView *menuView;
-@property(nonatomic,strong)UIView *bottomView;
-@property(nonatomic,strong)UIView *lineView;
-@property(nonatomic,strong)UIView *rightview;
-@property(nonatomic,copy)NSMutableArray <__kindof UIButton *>*btnMutArr;
-@property(nonatomic,strong)NSArray <__kindof UIView *>*viewArray;
+Prop_strong()UIScrollView *menuView;
+Prop_strong()UIView *bottomView;
+Prop_strong()UIView *lineView;
+Prop_strong()UIView *rightview;
+Prop_copy()NSMutableArray <__kindof UIButton *>*btnMutArr;
+Prop_strong()NSArray <__kindof UIView *>*viewArray;
 /// Data
-@property(nonatomic,assign)NSInteger newChoseTag;  /// 选择的button tag
-@property(nonatomic,assign)NSInteger choseTag;  /// 上次选择的button tag
-@property(nonatomic,assign)CGFloat btnHeight;  /// button高度，适配不同屏幕
-@property(nonatomic,assign)NSInteger DTScrollTag; /// 滚动tag
-@property(nonatomic,assign)CGFloat blankHeight;
-@property(nonatomic,assign)CGFloat half_blankHeight;
-@property(nonatomic,strong)UIButtonModel *btnConfig;
-@property(nonatomic,strong)JobsLinkageMenuViewConfig *linkageMenuViewConfig;
-@property(nonatomic,assign)CGFloat MENU_WIDTH;/// 左侧菜单栏宽度，默认136
-@property(nonatomic,assign)CGFloat BOTTOMVIEW_HEIGHT;/// 滑块高度
-@property(nonatomic,assign)CGFloat BOTTOMVIEW_WIDTH;/// 滑块宽度
-@property(nonatomic,assign)CGFloat LINEVIEW_WIDTH;/// 分割线宽度
-@property(nonatomic,assign)CGFloat ANIMATION_TIME;/// 菜单栏滚动的时间
+Prop_assign()NSInteger newChoseTag;  /// 选择的button tag
+Prop_assign()NSInteger choseTag;  /// 上次选择的button tag
+Prop_assign()CGFloat btnHeight;  /// button高度，适配不同屏幕
+Prop_assign()NSInteger DTScrollTag; /// 滚动tag
+Prop_assign()CGFloat blankHeight;
+Prop_assign()CGFloat half_blankHeight;
+Prop_strong()UIButtonModel *btnConfig;
+Prop_strong()JobsLinkageMenuViewConfig *linkageMenuViewConfig;
+Prop_assign()CGFloat MENU_WIDTH;/// 左侧菜单栏宽度，默认136
+Prop_assign()CGFloat BOTTOMVIEW_HEIGHT;/// 滑块高度
+Prop_assign()CGFloat BOTTOMVIEW_WIDTH;/// 滑块宽度
+Prop_assign()CGFloat LINEVIEW_WIDTH;/// 分割线宽度
+Prop_assign()CGFloat ANIMATION_TIME;/// 菜单栏滚动的时间
 
 @end
 

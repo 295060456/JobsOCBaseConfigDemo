@@ -9,10 +9,10 @@
 
 @interface JobsBasePopupView ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UILabel *subTitleLab;
-@property(nonatomic,strong)BaseButton *btn1;
-@property(nonatomic,strong)BaseButton *btn2;
+Prop_strong()UILabel *titleLab;
+Prop_strong()UILabel *subTitleLab;
+Prop_strong()BaseButton *btn1;
+Prop_strong()BaseButton *btn2;
 /// Data
 
 @end

@@ -10,10 +10,10 @@
 
 @interface JobsCommentPopUpView_viewForHeaderInSection ()
 /// UI
-@property(nonatomic,strong)BaseButton *userInfoBtn;
-@property(nonatomic,strong)RBCLikeButton *likeBtn;
+Prop_strong()BaseButton *userInfoBtn;
+Prop_strong()RBCLikeButton *likeBtn;
 /// Data
-@property(nonatomic,strong)JobsFirstCommentModel *firstCommentModel;
+Prop_strong()JobsFirstCommentModel *firstCommentModel;
 
 @end
 

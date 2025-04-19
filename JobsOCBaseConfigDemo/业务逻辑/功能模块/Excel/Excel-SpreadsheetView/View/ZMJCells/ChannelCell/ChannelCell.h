@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChannelCell : ZMJCell
 
-@property(nonatomic,copy)NSString *channel;
+Prop_copy()NSString *channel;
 
 @end
 

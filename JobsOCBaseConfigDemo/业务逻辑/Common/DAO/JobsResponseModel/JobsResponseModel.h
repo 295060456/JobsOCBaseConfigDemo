@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 后端按照标准格式返回的最外层的数据。通常我们锚定data进行解析
 @interface JobsResponseModel : NSObject
 
-@property(nonatomic,assign)HTTPResponseCode code;
-@property(nonatomic,copy)NSString *msg;
-@property(nonatomic,strong)id data;
+Prop_assign()HTTPResponseCode code;
+Prop_copy()NSString *msg;
+Prop_strong()id data;
 
 @end
 

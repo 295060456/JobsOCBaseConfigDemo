@@ -9,7 +9,7 @@
 
 @interface JobsUserHeaderDataViewForHeaderInSection ()
 
-@property(nonatomic,strong)UILabel *titleLab;
+Prop_strong()UILabel *titleLab;
 
 @end
 

@@ -62,10 +62,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,strong,nullable)NSString *title;// 标题，没有可传nil，如果传空字符@“”会多处一行空白
 @property(nonatomic,strong,nullable)NSString *message;// 副标题，没有可传nil，如果传空字符@“”会多处一行空白
-@property(nonatomic,assign)BOOL isSeparateStyle;// 如果为YES 那么有实质性进展的键位在右侧，否则在左侧
+Prop_assign()BOOL isSeparateStyle;// 如果为YES 那么有实质性进展的键位在右侧，否则在左侧
 @property(nonatomic,strong,nullable)UIViewController *targetVC;// 作用域,alertBtnActionArr在targetVC的m文件去找对应的方法，没有则向外抛出崩溃
 @property(nonatomic,strong,nullable)id funcInWhere;// // 执行方法的位置，它可以是VC、view、也可以是任意NSObject子类。当不传值的时候 funcInWhere == targetVC
-@property(nonatomic,assign)BOOL animated; // 是否开启动画效果
+Prop_assign()BOOL animated; // 是否开启动画效果
 @property(nonatomic,strong,nullable)UIControl *sender;
 // 核心参数
 @property(nonatomic,strong,nullable)NSArray <NSString*>*btnTitleArr;// 按钮名称的数组

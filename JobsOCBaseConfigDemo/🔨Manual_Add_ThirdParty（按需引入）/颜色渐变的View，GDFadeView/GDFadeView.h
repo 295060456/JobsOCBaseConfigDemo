@@ -12,7 +12,7 @@
 @interface GDFadeView : UIView
 
 @property(nonatomic,copy,nullable)NSString *text;
-@property(nonatomic,assign)NSTextAlignment alignment;
+Prop_assign()NSTextAlignment alignment;
 @property(nonatomic,strong,nullable)UIColor *backColor;
 @property(nonatomic,strong,nullable)UIColor *foreColor;
 @property(nonatomic,strong,nullable)UIFont *font;

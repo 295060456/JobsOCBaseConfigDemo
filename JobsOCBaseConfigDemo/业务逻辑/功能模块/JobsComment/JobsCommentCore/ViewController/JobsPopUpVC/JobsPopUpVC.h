@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, MoveDirection){
 UIGestureRecognizerDelegate
 >
 
-@property(nonatomic,assign)CGFloat popUpHeight;//默认弹出高度300
+Prop_assign()CGFloat popUpHeight;//默认弹出高度300
 
 @end
 

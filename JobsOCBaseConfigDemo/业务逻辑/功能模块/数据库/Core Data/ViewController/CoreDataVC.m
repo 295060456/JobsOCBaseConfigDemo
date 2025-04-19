@@ -9,7 +9,7 @@
 
 @interface CoreDataVC ()
 
-@property(nonatomic,strong)NSManagedObjectContext *context;
+Prop_strong()NSManagedObjectContext *context;
 
 @end
 

@@ -802,7 +802,7 @@
                        self.bounds.size.height / 2);
 }
 /// 简捷获得控件坐标
-#pragma mark —— @property(nonatomic,assign)CGFloat x
+#pragma mark —— Prop_assign()CGFloat x
 JobsKey(_x)
 @dynamic x;
 - (CGFloat)x{
@@ -814,7 +814,7 @@ JobsKey(_x)
     self.frame = self.resetOriginX(X);
     Jobs_setAssociatedRETAIN_NONATOMIC(_x, @(X));
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat y
+#pragma mark —— Prop_assign()CGFloat y
 JobsKey(_y)
 @dynamic y;
 - (CGFloat)y{
@@ -826,7 +826,7 @@ JobsKey(_y)
     self.frame = self.resetOriginY(Y);
     Jobs_setAssociatedRETAIN_NONATOMIC(_y, @(Y));
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat width
+#pragma mark —— Prop_assign()CGFloat width
 JobsKey(_width)
 @dynamic width;
 - (CGFloat)width {
@@ -838,7 +838,7 @@ JobsKey(_width)
     self.frame = self.resetWidth(Width);
     Jobs_setAssociatedRETAIN_NONATOMIC(_width, @(Width));
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat height
+#pragma mark —— Prop_assign()CGFloat height
 JobsKey(_height)
 @dynamic height;
 - (CGFloat)height {
@@ -850,7 +850,7 @@ JobsKey(_height)
     self.frame = self.resetHeight(Height);
     Jobs_setAssociatedRETAIN_NONATOMIC(_height, @(Height));
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat centerX
+#pragma mark —— Prop_assign()CGFloat centerX
 JobsKey(_centerX)
 @dynamic centerX;
 - (CGFloat)centerX {
@@ -862,7 +862,7 @@ JobsKey(_centerX)
     self.frame = self.resetCenterX(CenterX);
     Jobs_setAssociatedRETAIN_NONATOMIC(_centerX, @(CenterX));
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat centerY
+#pragma mark —— Prop_assign()CGFloat centerY
 JobsKey(_centerY)
 @dynamic centerY;
 - (CGFloat)centerY {
@@ -874,7 +874,7 @@ JobsKey(_centerY)
     self.frame = self.resetCenterY(centerY);
     Jobs_setAssociatedRETAIN_NONATOMIC(_centerY, @(CenterY));
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat left
+#pragma mark —— Prop_assign()CGFloat left
 JobsKey(_left)
 @dynamic left;
 - (CGFloat)left {
@@ -886,7 +886,7 @@ JobsKey(_left)
     self.frame = self.resetOriginX(Left);
     Jobs_setAssociatedRETAIN_NONATOMIC(_left, @(Left));
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat right
+#pragma mark —— Prop_assign()CGFloat right
 JobsKey(_right)
 @dynamic right;
 - (CGFloat)right {
@@ -898,7 +898,7 @@ JobsKey(_right)
     self.frame = self.resetOriginX(Right - self.width);
     Jobs_setAssociatedRETAIN_NONATOMIC(_right, @(Right));
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat top
+#pragma mark —— Prop_assign()CGFloat top
 JobsKey(_top)
 @dynamic top;
 -(CGFloat)top{
@@ -910,7 +910,7 @@ JobsKey(_top)
     self.frame = self.resetOriginY(Top);
     Jobs_setAssociatedRETAIN_NONATOMIC(_top, @(Top))
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat bottom
+#pragma mark —— Prop_assign()CGFloat bottom
 JobsKey(_bottom)
 @dynamic bottom;
 -(CGFloat)bottom{
@@ -922,7 +922,7 @@ JobsKey(_bottom)
     self.frame = self.resetOriginY(bottom - self.height);
     Jobs_setAssociatedRETAIN_NONATOMIC(_bottom, @(Bottom))
 }
-#pragma mark —— @property(nonatomic,assign)CGSize sizer
+#pragma mark —— Prop_assign()CGSize sizer
 JobsKey(_sizer)
 @dynamic sizer;
 -(CGSize)sizer{
@@ -936,7 +936,7 @@ JobsKey(_sizer)
     self.frame = self.resetSize(size);
     Jobs_setAssociatedRETAIN_NONATOMIC(_sizer, sizeValue);
 }
-#pragma mark —— @property(nonatomic,assign)CGPoint Origin
+#pragma mark —— Prop_assign()CGPoint Origin
 JobsKey(_Origin)
 @dynamic Origin;
 -(CGPoint)Origin{

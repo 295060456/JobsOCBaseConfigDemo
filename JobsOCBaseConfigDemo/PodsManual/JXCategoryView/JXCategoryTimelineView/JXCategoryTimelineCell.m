@@ -11,7 +11,7 @@
 
 @interface JXCategoryTimelineCell ()
 
-@property(nonatomic,strong)UILabel *timeLabel;
+Prop_strong()UILabel *timeLabel;
 
 @end
 

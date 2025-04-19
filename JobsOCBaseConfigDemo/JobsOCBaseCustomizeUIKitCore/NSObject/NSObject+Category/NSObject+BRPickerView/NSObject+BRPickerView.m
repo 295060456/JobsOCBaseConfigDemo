@@ -167,7 +167,7 @@
         }
     };
 }
-#pragma mark —— @property(nonatomic,strong)BRStringPickerView *stringPickerView;/// 自定义字符串选择器
+#pragma mark —— Prop_strong()BRStringPickerView *stringPickerView;/// 自定义字符串选择器
 JobsKey(_stringPickerView)
 @dynamic stringPickerView;
 -(BRStringPickerView *)stringPickerView{
@@ -181,7 +181,7 @@ JobsKey(_stringPickerView)
 -(void)setStringPickerView:(BRStringPickerView *)stringPickerView{
     Jobs_setAssociatedRETAIN_NONATOMIC(_stringPickerView, stringPickerView)
 }
-#pragma mark —— @property(nonatomic,strong)BRDatePickerView *datePickerView;/// 时间选择器
+#pragma mark —— Prop_strong()BRDatePickerView *datePickerView;/// 时间选择器
 JobsKey(_datePickerView)
 @dynamic datePickerView;
 -(BRDatePickerView *)datePickerView{
@@ -195,7 +195,7 @@ JobsKey(_datePickerView)
 -(void)setDatePickerView:(BRDatePickerView *)datePickerView{
     Jobs_setAssociatedRETAIN_NONATOMIC(_datePickerView, datePickerView)
 }
-#pragma mark —— @property(nonatomic,strong)BRAddressPickerView *addressPickerView;/// 地址选择器
+#pragma mark —— Prop_strong()BRAddressPickerView *addressPickerView;/// 地址选择器
 JobsKey(_addressPickerView)
 @dynamic addressPickerView;
 -(BRAddressPickerView *)addressPickerView{
@@ -209,7 +209,7 @@ JobsKey(_addressPickerView)
 -(void)setAddressPickerView:(BRAddressPickerView *)addressPickerView{
     Jobs_setAssociatedRETAIN_NONATOMIC(_addressPickerView, addressPickerView)
 }
-#pragma mark —— @property(nonatomic,strong)BRPickerStyle *customStyle;
+#pragma mark —— Prop_strong()BRPickerStyle *customStyle;
 JobsKey(_customStyle)
 @dynamic customStyle;
 -(BRPickerStyle *)customStyle{
@@ -223,7 +223,7 @@ JobsKey(_customStyle)
 -(void)setCustomStyle:(BRPickerStyle *)customStyle{
     Jobs_setAssociatedRETAIN_NONATOMIC(_customStyle, customStyle)
 }
-#pragma mark —— @property(nonatomic,assign)BRStringPickerMode brStringPickerMode;
+#pragma mark —— Prop_assign()BRStringPickerMode brStringPickerMode;
 JobsKey(_brStringPickerMode)
 @dynamic brStringPickerMode;
 -(BRStringPickerMode)brStringPickerMode{
@@ -233,7 +233,7 @@ JobsKey(_brStringPickerMode)
 -(void)setBrStringPickerMode:(BRStringPickerMode)brStringPickerMode{
     Jobs_setAssociatedRETAIN_NONATOMIC(_brStringPickerMode, @(brStringPickerMode))
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray *BRStringPickerViewDataMutArr;
+#pragma mark —— Prop_copy()NSMutableArray *BRStringPickerViewDataMutArr;
 JobsKey(_BRStringPickerViewDataMutArr)
 @dynamic BRStringPickerViewDataMutArr;
 -(NSMutableArray *)BRStringPickerViewDataMutArr{

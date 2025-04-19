@@ -76,7 +76,7 @@
         });
     }));
 }
-#pragma mark —— @property(nonatomic,strong)GTCaptcha4Session *captchaSession;
+#pragma mark —— Prop_strong()GTCaptcha4Session *captchaSession;
 JobsKey(_captchaSession)
 @dynamic captchaSession;
 -(GTCaptcha4Session *)captchaSession{
@@ -96,7 +96,7 @@ JobsKey(_captchaSession)
 -(void)setCaptchaSession:(GTCaptcha4Session *)captchaSession{
     Jobs_setAssociatedRETAIN_NONATOMIC(_captchaSession, captchaSession)
 }
-#pragma mark —— @property(nonatomic,strong)GTCaptcha4Model *captcha4Model;
+#pragma mark —— Prop_strong()GTCaptcha4Model *captcha4Model;
 JobsKey(_captcha4Model)
 @dynamic captcha4Model;
 -(GTCaptcha4Model *)captcha4Model{

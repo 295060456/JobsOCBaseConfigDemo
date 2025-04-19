@@ -9,9 +9,9 @@
 
 @interface JobsTitleView01 ()
 /// UI
-@property(nonatomic,strong)UILabel *leftLab;
-@property(nonatomic,strong)UILabel *rightLab;
-@property(nonatomic,strong)UILabel *titleLab;
+Prop_strong()UILabel *leftLab;
+Prop_strong()UILabel *rightLab;
+Prop_strong()UILabel *titleLab;
 /// Data
 
 @end

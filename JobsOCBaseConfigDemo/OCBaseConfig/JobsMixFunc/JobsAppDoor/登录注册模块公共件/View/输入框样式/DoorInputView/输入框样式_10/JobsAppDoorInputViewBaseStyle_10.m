@@ -9,13 +9,13 @@
 
 @interface JobsAppDoorInputViewBaseStyle_10 ()
 /// UI
-@property(nonatomic,strong)ZYTextField *textField;
-@property(nonatomic,strong)UILabel *titleLab;
+Prop_strong()ZYTextField *textField;
+Prop_strong()UILabel *titleLab;
 /// Data
-@property(nonatomic,copy)NSString *titleStr_1;
-@property(nonatomic,copy)NSString *titleStr_2;
-@property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
-@property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
+Prop_copy()NSString *titleStr_1;
+Prop_copy()NSString *titleStr_2;
+Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
+Prop_strong()ButtonTimerConfigModel *btnTimerConfigModel;
 
 @end
 

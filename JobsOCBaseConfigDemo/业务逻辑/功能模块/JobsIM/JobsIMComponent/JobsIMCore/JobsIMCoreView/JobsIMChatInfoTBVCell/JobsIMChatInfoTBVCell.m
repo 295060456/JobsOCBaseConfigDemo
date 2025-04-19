@@ -9,25 +9,25 @@
 
 @interface JobsIMChatInfoTBVCell ()
 /// UI
-@property(nonatomic,strong)UIImageView *iconIMGV;/// 用户头像
-@property(nonatomic,strong)UIImageView *chatBubbleIMGV;/// 聊天气泡
-@property(nonatomic,strong)UILabel *chatUserNameLab;/// 用户名
-@property(nonatomic,strong)UILabel *chatContentLab;/// 聊天信息承接
-@property(nonatomic,strong)UILabel *timeLab;
-@property(nonatomic,strong)UILongPressGestureRecognizer *longPG;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*chatBubbleMutArr;
-@property(nonatomic,copy)NSMutableArray <UIMenuItem *>*menuItemMutArr;
+Prop_strong()UIImageView *iconIMGV;/// 用户头像
+Prop_strong()UIImageView *chatBubbleIMGV;/// 聊天气泡
+Prop_strong()UILabel *chatUserNameLab;/// 用户名
+Prop_strong()UILabel *chatContentLab;/// 聊天信息承接
+Prop_strong()UILabel *timeLab;
+Prop_strong()UILongPressGestureRecognizer *longPG;
+Prop_copy()NSMutableArray <UIImage *>*chatBubbleMutArr;
+Prop_copy()NSMutableArray <UIMenuItem *>*menuItemMutArr;
 /// data
-@property(nonatomic,copy)NSString *senderChatTextStr;/// 该聊天的文本信息
-@property(nonatomic,copy)NSString *senderChatTextTimeStr;/// 该聊天的时间戳
-@property(nonatomic,copy)NSString *senderUserNameStr;/// 用户名
-@property(nonatomic,strong)UIImage *senderChatUserIconIMG;/// 该聊天的用户头像
-@property(nonatomic,copy)NSString *identification;/// 该聊天对应的数据库坐标ID
-@property(nonatomic,assign)CGFloat contentHeight;/// 内容高
-@property(nonatomic,assign)CGFloat contentWidth;/// 内容宽
-@property(nonatomic,assign)InfoLocation infoLocation;
-@property(nonatomic,copy)NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
-@property(nonatomic,copy)NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
+Prop_copy()NSString *senderChatTextStr;/// 该聊天的文本信息
+Prop_copy()NSString *senderChatTextTimeStr;/// 该聊天的时间戳
+Prop_copy()NSString *senderUserNameStr;/// 用户名
+Prop_strong()UIImage *senderChatUserIconIMG;/// 该聊天的用户头像
+Prop_copy()NSString *identification;/// 该聊天对应的数据库坐标ID
+Prop_assign()CGFloat contentHeight;/// 内容高
+Prop_assign()CGFloat contentWidth;/// 内容宽
+Prop_assign()InfoLocation infoLocation;
+Prop_copy()NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
+Prop_copy()NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
 
 @end
 

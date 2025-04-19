@@ -10,9 +10,9 @@
 
 @interface TKPermissionBluetooth ()
 
-@property(nonatomic,strong)CBPeripheralManager *peripheralManager;
-@property(nonatomic,copy)TKPermissionBlock block;
-@property(nonatomic,assign)BOOL isAlert;
+Prop_strong()CBPeripheralManager *peripheralManager;
+Prop_copy()TKPermissionBlock block;
+Prop_assign()BOOL isAlert;
 @property(class,nonatomic,strong,readonly) TKPermissionBluetooth *shared;
 
 @end

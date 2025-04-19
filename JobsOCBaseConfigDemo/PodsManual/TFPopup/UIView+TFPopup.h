@@ -153,13 +153,13 @@
 
 @property(nonatomic,  copy)NSString *identifier;//标示符，用于在弹出池里查找弹出的view
 
-@property(nonatomic,strong)TFPopupExtension *extension;
+Prop_strong()TFPopupExtension *extension;
 
-@property(nonatomic,assign)id<TFPopupDelegate>popupDelegate;//动画调用过程代理
-@property(nonatomic,assign)id<TFPopupDataSource>popupDataSource;//动画所有配置代理
-@property(nonatomic,assign)id<TFPopupBackgroundDelegate>backgroundDelegate;//动画背景视图设置代理
+Prop_assign()id<TFPopupDelegate>popupDelegate;//动画调用过程代理
+Prop_assign()id<TFPopupDataSource>popupDataSource;//动画所有配置代理
+Prop_assign()id<TFPopupBackgroundDelegate>backgroundDelegate;//动画背景视图设置代理
 
-@property(nonatomic,strong)TFPopupParam *popupParam;//默认动画参数
+Prop_strong()TFPopupParam *popupParam;//默认动画参数
 
 //通过id查找弹窗，如果多个弹窗id一样，则返回最先弹出的弹窗
 +(UIView *)tf_findPopup:(NSString *)identifier;
@@ -267,7 +267,7 @@ typedef void(^AnimationStopBlock)(CAAnimation *anima,BOOL finished);
 
 @interface CAAnimation (TFPopup)<CAAnimationDelegate>
 
-@property(nonatomic,assign)BOOL openOberserBlock;
+Prop_assign()BOOL openOberserBlock;
 @property(nonatomic,  copy)AnimationStartBlock startBlock;
 @property(nonatomic,  copy)AnimationStopBlock stopBlock;
 

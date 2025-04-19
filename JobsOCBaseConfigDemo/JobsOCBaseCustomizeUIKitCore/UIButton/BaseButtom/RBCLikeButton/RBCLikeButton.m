@@ -14,12 +14,12 @@
     CGFloat _incOrginY;
 }
 /// UI
-@property(nonatomic,strong)CAEmitterLayer * explosionLayer;
-@property(nonatomic,strong)UIImageView *backImageView;
-@property(nonatomic,strong)UILabel *incLabel;
-@property(nonatomic,strong)UILabel *countLabel;/// 点赞数量Label
+Prop_strong()CAEmitterLayer * explosionLayer;
+Prop_strong()UIImageView *backImageView;
+Prop_strong()UILabel *incLabel;
+Prop_strong()UILabel *countLabel;/// 点赞数量Label
 /// Data
-@property(nonatomic,assign)BOOL isNeedAnimation;/// 选中/取消时是否需要动画
+Prop_assign()BOOL isNeedAnimation;/// 选中/取消时是否需要动画
 
 @end
 

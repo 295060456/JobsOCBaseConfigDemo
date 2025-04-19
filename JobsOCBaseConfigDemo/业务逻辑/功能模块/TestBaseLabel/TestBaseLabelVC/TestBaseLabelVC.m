@@ -9,8 +9,8 @@
 
 @interface TestBaseLabelVC ()
 /// UI
-@property(nonatomic,strong)JobsBaseLabel *titleLab;
-@property(nonatomic,strong)BaseLabel *baseLabel;
+Prop_strong()JobsBaseLabel *titleLab;
+Prop_strong()BaseLabel *baseLabel;
 
 @end
 

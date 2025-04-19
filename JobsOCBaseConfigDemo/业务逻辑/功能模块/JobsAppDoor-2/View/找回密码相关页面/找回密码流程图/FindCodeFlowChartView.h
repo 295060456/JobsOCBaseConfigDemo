@@ -13,22 +13,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FlowChartSingleElementView : BaseView
 
-@property(nonatomic,strong)UIImageView *bacKIMGV;
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UILabel *subTitleLab;
+Prop_strong()UIImageView *bacKIMGV;
+Prop_strong()UILabel *titleLab;
+Prop_strong()UILabel *subTitleLab;
 
 @end
 
 @interface FindCodeFlowChartView : BaseView
 
 ///一共几个流程节点
-@property(nonatomic,assign)NSInteger flowNum;
+Prop_assign()NSInteger flowNum;
 ///当前流程序号 从0开始
-@property(nonatomic,assign)NSInteger currentFlowSerialNum;
+Prop_assign()NSInteger currentFlowSerialNum;
 
-@property(nonatomic,copy)NSMutableArray <NSString *>*titleMutArr;
-@property(nonatomic,copy)NSMutableArray <NSString *>*subTitleMutArr;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*backImageMutArr;
+Prop_copy()NSMutableArray <NSString *>*titleMutArr;
+Prop_copy()NSMutableArray <NSString *>*subTitleMutArr;
+Prop_copy()NSMutableArray <UIImage *>*backImageMutArr;
 
 @end
 

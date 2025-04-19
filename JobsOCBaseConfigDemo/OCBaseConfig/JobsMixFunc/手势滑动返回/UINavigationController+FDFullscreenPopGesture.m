@@ -65,7 +65,7 @@ typedef void (^_FDViewControllerWillAppearInjectBlock)(UIViewController *viewCon
 
 @interface UIViewController (FDFullscreenPopGesturePrivate)
 
-@property(nonatomic,copy)_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
+Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
 
 @end
 

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 */
 @interface UIView (Chain)
 
-@property(nonatomic,assign)BOOL ableRespose;
+Prop_assign()BOOL ableRespose;
 
 @end
 

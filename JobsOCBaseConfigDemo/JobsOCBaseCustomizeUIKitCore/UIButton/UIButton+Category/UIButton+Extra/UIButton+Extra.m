@@ -125,7 +125,7 @@
         return self.class.buttonFrameByModel(data);
     };
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat imageTitleSpace;
+#pragma mark —— Prop_assign()CGFloat imageTitleSpace;
 JobsKey(_imageTitleSpace)
 @dynamic imageTitleSpace;
 -(CGFloat)imageTitleSpace{//默认不显示

@@ -27,13 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (BRPickerView)
 #pragma mark —— BaseVC+BRStringPickerView
 /// UI
-@property(nonatomic,strong)BRStringPickerView *stringPickerView;/// 自定义字符串选择器
-@property(nonatomic,strong)BRDatePickerView *datePickerView;/// 时间选择器
-@property(nonatomic,strong)BRAddressPickerView *addressPickerView;/// 地址选择器
+Prop_strong()BRStringPickerView *stringPickerView;/// 自定义字符串选择器
+Prop_strong()BRDatePickerView *datePickerView;/// 时间选择器
+Prop_strong()BRAddressPickerView *addressPickerView;/// 地址选择器
 /// Data
-@property(nonatomic,assign)BRStringPickerMode brStringPickerMode;
-@property(nonatomic,copy)NSMutableArray *BRStringPickerViewDataMutArr;
-@property(nonatomic,strong)BRPickerStyle *customStyle;
+Prop_assign()BRStringPickerMode brStringPickerMode;
+Prop_copy()NSMutableArray *BRStringPickerViewDataMutArr;
+Prop_strong()BRPickerStyle *customStyle;
 /// 时间选择器
 //-(void)makeDatePickerDoneBlock:(BRDoneClickBlock)clickDoneBlock
 //                   resultBlock:(BRDateResultBlock)clickResultBlock;
@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BRStringPickerViewModel : NSObject
 /// 来自 BRStringPickerView
 /** 字符串选择器显示类型 */
-@property(nonatomic,assign)BRStringPickerMode pickerMode;
+Prop_assign()BRStringPickerMode pickerMode;
 /**
  *  1.设置数据源
  *    单列：@[@"男", @"女", @"其他"]，或直接传一维模型数组(NSArray <BRResultModel *>*)
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  设置默认选中的位置【单列】
  *  推荐使用 selectIndex，更加严谨，可以避免使用 selectValue 时，有名称相同的情况
  */
-@property(nonatomic,assign)NSInteger selectIndex;
+Prop_assign()NSInteger selectIndex;
 @property(nonatomic,copy,nullable)NSString *selectValue;
 /**
  *  设置默认选中的位置【多列】
@@ -87,7 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  最大层级数(列数) for `BRStringPickerComponentLinkage`, ignored otherwise.
  *  使用场景：默认可选，当数据源中有 key 等于 parentKey 情况时，必须要设置
  */
-@property(nonatomic,assign)NSInteger numberOfComponents;
+Prop_assign()NSInteger numberOfComponents;
 
 /// 来自 BRBaseView
 /** 选择器标题 */
@@ -160,10 +160,10 @@ NS_INLINE __kindof BRPickerStyle *_Nonnull jobsMakeBRPickerStyle(jobsByBRPickerS
 /**
  * 如果一个视图上需要展现多个BRPickerView，关键代码：【BRBaseView】 -addPickerToView
  *
- * @property(nonatomic,strong)BaseView *containFromView;/// fromDatePickerView的承接视图
- * @property(nonatomic,strong)BaseView *containToView;/// toDatePickerView的承接视图
- * @property(nonatomic,strong)BRDatePickerView *fromDatePickerView;
- * @property(nonatomic,strong)BRDatePickerView *toDatePickerView;
+ * Prop_strong()BaseView *containFromView;/// fromDatePickerView的承接视图
+ * Prop_strong()BaseView *containToView;/// toDatePickerView的承接视图
+ * Prop_strong()BRDatePickerView *fromDatePickerView;
+ * Prop_strong()BRDatePickerView *toDatePickerView;
  *
     -(BaseView *)containFromView{
      if (!_containFromView) {

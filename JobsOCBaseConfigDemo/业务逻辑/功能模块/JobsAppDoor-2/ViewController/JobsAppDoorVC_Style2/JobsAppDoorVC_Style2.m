@@ -9,25 +9,25 @@
 
 @interface JobsAppDoorVC_Style2 ()
 /// UI
-@property(nonatomic,strong)UIImageView *bgImgV;
-@property(nonatomic,strong)BaseButton *customerServiceBtn;
-@property(nonatomic,strong)ZFPlayerController *player;
-@property(nonatomic,strong)ZFAVPlayerManager *playerManager;
+Prop_strong()UIImageView *bgImgV;
+Prop_strong()BaseButton *customerServiceBtn;
+Prop_strong()ZFPlayerController *player;
+Prop_strong()ZFAVPlayerManager *playerManager;
 @property(nonatomic,strong,nullable)CustomZFPlayerControlView *customPlayerControlView;
 @property(nonatomic,strong,nullable)JobsAppDoorLoginContentView *loginContentView;/// 登录页面
 @property(nonatomic,strong,nullable)JobsAppDoorRegisterContentView *registerContentView;/// 注册页面
 @property(nonatomic,strong,nullable)JobsAppDoorForgotCodeContentView *forgotCodeContentView;/// 忘记密码
 @property(nonatomic,strong,nullable)JobsAppDoorLogoContentView *logoContentView;
 /// Data
-@property(nonatomic,assign)CGFloat logoContentViewY;/// 初始高度
-@property(nonatomic,assign)CGFloat loginContentViewY;/// 初始高度
-@property(nonatomic,assign)CGFloat registerContentViewY;/// 初始高度
-@property(nonatomic,assign)CGFloat forgotCodeContentViewY;/// 初始高度
-@property(nonatomic,assign)CGFloat loginCustomerServiceBtnY;/// 在登录页面的初始高度
-@property(nonatomic,assign)CGFloat registerCustomerServiceBtnY;/// 在注册页面的初始高度
-@property(nonatomic,assign)BOOL loginDoorInputEditing;/// 只要有一个TF还在编辑那么就是在编辑
-@property(nonatomic,assign)NSInteger lastTimeActivateTFIndex;/// 上一时刻被激活的输入框的序列号
-@property(nonatomic,assign)NSInteger currentActivateTFIndex;/// 当前被激活的输入框的序列号
+Prop_assign()CGFloat logoContentViewY;/// 初始高度
+Prop_assign()CGFloat loginContentViewY;/// 初始高度
+Prop_assign()CGFloat registerContentViewY;/// 初始高度
+Prop_assign()CGFloat forgotCodeContentViewY;/// 初始高度
+Prop_assign()CGFloat loginCustomerServiceBtnY;/// 在登录页面的初始高度
+Prop_assign()CGFloat registerCustomerServiceBtnY;/// 在注册页面的初始高度
+Prop_assign()BOOL loginDoorInputEditing;/// 只要有一个TF还在编辑那么就是在编辑
+Prop_assign()NSInteger lastTimeActivateTFIndex;/// 上一时刻被激活的输入框的序列号
+Prop_assign()NSInteger currentActivateTFIndex;/// 当前被激活的输入框的序列号
 
 @end
 

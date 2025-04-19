@@ -9,9 +9,9 @@
 
 @interface JobsWelcomeVC ()
 // UI
-@property(nonatomic,strong)UIPageControl *pageControl;
+Prop_strong()UIPageControl *pageControl;
 // Data
-@property(nonatomic,copy)NSMutableArray <NSString *>*dataMutArr;
+Prop_copy()NSMutableArray <NSString *>*dataMutArr;
 
 @end
 

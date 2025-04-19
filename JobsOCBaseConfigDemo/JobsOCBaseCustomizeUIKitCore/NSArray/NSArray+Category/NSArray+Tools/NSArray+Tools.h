@@ -44,7 +44,7 @@
 @end
 
 /**
- @property(nonatomic,copy)NSMutableArray <UIImageView *>*subViewsMutArr;
+ Prop_copy()NSMutableArray <UIImageView *>*subViewsMutArr;
  self.subViewsMutArr.jobsVisible(YES);
  
  -(NSMutableArray<__kindof UIView *> *)subViewsMutArr{

@@ -9,12 +9,12 @@
 
 @interface JobsAppDoorInputViewBaseStyle_9 ()
 /// UI
-@property(nonatomic,strong)UIButton *countDownBtn;
-@property(nonatomic,strong)ZYTextField *textField;
+Prop_strong()UIButton *countDownBtn;
+Prop_strong()ZYTextField *textField;
 /// Data
-@property(nonatomic,copy)NSString *titleStr_1;
-@property(nonatomic,copy)NSString *titleStr_2;
-@property(nonatomic,strong)JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
+Prop_copy()NSString *titleStr_1;
+Prop_copy()NSString *titleStr_2;
+Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 
 @end
 

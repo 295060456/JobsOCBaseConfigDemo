@@ -9,7 +9,7 @@
 
 @interface BaiShaETProjVIPSubCVFooterView ()
 
-@property(nonatomic,strong)BaseLabel *titleLab;
+Prop_strong()BaseLabel *titleLab;
 
 @end
 

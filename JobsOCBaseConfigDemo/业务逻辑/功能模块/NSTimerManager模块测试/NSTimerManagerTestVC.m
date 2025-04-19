@@ -9,11 +9,11 @@
 
 @interface NSTimerManagerTestVC ()
 /// UI
-@property(nonatomic,strong)UILabel *valueLab;
-@property(nonatomic,copy)NSMutableArray <__kindof UIButton *>*btnMutArr;
+Prop_strong()UILabel *valueLab;
+Prop_copy()NSMutableArray <__kindof UIButton *>*btnMutArr;
 /// Data
-@property(nonatomic,strong)NSTimerManager *nsTimerManager;
-@property(nonatomic,copy)NSMutableArray <NSString *>*btnTitleMutArr;
+Prop_strong()NSTimerManager *nsTimerManager;
+Prop_copy()NSMutableArray <NSString *>*btnTitleMutArr;
 // SEL是不可以保存到array数组中去的
 @end
 

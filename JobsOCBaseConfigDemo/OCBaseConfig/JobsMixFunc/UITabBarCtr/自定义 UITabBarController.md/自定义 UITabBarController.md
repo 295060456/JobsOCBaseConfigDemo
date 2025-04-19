@@ -255,9 +255,9 @@ if (self.isOpenPPBadge) {
 ```objective-c
 /// 对单个的 TabBarItem 进行的配置。这个类不能用作单例
 @interface JobsTabBarItemConfig : NSObject
-@property(nonatomic,assign)BOOL isNeedCheckLogin;
-@property(nonatomic,assign)BOOL isNotNeedCheckLogin;/// 优先级高于isNeedCheckLogin
-@property(nonatomic,assign)BOOL isNeedjump;/// 跳开处理，即不切控制器，而是做其他操作，比如弹一个提示框
+Prop_assign()BOOL isNeedCheckLogin;
+Prop_assign()BOOL isNotNeedCheckLogin;/// 优先级高于isNeedCheckLogin
+Prop_assign()BOOL isNeedjump;/// 跳开处理，即不切控制器，而是做其他操作，比如弹一个提示框
 @end
 ```
 
@@ -522,10 +522,10 @@ if (self.isOpenPPBadge) {
   ,UNUserNotificationCenterDelegate
   >
   /// UI
-  @property(nonatomic,strong)UIWindow *window;/// 仅仅为了iOS 13 版本向下兼容而存在
+  Prop_strong()UIWindow *window;/// 仅仅为了iOS 13 版本向下兼容而存在
   /// Data
   @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
-  @property(nonatomic,assign)BOOL allowOrentitaionRotation;
+  Prop_assign()BOOL allowOrentitaionRotation;
   
   +(instancetype)sharedManager;
   +(void)destroyInstance;

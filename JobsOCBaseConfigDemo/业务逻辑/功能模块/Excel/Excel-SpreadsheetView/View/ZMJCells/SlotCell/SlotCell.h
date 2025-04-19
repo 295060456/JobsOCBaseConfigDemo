@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SlotCell : ZMJCell
 
-@property(nonatomic,assign)NSInteger minutes;
-@property(nonatomic,copy)NSString *title;
-@property(nonatomic,copy)NSString *tableHighlight;
+Prop_assign()NSInteger minutes;
+Prop_copy()NSString *title;
+Prop_copy()NSString *tableHighlight;
 
 @end
 

@@ -10,8 +10,8 @@
 
 @interface JobsExcelConfigureViewModel()
 
-@property(nonatomic,assign)NSInteger rowNumber;/// 行数
-@property(nonatomic,assign)NSInteger colNumber;/// 列数
+Prop_assign()NSInteger rowNumber;/// 行数
+Prop_assign()NSInteger colNumber;/// 列数
 
 @end
 

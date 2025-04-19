@@ -9,7 +9,7 @@
 
 @interface JobsImageStyleTBVCell ()
 /// UI
-@property(nonatomic,strong)UIImageView *backgroudImageView;
+Prop_strong()UIImageView *backgroudImageView;
 /// Data
 
 @end

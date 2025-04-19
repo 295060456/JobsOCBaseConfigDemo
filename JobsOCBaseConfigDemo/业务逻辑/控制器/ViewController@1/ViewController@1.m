@@ -10,10 +10,10 @@
 BOOL ISLogin;
 @interface ViewController_1 ()
 /// UI
-@property(nonatomic,strong)BaseButton *userHeadBtn;
+Prop_strong()BaseButton *userHeadBtn;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UITableViewCell *>*tbvCellMutArr;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <UITableViewCell *>*tbvCellMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 

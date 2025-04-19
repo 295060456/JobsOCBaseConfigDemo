@@ -9,9 +9,9 @@
 
 @interface JobsIMListView ()
 /// UI
-@property(nonatomic,strong)UIColor *bgColour;
+Prop_strong()UIColor *bgColour;
 /// Data
-@property(nonatomic,copy)NSMutableArray <JobsIMListDataModel *>*jobsIMListMutArr;
+Prop_copy()NSMutableArray <JobsIMListDataModel *>*jobsIMListMutArr;
 
 @end
 

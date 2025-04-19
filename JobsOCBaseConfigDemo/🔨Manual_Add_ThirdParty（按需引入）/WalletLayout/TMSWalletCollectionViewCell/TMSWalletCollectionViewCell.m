@@ -10,7 +10,7 @@
 
 @interface TMSWalletCollectionViewCell ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLabel;
+Prop_strong()UILabel *titleLabel;
 
 @end
 

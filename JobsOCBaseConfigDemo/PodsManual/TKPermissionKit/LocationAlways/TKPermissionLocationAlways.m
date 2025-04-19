@@ -10,9 +10,9 @@
 
 @interface TKPermissionLocationAlways ()
 
-@property(nonatomic,strong)CLLocationManager   *locationManager;
-@property(nonatomic,copy)TKPermissionBlock block;
-@property(nonatomic,assign)BOOL isAlert;
+Prop_strong()CLLocationManager   *locationManager;
+Prop_copy()TKPermissionBlock block;
+Prop_assign()BOOL isAlert;
 @property(class,nonatomic,strong,readonly)TKPermissionLocationAlways *shared;
 
 @end

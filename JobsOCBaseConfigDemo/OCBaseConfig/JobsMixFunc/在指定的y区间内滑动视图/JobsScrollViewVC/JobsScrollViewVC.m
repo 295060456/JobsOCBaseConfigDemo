@@ -9,8 +9,8 @@
 
 @interface JobsScrollViewVC ()
 
-@property(nonatomic,strong)UIView *jobsView;
-@property(nonatomic,strong)JobsScrollYView *scrollYView;
+Prop_strong()UIView *jobsView;
+Prop_strong()JobsScrollYView *scrollYView;
 
 @end
 

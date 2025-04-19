@@ -823,7 +823,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         telNum.isContainBlank;/// 不包含空格
     };
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray<__kindof UIViewModel *> *hotLabelDataMutArr;
+#pragma mark —— Prop_copy()NSMutableArray<__kindof UIViewModel *> *hotLabelDataMutArr;
 JobsKey(_hotLabelDataMutArr)
 @dynamic hotLabelDataMutArr;
 -(NSMutableArray<__kindof UIViewModel *> *)hotLabelDataMutArr{
@@ -852,7 +852,7 @@ JobsKey(_hotLabelDataMutArr)
 -(void)setHotLabelDataMutArr:(NSMutableArray<UIViewModel *> *)hotLabelDataMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_hotLabelDataMutArr, hotLabelDataMutArr)
 }
-#pragma mark —— @property(nonatomic,strong)UILabel *separateLab;/// 分割线
+#pragma mark —— Prop_strong()UILabel *separateLab;/// 分割线
 JobsKey(_separateLab)
 @dynamic separateLab;
 -(UILabel *)separateLab{
@@ -875,7 +875,7 @@ JobsKey(_separateLab)
 -(void)setSeparateLab:(UILabel *)separateLab{
     Jobs_setAssociatedRETAIN_NONATOMIC(_separateLab, separateLab)
 }
-#pragma mark —— @property(nonatomic,strong)UIButton *立即注册;
+#pragma mark —— Prop_strong()UIButton *立即注册;
 JobsKey(__立即注册)
 @dynamic 立即注册;
 -(BaseButton *)立即注册{
@@ -908,7 +908,7 @@ JobsKey(__立即注册)
 -(void)set立即注册:(UIButton *)立即注册{
     Jobs_setAssociatedRETAIN_NONATOMIC(__立即注册, 立即注册);
 }
-#pragma mark —— @property(nonatomic,strong)UIButton *联系客服;
+#pragma mark —— Prop_strong()UIButton *联系客服;
 JobsKey(__联系客服)
 @dynamic 联系客服;
 -(BaseButton *)联系客服{
@@ -941,7 +941,7 @@ JobsKey(__联系客服)
 -(void)set联系客服:(BaseButton *)联系客服{
     Jobs_setAssociatedRETAIN_NONATOMIC(__联系客服, 联系客服)
 }
-#pragma mark —— @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
+#pragma mark —— Prop_strong()NSMutableAttributedString *attributedStringData;
 JobsKey(_attributedStringData)
 @dynamic attributedStringData;
 -(NSMutableAttributedString *)attributedStringData{
@@ -955,7 +955,7 @@ JobsKey(_attributedStringData)
 -(void)setAttributedStringData:(NSMutableAttributedString *)attributedStringData{
     Jobs_setAssociatedRETAIN_NONATOMIC(_attributedStringData, attributedStringData)
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
+#pragma mark —— Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
 JobsKey(_richTextMutArr)
 @dynamic richTextMutArr;
 -(NSMutableArray<NSString *> *)richTextMutArr{
@@ -972,7 +972,7 @@ JobsKey(_richTextMutArr)
 -(void)setRichTextMutArr:(NSMutableArray<NSString *> *)richTextMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, richTextMutArr)
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+#pragma mark —— Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 JobsKey(_richTextConfigMutArr)
 @dynamic richTextConfigMutArr;
 -(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
@@ -1001,7 +1001,7 @@ JobsKey(_richTextConfigMutArr)
 -(void)setRichTextConfigMutArr:(NSMutableArray<JobsRichTextConfig *> *)richTextConfigMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_richTextConfigMutArr, richTextConfigMutArr)
 }
-#pragma mark —— @property(nonatomic,strong)UITextView *connectionTipsTV;/// 承接富文本:如需幫助，請聯繫專屬客服
+#pragma mark —— Prop_strong()UITextView *connectionTipsTV;/// 承接富文本:如需幫助，請聯繫專屬客服
 JobsKey(_connectionTipsTV)
 @dynamic connectionTipsTV;
 -(UITextView *)connectionTipsTV{
@@ -1038,7 +1038,7 @@ JobsKey(_connectionTipsTV)
 -(void)setConnectionTipsTV:(UITextView *)connectionTipsTV{
     Jobs_setAssociatedRETAIN_NONATOMIC(_connectionTipsTV, connectionTipsTV)
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
+#pragma mark —— Prop_copy()NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
 JobsKey(_jxCategoryViewTitleMutArr)
 @dynamic jxCategoryViewTitleMutArr;
 -(NSMutableArray <NSString *>*)jxCategoryViewTitleMutArr{

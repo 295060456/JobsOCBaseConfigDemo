@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSNotificationKeyboardModel : NotificationModel
 
-@property(nonatomic,assign)CGRect beginFrame;
-@property(nonatomic,assign)CGRect endFrame;
-@property(nonatomic,assign)CGFloat keyboardOffsetY;
+Prop_assign()CGRect beginFrame;
+Prop_assign()CGRect endFrame;
+Prop_assign()CGFloat keyboardOffsetY;
 
 @end
 

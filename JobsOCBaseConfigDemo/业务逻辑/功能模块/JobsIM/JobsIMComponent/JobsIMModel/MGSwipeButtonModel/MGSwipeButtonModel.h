@@ -11,9 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MGSwipeButtonModel : NSObject
 
-@property(nonatomic,strong)UIImage *IconIMG;
-@property(nonatomic,strong)UIColor *bgCor;
-@property(nonatomic,copy)NSString *titleStr;
+Prop_strong()UIImage *IconIMG;
+Prop_strong()UIColor *bgCor;
+Prop_copy()NSString *titleStr;
 
 @end
 

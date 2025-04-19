@@ -9,8 +9,8 @@
 
 @interface UITBVCellFoldVC ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)MSCommentView *commentView;
+Prop_strong()UILabel *titleLab;
+Prop_strong()MSCommentView *commentView;
 
 @end
 

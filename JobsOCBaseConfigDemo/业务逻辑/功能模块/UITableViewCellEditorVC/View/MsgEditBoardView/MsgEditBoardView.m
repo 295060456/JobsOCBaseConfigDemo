@@ -9,9 +9,9 @@
 
 @interface MsgEditBoardView ()
 /// UI
-@property(nonatomic,strong)UIButton *allChooseBtn;
-@property(nonatomic,strong)UIButton *markToReadBtn;
-@property(nonatomic,strong)UIButton *deleteBtn;
+Prop_strong()UIButton *allChooseBtn;
+Prop_strong()UIButton *markToReadBtn;
+Prop_strong()UIButton *deleteBtn;
 /// Data
 
 @end

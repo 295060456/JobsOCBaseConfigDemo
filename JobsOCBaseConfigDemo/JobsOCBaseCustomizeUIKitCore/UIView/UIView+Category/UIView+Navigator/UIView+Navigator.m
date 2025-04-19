@@ -91,7 +91,7 @@
         view.navigator = superview.navigator;
     };
 }
-#pragma mark —— @property(nonatomic,strong)JobsViewNavigator *navigator;
+#pragma mark —— Prop_strong()JobsViewNavigator *navigator;
 JobsKey(_navigator)
 @dynamic navigator;
 -(JobsViewNavigator *)navigator{

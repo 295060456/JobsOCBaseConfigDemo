@@ -38,7 +38,7 @@
     if(self.objBlock) self.objBlock(textItem);
     return defaultAction; /// 默认行为
 }
-#pragma mark —— @property(nonatomic,strong)BaseTextView *titleTextView;
+#pragma mark —— Prop_strong()BaseTextView *titleTextView;
 JobsKey(_titleTextView)
 @dynamic titleTextView;
 -(BaseTextView *)titleTextView{
@@ -56,7 +56,7 @@ JobsKey(_titleTextView)
 -(void)setTitleTextView:(UITextView *)titleTextView{
     Jobs_setAssociatedRETAIN_NONATOMIC(_titleTextView, titleTextView)
 }
-#pragma mark —— @property(nonatomic,strong)UITextView *subtitleTextView;
+#pragma mark —— Prop_strong()UITextView *subtitleTextView;
 JobsKey(_subtitleTextView)
 @dynamic subtitleTextView;
 -(BaseTextView *)subtitleTextView{

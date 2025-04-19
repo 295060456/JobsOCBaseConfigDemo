@@ -21,15 +21,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GoodsClassModel : BaseModel <AppToolsProtocol,BaseButtonProtocol>
 
-@property(nonatomic,copy)NSString *idField;
-@property(nonatomic,copy)NSString *pid;
-@property(nonatomic,copy)NSString *name;
-@property(nonatomic,copy)NSString *level;
-@property(nonatomic,copy)NSString *indexs;
-@property(nonatomic,copy)NSString *iconUrl;
-@property(nonatomic,copy)NSString *showUrl;
-@property(nonatomic,copy)NSString *productUrl;
-@property(nonatomic,copy)NSMutableArray <GoodsClassModel *>*childrenList;
+Prop_copy()NSString *idField;
+Prop_copy()NSString *pid;
+Prop_copy()NSString *name;
+Prop_copy()NSString *level;
+Prop_copy()NSString *indexs;
+Prop_copy()NSString *iconUrl;
+Prop_copy()NSString *showUrl;
+Prop_copy()NSString *productUrl;
+Prop_copy()NSMutableArray <GoodsClassModel *>*childrenList;
 
 @end
 

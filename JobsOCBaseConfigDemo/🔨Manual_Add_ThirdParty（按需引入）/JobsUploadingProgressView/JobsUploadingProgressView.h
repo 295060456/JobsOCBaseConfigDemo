@@ -11,12 +11,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsUploadingProgressView : BaseView
 
-@property(nonatomic,strong)UIColor *strokeColor; // 圆的线条颜色
-@property(nonatomic,copy)NSString *titleStr; // 描述文字
-@property(nonatomic,strong)UIImage *imge; // 圆内Logo
-@property(nonatomic,assign)CGFloat width; // 提示框 w
-@property(nonatomic,assign)CGFloat height; // 提示框 h
-@property(nonatomic,assign)CGFloat radius; // 圆半径
+Prop_strong()UIColor *strokeColor; // 圆的线条颜色
+Prop_copy()NSString *titleStr; // 描述文字
+Prop_strong()UIImage *imge; // 圆内Logo
+Prop_assign()CGFloat width; // 提示框 w
+Prop_assign()CGFloat height; // 提示框 h
+Prop_assign()CGFloat radius; // 圆半径
 
 +(instancetype)sharedManager;
 -(void)updateProgressText:(NSString *)progressText;

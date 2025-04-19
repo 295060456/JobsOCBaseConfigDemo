@@ -10,8 +10,8 @@
 
 @interface MainTableViewCell()
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureData;
-@property(nonatomic,copy)NSMutableArray <UIButtonModel *>*datas;
+Prop_strong()JobsExcelConfigureViewModel *excelConfigureData;
+Prop_copy()NSMutableArray <UIButtonModel *>*datas;
 
 @end
 

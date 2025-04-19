@@ -11,21 +11,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MasonryModel : NSObject
 
-@property(nonatomic,assign)MASAxisType axisType;
-@property(nonatomic,assign)CGFloat fixedSpacing;
-@property(nonatomic,assign)CGFloat fixedItemLength;
-@property(nonatomic,assign)CGFloat leadSpacing;
-@property(nonatomic,assign)CGFloat tailSpacing;
-@property(nonatomic,assign)CGFloat top;
-@property(nonatomic,assign)CGFloat bottom;
-@property(nonatomic,assign)CGFloat left;
-@property(nonatomic,assign)CGFloat right;
-@property(nonatomic,assign)CGFloat height;
-@property(nonatomic,assign)CGFloat width;
-@property(nonatomic,assign)CGFloat centerX;
-@property(nonatomic,assign)CGFloat centerY;
-@property(nonatomic,assign)BOOL is_mas_makeConstraints;
-@property(nonatomic,strong)__kindof UIView *view;
+Prop_assign()MASAxisType axisType;
+Prop_assign()CGFloat fixedSpacing;
+Prop_assign()CGFloat fixedItemLength;
+Prop_assign()CGFloat leadSpacing;
+Prop_assign()CGFloat tailSpacing;
+Prop_assign()CGFloat top;
+Prop_assign()CGFloat bottom;
+Prop_assign()CGFloat left;
+Prop_assign()CGFloat right;
+Prop_assign()CGFloat height;
+Prop_assign()CGFloat width;
+Prop_assign()CGFloat centerX;
+Prop_assign()CGFloat centerY;
+Prop_assign()BOOL is_mas_makeConstraints;
+Prop_strong()__kindof UIView *view;
 
 @end
 

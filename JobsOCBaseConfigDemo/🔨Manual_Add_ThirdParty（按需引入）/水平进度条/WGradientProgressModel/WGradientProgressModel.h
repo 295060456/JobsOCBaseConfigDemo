@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WGradientProgressModel : NSObject
 
-@property(nonatomic,assign)CGFloat progress;
+Prop_assign()CGFloat progress;
 @property(nonatomic,strong,nonnull)CAGradientLayer *__block gradLayer;//通过改变layer的宽度来实现进度 运动员
 
 @end

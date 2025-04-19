@@ -9,18 +9,18 @@
 
 @interface BaiShaETProjCollectionHeaderView ()
 /// UI
-@property(nonatomic,strong)UIButton *userHeaderBtn;
-@property(nonatomic,strong)UIProgressView *progressView;
-@property(nonatomic,strong)UILabel *leftLab;
-@property(nonatomic,strong)UILabel *rightLab;
-@property(nonatomic,strong)JobsAnimationLabel *animationLab;
+Prop_strong()UIButton *userHeaderBtn;
+Prop_strong()UIProgressView *progressView;
+Prop_strong()UILabel *leftLab;
+Prop_strong()UILabel *rightLab;
+Prop_strong()JobsAnimationLabel *animationLab;
 /// Data
-@property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
-@property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_strong()NSMutableAttributedString *attributedStringData;
+Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
-@property(nonatomic,copy)NSMutableArray <NSMutableArray <NSString *>*>*richTextMutArr2;
-@property(nonatomic,copy)NSMutableArray <NSMutableArray <JobsRichTextConfig *>*>*richTextConfigMutArr2;
+Prop_copy()NSMutableArray <NSMutableArray <NSString *>*>*richTextMutArr2;
+Prop_copy()NSMutableArray <NSMutableArray <JobsRichTextConfig *>*>*richTextConfigMutArr2;
 
 @end
 

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (SuspendView)
 
 @property(nonatomic,weak)UIViewController *vc;
-@property(nonatomic,strong)UIPanGestureRecognizer *panRcognize;
+Prop_strong()UIPanGestureRecognizer *panRcognize;
 
 @end
 

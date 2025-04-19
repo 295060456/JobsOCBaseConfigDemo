@@ -9,7 +9,7 @@
 #import "UIGestureRecognizer+ReactiveCocoaProtected.h"
 
 @implementation UIGestureRecognizer (ReactiveCocoaProtected)
-#pragma mark —— @property(nonatomic,strong)RACGestureRecognizerActionHandler *rac_gestureHandler;
+#pragma mark —— Prop_strong()RACGestureRecognizerActionHandler *rac_gestureHandler;
 JobsKey(_rac_gestureHandler)
 @dynamic rac_gestureHandler;
 -(RACGestureRecognizerActionHandler *)rac_gestureHandler{
@@ -19,7 +19,7 @@ JobsKey(_rac_gestureHandler)
 -(void)setRac_gestureHandler:(RACGestureRecognizerActionHandler *)rac_gestureHandler{
     Jobs_setAssociatedRETAIN_NONATOMIC(_rac_gestureHandler, rac_gestureHandler);
 }
-#pragma mark —— @property(nonatomic,strong)RACSubject *rac_subject;
+#pragma mark —— Prop_strong()RACSubject *rac_subject;
 JobsKey(_rac_subject)
 @dynamic rac_subject;
 -(RACSubject *)rac_subject{

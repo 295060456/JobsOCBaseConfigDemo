@@ -21,11 +21,11 @@
 
 @interface JobsNavBar ()
 /// UI
-@property(nonatomic,strong)BaseButton *backBtn;
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)BaseButton *closeBtn;
+Prop_strong()BaseButton *backBtn;
+Prop_strong()UILabel *titleLab;
+Prop_strong()BaseButton *closeBtn;
 /// Data
-@property(nonatomic,strong)JobsNavBarConfig *navBarConfig;
+Prop_strong()JobsNavBarConfig *navBarConfig;
 
 @end
 

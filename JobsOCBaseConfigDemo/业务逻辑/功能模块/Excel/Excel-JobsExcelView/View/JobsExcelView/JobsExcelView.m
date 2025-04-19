@@ -10,13 +10,13 @@
 
 @interface JobsExcelView()
 /// UI
-@property(nonatomic,strong)BaseButton *titleBtn;
-@property(nonatomic,strong)JobsExcelLeftListView *leftListView;
-@property(nonatomic,strong)JobsExcelTopHeadView *headView;
-@property(nonatomic,strong)JobsExcelContentView *contentView;
-@property(nonatomic,strong)UIImageView *bgImageView;
+Prop_strong()BaseButton *titleBtn;
+Prop_strong()JobsExcelLeftListView *leftListView;
+Prop_strong()JobsExcelTopHeadView *headView;
+Prop_strong()JobsExcelContentView *contentView;
+Prop_strong()UIImageView *bgImageView;
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureDatas;
+Prop_strong()JobsExcelConfigureViewModel *excelConfigureDatas;
 
 @end
 

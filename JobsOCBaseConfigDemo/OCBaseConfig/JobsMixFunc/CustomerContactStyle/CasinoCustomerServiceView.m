@@ -9,16 +9,16 @@
 
 @interface CasinoCustomerServiceView ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;// 标题
-@property(nonatomic,strong)BaseButton *closeBtn;
-@property(nonatomic,strong)BaseButton *contactCustomerServiceBtn;// 联系客服按钮
-@property(nonatomic,strong)UILabel *subTitleLab;// 副标题
-@property(nonatomic,strong)UIImageView *leftIMGV;
-@property(nonatomic,strong)UIImageView *rightIMGV;
-@property(nonatomic,strong)JobsHotLabelBySingleLine *hl;
+Prop_strong()UILabel *titleLab;// 标题
+Prop_strong()BaseButton *closeBtn;
+Prop_strong()BaseButton *contactCustomerServiceBtn;// 联系客服按钮
+Prop_strong()UILabel *subTitleLab;// 副标题
+Prop_strong()UIImageView *leftIMGV;
+Prop_strong()UIImageView *rightIMGV;
+Prop_strong()JobsHotLabelBySingleLine *hl;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
-@property(nonatomic,strong)CasinoCustomerContactModel *customerContactModel;
+Prop_copy()NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
+Prop_strong()CasinoCustomerContactModel *customerContactModel;
 
 @end
 

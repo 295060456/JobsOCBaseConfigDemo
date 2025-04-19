@@ -9,9 +9,9 @@
 
 @interface SlotCell ()
 
-@property(nonatomic,strong)UILabel *minutesLabel;
-@property(nonatomic,strong)UILabel *titleLabel;
-@property(nonatomic,strong)UILabel *tableHighlightLabel;
+Prop_strong()UILabel *minutesLabel;
+Prop_strong()UILabel *titleLabel;
+Prop_strong()UILabel *tableHighlightLabel;
 
 @end
 

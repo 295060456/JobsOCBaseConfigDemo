@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (Masonry)
 
-@property(nonatomic,copy)jobsByMASConstraintMakerBlock masonryBlock;
+Prop_copy()jobsByMASConstraintMakerBlock masonryBlock;
 -(JobsReturnViewByMasonryConstraintsBlock _Nonnull)setMasonryBy;
 /// 卸载当前view上的某个方向的约束
 -(jobsByLayoutAttributeBlock _Nonnull)uninstall;

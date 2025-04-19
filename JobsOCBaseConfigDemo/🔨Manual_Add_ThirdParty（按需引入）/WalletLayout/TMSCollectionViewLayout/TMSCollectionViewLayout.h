@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,weak)id<TMSCollectionViewLayoutDelegate> layout_delegate;
 /// 左右边距
-@property(nonatomic,assign)CGFloat padding;
+Prop_assign()CGFloat padding;
 /// 点击item
 -(void)didClickWithIndexPath:(NSIndexPath *)clickIndexPath isExpand:(BOOL)isExpand;
 

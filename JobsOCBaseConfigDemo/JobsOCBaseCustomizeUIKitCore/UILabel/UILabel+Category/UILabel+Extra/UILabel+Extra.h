@@ -16,13 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UILabel (Extra)
 
-@property(nonatomic,assign)UILabelShowingType labelShowingType;
+Prop_assign()UILabelShowingType labelShowingType;
 /// for JobsAnimationLabel
-@property(nonatomic,assign)CGFloat value;
-@property(nonatomic,assign)CGFloat lastValue;
+Prop_assign()CGFloat value;
+Prop_assign()CGFloat lastValue;
 
-@property(nonatomic,strong)CAShapeLayer *shapeLayer;
-@property(nonatomic,assign)TransformLayerDirectionType transformLayerDirectionType;
+Prop_strong()CAShapeLayer *shapeLayer;
+Prop_assign()TransformLayerDirectionType transformLayerDirectionType;
 #pragma mark —— 一些公共方法
 /// UILabel文字旋转
 -(jobsByNSUIntegerBlock _Nonnull)transformLayer;

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (Extra)
 
-@property(nonatomic,assign)CGFloat imageTitleSpace;
+Prop_assign()CGFloat imageTitleSpace;
 
 -(jobsByNSIntegerBlock _Nonnull)makeBtnTitleByShowingType;
 -(jobsByNSIntegerBlock _Nonnull)makeBtnSubTitleByShowingType;

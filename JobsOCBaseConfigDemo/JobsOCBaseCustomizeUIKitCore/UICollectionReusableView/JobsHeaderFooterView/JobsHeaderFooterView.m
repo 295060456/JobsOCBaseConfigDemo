@@ -9,10 +9,10 @@
 
 @interface JobsHeaderFooterView ()
 /// UI
-@property(nonatomic,strong)BaseButton *titleBtn;
-@property(nonatomic,strong)BaseButton *subTitleBtn;
+Prop_strong()BaseButton *titleBtn;
+Prop_strong()BaseButton *subTitleBtn;
 /// Data
-@property(nonatomic,strong)UIViewModel *subTitleModel;
+Prop_strong()UIViewModel *subTitleModel;
 
 @end
 

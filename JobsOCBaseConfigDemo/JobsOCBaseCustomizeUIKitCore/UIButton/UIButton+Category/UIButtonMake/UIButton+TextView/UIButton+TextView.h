@@ -24,8 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 以期望可以响应富文本的点击事件
 @interface UIButton (TextView)<UITextViewDelegate>
 
-@property(nonatomic,strong)BaseTextView *titleTextView;
-@property(nonatomic,strong)BaseTextView *subtitleTextView;
+Prop_strong()BaseTextView *titleTextView;
+Prop_strong()BaseTextView *subtitleTextView;
 
 @end
 

@@ -16,20 +16,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IPApiModel : NSObject
 
-@property(nonatomic,copy)NSString *status;
-@property(nonatomic,copy)NSString *country;
-@property(nonatomic,copy)NSString *countryCode;
-@property(nonatomic,copy)NSString *region;
-@property(nonatomic,copy)NSString *regionName;
-@property(nonatomic,copy)NSString *city;
-@property(nonatomic,copy)NSString *zip;
-@property(nonatomic,copy)NSString *lat;
-@property(nonatomic,copy)NSString *lon;
-@property(nonatomic,copy)NSString *timezone;
-@property(nonatomic,copy)NSString *isp;
-@property(nonatomic,copy)NSString *org;
-@property(nonatomic,copy)NSString *as;
-@property(nonatomic,copy)NSString *query;
+Prop_copy()NSString *status;
+Prop_copy()NSString *country;
+Prop_copy()NSString *countryCode;
+Prop_copy()NSString *region;
+Prop_copy()NSString *regionName;
+Prop_copy()NSString *city;
+Prop_copy()NSString *zip;
+Prop_copy()NSString *lat;
+Prop_copy()NSString *lon;
+Prop_copy()NSString *timezone;
+Prop_copy()NSString *isp;
+Prop_copy()NSString *org;
+Prop_copy()NSString *as;
+Prop_copy()NSString *query;
 
 @end
 

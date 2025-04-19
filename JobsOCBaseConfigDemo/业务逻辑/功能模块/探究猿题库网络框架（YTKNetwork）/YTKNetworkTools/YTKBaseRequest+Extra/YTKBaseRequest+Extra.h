@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YTKBaseRequest (Extra)<YTKCustomBaseRequest>
 
-@property(nonatomic,strong)JobsResponseModel *responseModel;
+Prop_strong()JobsResponseModel *responseModel;
 
 -(NSMutableURLRequest *)jobsMakeRequestByBlock:(jobsByMutableURLRequestBlock _Nullable)block;
 #pragma mark —— 加URL参数

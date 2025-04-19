@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (Navigator)
 
-@property(nonatomic,strong)JobsViewNavigator *navigator;
+Prop_strong()JobsViewNavigator *navigator;
 #pragma mark —— 汇总方法
 /// 推页面
 -(jobsByViewBlock _Nonnull)pushTo;

@@ -10,7 +10,7 @@
 @interface JobsShowNumView ()
 /// UI
 /// Data
-@property(nonatomic,copy)NSMutableArray <__kindof UIButton *>*btnMutArr;
+Prop_copy()NSMutableArray <__kindof UIButton *>*btnMutArr;
 
 @end
 

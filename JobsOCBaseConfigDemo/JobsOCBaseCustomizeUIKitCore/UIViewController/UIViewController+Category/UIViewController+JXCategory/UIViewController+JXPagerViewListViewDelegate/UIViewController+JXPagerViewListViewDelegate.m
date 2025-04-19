@@ -32,7 +32,7 @@
 - (UIView *)listView {
     return self.view;
 }
-#pragma mark —— @property(nonatomic,strong)Class scrollViewClass;
+#pragma mark —— Prop_strong()Class scrollViewClass;
 JobsKey(_scrollViewClass)
 @dynamic scrollViewClass;
 -(Class)scrollViewClass{
@@ -42,7 +42,7 @@ JobsKey(_scrollViewClass)
 -(void)setScrollViewClass:(Class)scrollViewClass{
     Jobs_setAssociatedRETAIN_NONATOMIC(_scrollViewClass, scrollViewClass)
 }
-#pragma mark —— @property(nonatomic,strong)UIScrollView *scrollView;
+#pragma mark —— Prop_strong()UIScrollView *scrollView;
 @dynamic scrollView;
 /**
  1、Masonry约束必须以self.scrollView为锚点，不能以self.view。否则无法拖动
@@ -79,7 +79,7 @@ JobsKey(_scrollViewClass)
                              scrollView,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-#pragma mark —— @property(nonatomic,copy)void(^scrollCallback)(UIScrollView *scrollView);
+#pragma mark —— Prop_copy()void(^scrollCallback)(UIScrollView *scrollView);
 JobsKey(_scrollCallback)
 @dynamic scrollCallback;
 -(void (^)(UIScrollView * _Nonnull))scrollCallback{

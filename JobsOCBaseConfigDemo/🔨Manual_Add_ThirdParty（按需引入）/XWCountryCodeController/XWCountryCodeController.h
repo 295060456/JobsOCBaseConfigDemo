@@ -28,6 +28,6 @@ UITableViewDataSource
 ,UISearchResultsUpdating
 >
 @property(nonatomic,weak)id<XWCountryCodeControllerDelegate> deleagete;
-@property(nonatomic,copy)returnCountryCode countryCodeBlock;
+Prop_copy()returnCountryCode countryCodeBlock;
 
 @end

@@ -10,8 +10,8 @@
 
 @interface LZTabBar ()
 
-@property(nonatomic,strong)UIVisualEffectView *effectView;
-@property(nonatomic,strong)UIView *topLine;
+Prop_strong()UIVisualEffectView *effectView;
+Prop_strong()UIView *topLine;
 
 @end
 

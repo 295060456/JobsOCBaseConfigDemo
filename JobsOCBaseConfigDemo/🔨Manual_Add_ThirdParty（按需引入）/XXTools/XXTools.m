@@ -10,8 +10,8 @@
 
 @interface XXTools()
 
-@property(nonatomic,strong)UIImageView *labView;
-@property(nonatomic,strong)UILabel *lab2;
+Prop_strong()UIImageView *labView;
+Prop_strong()UILabel *lab2;
 
 @end
 

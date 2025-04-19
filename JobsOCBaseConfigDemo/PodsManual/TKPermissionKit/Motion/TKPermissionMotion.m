@@ -10,10 +10,10 @@
 
 @interface TKPermissionMotion ()
 
-@property(nonatomic,strong)CMMotionActivityManager *cmManager; /// 运动
-@property(nonatomic,strong)NSOperationQueue *motionActivityQueue; /// 运动
-@property(nonatomic,copy)TKPermissionBlock block;
-@property(nonatomic,assign)BOOL isAlert;
+Prop_strong()CMMotionActivityManager *cmManager; /// 运动
+Prop_strong()NSOperationQueue *motionActivityQueue; /// 运动
+Prop_copy()TKPermissionBlock block;
+Prop_assign()BOOL isAlert;
 @property(class,nonatomic,strong,readonly)TKPermissionMotion *shared;
 
 @end

@@ -122,7 +122,7 @@ didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-#pragma mark —— @property(nonatomic,strong)HXPhotoManager *photoManager;//选取图片的数据管理类
+#pragma mark —— Prop_strong()HXPhotoManager *photoManager;//选取图片的数据管理类
 JobsKey(_photoManager)
 @dynamic photoManager;
 -(HXPhotoManager *)photoManager{
@@ -157,7 +157,7 @@ JobsKey(_photoManager)
 -(void)setPhotoManager:(HXPhotoManager *)photoManager{
     Jobs_setAssociatedRETAIN_NONATOMIC(_photoManager, photoManager)
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray <HXPhotoModel *>*__block historyPhotoDataMutArr;//与之相对应的是self.photoManager.afterSelectedArray
+#pragma mark —— Prop_copy()NSMutableArray <HXPhotoModel *>*__block historyPhotoDataMutArr;//与之相对应的是self.photoManager.afterSelectedArray
 JobsKey(_historyPhotoDataMutArr)
 @dynamic historyPhotoDataMutArr;
 -(NSMutableArray <HXPhotoModel *>*)historyPhotoDataMutArr{
@@ -175,7 +175,7 @@ JobsKey(_historyPhotoDataMutArr)
 -(void)setHistoryPhotoDataMutArr:(NSMutableArray<HXPhotoModel *> *)historyPhotoDataMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_historyPhotoDataMutArr, historyPhotoDataMutArr)
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray <HXPhotoModel *>*__block photosDataMutArr;
+#pragma mark —— Prop_copy()NSMutableArray <HXPhotoModel *>*__block photosDataMutArr;
 JobsKey(_photosDataMutArr)
 @dynamic photosDataMutArr;
 -(NSMutableArray<HXPhotoModel *> *)photosDataMutArr{
@@ -189,7 +189,7 @@ JobsKey(_photosDataMutArr)
 -(void)setPhotosDataMutArr:(NSMutableArray<HXPhotoModel *> *)photosDataMutArr{
     Jobs_setAssociatedRETAIN_NONATOMIC(_photosDataMutArr, photosDataMutArr)
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray <HXPhotoModel *>*__block videosDataMutArr;
+#pragma mark —— Prop_copy()NSMutableArray <HXPhotoModel *>*__block videosDataMutArr;
 JobsKey(_videosDataMutArr)
 @dynamic videosDataMutArr;
 -(NSMutableArray<HXPhotoModel *> *)videosDataMutArr{

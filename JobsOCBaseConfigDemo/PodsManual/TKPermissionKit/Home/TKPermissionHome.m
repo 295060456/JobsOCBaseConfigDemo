@@ -10,9 +10,9 @@
 
 @interface TKPermissionHome ()
 
-@property(nonatomic,strong)HMHomeManager *homeManager;
-@property(nonatomic,copy)TKPermissionBlock block;
-@property(nonatomic,assign)BOOL isAlert;
+Prop_strong()HMHomeManager *homeManager;
+Prop_copy()TKPermissionBlock block;
+Prop_assign()BOOL isAlert;
 @property(class,nonatomic,strong,readonly)TKPermissionHome *shared;
 
 @end

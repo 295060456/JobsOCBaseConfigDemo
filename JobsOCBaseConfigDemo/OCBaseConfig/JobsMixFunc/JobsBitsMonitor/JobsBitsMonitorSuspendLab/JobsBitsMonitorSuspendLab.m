@@ -9,7 +9,7 @@
 
 @interface JobsBitsMonitorSuspendLab ()
 /// Data
-@property(nonatomic,copy)NSMutableArray <NSString *>*operationEnvironMutArr;
+Prop_copy()NSMutableArray <NSString *>*operationEnvironMutArr;
 
 @end
 

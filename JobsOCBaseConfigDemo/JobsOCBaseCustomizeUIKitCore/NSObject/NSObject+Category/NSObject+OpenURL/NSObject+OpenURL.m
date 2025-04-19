@@ -165,7 +165,7 @@ failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock
         return openURL.jobsCanOpenUrl;
     }
 }
-#pragma mark —— @property(nonatomic,strong)MFMessageComposeViewController *messageComposeVC;
+#pragma mark —— Prop_strong()MFMessageComposeViewController *messageComposeVC;
 JobsKey(_messageComposeVC)
 @dynamic messageComposeVC;
 -(MFMessageComposeViewController *)messageComposeVC{
@@ -188,7 +188,7 @@ JobsKey(_messageComposeVC)
 -(void)setMessageComposeVC:(MFMessageComposeViewController *)messageComposeVC{
     Jobs_setAssociatedRETAIN_NONATOMIC(_messageComposeVC, messageComposeVC)
 }
-#pragma mark —— @property(nonatomic,strong)MFMailComposeViewController *mailComposeVC;
+#pragma mark —— Prop_strong()MFMailComposeViewController *mailComposeVC;
 JobsKey(_mailComposeVC)
 @dynamic mailComposeVC;
 -(MFMailComposeViewController *)mailComposeVC{

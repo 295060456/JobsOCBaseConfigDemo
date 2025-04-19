@@ -9,15 +9,15 @@
 
 @interface BaiShaETProjPopupView10 ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)BaseButton *closeBtn;
-@property(nonatomic,strong)UIColor *cor;
-@property(nonatomic,strong)BaseButton *cancelBtn;
-@property(nonatomic,strong)BaseButton *sureBtn;
-@property(nonatomic,strong)UIView *bgView;
+Prop_strong()UILabel *titleLab;
+Prop_strong()BaseButton *closeBtn;
+Prop_strong()UIColor *cor;
+Prop_strong()BaseButton *cancelBtn;
+Prop_strong()BaseButton *sureBtn;
+Prop_strong()UIView *bgView;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIViewModel *>*dataMutArr;
-@property(nonatomic,assign)NSInteger selectedIndex;
+Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_assign()NSInteger selectedIndex;
 
 @end
 

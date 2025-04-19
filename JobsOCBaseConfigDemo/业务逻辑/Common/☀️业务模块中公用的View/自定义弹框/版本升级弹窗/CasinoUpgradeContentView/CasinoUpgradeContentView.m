@@ -9,11 +9,11 @@
 
 @interface CasinoUpgradeContentView ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UIButton *cancelBtn;
-@property(nonatomic,strong)UIButton *sureBtn;
+Prop_strong()UILabel *titleLab;
+Prop_strong()UIButton *cancelBtn;
+Prop_strong()UIButton *sureBtn;
 /// Data
-@property(nonatomic,strong)JobsGetiOSNewestVersionModel *iOSNewestVersionModel;
+Prop_strong()JobsGetiOSNewestVersionModel *iOSNewestVersionModel;
 
 @end
 

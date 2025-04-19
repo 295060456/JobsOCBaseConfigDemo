@@ -21,7 +21,7 @@ UITextModelProtocol_dynamic
     placeholderLabel.numberOfLines = 0;/// 默认折行处理
     return placeholderLabel;
 }
-#pragma mark —— @property(nonatomic,strong)UIColor *placeholderColor;
+#pragma mark —— Prop_strong()UIColor *placeholderColor;
 JobsKey(_placeholderColor)
 -(UIColor *)placeholderColor{
     UIColor *PlaceholderColor = Jobs_getAssociatedObject(_placeholderColor);
@@ -36,7 +36,7 @@ JobsKey(_placeholderColor)
     self.placeholderLabel.textColor = placeholderColor;
     Jobs_setAssociatedRETAIN_NONATOMIC(_placeholderColor, placeholderColor)
 }
-#pragma mark —— @property(nonatomic,strong)UIFont *placeholderFont;
+#pragma mark —— Prop_strong()UIFont *placeholderFont;
 JobsKey(_placeholderFont)
 -(UIFont *)placeholderFont{
     UIFont *PlaceholderFont = Jobs_getAssociatedObject(_placeholderFont);
@@ -51,7 +51,7 @@ JobsKey(_placeholderFont)
     self.placeholderLabel.font = placeholderFont;
     Jobs_setAssociatedRETAIN_NONATOMIC(_placeholderFont, placeholderFont)
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*titleAttributedDataMutArr;
+#pragma mark —— Prop_copy()NSMutableArray <JobsRichTextConfig *>*titleAttributedDataMutArr;
 JobsKey(_titleAttributedDataMutArr)
 -(NSMutableArray<JobsRichTextConfig *> *)titleAttributedDataMutArr{
     NSMutableArray *TitleAttributedDataMutArr = Jobs_getAssociatedObject(_titleAttributedDataMutArr);

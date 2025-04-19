@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CADisplayLink_TimerManager : NSObject
 
-@property(nonatomic,strong)CADisplayLink *displayLink;
-@property(nonatomic,copy)jobsByIDBlock CADisplayLinkTimerManagerBlock;
+Prop_strong()CADisplayLink *displayLink;
+Prop_copy()jobsByIDBlock CADisplayLinkTimerManagerBlock;
 
 @end
 

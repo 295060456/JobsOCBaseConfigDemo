@@ -6,8 +6,8 @@
 
 @interface JobsPresentationCtrl ()
 /// UI
-@property(nonatomic,strong)UIView *dimmingView;
-@property(nonatomic,strong)UIView *presentationWrappingView;
+Prop_strong()UIView *dimmingView;
+Prop_strong()UIView *presentationWrappingView;
 
 @end
 

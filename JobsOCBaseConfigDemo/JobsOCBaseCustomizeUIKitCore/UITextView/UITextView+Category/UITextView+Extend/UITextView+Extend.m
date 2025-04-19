@@ -164,7 +164,7 @@
         }return self.currentWordNum < self.wordLimitNum;
     }
 }
-#pragma mark —— @property(nonatomic,copy)NSString *replacementText;
+#pragma mark —— Prop_copy()NSString *replacementText;
 JobsKey(_replacementText)
 @dynamic replacementText;
 -(NSString *)replacementText{
@@ -174,7 +174,7 @@ JobsKey(_replacementText)
 -(void)setReplacementText:(NSString *)replacementText{
     Jobs_setAssociatedCOPY_NONATOMIC(_replacementText, replacementText)
 }
-#pragma mark —— @property(nonatomic,copy)NSString *resStr;
+#pragma mark —— Prop_copy()NSString *resStr;
 JobsKey(_resStr)
 @dynamic resStr;
 -(NSString *)resStr{

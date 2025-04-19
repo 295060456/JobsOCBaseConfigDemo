@@ -13,17 +13,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsAlertModel : BaseModel
 /// UIAlertController
-@property(nonatomic,copy)NSString *alertControllerTitle;
-@property(nonatomic,copy)NSString *message;
-@property(nonatomic,assign)UIAlertControllerStyle preferredStyle;/// UIAlertControllerStyleAlert
+Prop_copy()NSString *alertControllerTitle;
+Prop_copy()NSString *message;
+Prop_assign()UIAlertControllerStyle preferredStyle;/// UIAlertControllerStyleAlert
 /// UIAlertAction（普通的）
-@property(nonatomic,copy)NSString *alertActionTitle;
-@property(nonatomic,assign)UIAlertActionStyle alertActionStyle;/// UIAlertActionStyleDefault
-@property(nonatomic,copy)jobsByAlertActionBlock alertActionBlock;
+Prop_copy()NSString *alertActionTitle;
+Prop_assign()UIAlertActionStyle alertActionStyle;/// UIAlertActionStyleDefault
+Prop_copy()jobsByAlertActionBlock alertActionBlock;
 /// UIAlertAction（取消）
-@property(nonatomic,copy)NSString *cancelAlertActionTitle;
-@property(nonatomic,assign)UIAlertActionStyle cancelAlertActionStyle;/// UIAlertActionStyleCancel
-@property(nonatomic,copy)jobsByAlertActionBlock cancelAlertActionBlock;
+Prop_copy()NSString *cancelAlertActionTitle;
+Prop_assign()UIAlertActionStyle cancelAlertActionStyle;/// UIAlertActionStyleCancel
+Prop_copy()jobsByAlertActionBlock cancelAlertActionBlock;
 
 @end
 

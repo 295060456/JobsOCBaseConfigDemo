@@ -10,11 +10,11 @@
 
 @interface ZLGestureLockView ()
 
-@property(nonatomic,copy)NSMutableArray *selectBtns;
-@property(nonatomic,copy)NSMutableArray *errorBtns;//错误的按钮数组
-@property(nonatomic,assign)BOOL finished;//是否完成
-@property(nonatomic,assign)CGPoint currentPoint;//当前触摸点
-@property(nonatomic,assign)ResultKindType resultType;//学生端结果
+Prop_copy()NSMutableArray *selectBtns;
+Prop_copy()NSMutableArray *errorBtns;//错误的按钮数组
+Prop_assign()BOOL finished;//是否完成
+Prop_assign()CGPoint currentPoint;//当前触摸点
+Prop_assign()ResultKindType resultType;//学生端结果
 
 @end
 

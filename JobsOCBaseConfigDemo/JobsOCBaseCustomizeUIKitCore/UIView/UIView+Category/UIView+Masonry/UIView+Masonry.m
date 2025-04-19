@@ -70,7 +70,7 @@
         }];
     }];
 }
-#pragma mark —— @property(nonatomic,copy)jobsByMASConstraintMakerBlock masonryBlock;
+#pragma mark —— Prop_copy()jobsByMASConstraintMakerBlock masonryBlock;
 JobsKey(_masonryBlock)
 @dynamic masonryBlock;
 -(jobsByMASConstraintMakerBlock)masonryBlock{

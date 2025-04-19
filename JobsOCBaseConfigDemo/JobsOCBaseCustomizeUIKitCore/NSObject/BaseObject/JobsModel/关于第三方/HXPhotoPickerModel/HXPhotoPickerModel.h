@@ -20,14 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HXPhotoPickerModel : NSObject
 
-@property(nonatomic,strong)__kindof UIViewController *vc;
-@property(nonatomic,strong)HXCustomCameraViewController *customCameraVC;
-@property(nonatomic,strong)HXPhotoManager *photoManager;
-@property(nonatomic,strong)HXPhotoModel *photoModel;
-@property(nonatomic,assign)BOOL isOriginal;
-@property(nonatomic,strong)NSArray<HXPhotoModel *> *allList;
-@property(nonatomic,strong)NSArray<HXPhotoModel *> *photoList;
-@property(nonatomic,strong)NSArray<HXPhotoModel *> *videoList;
+Prop_strong()__kindof UIViewController *vc;
+Prop_strong()HXCustomCameraViewController *customCameraVC;
+Prop_strong()HXPhotoManager *photoManager;
+Prop_strong()HXPhotoModel *photoModel;
+Prop_assign()BOOL isOriginal;
+Prop_strong()NSArray<HXPhotoModel *> *allList;
+Prop_strong()NSArray<HXPhotoModel *> *photoList;
+Prop_strong()NSArray<HXPhotoModel *> *videoList;
 
 @end
 

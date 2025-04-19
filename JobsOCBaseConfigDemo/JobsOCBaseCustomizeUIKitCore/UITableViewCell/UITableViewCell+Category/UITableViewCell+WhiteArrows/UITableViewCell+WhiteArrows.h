@@ -23,8 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 自定义右侧小箭头图标
 @interface UITableViewCell (WhiteArrows)
 
-@property(nonatomic,strong)UIImage *img;
-@property(nonatomic,assign)CGSize arrows_size;
+Prop_strong()UIImage *img;
+Prop_assign()CGSize arrows_size;
 /// 必须 self.accessoryType = UITableViewCellAccessoryDisclosureIndicator; 打开后才可以启用
 -(void)customAccessoryView:(jobsByIDBlock _Nullable)customAccessoryViewBlock;
 

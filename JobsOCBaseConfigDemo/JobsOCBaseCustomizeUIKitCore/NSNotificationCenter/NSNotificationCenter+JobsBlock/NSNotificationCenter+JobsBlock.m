@@ -21,7 +21,7 @@
                                         object:nil];
     };
 }
-#pragma mark —— @property(nonatomic,copy)jobsByNotificationBlock jobsNotificationBlock;
+#pragma mark —— Prop_copy()jobsByNotificationBlock jobsNotificationBlock;
 -(jobsByNotificationBlock _Nonnull)jobsNotificationBlock{
     return objc_getAssociatedObject(self, _cmd);
 }

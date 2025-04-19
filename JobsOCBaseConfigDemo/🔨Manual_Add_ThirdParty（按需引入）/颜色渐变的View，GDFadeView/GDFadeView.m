@@ -10,9 +10,9 @@
 
 @interface GDFadeView ()
 
-@property(nonatomic,strong)UILabel *backLabel;
-@property(nonatomic,strong)UILabel *frontLabel;
-@property(nonatomic,strong)CAGradientLayer *cagradientLayer;
+Prop_strong()UILabel *backLabel;
+Prop_strong()UILabel *frontLabel;
+Prop_strong()CAGradientLayer *cagradientLayer;
 
 @end
 

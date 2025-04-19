@@ -23,11 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用于实现右下角的字符数量监控
 @interface UITextView (IndicateWordLimit)
 
-@property(nonatomic,strong)UILabel *indicateWordLimitLab;
-@property(nonatomic,assign)NSInteger currentWordNum;//当前输入的字符数
-@property(nonatomic,assign)NSInteger wordLimitNum;//字符输入上限
-@property(nonatomic,assign)CGFloat offsetX;
-@property(nonatomic,assign)CGFloat offsetY;
+Prop_strong()UILabel *indicateWordLimitLab;
+Prop_assign()NSInteger currentWordNum;//当前输入的字符数
+Prop_assign()NSInteger wordLimitNum;//字符输入上限
+Prop_assign()CGFloat offsetX;
+Prop_assign()CGFloat offsetY;
 
 @end
 

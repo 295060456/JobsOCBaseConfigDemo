@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RequestTool : NSObject
 
-@property(nonatomic,assign)HTTPRequestHeaderLanguageType languageType;
+Prop_assign()HTTPRequestHeaderLanguageType languageType;
 
 +(jobsByRequestToolBlock _Nullable)setupPublicParametersBy;
 

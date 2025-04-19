@@ -9,8 +9,8 @@
 
 @interface JobsAppTools ()
 
-@property(nonatomic,strong)UIWindow *appDelegateWindow;
-@property(nonatomic,strong)UIWindow *sceneDelegateWindow;
+Prop_strong()UIWindow *appDelegateWindow;
+Prop_strong()UIWindow *sceneDelegateWindow;
 
 @end
 

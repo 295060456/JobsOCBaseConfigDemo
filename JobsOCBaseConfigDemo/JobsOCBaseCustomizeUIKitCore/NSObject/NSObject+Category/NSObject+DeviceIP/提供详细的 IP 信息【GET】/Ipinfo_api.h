@@ -16,16 +16,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IpinfoModel : NSObject
 
-@property(nonatomic,copy)NSString *ip;
-@property(nonatomic,copy)NSString *hostname;
-@property(nonatomic,copy)NSString *city;
-@property(nonatomic,copy)NSString *region;
-@property(nonatomic,copy)NSString *country;
-@property(nonatomic,copy)NSString *loc;
-@property(nonatomic,copy)NSString *org;
-@property(nonatomic,copy)NSString *postal;
-@property(nonatomic,copy)NSString *timezone;
-@property(nonatomic,copy)NSString *readme;
+Prop_copy()NSString *ip;
+Prop_copy()NSString *hostname;
+Prop_copy()NSString *city;
+Prop_copy()NSString *region;
+Prop_copy()NSString *country;
+Prop_copy()NSString *loc;
+Prop_copy()NSString *org;
+Prop_copy()NSString *postal;
+Prop_copy()NSString *timezone;
+Prop_copy()NSString *readme;
 
 @end
 

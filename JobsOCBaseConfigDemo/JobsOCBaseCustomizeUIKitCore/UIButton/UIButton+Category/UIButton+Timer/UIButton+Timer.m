@@ -335,7 +335,7 @@
         self.timerManager.nsTimeDestroy();
     };
 }
-#pragma mark —— @property(nonatomic,strong)ButtonTimerModel *btnTimerConfig;
+#pragma mark —— Prop_strong()ButtonTimerModel *btnTimerConfig;
 JobsKey(_btnTimerConfig)
 @dynamic btnTimerConfig;
 -(ButtonTimerConfigModel *)btnTimerConfig{

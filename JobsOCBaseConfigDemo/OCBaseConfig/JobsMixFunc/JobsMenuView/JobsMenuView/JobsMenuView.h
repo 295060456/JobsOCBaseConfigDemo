@@ -12,20 +12,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsMenuView : BaseView
 /// Data
-@property(nonatomic,copy)NSMutableArray <NSString *>*titleMutArr;
-@property(nonatomic,copy)NSMutableArray <__kindof UIView *>*subViewMutArr;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*select_titleBgImageMutArr;
-@property(nonatomic,copy)NSMutableArray <UIImage *>*normal_titleImageMutArr;
-@property(nonatomic,copy)NSMutableArray <NSNumber *>*imagePaddings;
+Prop_copy()NSMutableArray <NSString *>*titleMutArr;
+Prop_copy()NSMutableArray <__kindof UIView *>*subViewMutArr;
+Prop_copy()NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
+Prop_copy()NSMutableArray <UIImage *>*select_titleBgImageMutArr;
+Prop_copy()NSMutableArray <UIImage *>*normal_titleImageMutArr;
+Prop_copy()NSMutableArray <NSNumber *>*imagePaddings;
 
-@property(nonatomic,strong)JobsLinkageMenuViewConfig *linkageMenuViewConfig;
+Prop_strong()JobsLinkageMenuViewConfig *linkageMenuViewConfig;
 
 @end
 
 NS_ASSUME_NONNULL_END
 /**
- @property(nonatomic,strong)JobsLinkageMenuView *menuView;
+ Prop_strong()JobsLinkageMenuView *menuView;
  
  -(JobsLinkageMenuView *)menuView{
      if(!_menuView){

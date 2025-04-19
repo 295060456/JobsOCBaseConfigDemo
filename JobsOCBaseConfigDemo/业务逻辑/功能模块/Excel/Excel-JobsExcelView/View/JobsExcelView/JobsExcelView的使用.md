@@ -3,8 +3,8 @@
 ## 1、属性定义
 
 ```objective-c
-@property(nonatomic,strong)JobsExcelConfigureViewModel *excelData;
-@property(nonatomic,strong)JobsExcelView *excelView;
+Prop_strong()JobsExcelConfigureViewModel *excelData;
+Prop_strong()JobsExcelView *excelView;
 ```
 
 ## 2、UI实现

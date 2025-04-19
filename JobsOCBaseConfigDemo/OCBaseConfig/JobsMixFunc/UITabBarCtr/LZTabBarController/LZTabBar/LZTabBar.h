@@ -13,8 +13,8 @@
 
 @interface LZTabBar : UIView<LZTabBarItemDelegate>
 
-@property(nonatomic,strong)NSArray<LZTabBarItem *> *items;
-@property(nonatomic,assign)id <LZTabBarDelegate> delegate;
+Prop_strong()NSArray<LZTabBarItem *> *items;
+Prop_assign()id <LZTabBarDelegate> delegate;
 
 @end
 

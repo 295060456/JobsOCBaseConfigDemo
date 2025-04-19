@@ -9,7 +9,7 @@
 
 @interface TextCell ()
 
-@property(nonatomic,strong)UIView *bgView;
+Prop_strong()UIView *bgView;
 
 @end
 

@@ -8,7 +8,7 @@
 #import "UIScrollView+JobsEmptyData.h"
 
 @implementation UIScrollView (JobsEmptyData)
-#pragma mark —— @property(nonatomic,strong)UITextModel *textModelEmptyData;
+#pragma mark —— Prop_strong()UITextModel *textModelEmptyData;
 JobsKey(_textModelEmptyData)
 @dynamic textModelEmptyData;
 -(UIButtonModel *)textModelEmptyData{
@@ -18,7 +18,7 @@ JobsKey(_textModelEmptyData)
 -(void)setTextModelEmptyData:(UITextModel *)textModelEmptyData{
     Jobs_setAssociatedRETAIN_NONATOMIC(_textModelEmptyData, textModelEmptyData)
 }
-#pragma mark —— @property(nonatomic,strong)UIButtonModel *buttonModelEmptyData;
+#pragma mark —— Prop_strong()UIButtonModel *buttonModelEmptyData;
 JobsKey(_buttonModelEmptyData)
 @dynamic buttonModelEmptyData;
 -(UIButtonModel *)buttonModelEmptyData{

@@ -71,9 +71,9 @@ NS_ASSUME_NONNULL_END
 
      @interface DDMyVipModel : NSObject
 
-     @property(nonatomic,copy)NSString *msg;
-     @property(nonatomic,strong)NSArray <DDMyVipListModel *>*data;
-     @property(nonatomic,copy)NSString *code;
+     Prop_copy()NSString *msg;
+     Prop_strong()NSArray <DDMyVipListModel *>*data;
+     Prop_copy()NSString *code;
 
      @end
 

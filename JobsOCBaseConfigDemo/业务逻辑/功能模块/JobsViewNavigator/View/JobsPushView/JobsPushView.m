@@ -9,10 +9,10 @@
 
 @interface JobsPushView ()
 
-@property(nonatomic,strong)BaseButton *push_btn;
-@property(nonatomic,strong)BaseButton *pop_btn;
+Prop_strong()BaseButton *push_btn;
+Prop_strong()BaseButton *pop_btn;
 
-@property(nonatomic,strong)JobsPushView *pushView;
+Prop_strong()JobsPushView *pushView;
 
 @end
 

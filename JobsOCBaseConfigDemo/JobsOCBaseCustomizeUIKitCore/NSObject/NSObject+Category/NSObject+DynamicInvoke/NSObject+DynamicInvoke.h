@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (DynamicInvoke)
 
-@property(nonatomic,strong)JobsSEL_IMP *selImp;
-@property(nonatomic,copy)NSMutableDictionary <NSString *, NSValue *>*methodCache;/// 定义一个全局字典来缓存已经添加的方法
+Prop_strong()JobsSEL_IMP *selImp;
+Prop_copy()NSMutableDictionary <NSString *, NSValue *>*methodCache;/// 定义一个全局字典来缓存已经添加的方法
 #pragma mark —— 参数 和 相关调用
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
 /// @param targetObj 靶点，方法在哪里

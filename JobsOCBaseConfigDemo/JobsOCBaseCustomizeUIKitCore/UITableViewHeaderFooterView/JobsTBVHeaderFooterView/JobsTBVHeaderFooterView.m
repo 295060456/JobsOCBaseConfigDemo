@@ -9,8 +9,8 @@
 
 @interface JobsTBVHeaderFooterView ()
 /// UI
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)BaseButton *subTitleBtn;
+Prop_strong()UILabel *titleLab;
+Prop_strong()BaseButton *subTitleBtn;
 
 @end
 

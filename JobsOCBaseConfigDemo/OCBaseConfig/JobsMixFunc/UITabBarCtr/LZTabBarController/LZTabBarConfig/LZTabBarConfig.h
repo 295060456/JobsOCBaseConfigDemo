@@ -13,19 +13,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LZTabBarConfig : NSObject
 /// 控制器数组, 必须设置
-@property(nonatomic,copy)NSArray *viewControllers;
+Prop_copy()NSArray *viewControllers;
 /// item标题数组, 选择设置
-@property(nonatomic,copy)NSArray *titles;
+Prop_copy()NSArray *titles;
 /// 是否是导航, 默认 YES
-@property(nonatomic,assign)BOOL isNavigation;
+Prop_assign()BOOL isNavigation;
 /// 选中状态下的图片数组
-@property(nonatomic,copy)NSArray *selectedImages;
+Prop_copy()NSArray *selectedImages;
 /// 正常状态下的图片数组
-@property(nonatomic,copy)NSArray *normalImages;
+Prop_copy()NSArray *normalImages;
 /// 选中状态下的标题颜色 默认: red
-@property(nonatomic,strong)UIColor *selectedColor;
+Prop_strong()UIColor *selectedColor;
 /// 正常状态下的标题颜色 默认: gray
-@property(nonatomic,strong)UIColor *normalColor;
+Prop_strong()UIColor *normalColor;
 
 @end
 

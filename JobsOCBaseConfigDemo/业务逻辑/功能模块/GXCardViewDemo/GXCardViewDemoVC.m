@@ -10,8 +10,8 @@
 @interface GXCardViewDemoVC ()
 /// UI
 //@property(nonatomic,weak)IBOutlet GXCardView *cardView;
-@property(nonatomic,strong)GXCardView *cardView;
-@property(nonatomic,assign)NSInteger cellCount;
+Prop_strong()GXCardView *cardView;
+Prop_assign()NSInteger cellCount;
 
 @end
 

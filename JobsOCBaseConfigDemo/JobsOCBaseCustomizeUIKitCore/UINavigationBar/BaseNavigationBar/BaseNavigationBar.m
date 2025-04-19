@@ -9,7 +9,7 @@
 
 @interface BaseNavigationBar ()
 
-@property(nonatomic,copy)jobsByIDBlock baseNavigationBarBlock;
+Prop_copy()jobsByIDBlock baseNavigationBarBlock;
 
 @end
 

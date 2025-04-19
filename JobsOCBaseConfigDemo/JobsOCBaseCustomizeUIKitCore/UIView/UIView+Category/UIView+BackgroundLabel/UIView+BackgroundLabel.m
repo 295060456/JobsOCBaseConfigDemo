@@ -8,7 +8,7 @@
 #import "UIView+BackgroundLabel.h"
 
 @implementation UIView (BackgroundLabel)
-#pragma mark —— @property(nonatomic,strong)UILabel *backgroundLabel;
+#pragma mark —— Prop_strong()UILabel *backgroundLabel;
 JobsKey(_backgroundLabel)
 @dynamic backgroundLabel;
 -(UILabel *)backgroundLabel{

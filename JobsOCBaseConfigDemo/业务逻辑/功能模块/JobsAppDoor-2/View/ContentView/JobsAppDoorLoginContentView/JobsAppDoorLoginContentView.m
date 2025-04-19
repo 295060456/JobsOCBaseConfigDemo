@@ -10,15 +10,15 @@
 
 @interface JobsAppDoorLoginContentView ()
 /// UI
-@property(nonatomic,strong)BaseButton *toRegisterBtn;/// 去注册
-@property(nonatomic,strong)UILabel *titleLab;/// 标题
-@property(nonatomic,strong)BaseButton *abandonLoginBtn;/// 返回首页按钮
-@property(nonatomic,strong)BaseButton *sendBtn;/// 登录
-@property(nonatomic,strong)BaseButton *storeCodeBtn;/// 记住密码
-@property(nonatomic,strong)BaseButton *findCodeBtn;/// 忘记密码
+Prop_strong()BaseButton *toRegisterBtn;/// 去注册
+Prop_strong()UILabel *titleLab;/// 标题
+Prop_strong()BaseButton *abandonLoginBtn;/// 返回首页按钮
+Prop_strong()BaseButton *sendBtn;/// 登录
+Prop_strong()BaseButton *storeCodeBtn;/// 记住密码
+Prop_strong()BaseButton *findCodeBtn;/// 忘记密码
 /// Data
-@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
-@property(nonatomic,copy)NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
+Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
+Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
 
 @end
 

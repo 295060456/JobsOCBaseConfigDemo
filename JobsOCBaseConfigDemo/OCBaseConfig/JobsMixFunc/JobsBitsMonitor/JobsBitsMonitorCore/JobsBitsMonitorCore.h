@@ -23,8 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy,readonly)NSString *downloadNetworkSpeed;
 @property(nonatomic,copy,readonly)NSString *uploadNetworkSpeed;
-@property(nonatomic,strong)NSTimerManager *nsTimerManager;
-@property(nonatomic,assign)BitsMonitorRunMode bitsMonitorRunMode;/// 默认自启动模式
+Prop_strong()NSTimerManager *nsTimerManager;
+Prop_assign()BitsMonitorRunMode bitsMonitorRunMode;/// 默认自启动模式
 
 -(void)start;///【手动】开始监听
 -(void)stop;///【手动】停止监听

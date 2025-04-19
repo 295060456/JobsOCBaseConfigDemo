@@ -12,12 +12,12 @@
 
 @interface RYCuteView ()
 
-@property(nonatomic,assign)CGFloat mHeight;
-@property(nonatomic,assign)CGFloat curveX;  // r5点x坐标
-@property(nonatomic,assign)CGFloat curveY;  // r5点y坐标
-@property(nonatomic,strong)UIView *curveView;   // r5红点
-@property(nonatomic,strong)CAShapeLayer *shapeLayer;
-@property(nonatomic,assign)BOOL isAnimating;
+Prop_assign()CGFloat mHeight;
+Prop_assign()CGFloat curveX;  // r5点x坐标
+Prop_assign()CGFloat curveY;  // r5点y坐标
+Prop_strong()UIView *curveView;   // r5红点
+Prop_strong()CAShapeLayer *shapeLayer;
+Prop_assign()BOOL isAnimating;
 
 @end
 

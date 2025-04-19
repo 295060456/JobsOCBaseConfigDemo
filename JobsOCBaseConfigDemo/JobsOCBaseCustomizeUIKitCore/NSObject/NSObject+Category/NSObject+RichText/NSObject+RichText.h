@@ -74,12 +74,12 @@ NS_ASSUME_NONNULL_END
  2、使用 UITextView 实现链接点击跳转的效果;UILabel可以实现效果，但是不支持部分文字点击效果。（支持方法比较麻烦）
  
  // 关于富文本
- @property(nonatomic,strong)UILabel *connectionTipsLab;
- @property(nonatomic,strong)UITextView *connectionTipsTV;
+ Prop_strong()UILabel *connectionTipsLab;
+ Prop_strong()UITextView *connectionTipsTV;
  
- @property(nonatomic,strong)NSMutableAttributedString *attributedStringData;
- @property(nonatomic,copy)NSMutableArray <NSString *>*richTextMutArr;
- @property(nonatomic,copy)NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+ Prop_strong()NSMutableAttributedString *attributedStringData;
+ Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
+ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
  
  -(UILabel *)connectionTipsLab{
      if (!_connectionTipsLab) {

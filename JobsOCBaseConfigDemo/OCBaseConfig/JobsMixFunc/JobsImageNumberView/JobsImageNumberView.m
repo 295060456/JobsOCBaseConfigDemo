@@ -9,9 +9,9 @@
 
 @interface JobsImageNumberView ()
 /// UI
-//@property(nonatomic,strong)BaseCollectionView *collectionView;
+//Prop_strong()BaseCollectionView *collectionView;
 /// Data
-@property(nonatomic,strong)NSArray <UIImage *>*dataMutArr;
+Prop_strong()NSArray <UIImage *>*dataMutArr;
 
 @end
 

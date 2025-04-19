@@ -21,8 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITextView (Extend)
 
-@property(nonatomic,copy)NSString *replacementText;
-@property(nonatomic,copy)NSString *resStr;
+Prop_copy()NSString *replacementText;
+Prop_copy()NSString *resStr;
 
 -(RACDisposable *)jobsTextViewSubscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock;
 -(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBOOLByIDBlock _Nullable)filterBlock

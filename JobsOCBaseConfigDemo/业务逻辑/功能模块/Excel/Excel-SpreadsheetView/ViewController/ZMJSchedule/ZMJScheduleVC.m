@@ -9,14 +9,14 @@
 
 @interface ZMJScheduleVC ()
 
-@property(nonatomic,strong)SpreadsheetView *spreadsheetView;
-@property(nonatomic,copy)NSMutableArray<NSString *> *dates;
-@property(nonatomic,copy)NSMutableArray<NSString *> *days;
-@property(nonatomic,copy)NSMutableArray<UIColor *>  *dayColors;
-@property(nonatomic,copy)NSMutableArray<NSString *> *hours;
-@property(nonatomic,copy)NSMutableArray<NSArray<NSString *> *> *datas;
-@property(nonatomic,strong)UIColor *evenRowColor; //偶数
-@property(nonatomic,strong)UIColor *oddRowColor;  //奇数
+Prop_strong()SpreadsheetView *spreadsheetView;
+Prop_copy()NSMutableArray<NSString *> *dates;
+Prop_copy()NSMutableArray<NSString *> *days;
+Prop_copy()NSMutableArray<UIColor *>  *dayColors;
+Prop_copy()NSMutableArray<NSString *> *hours;
+Prop_copy()NSMutableArray<NSArray<NSString *> *> *datas;
+Prop_strong()UIColor *evenRowColor; //偶数
+Prop_strong()UIColor *oddRowColor;  //奇数
 
 @end
 

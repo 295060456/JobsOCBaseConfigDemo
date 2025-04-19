@@ -10,11 +10,11 @@
 
 @interface JobsTopViewItem()
 /// UI
-@property(nonatomic,strong)UIBezierPath *linePath;
-@property(nonatomic,strong)CAShapeLayer *lineLayer;
+Prop_strong()UIBezierPath *linePath;
+Prop_strong()CAShapeLayer *lineLayer;
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *viewModel_;
-@property(nonatomic,assign)CGSize size;
+Prop_strong()JobsExcelConfigureViewModel *viewModel_;
+Prop_assign()CGSize size;
 
 @end
 

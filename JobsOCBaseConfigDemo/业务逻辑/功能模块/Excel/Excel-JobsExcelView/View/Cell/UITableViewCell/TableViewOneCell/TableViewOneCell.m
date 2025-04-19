@@ -10,12 +10,12 @@
 
 @interface TableViewOneCell()
 /// UI
-@property(nonatomic,strong)UIBezierPath *linePath;
-@property(nonatomic,strong)CAShapeLayer *lineLayer;
-@property(nonatomic,strong)UIImageView *bgImageView_;
+Prop_strong()UIBezierPath *linePath;
+Prop_strong()CAShapeLayer *lineLayer;
+Prop_strong()UIImageView *bgImageView_;
 /// Data
-@property(nonatomic,strong)JobsExcelConfigureViewModel *excelConfigureData;
-@property(nonatomic,assign)CGSize size;
+Prop_strong()JobsExcelConfigureViewModel *excelConfigureData;
+Prop_assign()CGSize size;
 
 @end
 

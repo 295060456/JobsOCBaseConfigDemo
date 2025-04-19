@@ -27,10 +27,10 @@ UNUserNotificationCenterDelegate,
 BaseProtocol
 >
 /// UI
-@property(nonatomic,strong)UIWindow *window;/// 仅仅为了iOS 13 版本向下兼容而存在
+Prop_strong()UIWindow *window;/// 仅仅为了iOS 13 版本向下兼容而存在
 /// Data
 @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
-@property(nonatomic,assign)BOOL allowOrentitaionRotation;
+Prop_assign()BOOL allowOrentitaionRotation;
 
 -(void)saveContext;
 

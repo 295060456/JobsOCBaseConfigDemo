@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsShakeBtn : UIButton
 
 @property(nonatomic,assign,getter=isShaking)BOOL shaking;// 是否抖动
-@property(nonatomic,strong)UIImageView *iconBtn;// 右上角的按钮
+Prop_strong()UIImageView *iconBtn;// 右上角的按钮
 
 @end
 

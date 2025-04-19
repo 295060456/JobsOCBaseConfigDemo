@@ -9,11 +9,11 @@
 
 @interface JobsSearchDataCVCell ()
 
-@property(nonatomic,strong)UILabel *serialNumLab;
-@property(nonatomic,strong)UILabel *contentLab;
-@property(nonatomic,copy)NSString *serialStr;
-@property(nonatomic,copy)NSString *contentStr;
-@property(nonatomic,strong)UIColor *serialNumLabBGCor;
+Prop_strong()UILabel *serialNumLab;
+Prop_strong()UILabel *contentLab;
+Prop_copy()NSString *serialStr;
+Prop_copy()NSString *contentStr;
+Prop_strong()UIColor *serialNumLabBGCor;
 
 @end
 

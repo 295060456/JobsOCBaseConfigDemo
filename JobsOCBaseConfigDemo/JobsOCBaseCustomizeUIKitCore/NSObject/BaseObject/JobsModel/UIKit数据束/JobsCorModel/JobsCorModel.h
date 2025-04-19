@@ -13,16 +13,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsCorModel : BaseModel
 
-@property(nonatomic,assign)CGFloat red;
-@property(nonatomic,assign)CGFloat green;
-@property(nonatomic,assign)CGFloat blue;
-@property(nonatomic,assign)CGFloat alpha;
+Prop_assign()CGFloat red;
+Prop_assign()CGFloat green;
+Prop_assign()CGFloat blue;
+Prop_assign()CGFloat alpha;
 
-@property(nonatomic,assign)CGFloat hue;
-@property(nonatomic,assign)CGFloat saturation;
-@property(nonatomic,assign)CGFloat brightness;
+Prop_assign()CGFloat hue;
+Prop_assign()CGFloat saturation;
+Prop_assign()CGFloat brightness;
 
-@property(nonatomic,copy)NSString *corStr; /// 十六进制字符串
+Prop_copy()NSString *corStr; /// 十六进制字符串
 
 @end
 

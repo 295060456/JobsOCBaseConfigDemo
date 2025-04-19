@@ -38,9 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 贞动画 */
 @interface TLFrameAnimation : NSObject <TLAnimationProtocol>
 
-@property(nonatomic,strong)NSArray <CIImage *>*images;
+Prop_strong()NSArray <CIImage *>*images;
 /// 是否需要播放烟花效果，默认NO
-@property(nonatomic,assign)BOOL isPlayFireworksAnimation;
+Prop_assign()BOOL isPlayFireworksAnimation;
 
 @end
 
@@ -54,9 +54,9 @@ NS_ASSUME_NONNULL_BEGIN
  * UIViewAnimationOptionTransitionCurlUp          = 5,
  * UIViewAnimationOptionTransitionCurlDown        = 6,
  */
-@property(nonatomic,assign)NSUInteger direction;
+Prop_assign()NSUInteger direction;
 /// 不播放撤销选择动画， default ： NO
-@property(nonatomic,assign)BOOL disableDeselectAnimation;
+Prop_assign()BOOL disableDeselectAnimation;
 
 @end
 

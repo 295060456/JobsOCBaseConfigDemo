@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsMembersSubsBaseVC : BaseViewController
 
-@property(nonatomic,strong)UILabel *topLineLab;
+Prop_strong()UILabel *topLineLab;
 
 #pragma mark —— 一些公有方法
 -(CGSize)getTopLineLabSize;

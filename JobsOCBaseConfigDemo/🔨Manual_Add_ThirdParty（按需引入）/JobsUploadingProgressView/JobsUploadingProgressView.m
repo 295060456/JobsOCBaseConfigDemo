@@ -9,16 +9,16 @@
 
 @interface JobsUploadingProgressView()
 /// UI
-@property(nonatomic,strong)UIBezierPath *bezier;
-@property(nonatomic,strong)UILabel *refreshLabel;
-@property(nonatomic,strong)UILabel *subrefreshLabel;
-@property(nonatomic,strong)UIImageView *imgeV;
-@property(nonatomic,strong)UIView *backView;
-@property(nonatomic,strong)UIView *shapLayerView;
-@property(nonatomic,strong)CAShapeLayer *shapLayer;
-@property(nonatomic,strong)CAKeyframeAnimation *anim;
+Prop_strong()UIBezierPath *bezier;
+Prop_strong()UILabel *refreshLabel;
+Prop_strong()UILabel *subrefreshLabel;
+Prop_strong()UIImageView *imgeV;
+Prop_strong()UIView *backView;
+Prop_strong()UIView *shapLayerView;
+Prop_strong()CAShapeLayer *shapLayer;
+Prop_strong()CAKeyframeAnimation *anim;
 /// Data
-@property(nonatomic,strong)NSTimerManager *nsTimerManager;
+Prop_strong()NSTimerManager *nsTimerManager;
 
 @end
 

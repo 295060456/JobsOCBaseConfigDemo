@@ -10,12 +10,12 @@
 
 @interface CountdownView : UIView
 
-@property(nonatomic,assign)NSInteger time;
-@property(nonatomic,copy)NSString *str;
-@property(nonatomic,strong)UIFont *font;
-@property(nonatomic,strong)UIColor *textColor;
+Prop_assign()NSInteger time;
+Prop_copy()NSString *str;
+Prop_strong()UIFont *font;
+Prop_strong()UIColor *textColor;
 
-@property(nonatomic,copy)void (^blockTapAction)(void);
-@property(nonatomic,copy)void (^blockAnimationFinishedAction)(void);
+Prop_copy()void (^blockTapAction)(void);
+Prop_copy()void (^blockAnimationFinishedAction)(void);
 
 @end

@@ -9,10 +9,10 @@
 
 @interface JobsSearchBar ()
 /// UI
-@property(nonatomic,strong)ZYTextField *textField;
-@property(nonatomic,strong)BaseButton *cancelBtn;
-@property(nonatomic,strong)UIImageView *imgView;
-@property(nonatomic,strong)JobsAdNoticeView *adNoticeView;
+Prop_strong()ZYTextField *textField;
+Prop_strong()BaseButton *cancelBtn;
+Prop_strong()UIImageView *imgView;
+Prop_strong()JobsAdNoticeView *adNoticeView;
 
 @end
 

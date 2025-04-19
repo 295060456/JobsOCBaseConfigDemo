@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsParagraphStyleModel : NSObject
 
-@property(nonatomic,strong)id value;
-@property(nonatomic,assign)NSRange range;
+Prop_strong()id value;
+Prop_assign()NSRange range;
 
 @end
 

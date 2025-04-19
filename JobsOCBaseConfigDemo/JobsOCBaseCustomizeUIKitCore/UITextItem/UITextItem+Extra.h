@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITextItem (Extra)
 
-@property(nonatomic,strong)UITextView *textView;
+Prop_strong()UITextView *textView;
 
 @end
 

@@ -10,8 +10,8 @@
 
 @interface WGradientProgressView ()
 
-@property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UIImageView *imgV;
+Prop_strong()UILabel *titleLab;
+Prop_strong()UIImageView *imgV;
 
 @end
 

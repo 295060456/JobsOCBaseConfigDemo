@@ -12,8 +12,8 @@
 
 @interface HQTextField ()
 
-@property(nonatomic,strong)CAShapeLayer *warnLayer;
-@property(nonatomic,strong)CABasicAnimation *opacityAnimation;
+Prop_strong()CAShapeLayer *warnLayer;
+Prop_strong()CABasicAnimation *opacityAnimation;
 
 @end
 

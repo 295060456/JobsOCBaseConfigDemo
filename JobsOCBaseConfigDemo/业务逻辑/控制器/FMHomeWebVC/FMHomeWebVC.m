@@ -16,9 +16,9 @@
  */
 @interface FMHomeWebVC ()
 
-@property(nonatomic,strong)UIImageView *launchImageView; /// 启动画面
-@property(nonatomic,strong)UIActivityIndicatorView *loadingIndicator; /// 加载指示器
-@property(nonatomic,copy)NSString *urlString;
+Prop_strong()UIImageView *launchImageView; /// 启动画面
+Prop_strong()UIActivityIndicatorView *loadingIndicator; /// 加载指示器
+Prop_copy()NSString *urlString;
 
 @end
 

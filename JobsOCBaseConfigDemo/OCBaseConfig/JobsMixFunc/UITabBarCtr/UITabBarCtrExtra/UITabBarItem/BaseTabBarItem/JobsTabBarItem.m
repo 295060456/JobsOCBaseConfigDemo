@@ -9,7 +9,7 @@
 
 @interface JobsTabBarItem ()
 
-@property(nonatomic,strong)JobsTabBarItemConfig *tabBarControllerConfig;
+Prop_strong()JobsTabBarItemConfig *tabBarControllerConfig;
 
 @end
 

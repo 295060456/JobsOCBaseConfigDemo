@@ -29,21 +29,21 @@ NS_ASSUME_NONNULL_BEGIN
 // 自定义 BaseNavigationBar
 @interface UIViewController (BaseNavigationBar)
 
-@property(nonatomic,strong)BaseNavigationBar *navigationBar;
-@property(nonatomic,strong)UIBarButtonItem *leftBarButtonItem_back;
-@property(nonatomic,strong)UINavigationItem *navItem;
-@property(nonatomic,strong)UIColor *bgCor;
-@property(nonatomic,assign)CGFloat jobsNavigationBarHeight;
-@property(nonatomic,assign)BOOL isHiddenNavigationBar;
-@property(nonatomic,assign)BOOL isBarTranslucent;
-@property(nonatomic,strong)UIColor *tintColor;
-@property(nonatomic,strong)UIColor *barTintColor;
-@property(nonatomic,copy)NSString *title;
+Prop_strong()BaseNavigationBar *navigationBar;
+Prop_strong()UIBarButtonItem *leftBarButtonItem_back;
+Prop_strong()UINavigationItem *navItem;
+Prop_strong()UIColor *bgCor;
+Prop_assign()CGFloat jobsNavigationBarHeight;
+Prop_assign()BOOL isHiddenNavigationBar;
+Prop_assign()BOOL isBarTranslucent;
+Prop_strong()UIColor *tintColor;
+Prop_strong()UIColor *barTintColor;
+Prop_copy()NSString *title;
 //titleTextAttributes
-@property(nonatomic,strong)NSShadow *shadow;
-@property(nonatomic,strong)UIColor *shadowCor;
-@property(nonatomic,strong)UIColor *foregroundColorAttributeNameCor;
-@property(nonatomic,strong)UIFont *fontAttributeName;
+Prop_strong()NSShadow *shadow;
+Prop_strong()UIColor *shadowCor;
+Prop_strong()UIColor *foregroundColorAttributeNameCor;
+Prop_strong()UIFont *fontAttributeName;
 
 @end
 

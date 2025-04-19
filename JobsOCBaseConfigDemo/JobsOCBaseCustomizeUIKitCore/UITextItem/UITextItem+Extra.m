@@ -9,7 +9,7 @@
 
 @implementation UITextItem (Extra)
 
-#pragma mark —— @property(nonatomic,strong)UITextView *textView;
+#pragma mark —— Prop_strong()UITextView *textView;
 JobsKey(_textView)
 @dynamic textView;
 -(UITextView *)textView{

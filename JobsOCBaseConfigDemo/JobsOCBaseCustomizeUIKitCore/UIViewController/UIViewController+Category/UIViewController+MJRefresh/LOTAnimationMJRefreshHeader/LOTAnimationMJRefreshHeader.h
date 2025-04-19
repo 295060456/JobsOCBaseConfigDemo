@@ -53,8 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 下拉刷新Lottie动画
 @interface LOTAnimationMJRefreshHeader : MJRefreshGifHeader
 
-@property(nonatomic,strong)MJRefreshConfigModel *refreshConfigModel;
-@property(nonatomic,assign)CGSize lOTAnimationViewSize;
+Prop_strong()MJRefreshConfigModel *refreshConfigModel;
+Prop_assign()CGSize lOTAnimationViewSize;
 
 @end
 

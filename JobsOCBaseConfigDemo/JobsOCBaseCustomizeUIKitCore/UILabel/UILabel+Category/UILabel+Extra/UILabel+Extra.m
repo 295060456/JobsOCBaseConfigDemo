@@ -78,7 +78,7 @@
         }
     };
 }
-#pragma mark —— @property(nonatomic,assign)UILabelShowingType labelShowingType;
+#pragma mark —— Prop_assign()UILabelShowingType labelShowingType;
 JobsKey(_labelShowingType)
 @dynamic labelShowingType;
 -(UILabelShowingType)labelShowingType{
@@ -88,7 +88,7 @@ JobsKey(_labelShowingType)
 -(void)setLabelShowingType:(UILabelShowingType)labelShowingType{
     Jobs_setAssociatedRETAIN_NONATOMIC(_labelShowingType, @(labelShowingType))
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat value;
+#pragma mark —— Prop_assign()CGFloat value;
 JobsKey(_value)
 @dynamic value;
 -(CGFloat)value{
@@ -98,7 +98,7 @@ JobsKey(_value)
 -(void)setValue:(CGFloat)value{
     Jobs_setAssociatedRETAIN_NONATOMIC(_value, @(value));
 }
-#pragma mark —— @property(nonatomic,assign)CGFloat lastValue;
+#pragma mark —— Prop_assign()CGFloat lastValue;
 JobsKey(_lastValue)
 @dynamic lastValue;
 -(CGFloat)lastValue{
@@ -108,7 +108,7 @@ JobsKey(_lastValue)
 -(void)setLastValue:(CGFloat)lastValue{
     Jobs_setAssociatedRETAIN_NONATOMIC(_lastValue, @(lastValue));
 }
-#pragma mark —— @property(nonatomic,strong)CAShapeLayer *shapeLayer;
+#pragma mark —— Prop_strong()CAShapeLayer *shapeLayer;
 JobsKey(_shapeLayer)
 @dynamic shapeLayer;
 -(CAShapeLayer *)shapeLayer{
@@ -126,7 +126,7 @@ JobsKey(_shapeLayer)
 -(void)setShapeLayer:(CAShapeLayer *)shapeLayer{
     Jobs_setAssociatedRETAIN_NONATOMIC(_shapeLayer, shapeLayer);
 }
-#pragma mark —— @property(nonatomic,assign)TransformLayerDirectionType transformLayerDirectionType;
+#pragma mark —— Prop_assign()TransformLayerDirectionType transformLayerDirectionType;
 JobsKey(_transformLayerDirectionType)
 @dynamic transformLayerDirectionType;
 -(TransformLayerDirectionType)transformLayerDirectionType{

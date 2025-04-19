@@ -10,7 +10,7 @@
 static const CGFloat OffsetBetweenStateLabelAndAnimationView = 5;//StateLabel 和 AnimationView 之间的间距
 @interface LOTAnimationMJRefreshHeader ()
 
-@property(nonatomic,strong)LOTAnimationView *animationView;
+Prop_strong()LOTAnimationView *animationView;
 
 @end
 

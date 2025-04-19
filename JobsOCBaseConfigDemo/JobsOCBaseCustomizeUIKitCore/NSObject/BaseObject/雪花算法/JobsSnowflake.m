@@ -15,11 +15,11 @@ static const uint32_t kSequenceBits = 12;
 
 @interface JobsSnowflake ()
 
-@property(nonatomic,assign)uint32_t machine;
-@property(nonatomic,assign)uint32_t IDC;
-@property(nonatomic,assign)uint32_t sequence;
-@property(nonatomic,assign)uint64_t publishMillisecond;
-@property(nonatomic,assign)uint64_t lastGeneralMillisecond;
+Prop_assign()uint32_t machine;
+Prop_assign()uint32_t IDC;
+Prop_assign()uint32_t sequence;
+Prop_assign()uint64_t publishMillisecond;
+Prop_assign()uint64_t lastGeneralMillisecond;
 
 @end
 

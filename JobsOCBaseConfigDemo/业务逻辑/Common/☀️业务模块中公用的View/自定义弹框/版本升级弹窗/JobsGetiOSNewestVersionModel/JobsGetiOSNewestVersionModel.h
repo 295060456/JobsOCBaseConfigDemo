@@ -12,17 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsGetiOSNewestVersionModel : NSObject
 
-@property(nonatomic,copy)NSString *createBy;
-@property(nonatomic,copy)NSString *createTime;
-@property(nonatomic,copy)NSString *downloadUrl;// 下载地址
-@property(nonatomic,strong)NSNumber *ID;
-@property(nonatomic,assign)JobsUpdateType isForced;// 强制更新：1、是 ; 2、否
-@property(nonatomic,copy)NSString *name;// 版本名称
-@property(nonatomic,copy)NSString *remark;// 备注
-@property(nonatomic,assign)JobsOperationType terminalType;// 终端类型
-@property(nonatomic,strong)NSNumber *updateBy;
-@property(nonatomic,copy)NSString *updateTime;
-@property(nonatomic,copy)NSString *versionNumber;// 版本号
+Prop_copy()NSString *createBy;
+Prop_copy()NSString *createTime;
+Prop_copy()NSString *downloadUrl;// 下载地址
+Prop_strong()NSNumber *ID;
+Prop_assign()JobsUpdateType isForced;// 强制更新：1、是 ; 2、否
+Prop_copy()NSString *name;// 版本名称
+Prop_copy()NSString *remark;// 备注
+Prop_assign()JobsOperationType terminalType;// 终端类型
+Prop_strong()NSNumber *updateBy;
+Prop_copy()NSString *updateTime;
+Prop_copy()NSString *versionNumber;// 版本号
 
 @end
 

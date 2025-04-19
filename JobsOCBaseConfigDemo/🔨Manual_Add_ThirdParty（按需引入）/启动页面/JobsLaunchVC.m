@@ -9,7 +9,7 @@
 
 @interface JobsLaunchVC ()
 
-@property(nonatomic,strong)UIImageView *launchImageView;
+Prop_strong()UIImageView *launchImageView;
 
 @end
 

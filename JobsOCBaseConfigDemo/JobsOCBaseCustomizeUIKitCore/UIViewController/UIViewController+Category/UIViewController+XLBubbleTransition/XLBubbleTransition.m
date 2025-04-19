@@ -10,9 +10,9 @@
 
 @interface XLBubbleTransition ()
 /// 锚点
-@property(nonatomic,assign)CGRect anchorRect;
-@property(nonatomic,strong)id<UIViewControllerContextTransitioning> transitionContext;
-@property(nonatomic,strong)CAShapeLayer *maskLayer;
+Prop_assign()CGRect anchorRect;
+Prop_strong()id<UIViewControllerContextTransitioning> transitionContext;
+Prop_strong()CAShapeLayer *maskLayer;
 
 @end
 
