@@ -9,12 +9,11 @@
 
 @interface JobsVideoTBVCell ()
 /// UI
-@property(nonatomic,strong)UILabel *label;
-@property(nonatomic,strong)UIImageView *coverImageView;
-@property(nonatomic,strong)JobsRightBtnsView *rbView;
-@property(nonatomic,strong)UIButton *rotation;
+Prop_strong()UIImageView *coverImageView;
+Prop_strong()JobsRightBtnsView *rbView;
+Prop_strong()UIButton *rotation;
 /// Data
-@property(nonatomic,strong)VideoModel_Core *core_data;
+Prop_strong()VideoModel_Core *core_data;
 
 @end
 
@@ -48,12 +47,24 @@
             self.data = (VideoModel_Core *)model;
             self.label.text = [NSString stringWithFormat:@"%ld",(long)self.index];
             self.rotation.alpha = 1;
-            [self.coverImageView setImageWithURLString:self.core_data.videoImg
-                                           placeholder:JobsIMG(@"视频封面")];
+            self.coverImageView
+                    .imageURL(self.core_data.videoImg.jobsUrl)
+                    .placeholderImage(JobsIMG(@"视频封面"))
+                    .options(self.makeSDWebImageOptions)
+                    .completed(^(UIImage * _Nullable image,
+                                 NSError * _Nullable error,
+                                 SDImageCacheType cacheType,
+                                 NSURL * _Nullable imageURL) {
+                        if (error) {
+                            JobsLog(@"aa图片加载失败: %@-%@", error,imageURL);
+                        } else {
+                            JobsLog(@"图片加载成功");
+                        }
+                    }).load();
             self.rbView.alpha = 1;
             self.textLabel.text = self.core_data.videoTitle;
             self.textLabel.textColor = JobsRedColor;
-    //        self.rotation.hidden;// 宽大于高 = 横屏视频，才支持旋转
+//            self.rotation.hidden;// 宽大于高 = 横屏视频，才支持旋转
         }
     };
 }
@@ -66,8 +77,7 @@
             imageView.userInteractionEnabled = YES;
             imageView.tag = kPlayerViewTag;//不写这个光有声音没有图像
             imageView.contentMode = UIViewContentModeScaleAspectFit;
-            self.contentView.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });
@@ -82,8 +92,7 @@
         [_rbView actionObjBlock:^(id data) {
 //            @jobs_strongify(self)
         }];
-        [self.contentView addSubview:_rbView];
-        [_rbView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_rbView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.contentView);
             make.bottom.equalTo(self.contentView).offset(JobsWidth(-150));
             make.size.mas_equalTo(JobsRightBtnsView.viewSizeByModel(nil));
@@ -93,16 +102,16 @@
 
 -(UIButton *)rotation{
     if (!_rotation){
-        _rotation = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rotation.jobsResetBtnImage(JobsIMG(@"zfplayer_rotaiton"));
         @jobs_weakify(self)
-        [_rotation jobsBtnClickEventBlock:^id(__kindof UIControl * _Nullable x) {
-            @jobs_strongify(self)
-            if ([self.delegate respondsToSelector:@selector(zf_douyinRotation)]) [self.delegate zf_douyinRotation];
-            return nil;
-        }];
-        [self.contentView addSubview:_rotation];
-        [_rotation mas_makeConstraints:^(MASConstraintMaker *make) {
+        _rotation = UIButton.initByNormalImage(JobsIMG(@"zfplayer_rotaiton"))
+            .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
+                JobsLog(@"");
+                if ([self.delegate respondsToSelector:@selector(zf_douyinRotation)]) [self.delegate zf_douyinRotation];
+            }).onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            });
+        [self.contentView.addSubview(_rotation) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(50), JobsWidth(50)));
             make.centerY.equalTo(self.contentView);
             make.left.equalTo(self.contentView);

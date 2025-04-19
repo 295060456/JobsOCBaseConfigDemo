@@ -9,8 +9,6 @@
 
 @interface JobsNoticePopupView ()
 
-@property(nonatomic,strong)UIImageView *imageView;
-
 @end
 
 @implementation JobsNoticePopupView
@@ -34,10 +32,12 @@
         self.imageView.alpha = 1;
     };
 }
-
+@synthesize imageView = _imageView;
 -(UIImageView *)imageView{
     if (!_imageView) {
+        @jobs_weakify(self)
         _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
             imageView.image = JobsIMG(@"登录弹窗");
 
             {
@@ -48,16 +48,13 @@
                 imageView.allowableMovement = 1;
                 imageView.userInteractionEnabled = YES;
                 imageView.weak_target = self;
-                @jobs_weakify(self)
                 imageView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                         UITapGestureRecognizer *_Nullable arg) {
                     return nil;
                 }];
                 imageView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
             }
-            
-            self.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self);
             }];
         });

@@ -9,11 +9,10 @@
 
 @interface JobsShootingVC ()
 /// UI
-@property(nonatomic,strong)UIButton *cameraBtn;
-@property(nonatomic,strong)UIButton *photoAlbumBtn;
-@property(nonatomic,strong)UIImageView *imageView;
+Prop_strong()UIButton *cameraBtn;
+Prop_strong()UIButton *photoAlbumBtn;
 /// Data
-@property(nonatomic,copy)NSMutableArray <UIImage *>*photosImageMutArr;
+Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
 
 @end
 
@@ -62,71 +61,79 @@
 #pragma mark —— lazyLoad
 -(UIButton *)cameraBtn{
     if(!_cameraBtn){
-        _cameraBtn = UIButton.new;
-        _cameraBtn.jobsResetBtnTitle(JobsInternationalization(@"调取系统相机"));
-        _cameraBtn.backgroundColor = JobsGreenColor;
-        _cameraBtn.jobsResetBtnTitleCor(JobsWhiteColor);
-        [self.view addSubview:_cameraBtn];
-        [_cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @jobs_weakify(self)
+        _cameraBtn = BaseButton.jobsInit()
+            .bgColorBy(JobsWhiteColor)
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnBgCor(JobsGreenColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"调取系统相机"))
+            .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
+                JobsLog(@"");
+                /// 调取系统相机
+                [self hx_invokeSysCameraSuccessBlock:^(HXPhotoPickerModel *data) {
+                    @jobs_strongify(self)
+                    self.imageView.image = data.photoModel.previewPhoto;
+                } failBlock:^(HXPhotoPickerModel *data) {
+                    @jobs_strongify(self)
+                }];
+            }).onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            });
+        _cameraBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
+        [self.view.addSubview(_cameraBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(50));
             make.left.equalTo(self.view).offset(JobsWidth(20));
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(100));
-        }];
-        _cameraBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-        @jobs_weakify(self)
-        [_cameraBtn jobsBtnClickEventBlock:^id(id data) {
-            /// 调取系统相机
-            [self hx_invokeSysCameraSuccessBlock:^(HXPhotoPickerModel *data) {
-                @jobs_strongify(self)
-                self.imageView.image = data.photoModel.previewPhoto;
-            } failBlock:^(HXPhotoPickerModel *data) {
-                @jobs_strongify(self)
-            }];
-            return nil;
-        }];
+        }];_cameraBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _cameraBtn;
 }
 
 -(UIButton *)photoAlbumBtn{
     if(!_photoAlbumBtn){
-        _photoAlbumBtn = UIButton.new;
-        _photoAlbumBtn.backgroundColor = JobsBlueColor;
-        _photoAlbumBtn.jobsResetBtnTitleCor(JobsWhiteColor);
-        _photoAlbumBtn.jobsResetBtnTitle(JobsInternationalization(@"调取系统相机"));
-        [self.view addSubview:_photoAlbumBtn];
-        [_photoAlbumBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @jobs_weakify(self)
+        _photoAlbumBtn = BaseButton.jobsInit()
+            .bgColorBy(JobsWhiteColor)
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnBgCor(JobsBlueColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(JobsInternationalization(@"调取系统相机"))
+            .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
+                JobsLog(@"");
+                /// 调取系统相册
+                @jobs_weakify(self)
+                [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
+                    self.photoManager = data.photoManager;
+                    [data.photoList hx_requestImageWithOriginal:NO
+                                                     completion:^(NSArray<UIImage *> * _Nullable imageArray,
+                                                                  NSArray<HXPhotoModel *> * _Nullable errorArray) {
+                        @jobs_strongify(self)
+                        self.photosImageMutArr = [NSMutableArray arrayWithArray:imageArray];
+                        self.imageView.image = (UIImage *)self.photosImageMutArr.lastObject;/// 永远值显示最后选择的图
+                    }];
+                } failBlock:^(HXPhotoPickerModel *data) {
+    //                @jobs_strongify(self)
+                }];
+            }).onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            });
+        [self.view.addSubview(_photoAlbumBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(50));
             make.right.equalTo(self.view).offset(JobsWidth(-20));
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(100));
-        }];
-        _photoAlbumBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-        [_photoAlbumBtn jobsBtnClickEventBlock:^id(id data) {
-            /// 调取系统相册
-            @jobs_weakify(self)
-            [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
-                self.photoManager = data.photoManager;
-                [data.photoList hx_requestImageWithOriginal:NO
-                                                 completion:^(NSArray<UIImage *> * _Nullable imageArray,
-                                                              NSArray<HXPhotoModel *> * _Nullable errorArray) {
-                    @jobs_strongify(self)
-                    self.photosImageMutArr = [NSMutableArray arrayWithArray:imageArray];
-                    self.imageView.image = (UIImage *)self.photosImageMutArr.lastObject;/// 永远值显示最后选择的图
-                }];
-            } failBlock:^(HXPhotoPickerModel *data) {
-//                @jobs_strongify(self)
-            }];return nil;
-        }];
+        }];_photoAlbumBtn.makeBtnTitleByShowingType(UILabelShowingType_03);;
     }return _photoAlbumBtn;
 }
-
+@synthesize imageView = _imageView;
 -(UIImageView *)imageView{
     if(!_imageView){
         @jobs_weakify(self)
         _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.image = JobsIMG(@"选择资源➕");
-            self.view.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(200), JobsWidth(200)));
                 make.centerX.equalTo(self.view);
                 make.top.equalTo(self.photoAlbumBtn.mas_bottom).offset(JobsWidth(50));

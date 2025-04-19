@@ -34,8 +34,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             JobsLog(@"SSS = %d",b.boolValue);
-        }
-        JobsLog(@"通知传递过来的 = %@",notification.object);
+        }JobsLog(@"通知传递过来的 = %@",notification.object);
     }];
 }
 /// 【App语言国际化】更改UITabBarItem的标题
@@ -236,7 +235,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
             JobsLog(@"JSON解析失败：%@", jsonError.localizedDescription);
             return;
         }
-        // 从响应数据中获取国家代码
+        /// 从响应数据中获取国家代码
         NSString *countryCode = json[@"country"];
         if(block) block(countryCode.isEqualToString(@"PH"));
     }] resume];
@@ -306,7 +305,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         if(!sharedCustomTabBar){
             sharedCustomTabBar = jobsMakeCustomTabBar(^(__kindof JobsCustomTabBar *_Nullable customTabBar) {
                 customTabBar.backgroundColor = JobsClearColor;
-        //        customTabBar.backgroundColor = JobsRedColor;
+//                customTabBar.backgroundColor = JobsRedColor;
                 customTabBar.configMasonryBy(view);
             });
         }return sharedCustomTabBar;
@@ -331,7 +330,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         data.imagePadding = JobsWidth(5);
     });
 }
-
+/// 发通知：登录成功
 -(jobsByVoidBlock _Nonnull)loginOK{
     @jobs_weakify(self)
     return ^(){
@@ -339,7 +338,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         self.jobsPost(登录成功);
     };
 }
-
+/// 发通知：退出登录成功
 -(jobsByVoidBlock _Nonnull)logoutOK{
     @jobs_weakify(self)
     return ^(){
@@ -388,8 +387,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         UIViewController *viewController = self.getCurrentViewController;
         if ([viewController isKindOfClass:JobsAppDoorVC.class]) return;
         // 首页没有展现的时候，不推出登录页
-    //    extern BOOL CasinoHomeVC_viewDidAppear;
-    //    if(!CasinoHomeVC_viewDidAppear) return;
+        //    extern BOOL CasinoHomeVC_viewDidAppear;
+        //    if(!CasinoHomeVC_viewDidAppear) return;
         viewController.comingToPresentVCByRequestParams(JobsAppDoorVC.new,
                                                         jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.requestParams = @(JobsAppDoorBgType_Video);
@@ -421,8 +420,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 }
 /// 触发退出登录模块之前，弹窗提示二次确认，确认以后再删除本地用户数据
 -(void)popUpViewToLogout{
-    [self popupShowScaleWithView:self.logOutPopupView
-                  popupParameter:self.popupParameter];
+    [self popupShowScaleWithView:self.logOutPopupView popupParameter:self.popupParameter];
 }
 #pragma mark —— <AppToolsProtocol> 关于 TabBar
 /// TabBar
@@ -460,9 +458,9 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 /// 编码
 -(JobsReturnStringByStringBlock _Nonnull)encodePicStr{
     return ^(NSString * _Nullable picStr) {
-        // 将NSString转换为NSMutableString，以便修改
+        /// 将NSString转换为NSMutableString，以便修改
         NSMutableString *modifiedString = picStr.mutableCopy;
-        // 在指定位置插入字符串
+        /// 在指定位置插入字符串
         [modifiedString insertString:PicSalt atIndex:50];
         return modifiedString;
     };
@@ -486,7 +484,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         viewModel.subTextModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
             textModel.text = JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle);
         });
-
+        
         viewModel.backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
             textModel.text = JobsInternationalization(@"返回首页");
         });
@@ -501,8 +499,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
                 data.value = UITextModel.new.font;
                 data.range = NSMakeRange(0, JobsInternationalization(title).length);
-            }));
-            attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+            }))
+            .addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
                 data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
                     data.lineSpacing = 0;
                     data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
@@ -518,8 +516,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
                 data.value = UITextModel.new.font;
                 data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
-            }));
-            attributedText.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
+            }))
+            .addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
                 data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
                     data.lineSpacing = 0;
                     data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
@@ -529,17 +527,17 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             }));
             viewModel.subTextModel.attributedTitle = attributedText;
         }
-
+        
         viewModel.backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
             data.text = JobsInternationalization(@"返回首页");
         });
     });
 }
-
+/// （在登陆与否的情况下）默认的用户头像
 -(UIImage *)defaultHeaderImage{
     return self.isLogin ? JobsIMG(@"default_avatar_white") : JobsIMG(@"未登录默认头像（灰）");
 }
-
+/// 字符串当前语言环境
 -(NSString *)currentLanguage{
     if (currentLanguage().containsString(简体中文)) {
         return @"简体中文";
@@ -549,6 +547,88 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         JobsLog(@"%@",currentLanguage());
         return @"其他语言";
     }
+}
+/// 首页的假数据
+-(NSMutableArray <__kindof UIButtonModel *>*)gameDataMutArr{
+    return jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>* _Nullable data) {
+        data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.title = JobsInternationalization(@"HOT Games");
+            model.subTitle = JobsInternationalization(@"");
+            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleFont = bayonRegular(JobsWidth(10));
+            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
+            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
+            model.highlightImage = JobsIMG(@"HOT Games");
+            model.normalImage = JobsIMG(@"HOT Games");
+            model.imagePlacement = NSDirectionalRectEdgeTop;
+            model.baseBackgroundColor = JobsClearColor;
+        })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.title = JobsInternationalization(@"SPORTS");
+            model.subTitle = JobsInternationalization(@"");
+            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleFont = bayonRegular(JobsWidth(10));
+            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
+            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
+            model.highlightImage = JobsIMG(@"SPORTS");
+            model.normalImage = JobsIMG(@"SPORTS");
+            model.imagePlacement = NSDirectionalRectEdgeTop;
+            model.baseBackgroundColor = JobsClearColor;
+        })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.title = JobsInternationalization(@"HOT Games");
+            model.subTitle = JobsInternationalization(@"");
+            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleFont = bayonRegular(JobsWidth(10));
+            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
+            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
+            model.highlightImage = JobsIMG(@"SLOT GAMES");
+            model.normalImage = JobsIMG(@"SLOT GAMES");
+            model.imagePlacement = NSDirectionalRectEdgeTop;
+            model.baseBackgroundColor = JobsClearColor;
+        })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.title = JobsInternationalization(@"HOT Games");
+            model.subTitle = JobsInternationalization(@"");
+            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleFont = bayonRegular(JobsWidth(10));
+            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
+            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
+            model.highlightImage = JobsIMG(@"LIVE GAMES");
+            model.normalImage = JobsIMG(@"LIVE GAMES");
+            model.imagePlacement = NSDirectionalRectEdgeTop;
+            model.baseBackgroundColor = JobsClearColor;
+        })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.title = JobsInternationalization(@"HOT Games");
+            model.subTitle = JobsInternationalization(@"");
+            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleFont = bayonRegular(JobsWidth(10));
+            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
+            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
+            model.highlightImage = JobsIMG(@"TABLE GAMES");
+            model.normalImage = JobsIMG(@"TABLE GAMES");
+            model.imagePlacement = NSDirectionalRectEdgeTop;
+            model.baseBackgroundColor = JobsClearColor;
+        }));
+    });
+}
+/// 收藏的假数据 JobsIMG(@"PG");JobsIMG(@"点赞");
+-(NSMutableArray <__kindof UIViewModel *>*)favDataMutArr{
+    return jobsMakeMutArr(^(__kindof NSMutableArray<UIViewModel *> * _Nullable arr) {
+        arr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.bgImage = JobsIMG(@"FlementalLinkFire");
+            data.imageUrl = @"https://zh.wikipedia.org/wiki/File:Jiang_Zemin_2002.jpg".jobsUrl;
+            data.image = JobsIMG(@"点赞");
+            data.text = JobsInternationalization(@"FlementalLinkFire");
+        })).add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.bgImage = JobsIMG(@"DragonSoar");
+            data.imageUrl = @"https://zh.wikipedia.org/wiki/File:Deng_Xiaoping_at_the_arrival_ceremony_for_the_Vice_Premier_of_China_(cropped).jpg".jobsUrl;
+            data.image = JobsIMG(@"点赞");
+            data.text = JobsInternationalization(@"DragonSoar");
+        })).add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.bgImage = JobsIMG(@"StreetFighter");
+            data.imageUrl = @"https://zh.wikipedia.org/wiki/File:Zhu_Rongji_in_2000.jpg".jobsUrl;
+            data.image = JobsIMG(@"点赞");
+            data.text = JobsInternationalization(@"ELEMENTAL LINK");
+        }));
+    });
 }
 
 -(HTTPRequestHeaderLanguageType)currentLanguageType{
@@ -572,6 +652,31 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             textModel.text = JobsInternationalization(@"副标题");
         });
     });
+}
+/// 测试和业务密切相关的弹窗 ：在外层进行调用，[ 需要被展现的视图 popupWithView:popupView];
+/// @param popViewClass 被测试的弹窗视图
+/// @param viewModel 此视图所绑定的数据。传nil则使用testPopViewData的数据、传UIViewModel.new则使用popViewClass预埋的数据
+-(UIView<BaseViewProtocol> *)jobsPopView:(Class<BaseViewProtocol> _Nullable)popViewClass
+                               viewModel:(UIViewModel *_Nullable)viewModel{
+    // 将方法内的变量进行单例化,避免重复创建
+    UIView<BaseViewProtocol> *popupView = popViewClass.class.SharedInstance();
+    // 这里设置弹出框的尺寸（最好在View内部layoutSubviews里面进行设置，外界设置的话，在某些情况下会出现异常）
+    // popupView.size = popViewClass.viewSizeByModel(nil);
+    popupView.jobsRichViewByModel(Jobs3TO(viewModel, self.testPopViewData));
+    @jobs_weakify(popupView)
+    [popupView actionObjBlock:^(__kindof UIButton *data) {
+        @jobs_strongify(popupView)
+        if([data.titleForNormalState isKindOfClass:NSString.class]){
+            if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"取消"))) {
+
+            }else if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"确认"))){
+                
+            }else{}
+        }
+        [popupView tf_hide:^{
+            popViewClass.class.DestroySingleton();
+        }];
+    }];return popupView;
 }
 /// Debug模式下的弹出框 及其相关的数据封装。在外层进行调用，[ 需要被展现的视图 popupShowScaleWithView:popupView];
 //-(JobsOCBaseConfigTestPopupView *)JobsTestPopView:(NSString *)string{
@@ -600,31 +705,6 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 //    }];return testPopupView;
 //#endif
 //}
-/// 测试和业务密切相关的弹窗 ：在外层进行调用，[ 需要被展现的视图 popupWithView:popupView];
-/// @param popViewClass 被测试的弹窗视图
-/// @param viewModel 此视图所绑定的数据。传nil则使用testPopViewData的数据、传UIViewModel.new则使用popViewClass预埋的数据
--(UIView<BaseViewProtocol> *)jobsPopView:(Class<BaseViewProtocol> _Nullable)popViewClass
-                               viewModel:(UIViewModel *_Nullable)viewModel{
-    // 将方法内的变量进行单例化,避免重复创建
-    UIView<BaseViewProtocol> *popupView = popViewClass.class.SharedInstance();
-    // 这里设置弹出框的尺寸（最好在View内部layoutSubviews里面进行设置，外界设置的话，在某些情况下会出现异常）
-    // popupView.size = popViewClass.viewSizeByModel(nil);
-    popupView.jobsRichViewByModel(Jobs3TO(viewModel, self.testPopViewData));
-    @jobs_weakify(popupView)
-    [popupView actionObjBlock:^(__kindof UIButton *data) {
-        @jobs_strongify(popupView)
-        if([data.titleForNormalState isKindOfClass:NSString.class]){
-            if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"取消"))) {
-
-            }else if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"确认"))){
-                
-            }else{}
-        }
-        [popupView tf_hide:^{
-            popViewClass.class.DestroySingleton();
-        }];
-    }];return popupView;
-}
 #pragma mark —— 设备横屏的方向判定
 -(BOOL)isLandscapeRight{
     return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscapeRight;
@@ -743,13 +823,13 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         telNum.isContainBlank;/// 不包含空格
     };
 }
-#pragma mark —— @property(nonatomic,copy)NSMutableArray<UIViewModel *> *hotLabelDataMutArr;
+#pragma mark —— @property(nonatomic,copy)NSMutableArray<__kindof UIViewModel *> *hotLabelDataMutArr;
 JobsKey(_hotLabelDataMutArr)
 @dynamic hotLabelDataMutArr;
--(NSMutableArray<UIViewModel *> *)hotLabelDataMutArr{
-    NSMutableArray<UIViewModel *> *HotLabelDataMutArr = Jobs_getAssociatedObject(_hotLabelDataMutArr);
+-(NSMutableArray<__kindof UIViewModel *> *)hotLabelDataMutArr{
+    NSMutableArray<__kindof UIViewModel *> *HotLabelDataMutArr = Jobs_getAssociatedObject(_hotLabelDataMutArr);
     if (!HotLabelDataMutArr) {
-        HotLabelDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        HotLabelDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIViewModel *>* _Nullable data) {
             
         });
 
@@ -783,8 +863,7 @@ JobsKey(_separateLab)
             @jobs_strongify(self)
             label.backgroundColor = HEXCOLOR(0xC4C4C4);
             UIViewController *viewController = (UIViewController *)self;
-            [viewController.bgImageView addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [viewController.bgImageView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(2), JobsWidth(14)));
                 make.centerX.equalTo(viewController.view);
                 make.bottom.equalTo(viewController.view).offset(JobsWidth(-64));
@@ -816,8 +895,7 @@ JobsKey(__立即注册)
                 JobsLog(@"按钮的长按事件触发");
             });
         UIViewController *viewController = (UIViewController *)self;
-        [viewController.bgImageView addSubview:_立即注册];
-        [_立即注册 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [viewController.bgImageView.addSubview(_立即注册) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(14));
             make.bottom.equalTo(viewController.view).offset(JobsWidth(-64));
             make.left.equalTo(self.separateLab.mas_right).offset(JobsWidth(24));
@@ -850,8 +928,7 @@ JobsKey(__联系客服)
                 JobsLog(@"按钮的长按事件触发");
             });
         UIViewController *viewController = (UIViewController *)self;
-        [viewController.bgImageView addSubview:_联系客服];
-        [_联系客服 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [viewController.bgImageView.addSubview(_联系客服) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(14));
             make.bottom.equalTo(viewController.view).offset(JobsWidth(-64));
             make.right.equalTo(viewController.separateLab.mas_left).offset(JobsWidth(-24));
@@ -885,10 +962,9 @@ JobsKey(_richTextMutArr)
     NSMutableArray <NSString *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextMutArr);
     if (!RichTextMutArr) {
         RichTextMutArr = jobsMakeMutArr(^(NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"如需帮助，请联系"));
-            data.add(JobsInternationalization(@"专属客服"));
-        });
-        [self setRichTextMutArr:RichTextMutArr];
+            data.add(JobsInternationalization(@"如需帮助，请联系"))
+            .add(JobsInternationalization(@"专属客服"));
+        });[self setRichTextMutArr:RichTextMutArr];
         Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, RichTextMutArr)
     }return RichTextMutArr;
 }
@@ -909,8 +985,8 @@ JobsKey(_richTextConfigMutArr)
                 data1.font = UIFontWeightRegularSize(12);
                 data1.textCor = HEXCOLOR(0x757575);
                 data1.targetString = self.richTextMutArr[0];
-            }));
-            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+            }))
+            .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.font = UIFontWeightMediumSize(12);;
                 data1.textCor = HEXCOLOR(0xAE8330);
@@ -950,8 +1026,7 @@ JobsKey(_connectionTipsTV)
             if ([self isKindOfClass:UIViewController.class]) {
                 textView.delegate = self;
                 UIViewController *viewController = (UIViewController *)self;
-                [viewController.view addSubview:textView];
-                [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+                [viewController.view.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.centerX.equalTo(viewController.view);
                     make.bottom.equalTo(viewController.view).offset(JobsWidth(-65));
                 }];
@@ -970,10 +1045,10 @@ JobsKey(_jxCategoryViewTitleMutArr)
     NSMutableArray *JXCategoryViewTitleMutArr = Jobs_getAssociatedObject(_jxCategoryViewTitleMutArr);
     if (!JXCategoryViewTitleMutArr) {
         JXCategoryViewTitleMutArr = jobsMakeMutArr(^(NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"今日"));
-            data.add(JobsInternationalization(@"昨日"));
-            data.add(JobsInternationalization(@"近7日"));
-            data.add(JobsInternationalization(@"近30日"));
+            data.add(JobsInternationalization(@"今日"))
+            .add(JobsInternationalization(@"昨日"))
+            .add(JobsInternationalization(@"近7日"))
+            .add(JobsInternationalization(@"近30日"));
         });
         Jobs_setAssociatedRETAIN_NONATOMIC(_jxCategoryViewTitleMutArr, JXCategoryViewTitleMutArr)
     }return JXCategoryViewTitleMutArr;

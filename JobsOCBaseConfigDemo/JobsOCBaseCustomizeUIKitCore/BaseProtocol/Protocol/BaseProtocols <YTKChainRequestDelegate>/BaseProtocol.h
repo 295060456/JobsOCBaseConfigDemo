@@ -55,6 +55,7 @@ Prop_assign(readonly)NSTimerCurrentStatus timerCurrentStatus;/// 定时器当前
 Prop_assign()TimerProcessType timerProcessType; /// 计时器运行状态
 #pragma mark —— Data
 Prop_strong(nullable)NSURL *url;
+Prop_strong(nullable)NSURL *imageUrl;
 Prop_copy(nullable)NSString *internationalizationKEY;/// 国际化的key
 Prop_copy(nullable)NSMutableSet *jobsDataMutSet;/// 绑定的数据源，数据类型NSMutableSet
 Prop_copy(nullable)NSMutableArray *jobsDataMutArr;/// 绑定的数据源，数据类型NSMutableArray
@@ -158,6 +159,7 @@ NS_ASSUME_NONNULL_END
 #define BaseProtocol_synthesize_data \
 \
 @synthesize url = _url;\
+@synthesize imageUrl = _imageUrl;\
 @synthesize internationalizationKEY = _internationalizationKEY;\
 @synthesize jobsDataMutSet = _jobsDataMutSet;\
 @synthesize jobsDataMutArr = _jobsDataMutArr;\
@@ -216,6 +218,7 @@ BaseProtocol_synthesize_data \
 @dynamic timerCurrentStatus;\
 @dynamic timerProcessType;\
 @dynamic url;\
+@dynamic imageUrl;\
 @dynamic internationalizationKEY;\
 @dynamic jobsDataMutSet;\
 @dynamic jobsDataMutArr;\

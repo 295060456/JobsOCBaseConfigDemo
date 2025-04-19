@@ -41,6 +41,7 @@
     self.sortArrow.frame = frame;
 }
 #pragma mark —— lazyLoad
+@synthesize label = _label;
 -(UILabel *)label{
     if(!_label){
         @jobs_weakify(self)
@@ -58,7 +59,9 @@
 
 -(UILabel *)sortArrow{
     if(!_sortArrow){
+        @jobs_weakify(self)
         _sortArrow = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
             label.text = @"";
 //            label.backgroundColor = JobsRedColor;
             label.font = [UIFont boldSystemFontOfSize:14];

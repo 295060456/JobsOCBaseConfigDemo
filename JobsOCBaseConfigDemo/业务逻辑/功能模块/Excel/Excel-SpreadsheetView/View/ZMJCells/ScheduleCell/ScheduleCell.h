@@ -5,13 +5,16 @@
 //  Created by User on 7/30/24.
 //
 
+#if __has_include(<ZMJGanttChart/ZMJGanttChart.h>)
 #import <ZMJGanttChart/ZMJGanttChart.h>
+#else
+#import "ZMJGanttChart.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleCell : ZMJCell
 
-@property(nonatomic,strong)UILabel *label;
 @property(nonatomic,strong)UIColor *color;
 
 @end

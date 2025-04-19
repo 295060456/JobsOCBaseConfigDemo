@@ -9,8 +9,6 @@
 
 @interface UILabelWordRotatingVC ()
 
-@property(nonatomic,strong)UILabel *label;
-
 @end
 
 @implementation UILabelWordRotatingVC
@@ -20,6 +18,7 @@
     self.label.transformLayer(TransformLayerDirectionLeft);
 }
 #pragma mark —— LazyLoad
+@synthesize label = _label;
 -(UILabel *)label{
     if (!_label) {
         @jobs_weakify(self)
@@ -30,7 +29,7 @@
             label.textColor = JobsBlueColor;
             label.frame = jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
                 data.jobsX = data.jobsY = data.jobsWidth = data.jobsHeight = JobsWidth(100);
-            });[self.view addSubview:label];
+            });self.view.addSubview(label);
         });
     }return _label;
 }

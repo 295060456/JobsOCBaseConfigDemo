@@ -9,11 +9,11 @@
 
 @interface CtrlClipboardCueVC ()
 /// UI
-@property(nonatomic,strong)BaseLabel *label;
-@property(nonatomic,strong)BaseTextView *textView;
+Prop_strong()BaseLabel *label;
+Prop_strong()BaseTextView *textView;
 /// Data
-@property(nonatomic,copy)NSString *textData1;/// 页面上显示的数据
-@property(nonatomic,copy)NSString *textData2;/// 来自于剪切板存储的数据
+Prop_copy()NSString *textData1;/// 页面上显示的数据
+Prop_copy()NSString *textData2;/// 来自于剪切板存储的数据
 
 @end
 
@@ -123,6 +123,7 @@
 //-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange API_DEPRECATED_WITH_REPLACEMENT("textView:shouldInteractWithURL:inRange:interaction:", ios(7.0, 10.0)) API_UNAVAILABLE(visionos);
 //-(BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange API_DEPRECATED_WITH_REPLACEMENT("textView:shouldInteractWithTextAttachment:inRange:interaction:", ios(7.0, 10.0)) API_UNAVAILABLE(visionos);
 #pragma mark —— lazyLoad
+@synthesize label = _label;
 -(BaseLabel *)label{
     if(!_label){
         @jobs_weakify(self)
@@ -143,8 +144,7 @@
                     self->_label.makeMenuCtrl(self->_textData2);
                 }return nil;
             }];
-            [self.view addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(10));
                 make.centerX.equalTo(self.view);
                 make.height.mas_equalTo(@80);
@@ -160,13 +160,12 @@
         @jobs_weakify(self)
         _textView = jobsMakeBaseTextView(^(__kindof BaseTextView * _Nullable textView) {
             @jobs_strongify(self)
+            textView.delegate = self;
             textView.backgroundColor = JobsLightTextColor;
             textView.placeholder = JobsInternationalization(@"请粘贴！！！");
             textView.textColor = JobsBlackColor;
-            textView.delegate = self;
             textView.font = UIFontSystemFontOfSize(14);
-            [self.view addSubview:textView];
-            [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.view).offset(JobsWidth(10));
                 make.right.equalTo(self.view).offset(JobsWidth(-10));
                 make.top.equalTo(self.label.mas_bottom).offset(JobsWidth(10));

@@ -41,7 +41,7 @@
         });
     }return _bgView;
 }
-
+@synthesize label = _label;
 -(UILabel *)label{
     if(!_label){
         @jobs_weakify(self)

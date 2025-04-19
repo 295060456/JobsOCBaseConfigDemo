@@ -21,6 +21,10 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 Prop_strong(nullable)__kindof UICollectionView *collectionView;
 Prop_strong(nullable)__kindof UITableView *tableView;
 Prop_strong(nullable)__kindof UIScrollView *scrollView;
+
+Prop_strong(nullable)__kindof UIImageView *imageView;
+Prop_strong(nullable)__kindof UIButton *button;
+Prop_strong(nullable)__kindof UILabel *label;
 /// 是否允许托拽手势
 Prop_assign()BOOL isAllowDrag;
 /// 退出当前页面的时候，除了当前页面出栈以外，你额外需要做的事情
@@ -133,6 +137,9 @@ NS_ASSUME_NONNULL_END
 @synthesize collectionView = _collectionView;\
 @synthesize tableView = _tableView;\
 @synthesize scrollView = _scrollView;\
+@synthesize imageView = _imageView;\
+@synthesize button = _button;\
+@synthesize label = _label;\
 @synthesize isAllowDrag = _isAllowDrag;\
 @synthesize jobsBackBlock = _jobsBackBlock;\
 @synthesize layoutSubviewsRectCorner = _layoutSubviewsRectCorner;\
@@ -152,6 +159,9 @@ NS_ASSUME_NONNULL_END
 @dynamic collectionView;\
 @dynamic tableView;\
 @dynamic scrollView;\
+@dynamic imageView;\
+@dynamic button;\
+@dynamic label;\
 @dynamic isAllowDrag;\
 @dynamic jobsBackBlock;\
 @dynamic layoutSubviewsRectCorner;\

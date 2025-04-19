@@ -9,8 +9,6 @@
 
 @interface TransparentRegionVC ()
 
-@property(nonatomic,strong)UILabel *label;
-
 @end
 
 @implementation TransparentRegionVC
@@ -64,7 +62,7 @@
 #pragma mark —— 一些私有方法
 -(void)addArc{
     /// 中间镂空的矩形框
-    CGRect myRect =CGRectMake(100,100,200,200);
+    CGRect myRect = CGRectMake(100,100,200,200);
     /// 背景
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:UIScreen.mainScreen.bounds
                                                     cornerRadius:0];
@@ -90,14 +88,13 @@
             @jobs_strongify(self)
             scrollView.backgroundColor = [UIColor redColor];
             scrollView.contentSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT() * 2);
-            [self.view addSubview:scrollView];
-            [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(scrollView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.left.right.bottom.equalTo(self.view);
             }];
         });
     }return _scrollView;
 }
-
+@synthesize label = _label;
 -(UILabel *)label{
     if (!_label) {
         @jobs_weakify(self)
@@ -106,12 +103,12 @@
             label.text = JobsInternationalization(@"iOS-UIView设置阴影效果");
             label.frame = CGRectMake(100, 400, 200, 200);
             label.backgroundColor = JobsYellowColor;
-            label.layer.shadowColor = JobsBlueColor.CGColor;//阴影颜色
-            label.layer.shadowOpacity = 0.8;//阴影透明度，默认为0，如果不设置的话看不到阴影，切记，这是个大坑
-            label.layer.shadowOffset = CGSizeMake(0, 0);//设置偏移量
+            label.layer.shadowColor = JobsBlueColor.CGColor;/// 阴影颜色
+            label.layer.shadowOpacity = 0.8;/// 阴影透明度，默认为0，如果不设置的话看不到阴影，切记，这是个大坑
+            label.layer.shadowOffset = CGSizeMake(0, 0);/// 设置偏移量
             label.layer.cornerRadius = 9.0;
             label.layer.shadowRadius = 9.0;
-            //参数依次为大小，设置四个角圆角状态，圆角曲度
+            /// 参数依次为大小，设置四个角圆角状态，圆角曲度
             label.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:label.bounds
                                                            byRoundingCorners:5
                                                                  cornerRadii:CGSizeMake(0, 0)].CGPath;

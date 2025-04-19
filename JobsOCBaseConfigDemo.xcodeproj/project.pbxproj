@@ -175,6 +175,21 @@
 		84E99A442CEB4EE100ABE463 /* JobsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */; };
 		84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */; };
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
+		C5BCC6292DB39BC400EFE4F3 /* ZMJHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6202DB39BC400EFE4F3 /* ZMJHeaderCell.m */; };
+		C5BCC62A2DB39BC400EFE4F3 /* ZMJTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6232DB39BC400EFE4F3 /* ZMJTaskCell.m */; };
+		C5BCC62B2DB39BC400EFE4F3 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC60E2DB39BC400EFE4F3 /* ScheduleCell.m */; };
+		C5BCC62C2DB39BC400EFE4F3 /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC5FC2DB39BC400EFE4F3 /* ChannelCell.m */; };
+		C5BCC62D2DB39BC400EFE4F3 /* DateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC5FF2DB39BC400EFE4F3 /* DateCell.m */; };
+		C5BCC62E2DB39BC400EFE4F3 /* TimeTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC61A2DB39BC400EFE4F3 /* TimeTitleCell.m */; };
+		C5BCC62F2DB39BC400EFE4F3 /* MyBlankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC60B2DB39BC400EFE4F3 /* MyBlankCell.m */; };
+		C5BCC6302DB39BC400EFE4F3 /* ZMJChartBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC61D2DB39BC400EFE4F3 /* ZMJChartBarCell.m */; };
+		C5BCC6312DB39BC400EFE4F3 /* SlotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6112DB39BC400EFE4F3 /* SlotCell.m */; };
+		C5BCC6322DB39BC400EFE4F3 /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6142DB39BC400EFE4F3 /* TextCell.m */; };
+		C5BCC6332DB39BC400EFE4F3 /* HourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6082DB39BC400EFE4F3 /* HourCell.m */; };
+		C5BCC6342DB39BC400EFE4F3 /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6052DB39BC400EFE4F3 /* HeaderCell.m */; };
+		C5BCC6352DB39BC400EFE4F3 /* DayTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6022DB39BC400EFE4F3 /* DayTitleCell.m */; };
+		C5BCC6362DB39BC400EFE4F3 /* TimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6172DB39BC400EFE4F3 /* TimeCell.m */; };
+		C5BCC6372DB39BC400EFE4F3 /* ZMJTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6262DB39BC400EFE4F3 /* ZMJTextCell.m */; };
 		C5D4AB922DB24601006ED3F6 /* UIViewController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */; };
 		C5D4ADAE2DB25D74006ED3F6 /* ZFPlayerExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
@@ -216,13 +231,11 @@
 		CE4F27642CA825CD002AF25B /* CtrlClipboardCueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24BF2CA825CD002AF25B /* CtrlClipboardCueVC.m */; };
 		CE4F27652CA825CD002AF25B /* JobsSearchTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F267E2CA825CD002AF25B /* JobsSearchTableViewHeaderView.m */; };
 		CE4F27662CA825CD002AF25B /* ForgetCodeStep_01View.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25CE2CA825CD002AF25B /* ForgetCodeStep_01View.m */; };
-		CE4F27672CA825CD002AF25B /* HourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F244C2CA825CD002AF25B /* HourCell.m */; };
 		CE4F27682CA825CD002AF25B /* JobsIMShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26562CA825CD002AF25B /* JobsIMShowVC.m */; };
 		CE4F27692CA825CD002AF25B /* JobsDropDownListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F260C2CA825CD002AF25B /* JobsDropDownListVC.m */; };
 		CE4F276A2CA825CD002AF25B /* RegisterApi.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25342CA825CD002AF25B /* RegisterApi.m */; };
 		CE4F276B2CA825CD002AF25B /* Douyin_ZFPlayerVC@2.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25BC2CA825CD002AF25B /* Douyin_ZFPlayerVC@2.m */; };
 		CE4F276C2CA825CD002AF25B /* JobsVerticalMenuVC@1.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25072CA825CD002AF25B /* JobsVerticalMenuVC@1.m */; };
-		CE4F276D2CA825CD002AF25B /* ChannelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24402CA825CD002AF25B /* ChannelCell.m */; };
 		CE4F276E2CA825CD002AF25B /* UITableViewCellEditorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F27522CA825CD002AF25B /* UITableViewCellEditorVC.m */; };
 		CE4F276F2CA825CD002AF25B /* BaiShaETProjMembersSubsBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26BF2CA825CD002AF25B /* BaiShaETProjMembersSubsBaseVC.m */; };
 		CE4F27702CA825CD002AF25B /* FMDB_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F251B2CA825CD002AF25B /* FMDB_VC.m */; };
@@ -254,12 +267,10 @@
 		CE4F278A2CA825CD002AF25B /* HotRefreshVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24DC2CA825CD002AF25B /* HotRefreshVC.m */; };
 		CE4F278B2CA825CD002AF25B /* JobsPresentedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F272A2CA825CD002AF25B /* JobsPresentedVC.m */; };
 		CE4F278C2CA825CD002AF25B /* JXCategoryViewVerticalShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26992CA825CD002AF25B /* JXCategoryViewVerticalShowVC.m */; };
-		CE4F278D2CA825CD002AF25B /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24582CA825CD002AF25B /* TextCell.m */; };
 		CE4F278E2CA825CD002AF25B /* CustomBtnVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F27192CA825CD002AF25B /* CustomBtnVC.m */; };
 		CE4F278F2CA825CD002AF25B /* CutomView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25932CA825CD002AF25B /* CutomView.m */; };
 		CE4F27902CA825CD002AF25B /* MainTableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F248A2CA825CD002AF25B /* MainTableViewCellItem.m */; };
 		CE4F27912CA825CD002AF25B /* BaiShaETProjCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26A22CA825CD002AF25B /* BaiShaETProjCollectionHeaderView.m */; };
-		CE4F27922CA825CD002AF25B /* ZMJTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F246A2CA825CD002AF25B /* ZMJTextCell.m */; };
 		CE4F27932CA825CD002AF25B /* TransparentRegionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F27152CA825CD002AF25B /* TransparentRegionVC.m */; };
 		CE4F27942CA825CD002AF25B /* JobsTopViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24872CA825CD002AF25B /* JobsTopViewItem.m */; };
 		CE4F27952CA825CD002AF25B /* MyCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26E02CA825CD002AF25B /* MyCollectionVC.m */; };
@@ -301,7 +312,6 @@
 		CE4F27B92CA825CD002AF25B /* NotifiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25892CA825CD002AF25B /* NotifiManager.m */; };
 		CE4F27BA2CA825CD002AF25B /* BaiShaETProjVIPSubCVFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26BB2CA825CD002AF25B /* BaiShaETProjVIPSubCVFooterView.m */; };
 		CE4F27BB2CA825CD002AF25B /* ZMJTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F246E2CA825CD002AF25B /* ZMJTask.m */; };
-		CE4F27BC2CA825CD002AF25B /* ZMJHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24642CA825CD002AF25B /* ZMJHeaderCell.m */; };
 		CE4F27BD2CA825CD002AF25B /* ZMJTimeableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F247E2CA825CD002AF25B /* ZMJTimeableVC.m */; };
 		CE4F27BE2CA825CD002AF25B /* A_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26F72CA825CD002AF25B /* A_VC.m */; };
 		CE4F27BF2CA825CD002AF25B /* TableViewOneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F248E2CA825CD002AF25B /* TableViewOneCell.m */; };
@@ -320,17 +330,12 @@
 		CE4F27CC2CA825CD002AF25B /* JXCategoryViewVerticalShowSubBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26962CA825CD002AF25B /* JXCategoryViewVerticalShowSubBaseVC.m */; };
 		CE4F27CD2CA825CD002AF25B /* JobsPopUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25FA2CA825CD002AF25B /* JobsPopUpVC.m */; };
 		CE4F27CE2CA825CD002AF25B /* LuckyDiskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24382CA825CD002AF25B /* LuckyDiskVC.m */; };
-		CE4F27CF2CA825CD002AF25B /* MyBlankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F244F2CA825CD002AF25B /* MyBlankCell.m */; };
 		CE4F27D02CA825CD002AF25B /* JobsLoadMoreTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25EC2CA825CD002AF25B /* JobsLoadMoreTBVCell.m */; };
 		CE4F27D12CA825CD002AF25B /* JobsSearchShowHotwordsTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26652CA825CD002AF25B /* JobsSearchShowHotwordsTBVCell.m */; };
-		CE4F27D22CA825CD002AF25B /* DateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24432CA825CD002AF25B /* DateCell.m */; };
-		CE4F27D32CA825CD002AF25B /* TimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F245B2CA825CD002AF25B /* TimeCell.m */; };
 		CE4F27D42CA825CD002AF25B /* JobsAppDoorLoginContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25D52CA825CD002AF25B /* JobsAppDoorLoginContentView.m */; };
 		CE4F27D52CA825CD002AF25B /* JobsTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26842CA825CD002AF25B /* JobsTestVC.m */; };
-		CE4F27D72CA825CD002AF25B /* ZMJTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24672CA825CD002AF25B /* ZMJTaskCell.m */; };
 		CE4F27D82CA825CD002AF25B /* BaiShaETProjBankAccMgmtCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F271C2CA825CD002AF25B /* BaiShaETProjBankAccMgmtCVCell.m */; };
 		CE4F27D92CA825CD002AF25B /* JobsVerticalMenuVC@0.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25042CA825CD002AF25B /* JobsVerticalMenuVC@0.m */; };
-		CE4F27DA2CA825CD002AF25B /* TimeTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F245E2CA825CD002AF25B /* TimeTitleCell.m */; };
 		CE4F27DB2CA825CD002AF25B /* ZFDouYinControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25B52CA825CD002AF25B /* ZFDouYinControlView.m */; };
 		CE4F27DC2CA825CD002AF25B /* JXCategoryViewWithHeaderViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26C52CA825CD002AF25B /* JXCategoryViewWithHeaderViewVC.m */; };
 		CE4F27DD2CA825CD002AF25B /* JobsExcelLeftListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24962CA825CD002AF25B /* JobsExcelLeftListView.m */; };
@@ -348,7 +353,6 @@
 		CE4F27EA2CA825CD002AF25B /* UITBVCellFoldVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F27402CA825CD002AF25B /* UITBVCellFoldVC.m */; };
 		CE4F27EB2CA825CD002AF25B /* JobsIMChatInfoTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26292CA825CD002AF25B /* JobsIMChatInfoTBVCell.m */; };
 		CE4F27EC2CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_04.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26B22CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_04.m */; };
-		CE4F27ED2CA825CD002AF25B /* ZMJChartBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24612CA825CD002AF25B /* ZMJChartBarCell.m */; };
 		CE4F27EE2CA825CD002AF25B /* TreeClassItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24FC2CA825CD002AF25B /* TreeClassItemCell.m */; };
 		CE4F27EF2CA825CD002AF25B /* AppIconSwitchingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25852CA825CD002AF25B /* AppIconSwitchingVC.m */; };
 		CE4F27F02CA825CD002AF25B /* ZMJTaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24712CA825CD002AF25B /* ZMJTaskView.m */; };
@@ -357,7 +361,6 @@
 		CE4F27F32CA825CD002AF25B /* JobsPlayerTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25A92CA825CD002AF25B /* JobsPlayerTBVCell.m */; };
 		CE4F27F42CA825CD002AF25B /* NSTimerManagerTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26D22CA825CD002AF25B /* NSTimerManagerTestVC.m */; };
 		CE4F27F52CA825CD002AF25B /* PushAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26FC2CA825CD002AF25B /* PushAnimation.m */; };
-		CE4F27F62CA825CD002AF25B /* SlotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24552CA825CD002AF25B /* SlotCell.m */; };
 		CE4F27F72CA825CD002AF25B /* MSCommentTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F27382CA825CD002AF25B /* MSCommentTBVCell.m */; };
 		CE4F27F82CA825CD002AF25B /* JobsIMInputview.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F262C2CA825CD002AF25B /* JobsIMInputview.m */; };
 		CE4F27F92CA825CD002AF25B /* JobsIMListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26452CA825CD002AF25B /* JobsIMListView.m */; };
@@ -392,15 +395,12 @@
 		CE4F28172CA825CD002AF25B /* YTKChainRequest+AnimatingAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25472CA825CD002AF25B /* YTKChainRequest+AnimatingAccessory.m */; };
 		CE4F28182CA825CD002AF25B /* JobsSearchTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F266B2CA825CD002AF25B /* JobsSearchTBVCell.m */; };
 		CE4F28192CA825CD002AF25B /* JobsMsgDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F274F2CA825CD002AF25B /* JobsMsgDetailVC.m */; };
-		CE4F281A2CA825CD002AF25B /* DayTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24462CA825CD002AF25B /* DayTitleCell.m */; };
 		CE4F281B2CA825CD002AF25B /* JXCategoryPopupSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F268F2CA825CD002AF25B /* JXCategoryPopupSubVC.m */; };
 		CE4F281C2CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_02.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26AA2CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_02.m */; };
 		CE4F281D2CA825CD002AF25B /* JobsPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24CE2CA825CD002AF25B /* JobsPostVC.m */; };
-		CE4F281E2CA825CD002AF25B /* HeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24492CA825CD002AF25B /* HeaderCell.m */; };
 		CE4F281F2CA825CD002AF25B /* MSCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F27312CA825CD002AF25B /* MSCommentModel.m */; };
 		CE4F28202CA825CD002AF25B /* PeekAndPopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F26E62CA825CD002AF25B /* PeekAndPopVC.m */; };
 		CE4F28212CA825CD002AF25B /* YTKNetworkStudyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F25542CA825CD002AF25B /* YTKNetworkStudyVC.m */; };
-		CE4F28222CA825CD002AF25B /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F24522CA825CD002AF25B /* ScheduleCell.m */; };
 		CE4F28232CA825CD002AF25B /* MSCommentTableHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F27352CA825CD002AF25B /* MSCommentTableHeaderFooterView.m */; };
 		CE4F28242CA825CD002AF25B /* JobsIM【Outlines 08】.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4F26392CA825CD002AF25B /* JobsIM【Outlines 08】.png */; };
 		CE4F28252CA825CD002AF25B /* MSCommentView.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE4F273B2CA825CD002AF25B /* MSCommentView.jpg */; };
@@ -1631,6 +1631,36 @@
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
+		C5BCC5FB2DB39BC400EFE4F3 /* ChannelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
+		C5BCC5FC2DB39BC400EFE4F3 /* ChannelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
+		C5BCC5FE2DB39BC400EFE4F3 /* DateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateCell.h; sourceTree = "<group>"; };
+		C5BCC5FF2DB39BC400EFE4F3 /* DateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateCell.m; sourceTree = "<group>"; };
+		C5BCC6012DB39BC400EFE4F3 /* DayTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DayTitleCell.h; sourceTree = "<group>"; };
+		C5BCC6022DB39BC400EFE4F3 /* DayTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayTitleCell.m; sourceTree = "<group>"; };
+		C5BCC6042DB39BC400EFE4F3 /* HeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderCell.h; sourceTree = "<group>"; };
+		C5BCC6052DB39BC400EFE4F3 /* HeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderCell.m; sourceTree = "<group>"; };
+		C5BCC6072DB39BC400EFE4F3 /* HourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HourCell.h; sourceTree = "<group>"; };
+		C5BCC6082DB39BC400EFE4F3 /* HourCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HourCell.m; sourceTree = "<group>"; };
+		C5BCC60A2DB39BC400EFE4F3 /* MyBlankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBlankCell.h; sourceTree = "<group>"; };
+		C5BCC60B2DB39BC400EFE4F3 /* MyBlankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBlankCell.m; sourceTree = "<group>"; };
+		C5BCC60D2DB39BC400EFE4F3 /* ScheduleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
+		C5BCC60E2DB39BC400EFE4F3 /* ScheduleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
+		C5BCC6102DB39BC400EFE4F3 /* SlotCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlotCell.h; sourceTree = "<group>"; };
+		C5BCC6112DB39BC400EFE4F3 /* SlotCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlotCell.m; sourceTree = "<group>"; };
+		C5BCC6132DB39BC400EFE4F3 /* TextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
+		C5BCC6142DB39BC400EFE4F3 /* TextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
+		C5BCC6162DB39BC400EFE4F3 /* TimeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeCell.h; sourceTree = "<group>"; };
+		C5BCC6172DB39BC400EFE4F3 /* TimeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeCell.m; sourceTree = "<group>"; };
+		C5BCC6192DB39BC400EFE4F3 /* TimeTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeTitleCell.h; sourceTree = "<group>"; };
+		C5BCC61A2DB39BC400EFE4F3 /* TimeTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeTitleCell.m; sourceTree = "<group>"; };
+		C5BCC61C2DB39BC400EFE4F3 /* ZMJChartBarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJChartBarCell.h; sourceTree = "<group>"; };
+		C5BCC61D2DB39BC400EFE4F3 /* ZMJChartBarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJChartBarCell.m; sourceTree = "<group>"; };
+		C5BCC61F2DB39BC400EFE4F3 /* ZMJHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJHeaderCell.h; sourceTree = "<group>"; };
+		C5BCC6202DB39BC400EFE4F3 /* ZMJHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJHeaderCell.m; sourceTree = "<group>"; };
+		C5BCC6222DB39BC400EFE4F3 /* ZMJTaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJTaskCell.h; sourceTree = "<group>"; };
+		C5BCC6232DB39BC400EFE4F3 /* ZMJTaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJTaskCell.m; sourceTree = "<group>"; };
+		C5BCC6252DB39BC400EFE4F3 /* ZMJTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJTextCell.h; sourceTree = "<group>"; };
+		C5BCC6262DB39BC400EFE4F3 /* ZMJTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJTextCell.m; sourceTree = "<group>"; };
 		C5D4AB8F2DB24601006ED3F6 /* UIViewController+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extra.h"; sourceTree = "<group>"; };
 		C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extra.m"; sourceTree = "<group>"; };
 		C5D4ADAB2DB25D74006ED3F6 /* ZFPlayerExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPlayerExtras.h; sourceTree = "<group>"; };
@@ -1887,36 +1917,6 @@
 		CE4F24382CA825CD002AF25B /* LuckyDiskVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyDiskVC.m; sourceTree = "<group>"; };
 		CE4F243A2CA825CD002AF25B /* LuckyRollVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyRollVC.h; sourceTree = "<group>"; };
 		CE4F243B2CA825CD002AF25B /* LuckyRollVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyRollVC.m; sourceTree = "<group>"; };
-		CE4F243F2CA825CD002AF25B /* ChannelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
-		CE4F24402CA825CD002AF25B /* ChannelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
-		CE4F24422CA825CD002AF25B /* DateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateCell.h; sourceTree = "<group>"; };
-		CE4F24432CA825CD002AF25B /* DateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateCell.m; sourceTree = "<group>"; };
-		CE4F24452CA825CD002AF25B /* DayTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DayTitleCell.h; sourceTree = "<group>"; };
-		CE4F24462CA825CD002AF25B /* DayTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayTitleCell.m; sourceTree = "<group>"; };
-		CE4F24482CA825CD002AF25B /* HeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderCell.h; sourceTree = "<group>"; };
-		CE4F24492CA825CD002AF25B /* HeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderCell.m; sourceTree = "<group>"; };
-		CE4F244B2CA825CD002AF25B /* HourCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HourCell.h; sourceTree = "<group>"; };
-		CE4F244C2CA825CD002AF25B /* HourCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HourCell.m; sourceTree = "<group>"; };
-		CE4F244E2CA825CD002AF25B /* MyBlankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyBlankCell.h; sourceTree = "<group>"; };
-		CE4F244F2CA825CD002AF25B /* MyBlankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyBlankCell.m; sourceTree = "<group>"; };
-		CE4F24512CA825CD002AF25B /* ScheduleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
-		CE4F24522CA825CD002AF25B /* ScheduleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
-		CE4F24542CA825CD002AF25B /* SlotCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlotCell.h; sourceTree = "<group>"; };
-		CE4F24552CA825CD002AF25B /* SlotCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlotCell.m; sourceTree = "<group>"; };
-		CE4F24572CA825CD002AF25B /* TextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
-		CE4F24582CA825CD002AF25B /* TextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
-		CE4F245A2CA825CD002AF25B /* TimeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeCell.h; sourceTree = "<group>"; };
-		CE4F245B2CA825CD002AF25B /* TimeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeCell.m; sourceTree = "<group>"; };
-		CE4F245D2CA825CD002AF25B /* TimeTitleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeTitleCell.h; sourceTree = "<group>"; };
-		CE4F245E2CA825CD002AF25B /* TimeTitleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeTitleCell.m; sourceTree = "<group>"; };
-		CE4F24602CA825CD002AF25B /* ZMJChartBarCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJChartBarCell.h; sourceTree = "<group>"; };
-		CE4F24612CA825CD002AF25B /* ZMJChartBarCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJChartBarCell.m; sourceTree = "<group>"; };
-		CE4F24632CA825CD002AF25B /* ZMJHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJHeaderCell.h; sourceTree = "<group>"; };
-		CE4F24642CA825CD002AF25B /* ZMJHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJHeaderCell.m; sourceTree = "<group>"; };
-		CE4F24662CA825CD002AF25B /* ZMJTaskCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJTaskCell.h; sourceTree = "<group>"; };
-		CE4F24672CA825CD002AF25B /* ZMJTaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJTaskCell.m; sourceTree = "<group>"; };
-		CE4F24692CA825CD002AF25B /* ZMJTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJTextCell.h; sourceTree = "<group>"; };
-		CE4F246A2CA825CD002AF25B /* ZMJTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJTextCell.m; sourceTree = "<group>"; };
 		CE4F246D2CA825CD002AF25B /* ZMJTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJTask.h; sourceTree = "<group>"; };
 		CE4F246E2CA825CD002AF25B /* ZMJTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJTask.m; sourceTree = "<group>"; };
 		CE4F24702CA825CD002AF25B /* ZMJTaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJTaskView.h; sourceTree = "<group>"; };
@@ -5544,6 +5544,163 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C5BCC5FD2DB39BC400EFE4F3 /* ChannelCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC5FB2DB39BC400EFE4F3 /* ChannelCell.h */,
+				C5BCC5FC2DB39BC400EFE4F3 /* ChannelCell.m */,
+			);
+			path = ChannelCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6002DB39BC400EFE4F3 /* DateCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC5FE2DB39BC400EFE4F3 /* DateCell.h */,
+				C5BCC5FF2DB39BC400EFE4F3 /* DateCell.m */,
+			);
+			path = DateCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6032DB39BC400EFE4F3 /* DayTitleCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC6012DB39BC400EFE4F3 /* DayTitleCell.h */,
+				C5BCC6022DB39BC400EFE4F3 /* DayTitleCell.m */,
+			);
+			path = DayTitleCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6062DB39BC400EFE4F3 /* HeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC6042DB39BC400EFE4F3 /* HeaderCell.h */,
+				C5BCC6052DB39BC400EFE4F3 /* HeaderCell.m */,
+			);
+			path = HeaderCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6092DB39BC400EFE4F3 /* HourCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC6072DB39BC400EFE4F3 /* HourCell.h */,
+				C5BCC6082DB39BC400EFE4F3 /* HourCell.m */,
+			);
+			path = HourCell;
+			sourceTree = "<group>";
+		};
+		C5BCC60C2DB39BC400EFE4F3 /* MyBlankCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC60A2DB39BC400EFE4F3 /* MyBlankCell.h */,
+				C5BCC60B2DB39BC400EFE4F3 /* MyBlankCell.m */,
+			);
+			path = MyBlankCell;
+			sourceTree = "<group>";
+		};
+		C5BCC60F2DB39BC400EFE4F3 /* ScheduleCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC60D2DB39BC400EFE4F3 /* ScheduleCell.h */,
+				C5BCC60E2DB39BC400EFE4F3 /* ScheduleCell.m */,
+			);
+			path = ScheduleCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6122DB39BC400EFE4F3 /* SlotCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC6102DB39BC400EFE4F3 /* SlotCell.h */,
+				C5BCC6112DB39BC400EFE4F3 /* SlotCell.m */,
+			);
+			path = SlotCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6152DB39BC400EFE4F3 /* TextCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC6132DB39BC400EFE4F3 /* TextCell.h */,
+				C5BCC6142DB39BC400EFE4F3 /* TextCell.m */,
+			);
+			path = TextCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6182DB39BC400EFE4F3 /* TimeCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC6162DB39BC400EFE4F3 /* TimeCell.h */,
+				C5BCC6172DB39BC400EFE4F3 /* TimeCell.m */,
+			);
+			path = TimeCell;
+			sourceTree = "<group>";
+		};
+		C5BCC61B2DB39BC400EFE4F3 /* TimeTitleCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC6192DB39BC400EFE4F3 /* TimeTitleCell.h */,
+				C5BCC61A2DB39BC400EFE4F3 /* TimeTitleCell.m */,
+			);
+			path = TimeTitleCell;
+			sourceTree = "<group>";
+		};
+		C5BCC61E2DB39BC400EFE4F3 /* ZMJChartBarCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC61C2DB39BC400EFE4F3 /* ZMJChartBarCell.h */,
+				C5BCC61D2DB39BC400EFE4F3 /* ZMJChartBarCell.m */,
+			);
+			path = ZMJChartBarCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6212DB39BC400EFE4F3 /* ZMJHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC61F2DB39BC400EFE4F3 /* ZMJHeaderCell.h */,
+				C5BCC6202DB39BC400EFE4F3 /* ZMJHeaderCell.m */,
+			);
+			path = ZMJHeaderCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6242DB39BC400EFE4F3 /* ZMJTaskCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC6222DB39BC400EFE4F3 /* ZMJTaskCell.h */,
+				C5BCC6232DB39BC400EFE4F3 /* ZMJTaskCell.m */,
+			);
+			path = ZMJTaskCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6272DB39BC400EFE4F3 /* ZMJTextCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC6252DB39BC400EFE4F3 /* ZMJTextCell.h */,
+				C5BCC6262DB39BC400EFE4F3 /* ZMJTextCell.m */,
+			);
+			path = ZMJTextCell;
+			sourceTree = "<group>";
+		};
+		C5BCC6282DB39BC400EFE4F3 /* ZMJCells */ = {
+			isa = PBXGroup;
+			children = (
+				C5BCC5FD2DB39BC400EFE4F3 /* ChannelCell */,
+				C5BCC6002DB39BC400EFE4F3 /* DateCell */,
+				C5BCC6032DB39BC400EFE4F3 /* DayTitleCell */,
+				C5BCC6062DB39BC400EFE4F3 /* HeaderCell */,
+				C5BCC6092DB39BC400EFE4F3 /* HourCell */,
+				C5BCC60C2DB39BC400EFE4F3 /* MyBlankCell */,
+				C5BCC60F2DB39BC400EFE4F3 /* ScheduleCell */,
+				C5BCC6122DB39BC400EFE4F3 /* SlotCell */,
+				C5BCC6152DB39BC400EFE4F3 /* TextCell */,
+				C5BCC6182DB39BC400EFE4F3 /* TimeCell */,
+				C5BCC61B2DB39BC400EFE4F3 /* TimeTitleCell */,
+				C5BCC61E2DB39BC400EFE4F3 /* ZMJChartBarCell */,
+				C5BCC6212DB39BC400EFE4F3 /* ZMJHeaderCell */,
+				C5BCC6242DB39BC400EFE4F3 /* ZMJTaskCell */,
+				C5BCC6272DB39BC400EFE4F3 /* ZMJTextCell */,
+			);
+			path = ZMJCells;
+			sourceTree = "<group>";
+		};
 		C5D4AB912DB24601006ED3F6 /* UIViewController+Extra */ = {
 			isa = PBXGroup;
 			children = (
@@ -6743,163 +6900,6 @@
 			path = "抽奖轮盘";
 			sourceTree = "<group>";
 		};
-		CE4F24412CA825CD002AF25B /* ChannelCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F243F2CA825CD002AF25B /* ChannelCell.h */,
-				CE4F24402CA825CD002AF25B /* ChannelCell.m */,
-			);
-			path = ChannelCell;
-			sourceTree = "<group>";
-		};
-		CE4F24442CA825CD002AF25B /* DateCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24422CA825CD002AF25B /* DateCell.h */,
-				CE4F24432CA825CD002AF25B /* DateCell.m */,
-			);
-			path = DateCell;
-			sourceTree = "<group>";
-		};
-		CE4F24472CA825CD002AF25B /* DayTitleCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24452CA825CD002AF25B /* DayTitleCell.h */,
-				CE4F24462CA825CD002AF25B /* DayTitleCell.m */,
-			);
-			path = DayTitleCell;
-			sourceTree = "<group>";
-		};
-		CE4F244A2CA825CD002AF25B /* HeaderCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24482CA825CD002AF25B /* HeaderCell.h */,
-				CE4F24492CA825CD002AF25B /* HeaderCell.m */,
-			);
-			path = HeaderCell;
-			sourceTree = "<group>";
-		};
-		CE4F244D2CA825CD002AF25B /* HourCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F244B2CA825CD002AF25B /* HourCell.h */,
-				CE4F244C2CA825CD002AF25B /* HourCell.m */,
-			);
-			path = HourCell;
-			sourceTree = "<group>";
-		};
-		CE4F24502CA825CD002AF25B /* MyBlankCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F244E2CA825CD002AF25B /* MyBlankCell.h */,
-				CE4F244F2CA825CD002AF25B /* MyBlankCell.m */,
-			);
-			path = MyBlankCell;
-			sourceTree = "<group>";
-		};
-		CE4F24532CA825CD002AF25B /* ScheduleCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24512CA825CD002AF25B /* ScheduleCell.h */,
-				CE4F24522CA825CD002AF25B /* ScheduleCell.m */,
-			);
-			path = ScheduleCell;
-			sourceTree = "<group>";
-		};
-		CE4F24562CA825CD002AF25B /* SlotCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24542CA825CD002AF25B /* SlotCell.h */,
-				CE4F24552CA825CD002AF25B /* SlotCell.m */,
-			);
-			path = SlotCell;
-			sourceTree = "<group>";
-		};
-		CE4F24592CA825CD002AF25B /* TextCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24572CA825CD002AF25B /* TextCell.h */,
-				CE4F24582CA825CD002AF25B /* TextCell.m */,
-			);
-			path = TextCell;
-			sourceTree = "<group>";
-		};
-		CE4F245C2CA825CD002AF25B /* TimeCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F245A2CA825CD002AF25B /* TimeCell.h */,
-				CE4F245B2CA825CD002AF25B /* TimeCell.m */,
-			);
-			path = TimeCell;
-			sourceTree = "<group>";
-		};
-		CE4F245F2CA825CD002AF25B /* TimeTitleCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F245D2CA825CD002AF25B /* TimeTitleCell.h */,
-				CE4F245E2CA825CD002AF25B /* TimeTitleCell.m */,
-			);
-			path = TimeTitleCell;
-			sourceTree = "<group>";
-		};
-		CE4F24622CA825CD002AF25B /* ZMJChartBarCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24602CA825CD002AF25B /* ZMJChartBarCell.h */,
-				CE4F24612CA825CD002AF25B /* ZMJChartBarCell.m */,
-			);
-			path = ZMJChartBarCell;
-			sourceTree = "<group>";
-		};
-		CE4F24652CA825CD002AF25B /* ZMJHeaderCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24632CA825CD002AF25B /* ZMJHeaderCell.h */,
-				CE4F24642CA825CD002AF25B /* ZMJHeaderCell.m */,
-			);
-			path = ZMJHeaderCell;
-			sourceTree = "<group>";
-		};
-		CE4F24682CA825CD002AF25B /* ZMJTaskCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24662CA825CD002AF25B /* ZMJTaskCell.h */,
-				CE4F24672CA825CD002AF25B /* ZMJTaskCell.m */,
-			);
-			path = ZMJTaskCell;
-			sourceTree = "<group>";
-		};
-		CE4F246B2CA825CD002AF25B /* ZMJTextCell */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24692CA825CD002AF25B /* ZMJTextCell.h */,
-				CE4F246A2CA825CD002AF25B /* ZMJTextCell.m */,
-			);
-			path = ZMJTextCell;
-			sourceTree = "<group>";
-		};
-		CE4F246C2CA825CD002AF25B /* ZMJCells */ = {
-			isa = PBXGroup;
-			children = (
-				CE4F24412CA825CD002AF25B /* ChannelCell */,
-				CE4F24442CA825CD002AF25B /* DateCell */,
-				CE4F24472CA825CD002AF25B /* DayTitleCell */,
-				CE4F244A2CA825CD002AF25B /* HeaderCell */,
-				CE4F244D2CA825CD002AF25B /* HourCell */,
-				CE4F24502CA825CD002AF25B /* MyBlankCell */,
-				CE4F24532CA825CD002AF25B /* ScheduleCell */,
-				CE4F24562CA825CD002AF25B /* SlotCell */,
-				CE4F24592CA825CD002AF25B /* TextCell */,
-				CE4F245C2CA825CD002AF25B /* TimeCell */,
-				CE4F245F2CA825CD002AF25B /* TimeTitleCell */,
-				CE4F24622CA825CD002AF25B /* ZMJChartBarCell */,
-				CE4F24652CA825CD002AF25B /* ZMJHeaderCell */,
-				CE4F24682CA825CD002AF25B /* ZMJTaskCell */,
-				CE4F246B2CA825CD002AF25B /* ZMJTextCell */,
-			);
-			path = ZMJCells;
-			sourceTree = "<group>";
-		};
 		CE4F246F2CA825CD002AF25B /* ZMJTask */ = {
 			isa = PBXGroup;
 			children = (
@@ -6921,7 +6921,7 @@
 		CE4F24732CA825CD002AF25B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CE4F246C2CA825CD002AF25B /* ZMJCells */,
+				C5BCC6282DB39BC400EFE4F3 /* ZMJCells */,
 				CE4F246F2CA825CD002AF25B /* ZMJTask */,
 				CE4F24722CA825CD002AF25B /* ZMJTaskView */,
 			);
@@ -16806,6 +16806,21 @@
 				CE5A65FD2CA83483006D67A7 /* JobsPullListAutoSizeView.m in Sources */,
 				CE5A65FE2CA83483006D67A7 /* JobsTabBarItemConfig.m in Sources */,
 				CE5A65FF2CA83483006D67A7 /* TransitionAnimation.m in Sources */,
+				C5BCC6292DB39BC400EFE4F3 /* ZMJHeaderCell.m in Sources */,
+				C5BCC62A2DB39BC400EFE4F3 /* ZMJTaskCell.m in Sources */,
+				C5BCC62B2DB39BC400EFE4F3 /* ScheduleCell.m in Sources */,
+				C5BCC62C2DB39BC400EFE4F3 /* ChannelCell.m in Sources */,
+				C5BCC62D2DB39BC400EFE4F3 /* DateCell.m in Sources */,
+				C5BCC62E2DB39BC400EFE4F3 /* TimeTitleCell.m in Sources */,
+				C5BCC62F2DB39BC400EFE4F3 /* MyBlankCell.m in Sources */,
+				C5BCC6302DB39BC400EFE4F3 /* ZMJChartBarCell.m in Sources */,
+				C5BCC6312DB39BC400EFE4F3 /* SlotCell.m in Sources */,
+				C5BCC6322DB39BC400EFE4F3 /* TextCell.m in Sources */,
+				C5BCC6332DB39BC400EFE4F3 /* HourCell.m in Sources */,
+				C5BCC6342DB39BC400EFE4F3 /* HeaderCell.m in Sources */,
+				C5BCC6352DB39BC400EFE4F3 /* DayTitleCell.m in Sources */,
+				C5BCC6362DB39BC400EFE4F3 /* TimeCell.m in Sources */,
+				C5BCC6372DB39BC400EFE4F3 /* ZMJTextCell.m in Sources */,
 				CEB8FA732CA8382C00CCFDF8 /* JobsLaunchAdMgr.m in Sources */,
 				8474A4AF2CF8696400112B4B /* AFSecurityPolicy+Extra.m in Sources */,
 				CEB8FA742CA8382C00CCFDF8 /* AESCrypt.m in Sources */,
@@ -16891,7 +16906,6 @@
 				CE4F27652CA825CD002AF25B /* JobsSearchTableViewHeaderView.m in Sources */,
 				CE4F27662CA825CD002AF25B /* ForgetCodeStep_01View.m in Sources */,
 				8478DA042D01E0AE004E8B90 /* FM_kyc_image_upload_api.m in Sources */,
-				CE4F27672CA825CD002AF25B /* HourCell.m in Sources */,
 				CE4F27682CA825CD002AF25B /* JobsIMShowVC.m in Sources */,
 				CE4F27692CA825CD002AF25B /* JobsDropDownListVC.m in Sources */,
 				CE5A64FD2CA830CA006D67A7 /* UIButton+Extra.m in Sources */,
@@ -16907,7 +16921,6 @@
 				CE5A64D72CA82FE6006D67A7 /* NSObject+RunrtimeGet.m in Sources */,
 				CE5A648C2CA82DCC006D67A7 /* NSNotificationCenter+JobsBlock.m in Sources */,
 				CE4F276C2CA825CD002AF25B /* JobsVerticalMenuVC@1.m in Sources */,
-				CE4F276D2CA825CD002AF25B /* ChannelCell.m in Sources */,
 				CE5A65E52CA83430006D67A7 /* JobsToggleBaseView.m in Sources */,
 				CE5A65E62CA83430006D67A7 /* JobsTitleView01.m in Sources */,
 				CE5A65E72CA83430006D67A7 /* JobsToggleNavView.m in Sources */,
@@ -16993,7 +17006,6 @@
 				CE4F278A2CA825CD002AF25B /* HotRefreshVC.m in Sources */,
 				CE4F278B2CA825CD002AF25B /* JobsPresentedVC.m in Sources */,
 				CE4F278C2CA825CD002AF25B /* JXCategoryViewVerticalShowVC.m in Sources */,
-				CE4F278D2CA825CD002AF25B /* TextCell.m in Sources */,
 				CE5A657A2CA832AD006D67A7 /* UIViewController+JPImageresizerView.m in Sources */,
 				CE5A657B2CA832AD006D67A7 /* UIViewController+Shake.m in Sources */,
 				84E9992E2CEB2D1C00ABE463 /* NSObject+TEST.m in Sources */,
@@ -17016,7 +17028,6 @@
 				CE5A64752CA82CC7006D67A7 /* CALayer+Anim.m in Sources */,
 				CE5A65112CA830FE006D67A7 /* UICollectionViewCell+UICollectionViewCellProtocol.m in Sources */,
 				CE5A65122CA830FE006D67A7 /* UICollectionViewCell+ShakeAnimation.m in Sources */,
-				CE4F27922CA825CD002AF25B /* ZMJTextCell.m in Sources */,
 				84A978652D1454630002A2BA /* NSObject+HTML.m in Sources */,
 				CE5A64882CA82DAC006D67A7 /* NSMutableArray+Extra.m in Sources */,
 				8478DBFC2D02ED74004E8B90 /* HXPhotoPickerModel.m in Sources */,
@@ -17116,7 +17127,6 @@
 				CE4F27BA2CA825CD002AF25B /* BaiShaETProjVIPSubCVFooterView.m in Sources */,
 				CE5A64B62CA82EE1006D67A7 /* NSObject+NTESVerifyCodeManager.m in Sources */,
 				CE4F27BB2CA825CD002AF25B /* ZMJTask.m in Sources */,
-				CE4F27BC2CA825CD002AF25B /* ZMJHeaderCell.m in Sources */,
 				CE4F27BD2CA825CD002AF25B /* ZMJTimeableVC.m in Sources */,
 				CE5A65762CA8329D006D67A7 /* UIViewController+BackBtn.m in Sources */,
 				C5D4ADAE2DB25D74006ED3F6 /* ZFPlayerExtras.m in Sources */,
@@ -17217,7 +17227,6 @@
 				CE5A64B92CA82EF6006D67A7 /* NSObject+SYSAlertController.m in Sources */,
 				CE4F27CE2CA825CD002AF25B /* LuckyDiskVC.m in Sources */,
 				CE5A64DF2CA83012006D67A7 /* NSObject+UserNotifications.m in Sources */,
-				CE4F27CF2CA825CD002AF25B /* MyBlankCell.m in Sources */,
 				CE5A659E2CA83351006D67A7 /* ZLGestureLockViewController.m in Sources */,
 				CE3629A42CB403F900353B97 /* TFPopupExtension.m in Sources */,
 				CE3629A52CB403F900353B97 /* UIScrollView+TFPopup.m in Sources */,
@@ -17240,14 +17249,10 @@
 				CE5A65342CA83194006D67A7 /* UIProgressView+Extra.m in Sources */,
 				CE4F27D12CA825CD002AF25B /* JobsSearchShowHotwordsTBVCell.m in Sources */,
 				CE5A64BC2CA82F12006D67A7 /* NSObject+CallBackInfoByBlock.m in Sources */,
-				CE4F27D22CA825CD002AF25B /* DateCell.m in Sources */,
-				CE4F27D32CA825CD002AF25B /* TimeCell.m in Sources */,
 				CE4F27D42CA825CD002AF25B /* JobsAppDoorLoginContentView.m in Sources */,
 				CE4F27D52CA825CD002AF25B /* JobsTestVC.m in Sources */,
-				CE4F27D72CA825CD002AF25B /* ZMJTaskCell.m in Sources */,
 				CE4F27D82CA825CD002AF25B /* BaiShaETProjBankAccMgmtCVCell.m in Sources */,
 				CE4F27D92CA825CD002AF25B /* JobsVerticalMenuVC@0.m in Sources */,
-				CE4F27DA2CA825CD002AF25B /* TimeTitleCell.m in Sources */,
 				CE4F27DB2CA825CD002AF25B /* ZFDouYinControlView.m in Sources */,
 				84B8A9582D0ACECE0079336D /* UITextItem+Extra.m in Sources */,
 				84CF6FDA2D1C42D90060C97D /* JobsGestureModel.m in Sources */,
@@ -17294,7 +17299,6 @@
 				CE4F27EB2CA825CD002AF25B /* JobsIMChatInfoTBVCell.m in Sources */,
 				8432B6262D1DAE6A00ADE9FF /* HXPhotoView+Extra.m in Sources */,
 				CE4F27EC2CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_04.m in Sources */,
-				CE4F27ED2CA825CD002AF25B /* ZMJChartBarCell.m in Sources */,
 				CE5A64B32CA82EC6006D67A7 /* TouchID.m in Sources */,
 				CE4F27EE2CA825CD002AF25B /* TreeClassItemCell.m in Sources */,
 				CE4F27EF2CA825CD002AF25B /* AppIconSwitchingVC.m in Sources */,
@@ -17320,7 +17324,6 @@
 				CE5A64D62CA82FDE006D67A7 /* NSObject+RichText.m in Sources */,
 				843B73C22CCF6F0100F172EF /* NSURLSessionDataTask+Extra.m in Sources */,
 				CE4F27F52CA825CD002AF25B /* PushAnimation.m in Sources */,
-				CE4F27F62CA825CD002AF25B /* SlotCell.m in Sources */,
 				CE4F27F72CA825CD002AF25B /* MSCommentTBVCell.m in Sources */,
 				CE4F27F82CA825CD002AF25B /* JobsIMInputview.m in Sources */,
 				CE4F27F92CA825CD002AF25B /* JobsIMListView.m in Sources */,
@@ -17449,17 +17452,14 @@
 				CE4F28172CA825CD002AF25B /* YTKChainRequest+AnimatingAccessory.m in Sources */,
 				CE4F28182CA825CD002AF25B /* JobsSearchTBVCell.m in Sources */,
 				CE4F28192CA825CD002AF25B /* JobsMsgDetailVC.m in Sources */,
-				CE4F281A2CA825CD002AF25B /* DayTitleCell.m in Sources */,
 				CE4F281B2CA825CD002AF25B /* JXCategoryPopupSubVC.m in Sources */,
 				CE4F281C2CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_02.m in Sources */,
 				CE4F281D2CA825CD002AF25B /* JobsPostVC.m in Sources */,
-				CE4F281E2CA825CD002AF25B /* HeaderCell.m in Sources */,
 				CE4F281F2CA825CD002AF25B /* MSCommentModel.m in Sources */,
 				CE4F28202CA825CD002AF25B /* PeekAndPopVC.m in Sources */,
 				CE4F28212CA825CD002AF25B /* YTKNetworkStudyVC.m in Sources */,
 				8464A5A02CDB73C30030409A /* NSObject+RACTimer.m in Sources */,
 				CE5A64BD2CA82F19006D67A7 /* NSObject+ChangeAppicon.m in Sources */,
-				CE4F28222CA825CD002AF25B /* ScheduleCell.m in Sources */,
 				CE5A64C42CA82F50006D67A7 /* NSObject+DynamicInvoke.m in Sources */,
 				CE4F28232CA825CD002AF25B /* MSCommentTableHeaderFooterView.m in Sources */,
 				845F888B2CF7030100C53A19 /* UIMenuItem+Extra.m in Sources */,

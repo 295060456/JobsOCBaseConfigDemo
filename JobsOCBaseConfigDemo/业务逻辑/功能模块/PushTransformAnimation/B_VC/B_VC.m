@@ -68,14 +68,14 @@
     return [toVC isKindOfClass:A_VC.class] ? BackAnimation.new : nil;
 }
 #pragma mark —— lazyLoad
+@synthesize imageView = _imageView;
 -(UIImageView *)imageView{
     if (!_imageView) {
         @jobs_weakify(self)
         _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.image = self.viewModel.image;
-            self.view.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(10);
                 make.left.equalTo(self.view).offset(10);
                 make.size.mas_equalTo(CGSizeMake(300, 300));

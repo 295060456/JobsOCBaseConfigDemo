@@ -257,8 +257,7 @@ insetForSectionAtIndex:(NSInteger)section {
                 return nil;
             }]);
         }
-        self.addSubview(_collectionView);
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self);
             make.height.mas_equalTo(JobsWidth(102));
         }];

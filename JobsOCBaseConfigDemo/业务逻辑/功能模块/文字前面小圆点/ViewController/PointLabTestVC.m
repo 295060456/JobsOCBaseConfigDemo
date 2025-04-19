@@ -9,13 +9,12 @@
 
 @interface PointLabTestVC ()
 /// UI
-@property(nonatomic,strong)UILabel *label;
-@property(nonatomic,strong)UILabel *label2;
+Prop_strong()UILabel *label2;
 /// Data
-@property(nonatomic,strong)NSMutableAttributedString *attributedString;
-@property(nonatomic,strong)NSMutableAttributedString *attributedString2;
-@property(nonatomic,copy)NSMutableArray<NSString *> *items;
-@property(nonatomic,copy)NSString *dot;
+Prop_strong()NSMutableAttributedString *attributedString;
+Prop_strong()NSMutableAttributedString *attributedString2;
+Prop_copy()NSMutableArray<NSString *> *items;
+Prop_copy()NSString *dot;
 
 @end
 
@@ -36,6 +35,7 @@
     self.invokeSysCamera();
 }
 #pragma mark —— lazyLoad
+@synthesize label = _label;
 -(UILabel *)label{
     if(!_label){
         @jobs_weakify(self)
@@ -44,8 +44,7 @@
             label.backgroundColor = JobsRandomColor;
             label.attributedText = self.attributedString;
             label.numberOfLines = 0;
-            self.view.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(200);
                 make.center.equalTo(self.view);
             }];label.makeLabelByShowingType(UILabelShowingType_05);
@@ -61,8 +60,7 @@
             label.backgroundColor = JobsRandomColor;
             label.attributedText = self.attributedString2;
             label.numberOfLines = 0;
-            self.view.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(200);
                 make.centerX.equalTo(self.view);
                 make.top.equalTo(self.label.mas_bottom);
@@ -94,22 +92,22 @@
                     data1.firstLineHeadIndent = 0; // 第一行不缩进
                 });
                 data.range = NSMakeRange(0, self.attributedString.length);
-            }));
+            }))
             /// 设置小圆点的颜色
-            data.addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
+            .addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
                 data1.value = JobsRedColor;
                 data1.range = NSMakeRange(0, 1);// 第一个圆点
-            }));
-            data.addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
+            }))
+            .addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
                 data1.value = JobsYellowColor;
                 data1.range = NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1);// 第二个圆点
-            }));
+            }))
             /// 设置文本颜色
-            data.addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
+            .addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
                 data1.value = JobsCor(@"#D0D0D0");
                 data1.range = NSMakeRange(1, data.length - 1);
-            }));
-            data.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
+            }))
+            .addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
                 data1.value = UIFontWeightRegularSize(JobsWidth(12));
                 data1.range = NSMakeRange(0, data.length);
             }));
@@ -154,18 +152,17 @@
             data1.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
                 data.headIndent = 10; // 设置文本的缩进，使其与圆点对齐
                 data.firstLineHeadIndent = 0; // 第一行不缩进
-            });
-            data1.range = NSMakeRange(0, self->_attributedString2.length);
+            });data1.range = NSMakeRange(0, self->_attributedString2.length);
         }));
     }return _attributedString2;
 }
 
 -(NSMutableArray<NSString *> *)items{
     if(!_items){
-        _items = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
-            data.add(@"In case you meet any problem in deposit, please contact our CS.");
-            data.add(@"Additional information can be found on our website.");
+        _items = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable data) {
+            data.add(@"Your deposit will be successfully credited to your wallet once the transaction completed.")
+            .add(@"In case you meet any problem in deposit, please contact our CS.")
+            .add(@"Additional information can be found on our website.");
         });
     }return _items;
 }

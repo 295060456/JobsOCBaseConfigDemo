@@ -10,8 +10,6 @@
 
 @interface TMSWalletCollectionReusableView ()
 
-@property(nonatomic,strong)UILabel *label;
-
 @end
 
 @implementation TMSWalletCollectionReusableView
@@ -33,6 +31,7 @@
     };
 }
 #pragma mark —— lazyLoad
+@synthesize label = _label;
 -(UILabel *)label{
     if (!_label) {
         @jobs_weakify(self)

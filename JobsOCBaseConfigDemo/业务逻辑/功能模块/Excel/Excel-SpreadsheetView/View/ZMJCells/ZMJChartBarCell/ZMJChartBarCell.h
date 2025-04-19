@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZMJChartBarCell : ZMJCell
 
-@property(nonatomic,strong)UILabel *label;
 @property(nonatomic,strong)UIView *colorBarView;
 @property(nonatomic,strong)UIColor *color;
 @property(nonatomic,assign)ZMJDashlineDirection direction;

@@ -9,7 +9,7 @@
 
 @interface UICollectionHeaderFooterView ()
 /// UI
-@property(nonatomic,strong)UIImageView *imageView;
+
 /// Data
 
 @end
@@ -61,6 +61,7 @@ static dispatch_once_t static_collectionHeaderFooterViewOnceToken;
     }
 }
 #pragma mark —— lazyLoad
+@synthesize imageView = _imageView;
 -(UIImageView *)imageView{
     if (!_imageView) {
         @jobs_weakify(self)

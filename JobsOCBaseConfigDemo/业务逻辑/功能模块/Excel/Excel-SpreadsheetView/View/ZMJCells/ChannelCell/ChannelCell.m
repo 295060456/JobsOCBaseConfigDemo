@@ -30,6 +30,7 @@
     self.label.text = channel;
 }
 #pragma mark —— LazyLoad
+@synthesize label = _label;
 -(UILabel *)label{
     if(!_label){
         @jobs_weakify(self)
@@ -42,7 +43,7 @@
             label.textColor = JobsLightGrayColor.colorWithAlphaComponentBy(.7f);
             label.textAlignment = NSTextAlignmentCenter;
             label.numberOfLines = 2;
-            [self addSubview:label];
+            self.addSubview(label);
         });
     }return _label;
 }

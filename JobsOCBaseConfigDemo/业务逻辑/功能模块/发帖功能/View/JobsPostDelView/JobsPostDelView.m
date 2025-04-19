@@ -10,7 +10,6 @@
 @interface JobsPostDelView ()
 /// UI
 @property(nonatomic,strong)UILabel *titleLab;
-@property(nonatomic,strong)UIImageView *imageView;
 /// Data
 
 @end
@@ -39,11 +38,11 @@ static dispatch_once_t static_postDelViewOnceToken;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         [self addNotificationName:语言切换
                             block:^(id _Nullable weakSelf,
                                     id _Nullable arg) {
-            @jobs_strongify(self)
+//            @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
             if([notification.object isKindOfClass:NSNumber.class]){
                 NSNumber *b = notification.object;
@@ -96,14 +95,14 @@ static dispatch_once_t static_postDelViewOnceToken;
     };
 }
 #pragma mark —— lazyLoad
+@synthesize imageView = _imageView;
 -(UIImageView *)imageView{
     if (!_imageView) {
         @jobs_weakify(self)
         _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.image = JobsIMG(@"hx_photo_edit_trash_close");
-            self.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(20), JobsWidth(20)));
                 make.centerX.equalTo(self);
                 make.top.equalTo(self).offset(JobsWidth(5));
@@ -122,8 +121,7 @@ static dispatch_once_t static_postDelViewOnceToken;
             label.textColor = JobsWhiteColor;
             label.textAlignment = NSTextAlignmentCenter;
             [label sizeToFit];
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.imageView.mas_bottom).offset(JobsWidth(5));
                 make.centerX.equalTo(self);
             }];

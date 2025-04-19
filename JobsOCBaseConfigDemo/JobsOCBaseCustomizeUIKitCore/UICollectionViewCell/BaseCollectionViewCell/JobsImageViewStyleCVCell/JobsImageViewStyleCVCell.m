@@ -9,7 +9,7 @@
 
 @interface JobsImageViewStyleCVCell ()
 /// UI
-@property(nonatomic,strong)UIImageView *imageView;
+
 /// Data
 
 @end
@@ -64,6 +64,7 @@
     return self.imageView;
 }
 #pragma mark —— lazyLoad
+@synthesize imageView = _imageView;
 -(UIImageView *)imageView{
     if(!_imageView){
         @jobs_weakify(self)

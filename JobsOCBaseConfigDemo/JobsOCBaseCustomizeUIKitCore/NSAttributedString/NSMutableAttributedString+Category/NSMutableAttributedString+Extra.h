@@ -20,19 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// OC富文本字符串拼接
 -(JobsReturnAttributedStringByAttributedStringBlock _Nonnull)add;
 /// 段落
--(jobsByParagraphStyleModelBlock _Nonnull)addAttributeNameByParagraphStyleModel;
+-(JobsReturnMutAttributedStringByParagraphStyleModelBlock _Nonnull)addAttributeNameByParagraphStyleModel;
 /// 颜色
--(jobsByParagraphStyleModelBlock _Nonnull)addForegroundColorAttributeNameByParagraphStyleModel;
+-(JobsReturnMutAttributedStringByParagraphStyleModelBlock _Nonnull)addForegroundColorAttributeNameByParagraphStyleModel;
 /// 字体
--(jobsByParagraphStyleModelBlock _Nonnull)addFontAttributeNameByParagraphStyleModel;
+-(JobsReturnMutAttributedStringByParagraphStyleModelBlock _Nonnull)addFontAttributeNameByParagraphStyleModel;
 /// 设置下划线
--(jobsByParagraphStyleModelBlock _Nonnull)addUnderlineStyleAttributeNameByParagraphStyleModel;
+-(JobsReturnMutAttributedStringByParagraphStyleModelBlock _Nonnull)addUnderlineStyleAttributeNameByParagraphStyleModel;
 /// 设置下划线的颜色
--(jobsByParagraphStyleModelBlock _Nonnull)addUnderlineColorAttributeNameByParagraphStyleModel;
+-(JobsReturnMutAttributedStringByParagraphStyleModelBlock _Nonnull)addUnderlineColorAttributeNameByParagraphStyleModel;
 /// 超链接
--(jobsByParagraphStyleModelBlock _Nonnull)addLinkAttributeNameByParagraphStyleModel;
+-(JobsReturnMutAttributedStringByParagraphStyleModelBlock _Nonnull)addLinkAttributeNameByParagraphStyleModel;
 /// 设置富文本的字符间距
--(jobsByParagraphStyleModelBlock _Nonnull)addkCTKernAttributeNameByParagraphStyleModel;
+-(JobsReturnMutAttributedStringByParagraphStyleModelBlock _Nonnull)addkCTKernAttributeNameByParagraphStyleModel;
 
 @end
 

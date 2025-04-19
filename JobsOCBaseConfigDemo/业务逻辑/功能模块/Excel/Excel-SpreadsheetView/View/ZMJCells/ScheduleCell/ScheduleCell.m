@@ -37,6 +37,7 @@
     self.backgroundView.backgroundColor = color;
 }
 #pragma mark —— LazyLoad
+@synthesize label = _label;
 -(UILabel *)label{
     if(!_label){
         @jobs_weakify(self)

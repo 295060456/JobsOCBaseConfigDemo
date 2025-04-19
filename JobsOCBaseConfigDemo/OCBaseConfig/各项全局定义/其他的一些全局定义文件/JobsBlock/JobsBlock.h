@@ -238,6 +238,7 @@ typedef void(^jobsByHXPhotoPickerModelBlock)(__kindof HXPhotoPickerModel *_Nulla
 
 @class JobsParagraphStyleModel;
 typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *_Nullable data);
+typedef __kindof NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *_Nullable data);
 
 @class JobsLocationModel;
 typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable model);

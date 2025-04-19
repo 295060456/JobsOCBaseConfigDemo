@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface B_VC : BaseViewController
 
-@property(nonatomic,strong)UIImageView *imageView;
-
 @end
 
 NS_ASSUME_NONNULL_END

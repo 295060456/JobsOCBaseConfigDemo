@@ -10,7 +10,6 @@
 @interface PointLabBaseView ()
 /// UI
 @property(nonatomic,strong)UIView *pointView;
-@property(nonatomic,strong)UILabel *label;
 
 @end
 
@@ -77,7 +76,7 @@
         });
     }return _pointView;
 }
-
+@synthesize label = _label;
 -(UILabel *)label{
     if(!_label){@jobs_weakify(self)
         _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
