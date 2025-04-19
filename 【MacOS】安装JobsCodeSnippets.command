@@ -20,8 +20,8 @@ TARGET_DIR="CodeSnippets"
 XCODE_USER_DATA_PATH=~/Library/Developer/Xcode/UserData
 CODE_SNIPPETS_PATH="$XCODE_USER_DATA_PATH/$TARGET_DIR"
 SOURCE_DIR="$CODE_SNIPPETS_PATH/JobsCodeSnippets"
-REPO_URL1="git@github.com:JobsKit/JobsCodeSnippets.git"
-REPO_URL2="https://github.com/JobsKit/JobsCodeSnippets.git"
+REPO_URL1="git@github.com:295060456/JobsCodeSnippets.git"
+REPO_URL2="https://github.com/295060456/JobsCodeSnippets.git"
 # 通用打印方法
 _JobsPrint() {
     local COLOR="$1"
