@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
+#import "UICollectionViewCellProtocol.h"
 #import "JobsVerticalMenuDefineHeader.h"
 #import "TreeClassItemCell.h"
 #import "JobsBaseCollectionViewCell.h"
@@ -20,6 +21,14 @@ NS_ASSUME_NONNULL_BEGIN
 UICollectionViewDelegate
 ,UICollectionViewDataSource
 >
+
+Prop_assign()CGFloat sectionInsetTop;
+Prop_assign()CGFloat sectionInsetLeft;
+Prop_assign()CGFloat sectionInsetBottom;
+Prop_assign()CGFloat sectionInsetRight;
+Prop_assign()CGFloat minimumLineSpacing;/// 上下行间距
+Prop_assign()CGFloat minimumInteritemSpacing;/// 左右列间距
+Prop_strong()Class <UICollectionViewCellProtocol>cellCls;
 #pragma mark —— 一些公有方法
 -(JobsReturnCGFloatByArrBlock _Nonnull)getCollectionHeight;
 -(jobsByVoidBlock _Nonnull)reloadDatas;

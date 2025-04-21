@@ -11,6 +11,9 @@
 AppToolsProtocol_synthesize
 UIPictureAndBackGroundCorProtocol_synthesize
 BaseButtonProtocol_synthesize
+BaseProtocol_synthesize
+UITextModelProtocol_synthesize_part2
+UITextModelProtocol_synthesize_part3
 
 +(NSDictionary *)mj_replacedKeyFromPropertyName {
     NSMutableDictionary *dict = [super mj_replacedKeyFromPropertyName].mutableCopy;

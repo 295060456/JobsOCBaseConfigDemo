@@ -93,7 +93,7 @@ Prop_assign()NSUInteger thisIndex;
     };
 }
 
--(JobsReturnButtonModelByString _Nonnull)makeLeftCellData{
+-(JobsReturnButtonModelByString _Nonnull)makeLeftCellDataByUnSelect{
 //    @jobs_weakify(self)
     return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable data){
 //        @jobs_strongify(self)
@@ -114,7 +114,12 @@ Prop_assign()NSUInteger thisIndex;
         self.getGoodsClassByPid(self.rightViewCurrentSelectModel.idField,index);
         if (self.rightDataArray.count) self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(index);
         if (self.leftDataArray.count) self.leftViewCurrentSelectModel = self.leftDataArray.objectAt(index);
-        [self.collectionView setContentOffset:CGPointMake(0, JobsWidth(-5)) animated:YES];
+        self.collectionView.setContentOffsetByYES(CGPointMake(0, JobsWidth(-5)));
+        for (int i = 0; i < self.leftCellDataMutArr.count; i++) {
+            self.leftCellDataMutArr[i].backgroundImage = JobsIMG(self.cellTitleMutArr[i].add(未点击));
+        }
+        self.leftCellDataMutArr[index].backgroundImage = JobsIMG(self.cellTitleMutArr[index].add(已点击));
+        self.tableView.reloadDatas();
     };
 }
 
@@ -122,7 +127,7 @@ Prop_assign()NSUInteger thisIndex;
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        [self.tableView reloadData];
+        self.tableView.reloadDatas();
         if (self.leftDataArray.count){
             @jobs_weakify(self)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)),
@@ -159,8 +164,7 @@ Prop_assign()NSUInteger thisIndex;
         /// 每个子页面的section个数
         for (int i = 0; i < self.cellDataMutArr.count; i++){
             self.rightDataArray.add(self.createTwoModel(data2,i));
-        }
-        [self.collectionView reloadData];
+        }self.collectionView.reloadDatas();
         if (self.rightDataArray.count){
             [self.collectionView scrollToItemAtIndexPath:jobsMakeIndexPathZero()
                                         atScrollPosition:UICollectionViewScrollPositionTop
@@ -205,6 +209,10 @@ Prop_assign()NSUInteger thisIndex;
             model.subTextModel.text = toStringByInt(iFlag).add(JobsInternationalization(@"球桌球"));
             model.bgImage = self.cellDataMutArr[iFlag].backgroundImage;
             model.title = self.cellTitleMutArr[data1];
+            /// ViewModel
+            model.imageUrl = @"https://zh.wikipedia.org/wiki/File:Jiang_Zemin_2002.jpg".jobsUrl;
+            model.text = JobsInternationalization(@"FlementalLinkFire");
+            model.image = JobsIMG(@"点赞");
             JobsLog(@"%@",model.bgImage);
             model.childrenList = jobsMakeMutArr(^(__kindof NSMutableArray <GoodsClassModel *>*_Nullable arr) {
                 @jobs_strongify(self)
@@ -256,9 +264,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 -(__kindof UICollectionViewCell *)collectionView:(__kindof UICollectionView *)collectionView
                           cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ThreeClassCell *cell = [ThreeClassCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+    cell.minimumInteritemSpacing = JobsWidth(3);
+    cell.cellCls = FMGameCVCell.class;
+    cell.data = @(SourceType_Home);
     self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(indexPath.section);
     cell.getCollectionHeight(self.rightViewCurrentSelectModel.childrenList);
-    cell.jobsRichElementsCellBy(self.rightDataArray);// GoodsClassModel
+    cell.jobsRichElementsCellBy(self.rightDataArray);/// GoodsClassModel
     cell.reloadDatas();
 //    @jobs_weakify(self)
     [cell actionObjBlock:^(GoodsClassModel *model) {
@@ -301,7 +312,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         
         return headerView;
     }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)){
-        // 底部视图
+        /// 底部视图
         UICollectionReusableView *footView = [collectionView UICollectionElementKindSectionFooterClass:UICollectionReusableView.class
                                                                                           forIndexPath:indexPath];
         return footView;
@@ -369,7 +380,9 @@ referenceSizeForFooterInSection:(NSInteger)section{
 -(ThreeClassCell *)tempCell{
     if (!_tempCell){
         _tempCell = jobsMakeThreeClassCell(^(__kindof ThreeClassCell * _Nullable cell) {
-            cell.backgroundColor = JobsRedColor;
+            cell.cellCls = FMGameCVCell.class;
+            cell.data = @(SourceType_Home);
+            cell.minimumInteritemSpacing = JobsWidth(3);
             cell.frame = CGRectMake(0,
                                     0,
                                     ThreeClassCell.cellSizeByModel(nil).width,
@@ -383,22 +396,9 @@ referenceSizeForFooterInSection:(NSInteger)section{
         @jobs_weakify(self)
         _leftCellDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>* _Nullable arr) {
             @jobs_strongify(self)
-            arr.add(self.makeLeftCellData(self.cellTitleMutArr[0]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[1]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[2]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[3]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[4]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[5]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[6]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[7]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[8]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[9]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[10]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[11]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[12]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[13]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[14]))
-            .add(self.makeLeftCellData(self.cellTitleMutArr[15]));
+            for (int i = 0; i < 16; i++) {
+                arr.add(self.makeLeftCellDataByUnSelect(self.cellTitleMutArr[i]));
+            }
         });
     }return _leftCellDataMutArr;
 }

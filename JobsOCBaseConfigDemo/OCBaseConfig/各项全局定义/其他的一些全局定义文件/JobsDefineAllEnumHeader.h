@@ -1046,5 +1046,13 @@ typedef NS_ENUM(NSInteger, FMTutorialType) {
     FMTutorialType_关于我们 = 2,         /// 关于我们
 };
 #endif /* FM_TUTORIAL_Type_DEFINED */
+/// 来源类型枚举定义
+#ifndef SOURCE_TYPE_ENUM_DEFINED
+#define SOURCE_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, SourceType) {
+    SourceType_Home = 0,     /// 来自首页
+    SourceType_Favorite      /// 来自收藏
+};
+#endif /* SOURCE_TYPE_ENUM_DEFINED */
 
 #endif /* JobsDefineAllEnumHeader_h */

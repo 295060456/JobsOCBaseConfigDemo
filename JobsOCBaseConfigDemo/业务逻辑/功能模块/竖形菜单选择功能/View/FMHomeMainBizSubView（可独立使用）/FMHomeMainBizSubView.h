@@ -9,6 +9,7 @@
 #import "BaseView.h"
 #import "JobsBtnStyleTBVCell.h"
 #import "ThreeClassCell.h"
+#import "FMGameCVCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

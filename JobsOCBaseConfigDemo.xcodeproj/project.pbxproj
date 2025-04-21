@@ -175,6 +175,7 @@
 		84E99A442CEB4EE100ABE463 /* JobsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */; };
 		84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */; };
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
+		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
 		C5BCC6292DB39BC400EFE4F3 /* ZMJHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6202DB39BC400EFE4F3 /* ZMJHeaderCell.m */; };
 		C5BCC62A2DB39BC400EFE4F3 /* ZMJTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6232DB39BC400EFE4F3 /* ZMJTaskCell.m */; };
 		C5BCC62B2DB39BC400EFE4F3 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC60E2DB39BC400EFE4F3 /* ScheduleCell.m */; };
@@ -1631,6 +1632,10 @@
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
+		C52417032DB61725008F9194 /* FMGameCVCell_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FMGameCVCell_1.png; sourceTree = "<group>"; };
+		C52417042DB61725008F9194 /* FMGameCVCell_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FMGameCVCell_2.png; sourceTree = "<group>"; };
+		C52417052DB61725008F9194 /* FMGameCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMGameCVCell.h; sourceTree = "<group>"; };
+		C52417062DB61725008F9194 /* FMGameCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMGameCVCell.m; sourceTree = "<group>"; };
 		C5BCC5FB2DB39BC400EFE4F3 /* ChannelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
 		C5BCC5FC2DB39BC400EFE4F3 /* ChannelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		C5BCC5FE2DB39BC400EFE4F3 /* DateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateCell.h; sourceTree = "<group>"; };
@@ -5544,6 +5549,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C52417072DB61725008F9194 /* FMGameCVCell */ = {
+			isa = PBXGroup;
+			children = (
+				C52417032DB61725008F9194 /* FMGameCVCell_1.png */,
+				C52417042DB61725008F9194 /* FMGameCVCell_2.png */,
+				C52417052DB61725008F9194 /* FMGameCVCell.h */,
+				C52417062DB61725008F9194 /* FMGameCVCell.m */,
+			);
+			path = FMGameCVCell;
+			sourceTree = "<group>";
+		};
 		C5BCC5FD2DB39BC400EFE4F3 /* ChannelCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -7548,6 +7564,7 @@
 		CE4F24FF2CA825CD002AF25B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C52417072DB61725008F9194 /* FMGameCVCell */,
 				846559EC2DAD5B3D00D00A30 /* FMHomeMainBizSubView（可独立使用） */,
 				CE4F24ED2CA825CD002AF25B /* JobsVerticalMenuSubView */,
 				CE4F24F12CA825CD002AF25B /* 弹框样式_10 */,
@@ -17422,6 +17439,7 @@
 				845F86752CF5953300C53A19 /* UNNotificationRequest+Extra.m in Sources */,
 				CE260F4A2CAE671C00233F0F /* NSString+Conversion.m in Sources */,
 				CE260F4B2CAE671C00233F0F /* NSString+Check.m in Sources */,
+				C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */,
 				CE260F4C2CAE671C00233F0F /* NSString+Others.m in Sources */,
 				CE4F280F2CA825CD002AF25B /* GetImageApi.m in Sources */,
 				CE4F28102CA825CD002AF25B /* PointLabTestVC.m in Sources */,

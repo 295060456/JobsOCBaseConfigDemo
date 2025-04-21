@@ -10,17 +10,10 @@
 @interface ThreeClassCell()
 /// UI
 /// Data
-Prop_assign()CGFloat sectionInsetTop;
-Prop_assign()CGFloat sectionInsetLeft;
-Prop_assign()CGFloat sectionInsetBottom;
-Prop_assign()CGFloat sectionInsetRight;
-Prop_assign()CGFloat minimumLineSpacing;/// 上下行间距
-Prop_assign()CGFloat minimumInteritemSpacing;/// 左右列间距
-Prop_copy()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个cell
 Prop_assign()CGFloat itemHeight;/// 一个cell 的高度
 Prop_assign()NSInteger columns;/// 一行有多少列
 Prop_assign()NSInteger rowCount;/// 一共有都是行
-Prop_copy()NSMutableArray <GoodsClassModel *>*dataMutArr;
+Prop_copy()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个cell
 
 @end
 
@@ -40,14 +33,6 @@ Prop_copy()NSMutableArray <GoodsClassModel *>*dataMutArr;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
-        self.columns = 3;
-        self.sectionInsetTop = JobsWidth(15.f);
-        self.sectionInsetLeft = JobsWidth(15.f);
-        self.sectionInsetBottom = JobsWidth(15.f);
-        self.sectionInsetRight = JobsWidth(15.f);
-        self.minimumLineSpacing = JobsWidth(17);
-        self.minimumInteritemSpacing = JobsWidth(13);
-        self.itemHeight = TreeClassItemCell.cellSizeByModel(nil).height;
         self.backgroundColor = self.contentView.backgroundColor = ThreeClassCellBgCor;
         self.jobsRichElementsCellBy(nil);
     }return self;
@@ -57,8 +42,8 @@ Prop_copy()NSMutableArray <GoodsClassModel *>*dataMutArr;
     @jobs_weakify(self)
     return ^(id _Nullable model) {
         @jobs_strongify(self)
-        self.dataMutArr = model;
-        if (self.dataMutArr) self.collectionView.reloadDatas();
+        self.dataArray = model;
+        if (self.dataArray) self.collectionView.reloadDatas();
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -85,21 +70,21 @@ Prop_copy()NSMutableArray <GoodsClassModel *>*dataMutArr;
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        [self.collectionView reloadData];
+        self.collectionView.reloadDatas();
     };
 }
 #pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                  cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    TreeClassItemCell *cell = [TreeClassItemCell cellWithCollectionView:self.collectionView forIndexPath:indexPath];
+    UICollectionViewCell <UICollectionViewCellProtocol>* cell = [self.cellCls cellWithCollectionView:self.collectionView forIndexPath:indexPath];
     /// 针对数据源第一个数据不是我们需要的
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.item]);
+    cell.jobsRichElementsCellBy(self.dataArray[indexPath.item]);
     return cell;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
-    return self.dataMutArr.count;
+    return self.dataArray.count;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView
@@ -115,21 +100,20 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _collectionView = UICollectionView.initByLayout(jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
             @jobs_strongify(self)
-            data.minimumInteritemSpacing = self.minimumInteritemSpacing;
-            data.minimumLineSpacing = self.minimumLineSpacing;
-            data.itemSize = TreeClassItemCell.cellSizeByModel(nil);
+            data.minimumInteritemSpacing = self.minimumInteritemSpacing;/// 左右列间距
+            data.minimumLineSpacing = self.minimumLineSpacing;/// 上下行间距
+            data.itemSize = self.cellCls.cellSizeByModel(self.data);
             data.sectionInset = UIEdgeInsetsMake(self.sectionInsetTop,
                                                  self.sectionInsetLeft,
                                                  self.sectionInsetBottom,
                                                  self.sectionInsetRight);
         }));
+        _collectionView.dataLink(self);
         _collectionView.frame = CGRectMake(JobsWidth(8.76),
                                            0,
                                            self.frame.size.width - JobsWidth(17.52),
                                            self.frame.size.height);
         _collectionView.scrollEnabled = NO;
-        _collectionView.dataLink(self);
-
         _collectionView.backgroundColor = ThreeClassCellBgCor;
         _collectionView.layer.backgroundColor = ThreeClassCellBgCor.CGColor;
         _collectionView.layer.shadowColor = RGBA_COLOR(0, 0, 0, 0.08).CGColor;
@@ -138,9 +122,63 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
         _collectionView.layer.shadowRadius = JobsWidth(5);
         _collectionView.layer.masksToBounds = NO;
         _collectionView.contentInset = UIEdgeInsetsMake(JobsWidth(10), 0, 0, 0);
-        _collectionView.registerCollectionViewCellClass(TreeClassItemCell.class,@"");
+        _collectionView.registerCollectionViewCellClass(self.cellCls,@"");
         self.contentView.addSubview(_collectionView);
     }return _collectionView;
+}
+
+-(CGFloat)sectionInsetTop{
+    if(!_sectionInsetTop){
+        _sectionInsetTop = JobsWidth(15.f);
+    }return _sectionInsetTop;
+}
+
+-(CGFloat)sectionInsetLeft{
+    if (!_sectionInsetLeft) {
+        _sectionInsetLeft = JobsWidth(15.f);
+    }return _sectionInsetLeft;
+}
+
+-(CGFloat)sectionInsetBottom{
+    if(!_sectionInsetBottom){
+        _sectionInsetBottom = JobsWidth(15.f);
+    }return _sectionInsetBottom;
+}
+
+-(CGFloat)sectionInsetRight{
+    if(!_sectionInsetRight){
+        _sectionInsetRight = JobsWidth(15.f);
+    }return _sectionInsetRight;
+}
+
+-(CGFloat)minimumLineSpacing{
+    if(!_minimumLineSpacing){
+        _minimumLineSpacing = JobsWidth(17);
+    }return _minimumLineSpacing;
+}
+
+-(CGFloat)minimumInteritemSpacing{
+    if(!_minimumInteritemSpacing){
+        _minimumInteritemSpacing = JobsWidth(13);
+    }return _minimumInteritemSpacing;
+}
+
+-(Class<UICollectionViewCellProtocol>)cellCls{
+    if(!_cellCls){
+        _cellCls = TreeClassItemCell.class;
+    }return _cellCls;
+}
+
+-(NSInteger)columns{
+    if(!_columns){
+        _columns = 3;
+    }return _columns;
+}
+
+-(CGFloat)itemHeight{
+    if (!_itemHeight) {
+        _itemHeight = self.cellCls.cellSizeByModel(self.data).height;
+    }return _itemHeight;
 }
 
 @end
