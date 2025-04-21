@@ -43,7 +43,23 @@ NS_ASSUME_NONNULL_BEGIN
 /// 随机生成验证码字符串
 -(JobsReturnStringByArrAndNSIntegerBlock _Nonnull)randomCodeBy;
 /// 通用格式化方法：整数或浮点数，每三位加逗号，小数保留2位
-- (JobsReturnStringByCGFloatBlock _Nonnull)manualFormatNumber;
+-(JobsReturnStringByCGFloatBlock _Nonnull)manualFormatNumber;
+///（Rects）获取最大高度
+-(JobsReturnCGFloatByArrBlock _Nonnull)maxHeightInRectArray;
+///（Rects）获取最小高度
+-(JobsReturnCGFloatByArrBlock _Nonnull)minHeightInRectArray;
+///（Rects）获取最大宽度
+-(JobsReturnCGFloatByArrBlock _Nonnull)maxWidthInRectArray;
+///（Rects）获取最小宽度
+-(JobsReturnCGFloatByArrBlock _Nonnull)minWidthInRectArray;
+///（Sizes）获取最大高度
+-(JobsReturnCGFloatByArrBlock _Nonnull)maxHeightInSizeArray;
+///（Sizes）获取最小高度
+-(JobsReturnCGFloatByArrBlock _Nonnull)minHeightInSizeArray;
+///（Sizes）获取最大宽度
+-(JobsReturnCGFloatByArrBlock _Nonnull)maxWidthInSizeArray;
+///（Sizes）获取最小宽度
+-(JobsReturnCGFloatByArrBlock _Nonnull)minWidthInSizeArray;
 
 @end
 

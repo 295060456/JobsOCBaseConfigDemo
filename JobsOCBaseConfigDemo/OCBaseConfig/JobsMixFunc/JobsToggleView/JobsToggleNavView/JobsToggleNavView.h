@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "BaseView.h"
+#import "JobsMakes.h"
 #import "BaseButton.h"
 #import "UIButton+UI.h"
+#import "UIView+Extras.h"
 #import "UIView+Measure.h"
 #import "UIButtonModel.h"
 #import "JobsToggleNavViewProtocol.h"

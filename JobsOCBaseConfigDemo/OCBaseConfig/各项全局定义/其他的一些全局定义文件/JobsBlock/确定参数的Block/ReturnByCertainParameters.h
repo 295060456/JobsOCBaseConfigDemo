@@ -62,8 +62,8 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIDBlock)(id _Nullable data
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByArrayBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrayByIntegerBlock)(NSInteger data);
-typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
-typedef NSMutableArray *_Nullable(^JobsReturnMutableArrayByIDBlock)(id _Nullable data);
+typedef NSMutableArray <NSObject *>*_Nullable(^JobsReturnMutableArrayByVoidBlock)(void);
+typedef NSMutableArray <NSObject *>*_Nullable(^JobsReturnMutableArrayByIDBlock)(id _Nullable data);
 /// 字典
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByDataBlock)(NSData *_Nullable data);
@@ -259,7 +259,7 @@ typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellBy
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByPointBlock)(CGPoint data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByRectBlock)(CGRect data);
-typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray *_Nullable data);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
 #pragma mark —— 关于 WKWebView
 #import <WebKit/WebKit.h>
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByVoidBlock)(void);
@@ -489,7 +489,7 @@ typedef CGFloat(^JobsReturnCGFloatByViewBlock)(UIView *_Nullable view);
 typedef CGFloat(^JobsReturnCGFloatByCGFloatBlock)(CGFloat data);
 typedef CGFloat(^JobsReturnByCGPointBlock)(CGPoint data);
 typedef CGFloat(^JobsReturnCGFloatByIDBlock)(id _Nullable data);
-typedef CGFloat(^JobsReturnCGFloatByArrBlock)(NSMutableArray *_Nullable data);
+typedef CGFloat(^JobsReturnCGFloatByArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByFontBlock)(UIFont *_Nullable font);
 typedef CGFloat(^JobsReturnCGFloatByNumberBlock)(NSNumber *_Nullable data);
 

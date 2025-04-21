@@ -125,9 +125,8 @@ JobsToggleNavViewProtocolSynthesize
             taggedNavView.sliderW = self.sliderW;/// 滑块宽度
             taggedNavView.sliderH = JobsWidth(1);/// 滑块高度
             taggedNavView.backgroundColor = self.taggedNavViewBgColor;
-            [self addSubview:taggedNavView];
             /// 切换联动
-            [taggedNavView actionObjBlock:^(id _Nullable data1) {
+            [self.addSubview(taggedNavView) actionObjBlock:^(id _Nullable data1) {
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(data1);
                 if(KindOfBaseButtonCls(data1)){
@@ -164,11 +163,11 @@ JobsToggleNavViewProtocolSynthesize
         /// 每次进行配置的时候，都需要先清理以前创建的子View
         if(self.bgScroll.subviews.count){
             for (__kindof UIView *subview in self.bgScroll.subviews) {
-                [subview removeFromSuperview];
+                subview.remove();
             }
         }
         for (__kindof UIView *subView in data) {
-            [self.bgScroll addSubview:subView];
+            self.bgScroll.addSubview(subView);
         }return self.bgScroll;
     };
 }
@@ -235,7 +234,7 @@ JobsToggleNavViewProtocolSynthesize
             scrollView.pagingEnabled = YES;
             scrollView.showsHorizontalScrollIndicator = NO;
             scrollView.showsVerticalScrollIndicator = NO;
-            [self addSubview:scrollView];
+            self.addSubview(scrollView);
         });
     }return _bgScroll;
 }
@@ -252,30 +251,6 @@ JobsToggleNavViewProtocolSynthesize
     }return _scrollContentViews;
 }
 
--(CGFloat)taggedNavView_width{
-    if(!_taggedNavView_width){
-        _taggedNavView_width = self.viewSizeByModel(nil).width;
-    }return _taggedNavView_width;
-}
-
--(CGSize)taggedNavSingleBtn_size{
-    if(jobsEqualToZeroSize(_taggedNavSingleBtn_size)){
-        _taggedNavSingleBtn_size = CGSizeMake(JobsWidth(80), self.taggedNavView_height);
-    }return _taggedNavSingleBtn_size;
-}
-
--(CGFloat)taggedNavView_height{
-    if(!_taggedNavView_height){
-        _taggedNavView_height = JobsWidth(44);
-    }return _taggedNavView_height;
-}
-
--(CGFloat)taggedNavView_bgScroll_offset{
-    if(!_taggedNavView_bgScroll_offset){
-        _taggedNavView_bgScroll_offset = 0;
-    }return _taggedNavView_bgScroll_offset;
-}
-
 -(NSMutableArray<__kindof UIView <BaseViewProtocol>*>*)tempLabs{
     if(!_tempLabs){
         @jobs_weakify(self)
@@ -290,8 +265,7 @@ JobsToggleNavViewProtocolSynthesize
                     label.text = toStringByInt(t)
                         .add(@"\n")
                         .add(title);
-                }));
-                t += 1;
+                }));t += 1;
             }
         });
     }return _tempLabs;
@@ -300,10 +274,10 @@ JobsToggleNavViewProtocolSynthesize
 -(NSMutableArray<NSString *>*)tempTitles{
     if(!_tempTitles){
         _tempTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"人生到处知何似，恰似飞鸿踏雪泥；"));
-            data.add(JobsInternationalization(@"泥上偶然留指爪，鸿飞那复计东西。"));
-            data.add(JobsInternationalization(@"老僧已死成新塔，坏壁无由见旧题；"));
-            data.add(JobsInternationalization(@"往日崎岖还记否，路长人困蹇驴嘶。"));
+            data.add(JobsInternationalization(@"人生到处知何似，恰似飞鸿踏雪泥；"))
+            .add(JobsInternationalization(@"泥上偶然留指爪，鸿飞那复计东西。"))
+            .add(JobsInternationalization(@"老僧已死成新塔，坏壁无由见旧题；"))
+            .add(JobsInternationalization(@"往日崎岖还记否，路长人困蹇驴嘶。"));
         });
     }return _tempTitles;
 }
@@ -363,6 +337,30 @@ JobsToggleNavViewProtocolSynthesize
             model.clickEventBlock = nil;
         });
     }return _buttonModel;
+}
+
+-(CGFloat)taggedNavView_width{
+    if(!_taggedNavView_width){
+        _taggedNavView_width = self.viewSizeByModel(nil).width;
+    }return _taggedNavView_width;
+}
+
+-(CGSize)taggedNavSingleBtn_size{
+    if(jobsEqualToZeroSize(_taggedNavSingleBtn_size)){
+        _taggedNavSingleBtn_size = CGSizeMake(JobsWidth(80), self.taggedNavView_height);
+    }return _taggedNavSingleBtn_size;
+}
+
+-(CGFloat)taggedNavView_height{
+    if(!_taggedNavView_height){
+        _taggedNavView_height = JobsWidth(44);
+    }return _taggedNavView_height;
+}
+
+-(CGFloat)taggedNavView_bgScroll_offset{
+    if(!_taggedNavView_bgScroll_offset){
+        _taggedNavView_bgScroll_offset = 0;
+    }return _taggedNavView_bgScroll_offset;
 }
 
 @end

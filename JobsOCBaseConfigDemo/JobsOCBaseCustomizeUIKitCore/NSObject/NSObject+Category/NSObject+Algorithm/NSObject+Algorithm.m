@@ -44,8 +44,7 @@
     1、除数为零的情况，被判定为不能被整除；
     2、num1 和 num2 必须为 NSNumber* 类型，否则判定为不能够被整除
  */
--(BOOL)judgementExactDivisionByNum1:(NSNumber *_Nonnull)num1
-                               num2:(NSNumber *_Nonnull)num2{
+-(BOOL)judgementExactDivisionByNum1:(NSNumber *_Nonnull)num1 num2:(NSNumber *_Nonnull)num2{
     /// 过滤数据类型
     if (![num1 isKindOfClass:NSNumber.class] || ![num2 isKindOfClass:NSNumber.class]) return NO;
     /// 在数据类型为NSNumber* 的基础上进行讨论和判断
@@ -189,7 +188,7 @@
     };
 }
 /// 通用格式化方法：整数或浮点数，每三位加逗号，小数保留2位
-- (JobsReturnStringByCGFloatBlock _Nonnull)manualFormatNumber{
+-(JobsReturnStringByCGFloatBlock _Nonnull)manualFormatNumber{
     return ^__kindof NSString *_Nullable(CGFloat num){
         return jobsMakeMutString(^(__kindof NSMutableString *_Nullable result) {
             // 取整和小数部分
@@ -219,6 +218,101 @@
         });
     };
 }
-
+///（Rects）获取最大高度
+-(JobsReturnCGFloatByArrBlock _Nonnull)maxHeightInRectArray{
+    return ^CGFloat(__kindof NSArray <NSValue *>*_Nullable data){
+        if (data.count){
+            CGFloat maxHeight = 0;
+            for (NSValue *value in data) {
+                CGRect rect = value.CGRectValue;
+                if (rect.size.height > maxHeight) maxHeight = rect.size.height;
+            }return maxHeight;
+        }else return 0.f;
+    };
+}
+///（Rects）获取最小高度
+-(JobsReturnCGFloatByArrBlock _Nonnull)minHeightInRectArray{
+    return ^CGFloat(__kindof NSArray <NSValue *>*_Nullable data){
+        if(data.count){
+            CGFloat minHeight = CGFLOAT_MAX;
+            for (NSValue *value in data) {
+                CGRect rect = value.CGRectValue;
+                if (rect.size.height < minHeight) minHeight = rect.size.height;
+            }return minHeight;
+        }else return 0.f;
+    };
+}
+///（Rects）获取最大宽度
+-(JobsReturnCGFloatByArrBlock _Nonnull)maxWidthInRectArray{
+    return ^CGFloat(__kindof NSArray <NSValue *>*_Nullable data){
+        if(data.count){
+            CGFloat maxWidth = 0;
+            for (NSValue *value in data) {
+                CGRect rect = value.CGRectValue;
+                if (rect.size.width > maxWidth) maxWidth = rect.size.width;
+            }return maxWidth;
+        }else return 0.f;
+    };
+}
+///（Rects）获取最小宽度
+-(JobsReturnCGFloatByArrBlock _Nonnull)minWidthInRectArray{
+    return ^CGFloat(__kindof NSArray <NSValue *>*_Nullable data){
+        if(data.count){
+            CGFloat minWidth = CGFLOAT_MAX;
+            for (NSValue *value in data) {
+                CGRect rect = value.CGRectValue;
+                if (rect.size.width < minWidth) minWidth = rect.size.width;
+            }return minWidth;
+        }else return 0.f;
+    };
+}
+///（Sizes）获取最大高度
+-(JobsReturnCGFloatByArrBlock _Nonnull)maxHeightInSizeArray{
+    return ^CGFloat(__kindof NSArray<NSValue *> *_Nullable data) {
+        if (data.count) {
+            CGFloat maxHeight = 0;
+            for (NSValue *value in data) {
+                CGSize size = value.CGSizeValue;
+                if (size.height > maxHeight) maxHeight = size.height;
+            }return maxHeight;
+        } else return 0.f;
+    };
+}
+///（Sizes）获取最小高度
+-(JobsReturnCGFloatByArrBlock _Nonnull)minHeightInSizeArray{
+    return ^CGFloat(__kindof NSArray<NSValue *> *_Nullable data) {
+        if (data.count) {
+            CGFloat minHeight = CGFLOAT_MAX;
+            for (NSValue *value in data) {
+                CGSize size = value.CGSizeValue;
+                if (size.height < minHeight) minHeight = size.height;
+            }return minHeight;
+        } else return 0.f;
+    };
+}
+///（Sizes）获取最大宽度
+-(JobsReturnCGFloatByArrBlock _Nonnull)maxWidthInSizeArray{
+    return ^CGFloat(__kindof NSArray<NSValue *> *_Nullable data) {
+        if (data.count) {
+            CGFloat maxWidth = 0;
+            for (NSValue *value in data) {
+                CGSize size = value.CGSizeValue;
+                if (size.width > maxWidth) maxWidth = size.width;
+            }return maxWidth;
+        } else return 0.f;
+    };
+}
+///（Sizes）获取最小宽度
+-(JobsReturnCGFloatByArrBlock _Nonnull)minWidthInSizeArray{
+    return ^CGFloat(__kindof NSArray<NSValue *> *_Nullable data) {
+        if (data.count) {
+            CGFloat minWidth = CGFLOAT_MAX;
+            for (NSValue *value in data) {
+                CGSize size = value.CGSizeValue;
+                if (size.width < minWidth) minWidth = size.width;
+            }return minWidth;
+        } else return 0.f;
+    };
+}
 
 @end

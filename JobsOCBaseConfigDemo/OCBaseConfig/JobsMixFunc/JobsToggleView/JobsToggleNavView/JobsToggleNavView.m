@@ -11,10 +11,10 @@
 @interface JobsToggleNavView ()
 /// UI
 Prop_strong()__kindof UIView *sliderView;
+Prop_copy()NSMutableArray <__kindof UIButton *>*buttonsArray;
 /// Data
 Prop_assign()NSUInteger current_index;
 Prop_copy()NSMutableArray <UIButtonModel *>*buttonModels;
-Prop_copy()NSMutableArray <__kindof UIButton *>*buttonsArray;
 
 @end
 
@@ -109,7 +109,7 @@ JobsToggleNavViewProtocolSynthesize
 //                }));
             button.index = i;
             self.buttonsArray.add(button);
-            [self addSubview:button];
+            self.addSubview(button);
         }
         self.current_index = 0;
         self.sliderView.alpha = 1;
@@ -201,12 +201,15 @@ JobsToggleNavViewProtocolSynthesize
 #pragma mark —— lazyLoad
 -(UIView *)sliderView{
     if(!_sliderView){
-        _sliderView = UIView.new;
-        _sliderView.resetSize(CGSizeMake(self.sliderW, self.sliderH));
-        _sliderView.resetCenterX(self.buttonWidth / 2);
-        _sliderView.resetOriginY(self.height - self.sliderH);
-        _sliderView.backgroundColor = self.sliderColor;
-        [self addSubview:_sliderView];
+        @jobs_weakify(self)
+        _sliderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+            @jobs_strongify(self)
+            view.resetSize(CGSizeMake(self.sliderW, self.sliderH));
+            view.resetCenterX(self.buttonWidth / 2);
+            view.resetOriginY(self.height - self.sliderH);
+            view.backgroundColor = self.sliderColor;
+            self.addSubview(view);
+        });
     }return _sliderView;
 }
 

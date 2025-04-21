@@ -1,5 +1,5 @@
 //
-//  ZFPlayerControlView.m
+//  CustomZFPlayerControlView.m
 //  Shooting
 //
 //  Created by Jobs on 2020/9/4.
