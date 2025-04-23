@@ -13,8 +13,7 @@
     if (self.navigationController) {
         [self.navigationController popViewControllerAnimated:YES];
     }else{
-        [self dismissViewControllerAnimated:YES
-                                 completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 #pragma mark —— Prop_strong()NavigationBar *navigationBar;
@@ -23,31 +22,30 @@ JobsKey(_navigationBar)
 -(BaseNavigationBar *)navigationBar{
     BaseNavigationBar *NavBar = Jobs_getAssociatedObject(_navigationBar);
     if (!NavBar) {
-        NavBar = BaseNavigationBar.new;
-        //优先级:背景图 > 背景色
-        NavBar.backgroundColor = self.bgCor;
-        [NavBar setBackgroundImage:self.bgImage
-                     forBarMetrics:UIBarMetricsDefault];//仅仅是 navigationBar 背景
-        NavBar.titleTextAttributes = @{
-            NSForegroundColorAttributeName:self.foregroundColorAttributeNameCor,
-            NSShadowAttributeName:self.shadow,
-            NSFontAttributeName:self.fontAttributeName
-        };//设置导航上的title显示样式
-        [NavBar setBarTintColor:JobsRedColor];//一般的业务是全局设置，因为一个App里面只有一个主题
-        NavBar.tintColor = JobsBlackColor;//系统的组件着色（返回按钮——箭头图标 和 上面的字）
         @jobs_weakify(self)
-        NavBar.items = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        NavBar = jobsMakeNavigationBar(^(__kindof BaseNavigationBar * _Nullable navBar) {
             @jobs_strongify(self)
-            data.add(self.navItem);
-        });
-        NavBar.translucent = self.isBarTranslucent;
-        NavBar.hidden = self.isHiddenNavigationBar;
-        [self.view addSubview:NavBar];
-        [NavBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.equalTo(self.view);
-            make.height.mas_offset(self.jobsNavigationBarHeight);
-        }];
-        Jobs_setAssociatedRETAIN_NONATOMIC(_navigationBar, NavBar)
+            /// 优先级:背景图 > 背景色
+            navBar.backgroundColor = self.bgCor;
+            [navBar setBackgroundImage:self.bgImage forBarMetrics:UIBarMetricsDefault];/// 仅仅是 navigationBar 背景
+            navBar.titleTextAttributes = @{
+                NSForegroundColorAttributeName:self.foregroundColorAttributeNameCor,
+                NSShadowAttributeName:self.shadow,
+                NSFontAttributeName:self.fontAttributeName
+            };/// 设置导航上的title显示样式
+            [navBar setBarTintColor:JobsRedColor];/// 一般的业务是全局设置，因为一个App里面只有一个主题
+            navBar.tintColor = JobsBlackColor;/// 系统的组件着色（返回按钮——箭头图标 和 上面的字）
+            navBar.items = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+                @jobs_strongify(self)
+                data.add(self.navItem);
+            });
+            navBar.translucent = self.isBarTranslucent;
+            navBar.hidden = self.isHiddenNavigationBar;
+            [self.view.addSubview(navBar) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.top.equalTo(self.view);
+                make.height.mas_offset(self.jobsNavigationBarHeight);
+            }];
+        });Jobs_setAssociatedRETAIN_NONATOMIC(_navigationBar, NavBar)
     }return NavBar;
 }
 
@@ -134,10 +132,12 @@ JobsKey(_shadow)
 -(NSShadow *)shadow{
     NSShadow *Shadow = Jobs_getAssociatedObject(_shadow);
     if (!Shadow) {
-        Shadow = NSShadow.new;
-        Shadow.shadowColor = self.shadowCor;
-        Shadow.shadowOffset = CGSizeZero;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_shadow, Shadow)
+        @jobs_weakify(self)
+        Shadow = jobsMakeShadow(^(__kindof NSShadow * _Nullable shadow) {
+            @jobs_strongify(self)
+            Shadow.shadowColor = self.shadowCor;
+            Shadow.shadowOffset = CGSizeZero;
+        });Jobs_setAssociatedRETAIN_NONATOMIC(_shadow, Shadow)
     }return Shadow;
 }
 
@@ -150,10 +150,12 @@ JobsKey(_navItem)
 -(UINavigationItem *)navItem{
     UINavigationItem *NavItem = Jobs_getAssociatedObject(_navItem);
     if (!NavItem) {
-        NavItem = UINavigationItem.new;
-        NavItem.title = self.title;
-        NavItem.leftBarButtonItem = self.leftBarButtonItem_back;
-        Jobs_setAssociatedRETAIN_NONATOMIC(_navItem, NavItem)
+        @jobs_weakify(self)
+        NavItem = jobsMakeNavigationItem(^(__kindof UINavigationItem * _Nullable navigationItem) {
+            @jobs_strongify(self)
+            NavItem.title = self.title;
+            NavItem.leftBarButtonItem = self.leftBarButtonItem_back;
+        });Jobs_setAssociatedRETAIN_NONATOMIC(_navItem, NavItem)
     }return NavItem;
 }
 

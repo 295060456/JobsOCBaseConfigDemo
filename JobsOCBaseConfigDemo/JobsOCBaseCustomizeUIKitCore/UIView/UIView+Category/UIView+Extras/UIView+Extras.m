@@ -585,7 +585,7 @@ JobsKey(_bottomBorderLayer)
 /// 切整个View的4个角为统一的切角参数
 -(JobsReturnViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
     @jobs_weakify(self)
-    return ^(CGFloat cornerRadiusValue) {
+    return ^__kindof UIView *_Nullable(CGFloat cornerRadiusValue) {
         @jobs_strongify(self)
         self.layer.cornerRadius = cornerRadiusValue;
         self.layer.masksToBounds = YES;

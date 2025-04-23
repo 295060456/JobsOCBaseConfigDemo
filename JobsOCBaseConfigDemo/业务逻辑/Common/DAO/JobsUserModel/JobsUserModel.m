@@ -44,12 +44,12 @@ static dispatch_once_t static_userModelOnceToken;
                 @jobs_weakify(self)
                 id value = [decoder decodeObjectOfClasses:jobsMakeMutSet(^(__kindof NSMutableSet <Class>*_Nullable data) {
                     @jobs_strongify(self)
-                    data.add(self.class);
-                    data.add(NSString.class);
-                    data.add(NSNumber.class);
-                    data.add(NSArray.class);
-                    data.add(NSDictionary.class);
-                    data.add(UIImage.class);
+                    data.add(self.class)
+                    .add(NSString.class)
+                    .add(NSNumber.class)
+                    .add(NSArray.class)
+                    .add(NSDictionary.class)
+                    .add(UIImage.class);
                 }) forKey:key];
                 if (value) self.jobsKVC(key,value);
             }

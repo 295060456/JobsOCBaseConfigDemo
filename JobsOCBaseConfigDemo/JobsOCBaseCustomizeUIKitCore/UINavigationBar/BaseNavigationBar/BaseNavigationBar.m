@@ -40,7 +40,7 @@ Prop_copy()jobsByIDBlock baseNavigationBarBlock;
     }
 }
 
--(void)actionBlockBaseNavigationBar:(jobsByIDBlock)baseNavigationBarBlock{
+-(void)actionBlockBaseNavigationBar:(jobsByIDBlock _Nonnull)baseNavigationBarBlock{
     self.baseNavigationBarBlock = baseNavigationBarBlock;
 }
 

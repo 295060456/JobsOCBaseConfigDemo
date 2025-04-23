@@ -12,10 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsViewNavigator : UIView
 
--(jobsByViewAndAnimatedBlock _Nonnull)pushView;
--(jobsByBOOLBlock _Nonnull)popViewAnimated;
--(jobsByBOOLBlock _Nonnull)popToRootViewAnimated;
+-(JobsReturnViewNavigatorByViewAndAnimatedBlock _Nonnull)pushView;
+-(JobsReturnViewNavigatorByBOOLBlock _Nonnull)popViewAnimated;
+-(JobsReturnViewNavigatorByBOOLBlock _Nonnull)popToRootViewAnimated;
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsViewNavigator *_Nonnull jobsMakeViewNavigator(jobsByViewNavigatorBlock _Nonnull block){
+    JobsViewNavigator *data = JobsViewNavigator.alloc.init;
+    if (block) block(data);
+    return data;
+}

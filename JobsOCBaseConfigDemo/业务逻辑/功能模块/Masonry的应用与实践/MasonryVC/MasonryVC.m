@@ -93,16 +93,16 @@ Prop_strong()MSMineView2 *view2;
     __block CGSize tagSize = CGSizeZero;
     // 遍历标签名称并创建标签
     for (NSString *tagName in jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-        arr.add(JobsInternationalization(@"标签1"));
-        arr.add(JobsInternationalization(@"标签2"));
-        arr.add(JobsInternationalization(@"标签3"));
-        arr.add(JobsInternationalization(@"标签4"));
-        arr.add(JobsInternationalization(@"标签5"));
-        arr.add(JobsInternationalization(@"标签6"));
-        arr.add(JobsInternationalization(@"标签7"));
-        arr.add(JobsInternationalization(@"标签8"));
-        arr.add(JobsInternationalization(@"标签9"));
-        arr.add(JobsInternationalization(@"标签10"));
+        arr.add(JobsInternationalization(@"标签1"))
+        .add(JobsInternationalization(@"标签2"))
+        .add(JobsInternationalization(@"标签3"))
+        .add(JobsInternationalization(@"标签4"))
+        .add(JobsInternationalization(@"标签5"))
+        .add(JobsInternationalization(@"标签6"))
+        .add(JobsInternationalization(@"标签7"))
+        .add(JobsInternationalization(@"标签8"))
+        .add(JobsInternationalization(@"标签9"))
+        .add(JobsInternationalization(@"标签10"));
     })) {
         self.view.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             label.text = tagName;
@@ -211,37 +211,38 @@ Prop_strong()MSMineView2 *view2;
 #pragma mark —— lazyLoad
 -(MSMineView2 *)view2{
     if(!_view2){
-        _view2 = MSMineView2.new;
-        _view2.jobsRichViewByModel(nil);
-        [self.view addSubview:_view2];
-        // 移除第一个 _view2 的约束
-        [self.view2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-            // 添加第一个 _view2 的约束
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(88), JobsWidth(28)));
-            make.right.equalTo(self.view).offset(JobsWidth(-10));
-            make.top.equalTo(self.view).offset(JobsWidth(12));
-        }];
-        // 告诉视图需要更新布局
-        [self.view setNeedsUpdateConstraints];
-        // 执行动画
-        [UIView animateWithDuration:0.5 animations:^{
-            [self.view layoutIfNeeded]; // 让视图更新布局
-        } completion:^(BOOL finished) {
-            // 在动画完成后，切换到第二个 _view2 的约束
-            [self.view2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-                // 添加第二个 _view2 的约束
-                make.size.mas_equalTo(MSMineView2.viewSizeByModel(nil));
-                make.centerX.equalTo(self.view);
+        @jobs_weakify(self)
+        _view2 = jobsMakeBaseView(^(__kindof BaseView * _Nullable view) {
+            @jobs_strongify(self)
+            view.jobsRichViewByModel(nil);
+            // 移除第一个 _view2 的约束
+            [self.view.addSubview(view) mas_remakeConstraints:^(MASConstraintMaker *make) {
+                // 添加第一个 _view2 的约束
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(88), JobsWidth(28)));
+                make.right.equalTo(self.view).offset(JobsWidth(-10));
                 make.top.equalTo(self.view).offset(JobsWidth(12));
             }];
-            // 再次告诉视图需要更新布局
+            // 告诉视图需要更新布局
             [self.view setNeedsUpdateConstraints];
-            // 再次执行动画
+            // 执行动画
             [UIView animateWithDuration:0.5 animations:^{
                 [self.view layoutIfNeeded]; // 让视图更新布局
-            }];
-        }];
-        _view2.cornerCutToCircleWithCornerRadius(MSMineView2.viewSizeByModel(nil).height / 2);
+            } completion:^(BOOL finished) {
+                // 在动画完成后，切换到第二个 _view2 的约束
+                [self.view2 mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    // 添加第二个 _view2 的约束
+                    make.size.mas_equalTo(MSMineView2.viewSizeByModel(nil));
+                    make.centerX.equalTo(self.view);
+                    make.top.equalTo(self.view).offset(JobsWidth(12));
+                }];
+                // 再次告诉视图需要更新布局
+                [self.view setNeedsUpdateConstraints];
+                // 再次执行动画
+                [UIView animateWithDuration:0.5 animations:^{
+                    [self.view layoutIfNeeded]; // 让视图更新布局
+                }];
+            }];view.cornerCutToCircleWithCornerRadius(MSMineView2.viewSizeByModel(nil).height / 2);
+        });
     }return _view2;
 }
 

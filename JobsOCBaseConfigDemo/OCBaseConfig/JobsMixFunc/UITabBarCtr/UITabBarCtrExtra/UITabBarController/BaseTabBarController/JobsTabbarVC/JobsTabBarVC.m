@@ -12,7 +12,7 @@
     BOOL A;
 }
 /// UI
-@property(nonatomic,strong,readwrite)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
+Prop_strong(readwrite)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
 /// Data
 Prop_assign()BOOL isOpenPPBadge;
 Prop_assign()NSInteger subViewControllerCount;
@@ -176,7 +176,6 @@ static dispatch_once_t onceToken;
         self.view.allowableMovement = 1;
         self.view.userInteractionEnabled = YES;
         self.view.weak_target = self;
-        @jobs_weakify(self)
         self.view.panGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id  _Nullable target,
                                                                                 UIPanGestureRecognizer *_Nullable pan) {
             @jobs_strongify(self)
@@ -278,7 +277,7 @@ static dispatch_once_t onceToken;
         self.selectedIndex = DefaultIndex; /// 初始显示的视图控制器
         if (self.judgeLottieWithIndex(self.selectedIndex)) {
             [AppDelegate.viewCtrlByTabBarCtrlConfigMutArr[DefaultIndex] lottieImagePlay];
-            [self.tabBar animationLottieImage:DefaultIndex];
+            self.tabBar.animationLottieImageBy(DefaultIndex);
         }
     }
 }
@@ -321,11 +320,8 @@ static dispatch_once_t onceToken;
                 }
             }
         }
-        if (translation.x > 0.f && self.selectedIndex > 0) {
-            self.selectedIndex--;
-        }else if (translation.x < 0.f && self.selectedIndex + 1 < self.viewControllers.count) {
-            self.selectedIndex++;
-        }else{}
+        if (translation.x > 0.f && self.selectedIndex > 0) self.selectedIndex--;
+        if (translation.x < 0.f && self.selectedIndex + 1 < self.viewControllers.count) self.selectedIndex++;
         self.forcedLoginIndex(self.selectedIndex);
         JobsLog(@"ToIndex = %lu",(unsigned long)self.selectedIndex);
     };
@@ -392,7 +388,7 @@ static dispatch_once_t onceToken;
             }
         }
         // Lottie 动画
-        if (self.judgeLottieWithIndex(self.selectedIndex)) [self.tabBar animationLottieImage:(int)index];
+        if (self.judgeLottieWithIndex(self.selectedIndex)) self.tabBar.animationLottieImageBy(index);
         // 震动反馈
         if (self.isFeedbackGenerator) self.feedbackGenerator(nil);
         // 点击声音
@@ -471,10 +467,13 @@ shouldSelectViewController:(UIViewController *)viewController {
 
 -(JobsTabBar *)myTabBar{
     if (!_myTabBar) {
-        _myTabBar = JobsTabBar.new;
-        _myTabBar.alignmentType = ImageTopTitleBottom;
-        _myTabBar.jobsRichViewByModel(self.viewModel);
-        self.jobsKVC(@"tabBar",_myTabBar);/// ❤️KVC 进行替换❤️
+        @jobs_weakify(self)
+        _myTabBar = jobsMakeTabBar(^(JobsTabBar * _Nullable tabBar) {
+            @jobs_strongify(self)
+            tabBar.alignmentType = ImageTopTitleBottom;
+            tabBar.jobsRichViewByModel(self.viewModel);
+            self.jobsKVC(@"tabBar",tabBar);/// ❤️KVC 进行替换❤️
+        });
     }return _myTabBar;
 }
 
@@ -490,12 +489,12 @@ shouldSelectViewController:(UIViewController *)viewController {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.image = JobsIMG(JobsInternationalization(@""));
                 viewModel.textModel.text = JobsInternationalization(@"111");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.image = JobsIMG(JobsInternationalization(@""));
                 viewModel.textModel.text = JobsInternationalization(@"222");
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.image = JobsIMG(JobsInternationalization(@""));
                 viewModel.textModel.text = JobsInternationalization(@"333");
             }));

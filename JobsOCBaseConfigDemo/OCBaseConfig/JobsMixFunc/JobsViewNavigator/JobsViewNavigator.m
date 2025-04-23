@@ -21,11 +21,11 @@ Prop_copy()NSMutableArray<__kindof UIView *> *viewStack;
     }return self;
 }
 
--(jobsByViewAndAnimatedBlock _Nonnull)pushView{
+-(JobsReturnViewNavigatorByViewAndAnimatedBlock _Nonnull)pushView{
     @jobs_weakify(self)
-    return ^(UIView __kindof * _Nullable nextView,BOOL animated) {
+    return ^JobsViewNavigator *_Nonnull(UIView __kindof * _Nullable nextView,BOOL animated) {
         @jobs_strongify(self)
-        if (!nextView) return;
+        if (!nextView) return self;
         UIView *currentTopView = self.viewStack.lastObject;
         self.viewStack.add(nextView);
         self.addSubview(nextView);
@@ -47,15 +47,15 @@ Prop_copy()NSMutableArray<__kindof UIView *> *viewStack;
                              completion:nil];
         } else {
             if(transitionBlock) transitionBlock();
-        }
+        }return self;
     };
 }
 
--(jobsByBOOLBlock _Nonnull)popViewAnimated{
+-(JobsReturnViewNavigatorByBOOLBlock _Nonnull)popViewAnimated{
     @jobs_weakify(self)
-    return ^(BOOL animated) {
+    return ^JobsViewNavigator *_Nonnull(BOOL animated) {
         @jobs_strongify(self)
-        if (self.viewStack.count == 0) return; // Prevent popping when there's no view
+        if (self.viewStack.count == 0) return self; // Prevent popping when there's no view
         
         UIView *topView = self.viewStack.lastObject;
         [self.viewStack removeLastObject];
@@ -83,15 +83,15 @@ Prop_copy()NSMutableArray<__kindof UIView *> *viewStack;
         } else {
             if(transitionBlock) transitionBlock();
             if(completionBlock) completionBlock(YES);
-        }
+        }return self;
     };
 }
 
--(jobsByBOOLBlock _Nonnull)popToRootViewAnimated{
+-(JobsReturnViewNavigatorByBOOLBlock _Nonnull)popToRootViewAnimated{
     @jobs_weakify(self)
-    return ^(BOOL animated) {
+    return ^JobsViewNavigator *_Nonnull(BOOL animated) {
         @jobs_strongify(self)
-        if (self.viewStack.count <= 1) return; // 根视图或无视图堆栈
+        if (self.viewStack.count <= 1) return self; // 根视图或无视图堆栈
         
         while (self.viewStack.count > 1) {
             UIView *topView = self.viewStack.lastObject;
@@ -101,6 +101,7 @@ Prop_copy()NSMutableArray<__kindof UIView *> *viewStack;
         
         UIView *rootView = self.viewStack.firstObject;
         jobsByVoidBlock transitionBlock = ^{
+            @jobs_strongify(self)
             rootView.frame = self.bounds;
         };
         
@@ -109,6 +110,7 @@ Prop_copy()NSMutableArray<__kindof UIView *> *viewStack;
                              animations:transitionBlock
                              completion:nil];
         } else if (transitionBlock) transitionBlock();
+        return self;
     };
 }
 #pragma mark —— lazyLoad

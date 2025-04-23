@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "JobsLoadingImage.h"
 #import "UIView+Measure.h"
 #import "NSMutableArray+Extra.h"
@@ -20,8 +21,7 @@ typedef NS_ENUM(NSInteger, AlignmentType) {
     ImageBottomTitleTop /// 图下，文字上
 };
 #endif /* ALIGNMENT_TYPE_ENUM_DEFINED */
-
-// 超过 6 个 系统会变成更多，过不了审核
+/// 超过 6 个 系统会变成更多，过不了审核
 @interface JobsTabBar : UITabBar
 
 Prop_assign()AlignmentType alignmentType;
@@ -29,3 +29,9 @@ Prop_assign()AlignmentType alignmentType;
 -(CGFloat)customTabBarOffsetHeight;
 
 @end
+
+NS_INLINE __kindof JobsTabBar *_Nonnull jobsMakeTabBar(jobsByTabBarBlock _Nullable block){
+    JobsTabBar *data = JobsTabBar.alloc.init;
+    if (block) block(data);
+    return data;
+}

@@ -148,8 +148,19 @@ typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
 typedef void(^jobsByCorModelBlock)(JobsCorModel *_Nullable data);
 
+@class JobsMenuView;
+typedef void(^jobsByMenuViewBlock)(__kindof JobsMenuView *_Nullable view);
+
+@class JobsViewNavigator;
+typedef void(^jobsByViewNavigatorBlock)(__kindof JobsViewNavigator *_Nullable navigator);
+typedef JobsViewNavigator *_Nonnull(^JobsReturnViewNavigatorByViewAndAnimatedBlock)(__kindof UIView *_Nullable view,BOOL animated);
+typedef JobsViewNavigator *_Nonnull(^JobsReturnViewNavigatorByBOOLBlock)(BOOL data);
+
 @class ButtonTimerConfigModel;
 typedef void(^jobsByButtonTimerConfigModelBlock)(__kindof ButtonTimerConfigModel *_Nullable data);
+
+@class BaseNavigationBar;
+typedef void(^jobsByBaseNavigationBarBlock)(__kindof BaseNavigationBar *_Nullable navBar);
 
 @class MasonryModel;
 typedef void(^jobsByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
@@ -181,6 +192,12 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelArrayBlock)(__kin
 
 @class JobsImageModel;
 typedef void(^jobsByImageModelBlock)(__kindof JobsImageModel *_Nullable model);
+
+@class PointLabBaseView;
+typedef void(^jobsByPointLabBaseViewBlock)(__kindof PointLabBaseView *_Nullable view);
+
+@class JobsTabBar;
+typedef void(^jobsByTabBarBlock)(JobsTabBar *_Nullable tabBar);
 
 @class FileFolderHandleModel;
 typedef void(^jobsByFileFolderHandleModelBlock)(__kindof FileFolderHandleModel *_Nullable model);

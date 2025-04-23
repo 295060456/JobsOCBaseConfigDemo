@@ -80,11 +80,11 @@ Prop_copy()NSString *dot;
         _attributedString = jobsMakeMutableAttributedString(^(__kindof NSMutableAttributedString *_Nullable data) {
             data.add(JobsAttributedString(self.dot
                                           .add(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人")
-                                          .add(@"\n")));
+                                          .add(JobsNewline)));
                                                            
             data.add(JobsAttributedString(self.dot
                                           .add(@"你是日本人你是日本人你是日本人你是日本人你是日本人你是日本人")
-                                          .add(@"\n")));
+                                          .add(JobsNewline)));
             /// 设置段落
             data.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
                 data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data1) {
@@ -100,7 +100,7 @@ Prop_copy()NSString *dot;
             }))
             .addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
                 data1.value = JobsYellowColor;
-                data1.range = NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(@"\n").length + 1, 1);// 第二个圆点
+                data1.range = NSMakeRange(@"我是中国人我是中国人我是中国人我是中国人我是中国人我是中国人".add(JobsNewline).length + 1, 1);// 第二个圆点
             }))
             /// 设置文本颜色
             .addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
@@ -118,13 +118,12 @@ Prop_copy()NSString *dot;
 -(NSMutableAttributedString *)attributedString2{
     if(!_attributedString2){
         @jobs_weakify(self)
-        _attributedString2 = JobsMutAttributedString(@"");
+        _attributedString2 = JobsMutAttributedString(JobsEmpty);
         // 通过循环来创建每一行的富文本
         for (NSString *item in self.items) {
             // 添加小圆点
             _attributedString2.add(JobsAttributedStringByTextAttachment(jobsMakeTextAttachment(^(NSTextAttachment * _Nullable data) {
                 data.bounds = CGRectMake(0, 0, 10, 10); // 设置圆点的大小和位置
-                
                 UIGraphicsBeginImageContextWithOptions(data.bounds.size, NO, 0);
                 [JobsRedColor setFill];// 设置圆点的颜色
                 [[UIBezierPath bezierPathWithOvalInRect:data.bounds] fill];
@@ -132,7 +131,7 @@ Prop_copy()NSString *dot;
                 UIGraphicsEndImageContext();
             })));
             // 添加空格后再添加文本
-            _attributedString2.add(JobsAttributedString(@" "));
+            _attributedString2.add(JobsAttributedString(JobsSpace));
             // 添加对应的文本
             NSMutableAttributedString *text = JobsMutAttributedString(item);
             text.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
@@ -145,7 +144,7 @@ Prop_copy()NSString *dot;
             }));
             _attributedString2.add(text);
             // 添加换行符
-            _attributedString2.add(JobsAttributedString(@"\n"));
+            _attributedString2.add(JobsAttributedString(JobsNewline));
         }
         _attributedString2.addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
             @jobs_strongify(self)

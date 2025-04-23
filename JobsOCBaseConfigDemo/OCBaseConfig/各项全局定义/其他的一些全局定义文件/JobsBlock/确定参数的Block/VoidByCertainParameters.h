@@ -47,6 +47,7 @@ typedef void(^jobsByScrollViewBlock)(__kindof UIScrollView *_Nullable scrollView
 typedef void(^jobsByBtnBlock)(__kindof UIButton *_Nullable btn);
 typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable window);
 typedef void(^jobsByLabelBlock)(__kindof UILabel *_Nullable label);
+typedef void(^jobsByNavigationItemBlock)(__kindof UINavigationItem *_Nullable navigationItem);
 typedef void(^jobsByWKWebViewBlock)(__kindof WKWebView *_Nullable webView);
 typedef void(^jobsByJSContextBlock)(__kindof JSContext *_Nullable context);
 typedef void(^jobsByProgressViewBlock)(__kindof UIProgressView *_Nullable progressView);
@@ -70,10 +71,10 @@ typedef void(^jobsByViewControllerBlock)(__kindof UIViewController *_Nullable vi
 typedef void(^jobsByMenuControllerBlock)(__kindof UIMenuController *_Nullable menuController);
 typedef void(^jobsByImagePickerControllerBlock)(__kindof UIImagePickerController *_Nullable imagePickerController);
 #pragma mark —— 关于数据容器
-typedef void(^jobsByArrayBlock)(__kindof NSArray *_Nullable data);
-typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray *_Nullable arr);
+typedef void(^jobsByArrayBlock)(__kindof NSArray <NSObject *>*_Nullable data);
+typedef void(^jobsByMutArrayBlock)(__kindof NSMutableArray <NSObject *>*_Nullable arr);
 typedef void(^jobsBySetBlock)(__kindof NSSet *_Nullable data);
-typedef void(^jobsByMutableSetBlock)(__kindof NSMutableSet *_Nullable data);
+typedef void(^jobsByMutableSetBlock)(__kindof NSMutableSet <NSObject *>*_Nullable data);
 typedef void(^jobsByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef void(^jobsByMutableDictionarycBlock)(__kindof NSMutableDictionary *_Nullable data);
 #pragma mark —— 关于（富）文本
@@ -146,6 +147,7 @@ typedef void(^jobsByTimerBlock)(NSTimer *_Nullable timer);
 typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable dateFormatter);
 typedef void(^jobsByNotificationResponseBlock)(UNNotificationResponse *_Nullable response);
 #pragma mark —— 其他
+typedef void(^jobsByShadowBlock)(__kindof NSShadow *_Nullable shadow);
 typedef void(^jobsByLockBlock)(NSLock *_Nullable lock);
 typedef void(^jobsByRunLoopBlock)(NSRunLoop *_Nullable runLoop);
 typedef void(^jobsByPHFetchOptionsBlock)(PHFetchOptions *_Nullable options);

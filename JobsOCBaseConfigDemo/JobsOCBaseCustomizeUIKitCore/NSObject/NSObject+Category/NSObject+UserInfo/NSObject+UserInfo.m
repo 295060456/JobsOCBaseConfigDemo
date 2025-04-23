@@ -137,14 +137,14 @@
                 /// 如果 JobsUserModel 中包含更多自定义类型或者你需要解码其他基本类型（例如 NSArray 或 NSDictionary），需要将这些类也加入到 allowedClasses 集合中。
                 /// 确保在解码所有需要的类时，将其包含在 allowedClasses 集合中以避免警告和潜在的解码失败。例如
                 userModel = [NSKeyedUnarchiver unarchivedObjectOfClasses:jobsMakeMutSet(^(__kindof NSMutableSet <Class>*_Nullable data) {
-                    data.add(JobsUserModel.class);
-                    data.add(NSString.class);
-                    data.add(NSNumber.class);
-                    data.add(NSArray.class);
-                    data.add(NSDictionary.class);
-                    data.add(UIImage.class);
-                    data.add(NSArray.class);
-                    data.add(cls);
+                    data.add(JobsUserModel.class)
+                    .add(NSString.class)
+                    .add(NSNumber.class)
+                    .add(NSArray.class)
+                    .add(NSDictionary.class)
+                    .add(UIImage.class)
+                    .add(NSArray.class)
+                    .add(cls);
                 })
                                                                    fromData:archivedData
                                                                       error:&error];

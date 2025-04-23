@@ -207,7 +207,9 @@ Prop_copy()NSMutableArray <__kindof LOTAnimationView *>*lOTAnimationViews;
 #pragma mark —— LazyLoad
 -(NSMutableArray<__kindof UIView *> *)tabBarButtons{
     if(!_tabBarButtons){
+        @jobs_weakify(self)
         _tabBarButtons = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
             for (UIView *subview in self.subviews) {
                 if([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]){
                     data.add(subview);
@@ -219,7 +221,9 @@ Prop_copy()NSMutableArray <__kindof LOTAnimationView *>*lOTAnimationViews;
 
 -(NSMutableArray<__kindof LOTAnimationView *> *)lOTAnimationViews{
     if(!_lOTAnimationViews){
+        @jobs_weakify(self)
         _lOTAnimationViews = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
             for (int t = 0;
                  t < self.tabBarButtons.count;
                  t++) {

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "BaseProtocol.h"
+#import "JobsBlock.h"
 
 #import "MacroDef_Func.h"
 #import "JobsLoadingImage.h"
@@ -60,7 +61,7 @@ UIGestureRecognizerDelegate,
 BaseProtocol
 >
 /// UI
-@property(nonatomic,strong,readonly)JobsTabBar * _Nonnull myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
+Prop_strong(readonly)JobsTabBar * _Nonnull myTabBar;/// myTabBar.humpOffsetY 凸起的高度自定义，默认值30  offsetHeight
 /// Data
 Prop_assign()BOOL isOpenScrollTabbar;/// 是否开启手势横向滚动子VC联动Tabbar切换，默认开启
 Prop_assign()BOOL isAnimationAlert;/// 图片从小放大

@@ -69,8 +69,7 @@ JobsToggleNavViewProtocolSynthesize
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^(id _Nullable data){
-        /// 默认的尺寸
-        return CGSizeMake(JobsWidth(454),JobsWidth(155));
+        return CGSizeMake(JobsWidth(454),JobsWidth(155)); /// 默认的尺寸
     };
 }
 
@@ -90,7 +89,7 @@ JobsToggleNavViewProtocolSynthesize
     return ^(NSInteger index){
         @jobs_strongify(self)
         self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * index,0);
-        self.taggedNavView.selectingOneTagWithIndex(index);
+        self.taggedNavView.selectingOneTagByIndex(index);
     };
 }
 #pragma mark —— 一些私有方法
@@ -104,39 +103,6 @@ JobsToggleNavViewProtocolSynthesize
                 data.jobsWidth = self.taggedNavSingleBtn_size.width * arr.count + self.btn_each_offset * (arr.count - 1);
             }else data.jobsWidth = self.taggedNavSingleBtn_size.width;
             data.jobsHeight = self.taggedNavSingleBtn_size.height;
-        });
-    };
-}
-/// 数据源创建整个导航栏
--(JobsReturnIDByArrBlock _Nonnull)makeTaggedNavViewBy{
-    @jobs_weakify(self)
-    return ^JobsToggleNavView *_Nullable(NSArray <__kindof UIView<BaseViewProtocol>*>*_Nullable data){
-        return jobsMakeToggleNavView(^(__kindof JobsToggleNavView * _Nullable taggedNavView) {
-            @jobs_strongify(self)
-            taggedNavView.btn_each_offset = self.btn_each_offset;/// 滑块之间的距离
-            taggedNavView.frame = jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data1) {
-                @jobs_strongify(self)
-                data1.jobsX = 0;
-                data1.jobsY = 0;
-                data1.jobsWidth = self.makeTaggedNavViewSizeBy(data).width ? : self.taggedNavView_width;
-                data1.jobsHeight = self.makeTaggedNavViewSizeBy(data).height ? : self.taggedNavView_height;
-            });
-            taggedNavView.sliderColor = self.sliderColor;/// 滑块颜色
-            taggedNavView.sliderW = self.sliderW;/// 滑块宽度
-            taggedNavView.sliderH = JobsWidth(1);/// 滑块高度
-            taggedNavView.backgroundColor = self.taggedNavViewBgColor;
-            /// 切换联动
-            [self.addSubview(taggedNavView) actionObjBlock:^(id _Nullable data1) {
-                @jobs_strongify(self)
-                if (self.objBlock) self.objBlock(data1);
-                if(KindOfBaseButtonCls(data1)){
-                    self.currentSelectedBtn = (BaseButton *)data1;
-                    /// 由 self.bgScroll 驱动
-                    self.bgScroll.contentOffset = CGPointMake(self.bgScroll.width * self.currentSelectedBtn.index,0);
-                    JobsLog(@"当前滑动的index = %ld",(long)self.currentSelectedBtn.index);
-                    self.taggedNavView.selectingOneTagWithIndex(self.currentSelectedBtn.index);
-                }
-            }];taggedNavView.jobsRichViewByModel(self.taggedNavDatas);
         });
     };
 }
@@ -168,7 +134,8 @@ JobsToggleNavViewProtocolSynthesize
         }
         for (__kindof UIView *subView in data) {
             self.bgScroll.addSubview(subView);
-        }return self.bgScroll;
+        }self.bgScroll.contentSize = CGSizeMake(self.bgScroll.width * data.count, self.bgScroll.height);
+        return self.bgScroll;
     };
 }
 /// 可滑动子View的Frame
@@ -186,29 +153,54 @@ JobsToggleNavViewProtocolSynthesize
         }
     };
 }
-#pragma mark —— scrollviewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+/// 数据源创建整个导航栏
+-(JobsReturnIDByArrBlock _Nonnull)makeTaggedNavViewBy{
+    @jobs_weakify(self)
+    return ^JobsToggleNavView *_Nullable(NSArray <__kindof UIView<BaseViewProtocol>*>*_Nullable data){
+        return jobsMakeToggleNavView(^(__kindof JobsToggleNavView * _Nullable taggedNavView) {
+            @jobs_strongify(self)
+            taggedNavView.backgroundColor = self.taggedNavViewBgColor;
+            taggedNavView.btn_each_offset = self.btn_each_offset; /// 滑块之间的距离
+            taggedNavView.sliderColor = self.sliderColor; /// 滑块颜色
+            taggedNavView.sliderW = self.sliderW; /// 滑块宽度
+            taggedNavView.sliderH = JobsWidth(1); /// 滑块高度
+            taggedNavView.frame = jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data1) {
+                @jobs_strongify(self)
+                data1.jobsX = 0;
+                data1.jobsY = 0;
+                data1.jobsWidth = self.makeTaggedNavViewSizeBy(data).width ? : self.taggedNavView_width;
+                data1.jobsHeight = self.makeTaggedNavViewSizeBy(data).height ? : self.taggedNavView_height;
+            });
+            self.addSubview(taggedNavView)
+                .JobsRichViewByModel2(self.taggedNavDatas);
+        });
+    };
+}
+#pragma mark —— UIScrollViewDelegate
+@synthesize lastContentOffset = _lastContentOffset;
+/// 会反复执行多次
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     JobsLog(@"");
+    CGPoint currentOffset = scrollView.contentOffset;
+    if (currentOffset.y > self.lastContentOffset.y) {
+        scrollView.direction = ScrollDirectionUp;/// 向上滑动
+    } else if (currentOffset.y < self.lastContentOffset.y) {
+        scrollView.direction = ScrollDirectionDown;/// 向下滑动
+    }
+    if (currentOffset.x > self.lastContentOffset.x) {
+        scrollView.direction = ScrollDirectionLeft;/// 向左滑动
+    } else if (currentOffset.x < self.lastContentOffset.x) {
+        scrollView.direction = ScrollDirectionRight;/// 向右滑动
+    }self.lastContentOffset = currentOffset;
 }
-
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-
-}
-
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-                    withVelocity:(CGPoint)velocity
-             targetContentOffset:(inout CGPoint *)targetContentOffset{
-}
-
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView
-                 willDecelerate:(BOOL)decelerate{
-    CGFloat scrollView_contentOffset_x = scrollView.contentOffset.x;
-    if(scrollView_contentOffset_x < 0) scrollView_contentOffset_x = 0;
-    if(scrollView_contentOffset_x > scrollView.width * self.scrollContentViews.count - 1)
-        scrollView_contentOffset_x = scrollView.width * self.scrollContentViews.count - 1;
-    NSInteger selectedIndx = round(scrollView_contentOffset_x / scrollView.width);
-    JobsLog(@"当前滑动的index = %ld",(long)selectedIndx)
-    self.taggedNavView.selectingOneTagWithIndex(selectedIndx);
+///（手动滑动的时候触发）完全停止滑动
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    JobsLog(@"");
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger index = round(scrollView.contentOffset.x / pageWidth);
+    /// 自动对齐到整数页（如果不是精确停在整数位置）
+    [scrollView setContentOffset:CGPointMake(index * pageWidth, 0) animated:YES];
+    self.taggedNavView.selectingOneTagByIndex(index);
 }
 #pragma mark —— lazyLoad
 -(JobsToggleNavView *)taggedNavView{
@@ -220,9 +212,13 @@ JobsToggleNavViewProtocolSynthesize
 -(UIScrollView *)bgScroll{
     if(!_bgScroll){
         @jobs_weakify(self)
-        _bgScroll = jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
+        _bgScroll = self.addSubview(jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
             @jobs_strongify(self)
-            scrollView.scrollEnabled = NO;
+            scrollView.delegate = self;
+            scrollView.showsHorizontalScrollIndicator = NO;
+            scrollView.showsVerticalScrollIndicator = NO;
+            scrollView.scrollEnabled = YES;
+            scrollView.pagingEnabled = YES;
             scrollView.frame = jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
                 @jobs_strongify(self)
                 data.jobsX = 0;
@@ -230,12 +226,7 @@ JobsToggleNavViewProtocolSynthesize
                 data.jobsWidth = self.viewSizeByModel(nil).width;
                 data.jobsHeight = self.viewSizeByModel(nil).height - (self.taggedNavView_height + self.taggedNavView_bgScroll_offset);
             });
-            scrollView.delegate = self;
-            scrollView.pagingEnabled = YES;
-            scrollView.showsHorizontalScrollIndicator = NO;
-            scrollView.showsVerticalScrollIndicator = NO;
-            self.addSubview(scrollView);
-        });
+        }));
     }return _bgScroll;
 }
 
@@ -263,23 +254,12 @@ JobsToggleNavViewProtocolSynthesize
                     label.textAlignment = NSTextAlignmentCenter;
                     label.numberOfLines = 0;
                     label.text = toStringByInt(t)
-                        .add(@"\n")
+                        .add(JobsNewline)
                         .add(title);
                 }));t += 1;
             }
         });
     }return _tempLabs;
-}
-
--(NSMutableArray<NSString *>*)tempTitles{
-    if(!_tempTitles){
-        _tempTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"人生到处知何似，恰似飞鸿踏雪泥；"))
-            .add(JobsInternationalization(@"泥上偶然留指爪，鸿飞那复计东西。"))
-            .add(JobsInternationalization(@"老僧已死成新塔，坏壁无由见旧题；"))
-            .add(JobsInternationalization(@"往日崎岖还记否，路长人困蹇驴嘶。"));
-        });
-    }return _tempTitles;
 }
 
 -(NSMutableArray<UIButtonModel *>*)taggedNavDatas{
@@ -361,6 +341,17 @@ JobsToggleNavViewProtocolSynthesize
     if(!_taggedNavView_bgScroll_offset){
         _taggedNavView_bgScroll_offset = 0;
     }return _taggedNavView_bgScroll_offset;
+}
+
+-(NSMutableArray<NSString *>*)tempTitles{
+    if(!_tempTitles){
+        _tempTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
+            data.add(JobsInternationalization(@"人生到处知何似，恰似飞鸿踏雪泥；"))
+            .add(JobsInternationalization(@"泥上偶然留指爪，鸿飞那复计东西。"))
+            .add(JobsInternationalization(@"老僧已死成新塔，坏壁无由见旧题；"))
+            .add(JobsInternationalization(@"往日崎岖还记否，路长人困蹇驴嘶。"));
+        });
+    }return _tempTitles;
 }
 
 @end

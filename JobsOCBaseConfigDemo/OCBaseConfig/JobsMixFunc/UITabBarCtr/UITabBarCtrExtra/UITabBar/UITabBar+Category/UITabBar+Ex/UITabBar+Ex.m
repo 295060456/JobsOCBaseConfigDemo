@@ -18,8 +18,7 @@
     }
 }
 
--(LOTAnimationView *_Nullable)addLottieImage:(NSUInteger)index
-                                  lottieName:(NSString *_Nullable)lottieName{
+-(LOTAnimationView *_Nullable)addLottieImage:(NSUInteger)index lottieName:(NSString *_Nullable)lottieName{
     // lottieName 存在才对LOTAnimationView及其相关控件进行创建
     LOTAnimationView *lottieView = nil;
     if (isValue(lottieName) && lottieName) {
@@ -32,22 +31,30 @@
     }return lottieView;
 }
 
--(void)animationLottieImage:(NSInteger)index{
-    [self stopAnimationAllLottieView];
-    LOTAnimationView *lottieView = [self viewWithTag:888 + index];
-    if (lottieView && [lottieView isKindOfClass:LOTAnimationView.class]) {
-        lottieView.animationProgress = 0;
-        [lottieView play];
-    }
+-(jobsByNSIntegerBlock _Nonnull)animationLottieImageBy{
+    @jobs_weakify(self)
+    return ^(NSInteger index){
+        @jobs_strongify(self)
+        self.stopAnimationAllLottieView();
+        LOTAnimationView *lottieView = [self viewWithTag:888 + index];
+        if (lottieView && [lottieView isKindOfClass:LOTAnimationView.class]) {
+            lottieView.animationProgress = 0;
+            [lottieView play];
+        }
+    };
 }
 
--(void)stopAnimationAllLottieView {
-    for (int i = 0; i < self.items.count; i++) {
-        LOTAnimationView *lottieView = [self viewWithTag:888 + i];
-        if (lottieView && [lottieView isKindOfClass:LOTAnimationView.class]) {
-            [lottieView stop];
+-(jobsByVoidBlock _Nonnull)stopAnimationAllLottieView{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        for (int i = 0; i < self.items.count; i++) {
+            LOTAnimationView *lottieView = [self viewWithTag:888 + i];
+            if (lottieView && [lottieView isKindOfClass:LOTAnimationView.class]) {
+                [lottieView stop];
+            }
         }
-    }
+    };
 }
 
 @end

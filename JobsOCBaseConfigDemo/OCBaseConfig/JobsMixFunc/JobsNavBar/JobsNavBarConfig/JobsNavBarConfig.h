@@ -18,7 +18,7 @@ extern JobsNavBarConfig *static_navBarConfig;
 Prop_assign()CGFloat alpha;
 Prop_strong(null_resettable)UIColor *bgCor;
 Prop_strong()UIImage *bgImage;/// 无默认值，优先级 bgImage > bgCor
-Prop_strong(null_resettable)UIViewModel *viewModel;
+Prop_strong()UIViewModel *viewModel;
 #pragma mark —— backBtn 的配置
 Prop_strong(null_resettable)UIButtonModel *backBtnModel;
 Prop_strong()__kindof UIButton *backBtn;

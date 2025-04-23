@@ -11,7 +11,6 @@
 @interface JobsToggleNavView ()
 /// UI
 Prop_strong()__kindof UIView *sliderView;
-Prop_copy()NSMutableArray <__kindof UIButton *>*buttonsArray;
 /// Data
 Prop_assign()NSUInteger current_index;
 Prop_copy()NSMutableArray <UIButtonModel *>*buttonModels;
@@ -151,7 +150,7 @@ JobsToggleNavViewProtocolSynthesize
 }
 #pragma mark —— 一些公有方法
 /// 核心方法：拖动和点击的逻辑，都归属于这个方法
--(jobsByNSIntegerBlock _Nonnull)selectingOneTagWithIndex{
+-(jobsByNSIntegerBlock _Nonnull)selectingOneTagByIndex{
     @jobs_weakify(self)
     return ^(NSInteger index){
         @jobs_strongify(self)

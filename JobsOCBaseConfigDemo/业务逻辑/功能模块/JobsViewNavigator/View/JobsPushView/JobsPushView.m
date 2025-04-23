@@ -44,33 +44,31 @@ Prop_strong()JobsPushView *pushView;
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
                 
-    //            JobsViewNavigator *navigator = JobsViewNavigator.new;
-    //            navigator.frame = self.bounds;
-    //            self.pushView.navigator = navigator;
-    //            [self addSubview:navigator];
-    //            navigator.pushView(self.pushView,YES);
-                
-    //            self.navigator.frame = self.bounds;
-    //            self.pushView.navigator = self.navigator;
-    //            self.navigator.pushView(self.pushView,YES);
-
-    //            self.configViewNavigatorByPushview_(self.pushView);
-    //            self.navigator.pushView(self.pushView,YES);
-    //
-    //            self.pushView.configViewNavigatorBySuperview_(self);
-    //            self.navigator.pushView(self.pushView,YES);
-    //
+//                JobsViewNavigator *navigator = self.addSubview(jobsMakeViewNavigator(^(__kindof JobsViewNavigator * _Nullable navigator) {
+//                    navigator.frame = self.bounds;
+//                    self.pushView.navigator = navigator;
+//                }));
+//                navigator.pushView(self.pushView,YES);
+//
+//                self.navigator.frame = self.bounds;
+//                self.pushView.navigator = self.navigator;
+//                self.navigator.pushView(self.pushView,YES);
+//
+//                self.configViewNavigatorByPushview_(self.pushView);
+//                self.navigator.pushView(self.pushView,YES);
+//
+//                self.pushView.configViewNavigatorBySuperview_(self);
+//                self.navigator.pushView(self.pushView,YES);
+//
                 self.configViewNavigatorBySuperviewAndView_(self,self.pushView);
                 self.navigator.pushView(self.pushView,YES);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self addSubview:_push_btn];
-        [_push_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_push_btn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
             make.height.mas_equalTo(JobsWidth(30));
-        }];
-        _push_btn.makeBtnTitleByShowingType(UILabelShowingType_03);
+        }];_push_btn.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _push_btn;
 }
 
@@ -90,8 +88,7 @@ Prop_strong()JobsPushView *pushView;
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self addSubview:_pop_btn];
-        [_pop_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_pop_btn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.equalTo(self.push_btn);
             make.centerY.equalTo(self.push_btn);
             make.left.equalTo(self.push_btn.mas_right).offset(JobsWidth(10));

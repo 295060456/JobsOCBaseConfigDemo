@@ -208,22 +208,22 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
  -(BaseButton *)applyNowBtn{
      if(!_applyNowBtn){
          @jobs_weakify(self)
-         _applyNowBtn = BaseButton.initByAttributedString(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+         _applyNowBtn = BaseButton.initByAttributedString(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof JobsRichTextConfig *>* _Nullable data) {
              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(14);
                  data1.textCor = JobsCor(@"#666666");
                  data1.targetString = self.richTextMutArr[0];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
-             }));
-             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+             }))
+             .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(14);
                  data1.textCor = JobsCor(@"#BA9B77");
                  data1.targetString = self.richTextMutArr[1];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
-             }));
-             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+             }))
+             .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(14);
                  data1.textCor = JobsCor(@"#666666");

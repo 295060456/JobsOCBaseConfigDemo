@@ -34,19 +34,4 @@ typedef NS_ENUM(NSInteger, JobsSearchStrategy) {
 };
 #endif /* JobsSearchStrategy_h */
 
-#ifndef ScrollDirection_h
-#define ScrollDirection_h
-typedef NS_ENUM(NSInteger, ScrollDirection) {
-    ScrollDirectionNone = 0,
-    ScrollDirectionRight,       /// 右👉🏻
-    ScrollDirectionLeft,        /// 左👈🏻
-    ScrollDirectionUp,          /// 上面👆🏻
-    ScrollDirectionDown,        /// 下面👇🏻
-    ScrollDirectionRight_UP,    /// 右上👉🏻👆🏻
-    ScrollDirectionLeft_UP,     /// 左上👈🏻👆🏻
-    ScrollDirectionRight_Down,  /// 右下👉🏻👇🏻
-    ScrollDirectionLeft_Down    /// 左下👈🏻👇🏻
-};
-#endif /* ScrollDirection_h */
-
 #endif /* NSObject_h */

@@ -71,11 +71,13 @@
   ```objective-c
   -(JobsTabBar *)myTabBar{
       if (!_myTabBar) {
-          _myTabBar = JobsTabBar.new;
-          _myTabBar.tabBarControllerConfigMutArr = self.tabBarControllerConfigMutArr;
-          _myTabBar.alignmentType = ImageTopTitleBottom;
-          _myTabBar.jobsRichViewByModel(self.viewModel);
-          self.jobsKVC(@"tabBar",_myTabBar);/// KVC 进行替换
+          @jobs_weakify(self)
+          _myTabBar = jobsMakeTabBar(^(JobsTabBar * _Nullable tabBar) {
+              @jobs_strongify(self)
+              tabBar.alignmentType = ImageTopTitleBottom;
+              tabBar.jobsRichViewByModel(self.viewModel);
+              self.jobsKVC(@"tabBar",tabBar);/// ❤️KVC 进行替换❤️
+          });
       }return _myTabBar;
   }
   ```
@@ -516,23 +518,27 @@ Prop_assign()BOOL isNeedjump;/// 跳开处理，即不切控制器，而是做�
   ```
   
   ```objective-c
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Wunguarded-availability-new"
+  /// 一个iOS应用程序App的生命周期里面，只有一个AppDelegate实例存在
+  /// 但是可能有多个SceneDelegate实例存在
   @interface AppDelegate : UIResponder
   <
-  UIApplicationDelegate
-  ,UNUserNotificationCenterDelegate
+  UIApplicationDelegate,
+  UNUserNotificationCenterDelegate,
+  BaseProtocol
   >
   /// UI
   Prop_strong()UIWindow *window;/// 仅仅为了iOS 13 版本向下兼容而存在
   /// Data
-  @property(readonly,strong)NSPersistentCloudKitContainer *persistentContainer;
+  Prop_strong(readonly)NSPersistentCloudKitContainer *persistentContainer;
   Prop_assign()BOOL allowOrentitaionRotation;
-  
-  +(instancetype)sharedManager;
-  +(void)destroyInstance;
   
   -(void)saveContext;
   
   @end
+  
+  #pragma clang diagnostic pop
   ```
   
   ```objective-c

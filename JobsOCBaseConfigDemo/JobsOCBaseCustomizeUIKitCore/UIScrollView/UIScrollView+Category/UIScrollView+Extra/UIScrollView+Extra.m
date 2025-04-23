@@ -101,5 +101,15 @@
         return self;
     };
 }
+#pragma mark —— Prop_assign()ScrollDirection direction; /// UIScrollView 滑动的方向定义
+JobsKey(_direction)
+@dynamic direction;
+-(ScrollDirection)direction{
+    return [Jobs_getAssociatedObject(_direction) integerValue];
+}
+
+-(void)setDirection:(ScrollDirection)direction{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_direction, @(direction))
+}
 
 @end

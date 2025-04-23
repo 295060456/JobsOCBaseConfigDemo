@@ -193,6 +193,18 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
     return data;
 }
 
+NS_INLINE __kindof UINavigationItem *_Nonnull jobsMakeNavigationItem(jobsByNavigationItemBlock _Nonnull block){
+    UINavigationItem *data = UINavigationItem.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof NSShadow *_Nonnull jobsMakeShadow(jobsByShadowBlock _Nonnull block){
+    NSShadow *data = NSShadow.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UIPageControl *_Nonnull jobsMakePageControl(jobsByPageControlBlock _Nonnull block){
     UIPageControl *data = UIPageControl.alloc.init;
     if (block) block(data);

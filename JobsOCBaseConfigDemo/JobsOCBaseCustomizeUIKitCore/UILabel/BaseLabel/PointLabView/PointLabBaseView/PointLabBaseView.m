@@ -51,16 +51,24 @@ Prop_strong()UIView *pointView;
     };
 }
 #pragma mark —— 一些公有方法
--(void)updatePointViewPositionWithOffsetY:(CGFloat)y{
-    [self.pointView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(y);
-    }];self.refresh();
+-(jobsByCGFloatBlock _Nonnull)updatePointViewPositionWithOffsetY{
+    @jobs_weakify(self)
+    return ^(CGFloat y){
+        @jobs_strongify(self)
+        [self.pointView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(y);
+        }];self.refresh();
+    };
 }
 
--(void)updateLabelPositionWithOffsetX:(CGFloat)x{
-    [self.label mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.pointView.mas_right).offset(x);
-    }];self.refresh();
+-(jobsByCGFloatBlock _Nonnull)updateLabelPositionWithOffsetX{
+    @jobs_weakify(self)
+    return ^(CGFloat x){
+        @jobs_strongify(self)
+        [self.label mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.pointView.mas_right).offset(x);
+        }];self.refresh();
+    };
 }
 #pragma mark —— lazyLoad
 -(UIView *)pointView{
@@ -78,7 +86,8 @@ Prop_strong()UIView *pointView;
 }
 @synthesize label = _label;
 -(UILabel *)label{
-    if(!_label){@jobs_weakify(self)
+    if(!_label){
+        @jobs_weakify(self)
         _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             self.addSubview(label);

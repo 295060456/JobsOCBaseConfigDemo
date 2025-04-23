@@ -31,6 +31,7 @@ Prop_assign(readonly)pthread_mutex_t mutex; /// pthread_mutex_t是底层的非�
 Prop_assign()BOOL isLock;
 Prop_assign()BOOL becomeFirstResponder;
 Prop_assign()AppLanguage appLanguage;
+Prop_assign()CGPoint lastContentOffset; /// 主要用于记录与计算 UIScrollView 的滑动方向
 #pragma mark —— 关于计时器
 Prop_strong(nullable)NSInvocation *invocation;
 Prop_strong(nullable)NSTimer *timer;
@@ -125,6 +126,7 @@ NS_ASSUME_NONNULL_END
 @synthesize isLock = _isLock;\
 @synthesize becomeFirstResponder = _becomeFirstResponder;\
 @synthesize appLanguage = _appLanguage;\
+@synthesize lastContentOffset = _lastContentOffset;\
 
 #endif /* BaseProtocol_synthesize_state */
 
@@ -196,6 +198,7 @@ BaseProtocol_synthesize_data \
 @dynamic isLock;\
 @dynamic becomeFirstResponder;\
 @dynamic appLanguage;\
+@dynamic lastContentOffset;\
 @dynamic invocation;\
 @dynamic timer;\
 @dynamic userInfo;\

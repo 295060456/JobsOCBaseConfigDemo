@@ -14,6 +14,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIScrollView (Extra)
+
+Prop_assign()ScrollDirection direction; /// UIScrollView 滑动的方向定义
 /// 在 UIScrollViewDelegate协议方法 -(void)scrollViewDidScroll:(UIScrollView *)scrollView里进行调用
 -(ScrollDirection)scrolldirectionWhenScrollViewDidScroll;
 #pragma mark —— 一些公共方法

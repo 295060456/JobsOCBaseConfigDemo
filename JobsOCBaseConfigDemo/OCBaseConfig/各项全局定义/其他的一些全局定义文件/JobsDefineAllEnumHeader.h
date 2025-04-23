@@ -455,8 +455,8 @@ typedef NS_ENUM(NSInteger, MoveDirection){
 };
 #endif /* MOVE_DIRECTION_ENUM_DEFINED */
 /// 滚动方向
-#ifndef SCROLL_DIRECTION_ENUM_DEFINED
-#define SCROLL_DIRECTION_ENUM_DEFINED
+#ifndef ScrollDirection_h
+#define ScrollDirection_h
 typedef NS_ENUM(NSInteger, ScrollDirection) {
     ScrollDirectionNone = 0,
     ScrollDirectionRight,/// 右👉🏻
@@ -468,7 +468,7 @@ typedef NS_ENUM(NSInteger, ScrollDirection) {
     ScrollDirectionRight_Down,/// 右下👉🏻👇🏻
     ScrollDirectionLeft_Down,/// 左下👈🏻👇🏻
 };
-#endif /* SCROLL_DIRECTION_ENUM_DEFINED */
+#endif /* ScrollDirection_h */
 ///
 #ifndef JOBS_INDEX_PATH_STRUCT_DEFINED
 #define JOBS_INDEX_PATH_STRUCT_DEFINED
@@ -711,7 +711,8 @@ typedef NS_ENUM(NSInteger, FMAdsType){
     FMAdsType_hotRecommend = 2, /// APP首页右下3Banner
     FMAdsType_memberCentral = 3, /// APP会员中心
     FMAdsType_promotionArea = 4, /// 活动推广专区
-    FMAdsType_announcement = 5 /// 公告
+    FMAdsType_announcement = 5, /// 公告
+    FMAdsType_homeWindowPop = 6, /// 首页弹窗广告
 };
 #endif /* FMAFMADSTYPEdsType */
 /// 账号类型
