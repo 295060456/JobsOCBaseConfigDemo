@@ -553,7 +553,7 @@ JobsKey(_bottomBorderLayer)
 -(void)setBorderWithColor:(UIColor *_Nullable)color
               borderWidth:(CGFloat)borderWidth
                borderType:(UIBorderSideType)borderType{
-    self.superview.refresh();
+    if(self.superview) self.superview.refresh();
     /// 左
     if (borderType & UIBorderSideTypeLeft) self.leftBorderColor(color).leftBorderWidth(borderType);
     /// 右

@@ -147,8 +147,7 @@ Prop_copy()NSMutableArray <NSString *>*btnTitleMutArr;
                 JobsLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
         });
-        [self.view addSubview:_countDownBtn];
-        [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_countDownBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(25));
             make.center.equalTo(self.view);
         }];
@@ -191,10 +190,10 @@ Prop_copy()NSMutableArray <NSString *>*btnTitleMutArr;
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"开始"));
-            data.add(JobsInternationalization(@"暂停"));
-            data.add(JobsInternationalization(@"继续"));
-            data.add(JobsInternationalization(@"结束"));
+            data.add(JobsInternationalization(@"开始"))
+            .add(JobsInternationalization(@"暂停"))
+            .add(JobsInternationalization(@"继续"))
+            .add(JobsInternationalization(@"结束"));
         });
     }return _btnTitleMutArr;
 }
@@ -203,8 +202,7 @@ Prop_copy()NSMutableArray <NSString *>*btnTitleMutArr;
     if (!_countdownView) {
         _countdownView = JobsCountdownView.new;
         _countdownView.jobsRichViewByModel(nil);
-        [self.view addSubview:_countdownView];
-        [_countdownView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_countdownView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);
             make.size.mas_equalTo(JobsCountdownView.viewSizeByModel(nil));
         }];

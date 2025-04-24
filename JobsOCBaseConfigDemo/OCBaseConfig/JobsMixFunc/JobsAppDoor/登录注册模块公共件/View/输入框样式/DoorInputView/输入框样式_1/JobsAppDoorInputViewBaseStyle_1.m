@@ -169,8 +169,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
                 JobsLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
             }
         });
-        [self addSubview:_countDownBtn];
-        [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_countDownBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-JobsWidth(120));
             make.top.equalTo(self).offset(JobsWidth(8));
             make.bottom.equalTo(self).offset(-JobsWidth(8));
