@@ -26,7 +26,6 @@ JobsToggleNavViewProtocol
 Prop_strong(readonly)JobsToggleNavView *taggedNavView;
 Prop_strong(readonly)UIScrollView *bgScroll;
 /// Data
-Prop_assign()CGSize toggleView_size; /// 本控件的尺寸
 Prop_assign()CGSize taggedNavSingleBtn_size;/// 单个导航按钮的尺寸【一般是统一样式】默认JobsWidth(80)、JobsWidth(44)
 Prop_assign()CGFloat taggedNavView_height; /// 一整个导航栏的高度。默认JobsWidth(44)
 Prop_assign()CGFloat taggedNavView_width; /// 一整个导航栏的宽度
@@ -55,14 +54,10 @@ NS_INLINE __kindof JobsToggleBaseView *_Nonnull jobsMakeToggleBaseView(jobsByTog
          _toggleBaseView = jobsMakeToggleBaseView(^(JobsToggleBaseView * _Nullable toggleBaseView) {
              @jobs_strongify(self)
              toggleBaseView.btn_each_offset = JobsWidth(0);
-             [self.view.addSubview(toggleBaseView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                 make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(216)));
-                 make.top.equalTo(self.titleLab.mas_bottom);
-                 make.centerX.equalTo(self.view);
-             }];self.view.refresh();
              toggleBaseView.taggedNavView_width = JobsWidth(230);
              toggleBaseView.taggedNavView_height = JobsWidth(24);
              toggleBaseView.taggedNavViewBgColor = JobsClearColor.colorWithAlphaComponentBy(0);
+             toggleBaseView.bySize(CGSizeMake(JobsWidth(346), JobsWidth(216)));
              toggleBaseView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
                  data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
                      @jobs_strongify(self)
@@ -109,6 +104,11 @@ NS_INLINE __kindof JobsToggleBaseView *_Nonnull jobsMakeToggleBaseView(jobsByTog
                      };
                  }));
              }));
+             [self.view.addSubview(toggleBaseView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                 make.size.mas_equalTo(toggleBaseView.sizer);
+                 make.top.equalTo(self.titleLab.mas_bottom);
+                 make.centerX.equalTo(self.view);
+             }];self.view.refresh();
          });
      }return _toggleBaseView;
  }

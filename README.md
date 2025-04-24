@@ -2607,14 +2607,10 @@ classDiagram
            _toggleBaseView = jobsMakeToggleBaseView(^(JobsToggleBaseView * _Nullable toggleBaseView) {
                @jobs_strongify(self)
                toggleBaseView.btn_each_offset = JobsWidth(0);
-               [self.view.addSubview(toggleBaseView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                   make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(216)));
-                   make.top.equalTo(self.titleLab.mas_bottom);
-                   make.centerX.equalTo(self.view);
-               }];self.view.refresh();
                toggleBaseView.taggedNavView_width = JobsWidth(230);
                toggleBaseView.taggedNavView_height = JobsWidth(24);
                toggleBaseView.taggedNavViewBgColor = JobsClearColor.colorWithAlphaComponentBy(0);
+               toggleBaseView.bySize(CGSizeMake(JobsWidth(346), JobsWidth(216)));
                toggleBaseView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
                    data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
                        @jobs_strongify(self)
@@ -2661,6 +2657,11 @@ classDiagram
                        };
                    }));
                }));
+               [self.view.addSubview(toggleBaseView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                   make.size.mas_equalTo(toggleBaseView.sizer);
+                   make.top.equalTo(self.titleLab.mas_bottom);
+                   make.centerX.equalTo(self.view);
+               }];self.view.refresh();
            });
        }return _toggleBaseView;
    }
