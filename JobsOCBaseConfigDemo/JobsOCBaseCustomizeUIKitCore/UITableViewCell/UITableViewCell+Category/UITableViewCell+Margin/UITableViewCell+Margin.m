@@ -153,7 +153,7 @@ UILocationProtocol_dynamic
                 }));
             }
             
-            {
+            if(self.imageView){
                 self.imageView.offsetForView(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
                     @jobs_strongify(self)
                     data.offsetXForEach = self.imageViewFrameOffsetX;

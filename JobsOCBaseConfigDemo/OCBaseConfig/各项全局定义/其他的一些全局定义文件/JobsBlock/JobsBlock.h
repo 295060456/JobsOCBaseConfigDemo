@@ -311,6 +311,9 @@ typedef void(^jobsByExcelTopHeadViewBlock)(__kindof JobsExcelTopHeadView *_Nulla
 @class JobsExcelLeftListView;
 typedef void(^jobsByExcelLeftListViewBlock)(__kindof JobsExcelLeftListView *_Nullable leftListView);
 
+@class JobsUserHeaderDataViewTBVCell;
+typedef void(^jobsByUserHeaderDataViewTBVCellBlock)(JobsUserHeaderDataViewTBVCell *_Nullable cell);
+
 @class JobsKeyValueModel;
 typedef void(^jobsByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);

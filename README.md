@@ -6670,6 +6670,116 @@ self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullabl
       @jobs_strongify(self)
   }];
   ```
+  
+* 两种方式的完整调用
+
+  * 从屏幕中间弹出菜单进行选择
+    
+    ```objective-c
+    -(BaseButton *)frontPicBtn{
+        if(!_frontPicBtn){
+            @jobs_weakify(self)
+            _frontPicBtn = BaseButton.jobsInit()
+                .jobsResetBtnBgImage(JobsIMG(@"上传ID正面照"))
+                .onClickBy(^(UIButton *x){
+                    JobsLog(@"上传ID正面照");
+                    ShowView(jobsMakePopListBaseView(^(PopListBaseView * _Nullable data) {
+                        data.tableView.scrollEnabled = NO;
+                        data.bySize(CGSizeMake(JobsWidth(328), JobsWidth(37 * 2)))
+                            .JobsRichViewByModel2(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+                                @jobs_strongify(self)
+                                data.add(self.configPopUpDataBy(JobsInternationalization(@"拍照")))
+                                .add(self.configPopUpDataBy(JobsInternationalization(@"相册")));
+                            }))
+                            .JobsBlock1(^(__kindof UITableViewCell *_Nullable data) {
+                                @jobs_strongify(self)
+                                if(data.viewModel.text.isEqualToString(JobsInternationalization(@"拍照"))){
+                                    self.invokeSysCamera();/// 完全意义上的调用系统的相机拍照功能
+                                }
+                                self.photoManager.configuration.photoMaxNum = 1;
+                                if(data.viewModel.text.isEqualToString(JobsInternationalization(@"相册"))){
+                                    [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
+                                        @jobs_strongify(self)
+                                        self.photoManager = data.photoManager;
+                                        [data.photoList hx_requestImageWithOriginal:NO
+                                                                         completion:^(NSArray<UIImage *>*_Nullable imageArray,
+                                                                                      NSArray<HXPhotoModel *>*_Nullable errorArray) {
+                                            @jobs_strongify(self)
+                                            self->_frontPicBtn.jobsResetBtnBgImage(NSMutableArray.initBy(imageArray).lastObject);/// 永远值显示最后选择的图
+                                        }];
+                                    } failBlock:^(HXPhotoPickerModel *data) {
+    //                                    @jobs_strongify(self)
+                                    }];
+                                }
+                            });
+                    }));
+                }).onLongPressGestureBy(^(id data){
+                    JobsLog(@"");
+                });
+            [self.scrollView.addSubview(_frontPicBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.frontPicLab.mas_bottom).offset(JobsWidth(10));
+                make.centerX.equalTo(self.scrollView);
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(345), JobsWidth(166)));
+            }];
+        }return _frontPicBtn;
+    }
+    ```
+
+  * 从屏幕底部弹出菜单进行选择
+
+    ```objective-c
+    -(BaseButton *)holdOnIDBtn{
+        if(!_holdOnIDBtn){
+            @jobs_weakify(self)
+            _holdOnIDBtn = BaseButton.jobsInit()
+                .jobsResetBtnBgImage(JobsIMG(@"上传手持ID正面照"))
+                .onClickBy(^(UIButton *x){
+                    JobsLog(@"上传手持ID正面照");
+                    [self.userHeaderDataView tf_showSlide:jobsGetMainWindow()
+                                                direction:PopupDirectionBottom
+                                               popupParam:self.popupParameter];
+                }).onLongPressGestureBy(^(id data){
+                    JobsLog(@"");
+                });
+            [self.scrollView.addSubview(_holdOnIDBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.holdOnIDLab.mas_bottom).offset(JobsWidth(10));
+                make.centerX.equalTo(self.scrollView);
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(345), JobsWidth(166)));
+            }];
+        }return _holdOnIDBtn;
+    }
+    
+    -(JobsUserHeaderDataView *)userHeaderDataView{
+        if(!_userHeaderDataView){
+            @jobs_weakify(self)
+            _userHeaderDataView = JobsUserHeaderDataView
+                .BySize(JobsUserHeaderDataView.viewSizeByModel(nil))
+                .JobsRichViewByModel2(nil)
+                .JobsBlock1(^(JobsUserHeaderDataViewTBVCell *cell) {
+                    @jobs_strongify(self)
+                    if (cell.getTitleValue.isEqualToString(JobsInternationalization(@"拍照"))) {
+                        self.invokeSysCamera();/// 完全意义上的调用系统的相机拍照功能
+                    }else if ([cell.getTitleValue isEqualToString:JobsInternationalization(@"从相册中选取")]){
+                        [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
+                            @jobs_strongify(self)
+                            self.photoManager = data.photoManager;
+                            [data.photoList hx_requestImageWithOriginal:NO
+                                                             completion:^(NSArray<UIImage *>*_Nullable imageArray,
+                                                                          NSArray<HXPhotoModel *>*_Nullable errorArray) {
+                                @jobs_strongify(self)
+                                self->_frontPicBtn.jobsResetBtnBgImage(NSMutableArray.initBy(imageArray).lastObject);/// 永远值显示最后选择的图
+                            }];
+                        } failBlock:^(HXPhotoPickerModel *data) {
+            //                @jobs_strongify(self)
+                        }];
+                    }else if (cell.getTitleValue.isEqualToString(JobsInternationalization(@"取消"))){
+                        @jobs_strongify(self)
+                        [self->_userHeaderDataView tf_hide:nil];
+                    }else{}
+                });
+        }return _userHeaderDataView;
+    }
+    ```
 
 ### 24、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
