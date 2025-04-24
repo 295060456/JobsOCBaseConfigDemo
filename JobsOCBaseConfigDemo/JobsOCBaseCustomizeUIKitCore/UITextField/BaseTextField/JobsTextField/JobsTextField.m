@@ -9,7 +9,7 @@
 
 @interface JobsTextField ()
 
-@property(nonatomic,copy,nullable)JobsReturnIDByIDBlock otherActionBlock;
+Prop_copy(nullable)JobsReturnIDByIDBlock otherActionBlock;
 
 @end
 
@@ -159,7 +159,6 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
 
 -(void)setTextFieldSecureTextEntry:(BOOL)textFieldSecureTextEntry{
     _textFieldSecureTextEntry = textFieldSecureTextEntry;
-    _realTextField.secureTextEntry = textFieldSecureTextEntry;
 }
 
 -(void)setTitleCor:(UIColor *)titleCor{
@@ -178,8 +177,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
 
 -(void)setLeftView:(UIView *)leftView{
     _leftView = leftView;
-    [self addSubview:_leftView];
-    [_leftView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.addSubview(_leftView) mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.left.equalTo(self).offset(self.leftViewByOutLineOffset);
         if (_leftView.width) make.width.mas_equalTo(_leftView.width);
@@ -189,8 +187,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
 
 -(void)setRightView:(UIView *)rightView{
     _rightView = rightView;
-    [self addSubview:_rightView];
-    [_rightView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.addSubview(_rightView) mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.right.equalTo(self).offset(-self.rightViewByOutLineOffset);
         if(self.isSizeZero(rightView.sizer)){
@@ -206,22 +203,21 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         _realTextField = jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
             @jobs_strongify(self)
             textField.delegate = self;
+            textField.secureTextEntry = self.textFieldSecureTextEntry;/// secureTextEntry 必须先于 text 设置，否则可能会触发系统Bug：导致无法输入的情况
             textField.text = self.title;
             textField.font = self.titleFont;
             textField.textColor = self.titleCor;
-            textField.secureTextEntry = self.textFieldSecureTextEntry;
             textField.backgroundColor = self.realTextFieldBgCor;
-            textField.returnKeyType = self.returnKeyType;
-            textField.keyboardAppearance = self.keyboardAppearance;
-            textField.keyboardType = self.keyboardType;
             textField.leftViewMode = self.leftViewMode;
             textField.rightViewMode = self.rightViewMode;
             textField.attributedPlaceholder = self.attributedPlaceholder;
             textField.placeholder = self.textFieldPlaceholder;
+            textField.returnKeyType = self.returnKeyType;
+            textField.keyboardAppearance = self.keyboardAppearance;
+            textField.keyboardType = self.keyboardType;
             textField.placeholderColor = self.placeholderColor;
             textField.placeholderFont = self.placeholderFont;
-            [self addSubview:textField];
-            [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(textField) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.bottom.equalTo(self);
                 make.left.equalTo(self.leftView ? self.leftView.mas_right : self).offset(self.leftViewByTextFieldOffset);
                 make.right.equalTo(self.rightView ? self.rightView.mas_left : self).offset(-self.rightViewByTextFieldOffset);

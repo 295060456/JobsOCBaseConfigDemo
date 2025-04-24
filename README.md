@@ -1247,9 +1247,11 @@ classDiagram
   * 现在的做法是将系统的**UITextField**作为一个整体，<u>不再去关心内部的子视图的实现及其布局调整</u>
     * 外界传入的**leftView**替代系统的**`TextField`**.**leftView**
     * 外界传入的**rightView**替代系统的**`TextField`**.**rightView**
+    
   * 对**`textField`**我们只关心2个值
     * 当下输入的文本值
     * 当前**`textField`**的文本值
+    
   * `placeholder`是针对普通文本。系统原则上不希望我们在这个属性上去过多纠缠文本字体、文本色号，转而考虑`attributedPlaceholder`。但如果一定要对`placeholder`的文本字体、文本色号进行定义，则关注`placeholderColor`、`placeholderFont`
 
 * <font color=red>`JobsTextField`</font>：**`BaseView`**
@@ -1324,6 +1326,10 @@ classDiagram
       }return _textFieldRightView;
   }
   ```
+  
+* 一些系统Bug：
+
+  * <font color=red>`secureTextEntry` 必须先于 `text` 设置，否则可能会触发系统Bug：导致无法输入的情况</font>
 
 ##### 18.3.2、处理方式：**`UITextField`**的子类
 
@@ -7341,7 +7347,7 @@ self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullabl
 #### 29.2、关于**`UICollectionViewFlowLayout`**
 
   * `UICollectionView` 的一个布局对象，用于定义网格布局
-  
+
   ```objective-c
   @jobs_weakify(self)
     _collectionView = BaseCollectionView.initByLayout(jobsMakeCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
