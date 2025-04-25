@@ -35,7 +35,7 @@ Prop_strong()UILabel *adNoticeLab;
 }
 
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsMainScreen_WIDTH(), 30);
     };
 }
@@ -50,8 +50,7 @@ Prop_strong()UILabel *adNoticeLab;
             label.textAlignment = NSTextAlignmentCenter;
             label.font = UIFontWeightRegularSize(JobsWidth(12));
             label.backgroundColor = JobsClearColor;
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self);
             }];
         });

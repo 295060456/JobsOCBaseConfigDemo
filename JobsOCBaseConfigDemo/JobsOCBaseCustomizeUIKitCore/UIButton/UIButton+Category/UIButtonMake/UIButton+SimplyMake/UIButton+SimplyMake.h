@@ -248,4 +248,24 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
      }return _applyNowBtn;
  }
  
+ -(BaseButton *)registerBtn{
+     if(!_registerBtn){
+         _registerBtn = BaseButton.initByTextModel(jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
+             data.text = JobsInternationalization(@"REGISTER");
+             data.textCor = JobsCor(@"#C90000");
+             data.font = bayonRegular(JobsWidth(15));
+         }))
+         .bgColorBy(JobsWhiteColor)
+         .onClickBy(^(UIButton *x){
+             JobsLog(@"");
+         }).onLongPressGestureBy(^(id data){
+             JobsLog(@"");
+         }).setLayerBy((jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+             data.layerCor = JobsCor(@"#C90000");
+             data.jobsWidth = 1;
+             data.cornerRadiusValue = JobsWidth(8);
+         })));
+     }return _registerBtn;
+ }
+ 
  */

@@ -40,7 +40,7 @@ Prop_copy()NSMutableArray <NSNumber *>*btnHeightMutArr;
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(NSObject *_Nullable data){
+    return ^CGSize(NSObject *_Nullable data){
         return CGSizeMake(JobsWidth(46 * 3 + 59 * 2), data.lineNumBy(3) * JobsWidth(46 + 7));
     };
 }
@@ -105,29 +105,29 @@ Prop_copy()NSMutableArray <NSNumber *>*btnHeightMutArr;
  }
  */
 -(JobsReturnButtonByViewModelBlock _Nonnull)configBtnBy{
+    @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIViewModel *_Nullable vm){
-        UIButton *btn = UIButton.new;
-        btn.selected = self.viewModel.jobsSelected;
-        btn.requestParams = vm.requestParams;
-        /// TODO
-        btn.jobsResetBtnTitle(vm.textModel.text);
-        btn.jobsResetBtnTitleFont(vm.textModel.font);
-        btn.jobsResetBtnTitleCor(vm.textModel.textCor);
-        @jobs_weakify(self)
-        [btn jobsBtnClickEventBlock:^id(UIButton *x) {
+        return jobsMakeButton(^(__kindof UIButton * _Nullable btn) {
             @jobs_strongify(self)
-            [self changeButtonState];
-            x.selected = !x.selected;
-            if (self.objBlock) self.objBlock(x);
-            return nil;
-        }];
-        [btn actionObjBlock:^(id data) {
-            @jobs_strongify(self)
-            self.btnHeightMutArr.add(data);
-        }];
-        btn.sizer = CGSizeMake((JobsMainScreen_WIDTH() - JobsWidth(15 * 5)) / 4, JobsWidth(30));
-        btn.makeBtnTitleByShowingType(self.labelShowingType);
-        return btn;
+            btn.selected = self.viewModel.jobsSelected;
+            btn.requestParams = vm.requestParams;
+            btn.jobsResetBtnTitle(vm.textModel.text)
+            .jobsResetBtnTitleFont(vm.textModel.font)
+            .jobsResetBtnTitleCor(vm.textModel.textCor)
+            .onClickBy(^(UIButton *x){
+                JobsLog(@"");
+                @jobs_strongify(self)
+                [self changeButtonState];
+                x.selected = !x.selected;
+                if (self.objBlock) self.objBlock(x);
+            })
+            .JobsBlock1(^(id _Nullable data) {
+                @jobs_strongify(self)
+                self.btnHeightMutArr.add(data);
+            })
+            .bySize(CGSizeMake((JobsMainScreen_WIDTH() - JobsWidth(15 * 5)) / 4, JobsWidth(30)));
+            btn.makeBtnTitleByShowingType(self.labelShowingType);
+        });
     };
 }
 /// 取最大的高度值使用
@@ -181,12 +181,10 @@ Prop_copy()NSMutableArray <NSNumber *>*btnHeightMutArr;
             stackView.axis = UILayoutConstraintAxisHorizontal;
             stackView.distribution = UIStackViewDistributionEqualSpacing;
             stackView.alignment = UIStackViewAlignmentCenter;
-            self.scrollView.addSubview(stackView);
-            // 注意这里设置的约束，最后一个宽度的约束很关键
-            [stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+            /// 注意这里设置的约束，最后一个宽度的约束很关键
+            [self.scrollView.addSubview(stackView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.height.equalTo(self);
                 make.centerY.equalTo(self.scrollView);
-                
                 if (self.scrollView.contentSize.width > self.scrollView.width) {
                     make.left.equalTo(self.scrollView);/// 必须铆定 self.scrollView
                     make.width.mas_equalTo(self->width);

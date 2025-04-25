@@ -87,7 +87,7 @@ Prop_assign()CGSize chooseBtnSize;
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(345), JobsWidth(30));
     };
 }
@@ -122,8 +122,7 @@ Prop_assign()CGSize chooseBtnSize;
         _leftIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.image = self.doorInputViewBaseStyleModel.leftViewIMG;
-            self.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self).offset(JobsWidth(17));
                 make.centerY.equalTo(self);
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(12), JobsWidth(16)));

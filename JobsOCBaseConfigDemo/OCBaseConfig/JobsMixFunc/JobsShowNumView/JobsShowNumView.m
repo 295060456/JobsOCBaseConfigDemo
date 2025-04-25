@@ -54,33 +54,35 @@ static dispatch_once_t static_showNumViewOnceToken;
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        NSArray <NSString *>*temp = @[@"1",@"2",@"3",@"4"];
+        NSArray <NSString *>*temp = jobsMakeMutArr(^(__kindof NSMutableArray<NSString *> * _Nullable arr) {
+            arr.add(@"1")
+            .add(@"2")
+            .add(@"3")
+            .add(@"4");
+        });
         CGSize btnSize = CGSizeMake(JobsWidth(60), JobsWidth(60));
         
-        if (!model) {
-            model = UIViewModel.new;
-            model.jobsLeft = 0;
-            model.jobsRight = 0;
-            model.offsetXForEach = (self.thisViewSize.width - model.jobsLeft - model.jobsRight - btnSize.width * temp.count) / (temp.count - 1);
-        }
-        
-        self.viewModel = model ? : UIViewModel.new;
+        self.viewModel = model ? : jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            data.jobsLeft = 0;
+            data.jobsRight = 0;
+            data.offsetXForEach = (self.thisViewSize.width - model.jobsLeft - model.jobsRight - btnSize.width * temp.count) / (temp.count - 1);
+        });
         MakeDataNull
         
         for (NSString *string in temp) {
-            UIButton *btn = UIButton.new;
-            btn.jobsResetBtnBgImage(JobsIMG(@"JobsShowNum"));
-            btn.jobsResetBtnTitle(JobsInternationalization(string));
-            btn.jobsResetBtnTitleFont(UIFontWeightBoldSize(40));
-            btn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
-            @jobs_weakify(self)
-            [btn jobsBtnClickEventBlock:^id(id data) {
-//                @jobs_strongify(self)
-                JobsLog(@"%@",btn.titleForNormalState)
-                return nil;
-            }];
-            [self addSubview:btn];
-            [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            UIButton *btn = UIButton.jobsInit()
+            .jobsResetBtnBgImage(JobsIMG(@"JobsShowNum"))
+            .jobsResetBtnTitle(JobsInternationalization(string))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(40))
+            .jobsResetBtnTitleCor(HEXCOLOR(0xAE8330))
+            .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                JobsLog(@"%@",x.titleForNormalState)
+                if (self.objBlock) self.objBlock(x);
+            });
+
+            [self.addSubview(btn) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(btnSize);
                 make.centerY.equalTo(self);
                 if (self.btnMutArr.count) {
@@ -89,13 +91,15 @@ static dispatch_once_t static_showNumViewOnceToken;
                 }else{
                     make.left.equalTo(self).offset(model.jobsLeft);
                 }
-            }];self.btnMutArr.add(btn);
+            }];
+            
+            self.btnMutArr.add(btn);
         }
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(327), JobsWidth(266));
     };
 }

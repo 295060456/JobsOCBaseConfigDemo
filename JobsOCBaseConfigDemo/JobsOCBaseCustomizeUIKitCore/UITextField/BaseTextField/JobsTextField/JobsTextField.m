@@ -159,6 +159,7 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
 
 -(void)setTextFieldSecureTextEntry:(BOOL)textFieldSecureTextEntry{
     _textFieldSecureTextEntry = textFieldSecureTextEntry;
+    self.realTextField.secureTextEntry = textFieldSecureTextEntry;
 }
 
 -(void)setTitleCor:(UIColor *)titleCor{

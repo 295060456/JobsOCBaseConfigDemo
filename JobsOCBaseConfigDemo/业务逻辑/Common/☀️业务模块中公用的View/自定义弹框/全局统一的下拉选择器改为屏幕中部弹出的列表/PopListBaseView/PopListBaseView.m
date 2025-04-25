@@ -53,7 +53,7 @@ Prop_copy()NSMutableArray <__kindof NSString *>*datas;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(NSArray *_Nullable data){
+    return ^CGSize(NSArray *_Nullable data){
         if(data){
             return jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel *_Nullable data1) {
                 data1.jobsWidth = PopListBaseView.CellWidth;
@@ -74,13 +74,13 @@ Prop_copy()NSMutableArray <__kindof NSString *>*datas;
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIViewModel *viewModel = self.dataMutArr[indexPath.row];
-    for (JobsTextStyleTBVCell *visibleCell in tableView.visibleCells) {
+    for (JobsTextLabStyleTBVCell *visibleCell in tableView.visibleCells) {
         visibleCell.backgroundColor = visibleCell.contentView.backgroundColor = viewModel.bgCor;
-        visibleCell.lab.textColor = viewModel.textCor;
+        visibleCell.label.textColor = viewModel.textCor;
     }
-    JobsTextStyleTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    JobsTextLabStyleTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.backgroundColor = cell.contentView.backgroundColor = viewModel.bgSelectedCor;
-    cell.lab.textColor = viewModel.selectedTextCor;
+    cell.label.textColor = viewModel.selectedTextCor;
 //    id text = cell.viewModel.text;
 //    id placeholder = cell.viewModel.placeholder;
     if (self.objBlock) self.objBlock(cell);/// 数据在cell.viewModel
@@ -103,7 +103,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsTextStyleTBVCell *cell = JobsTextStyleTBVCell.cellStyleDefaultWithTableView(tableView);
+    JobsTextLabStyleTBVCell *cell = JobsTextLabStyleTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.indexPath = indexPath;
     cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
@@ -115,12 +115,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(__kindof UITableView *)tableView{
     if (!_tableView) {
         _tableView = UITableView.initWithStylePlain;
+        _tableView.dataLink(self);
         _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _tableView.separatorColor = JobsCor(@"#1E1E1E");
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.scrollEnabled = YES;
-        _tableView.dataLink(self);
         _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
             /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
         });
@@ -130,8 +130,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }[self addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        }
+        [self.addSubview(_tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
     }return _tableView;
@@ -153,13 +153,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(NSMutableArray<__kindof NSString *> *)datas{
     if(!_datas){
         _datas = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(JobsInternationalization(@"选项1"));
-            data.add(JobsInternationalization(@"选项2"));
-            data.add(JobsInternationalization(@"选项3"));
+            data.add(JobsInternationalization(@"选项1"))
+            .add(JobsInternationalization(@"选项2"))
+            .add(JobsInternationalization(@"选项3"));
         });
     }return _datas;
 }
-
 @synthesize dataMutArr = _dataMutArr;
 -(void)setDataMutArr:(NSMutableArray <__kindof UIViewModel *>*)dataMutArr{
     _dataMutArr = dataMutArr;

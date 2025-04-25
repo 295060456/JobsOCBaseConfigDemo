@@ -54,13 +54,13 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
         self.dataModel = model;
         self.backgroundColor = self.dataModel.bgCor;
         if (self.dataModel.viewModelMutArr.count) {
-            [self.collectionView reloadData];
+            self.collectionView.reloadDatas();
         }
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(JobsHotLabelWithMultiLineModel *_Nullable data){
+    return ^CGSize(JobsHotLabelWithMultiLineModel *_Nullable data){
         NSMutableArray <UIViewModel *>*viewModelMutArr = data.viewModelMutArr;
         CGFloat width = hotLabLeft + hotLabRight;
         CGFloat height = 0;
@@ -108,15 +108,11 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
     if (kind == UICollectionElementKindSectionHeader) {
-        JobsHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
-                                                                                                       forIndexPath:indexPath];
-        headerView.jobsRichViewByModel(self.dataModel.headerViewModel);
-        return headerView;
+        return [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
+                                                            forIndexPath:indexPath].JobsRichViewByModel2(self.dataModel.headerViewModel);
     }else if (kind == UICollectionElementKindSectionFooter) {
-        JobsHeaderFooterView *footerView = [collectionView UICollectionElementKindSectionFooterClass:JobsHeaderFooterView.class
-                                                                                                       forIndexPath:indexPath];
-        footerView.jobsRichViewByModel(self.dataModel.footerViewModel);
-        return footerView;
+        return [collectionView UICollectionElementKindSectionFooterClass:JobsHeaderFooterView.class
+                                                            forIndexPath:indexPath].JobsRichViewByModel2(self.dataModel.footerViewModel);
     }else ReturnBaseCollectionReusableHeaderView;
 }
 #pragma mark —— UICollectionViewDelegate
@@ -194,7 +190,7 @@ referenceSizeForFooterInSection:(NSInteger)section {
     /// ❤️外部传入配置优先❤️
     return jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelByMultiLineCVCell.cellSizeByModel(self.dataModel.viewModelMutArr[indexPath.item]) : self.dataModel.cellSize;
 }
-/// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
+/// 定义的是元素垂直之间的间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -220,15 +216,12 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);
-        _collectionView.backgroundColor = JobsClearColor;
         _collectionView.dataLink(self);
+        _collectionView.backgroundColor = JobsClearColor;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.scrollEnabled = NO;
-        
         _collectionView.registerCollectionViewClass();
-        
-        [self addSubview:_collectionView];
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(jobsMakeSameEdgeInset(JobsWidth(2)));
         }];
     }return _collectionView;
@@ -240,9 +233,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _cvcellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
             for (UIViewModel *viewModel in self.dataModel.viewModelMutArr) {
-                NSUInteger index = [self.dataModel.viewModelMutArr indexOfObject:viewModel];
+                NSUInteger index = self.dataModel.viewModelMutArr.indexBy(viewModel);
                 data.add([JobsHotLabelByMultiLineCVCell cellWithCollectionView:self.collectionView
-                                                                    forIndexPath:[self myIndexPath:(JobsIndexPath){0,index}]]);
+                                                                  forIndexPath:[self myIndexPath:(JobsIndexPath){0,index}]]);
             }
         });
     }return _cvcellMutArr;
@@ -254,33 +247,35 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 
 -(JobsHeaderFooterViewModel *)headerViewModel{
     if (!_headerViewModel) {
-        _headerViewModel = JobsHeaderFooterViewModel.new;
-//        _headerViewModel.textModel.text = JobsInternationalization(@"独家情报");
-//        _headerViewModel.bgCor = JobsGreenColor;
-/// 结构体虽然分配了空间，但是里面的成员的值是随机的，特别是如果里面有指针的话，如果不初始化而直接访问，则会造成读取非法的内存地址的错误。
-        _headerViewModel.jobsSize = CGSizeZero;
-        _headerViewModel.cellSize = CGSizeZero;
-        _headerViewModel.tableHeaderViewSize = CGSizeZero;
-        _headerViewModel.tableFooterViewSize = CGSizeZero;
-        _headerViewModel.cornerRadii = CGSizeZero;
-        _headerViewModel.jobsRect = CGRectZero;
-        _headerViewModel.jobsPoint = CGPointZero;
+        _headerViewModel = jobsMakeViewModel(^(JobsHeaderFooterViewModel * _Nullable data) {
+//            data.textModel.text = JobsInternationalization(@"独家情报");
+//            data.bgCor = JobsGreenColor;
+            /// 结构体虽然分配了空间，但是里面的成员的值是随机的，特别是如果里面有指针的话，如果不初始化而直接访问，则会造成读取非法的内存地址的错误。
+            data.jobsSize = CGSizeZero;
+            data.cellSize = CGSizeZero;
+            data.tableHeaderViewSize = CGSizeZero;
+            data.tableFooterViewSize = CGSizeZero;
+            data.cornerRadii = CGSizeZero;
+            data.jobsRect = CGRectZero;
+            data.jobsPoint = CGPointZero;
+        });
     }return _headerViewModel;
 }
 
 -(JobsHeaderFooterViewModel *)footerViewModel{
     if (!_footerViewModel) {
-        _footerViewModel = JobsHeaderFooterViewModel.new;
-//        _footerViewModel.textModel.text = JobsInternationalization(@"查看详情");
-//        _footerViewModel.bgCor = JobsBlueColor;
-/// 结构体虽然分配了空间，但是里面的成员的值是随机的，特别是如果里面有指针的话，如果不初始化而直接访问，则会造成读取非法的内存地址的错误。
-        _footerViewModel.jobsSize = CGSizeZero;
-        _footerViewModel.cellSize = CGSizeZero;
-        _footerViewModel.tableHeaderViewSize = CGSizeZero;
-        _footerViewModel.tableFooterViewSize = CGSizeZero;
-        _footerViewModel.cornerRadii = CGSizeZero;
-        _footerViewModel.jobsRect = CGRectZero;
-        _footerViewModel.jobsPoint = CGPointZero;
+        _footerViewModel = jobsMakeViewModel(^(JobsHeaderFooterViewModel * _Nullable data) {
+//            data.textModel.text = JobsInternationalization(@"查看详情");
+//            data.bgCor = JobsBlueColor;
+            /// 结构体虽然分配了空间，但是里面的成员的值是随机的，特别是如果里面有指针的话，如果不初始化而直接访问，则会造成读取非法的内存地址的错误。
+            data.jobsSize = CGSizeZero;
+            data.cellSize = CGSizeZero;
+            data.tableHeaderViewSize = CGSizeZero;
+            data.tableFooterViewSize = CGSizeZero;
+            data.cornerRadii = CGSizeZero;
+            data.jobsRect = CGRectZero;
+            data.jobsPoint = CGPointZero;
+        });
     }return _footerViewModel;
 }
 

@@ -91,7 +91,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(345), JobsWidth(30));
     };
 }
@@ -129,20 +129,21 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 #pragma mark —— lazyLoad
 -(UIButton *)securityModeBtn{
     if (!_securityModeBtn) {
-        _securityModeBtn = UIButton.new;
-        _securityModeBtn.selectedStateImageBy(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image);
-        _securityModeBtn.jobsResetBtnImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image);
         @jobs_weakify(self)
-        [_securityModeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _securityModeBtn = UIButton.jobsInit()
+        .selectedStateImageBy(self.doorInputViewBaseStyleModel.selectedSecurityBtnIMG ? : JobsRedColor.image)
+        .jobsResetBtnImage(self.doorInputViewBaseStyleModel.unSelectedSecurityBtnIMG ? : JobsBlueColor.image)
+        .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             x.selected = !x.selected;
             self.textField.secureTextEntry = !x.selected;
             if (x.selected && !self.textField.isEditing) {
                 self.textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
-            }return nil;
-        }];
-        [self addSubview:_securityModeBtn];
-        [_securityModeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            }
+        }).onLongPressGestureBy(^(id data){
+            JobsLog(@"");
+        });
+        [self.addSubview(_securityModeBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.bottom.equalTo(self);
             make.width.mas_equalTo(JobsWidth(40));
         }];

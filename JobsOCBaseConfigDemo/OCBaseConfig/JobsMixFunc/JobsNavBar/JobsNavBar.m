@@ -79,7 +79,7 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 //+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
 //    @jobs_weakify(self)
-//    return ^(UIViewModel *_Nullable data){
+//    return ^CGSize(UIViewModel *_Nullable data){
 //        @jobs_strongify(self)
 //        return CGSizeMake(JobsWidth(self.data), JobsWidth(35));
 //    };
@@ -92,17 +92,17 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
     };
 }
 #pragma mark —— BaseViewProtocol
--(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock)objBlock{
+-(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock _Nullable)objBlock{
     self.backBtnClickAction = objBlock;
 }
     
--(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock)objBlock{
+-(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock _Nullable)objBlock{
     self.closeBtnClickAction = objBlock;
 }
 #pragma mark —— lazyLoad
 -(JobsNavBarConfig *)navBarConfig{
-    @jobs_weakify(self)
     if(!_navBarConfig){
+        @jobs_weakify(self)
         _navBarConfig = jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable data) {
             [data actionObjBlock:^(id _Nullable data) {
                 @jobs_strongify(self)
@@ -128,8 +128,7 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
             label.text = NavBarConfig.title;
             label.font = NavBarConfig.font;
             label.textColor = NavBarConfig.titleCor;
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(self);
                 make.height.mas_equalTo(self.height);
             }];label.makeLabelByShowingType(UILabelShowingType_03);
@@ -143,8 +142,7 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
         _backBtn = BaseButton.initByButtonModel(BackBtnModel);
         _backBtn.jobsVisible = !BackBtnModel.isInvisible;
         _backBtn.tag = 456;
-        self.addSubview(_backBtn);
-        [_backBtn mas_makeConstraints:BackBtnModel.masonryBlock ? : ^(MASConstraintMaker *make) {
+        [self.addSubview(_backBtn) mas_makeConstraints:BackBtnModel.masonryBlock ? : ^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(18));
             make.centerY.equalTo(self);
             JobsLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
@@ -158,8 +156,7 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
         _closeBtn = BaseButton.initByButtonModel(CloseBtnModel);
         _closeBtn.jobsVisible = !CloseBtnModel.isInvisible;
         _closeBtn.tag = 123;
-        self.addSubview(_closeBtn);
-        [_closeBtn mas_makeConstraints:CloseBtnModel.masonryBlock ? : ^(MASConstraintMaker *make) {
+        [self.addSubview(_closeBtn) mas_makeConstraints:CloseBtnModel.masonryBlock ? : ^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(22), JobsWidth(22)));
             make.centerY.equalTo(self);
             make.right.equalTo(self).offset(-(self.navBarConfig.closeBtnModel.jobsOffsetX ? : JobsWidth(15)));

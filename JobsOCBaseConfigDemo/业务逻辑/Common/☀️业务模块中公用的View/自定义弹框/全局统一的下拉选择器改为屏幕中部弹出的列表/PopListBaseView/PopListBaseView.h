@@ -6,7 +6,8 @@
 //
 
 #import "BaseView.h"
-#import "JobsTextStyleTBVCell.h"
+#import "JobsBlock.h"
+#import "JobsTextLabStyleTBVCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

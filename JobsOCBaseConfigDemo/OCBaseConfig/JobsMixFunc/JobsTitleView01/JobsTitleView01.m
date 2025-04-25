@@ -17,9 +17,7 @@ Prop_strong()UILabel *titleLab;
 @end
 
 @implementation JobsTitleView01
-
 @synthesize viewModel = _viewModel;
-
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{
@@ -75,7 +73,7 @@ static dispatch_once_t static_titleView01OnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeZero;
     };
 }
@@ -89,8 +87,7 @@ static dispatch_once_t static_titleView01OnceToken;
             label.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
             label.textColor = HEXCOLOR(0xAE8330);
             label.textAlignment = NSTextAlignmentCenter;
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(self);
             }];label.makeLabelByShowingType(UILabelShowingType_03);
         });
@@ -103,8 +100,7 @@ static dispatch_once_t static_titleView01OnceToken;
         _leftLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = HEXCOLOR(0xEEE2C8);
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self);
                 make.height.mas_equalTo(JobsWidth(1.5));
                 make.left.equalTo(self).offset(JobsWidth(16));
@@ -116,10 +112,11 @@ static dispatch_once_t static_titleView01OnceToken;
 
 -(UILabel *)rightLab{
     if (!_rightLab) {
+        @jobs_weakify(self)
         _rightLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
             label.backgroundColor = HEXCOLOR(0xEEE2C8);
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self);
                 make.height.mas_equalTo(JobsWidth(1.5));
                 make.right.equalTo(self).offset(JobsWidth(-16));

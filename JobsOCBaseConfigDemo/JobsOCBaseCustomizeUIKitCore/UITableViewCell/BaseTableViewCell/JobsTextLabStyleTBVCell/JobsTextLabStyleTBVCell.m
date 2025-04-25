@@ -1,19 +1,17 @@
 //
-//  JobsTextStyleTBVCell.m
+//  JobsTextLabStyleTBVCell.m
 //  FM
 //
 //  Created by User on 8/11/24.
 //
 
-#import "JobsTextStyleTBVCell.h"
+#import "JobsTextLabStyleTBVCell.h"
 
-@interface JobsTextStyleTBVCell ()
-/// UI
-Prop_strong()UILabel *lab;
+@interface JobsTextLabStyleTBVCell ()
 
 @end
 
-@implementation JobsTextStyleTBVCell
+@implementation JobsTextLabStyleTBVCell
 #pragma mark —— @synthesize UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
@@ -25,9 +23,9 @@ BaseLayerProtocol_synthesize_part3
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsTextStyleTBVCell *cell = (JobsTextStyleTBVCell *)tableView.tableViewCellClass(JobsTextStyleTBVCell.class,@"");
+        JobsTextLabStyleTBVCell *cell = (JobsTextLabStyleTBVCell *)tableView.tableViewCellClass(JobsTextLabStyleTBVCell.class,@"");
         if (!cell) {
-            cell = JobsTextStyleTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
+            cell = JobsTextLabStyleTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }return cell;
     };
@@ -39,7 +37,7 @@ BaseLayerProtocol_synthesize_part3
         @jobs_strongify(self)
         self.viewModel = model;
         self.backgroundColor = self.contentView.backgroundColor = self.viewModel.bgCor;
-        self.lab.alpha = 1;
+        self.label.alpha = 1;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -54,23 +52,26 @@ BaseLayerProtocol_synthesize_part3
     return self.viewModel;
 }
 #pragma mark —— lazyLoad
--(UILabel *)lab{
-    if(!_lab){
+@synthesize label = _label;
+-(UILabel *)label{
+    if(!_label){
         @jobs_weakify(self)
-        _lab = jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
+        _label = jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
             @jobs_strongify(self)
-            label.text = self.viewModel.text;
+            /// 富文本的优先级大于普通文本
+            if(self.viewModel.attributedTitle){
+                label.attributedText = self.viewModel.attributedTitle;
+            }else label.text = self.viewModel.text;
             label.numberOfLines = 0;
             label.lineBreakMode = NSLineBreakByWordWrapping;
             label.textAlignment = self.viewModel.textAlignment;
             label.textColor = self.viewModel.textCor;
             label.font = self.viewModel.font;
-            [self.contentView addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });
-    }return _lab;
+    }return _label;
 }
 
 @end

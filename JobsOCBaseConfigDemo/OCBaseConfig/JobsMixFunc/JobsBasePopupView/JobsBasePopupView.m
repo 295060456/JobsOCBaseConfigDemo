@@ -55,19 +55,20 @@ Prop_strong()BaseButton *btn2;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsMainScreen_WIDTH() - JobsWidth(30), JobsWidth(210));
     };
 }
 #pragma mark —— lazyLoad
 -(UILabel *)titleLab{
     if (!_titleLab) {
+        @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
             label.font = self.viewModel.textModel.font;
             label.textColor = self.viewModel.textModel.textCor;
             label.textAlignment = self.viewModel.textModel.textAlignment;
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self);
                 make.top.equalTo(self).offset(JobsWidth(50));
             }];
@@ -83,8 +84,7 @@ Prop_strong()BaseButton *btn2;
             label.font = self.viewModel.subTextModel.font;
             label.textColor = self.viewModel.subTextModel.textCor;
             label.textAlignment = self.viewModel.subTextModel.textAlignment;
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self);
                 make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(5));
             }];
@@ -107,8 +107,7 @@ Prop_strong()BaseButton *btn2;
                 JobsLog(@"");
             });
         _btn1.tag = 666;
-        [self addSubview:_btn1];
-        [_btn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_btn1) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(110), JobsWidth(44)));
             make.left.equalTo(self).offset(JobsWidth(20));
             make.bottom.equalTo(self).offset(-JobsWidth(25));
@@ -133,8 +132,7 @@ Prop_strong()BaseButton *btn2;
                 JobsLog(@"");
             });
         _btn2.tag = 999;
-        [self addSubview:_btn2];
-        [_btn2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_btn2) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(110), JobsWidth(44)));
             make.right.equalTo(self).offset(JobsWidth(-20));
             make.bottom.equalTo(self).offset(-JobsWidth(25));

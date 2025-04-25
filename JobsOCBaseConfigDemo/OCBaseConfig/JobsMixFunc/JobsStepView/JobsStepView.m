@@ -57,7 +57,7 @@ Prop_copy()NSMutableArray <UIButtonModel *>*btnModelMutArr;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(400), JobsWidth(62));
     };
 }
@@ -87,8 +87,7 @@ Prop_copy()NSMutableArray <UIButtonModel *>*btnModelMutArr;
         int f = 0;
         for (UIButtonModel *buttonModel in self.btnModelMutArr) {
             BaseButton *btn = BaseButton.initByButtonModel(buttonModel);
-            [self addSubview:btn];
-            [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(btn) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self);
                 make.height.mas_equalTo(self.viewSizeByModel(nil).height);
             }];self.refresh();
@@ -126,8 +125,7 @@ Prop_copy()NSMutableArray <UIButtonModel *>*btnModelMutArr;
     jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
         @jobs_strongify(self)
         label.backgroundColor = self.rightLabBgCor;
-        self.addSubview(label);
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(btn.imageView);
             make.left.equalTo(btn.mas_right);
             make.height.mas_equalTo(1);

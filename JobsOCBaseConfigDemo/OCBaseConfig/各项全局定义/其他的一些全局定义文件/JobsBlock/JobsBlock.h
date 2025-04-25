@@ -424,6 +424,7 @@ typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlock)(jobsByMASConstraintMakerBlock _Nullable block);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
+typedef jobsByMASConstraintMakerBlock _Nonnull (^JobsReturnMASConstraintMakerByBOOLBlock)(BOOL data);
 
 @class MJRefreshNormalHeader;
 typedef MJRefreshNormalHeader *_Nonnull(^JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);

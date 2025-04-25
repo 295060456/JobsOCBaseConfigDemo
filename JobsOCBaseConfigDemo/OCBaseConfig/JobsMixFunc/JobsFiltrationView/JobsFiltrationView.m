@@ -10,12 +10,6 @@
 @interface JobsFiltrationView ()
 /// UI
 Prop_strong()JobsHotLabelByMultiLine *hotLabel;
-/// Data
-Prop_copy()NSMutableArray <NSString *>*btnTitleMutArr;
-Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
-Prop_strong()JobsHotLabelWithMultiLineModel *hotLabelModel;
-Prop_strong()JobsHeaderFooterViewModel *headerViewModel;
-Prop_strong()JobsHeaderFooterViewModel *footerViewModel;
 
 @end
 
@@ -74,88 +68,62 @@ static dispatch_once_t static_filtrationViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(134));
     };
 }
 #pragma mark —— lazyLoad
 -(JobsHotLabelByMultiLine *)hotLabel{
     if (!_hotLabel) {
-        _hotLabel = JobsHotLabelByMultiLine.new;
-        _hotLabel.jobsRichViewByModel(self.hotLabelModel);
-        [_hotLabel actionObjBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
+        _hotLabel = JobsHotLabelByMultiLine.JobsRichViewByModel(jobsMakeViewModel(^(JobsHotLabelWithMultiLineModel * _Nullable data) {
+            data.bgCor = HEXCOLOR(0xFDFCF9);
+            data.footerViewModel = jobsMakeViewModel(^(JobsHeaderFooterViewModel * _Nullable data) {
+                data.useFooterView = NO;
+                data.textModel.text = JobsInternationalization(@"查看详情");
+                data.textModel.textAlignment = NSTextAlignmentLeft;
+                data.textModel.textCor = HEXCOLOR(0x3D4A58);
+                data.textModel.font = UIFontWeightBoldSize(14);
+                data.bgCor = HEXCOLOR(0xFDFCF9);
+                data.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(20));
+            });
+            data.viewModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray<NSString *> * _Nullable data) {
+                for (NSString *str in jobsMakeMutArr(^(__kindof NSMutableArray<NSString *> * _Nullable arr) {
+                    arr.add(JobsInternationalization(@"全部"))
+                    .add(JobsInternationalization(@"充值"))
+                    .add(JobsInternationalization(@"取款"))
+                    .add(JobsInternationalization(@"转账"))
+                    .add(JobsInternationalization(@"返水"))
+                    .add(JobsInternationalization((@"会员活动")))
+                    .add(JobsInternationalization(@"VIP福利"))
+                    .add(JobsInternationalization(@"其他"));
+                })) {
+                    data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
+                        vm.textModel.text = str;
+                        vm.textModel.font = UIFontWeightRegularSize(12);
+                        vm.textModel.textCor = HEXCOLOR(0x757575);
+                        vm.bgCor = HEXCOLOR(0xF3F3F3);
+                        vm.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(30));
+                    }));
+                }
+            });
+            data.headerViewModel = jobsMakeViewModel(^(JobsHeaderFooterViewModel * _Nullable data) {
+                data.useHeaderView = YES;
+                data.textModel.text = JobsInternationalization(@"交易类型");
+                data.textModel.textCor = HEXCOLOR(0x3D4A58);
+                data.textModel.font = UIFontWeightBoldSize(14);
+                data.textModel.textAlignment = NSTextAlignmentLeft;
+                data.bgCor = HEXCOLOR(0xFDFCF9);
+                data.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(20));
+            });
+        }))
+        .JobsBlock1(^(id _Nullable data) {
             
-        }];
-        [self addSubview:_hotLabel];
-        [_hotLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        });
+
+        [self.addSubview(_hotLabel) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
     }return _hotLabel;
-}
-
--(JobsHotLabelWithMultiLineModel *)hotLabelModel{
-    if (!_hotLabelModel) {
-        _hotLabelModel = JobsHotLabelWithMultiLineModel.new;
-        _hotLabelModel.bgCor = HEXCOLOR(0xFDFCF9);
-        _hotLabelModel.viewModelMutArr = self.dataMutArr;
-        _hotLabelModel.headerViewModel = self.headerViewModel;
-        _hotLabelModel.footerViewModel = self.footerViewModel;
-    }return _hotLabelModel;
-}
-
--(JobsHeaderFooterViewModel *)headerViewModel{
-    if (!_headerViewModel) {
-        _headerViewModel = JobsHeaderFooterViewModel.new;
-        _headerViewModel.useHeaderView = YES;
-        _headerViewModel.textModel.text = JobsInternationalization(@"交易类型");
-        _headerViewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        _headerViewModel.textModel.font = UIFontWeightBoldSize(14);
-        _headerViewModel.textModel.textAlignment = NSTextAlignmentLeft;
-        _headerViewModel.bgCor = HEXCOLOR(0xFDFCF9);
-//        _headerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(20));
-    }return _headerViewModel;
-}
-
--(JobsHeaderFooterViewModel *)footerViewModel{
-    if (!_footerViewModel) {
-        _footerViewModel = JobsHeaderFooterViewModel.new;
-        _footerViewModel.useFooterView = NO;
-        _footerViewModel.textModel.text = JobsInternationalization(@"查看详情");
-        _footerViewModel.textModel.textAlignment = NSTextAlignmentLeft;
-        _footerViewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        _footerViewModel.textModel.font = UIFontWeightBoldSize(14);
-        _footerViewModel.bgCor = HEXCOLOR(0xFDFCF9);
-//        _footerViewModel.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(20));
-    }return _footerViewModel;
-}
-
--(NSMutableArray<UIViewModel *> *)dataMutArr{
-    if (!_dataMutArr) {
-        _dataMutArr = NSMutableArray.array;
-        for (NSString *str in self.btnTitleMutArr) {
-            UIViewModel *viewModel = UIViewModel.new;
-            viewModel.textModel.text = str;
-            viewModel.textModel.font = UIFontWeightRegularSize(12);
-            viewModel.textModel.textCor = HEXCOLOR(0x757575);
-            viewModel.bgCor = HEXCOLOR(0xF3F3F3);
-            viewModel.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(30));
-            [_dataMutArr addObject:viewModel];
-        }
-    }return _dataMutArr;
-}
-
--(NSMutableArray<NSString *> *)btnTitleMutArr{
-    if (!_btnTitleMutArr) {
-        _btnTitleMutArr = NSMutableArray.array;
-        [_btnTitleMutArr addObject:JobsInternationalization(@"全部")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"充值")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"取款")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"转账")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"返水")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"会员活动")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"VIP福利")];
-        [_btnTitleMutArr addObject:JobsInternationalization(@"其他")];
-    }return _btnTitleMutArr;
 }
 
 @end

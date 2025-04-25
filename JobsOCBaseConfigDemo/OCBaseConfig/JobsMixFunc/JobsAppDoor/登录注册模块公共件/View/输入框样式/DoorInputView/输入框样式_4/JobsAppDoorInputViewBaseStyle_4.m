@@ -83,7 +83,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(345), JobsWidth(30));
     };
 }
@@ -117,8 +117,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
         _imageCodeView.font = JobsFontRegular(16);
         _imageCodeView.alpha = 0.7;
         _imageCodeView.bgColor = JobsWhiteColor;
-        [self addSubview:_imageCodeView];
-        [_imageCodeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_imageCodeView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).offset(JobsWidth(5));
             make.bottom.equalTo(self).offset(-JobsWidth(5));
             make.right.equalTo(self).offset(-JobsWidth(10));

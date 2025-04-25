@@ -1,5 +1,5 @@
 //
-//  JobsTextStyleTBVCell.h
+//  JobsTextLabStyleTBVCell.h
 //  FM
 //
 //  Created by User on 8/11/24.
@@ -9,9 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 /// 将一个文本整个覆盖到TableViewCell上面
-@interface JobsTextStyleTBVCell : JobsBaseTableViewCell
-
-@property(nonatomic,strong,readonly)UILabel *lab;
+@interface JobsTextLabStyleTBVCell : JobsBaseTableViewCell
 /// 获取绑定的数据源
 -(UIViewModel *)getViewModel;
 

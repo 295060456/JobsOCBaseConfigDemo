@@ -84,7 +84,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(345), JobsWidth(50));
     };
 }
@@ -127,8 +127,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
         }).onLongPressGestureBy(^(id data){
             JobsLog(@"");
         });
-        [self addSubview:_securityModelBtn];
-        [_securityModelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_securityModelBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.right.equalTo(self);
             make.width.mas_equalTo(40);
             make.bottom.equalTo(self.titleLab.mas_top);
@@ -156,8 +155,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
                       value:x];
             }
         }];
-        [self addSubview:_textField];
-        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_textField) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
     }return _textField;
@@ -171,8 +169,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
             label.font = UIFontWeightRegularSize(JobsWidth(11));
             label.text = self.doorInputViewBaseStyleModel.textModel.text;
             label.textColor = self.doorInputViewBaseStyleModel.textModel.textCor;
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.bottom.equalTo(self);
                 make.top.equalTo(self.textField.mas_bottom);
             }];

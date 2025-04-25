@@ -63,22 +63,20 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 #pragma mark —— 一些私有方法
 +(NSMutableArray<UIViewModel *> *)createDataMutArr{
     return jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable arr) {
-        arr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"拍照");
-            viewModel.textModel.font = UIFontWeightRegularSize(JobsWidth(18));
-            viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        }))
-        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"从相册中选取");
-            viewModel.textModel.font = UIFontWeightRegularSize(JobsWidth(18));
-            viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        }))
-        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"取消");
-            viewModel.textModel.font = UIFontWeightRegularSize(JobsWidth(18));
-            viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        }));
+        arr.add(JobsUserHeaderDataView.makeViewModelBy(JobsInternationalization(@"拍照")))
+        .add(JobsUserHeaderDataView.makeViewModelBy(JobsInternationalization(@"从相册中选取")))
+        .add(JobsUserHeaderDataView.makeViewModelBy(JobsInternationalization(@"取消")));
     });
+}
+
++(JobsReturnViewModelByStringBlock _Nonnull)makeViewModelBy{
+    return ^ __kindof UIViewModel *_Nullable(NSString *_Nullable data){
+        return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = data;
+            viewModel.textModel.font = UIFontWeightRegularSize(JobsWidth(18));
+            viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
+        });
+    };
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -94,7 +92,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(UIViewModel *_Nullable data){
+    return ^CGSize(UIViewModel *_Nullable data){
         data = data ? : UIViewModel.new;
     //    model.usesTableViewHeaderView = YES;// 这个属性在外面设置
         return CGSizeMake(JobsMainScreen_WIDTH(),
@@ -179,8 +177,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     //        _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
     //        [_tableView registerTableViewClass];
             tableView.registerHeaderFooterViewClass(JobsUserHeaderDataViewForHeaderInSection.class,@"");
-            self.addSubview(tableView);
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self);
             }];
             

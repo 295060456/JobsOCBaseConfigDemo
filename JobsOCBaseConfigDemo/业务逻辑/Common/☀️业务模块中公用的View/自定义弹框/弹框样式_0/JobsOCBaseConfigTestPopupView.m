@@ -54,9 +54,9 @@ static dispatch_once_t static_testPopupViewOnceToken;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    @jobs_weakify(self)
-    return ^(id _Nullable data){
-        @jobs_strongify(self)
+//    @jobs_weakify(self)
+    return ^CGSize(id _Nullable data){
+//        @jobs_strongify(self)
         return CGSizeMake(JobsWidth(327), JobsWidth(226));
     };
 }
@@ -78,8 +78,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self addSubview:_containerView];
-        [_containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_containerView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(_containerView.jobsSize);
             make.center.equalTo(self);
         }];
@@ -88,25 +87,23 @@ static dispatch_once_t static_testPopupViewOnceToken;
 
 -(UIButton *)testPopupViewSureBtn{
     if (!_testPopupViewSureBtn) {
-        _testPopupViewSureBtn = UIButton.new;
-        _testPopupViewSureBtn.jobsResetBtnBgImage(JobsIMG(@"测试弹窗的确定按钮"));
-        _testPopupViewSureBtn.selectedStateBackgroundImageBy(JobsIMG(@"测试弹窗的确定按钮"));
-        _testPopupViewSureBtn.jobsResetBtnTitle(JobsInternationalization(@"确定"));
-        _testPopupViewSureBtn.jobsResetBtnTitleCor(JobsBlackColor);
-        _testPopupViewSureBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(18));
-        [self addSubview:_testPopupViewSureBtn];
-        [_testPopupViewSureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-15));
-            make.centerX.equalTo(self);
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(190), JobsWidth(40)));
-        }];
         @jobs_weakify(self)
-        [_testPopupViewSureBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _testPopupViewSureBtn = UIButton.jobsInit()
+        .jobsResetBtnBgImage(JobsIMG(@"测试弹窗的确定按钮"))
+        .selectedStateBackgroundImageBy(JobsIMG(@"测试弹窗的确定按钮"))
+        .jobsResetBtnTitle(JobsInternationalization(@"确定"))
+        .jobsResetBtnTitleCor(JobsBlackColor)
+        .jobsResetBtnTitleFont(UIFontWeightRegularSize(18))
+        .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             x.selected = !x.selected;
             [self tf_hide:nil];
             if(self.objBlock) self.objBlock(x);
-            return nil;
+        });
+        [self.addSubview(_testPopupViewSureBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-15));
+            make.centerX.equalTo(self);
+            make.size.mas_equalTo(CGSizeMake(JobsWidth(190), JobsWidth(40)));
         }];
     }return _testPopupViewSureBtn;
 }

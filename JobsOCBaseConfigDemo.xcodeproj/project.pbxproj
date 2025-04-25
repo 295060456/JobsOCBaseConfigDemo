@@ -653,7 +653,7 @@
 		CE5A653A2CA831B0006D67A7 /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63662CA82C2D006D67A7 /* BaseTableView.m */; };
 		CE5A653B2CA831CB006D67A7 /* JobsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63772CA82C2D006D67A7 /* JobsBaseTableViewCell.m */; };
 		CE5A653C2CA831CB006D67A7 /* JobsBtnStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A637F2CA82C2D006D67A7 /* JobsBtnStyleTBVCell.m */; };
-		CE5A653D2CA831CB006D67A7 /* JobsTextStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63852CA82C2D006D67A7 /* JobsTextStyleTBVCell.m */; };
+		CE5A653D2CA831CB006D67A7 /* JobsTextLabStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63852CA82C2D006D67A7 /* JobsTextLabStyleTBVCell.m */; };
 		CE5A653E2CA831CB006D67A7 /* JobsImageStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63822CA82C2D006D67A7 /* JobsImageStyleTBVCell.m */; };
 		CE5A653F2CA831CB006D67A7 /* JobsBtnsStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63892CA82C2D006D67A7 /* JobsBtnsStyleTBVCell.m */; };
 		CE5A65402CA831D5006D67A7 /* UITableViewCell+WhiteArrows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A63932CA82C2D006D67A7 /* UITableViewCell+WhiteArrows.m */; };
@@ -3082,8 +3082,8 @@
 		CE5A637F2CA82C2D006D67A7 /* JobsBtnStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnStyleTBVCell.m; sourceTree = "<group>"; };
 		CE5A63812CA82C2D006D67A7 /* JobsImageStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsImageStyleTBVCell.h; sourceTree = "<group>"; };
 		CE5A63822CA82C2D006D67A7 /* JobsImageStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsImageStyleTBVCell.m; sourceTree = "<group>"; };
-		CE5A63842CA82C2D006D67A7 /* JobsTextStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextStyleTBVCell.h; sourceTree = "<group>"; };
-		CE5A63852CA82C2D006D67A7 /* JobsTextStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextStyleTBVCell.m; sourceTree = "<group>"; };
+		CE5A63842CA82C2D006D67A7 /* JobsTextLabStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextLabStyleTBVCell.h; sourceTree = "<group>"; };
+		CE5A63852CA82C2D006D67A7 /* JobsTextLabStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextLabStyleTBVCell.m; sourceTree = "<group>"; };
 		CE5A63872CA82C2D006D67A7 /* JobsBtnStyleTBVCell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = JobsBtnStyleTBVCell.jpg; sourceTree = "<group>"; };
 		CE5A63882CA82C2D006D67A7 /* JobsBtnsStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBtnsStyleTBVCell.h; sourceTree = "<group>"; };
 		CE5A63892CA82C2D006D67A7 /* JobsBtnsStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnsStyleTBVCell.m; sourceTree = "<group>"; };
@@ -13502,13 +13502,13 @@
 			path = JobsImageStyleTBVCell;
 			sourceTree = "<group>";
 		};
-		CE5A63862CA82C2D006D67A7 /* JobsTextStyleTBVCell */ = {
+		CE5A63862CA82C2D006D67A7 /* JobsTextLabStyleTBVCell */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A63842CA82C2D006D67A7 /* JobsTextStyleTBVCell.h */,
-				CE5A63852CA82C2D006D67A7 /* JobsTextStyleTBVCell.m */,
+				CE5A63842CA82C2D006D67A7 /* JobsTextLabStyleTBVCell.h */,
+				CE5A63852CA82C2D006D67A7 /* JobsTextLabStyleTBVCell.m */,
 			);
-			path = JobsTextStyleTBVCell;
+			path = JobsTextLabStyleTBVCell;
 			sourceTree = "<group>";
 		};
 		CE5A638A2CA82C2D006D67A7 /* JobsBtnsStyleTBVCell */ = {
@@ -13528,7 +13528,7 @@
 				CE5A637D2CA82C2D006D67A7 /* iOS UITableView中Cell的自带样式 */,
 				CE5A63802CA82C2D006D67A7 /* JobsBtnStyleTBVCell */,
 				CE5A63832CA82C2D006D67A7 /* JobsImageStyleTBVCell */,
-				CE5A63862CA82C2D006D67A7 /* JobsTextStyleTBVCell */,
+				CE5A63862CA82C2D006D67A7 /* JobsTextLabStyleTBVCell */,
 				CE5A638A2CA82C2D006D67A7 /* JobsBtnsStyleTBVCell */,
 			);
 			path = BaseTableViewCell;
@@ -17157,7 +17157,7 @@
 				CE4F27C02CA825CD002AF25B /* BaiShaETProjVIPSubCVCell_01.m in Sources */,
 				CE5A653B2CA831CB006D67A7 /* JobsBaseTableViewCell.m in Sources */,
 				CE5A653C2CA831CB006D67A7 /* JobsBtnStyleTBVCell.m in Sources */,
-				CE5A653D2CA831CB006D67A7 /* JobsTextStyleTBVCell.m in Sources */,
+				CE5A653D2CA831CB006D67A7 /* JobsTextLabStyleTBVCell.m in Sources */,
 				CE5A653E2CA831CB006D67A7 /* JobsImageStyleTBVCell.m in Sources */,
 				CE5A653F2CA831CB006D67A7 /* JobsBtnsStyleTBVCell.m in Sources */,
 				CE4F27C12CA825CD002AF25B /* JobsExcelView.m in Sources */,

@@ -39,7 +39,7 @@ Prop_strong()JobsLinkageMenuView *menuView;
     [super layoutSubviews];
     /// 内部指定圆切角
     [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -60,7 +60,7 @@ Prop_strong()JobsLinkageMenuView *menuView;
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-    return ^(id _Nullable data){
+    return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsRealWidth(),
                           JobsWidth(200));
     //    return CGSizeMake(JobsRealWidth(),
@@ -79,8 +79,7 @@ Prop_strong()JobsLinkageMenuView *menuView;
         [_menuView actionObjBlock:^(id  _Nullable x) {
             @jobs_strongify(self)
             if (self.objBlock) self.objBlock(x);
-        }];
-        [self addSubview:_menuView];
+        }];self.addSubview(_menuView);
     }return _menuView;
 }
 
