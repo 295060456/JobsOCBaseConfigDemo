@@ -1257,50 +1257,54 @@ classDiagram
 * <font color=red>`JobsTextField`</font>：**`BaseView`**
 
   ```objective-c
-  -(JobsTextField *)textField_phone{
-      if(!_textField_phone){
-          @jobs_weakify(self)
-          _textField_phone = makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
-              @jobs_strongify(self)
-              data.backgroundColor = JobsBlackCor(0.5f);
-              // 只针对真实的textField配置
-              data.realTextFieldBgCor = JobsClearColor;
-              data.titleCor = JobsCor(@"#FAFF00");
-              data.leftViewByOutLineOffset = JobsWidth(4);
-              data.leftViewByTextFieldOffset = JobsWidth(4);
-              data.rightViewByTextFieldOffset = JobsWidth(4);
-              data.rightViewByOutLineOffset = JobsWidth(14);
-              data.returnKeyType = UIReturnKeyDefault;
-              data.keyboardAppearance = UIKeyboardAppearanceDefault;
-              data.keyboardType = UIKeyboardTypePhonePad;
-              data.leftViewMode = UITextFieldViewModeNever;
-              data.rightViewMode = UITextFieldViewModeNever;
-              data.leftView = [self zoneCodeBtnByBlock:^(id _Nullable x) {
-                  @jobs_strongify(self)
-                  if (self.objBlock) self.objBlock(x);
-              }];
-              data.textFieldPlaceholder = JobsInternationalization(@"Validate phone no. starts with 0 and must be 11 digits");
-              data.placeholderColor = JobsCor(@"#6A6A6A");
-              data.placeholderFont = UIFontWeightSemiboldSize(10);
-              data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
-              data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
-              // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
-              [data actionObjBlock:^(id  _Nullable data) {
-                  JobsLog(@"ddf = %@",data);
-              }];
-              [self.addSubview(data) mas_makeConstraints:^(MASConstraintMaker *make) {
-                  make.size.mas_equalTo(CGSizeMake(JobsWidth(200), JobsWidth(32)));
-                  make.top.equalTo(self.titleLab_phone.mas_bottom);
-                  make.left.equalTo(self.titleLab_phone);
-              }];
-              data.jobsRichViewByModel(nil);
-              // 最外层的UI-描边
-              data.layerByBorderCor(JobsCor(@"#FFC700")).layerByBorderWidth(1);
-              // 最外层的UI-切全角
-              data.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-          });
-      }return _textField_phone;
-  }
+   -(JobsTextField *)textField_code{
+       if(!_textField_code){
+           @jobs_weakify(self)
+           _textField_code = makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
+               @jobs_strongify(self)
+               data.backgroundColor = JobsWhiteColor;
+               // 只针对真实的textField配置
+               data.realTextFieldBgCor = JobsWhiteColor;
+               data.titleCor = JobsBlackColor;
+               data.leftViewByOutLineOffset = JobsWidth(4);
+               data.leftViewByTextFieldOffset = JobsWidth(4);
+               data.rightViewByTextFieldOffset = JobsWidth(4);
+               data.rightViewByOutLineOffset = JobsWidth(4);
+               data.returnKeyType = UIReturnKeyDefault;
+               data.keyboardAppearance = UIKeyboardAppearanceDefault;
+               data.keyboardType = UIKeyboardTypePhonePad;
+               data.leftViewMode = UITextFieldViewModeNever;
+               data.rightViewMode = UITextFieldViewModeNever;
+               data.textFieldSecureTextEntry = YES;
+               data.rightView = self.get_code_btn;
+               data.textFieldPlaceholder = JobsInternationalization(@"Please enter your password");
+               data.placeholderColor = JobsCor(@"#BBBBBB");
+               data.placeholderFont = pingFangTCRegular(15);
+               data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
+               data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
+               data.JobsRichViewByModel2(nil)
+                   // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
+                   .JobsBlock1(^(id _Nullable data) {
+                       JobsLog(@"ddf = %@",data);
+                   })
+                   .JobsBlock3(^id _Nullable(id  _Nullable data) {
+                    @jobs_strongify(self)
+                    if (self.objBlock) self.objBlock(@1);
+                    return nil;
+                   });
+               [self.scrollView.addSubview(data) mas_makeConstraints:^(MASConstraintMaker *make) {
+                   make.left.equalTo(self.scrollView).offset(JobsWidth(19));
+                   make.top.equalTo(self.codeLab.mas_bottom);
+                   make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(40)));
+               }];
+               data.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                   data.layerCor = JobsCor(@"#BBBBBB");
+                   data.jobsWidth = 1;
+                   data.cornerRadiusValue = JobsWidth(8);
+               }));
+           });
+       }return _textField_code;
+   }
   ```
   
   ```objective-c
