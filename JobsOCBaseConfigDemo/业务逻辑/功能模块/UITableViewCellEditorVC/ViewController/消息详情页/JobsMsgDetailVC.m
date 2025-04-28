@@ -13,7 +13,6 @@ Prop_strong()UILabel *titleLab;
 Prop_strong()UILabel *subTitleLab;
 Prop_strong()UIButton *drawBtn;
 Prop_strong()UILabel *lineLab;
-Prop_strong()UITextView *textView;
 Prop_strong()BaseButton *deleteBtn;
 /// Data
 Prop_strong()JobsMsgDataModel *msgDataModel;
@@ -105,8 +104,7 @@ Prop_strong()JobsMsgDataModel *msgDataModel;
             label.text = self.msgDataModel.textModel.text;
             label.font = UIFontWeightBoldSize(16);
             label.textColor = HEXCOLOR(0x3D4A58);
-            self.view.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(28));
                 make.left.equalTo(self.view).offset(JobsWidth(16));
                 make.width.mas_equalTo(JobsWidth(217));
@@ -123,8 +121,7 @@ Prop_strong()JobsMsgDataModel *msgDataModel;
             label.font = UIFontWeightRegularSize(12);
             label.text = self.msgDataModel.time;
             label.textColor = HEXCOLOR(0xB0B0B0);
-            self.view.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(12));
                 make.left.equalTo(self.titleLab);
             }];label.makeLabelByShowingType(UILabelShowingType_01);
@@ -134,14 +131,13 @@ Prop_strong()JobsMsgDataModel *msgDataModel;
 
 -(UIButton *)drawBtn{
     if (!_drawBtn) {
-        _drawBtn = UIButton.new;
-        _drawBtn.jobsResetBtnTitle(self.msgDataModel.isDraw ? JobsInternationalization(@" 已领取 ") : JobsInternationalization(@" 领取 "));
-        _drawBtn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
-        _drawBtn.selectedStateTitleColorBy(HEXCOLOR(0x757575));
-        _drawBtn.backgroundColor = HEXCOLOR(0xFFEABA);
-        _drawBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(12));
-        [self.view addSubview:_drawBtn];
-        [_drawBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        _drawBtn = UIButton.jobsInit()
+        .jobsResetBtnTitle(self.msgDataModel.isDraw ? JobsSpace.add(JobsInternationalization(@"已领取")).add(JobsSpace) : JobsSpace.add(JobsInternationalization(@"领取")).add(JobsSpace))
+        .jobsResetBtnTitleCor(HEXCOLOR(0xAE8330))
+        .selectedStateTitleColorBy(HEXCOLOR(0x757575))
+        .bgColorBy( HEXCOLOR(0xFFEABA))
+        .jobsResetBtnTitleFont(UIFontWeightRegularSize(12));
+        [self.view.addSubview(_drawBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(40), JobsWidth(20)));
             make.right.equalTo(self.view).offset(JobsWidth(-16));
             make.top.equalTo(self.view).offset(JobsWidth(28));
@@ -155,8 +151,7 @@ Prop_strong()JobsMsgDataModel *msgDataModel;
         _lineLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = HEXCOLOR(0xEAEBED);
-            self.view.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(2)));
                 make.centerX.equalTo(self.view);
                 make.top.equalTo(self.subTitleLab.mas_bottom).offset(JobsWidth(24));
@@ -164,7 +159,7 @@ Prop_strong()JobsMsgDataModel *msgDataModel;
         });
     }return _lineLab;
 }
-
+@synthesize textView = _textView;
 -(UITextView *)textView{
     if (!_textView) {
         @jobs_weakify(self)
@@ -173,8 +168,7 @@ Prop_strong()JobsMsgDataModel *msgDataModel;
             textView.text = self.msgDataModel.subTextModel.text;
             textView.textColor = HEXCOLOR(0xB0B0B0);
             textView.font = UIFontWeightRegularSize(14);
-            self.view.addSubview(textView);
-            [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self.view);
                 make.top.equalTo(self.lineLab.mas_bottom).offset(JobsWidth(20));
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(452)));

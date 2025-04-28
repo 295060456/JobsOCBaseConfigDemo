@@ -10,7 +10,6 @@
 @interface CtrlClipboardCueVC ()
 /// UI
 Prop_strong()BaseLabel *label;
-Prop_strong()BaseTextView *textView;
 /// Data
 Prop_copy()NSString *textData1;/// 页面上显示的数据
 Prop_copy()NSString *textData2;/// 来自于剪切板存储的数据
@@ -154,7 +153,7 @@ Prop_copy()NSString *textData2;/// 来自于剪切板存储的数据
         });
     }return _label;
 }
-
+@synthesize textView = _textView;
 -(BaseTextView *)textView{
     if (!_textView) {
         @jobs_weakify(self)

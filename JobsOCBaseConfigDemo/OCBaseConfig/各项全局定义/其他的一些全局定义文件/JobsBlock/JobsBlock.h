@@ -38,6 +38,8 @@ typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByTypeBlock)(TimeZoneType timeZ
 typedef id _Nullable(^JobsReturnIDByAppLanguageBlock)(AppLanguage data);
 typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType componentType,
                                                                  __kindof UIView *_Nullable data);
+@class JobsTextView;
+typedef void(^jobsByJobsTextViewBlock)(__kindof JobsTextView *_Nullable textView);
 
 @class ZFAVPlayerManager;
 @class ZFDouYinControlView;

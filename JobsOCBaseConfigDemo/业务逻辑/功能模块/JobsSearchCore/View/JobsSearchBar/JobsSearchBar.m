@@ -9,7 +9,6 @@
 
 @interface JobsSearchBar ()
 /// UI
-Prop_strong()ZYTextField *textField;
 Prop_strong()BaseButton *cancelBtn;
 
 @end
@@ -43,6 +42,7 @@ Prop_strong()BaseButton *cancelBtn;
 #pragma mark —— 一些私有化方法
 
 #pragma mark —— lazyLoad
+@synthesize textField = _textField;
 -(ZYTextField *)textField{
     if (!_textField) {
         @jobs_weakify(self)

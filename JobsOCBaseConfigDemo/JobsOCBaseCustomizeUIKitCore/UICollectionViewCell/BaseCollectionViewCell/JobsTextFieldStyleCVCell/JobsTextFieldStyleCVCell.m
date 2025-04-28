@@ -8,9 +8,6 @@
 #import "JobsTextFieldStyleCVCell.h"
 
 @interface JobsTextFieldStyleCVCell ()
-/// UI
-Prop_strong()ZYTextField *textField;
-/// Data
 
 @end
 
@@ -73,6 +70,7 @@ Prop_strong()ZYTextField *textField;
     if (self.objBlock) self.objBlock(textField);// 对外统一传出TF
 }
 #pragma mark —— lazyLoad
+@synthesize textField = _textField;
 -(ZYTextField *)textField{
     if (!_textField) {
         _textField = ZYTextField.new;
@@ -86,18 +84,15 @@ Prop_strong()ZYTextField *textField;
         _textField.font = UIFontWeightMediumSize(18);
         _textField.placeholderFont = _textField.font;
         _textField.placeholderColor = JobsCor(@"#AAAAAA");
-        
         @jobs_weakify(self)
         [_textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
 //            @jobs_strongify(self)
             return YES;
         } subscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
-            [self textFieldBlock:self->_textField
-                  textFieldValue:x];
+            [self textFieldBlock:self->_textField textFieldValue:x];
         }];
-        [self.contentView addSubview:_textField];
-        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_textField) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
         }];
     }return _textField;

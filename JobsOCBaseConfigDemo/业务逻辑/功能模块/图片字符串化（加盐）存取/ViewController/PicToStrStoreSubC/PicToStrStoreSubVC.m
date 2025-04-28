@@ -18,7 +18,6 @@ Prop_strong()BaseButton *btn_1;
 Prop_strong()BaseButton *btn_2;
 Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
 Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
-Prop_strong()UITextView *textView;
 /// Data
 Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
 
@@ -258,8 +257,7 @@ Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self.view addSubview:_btn_1];
-        [_btn_1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_btn_1) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(10));
             make.left.equalTo(self.view).offset(JobsWidth(10));
             make.right.equalTo(self.view).offset(JobsWidth(-10));
@@ -297,8 +295,7 @@ Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self.view addSubview:_btn_2];
-        [_btn_2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_btn_2) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.btn_1.mas_bottom).offset(JobsWidth(10));
             make.left.equalTo(self.view).offset(JobsWidth(10));
             make.right.equalTo(self.view).offset(JobsWidth(-10));
@@ -307,7 +304,7 @@ Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
         _btn_2.makeBtnTitleByShowingType(UILabelShowingType_03);
     }return _btn_2;
 }
-
+@synthesize textView = _textView;
 -(UITextView *)textView{
     if (!_textView) {
         @jobs_weakify(self)
@@ -317,8 +314,7 @@ Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
             textView.text = JobsInternationalization(@"暂无编码数据！！！");
             textView.textColor = HEXCOLOR(0xB0B0B0);
             textView.font = UIFontSystemFontOfSize(14);
-            [self.view addSubview:textView];
-            [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.view).offset(JobsWidth(10));
                 make.right.equalTo(self.view).offset(JobsWidth(-10));
                 make.top.equalTo(self.btn_2.mas_bottom).offset(JobsWidth(10));

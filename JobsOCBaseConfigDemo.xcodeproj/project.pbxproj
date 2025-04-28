@@ -176,6 +176,7 @@
 		84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */; };
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
 		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
+		C58B19722DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */; };
 		C5BCC6292DB39BC400EFE4F3 /* ZMJHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6202DB39BC400EFE4F3 /* ZMJHeaderCell.m */; };
 		C5BCC62A2DB39BC400EFE4F3 /* ZMJTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6232DB39BC400EFE4F3 /* ZMJTaskCell.m */; };
 		C5BCC62B2DB39BC400EFE4F3 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC60E2DB39BC400EFE4F3 /* ScheduleCell.m */; };
@@ -1636,6 +1637,8 @@
 		C52417042DB61725008F9194 /* FMGameCVCell_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FMGameCVCell_2.png; sourceTree = "<group>"; };
 		C52417052DB61725008F9194 /* FMGameCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMGameCVCell.h; sourceTree = "<group>"; };
 		C52417062DB61725008F9194 /* FMGameCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMGameCVCell.m; sourceTree = "<group>"; };
+		C58B196F2DBF59F1006163A3 /* JobsTextViewStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextViewStyleTBVCell.h; sourceTree = "<group>"; };
+		C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextViewStyleTBVCell.m; sourceTree = "<group>"; };
 		C5BCC5FB2DB39BC400EFE4F3 /* ChannelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
 		C5BCC5FC2DB39BC400EFE4F3 /* ChannelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		C5BCC5FE2DB39BC400EFE4F3 /* DateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateCell.h; sourceTree = "<group>"; };
@@ -5558,6 +5561,15 @@
 				C52417062DB61725008F9194 /* FMGameCVCell.m */,
 			);
 			path = FMGameCVCell;
+			sourceTree = "<group>";
+		};
+		C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */ = {
+			isa = PBXGroup;
+			children = (
+				C58B196F2DBF59F1006163A3 /* JobsTextViewStyleTBVCell.h */,
+				C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */,
+			);
+			path = JobsTextViewStyleTBVCell;
 			sourceTree = "<group>";
 		};
 		C5BCC5FD2DB39BC400EFE4F3 /* ChannelCell */ = {
@@ -13524,6 +13536,7 @@
 		CE5A638B2CA82C2D006D67A7 /* BaseTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */,
 				CE5A63782CA82C2D006D67A7 /* JobsBaseTableViewCell */,
 				CE5A637D2CA82C2D006D67A7 /* iOS UITableView中Cell的自带样式 */,
 				CE5A63802CA82C2D006D67A7 /* JobsBtnStyleTBVCell */,
@@ -16972,6 +16985,7 @@
 				84392BDC2CF4A47A000D441F /* UIAlertController+Extra.m in Sources */,
 				84392BDD2CF4A47A000D441F /* UIAlertAction+Extra.m in Sources */,
 				84392BDE2CF4A47A000D441F /* UNUserNotificationCenter+Extra.m in Sources */,
+				C58B19722DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m in Sources */,
 				CE5A65F52CA8345D006D67A7 /* JobsWelcomeVC.m in Sources */,
 				CEB8FA662CA837E700CCFDF8 /* NSString+MIME.m in Sources */,
 				CEB8FA672CA837E700CCFDF8 /* UIImage+MIME.m in Sources */,

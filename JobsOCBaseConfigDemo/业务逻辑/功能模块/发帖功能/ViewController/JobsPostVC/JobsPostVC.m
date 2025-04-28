@@ -14,7 +14,6 @@
 Prop_strong()HXPhotoView *postPhotoView;/// 展示选择的图片
 Prop_strong()HXPhotoManager *photoManager;/// 选取图片的数据管理类
 Prop_strong()JobsPostDelView *postDelView;/// 长按拖动的删除区域
-Prop_strong()JobsTextView *textView;
 Prop_strong()BaseButton *releaseBtn;
 Prop_strong()UILabel *tipsLab;
 /// Data
@@ -98,7 +97,7 @@ Prop_strong()UITextModel *postTextModel;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.textView.updateWordCount(self.inputDataHistoryString.length);
+    self.jobsTextView.updateWordCount(self.inputDataHistoryString.length);
 }
 
 -(void)viewWillLayoutSubviews{
@@ -369,31 +368,32 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         _releaseBtn.enabled = NO;
         _releaseBtn.width = JobsWidth(38);
         _releaseBtn.height = JobsWidth(23);
-        [self.view addSubview:_releaseBtn];
+        self.view.addSubview(_releaseBtn);
     }return _releaseBtn;
 }
-
--(JobsTextView *)textView{
-    if (!_textView) {
-        _textView = JobsTextView.new;
-        _textView.backgroundColor = JobsWhiteColor;
-        self.view.addSubview(_textView);
-        [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(10));
-            make.left.equalTo(self.view).offset(JobsWidth(0));
-            make.right.equalTo(self.view).offset(JobsWidth(-0));
-            make.height.mas_equalTo(JobsWidth(101));
-        }];
-        _textView.jobsRichViewByModel(self.textModel);
+@synthesize jobsTextView = _jobsTextView;
+-(JobsTextView *)jobsTextView{
+    if (!_jobsTextView) {
         @jobs_weakify(self)
-        [_textView actionObjBlock:^(id data) {
+        _jobsTextView = makeJobsTextView(^(__kindof JobsTextView * _Nullable textView) {
             @jobs_strongify(self)
-            NSString *x = (NSString *)data;
-            self.inputDataString = x;
-            [self releaseBtnState:self.photoManager.afterSelectedArray
-                  inputDataString:self.inputDataString];
-        }];
-    }return _textView;
+            textView.backgroundColor = JobsWhiteColor;
+            textView.JobsRichViewByModel2(self.textModel)
+                .JobsBlock1(^(id  _Nullable data) {
+                    @jobs_strongify(self)
+                    NSString *x = (NSString *)data;
+                    self.inputDataString = x;
+                    [self releaseBtnState:self.photoManager.afterSelectedArray
+                          inputDataString:self.inputDataString];
+            });
+            [self.view.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(10));
+                make.left.equalTo(self.view).offset(JobsWidth(0));
+                make.right.equalTo(self.view).offset(JobsWidth(-0));
+                make.height.mas_equalTo(JobsWidth(101));
+            }];
+        });
+    }return _jobsTextView;
 }
 
 -(HXPhotoView *)postPhotoView{
@@ -404,8 +404,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         _postPhotoView.deleteCellShowAlert = NO;
         _postPhotoView.outerCamera = YES;
         _postPhotoView.previewShowDeleteButton = YES;
-        self.view.addSubview(_postPhotoView);
-        [_postPhotoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_postPhotoView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view).offset(JobsWidth(10));
             make.top.equalTo(self.tipsLab.mas_bottom).offset(JobsWidth(20));
             make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() - JobsWidth(10) * 2, JobsWidth(600)));
@@ -450,9 +449,10 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
             label.textColor = RGB_SAMECOLOR(173);
             label.font = UIFontWeightBoldSize(12);
             label.numberOfLines = 0;
-            label.text = JobsInternationalization(@"1、内容不允许出现纯数字，英文字母；\n2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。");
-            self.view.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            label.text = JobsInternationalization(@"1、内容不允许出现纯数字，英文字母；")
+                .add(JobsNewline)
+                .add(JobsInternationalization(@"2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。"));
+            [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.view).offset(JobsWidth(14));
                 make.top.equalTo(self.textView.mas_bottom).offset(JobsWidth(11));
             }];label.makeLabelByShowingType(UILabelShowingType_03);

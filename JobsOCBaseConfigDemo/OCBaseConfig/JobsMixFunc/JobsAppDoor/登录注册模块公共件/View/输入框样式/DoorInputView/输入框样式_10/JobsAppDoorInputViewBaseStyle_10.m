@@ -9,7 +9,6 @@
 
 @interface JobsAppDoorInputViewBaseStyle_10 ()
 /// UI
-Prop_strong()ZYTextField *textField;
 Prop_strong()UILabel *titleLab;
 /// Data
 Prop_copy()NSString *titleStr_1;
@@ -49,28 +48,26 @@ Prop_strong()ButtonTimerConfigModel *btnTimerConfigModel;
 }
 #pragma mark —— 一些私有方法
 -(void)configTextField{
-    _textField.leftView = UIImageView.initBy(self.doorInputViewBaseStyleModel.leftViewIMG);
-    _textField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
-    _textField.placeholder = isNull(self.doorInputViewBaseStyleModel.placeholder) ? self.titleStr_1 : self.doorInputViewBaseStyleModel.placeholder;
-    _textField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
-    _textField.returnKeyType = self.doorInputViewBaseStyleModel.returnKeyType;
-    _textField.keyboardAppearance = self.doorInputViewBaseStyleModel.keyboardAppearance;
-    _textField.textColor = self.doorInputViewBaseStyleModel.titleStrCor;
-    _textField.useCustomClearButton = self.doorInputViewBaseStyleModel.useCustomClearButton;
-    _textField.isShowDelBtn = self.doorInputViewBaseStyleModel.isShowDelBtn;
-    _textField.rightViewOffsetX = self.doorInputViewBaseStyleModel.rightViewOffsetX ? : JobsWidth(8);// 删除按钮的偏移量
-    _textField.requestParams = self.textFieldInputModel;
-    _textField.placeholderColor = self.doorInputViewBaseStyleModel.placeholderColor;
-    _textField.placeholderFont = self.doorInputViewBaseStyleModel.placeholderFont;
-    _textField.leftViewOffsetX = self.doorInputViewBaseStyleModel.leftViewOffsetX ? : JobsWidth(0);
-    _textField.placeHolderAlignment = self.doorInputViewBaseStyleModel.placeHolderAlignment ? : NSTextAlignmentLeft;
-    _textField.placeHolderOffset = self.doorInputViewBaseStyleModel.placeHolderOffset ? : JobsWidth(0);
-    _textField.fieldEditorOffset = self.doorInputViewBaseStyleModel.fieldEditorOffset ? : JobsWidth(0);
+    self.zyTextField.leftView = UIImageView.initBy(self.doorInputViewBaseStyleModel.leftViewIMG);
+    self.zyTextField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
+    self.zyTextField.placeholder = isNull(self.doorInputViewBaseStyleModel.placeholder) ? self.titleStr_1 : self.doorInputViewBaseStyleModel.placeholder;
+    self.zyTextField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
+    self.zyTextField.returnKeyType = self.doorInputViewBaseStyleModel.returnKeyType;
+    self.zyTextField.keyboardAppearance = self.doorInputViewBaseStyleModel.keyboardAppearance;
+    self.zyTextField.textColor = self.doorInputViewBaseStyleModel.titleStrCor;
+    self.zyTextField.useCustomClearButton = self.doorInputViewBaseStyleModel.useCustomClearButton;
+    self.zyTextField.isShowDelBtn = self.doorInputViewBaseStyleModel.isShowDelBtn;
+    self.zyTextField.rightViewOffsetX = self.doorInputViewBaseStyleModel.rightViewOffsetX ? : JobsWidth(8);// 删除按钮的偏移量
+    self.zyTextField.requestParams = self.textFieldInputModel;
+    self.zyTextField.placeholderColor = self.doorInputViewBaseStyleModel.placeholderColor;
+    self.zyTextField.placeholderFont = self.doorInputViewBaseStyleModel.placeholderFont;
+    self.zyTextField.leftViewOffsetX = self.doorInputViewBaseStyleModel.leftViewOffsetX ? : JobsWidth(0);
+    self.zyTextField.placeHolderAlignment = self.doorInputViewBaseStyleModel.placeHolderAlignment ? : NSTextAlignmentLeft;
+    self.zyTextField.placeHolderOffset = self.doorInputViewBaseStyleModel.placeHolderOffset ? : JobsWidth(0);
+    self.zyTextField.fieldEditorOffset = self.doorInputViewBaseStyleModel.fieldEditorOffset ? : JobsWidth(0);
 }
 
--(void)block:(ZYTextField *)textField
-       value:(NSString *)value{
-    
+-(void)block:(ZYTextField *)textField value:(NSString *)value{
     self.textFieldInputModel.resString = value;
     self.textFieldInputModel.PlaceHolder = self.doorInputViewBaseStyleModel.placeholder;
     textField.requestParams = self.textFieldInputModel;
@@ -93,42 +90,41 @@ Prop_strong()ButtonTimerConfigModel *btnTimerConfigModel;
     @jobs_weakify(self)
     return ^(JobsAppDoorInputViewBaseStyleModel *_Nullable doorInputViewBaseStyleModel) {
         @jobs_strongify(self)
+        self.userInteractionEnabled = YES;
         self.doorInputViewBaseStyleModel = doorInputViewBaseStyleModel ? : JobsAppDoorInputViewBaseStyleModel.new;
         self.titleLab.alpha = 1;
         self.textField.alpha = 1;
         [self configTextField];
-        self.userInteractionEnabled = YES;
     };
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(ZYTextField *_Nullable)getTextField{
-    return _textField;
+    return self.zyTextField;
 }
 
 -(NSString *_Nullable)textFieldValue{
-    return _textField.text;
+    return self.zyTextField.text;
 }
 #pragma mark —— lazyLoad
--(ZYTextField *)textField{
-    if (!_textField) {
-        _textField = ZYTextField.new;
-        _textField.delegate = self;
+@synthesize zyTextField = _zyTextField;
+-(ZYTextField *)zyTextField{
+    if (!_zyTextField) {
+        _zyTextField = ZYTextField.new;
+        _zyTextField.delegate = self;
         @jobs_weakify(self)
-        [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
+        [_zyTextField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
             @jobs_strongify(self)
             return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
         } subscribeNextBlock:^(id _Nullable x) {
             @jobs_strongify(self)
-            [self block:self->_textField
-                  value:x];
+            [self block:self->_zyTextField value:x];
         }];
-        [self addSubview:_textField];
-        [_textField mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_zyTextField) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self);
             make.top.bottom.equalTo(self);
             make.size.mas_equalTo(inputSize_02());
         }];
-    }return _textField;
+    }return _zyTextField;
 }
 
 -(UILabel *)titleLab{
@@ -138,9 +134,8 @@ Prop_strong()ButtonTimerConfigModel *btnTimerConfigModel;
             @jobs_strongify(self)
             label.text = isNull(self.doorInputViewBaseStyleModel.textModel.text) ? self.titleStr_2 : self.doorInputViewBaseStyleModel.textModel.text;
             label.textColor = self.viewModel.textModel.textCor ? : HEXCOLOR(0xAE8330);
-            label.font = self.viewModel.textModel.font ? : [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightMedium];
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            label.font = self.viewModel.textModel.font ? : JobsFontMedium(JobsWidth(12));
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(self);
                 make.centerY.equalTo(self.textField);
             }];label.makeLabelByShowingType(UILabelShowingType_03);

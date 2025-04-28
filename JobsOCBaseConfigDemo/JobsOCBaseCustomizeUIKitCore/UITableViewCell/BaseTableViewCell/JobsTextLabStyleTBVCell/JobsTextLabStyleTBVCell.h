@@ -8,7 +8,7 @@
 #import "JobsBaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
-/// 将一个文本整个覆盖到TableViewCell上面
+/// 将一个Label整个覆盖到TableViewCell上面
 @interface JobsTextLabStyleTBVCell : JobsBaseTableViewCell
 /// 获取绑定的数据源
 -(UIViewModel *)getViewModel;

@@ -61,12 +61,14 @@ BaseLayerProtocol_synthesize_part3
             /// 富文本的优先级大于普通文本
             if(self.viewModel.attributedTitle){
                 label.attributedText = self.viewModel.attributedTitle;
-            }else label.text = self.viewModel.text;
-            label.numberOfLines = 0;
-            label.lineBreakMode = NSLineBreakByWordWrapping;
-            label.textAlignment = self.viewModel.textAlignment;
-            label.textColor = self.viewModel.textCor;
-            label.font = self.viewModel.font;
+            }else{
+                label.text = self.viewModel.text;
+                label.numberOfLines = 0;
+                label.lineBreakMode = NSLineBreakByWordWrapping;
+                label.textAlignment = self.viewModel.textAlignment;
+                label.textColor = self.viewModel.textCor;
+                label.font = self.viewModel.font;
+            }
             [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];

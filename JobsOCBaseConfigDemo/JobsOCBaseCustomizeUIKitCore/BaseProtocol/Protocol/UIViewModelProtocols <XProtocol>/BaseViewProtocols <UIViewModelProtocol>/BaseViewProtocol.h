@@ -13,6 +13,14 @@
 
 @class MASConstraint;
 
+@class HQTextField;
+@class CJTextField;
+@class ZYTextField;
+@class JobsMagicTextField;
+@class JobsTextField;
+@class JobsTextView;
+@class SZTextView;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol BaseViewProtocol <UIViewModelProtocol>
@@ -25,6 +33,15 @@ Prop_strong(nullable)__kindof UIScrollView *scrollView;
 Prop_strong(nullable)__kindof UIImageView *imageView;
 Prop_strong(nullable)__kindof UIButton *button;
 Prop_strong(nullable)__kindof UILabel *label;
+Prop_strong(nullable)__kindof UITextView *textView;
+Prop_strong(nullable)__kindof SZTextView *szTextView;
+Prop_strong(nullable)__kindof JobsTextView *jobsTextView;
+Prop_strong(nullable)__kindof UITextField *textField;
+Prop_strong(nullable)__kindof JobsMagicTextField *magicTextField;
+Prop_strong(nullable)__kindof ZYTextField *zyTextField;
+Prop_strong(nullable)__kindof HQTextField *hqTextField;
+Prop_strong(nullable)__kindof CJTextField *cjTextField; /// iOS监听键盘删除事件
+Prop_strong(nullable)__kindof JobsTextField *jobsTextField;
 /// 是否允许托拽手势
 Prop_assign()BOOL isAllowDrag;
 /// 退出当前页面的时候，除了当前页面出栈以外，你额外需要做的事情
@@ -140,6 +157,15 @@ NS_ASSUME_NONNULL_END
 @synthesize imageView = _imageView;\
 @synthesize button = _button;\
 @synthesize label = _label;\
+@synthesize textView = _textView;\
+@synthesize szTextView = _szTextView;\
+@synthesize jobsTextView = _jobsTextView;\
+@synthesize textField = _textField;\
+@synthesize magicTextField = _magicTextField;\
+@synthesize zyTextField = _zyTextField;\
+@synthesize hqTextField = _hqTextField;\
+@synthesize cjTextField = _cjTextField;\
+@synthesize jobsTextField = _jobsTextField;\
 @synthesize isAllowDrag = _isAllowDrag;\
 @synthesize jobsBackBlock = _jobsBackBlock;\
 @synthesize layoutSubviewsRectCorner = _layoutSubviewsRectCorner;\
@@ -162,6 +188,15 @@ NS_ASSUME_NONNULL_END
 @dynamic imageView;\
 @dynamic button;\
 @dynamic label;\
+@dynamic textView;\
+@dynamic szTextView;\
+@dynamic jobsTextView;\
+@dynamic textField;\
+@dynamic magicTextField;\
+@dynamic zyTextField;\
+@dynamic hqTextField;\
+@dynamic cjTextField;\
+@dynamic jobsTextField;\
 @dynamic isAllowDrag;\
 @dynamic jobsBackBlock;\
 @dynamic layoutSubviewsRectCorner;\

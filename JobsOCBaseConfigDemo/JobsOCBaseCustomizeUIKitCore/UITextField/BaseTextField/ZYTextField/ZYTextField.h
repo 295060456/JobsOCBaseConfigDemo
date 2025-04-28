@@ -50,6 +50,7 @@ NS_INLINE __kindof ZYTextField *_Nonnull jobsMakeZYTextField(jobsByZYTextFieldBl
 */
 
 /** rightView
+ @synthesize textField = _textField;
  -(ZYTextField *)textField{
      if (!_textField) {
          _textField = ZYTextField.new;
@@ -94,6 +95,7 @@ NS_INLINE __kindof ZYTextField *_Nonnull jobsMakeZYTextField(jobsByZYTextFieldBl
 
 /**
  只有 leftView，右边什么也没有
+ @synthesize textField = _textField;
  -(ZYTextField *)textField{
      if (!_textField) {
          _textField = ZYTextField.new;
@@ -172,6 +174,7 @@ NS_INLINE __kindof ZYTextField *_Nonnull jobsMakeZYTextField(jobsByZYTextFieldBl
  /// 搜索框，leftView 和 rightView都存在
  _searchBtn.size = CGSizeMake(JobsWidth(60), JobsWidth(32));
 
+ @synthesize textField = _textField;
  -(ZYTextField *)textField{
      if (!_textField) {
          _textField = ZYTextField.new;

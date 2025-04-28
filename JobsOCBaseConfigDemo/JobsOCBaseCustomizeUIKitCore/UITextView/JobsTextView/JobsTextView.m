@@ -9,7 +9,6 @@
 
 @interface JobsTextView()
 /// UI
-Prop_strong()SZTextView *textView;
 Prop_strong()UILabel *countLabel;
 /// Data
 Prop_strong()UITextModel *textModel;
@@ -80,7 +79,7 @@ static dispatch_once_t static_textViewOnceToken;
 }
 #pragma mark —— 一些公有方法
 -(SZTextView *)getTextView{
-    return _textView;
+    return self.szTextView;
 }
 
 -(jobsByNSIntegerBlock _Nonnull)updateWordCount{
@@ -95,15 +94,15 @@ static dispatch_once_t static_textViewOnceToken;
     };
 }
 #pragma mark —— lazyLoad
--(SZTextView *)textView{
-    if (!_textView) {
+@synthesize szTextView = _szTextView;
+-(SZTextView *)szTextView{
+    if (!_szTextView) {
         @jobs_weakify(self)
-        _textView = jobsMakeSZTextView(^(SZTextView * _Nonnull textView) {
+        _szTextView = jobsMakeSZTextView(^(SZTextView * _Nonnull textView) {
             @jobs_strongify(self)
             textView.backgroundColor = JobsCor(@"#FEF4F3");
             textView.editable = YES;
-            [self addSubview:textView];
-            [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).offset(JobsWidth(5));
                 make.left.equalTo(self).offset(JobsWidth(10));
                 make.right.equalTo(self).offset(JobsWidth(-10));
@@ -111,7 +110,7 @@ static dispatch_once_t static_textViewOnceToken;
             }];
         });
         /// 这里的x是整个textView目前的所有字符串的值
-        [_textView jobsTextViewSubscribeNextBlock:^(NSString * _Nullable x) {
+        [_szTextView jobsTextViewSubscribeNextBlock:^(NSString * _Nullable x) {
             @jobs_strongify(self)
             /// 超过直接截取
             if(x.length > self.textModel.maxWordCount) {
@@ -127,11 +126,11 @@ static dispatch_once_t static_textViewOnceToken;
             if (self.objBlock) self.objBlock(x);
         }];
     }
-    _textView.text = self.textModel.text;
-    _textView.textColor = self.textModel.textCor;
-    _textView.placeholderTextColor = self.textModel.placeholderColor;
-    _textView.placeholder = self.textModel.placeholder;
-    return _textView;
+    _szTextView.text = self.textModel.text;
+    _szTextView.textColor = self.textModel.textCor;
+    _szTextView.placeholderTextColor = self.textModel.placeholderColor;
+    _szTextView.placeholder = self.textModel.placeholder;
+    return _szTextView;
 }
 
 - (UILabel *)countLabel{
@@ -142,8 +141,7 @@ static dispatch_once_t static_textViewOnceToken;
             label.textColor = JobsWhiteColor;
             label.textAlignment = NSTextAlignmentCenter;
             label.font = UIFontWeightBoldSize(12);
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(JobsWidth(17));
                 make.bottom.mas_equalTo(-JobsWidth(8));
                 make.right.equalTo(self).offset(-JobsWidth(5));

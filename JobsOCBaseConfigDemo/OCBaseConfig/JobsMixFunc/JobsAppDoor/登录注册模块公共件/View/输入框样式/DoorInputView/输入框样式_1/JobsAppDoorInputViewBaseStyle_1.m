@@ -11,7 +11,6 @@
 @interface JobsAppDoorInputViewBaseStyle_1 ()
 /// UI
 Prop_strong()UIButton *countDownBtn;
-Prop_strong()JobsMagicTextField *textField;
 /// Data
 Prop_copy()NSString *titleStr_1;
 Prop_copy()NSString *titleStr_2;
@@ -56,25 +55,25 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 }
 
 -(void)configTextField{
-    _textField.leftView = UIImageView.initBy(self.doorInputViewBaseStyleModel.leftViewIMG);
-    _textField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
-    _textField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
-    _textField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
-    _textField.returnKeyType = self.doorInputViewBaseStyleModel.returnKeyType;
-    _textField.keyboardAppearance = self.doorInputViewBaseStyleModel.keyboardAppearance;
-    _textField.textColor = self.doorInputViewBaseStyleModel.titleStrCor;
-    _textField.useCustomClearButton = self.doorInputViewBaseStyleModel.useCustomClearButton;
-    _textField.isShowDelBtn = self.doorInputViewBaseStyleModel.isShowDelBtn;
-    _textField.rightViewOffsetX = self.doorInputViewBaseStyleModel.rightViewOffsetX ? : JobsWidth(8);// 删除按钮的偏移量
-    _textField.requestParams = self.textFieldInputModel;
-    _textField.placeholderColor = self.doorInputViewBaseStyleModel.placeholderColor;
-    _textField.placeholderFont = self.doorInputViewBaseStyleModel.placeholderFont;
-    _textField.leftViewOffsetX = self.doorInputViewBaseStyleModel.leftViewOffsetX ? :  JobsWidth(17);
-    _textField.animationColor = self.doorInputViewBaseStyleModel.animationColor ? : Cor3;
-    _textField.placeHolderAlignment = self.doorInputViewBaseStyleModel.placeHolderAlignment ? : NSTextAlignmentLeft;
-    _textField.placeHolderOffset = self.doorInputViewBaseStyleModel.placeHolderOffset ? : JobsWidth(39);
-    _textField.moveDistance = self.doorInputViewBaseStyleModel.moveDistance ? : JobsWidth(35);
-    _textField.fieldEditorOffset = self.doorInputViewBaseStyleModel.fieldEditorOffset ? : JobsWidth(50);
+    _magicTextField.leftView = UIImageView.initBy(self.doorInputViewBaseStyleModel.leftViewIMG);
+    _magicTextField.leftViewMode = self.doorInputViewBaseStyleModel.leftViewMode;
+    _magicTextField.placeholder = self.doorInputViewBaseStyleModel.placeholder;
+    _magicTextField.keyboardType = self.doorInputViewBaseStyleModel.keyboardType;
+    _magicTextField.returnKeyType = self.doorInputViewBaseStyleModel.returnKeyType;
+    _magicTextField.keyboardAppearance = self.doorInputViewBaseStyleModel.keyboardAppearance;
+    _magicTextField.textColor = self.doorInputViewBaseStyleModel.titleStrCor;
+    _magicTextField.useCustomClearButton = self.doorInputViewBaseStyleModel.useCustomClearButton;
+    _magicTextField.isShowDelBtn = self.doorInputViewBaseStyleModel.isShowDelBtn;
+    _magicTextField.rightViewOffsetX = self.doorInputViewBaseStyleModel.rightViewOffsetX ? : JobsWidth(8);// 删除按钮的偏移量
+    _magicTextField.requestParams = self.textFieldInputModel;
+    _magicTextField.placeholderColor = self.doorInputViewBaseStyleModel.placeholderColor;
+    _magicTextField.placeholderFont = self.doorInputViewBaseStyleModel.placeholderFont;
+    _magicTextField.leftViewOffsetX = self.doorInputViewBaseStyleModel.leftViewOffsetX ? :  JobsWidth(17);
+    _magicTextField.animationColor = self.doorInputViewBaseStyleModel.animationColor ? : Cor3;
+    _magicTextField.placeHolderAlignment = self.doorInputViewBaseStyleModel.placeHolderAlignment ? : NSTextAlignmentLeft;
+    _magicTextField.placeHolderOffset = self.doorInputViewBaseStyleModel.placeHolderOffset ? : JobsWidth(39);
+    _magicTextField.moveDistance = self.doorInputViewBaseStyleModel.moveDistance ? : JobsWidth(35);
+    _magicTextField.fieldEditorOffset = self.doorInputViewBaseStyleModel.fieldEditorOffset ? : JobsWidth(50);
 }
 
 -(void)block:(JobsMagicTextField *)textField
@@ -114,15 +113,15 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(void)changeTextFieldAnimationColor:(BOOL)toRegisterBtnSelected{
-    self.textField.animationColor = toRegisterBtnSelected ? Cor3 : Cor3;
+    self.magicTextField.animationColor = toRegisterBtnSelected ? Cor3 : Cor3;
 }
 
 -(JobsMagicTextField *_Nullable)getTextField{
-    return _textField;
+    return self.magicTextField;
 }
 
 -(NSString *_Nullable)textFieldValue{
-    return _textField.text;
+    return self.magicTextField.text;
 }
 #pragma mark —— lazyLoad
 -(UIButton *)countDownBtn{
@@ -177,11 +176,11 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
         }];
     }return _countDownBtn;
 }
-
--(JobsMagicTextField *)textField{
-    if (!_textField) {
+@synthesize magicTextField = _magicTextField;
+-(JobsMagicTextField *)magicTextField{
+    if (!_magicTextField) {
         @jobs_weakify(self)
-        _textField = jobsMakeMagicTextField(^(__kindof JobsMagicTextField * _Nullable textField) {
+        _magicTextField = jobsMakeMagicTextField(^(__kindof JobsMagicTextField * _Nullable textField) {
             @jobs_strongify(self)
             textField.delegate = self;
             [textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
@@ -197,7 +196,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
     //            make.right.equalTo(self.countDownBtn.mas_left);
             }];
         });
-    }return _textField;
+    }return _magicTextField;
 }
 
 @end
