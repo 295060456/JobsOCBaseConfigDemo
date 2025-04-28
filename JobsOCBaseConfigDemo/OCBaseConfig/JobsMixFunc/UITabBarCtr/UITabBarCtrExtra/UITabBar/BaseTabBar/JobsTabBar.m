@@ -211,7 +211,7 @@ Prop_copy()NSMutableArray <__kindof LOTAnimationView *>*lOTAnimationViews;
         _tabBarButtons = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
             for (UIView *subview in self.subviews) {
-                if([subview isKindOfClass:NSClassFromString(@"UITabBarButton")]){
+                if([subview isKindOfClass:NSClassFromString(UITabBarButton)]){
                     data.add(subview);
                 }
             }
@@ -238,6 +238,7 @@ Prop_copy()NSMutableArray <__kindof LOTAnimationView *>*lOTAnimationViews;
         });
     }return _lOTAnimationViews;
 }
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 -(UIViewModel *)viewModel{
     if(!_viewModel){

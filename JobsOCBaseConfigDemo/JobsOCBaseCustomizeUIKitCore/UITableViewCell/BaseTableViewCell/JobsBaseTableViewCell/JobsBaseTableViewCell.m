@@ -15,7 +15,8 @@ Prop_assign()BOOL isSetTBVCellOffset;
 @end
 
 @implementation JobsBaseTableViewCell
-UITableViewCellProtoco_Synthesize_part2
+/// UITableViewCellProtocol
+UITableViewCellProtocol_Synthesize_part2
 #pragma mark —— UITableViewCellProtocol
 /// 4种UITableViewCell系统样式类型
 /// UITableViewCellStyleDefault ：左边有一个显示图片的imageView和一个标题textLabel。
@@ -277,9 +278,10 @@ UITableViewCellProtoco_Synthesize_part2
         }return JobsWidth(50);/// 没有数据源传入的时候的缺省值
     };
 }
-#pragma mark —— @synthesize UIViewModelProtocol
+/// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
 -(void)setIndexPath:(NSIndexPath *)indexPath{
     _indexPath = indexPath;

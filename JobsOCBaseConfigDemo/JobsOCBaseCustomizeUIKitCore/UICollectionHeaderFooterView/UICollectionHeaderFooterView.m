@@ -8,13 +8,11 @@
 #import "UICollectionHeaderFooterView.h"
 
 @interface UICollectionHeaderFooterView ()
-/// UI
-
-/// Data
 
 @end
 
 @implementation UICollectionHeaderFooterView
+/// UIViewModelProtocol
 @synthesize imageViewFrame = _imageViewFrame;
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
@@ -68,9 +66,9 @@ static dispatch_once_t static_collectionHeaderFooterViewOnceToken;
         _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.image = JobsBuddleIMG(@"bundle",
-                                          @"Others",
-                                          nil,
-                                          @"个人中心背景图");
+                                            @"Others",
+                                            nil,
+                                            @"个人中心背景图");
             imageView.clipsToBounds = YES;
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             self.addSubview(imageView);

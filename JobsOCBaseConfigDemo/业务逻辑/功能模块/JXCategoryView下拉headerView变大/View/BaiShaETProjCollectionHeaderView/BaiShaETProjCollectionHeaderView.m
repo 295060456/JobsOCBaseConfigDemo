@@ -15,7 +15,6 @@ Prop_strong()UILabel *leftLab;
 Prop_strong()UILabel *rightLab;
 Prop_strong()JobsAnimationLabel *animationLab;
 /// Data
-Prop_strong()NSMutableAttributedString *attributedStringData;
 Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
 Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -25,7 +24,9 @@ Prop_copy()NSMutableArray <NSMutableArray <JobsRichTextConfig *>*>*richTextConfi
 @end
 
 @implementation BaiShaETProjCollectionHeaderView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
+/// UIViewModelProtocol
 @synthesize imageViewFrame = _imageViewFrame;
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
@@ -128,16 +129,15 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UIButton *)userHeaderBtn{
     if (!_userHeaderBtn) {
         @jobs_weakify(self)
-        _userHeaderBtn = UIButton.new;
-        _userHeaderBtn.jobsResetBtnTitle(self.readUserInfo.userName
-                                         .add(@"    ")
-                                         .add(JobsInternationalization(@"VIP 0")));
+        _userHeaderBtn = UIButton.jobsInit()
+        .jobsResetBtnTitle(self.readUserInfo.userName
+                                         .add(JobsSpace)
+                                         .add(JobsInternationalization(@"VIP").add(JobsSpace).add(@"0")))
+        .jobsResetBtnImage(JobsIMG(@"默认头像"))
+        .jobsResetBtnTitleCor(HEXCOLOR(0xAE8330))
+        .jobsResetBtnTitleFont(UIFontWeightBoldSize(16));
         JobsLog(@"%@",_userHeaderBtn.titleForNormalState);
-        _userHeaderBtn.jobsResetBtnImage(JobsIMG(@"默认头像"));
-        _userHeaderBtn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
-        _userHeaderBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(16));
-        [self addSubview:_userHeaderBtn];
-        [_userHeaderBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_userHeaderBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self).offset(JobsWidth(43));
         }];
@@ -161,8 +161,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             progressView.progressTintColor = HEXCOLOR(0xAE8330);
             progressView.trackTintColor = HEXCOLOR(0xEEE2C8);
             progressView.progressViewStyle = UIProgressViewStyleDefault;
-            [self addSubview:progressView];
-            [progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(progressView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(JobsWidth(4));
                 make.width.mas_equalTo(JobsWidth(343));
                 make.centerX.equalTo(self);
@@ -190,14 +189,31 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             }
             [self.richTextMutArr insertObject:[NSString stringWithFormat:@"%f", value] atIndex:1];
             
-            label.attributedText = self.attributedStringData;
+            label.attributedText = [self richTextWithDataConfigMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+                data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                    @jobs_strongify(self)
+                    data1.font = UIFontWeightRegularSize(12);
+                    data1.textCor = HEXCOLOR(0x3D4A58);
+                    data1.targetString = self.richTextMutArr[0];
+                }))
+                .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                    @jobs_strongify(self)
+                    data1.font = UIFontWeightBoldSize(18);
+                    data1.textCor = HEXCOLOR(0x3D4A58);
+                    data1.targetString = self.richTextMutArr[1];
+                }))
+                .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                    @jobs_strongify(self)
+                    data1.font = UIFontWeightRegularSize(12);
+                    data1.textCor = HEXCOLOR(0x3D4A58);
+                    data1.targetString = self.richTextMutArr[2];
+                }));
+            })paragraphStyle:nil];
             
             label.value = value;
             label.lastValue = (label.value * 3);
         }];
-        
-        [self addSubview:_animationLab];
-        [_animationLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_animationLab) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.progressView).offset(JobsWidth(-12));
             make.left.equalTo(self.progressView);
         }];
@@ -213,8 +229,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             label.textColor = HEXCOLOR(0x757575);
             label.font = UIFontWeightRegularSize(12);
             label.textAlignment = NSTextAlignmentCenter;
-            [self addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.animationLab);
                 make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
                 make.height.mas_equalTo(JobsWidth(12));
@@ -232,8 +247,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             label.textColor = HEXCOLOR(0x757575);
             label.textAlignment = NSTextAlignmentCenter;
             label.font = UIFontWeightRegularSize(12);
-            [self addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(self).offset(JobsWidth(-16));
                 make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
                 make.height.mas_equalTo(JobsWidth(12));
@@ -263,40 +277,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         if(@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
-        [self addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(58)));
             make.bottom.equalTo(self).offset(JobsWidth(-24));
         }];
 
     }return _tableView;
-}
-
--(NSMutableAttributedString *)attributedStringData{
-    if (!_attributedStringData) {
-        @jobs_weakify(self)
-        _attributedStringData = [self richTextWithDataConfigMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                @jobs_strongify(self)
-                data1.font = UIFontWeightRegularSize(12);
-                data1.textCor = HEXCOLOR(0x3D4A58);
-                data1.targetString = self.richTextMutArr[0];
-            }));
-            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                @jobs_strongify(self)
-                data1.font = UIFontWeightBoldSize(18);
-                data1.textCor = HEXCOLOR(0x3D4A58);
-                data1.targetString = self.richTextMutArr[1];
-            }));
-            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
-                @jobs_strongify(self)
-                data1.font = UIFontWeightRegularSize(12);
-                data1.textCor = HEXCOLOR(0x3D4A58);
-                data1.targetString = self.richTextMutArr[2];
-            }));
-        })paragraphStyle:nil];
-    }return _attributedStringData;
 }
 
 -(NSMutableArray<NSString *> *)richTextMutArr{
@@ -332,12 +319,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_richTextMutArr2) {
         _richTextMutArr2 = jobsMakeMutArr(^(__kindof NSMutableArray <NSMutableArray<NSString *>*>*_Nullable data) {
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data1) {
-                data1.add(@"7.00 ");
-                data1.add(@"/ ".add(@"40,000.00"));
+                data1.add(@"7.00 ")
+                .add(@"/ ".add(@"40,000.00"));
             }));
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data1) {
-                data1.add(@"1.00 ");
-                data1.add(@"/ ".add(@"20,000.00"));
+                data1.add(@"1.00 ")
+                .add(@"/ ".add(@"20,000.00"));
             }));
         });
     }return _richTextMutArr2;

@@ -12,7 +12,9 @@
 @end
 
 @implementation JobsBaseCollectionViewCell
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
+/// UITextFieldProtocol
 UITextFieldProtocol_synthesize_part2
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -26,20 +28,13 @@ UITextFieldProtocol_synthesize_part2
 #pragma mark —— UICollectionViewCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    JobsBaseCollectionViewCell *cell = (JobsBaseCollectionViewCell *)[collectionView collectionViewCellClass:JobsBaseCollectionViewCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsBaseCollectionViewCell.class,@"");
-        cell = (JobsBaseCollectionViewCell *)[collectionView collectionViewCellClass:JobsBaseCollectionViewCell.class forIndexPath:indexPath];
-    }
-    
+    JobsBaseCollectionViewCell *cell = JobsRegisterDequeueCollectionViewCell(JobsBaseCollectionViewCell);
     // UICollectionViewCell圆切角
 //    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
 //    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
 //    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
 //    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
-
     cell.indexPath = indexPath;
-    
     return cell;
 }
 #pragma mark —— 复写父类相关方法和属性

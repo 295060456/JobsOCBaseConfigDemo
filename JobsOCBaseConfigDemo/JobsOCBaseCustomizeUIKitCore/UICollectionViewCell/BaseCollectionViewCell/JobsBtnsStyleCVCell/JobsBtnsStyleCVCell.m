@@ -18,9 +18,10 @@ Prop_strong()UIButtonModel *rightBtnVM;
 @end
 
 @implementation JobsBtnsStyleCVCell
-#pragma mark —— @synthesize UIViewModelProtocol
+/// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
 -(void)layoutSubviews{
     [super layoutSubviews];
@@ -28,20 +29,13 @@ BaseLayerProtocol_synthesize_part3
 #pragma mark —— UICollectionViewCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    JobsBtnsStyleCVCell *cell = (JobsBtnsStyleCVCell *)[collectionView collectionViewCellClass:JobsBtnsStyleCVCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsBtnsStyleCVCell.class,@"");
-        cell = (JobsBtnsStyleCVCell *)[collectionView collectionViewCellClass:JobsBtnsStyleCVCell.class forIndexPath:indexPath];
-    }
-    
+    JobsBtnsStyleCVCell *cell = JobsRegisterDequeueCollectionViewCell(JobsBtnsStyleCVCell);
     // UICollectionViewCell圆切角
 //    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
 //    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
 //    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
 //    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
-
     cell.indexPath = indexPath;
-    
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -81,8 +75,7 @@ BaseLayerProtocol_synthesize_part3
                 JobsLog(@"");
             });
         _leftBtn.tag = 1;
-        [self.contentView addSubview:_leftBtn];
-        [_leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_leftBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.contentView);
             make.left.equalTo(self.contentView).offset(self.leftBtnVM.jobsOffsetX);
             make.height.mas_equalTo(self.leftBtnVM.jobsWidth);
@@ -134,8 +127,7 @@ BaseLayerProtocol_synthesize_part3
         }).onLongPressGestureBy(^(id data){
             JobsLog(@"");
         });_rightBtn.tag = 2;
-        [self.contentView addSubview:_rightBtn];
-        [_rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_rightBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.contentView);
             make.right.equalTo(self.contentView).offset(-self.rightBtnVM.jobsOffsetX);
             make.height.mas_equalTo(self.rightBtnVM.jobsHeight);

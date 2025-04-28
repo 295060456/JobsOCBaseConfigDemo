@@ -12,8 +12,11 @@
 @end
 
 @implementation BaseCollectionReusableView
+/// UITextFieldProtocol
 UITextFieldProtocol_synthesize_part2
+/// UIPictureAndBackGroundCorProtocol
 UIPictureAndBackGroundCorProtocol_synthesize
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {

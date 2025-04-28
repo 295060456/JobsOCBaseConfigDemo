@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
+#import "DefineProperty.h"
 #import "BaseProtocol.h"
 #import "BaseViewProtocol.h"
 #import "UIViewModelProtocol.h"
@@ -26,8 +27,8 @@ BaseViewProtocol,
 AppToolsProtocol
 >
 
-@property(nonatomic,strong,nullable)JobsNavBarConfig *navBarConfig;
-@property(nonatomic,strong,nullable)JobsNavBar *navBar;
+Prop(nullable)JobsNavBarConfig *navBarConfig;
+Prop(nullable)JobsNavBar *navBar;
 
 @end
 

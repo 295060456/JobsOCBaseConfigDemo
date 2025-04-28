@@ -259,7 +259,7 @@ willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // 判断系统是否是 iOS13 及以上版本
     if (@available(iOS 13.0, *)) {
         for (UIView *subView in self.tableView.subviews) {
-            if ([subView isKindOfClass:NSClassFromString(@"_UITableViewCellSwipeContainerView")] &&
+            if ([subView isKindOfClass:NSClassFromString(UITableViewCellSwipeContainerView)] &&
                 [subView.subviews count] >= 1) {
                 // 修改图片
                 UIView *remarkContentView = subView.subviews.firstObject;
@@ -270,7 +270,7 @@ willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // 判断系统是否是 iOS11 及以上版本
     if (@available(iOS 11.0, *)) {
         for (UIView *subView in self.tableView.subviews) {
-            if ([subView isKindOfClass:NSClassFromString(@"UISwipeActionPullView")] &&
+            if ([subView isKindOfClass:NSClassFromString(UISwipeActionPullView)] &&
                 [subView.subviews count] >= 1) {
                 // 修改图片
                 UIView *remarkContentView = subView;
@@ -281,7 +281,7 @@ willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath {
     // iOS11 以下的版本
     JobsIMChatInfoTBVCell *cell = [self.tableView cellForRowAtIndexPath:editingIndexPath];
     for (UIView *subView in cell.subviews) {
-        if ([subView isKindOfClass:NSClassFromString(@"UITableViewCellDeleteConfirmationView")] &&
+        if ([subView isKindOfClass:NSClassFromString(UITableViewCellDeleteConfirmationView)] &&
             [subView.subviews count] >= 1) {
             // 修改图片
             UIView *remarkContentView = subView;
@@ -355,7 +355,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                         data.userIconIMG = JobsBuddleIMG(@"bundle", @"头像", nil, @"头像_1");//我自己的头像
                         data.identification = @"我是我自己";
                         data.userNameStr = @"Jobs";
-                    }));[self.tableView reloadData];
+                    }));self.tableView.reloadDatas();
                 }
                 /// 模拟服务器请求对方数据
                 @jobs_weakify(self)
@@ -365,8 +365,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 }];
             }else{}
         }];
-        [self.view addSubview:_inputview];
-        [_inputview mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_inputview) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsIMInputviewHeight());
             make.left.right.equalTo(self.view);
             JobsLog(@"%f",JobsBottomSafeAreaHeight());

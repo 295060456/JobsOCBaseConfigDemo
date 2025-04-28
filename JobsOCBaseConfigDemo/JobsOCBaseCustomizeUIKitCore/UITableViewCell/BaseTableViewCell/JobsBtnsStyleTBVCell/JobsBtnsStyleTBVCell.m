@@ -18,9 +18,10 @@ Prop_strong()UIButtonModel *rightBtnVM;
 @end
 
 @implementation JobsBtnsStyleTBVCell
-#pragma mark —— @synthesize UIViewModelProtocol
+/// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
 -(void)layoutSubviews{
     [super layoutSubviews];
@@ -29,11 +30,8 @@ BaseLayerProtocol_synthesize_part3
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsBtnsStyleTBVCell *cell = (JobsBtnsStyleTBVCell *)tableView.tableViewCellClass(JobsBtnsStyleTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsBtnsStyleTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }return cell;
+        JobsBtnsStyleTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsBtnsStyleTBVCell);
+        return cell;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -76,8 +74,7 @@ BaseLayerProtocol_synthesize_part3
                 JobsLog(@"");
             });
         _leftBtn.tag = 1;
-        [self.contentView addSubview:_leftBtn];
-        [_leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_leftBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.contentView);
             make.left.equalTo(self.contentView).offset(self.leftBtnVM.jobsOffsetX);
             make.height.mas_equalTo(self.leftBtnVM.jobsHeight);
@@ -133,8 +130,7 @@ BaseLayerProtocol_synthesize_part3
                 JobsLog(@"");
             });;
         _rightBtn.tag = 2;
-        [self.contentView addSubview:_rightBtn];
-        [_rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_rightBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.contentView);
             make.right.equalTo(self.contentView).offset(-self.rightBtnVM.jobsOffsetX);
             make.height.mas_equalTo(self.rightBtnVM.jobsHeight);

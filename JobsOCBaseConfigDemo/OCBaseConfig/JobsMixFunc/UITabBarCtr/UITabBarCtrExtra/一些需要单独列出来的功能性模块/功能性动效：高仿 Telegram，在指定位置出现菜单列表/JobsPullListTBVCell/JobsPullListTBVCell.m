@@ -15,11 +15,8 @@
 
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsPullListTBVCell *cell = (JobsPullListTBVCell *)tableView.tableViewCellClass(JobsPullListTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsPullListTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }return cell;
+        JobsPullListTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsPullListTBVCell);
+        return cell;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】

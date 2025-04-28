@@ -14,6 +14,7 @@ Prop_strong()JobsHotLabelByMultiLine *hotLabel;
 @end
 
 @implementation JobsFiltrationView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 /// 单例化和销毁

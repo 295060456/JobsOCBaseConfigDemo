@@ -12,17 +12,16 @@
 @end
 
 @implementation JobsSearchTBVCell
+/// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
 #pragma mark —— BaseCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsSearchTBVCell *cell = (JobsSearchTBVCell *)tableView.tableViewCellClass(JobsSearchTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsSearchTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }return cell;
+        JobsSearchTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsSearchTBVCell);
+        return cell;
     };
 }
 
@@ -139,8 +138,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);
         _collectionView.dataLink(self);
         _collectionView.registerCollectionViewClass();
-        [self.contentView addSubview:_collectionView];
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
         }];
     }return _collectionView;

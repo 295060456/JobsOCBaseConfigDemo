@@ -8,23 +8,34 @@
 #import "UIViewModel.h"
 
 @implementation UIViewModel
-#pragma mark —— UIViewModelProtocol
-UIViewModelOthersProtocol_synthesize /// UIViewModelOthersProtocol
-UIPictureAndBackGroundCorProtocol_synthesize /// UIPictureAndBackGroundCorProtocol
-UILocationProtocol_synthesize /// UILocationProtocol
-UIMarkProtocol_synthesize_part1 /// UIMarkProtocol
-BaseButtonProtocol_synthesize_part2 /// BaseButtonProtocol
-UITextModelProtocol_synthesize_part2 /// UITextModelProtocol
-UITextModelProtocol_synthesize_part3 /// UITextModelProtocol
-BaseViewProtocol_synthesize /// BaseViewProtocol
-BaseProtocol_synthesize /// BaseProtocol
-RACProtocol_synthesize /// RACProtocol
-UIViewModelProtocol_synthesize_part1 /// UIViewModelProtocol
-BaseLayerProtocol_synthesize_part2 /// BaseLayerProtocol
-BaseLayerProtocol_synthesize_part3 /// BaseLayerProtocol
-UITextFieldProtocol_synthesize_part2 /// UITextFieldProtocol
-AppToolsProtocol_synthesize /// AppToolsProtocol
-
+/// UIViewModelOthersProtocol
+UIViewModelOthersProtocol_synthesize
+/// UIPictureAndBackGroundCorProtocol
+UIPictureAndBackGroundCorProtocol_synthesize
+/// UILocationProtocol
+UILocationProtocol_synthesize
+/// UIMarkProtocol
+UIMarkProtocol_synthesize_part1
+/// BaseButtonProtocol
+BaseButtonProtocol_synthesize_part2
+/// UITextModelProtocol
+UITextModelProtocol_synthesize_part2
+UITextModelProtocol_synthesize_part3
+/// BaseViewProtocol
+BaseViewProtocol_synthesize
+/// BaseProtocol
+BaseProtocol_synthesize
+/// RACProtocol
+RACProtocol_synthesize
+/// UIViewModelProtocol
+UIViewModelProtocol_synthesize_part1
+/// BaseLayerProtocol
+BaseLayerProtocol_synthesize_part2
+BaseLayerProtocol_synthesize_part3
+/// UITextFieldProtocol
+UITextFieldProtocol_synthesize_part2
+/// AppToolsProtocol
+AppToolsProtocol_synthesize
 #pragma mark —— UIViewModelProtocol
 -(UITextModel *)textModel{
     if (!_textModel) {

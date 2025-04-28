@@ -15,6 +15,7 @@ Prop_strong()BaseButton *subTitleBtn;
 @end
 
 @implementation JobsTBVHeaderFooterView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -53,8 +54,7 @@ Prop_strong()BaseButton *subTitleBtn;
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self).offset(self.viewModel.textModel.offsetXForEach);
                 make.top.bottom.equalTo(self);
             }];
@@ -74,9 +74,8 @@ Prop_strong()BaseButton *subTitleBtn;
 
 -(BaseButton *)subTitleBtn{
     if (!_subTitleBtn) {
-        _subTitleBtn = BaseButton.new;
-        [self addSubview:_subTitleBtn];
-        [_subTitleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        _subTitleBtn = BaseButton.jobsInit();
+        [self.addSubview(_subTitleBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(self.viewModel.subTextModel.offsetXForEach);
             make.top.bottom.equalTo(self);
         }];

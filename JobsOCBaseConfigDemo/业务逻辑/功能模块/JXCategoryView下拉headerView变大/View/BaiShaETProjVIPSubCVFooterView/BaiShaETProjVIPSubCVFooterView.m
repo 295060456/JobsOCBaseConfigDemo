@@ -14,9 +14,8 @@ Prop_strong()BaseLabel *titleLab;
 @end
 
 @implementation BaiShaETProjVIPSubCVFooterView
-
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
-
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
@@ -42,17 +41,18 @@ Prop_strong()BaseLabel *titleLab;
 #pragma mark —— lazyLoad
 -(BaseLabel *)titleLab{
     if (!_titleLab) {
-        _titleLab = BaseLabel.new;
-        _titleLab.text = self.viewModel.textModel.text;
-        _titleLab.font = self.viewModel.textModel.font ? : UIFontWeightBoldSize(14);
-        _titleLab.textColor = self.viewModel.textModel.textCor ? : HEXCOLOR(0xAE8330);
-        _titleLab.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:_titleLab];
-        [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
+        @jobs_weakify(self)
+        _titleLab = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
+            @jobs_strongify(self)
+            label.text = self.viewModel.textModel.text;
+            label.font = self.viewModel.textModel.font ? : UIFontWeightBoldSize(14);
+            label.textColor = self.viewModel.textModel.textCor ? : HEXCOLOR(0xAE8330);
+            label.textAlignment = NSTextAlignmentCenter;
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
+        });
     }return _titleLab;
 }
-
 
 @end

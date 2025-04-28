@@ -12,6 +12,7 @@
 @end
 
 @implementation MSCommentTableHeaderFooterView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -25,7 +26,7 @@
     // 解决当UITableViewHeaderFooterView悬浮的时候背景白色的问题（设置成透明色）
     // 遍历子视图，找到UIVisualEffectView
     for (UIView *subview in self.subviews) {
-        if([subview isKindOfClass:NSClassFromString(@"_UISystemBackgroundView")]){
+        if([subview isKindOfClass:NSClassFromString(UISystemBackgroundView)]){
             // subview.backgroundColor = JobsClearColor; 设置成透明色，无效
             subview.jobsVisible = NO;
         }

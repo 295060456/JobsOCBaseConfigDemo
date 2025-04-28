@@ -24,11 +24,7 @@ UILocationProtocol_synthesize
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    TreeClassItemCell *cell = (TreeClassItemCell *)[collectionView collectionViewCellClass:TreeClassItemCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(TreeClassItemCell.class,@"");
-        cell = (TreeClassItemCell *)[collectionView collectionViewCellClass:TreeClassItemCell.class forIndexPath:indexPath];
-    }
+    TreeClassItemCell *cell = JobsRegisterDequeueCollectionViewCell(TreeClassItemCell);
     cell.indexPath = indexPath;
     return cell;
 }

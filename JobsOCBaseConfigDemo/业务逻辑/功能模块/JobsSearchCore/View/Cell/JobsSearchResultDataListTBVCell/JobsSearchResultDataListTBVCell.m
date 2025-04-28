@@ -15,14 +15,10 @@
 
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsSearchResultDataListTBVCell *cell = (JobsSearchResultDataListTBVCell *)tableView.tableViewCellClass(JobsSearchResultDataListTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsSearchResultDataListTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    //        cell.contentView.backgroundColor = JobsRandomColor;
-            cell.imageView.image = JobsIMG(@"放大镜");
-            cell.tapGR.enabled = YES;
-        }return cell;
+        JobsSearchResultDataListTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsSearchResultDataListTBVCell);
+        cell.imageView.image = JobsIMG(@"放大镜");
+        cell.tapGR.enabled = YES;
+        return cell;
     };
 }
 
@@ -50,7 +46,7 @@
  *  此时需要在cell子类里面重写touchesBegan 或者手势响应 方法以便触发
  */
 -(void)tapGRHandleSingleFingerAction:(UITapGestureRecognizer *_Nullable)sender{
-    self.objBlock(self.textLabel.text);
+    if(self.objBlock) self.objBlock(self.textLabel.text);
 }
 #pragma mark —— lazyLoad
 @synthesize tapGR = _tapGR;
@@ -61,7 +57,7 @@
         _tapGR.numberOfTouchesRequired = 1; //手指数
         _tapGR.numberOfTapsRequired = 1; //tap次数
         _tapGR.delegate = self;
-        [self addGestureRecognizer:self.tapGR];
+        self.addGesture(self.tapGR);
     }return _tapGR;
 }
 

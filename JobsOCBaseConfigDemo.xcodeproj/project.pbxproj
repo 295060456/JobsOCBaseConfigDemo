@@ -177,6 +177,8 @@
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
 		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
 		C58B19722DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */; };
+		C58B1D812DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */; };
+		C58B1D822DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */; };
 		C5BCC6292DB39BC400EFE4F3 /* ZMJHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6202DB39BC400EFE4F3 /* ZMJHeaderCell.m */; };
 		C5BCC62A2DB39BC400EFE4F3 /* ZMJTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6232DB39BC400EFE4F3 /* ZMJTaskCell.m */; };
 		C5BCC62B2DB39BC400EFE4F3 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC60E2DB39BC400EFE4F3 /* ScheduleCell.m */; };
@@ -1639,6 +1641,10 @@
 		C52417062DB61725008F9194 /* FMGameCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMGameCVCell.m; sourceTree = "<group>"; };
 		C58B196F2DBF59F1006163A3 /* JobsTextViewStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextViewStyleTBVCell.h; sourceTree = "<group>"; };
 		C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextViewStyleTBVCell.m; sourceTree = "<group>"; };
+		C58B1D7B2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextLabStyleCVCell.h; sourceTree = "<group>"; };
+		C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextLabStyleCVCell.m; sourceTree = "<group>"; };
+		C58B1D7E2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextViewStyleCVCell.h; sourceTree = "<group>"; };
+		C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextViewStyleCVCell.m; sourceTree = "<group>"; };
 		C5BCC5FB2DB39BC400EFE4F3 /* ChannelCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelCell.h; sourceTree = "<group>"; };
 		C5BCC5FC2DB39BC400EFE4F3 /* ChannelCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelCell.m; sourceTree = "<group>"; };
 		C5BCC5FE2DB39BC400EFE4F3 /* DateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateCell.h; sourceTree = "<group>"; };
@@ -5570,6 +5576,24 @@
 				C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */,
 			);
 			path = JobsTextViewStyleTBVCell;
+			sourceTree = "<group>";
+		};
+		C58B1D7D2DBF9A5F006163A3 /* JobsTextLabStyleCVCell */ = {
+			isa = PBXGroup;
+			children = (
+				C58B1D7B2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.h */,
+				C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */,
+			);
+			path = JobsTextLabStyleCVCell;
+			sourceTree = "<group>";
+		};
+		C58B1D802DBF9A5F006163A3 /* JobsTextViewStyleCVCell */ = {
+			isa = PBXGroup;
+			children = (
+				C58B1D7E2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.h */,
+				C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */,
+			);
+			path = JobsTextViewStyleCVCell;
 			sourceTree = "<group>";
 		};
 		C5BCC5FD2DB39BC400EFE4F3 /* ChannelCell */ = {
@@ -12785,6 +12809,8 @@
 		CE5A62B82CA82C2D006D67A7 /* BaseCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				C58B1D7D2DBF9A5F006163A3 /* JobsTextLabStyleCVCell */,
+				C58B1D802DBF9A5F006163A3 /* JobsTextViewStyleCVCell */,
 				CE5A62A82CA82C2D006D67A7 /* BaseCollectionViewCell */,
 				CE5A62AB2CA82C2D006D67A7 /* JobsBaseCollectionViewCell */,
 				CE5A62AE2CA82C2D006D67A7 /* JobsBtnsStyleCVCell */,
@@ -16830,6 +16856,8 @@
 				CE5A656F2CA83272006D67A7 /* BaseViewController.m in Sources */,
 				CE61AD552C9EAB26002DF138 /* RequestTool.m in Sources */,
 				84E19D0A2D9EDD4F00A9F793 /* JobsLaunchVC.m in Sources */,
+				C58B1D812DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m in Sources */,
+				C58B1D822DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m in Sources */,
 				CE5A65FA2CA83483006D67A7 /* TLTabBarAnimation.m in Sources */,
 				CE5A65FB2CA83483006D67A7 /* TransitionController.m in Sources */,
 				CE5A65FC2CA83483006D67A7 /* JobsPullListTBVCell.m in Sources */,

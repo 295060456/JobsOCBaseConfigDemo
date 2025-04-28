@@ -14,10 +14,12 @@ Prop_strong()BaseButton *btn;
 @end
 
 @implementation JobsBtnStyleTBVCell
-#pragma mark —— @synthesize UIViewModelProtocol
+/// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
+/// AppToolsProtocol
 AppToolsProtocol_synthesize
 @synthesize contentEdgeInsets = _contentEdgeInsets;
 -(void)layoutSubviews{
@@ -43,11 +45,8 @@ AppToolsProtocol_synthesize
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsBtnStyleTBVCell *cell = (JobsBtnStyleTBVCell *)tableView.tableViewCellClass(JobsBtnStyleTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsBtnStyleTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }return cell;
+        JobsBtnStyleTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsBtnStyleTBVCell);
+        return cell;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -164,8 +163,8 @@ AppToolsProtocol_synthesize
             x.selected = !x.selected;
             if(self.viewModel) x.resetByViewModel(self.viewModel,self.selected);
             if(self.buttonModel) x.resetByButtonModel(self.buttonModel,self.selected);
-        });self.contentView.addSubview(_btn);
-        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        });
+        [self.contentView.addSubview(_btn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(self.contentEdgeInsets);/// 如果这里用self.contentView，在某些情况下，约束会失灵。因为self.contentView的生命周期的缘故，还没有完全展开
         }];
     }return _btn;

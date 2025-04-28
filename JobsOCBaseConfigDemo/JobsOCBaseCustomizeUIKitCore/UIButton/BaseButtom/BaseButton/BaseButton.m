@@ -12,10 +12,17 @@
 @end
 
 @implementation BaseButton
+/// BaseProtocol
 BaseProtocol_synthesize
+/// RACProtocol
 RACProtocol_synthesize
+/// UIMarkProtocol_synthesize
 UIMarkProtocol_synthesize_part1
+/// BaseButtonProtocol
 BaseButtonProtocol_synthesize
+/// UIViewModelProtocol
+@synthesize imageViewFrame = _imageViewFrame;
+/// BaseViewProtocol
 @synthesize isAllowDrag = _isAllowDrag;
 #pragma mark —— Sys
 -(instancetype)init{
@@ -46,7 +53,7 @@ BaseButtonProtocol_synthesize
     [self resetSubViews];
     
     for (UIView *subview in self.subviews) {
-        if ([subview isKindOfClass:NSClassFromString(@"_UISystemBackgroundView")]) {
+        if ([subview isKindOfClass:NSClassFromString(UISystemBackgroundView)]) {
             subview.frame = self.bounds;
         }
     }

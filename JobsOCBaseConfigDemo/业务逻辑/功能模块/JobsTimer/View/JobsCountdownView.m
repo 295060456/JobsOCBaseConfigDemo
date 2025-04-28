@@ -24,6 +24,7 @@ Prop_strong()NSMutableParagraphStyle *paragraphStyle;
 @end
 
 @implementation JobsCountdownView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 -(void)dealloc{
     JobsLog(@"%@",JobsLocalFunc);
@@ -90,11 +91,11 @@ static dispatch_once_t static_countdownViewOnceToken;
 #pragma mark —— lazyLoad
 -(NSTimerManager *)nsTimerManager{
     if (!_nsTimerManager) {
+        @jobs_weakify(self)
         _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager *_Nullable data) {
             data.timerStyle = TimerStyle_anticlockwise;
             data.anticlockwiseTime = 30 * 60;
             data.timeInterval = 1;
-            @jobs_weakify(self)
             [data actionObjBlock:^(id data) {
                 @jobs_strongify(self)
                 if ([data isKindOfClass:UIButtonModel.class]) {
@@ -126,12 +127,13 @@ static dispatch_once_t static_countdownViewOnceToken;
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
+        @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
             label.text = JobsInternationalization(@"支付時間還有");
             label.font = UIFontWeightRegularSize(14);
             label.textColor = HEXCOLOR(0x757575);
-            [self addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self);
                 make.top.equalTo(self).offset(JobsWidth(28));
                 make.height.mas_equalTo(JobsWidth(14));
@@ -146,10 +148,9 @@ static dispatch_once_t static_countdownViewOnceToken;
         _countdownTimeLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
-                                                                   paragraphStyle:self.paragraphStyle];
+                                                       paragraphStyle:self.paragraphStyle];
             label.textAlignment = NSTextAlignmentCenter;
-            [self addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self);
                 make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(16));
                 make.height.mas_equalTo(JobsWidth(60));
@@ -167,21 +168,18 @@ static dispatch_once_t static_countdownViewOnceToken;
         data.font = UIFontWeightBoldSize(48);
         data.textCor = HEXCOLOR(0xAE8330);
         data.targetString = self.minutesStr;
-    }));
-    
-    _richTextConfigMutArr.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
+    }))
+    .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
         data.font = UIFontWeightRegularSize(12);
         data.textCor = HEXCOLOR(0x757575);
         data.targetString = JobsInternationalization(@"分");
-    }));
-    
-    _richTextConfigMutArr.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
+    }))
+    .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
         data.font = UIFontWeightBoldSize(48);
         data.textCor = HEXCOLOR(0xAE8330);
         data.targetString = self.secondStr;
-    }));
-    
-    _richTextConfigMutArr.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
+    }))
+    .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
         data.font = UIFontWeightRegularSize(12);
         data.textCor = HEXCOLOR(0x757575);
         data.targetString = JobsInternationalization(@"秒");
@@ -190,10 +188,10 @@ static dispatch_once_t static_countdownViewOnceToken;
 
 -(NSMutableArray<NSString *> *)richTextMutArr{
     JobsMutableArray(_richTextMutArr);
-    _richTextMutArr.add(self.minutesStr);
-    _richTextMutArr.add(JobsInternationalization(@"分"));
-    _richTextMutArr.add(self.secondStr);
-    _richTextMutArr.add(JobsInternationalization(@"秒"));
+    _richTextMutArr.add(self.minutesStr)
+    .add(JobsInternationalization(@"分"))
+    .add(self.secondStr)
+    .add(JobsInternationalization(@"秒"));
     return _richTextMutArr;
 }
 

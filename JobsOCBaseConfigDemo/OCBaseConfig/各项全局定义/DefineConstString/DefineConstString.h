@@ -8,6 +8,56 @@
 #import <Foundation/Foundation.h>
 ///
 FOUNDATION_EXTERN const NSRange NSRangeZero;
+/// SDK内部类
+FOUNDATION_EXTERN NSString *_Nonnull const UISystemBackgroundView;
+FOUNDATION_EXTERN NSString *_Nonnull const UITableViewHeaderFooterViewBackground;
+FOUNDATION_EXTERN NSString *_Nonnull const UIScrollViewScrollIndicator;
+FOUNDATION_EXTERN NSString *_Nonnull const UIBarBackground;
+FOUNDATION_EXTERN NSString *_Nonnull const UINavigationBarContentView;
+FOUNDATION_EXTERN NSString *_Nonnull const UITableViewCellSwipeContainerView;
+FOUNDATION_EXTERN NSString *_Nonnull const UISwipeActionPullView;
+FOUNDATION_EXTERN NSString *_Nonnull const UITableViewCellDeleteConfirmationView;
+FOUNDATION_EXTERN NSString *_Nonnull const UITabBarButtonLabel;
+FOUNDATION_EXTERN NSString *_Nonnull const UITabBarSwappableImageView;
+FOUNDATION_EXTERN NSString *_Nonnull const UITAMICAdaptorView;
+FOUNDATION_EXTERN NSString *_Nonnull const UITextContainerView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIBackdropView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIBackdropEffectView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIStatusBar;
+FOUNDATION_EXTERN NSString *_Nonnull const UIStatusBarModern;
+FOUNDATION_EXTERN NSString *_Nonnull const UIStatusBarData;
+FOUNDATION_EXTERN NSString *_Nonnull const UIStatusBarRegion;
+FOUNDATION_EXTERN NSString *_Nonnull const UIStatusBarCellularItem;
+FOUNDATION_EXTERN NSString *_Nonnull const UIStatusBarWifiItem;
+FOUNDATION_EXTERN NSString *_Nonnull const UIStatusBarBatteryItem;
+FOUNDATION_EXTERN NSString *_Nonnull const UITextEffectsWindow;
+FOUNDATION_EXTERN NSString *_Nonnull const UIRemoteKeyboardWindow;
+FOUNDATION_EXTERN NSString *_Nonnull const UIRemoteKeyboardPlaceholderView;
+FOUNDATION_EXTERN NSString *_Nonnull const UITableViewCellContentView;
+FOUNDATION_EXTERN NSString *_Nonnull const UITableViewHeaderFooterContentView;
+FOUNDATION_EXTERN NSString *_Nonnull const UICollectionViewPlaceholderView;
+FOUNDATION_EXTERN NSString *_Nonnull const UICollectionViewCellActionsView;
+FOUNDATION_EXTERN NSString *_Nonnull const UICollectionViewListCellSeparator;
+FOUNDATION_EXTERN NSString *_Nonnull const UINavigationBarLargeTitleView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIButtonBarStackView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIButtonBarButton;
+FOUNDATION_EXTERN NSString *_Nonnull const UIButtonBar;
+FOUNDATION_EXTERN NSString *_Nonnull const UIToolbarContentView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIToolbarNavigationButton;
+FOUNDATION_EXTERN NSString *_Nonnull const UIToolbarButton;
+FOUNDATION_EXTERN NSString *_Nonnull const UIInterfaceActionGroupView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIInterfaceActionRepresentationView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIInterfaceActionSeparatorView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIAlertControllerView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIAlertControllerShadowedScrollView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIAlertControllerTextFieldView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIContextMenuContainerView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIContextMenuActionsListView;
+FOUNDATION_EXTERN NSString *_Nonnull const UIPlatterMenuController;
+FOUNDATION_EXTERN NSString *_Nonnull const UILegacyPopoverController;
+FOUNDATION_EXTERN NSString *_Nonnull const UIPopoverView;
+FOUNDATION_EXTERN NSString *_Nonnull const UITableViewCellEditControl;
+FOUNDATION_EXTERN NSString *_Nonnull const UITabBarButton;
 /// 系统环境一览
 FOUNDATION_EXTERN NSString *_Nonnull const 应用程序的发布版本号;
 FOUNDATION_EXTERN NSString *_Nonnull const APP编译构建的版本号;

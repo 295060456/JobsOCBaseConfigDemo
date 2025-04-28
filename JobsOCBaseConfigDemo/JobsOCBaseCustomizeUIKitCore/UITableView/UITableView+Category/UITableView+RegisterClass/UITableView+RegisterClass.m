@@ -15,7 +15,7 @@
     /// 以此类推
 }
 /// 注册 HeaderFooterView 及其子类 jobsByClassBlock
--(jobsByClassAndSaltStrBlock)registerHeaderFooterViewClass{
+-(jobsByClassAndSaltStrBlock _Nonnull)registerHeaderFooterViewClass{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
@@ -24,7 +24,7 @@
     };
 }
 /// 注册 UITableViewCell 及其子类
--(jobsByClassAndSaltStrBlock)registerTableViewCellClass{
+-(jobsByClassAndSaltStrBlock _Nonnull)registerTableViewCellClass{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
@@ -34,7 +34,7 @@
 }
 #pragma mark —— 取值
 /// 不使用 registerClass 直接创建 UITableViewCell ❤️复用字符串是目标类的类名❤️
--(JobsReturnTableViewCellByClsAndSaltStrBlock)tableViewCellClass{
+-(JobsReturnTableViewCellByClsAndSaltStrBlock _Nonnull)tableViewCellClass{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
@@ -43,7 +43,7 @@
     };
 }
 /// 使用 registerClass 注册 UITableViewCell ❤️复用字符串是目标类的类名❤️
--(JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)tableViewCellClassForIndexPath{
+-(JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block _Nonnull)tableViewCellClassForIndexPath{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,
              NSString * _Nullable salt,
@@ -58,7 +58,7 @@
     };
 }
 /// 一种用字符串取UITableViewHeaderFooterView及其子类的方法❤️复用字符串是目标类的类名❤️
--(JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)tableViewHeaderFooterView{
+-(JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock _Nonnull)tableViewHeaderFooterView{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls, NSString * _Nullable salt) {
         @jobs_strongify(self)

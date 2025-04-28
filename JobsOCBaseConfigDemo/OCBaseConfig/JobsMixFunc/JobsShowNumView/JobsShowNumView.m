@@ -15,6 +15,7 @@ Prop_copy()NSMutableArray <__kindof UIButton *>*btnMutArr;
 @end
 
 @implementation JobsShowNumView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 @synthesize thisViewSize = _thisViewSize;
 #pragma mark —— BaseProtocol

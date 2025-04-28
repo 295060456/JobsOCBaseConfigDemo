@@ -16,6 +16,7 @@ Prop_copy()NSMutableArray <__kindof NSString *>*datas;
 @end
 
 @implementation PopListBaseView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 #pragma mark —— SysMethod

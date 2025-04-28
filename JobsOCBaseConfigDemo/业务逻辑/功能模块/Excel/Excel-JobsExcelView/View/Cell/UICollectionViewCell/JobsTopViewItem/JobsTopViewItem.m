@@ -22,12 +22,7 @@ Prop_assign()CGSize size;
 
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    JobsTopViewItem *cell = (JobsTopViewItem *)[collectionView collectionViewCellClass:JobsTopViewItem.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsTopViewItem.class,@"");
-        cell = (JobsTopViewItem *)[collectionView collectionViewCellClass:JobsTopViewItem.class forIndexPath:indexPath];
-    }
-    
+    JobsTopViewItem *cell = JobsRegisterDequeueCollectionViewCell(JobsTopViewItem);
     // UICollectionViewCell圆切角
 //    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
 //    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
@@ -35,7 +30,6 @@ Prop_assign()CGSize size;
 //    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
 
     cell.indexPath = indexPath;
-    
     return cell;
 }
 

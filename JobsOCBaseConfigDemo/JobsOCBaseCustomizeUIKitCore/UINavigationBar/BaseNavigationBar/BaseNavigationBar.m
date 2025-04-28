@@ -26,16 +26,11 @@ Prop_copy()jobsByIDBlock baseNavigationBarBlock;
     if(@available(iOS 11.0, *)){
         CGFloat Y = isiPhoneX_series() ? 44 : 20;
         CGFloat width = self.bounds.size.width;
-        Class bgClass = NSClassFromString(@"_UIBarBackground");
-        Class cvClass = NSClassFromString(@"_UINavigationBarContentView");
+        Class bgClass = NSClassFromString(UIBarBackground);
+        Class cvClass = NSClassFromString(UINavigationBarContentView);
         for(UIView *view in self.subviews){
-            if([view isKindOfClass:bgClass]){
-                view.frame = self.bounds;
-            }
-
-            if([view isKindOfClass:cvClass]){
-                view.frame = CGRectMake(0, Y, width, 44);
-            }
+            if([view isKindOfClass:bgClass]) view.frame = self.bounds;
+            if([view isKindOfClass:cvClass]) view.frame = CGRectMake(0, Y, width, 44);
         }
     }
 }

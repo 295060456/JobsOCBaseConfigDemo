@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///【组 1】 UITableViewCell单独自定义设置系统自带控件的Frame 【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
 Prop_assign()CGRect textLabelFrame;
 Prop_assign()CGRect detailTextLabelFrame;
-Prop_assign()CGRect imageViewFrame;
+Prop_assign()CGRect tbvCellImageViewFrame;
 ///【组 2】UITableViewCell单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
 Prop_assign()CGSize textLabelSize;
 Prop_assign()CGSize detailTextLabelSize;
@@ -124,10 +124,10 @@ Prop_assign()CGFloat imageViewFrameOffsetHeight;/// 负值缩小，正值放大
 
 NS_ASSUME_NONNULL_END
 
-#ifndef UITableViewCellProtoco_Synthesize_part1
-#define UITableViewCellProtoco_Synthesize_part1 \
+#ifndef UITableViewCellProtocol_Synthesize_part1
+#define UITableViewCellProtocol_Synthesize_part1 \
 \
-@synthesize imageViewFrame = _imageViewFrame;\
+@synthesize tbvCellImageViewFrame = _tbvCellImageViewFrame;\
 @synthesize imageViewWidth = _imageViewWidth;\
 @synthesize textLabelHeight = _textLabelHeight;\
 @synthesize imageViewHeight = _imageViewHeight;\
@@ -144,10 +144,10 @@ NS_ASSUME_NONNULL_END
 @synthesize textLabelSize = _textLabelSize;\
 @synthesize textLabelWidth = _textLabelWidth;\
 
-#endif /* UITableViewCellProtoco_Synthesize_part1 */
+#endif /* UITableViewCellProtocol_Synthesize_part1 */
 
-#ifndef UITableViewCellProtoco_Synthesize_part2
-#define UITableViewCellProtoco_Synthesize_part2 \
+#ifndef UITableViewCellProtocol_Synthesize_part2
+#define UITableViewCellProtocol_Synthesize_part2 \
 \
 @synthesize detailTextLabelFrame = _detailTextLabelFrame;\
 @synthesize detailTextLabelSize = _detailTextLabelSize;\
@@ -158,14 +158,22 @@ NS_ASSUME_NONNULL_END
 @synthesize detailTextLabelOffsetWidth = _detailTextLabelOffsetWidth;\
 @synthesize detailTextLabelOffsetHeight = _detailTextLabelOffsetHeight;\
 
-#endif /* UITableViewCellProtoco_Synthesize_part2 */
+#endif /* UITableViewCellProtocol_Synthesize_part2 */
+
+#ifndef UITableViewCellProtocol_Synthesize
+#define UITableViewCellProtocol_Synthesize \
+\
+UITableViewCellProtocol_Synthesize_part1 \
+UITableViewCellProtocol_Synthesize_part2 \
+
+#endif /* UITableViewCellProtocol_Synthesize */
 
 #ifndef UITableViewCellProtocol_dynamic
 #define UITableViewCellProtocol_dynamic \
 \
 @dynamic textLabelFrame;\
 @dynamic detailTextLabelFrame;\
-@dynamic imageViewFrame;\
+@dynamic tbvCellImageViewFrame;\
 \
 @dynamic textLabelSize;\
 @dynamic detailTextLabelSize;\

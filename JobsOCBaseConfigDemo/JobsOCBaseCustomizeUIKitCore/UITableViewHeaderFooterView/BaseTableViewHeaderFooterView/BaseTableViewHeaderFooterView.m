@@ -40,7 +40,7 @@ BaseViewProtocol_synthesize
     // 解决当UITableViewHeaderFooterView悬浮的时候背景白色的问题（设置成透明色）
     // 遍历子视图，找到UIVisualEffectView
     for (UIView *subview in self.subviews) {
-        if([subview isKindOfClass:NSClassFromString(@"_UISystemBackgroundView")]){
+        if([subview isKindOfClass:NSClassFromString(UISystemBackgroundView)]){
             // subview.backgroundColor = JobsClearColor; 设置成透明色，无效
             subview.jobsVisible = NO;
         }
@@ -59,7 +59,7 @@ BaseViewProtocol_synthesize
  再在- (nullable __kindof UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section方法里面：
  self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1; /// 进行一句话进行调用
  */
--(JobsReturnViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView{
+-(JobsReturnViewByTableViewHeaderFooterViewBlock _Nonnull)makeViewOnTableViewHeaderFooterView{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable (__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView) {
         @jobs_strongify(self)

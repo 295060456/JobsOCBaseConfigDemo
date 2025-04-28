@@ -193,7 +193,7 @@ UILocationProtocol_dynamic
     return ^(){
         @jobs_strongify(self)
         for (UIControl *control in self.subviews){
-            if ([control isMemberOfClass:NSClassFromString(@"UITableViewCellEditControl")]){
+            if ([control isMemberOfClass:NSClassFromString(UITableViewCellEditControl)]){
                 for (UIView *view in control.subviews){
                     if ([view isKindOfClass:UIImageView.class]) {
                         UIImageView *img = (UIImageView *)view;

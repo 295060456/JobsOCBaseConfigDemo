@@ -18,5 +18,7 @@
 #import "JobsBtnsStyleCVCell.h"
 #import "JobsImageViewStyleCVCell.h"
 #import "JobsTextFieldStyleCVCell.h"
+#import "JobsTextViewStyleCVCell.h"
+#import "JobsTextLabStyleCVCell.h"
 
 #endif /* JobsCollectionViewCell_h */

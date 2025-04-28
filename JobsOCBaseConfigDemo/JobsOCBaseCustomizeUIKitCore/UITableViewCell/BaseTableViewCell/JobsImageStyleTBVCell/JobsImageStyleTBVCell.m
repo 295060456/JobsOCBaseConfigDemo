@@ -15,9 +15,10 @@ Prop_strong()UIImageView *backgroudImageView;
 @end
 
 @implementation JobsImageStyleTBVCell
-#pragma mark —— @synthesize UIViewModelProtocol
+/// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
 -(void)layoutSubviews{
     [super layoutSubviews];
@@ -26,11 +27,8 @@ BaseLayerProtocol_synthesize_part3
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsImageStyleTBVCell *cell = (JobsImageStyleTBVCell *)tableView.tableViewCellClass(JobsImageStyleTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsImageStyleTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }return cell;
+        JobsImageStyleTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsImageStyleTBVCell);
+        return cell;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -60,8 +58,7 @@ BaseLayerProtocol_synthesize_part3
         _backgroudImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.image = self.viewModel.bgImage;
-            self.contentView.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });

@@ -54,13 +54,8 @@ UITextFieldProtocol_synthesize_part2
 #pragma mark —— BaseCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsIMChatInfoTBVCell *cell = (JobsIMChatInfoTBVCell *)tableView.tableViewCellClass(JobsIMChatInfoTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsIMChatInfoTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.contentView.backgroundColor = JobsClearColor;
-            cell.backgroundColor = JobsClearColor;
-        }return cell;
+        JobsIMChatInfoTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsIMChatInfoTBVCell);
+        return cell;
     };
 }
 
@@ -197,8 +192,7 @@ UITextFieldProtocol_synthesize_part2
         @jobs_weakify(self)
         _iconIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            self.contentView.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsIMChatInfoTBVDefaultCellHeight() - 5, JobsIMChatInfoTBVDefaultCellHeight() - 5));
                 make.top.equalTo(self.contentView).offset(5);
                 switch (self.infoLocation) {
@@ -231,9 +225,7 @@ UITextFieldProtocol_synthesize_part2
                 default:
                     break;
             }
-            
-            self.contentView.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 
                 make.top.equalTo(self.iconIMGV.mas_centerY);
                 make.bottom.equalTo(self.contentView).offset(-5);
@@ -264,9 +256,7 @@ UITextFieldProtocol_synthesize_part2
             label.font = UIFontWeightRegularSize(JobsWidth(10));
             label.textAlignment = NSTextAlignmentCenter;
             label.text = self.senderUserNameStr;
-            [label sizeToFit];
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.iconIMGV);
                 make.bottom.equalTo(self.iconIMGV.mas_centerY).offset(-3);
                 switch (self.infoLocation) {
@@ -279,7 +269,7 @@ UITextFieldProtocol_synthesize_part2
                     default:
                         break;
                 }
-            }];
+            }];label.makeLabelByShowingType(UILabelShowingType_03);
         });
     }return _chatUserNameLab;
 }
@@ -303,10 +293,9 @@ UITextFieldProtocol_synthesize_part2
                 default:
                     break;
             }
-            
+    
             label.text = self.senderChatTextStr;
-            self.chatBubbleIMGV.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.chatBubbleIMGV.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.chatBubbleIMGV).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
             }];
         });
@@ -323,14 +312,9 @@ UITextFieldProtocol_synthesize_part2
             label.text = self.senderChatTextTimeStr;
             label.textColor = JobsWhiteColor;
             label.backgroundColor = JobsLightGrayColor;
-            [label sizeToFit];
-            
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self.chatBubbleIMGV);
                 make.size.mas_equalTo(CGSizeMake(JobsIMChatInfoTimeLabWidth(), 20));
-                
                 switch (self.infoLocation) {
                     case InfoLocation_Left:{
                         make.left.equalTo(self.chatBubbleIMGV.mas_right).offset(5);
@@ -341,16 +325,18 @@ UITextFieldProtocol_synthesize_part2
                     default:
                         break;
                 }
-            }];label.cornerCutToCircleWithCornerRadius(20 / 2);
+            }];
+            label.makeLabelByShowingType(UILabelShowingType_03);
+            label.cornerCutToCircleWithCornerRadius(20 / 2);
         });
     }return _timeLab;
 }
 
 -(NSMutableArray<UIImage *> *)chatBubbleMutArr{
     if (!_chatBubbleMutArr) {
-        _chatBubbleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-            arr.add(JobsIMG(@"左气泡"));
-            arr.add(JobsIMG(@"右气泡"));
+        _chatBubbleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIImage *>* _Nullable arr) {
+            arr.add(JobsIMG(@"左气泡"))
+            .add(JobsIMG(@"右气泡"));
         });
     }return _chatBubbleMutArr;
 }
@@ -387,9 +373,9 @@ UITextFieldProtocol_synthesize_part2
 
 -(NSMutableArray<UIMenuItem *> *)menuItemMutArr{
     if (!_menuItemMutArr) {
-        _menuItemMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-            arr.add(JobsInternationalization(@"置顶").initMenuItemBy(@selector(menuTopBtnPressed:)));
-            arr.add(JobsInternationalization(@"删除").initMenuItemBy(@selector(menuDelBtnPressed:)));
+        _menuItemMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIMenuItem *>* _Nullable arr) {
+            arr.add(JobsInternationalization(@"置顶").initMenuItemBy(@selector(menuTopBtnPressed:)))
+            .add(JobsInternationalization(@"删除").initMenuItemBy(@selector(menuDelBtnPressed:)));
         });
     }return _menuItemMutArr;
 }
@@ -401,13 +387,13 @@ UITextFieldProtocol_synthesize_part2
                 model.titleStr = JobsInternationalization(@"L1");
                 model.IconIMG = JobsIMG(@"Check");
                 model.bgCor = JobsGreenColor;
-            }));
-            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+            }))
+            .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = JobsInternationalization(@"L2");
                 model.IconIMG = JobsIMG(@"Fav");
                 model.bgCor = RGBA_COLOR(0, 0x99, 0xcc, 1);
-            }));
-            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+            }))
+            .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = JobsInternationalization(@"L3");
                 model.IconIMG = JobsIMG(@"Menu");
                 model.bgCor = RGBA_COLOR(0.59, 0.29, 0.08, 1);
@@ -423,13 +409,13 @@ UITextFieldProtocol_synthesize_part2
                 model.titleStr = @"R1";
                 model.IconIMG = JobsIMG(@"Class");
                 model.bgCor = JobsPurpleColor;
-            }));
-            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+            }))
+            .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = @"R2";
                 model.IconIMG = JobsIMG(@"Drop");
                 model.bgCor = JobsDarkTextColor;
-            }));
-            arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
+            }))
+            .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = @"R3";
                 model.IconIMG = JobsIMG(@"Header");
                 model.bgCor = JobsCyanColor;

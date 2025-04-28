@@ -17,9 +17,8 @@ Prop_assign()CGRect thisFrame;
 @end
 
 @implementation JobsBaseLabel
-
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
-
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{
@@ -85,8 +84,7 @@ static dispatch_once_t static_baseLabelOnceToken;
         @jobs_weakify(self)
         _bgImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            self.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self);
             }];
         });
@@ -98,8 +96,7 @@ static dispatch_once_t static_baseLabelOnceToken;
         @jobs_weakify(self)
         _label = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
-            self.bgImageView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.bgImageView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self);
             }];
             

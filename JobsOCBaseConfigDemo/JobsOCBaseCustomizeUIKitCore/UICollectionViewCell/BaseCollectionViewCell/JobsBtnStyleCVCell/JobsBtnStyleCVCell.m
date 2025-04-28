@@ -17,10 +17,12 @@ Prop_copy()jobsByMASConstraintMakerBlock masMakerBlock;
 @end
 
 @implementation JobsBtnStyleCVCell
-#pragma mark —— @synthesize UIViewModelProtocol
+/// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
+/// AppToolsProtocol
 AppToolsProtocol_synthesize
 -(void)layoutSubviews{
     [super layoutSubviews];
@@ -43,20 +45,13 @@ AppToolsProtocol_synthesize
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    JobsBtnStyleCVCell *cell = (JobsBtnStyleCVCell *)[collectionView collectionViewCellClass:JobsBtnStyleCVCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@"");
-        cell = (JobsBtnStyleCVCell *)[collectionView collectionViewCellClass:JobsBtnStyleCVCell.class forIndexPath:indexPath];
-    }
-    
+    JobsBtnStyleCVCell *cell = JobsRegisterDequeueCollectionViewCell(JobsBtnStyleCVCell);
     // UICollectionViewCell圆切角
 //    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
 //    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
 //    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
 //    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
-
     cell.indexPath = indexPath;
-    
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -199,8 +194,7 @@ AppToolsProtocol_synthesize
     }
     _webView.backgroundColor = JobsClearColor;
     _webView.opaque = NO; // 设置不透明为 NO，确保背景透明
-    [self.contentView addSubview:_webView];
-    [_webView mas_makeConstraints:self.masMakerBlock];
+    [self.contentView.addSubview(_webView) mas_makeConstraints:self.masMakerBlock];
     self.refresh();
     return _webView;
 }

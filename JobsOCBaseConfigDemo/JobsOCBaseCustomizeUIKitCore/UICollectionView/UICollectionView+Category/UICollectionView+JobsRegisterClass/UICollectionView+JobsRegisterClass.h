@@ -60,3 +60,15 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+/// 用于 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView forIndexPath:(nonnull NSIndexPath *)indexPath；内部
+#ifndef JobsRegisterDequeueCollectionViewCell
+#define JobsRegisterDequeueCollectionViewCell(CellClass) \
+({ \
+    CellClass *cell = (CellClass *)[collectionView collectionViewCellClass:CellClass.class forIndexPath:indexPath]; \
+    if (!cell) { \
+        collectionView.registerCollectionViewCellClass(CellClass.class,@""); \
+        cell = (CellClass *)[collectionView collectionViewCellClass:CellClass.class forIndexPath:indexPath]; \
+    } \
+    cell; \
+})
+#endif /* JobsRegisterDequeueCollectionViewCell */

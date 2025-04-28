@@ -19,13 +19,8 @@ Prop_assign()CGSize size;
 
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    MainTableViewCellItem *cell = (MainTableViewCellItem *)[collectionView collectionViewCellClass:MainTableViewCellItem.class
-                                                                                      forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(MainTableViewCellItem.class,@"");
-        cell = (MainTableViewCellItem *)[collectionView collectionViewCellClass:MainTableViewCellItem.class
-                                                                   forIndexPath:indexPath];
-    }cell.indexPath = indexPath;
+    MainTableViewCellItem *cell = JobsRegisterDequeueCollectionViewCell(MainTableViewCellItem);
+    cell.indexPath = indexPath;
     return cell;
 }
 

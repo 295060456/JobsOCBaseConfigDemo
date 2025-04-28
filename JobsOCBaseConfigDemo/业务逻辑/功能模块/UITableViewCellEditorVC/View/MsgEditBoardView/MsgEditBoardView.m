@@ -17,6 +17,7 @@ Prop_strong()UIButton *deleteBtn;
 @end
 
 @implementation MsgEditBoardView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
@@ -101,7 +102,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
         CGRect rect = MsgEditBoardView.viewFrameByModel(nil);
         rect.origin.y -= MsgEditBoardView.viewChangeYByModel(nil);
         self.frame = rect;
-        [view addSubview:self];
+        view.addSubview(self);
     } completion:nil];
 }
 
@@ -131,74 +132,68 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
 #pragma mark —— lazyLoad
 -(UIButton *)allChooseBtn{
     if (!_allChooseBtn) {
-        _allChooseBtn = UIButton.new;
-        _allChooseBtn.jobsResetBtnImage(JobsIMG(@"按钮未选中"));
-        _allChooseBtn.selectedStateImageBy(JobsIMG(@"按钮已选中"));
-        _allChooseBtn.jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58));
-        _allChooseBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(14));
-        _allChooseBtn.jobsResetBtnTitle(JobsInternationalization(@"全選"));
-        _allChooseBtn.selectedStateTitleBy(JobsInternationalization(@"取消"));
-        [self addSubview:_allChooseBtn];
-        [_allChooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(28 + 14 + 12), JobsWidth(14)));
-            make.left.equalTo(self).offset(JobsWidth(16));
-            make.top.equalTo(self).offset(JobsWidth(18));
-        }];
-        _allChooseBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeLeading,JobsWidth(12));
         @jobs_weakify(self)
-        [_allChooseBtn jobsBtnClickEventBlock:^id(UIButton *x) {
+        _allChooseBtn = UIButton.jobsInit()
+        .jobsResetBtnImage(JobsIMG(@"按钮未选中"))
+        .selectedStateImageBy(JobsIMG(@"按钮已选中"))
+        .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
+        .jobsResetBtnTitleFont(UIFontWeightBoldSize(14))
+        .jobsResetBtnTitle(JobsInternationalization(@"全選"))
+        .selectedStateTitleBy(JobsInternationalization(@"取消"))
+        .jobsResetImagePlacement_Padding(NSDirectionalRectEdgeLeading,JobsWidth(12))
+        .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             x.selected = !x.selected;
             if (self.objBlock) self.objBlock(x);
-            return nil;
+        });
+        [self.addSubview(_allChooseBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(JobsWidth(28 + 14 + 12), JobsWidth(14)));
+            make.left.equalTo(self).offset(JobsWidth(16));
+            make.top.equalTo(self).offset(JobsWidth(18));
         }];
     }return _allChooseBtn;
 }
 
 -(UIButton *)markToReadBtn{
     if (!_markToReadBtn) {
-        _markToReadBtn = UIButton.new;
-        _markToReadBtn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
-        _markToReadBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(14));
-        _markToReadBtn.jobsResetBtnTitle(JobsInternationalization(@"標記為已讀"));
-        _markToReadBtn.enabledBlock(NO);
-        [self addSubview:_markToReadBtn];
-        [_markToReadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @jobs_weakify(self)
+        _markToReadBtn = UIButton.jobsInit()
+        .jobsResetBtnTitleCor(HEXCOLOR(0xAE8330))
+        .jobsResetBtnTitleFont(UIFontWeightBoldSize(14))
+        .jobsResetBtnTitle(JobsInternationalization(@"標記為已讀"))
+        .onClickBy(^(UIButton *x){
+            @jobs_strongify(self)
+            x.selected = !x.selected;
+            if (self.objBlock) self.objBlock(x);
+        });
+        [self.addSubview(_markToReadBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.allChooseBtn);
             make.right.equalTo(self.deleteBtn.mas_left).offset(JobsWidth(-36));
             make.height.mas_equalTo(JobsWidth(14));
         }];
-        @jobs_weakify(self)
-        [_markToReadBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objBlock) self.objBlock(x);
-            return nil;
-        }];
+        _markToReadBtn.enabledBlock(NO);
     }return _markToReadBtn;
 }
 
 -(UIButton *)deleteBtn{
     if (!_deleteBtn) {
-        _deleteBtn = UIButton.new;
-        _deleteBtn.jobsResetBtnTitle(JobsInternationalization(@"删除"));
-        _deleteBtn.jobsResetBtnTitleCor(HEXCOLOR(0xEB677F));
-        _deleteBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(14));
-        _deleteBtn.enabledBlock(NO);
-        [self addSubview:_deleteBtn];
-        [_deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @jobs_weakify(self)
+        _deleteBtn = UIButton.jobsInit()
+        .jobsResetBtnTitle(JobsInternationalization(@"删除"))
+        .jobsResetBtnTitleCor(HEXCOLOR(0xEB677F))
+        .jobsResetBtnTitleFont(UIFontWeightBoldSize(14))\
+        .onClickBy(^(UIButton *x){
+            @jobs_strongify(self)
+            x.selected = !x.selected;
+            if (self.objBlock) self.objBlock(x);
+        });
+        [self.addSubview(_deleteBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.allChooseBtn);
             make.right.equalTo(self).offset(JobsWidth(-18));
             make.height.mas_equalTo(JobsWidth(14));
         }];
+        _deleteBtn.enabledBlock(NO);
         _deleteBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-        @jobs_weakify(self)
-        [_deleteBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            if (self.objBlock) self.objBlock(x);
-            return nil;
-        }];
     }return _deleteBtn;
 }
 

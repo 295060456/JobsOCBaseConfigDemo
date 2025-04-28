@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "MacroDef_Func.h"
+#import "DefineConstString.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

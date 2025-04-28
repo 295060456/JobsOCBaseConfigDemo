@@ -16,23 +16,21 @@
 
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        MyFansTBVCell *cell = (MyFansTBVCell *)tableView.tableViewCellClass(MyFansTBVCell.class,@"");
-        if (!cell) {
-            cell = MyFansTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.offsetXForEach = 10;
-            cell.offsetYForEach = 20;
-            //加阴影立体效果
-            [UIView makeTargetShadowview:cell
-                               superView:nil
-                         shadowDirection:ShadowDirection_rightDown
-                       shadowWithOffsetX:5
-                                 offsetY:5
-                            cornerRadius:8
-                            shadowOffset:JobsDefaultSize
-                           shadowOpacity:1
-                        layerShadowColor:JobsDefaultObj
-                       layerShadowRadius:JobsDefaultValue];
-        }return cell;
+        MyFansTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(MyFansTBVCell);
+        cell.offsetXForEach = 10;
+        cell.offsetYForEach = 20;
+        /// 加阴影立体效果
+        [UIView makeTargetShadowview:cell
+                           superView:nil
+                     shadowDirection:ShadowDirection_rightDown
+                   shadowWithOffsetX:5
+                             offsetY:5
+                        cornerRadius:8
+                        shadowOffset:JobsDefaultSize
+                       shadowOpacity:1
+                    layerShadowColor:JobsDefaultObj
+                   layerShadowRadius:JobsDefaultValue];
+        return cell;
     };
 }
 
@@ -91,8 +89,7 @@
             @jobs_strongify(self)
             imageView.clipsToBounds = YES;
             imageView.layer.cornerRadius = 20;
-            self.contentView.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });

@@ -8,14 +8,19 @@
 #import "UIButtonModel.h"
 
 @implementation UIButtonModel
+/// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
+/// BaseButtonProtocol
 BaseButtonProtocol_synthesize_part2
+/// AppToolsProtocol
 AppToolsProtocol_synthesize
+/// BaseProtocol
 BaseProtocol_synthesize
+/// RACProtocol
 RACProtocol_synthesize
-
 -(NSTextAlignment)textAlignment{
     if (!_textAlignment) {
         _textAlignment = NSTextAlignmentCenter;

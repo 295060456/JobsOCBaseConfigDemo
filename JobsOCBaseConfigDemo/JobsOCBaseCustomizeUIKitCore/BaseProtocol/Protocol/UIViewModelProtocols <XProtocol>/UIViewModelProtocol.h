@@ -30,8 +30,9 @@ Prop_strong(nullable)NSURL *normalImageURL;
 /// 背景图
 Prop_copy(nullable)NSString *normalBgImageURLString;
 Prop_strong(nullable)NSURL *normalBgImageURL;
-#pragma mark —— UI约束（Masonry）
-Prop_copy(nullable)jobsByMASConstraintMakerBlock masonryBlock;
+#pragma mark —— UI约束
+Prop_copy(nullable)jobsByMASConstraintMakerBlock masonryBlock; /// Masonry
+Prop_assign()CGRect imageViewFrame;
 
 @end
 
@@ -47,6 +48,7 @@ NS_ASSUME_NONNULL_END
 @synthesize normalBgImageURLString = _normalBgImageURLString; \
 @synthesize normalBgImageURL = _normalBgImageURL; \
 @synthesize masonryBlock = _masonryBlock; \
+@synthesize imageViewFrame = _imageViewFrame; \
 
 #endif /* UIViewModelProtocol_synthesize_part1 */
 /// 继承的属性（避免冲突）
@@ -90,5 +92,6 @@ UIViewModelProtocol_synthesize_part2 \
 @dynamic normalBgImageURLString;\
 @dynamic normalBgImageURL;\
 @dynamic masonryBlock;\
+@dynamic imageViewFrame;\
 
 #endif /* UIViewModelProtocol_dynamic_part1 */

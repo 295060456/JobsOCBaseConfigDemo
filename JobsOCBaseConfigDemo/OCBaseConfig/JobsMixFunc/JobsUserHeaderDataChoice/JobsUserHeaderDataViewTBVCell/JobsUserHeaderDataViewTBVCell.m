@@ -14,17 +14,15 @@ Prop_strong()UILabel *titleLab;
 @end
 
 @implementation JobsUserHeaderDataViewTBVCell
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— UITableViewCellProtocol
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)tableView.tableViewCellClass(JobsUserHeaderDataViewTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsUserHeaderDataViewTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = HEXCOLOR(0xFFFFFF);
-        }return cell;
+        JobsUserHeaderDataViewTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsUserHeaderDataViewTBVCell);
+        cell.backgroundColor = HEXCOLOR(0xFFFFFF);
+        return cell;
     };
 }
 /// 左边：imageView＋textLabel；右边：detailTextLabel。
@@ -83,8 +81,7 @@ Prop_strong()UILabel *titleLab;
             label.textColor = self.viewModel.textModel.textCor;
             label.font = self.viewModel.textModel.font;
             label.textAlignment = NSTextAlignmentCenter;
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });

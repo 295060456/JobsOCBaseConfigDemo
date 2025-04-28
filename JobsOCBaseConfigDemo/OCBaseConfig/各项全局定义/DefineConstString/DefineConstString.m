@@ -8,6 +8,56 @@
 #import "DefineConstString.h" /// 常量字符串的定义
 ///
 NSRange const NSRangeZero = (NSRange){0, 0};/// 使用结构体直接赋值
+/// SDK内部类
+NSString *const UISystemBackgroundView = @"_UISystemBackgroundView";
+NSString *const UITableViewHeaderFooterViewBackground = @"_UITableViewHeaderFooterViewBackground";
+NSString *const UIScrollViewScrollIndicator = @"_UIScrollViewScrollIndicator";
+NSString *const UIBarBackground = @"_UIBarBackground";
+NSString *const UINavigationBarContentView = @"_UINavigationBarContentView";
+NSString *const UITableViewCellSwipeContainerView = @"_UITableViewCellSwipeContainerView";
+NSString *const UISwipeActionPullView = @"_UISwipeActionPullView";
+NSString *const UITableViewCellDeleteConfirmationView = @"_UITableViewCellDeleteConfirmationView";
+NSString *const UITabBarButtonLabel = @"UITabBarButtonLabel";
+NSString *const UITabBarSwappableImageView = @"UITabBarSwappableImageView";
+NSString *const UITAMICAdaptorView = @"_UITAMICAdaptorView";
+NSString *const UITextContainerView = @"_UITextContainerView";
+NSString *const UIBackdropView = @"_UIBackdropView";
+NSString *const UIBackdropEffectView = @"_UIBackdropEffectView";
+NSString *const UIStatusBar = @"_UIStatusBar";
+NSString *const UIStatusBarModern = @"_UIStatusBarModern";
+NSString *const UIStatusBarData = @"_UIStatusBarData";
+NSString *const UIStatusBarRegion = @"_UIStatusBarRegion";
+NSString *const UIStatusBarCellularItem = @"_UIStatusBarCellularItem";
+NSString *const UIStatusBarWifiItem = @"_UIStatusBarWifiItem";
+NSString *const UIStatusBarBatteryItem = @"_UIStatusBarBatteryItem";
+NSString *const UITextEffectsWindow = @"_UITextEffectsWindow";
+NSString *const UIRemoteKeyboardWindow = @"_UIRemoteKeyboardWindow";
+NSString *const UIRemoteKeyboardPlaceholderView = @"_UIRemoteKeyboardPlaceholderView";
+NSString *const UITableViewCellContentView = @"_UITableViewCellContentView";
+NSString *const UITableViewHeaderFooterContentView = @"_UITableViewHeaderFooterContentView";
+NSString *const UICollectionViewPlaceholderView = @"_UICollectionViewPlaceholderView";
+NSString *const UICollectionViewCellActionsView = @"_UICollectionViewCellActionsView";
+NSString *const UICollectionViewListCellSeparator = @"_UICollectionViewListCellSeparator";
+NSString *const UINavigationBarLargeTitleView = @"_UINavigationBarLargeTitleView";
+NSString *const UIButtonBarStackView = @"_UIButtonBarStackView";
+NSString *const UIButtonBarButton = @"_UIButtonBarButton";
+NSString *const UIButtonBar = @"_UIButtonBar";
+NSString *const UIToolbarContentView = @"_UIToolbarContentView";
+NSString *const UIToolbarNavigationButton = @"_UIToolbarNavigationButton";
+NSString *const UIToolbarButton = @"_UIToolbarButton";
+NSString *const UIInterfaceActionGroupView = @"_UIInterfaceActionGroupView";
+NSString *const UIInterfaceActionRepresentationView = @"_UIInterfaceActionRepresentationView";
+NSString *const UIInterfaceActionSeparatorView = @"_UIInterfaceActionSeparatorView";
+NSString *const UIAlertControllerView = @"_UIAlertControllerView";
+NSString *const UIAlertControllerShadowedScrollView = @"_UIAlertControllerShadowedScrollView";
+NSString *const UIAlertControllerTextFieldView = @"_UIAlertControllerTextFieldView";
+NSString *const UIContextMenuContainerView = @"_UIContextMenuContainerView";
+NSString *const UIContextMenuActionsListView = @"_UIContextMenuActionsListView";
+NSString *const UIPlatterMenuController = @"_UIPlatterMenuController";
+NSString *const UILegacyPopoverController = @"_UILegacyPopoverController";
+NSString *const UIPopoverView = @"_UIPopoverView";
+NSString *const UITableViewCellEditControl = @"UITableViewCellEditControl";
+NSString *const UITabBarButton = @"UITabBarButton";
 /// 系统环境一览
 NSString *const 应用程序的发布版本号 = @"CFBundleShortVersionString";
 NSString *const APP编译构建的版本号 = @"CFBundleVersion";

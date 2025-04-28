@@ -16,18 +16,18 @@ Prop_strong()MSCommentDetailModel *commentDetailModel;
 @end
 
 @implementation MSCommentTBVCell
-UITableViewCellProtoco_Synthesize_part2
+/// UITableViewCellProtocol
+UITableViewCellProtocol_Synthesize_part2
+/// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
-+(instancetype)cellWithTableView:(UITableView *)tableView{
-    MSCommentTBVCell *cell = (MSCommentTBVCell *)tableView.tableViewCellClass(MSCommentTBVCell.class,@"");
-    if (!cell) {
-        cell = MSCommentTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = cell.contentView.backgroundColor = JobsWhiteColor;
++(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
+    return ^(UITableView * _Nonnull tableView) {
+        MSCommentTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(MSCommentTBVCell);
         /**
          ❤️如果单独的对每一个row对应的UITableViewCell的边距有缩进则使用下列方法❤️
          如果这个TableViewCell是JobsBaseTableViewCell则不需要复写-(void)setFrame:(CGRect)frame；否则是需要：
@@ -64,7 +64,8 @@ BaseLayerProtocol_synthesize_part3
         cell.offsetXForEach = JobsWidth(7);
         cell.offsetYForEach = JobsWidth(3);
         cell.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-    }return cell;
+        return cell;
+    };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
@@ -106,8 +107,7 @@ BaseLayerProtocol_synthesize_part3
             label.textColor = JobsCor(@"#666666");
             label.backgroundColor = JobsCor(@"#F7F7F7");
             label.font = UIFontWeightRegularSize(14);
-            [self.contentView addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView).with.insets(UIEdgeInsetsMake(JobsWidth(5),
                                                                                   JobsWidth(25),
                                                                                   JobsWidth(5),

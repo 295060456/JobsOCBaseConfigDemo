@@ -22,11 +22,7 @@ Prop_copy()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个ce
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    ThreeClassCell *cell = (ThreeClassCell *)[collectionView collectionViewCellClass:ThreeClassCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(ThreeClassCell.class,@"");
-        cell = (ThreeClassCell *)[collectionView collectionViewCellClass:ThreeClassCell.class forIndexPath:indexPath];
-    }
+    ThreeClassCell *cell = JobsRegisterDequeueCollectionViewCell(ThreeClassCell);
     cell.indexPath = indexPath;
     return cell;
 }

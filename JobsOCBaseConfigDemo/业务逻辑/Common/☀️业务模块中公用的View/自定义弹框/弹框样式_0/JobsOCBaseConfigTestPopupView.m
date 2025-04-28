@@ -16,6 +16,7 @@ Prop_strong()UIButton *testPopupViewSureBtn;
 @end
 
 @implementation JobsOCBaseConfigTestPopupView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— 单例化和销毁
 +(void)destroySingleton{

@@ -30,6 +30,7 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
 @end
 
 @implementation JobsNavBar
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 #pragma mark —— SysMethod

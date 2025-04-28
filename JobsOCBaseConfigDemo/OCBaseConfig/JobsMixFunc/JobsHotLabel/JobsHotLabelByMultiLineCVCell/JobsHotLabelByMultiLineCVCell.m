@@ -14,6 +14,7 @@ Prop_strong()UILabel *textLab;
 @end
 
 @implementation JobsHotLabelByMultiLineCVCell
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -27,20 +28,13 @@ Prop_strong()UILabel *textLab;
 #pragma mark —— UICollectionViewCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    JobsHotLabelByMultiLineCVCell *cell = (JobsHotLabelByMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelByMultiLineCVCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsHotLabelByMultiLineCVCell.class,@"");
-        cell = (JobsHotLabelByMultiLineCVCell *)[collectionView collectionViewCellClass:JobsHotLabelByMultiLineCVCell.class forIndexPath:indexPath];
-    }
-    
+    JobsHotLabelByMultiLineCVCell *cell = JobsRegisterDequeueCollectionViewCell(JobsHotLabelByMultiLineCVCell);
     // UICollectionViewCell圆切角
 //    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
 //    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
 //    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
 //    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
-
     cell.indexPath = indexPath;
-    
     return cell;
 }
 #pragma mark —— BaseCellProtocol
@@ -52,9 +46,7 @@ Prop_strong()UILabel *textLab;
         [self.textLab removeFromSuperview];
         self->_textLab = nil;
         self.viewModel = model;
-        if (self.viewModel) {
-            self.textLab.alpha = 1;
-        }
+        if (self.viewModel) self.textLab.alpha = 1;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -77,8 +69,7 @@ Prop_strong()UILabel *textLab;
             label.textAlignment = NSTextAlignmentCenter;
             label.text = self.viewModel.textModel.text;
             label.font = self.viewModel.textModel.font;
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });

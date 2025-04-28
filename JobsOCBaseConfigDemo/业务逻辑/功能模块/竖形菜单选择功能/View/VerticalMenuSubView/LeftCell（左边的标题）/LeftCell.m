@@ -15,19 +15,19 @@ Prop_strong()UILabel *titleLabel;
 @end
 
 @implementation LeftCell
-UITableViewCellProtoco_Synthesize_part1
-UITableViewCellProtoco_Synthesize_part2
+/// UITableViewCellProtoco
+UITableViewCellProtocol_Synthesize_part1
+UITableViewCellProtocol_Synthesize_part2
+/// UITextFieldProtocol
 UITextFieldProtocol_synthesize_part2
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        LeftCell *cell = (LeftCell *)tableView.tableViewCellClass(LeftCell.class,@"");
-        if (!cell) {
-            cell = LeftCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }return cell;
+        LeftCell *cell = JobsRegisterDequeueTableViewDefaultCell(LeftCell);
+        return cell;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -110,8 +110,7 @@ UITextFieldProtocol_synthesize_part2
             label.textColor = HEXCOLOR(0xB0B0B0);
             label.font = bayonRegular(JobsWidth(14));
             label.textAlignment = NSTextAlignmentCenter;
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.contentView).offset(JobsWidth(5));
                 make.centerY.equalTo(self.contentView);
             }];label.makeLabelByShowingType(UILabelShowingType_03);

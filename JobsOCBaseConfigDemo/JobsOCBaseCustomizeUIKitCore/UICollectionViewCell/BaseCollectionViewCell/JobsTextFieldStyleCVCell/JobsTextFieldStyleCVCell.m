@@ -12,6 +12,7 @@
 @end
 
 @implementation JobsTextFieldStyleCVCell
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -25,18 +26,12 @@
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    JobsTextFieldStyleCVCell *cell = (JobsTextFieldStyleCVCell *)[collectionView collectionViewCellClass:JobsTextFieldStyleCVCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsTextFieldStyleCVCell.class,@"");
-        cell = (JobsTextFieldStyleCVCell *)[collectionView collectionViewCellClass:JobsTextFieldStyleCVCell.class forIndexPath:indexPath];
-    }
-    
+    JobsTextFieldStyleCVCell *cell = JobsRegisterDequeueCollectionViewCell(JobsTextFieldStyleCVCell);
     // UICollectionViewCell圆切角
 //    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
 //    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
 //    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
 //    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
-
     cell.indexPath = indexPath;
     return cell;
 }

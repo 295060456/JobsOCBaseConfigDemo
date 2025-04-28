@@ -70,9 +70,8 @@ Prop_copy()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
 @end
 
 @implementation BaiShaETProjChoiceStadiumView
-
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
-
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{

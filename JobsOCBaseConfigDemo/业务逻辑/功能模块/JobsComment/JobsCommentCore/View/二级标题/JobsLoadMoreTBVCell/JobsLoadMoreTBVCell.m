@@ -18,11 +18,8 @@ Prop_strong()UILabel *titleLab;
 #pragma mark —— BaseCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsLoadMoreTBVCell *cell = (JobsLoadMoreTBVCell *)tableView.tableViewCellClass(JobsLoadMoreTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsLoadMoreTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.contentView.backgroundColor = JobsCommentConfig.sharedManager.bgCor;
-        }return cell;
+        JobsLoadMoreTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsLoadMoreTBVCell);
+        return cell;
     };
 }
 
@@ -48,8 +45,7 @@ Prop_strong()UILabel *titleLab;
             label.text = JobsInternationalization(@"点击加载更多").add(@"...");
             label.textAlignment = NSTextAlignmentCenter;
             label.backgroundColor = JobsSystemYellowColor;
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });

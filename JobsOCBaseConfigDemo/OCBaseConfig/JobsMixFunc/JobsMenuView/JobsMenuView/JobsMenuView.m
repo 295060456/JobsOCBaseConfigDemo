@@ -14,6 +14,7 @@ Prop_strong()JobsLinkageMenuView *menuView;
 @end
 
 @implementation JobsMenuView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 @synthesize buttonModel = _buttonModel;
 #pragma mark —— BaseProtocol

@@ -13,12 +13,20 @@
 @end
 
 @implementation BaseView
+/// BaseProtocol
 BaseProtocol_synthesize
+/// RACProtocol
 RACProtocol_synthesize
+/// BaseViewProtocol
 BaseViewProtocol_synthesize
+/// UIPictureAndBackGroundCorProtocol
 UIPictureAndBackGroundCorProtocol_synthesize
+/// UITextFieldProtocol_synthesize
 UITextFieldProtocol_synthesize_part2
+/// AppToolsProtocol
 AppToolsProtocol_synthesize
+/// UIViewModelProtocol
+UIViewModelProtocol_synthesize_part1
 -(instancetype)init{
     if (self = [super init]) {
 

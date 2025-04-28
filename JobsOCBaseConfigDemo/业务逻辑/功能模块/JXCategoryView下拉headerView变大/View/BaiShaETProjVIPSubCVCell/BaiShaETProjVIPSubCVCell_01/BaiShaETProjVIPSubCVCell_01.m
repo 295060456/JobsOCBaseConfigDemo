@@ -12,6 +12,7 @@
 @end
 
 @implementation BaiShaETProjVIPSubCVCell_01
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -25,11 +26,7 @@
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    BaiShaETProjVIPSubCVCell_01 *cell = (BaiShaETProjVIPSubCVCell_01 *)[collectionView collectionViewCellClass:BaiShaETProjVIPSubCVCell_01.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(BaiShaETProjVIPSubCVCell_01.class,@"");
-        cell = (BaiShaETProjVIPSubCVCell_01 *)[collectionView collectionViewCellClass:BaiShaETProjVIPSubCVCell_01.class forIndexPath:indexPath];
-    }
+    BaiShaETProjVIPSubCVCell_01 *cell = JobsRegisterDequeueCollectionViewCell(BaiShaETProjVIPSubCVCell_01);
     cell.indexPath = indexPath;
     return cell;
 }

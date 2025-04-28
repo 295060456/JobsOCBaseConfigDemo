@@ -26,11 +26,7 @@ Prop_strong()UILabel *detailLab;
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    BaiShaETProjBankAccMgmtCVCell *cell = (BaiShaETProjBankAccMgmtCVCell *)[collectionView collectionViewCellClass:BaiShaETProjBankAccMgmtCVCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(BaiShaETProjBankAccMgmtCVCell.class,@"");
-        cell = (BaiShaETProjBankAccMgmtCVCell *)[collectionView collectionViewCellClass:BaiShaETProjBankAccMgmtCVCell.class forIndexPath:indexPath];
-    }
+    BaiShaETProjBankAccMgmtCVCell *cell = JobsRegisterDequeueCollectionViewCell(BaiShaETProjBankAccMgmtCVCell);
     cell.indexPath = indexPath;
     return cell;
 }
@@ -82,9 +78,8 @@ Prop_strong()UILabel *detailLab;
 #pragma mark —— lazyLoad
 -(BaseButton *)titleBtn{
     if (!_titleBtn) {
-        _titleBtn = BaseButton.new;
-        [self.contentView addSubview:_titleBtn];
-        [_titleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        _titleBtn = BaseButton.jobsInit();
+        [self.contentView.addSubview(_titleBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView).offset(JobsWidth(12));
             make.centerY.equalTo(self.contentView);
         }];
@@ -118,8 +113,7 @@ Prop_strong()UILabel *detailLab;
             label.font = UIFontWeightBoldSize(18);
             label.textColor = HEXCOLOR(0x3D4A58);
             label.textAlignment = NSTextAlignmentCenter;
-            [self.contentView addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(self.contentView).offset(JobsWidth(-12));
                 make.centerY.equalTo(self.contentView);
             }];

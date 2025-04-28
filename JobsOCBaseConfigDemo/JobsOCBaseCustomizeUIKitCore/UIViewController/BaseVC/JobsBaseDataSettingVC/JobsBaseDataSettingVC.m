@@ -125,6 +125,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
         });
     }return _vcs;
 }
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 -(UIViewModel *)viewModel{
     if (!_viewModel) {
@@ -135,6 +136,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }return _viewModel;
 }
 /// 在具体的子类去实现，以覆盖父类的方法实现
+/// AppToolsProtocol
 @synthesize closeBtnModel = _closeBtnModel;
 -(UIButtonModel *)closeBtnModel{
     if(!_closeBtnModel){
@@ -150,6 +152,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
     }return _closeBtnModel;
 }
 /// 在具体的子类去实现，以覆盖父类的方法实现
+/// AppToolsProtocol
 @synthesize backBtnModel = _backBtnModel;
 -(UIButtonModel *)backBtnModel{
     if(!_backBtnModel){

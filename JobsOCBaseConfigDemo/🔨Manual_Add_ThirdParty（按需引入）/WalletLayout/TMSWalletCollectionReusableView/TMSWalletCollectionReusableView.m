@@ -13,6 +13,7 @@
 @end
 
 @implementation TMSWalletCollectionReusableView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {

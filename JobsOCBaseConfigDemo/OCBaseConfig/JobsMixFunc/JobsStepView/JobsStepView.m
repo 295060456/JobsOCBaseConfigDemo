@@ -15,6 +15,7 @@ Prop_copy()NSMutableArray <UIButtonModel *>*btnModelMutArr;
 @end
 
 @implementation JobsStepView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 #pragma mark —— SysMethod
@@ -139,8 +140,7 @@ Prop_copy()NSMutableArray <UIButtonModel *>*btnModelMutArr;
     jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
         @jobs_strongify(self)
         label.backgroundColor = self.leftLabBgCor;
-        self.addSubview(label);
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(btn.imageView);
             make.right.equalTo(btn.mas_left);
             make.height.mas_equalTo(1);

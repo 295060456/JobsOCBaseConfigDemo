@@ -14,9 +14,8 @@ Prop_strong()UILabel *titleLab;
 @end
 
 @implementation JobsUserHeaderDataViewForHeaderInSection
-
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
-
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = JobsWhiteColor;
@@ -64,8 +63,7 @@ Prop_strong()UILabel *titleLab;
             label.textColor = self.viewModel.textModel.textCor;
             label.font = [UIFont systemFontOfSize:JobsWidth(20) weight:UIFontWeightRegular];
             label.textAlignment = NSTextAlignmentCenter;
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });

@@ -20,6 +20,7 @@ Prop_assign()BOOL isSelected;
 @end
 
 @implementation JobsRightBtnsView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 /// 单例化和销毁

@@ -1,17 +1,19 @@
 //
-//  JobsTextViewStyleTBVCell.m
+//  JobsTextViewStyleCVCell.m
 //  FMNormal
 //
 //  Created by Jobs on 2025/4/28.
 //
 
-#import "JobsTextViewStyleTBVCell.h"
+#import "JobsTextViewStyleCVCell.h"
 
-@interface JobsTextViewStyleTBVCell ()
+@interface JobsTextViewStyleCVCell ()
 
 @end
 
-@implementation JobsTextViewStyleTBVCell
+@implementation JobsTextViewStyleCVCell
+/// AppToolsProtocol
+@synthesize viewModel = _viewModel;
 /// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
@@ -19,70 +21,48 @@ UIViewModelProtocol_synthesize_part2
 BaseLayerProtocol_synthesize_part3
 /// BaseViewProtocol
 BaseViewProtocol_synthesize
--(void)layoutSubviews{
-    [super layoutSubviews];
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        
+    }return self;
+}
+#pragma mark —— BaseViewProtocol
+-(UIViewModel *_Nullable)getViewModel{
+    return self.viewModel;
 }
 #pragma mark —— BaseCellProtocol
-/// UITableViewCell
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
-    return ^(UITableView * _Nonnull tableView) {
-        JobsTextViewStyleTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsTextViewStyleTBVCell);
-        return cell;
-    };
++(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
+                         forIndexPath:(nonnull NSIndexPath *)indexPath{
+    JobsTextViewStyleCVCell *cell = JobsRegisterDequeueCollectionViewCell(JobsTextViewStyleCVCell);
+    // UICollectionViewCell圆切角
+//    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
+//    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
+//    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
+//    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
+    cell.indexPath = indexPath;
+    return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel __kindof *_Nullable model) {
+    return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model;
-        self.textView.alpha = 1;
+        self.textField.alpha = 1;
     };
 }
-/// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
-    return ^CGFloat(id _Nullable data){
-        return JobsWidth(55);
+/// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
++(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
+    return ^CGSize(id _Nullable data){
+        return CGSizeMake(JobsWidth(327), JobsWidth(48));
     };
 }
-#pragma mark —— BaseViewProtocol
-/// 获取绑定的数据源
--(UIViewModel *)getViewModel{
-    return self.viewModel;
+#pragma mark —— 一些公有方法
+-(ZYTextField *)getTextField{
+    return self.textField;
 }
-//-(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-//    [UIMenuController.sharedMenuController update];
-//    return YES;
-//}
-////-(BOOL)textViewShouldEndEditing:(UITextView *)textView;
-//-(void)textViewDidBeginEditing:(UITextView *)textView{
-////    textView.text = _textData2;
-//    JobsLog(@"333");
-//}
-////-(void)textViewDidEndEditing:(UITextView *)textView;
-//-(BOOL)textView:(UITextView *)textView
-//shouldChangeTextInRange:(NSRange)range
-//replacementText:(NSString *)text{
-//    JobsLog(@"21");
-//    return YES;
-//}
-//-(void)textViewDidChange:(UITextView *)textView{
-//
-//}
-//-(void)textViewDidChangeSelection:(UITextView *)textView{
-//
-//}
-//-(nullable UIMenu *)textView:(UITextView *)textView editMenuForTextInRange:(NSRange)range suggestedActions:(NSArray<UIMenuElement *> *)suggestedActions API_AVAILABLE(ios(16.0));
-//-(void)textView:(UITextView *)textView willPresentEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos);
-//-(void)textView:(UITextView *)textView willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos);
-//-(nullable UIAction *)textView:(UITextView *)textView primaryActionForTextItem:(UITextItem *)textItem defaultAction:(UIAction *)defaultAction API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(tvos, watchos);
-//-(nullable UITextItemMenuConfiguration *)textView:(UITextView *)textView menuConfigurationForTextItem:(UITextItem *)textItem defaultMenu:(UIMenu *)defaultMenu API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(watchos, tvos);
-//-(void)textView:(UITextView *)textView textItemMenuWillDisplayForTextItem:(UITextItem *)textItem animator:(id<UIContextMenuInteractionAnimating>)animator API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(watchos, tvos);
-//-(void)textView:(UITextView *)textView textItemMenuWillEndForTextItem:(UITextItem *)textItem animator:(id<UIContextMenuInteractionAnimating>)animator API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(watchos, tvos);
-//-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction API_DEPRECATED("Replaced by primaryActionForTextItem: and menuConfigurationForTextItem: for additional customization options.", ios(10.0, 17.0), visionos(1.0, 1.0));
-//-(BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction API_DEPRECATED("Replaced by primaryActionForTextItem: and menuConfigurationForTextItem: for additional customization options.", ios(10.0, 17.0), visionos(1.0, 1.0));
-//-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange API_DEPRECATED_WITH_REPLACEMENT("textView:shouldInteractWithURL:inRange:interaction:", ios(7.0, 10.0)) API_UNAVAILABLE(visionos);
-//-(BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange API_DEPRECATED_WITH_REPLACEMENT("textView:shouldInteractWithTextAttachment:inRange:interaction:", ios(7.0, 10.0)) API_UNAVAILABLE(visionos);
+#pragma mark —— 一些私有方法
+/// TODO
 #pragma mark —— lazyLoad
 /// 如果需要用其他的自定义的TextView，继承此类并重写-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy
 -(__kindof UITextView *)textView{

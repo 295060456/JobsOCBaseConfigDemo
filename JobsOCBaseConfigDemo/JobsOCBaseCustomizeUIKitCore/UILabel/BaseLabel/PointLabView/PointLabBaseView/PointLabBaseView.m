@@ -14,6 +14,7 @@ Prop_strong()UIView *pointView;
 @end
 
 @implementation PointLabBaseView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— SysMethod
 -(instancetype)init{
@@ -76,8 +77,7 @@ Prop_strong()UIView *pointView;
         @jobs_weakify(self)
         _pointView = jobsMakeView(^(__kindof UIView * _Nullable view) {
             @jobs_strongify(self)
-            self.addSubview(view);
-            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(view) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(8), JobsWidth(8)));
                 make.left.top.equalTo(self);
             }];
@@ -90,8 +90,7 @@ Prop_strong()UIView *pointView;
         @jobs_weakify(self)
         _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.pointView.mas_right);
                 make.top.bottom.right.equalTo(self);
             }];

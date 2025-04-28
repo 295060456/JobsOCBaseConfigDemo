@@ -14,6 +14,7 @@ Prop_strong()UIButton *jobsCopyBtn;
 @end
 
 @implementation BaiShaETProjOrderDetailsCVCell
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -27,11 +28,7 @@ Prop_strong()UIButton *jobsCopyBtn;
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    BaiShaETProjOrderDetailsCVCell *cell = (BaiShaETProjOrderDetailsCVCell *)[collectionView collectionViewCellClass:BaiShaETProjOrderDetailsCVCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(BaiShaETProjOrderDetailsCVCell.class,@"");
-        cell = (BaiShaETProjOrderDetailsCVCell *)[collectionView collectionViewCellClass:BaiShaETProjOrderDetailsCVCell.class forIndexPath:indexPath];
-    }
+    BaiShaETProjOrderDetailsCVCell *cell = JobsRegisterDequeueCollectionViewCell(BaiShaETProjOrderDetailsCVCell);
     cell.indexPath = indexPath;
     cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
         model.jobsWidth = .5f;
@@ -128,20 +125,18 @@ heightForFooterInSectionByModel:(NSInteger)section{
     /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
     /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
     tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xFFFFFF);
-    tbvFooterView.jobsRichViewByModel(nil);
-    @jobs_weakify(self)
-    [tbvFooterView actionObjBlock:^(id data) {
-        @jobs_strongify(self)
-    }];return tbvFooterView;
+    tbvFooterView.JobsRichViewByModel2(nil).JobsBlock1(^(id _Nullable data) {
+        
+    });return tbvFooterView;
 }
 #pragma mark —— lazyLoad
 -(UIButton *)jobsCopyBtn{
     if (!_jobsCopyBtn) {
-        _jobsCopyBtn = UIButton.new;
-        _jobsCopyBtn.jobsResetBtnTitle(@"   ".add(JobsInternationalization(@"複製")).add(@"  "));
-        _jobsCopyBtn.jobsResetBtnTitleFont(UIFontWeightBoldSize(12));
-        _jobsCopyBtn.jobsResetBtnTitleCor(HEXCOLOR(0x757575));
-        _jobsCopyBtn.backgroundColor = HEXCOLOR(0xEAEBED);
+        _jobsCopyBtn = UIButton.jobsInit()
+        .jobsResetBtnTitle(JobsSpace.add(JobsInternationalization(@"複製")).add(JobsSpace))
+        .jobsResetBtnTitleFont(UIFontWeightBoldSize(12))
+        .jobsResetBtnTitleCor(HEXCOLOR(0x757575))
+        .bgColorBy(HEXCOLOR(0xEAEBED));
     }return _jobsCopyBtn;
 }
 /// BaseViewProtocol
@@ -161,8 +156,7 @@ heightForFooterInSectionByModel:(NSInteger)section{
             /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
         });
         _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        [self.contentView addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(self.contentView).insets(UIEdgeInsetsMake(JobsWidth(20), 0, JobsWidth(20), 0));
         }];
     }return _tableView;

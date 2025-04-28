@@ -12,6 +12,7 @@
 @end
 
 @implementation JobsMenuSubView_1
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 #pragma mark —— SysMethod

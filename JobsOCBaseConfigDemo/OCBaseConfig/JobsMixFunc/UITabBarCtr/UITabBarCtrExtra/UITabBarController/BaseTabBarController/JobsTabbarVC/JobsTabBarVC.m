@@ -266,7 +266,7 @@ static dispatch_once_t onceToken;
     /// ❤️这句话走了以后 才会有self.tabBar
     self.viewControllers = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr;
     for (UIView *subView in self.tabBar.subviews) {
-        if ([subView isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+        if ([subView isKindOfClass:NSClassFromString(UITabBarButton)]) {
             subView.图片从小放大();
             [self.UITabBarButtonMutArr addObject:subView];
         }
@@ -449,6 +449,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     }else return nil;
 }
 #pragma mark —— lazyLoad
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 -(UIViewModel *)viewModel{
     if (!_viewModel) {

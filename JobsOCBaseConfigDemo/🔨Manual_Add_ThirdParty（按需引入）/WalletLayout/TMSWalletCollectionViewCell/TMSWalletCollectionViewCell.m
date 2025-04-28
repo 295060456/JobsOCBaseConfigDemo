@@ -15,6 +15,7 @@ Prop_strong()UILabel *titleLabel;
 @end
 
 @implementation TMSWalletCollectionViewCell
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
@@ -27,11 +28,8 @@ Prop_strong()UILabel *titleLabel;
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    TMSWalletCollectionViewCell *cell = (TMSWalletCollectionViewCell *)[collectionView collectionViewCellClass:TMSWalletCollectionViewCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class,@"");
-        cell = (TMSWalletCollectionViewCell *)[collectionView collectionViewCellClass:TMSWalletCollectionViewCell.class forIndexPath:indexPath];
-    }cell.indexPath = indexPath;
+    TMSWalletCollectionViewCell *cell = JobsRegisterDequeueCollectionViewCell(TMSWalletCollectionViewCell);
+    cell.indexPath = indexPath;
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】

@@ -24,6 +24,7 @@ Prop_assign()CGSize btnSize;
 @end
 
 @implementation JobsCustomView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 /// 单例化和销毁

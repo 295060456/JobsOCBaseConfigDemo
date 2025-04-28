@@ -17,11 +17,7 @@ Prop_strong()UIImageView *textIMGV;
 #pragma mark —— UICollectionViewCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    JobsImageNumberViewCVCell *cell = (JobsImageNumberViewCVCell *)[collectionView collectionViewCellClass:JobsImageNumberViewCVCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(JobsImageNumberViewCVCell.class,@"");
-        cell = (JobsImageNumberViewCVCell *)[collectionView collectionViewCellClass:JobsImageNumberViewCVCell.class forIndexPath:indexPath];
-    }
+    JobsImageNumberViewCVCell *cell = JobsRegisterDequeueCollectionViewCell(JobsImageNumberViewCVCell);
     cell.indexPath = indexPath;
     return cell;
 }
@@ -49,8 +45,7 @@ Prop_strong()UIImageView *textIMGV;
         @jobs_weakify(self)
         _textIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            self.contentView.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });

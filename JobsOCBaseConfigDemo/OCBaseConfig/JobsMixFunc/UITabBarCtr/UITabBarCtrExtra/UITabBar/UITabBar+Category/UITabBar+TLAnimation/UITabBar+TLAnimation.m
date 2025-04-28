@@ -20,9 +20,9 @@
 
 - (void)didAddSubview:(UIView *)subview {//这里的UIView *subview，其实就是UITabBarButton *，只不过UITabBarButton *是内部类未暴露
     if ([self isMemberOfClass:UITabBar.class]) {
-        if ([subview isMemberOfClass:NSClassFromString(@"UITabBarButton")] ||// 原生
+        if ([subview isMemberOfClass:NSClassFromString(UITabBarButton)] ||// 原生
             [subview isMemberOfClass:NSClassFromString(@"UIButton")]){// 自定义Button
-            [self.btns addObject:subview];
+            self.btns.add(subview);
         }
     }
     
@@ -34,7 +34,6 @@
                    afterDelay:0];
     }
 }
-
 /// UITabBarItem选中监听
 - (void)tl_setSelectedItem:(UITabBarItem *)selectedItem {
     NSUInteger index = [self.items indexOfObject:selectedItem];
@@ -66,42 +65,12 @@
     }
     [self tl_setSelectedItem:selectedItem];
 }
-#pragma mark —— @property(nonatomic,copy,readonly)NSMutableArray *btns;
-- (void)setBtns:(NSMutableArray *)btns {
-    objc_setAssociatedObject(self,
-                             @selector(btns),
-                             btns,
-                             OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (NSMutableArray *)btns {
-    NSMutableArray *Btns = objc_getAssociatedObject(self, _cmd);
-    if (!Btns) {
-        Btns = NSMutableArray.array;
-        self.selectedIndex = 0;
-        objc_setAssociatedObject(self,
-                                 @selector(btns),
-                                 Btns,
-                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }return Btns;
-}
-#pragma mark —— @property(nonatomic,assign,readonly)NSUInteger selectedIndex;
-- (void)setSelectedIndex:(NSUInteger)selectedIndex {
-    objc_setAssociatedObject(self,
-                             @selector(selectedIndex),
-                             @(selectedIndex),
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSUInteger)selectedIndex {
-    return [objc_getAssociatedObject(self, _cmd) integerValue];
-}
-// MARK: - Functions
+#pragma mark —— 一些私有方法
 UILabel *textLabel(UIView *btn) {
-    if ([btn isMemberOfClass:NSClassFromString(@"UITabBarButton")]) {
+    if ([btn isMemberOfClass:NSClassFromString(UITabBarButton)]) {
         if (@available(iOS 13.0, *)) {
             for (UIView *subView in btn.subviews) {
-                if ([subView isKindOfClass:NSClassFromString(@"UITabBarButtonLabel")]) {
+                if ([subView isKindOfClass:NSClassFromString(UITabBarButtonLabel)]) {
                     return (UILabel *)subView;
                 }
             }return nil;
@@ -112,10 +81,10 @@ UILabel *textLabel(UIView *btn) {
 }
 
 UIImageView *imageView(UIView *btn) {
-    if ([btn isMemberOfClass:NSClassFromString(@"UITabBarButton")]) {
+    if ([btn isMemberOfClass:NSClassFromString(UITabBarButton)]) {
         if (@available(iOS 13.0, *)) {
             for (UIView *subView in btn.subviews) {
-                if ([subView isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
+                if ([subView isKindOfClass:NSClassFromString(UITabBarSwappableImageView)]) {
                     return (UIImageView *)subView;
                 }
             }return nil;
@@ -123,6 +92,31 @@ UIImageView *imageView(UIView *btn) {
     }else if([btn isKindOfClass:NSClassFromString(@"UIButton")]) {
         return [(UIButton *)btn imageView];
     }return nil;
+}
+#pragma mark —— @property(nonatomic,copy,readonly)NSMutableArray *btns;
+JobsKey(_btns)
+@dynamic btns;
+-(void)setBtns:(NSMutableArray *)btns{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_btns, btns);
+}
+
+-(NSMutableArray *)btns{
+    NSMutableArray *Btns = Jobs_getAssociatedObject(_btns);
+    if (!Btns) {
+        Btns = NSMutableArray.array;
+        self.selectedIndex = 0;
+        Jobs_setAssociatedRETAIN_NONATOMIC(_btns, Btns);
+    }return Btns;
+}
+#pragma mark —— @property(nonatomic,assign,readonly)NSUInteger selectedIndex;
+JobsKey(_selectedIndex)
+@dynamic selectedIndex;
+-(void)setSelectedIndex:(NSUInteger)selectedIndex{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_selectedIndex, @(selectedIndex));
+}
+
+-(NSUInteger)selectedIndex{
+    return [Jobs_getAssociatedObject(_selectedIndex) unsignedIntegerValue];
 }
 
 @end

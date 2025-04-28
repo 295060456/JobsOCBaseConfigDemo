@@ -14,6 +14,7 @@ Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 @end
 
 @implementation JobsUserHeaderDataView
+/// AppToolsProtocol
 @synthesize viewModel = _viewModel;
 #pragma mark —— BaseProtocol
 /// 单例化和销毁

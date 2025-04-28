@@ -17,11 +17,8 @@ Prop_strong()JobsHotLabelByMultiLine *jobsHotLabel;
 #pragma mark —— BaseCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsSearchShowHotwordsTBVCell *cell = (JobsSearchShowHotwordsTBVCell *)tableView.tableViewCellClass(JobsSearchShowHotwordsTBVCell.class,@"");
-        if (!cell) {
-            cell = JobsSearchShowHotwordsTBVCell.initTableViewCellWithStyle(UITableViewCellStyleDefault);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }return cell;
+        JobsSearchShowHotwordsTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsSearchShowHotwordsTBVCell);
+        return cell;
     };
 }
 
@@ -56,18 +53,16 @@ Prop_strong()JobsHotLabelByMultiLine *jobsHotLabel;
         }
     };
 }
-
 #pragma mark —— lazyLoad
 -(JobsHotLabelByMultiLine *)jobsHotLabel{
     if (!_jobsHotLabel) {
-        _jobsHotLabel = JobsHotLabelByMultiLine.new;
         @jobs_weakify(self)
-        [_jobsHotLabel actionObjBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
-            @jobs_strongify(self)
-            if (self.objBlock) self.objBlock(cell);
-        }];
-        [self.contentView addSubview:_jobsHotLabel];
-        [_jobsHotLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        _jobsHotLabel = JobsHotLabelByMultiLine.new
+            .JobsBlock1(^(JobsHotLabelByMultiLineCVCell *cell) {
+                @jobs_strongify(self)
+                if (self.objBlock) self.objBlock(cell);
+            });
+        [self.contentView.addSubview(_jobsHotLabel) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
         }];
     }return _jobsHotLabel;
