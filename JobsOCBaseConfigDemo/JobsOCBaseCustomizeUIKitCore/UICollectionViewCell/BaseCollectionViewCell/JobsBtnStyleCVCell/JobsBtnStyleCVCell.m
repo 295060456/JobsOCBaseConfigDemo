@@ -8,11 +8,6 @@
 #import "JobsBtnStyleCVCell.h"
 
 @interface JobsBtnStyleCVCell ()
-/// UI
-Prop_strong()BaseButton *btn;
-Prop_strong()WKWebView *webView;
-/// Data
-Prop_copy()jobsByMASConstraintMakerBlock masMakerBlock;
 
 @end
 
@@ -20,6 +15,8 @@ Prop_copy()jobsByMASConstraintMakerBlock masMakerBlock;
 /// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
+/// BaseViewProtocol
+BaseViewProtocol_synthesize
 /// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
 /// AppToolsProtocol
@@ -88,23 +85,18 @@ AppToolsProtocol_synthesize
     _viewModel = viewModel;
     @jobs_weakify(self)
     /// viewModel + textModel
-    _btn.selected = viewModel.jobsSelected;
-    _btn.enabled = viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UITableViewCell
-    _btn.resetByViewModel(viewModel,self.selected);
-    /// 点击事件
-    [_btn jobsBtnClickEventBlock:viewModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
-        @jobs_strongify(self)
-        if (self.objBlock) self.objBlock(x);
-        return nil;
-    }];
-    /// 长按事件
-    [_btn jobsBtnLongPressGestureEventBlock:viewModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
-//        @jobs_strongify(self)
-        return nil;
-    }];
+    _button.selected = viewModel.jobsSelected;
+    _button.enabled = viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UITableViewCell
+    _button.resetByViewModel(viewModel,self.selected)
+        .onClickBy(^(UIButton *x){
+            @jobs_strongify(self)
+            if (self.objBlock) self.objBlock(x);
+        }).onLongPressGestureBy(^(id data){
+            JobsLog(@"");
+        });
     /// 背景图
     if(viewModel.normalBgImageURL){
-        _btn.imageURL(viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+        _button.imageURL(viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
             .placeholderImage(viewModel.normalImage)
             .options(self.makeSDWebImageOptions)
             .completed(^(UIImage *_Nullable image,
@@ -117,35 +109,30 @@ AppToolsProtocol_synthesize
                     JobsLog(@"图片加载成功");
                 }
             }).bgNormalLoad();
-    }else _btn.jobsResetBtnBgImage(viewModel.backgroundImage);
+    }else _button.jobsResetBtnBgImage(viewModel.backgroundImage);
     /// 图文间距
-    if (@available(iOS 16.0, *)) _btn.jobsResetImagePadding(viewModel.imageTitleSpace);
+    if (@available(iOS 16.0, *)) _button.jobsResetImagePadding(viewModel.imageTitleSpace);
     /// 图文相对位置关系
-    if (@available(iOS 16.0, *)) _btn.jobsResetImagePlacement(viewModel.buttonEdgeInsetsStyle);
+    if (@available(iOS 16.0, *)) _button.jobsResetImagePlacement(viewModel.buttonEdgeInsetsStyle);
     /// 圆切角
-    _btn.jobsResetBtnCornerRadiusValue(viewModel.layerCornerRadius);
+    _button.jobsResetBtnCornerRadiusValue(viewModel.layerCornerRadius);
 }
 
 -(void)setButtonModel:(UIButtonModel *)buttonModel{
     _buttonModel = buttonModel;
     @jobs_weakify(self)
-    _btn.selected = buttonModel.jobsSelected;
-    _btn.enabled = buttonModel.jobsEnabled;
-    _btn.resetByButtonModel(buttonModel,self.selected);
-    /// 点击事件
-    [_btn jobsBtnClickEventBlock:buttonModel.clickEventBlock ? : ^id _Nullable(BaseButton *_Nullable x) {
-        @jobs_strongify(self)
-        if (self.objBlock) self.objBlock(x);
-        return nil;
-    }];
-    /// 长按事件
-    [_btn jobsBtnLongPressGestureEventBlock:buttonModel.longPressGestureEventBlock ? : ^id(__kindof UIButton *x) {
-//        @jobs_strongify(self)
-        return nil;
-    }];
+    _button.selected = buttonModel.jobsSelected;
+    _button.enabled = buttonModel.jobsEnabled;
+    _button.resetByButtonModel(buttonModel,self.selected)
+        .onClickBy(^(UIButton *x){
+            @jobs_strongify(self)
+            if (self.objBlock) self.objBlock(x);
+        }).onLongPressGestureBy(^(id data){
+            JobsLog(@"");
+        });
     /// 背景图
     if(buttonModel.normalBgImageURL){
-        _btn.imageURL(buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+        _button.imageURL(buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl)
             .placeholderImage(buttonModel.backgroundImage)
             .options(self.makeSDWebImageOptions)
             .completed(^(UIImage * _Nullable image,
@@ -158,29 +145,28 @@ AppToolsProtocol_synthesize
                     JobsLog(@"图片加载成功");
                 }
             }).bgNormalLoad();
-    }else _btn.jobsResetBtnBgImage(buttonModel.backgroundImage);
+    }else _button.jobsResetBtnBgImage(buttonModel.backgroundImage);
     /// 图文间距
-    if (@available(iOS 16.0, *)) _btn.jobsResetImagePadding(buttonModel.imagePadding);
+    if (@available(iOS 16.0, *)) _button.jobsResetImagePadding(buttonModel.imagePadding);
     /// 图文相对位置关系
-    if (@available(iOS 16.0, *)) _btn.jobsResetImagePlacement(buttonModel.imagePlacement);
+    if (@available(iOS 16.0, *)) _button.jobsResetImagePlacement(buttonModel.imagePlacement);
     /// 圆切角
-    _btn.jobsResetBtnCornerRadiusValue(buttonModel.cornerRadiusValue);
+    _button.jobsResetBtnCornerRadiusValue(buttonModel.cornerRadiusValue);
 }
 #pragma mark —— lazyLoad
--(BaseButton *)btn{
-    if(!_btn){
+-(BaseButton *)button{
+    if(!_button){
         @jobs_weakify(self)
-        _btn = BaseButton.jobsInit();
+        _button = BaseButton.jobsInit();
         /// enabled 是 userInteractionEnabled 的子集
         /// enabled = NO ,则不响应：-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event（此方法不要写在分类里面）
-        _btn.enabled = NO; /// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应 UITableViewCell 协议方法
-        _btn.userInteractionEnabled = YES;
-        _btn.onClickBy(^(UIButton *x){
+        _button.enabled = NO; /// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应 UITableViewCell 协议方法
+        _button.userInteractionEnabled = YES;
+        _button.onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             if(self.objBlock) self.objBlock(x);
-        });self.contentView.addSubview(_btn);
-        [_btn mas_makeConstraints:self.masMakerBlock];
-    }return _btn;
+        });[self.contentView.addSubview(_button) mas_makeConstraints:self.masonryBlock];
+    }return _button;
 }
 
 -(WKWebView *)webView{
@@ -194,20 +180,20 @@ AppToolsProtocol_synthesize
     }
     _webView.backgroundColor = JobsClearColor;
     _webView.opaque = NO; // 设置不透明为 NO，确保背景透明
-    [self.contentView.addSubview(_webView) mas_makeConstraints:self.masMakerBlock];
+    [self.contentView.addSubview(_webView) mas_makeConstraints:self.masonryBlock];
     self.refresh();
     return _webView;
 }
 
--(jobsByMASConstraintMakerBlock _Nonnull)masMakerBlock{
-    if(!_masMakerBlock){
+-(jobsByMASConstraintMakerBlock _Nullable)masonryBlock{
+    if(!_masonryBlock){
         @jobs_weakify(self)
-        _masMakerBlock = ^(MASConstraintMaker *make) {
+        _masonryBlock = ^(MASConstraintMaker *make) {
             @jobs_strongify(self)
             make.edges.equalTo(self);///
             /// 如果这里用self.contentView，在某些情况下，约束会失灵。因为self.contentView的生命周期的缘故，还没有完全展开
         };
-    }return _masMakerBlock;
+    }return _masonryBlock;
 }
 
 @end

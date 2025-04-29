@@ -12,8 +12,9 @@
 @end
 
 @implementation BaseViewController
-#pragma mark —— BaseViewProtocol
+/// BaseViewProtocol
 BaseViewProtocol_synthesize
+/// BaseViewControllerProtocol
 BaseViewControllerProtocol_synthesize
 /// new方法触发
 - (instancetype)init{
@@ -103,6 +104,7 @@ BaseViewControllerProtocol_synthesize
     };
 }
 #pragma mark —— lazyLoad
+/// UIPictureAndBackGroundCorProtocol
 @synthesize bgImageView = _bgImageView;
 -(UIImageView *)bgImageView{
     if (!_bgImageView) {

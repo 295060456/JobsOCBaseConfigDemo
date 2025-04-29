@@ -15,6 +15,7 @@
 #import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "JobsBlock.h"
+#import "NSObject+AttributedStr.h"
 
 #pragma mark —— 关于时间/日历
 NS_INLINE __kindof NSDateComponents *_Nonnull jobsMakeDateComponents(jobsByDateComponentsBlock _Nonnull block){
@@ -147,6 +148,7 @@ NS_INLINE __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock 
 
 NS_INLINE __kindof UITextView *_Nonnull jobsMakeTextView(jobsByTextViewBlock _Nonnull block){
     UITextView *data = UITextView.alloc.init;
+    data.linkTextAttributes = NSObject.linkTextAttributes;
     if (block) block(data);
     return data;
 }

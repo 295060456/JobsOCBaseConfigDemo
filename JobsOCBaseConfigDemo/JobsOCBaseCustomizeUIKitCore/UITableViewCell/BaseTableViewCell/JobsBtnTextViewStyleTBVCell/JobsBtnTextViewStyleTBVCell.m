@@ -1,17 +1,17 @@
 //
-//  JobsTextViewStyleTBVCell.m
+//  JobsBtnTextViewStyleTBVCell.m
 //  FMNormal
 //
 //  Created by Jobs on 2025/4/28.
 //
 
-#import "JobsTextViewStyleTBVCell.h"
+#import "JobsBtnTextViewStyleTBVCell.h"
 
-@interface JobsTextViewStyleTBVCell ()
+@interface JobsBtnTextViewStyleTBVCell ()
 
 @end
 
-@implementation JobsTextViewStyleTBVCell
+@implementation JobsBtnTextViewStyleTBVCell
 /// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
@@ -26,7 +26,7 @@ BaseViewProtocol_synthesize
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
-        JobsTextViewStyleTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsTextViewStyleTBVCell);
+        JobsBtnTextViewStyleTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsBtnTextViewStyleTBVCell);
         return cell;
     };
 }
@@ -36,6 +36,7 @@ BaseViewProtocol_synthesize
     return ^(UIViewModel __kindof *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model;
+        self.button.alpha = 1;
         self.textView.alpha = 1;
     };
 }
@@ -84,6 +85,31 @@ BaseViewProtocol_synthesize
 //-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange API_DEPRECATED_WITH_REPLACEMENT("textView:shouldInteractWithURL:inRange:interaction:", ios(7.0, 10.0)) API_UNAVAILABLE(visionos);
 //-(BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange API_DEPRECATED_WITH_REPLACEMENT("textView:shouldInteractWithTextAttachment:inRange:interaction:", ios(7.0, 10.0)) API_UNAVAILABLE(visionos);
 #pragma mark —— lazyLoad
+-(__kindof UIButton *)button{
+    if(!_button){
+        _button = UIButton.jobsInit()
+            .bgColorBy(JobsWhiteColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePadding(1)
+            .jobsResetBtnImage(self.viewModel.image ? : JobsIMG(@"方框（未选中）"))
+            .jobsResetBtnBgImage(self.viewModel.bgImage)
+            .jobsResetBtnTitleCor(self.viewModel.titleCor)
+            .jobsResetBtnTitleFont(self.viewModel.titleFont)
+            .jobsResetBtnTitle(self.viewModel.title ? : @"")
+            .onClickBy(^(UIButton *x){
+                x.selected = !x.selected;
+                JobsIMG(x.selected ? @"方框（已选中）":@"方框（未选中）");
+                if(self.objBlock) self.objBlock(x);
+            }).onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            });
+        [self.contentView.addSubview(_button) mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(JobsWidth(20), JobsWidth(20)));
+            make.left.equalTo(self.contentView).offset(JobsWidth(13));
+            make.top.equalTo(self.contentView);
+        }];
+    }return _button;
+}
 /// 如果需要用其他的自定义的TextView，继承此类并重写-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy
 -(__kindof UITextView *)textView{
     if (!_textView) {
@@ -91,9 +117,11 @@ BaseViewProtocol_synthesize
         _textView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
             @jobs_strongify(self)
             textView.delegate = self;
+            textView.scrollEnabled = NO;
             textView.dataDetectorTypes = UIDataDetectorTypeLink; /// 启用链接检测
             textView.editable = NO; /// 禁止编辑。必须 editable = NO 才能点击链接跳转
             textView.selectable = YES; /// 允许选择链接
+            textView.linkTextAttributes = self.makeLinkTextAttributes;
             /// 富文本的优先级大于普通文本
             if(self.viewModel.attributedTitle){
                 textView.attributedText = self.viewModel.attributedTitle;
@@ -161,7 +189,9 @@ BaseViewProtocol_synthesize
     @jobs_weakify(self)
     return ^(MASConstraintMaker *_Nonnull make){
         @jobs_strongify(self)
-        make.edges.equalTo(self.contentView);
+        make.top.equalTo(self.contentView);
+        make.left.equalTo(self.button.mas_right).offset(JobsWidth(10));
+        make.right.bottom.equalTo(self.contentView);
     };
 }
 

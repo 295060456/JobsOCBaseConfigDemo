@@ -35,7 +35,6 @@ Prop_assign()BOOL ViewWillDisappear;
 Prop_assign()BOOL ViewDidDisappear;
 /// UI
 Prop_weak()UIViewController *fromVC;
-Prop_strong(nullable)WKWebView *webView;
 Prop_strong(nullable)SPAlertController *alertController;
 Prop_assign()ComingStyle pushOrPresent;
 Prop_assign()BOOL setupNavigationBarHidden;
@@ -73,7 +72,6 @@ NS_ASSUME_NONNULL_END
 #define BaseViewControllerProtocol_synthesize \
 \
 @synthesize fromVC = _fromVC;\
-@synthesize webView = _webView;\
 @synthesize alertController = _alertController;\
 @synthesize pushOrPresent = _pushOrPresent;\
 @synthesize setupNavigationBarHidden = _setupNavigationBarHidden;\
@@ -95,7 +93,6 @@ NS_ASSUME_NONNULL_END
 #define BaseViewControllerProtocol_dynamic \
 \
 @dynamic fromVC;\
-@dynamic webView;\
 @dynamic alertController;\
 @dynamic pushOrPresent;\
 @dynamic setupNavigationBarHidden;\

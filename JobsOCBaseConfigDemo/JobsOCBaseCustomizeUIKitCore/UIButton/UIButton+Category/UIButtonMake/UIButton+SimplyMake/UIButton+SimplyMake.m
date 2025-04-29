@@ -467,9 +467,9 @@
     };
 }
 #pragma mark —— 依据数据源进行按钮的统一重设
--(jobsByViewModelAndBOOLBlock _Nonnull)resetByViewModel{
+-(JobsReturnButtonByViewModelAndBOOLBlock _Nonnull)resetByViewModel{
     @jobs_weakify(self)
-    return ^(__kindof UIViewModel *_Nonnull viewModel,BOOL selected){
+    return ^__kindof UIButton *_Nullable(__kindof UIViewModel *_Nonnull viewModel,BOOL selected){
         @jobs_strongify(self)
         /// 图（背景颜色）
         self.jobsResetBtnBgCor(selected ? viewModel.bgSelectedCor : viewModel.bgCor);/// 更改：按钮背景色
@@ -490,13 +490,13 @@
             self.jobsResetBtnSubTitle(selected ? viewModel.subTextModel.selectedSubText : viewModel.subTextModel.subText);
             self.jobsResetBtnSubTitleCor(selected ? viewModel.subTextModel.selectedSubTextCor : viewModel.subTextModel.subTextCor);
             self.jobsResetBtnSubTitleFont(selected ? viewModel.subTextModel.selectedSubFont : viewModel.subTextModel.subFont);
-        }
+        }return self;
     };
 }
 
--(jobsByButtonModelAndBOOLBlock _Nonnull)resetByButtonModel{
+-(JobsReturnButtonByButtonModelAndBOOLBlock _Nonnull)resetByButtonModel{
     @jobs_weakify(self)
-    return ^(__kindof UIButtonModel *_Nonnull buttonModel,BOOL selected){
+    return ^__kindof UIButton *_Nullable(__kindof UIButtonModel *_Nonnull buttonModel,BOOL selected){
         @jobs_strongify(self)
         /// 图（背景颜色）
         self.jobsResetBtnBgCor(selected ? buttonModel.baseBackgroundColor : buttonModel.baseBackgroundColor);/// 更改：按钮背景色
@@ -517,7 +517,7 @@
             self.jobsResetBtnSubTitle(selected ? buttonModel.selectedSubTitle : buttonModel.subTitle);
             self.jobsResetBtnSubTitleCor(selected ? buttonModel.selectedSubTitleCor : buttonModel.subTitleCor);
             self.jobsResetBtnSubTitleFont(selected ? buttonModel.selectedSubTitleFont : buttonModel.subTitleFont);
-        }
+        }return self;
     };
 }
 #pragma mark —— Prop_copy()jobsByBtnBlock clickBlock;

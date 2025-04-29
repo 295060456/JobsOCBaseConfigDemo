@@ -19,7 +19,7 @@ BaseViewProtocol_synthesize
         /// self.backgroundColor 和  self.contentView.backgroundColor 均是无效操作❌
         /// 只有 self.backgroundView.backgroundColor 是有效操作✅
         /// 默认情况下，backgroundView 是 nil
-        self.backgroundView = [UIView.alloc initWithFrame:self.bounds];
+        self.backgroundView = UIView.initByFrame(self.bounds);
     }return self;
 }
 /**

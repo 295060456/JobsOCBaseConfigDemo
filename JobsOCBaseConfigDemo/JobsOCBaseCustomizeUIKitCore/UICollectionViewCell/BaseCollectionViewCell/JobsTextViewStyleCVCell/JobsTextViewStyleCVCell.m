@@ -74,9 +74,11 @@ BaseViewProtocol_synthesize
             textView.dataDetectorTypes = UIDataDetectorTypeLink; /// 启用链接检测
             textView.editable = NO; /// 禁止编辑。必须 editable = NO 才能点击链接跳转
             textView.selectable = YES; /// 允许选择链接
+            textView.linkTextAttributes = self.makeLinkTextAttributes; /// Style for links
             /// 富文本的优先级大于普通文本
             if(self.viewModel.attributedTitle){
                 textView.attributedText = self.viewModel.attributedTitle;
+                textView.linkTextAttributes = self.makeLinkTextAttributes; /// Style for links
             }else{
                 textView.text = self.viewModel.text;
                 textView.textAlignment = self.viewModel.textAlignment;
@@ -102,6 +104,7 @@ BaseViewProtocol_synthesize
             textView.font = UIFontWeightMediumSize(18);
             textView.placeholderFont = textView.font;
             textView.placeholderColor = JobsCor(@"#AAAAAA");
+            textView.linkTextAttributes = self.makeLinkTextAttributes; /// Style for links
             [textView jobsTextViewFilterBlock:^BOOL(id  _Nullable data) {
 //                @jobs_strongify(self)
                 return YES;
@@ -127,6 +130,7 @@ BaseViewProtocol_synthesize
             textView.font = UIFontWeightMediumSize(18);
             textView.placeholderFont = textView.font;
             textView.placeholderColor = JobsCor(@"#AAAAAA");
+            textView.szTextView.linkTextAttributes = self.makeLinkTextAttributes; /// Style for links
             [textView.szTextView jobsTextViewFilterBlock:^BOOL(id _Nullable data) {
 //                @jobs_strongify(self)
                 return YES;
@@ -138,7 +142,9 @@ BaseViewProtocol_synthesize
 }
 
 -(jobsByMASConstraintMakerBlock _Nullable)masonryBlock{
+    @jobs_weakify(self)
     return ^(MASConstraintMaker *_Nonnull make){
+        @jobs_strongify(self)
         make.edges.equalTo(self.contentView);
     };
 }

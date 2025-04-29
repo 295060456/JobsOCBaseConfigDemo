@@ -4084,7 +4084,7 @@ static const uint32_t kSequenceBits = 12;
     ///【组 1】UIButton 单独自定义设置系统自带控件的Frame【形成Frame后直接return，避免被其他中间过程修改】❤️与组2、3属性互斥❤️
     Prop_assign()CGRect textLabelFrame;
     Prop_assign()CGRect subTextLabelFrame;
-    Prop_assign()CGRect imageViewFrame;
+    Prop_assign()CGRect btnImageViewFrame;
     ///【组 2】UIButton 单独自定义设置系统自带控件的Size【形成Frame后直接return，避免被其他中间过程修改】❤️与组1、3属性互斥❤️
     Prop_assign()CGSize textLabelSize;
     Prop_assign()CGFloat textLabelFrameResetX;

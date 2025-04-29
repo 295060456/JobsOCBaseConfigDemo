@@ -129,5 +129,7 @@
 #import "NSObject+HTML.h"
 /// 锁🔐
 #import "JobsLocker.h"
+/// 富文本配置
+#import "NSObject+AttributedStr.h"
 
 #endif /* JobsObject_h */

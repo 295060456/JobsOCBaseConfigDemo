@@ -48,6 +48,7 @@ JobsKey(_titleTextView)
         textView = jobsMakeBaseTextView(^(__kindof BaseTextView * _Nullable textView) {
             @jobs_strongify(self)
             textView.frame = self.titleLabel.frame;
+//            textView.linkTextAttributes = self.makeLinkTextAttributes;
             self.configTextView(textView);
           });Jobs_setAssociatedRETAIN_NONATOMIC(_titleTextView, textView);
     }return textView;

@@ -62,14 +62,6 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
-/// 超链接的文字以及下划线的颜色设置
--(__kindof NSDictionary <NSAttributedStringKey,id>*)makeLinkTextAttributes{
-    return @{
-        NSForegroundColorAttributeName: JobsCor(@"#FFCC00"),
-        NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
-        NSUnderlineColorAttributeName: JobsCor(@"#FFCC00"),
-    };
-}
 /// 选择电话号码区位
 -(__kindof UIButton *)zoneCodeBtnByBlock:(jobsByIDBlock _Nonnull)block{
     return BaseButton.initByStyle1(@"+".add(@"63"),

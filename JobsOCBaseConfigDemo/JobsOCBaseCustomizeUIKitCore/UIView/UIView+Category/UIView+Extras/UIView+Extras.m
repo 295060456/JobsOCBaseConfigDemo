@@ -9,6 +9,12 @@
 #import "UIView+Extras.h"
 
 @implementation UIView (Extras)
+#pragma mark —— init
++(JobsReturnViewByRectBlock _Nonnull)initByFrame{
+    return ^__kindof UIView *_Nullable(CGRect data){
+        return [UIView.alloc initWithFrame:data];
+    };
+}
 #pragma mark —— BaseViewProtocol
 +(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel{
     @jobs_weakify(self)
@@ -25,8 +31,12 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(id _Nullable data){
         @jobs_strongify(self)
-        self.jobsRichViewByModel(data);
-        return self;
+        if(self.isKindOfClass(UITableViewCell.class) || self.isKindOfClass(UICollectionViewCell.class) ){
+            if ([self respondsToSelector:@selector(jobsRichElementsCellBy)]) self.jobsRichElementsCellBy(data);
+            if ([self respondsToSelector:@selector(jobsRichElementsCellByModel)]) self.jobsRichElementsCellByModel(data);
+        }else{
+            self.jobsRichViewByModel(data);
+        }return self;
     };
 }
 

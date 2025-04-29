@@ -176,6 +176,8 @@
 		84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */; };
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
 		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
+		C53F13622DC0BC18006F2ED6 /* NSObject+AttributedStr.m in Sources */ = {isa = PBXBuildFile; fileRef = C53F13602DC0BC18006F2ED6 /* NSObject+AttributedStr.m */; };
+		C53F136E2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C53F136C2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m */; };
 		C58B19722DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */; };
 		C58B1D812DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */; };
 		C58B1D822DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */; };
@@ -1639,6 +1641,10 @@
 		C52417042DB61725008F9194 /* FMGameCVCell_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FMGameCVCell_2.png; sourceTree = "<group>"; };
 		C52417052DB61725008F9194 /* FMGameCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMGameCVCell.h; sourceTree = "<group>"; };
 		C52417062DB61725008F9194 /* FMGameCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMGameCVCell.m; sourceTree = "<group>"; };
+		C53F135F2DC0BC18006F2ED6 /* NSObject+AttributedStr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+AttributedStr.h"; sourceTree = "<group>"; };
+		C53F13602DC0BC18006F2ED6 /* NSObject+AttributedStr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AttributedStr.m"; sourceTree = "<group>"; };
+		C53F136B2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBtnTextViewStyleTBVCell.h; sourceTree = "<group>"; };
+		C53F136C2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnTextViewStyleTBVCell.m; sourceTree = "<group>"; };
 		C58B196F2DBF59F1006163A3 /* JobsTextViewStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextViewStyleTBVCell.h; sourceTree = "<group>"; };
 		C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextViewStyleTBVCell.m; sourceTree = "<group>"; };
 		C58B1D7B2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextLabStyleCVCell.h; sourceTree = "<group>"; };
@@ -5567,6 +5573,24 @@
 				C52417062DB61725008F9194 /* FMGameCVCell.m */,
 			);
 			path = FMGameCVCell;
+			sourceTree = "<group>";
+		};
+		C53F13612DC0BC18006F2ED6 /* NSObject+AttributedString */ = {
+			isa = PBXGroup;
+			children = (
+				C53F135F2DC0BC18006F2ED6 /* NSObject+AttributedStr.h */,
+				C53F13602DC0BC18006F2ED6 /* NSObject+AttributedStr.m */,
+			);
+			path = "NSObject+AttributedString";
+			sourceTree = "<group>";
+		};
+		C53F136D2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell */ = {
+			isa = PBXGroup;
+			children = (
+				C53F136B2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.h */,
+				C53F136C2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m */,
+			);
+			path = JobsBtnTextViewStyleTBVCell;
 			sourceTree = "<group>";
 		};
 		C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */ = {
@@ -12330,6 +12354,7 @@
 		CE5A62162CA82C2D006D67A7 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				C53F13612DC0BC18006F2ED6 /* NSObject+AttributedString */,
 				84A978642D1454630002A2BA /* NSObject+HTML */,
 				84EB570A2D102C3800AC56B0 /* NSObject+SysInfo */,
 				8461A4F62D0801860081C41D /* NSObject+3rd */,
@@ -13562,6 +13587,7 @@
 		CE5A638B2CA82C2D006D67A7 /* BaseTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				C53F136D2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell */,
 				C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */,
 				CE5A63782CA82C2D006D67A7 /* JobsBaseTableViewCell */,
 				CE5A637D2CA82C2D006D67A7 /* iOS UITableView中Cell的自带样式 */,
@@ -17096,6 +17122,7 @@
 				8489CADA2CE624EF00BB5E83 /* UIScrollView+JobsEmptyData.m in Sources */,
 				CE5A648A2CA82DBB006D67A7 /* NSMutableDictionary+Ordered.m in Sources */,
 				CE4F27962CA825CD002AF25B /* JobsWalletVC.m in Sources */,
+				C53F13622DC0BC18006F2ED6 /* NSObject+AttributedStr.m in Sources */,
 				CE4F27972CA825CD002AF25B /* Realm_VC.m in Sources */,
 				CE5A64E22CA83023006D67A7 /* NSRunLoop+Extra.m in Sources */,
 				CEE6E7252CB7FF2E00B1BB60 /* FM_GetKYCInfo_api.m in Sources */,
@@ -17118,6 +17145,7 @@
 				CEB8FA852CA8386D00CCFDF8 /* XLChannelControl.m in Sources */,
 				CE5A65072CA830E3006D67A7 /* UICollectionView+JobsRegisterClass.m in Sources */,
 				CE5A65082CA830E3006D67A7 /* UICollectionView+Func.m in Sources */,
+				C53F136E2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m in Sources */,
 				CE5A65092CA830E3006D67A7 /* UICollectionView+RegistrationTracking.m in Sources */,
 				CE4299DB2CAFA8CD00A0446A /* NSString+Notification.m in Sources */,
 				8493F1ED2CD3A7E000011DD1 /* YTKChainRequest+Extra.m in Sources */,

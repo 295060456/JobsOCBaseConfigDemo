@@ -69,7 +69,7 @@ Prop_assign()CGSize size;
     [self.linePath stroke];
     UIGraphicsEndImageContext();
 
-    self.btn.layer.add(self.lineLayer);
+    self.button.layer.add(self.lineLayer);
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView_{
@@ -77,8 +77,7 @@ Prop_assign()CGSize size;
         _bgImageView_ = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             imageView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
     //        imageView.image = JobsIMG(@"投注记录");
-            [self.contentView addSubview:imageView];
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
             }];
         });

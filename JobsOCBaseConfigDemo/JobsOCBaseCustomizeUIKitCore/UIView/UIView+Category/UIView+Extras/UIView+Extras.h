@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "BaseViewProtocol.h"
+#import "BaseCellProtocol.h"
 #import "JobsBlock.h"
 #import "MacroDef_App.h"
 #import "MacroDef_Size.h"
@@ -38,7 +39,9 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 #define DestroyView(view) destroyView(&(view))
 #endif /* DestroyView */
 
-@interface UIView (Extras) <BaseViewProtocol>
+@interface UIView (Extras) <BaseViewProtocol,BaseCellProtocol>
+#pragma mark —— init
++(JobsReturnViewByRectBlock _Nonnull)initByFrame;
 Prop_assign()BOOL jobsVisible;
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame;

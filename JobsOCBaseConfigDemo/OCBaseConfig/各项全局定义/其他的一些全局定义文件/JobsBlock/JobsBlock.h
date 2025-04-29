@@ -84,6 +84,7 @@ typedef URLManagerModel *_Nullable(^JobsReturnURLManagerModelByStringBlock)(NSSt
 
 @class UIViewModel;
 typedef void(^jobsByViewModelAndBOOLBlock)(__kindof UIViewModel *_Nonnull viewModel,BOOL data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelAndBOOLBlock)(__kindof UIViewModel *_Nonnull viewModel,BOOL data);
 typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByVoidBlock)(void);
 typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByStringBlock)(NSString *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(UIViewModel *_Nullable data);
@@ -181,6 +182,7 @@ typedef __kindof BaseUploadFileRequest *_Nullable(^JobsReturnRequestByFileModelB
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);
 typedef void(^jobsByButtonModelAndBOOLBlock)(__kindof UIButtonModel *_Nonnull buttonModel,BOOL data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelAndBOOLBlock)(__kindof UIButtonModel *_Nonnull buttonModel,BOOL data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelBlock)(UIButtonModel *_Nullable data);
 typedef BOOL(^JobsReturnBOOLByButtonModelBlock)(UIButtonModel *_Nullable data);
 typedef NSMutableArray <UIButtonModel *>*_Nullable(^JobsReturnButtonModelArrByArrBlock)(__kindof NSArray *_Nullable data);

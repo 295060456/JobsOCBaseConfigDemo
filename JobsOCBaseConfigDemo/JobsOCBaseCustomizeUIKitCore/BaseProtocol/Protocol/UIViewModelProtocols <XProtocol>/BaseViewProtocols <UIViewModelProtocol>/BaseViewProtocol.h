@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <WebKit/WKWebView.h>
 #import "JobsBlock.h"
 #import "DefineProperty.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
@@ -30,6 +31,7 @@ Prop_strong(nullable)__kindof UICollectionView *collectionView;
 Prop_strong(nullable)__kindof UITableView *tableView;
 Prop_strong(nullable)__kindof UIScrollView *scrollView;
 
+Prop_strong(nullable)__kindof WKWebView *webView;
 Prop_strong(nullable)__kindof UIImageView *imageView;
 Prop_strong(nullable)__kindof UIButton *button;
 Prop_strong(nullable)__kindof UILabel *label;
@@ -154,6 +156,7 @@ NS_ASSUME_NONNULL_END
 @synthesize collectionView = _collectionView;\
 @synthesize tableView = _tableView;\
 @synthesize scrollView = _scrollView;\
+@synthesize webView = _webView;\
 @synthesize imageView = _imageView;\
 @synthesize button = _button;\
 @synthesize label = _label;\
@@ -185,6 +188,7 @@ NS_ASSUME_NONNULL_END
 @dynamic collectionView;\
 @dynamic tableView;\
 @dynamic scrollView;\
+@dynamic webView;\
 @dynamic imageView;\
 @dynamic button;\
 @dynamic label;\
