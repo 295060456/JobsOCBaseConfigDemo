@@ -12,7 +12,18 @@
 @end
 
 @implementation BaseTextView
+/// BaseProtocol
 @synthesize becomeFirstResponder = _becomeFirstResponder;
+-(void)dealloc{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+#pragma mark —— 初始化
+- (instancetype)init{
+    if (self = [super init]) {
+        [self setupDefaults];
+    }return self;
+}
+
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
 #pragma clang diagnostic push
@@ -37,6 +48,25 @@
         }
 #pragma clang diagnostic pop
     }return self;
+}
+
+-(instancetype)initWithFrame:(CGRect)frame
+               textContainer:(NSTextContainer *)textContainer {
+    if (self = [super initWithFrame:frame textContainer:textContainer]) {
+       
+    }return self;
+}
+
+-(instancetype)initWithCoder:(NSCoder *)coder {
+    if (self = [super initWithCoder:coder]) {
+
+    }return self;
+}
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    /// 始终保持内容从顶部开始
+    [self adjustContentOffset];
 }
 #pragma mark —— UIResponder
 -(BOOL)canBecomeFirstResponder {
@@ -78,6 +108,27 @@
         }else return NO;
     }else return YES;
 #pragma clang diagnostic pop
+}
+/// 只有当内容高度小于视图高度时才需要强制设置 offset
+-(void)adjustContentOffset{
+    if (self.contentSize.height < self.bounds.size.height) self.contentOffset = CGPointZero;
+}
+
+-(void)setupDefaults{
+    /// 从 iOS 16 起，UITextView 使用新的文本渲染系统，会使用 UITextLayoutFragmentView。
+    /// 它默认在某些情况下会将内容垂直居中，比如文本少、没有足够内容填满 UITextView 的高度时。
+    /// 所以一下操作就是在关闭这个新特性
+    [self switchs];
+    /// 接受通知
+    @jobs_weakify(self)
+    [self addNotificationName:UITextViewTextDidChangeNotification
+                        block:^(id _Nullable weakSelf,
+                                id _Nullable arg) {
+        @jobs_strongify(self)
+        NSNotification *notification = (NSNotification *)arg;
+        NSLog(@"通知传递过来的 = %@",notification.object);
+        [self adjustContentOffset];
+    }];
 }
 
 @end

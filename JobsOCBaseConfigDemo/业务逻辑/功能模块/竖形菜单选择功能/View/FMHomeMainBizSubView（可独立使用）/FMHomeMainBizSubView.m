@@ -268,7 +268,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.cellCls = FMGameCVCell.class;
     cell.data = @(SourceType_Home);
     self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(indexPath.section);
-    cell.getCollectionHeight(self.rightViewCurrentSelectModel.childrenList);
+    cell.getCollectionHeight((NSMutableArray <NSObject *>*)self.rightViewCurrentSelectModel.childrenList);
     cell.jobsRichElementsCellBy(self.rightDataArray);/// GoodsClassModel
     cell.reloadDatas();
 //    @jobs_weakify(self)

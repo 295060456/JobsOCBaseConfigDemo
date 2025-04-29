@@ -6,6 +6,7 @@
 //
 
 #import "JobsBaseTableViewCell.h"
+#import "BaseTextView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 包含一个按钮 和 一个TextView（用于承接富文本及其点击事件）

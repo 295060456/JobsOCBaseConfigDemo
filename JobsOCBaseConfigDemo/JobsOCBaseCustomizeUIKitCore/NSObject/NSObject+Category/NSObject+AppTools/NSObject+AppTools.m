@@ -244,10 +244,10 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         return viewModel;
     };
 }
-/// 默认文本段落样式
+/// 默认文本段落样式（两端对齐）
 -(NSMutableParagraphStyle *)defaultParagraphStyle{
     return jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
-        data.alignment = NSTextAlignmentJustified;
+        data.alignment = NSTextAlignmentJustified;/// 两端对齐
         data.paragraphSpacing = 0;/// 段距，取值 float
         data.paragraphSpacingBefore = 0;/// 段首空间，取值 float
         data.firstLineHeadIndent = 0.0;/// 首行缩进，取值 float

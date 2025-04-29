@@ -71,7 +71,7 @@ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 -(void)checkIfIPInPhilippinesByBlock:(jobsByBOOLBlock _Nonnull)block;
 /// 数据组装
 -(JobsReturnViewModelByDecorationModelBlock _Nonnull)makeDatas;
-/// 默认文本段落样式
+/// 默认文本段落样式（两端对齐）
 -(NSMutableParagraphStyle *)defaultParagraphStyle;
 /// 联系我们.按钮
 -(__kindof UIButton *_Nullable)makeContactBtn;

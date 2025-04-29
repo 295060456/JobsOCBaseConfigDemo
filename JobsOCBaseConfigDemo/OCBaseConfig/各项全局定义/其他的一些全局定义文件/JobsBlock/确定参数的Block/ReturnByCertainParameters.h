@@ -489,7 +489,7 @@ typedef CGFloat(^JobsReturnCGFloatByViewBlock)(UIView *_Nullable view);
 typedef CGFloat(^JobsReturnCGFloatByCGFloatBlock)(CGFloat data);
 typedef CGFloat(^JobsReturnByCGPointBlock)(CGPoint data);
 typedef CGFloat(^JobsReturnCGFloatByIDBlock)(id _Nullable data);
-typedef CGFloat(^JobsReturnCGFloatByArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
+typedef CGFloat(^JobsReturnCGFloatByArrBlock)(NSMutableArray <__kindof NSObject *>*_Nullable data);
 typedef CGFloat(^JobsReturnCGFloatByFontBlock)(UIFont *_Nullable font);
 typedef CGFloat(^JobsReturnCGFloatByNumberBlock)(NSNumber *_Nullable data);
 

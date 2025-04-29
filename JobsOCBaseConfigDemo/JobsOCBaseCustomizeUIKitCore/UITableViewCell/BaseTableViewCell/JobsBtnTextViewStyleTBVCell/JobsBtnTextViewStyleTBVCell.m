@@ -19,6 +19,8 @@ UIViewModelProtocol_synthesize_part2
 BaseLayerProtocol_synthesize_part3
 /// BaseViewProtocol
 BaseViewProtocol_synthesize
+/// AppToolsProtocol
+AppToolsProtocol_synthesize
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
@@ -33,11 +35,52 @@ BaseViewProtocol_synthesize
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel __kindof *_Nullable model) {
+    return ^(id _Nullable data) {
         @jobs_strongify(self)
-        self.viewModel = model;
-        self.button.alpha = 1;
-        self.textView.alpha = 1;
+        if([data isKindOfClass:UIViewModel.class]) {
+            self.viewModel = data;
+            self.button.bgColorBy(self.viewModel.bgCor)
+                .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+                .jobsResetImagePadding(self.viewModel.imagePadding)
+                .jobsResetBtnImage(self.viewModel.image)
+                .jobsResetBtnBgImage(self.viewModel.bgImage)
+                .jobsResetBtnTitleCor(self.viewModel.titleCor)
+                .jobsResetBtnTitleFont(self.viewModel.titleFont)
+                .jobsResetBtnTitle(self.viewModel.title ? : @"");
+            /// 富文本的优先级大于普通文本
+            if(self.viewModel.attributedTitle){
+                self.textView.attributedText = self.viewModel.attributedTitle;
+            }else{
+                self.textView.text = self.viewModel.text;
+                self.textView.textAlignment = self.viewModel.textAlignment;
+                self.textView.textColor = self.viewModel.textCor;
+                self.textView.font = self.viewModel.font;
+            }if(!self.viewModel.selectedImage_) self.viewModel.selectedImage_ = self.viewModel.image;
+        }
+        if([data isKindOfClass:UIButtonModel.class]) {
+            self.buttonModel = data;
+            self.button.bgColorBy(self.buttonModel.baseBackgroundColor)
+                .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+                .jobsResetImagePadding(self.buttonModel.imagePadding)
+                .jobsResetBtnImage(self.buttonModel.normalImage)
+                .jobsResetBtnBgImage(self.buttonModel.backgroundImage)
+                .jobsResetBtnTitleCor(self.buttonModel.titleCor)
+                .jobsResetBtnTitleFont(self.buttonModel.titleFont)
+                .jobsResetBtnTitle(self.buttonModel.title ? : @"");
+            /// 富文本的优先级大于普通文本
+            if(self.buttonModel.attributedTitle){
+                self.textView.attributedText = self.buttonModel.attributedTitle;
+            }else{
+                self.textView.text = self.buttonModel.title;
+                self.textView.textAlignment = self.buttonModel.textAlignment;
+                /// 从 iOS 16 起，UITextView 使用新的文本渲染系统，会使用 UITextLayoutFragmentView。
+                /// 它默认在某些情况下会将内容垂直居中，比如文本少、没有足够内容填满 UITextView 的高度时。
+                /// 所以一下操作就是在关闭这个新特性
+                [self.textView switchs];
+                self.textView.textColor = self.buttonModel.titleCor;
+                self.textView.font = self.buttonModel.titleFont;
+            }if(!self.buttonModel.highlightImage) self.buttonModel.highlightImage = self.buttonModel.normalImage;
+        }
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -46,11 +89,7 @@ BaseViewProtocol_synthesize
         return JobsWidth(55);
     };
 }
-#pragma mark —— BaseViewProtocol
-/// 获取绑定的数据源
--(UIViewModel *)getViewModel{
-    return self.viewModel;
-}
+#pragma mark —— UITextViewDelegate
 //-(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
 //    [UIMenuController.sharedMenuController update];
 //    return YES;
@@ -68,7 +107,7 @@ BaseViewProtocol_synthesize
 //    return YES;
 //}
 //-(void)textViewDidChange:(UITextView *)textView{
-//
+//    [textView setContentOffset:CGPointZero animated:NO];
 //}
 //-(void)textViewDidChangeSelection:(UITextView *)textView{
 //
@@ -91,15 +130,15 @@ BaseViewProtocol_synthesize
             .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
-            .jobsResetBtnImage(self.viewModel.image ? : JobsIMG(@"方框（未选中）"))
-            .jobsResetBtnBgImage(self.viewModel.bgImage)
-            .jobsResetBtnTitleCor(self.viewModel.titleCor)
-            .jobsResetBtnTitleFont(self.viewModel.titleFont)
-            .jobsResetBtnTitle(self.viewModel.title ? : @"")
             .onClickBy(^(UIButton *x){
                 x.selected = !x.selected;
-                JobsIMG(x.selected ? @"方框（已选中）":@"方框（未选中）");
                 if(self.objBlock) self.objBlock(x);
+                if(self.viewModel){
+                    if(self.viewModel.selectedImage_) x.jobsResetBtnImage(x.selected ? self.viewModel.selectedImage_ : self.viewModel.image);
+                }
+                if(self.buttonModel){
+                    if(self.buttonModel.normalImage) x.jobsResetBtnImage(x.selected ? self.buttonModel.highlightImage : self.buttonModel.normalImage);
+                }
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -111,10 +150,10 @@ BaseViewProtocol_synthesize
     }return _button;
 }
 /// 如果需要用其他的自定义的TextView，继承此类并重写-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy
--(__kindof UITextView *)textView{
+-(__kindof BaseTextView *)textView{
     if (!_textView) {
         @jobs_weakify(self)
-        _textView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
+        _textView = jobsMakeBaseTextView(^(__kindof BaseTextView * _Nullable textView) {
             @jobs_strongify(self)
             textView.delegate = self;
             textView.scrollEnabled = NO;
@@ -122,15 +161,7 @@ BaseViewProtocol_synthesize
             textView.editable = NO; /// 禁止编辑。必须 editable = NO 才能点击链接跳转
             textView.selectable = YES; /// 允许选择链接
             textView.linkTextAttributes = self.makeLinkTextAttributes;
-            /// 富文本的优先级大于普通文本
-            if(self.viewModel.attributedTitle){
-                textView.attributedText = self.viewModel.attributedTitle;
-            }else{
-                textView.text = self.viewModel.text;
-                textView.textAlignment = self.viewModel.textAlignment;
-                textView.textColor = self.viewModel.textCor;
-                textView.font = self.viewModel.font;
-            }[self.contentView.addSubview(textView) mas_makeConstraints:self.masonryBlock];
+            [self.contentView.addSubview(textView) mas_makeConstraints:self.masonryBlock];
         });
     }return _textView;
 }

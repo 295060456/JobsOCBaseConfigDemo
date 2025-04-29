@@ -27,9 +27,9 @@ AppToolsProtocol_synthesize
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    /// 此时，self.btn.titleLabel 和 self.btn.subtitleLabel 有正确的Frame，可以指导 self.btn.titleTextView 和 self.btn.subtitleTextView 进行下一步的正常工作
-    if(self.viewModel) self.btn.resetByViewModel(self.viewModel,self.selected);
-    if(self.buttonModel) self.btn.resetByButtonModel(self.buttonModel,self.selected);
+    /// 此时，self.button.titleLabel 和 self.button.subtitleLabel 有正确的Frame，可以指导 self.button.titleTextView 和 self.button.subtitleTextView 进行下一步的正常工作
+    if(self.viewModel) self.button.resetByViewModel(self.viewModel,self.selected);
+    if(self.buttonModel) self.button.resetByButtonModel(self.buttonModel,self.selected);
 }
 #pragma mark —— BaseViewProtocol
 -(UIViewModel *_Nullable)getViewModel{
@@ -61,7 +61,7 @@ AppToolsProtocol_synthesize
                self.viewModel.subTextModel.text.isHTMLString){
                 self.webView.jobsVisible = YES;
             }else{
-                self.btn.data = model;
+                self.button.data = model;
             }self.viewModel = model;
         }
         if(KindOfButtonModelCls(model)){
@@ -69,7 +69,7 @@ AppToolsProtocol_synthesize
                self.buttonModel.subTitle.isHTMLString){
                 self.webView.jobsVisible = YES;
             }else{
-                self.btn.data = model;
+                self.button.data = model;
             }self.buttonModel = model;
         }
     };
@@ -85,9 +85,9 @@ AppToolsProtocol_synthesize
     _viewModel = viewModel;
     @jobs_weakify(self)
     /// viewModel + textModel
-    _button.selected = viewModel.jobsSelected;
-    _button.enabled = viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UITableViewCell
-    _button.resetByViewModel(viewModel,self.selected)
+    self.button.selected = viewModel.jobsSelected;
+    self.button.enabled = viewModel.jobsEnabled;/// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应UITableViewCell
+    self.button.resetByViewModel(viewModel,self.selected)
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             if (self.objBlock) self.objBlock(x);
@@ -96,7 +96,7 @@ AppToolsProtocol_synthesize
         });
     /// 背景图
     if(viewModel.normalBgImageURL){
-        _button.imageURL(viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+        self.button.imageURL(viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
             .placeholderImage(viewModel.normalImage)
             .options(self.makeSDWebImageOptions)
             .completed(^(UIImage *_Nullable image,
@@ -109,21 +109,21 @@ AppToolsProtocol_synthesize
                     JobsLog(@"图片加载成功");
                 }
             }).bgNormalLoad();
-    }else _button.jobsResetBtnBgImage(viewModel.backgroundImage);
+    }else self.button.jobsResetBtnBgImage(viewModel.backgroundImage);
     /// 图文间距
-    if (@available(iOS 16.0, *)) _button.jobsResetImagePadding(viewModel.imageTitleSpace);
+    if (@available(iOS 16.0, *)) self.button.jobsResetImagePadding(viewModel.imageTitleSpace);
     /// 图文相对位置关系
-    if (@available(iOS 16.0, *)) _button.jobsResetImagePlacement(viewModel.buttonEdgeInsetsStyle);
+    if (@available(iOS 16.0, *)) self.button.jobsResetImagePlacement(viewModel.buttonEdgeInsetsStyle);
     /// 圆切角
-    _button.jobsResetBtnCornerRadiusValue(viewModel.layerCornerRadius);
+    self.button.jobsResetBtnCornerRadiusValue(viewModel.layerCornerRadius);
 }
 
 -(void)setButtonModel:(UIButtonModel *)buttonModel{
     _buttonModel = buttonModel;
     @jobs_weakify(self)
-    _button.selected = buttonModel.jobsSelected;
-    _button.enabled = buttonModel.jobsEnabled;
-    _button.resetByButtonModel(buttonModel,self.selected)
+    self.button.selected = buttonModel.jobsSelected;
+    self.button.enabled = buttonModel.jobsEnabled;
+    self.button.resetByButtonModel(buttonModel,self.selected)
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             if (self.objBlock) self.objBlock(x);
@@ -132,7 +132,7 @@ AppToolsProtocol_synthesize
         });
     /// 背景图
     if(buttonModel.normalBgImageURL){
-        _button.imageURL(buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl)
+        self.button.imageURL(buttonModel.normalBgImageURLString.imageURLPlus.jobsUrl)
             .placeholderImage(buttonModel.backgroundImage)
             .options(self.makeSDWebImageOptions)
             .completed(^(UIImage * _Nullable image,
@@ -145,13 +145,13 @@ AppToolsProtocol_synthesize
                     JobsLog(@"图片加载成功");
                 }
             }).bgNormalLoad();
-    }else _button.jobsResetBtnBgImage(buttonModel.backgroundImage);
+    }else self.button.jobsResetBtnBgImage(buttonModel.backgroundImage);
     /// 图文间距
-    if (@available(iOS 16.0, *)) _button.jobsResetImagePadding(buttonModel.imagePadding);
+    if (@available(iOS 16.0, *)) self.button.jobsResetImagePadding(buttonModel.imagePadding);
     /// 图文相对位置关系
-    if (@available(iOS 16.0, *)) _button.jobsResetImagePlacement(buttonModel.imagePlacement);
+    if (@available(iOS 16.0, *)) self.button.jobsResetImagePlacement(buttonModel.imagePlacement);
     /// 圆切角
-    _button.jobsResetBtnCornerRadiusValue(buttonModel.cornerRadiusValue);
+    self.button.jobsResetBtnCornerRadiusValue(buttonModel.cornerRadiusValue);
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)button{
