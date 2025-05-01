@@ -12,7 +12,6 @@
 @end
 
 @implementation JobsTextLabStyleCVCell
-#pragma mark —— @synthesize UIViewModelProtocol
 /// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2

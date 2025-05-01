@@ -20,5 +20,6 @@
 #import "JobsTextFieldStyleCVCell.h"
 #import "JobsTextViewStyleCVCell.h"
 #import "JobsTextLabStyleCVCell.h"
+#import "JobsBtnTextViewStyleCVCell.h"
 
 #endif /* JobsCollectionViewCell_h */

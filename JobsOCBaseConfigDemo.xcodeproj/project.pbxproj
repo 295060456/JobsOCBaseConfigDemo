@@ -178,6 +178,7 @@
 		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
 		C53F13622DC0BC18006F2ED6 /* NSObject+AttributedStr.m in Sources */ = {isa = PBXBuildFile; fileRef = C53F13602DC0BC18006F2ED6 /* NSObject+AttributedStr.m */; };
 		C53F136E2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C53F136C2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m */; };
+		C55267592DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C55267572DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m */; };
 		C58B19722DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */; };
 		C58B1D812DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */; };
 		C58B1D822DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */; };
@@ -1645,6 +1646,8 @@
 		C53F13602DC0BC18006F2ED6 /* NSObject+AttributedStr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AttributedStr.m"; sourceTree = "<group>"; };
 		C53F136B2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBtnTextViewStyleTBVCell.h; sourceTree = "<group>"; };
 		C53F136C2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnTextViewStyleTBVCell.m; sourceTree = "<group>"; };
+		C55267562DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBtnTextViewStyleCVCell.h; sourceTree = "<group>"; };
+		C55267572DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnTextViewStyleCVCell.m; sourceTree = "<group>"; };
 		C58B196F2DBF59F1006163A3 /* JobsTextViewStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextViewStyleTBVCell.h; sourceTree = "<group>"; };
 		C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextViewStyleTBVCell.m; sourceTree = "<group>"; };
 		C58B1D7B2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextLabStyleCVCell.h; sourceTree = "<group>"; };
@@ -5591,6 +5594,15 @@
 				C53F136C2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m */,
 			);
 			path = JobsBtnTextViewStyleTBVCell;
+			sourceTree = "<group>";
+		};
+		C55267582DC36D4000F9958F /* JobsBtnTextViewStyleCVCell */ = {
+			isa = PBXGroup;
+			children = (
+				C55267562DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.h */,
+				C55267572DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m */,
+			);
+			path = JobsBtnTextViewStyleCVCell;
 			sourceTree = "<group>";
 		};
 		C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */ = {
@@ -12834,6 +12846,7 @@
 		CE5A62B82CA82C2D006D67A7 /* BaseCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				C55267582DC36D4000F9958F /* JobsBtnTextViewStyleCVCell */,
 				C58B1D7D2DBF9A5F006163A3 /* JobsTextLabStyleCVCell */,
 				C58B1D802DBF9A5F006163A3 /* JobsTextViewStyleCVCell */,
 				CE5A62A82CA82C2D006D67A7 /* BaseCollectionViewCell */,
@@ -17146,6 +17159,7 @@
 				CE5A65072CA830E3006D67A7 /* UICollectionView+JobsRegisterClass.m in Sources */,
 				CE5A65082CA830E3006D67A7 /* UICollectionView+Func.m in Sources */,
 				C53F136E2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m in Sources */,
+				C55267592DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m in Sources */,
 				CE5A65092CA830E3006D67A7 /* UICollectionView+RegistrationTracking.m in Sources */,
 				CE4299DB2CAFA8CD00A0446A /* NSString+Notification.m in Sources */,
 				8493F1ED2CD3A7E000011DD1 /* YTKChainRequest+Extra.m in Sources */,
