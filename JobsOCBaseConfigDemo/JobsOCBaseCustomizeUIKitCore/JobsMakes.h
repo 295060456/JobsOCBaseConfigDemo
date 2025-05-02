@@ -195,6 +195,12 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeLabel(jobsByLabelBlock _Nonnull blo
     return data;
 }
 
+NS_INLINE __kindof PDFView *_Nonnull jobsMakePDFView(jobsByPDFViewBlock _Nonnull block){
+    PDFView *data = PDFView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UITabBarItem *_Nonnull jobsMakeTabBarItem(jobsByTabBarItemBlock _Nonnull block){
     UITabBarItem *data = UITabBarItem.alloc.init;
     if (block) block(data);

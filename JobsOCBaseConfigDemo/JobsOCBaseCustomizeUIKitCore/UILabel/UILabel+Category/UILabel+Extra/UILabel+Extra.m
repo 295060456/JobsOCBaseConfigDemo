@@ -25,11 +25,12 @@
     };
 }
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
--(jobsByImageBlock _Nonnull)lbBackgroundImage{
+-(JobsReturnLabelByImage _Nonnull)bgImage{
     @jobs_weakify(self)
-    return ^(UIImage *_Nullable data){
+    return ^ __kindof UILabel *_Nullable(UIImage *_Nullable data){
         @jobs_strongify(self)
         self.backgroundColor = self.byPatternImage(data);
+        return self;
     };
 }
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
@@ -111,6 +112,15 @@
     return ^__kindof UILabel *_Nullable(__kindof UIFont *_Nullable font){
         @jobs_strongify(self)
         self.font = font;
+        return self;
+    };
+}
+
+-(JobsReturnLabelByTextAlignment _Nonnull)byTextAlignment{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(NSTextAlignment textAlignment){
+        @jobs_strongify(self)
+        self.textAlignment = textAlignment;
         return self;
     };
 }

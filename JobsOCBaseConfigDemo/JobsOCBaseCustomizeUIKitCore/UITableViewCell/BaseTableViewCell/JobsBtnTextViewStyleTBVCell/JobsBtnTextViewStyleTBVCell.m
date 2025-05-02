@@ -129,7 +129,7 @@ AppToolsProtocol_synthesize
                                    image:nil
                               identifier:nil
                                  handler:^(__kindof UIAction * _Nonnull action) {
-            toast(@"sss");
+            if(self.objBlock) self.objBlock(action);
         }];
     }return defaultAction;/// 如果没有匹配到自定义条件，返回默认的动作
 }

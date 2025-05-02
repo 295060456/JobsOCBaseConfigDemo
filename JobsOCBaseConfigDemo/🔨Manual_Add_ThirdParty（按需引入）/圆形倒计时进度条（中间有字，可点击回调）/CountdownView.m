@@ -12,7 +12,6 @@
 
 Prop_strong()CAShapeLayer *shapeLayer;
 Prop_strong()CABasicAnimation *animation;
-Prop_strong()UILabel *label;
 
 @end
 
@@ -101,7 +100,7 @@ Prop_strong()UILabel *label;
         _animation.fillMode = kCAFillModeBoth;
     }return _animation;
 }
-
+@synthesize label = _label;
 -(UILabel *)label{
     if (!_label) {
         @jobs_weakify(self)
@@ -111,8 +110,7 @@ Prop_strong()UILabel *label;
             label.font = self.font;
             label.textAlignment = NSTextAlignmentCenter;
             label.textColor = self.textColor;
-            [self addSubview:label];
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self);
             }];
         });

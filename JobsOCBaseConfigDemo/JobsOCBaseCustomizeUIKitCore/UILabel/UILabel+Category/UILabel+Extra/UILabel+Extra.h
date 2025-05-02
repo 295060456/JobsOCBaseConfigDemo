@@ -28,7 +28,7 @@ Prop_assign()TransformLayerDirectionType transformLayerDirectionType;
 /// UILabel文字旋转
 -(jobsByNSUIntegerBlock _Nonnull)transformLayer;
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
--(jobsByImageBlock _Nonnull)lbBackgroundImage;
+-(JobsReturnLabelByImage _Nonnull)bgImage;
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
 -(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType;
 #pragma mark —— 系统方法链式语法封装
@@ -36,6 +36,7 @@ Prop_assign()TransformLayerDirectionType transformLayerDirectionType;
 -(JobsReturnLabelByText _Nonnull)byText;
 -(JobsReturnLabelByCor _Nonnull)byTextCor;
 -(JobsReturnLabelByFont _Nonnull)byFont;
+-(JobsReturnLabelByTextAlignment _Nonnull)byTextAlignment;
 
 @end
 

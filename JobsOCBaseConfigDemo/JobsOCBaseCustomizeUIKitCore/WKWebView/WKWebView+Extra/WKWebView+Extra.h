@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WKWebView (Extra)
 
 +(JobsReturnWKWebViewByConfigurationBlock _Nonnull)initBy;
--(jobsByURLRequestBlock _Nonnull)loadRequest;
+-(JobsReturnWKWebViewByURLRequestBlock _Nonnull)loadRequest;
+-(JobsReturnWKWebViewByURLBlock _Nonnull)loadFileURL;
 
 @end
 

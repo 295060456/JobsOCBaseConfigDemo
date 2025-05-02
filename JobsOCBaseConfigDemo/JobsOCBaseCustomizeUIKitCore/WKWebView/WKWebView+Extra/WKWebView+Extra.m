@@ -15,11 +15,21 @@
     };
 }
 
--(jobsByURLRequestBlock _Nonnull)loadRequest{
+-(JobsReturnWKWebViewByURLRequestBlock _Nonnull)loadRequest{
     @jobs_weakify(self)
-    return ^(__kindof NSURLRequest *_Nullable request){
+    return ^__kindof WKWebView *_Nullable(__kindof NSURLRequest *_Nullable request){
         @jobs_strongify(self)
         [self loadRequest:request];
+        return self;
+    };
+}
+
+-(JobsReturnWKWebViewByURLBlock _Nonnull)loadFileURL{
+    @jobs_weakify(self)
+    return ^__kindof WKWebView *_Nullable(__kindof NSURL *_Nullable url){
+        @jobs_strongify(self)
+        [self loadFileURL:url allowingReadAccessToURL:url];
+        return self;
     };
 }
 

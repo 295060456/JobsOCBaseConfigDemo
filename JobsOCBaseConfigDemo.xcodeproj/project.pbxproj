@@ -179,6 +179,7 @@
 		C53F13622DC0BC18006F2ED6 /* NSObject+AttributedStr.m in Sources */ = {isa = PBXBuildFile; fileRef = C53F13602DC0BC18006F2ED6 /* NSObject+AttributedStr.m */; };
 		C53F136E2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C53F136C2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m */; };
 		C55267592DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C55267572DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m */; };
+		C55BDF1C2DC4DC7300E8FE8F /* PDFDocument+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55BDF1A2DC4DC7300E8FE8F /* PDFDocument+Extra.m */; };
 		C58B19722DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */; };
 		C58B1D812DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */; };
 		C58B1D822DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */; };
@@ -1648,6 +1649,8 @@
 		C53F136C2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnTextViewStyleTBVCell.m; sourceTree = "<group>"; };
 		C55267562DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBtnTextViewStyleCVCell.h; sourceTree = "<group>"; };
 		C55267572DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnTextViewStyleCVCell.m; sourceTree = "<group>"; };
+		C55BDF192DC4DC7300E8FE8F /* PDFDocument+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDFDocument+Extra.h"; sourceTree = "<group>"; };
+		C55BDF1A2DC4DC7300E8FE8F /* PDFDocument+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PDFDocument+Extra.m"; sourceTree = "<group>"; };
 		C58B196F2DBF59F1006163A3 /* JobsTextViewStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextViewStyleTBVCell.h; sourceTree = "<group>"; };
 		C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextViewStyleTBVCell.m; sourceTree = "<group>"; };
 		C58B1D7B2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextLabStyleCVCell.h; sourceTree = "<group>"; };
@@ -5603,6 +5606,15 @@
 				C55267572DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m */,
 			);
 			path = JobsBtnTextViewStyleCVCell;
+			sourceTree = "<group>";
+		};
+		C55BDF1B2DC4DC7300E8FE8F /* PDFDocument */ = {
+			isa = PBXGroup;
+			children = (
+				C55BDF192DC4DC7300E8FE8F /* PDFDocument+Extra.h */,
+				C55BDF1A2DC4DC7300E8FE8F /* PDFDocument+Extra.m */,
+			);
+			path = PDFDocument;
 			sourceTree = "<group>";
 		};
 		C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */ = {
@@ -14407,6 +14419,7 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				C55BDF1B2DC4DC7300E8FE8F /* PDFDocument */,
 				8432B6292D1DAEAE00ADE9FF /* PHAssetResource */,
 				8432B62C2D1DAEAE00ADE9FF /* AVAsset */,
 				8432B62F2D1DAEAE00ADE9FF /* AVAssetImageGenerator */,
@@ -16849,6 +16862,7 @@
 				CECE78952C4509E200764AF5 /* main.m in Sources */,
 				845F867D2CF595D600C53A19 /* NSObject+LiveChat.m in Sources */,
 				CE5A64B52CA82EDB006D67A7 /* NSObject+GTCaptcha4.m in Sources */,
+				C55BDF1C2DC4DC7300E8FE8F /* PDFDocument+Extra.m in Sources */,
 				CE2E88CD2C69E14100260207 /* PopListBaseView.m in Sources */,
 				CECE7EA72C450E5B00764AF5 /* KTVHCHTTPConnection.m in Sources */,
 				CECE7E962C450E5B00764AF5 /* KTVHCRange.m in Sources */,

@@ -189,6 +189,8 @@
 #import "AVAsset+Extra.h"
 #pragma mark —— PHAssetResource
 #import "PHAssetResource+Extra.h"
+#pragma mark —— PDFDocument
+#import "PDFDocument+Extra.h"
 
 #import "JobsMakes.h"
 

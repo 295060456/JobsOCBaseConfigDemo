@@ -10836,6 +10836,29 @@ self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullabl
 
   ![UIAlertController+UIAlertAction](./assets/UIAlertController+UIAlertAction.png)
 
+### 43、PDF的处理 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+```objective-c
+#import <PDFKit/PDFKit.h> /// 处理PDF
+
+@synthesize pdfView = _pdfView;
+-(__kindof PDFView *)pdfView{
+    if(!_pdfView){
+        @jobs_weakify(self)
+        _pdfView = jobsMakePDFView(^(__kindof PDFView * _Nullable view) {
+            @jobs_strongify(self)
+            view.autoScales = YES;
+            view.document = PDFDocument.byURL([NSBundle.mainBundle URLForResource:@"Terms of Use" withExtension:@"pdf"]);
+            [self.addSubview(view) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self);
+                make.top.equalTo(self.label.mas_bottom).offset(JobsWidth(10));
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(290), JobsWidth(300)));
+            }];
+        });
+    }return _pdfView;
+}
+```
+
 ### Test  
 
 <details id="Test">

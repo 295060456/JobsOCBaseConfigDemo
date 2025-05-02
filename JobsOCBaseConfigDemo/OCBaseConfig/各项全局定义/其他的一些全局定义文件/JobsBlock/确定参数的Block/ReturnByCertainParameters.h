@@ -167,10 +167,12 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByRotationGestureBlock)(UIRota
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidBlock)(void);
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidStarBlock)(void *_Nullable key);
 #pragma mark —— 关于 Label
+typedef __kindof UILabel *_Nullable(^JobsReturnLabelByImage)(__kindof UIImage *_Nullable image);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByCor)(__kindof UIColor *_Nullable cor);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByText)(__kindof NSString *_Nullable str);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByFont)(__kindof UIFont *_Nullable font);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByAttributedString)(__kindof NSAttributedString *_Nullable attributedString);
+typedef __kindof UILabel *_Nullable(^JobsReturnLabelByTextAlignment)(NSTextAlignment textAlignment);
 #pragma mark —— 关于按钮
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByControlStateBlock)(UIControlState data);
@@ -264,11 +266,13 @@ typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void)
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByPointBlock)(CGPoint data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByRectBlock)(CGRect data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
+#pragma mark —— 关于 PDF
+typedef __kindof PDFDocument *_Nullable(^JobsReturnPDFDocumentByURLBlock)(NSURL *_Nullable pdfURL);
 #pragma mark —— 关于 WKWebView
 #import <WebKit/WebKit.h>
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByVoidBlock)(void);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByConfigurationBlock)(WKWebViewConfiguration *_Nullable config);
-
+typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLRequestBlock)(__kindof NSURLRequest *_Nullable request);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByStringBlock)(NSString *_Nullable data);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLBlock)(NSURL *_Nullable URL);
 #pragma mark —— 关于 控制器

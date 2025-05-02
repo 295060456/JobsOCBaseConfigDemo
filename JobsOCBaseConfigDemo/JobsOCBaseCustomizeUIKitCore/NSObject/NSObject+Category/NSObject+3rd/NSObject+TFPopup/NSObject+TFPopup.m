@@ -154,7 +154,7 @@
 /// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（不带数据）
 -(jobsByViewBlock _Nonnull)show_view{
     @jobs_weakify(self)
-    return ^(UIView *_Nonnull data) {
+    return ^(__kindof UIView *_Nonnull data) {
         @jobs_strongify(self)
         self.popupParameter.popupSize = !jobsZeroSizeValue(data.sizer) ? data.sizer : data.viewSizeByModel(nil);
         self._showViewCore(data);
