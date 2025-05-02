@@ -17,12 +17,17 @@ Prop_assign()BOOL isSetTBVCellOffset;
 @implementation JobsBaseTableViewCell
 /// UITableViewCellProtocol
 UITableViewCellProtocol_Synthesize_part2
+/// UIViewModelProtocol
+UIViewModelProtocol_synthesize_part1
+UIViewModelProtocol_synthesize_part2
+/// BaseLayerProtocol
+BaseLayerProtocol_synthesize_part3
 #pragma mark —— UITableViewCellProtocol
 /// 4种UITableViewCell系统样式类型
 /// UITableViewCellStyleDefault ：左边有一个显示图片的imageView和一个标题textLabel。
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     @jobs_weakify(self)
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
@@ -34,7 +39,7 @@ UITableViewCellProtocol_Synthesize_part2
 /// UITableViewCellStyleValue1 ：左边显示图片的imageView和一个主标题textLabel，右边一个副标题detailTextLabel。
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     @jobs_weakify(self)
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
@@ -46,7 +51,7 @@ UITableViewCellProtocol_Synthesize_part2
 /// UITableViewCellStyleValue2 ：左边一个主标题textLabel字体偏小，右边一个副标题detailTextLabel。
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
     @jobs_weakify(self)
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
@@ -58,7 +63,7 @@ UITableViewCellProtocol_Synthesize_part2
 /// UITableViewCellStyleSubtitle ：左边还是一个显示图片的imageView，不同的是上边有一个主标题textLabel和一个副标题detailTextLabel。主标题字体大且加黑，副标题字体小在主标题下边。
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
     @jobs_weakify(self)
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
@@ -138,12 +143,9 @@ UITableViewCellProtocol_Synthesize_part2
 //                          cellOffsetY:self.offsetYForEach];
 //}
 #pragma mark —— 一些私有方法
-
 #pragma mark —— 子类重写父类方法
-- (void)setSelected:(BOOL)selected
-           animated:(BOOL)animated {
-    [super setSelected:selected
-              animated:animated];
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
 }
 /// CXB 所言 全局只有在cellForRowAtIndexPath里面才能设置真正的selected值。而didSelectRowAtIndexPath不行
 -(void)setSelected:(BOOL)selected{
@@ -278,11 +280,7 @@ UITableViewCellProtocol_Synthesize_part2
         }return JobsWidth(50);/// 没有数据源传入的时候的缺省值
     };
 }
-/// UIViewModelProtocol
-UIViewModelProtocol_synthesize_part1
-UIViewModelProtocol_synthesize_part2
-/// BaseLayerProtocol
-BaseLayerProtocol_synthesize_part3
+
 -(void)setIndexPath:(NSIndexPath *)indexPath{
     _indexPath = indexPath;
 }
