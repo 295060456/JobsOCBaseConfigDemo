@@ -78,6 +78,42 @@
         }
     };
 }
+#pragma mark —— 系统方法链式语法封装
+-(JobsReturnLabelByAttributedString _Nonnull)byAttributedString{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
+        @jobs_strongify(self)
+        self.attributedText = attributedString;
+        return self;
+    };
+}
+
+-(JobsReturnLabelByText _Nonnull)byText{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(__kindof NSString *_Nullable str){
+        @jobs_strongify(self)
+        self.text = str;
+        return self;
+    };
+}
+
+-(JobsReturnLabelByCor _Nonnull)byTextCor{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(__kindof UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.textColor = cor;
+        return self;
+    };
+}
+
+-(JobsReturnLabelByFont _Nonnull)byFont{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(__kindof UIFont *_Nullable font){
+        @jobs_strongify(self)
+        self.font = font;
+        return self;
+    };
+}
 #pragma mark —— Prop_assign()UILabelShowingType labelShowingType;
 JobsKey(_labelShowingType)
 @dynamic labelShowingType;

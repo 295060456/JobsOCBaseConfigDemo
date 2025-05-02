@@ -27,7 +27,7 @@ AppToolsProtocol_synthesize
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         JobsBtnTextViewStyleTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsBtnTextViewStyleTBVCell);
         return cell;
     };
@@ -115,7 +115,24 @@ AppToolsProtocol_synthesize
 //-(nullable UIMenu *)textView:(UITextView *)textView editMenuForTextInRange:(NSRange)range suggestedActions:(NSArray<UIMenuElement *> *)suggestedActions API_AVAILABLE(ios(16.0));
 //-(void)textView:(UITextView *)textView willPresentEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos);
 //-(void)textView:(UITextView *)textView willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos);
-//-(nullable UIAction *)textView:(UITextView *)textView primaryActionForTextItem:(UITextItem *)textItem defaultAction:(UIAction *)defaultAction API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(tvos, watchos);
+/// API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(tvos, watchos);
+-(nullable UIAction *)textView:(UITextView *)textView
+      primaryActionForTextItem:(UITextItem *)textItem
+                 defaultAction:(UIAction *)defaultAction{
+    NSString *url = @"";
+    if(self.viewModel) url = self.viewModel.url.absoluteString;
+    if(self.buttonModel) url = self.buttonModel.url.absoluteString;
+    /// 检查文本项是否为链接类型
+    if (textItem.link.absoluteString.containsString(url)) {
+        /// 创建一个自定义的 UIAction
+        return [UIAction actionWithTitle:@"自定义操作"
+                                   image:nil
+                              identifier:nil
+                                 handler:^(__kindof UIAction * _Nonnull action) {
+            toast(@"sss");
+        }];
+    }return defaultAction;/// 如果没有匹配到自定义条件，返回默认的动作
+}
 //-(nullable UITextItemMenuConfiguration *)textView:(UITextView *)textView menuConfigurationForTextItem:(UITextItem *)textItem defaultMenu:(UIMenu *)defaultMenu API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(watchos, tvos);
 //-(void)textView:(UITextView *)textView textItemMenuWillDisplayForTextItem:(UITextItem *)textItem animator:(id<UIContextMenuInteractionAnimating>)animator API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(watchos, tvos);
 //-(void)textView:(UITextView *)textView textItemMenuWillEndForTextItem:(UITextItem *)textItem animator:(id<UIContextMenuInteractionAnimating>)animator API_AVAILABLE(ios(17.0)) API_UNAVAILABLE(watchos, tvos);
@@ -126,11 +143,13 @@ AppToolsProtocol_synthesize
 #pragma mark —— lazyLoad
 -(__kindof UIButton *)button{
     if(!_button){
+        @jobs_weakify(self)
         _button = UIButton.jobsInit()
             .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
             .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
                 x.selected = !x.selected;
                 if(self.objBlock) self.objBlock(x);
                 if(self.viewModel){

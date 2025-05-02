@@ -164,9 +164,13 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByPanGestureBlock)(UIPanGestur
 typedef __kindof UIView *_Nullable(^JobsReturnViewByPinchGestureBlock)(UIPinchGestureRecognizer *_Nullable gesture);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable gesture);
 #pragma mark —— 关于手势
-typedef void(^jobsByGestureRecognizerBlock)(__kindof UIGestureRecognizer *_Nullable data);
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidBlock)(void);
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidStarBlock)(void *_Nullable key);
+#pragma mark —— 关于 Label
+typedef __kindof UILabel *_Nullable(^JobsReturnLabelByCor)(__kindof UIColor *_Nullable cor);
+typedef __kindof UILabel *_Nullable(^JobsReturnLabelByText)(__kindof NSString *_Nullable str);
+typedef __kindof UILabel *_Nullable(^JobsReturnLabelByFont)(__kindof UIFont *_Nullable font);
+typedef __kindof UILabel *_Nullable(^JobsReturnLabelByAttributedString)(__kindof NSAttributedString *_Nullable attributedString);
 #pragma mark —— 关于按钮
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByControlStateBlock)(UIControlState data);
@@ -299,7 +303,6 @@ typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByNSUIntegerBlock)(NSUInte
 /// CGFloat 是一个平台相关的类型，它在 32 位系统上是 float 类型，而在 64 位系统上是 double 类型。
 /// 因此，直接将 CGFloat 封装为 NSNumber 时，需要根据平台的不同选择正确的 NSNumber 方法。
 typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByCGFloatBlock)(CGFloat data);
-
 #pragma mark —— 关于字符串
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegersBlock)(NSInteger data, ...);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
@@ -401,7 +404,6 @@ typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByTextAlig
 typedef CAKeyframeAnimation *_Nullable(^JobsReturnCAKeyframeAnimationByStringBlock)(NSString *_Nullable data);
 typedef CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于 JavaScript
-typedef void(^jobsByJSValueBlock)(JSValue *_Nullable value);
 typedef JSValue *_Nullable(^JobsReturnJSValueByStringBlock)(NSString *_Nullable jsCode);
 #pragma mark —— 关于位置
 typedef NSRange (^JobsReturnRangeByTextCheckingResultBlock)(NSTextCheckingResult *_Nullable data);

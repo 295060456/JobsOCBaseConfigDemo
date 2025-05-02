@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "JobsLabelDef.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "UIView+Masonry.h"
@@ -30,6 +31,11 @@ Prop_assign()TransformLayerDirectionType transformLayerDirectionType;
 -(jobsByImageBlock _Nonnull)lbBackgroundImage;
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
 -(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType;
+#pragma mark —— 系统方法链式语法封装
+-(JobsReturnLabelByAttributedString _Nonnull)byAttributedString;
+-(JobsReturnLabelByText _Nonnull)byText;
+-(JobsReturnLabelByCor _Nonnull)byTextCor;
+-(JobsReturnLabelByFont _Nonnull)byFont;
 
 @end
 

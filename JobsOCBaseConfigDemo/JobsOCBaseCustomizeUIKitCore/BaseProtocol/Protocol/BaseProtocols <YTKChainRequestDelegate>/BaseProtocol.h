@@ -55,6 +55,7 @@ Prop_assign()TimerStyle timerStyle;/// 逆时针模式?顺时针模式？
 Prop_assign(readonly)NSTimerCurrentStatus timerCurrentStatus;/// 定时器当前状态
 Prop_assign()TimerProcessType timerProcessType; /// 计时器运行状态
 #pragma mark —— Data
+Prop_copy(nullable)NSMutableArray <NSURL *>*urls;
 Prop_strong(nullable)NSURL *url;
 Prop_strong(nullable)NSURL *imageUrl;
 Prop_copy(nullable)NSString *internationalizationKEY;/// 国际化的key
@@ -160,6 +161,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseProtocol_synthesize_data
 #define BaseProtocol_synthesize_data \
 \
+@synthesize urls = _urls;\
 @synthesize url = _url;\
 @synthesize imageUrl = _imageUrl;\
 @synthesize internationalizationKEY = _internationalizationKEY;\
@@ -220,6 +222,7 @@ BaseProtocol_synthesize_data \
 @dynamic timerStyle;\
 @dynamic timerCurrentStatus;\
 @dynamic timerProcessType;\
+@dynamic urls;\
 @dynamic url;\
 @dynamic imageUrl;\
 @dynamic internationalizationKEY;\

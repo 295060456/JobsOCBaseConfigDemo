@@ -40,6 +40,8 @@ typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable 
 #pragma mark —— 关于WKWebView.JS配置
 typedef void(^jobsByUserContentControllerBlock)(__kindof WKUserContentController *_Nullable data);
 typedef void(^jobsByWKWebViewConfigurationBlock)(__kindof WKWebViewConfiguration *_Nullable config);
+#pragma mark —— 关于 JavaScript
+typedef void(^jobsByJSValueBlock)(JSValue *_Nullable value);
 #pragma mark —— 关于View
 typedef void(^jobsByViewBlock)(__kindof UIView *_Nullable view);
 typedef void(^jobsByPageControlBlock)(UIPageControl *_Nullable pageControl);

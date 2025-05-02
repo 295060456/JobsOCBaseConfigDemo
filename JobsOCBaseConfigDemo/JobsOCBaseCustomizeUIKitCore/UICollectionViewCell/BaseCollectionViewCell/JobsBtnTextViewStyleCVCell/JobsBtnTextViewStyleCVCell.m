@@ -130,11 +130,13 @@ AppToolsProtocol_synthesize
 #pragma mark —— lazyLoad
 -(__kindof UIButton *)button{
     if(!_button){
+        @jobs_weakify(self)
         _button = UIButton.jobsInit()
             .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
             .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
                 x.selected = !x.selected;
                 if(self.objBlock) self.objBlock(x);
                 if(self.viewModel){
