@@ -9,11 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#ifndef LZ_TAB_BAR_ITEM_TYPE_ENUM_DEFINED
+#define LZ_TAB_BAR_ITEM_TYPE_ENUM_DEFINED
 typedef enum : NSUInteger {
-    LZTabBarItemTypeDefault,
-    LZTabBarItemTypeImage,
-    LZTabBarItemTypeText,
+    LZTabBarItemTypeDefault,  /// 默认类型
+    LZTabBarItemTypeImage,    /// 仅图片
+    LZTabBarItemTypeText      /// 仅文字
 } LZTabBarItemType;
+#endif /* LZ_TAB_BAR_ITEM_TYPE_ENUM_DEFINED */
 
 @protocol LZTabBarItemDelegate;
 
@@ -28,9 +31,15 @@ Prop_assign()id <LZTabBarItemDelegate> delegate;
 
 @protocol LZTabBarItemDelegate <NSObject>
 
-- (void)tabBarItem:(LZTabBarItem *)item
-    didSelectIndex:(NSInteger)index;
+-(void)tabBarItem:(LZTabBarItem *)item
+   didSelectIndex:(NSInteger)index;
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof LZTabBarItem *_Nonnull jobsMakeLZTabBarItem(jobsByLZTabBarItemBlock _Nonnull block){
+    LZTabBarItem *data = LZTabBarItem.alloc.init;
+    if (block) block(data);
+    return data;
+}

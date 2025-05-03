@@ -183,6 +183,8 @@
 		C53F136E2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C53F136C2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell.m */; };
 		C55267592DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C55267572DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m */; };
 		C55BDF1C2DC4DC7300E8FE8F /* PDFDocument+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55BDF1A2DC4DC7300E8FE8F /* PDFDocument+Extra.m */; };
+		C568471F2DC6AB9D00FCB762 /* JobsTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = C568471C2DC6AB9D00FCB762 /* JobsTransitionAnimator.m */; };
+		C56847202DC6AB9D00FCB762 /* JobsNavigationTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C56847192DC6AB9D00FCB762 /* JobsNavigationTransitionManager.m */; };
 		C58B19722DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */; };
 		C58B1D812DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */; };
 		C58B1D822DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */; };
@@ -1660,6 +1662,10 @@
 		C55267572DC36D4000F9958F /* JobsBtnTextViewStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsBtnTextViewStyleCVCell.m; sourceTree = "<group>"; };
 		C55BDF192DC4DC7300E8FE8F /* PDFDocument+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDFDocument+Extra.h"; sourceTree = "<group>"; };
 		C55BDF1A2DC4DC7300E8FE8F /* PDFDocument+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PDFDocument+Extra.m"; sourceTree = "<group>"; };
+		C56847182DC6AB9D00FCB762 /* JobsNavigationTransitionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNavigationTransitionManager.h; sourceTree = "<group>"; };
+		C56847192DC6AB9D00FCB762 /* JobsNavigationTransitionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsNavigationTransitionManager.m; sourceTree = "<group>"; };
+		C568471B2DC6AB9D00FCB762 /* JobsTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTransitionAnimator.h; sourceTree = "<group>"; };
+		C568471C2DC6AB9D00FCB762 /* JobsTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTransitionAnimator.m; sourceTree = "<group>"; };
 		C58B196F2DBF59F1006163A3 /* JobsTextViewStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextViewStyleTBVCell.h; sourceTree = "<group>"; };
 		C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextViewStyleTBVCell.m; sourceTree = "<group>"; };
 		C58B1D7B2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextLabStyleCVCell.h; sourceTree = "<group>"; };
@@ -5653,6 +5659,33 @@
 			path = PDFDocument;
 			sourceTree = "<group>";
 		};
+		C568471A2DC6AB9D00FCB762 /* JobsNavigationTransitionManager */ = {
+			isa = PBXGroup;
+			children = (
+				C56847182DC6AB9D00FCB762 /* JobsNavigationTransitionManager.h */,
+				C56847192DC6AB9D00FCB762 /* JobsNavigationTransitionManager.m */,
+			);
+			path = JobsNavigationTransitionManager;
+			sourceTree = "<group>";
+		};
+		C568471D2DC6AB9D00FCB762 /* JobsTransitionAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				C568471B2DC6AB9D00FCB762 /* JobsTransitionAnimator.h */,
+				C568471C2DC6AB9D00FCB762 /* JobsTransitionAnimator.m */,
+			);
+			path = JobsTransitionAnimator;
+			sourceTree = "<group>";
+		};
+		C568471E2DC6AB9D00FCB762 /* JobsNavigationTransition */ = {
+			isa = PBXGroup;
+			children = (
+				C568471A2DC6AB9D00FCB762 /* JobsNavigationTransitionManager */,
+				C568471D2DC6AB9D00FCB762 /* JobsTransitionAnimator */,
+			);
+			path = JobsNavigationTransition;
+			sourceTree = "<group>";
+		};
 		C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -6902,6 +6935,7 @@
 		CE4F1C642CA82510002AF25B /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				C568471E2DC6AB9D00FCB762 /* JobsNavigationTransition */,
 				846C6B2D2DA905C20074D1CB /* JobsRightMenuView */,
 				846C4D252DA624D00074D1CB /* JobsNavBarWebVC */,
 				84E19D082D9EDD4F00A9F793 /* 启动页面 */,
@@ -17018,6 +17052,8 @@
 				CECE7E7E2C450E5B00764AF5 /* JXCategoryTimelineView.m in Sources */,
 				CECE7E812C450E5B00764AF5 /* JXCategoryTitleBackgroundView.m in Sources */,
 				CECE7E832C450E5B00764AF5 /* DDNumber.m in Sources */,
+				C568471F2DC6AB9D00FCB762 /* JobsTransitionAnimator.m in Sources */,
+				C56847202DC6AB9D00FCB762 /* JobsNavigationTransitionManager.m in Sources */,
 				CECE7E9F2C450E5B00764AF5 /* KTVHCDataResponse.m in Sources */,
 				CECE7EB82C450E5B00764AF5 /* TKPermissionHome.m in Sources */,
 				CE5A64DB2CA82FFB006D67A7 /* NSObject+Time.m in Sources */,

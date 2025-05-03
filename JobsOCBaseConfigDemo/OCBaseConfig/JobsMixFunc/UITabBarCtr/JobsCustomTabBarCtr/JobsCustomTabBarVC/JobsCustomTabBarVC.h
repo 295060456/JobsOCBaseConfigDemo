@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "JobsCustomTabBar.h"
 #import "JobsCustomTabBarConfig.h"
 #import "MacroDef_Size.h"
@@ -17,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsCustomTabBarVC : UITabBarController<BaseProtocol>
 
--(void)customSelectIndex:(NSUInteger)index;
+-(jobsByNSUIntegerBlock _Nonnull)customSelectIndex;
 -(JobsCustomTabBar *)customTabBar;
 
 @end

@@ -283,6 +283,7 @@ typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLBlock)(NSURL *_Nu
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByViewBlock)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVCBlock)(__kindof UIViewController *_Nonnull vc);
 typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByVCBlock)(__kindof UIViewController *_Nonnull vc);
+typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByClassBlock)(Class _Nonnull cls);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByWebViewBlock)(__kindof WKWebView *_Nonnull webView);
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByActionBlock)(UIAlertAction *_Nullable data);
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByStringBlock)(NSString *_Nullable data);

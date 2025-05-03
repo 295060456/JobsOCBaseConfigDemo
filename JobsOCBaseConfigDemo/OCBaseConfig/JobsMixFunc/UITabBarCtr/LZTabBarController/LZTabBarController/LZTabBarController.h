@@ -12,25 +12,26 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "LZTabBarConfig.h"
 #import "LZTabBar.h"
 #import "MacroDef_Size.h"
 
-typedef LZTabBarConfig*(^tabBarBlock)(LZTabBarConfig *config);
+typedef LZTabBarConfig *_Nullable(^tabBarBlock)(LZTabBarConfig * _Nonnull config);
 
 @interface LZTabBarController : UITabBarController<LZTabBarDelegate>
 /// 是否可用自动旋转屏幕
-@property (nonatomic, assign)BOOL isAutoRotation;
+Prop_assign()BOOL isAutoRotation;
 /// 创建tabBarController
-+(instancetype)createTabBarController:(tabBarBlock)block;
++(instancetype _Nonnull)createTabBarController:(tabBarBlock _Nullable)block;
 /// 获取当前的tabBarController实例, 实例创建后可通过此方法获取当前实例
-+(instancetype)defaultTabBarController;
++(instancetype _Nonnull)defaultTabBarController;
 /// 隐藏底部tabBar的方法
 -(void)hiddenTabBarWithAnimation:(BOOL)isAnimation;
 /// 显示底部tabBar的方法
 -(void)showTabBarWithAnimation:(BOOL)isAnimation;
-
--(void)customSelectIndex:(NSUInteger)index;
+/// 切换
+-(jobsByNSUIntegerBlock _Nonnull)customSelectIndex;
 
 @end
 

@@ -7,23 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JobsBlock.h"
 #import "LZTabBarItem.h"
 
 @protocol LZTabBarDelegate;
 
 @interface LZTabBar : UIView<LZTabBarItemDelegate>
 
-Prop_strong()NSArray<LZTabBarItem *> *items;
-Prop_assign()id <LZTabBarDelegate> delegate;
+Prop_copy()NSArray<LZTabBarItem *>* _Nullable items;
+Prop_assign()id <LZTabBarDelegate> _Nullable delegate;
 
 @end
 
 @protocol LZTabBarDelegate <NSObject>
 
--(void)tabBar:(LZTabBar *)tab
-didSelectItem:(LZTabBarItem *)item
+-(void)tabBar:(LZTabBar *_Nonnull)tab
+didSelectItem:(LZTabBarItem *_Nonnull)item
       atIndex:(NSInteger)index;
 
 @end
 
+NS_INLINE __kindof LZTabBar *_Nonnull jobsMakeLZTabBar(jobsByLZTabBarBlock _Nonnull block){
+    LZTabBar *data = LZTabBar.alloc.init;
+    if (block) block(data);
+    return data;
+}
 

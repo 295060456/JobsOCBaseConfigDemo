@@ -5634,12 +5634,17 @@ self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullabl
   * 关注实现类：[**`@interface UIViewController (BaseVC)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BBaseVC)
 
     ```objective-c
-    #pragma mark —— present
+    /// present
     /// 简洁版强制present展现一个控制器页面【不需要正向传参】
     -(jobsByVCBlock _Nonnull)comingToPresentVC;
     /// 简洁版强制present展现一个控制器页面【需要正向传参】
     -(jobsByVCAndDataBlock _Nonnull)comingToPresentVCByRequestParams;
-    #pragma mark —— push
+    /// pop
+    /// pop到根控制器
+    -(jobsByBOOLBlock _Nonnull)popToRootVCBy;
+    /// pop到上一个控制器
+    -(jobsByBOOLBlock _Nonnull)popToPreviousVCBy;
+    /// push
     /// 简洁版强制push展现一个控制器页面【不需要正向传参】
     -(jobsByVCBlock _Nonnull)comingToPushVC;
     /// 简洁版强制push展现一个控制器页面【需要正向传参】
@@ -5673,6 +5678,12 @@ self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullabl
   #### 10.4、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md/UIViewController%2BXLBubbleTransition.md)
 
   * 关注实现类：[**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
+
+  * ```objective-c
+    /// 设置控制器的转场方向
+    self.jobsNavDirectionBy(JobsTransitionDirectionLeft);
+    self.jobsGetCurrentViewController.comingToPushVC(FMHomeMenuVC.new);
+    ```
 
 #### 10.5、<font color=red>**悬浮视图**</font>
 

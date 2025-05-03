@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
+#import "JobsNavigationTransitionManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(JobsReturnNavCtrByVCBlock _Nonnull)initByRootVC;
 -(UIViewController *)rootViewController;
+-(jobsByNSUIntegerBlock _Nonnull)navDirectionBy;
 
 @end
 

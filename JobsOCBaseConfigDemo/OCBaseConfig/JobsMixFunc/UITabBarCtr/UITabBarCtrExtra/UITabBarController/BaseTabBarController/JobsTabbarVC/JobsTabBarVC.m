@@ -126,8 +126,7 @@ static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         self.myTabBar.height += self.myTabBar.customTabBarOffsetHeight;
         self.myTabBar.y = self.view.height - self.myTabBar.height;
-    });
-    self.ppBadge(YES);
+    });self.ppBadge(YES);
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -197,7 +196,7 @@ static dispatch_once_t onceToken;
             self.isOpenPPBadge = open;
             if (open) {
                 for (UITabBarItem *item in self.tabBar.items) {
-                    if ([item.title isEqualToString:JobsInternationalization(@"首页")]) {
+                    if (item.title.isEqualToString(JobsInternationalization(@"首页"))) {
                         [item pp_addBadgeWithText:@"919+"];
 #pragma mark —— 动画
                         item.badgeView.图片从小放大();
@@ -268,7 +267,7 @@ static dispatch_once_t onceToken;
     for (UIView *subView in self.tabBar.subviews) {
         if ([subView isKindOfClass:NSClassFromString(UITabBarButton)]) {
             subView.图片从小放大();
-            [self.UITabBarButtonMutArr addObject:subView];
+            self.UITabBarButtonMutArr.add(subView);
         }
     }
     /// 初始显示【具备Lottie播放条件才进行相关初始化操作】
@@ -478,12 +477,6 @@ shouldSelectViewController:(UIViewController *)viewController {
     }return _myTabBar;
 }
 
--(NSMutableArray <UIView *>*)UITabBarButtonMutArr{
-    if (!_UITabBarButtonMutArr) {
-        _UITabBarButtonMutArr = NSMutableArray.array;
-    }return _UITabBarButtonMutArr;
-}
-
 -(NSMutableArray <UIViewModel *>*)pullListAutoSizeViewMutArr{
     if (!_pullListAutoSizeViewMutArr) {
         _pullListAutoSizeViewMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
@@ -501,6 +494,12 @@ shouldSelectViewController:(UIViewController *)viewController {
             }));
         });
     }return _pullListAutoSizeViewMutArr;
+}
+
+-(NSMutableArray <UIView *>*)UITabBarButtonMutArr{
+    if (!_UITabBarButtonMutArr) {
+        _UITabBarButtonMutArr = NSMutableArray.array;
+    }return _UITabBarButtonMutArr;
 }
 
 @end

@@ -19,4 +19,12 @@
     return self.viewControllers.firstObject;
 }
 
+-(jobsByNSUIntegerBlock _Nonnull)navDirectionBy{
+    @jobs_weakify(self)
+    return ^(JobsTransitionDirection data){
+        @jobs_strongify(self)
+        [JobsNavigationTransitionManager setDirection:data forNavigationController:self];
+    };
+}
+
 @end

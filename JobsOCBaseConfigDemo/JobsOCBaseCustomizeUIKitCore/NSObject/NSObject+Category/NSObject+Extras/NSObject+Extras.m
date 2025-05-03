@@ -129,6 +129,14 @@ UITextFieldProtocol_dynamic
         }return currentVC;
     };
 }
+/// 自定义 push/pop 控制器的方向
+-(jobsByNSUIntegerBlock _Nonnull)jobsNavDirectionBy{
+    @jobs_weakify(self)
+    return ^(JobsTransitionDirection data){
+        @jobs_strongify(self)
+        if(self.jobsGetCurrentViewController.navigationController) self.jobsGetCurrentViewController.navigationController.navDirectionBy(data);
+    };
+}
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
 /// @param requestParams 正向推页面传递的参数
@@ -354,6 +362,16 @@ UITextFieldProtocol_dynamic
 +(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy{
     return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
         return UINavigationController.initByRootVC(vc);
+    };
+}
+/// 依据传入的类名，创建导航控制器
++(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls{
+    return ^__kindof UINavigationController *_Nullable(Class _Nonnull cls){
+        NSObject *instance = cls.new;
+        if(instance.isKindOfClass(UIViewController.class)){
+            UIViewController *vc = (UIViewController *)instance;
+            return UINavigationController.initByRootVC(vc);
+        }else return nil;
     };
 }
 /// 可以组合使用

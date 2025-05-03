@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WebKit/WebKit.h>
-#import <Photos/Photos.h>
 #import <objc/runtime.h>
-#import <sys/sysctl.h>
-#import <mach/mach.h>
-#import <ImageIO/CGImageSource.h>
+#import <WebKit/WebKit.h>                    /// 用于嵌入和管理网页内容，例如加载和显示网页。
+#import <Photos/Photos.h>                    /// 用于访问和管理设备的照片和视频资源。
+#import <sys/sysctl.h>                       /// 允许查询系统信息和配置，如设备硬件详细信息。
+#import <mach/mach.h>                        /// 提供对底层内存和CPU信息的访问，如内存使用情况和CPU负载。
+#import <ImageIO/CGImageSource.h>            /// 读取和处理图像文件中的图像数据，包括但不限于 PNG、JPEG、TIFF、GIF、HEIC 等格式。
 
 #import "NSObject+Class.h"
 #import "NSObject+Algorithm.h"
@@ -82,6 +82,14 @@
 #define MainWindow NSObject.mainWindow()
 #endif /* MainWindow */
 
+#ifndef JobsMakeNavCtrlByCls
+#define JobsMakeNavCtrlByCls(cls) self.makeNavigationControllerByCls(cls.class)
+#endif /* JobsMakeNavCtrlByCls */
+
+#ifndef JobsMakeNavCtrlBy
+#define JobsMakeNavCtrlBy(instance) self.makeNavigationControllerBy(instance)
+#endif /* JobsMakeNavCtrlBy */
+
 NS_INLINE NSObject *_Nullable idToObject(id _Nullable data){
     if ([data isKindOfClass:NSObject.class]) {
         NSObject *object = (NSObject *)data;
@@ -133,6 +141,8 @@ AppToolsProtocol
 -(__kindof UIViewController *_Nullable)getCurrentViewController;
 /// 获得当前控制器的根控制器
 -(JobsReturnVCByVCBlock _Nonnull)getCurrentViewControllerByRootVC;
+/// 自定义 push/pop 控制器的方向
+-(jobsByNSUIntegerBlock _Nonnull)jobsNavDirectionBy;
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
 /// @param requestParams 正向推页面传递的参数
@@ -200,6 +210,8 @@ AppToolsProtocol
 -(JobsReturnVCByVCBlock _Nonnull)rootViewControllerBy;
 /// 依据传入的普通控制器，创建导航控制器
 +(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
+/// 依据传入的类名，创建导航控制器
++(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls;
 /// 可以组合使用
 -(SDWebImageOptions)makeSDWebImageOptions;
 -(URLManagerModel *_Nonnull)url:(NSString *_Nonnull)url funcName:(NSString *_Nonnull)funcName;
@@ -500,6 +512,13 @@ AppToolsProtocol
                downBlock:(jobsByNSNotificationKeyboardModelBlock _Nullable)downBlock;
 
 @end
+/**
+ 
+ /// 设置控制器的转场方向
+ self.jobsNavDirectionBy(JobsTransitionDirectionLeft);
+ self.jobsGetCurrentViewController.comingToPushVC(FMHomeMenuVC.new);
+ 
+ */
 /**
  NSInvocation的使用，方法多参数传递 调用示例
  

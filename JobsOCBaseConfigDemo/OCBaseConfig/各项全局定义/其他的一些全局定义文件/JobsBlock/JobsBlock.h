@@ -68,6 +68,9 @@ typedef void(^jobsByCustomTabBarVCBlock)(__kindof JobsCustomTabBarVC *_Nullable 
 @class JobsCustomTabBarConfig;
 typedef void(^jobsByCustomTabBarConfigBlock)(__kindof JobsCustomTabBarConfig *_Nullable tabBarConfig);
 
+@class JobsTransitionAnimator;
+typedef void(^jobsByTransitionAnimatorBlock)(__kindof JobsTransitionAnimator *_Nullable transitionAnimator);
+ 
 @class MGSwipeButtonModel;
 typedef void(^jobsByMGSwipeButtonModelBlock)(__kindof MGSwipeButtonModel *_Nullable model);
 
@@ -164,6 +167,11 @@ typedef void(^jobsByBaseNavigationBarBlock)(__kindof BaseNavigationBar *_Nullabl
 typedef void(^jobsByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
 typedef id _Nullable(^JobsReturnIDByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
+
+@class LZTabBar;
+typedef void(^jobsByLZTabBarBlock)(__kindof LZTabBar *_Nullable tabBar);
+@class LZTabBarItem;
+typedef void(^jobsByLZTabBarItemBlock)(__kindof LZTabBarItem *_Nullable tabBarItem);
 
 @class UITextFieldModel;
 typedef void(^jobsByTextFieldModelBlock)(__kindof UITextFieldModel *_Nullable model);
