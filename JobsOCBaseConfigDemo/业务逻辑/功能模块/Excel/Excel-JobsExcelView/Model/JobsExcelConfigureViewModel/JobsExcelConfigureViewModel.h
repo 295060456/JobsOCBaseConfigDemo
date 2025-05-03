@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "UIButtonModel.h"
 #import "JobsBlock.h"
+#import "DefineProperty.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -27,33 +28,33 @@ Prop_assign()CGFloat LineWidth;/// 线宽
 Prop_assign()CGFloat scrollOffsetX;/// X 多滑动的距离【一个补偿值】
 Prop_assign()CGFloat scrollOffsetY;/// Y 多滑动的距离【一个补偿值】
 /// 颜色设置
-@property(nonatomic,strong,null_resettable)UIColor *cor0;/// 第一行、第一列格子的背景颜色
-@property(nonatomic,strong,null_resettable)UIColor *cor1;/// 奇数行的背景颜色
-@property(nonatomic,strong,null_resettable)UIColor *cor2;/// 偶数行的背景颜色
-@property(nonatomic,strong,null_resettable)UIColor *cor3;/// 第一行的背景颜色
-@property(nonatomic,strong,null_resettable)UIColor *cor4;/// 第一行的主文字颜色
-@property(nonatomic,strong,null_resettable)UIColor *cor5;/// 其他行的主文字颜色
-@property(nonatomic,strong,null_resettable)UIColor *cor6;/// 表格线的颜色
+Prop_strong(null_resettable)UIColor *cor0;/// 第一行、第一列格子的背景颜色
+Prop_strong(null_resettable)UIColor *cor1;/// 奇数行的背景颜色
+Prop_strong(null_resettable)UIColor *cor2;/// 偶数行的背景颜色
+Prop_strong(null_resettable)UIColor *cor3;/// 第一行的背景颜色
+Prop_strong(null_resettable)UIColor *cor4;/// 第一行的主文字颜色
+Prop_strong(null_resettable)UIColor *cor5;/// 其他行的主文字颜色
+Prop_strong(null_resettable)UIColor *cor6;/// 表格线的颜色
 /// 背景图片设置
-@property(nonatomic,strong,null_resettable)UIImage *image0;/// 第一行、第一列格子的背景图片
-@property(nonatomic,strong,null_resettable)UIImage *image1;/// 奇数行的背景图片
-@property(nonatomic,strong,null_resettable)UIImage *image2;/// 偶数行的背景图片
-@property(nonatomic,strong,null_resettable)UIImage *image3;/// 第一行的背景图片
+Prop_strong(null_resettable)UIImage *image0;/// 第一行、第一列格子的背景图片
+Prop_strong(null_resettable)UIImage *image1;/// 奇数行的背景图片
+Prop_strong(null_resettable)UIImage *image2;/// 偶数行的背景图片
+Prop_strong(null_resettable)UIImage *image3;/// 第一行的背景图片
 #pragma mark —— 值
-@property(nonatomic,strong,nonnull)NSValue *VerticalScrollValue;/// 垂直滚动
-@property(nonatomic,strong,nonnull)NSValue *HorizontalScrollValue;/// 水平滚动
-@property(nonatomic,assign,readonly)NSInteger rowNumber;/// 行数
-@property(nonatomic,assign,readonly)NSInteger colNumber;/// 列数
-@property(nonatomic,strong,nonnull)RACSubject *verticalScrollSignal;
-@property(nonatomic,strong,nonnull)RACSubject *horizontalScrollSignal;
-Prop_copy()jobsByIDBlock _Nonnull configureDataBy;/// 因为UI架构的原因，数据必须先行后列
+Prop_strong(nonnull)NSValue *VerticalScrollValue;/// 垂直滚动
+Prop_strong(nonnull)NSValue *HorizontalScrollValue;/// 水平滚动
+Prop_assign(readonly)NSInteger rowNumber;/// 行数
+Prop_assign(readonly)NSInteger colNumber;/// 列数
+Prop_strong(nonnull)RACSubject *verticalScrollSignal;
+Prop_strong(nonnull)RACSubject *horizontalScrollSignal;
+Prop_copy(nonnull)jobsByIDBlock configureDataBy;/// 因为UI架构的原因，数据必须先行后列
 
-@property(nonatomic,strong,null_resettable)UIButtonModel *data_00;/// 起始格子的数据
-@property(nonatomic,strong,nonnull)NSMutableArray <NSMutableArray <UIButtonModel *>*>*contentArr;
-@property(nonatomic,strong,null_resettable)NSMutableArray <UIButtonModel *>*topHeaderDatas;
-@property(nonatomic,strong,null_resettable)NSMutableArray <UIButtonModel *>*leftListDatas;
+Prop_strong(null_resettable)UIButtonModel *data_00;/// 起始格子的数据
+Prop_copy(nonnull)NSMutableArray <NSMutableArray <UIButtonModel *>*>*contentArr;
+Prop_copy(null_resettable)NSMutableArray <UIButtonModel *>*topHeaderDatas;
+Prop_copy(null_resettable)NSMutableArray <UIButtonModel *>*leftListDatas;
 
-@property(nonatomic,strong,nonnull)NSMutableArray <NSMutableArray <NSString *>*>*contentTitles;
+Prop_copy(nonnull)NSMutableArray <NSMutableArray <NSString *>*>*contentTitles;
 Prop_copy()NSMutableArray <NSString *>*_Nullable topHeaderTitles;
 Prop_copy()NSMutableArray <NSString *>*_Nullable leftTitles;
 

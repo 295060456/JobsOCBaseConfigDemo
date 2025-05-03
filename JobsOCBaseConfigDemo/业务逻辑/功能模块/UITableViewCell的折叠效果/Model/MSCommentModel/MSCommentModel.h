@@ -24,13 +24,13 @@ Prop_copy()NSMutableArray <MSCommentDetailModel *>*commentDataMutArr;
 
 NS_ASSUME_NONNULL_END
 
-NS_INLINE __kindof MSCommentDetailModel *_Nonnull jobsMakeCommentDetailModel(jobsByCommentDetailModelBlock _Nonnull block){
+NS_INLINE __kindof MSCommentDetailModel *_Nonnull jobsMakeMSCommentDetailModel(jobsByMSCommentDetailModelBlock _Nonnull block){
     MSCommentDetailModel *data = MSCommentDetailModel.alloc.init;
     if (block) block(data);
     return data;
 }
 
-NS_INLINE __kindof MSCommentModel *_Nonnull jobsMakeCommentModel(jobsByCommentModelBlock _Nonnull block){
+NS_INLINE __kindof MSCommentModel *_Nonnull jobsMakeMSCommentModel(jobsByMSCommentModelBlock _Nonnull block){
     MSCommentModel *data = MSCommentModel.alloc.init;
     if (block) block(data);
     return data;

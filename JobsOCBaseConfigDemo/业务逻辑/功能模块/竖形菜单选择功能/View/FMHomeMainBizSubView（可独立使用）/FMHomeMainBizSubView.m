@@ -246,7 +246,7 @@ numberOfRowsInSection:(NSInteger)section{
                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBtnStyleTBVCell *cell = JobsBtnStyleTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.contentEdgeInsets = jobsMakeSameEdgeInset(JobsWidth(3));
-    cell.jobsRichElementsCellBy(self.leftCellDataMutArr[indexPath.row]);
+    cell.JobsRichViewByModel2(self.leftCellDataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -269,7 +269,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.data = @(SourceType_Home);
     self.rightViewCurrentSelectModel = self.rightDataArray.objectAt(indexPath.section);
     cell.getCollectionHeight((NSMutableArray <NSObject *>*)self.rightViewCurrentSelectModel.childrenList);
-    cell.jobsRichElementsCellBy(self.rightDataArray);/// GoodsClassModel
+    cell.JobsRichViewByModel2(self.rightDataArray);/// GoodsClassModel
     cell.reloadDatas();
 //    @jobs_weakify(self)
     [cell actionObjBlock:^(GoodsClassModel *model) {

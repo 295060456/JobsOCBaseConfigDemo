@@ -33,12 +33,13 @@ Prop_strong()UILabel *titleLabel;
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^__kindof UICollectionViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model ? : UIViewModel.new;
         self.titleLabel.alpha = 1;
+        return self;
     };
 }
 #pragma mark —— lazyLoad
@@ -48,8 +49,7 @@ Prop_strong()UILabel *titleLabel;
         _titleLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.font = UIFontWeightRegularSize(15);
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.contentView).offset(10);
                 make.top.equalTo(self.contentView).offset(20);
             }];

@@ -8,7 +8,6 @@
 #import "AppLanguageVC.h"
 
 @interface AppLanguageVC ()
-/// UI
 /// Data
 Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -144,7 +143,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = UITableViewCell.cellStyleValue1WithTableView(tableView);
     cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == JobsLanguageManager.language ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    cell.jobsRichElementsCellByModel(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -223,8 +222,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     return nil;
                 }]);
             }
-            self.view.addSubview(tableView);
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.gk_navigationBar.mas_bottom);
                 make.left.right.bottom.equalTo(self.view);
             }];

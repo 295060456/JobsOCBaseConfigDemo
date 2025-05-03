@@ -114,6 +114,7 @@ FOUNDATION_EXTERN NSString *_Nonnull const JobsDash;            /// 连字符
 FOUNDATION_EXTERN NSString *_Nonnull const JobsUnderscore;      /// 下划线
 FOUNDATION_EXTERN NSString *_Nonnull const JobsAsterisk;        /// 星号
 FOUNDATION_EXTERN NSString *_Nonnull const JobsEqual;           /// 等于
+FOUNDATION_EXTERN NSString *_Nonnull const JobsPercent;         /// 百分号
 /// 业务功能相关
 FOUNDATION_EXTERN NSString *_Nonnull const 网络状态监控;/// 网络状态监控
 FOUNDATION_EXTERN NSString *_Nonnull const 退到后台停止播放ZFPlayer;/// 退到后台停止播放ZFPlayer

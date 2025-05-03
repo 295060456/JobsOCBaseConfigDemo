@@ -8,6 +8,26 @@
 #ifndef JobsBizBlock_h
 #define JobsBizBlock_h
 
+@class JobsFirstCommentCustomCofigModel;
+typedef void(^jobsByFirstCommentCustomCofigModelBlock)(__kindof JobsFirstCommentCustomCofigModel *_Nullable model);
+@class JobsCommentModel;
+typedef void(^jobsByCommentModelBlock)(__kindof JobsCommentModel *_Nullable model);
+@class JobsFirstCommentModel;
+typedef void(^jobsByFirstCommentModelBlock)(__kindof JobsFirstCommentModel *_Nullable model);
+@class JobsChildCommentModel;
+typedef void(^jobsByChildCommentModelBlock)(__kindof JobsChildCommentModel *_Nullable model);
+
+@class MSCommentDetailModel;
+@class MSCommentModel;
+typedef void(^jobsByMSCommentDetailModelBlock)(MSCommentDetailModel *_Nullable data);
+typedef void(^jobsByMSCommentModelBlock)(MSCommentModel *_Nullable data);
+
+@class JobsIMListDataModel;
+typedef void(^jobsByIMListDataModelBlock)(__kindof JobsIMListDataModel *_Nullable model);
+
+@class TMSCollectionViewLayout;
+typedef void(^jobsByTMSCollectionViewLayoutBlock)(__kindof TMSCollectionViewLayout *_Nullable layout);
+
 @class FMHomeMainBizSubView;
 typedef void(^jobsByBizSubViewBlock)(__kindof FMHomeMainBizSubView *_Nullable subView);
 

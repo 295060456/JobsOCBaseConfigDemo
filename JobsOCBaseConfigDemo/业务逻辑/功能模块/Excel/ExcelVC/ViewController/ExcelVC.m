@@ -118,7 +118,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.section][indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.section][indexPath.row]);
     return cell;
 }
 
@@ -135,42 +135,41 @@ heightForFooterInSectionByModel:(NSInteger)section{
 - (UIView *)tableView:(UITableView *)tableView
 viewForHeaderInSection:(NSInteger)section{
     if (self.viewModel.usesTableViewHeaderView) {
-        BaseTableViewHeaderFooterView *headerView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
-//        {
-//            /**
-//             如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
-//             @synthesize headerFooterViewStyle = _headerFooterViewStyle;
-//             */
-//            // 不写这三句有悬浮
-//            headerView.headerFooterViewStyle = JobsHeaderViewStyle;
-//            headerView.tableView = tableView;
-//            headerView.section = section;
-//        }
-        headerView.jobsRichViewByModel(nil);
-//        @jobs_weakify(self)
-        [headerView actionObjBlock:^(id data) {
-//            @jobs_strongify(self)
-        }];return headerView;
+        @jobs_weakify(self)
+        BaseTableViewHeaderFooterView *headerView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"")
+            .JobsRichViewByModel2(nil)
+            .JobsBlock1(^(id  _Nullable data) {
+                @jobs_strongify(self)
+            });
+//        /**
+//         如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
+//         @synthesize headerFooterViewStyle = _headerFooterViewStyle;
+//         */
+//        // 不写这三句有悬浮
+//        headerView.headerFooterViewStyle = JobsHeaderViewStyle;
+//        headerView.tableView = tableView;
+//        headerView.section = section;
+        return headerView;
     }return nil;
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
                  viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
-        BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
+        @jobs_weakify(self)
+        BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"")
+            .JobsRichViewByModel2(nil)
+            .JobsBlock1(^(id  _Nullable data) {
+            @jobs_strongify(self)
+        });
         {
             // 不写这两句有悬浮
-            tbvFooterView.headerFooterViewStyle = JobsHeaderViewStyle;
             tbvFooterView.tableView = tableView;
             tbvFooterView.section = section;
         }
         tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
-        tbvFooterView.jobsRichViewByModel(nil);
-//        @jobs_weakify(self)
-        [tbvFooterView actionObjBlock:^(id data) {
-//            @jobs_strongify(self)
-        }];return tbvFooterView;
+        return tbvFooterView;
     }return nil;
 }
 /**
@@ -274,9 +273,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     ////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
     //            [tableView tab_startAnimation];   // 开启动画
     //        }
-            
-            self.view.addSubview(tableView);
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.equalTo(self.view);
                 make.top.equalTo(self.navBar.mas_bottom);
             }];

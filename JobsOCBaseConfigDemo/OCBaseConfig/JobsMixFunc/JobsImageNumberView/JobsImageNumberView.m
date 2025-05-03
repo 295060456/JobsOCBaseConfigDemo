@@ -8,8 +8,6 @@
 #import "JobsImageNumberView.h"
 
 @interface JobsImageNumberView ()
-/// UI
-//Prop_strong()BaseCollectionView *collectionView;
 /// Data
 Prop_strong()NSArray <UIImage *>*dataMutArr;
 
@@ -44,7 +42,7 @@ Prop_strong()NSArray <UIImage *>*dataMutArr;
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     JobsImageNumberViewCVCell *cell = [JobsImageNumberViewCVCell cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsCollectionViewCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -97,7 +95,7 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return JobsImageNumberViewCVCell.cellSizeByModel(self.dataMutArr[indexPath.row]);
 }
-/// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
+/// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -123,15 +121,11 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(BaseCollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = BaseCollectionView.initByLayout(self.verticalLayout);
-        
         _collectionView.backgroundColor = JobsClearColor;
         _collectionView.dataLink(self);
         _collectionView.showsVerticalScrollIndicator = NO;
-
         _collectionView.registerCollectionViewClass();
-
-        [self addSubview:_collectionView];
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
     }return _collectionView;

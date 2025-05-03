@@ -28,7 +28,7 @@ UITableViewCellProtocol_Synthesize
               reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style
                     reuseIdentifier:reuseIdentifier]) {
-        self.jobsRichElementsCellBy(nil);
+        self.jobsRichElementsTableViewCellBy(nil);
         self.selectionStyle = UITableViewCellSelectionStyleNone;// 取消点击效果 【不能在cellStyleValue1WithTableView里面写】
         self.backgroundColor = self.contentView.backgroundColor = HEXCOLOR(0xFBF7E3);
         self.selectedBackgroundView = [UIView.alloc initWithFrame:self.frame];// 这句不可省略
@@ -36,15 +36,15 @@ UITableViewCellProtocol_Synthesize
     }return self;
 }
 
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         if (model) {
             self.viewModel = model;
             self.textLabel.text = [NSString stringWithFormat:@"%@",model.textModel.text];
             self.detailTextLabel.text = [NSString stringWithFormat:@"%@",model.subTextModel.text];
-        }
+        } return self;
     };
 }
 

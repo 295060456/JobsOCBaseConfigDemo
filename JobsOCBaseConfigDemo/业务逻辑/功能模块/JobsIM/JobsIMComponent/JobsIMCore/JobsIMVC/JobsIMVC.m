@@ -145,7 +145,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.indexPath = indexPath;
     cell.delegate = self;
     cell.allowsMultipleSwipe = YES;
-    cell.jobsRichElementsCellBy(self.chatInfoModelMutArr[indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.chatInfoModelMutArr[indexPath.row]);
     return cell;
 }
 #if isAllowSysEdit
@@ -395,8 +395,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 }
                 make.left.right.equalTo(self.view);
                 make.bottom.equalTo(self.inputview.mas_top);
-            }];
-            [self.view layoutIfNeeded];
+            }];self.view.refresh();
             tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             
             {

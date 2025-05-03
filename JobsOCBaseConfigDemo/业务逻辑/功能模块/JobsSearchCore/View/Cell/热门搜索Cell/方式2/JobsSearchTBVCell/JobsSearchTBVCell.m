@@ -33,16 +33,16 @@ BaseLayerProtocol_synthesize_part3
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         [self.collectionView removeFromSuperview];
         self->_collectionView = nil;
         if (model) {
-            self.viewModelMutArr = (NSMutableArray *)model;
+            self.viewModels = (NSMutableArray *)model;
             self.collectionView.reloadDatas();
-        }
+        } return self;
     };
 }
 #pragma mark - UICollectionViewDataSource
@@ -55,13 +55,13 @@ BaseLayerProtocol_synthesize_part3
     JobsSearchDataCVCell *cell = [JobsSearchDataCVCell cellWithCollectionView:collectionView
                                                                  forIndexPath:indexPath];
     cell.indexPath = indexPath;
-    cell.jobsRichElementsCellBy(self.viewModelMutArr[indexPath.row]);
+    cell.jobsRichElementsCollectionViewCellBy(self.viewModels[indexPath.row]);
     return cell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    return self.viewModelMutArr.count;
+    return self.viewModels.count;
 }
 #pragma mark —— UICollectionViewDelegate
 /// 允许选中时，高亮

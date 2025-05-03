@@ -135,7 +135,7 @@
         layer.fillColor = aColor.CGColor;
         layer.lineWidth = 1.0f;
         layer.lineJoin = kCALineJoinBevel;
-        aView.layer.add(layer);
+        aView.layer.addSublayer(layer);
     });
 }
 #pragma mark —— 字符串的自定义截取/拼接

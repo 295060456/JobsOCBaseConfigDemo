@@ -15,8 +15,9 @@
 #import "JobsTextLabStyleTBVCell.h"
 #import "JobsBtnTextViewStyleTBVCell.h"
 #pragma mark —— Category
+#import "UITableViewCell+BaseViewProtocol.h"
 #import "UITableViewCell+UITableViewCellProtocol.h"
-#import "UITableViewCell+Margin.h"// 重设边距
-#import "UITableViewCell+WhiteArrows.h"// 自定义右侧小箭头图标
+#import "UITableViewCell+Margin.h"/// 重设边距
+#import "UITableViewCell+WhiteArrows.h"/// 自定义右侧小箭头图标
 
 #endif /* JobsTableViewCell_h */

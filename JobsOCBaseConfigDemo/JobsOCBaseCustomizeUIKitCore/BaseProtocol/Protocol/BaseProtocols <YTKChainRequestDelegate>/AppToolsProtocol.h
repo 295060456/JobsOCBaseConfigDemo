@@ -32,12 +32,13 @@ Prop_strong(nullable)UIButtonModel *subButtonModel;
 Prop_strong(nullable)UITextModel *textModel;
 Prop_strong(nullable)UITextModel *subTextModel;
 Prop_strong(nullable)UITextModel *backBtnTitleModel;/// 在具体的子类去实现，以覆盖父类的方法实现
-Prop_strong(nullable)NSMutableArray <__kindof UIViewModel *> *viewModelMutArr;
+Prop_copy(nullable)NSMutableArray <__kindof UIViewModel *> *viewModels;
+Prop_copy(nullable)NSMutableArray <__kindof UIButtonModel *> *buttonModels;
 /// JobsRichTextConfig
-Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
-Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *subTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
-Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
-Prop_strong(nullable)NSMutableArray <JobsRichTextConfig *> *selectedSubTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
+Prop_copy(nullable)NSMutableArray <JobsRichTextConfig *> *titleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
+Prop_copy(nullable)NSMutableArray <JobsRichTextConfig *> *subTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > titleAttributedStr
+Prop_copy(nullable)NSMutableArray <JobsRichTextConfig *> *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
+Prop_copy(nullable)NSMutableArray <JobsRichTextConfig *> *selectedSubTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
 #pragma mark —— 关于导航栏
 Prop_strong(nullable)UIButtonModel *closeBtnModel;
 Prop_strong(nullable)UIButtonModel *backBtnModel;
@@ -130,7 +131,8 @@ NS_ASSUME_NONNULL_END
 @synthesize textModel = _textModel; \
 @synthesize subTextModel = _subTextModel; \
 @synthesize backBtnTitleModel = _backBtnTitleModel; \
-@synthesize viewModelMutArr = _viewModelMutArr; \
+@synthesize viewModels = _viewModels; \
+@synthesize buttonModels = _buttonModels; \
 @synthesize titleAttributedDataMutArr = _titleAttributedDataMutArr; \
 @synthesize subTitleAttributedDataMutArr = _subTitleAttributedDataMutArr; \
 @synthesize selectedTitleAttributedDataMutArr = _selectedTitleAttributedDataMutArr; \
@@ -151,7 +153,8 @@ NS_ASSUME_NONNULL_END
 @dynamic textModel;\
 @dynamic subTextModel;\
 @dynamic backBtnTitleModel;\
-@dynamic viewModelMutArr;\
+@dynamic viewModels;\
+@dynamic buttonModels;\
 @dynamic titleAttributedDataMutArr;\
 @dynamic subTitleAttributedDataMutArr;\
 @dynamic selectedTitleAttributedDataMutArr;\

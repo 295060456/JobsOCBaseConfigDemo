@@ -16,6 +16,7 @@
     };
 }
 #pragma mark —— BaseViewProtocol
+/// 用于类
 +(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(id _Nullable data){
@@ -26,14 +27,15 @@
         }return instance;
     };
 }
-
+/// 用于实例
 -(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel2{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(id _Nullable data){
         @jobs_strongify(self)
-        if(self.isKindOfClass(UITableViewCell.class) || self.isKindOfClass(UICollectionViewCell.class) ){
-            if ([self respondsToSelector:@selector(jobsRichElementsCellBy)]) self.jobsRichElementsCellBy(data);
-            if ([self respondsToSelector:@selector(jobsRichElementsCellByModel)]) self.jobsRichElementsCellByModel(data);
+        if(self.isKindOfClass(UITableViewCell.class)){
+            if ([self respondsToSelector:@selector(jobsRichElementsTableViewCellBy)]) self.jobsRichElementsTableViewCellBy(data);
+        }else if (self.isKindOfClass(UICollectionViewCell.class)){
+            if ([self respondsToSelector:@selector(jobsRichElementsCollectionViewCellBy)]) self.jobsRichElementsCollectionViewCellBy(data);
         }else{
             self.jobsRichViewByModel(data);
         }return self;
@@ -410,7 +412,7 @@ JobsKey(_leftBorderLayer)
 -(CALayer *)leftBorderLayer{
     CALayer *layer = Jobs_getAssociatedObject(_leftBorderLayer);
     if (!layer) {
-        layer = self.layer.add(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
+        layer = self.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
             
         }));Jobs_setAssociatedRETAIN_NONATOMIC(_leftBorderLayer, layer);
     }return layer;
@@ -419,7 +421,7 @@ JobsKey(_rightBorderLayer)
 -(CALayer *)rightBorderLayer{
     CALayer *layer = Jobs_getAssociatedObject(_rightBorderLayer);
     if (!layer) {
-        layer = self.layer.add(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
+        layer = self.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
             
         }));Jobs_setAssociatedRETAIN_NONATOMIC(_rightBorderLayer, layer);
     }return layer;
@@ -428,7 +430,7 @@ JobsKey(_topBorderLayer)
 -(CALayer *)topBorderLayer{
     CALayer *layer = Jobs_getAssociatedObject(_topBorderLayer);
     if (!layer) {
-        layer = self.layer.add(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
+        layer = self.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
             
         }));Jobs_setAssociatedRETAIN_NONATOMIC(_topBorderLayer, layer);
     }return layer;
@@ -437,7 +439,7 @@ JobsKey(_bottomBorderLayer)
 -(CALayer *)bottomBorderLayer{
     CALayer *layer = Jobs_getAssociatedObject(_bottomBorderLayer);
     if (!layer) {
-        layer = self.layer.add(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
+        layer = self.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
             
         }));Jobs_setAssociatedRETAIN_NONATOMIC(_bottomBorderLayer, layer);
     }return layer;
@@ -670,8 +672,17 @@ JobsKey(_cornerRadii)
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIGestureRecognizer *_Nonnull gesture) {
         @jobs_strongify(self)
-        if(gesture)[self addGestureRecognizer:gesture];
+        if(gesture) self.addGestureRecognizer(gesture);
         return self;
+    };
+}
+
+-(JobsReturnGestureRecognizerByGestureRecognizer _Nonnull)addGestureRecognizer{
+    @jobs_weakify(self)
+    return ^__kindof UIGestureRecognizer *_Nullable(__kindof UIGestureRecognizer *_Nullable gesture) {
+        @jobs_strongify(self)
+        if(gesture) [self addGestureRecognizer:gesture];
+        return gesture;
     };
 }
 
@@ -688,6 +699,24 @@ JobsKey(_cornerRadii)
     return ^__kindof UIView *_Nullable(NSInteger data) {
         @jobs_strongify(self)
         return [self viewWithTag:data];
+    };
+}
+
+-(JobsReturnViewByInteractionBlock _Nonnull)addInteraction{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(id <UIInteraction>_Nullable data){
+        @jobs_strongify(self)
+        [self addInteraction:data];
+        return self;
+    };
+}
+
+-(JobsReturnViewByInteractionBlock _Nonnull)removeInteraction{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(id <UIInteraction>_Nullable data){
+        @jobs_strongify(self)
+        [self removeInteraction:data];
+        return self;
     };
 }
 

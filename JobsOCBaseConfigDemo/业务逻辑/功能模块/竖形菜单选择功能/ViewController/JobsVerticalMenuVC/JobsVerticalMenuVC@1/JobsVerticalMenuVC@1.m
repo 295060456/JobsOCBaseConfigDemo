@@ -9,8 +9,6 @@
 
 @interface JobsVerticalMenuVC_1 ()
 /// UI
-Prop_strong()BaseButton *customerServiceBtn;
-Prop_strong()BaseButton *msgBtn;
 Prop_strong()BaseButton *editBtn;
 Prop_strong()JobsSearchBar *searchView;
 /// Data
@@ -56,8 +54,23 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
     });
     self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
         @jobs_strongify(self)
-        data.add(UIBarButtonItem.initBy(self.msgBtn));
-        data.add(UIBarButtonItem.initBy(self.customerServiceBtn));
+        data.add(UIBarButtonItem.initBy(BaseButton.jobsInit()
+                                        .jobsResetBtnImage(JobsIMG(@"消息"))
+                                        .onClickBy(^(UIButton *x){
+                                            @jobs_strongify(self)
+                                            if (self.objBlock) self.objBlock(x);
+                                        }).onLongPressGestureBy(^(id data){
+                                            JobsLog(@"");
+                                        })));
+        data.add(UIBarButtonItem.initBy(BaseButton.jobsInit()
+                                        .bgColorBy(JobsWhiteColor)
+                                        .jobsResetBtnImage(JobsIMG(@"人工客服"))
+                                        .onClickBy(^(UIButton *x){
+                                            @jobs_strongify(self)
+                                            if (self.objBlock) self.objBlock(x);
+                                        }).onLongPressGestureBy(^(id data){
+                                            JobsLog(@"");
+                                        })));
     });
     self.makeNavByAlpha(1);
     
@@ -178,10 +191,11 @@ numberOfRowsInSection:(NSInteger)section{
 -(__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LeftCell *cell = LeftCell.cellStyleDefaultWithTableView(tableView);
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
-    cell.jobsRichElementsCellBy(viewModel);
-    return cell;
+    @jobs_weakify(self)
+    cell.jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+        @jobs_strongify(self)
+        data.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
+    }));return cell;
 }
 
 -(CGFloat)tableView:(__kindof UITableView *)tableView
@@ -199,48 +213,18 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView){
         @jobs_weakify(self)
-        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+        _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
             tableView.dataLink(self);
+            tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
             tableView.frame = CGRectMake(0,
                                          JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
                                          TableViewWidth,
                                          JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
             tableView.showsVerticalScrollIndicator = NO;
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            self.view.addSubview(tableView);
-        });
+        }));
     }return _tableView;
-}
-
--(BaseButton *)customerServiceBtn{
-    if (!_customerServiceBtn) {
-        @jobs_weakify(self)
-        _customerServiceBtn = BaseButton.jobsInit()
-            .bgColorBy(JobsWhiteColor)
-            .jobsResetBtnImage(JobsIMG(@"人工客服"))
-            .onClickBy(^(UIButton *x){
-                @jobs_strongify(self)
-                if (self.objBlock) self.objBlock(x);
-            }).onLongPressGestureBy(^(id data){
-                JobsLog(@"");
-            });
-    }return _customerServiceBtn;
-}
-
--(BaseButton *)msgBtn{
-    if (!_msgBtn) {
-        @jobs_weakify(self)
-        _msgBtn = BaseButton.jobsInit()
-            .jobsResetBtnImage(JobsIMG(@"消息"))
-            .onClickBy(^(UIButton *x){
-                @jobs_strongify(self)
-                if (self.objBlock) self.objBlock(x);
-            }).onLongPressGestureBy(^(id data){
-                JobsLog(@"");
-            });;
-    }return _msgBtn;
 }
 
 -(JobsSearchBar *)searchView{
@@ -248,13 +232,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _searchView = jobsMakeSearchBar(^(__kindof JobsSearchBar * _Nullable searchBar) {
             @jobs_strongify(self)
-            searchBar.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
-            searchBar.jobsRichViewByModel(nil);
-            [searchBar actionObjBlock:^(NSString *data) {
-//                @jobs_strongify(self)
-            }];
-            self.gk_navigationBar.addSubview(searchBar);
-            [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            searchBar
+                .bySize(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)))
+                .JobsRichViewByModel2(nil)
+                .JobsBlock1(^(id  _Nullable data) {
+                    
+                });
+            [self.gk_navigationBar.addSubview(searchBar) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
                 make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
                 make.centerY.equalTo(self.gk_navigationBar);
@@ -303,8 +287,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self.view addSubview:_editBtn];
-        [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_editBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view);
             make.top.equalTo(self.tableView.mas_bottom);
             make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));

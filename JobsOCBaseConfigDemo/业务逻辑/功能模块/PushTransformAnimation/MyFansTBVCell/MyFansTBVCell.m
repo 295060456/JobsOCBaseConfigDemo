@@ -13,7 +13,7 @@
 @end
 
 @implementation MyFansTBVCell
-
+#pragma mark —— UITableViewCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
         MyFansTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(MyFansTBVCell);
@@ -61,9 +61,9 @@
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(id _Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(id _Nullable model) {
         @jobs_strongify(self)
         self.imgView
                 .imageURL(@" ".jobsUrl)
@@ -79,6 +79,7 @@
                         JobsLog(@"图片加载成功");
                     }
                 }).load();
+        return self;
     };
 }
 #pragma mark —— lazyLoad

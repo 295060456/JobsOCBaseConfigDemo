@@ -82,16 +82,16 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
 #pragma mark —— lazyLoad
 -(NSTimerManager *)nsTimerManager{
     if (!_nsTimerManager) {
-        _nsTimerManager = NSTimerManager.new;
-        // 顺时针:每一个时间间隔为 1 秒
-        _nsTimerManager.timerStyle = TimerStyle_clockwise;
-        _nsTimerManager.timeInterval = .5f;
         @jobs_weakify(self)
-        [_nsTimerManager actionObjBlock:^(id data) {
-            @jobs_strongify(self)
-            self.refreshLabel.text.add(@".");
-            self.refreshLabel.text = self.refreshLabel.text.isEqualToString(JobsInternationalization(@"正在上传...")) ? JobsInternationalization(@"正在上传") : self.refreshLabel.text.add(JobsDot);
-        }];
+        _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
+            /// 顺时针:每一个时间间隔为 1 秒
+            data.timerStyle = TimerStyle_clockwise;
+            data.timeInterval = .5f;
+            [data actionObjBlock:^(id data) {
+                @jobs_strongify(self)
+                self.refreshLabel.text = self.refreshLabel.text.isEqualToString(JobsInternationalization(@"正在上传...")) ? JobsInternationalization(@"正在上传") : self.refreshLabel.text.add(JobsDot);
+            }];
+        });
     }return _nsTimerManager;
 }
 
@@ -108,7 +108,7 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
             layer.strokeStart = 0;
             layer.strokeEnd = 0.85;
             [layer addAnimation:self.anim forKey:@"CLAnimation"];
-            self.shapLayerView.layer.add(layer);
+            self.shapLayerView.layer.addSublayer(layer);
         });
     }return _shapLayer;
 }
@@ -150,8 +150,7 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
         @jobs_weakify(self)
         _shapLayerView = jobsMakeView(^(__kindof UIView * _Nullable view) {
             @jobs_strongify(self)
-            self.addSubview(view);
-            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(view) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self);
                 make.left.equalTo(self).offset(JobsWidth(62));
                 make.height.offset(self.radius + JobsWidth(2));
@@ -167,8 +166,7 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
         _imgeV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.image = self.imge;
-            self.shapLayerView.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.shapLayerView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self.shapLayerView).offset(-JobsWidth(2)); // 由于图片不是对称的，需要位置微调
                 make.centerX.equalTo(self.shapLayerView).offset(-JobsWidth(8)); // 位置微调
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(12), JobsWidth(20)));
@@ -184,8 +182,7 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
             @jobs_strongify(self)
             label.textColor = JobsWhiteColor;
             label.text = JobsInternationalization(@"正在上传...");
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.shapLayerView.mas_right).offset(JobsWidth(12));
                 make.centerY.equalTo(self);
             }];
@@ -198,11 +195,10 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
         @jobs_weakify(self)
         _subrefreshLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.textColor = JobsWhiteColor;
-            label.textAlignment = NSTextAlignmentRight;
-            label.font = UIFontWeightBoldSize(JobsWidth(12));
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            label.byTextCor(JobsWhiteColor)
+                .byTextAlignment(NSTextAlignmentRight)
+                .byFont(UIFontWeightBoldSize(JobsWidth(12)));
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(self).offset(-JobsWidth(8));
                 make.bottom.equalTo(self).offset(-JobsWidth(8));
             }];

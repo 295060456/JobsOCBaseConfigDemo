@@ -10,11 +10,12 @@
 
 @interface JobsExcelTopHeadView()
 
-@property(nonatomic,strong,nonnull)JobsExcelConfigureViewModel *excelConfigureData;
+Prop_strong(nonnull)JobsExcelConfigureViewModel *excelConfigureData;
 
 @end
 
 @implementation JobsExcelTopHeadView
+/// RACProtocol
 @synthesize racDisposable = _racDisposable;// 用于取消订阅
 - (void)dealloc {
     [self.racDisposable dispose];
@@ -42,13 +43,14 @@
 
 -(__kindof UICollectionViewCell *)collectionView:(__kindof UICollectionView *)collectionView
                           cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    JobsTopViewItem *cell = [JobsTopViewItem cellWithCollectionView:collectionView
-                                                       forIndexPath:indexPath];
+    @jobs_weakify(self)
+    JobsTopViewItem *cell = [JobsTopViewItem cellWithCollectionView:collectionView forIndexPath:indexPath];
     cell.backgroundColor = self.excelConfigureData.cor3;
-    cell.jobsRichElementsCellBy(self.excelConfigureData);
-    cell.jobsRichElementsCellByModel(self.excelConfigureData.topHeaderDatas[indexPath.row]);
-    
-    return cell;
+    cell.jobsRichElementsCollectionViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
+        @jobs_strongify(self)
+        vm.data = self.excelConfigureData;
+        vm.buttonModel = self.excelConfigureData.topHeaderDatas[indexPath.row];
+    }));return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -81,12 +83,11 @@
             data.minimumLineSpacing = 0;
             data.minimumInteritemSpacing = 0;
         })];
-        _collectionView.backgroundColor = JobsClearColor;
         _collectionView.dataLink(self);
+        _collectionView.backgroundColor = JobsClearColor;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        [self addSubview:_collectionView];
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
         }];
     }return _collectionView;

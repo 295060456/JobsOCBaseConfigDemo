@@ -107,32 +107,33 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyFansTBVCell *cell = MyFansTBVCell.cellStyleValue1WithTableView(tableView);
-    cell.jobsRichElementsCellBy(@(indexPath.row % 4));
+    cell.jobsRichElementsTableViewCellBy(@(indexPath.row % 4));
     return cell;
 }
 /// BaseViewProtocol
 @synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.new;
-        _tableView.dataLink(self);
-        _tableView.backgroundColor = JobsWhiteColor;
-        _tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        _tableView.estimatedRowHeight = 0;
-        _tableView.estimatedSectionFooterHeight = 0;
-        _tableView.estimatedSectionHeaderHeight = 0 ;
-        _tableView.mj_header = self.mjRefreshGifHeader;
-        _tableView.mj_footer = self.mjRefreshAutoGifFooter;
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.gk_navigationBar.mas_bottom);
-            make.left.right.bottom.equalTo(self.view);
-        }];
-        [self.view layoutIfNeeded];
-        _tableView.mj_footer.hidden = NO;
+        @jobs_weakify(self)
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.backgroundColor = JobsWhiteColor;
+            tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            tableView.estimatedRowHeight = 0;
+            tableView.estimatedSectionFooterHeight = 0;
+            tableView.estimatedSectionHeaderHeight = 0 ;
+            tableView.mj_header = self.mjRefreshGifHeader;
+            tableView.mj_footer = self.mjRefreshAutoGifFooter;
+            tableView.mj_footer.hidden = NO;
+            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                make.left.right.bottom.equalTo(self.view);
+            }];self.view.refresh();
+        });
     }return _tableView;
 }
 

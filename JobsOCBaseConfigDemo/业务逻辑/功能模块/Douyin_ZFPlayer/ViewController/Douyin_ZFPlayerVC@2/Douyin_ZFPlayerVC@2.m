@@ -214,13 +214,13 @@ numberOfRowsInSection:(NSInteger)section {
     return self.dataMutArr.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView
-        cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                 cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     self.indexPath = indexPath;
     JobsVideoTBVCell *cell = JobsVideoTBVCell.cellStyleValue1WithTableView(tableView);
     cell.delegate = self;
     cell.index = indexPath.row;
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -257,8 +257,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             @jobs_strongify(self)
             tableView.pagingEnabled = YES;
             tableView.backgroundColor = JobsLightGrayColor;
-            tableView.delegate = self;
-            tableView.dataSource = self;
+            tableView.dataLink(self);
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             tableView.showsVerticalScrollIndicator = NO;
             tableView.scrollsToTop = NO;

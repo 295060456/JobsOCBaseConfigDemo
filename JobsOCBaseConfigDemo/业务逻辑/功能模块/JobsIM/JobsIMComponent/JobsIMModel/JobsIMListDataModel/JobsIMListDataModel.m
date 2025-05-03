@@ -29,7 +29,7 @@
 
 -(UIImage *)userHeaderIMG{
     if (!_userHeaderIMG) {
-        _userHeaderIMG = [UIImage animatedGIFNamed:@"动态头像 尺寸126"];
+        _userHeaderIMG = UIImage.animatedGIFByName(@"动态头像 尺寸126");
     }return _userHeaderIMG;
 }
 

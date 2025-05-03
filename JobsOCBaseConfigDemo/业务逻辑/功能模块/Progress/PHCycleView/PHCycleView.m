@@ -37,22 +37,20 @@ Prop_strong()CAShapeLayer *insideLayer;
     for (int i = 0; i < (int)(360 / angle); i++) {
         CGFloat curAngle = i * angle;
         if (curAngle > 225 && curAngle < 315) continue;
-        UIBezierPath *path = UIBezierPath.bezierPath;
         CGPoint layerCenter = CGPointMake(frame.size.width * 0.5, frame.size.height * 0.5);
-        CGPoint start = [self _calcCircleCoordinateWithCenter:layerCenter
-                                                        angle:i * angle
-                                                       radius:layerCenter.x];
-        CGPoint end = [self _calcCircleCoordinateWithCenter:layerCenter
-                                                      angle:i * angle
-                                                     radius:layerCenter.x - size.height];
-        [path moveToPoint:start];
-        [path addLineToPoint:end];
-        CAShapeLayer *lineLayer = CAShapeLayer.layer;
-        lineLayer.strokeColor = color.CGColor;
-        lineLayer.lineWidth = size.width;
-        lineLayer.path = path.CGPath;
-        lineLayer.lineCap = kCALineCapRound;
-        [linesLayer addSublayer:lineLayer];
+        linesLayer.addSublayer(jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            layer.strokeColor = color.CGColor;
+            layer.lineWidth = size.width;
+            layer.lineCap = kCALineCapRound;
+            layer.path = jobsMakeBezierPath(^(__kindof UIBezierPath * _Nullable data) {
+                data.moveTo([self _calcCircleCoordinateWithCenter:layerCenter
+                                                            angle:i * angle
+                                                           radius:layerCenter.x]);
+                data.add([self _calcCircleCoordinateWithCenter:layerCenter
+                                                         angle:i * angle
+                                                        radius:layerCenter.x - size.height]);
+            }).CGPath;
+        }));
     }return linesLayer;
 }
 
@@ -85,7 +83,7 @@ Prop_strong()CAShapeLayer *insideLayer;
                                                0,
                                                0,
                                                1);
-    self.layer.add(linesLayer);
+    self.layer.addSublayer(linesLayer);
 }
 
 -(void)drawProgress{
@@ -159,7 +157,7 @@ Prop_strong()CAShapeLayer *insideLayer;
             layer.lineWidth = kBorderWith;
             layer.fillColor =  [UIColor colorWithWhite:1 alpha:0.5].CGColor;
             layer.path = self.insidePath.CGPath;
-            self.layer.add(layer);
+            self.layer.addSublayer(layer);
         });
     }return _insideLayer;
 }
@@ -175,7 +173,7 @@ Prop_strong()CAShapeLayer *insideLayer;
             layer.path = self.outsidePath.CGPath;
             layer.strokeStart = M_PI / 12;
             layer.strokeEnd = 1;
-            self.layer.add(layer);
+            self.layer.addSublayer(layer);
         });
     }return _outLayer;
 }
@@ -189,7 +187,7 @@ Prop_strong()CAShapeLayer *insideLayer;
             layer.lineWidth = 3;
             layer.strokeStart = M_PI / 12;
             layer.path = self.outsidePath.CGPath;
-            self.layer.add(layer);
+            self.layer.addSublayer(layer);
         });
     }return _progressLayer;
 }

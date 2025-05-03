@@ -15,7 +15,7 @@ Prop_assign(class)SourceType sourceType;
 @end
 
 @implementation FMGameCVCell
-@dynamic sourceType;
+
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
@@ -30,34 +30,26 @@ Prop_assign(class)SourceType sourceType;
 #pragma mark —— BaseCellProtocol
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
-    FMGameCVCell *cell = (FMGameCVCell *)[collectionView collectionViewCellClass:FMGameCVCell.class forIndexPath:indexPath];
-    if (!cell) {
-        collectionView.registerCollectionViewCellClass(FMGameCVCell.class,@"");
-        cell = (FMGameCVCell *)[collectionView collectionViewCellClass:FMGameCVCell.class forIndexPath:indexPath];
-    }
-
+    FMGameCVCell *cell = JobsRegisterDequeueCollectionViewCell(FMGameCVCell);
     cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
         model.masksToBounds = YES;
         model.layerCor = RGBA_COLOR(255, 225, 144, 1);
         model.jobsWidth = JobsWidth(1);
         model.cornerRadiusValue = JobsWidth(8);
     }));
-    
     cell.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
         model.masksToBounds = YES;
         model.layerCor = RGBA_COLOR(255, 225, 144, 1);
         model.jobsWidth = JobsWidth(1);
         model.cornerRadiusValue = JobsWidth(15);
     }));
-
     cell.indexPath = indexPath;
-    
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(id _Nullable model) {
+    return ^__kindof UICollectionViewCell *_Nullable(id _Nullable model) {
         @jobs_strongify(self)
         if([model isKindOfClass:UIViewModel.class]){
             self.viewModel = model;
@@ -98,7 +90,7 @@ Prop_assign(class)SourceType sourceType;
                             JobsLog(@"图片加载成功");
                         }
                     }).load();
-        }
+        } return self;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -120,6 +112,7 @@ Prop_assign(class)SourceType sourceType;
         }
     };
 }
+@dynamic sourceType;
 static SourceType _sourceType;
 +(SourceType)sourceType{
     return _sourceType;
@@ -175,6 +168,5 @@ static SourceType _sourceType;
         }];
     }return _button;
 }
-
 
 @end

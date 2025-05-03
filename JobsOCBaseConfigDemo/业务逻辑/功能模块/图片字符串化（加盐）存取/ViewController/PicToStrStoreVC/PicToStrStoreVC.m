@@ -113,7 +113,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -163,8 +163,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     return nil;
                 }]);
             }
-            self.view.addSubview(tableView);
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 if (self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 系统、GK均隐藏
                     make.edges.equalTo(self.view);
                 }else{
@@ -204,28 +203,28 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 model.title = JobsInternationalization(@"利用十六进制字符串进行存取");
                 model.subTitle = JobsInternationalization(@"");
                 model.requestParams = @(PicToStrStyle_Hexadecimal);
-            })));
-            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+            })))
+            .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"利用Base16编码进行存取");
                 model.subTitle = JobsInternationalization(@"");
                 model.requestParams = @(PicToStrStyle_Base16);
-            })));
-            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+            })))
+            .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"利用Base32编码进行存取");
                 model.subTitle = JobsInternationalization(@"");
                 model.requestParams = @(PicToStrStyle_Base32);
-            })));
-            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+            })))
+            .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"利用Base64编码进行存取");
                 model.subTitle = JobsInternationalization(@"");
                 model.requestParams = @(PicToStrStyle_Base64);
-            })));
-            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+            })))
+            .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"利用Base85编码进行存取");
                 model.subTitle = JobsInternationalization(@"");
                 model.requestParams = @(PicToStrStyle_Base85);
-            })));
-            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+            })))
+            .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"利用MIME编码进行存取");
                 model.subTitle = JobsInternationalization(@"");
                 model.requestParams = @(PicToStrStyle_MIME);

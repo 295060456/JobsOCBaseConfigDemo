@@ -36,14 +36,15 @@ UILocationProtocol_synthesize
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(GoodsClassModel *_Nullable model) {
+    return ^__kindof UICollectionViewCell *_Nullable(GoodsClassModel *_Nullable model) {
         @jobs_strongify(self)
         self.dataModel = model;
         self.logoImgView.alpha = 1;
         self.nameLabel.alpha = 1;
         self.btn.alpha = 1;
+        return self;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -68,8 +69,7 @@ UILocationProtocol_synthesize
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
             imageView.cornerCutToCircleWithCornerRadius(JobsWidth(8));
-            self.contentView.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(self.imageWidth, self.imageWidth));
                 make.centerX.equalTo(self.contentView);
                 make.top.equalTo(self.contentView);
@@ -89,11 +89,10 @@ UILocationProtocol_synthesize
         @jobs_weakify(self)
         _nameLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.textAlignment= NSTextAlignmentCenter;
-            label.font = UIFontWeightRegularSize(12);
-            label.textColor = JobsBlackColor;
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            label.byTextAlignment(NSTextAlignmentCenter)
+            .byFont(UIFontWeightRegularSize(12))
+            .byTextCor(JobsBlackColor);
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self.contentView);
                 make.top.equalTo(self.logoImgView.mas_bottom).offset(JobsWidth(5));
                 make.height.mas_equalTo(JobsWidth(10));
@@ -126,16 +125,15 @@ UILocationProtocol_synthesize
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        self.contentView.addSubview(_btn);
-        [_btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_btn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(12));
             make.centerX.equalTo(self.contentView);
             make.bottom.equalTo(self.contentView).offset(JobsWidth(-5));
         }];
     }
     _btn.jobsResetBtnTitle(self.dataModel.title);
-    _btn.selected = self.dataModel.jobsSelected;
     _btn.makeBtnTitleByShowingType(UILabelShowingType_03);
+    _btn.selected = self.dataModel.jobsSelected;
     return _btn;
 }
 

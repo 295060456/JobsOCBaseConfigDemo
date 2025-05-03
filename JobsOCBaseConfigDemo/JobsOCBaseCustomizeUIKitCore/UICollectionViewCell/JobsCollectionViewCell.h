@@ -11,6 +11,7 @@
 #pragma mark —— Category
 #import "UICollectionViewCell+ShakeAnimation.h"
 #import "UICollectionViewCell+UICollectionViewCellProtocol.h"
+#import "UICollectionViewCell+BaseViewProtocol.h"
 #pragma mark —— Base
 #import "BaseCollectionViewCell.h"
 #import "JobsBaseCollectionViewCell.h"

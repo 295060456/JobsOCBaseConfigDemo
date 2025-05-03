@@ -101,7 +101,7 @@ static dispatch_once_t static_shareViewOnceToken;
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MSMineView6CVCell *cell = [MSMineView6CVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsCollectionViewCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 
@@ -223,8 +223,7 @@ insetForSectionAtIndex:(NSInteger)section {
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self addSubview:_cancelBtn];
-        [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_cancelBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.collectionView.mas_bottom);
             make.left.right.bottom.equalTo(self);
         }];

@@ -104,29 +104,16 @@ UITableViewCellProtocol_dynamic
     return [self.jobsGetCurrentTableView numberOfRowsInSection:self.jobsGetCurrentIndexPath.section];
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        if ([model isKindOfClass:UIViewModel.class]) {
+        if (model.isKindOfClass(UIViewModel.class)) {
             self.textLabel.textColor = model.textModel.textCor;
             self.textLabel.font = model.textModel.font;
             self.textLabel.text = model.textModel.text;
             self.imageView.image = model.image;
-        }
-    };
-}
-
--(jobsByIDBlock _Nonnull)jobsRichElementsCellByModel{
-    @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
-        @jobs_strongify(self)
-        if ([model isKindOfClass:UIViewModel.class]) {
-            self.textLabel.textColor = model.textCor;
-            self.textLabel.font = model.font;
-            self.textLabel.text = model.text;
-            self.imageView.image = model.image;
-        }
+        } return self;
     };
 }
 

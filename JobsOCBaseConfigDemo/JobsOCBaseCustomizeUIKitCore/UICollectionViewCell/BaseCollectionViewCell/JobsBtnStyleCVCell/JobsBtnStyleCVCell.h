@@ -23,8 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 同 JobsBtnStyleTBVCell
 @interface JobsBtnStyleCVCell : JobsBaseCollectionViewCell
 
-Prop_strong(readonly)BaseButton *btn;
-Prop_strong(readonly)WKWebView *webView;
+-(jobsByIDBlock _Nonnull)makeUp;
 
 @end
 

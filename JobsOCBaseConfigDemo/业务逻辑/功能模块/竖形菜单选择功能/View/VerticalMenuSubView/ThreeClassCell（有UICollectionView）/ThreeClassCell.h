@@ -31,7 +31,7 @@ Prop_assign()CGFloat minimumInteritemSpacing;/// 左右列间距
 Prop_strong()Class <UICollectionViewCellProtocol>cellCls;
 #pragma mark —— 一些公有方法
 -(JobsReturnCGFloatByArrBlock _Nonnull)getCollectionHeight;
--(jobsByVoidBlock _Nonnull)reloadDatas;
+-(JobsReturnViewByVoidBlock _Nonnull)reloadDatas;
 
 @end
 

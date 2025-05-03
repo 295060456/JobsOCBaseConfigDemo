@@ -8,7 +8,6 @@
 #import "ThreeClassCell.h"
 
 @interface ThreeClassCell()
-/// UI
 /// Data
 Prop_assign()CGFloat itemHeight;/// 一个cell 的高度
 Prop_assign()NSInteger columns;/// 一行有多少列
@@ -30,16 +29,17 @@ Prop_copy()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个ce
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
         self.backgroundColor = self.contentView.backgroundColor = ThreeClassCellBgCor;
-        self.jobsRichElementsCellBy(nil);
+        self.jobsRichElementsCollectionViewCellBy(nil);
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(id _Nullable model) {
+    return ^__kindof UICollectionViewCell *_Nullable(id _Nullable model) {
         @jobs_strongify(self)
         self.dataArray = model;
         if (self.dataArray) self.collectionView.reloadDatas();
+        return self;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -62,11 +62,12 @@ Prop_copy()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个ce
     };
 }
 
--(jobsByVoidBlock _Nonnull)reloadDatas{
+-(JobsReturnViewByVoidBlock _Nonnull)reloadDatas{
     @jobs_weakify(self)
-    return ^(){
+    return ^__kindof UIView *_Nullable(){
         @jobs_strongify(self)
         self.collectionView.reloadDatas();
+        return self.collectionView;
     };
 }
 #pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource
@@ -74,7 +75,7 @@ Prop_copy()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个ce
                  cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell <UICollectionViewCellProtocol>* cell = [self.cellCls cellWithCollectionView:self.collectionView forIndexPath:indexPath];
     /// 针对数据源第一个数据不是我们需要的
-    cell.jobsRichElementsCellBy(self.dataArray[indexPath.item]);
+    cell.jobsRichElementsCollectionViewCellBy(self.dataArray[indexPath.item]);
     return cell;
 }
 

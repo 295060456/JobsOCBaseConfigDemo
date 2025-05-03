@@ -189,12 +189,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = self.tbvCellMutArr[indexPath.row];
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
+    cell.backgroundColor = cell.contentView.backgroundColor = HEXCOLOR(0xFFFCF7);
     cell.textLabel.textColor = HEXCOLOR(0x757575);
     cell.textLabel.font = UIFontWeightRegularSize(16);
     cell.imageView.image = JobsIMG(@"红色的对勾");
     cell.imageView.jobsVisible = NO;
-    cell.backgroundColor = cell.contentView.backgroundColor = HEXCOLOR(0xFFFCF7);
     cell.textLabelFrameOffsetX = JobsWidth(16);
     cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH() - JobsWidth(50);
     return cell;
@@ -238,8 +238,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             if(@available(iOS 11.0, *)) {
                 tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             }
-            self.addSubview(tableView);
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self);
             }];
         });
@@ -249,11 +248,11 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(BaiShaETProjChoiceStadiumTBVHeaderView *)tbvHeaderView{
     if (!_tbvHeaderView) {
         _tbvHeaderView = BaiShaETProjChoiceStadiumTBVHeaderView.new;
-        _tbvHeaderView.sizer = BaiShaETProjChoiceStadiumTBVHeaderView.viewSizeByModel(nil);
         _tbvHeaderView.text = JobsInternationalization(@"選擇場館");
         _tbvHeaderView.textColor = HEXCOLOR(0x3D4A58);
         _tbvHeaderView.font = UIFontWeightBoldSize(16);
         _tbvHeaderView.textAlignment = NSTextAlignmentCenter;
+        _tbvHeaderView.sizer = BaiShaETProjChoiceStadiumTBVHeaderView.viewSizeByModel(nil);
         
     }return _tbvHeaderView;
 }

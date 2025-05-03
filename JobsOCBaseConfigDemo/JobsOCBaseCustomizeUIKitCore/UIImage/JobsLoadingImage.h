@@ -21,7 +21,7 @@ NS_INLINE UIImage *__nullable JobsIMG(NSString *__nonnull imgName){
 }
 
 NS_INLINE UIImage *__nullable JobsGifIMG(NSString *__nonnull imgName){
-    UIImage *image = [UIImage animatedGIFNamed:imgName];
+    UIImage *image = UIImage.animatedGIFByName(imgName);
     if(!image && isValue(imgName)){
         JobsLog(@"文件名为%@的图片获取失败，请检查",imgName);
     }return image;

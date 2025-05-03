@@ -53,7 +53,7 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
         @jobs_strongify(self)
         self.dataModel = model;
         self.backgroundColor = self.dataModel.bgCor;
-        if (self.dataModel.viewModelMutArr.count) {
+        if (self.dataModel.viewModels.count) {
             self.collectionView.reloadDatas();
         }
     };
@@ -61,11 +61,11 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(JobsHotLabelWithMultiLineModel *_Nullable data){
-        NSMutableArray <UIViewModel *>*viewModelMutArr = data.viewModelMutArr;
+        NSMutableArray <UIViewModel *>*viewModels = data.viewModels;
         CGFloat width = hotLabLeft + hotLabRight;
         CGFloat height = 0;
         int row = 1;
-        for (UIViewModel *viewModel in viewModelMutArr) {
+        for (UIViewModel *viewModel in viewModels) {
             CGSize size = [UILabel sizeWithText:viewModel.textModel.text
                                            font:UIFontWeightRegularSize(JobsWidth(14))
                                         maxSize:CGSizeZero];
@@ -89,8 +89,8 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     JobsHotLabelByMultiLineCVCell *cell = (JobsHotLabelByMultiLineCVCell *)self.cvcellMutArr[indexPath.item];
-    cell.jobsRichElementsCellBy(self.dataModel.viewModelMutArr[indexPath.item]);
-    CGSize itemSize = jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelByMultiLineCVCell.cellSizeByModel(self.dataModel.viewModelMutArr[indexPath.item]) : self.dataModel.cellSize;
+    cell.jobsRichElementsCollectionViewCellBy(self.dataModel.viewModels[indexPath.item]);
+    CGSize itemSize = jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelByMultiLineCVCell.cellSizeByModel(self.dataModel.viewModels[indexPath.item]) : self.dataModel.cellSize;
     cell.cornerCutToCircleWithCornerRadius(itemSize.height / 2);
     cell.contentView.cornerCutToCircleWithCornerRadius(itemSize.height / 2);
     if (indexPath.section == 0 && indexPath.row == 0) {
@@ -101,7 +101,7 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    return self.dataModel.viewModelMutArr.count;
+    return self.dataModel.viewModels.count;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
@@ -188,7 +188,7 @@ referenceSizeForFooterInSection:(NSInteger)section {
                  layout:(UICollectionViewLayout *)collectionViewLayout
  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     /// ❤️外部传入配置优先❤️
-    return jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelByMultiLineCVCell.cellSizeByModel(self.dataModel.viewModelMutArr[indexPath.item]) : self.dataModel.cellSize;
+    return jobsZeroSizeValue(self.dataModel.cellSize) ? JobsHotLabelByMultiLineCVCell.cellSizeByModel(self.dataModel.viewModels[indexPath.item]) : self.dataModel.cellSize;
 }
 /// 定义的是元素垂直之间的间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView
@@ -232,8 +232,8 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
         @jobs_weakify(self)
         _cvcellMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
-            for (UIViewModel *viewModel in self.dataModel.viewModelMutArr) {
-                NSUInteger index = self.dataModel.viewModelMutArr.indexBy(viewModel);
+            for (UIViewModel *viewModel in self.dataModel.viewModels) {
+                NSUInteger index = self.dataModel.viewModels.indexBy(viewModel);
                 data.add([JobsHotLabelByMultiLineCVCell cellWithCollectionView:self.collectionView
                                                                   forIndexPath:[self myIndexPath:(JobsIndexPath){0,index}]]);
             }

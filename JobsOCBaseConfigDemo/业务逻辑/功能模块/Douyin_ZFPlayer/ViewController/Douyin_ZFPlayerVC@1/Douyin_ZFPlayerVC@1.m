@@ -192,20 +192,17 @@ numberOfRowsInSection:(NSInteger)section{
     return self.dataMutArr.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView
-        cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(__kindof UITableViewCell *)tableView:(UITableView *)tableView
+                 cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsPlayerTBVCell *cell = JobsPlayerTBVCell.cellStyleValue1WithTableView(tableView);
     cell.index = indexPath.row;
-    
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.row = indexPath.row;
-    viewModel.data = self.dataMutArr[indexPath.row];
-    
-    cell.jobsRichElementsCellBy(viewModel);
-    
     self.index = indexPath.row;
     @jobs_weakify(self)
-    [cell actionObjBlock:^(JobsTuple *data) {
+    cell.jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        @jobs_strongify(self)
+        viewModel.row = indexPath.row;
+        viewModel.data = self.dataMutArr[indexPath.row];
+    })).JobsBlock1(^(JobsTuple *data) {
         @jobs_strongify(self)
         NSNumber *direction = data.jobsTupleValueArr[0];
         NSNumber *index = data.jobsTupleValueArr[1];
@@ -227,8 +224,7 @@ numberOfRowsInSection:(NSInteger)section{
 
         JobsLog(@"MMM = %ld",self.index);
         [self roll];
-    }];
-
+    });
     JobsLog(@"DDD0 = %ld",self.index);
     return cell;
 }
@@ -256,87 +252,87 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = UITableView.new;
-        _tableView.backgroundColor = JobsWhiteColor;
-        _tableView.pagingEnabled = YES;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        
-        {
-            // 用值
-            _tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-                data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-                data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-                data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
-                data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self)
-                    JobsLog(@"下拉刷新");
-                    self.currentPage = @(1);
-                    @"data".readLocalFileWithName;/// 获取本地的数据
-                    self->_tableView.endRefreshing(self.dataMutArr.count);
-                    return nil;
-                };
-            }));
-            _tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                data.stateIdleTitle = JobsInternationalization(@"");
-                data.pullingTitle = JobsInternationalization(@"");
-                data.refreshingTitle = JobsInternationalization(@"");
-                data.willRefreshTitle = JobsInternationalization(@"");
-                data.noMoreDataTitle = JobsInternationalization(@"");
-                data.loadBlock = ^id _Nullable(id _Nullable data1) {
-                    @jobs_strongify(self)
-                    JobsLog(@"上拉加载更多");
-                    self.currentPage = @(self.currentPage.integerValue + 1);
-                //    JobsLog(@"%@",self.tableView.mj_footer);
-                //    [self.tableView.mj_footer endRefreshing];
-                //    [self.tableView reloadData];
-                //    //特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
-                //    self.tableView.pagingEnabled = NO;
-                //    [self performSelector:@selector(delayMethods) withObject:nil afterDelay:2];
-                    
-                    @"data".readLocalFileWithName;/// 获取本地的数据
-                    self->_tableView.endRefreshing(self.dataMutArr.count);
-                    return nil;
-                };
-            }));
-            _tableView.mj_footer.backgroundColor = JobsRedColor;
-            self.view.mjRefreshTargetView = _tableView;
-        }
-        
-        {
-            _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                data.title = JobsInternationalization(@"暂无数据");
-                data.subTitle = JobsInternationalization(@"骚等片刻");
-                data.titleCor = JobsWhiteColor;
-                data.titleFont = bayonRegular(JobsWidth(30));
-                data.normalImage = JobsIMG(@"暂无数据");
-                data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.backgroundColor = JobsWhiteColor;
+            tableView.pagingEnabled = YES;
+            tableView.dataLink(self);
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
             });
-        }
-        
-        if(@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }else{
-            SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
-        }
-
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.view);
-            if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
-                make.top.equalTo(self.gk_navigationBar.mas_bottom);
-            }else{
-                make.top.equalTo(self.view.mas_top);
+            
+            {
+                // 用值
+                tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                    data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
+                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
+                    data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.loadBlock = ^id _Nullable(id  _Nullable data) {
+                        @jobs_strongify(self)
+                        JobsLog(@"下拉刷新");
+                        self.currentPage = @(1);
+                        @"data".readLocalFileWithName;/// 获取本地的数据
+                        self->_tableView.endRefreshing(self.dataMutArr.count);
+                        return nil;
+                    };
+                }));
+                tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                    data.stateIdleTitle = JobsInternationalization(@"");
+                    data.pullingTitle = JobsInternationalization(@"");
+                    data.refreshingTitle = JobsInternationalization(@"");
+                    data.willRefreshTitle = JobsInternationalization(@"");
+                    data.noMoreDataTitle = JobsInternationalization(@"");
+                    data.loadBlock = ^id _Nullable(id _Nullable data1) {
+                        @jobs_strongify(self)
+                        JobsLog(@"上拉加载更多");
+                        self.currentPage = @(self.currentPage.integerValue + 1);
+                    //    JobsLog(@"%@",self.tableView.mj_footer);
+                    //    [self.tableView.mj_footer endRefreshing];
+                    //    [self.tableView reloadData];
+                    //    //特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
+                    //    self.tableView.pagingEnabled = NO;
+                    //    [self performSelector:@selector(delayMethods) withObject:nil afterDelay:2];
+                        
+                        @"data".readLocalFileWithName;/// 获取本地的数据
+                        self->_tableView.endRefreshing(self.dataMutArr.count);
+                        return nil;
+                    };
+                }));
+                tableView.mj_footer.backgroundColor = JobsRedColor;
+                self.view.mjRefreshTargetView = tableView;
             }
-            make.bottom.equalTo(self.view.mas_bottom).offset(AppDelegate.tabBarVC.tabBar.isHidden ? 0 : -JobsTabBarHeightByBottomSafeArea(AppDelegate.tabBarVC));
-        }];
+            
+            {
+                tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                    data.title = JobsInternationalization(@"暂无数据");
+                    data.subTitle = JobsInternationalization(@"骚等片刻");
+                    data.titleCor = JobsWhiteColor;
+                    data.titleFont = bayonRegular(JobsWidth(30));
+                    data.normalImage = JobsIMG(@"暂无数据");
+                    data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+                });
+            }
+            
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }else{
+                SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
+            }
+
+            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self.view);
+                if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
+                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                }else{
+                    make.top.equalTo(self.view.mas_top);
+                }
+                make.bottom.equalTo(self.view.mas_bottom).offset(AppDelegate.tabBarVC.tabBar.isHidden ? 0 : -JobsTabBarHeightByBottomSafeArea(AppDelegate.tabBarVC));
+            }];
+        });
     }return _tableView;
 }
 

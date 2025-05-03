@@ -79,7 +79,7 @@
     };
 }
 /// 添加Layer
--(JobsReturnCALayerByCALayerBlock _Nonnull)add{
+-(JobsReturnCALayerByCALayerBlock _Nonnull)addSublayer{
     @jobs_weakify(self)
     return ^__kindof CALayer *_Nullable(CALayer *_Nullable data){
         @jobs_strongify(self)

@@ -10,11 +10,12 @@
 
 @interface JobsExcelLeftListView()
 /// Data
-@property(nonatomic,strong,nonnull)JobsExcelConfigureViewModel *excelConfigureData;
+Prop_strong(nonnull)JobsExcelConfigureViewModel *excelConfigureData;
 
 @end
 
 @implementation JobsExcelLeftListView
+/// RACProtocol
 @synthesize racDisposable = _racDisposable;
 - (void)dealloc {
     [self.racDisposable dispose];
@@ -53,14 +54,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TableViewOneCell *cell = TableViewOneCell.cellStyleValue1WithTableView(tableView);
-    
     cell.backgroundColor = indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2;
-    cell.jobsRichElementsCellBy(self.excelConfigureData);
-    
-    UIButtonModel *model = (UIButtonModel *)self.excelConfigureData.leftListDatas[indexPath.row];
-    cell.jobsRichElementsCellByModel(model);
-    
-    return cell;
+    @jobs_weakify(self)
+    cell.jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
+        @jobs_strongify(self)
+        vm.data = self.excelConfigureData;
+        vm.buttonModel = (UIButtonModel *)self.excelConfigureData.leftListDatas[indexPath.row];
+    }));return cell;
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -84,19 +84,21 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 @synthesize tableView = _tableView;
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.showsHorizontalScrollIndicator = NO;
-        _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-        _tableView.dataLink(self);
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-            /// 这里不显示，传没有配置的UIButtonModel
+        @jobs_weakify(self)
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.showsHorizontalScrollIndicator = NO;
+            tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                /// 这里不显示，传没有配置的UIButtonModel
+            });
+            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+            }];
         });
-        [self addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        }];
     }return _tableView;
 }
 

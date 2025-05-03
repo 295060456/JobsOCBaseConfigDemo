@@ -114,6 +114,7 @@ NSString *const JobsDash = @"-";             /// 连字符
 NSString *const JobsUnderscore = @"_";       /// 下划线
 NSString *const JobsAsterisk = @"*";         /// 星号
 NSString *const JobsEqual = @"=";            /// 等于
+NSString *const JobsPercent = @"%";          /// 百分号
 /// 业务功能相关
 NSString *const 网络状态监控 = @"网络状态监控";/// 网络状态监控
 NSString *const 退到后台停止播放ZFPlayer = @"退到后台停止播放ZFPlayer";/// 退到后台停止播放ZFPlayer

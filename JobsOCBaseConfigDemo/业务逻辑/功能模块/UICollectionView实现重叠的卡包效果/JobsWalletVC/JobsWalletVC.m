@@ -8,8 +8,6 @@
 #import "JobsWalletVC.h"
 
 @interface JobsWalletVC ()
-/// UI
-
 /// Data
 Prop_strong()TMSCollectionViewLayout *tms_layout;
 Prop_copy()NSMutableArray <NSMutableArray <UIViewModel *>*>*dataSourceMutArr;/// Cell的数据源
@@ -109,7 +107,7 @@ resuableFooterViewHeightForIndexPath:(NSIndexPath *)indexPath {
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == self.dataSourceMutArr.count - 1) {
         JobsBtnStyleCVCell *cell = [collectionView collectionViewCellClass:JobsBtnStyleCVCell.class forIndexPath:indexPath];
-        cell.jobsRichElementsCellBy(self.dataSourceMutArr[indexPath.section][indexPath.item]);
+        cell.jobsRichElementsCollectionViewCellBy(self.dataSourceMutArr[indexPath.section][indexPath.item]);
         cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
             data.layerCor = JobsCor(@"#6E5600");
             data.jobsWidth = JobsWidth(1);
@@ -117,7 +115,7 @@ resuableFooterViewHeightForIndexPath:(NSIndexPath *)indexPath {
         }));return cell;
     }else{
         BaiShaETProjBankAccMgmtCVCell *cell = [collectionView collectionViewCellClass:BaiShaETProjBankAccMgmtCVCell.class forIndexPath:indexPath];
-        cell.jobsRichElementsCellBy(self.dataSourceMutArr[indexPath.section][indexPath.item]);
+        cell.jobsRichElementsCollectionViewCellBy(self.dataSourceMutArr[indexPath.section][indexPath.item]);
         cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
             data.layerCor = JobsCor(@"#6E5600");
             data.jobsWidth = JobsWidth(1);
@@ -189,16 +187,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         if (@available(iOS 11.0, *)) {
             _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
-        [self.view addSubview:_collectionView];
+        self.view.addSubview(_collectionView);
         [self fullScreenConstraintTargetView:_collectionView topViewOffset:0];
     }return _collectionView;
 }
 
 -(TMSCollectionViewLayout *)tms_layout{
     if (!_tms_layout) {
-        _tms_layout = TMSCollectionViewLayout.new;
-        _tms_layout.padding = JobsWidth(15);
-        _tms_layout.layout_delegate = self;
+        @jobs_weakify(self)
+        _tms_layout = jobsMakeTMSCollectionViewLayout(^(__kindof TMSCollectionViewLayout * _Nullable layout) {
+            @jobs_strongify(self)
+            layout.padding = JobsWidth(15);
+            layout.layout_delegate = self;
+        });
     }return _tms_layout;
 }
 

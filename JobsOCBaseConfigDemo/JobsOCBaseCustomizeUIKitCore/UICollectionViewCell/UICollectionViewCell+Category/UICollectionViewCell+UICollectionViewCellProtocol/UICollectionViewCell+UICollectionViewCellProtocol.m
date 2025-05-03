@@ -263,10 +263,10 @@
                                        self.contentView.frame.size.height);
     }
     
-    if(topBorder) self.contentView.layer.add(topBorder);
-    if(bottomBorder) self.contentView.layer.add(bottomBorder);
-    if(leftBorder) self.contentView.layer.add(leftBorder);
-    if(rightBorder) self.contentView.layer.add(rightBorder);
+    if(topBorder) self.contentView.layer.addSublayer(topBorder);
+    if(bottomBorder) self.contentView.layer.addSublayer(bottomBorder);
+    if(leftBorder) self.contentView.layer.addSublayer(leftBorder);
+    if(rightBorder) self.contentView.layer.addSublayer(rightBorder);
 }
 #pragma mark —— 一些私有的功能方法
 /// 附加偏移量以后的大小

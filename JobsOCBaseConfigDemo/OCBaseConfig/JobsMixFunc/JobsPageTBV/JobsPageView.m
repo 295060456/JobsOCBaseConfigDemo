@@ -14,6 +14,7 @@ Prop_strong()NSArray <UIViewModel *>*dataArr;
 @end
 
 @implementation JobsPageView
+/// UILocationProtocol
 @synthesize cellHeight = _cellHeight;
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -64,7 +65,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsPageTBVCell *cell = JobsPageTBVCell.cellStyleSubtitleWithTableView(tableView);
-    cell.jobsRichElementsCellBy(self.dataArr[indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.dataArr[indexPath.row]);
 #warning 这里需要被修改
 //    UIViewModel *viewModel = self.dataArr[indexPath.row];
 //    viewModel.jobsWidth = JobsPageTBVCell.cellHeightByModel(nil) ? : self.cellHeight;
@@ -76,22 +77,24 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 @synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.new;
-        _tableView.backgroundColor = JobsClearColor;
-        _tableView.pagingEnabled = YES;
-//        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.scrollEnabled = NO;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.showsHorizontalScrollIndicator = NO;
-        _tableView.dataLink(self);
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        @jobs_weakify(self)
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.backgroundColor = JobsClearColor;
+            tableView.pagingEnabled = YES;
+    //        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.scrollEnabled = NO;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.showsHorizontalScrollIndicator = NO;
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self);
+            }];
         });
-        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        [self addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self);
-        }];
     }return _tableView;
 }
 

@@ -126,7 +126,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsUserHeaderDataViewTBVCell *cell = JobsUserHeaderDataViewTBVCell.cellStyleValue2WithTableView(tableView);
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 

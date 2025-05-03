@@ -77,7 +77,6 @@ BaseLayerProtocol_synthesize_part3
               reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style
                     reuseIdentifier:reuseIdentifier]) {
-//        self.jobsRichElementsCellBy(nil);
         self.selectionStyle = UITableViewCellSelectionStyleNone;// 取消点击效果 【不能在cellStyleValue1WithTableView里面写】
         /// 适配iOS 13夜间模式/深色外观(Dark Mode)
         self.backgroundColor = JobsWhiteColor;
@@ -205,9 +204,9 @@ BaseLayerProtocol_synthesize_part3
     return self.viewModel;
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel __kindof *_Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(UIViewModel __kindof *_Nullable model) {
         @jobs_strongify(self)
         if (model) {
             self.viewModel = model;
@@ -241,7 +240,7 @@ BaseLayerProtocol_synthesize_part3
             }
             
             self.imageView.image = self.viewModel.image;
-        }
+        }return self;
     };
 }
 
@@ -279,14 +278,6 @@ BaseLayerProtocol_synthesize_part3
                                                 controlWidth:vm.jobsWidth].jobsHeight;
         }return JobsWidth(50);/// 没有数据源传入的时候的缺省值
     };
-}
-
--(void)setIndexPath:(NSIndexPath *)indexPath{
-    _indexPath = indexPath;
-}
-
--(NSIndexPath *)indexPath{
-    return _indexPath;
 }
 
 @end

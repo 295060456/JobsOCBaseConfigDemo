@@ -39,14 +39,15 @@ Prop_strong()UILabel *textLab;
 }
 #pragma mark —— BaseCellProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^__kindof UICollectionViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         [self.textLab removeFromSuperview];
         self->_textLab = nil;
         self.viewModel = model;
         if (self.viewModel) self.textLab.alpha = 1;
+        return self;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】

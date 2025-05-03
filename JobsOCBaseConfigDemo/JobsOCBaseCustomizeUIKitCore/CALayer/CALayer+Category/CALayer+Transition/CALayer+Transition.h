@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, TransitionCurve) {
 /// 返回动画类型
 -(JobsReturnStringByIntegerBlock _Nonnull)animaTypeWithTransitionType;
 /// 添加Layer
--(JobsReturnCALayerByCALayerBlock _Nonnull)add;
+-(JobsReturnCALayerByCALayerBlock _Nonnull)addSublayer;
 /// 删除Layer
 -(jobsByVoidBlock _Nonnull)remove;
 /// 统一从数据返回对象

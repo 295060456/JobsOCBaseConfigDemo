@@ -9,7 +9,6 @@
 
 @interface JobsPullListAutoSizeView ()
 /// UI
-//Prop_strong()UITableView *tableView;//content
 Prop_strong()UIView *targetView;
 /// Data
 Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
@@ -82,12 +81,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     return self.dataMutArr.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView
+-(__kindof UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsPullListTBVCell *cell = JobsPullListTBVCell.cellStyleDefaultWithTableView(tableView);
     cell.contentView.backgroundColor = self.bgColorListTBV;
     cell.indexPath = indexPath;
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— lazyLoad
@@ -95,24 +94,21 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 @synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.new;
-        _tableView.scrollEnabled = NO;
-        _tableView.cornerCutToCircleWithCornerRadius(JobsWidth(3));//圆润
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        [self addSubview:_tableView];
-        
-        CGRect d = [self.targetView convertRect:self.targetView.bounds toView:MainWindow];
-        CGFloat tableviewHeight = self.listTbVCellHeight * self.dataMutArr.count;
-        CGFloat tableviewY = d.origin.y - tableviewHeight - self.listTbVOffset;
-
-        //做了适配
-        _tableView.frame = CGRectMake(
-                                      self.targetView.centerX + self.listTbVWidth < UIScreen.mainScreen.bounds.size.width ? self.targetView.centerX : self.targetView.centerX - self.listTbVWidth,
-                                      tableviewY < 0 ? tableviewY += tableviewHeight : tableviewY,
-                                      self.listTbVWidth,//相对固定
-                                      tableviewHeight//相对固定
-                                      );
+        @jobs_weakify(self)
+        _tableView = self.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.scrollEnabled = NO;
+            tableView.cornerCutToCircleWithCornerRadius(JobsWidth(3)); /// 圆润
+            tableView.dataLink(self);
+            CGRect d = [self.targetView convertRect:self.targetView.bounds toView:MainWindow];
+            CGFloat tableviewHeight = self.listTbVCellHeight * self.dataMutArr.count;
+            CGFloat tableviewY = d.origin.y - tableviewHeight - self.listTbVOffset;
+            /// 做了适配
+            tableView.frame = CGRectMake(self.targetView.centerX + self.listTbVWidth < UIScreen.mainScreen.bounds.size.width ? self.targetView.centerX : self.targetView.centerX - self.listTbVWidth,
+                                         tableviewY < 0 ? tableviewY += tableviewHeight : tableviewY,
+                                         self.listTbVWidth, /// 相对固定
+                                         tableviewHeight); /// 相对固定
+        }));
     }return _tableView;
 }
 
@@ -136,7 +132,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UIColor *)bgColorListTBV{
     if (!_bgColorListTBV) {
-        _bgColorListTBV = [UIColor whiteColor];
+        _bgColorListTBV = JobsWhiteColor;
     }return _bgColorListTBV;
 }
 

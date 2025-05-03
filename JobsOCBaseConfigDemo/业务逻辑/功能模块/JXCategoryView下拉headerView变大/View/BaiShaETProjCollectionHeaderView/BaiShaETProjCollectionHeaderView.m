@@ -122,7 +122,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.detailTextLabelOffsetY -= JobsWidth(2);
     
     cell.contentView.backgroundColor = cell.backgroundColor = HEXCOLOR(0xFFFCF7);
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
+    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— lazyLoad
@@ -259,38 +259,39 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 @synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = JobsWhiteColor;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.scrollEnabled = YES;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        @jobs_weakify(self)
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.backgroundColor = JobsWhiteColor;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.scrollEnabled = YES;
+            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+            [tableView registerTableViewClass];
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }
+            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self);
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(58)));
+                make.bottom.equalTo(self).offset(JobsWidth(-24));
+            }];
         });
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        [_tableView registerTableViewClass];
-        if(@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        [self.addSubview(_tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(58)));
-            make.bottom.equalTo(self).offset(JobsWidth(-24));
-        }];
-
     }return _tableView;
 }
 
 -(NSMutableArray<NSString *> *)richTextMutArr{
     if (!_richTextMutArr) {
         _richTextMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(JobsInternationalization(@"當前晉級進度"));
-            data.add(@" ".add(@"%"));
+            data.add(JobsInternationalization(@"當前晉級進度"))
+            .add(JobsSpace.add(JobsPercent));
         });
     }return _richTextMutArr;
 }
@@ -304,8 +305,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 data1.textModel.text = JobsInternationalization(@"當前存款");
                 data1.subTextModel.attributedTitle = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[0]
                                                                         paragraphStyle:nil];
-            }));
-            data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
+            }))
+            .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.textModel.text = JobsInternationalization(@"當前流水");
                 data1.subTextModel.attributedTitle = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[1]
@@ -321,8 +322,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data1) {
                 data1.add(@"7.00 ")
                 .add(@"/ ".add(@"40,000.00"));
-            }));
-            data.add(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data1) {
+            }))
+            .add(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data1) {
                 data1.add(@"1.00 ")
                 .add(@"/ ".add(@"20,000.00"));
             }));
@@ -340,8 +341,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                     data2.font = UIFontWeightRegularSize(12);
                     data2.textCor = HEXCOLOR(0x3D4A58);
                     data2.targetString = self.richTextMutArr2[0][0];
-                }));
-                data1.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data2) {
+                }))
+                .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data2) {
                     @jobs_strongify(self)
                     data2.font = UIFontWeightBoldSize(12);
                     data2.textCor = HEXCOLOR(0x3D4A58);
@@ -354,8 +355,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                     data2.font = UIFontWeightRegularSize(12);
                     data2.textCor = HEXCOLOR(0x3D4A58);
                     data2.targetString = self.richTextMutArr2[1][0];
-                }));
-                data1.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data2) {
+                }))
+                .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data2) {
                     @jobs_strongify(self)
                     data2.font = UIFontWeightBoldSize(12);
                     data2.textCor = HEXCOLOR(0x3D4A58);

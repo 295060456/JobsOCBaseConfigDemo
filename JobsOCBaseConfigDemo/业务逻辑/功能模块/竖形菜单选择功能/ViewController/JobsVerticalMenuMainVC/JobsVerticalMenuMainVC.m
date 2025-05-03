@@ -8,7 +8,6 @@
 #import "JobsVerticalMenuMainVC.h"
 
 @interface JobsVerticalMenuMainVC ()
-/// UI
 /// Data
 Prop_copy()NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
 Prop_copy()NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
@@ -116,9 +115,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.section][indexPath.row]);
-    return cell;
+    return self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row]
+        .JobsRichViewByModel2((self.dataMutArr[indexPath.section][indexPath.row]));;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
@@ -134,42 +132,41 @@ heightForFooterInSectionByModel:(NSInteger)section{
 - (UIView *)tableView:(UITableView *)tableView
 viewForHeaderInSection:(NSInteger)section{
     if (self.viewModel.usesTableViewHeaderView) {
-        BaseTableViewHeaderFooterView *headerView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
-//        {
-//            /**
-//             如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
-//             @synthesize headerFooterViewStyle = _headerFooterViewStyle;
-//             */
-//            // 不写这三句有悬浮
-//            headerView.headerFooterViewStyle = JobsHeaderViewStyle;
-//            headerView.tableView = tableView;
-//            headerView.section = section;
-//        }
-        headerView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [headerView actionObjBlock:^(id data) {
-            @jobs_strongify(self)
-        }];return headerView;
+        BaseTableViewHeaderFooterView *headerView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"")
+            .JobsRichViewByModel2(nil)
+            .JobsBlock1(^(id  _Nullable data) {
+                @jobs_strongify(self)
+            });
+//        /**
+//         如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
+//         @synthesize headerFooterViewStyle = _headerFooterViewStyle;
+//         */
+//        // 不写这三句有悬浮
+//        headerView.headerFooterViewStyle = JobsHeaderViewStyle;
+//        headerView.tableView = tableView;
+//        headerView.section = section;
+        return headerView;
     }return nil;
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
                  viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
-        BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
+        @jobs_weakify(self)
+        BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"")
+            .JobsRichViewByModel2(nil)
+            .JobsBlock1(^(id  _Nullable data) {
+            @jobs_strongify(self)
+        });
         {
             // 不写这两句有悬浮
-            tbvFooterView.headerFooterViewStyle = JobsHeaderViewStyle;
             tbvFooterView.tableView = tableView;
             tbvFooterView.section = section;
         }
         tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
         tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
-        tbvFooterView.jobsRichViewByModel(nil);
-        @jobs_weakify(self)
-        [tbvFooterView actionObjBlock:^(id data) {
-//            @jobs_strongify(self)
-        }];return tbvFooterView;
+        return tbvFooterView;
     }return nil;
 }
 /**
@@ -206,12 +203,11 @@ viewForHeaderInSection:(NSInteger)section{
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView hideSeparatorLineAtLast:indexPath
-                                  cell:cell];
+    [tableView hideSeparatorLineAtLast:indexPath cell:cell];
     cell.img = JobsIMG(@"向右的箭头（大）");
-    @jobs_weakify(self)
+//    @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {
-        @jobs_strongify(self)
+//        @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
         JobsLog(@"MMM - %ld",cell.index);
     }];
@@ -312,8 +308,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     model.title = JobsInternationalization(@"右边的架构是UIViewController");
                     model.subTitle = JobsInternationalization(@"正常");
                     model.cls = JobsVerticalMenuVC_1.class;
-                })));
-                data1.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                })))
+                .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                     model.title = JobsInternationalization(@"右边的架构是UICollectionView");
                     model.subTitle = JobsInternationalization(@"正常");
                     model.cls = JobsVerticalMenuVC_2.class;

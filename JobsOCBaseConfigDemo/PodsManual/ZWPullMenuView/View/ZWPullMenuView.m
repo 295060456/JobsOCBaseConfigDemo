@@ -53,7 +53,7 @@
     return self.menuCellHeight;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(__kindof UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZWPullMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZWPullMenuCell"
                                                             forIndexPath:indexPath];
     ZWPullMenuModel *cellModel = self.menuArray[indexPath.row];

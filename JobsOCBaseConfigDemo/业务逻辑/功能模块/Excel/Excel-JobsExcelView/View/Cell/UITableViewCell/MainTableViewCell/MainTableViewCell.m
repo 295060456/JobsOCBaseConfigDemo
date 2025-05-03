@@ -32,20 +32,14 @@ Prop_copy()NSMutableArray <UIButtonModel *>*datas;
     };
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
+    return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
-        self.excelConfigureData = viewModel;
-    };
-}
-
--(jobsByIDBlock _Nonnull)jobsRichElementsCellByModel{
-    @jobs_weakify(self)
-    return ^(NSMutableArray <UIButtonModel *>*_Nullable model) {
-        @jobs_strongify(self)
-        self.datas = model;
+        self.excelConfigureData = viewModel.data;
+        self.datas = viewModel.buttonModels;
         self.collectionView.reloadDatas();
+        return self;
     };
 }
 
@@ -84,10 +78,12 @@ Prop_copy()NSMutableArray <UIButtonModel *>*datas;
     MainTableViewCellItem *cell = [MainTableViewCellItem cellWithCollectionView:collectionView
                                                                    forIndexPath:indexPath];
     cell.backgroundColor = cell.contentView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-    JobsLog(@"KKK1 = %ld-%@",self.indexPath.row + 1,self.datas[indexPath.row].title);
-    cell.jobsRichElementsCellBy(self.excelConfigureData);
-    cell.jobsRichElementsCellByModel(self.datas[indexPath.row]);
-    return cell;
+    @jobs_weakify(self)
+    cell.jobsRichElementsCollectionViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
+        @jobs_strongify(self)
+        vm.data = self.excelConfigureData;
+        vm.buttonModel = self.datas[indexPath.row];
+    }));return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -111,8 +107,8 @@ Prop_copy()NSMutableArray <UIButtonModel *>*datas;
             data.minimumLineSpacing = 0;
             data.minimumInteritemSpacing = 0;
         })];
-        _collectionView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         _collectionView.dataLink(self);
+        _collectionView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         [self.contentView.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {

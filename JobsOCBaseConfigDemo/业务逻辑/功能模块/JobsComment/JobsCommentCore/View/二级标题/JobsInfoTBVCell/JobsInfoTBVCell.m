@@ -35,9 +35,9 @@ Prop_strong()JobsChildCommentModel *childCommentModel;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(id _Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(id _Nullable model) {
         @jobs_strongify(self)
         if ([model isKindOfClass:JobsChildCommentModel.class]) {
             self.childCommentModel = (JobsChildCommentModel *)model;
@@ -58,7 +58,7 @@ Prop_strong()JobsChildCommentModel *childCommentModel;
                         JobsLog(@"图片加载成功");
                     }
                 }).load();
-        }
+        } return self;
     };
 }
 #pragma mark —— 复写系统父类方法
@@ -108,8 +108,7 @@ Prop_strong()JobsChildCommentModel *childCommentModel;
                 JobsLog(@"");
             });
         _likeBtn.thumpNum = 0;
-        [self.contentView addSubview:_likeBtn];
-        [_likeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView.addSubview(_likeBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(55 / 2));
             make.right.equalTo(self.contentView).offset(-JobsWidth(13));
             make.centerY.equalTo(self.contentView);

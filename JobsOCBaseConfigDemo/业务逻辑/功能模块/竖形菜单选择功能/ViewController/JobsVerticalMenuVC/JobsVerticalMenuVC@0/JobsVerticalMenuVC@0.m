@@ -9,14 +9,12 @@
 
 @interface JobsVerticalMenuVC_0 ()
 /// UI
-Prop_strong()BaseButton *customerServiceBtn;
-Prop_strong()BaseButton *msgBtn;
 Prop_strong()BaseButton *editBtn;
 Prop_strong()JobsSearchBar *searchView;
 /// Data
 Prop_copy()NSMutableArray <__kindof UIView *>*rightViewArray; /// 右侧的视图数组
-Prop_copy()NSMutableArray <UIViewModel *>*titleMutArr;
-Prop_copy()NSMutableArray <UIViewModel *>*leftDataArray; /// 左边的数据源
+Prop_copy()NSMutableArray <__kindof UIViewModel *>*titleMutArr;
+Prop_copy()NSMutableArray <__kindof UIViewModel *>*leftDataArray; /// 左边的数据源
 Prop_strong()UIViewModel *leftViewCurrentSelectModel;
 
 @end
@@ -56,8 +54,23 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
     });
     self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
         @jobs_strongify(self)
-        data.add(UIBarButtonItem.initBy(self.msgBtn));
-        data.add(UIBarButtonItem.initBy(self.customerServiceBtn));
+        data.add(UIBarButtonItem.initBy(BaseButton.jobsInit()
+                                        .jobsResetBtnImage(JobsIMG(@"消息"))
+                                        .onClickBy(^(UIButton *x){
+                                            @jobs_strongify(self)
+                                            if (self.objBlock) self.objBlock(x);
+                                        }).onLongPressGestureBy(^(id data){
+                                            JobsLog(@"");
+                                        })));
+        data.add(UIBarButtonItem.initBy(BaseButton.jobsInit()
+                                        .bgColorBy(JobsWhiteColor)
+                                        .jobsResetBtnImage(JobsIMG(@"人工客服"))
+                                        .onClickBy(^(UIButton *x){
+                                            @jobs_strongify(self)
+                                            if (self.objBlock) self.objBlock(x);
+                                        }).onLongPressGestureBy(^(id data){
+                                            JobsLog(@"");
+                                        })));
     });
     self.makeNavByAlpha(1);
     
@@ -91,8 +104,9 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
 #pragma mark —— 一些私有方法
 /// 创建右侧视图
 - (jobsByVoidBlock _Nonnull)makeSubViews {
+    @jobs_weakify(self)
     return ^() {
-        @jobs_weakify(self)
+        @jobs_strongify(self)
         self.rightViewArray = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
             for (int i = 0; i < self.titleMutArr.count; i++) {
@@ -139,7 +153,7 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
     @jobs_weakify(self)
     return ^() {
         @jobs_strongify(self)
-        [self.tableView reloadData];
+        self.tableView.reloadDatas();
         if (self.leftDataArray.count) {
             @jobs_weakify(self)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)),
@@ -165,11 +179,12 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
 
 - (__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LeftCell *cell = LeftCell.cellStyleDefaultWithTableView(tableView);
-    UIViewModel *viewModel = UIViewModel.new;
-    viewModel.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
-    cell.jobsRichElementsCellBy(viewModel);
-    return cell;
+    @jobs_weakify(self)
+    return LeftCell.cellStyleDefaultWithTableView(tableView)
+        .JobsRichViewByModel2(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+        @jobs_strongify(self)
+        data.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
+    }));
 }
 
 - (CGFloat)tableView:(__kindof UITableView *)tableView
@@ -187,64 +202,31 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 -(UITableView *)tableView{
     if (!_tableView){
         @jobs_weakify(self)
-        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+        _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
             tableView.dataLink(self);
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
             tableView.frame = jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
                 data.jobsX = 0;
                 data.jobsY = JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h;
                 data.jobsWidth = TableViewWidth;
                 data.jobsHeight = JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight;
             });
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            self.view.addSubview(tableView);
-        });
+        }));
     }return _tableView;
-}
-
-- (BaseButton *)customerServiceBtn {
-    if (!_customerServiceBtn) {
-        @jobs_weakify(self)
-        _customerServiceBtn = BaseButton.jobsInit()
-            .bgColorBy(JobsWhiteColor)
-            .jobsResetBtnImage(JobsIMG(@"人工客服"))
-            .onClickBy(^(UIButton *x){
-                @jobs_strongify(self)
-                if (self.objBlock) self.objBlock(x);
-            }).onLongPressGestureBy(^(id data){
-                JobsLog(@"");
-            });
-    }return _customerServiceBtn;
-}
-
-- (BaseButton *)msgBtn {
-    if (!_msgBtn) {
-        @jobs_weakify(self)
-        _msgBtn = BaseButton.jobsInit()
-            .jobsResetBtnImage(JobsIMG(@"消息"))
-            .onClickBy(^(UIButton *x){
-                @jobs_strongify(self)
-                if (self.objBlock) self.objBlock(x);
-            }).onLongPressGestureBy(^(id data){
-                JobsLog(@"");
-            });
-    }return _msgBtn;
 }
 
 - (JobsSearchBar *)searchView {
     if (!_searchView) {
-        _searchView = JobsSearchBar.new;
-        _searchView.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40));
-        _searchView.jobsRichViewByModel(nil);
-//        @jobs_weakify(self)
-        [_searchView actionObjBlock:^(NSString *data) {
-//            @jobs_strongify(self)
-        }];
-        
-        [self.gk_navigationBar addSubview:_searchView];
-        [_searchView mas_makeConstraints:^(MASConstraintMaker *make) {
+        _searchView = JobsSearchBar
+            .BySize(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)))
+            .JobsRichViewByModel2(nil)
+            .JobsBlock1(^(id  _Nullable data) {
+                
+            });
+        [self.gk_navigationBar.addSubview(_searchView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
             make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
             make.centerY.equalTo(self.gk_navigationBar);
@@ -292,8 +274,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self.view addSubview:_editBtn];
-        [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_editBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.view);
             make.top.equalTo(self.tableView.mas_bottom);
             make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
@@ -301,7 +282,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     }return _editBtn;
 }
 
-- (NSMutableArray<UIViewModel *> *)titleMutArr {
+- (NSMutableArray<__kindof UIViewModel *> *)titleMutArr {
     if (!_titleMutArr) {
         /// 最初默认的数据
         _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
@@ -327,13 +308,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     }return _titleMutArr;
 }
 
-- (NSMutableArray<UIViewModel *> *)leftDataArray {
+- (NSMutableArray<__kindof UIViewModel *> *)leftDataArray {
     if (!_leftDataArray) {
         _leftDataArray = NSMutableArray.array;
     }return _leftDataArray;
 }
 
-- (UIViewModel *)leftViewCurrentSelectModel {
+- (__kindof UIViewModel *)leftViewCurrentSelectModel {
     if (!_leftViewCurrentSelectModel) {
         _leftViewCurrentSelectModel = UIViewModel.new;
     }return _leftViewCurrentSelectModel;

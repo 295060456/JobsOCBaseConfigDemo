@@ -8,8 +8,6 @@
 #import "CustomTableViewCellVC.h"
 
 @interface CustomTableViewCellVC ()
-/// UI
-
 /// Data
 Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -61,7 +59,7 @@ Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
                               collectionViewCellBlock0:^UICollectionViewCell * _Nullable{
         @jobs_strongify(self)
         BaiShaETProjOrderDetailsCVCell *cell = [BaiShaETProjOrderDetailsCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-        cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.section]);
+        cell.jobsRichElementsCollectionViewCellBy(self.dataMutArr[indexPath.section]);
         return cell;
     }
                               collectionViewCellBlock1:nil
@@ -87,7 +85,7 @@ Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
                                             cellBlock3:nil
                                             cellBlock4:nil];
 }
-/// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
+/// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -113,12 +111,11 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);
-        _collectionView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _collectionView.dataLink(self);
+        _collectionView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.registerCollectionViewClass();
-        [self.view addSubview:_collectionView];
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.view);
             make.top.equalTo(self.gk_navigationBar.mas_bottom);
             make.bottom.equalTo(self.view).offset(JobsBottomSafeAreaHeight() + JobsWidth(64));
@@ -134,24 +131,24 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
                     data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
                         data3.textModel.text = JobsInternationalization(@"存款金额");
                         data3.subTextModel.text = JobsInternationalization(@"10,000.00");
-                    }));
-                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
                         data3.textModel.text = JobsInternationalization(@"存款方式");
                         data3.subTextModel.text = JobsInternationalization(@"虛擬幣充值");
-                    }));
-                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
                         data3.textModel.text = JobsInternationalization(@"訂單編號");
                         data3.subTextModel.text = JobsInternationalization(@"YSF2025022302644565964");
-                    }));
-                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
                         data3.textModel.text = JobsInternationalization(@"轉賬姓名");
                         data3.subTextModel.text = JobsInternationalization(@"張三 ");
-                    }));
-                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
                         data3.textModel.text = JobsInternationalization(@"銀行賬號");
                         data3.subTextModel.text = JobsInternationalization(@"6230 5822 0031 5762 430");
-                    }));
-                    data2.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data3) {
                         data3.textModel.text = JobsInternationalization(@"轉賬地址");
                         data3.subTextModel.text = JobsInternationalization(@"中國平安銀行");
                     }));

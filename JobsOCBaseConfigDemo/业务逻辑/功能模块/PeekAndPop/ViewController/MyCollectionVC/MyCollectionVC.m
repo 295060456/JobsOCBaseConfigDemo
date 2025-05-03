@@ -9,7 +9,7 @@
 
 @interface MyCollectionVC ()
 /// Data
-Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_copy()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 
@@ -64,10 +64,9 @@ Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    // 添加 UIContextMenuInteraction 到每个集合视图单元格
+    /// 添加 UIContextMenuInteraction 到每个集合视图单元格
     for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
-        UIContextMenuInteraction *interaction = [UIContextMenuInteraction.alloc initWithDelegate:self];
-        [cell addInteraction:interaction];
+        cell.addInteraction(UIContextMenuInteraction.initByDelegate(self));
     }
 }
 
@@ -104,27 +103,27 @@ Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
         // 配置预览视图控制器
         UIContextMenuConfiguration *configuration = [UIContextMenuConfiguration configurationWithIdentifier:indexPath
-                                                                                          previewProvider:^UIViewController * _Nullable{
+                                                                                            previewProvider:^UIViewController * _Nullable{
             // 创建并配置预览视图控制器
-            PreviewVC *previewVC = [[PreviewVC alloc] init];
+            PreviewVC *previewVC = PreviewVC.new;
             previewVC.previewText = [NSString stringWithFormat:@"Preview for item %ld", (long)indexPath.item];
             return previewVC;
         } actionProvider:^UIMenu * _Nullable(NSArray<UIMenuElement *> *suggestedActions) {
-            // 创建菜单项
-            UIAction *action1 = [UIAction actionWithTitle:JobsInternationalization(@"Action 1")
-                                                    image:nil
-                                               identifier:nil
-                                                  handler:^(__kindof UIAction *_Nonnull action) {
-                JobsLog(@"Action 1 selected for item %ld", (long)indexPath.item);
-            }];
-            UIAction *action2 = [UIAction actionWithTitle:JobsInternationalization(@"Action 2")
-                                                    image:nil
-                                               identifier:nil
-                                                  handler:^(__kindof UIAction *_Nonnull action) {
-                JobsLog(@"Action 2 selected for item %ld", (long)indexPath.item);
-            }];
-            // 创建并返回菜单
-            return [UIMenu menuWithTitle:JobsInternationalization(@"") children:@[action1, action2]];
+            // 创建菜单项并返回菜单
+            return [UIMenu menuWithTitle:JobsInternationalization(@"") children:jobsMakeMutArr(^(__kindof NSMutableArray<UIAction *> * _Nullable arr) {
+                arr.add([UIAction actionWithTitle:JobsInternationalization(@"Action 1")
+                                            image:nil
+                                       identifier:nil
+                                          handler:^(__kindof UIAction *_Nonnull action) {
+                    JobsLog(@"Action 1 selected for item %ld", (long)indexPath.item);
+                }])
+                .add([UIAction actionWithTitle:JobsInternationalization(@"Action 2")
+                                         image:nil
+                                    identifier:nil
+                                       handler:^(__kindof UIAction *_Nonnull action) {
+                    JobsLog(@"Action 2 selected for item %ld", (long)indexPath.item);
+                }]);
+            })];
         }];return configuration;
     }return nil;
 }
@@ -226,7 +225,7 @@ willDisplayMenuForConfiguration:(UIContextMenuConfiguration *)configuration
                               collectionViewCellBlock0:^UICollectionViewCell *_Nullable{
         @jobs_strongify(self)
         BaiShaETProjOrderDetailsCVCell *cell = [BaiShaETProjOrderDetailsCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-        cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.section]);
+        cell.jobsRichElementsCollectionViewCellBy(self.dataMutArr[indexPath.section]);
         return cell;
     }
                               collectionViewCellBlock1:nil
@@ -254,7 +253,7 @@ willDisplayMenuForConfiguration:(UIContextMenuConfiguration *)configuration
                                             cellBlock3:nil
                                             cellBlock4:nil];
 }
-/// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
+/// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(__kindof UICollectionView *)collectionView
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -280,12 +279,11 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);
-        _collectionView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _collectionView.dataLink(self);
+        _collectionView.backgroundColor = HEXCOLOR(0xFCFBFB);
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.registerCollectionViewClass();
-        [self.view addSubview:_collectionView];
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.view);
             make.top.equalTo(self.gk_navigationBar.mas_bottom);
             make.bottom.equalTo(self.view).offset(JobsBottomSafeAreaHeight() + JobsWidth(64));
@@ -293,32 +291,32 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     }return _collectionView;
 }
 
--(NSMutableArray<UIViewModel *> *)dataMutArr{
+-(NSMutableArray<__kindof UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+        _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIViewModel *>* _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.jobsDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable mutArr) {
                     mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"存款金额");
                         viewModel.subTextModel.text = JobsInternationalization(@"10,000.00");
-                    }));
-                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"存款方式");
                         viewModel.subTextModel.text = JobsInternationalization(@"虛擬幣充值");
-                    }));
-                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"訂單編號");
                         viewModel.subTextModel.text = @"YSF2025022302644565964";
-                    }));
-                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"轉賬姓名");
                         viewModel.subTextModel.text = JobsInternationalization(@"張三 ");
-                    }));
-                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"銀行賬號");
                         viewModel.subTextModel.text = JobsInternationalization(@"6230 5822 0031 5762 430");
-                    }));
-                    mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                    }))
+                    .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                         viewModel.textModel.text = JobsInternationalization(@"轉賬地址");
                         viewModel.subTextModel.text = JobsInternationalization(@"中國平安銀行");
                     }));

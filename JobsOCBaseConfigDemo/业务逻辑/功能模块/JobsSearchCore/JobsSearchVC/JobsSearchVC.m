@@ -262,29 +262,27 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                 case HotSearchStyle_1:{
                     JobsSearchShowHotwordsTBVCell *cell = JobsSearchShowHotwordsTBVCell.cellStyleValue1WithTableView(tableView);
                     cell.indexPath = indexPath;
-                    cell.jobsRichElementsCellBy(self.hotSearchMutArr);
-                    /// 点击的哪个btn？
-                    [cell actionObjBlock:^(JobsHotLabelByMultiLineCVCell *cell) {
+                    cell.jobsRichElementsTableViewCellBy(self.hotSearchMutArr)
+                        .JobsBlock1(^(JobsHotLabelByMultiLineCVCell *cell) {/// 点击的哪个btn？
                         @jobs_strongify(self)
                         self.jobsSearchBar.textField.text = cell.getViewModel.textModel.text;
-                    }];return cell;
+                    });return cell;
                 }break;
                 case HotSearchStyle_2:{
                     JobsSearchTBVCell *cell = JobsSearchTBVCell.cellStyleValue1WithTableView(tableView);
                     cell.indexPath = indexPath;
-                    cell.jobsRichElementsCellBy(self.hotSearchMutArr);
-                    [cell actionObjBlock:^(UIViewModel *data) {
-                        @jobs_strongify(self)
-                        self.jobsSearchBar.textField.text = data.textModel.text;
-                        /// 点选了推荐，则映入输入框＋存入历史
-                        /// 防止相同的元素存入
-                        if (![self filtrationData:data
-                                        atDataArr:self.listViewData
-                                   byPropertyName:@"text"]) {
-                            self.listViewData.add(data);
-                        }
-                        [self endDropDownListView];
-                    }];return cell;
+                    cell.jobsRichElementsTableViewCellBy(self.hotSearchMutArr)
+                        .JobsBlock1(^(UIViewModel *data) {
+                            @jobs_strongify(self)
+                            self.jobsSearchBar.textField.text = data.textModel.text;
+                            /// 点选了推荐，则映入输入框＋存入历史
+                            /// 防止相同的元素存入
+                            if (![self filtrationData:data
+                                            atDataArr:self.listViewData
+                                       byPropertyName:@"text"]) {
+                                self.listViewData.add(data);
+                            }[self endDropDownListView];
+                        });return cell;
                 }break;
                     
                 default:{
@@ -295,7 +293,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         case 1:{/// 搜索历史
             JobsSearchShowHistoryDataTBVCell *cell = JobsSearchShowHistoryDataTBVCell.cellStyleValue1WithTableView(tableView);
             cell.indexPath = indexPath;
-            cell.jobsRichElementsCellBy(self.listViewData[indexPath.row]);
+            cell.jobsRichElementsTableViewCellBy(self.listViewData[indexPath.row]);
             return cell;
         }break;
         default:
@@ -406,9 +404,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             }else{
                 SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
             }
-
-            self.view.addSubview(tableView);
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.equalTo(self.view);
                 if (self.gk_navBarAlpha &&
                     !self.gk_navigationBar.hidden &&
@@ -427,15 +423,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 -(JobsSearchBar *)jobsSearchBar{
     if (!_jobsSearchBar) {
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         _jobsSearchBar = jobsMakeSearchBar(^(__kindof JobsSearchBar * _Nullable searchBar) {
-            @jobs_strongify(self)
-            searchBar.sizer = JobsSearchBar.viewSizeByModel(nil);
-            searchBar.jobsRichViewByModel(nil);
-            @jobs_weakify(self)
-            [searchBar actionObjBlock:^(NSString *data) {
-                @jobs_strongify(self)
-            }];
+            searchBar.bySize(JobsSearchBar.viewSizeByModel(nil))
+                .JobsRichViewByModel2(nil)
+                .JobsBlock1(^(NSString *data) {
+//                    @jobs_strongify(self)
+                });
 
 //            [searchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
 //                @jobs_strongify(self)

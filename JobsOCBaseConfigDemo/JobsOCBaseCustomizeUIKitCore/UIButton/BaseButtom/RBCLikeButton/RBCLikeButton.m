@@ -346,8 +346,10 @@ BaseButtonProtocol_synthesize
 /// 发射源
 -(CAEmitterLayer *)explosionLayer{
     if(!_explosionLayer){
+        @jobs_weakify(self)
         _explosionLayer = jobsMakeCAEmitterLayer(^(__kindof CAEmitterLayer * _Nullable layer) {
-            self.layer.add(layer);
+            @jobs_strongify(self)
+            self.layer.addSublayer(layer);
             /// 发射位置 - 粒子从哪里出现开始扩散
             /// layer.emitterSize = CGSizeMake(self.bounds.size.width + 3, self.bounds.size.height + 3);
             layer.emitterShape = kCAEmitterLayerPoint;/// 发射源的形状

@@ -27,9 +27,9 @@ Prop_strong()UIColor *serialNumLabBGCor;
 }
 #pragma mark —— BaseCellProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^__kindof UICollectionViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.serialStr = toStringByLong(self.indexPath.row + 1);
         self.viewModel = model;
@@ -49,6 +49,7 @@ Prop_strong()UIColor *serialNumLabBGCor;
         }
         self.serialNumLab.alpha = 1;
         self.contentLab.alpha = 1;
+        return self;
     };
 }
 #pragma mark —— lazyLoad
@@ -61,8 +62,7 @@ Prop_strong()UIColor *serialNumLabBGCor;
             label.textAlignment = NSTextAlignmentCenter;
             label.textColor = JobsWhiteColor;
             label.backgroundColor = self.serialNumLabBGCor;
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(20, 20));
                 make.left.equalTo(self.contentView).offset(10);
                 make.centerY.equalTo(self.contentView);
@@ -78,8 +78,7 @@ Prop_strong()UIColor *serialNumLabBGCor;
             @jobs_strongify(self)
             label.text = self.viewModel.textModel.text;
             label.textColor = JobsLightGrayColor;
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self.serialNumLab);
                 make.left.equalTo(self.serialNumLab.mas_right).offset(5);
             }];

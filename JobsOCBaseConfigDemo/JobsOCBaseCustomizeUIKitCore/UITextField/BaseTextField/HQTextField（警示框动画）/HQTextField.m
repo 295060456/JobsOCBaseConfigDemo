@@ -20,7 +20,7 @@ Prop_strong()CABasicAnimation *opacityAnimation;
 @implementation HQTextField
 #pragma mark -- 警示框
 - (void)showWarn {
-    self.layer.add(self.warnLayer);
+    self.layer.addSublayer(self.warnLayer);
     /// 2秒后(异步)移除动画
     @jobs_weakify(self)
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,

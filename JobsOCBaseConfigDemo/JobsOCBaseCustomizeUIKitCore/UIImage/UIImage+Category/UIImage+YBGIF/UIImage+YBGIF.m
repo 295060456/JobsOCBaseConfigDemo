@@ -72,56 +72,62 @@
     return frameDuration;
 }
 /// 根据图片名字创建gif图片
-+ (UIImage *)animatedGIFNamed:(NSString *)name {
-   CGFloat scale = UIScreen.mainScreen.scale;
-   if (scale > 1.0f) {
-       NSString *retinaPath = name.add(@"@2x.gif").pathForResourceWithFullName;
-       NSData *data = [NSData dataWithContentsOfFile:retinaPath];
-       if (data) return UIImage.animatedGIFWithData(data);
-       NSString *path = name.add(@".gif").pathForResourceWithFullName;
-       data = [NSData dataWithContentsOfFile:path];
-       if (data) return UIImage.animatedGIFWithData(data);
-       return JobsIMG(@"name");
-   }else {
-       NSString *path = name.add(@".gif").pathForResourceWithFullName;
-       NSData *data = [NSData dataWithContentsOfFile:path];
-       if (data) {
-           return UIImage.animatedGIFWithData(data);
-       }return JobsIMG(@"name");
-   }
++(JobsReturnImageByStringBlock _Nonnull)animatedGIFByName{
+    return ^UIImage *_Nullable(__kindof NSString *_Nullable name){
+        CGFloat scale = UIScreen.mainScreen.scale;
+        if (scale > 1.0f) {
+            NSString *retinaPath = name.add(@"@2x.gif").pathForResourceWithFullName;
+            NSData *data = [NSData dataWithContentsOfFile:retinaPath];
+            if (data) return UIImage.animatedGIFWithData(data);
+            NSString *path = name.add(@".gif").pathForResourceWithFullName;
+            data = [NSData dataWithContentsOfFile:path];
+            if (data) return UIImage.animatedGIFWithData(data);
+            return JobsIMG(@"name");
+        }else {
+            NSString *path = name.add(@".gif").pathForResourceWithFullName;
+            NSData *data = [NSData dataWithContentsOfFile:path];
+            if (data) {
+                return UIImage.animatedGIFWithData(data);
+            }return JobsIMG(@"name");
+        }
+    };
 }
 /// 根据大小裁剪图片
-- (UIImage *)animatedImageByScalingAndCroppingToSize:(CGSize)size {
-    if (CGSizeEqualToSize(self.size, size) || jobsZeroSizeValue(size)) return self;
-   
-    CGSize scaledSize = size;
-    CGPoint thumbnailPoint = CGPointZero;
-
-    CGFloat widthFactor = size.width / self.size.width;
-    CGFloat heightFactor = size.height / self.size.height;
-    CGFloat scaleFactor = (widthFactor > heightFactor) ? widthFactor : heightFactor;
-    scaledSize.width = self.size.width * scaleFactor;
-    scaledSize.height = self.size.height * scaleFactor;
-
-    if (widthFactor > heightFactor) {
-       thumbnailPoint.y = (size.height - scaledSize.height) * 0.5;
-    }else if (widthFactor < heightFactor) {
-       thumbnailPoint.x = (size.width - scaledSize.width) * 0.5;
-    }
+-(JobsReturnImageByCGSizeBlock _Nonnull)animatedImageByScalingAndCroppingBySize{
     @jobs_weakify(self)
-    NSMutableArray <UIImage *>*scaledImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+    return ^UIImage *_Nonnull(CGSize size){
         @jobs_strongify(self)
-        for (UIImage *image in self.images) {
-            UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-             [image drawInRect:CGRectMake(thumbnailPoint.x,
-                                          thumbnailPoint.y,
-                                          scaledSize.width,
-                                          scaledSize.height)];
-            UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-            data.add(newImage);
-            UIGraphicsEndImageContext();
+        if (CGSizeEqualToSize(self.size, size) || jobsZeroSizeValue(size)) return self;
+       
+        CGSize scaledSize = size;
+        CGPoint thumbnailPoint = CGPointZero;
+
+        CGFloat widthFactor = size.width / self.size.width;
+        CGFloat heightFactor = size.height / self.size.height;
+        CGFloat scaleFactor = (widthFactor > heightFactor) ? widthFactor : heightFactor;
+        scaledSize.width = self.size.width * scaleFactor;
+        scaledSize.height = self.size.height * scaleFactor;
+
+        if (widthFactor > heightFactor) {
+           thumbnailPoint.y = (size.height - scaledSize.height) * 0.5;
+        }else if (widthFactor < heightFactor) {
+           thumbnailPoint.x = (size.width - scaledSize.width) * 0.5;
         }
-    });return [UIImage animatedImageWithImages:scaledImages duration:self.duration];
+        @jobs_weakify(self)
+        NSMutableArray <UIImage *>*scaledImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
+            for (UIImage *image in self.images) {
+                UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+                 [image drawInRect:CGRectMake(thumbnailPoint.x,
+                                              thumbnailPoint.y,
+                                              scaledSize.width,
+                                              scaledSize.height)];
+                UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+                data.add(newImage);
+                UIGraphicsEndImageContext();
+            }
+        });return [UIImage animatedImageWithImages:scaledImages duration:self.duration];
+    };
 }
 
 @end

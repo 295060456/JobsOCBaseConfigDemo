@@ -8,7 +8,6 @@
 #import "LandscapeSwitchVC.h"
 
 @interface LandscapeSwitchVC ()
-/// UI
 /// Data
 Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 
@@ -160,7 +159,7 @@ Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
                                    cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     JobsBtnStyleCVCell *cell = [JobsBtnStyleCVCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.item]);
+    cell.jobsRichElementsCollectionViewCellBy(self.dataMutArr[indexPath.item]);
     cell.contentView.backgroundColor = JobsRandomColor;
     return cell;
 }
@@ -313,9 +312,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
 ////            _collectionView.tabAnimated.animatedBackgroundColor = JobsRedColor;
 //            [_collectionView tab_startAnimation];   // 开启动画
 //        }
-        
-        [self.view addSubview:_collectionView];
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
         }];
     }return _collectionView;

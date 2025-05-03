@@ -115,8 +115,11 @@ Prop_assign()BOOL jobsVisible;
 #pragma mark —— 其他
 -(JobsReturnViewByNSIntegerBlock _Nonnull)viewByID;
 -(JobsReturnViewByGestureRecognizer _Nonnull)addGesture;
+-(JobsReturnGestureRecognizerByGestureRecognizer _Nonnull)addGestureRecognizer;
 -(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
 -(JobsReturnViewByNSIntegerBlock _Nonnull)viewWithTag;
+-(JobsReturnViewByInteractionBlock _Nonnull)addInteraction;
+-(JobsReturnViewByInteractionBlock _Nonnull)removeInteraction;
 -(JobsReturnViewByViewBlock _Nonnull)addSubview;
 -(JobsReturnViewByViewBlock _Nonnull)bringSubviewToFront;
 -(JobsReturnViewByViewBlock _Nonnull)sendSubviewToBack;

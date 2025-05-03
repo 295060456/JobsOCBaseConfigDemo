@@ -27,9 +27,9 @@ Prop_strong()UILabel *textLab;
     };
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         if (model) {
             self.textLab.textColor = model.textModel.textCor;
@@ -37,7 +37,7 @@ Prop_strong()UILabel *textLab;
             self.textLab.font = model.textModel.font;
             self.textLab.backgroundColor = model.bgCor;
         //    self.imageView.image = (UIImage *)model[@"image"];
-        }
+        } return self;
     };
 }
 
@@ -52,8 +52,7 @@ Prop_strong()UILabel *textLab;
         @jobs_weakify(self)
         _textLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            self.contentView.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView);
             }];
         });

@@ -87,7 +87,7 @@ static dispatch_once_t static_filtrationViewOnceToken;
                 data.bgCor = HEXCOLOR(0xFDFCF9);
                 data.jobsSize = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(20));
             });
-            data.viewModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray<NSString *> * _Nullable data) {
+            data.viewModels = jobsMakeMutArr(^(__kindof NSMutableArray<NSString *> * _Nullable data) {
                 for (NSString *str in jobsMakeMutArr(^(__kindof NSMutableArray<NSString *> * _Nullable arr) {
                     arr.add(JobsInternationalization(@"全部"))
                     .add(JobsInternationalization(@"充值"))

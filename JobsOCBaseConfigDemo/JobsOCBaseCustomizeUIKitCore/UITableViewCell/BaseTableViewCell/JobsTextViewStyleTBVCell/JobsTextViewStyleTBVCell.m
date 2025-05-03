@@ -31,12 +31,13 @@ BaseViewProtocol_synthesize
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel __kindof *_Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(UIViewModel __kindof *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model;
         self.textView.alpha = 1;
+        return self;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -84,7 +85,7 @@ BaseViewProtocol_synthesize
 //-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange API_DEPRECATED_WITH_REPLACEMENT("textView:shouldInteractWithURL:inRange:interaction:", ios(7.0, 10.0)) API_UNAVAILABLE(visionos);
 //-(BOOL)textView:(UITextView *)textView shouldInteractWithTextAttachment:(NSTextAttachment *)textAttachment inRange:(NSRange)characterRange API_DEPRECATED_WITH_REPLACEMENT("textView:shouldInteractWithTextAttachment:inRange:interaction:", ios(7.0, 10.0)) API_UNAVAILABLE(visionos);
 #pragma mark —— lazyLoad
-/// 如果需要用其他的自定义的TextView，继承此类并重写-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy
+/// 如果需要用其他的自定义的TextView，继承此类并重写-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy;
 -(__kindof UITextView *)textView{
     if (!_textView) {
         @jobs_weakify(self)

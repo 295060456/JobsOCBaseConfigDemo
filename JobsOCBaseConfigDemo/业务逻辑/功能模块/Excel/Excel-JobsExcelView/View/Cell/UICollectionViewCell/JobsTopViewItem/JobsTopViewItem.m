@@ -40,9 +40,9 @@ Prop_assign()CGSize size;
                                         cornerRadii:CGSizeMake(JobsWidth(0), JobsWidth(0))];
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
+    return ^__kindof UICollectionViewCell *_Nullable(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
         self.viewModel_ = viewModel;
         self.bgImageView.alpha = 1;
@@ -58,13 +58,7 @@ Prop_assign()CGSize size;
             [self.linePath stroke];
             UIGraphicsEndImageContext();
             self.lineLayer.hidden = NO;
-        }
-    };
-}
-
--(jobsByIDBlock _Nonnull)jobsRichElementsCellByModel{
-    return ^(UIButtonModel *_Nullable model) {
-        super.jobsRichElementsCellBy(model);
+        } return self;
     };
 }
 #pragma mark —— lazyLoad
@@ -75,8 +69,7 @@ Prop_assign()CGSize size;
         _bgImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.image = JobsIMG(@"投注记录");
-            [self.contentView addSubview:imageView];
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
             }];
         });
@@ -100,7 +93,7 @@ Prop_assign()CGSize size;
             data.strokeColor = self.viewModel_.cor6.CGColor;
             data.path = self.linePath.CGPath;
             data.fillColor = JobsClearColor.CGColor; // 默认为blackColor
-            [self.btn.layer addSublayer:data];
+            self.button.layer.addSublayer(data);
         });
     }return _lineLayer;
 }

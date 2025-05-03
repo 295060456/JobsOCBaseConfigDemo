@@ -19,7 +19,7 @@ Prop_assign()ScrollDirection direction; /// UIScrollView 滑动的方向定义
 /// 在 UIScrollViewDelegate协议方法 -(void)scrollViewDidScroll:(UIScrollView *)scrollView里进行调用
 -(ScrollDirection)scrolldirectionWhenScrollViewDidScroll;
 #pragma mark —— 一些公共方法
--(jobsByVoidBlock _Nonnull)reloadDatas;
+-(JobsReturnViewByVoidBlock _Nonnull)reloadDatas;
 /// 得到visibleCells
 -(NSArray <UIView *>*_Nullable)scrollViewCells;
 /// 依据index得到cell

@@ -92,24 +92,24 @@ Prop_copy()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
         data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG體育");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG真人");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG電子");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG彩票");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
             viewModel.subTextModel.text = JobsInternationalization(@"");
-        }));
-        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+        }))
+        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.textModel.text = JobsInternationalization(@"DA電子");
             viewModel.subTextModel.text = JobsInternationalization(@"");
         }));
@@ -137,25 +137,25 @@ Prop_copy()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
         UIContextMenuConfiguration *configuration = [UIContextMenuConfiguration configurationWithIdentifier:indexPath
                                                                                           previewProvider:^UIViewController * _Nullable{
             // 创建并配置预览视图控制器
-            PreviewVC *previewVC = [[PreviewVC alloc] init];
+            PreviewVC *previewVC = PreviewVC.new;
             previewVC.previewText = [NSString stringWithFormat:@"Preview for row %ld", (long)indexPath.row];
             return previewVC;
         } actionProvider:^UIMenu * _Nullable(NSArray<UIMenuElement *> *suggestedActions) {
-            // 创建菜单项
-            UIAction *action1 = [UIAction actionWithTitle:JobsInternationalization(@"Action 1")
-                                                    image:nil
-                                               identifier:nil
-                                                  handler:^(__kindof UIAction * _Nonnull action) {
-                JobsLog(@"Action 1 selected for row %ld", (long)indexPath.row);
-            }];
-            UIAction *action2 = [UIAction actionWithTitle:JobsInternationalization(@"Action 2")
-                                                    image:nil
-                                               identifier:nil
-                                                  handler:^(__kindof UIAction * _Nonnull action) {
-                JobsLog(@"Action 2 selected for row %ld", (long)indexPath.row);
-            }];
-            // 创建并返回菜单
-            return [UIMenu menuWithTitle:JobsInternationalization(@"") children:@[action1, action2]];
+            /// 创建菜单项并返回菜单
+            return [UIMenu menuWithTitle:JobsInternationalization(@"") children:jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+                arr.add([UIAction actionWithTitle:JobsInternationalization(@"Action 1")
+                                            image:nil
+                                       identifier:nil
+                                          handler:^(__kindof UIAction * _Nonnull action) {
+                    JobsLog(@"Action 1 selected for row %ld", (long)indexPath.row);
+                }])
+                .add([UIAction actionWithTitle:JobsInternationalization(@"Action 2")
+                                            image:nil
+                                       identifier:nil
+                                          handler:^(__kindof UIAction * _Nonnull action) {
+                    JobsLog(@"Action 2 selected for row %ld", (long)indexPath.row);
+                }]);
+            })];
         }];return configuration;
     }return nil;
 }
@@ -274,14 +274,14 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsBaseTableViewCell *cell = self.tbvCellMutArr[indexPath.row];
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.row]);
+    cell.backgroundColor = cell.contentView.backgroundColor = HEXCOLOR(0xFFFCF7);
     cell.textLabel.textColor = HEXCOLOR(0x757575);
     cell.textLabel.font = UIFontWeightRegularSize(16);
     cell.textLabelFrameOffsetX = JobsWidth(16);
     cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH() - JobsWidth(50);
     cell.imageView.image = JobsIMG(@"红色的对勾");
     cell.imageView.jobsVisible = NO;
-    cell.backgroundColor = cell.contentView.backgroundColor = HEXCOLOR(0xFFFCF7);
+    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— lazyLoad
@@ -289,27 +289,28 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 @synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.initWithStyleGrouped;
-        _tableView.backgroundColor = JobsWhiteColor;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.scrollEnabled = NO;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableHeaderView = self.tbvHeaderView;/// 这里接入的就是一个UIView的派生类
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+        @jobs_weakify(self)
+        _tableView = jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.backgroundColor = JobsWhiteColor;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            tableView.scrollEnabled = NO;
+            tableView.showsVerticalScrollIndicator = NO;
+            tableView.tableHeaderView = self.tbvHeaderView;/// 这里接入的就是一个UIView的派生类
+            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
+                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+            });
+            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
+            [tableView registerTableViewClass];
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }
+            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
         });
-        _tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-        [_tableView registerTableViewClass];
-        if(@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        [self.view addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
     }return _tableView;
 }
 

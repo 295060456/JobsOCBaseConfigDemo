@@ -9,7 +9,7 @@
 #import "BaseModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-//对应字段 child
+/// 对应字段 child
 @interface JobsChildCommentModel : BaseModel
 
 Prop_copy()NSString *ID;
@@ -29,7 +29,7 @@ Prop_assign()NSInteger isVip;
 Prop_assign()NSInteger toIsVip;
 
 @end
-// 对应字段 list
+/// 对应字段 list
 @interface JobsFirstCommentModel : BaseModel
 
 Prop_copy()NSString *ID;
@@ -51,7 +51,7 @@ Prop_assign()BOOL isVip;
 /// 对应字段 data
 @interface JobsCommentModel : BaseModel
 
-Prop_strong()NSArray <JobsFirstCommentModel *>*listDataArr;//一级评论
+Prop_copy()NSArray <JobsFirstCommentModel *>*listDataArr;//一级评论
 
 @end
 
@@ -69,3 +69,26 @@ Prop_assign()NSInteger loadMoreDataNum;//加载更多数据,一次加载的个�
 
 NS_ASSUME_NONNULL_END
 
+NS_INLINE __kindof JobsChildCommentModel *_Nonnull jobsMakeChildCommentModel(jobsByChildCommentModelBlock _Nonnull block){
+    JobsChildCommentModel *data = JobsChildCommentModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JobsFirstCommentModel *_Nonnull jobsMakeFirstCommentModel(jobsByFirstCommentModelBlock _Nonnull block){
+    JobsFirstCommentModel *data = JobsFirstCommentModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JobsCommentModel *_Nonnull jobsMakeCommentModel(jobsByCommentModelBlock _Nonnull block){
+    JobsCommentModel *data = JobsCommentModel.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof JobsFirstCommentCustomCofigModel *_Nonnull jobsMakeFirstCommentCustomCofigModel(jobsByFirstCommentCustomCofigModelBlock _Nonnull block){
+    JobsFirstCommentCustomCofigModel *data = JobsFirstCommentCustomCofigModel.alloc.init;
+    if (block) block(data);
+    return data;
+}

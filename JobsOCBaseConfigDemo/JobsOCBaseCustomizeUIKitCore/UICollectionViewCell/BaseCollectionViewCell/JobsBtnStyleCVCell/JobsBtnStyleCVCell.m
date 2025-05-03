@@ -31,6 +31,29 @@ AppToolsProtocol_synthesize
     if(self.viewModel) self.button.resetByViewModel(self.viewModel,self.selected);
     if(self.buttonModel) self.button.resetByButtonModel(self.buttonModel,self.selected);
 }
+#pragma mark —— 一些共有方法
+-(jobsByIDBlock _Nonnull)makeUp{
+    @jobs_weakify(self)
+    return ^(id _Nullable model){
+        @jobs_strongify(self)
+        if(KindOfViewModelCls(model)){
+            if(self.viewModel.textModel.text.isHTMLString ||
+               self.viewModel.subTextModel.text.isHTMLString){
+                self.webView.jobsVisible = YES;
+            }else{
+                self.button.data = model;
+            }self.viewModel = model;
+        }
+        if(KindOfButtonModelCls(model)){
+            if(self.buttonModel.title.isHTMLString ||
+               self.buttonModel.subTitle.isHTMLString){
+                self.webView.jobsVisible = YES;
+            }else{
+                self.button.data = model;
+            }self.buttonModel = model;
+        }
+    };
+}
 #pragma mark —— BaseViewProtocol
 -(UIViewModel *_Nullable)getViewModel{
     return self.viewModel;
@@ -52,26 +75,12 @@ AppToolsProtocol_synthesize
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(id _Nullable model) {
+    return ^__kindof UICollectionViewCell *_Nullable(id _Nullable model) {
         @jobs_strongify(self)
-        if(KindOfViewModelCls(model)){
-            if(self.viewModel.textModel.text.isHTMLString ||
-               self.viewModel.subTextModel.text.isHTMLString){
-                self.webView.jobsVisible = YES;
-            }else{
-                self.button.data = model;
-            }self.viewModel = model;
-        }
-        if(KindOfButtonModelCls(model)){
-            if(self.buttonModel.title.isHTMLString ||
-               self.buttonModel.subTitle.isHTMLString){
-                self.webView.jobsVisible = YES;
-            }else{
-                self.button.data = model;
-            }self.buttonModel = model;
-        }
+        self.makeUp(model);
+        return self;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -157,15 +166,16 @@ AppToolsProtocol_synthesize
 -(BaseButton *)button{
     if(!_button){
         @jobs_weakify(self)
-        _button = BaseButton.jobsInit();
+        _button = BaseButton.jobsInit()
+            .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
+                if(self.objBlock) self.objBlock(x);
+            });
         /// enabled 是 userInteractionEnabled 的子集
         /// enabled = NO ,则不响应：-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event（此方法不要写在分类里面）
         _button.enabled = NO; /// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应 UITableViewCell 协议方法
         _button.userInteractionEnabled = YES;
-        _button.onClickBy(^(UIButton *x){
-            @jobs_strongify(self)
-            if(self.objBlock) self.objBlock(x);
-        });[self.contentView.addSubview(_button) mas_makeConstraints:self.masonryBlock];
+        [self.contentView.addSubview(_button) mas_makeConstraints:self.masonryBlock];
     }return _button;
 }
 

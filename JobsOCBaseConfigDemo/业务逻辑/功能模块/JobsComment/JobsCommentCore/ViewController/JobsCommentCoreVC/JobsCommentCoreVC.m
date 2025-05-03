@@ -125,40 +125,41 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 /// 二级评论
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    JobsFirstCommentModel *firstCommentModel = (JobsFirstCommentModel *)self.mjModel.listDataArr[section];
-    JobsFirstCommentCustomCofigModel *customCofigModel = JobsFirstCommentCustomCofigModel.new;
-    customCofigModel.childDataArr = firstCommentModel.childDataArr;
-    return customCofigModel.firstShowNum;
+    @jobs_weakify(self)
+    return jobsMakeFirstCommentCustomCofigModel(^(__kindof JobsFirstCommentCustomCofigModel * _Nullable model) {
+        @jobs_strongify(self)
+        model.childDataArr = self.mjModel.listDataArr[section].childDataArr;
+    }).firstShowNum;
 }
 /// 二级评论数据 展示在cellForRowAtIndexPath
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     JobsFirstCommentModel *firstCommentModel = (JobsFirstCommentModel *)self.mjModel.listDataArr[indexPath.section];//一级评论数据 展示在viewForHeaderInSection
     JobsChildCommentModel *childCommentModel = firstCommentModel.childDataArr[indexPath.row];//二级评论数据 展示在cellForRowAtIndexPath
-    JobsFirstCommentCustomCofigModel *customCofigModel = JobsFirstCommentCustomCofigModel.new;
-    customCofigModel.childDataArr = firstCommentModel.childDataArr;
-
+    JobsFirstCommentCustomCofigModel *customCofigModel = jobsMakeFirstCommentCustomCofigModel(^(__kindof JobsFirstCommentCustomCofigModel * _Nullable model) {
+        model.childDataArr = firstCommentModel.childDataArr;
+    });
     if (customCofigModel.isFullShow) {
         JobsInfoTBVCell *cell = JobsInfoTBVCell.cellStyleValue1WithTableView(tableView);
-        cell.jobsRichElementsCellBy(childCommentModel);
-//        @jobs_weakify(self)
-        [cell actionObjBlock:^(id data) {
-//            @jobs_strongify(self)
-        }];return cell;
+        cell.jobsRichElementsTableViewCellBy(childCommentModel)
+            .JobsBlock1(^(id _Nullable data) {
+            
+        });return cell;
     }else{
         if (indexPath.row <= customCofigModel.firstShowNum) {
             // 二级评论展示...
             JobsInfoTBVCell *cell = JobsInfoTBVCell.cellStyleValue1WithTableView(tableView);
-            cell.jobsRichElementsCellBy(childCommentModel);
-//            @jobs_weakify(self)
-            [cell actionObjBlock:^(id data) {
-//                @jobs_strongify(self)
-            }];return cell;
+            cell.jobsRichElementsTableViewCellBy(childCommentModel)
+                .JobsBlock1(^(id _Nullable data) {
+                
+            });return cell;
         }else{
             // 加载更多...
             JobsLoadMoreTBVCell *cell = JobsLoadMoreTBVCell.cellStyleValue1WithTableView(tableView);
-            cell.jobsRichElementsCellBy(nil);
-            return cell;
+            cell.jobsRichElementsTableViewCellBy(nil)
+                .JobsBlock1(^(id _Nullable data) {
+                
+            });return cell;
         }
     }
 }
@@ -176,28 +177,24 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
-    JobsCommentPopUpView_viewForHeaderInSection *header = JobsCommentPopUpView_viewForHeaderInSection.new;
-    header.jobsRichViewByModel(self.mjModel.listDataArr[section]);/// 一级评论数据 展示在viewForHeaderInSection
     @jobs_weakify(self)
-    // 一级标题点击事件
-    [header actionObjBlock:^(id data) {
-        @jobs_strongify(self)
-        [self 一级标题点击事件];
-    }];return header;
+    return JobsCommentPopUpView_viewForHeaderInSection.JobsRichViewByModel(self.mjModel.listDataArr[section])/// 一级评论数据 展示在viewForHeaderInSection
+        .JobsBlock1(^(id _Nullable data) {/// 一级标题点击事件
+            @jobs_strongify(self)
+            [self 一级标题点击事件];
+    });
 }
 #pragma mark —— lazyLoad
 -(JobsCommentTitleHeaderView *)titleHeaderView{
     if (!_titleHeaderView) {
-        _titleHeaderView = JobsCommentTitleHeaderView.new;
-        _titleHeaderView.jobsRichViewByModel(nil);
         @jobs_weakify(self)
-        [_titleHeaderView actionObjBlock:^(id data) {
-            @jobs_strongify(self)
-            [self dismissViewControllerAnimated:YES
-                                     completion:Nil];
-        }];
-        self.view.addSubview(_titleHeaderView);
-        [_titleHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        _titleHeaderView = JobsCommentTitleHeaderView
+            .JobsRichViewByModel(nil)
+            .JobsBlock1(^(id _Nullable data) {/// 一级标题点击事件
+                @jobs_strongify(self)
+                self.backViewControllerCore(self);
+        });
+        [self.view.addSubview(_titleHeaderView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.equalTo(self.view);
             make.height.mas_equalTo(JobsWidth(50));
         }];
@@ -281,8 +278,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
                 tableView.mj_footer.backgroundColor = JobsRedColor;
                 self.view.mjRefreshTargetView = tableView;
             }
-            self.view.addSubview(tableView);
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.titleHeaderView.mas_bottom);
                 make.bottom.left.right.equalTo(self.view);
             }];

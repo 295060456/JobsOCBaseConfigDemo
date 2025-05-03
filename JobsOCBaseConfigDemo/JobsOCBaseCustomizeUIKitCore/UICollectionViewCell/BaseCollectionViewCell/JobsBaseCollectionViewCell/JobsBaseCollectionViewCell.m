@@ -14,11 +14,14 @@
 @implementation JobsBaseCollectionViewCell
 /// AppToolsProtocol
 @synthesize viewModel = _viewModel;
+/// UIMarkProtocol
+@synthesize indexPath = _indexPath;
+@synthesize index = _index;
 /// UITextFieldProtocol
 UITextFieldProtocol_synthesize_part2
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-//        self.jobsRichElementsCellBy(nil);
+
     }return self;
 }
 
@@ -49,29 +52,13 @@ UITextFieldProtocol_synthesize_part2
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nonnull model) {
+    return ^__kindof UICollectionViewCell *_Nullable(UIViewModel *_Nonnull model) {
         @jobs_strongify(self)
         self.viewModel = model;
+        return self;
     };
-}
-#pragma mark —— <UIViewModelProtocol> 协议属性合成set & get方法
-@synthesize indexPath = _indexPath;
--(void)setIndexPath:(NSIndexPath *)indexPath{
-    _indexPath = indexPath;
-}
-
--(NSIndexPath *)indexPath{
-    return _indexPath;
-}
-@synthesize index = _index;
--(NSInteger)index{
-    return _index;
-}
-
--(void)setIndex:(NSInteger)index{
-    _index = index;
 }
 #pragma mark —— lazyLoad
 

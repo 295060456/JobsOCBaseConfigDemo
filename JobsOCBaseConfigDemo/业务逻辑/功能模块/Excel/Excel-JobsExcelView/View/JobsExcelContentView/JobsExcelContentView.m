@@ -10,7 +10,7 @@
 
 @interface JobsExcelContentView()
 /// Data
-@property(nonatomic,strong,nonnull)JobsExcelConfigureViewModel *excelConfigureData;
+Prop_strong(nonnull)JobsExcelConfigureViewModel *excelConfigureData;
 Prop_assign()CGPoint contentOffenset;
 
 @end
@@ -48,9 +48,11 @@ Prop_assign()CGPoint contentOffenset;
     MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView);
     cell.delegate = self;
     cell.indexPath = indexPath;
-    cell.jobsRichElementsCellBy(self.excelConfigureData);
+    cell.jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
+        vm.data = self.excelConfigureData;
+        vm.buttonModels = self.excelConfigureData.contentArr[indexPath.row];
+    }));
 //    cell.backgroundColor = cell.contentView.backgroundColor = indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2;
-    cell.jobsRichElementsCellByModel(self.excelConfigureData.contentArr[indexPath.row]);
     return cell;
 }
 #pragma mark —— UIScrollViewDelegate
@@ -91,24 +93,26 @@ Prop_assign()CGPoint contentOffenset;
 @synthesize tableView = _tableView;
 - (UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-        _tableView.dataLink(self);
-        _tableView.rowHeight = self.excelConfigureData.itemH;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-            data.title = JobsInternationalization(@"No Datas");
-            data.titleCor = JobsWhiteColor;
-            data.titleFont = bayonRegular(JobsWidth(30));
-            data.normalImage = JobsIMG(@"暂无数据");
-            data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-            data.jobsOffsetX = JobsWidth(-100);
-            data.jobsOffsetY = 0;
+        @jobs_weakify(self)
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            @jobs_strongify(self)
+            tableView.dataLink(self);
+            tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+            tableView.rowHeight = self.excelConfigureData.itemH;
+            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                data.title = JobsInternationalization(@"No Datas");
+                data.titleCor = JobsWhiteColor;
+                data.titleFont = bayonRegular(JobsWidth(30));
+                data.normalImage = JobsIMG(@"暂无数据");
+                data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+                data.jobsOffsetX = JobsWidth(-100);
+                data.jobsOffsetY = 0;
+            });
+            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+            }];
         });
-        [self addSubview:_tableView];
-        [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        }];
     }return _tableView;
 }
 

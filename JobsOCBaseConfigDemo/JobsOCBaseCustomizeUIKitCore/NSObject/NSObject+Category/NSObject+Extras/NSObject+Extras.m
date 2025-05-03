@@ -640,7 +640,9 @@ UITextFieldProtocol_dynamic
 }
 /// 返回控制器的核心逻辑
 -(jobsByViewControllerBlock _Nonnull)backViewControllerCore{
+    @jobs_weakify(self)
     return ^(__kindof UIViewController *_Nullable vc){
+        @jobs_strongify(self)
         switch (self.pushOrPresent) {
             case ComingStyle_PRESENT:{
                 [vc dismissViewControllerAnimated:YES completion:nil];

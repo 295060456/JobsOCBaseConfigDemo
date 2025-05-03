@@ -27,54 +27,52 @@ Prop_assign()CGSize size;
         @jobs_strongify(self)
         JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)tableView.tableViewCellClass(self.class,@"");
         if (!cell) {
-            cell = [self initTableViewCell:self
-                                 withStyle:UITableViewCellStyleValue1];
+            cell = [self initTableViewCell:self withStyle:UITableViewCellStyleValue1];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = JobsWhiteColor;
         }return cell;
     };
 }
 #pragma mark —— BaseCellProtocol
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(JobsExcelConfigureViewModel *_Nullable viewModel) {
+    return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable viewModel) {
         @jobs_strongify(self)
-        self.excelConfigureData = viewModel;
+//        viewModel.buttonModel;
+        self.excelConfigureData = viewModel.data;
         self.bgImageView_.alpha = 1;
-        CGSize size = CGSizeMake(viewModel.itemW, viewModel.itemH);
+        CGSize size = CGSizeMake(self.excelConfigureData.itemW, self.excelConfigureData.itemH);
         if (!CGSizeEqualToSize(self.size, size)) {
             self.size = size;
-            [self drawLineWithSize:size];
-        }
+            self.drawLineBySize(size);
+        } return self;
     };
 }
 
--(jobsByIDBlock _Nonnull)jobsRichElementsCellByModel{
-//    @jobs_weakify(self)
-    return ^(UIButtonModel *_Nullable model) {
-//        @jobs_strongify(self)
-        super.jobsRichElementsCellBy(model);
+-(jobsBySizeBlock _Nonnull)drawLineBySize{
+    @jobs_weakify(self)
+    return ^(CGSize size){
+        @jobs_strongify(self)
+        // 其他点
+        self.linePath.add(CGPointMake(size.width, 0));
+        self.linePath.add(CGPointMake(size.width, size.height));
+        self.linePath.add(CGPointMake(0, size.height));
+        
+        [self.linePath stroke];
+        
+        UIGraphicsBeginImageContext(size);
+        [self.linePath stroke];
+        UIGraphicsEndImageContext();
+
+        self.button.layer.addSublayer(self.lineLayer);
     };
-}
-
-- (void)drawLineWithSize:(CGSize)size{
-    // 其他点
-    self.linePath.add(CGPointMake(size.width, 0));
-    self.linePath.add(CGPointMake(size.width, size.height));
-    self.linePath.add(CGPointMake(0, size.height));
-    
-    [self.linePath stroke];
-    
-    UIGraphicsBeginImageContext(size);
-    [self.linePath stroke];
-    UIGraphicsEndImageContext();
-
-    self.button.layer.add(self.lineLayer);
 }
 #pragma mark —— lazyLoad
 -(UIImageView *)bgImageView_{
     if(!_bgImageView_){
+        @jobs_weakify(self)
         _bgImageView_ = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+            @jobs_strongify(self)
             imageView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
     //        imageView.image = JobsIMG(@"投注记录");
             [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {

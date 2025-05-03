@@ -71,7 +71,7 @@ static dispatch_once_t static_popupView10OnceToken;
     };
 }
 #pragma mark —— 一些公有方法
--(jobsByBOOLBlock _Nonnull)shakeCell{
+-(jobsByBOOLBlock)shakeCell{
     @jobs_weakify(self)
     return ^(BOOL start) {
         @jobs_strongify(self)
@@ -86,23 +86,22 @@ static dispatch_once_t static_popupView10OnceToken;
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView
-cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+                                   cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     JobsBtnStyleCVCell *cell = [JobsBtnStyleCVCell cellWithCollectionView:collectionView
                                                              forIndexPath:indexPath];
-    cell.jobsRichElementsCellBy(self.dataMutArr[indexPath.item]);
+    cell.jobsRichElementsCollectionViewCellBy(self.dataMutArr[indexPath.item]);
     if (indexPath.item == self.selectedIndex - 1) {
-        cell.btn.backgroundColor = HEXCOLOR(0xFFEABA);
-        cell.btn.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
+        cell.button.backgroundColor = HEXCOLOR(0xFFEABA);
+        cell.button.jobsResetBtnTitleCor(HEXCOLOR(0xAE8330));
     }else{
-        cell.btn.backgroundColor = HEXCOLOR(0xF3F3F3);
-        cell.btn.jobsResetBtnTitleCor(HEXCOLOR(0x757575));
+        cell.button.backgroundColor = HEXCOLOR(0xF3F3F3);
+        cell.button.jobsResetBtnTitleCor(HEXCOLOR(0x757575));
     }
     cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
         data.layerCor = JobsCor(@"#6E5600");
         data.jobsWidth = JobsWidth(1);
         data.cornerRadiusValue = JobsBtnStyleCVCell.cellSizeByModel(nil).height / 2;
-    }));
-    return cell;
+    }));return cell;
 }
 
 - (NSInteger)collectionView:(nonnull __kindof UICollectionView *)collectionView
@@ -116,13 +115,11 @@ numberOfItemsInSection:(NSInteger)section {
     if (kind.isEqualToString(UICollectionElementKindSectionHeader)) {
         JobsHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
                                                                                         forIndexPath:indexPath];
-        
-        UIViewModel *viewModel = UIViewModel.new;
-        viewModel.textModel.text = JobsInternationalization(@"拖動按鈕迸行位置調整");
-        viewModel.subTextModel.text = JobsInternationalization(@"");
-        headerView.jobsRichViewByModel(viewModel);
+        headerView.jobsRichViewByModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+            viewModel.textModel.text = JobsInternationalization(@"拖動按鈕迸行位置調整");
+            viewModel.subTextModel.text = JobsInternationalization(@"");
+        }));
         headerView.backgroundColor = HEXCOLOR(0xFFFCF7);
-        
         [headerView.getTitleBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(headerView);
             make.top.equalTo(self.titleLab.mas_bottom);
@@ -187,7 +184,7 @@ layout:(UICollectionViewLayout *)collectionViewLayout
 sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(JobsWidth(106), JobsWidth(30));
 }
-/// 定义的是元素（垂直方向滚动的时候）垂直之间的间距 或者 是元素（水平方向滚动的时候）水平之间的间距
+/// 定义的是元素垂直之间的间距
 - (CGFloat)collectionView:(__kindof UICollectionView *)collectionView
                    layout:(__kindof UICollectionViewLayout *)collectionViewLayout
     minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -253,15 +250,13 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = UICollectionView.initByLayout(self.verticalLayout);
-        _collectionView.backgroundColor = JobsWhiteColor;
         _collectionView.dataLink(self);
+        _collectionView.backgroundColor = JobsWhiteColor;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.scrollEnabled = NO;
-        
+    
         _collectionView.registerCollectionViewClass();
-        
-        [self.bgView addSubview:_collectionView];
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.bgView.addSubview(_collectionView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self.bgView);
             make.width.mas_equalTo(BaiShaETProjPopupView10.viewSizeByModel(nil).width);
@@ -320,42 +315,42 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
 -(UILabel *)titleLab{
     if (!_titleLab) {
+        @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
             label.userInteractionEnabled = YES;
-            label.text = JobsInternationalization(@"全部分類");
-            label.textAlignment = NSTextAlignmentCenter;
             label.backgroundColor = self.cor;
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            label.byText(JobsInternationalization(@"全部分類"))
+            .byTextAlignment(NSTextAlignmentCenter)
+            .byTextCor(JobsBlueColor);
+            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self);
                 make.centerX.equalTo(self);
                 make.size.mas_equalTo(CGSizeMake(BaiShaETProjPopupView10.viewSizeByModel(nil).width, JobsWidth(44)));
-            }];
-            self.refresh();
+            }];self.refresh();
             [label appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-                                                     cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+                                                 cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
         });
     }return _titleLab;
 }
 
 -(BaseButton *)closeBtn{
     if (!_closeBtn) {
-        _closeBtn = BaseButton.new;
-        _closeBtn.jobsResetBtnBgImage(JobsIMG(@"关闭"));
-        [self.titleLab addSubview:_closeBtn];
-        [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        @jobs_weakify(self)
+        _closeBtn = BaseButton.jobsInit()
+            .jobsResetBtnBgImage(JobsIMG(@"关闭"))
+            .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
+                x.selected = !x.selected;
+                self.cancelBtnActionForPopView(x);
+                self.shakeCell(NO);
+            }).onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            });
+        [self.titleLab.addSubview(_closeBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(9.75f), JobsWidth(9.75f)));
             make.centerY.equalTo(self.titleLab);
             make.right.equalTo(self.titleLab.mas_right).offset(JobsWidth(-25.12));
-        }];
-        @jobs_weakify(self)
-        [_closeBtn jobsBtnClickEventBlock:^id(UIButton *x) {
-            JobsLog(@"关闭");
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            self.cancelBtnActionForPopView(x);
-            self.shakeCell(NO);
-            return nil;
         }];
     }return _closeBtn;
 }
@@ -377,8 +372,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             .onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self.bgView addSubview:_cancelBtn];
-        [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.bgView.addSubview(_cancelBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-26));
             make.left.equalTo(self).offset(JobsWidth(24));
             make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(40)));
@@ -403,8 +397,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             .onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        [self.bgView addSubview:_sureBtn];
-        [_sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.bgView.addSubview(_sureBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(JobsWidth(-26));
             make.right.equalTo(self).offset(JobsWidth(-24));
             make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(40)));
@@ -418,8 +411,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
         _bgView = jobsMakeView(^(__kindof UIView * _Nullable view) {
             @jobs_strongify(self)
             view.backgroundColor = JobsWhiteColor;
-            self.addSubview(view);
-            [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(view) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(BaiShaETProjPopupView10.viewSizeByModel(nil).width, BaiShaETProjPopupView10.viewSizeByModel(nil).height - JobsWidth(44)));
                 make.centerX.equalTo(self);
                 make.top.equalTo(self.titleLab.mas_bottom);

@@ -37,9 +37,9 @@ AppToolsProtocol_synthesize
     return cell;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
-    return ^(id _Nullable data) {
+    return ^__kindof UICollectionViewCell *_Nullable(id _Nullable data) {
         @jobs_strongify(self)
         if([data isKindOfClass:UIViewModel.class]) {
             self.viewModel = data;
@@ -84,7 +84,7 @@ AppToolsProtocol_synthesize
                 self.textView.textColor = self.buttonModel.titleCor;
                 self.textView.font = self.buttonModel.titleFont;
             }if(!self.buttonModel.highlightImage) self.buttonModel.highlightImage = self.buttonModel.normalImage;
-        }
+        } return self;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -155,7 +155,7 @@ AppToolsProtocol_synthesize
         }];
     }return _button;
 }
-/// 如果需要用其他的自定义的TextView，继承此类并重写-(jobsByIDBlock _Nonnull)jobsRichElementsCellBy
+/// 如果需要用其他的自定义的TextView，继承此类并重写-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy;
 -(__kindof BaseTextView *)textView{
     if (!_textView) {
         @jobs_weakify(self)

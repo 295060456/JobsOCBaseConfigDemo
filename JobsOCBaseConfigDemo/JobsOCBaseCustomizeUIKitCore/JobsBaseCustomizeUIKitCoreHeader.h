@@ -191,6 +191,8 @@
 #import "PHAssetResource+Extra.h"
 #pragma mark —— PDFDocument
 #import "PDFDocument+Extra.h"
+#pragma mark —— UIContextMenuInteraction
+#import "UIContextMenuInteraction+Extra.h"
 
 #import "JobsMakes.h"
 

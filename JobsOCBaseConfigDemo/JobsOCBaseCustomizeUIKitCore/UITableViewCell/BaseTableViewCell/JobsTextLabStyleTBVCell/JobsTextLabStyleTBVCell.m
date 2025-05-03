@@ -12,7 +12,6 @@
 @end
 
 @implementation JobsTextLabStyleTBVCell
-#pragma mark —— @synthesize UIViewModelProtocol
 /// UIViewModelProtocol
 UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
@@ -30,12 +29,13 @@ BaseLayerProtocol_synthesize_part3
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(jobsByIDBlock _Nonnull)jobsRichElementsCellBy{
+-(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^(UIViewModel __kindof *_Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(UIViewModel __kindof *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model;
         self.label.alpha = 1;
+        return self;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】

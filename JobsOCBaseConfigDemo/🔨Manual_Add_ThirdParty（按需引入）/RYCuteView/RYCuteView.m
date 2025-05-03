@@ -111,7 +111,7 @@ Prop_assign()BOOL isAnimating;
         _shapeLayer = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
             @jobs_strongify(self)
             layer.fillColor = UIColor.colorWithHexString(@"#37A6F0").CGColor;
-            self.layer.add(layer);
+            self.layer.addSublayer(layer);
         });
     }return _shapeLayer;
 }

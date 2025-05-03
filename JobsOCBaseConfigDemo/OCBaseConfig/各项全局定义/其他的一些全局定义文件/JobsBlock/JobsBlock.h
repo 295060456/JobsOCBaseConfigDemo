@@ -118,11 +118,6 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextMo
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTextModelBlock)(UITextModel *_Nullable data);
 typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
 
-@class MSCommentDetailModel;
-@class MSCommentModel;
-typedef void(^jobsByCommentDetailModelBlock)(MSCommentDetailModel *_Nullable data);
-typedef void(^jobsByCommentModelBlock)(MSCommentModel *_Nullable data);
-
 @class JobsMagicTextField;
 typedef void(^jobsByMagicTextFieldBlock)(__kindof JobsMagicTextField *_Nullable textField);
 

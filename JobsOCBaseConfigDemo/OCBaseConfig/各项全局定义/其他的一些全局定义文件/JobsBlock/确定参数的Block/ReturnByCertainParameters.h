@@ -132,6 +132,7 @@ typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCALayerBlock)(CALayer *_
 typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlock)(void);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByStringBlock)(NSString *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByViewBlock)(UIView *_Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByInteractionBlock)(id <UIInteraction>_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByIDBlock)(id _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByArrBlock)(NSArray *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByCorBlock)(UIColor *_Nullable data);
@@ -166,6 +167,7 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByRotationGestureBlock)(UIRota
 #pragma mark —— 关于手势
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidBlock)(void);
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidStarBlock)(void *_Nullable key);
+typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
 #pragma mark —— 关于 Label
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByImage)(__kindof UIImage *_Nullable image);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByCor)(__kindof UIColor *_Nullable cor);
@@ -243,6 +245,7 @@ typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHead
                                                                                                                   NSString *_Nullable salt);
 #pragma mark —— 关于 UITableViewCell
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByIDBlock)(id _Nullable data);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsBlock)(Class _Nonnull cls);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewCellStyleBlock)(UITableViewCellStyle tableViewCellStyle);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByTableViewBlock)(UITableView *_Nonnull tableView);
@@ -260,6 +263,7 @@ typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayo
 typedef __kindof UICollectionViewLayoutAttributes *_Nullable(^JobsReturnCollectionViewLayoutAttributesByNSIndexPathBlock)(__kindof NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于 UICollectionViewCell
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
+typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByIDBlock)(id _Nullable data);
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByIndexPathBlock)(NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于 UIScrollView
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void);
@@ -564,6 +568,7 @@ typedef unsigned long long(^JobsReturnByUnsignedLongLongBlock)(unsigned long lon
 
 typedef NSIndexPath *_Nonnull(^JobsReturnIndexPathByXYBlock)(CGFloat x,CGFloat y);
 #pragma mark —— 其他
+typedef UIContextMenuInteraction *_Nonnull(^JobsReturnContextMenuInteractionByIDBlock)(id <UIContextMenuInteractionDelegate>_Nullable data);
 typedef UIImpactFeedbackGenerator *_Nonnull(^JobsReturnImpactFeedbackGeneratorByVoidBlock)(void);
 typedef UIImpactFeedbackGenerator *_Nonnull(^JobsReturnImpactFeedbackGeneratorByNSIntegerBlock)(NSInteger data);
 typedef UIImpactFeedbackGenerator *_Nonnull(^JobsReturnImpactFeedbackGeneratorByViewBlock)(__kindof UIView *_Nullable view);
