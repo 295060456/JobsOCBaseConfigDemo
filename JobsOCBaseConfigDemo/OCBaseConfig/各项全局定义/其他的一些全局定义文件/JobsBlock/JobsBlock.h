@@ -11,11 +11,13 @@
 #import "JobsBlockDef.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 /// 定义确定参数的Block
-#import "ReturnByCertainParameters.h"
-#import "VoidByCertainParameters.h"
+#import "ReturnByCertainParametersBlock.h"
+#import "VoidByCertainParametersBlock.h"
 /// 定义不确定参数的Block
 #import "ReturnByUnCertainParameters.h"
 #import "VoidByUnCertainParameters.h"
+/// 复合Block
+#import "JobsCompoundBlock.h"
 
 #ifndef JobsBlock_h
 #define JobsBlock_h
@@ -479,7 +481,7 @@ typedef SRWebSocket *_Nonnull(^JobsReturnSRWebSocketByNSURLRequestBlock)(NSURLRe
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByVoidBlock)(void);
 typedef void(^jobsByRACDisposableBlock)(RACDisposable *_Nullable data);
-typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable data);
+typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable block);
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByTimeIntervalBlock)(NSTimeInterval data);
     
 @class RACSignal;

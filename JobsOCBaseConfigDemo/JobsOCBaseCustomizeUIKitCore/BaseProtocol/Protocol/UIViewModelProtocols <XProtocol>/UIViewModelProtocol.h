@@ -30,6 +30,8 @@ Prop_strong(nullable)NSURL *normalImageURL;
 /// 背景图
 Prop_copy(nullable)NSString *normalBgImageURLString;
 Prop_strong(nullable)NSURL *normalBgImageURL;
+/// 标题用图片替代文字显示
+Prop_strong()UIImage *titleImage;
 #pragma mark —— UI约束
 Prop_copy(nullable)jobsByMASConstraintMakerBlock masonryBlock; /// Masonry
 Prop_assign()CGRect imageViewFrame;
@@ -47,6 +49,7 @@ NS_ASSUME_NONNULL_END
 @synthesize normalImageURL = _normalImageURL; \
 @synthesize normalBgImageURLString = _normalBgImageURLString; \
 @synthesize normalBgImageURL = _normalBgImageURL; \
+@synthesize titleImage = _titleImage; \
 @synthesize masonryBlock = _masonryBlock; \
 @synthesize imageViewFrame = _imageViewFrame; \
 
@@ -91,6 +94,7 @@ UIViewModelProtocol_synthesize_part2 \
 @dynamic normalImageURL;\
 @dynamic normalBgImageURLString;\
 @dynamic normalBgImageURL;\
+@dynamic titleImage;\
 @dynamic masonryBlock;\
 @dynamic imageViewFrame;\
 

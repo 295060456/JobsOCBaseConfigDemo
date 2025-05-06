@@ -51,11 +51,11 @@ Prop_copy(nullable)NSArray <UIColor *>*selected_baseBackgroundColors;// selected
 Prop_copy(nullable)NSArray <UIImage *>*selected_backgroundImages;// highlightBackgroundImage
 Prop_copy(nullable)NSArray <UIImage *>*selected_Images;// highlightImage
 Prop_copy(nullable)NSArray <NSNumber *>*selected_imagePaddings;// imagePadding 图像与标题之间的间距
-#pragma mark —— 点击事件
+#pragma mark —— 点击事件 <UIViewModelOthersProtocol>
 Prop_strong(nullable)UIAction *primaryAction;/// 新Api的点击事件
 /// 一般用于 UIButtonModel
-Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
 Prop_copy(nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
+Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
 /// 一般用于 UIButton
 Prop_copy(nullable)jobsByBtnBlock onClickBlock;
 Prop_copy(nullable)jobsByBtnBlock onLongPressGestureEventBlock;
@@ -63,10 +63,10 @@ Prop_copy(nullable)jobsByBtnBlock onLongPressGestureEventBlock;
 Prop_copy(nullable)jobsByMASConstraintMakerBlock masonryBlock;
 #pragma mark —— 计时器
 Prop_strong(nullable)NSTimerManager *timerManager;
-#pragma mark —— 按钮挂载的对象
+#pragma mark —— 按钮挂载的对象 <BaseViewProtocol>
 Prop_strong(nullable)id data;
 Prop_strong(nullable)__kindof UIView *view;
-#pragma mark —— 保留字段
+#pragma mark —— 保留(测试)字段
 Prop_copy(nullable)JobsReturnRACDisposableByReturnIDByIDBlock jobsReturnedTestBlock;
 Prop_copy(nullable)jobsByVoidBlock jobsTestBlock;
 

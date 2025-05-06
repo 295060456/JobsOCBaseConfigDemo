@@ -120,8 +120,10 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnColorByConfigurationTextAttributesTransformerBlock _Nonnull)getTitleColorByTransformer;
 /// RAC 点击事件2次封装
 -(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock _Nullable)subscribeNextBlock;
+-(JobsReturnRACDisposableByReturnIDByIDBlock _Nonnull)jobsBtnClickEventByBlock;
 /// 设置按钮的长按手势
 -(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock;
+-(jobsByRetIDByIDBlock _Nonnull)jobsBtnLongPressGestureEventByBlock;
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数
 -(JobsReturnIDByThreeIDBlock _Nonnull)btnClickActionWithParamarrays;
 /// 方法名字符串（不带参数）、作用对象

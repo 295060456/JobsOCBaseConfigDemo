@@ -40,6 +40,7 @@ Prop_copy(nullable)NSMutableArray <JobsRichTextConfig *> *subTitleAttributedData
 Prop_copy(nullable)NSMutableArray <JobsRichTextConfig *> *selectedTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
 Prop_copy(nullable)NSMutableArray <JobsRichTextConfig *> *selectedSubTitleAttributedDataMutArr;/// 对于富文本优先级：titleAttributedDataMutArr > selectedAttributedText
 #pragma mark —— 关于导航栏
+Prop_strong(nullable)__kindof UIButton *backBtn;
 Prop_strong(nullable)UIButtonModel *closeBtnModel;
 Prop_strong(nullable)UIButtonModel *backBtnModel;
 Prop_strong(nullable)UIViewModel *titleModel;
@@ -139,6 +140,7 @@ NS_ASSUME_NONNULL_END
 @synthesize subTitleAttributedDataMutArr = _subTitleAttributedDataMutArr; \
 @synthesize selectedTitleAttributedDataMutArr = _selectedTitleAttributedDataMutArr; \
 @synthesize selectedSubTitleAttributedDataMutArr = _selectedSubTitleAttributedDataMutArr; \
+@synthesize backBtn = _backBtn; \
 @synthesize closeBtnModel = _closeBtnModel; \
 @synthesize backBtnModel = _backBtnModel; \
 @synthesize titleModel = _titleModel; \
@@ -161,6 +163,7 @@ NS_ASSUME_NONNULL_END
 @dynamic subTitleAttributedDataMutArr;\
 @dynamic selectedTitleAttributedDataMutArr;\
 @dynamic selectedSubTitleAttributedDataMutArr;\
+@dynamic backBtn;\
 @dynamic closeBtnModel;\
 @dynamic backBtnModel;\
 @dynamic titleModel;\

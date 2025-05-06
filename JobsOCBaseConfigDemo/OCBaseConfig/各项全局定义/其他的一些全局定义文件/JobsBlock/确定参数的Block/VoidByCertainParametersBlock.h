@@ -1,5 +1,5 @@
 //
-//  VoidByCertainParameters.h
+//  VoidByCertainParametersBlock.h
 //  JobsOCBaseConfig
 //
 //  Created by Jobs on 2022/1/27.
@@ -174,6 +174,7 @@ typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nulla
 /// arg 事件默认传递的对象，比如`NSNotification`，`UIButton`
 typedef void(^jobsByTwoIDBlock) (Jobs_2_Arguments);/// weakSelf、arg
 typedef void(^JobsSelectorBlock1) (Jobs_3_Arguments);/// weakSelf、arg、data
+
 #pragma clang diagnostic pop
 
 #endif /* VoidByCertainParameters_h */

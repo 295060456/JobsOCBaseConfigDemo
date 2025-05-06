@@ -1652,6 +1652,7 @@
 		C532D7212DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GKCustomNavigationBar.h"; sourceTree = "<group>"; };
 		C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GKCustomNavigationBar.m"; sourceTree = "<group>"; };
 		C532D7AF2DC9D6DB00917DBF /* JobsBlockDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlockDef.h; sourceTree = "<group>"; };
+		C532DA342DCA002D00917DBF /* JobsCompoundBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCompoundBlock.h; sourceTree = "<group>"; };
 		C53894052DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+BaseViewProtocol.h"; sourceTree = "<group>"; };
 		C53894062DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+BaseViewProtocol.m"; sourceTree = "<group>"; };
 		C53894092DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewCell+BaseViewProtocol.h"; sourceTree = "<group>"; };
@@ -2425,8 +2426,8 @@
 		CE4F28952CA8286D002AF25B /* MacroDef_SysWarning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDef_SysWarning.h; sourceTree = "<group>"; };
 		CE4F28982CA8286D002AF25B /* ReturnByUnCertainParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReturnByUnCertainParameters.h; sourceTree = "<group>"; };
 		CE4F28992CA8286D002AF25B /* VoidByUnCertainParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoidByUnCertainParameters.h; sourceTree = "<group>"; };
-		CE4F289B2CA8286D002AF25B /* ReturnByCertainParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReturnByCertainParameters.h; sourceTree = "<group>"; };
-		CE4F289C2CA8286D002AF25B /* VoidByCertainParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoidByCertainParameters.h; sourceTree = "<group>"; };
+		CE4F289B2CA8286D002AF25B /* ReturnByCertainParametersBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReturnByCertainParametersBlock.h; sourceTree = "<group>"; };
+		CE4F289C2CA8286D002AF25B /* VoidByCertainParametersBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoidByCertainParametersBlock.h; sourceTree = "<group>"; };
 		CE4F289E2CA8286D002AF25B /* JobsBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlock.h; sourceTree = "<group>"; };
 		CE4F289F2CA8286D002AF25B /* JobsBlock.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = JobsBlock.md; sourceTree = "<group>"; };
 		CE4F28A12CA8286D002AF25B /* APIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIKey.h; sourceTree = "<group>"; };
@@ -10089,8 +10090,8 @@
 		CE4F289D2CA8286D002AF25B /* 确定参数的Block */ = {
 			isa = PBXGroup;
 			children = (
-				CE4F289B2CA8286D002AF25B /* ReturnByCertainParameters.h */,
-				CE4F289C2CA8286D002AF25B /* VoidByCertainParameters.h */,
+				CE4F289B2CA8286D002AF25B /* ReturnByCertainParametersBlock.h */,
+				CE4F289C2CA8286D002AF25B /* VoidByCertainParametersBlock.h */,
 			);
 			path = "确定参数的Block";
 			sourceTree = "<group>";
@@ -10104,6 +10105,7 @@
 				CE4F289E2CA8286D002AF25B /* JobsBlock.h */,
 				C532D7AF2DC9D6DB00917DBF /* JobsBlockDef.h */,
 				CE4F289F2CA8286D002AF25B /* JobsBlock.md */,
+				C532DA342DCA002D00917DBF /* JobsCompoundBlock.h */,
 			);
 			path = JobsBlock;
 			sourceTree = "<group>";

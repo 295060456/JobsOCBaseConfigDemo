@@ -1,12 +1,11 @@
 //
-//  ReturnByCertainParameters.h
+//  ReturnByCertainParametersBlock.h
 //  JobsOCBaseConfig
 //
 //  Created by Jobs on 2022/1/27.
 //
 
 #import <JavaScriptCore/JavaScriptCore.h>
-#import "VoidByCertainParameters.h"
 #import "JobsBlockDef.h"
 
 #ifndef ReturnByCertainParameters_h
@@ -152,7 +151,6 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByCenterBlock)(CGFloat x,CGFlo
 typedef __kindof UIView *_Nullable(^JobsReturnViewByClassBlock)(Class _Nonnull cls);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTableViewHeaderFooterViewBlock)(__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTimeIntervalBlock)(NSTimeInterval data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBtnBlock)(jobsByBtnBlock _Nullable block);
 /// UIView + UIGestureRecognizer
 typedef __kindof UIView *_Nullable(^JobsReturnViewByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);
@@ -308,8 +306,6 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalsBlock)(NSTi
 typedef __kindof NSString *_Nullable(^JobsReturnStringByBOOLBlock)(BOOL data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByURLBlock)(NSURL *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByArrAndNSIntegerBlock)(__kindof NSArray *_Nullable arr,NSInteger index);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateBlock)(NSDate *_Nullable date);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDataBlock)(__kindof NSData *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByImageBlock)(UIImage *_Nullable data);
@@ -317,6 +313,8 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByNumberBlock)(NSNumber *_
 typedef __kindof NSString *_Nullable(^JobsReturnStringByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCorBlock)(UIColor *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByArrAndNSIntegerBlock)(__kindof NSArray *_Nullable arr,NSInteger index);
 /// 多参数
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateFormatterBlock)(NSTimeInterval data,
                                                                                            NSDateFormatter *_Nullable dateFormatter);

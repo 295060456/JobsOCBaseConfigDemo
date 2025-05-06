@@ -16,25 +16,25 @@
     CGFloat btnW;
     CGFloat btnH;
 }
-@property(strong,nonatomic)ZLGestureLockView *gestureLockView;
+Prop_strong()ZLGestureLockView *gestureLockView;
 /// 实时展示已经划过的手势路径
-@property(strong,nonatomic)ZLGestureLockIndicator *gestureLockIndicator;
+Prop_strong()ZLGestureLockIndicator *gestureLockIndicator;
 /// 手势状态栏提示label
-@property(strong,nonatomic)UILabel *statusLabel;
+Prop_strong()UILabel *statusLabel;
 /// 账户名
-@property(strong,nonatomic)UILabel *nameLabel;
+Prop_strong()UILabel *nameLabel;
 /// 账户头像
-@property(strong,nonatomic)UIImageView *headIcon;
+Prop_strong()UIImageView *headIcon;
 /// 其他账户登录按钮
-@property(strong,nonatomic)UIButton *otherAcountBtn;
+Prop_strong()UIButton *otherAcountBtn;
 /// 重新绘制按钮
-@property(strong,nonatomic)UIButton *resetPswBtn;
+Prop_strong()UIButton *resetPswBtn;
 /// 忘记手势密码按钮
-@property(strong,nonatomic)UIButton *forgetPswBtn;
+Prop_strong()UIButton *forgetPswBtn;
 /// 创建的手势密码
 Prop_copy()NSString *lastGesturePsw;
 /// 创建/校验 手势密码
-@property(nonatomic)ZLUnlockType unlockType;
+Prop_assign()ZLUnlockType unlockType;
 
 @end
 
@@ -240,18 +240,17 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 -(UILabel *)statusLabel{
     if (!_statusLabel) {
         @jobs_weakify(self)
-        _statusLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+        _statusLabel = self.view.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.frame = CGRectMake((self.view.frame.size.width - JobsWidth(200)) * 0.5,
-                                     JobsWidth(160),
-                                     JobsWidth(200),
-                                     JobsWidth(30));
-            label.textAlignment = NSTextAlignmentCenter;
-            label.text = JobsInternationalization(@"请绘制手势密码");
-            label.font = [UIFont systemFontOfSize:12];
-            label.textColor = JobsRedColor;
-            self.view.addSubview(label);
-        });
+            label.byTextAlignment(NSTextAlignmentCenter)
+                .byText(JobsInternationalization(@"请绘制手势密码"))
+                .byFont(UIFontSystemFontOfSize(JobsWidth(12)))
+                .byTextCor(JobsRedColor)
+                .byFrame(CGRectMake((self.view.frame.size.width - JobsWidth(200)) * 0.5,
+                                    JobsWidth(160),
+                                    JobsWidth(200),
+                                    JobsWidth(30)));
+        }));
     }return _statusLabel;
 }
 
@@ -278,63 +277,73 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
 
 -(UIButton *)otherAcountBtn{
     if (!_otherAcountBtn) {
-        _otherAcountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _otherAcountBtn.frame = CGRectMake(maginX,
-                                          self.view.frame.size.height - JobsWidth(20) - btnH,
-                                          btnW,
-                                          btnH);
+        @jobs_weakify(self)
+        _otherAcountBtn = self.view.addSubview(UIButton.jobsInit()
+                                               .jobsResetBtnTitle(JobsInternationalization(@"其他账户"))
+                                               .jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)])
+                                               .jobsResetBtnTitleCor(RGBA_COLOR(102, 102, 102, 1))
+                                               .onClickBy(^(UIButton *x){
+                                                   @jobs_strongify(self)
+                                                   x.selected = !x.selected;
+                                                   if (self.objBlock) self.objBlock(x);
+                                                   JobsLog(@"点击其他账号登陆按钮")
+                                               }).onLongPressGestureBy(^(id data){
+                                                   JobsLog(@"");
+                                               })
+                                               .byFrame(CGRectMake(maginX,
+                                                                   self.view.frame.size.height - JobsWidth(20) - btnH,
+                                                                   btnW,
+                                                                   btnH)));
         _otherAcountBtn.backgroundColor = JobsClearColor;
-        _otherAcountBtn.jobsResetBtnTitle(JobsInternationalization(@"其他账户"));
-        _otherAcountBtn.jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)]);
-        _otherAcountBtn.jobsResetBtnTitleCor(RGBA_COLOR(102, 102, 102, 1));
-        [_otherAcountBtn jobsBtnClickEventBlock:^id(id data) {
-            JobsLog(@"点击其他账号登陆按钮")
-            return nil;
-        }];
-        [self.view addSubview:_otherAcountBtn];
     }return _otherAcountBtn;
 }
 
 -(UIButton *)resetPswBtn{
     if (!_resetPswBtn) {
-        _resetPswBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _resetPswBtn.frame = CGRectMake(CGRectGetMaxX(self.otherAcountBtn.frame) + magin,
-                                        self.otherAcountBtn.frame.origin.y,
-                                        btnW,
-                                        btnH);
-        _resetPswBtn.backgroundColor = self.otherAcountBtn.backgroundColor;
-        _resetPswBtn.jobsResetBtnTitle(JobsInternationalization(@"重新绘制"));
-        _resetPswBtn.jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)]);
-        _resetPswBtn.jobsResetBtnTitleCor(RGBA_COLOR(102, 102, 102, 1));
         @jobs_weakify(self)
-        [_resetPswBtn jobsBtnClickEventBlock:^id(id data) {
-            @jobs_strongify(self)
-            self.lastGesturePsw = nil;
-            self.statusLabel.text = JobsInternationalization(@"请绘制手势密码");
-            self.resetPswBtn.hidden = YES;
-            [self.gestureLockIndicator setGesturePassword:JobsInternationalization(@"")];
-            return nil;
-        }];
-        [self.view addSubview:_resetPswBtn];
+        _resetPswBtn = self.view.addSubview(UIButton.jobsInit()
+                                            .jobsResetBtnTitle(JobsInternationalization(@"重新绘制"))
+                                            .jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)])
+                                            .jobsResetBtnTitleCor(RGBA_COLOR(102, 102, 102, 1))
+                                            .onClickBy(^(UIButton *x){
+                                                @jobs_strongify(self)
+                                                x.selected = !x.selected;
+                                                if (self.objBlock) self.objBlock(x);
+                                                self.lastGesturePsw = nil;
+                                                self.statusLabel.text = JobsInternationalization(@"请绘制手势密码");
+                                                self.resetPswBtn.hidden = YES;
+                                                [self.gestureLockIndicator setGesturePassword:JobsInternationalization(@"")];
+                                             }).onLongPressGestureBy(^(id data){
+                                                 JobsLog(@"");
+                                             })
+                                            .byFrame(CGRectMake(CGRectGetMaxX(self.otherAcountBtn.frame) + magin,
+                                                                self.otherAcountBtn.frame.origin.y,
+                                                                btnW,
+                                                                btnH)));
+        _resetPswBtn.backgroundColor = self.otherAcountBtn.backgroundColor;
     }return _resetPswBtn;
 }
 
 -(UIButton *)forgetPswBtn{
     if (!_forgetPswBtn) {
-        _forgetPswBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _forgetPswBtn.frame = CGRectMake(CGRectGetMaxX(self.resetPswBtn.frame) + magin,
-                                         self.otherAcountBtn.frame.origin.y,
-                                         btnW,
-                                         btnH);
-        _forgetPswBtn.backgroundColor = self.otherAcountBtn.backgroundColor;
-        _forgetPswBtn.jobsResetBtnTitle(JobsInternationalization(@"忘记密码"));
-        _forgetPswBtn.jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)]);
-        _forgetPswBtn.jobsResetBtnTitleCor(JobsRedColor);
-        [_forgetPswBtn jobsBtnClickEventBlock:^id(id data) {
-            JobsLog(@"点击忘记手势密码按钮");
-            return nil;
-        }];
-        [self.view addSubview:_forgetPswBtn];
+        @jobs_weakify(self)
+        _forgetPswBtn = self.view.addSubview(UIButton.jobsInit()
+                                             .jobsResetBtnTitle(JobsInternationalization(@"重新绘制"))
+                                             .jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)])
+                                             .jobsResetBtnTitleCor(RGBA_COLOR(102, 102, 102, 1))
+                                             .onClickBy(^(UIButton *x){
+                                                 @jobs_strongify(self)
+                                                 x.selected = !x.selected;
+                                                 if (self.objBlock) self.objBlock(x);
+                                                 JobsLog(@"点击忘记手势密码按钮");
+                                              }).onLongPressGestureBy(^(id data){
+                                                  JobsLog(@"");
+                                              })
+                                             .byFrame(CGRectMake(CGRectGetMaxX(self.resetPswBtn.frame) + magin,
+                                                                 self.otherAcountBtn.frame.origin.y,
+                                                                 btnW,
+                                                                 btnH)));
+         _resetPswBtn.backgroundColor = self.otherAcountBtn.backgroundColor;
     }return _forgetPswBtn;
 }
 

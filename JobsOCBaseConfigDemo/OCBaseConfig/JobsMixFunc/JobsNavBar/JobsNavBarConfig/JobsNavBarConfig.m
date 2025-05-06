@@ -9,6 +9,14 @@
 JobsNavBarConfig *static_navBarConfig = nil;
 static dispatch_once_t static_navBarConfigOnceToken;
 @implementation JobsNavBarConfig
+/// AppToolsProtocol
+AppToolsProtocol_synthesize
+/// UITextModelProtocol
+UITextModelProtocol_synthesize
+/// UITextFieldProtocol
+UITextFieldProtocol_synthesize_part1
+/// UIPictureAndBackGroundCorProtocol
+UIPictureAndBackGroundCorProtocol_synthesize
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
 +(void)destroySingleton{

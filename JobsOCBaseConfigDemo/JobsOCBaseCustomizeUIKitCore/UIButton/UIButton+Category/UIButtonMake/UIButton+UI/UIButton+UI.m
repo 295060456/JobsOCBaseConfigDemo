@@ -152,18 +152,18 @@
         btn = [self.class buttonWithConfiguration:btnConfiguration
                                     primaryAction:primaryAction];
         
-//        JobsLog(@"%@",btnConfiguration);
-//        JobsLog(@"%@",btn.configuration);
-//        JobsLog(@"");
-    /**
-     UIAction *action = [UIAction actionWithTitle:@"按钮点击操作"
-                                            image:nil
-                                       identifier:nil
-                                          handler:^(__kindof UIAction * _Nonnull action) {
+        //        JobsLog(@"%@",btnConfiguration);
+        //        JobsLog(@"%@",btn.configuration);
+        //        JobsLog(@"");
+        /**
+         UIAction *action = [UIAction actionWithTitle:@"按钮点击操作"
+         image:nil
+         identifier:nil
+         handler:^(__kindof UIAction * _Nonnull action) {
          JobsLog(@"按钮被点击了！");
          // 在这里执行按钮点击时的操作
-     }];
-     */
+         }];
+         */
     }else{
         if(self == UIButton.initBySysType){
             btn = self;
@@ -208,9 +208,9 @@
         btn.contentVerticalAlignment = contentVerticalAlignment;
         btn.contentHorizontalAlignment = contentHorizontalAlignment;
         /// 按钮的点击事件
-        [btn jobsBtnClickEventBlock:clickEventBlock];
+        btn.jobsBtnClickEventByBlock(clickEventBlock);
         /// 按钮的长按事件
-        [btn jobsBtnLongPressGestureEventBlock:longPressGestureEventBlock];
+        btn.jobsBtnLongPressGestureEventByBlock(longPressGestureEventBlock);
     }return btn;
 }
 /// @property (nonatomic, readwrite, assign) UIButtonConfigurationSize buttonSize; 这个属性，不是我们想要的UIFont。设置UIFont必须在富文本里面进行设置
@@ -250,21 +250,37 @@
 }
 /// RAC 点击事件2次封装
 -(RACDisposable *)jobsBtnClickEventBlock:(JobsReturnIDByIDBlock _Nullable)subscribeNextBlock{
-    return [[self rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIButton * _Nullable x) {
-        if(subscribeNextBlock) subscribeNextBlock(x);
-    }];
+    return self.jobsBtnClickEventByBlock(subscribeNextBlock);
+}
+
+-(JobsReturnRACDisposableByReturnIDByIDBlock _Nonnull)jobsBtnClickEventByBlock{
+    @jobs_weakify(self)
+    return ^RACDisposable *_Nonnull(JobsReturnIDByIDBlock _Nullable block){
+        @jobs_strongify(self)
+        return [[self rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIButton * _Nullable x) {
+            if(block) block(x);
+        }];
+    };
 }
 /// 设置按钮的长按手势
 -(void)jobsBtnLongPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock{
-    if(longPressGestureEventBlock){
-        self.userInteractionEnabled = YES;
-        self.addGesture([jobsMakeLongPressGesture(^(UILongPressGestureRecognizer * _Nullable gesture) {
-            /// 这里写手势的配置
-        }) gestureActionBy:^{
-            /// 这里写手势的触发
-            if(longPressGestureEventBlock) longPressGestureEventBlock(self);
-        }]);
-    }
+    return self.jobsBtnLongPressGestureEventByBlock(longPressGestureEventBlock);
+}
+
+-(jobsByRetIDByIDBlock _Nonnull)jobsBtnLongPressGestureEventByBlock{
+    @jobs_weakify(self)
+    return ^(JobsReturnIDByIDBlock _Nullable block){
+        @jobs_strongify(self)
+        if(block){
+            self.userInteractionEnabled = YES;
+            self.addGesture([jobsMakeLongPressGesture(^(UILongPressGestureRecognizer * _Nullable gesture) {
+                /// 这里写手势的配置
+            }) gestureActionBy:^{
+                /// 这里写手势的触发
+                if(block) block(self);
+            }]);
+        }
+    };
 }
 /// 方法名字符串（带参数、参数之间用"："隔开）、作用对象、参数
 -(JobsReturnIDByThreeIDBlock _Nonnull)btnClickActionWithParamarrays{

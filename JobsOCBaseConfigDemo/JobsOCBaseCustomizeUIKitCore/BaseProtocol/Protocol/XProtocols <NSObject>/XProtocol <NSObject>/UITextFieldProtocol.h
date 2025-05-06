@@ -66,6 +66,14 @@ Prop_assign()CGRect editingRectForBounds;/// 重置编辑区域【编辑状态�
 
 NS_ASSUME_NONNULL_END
 
+#ifndef UITextFieldProtocol_synthesize_part0
+#define UITextFieldProtocol_synthesize_part0 \
+\
+@synthesize placeholderColor = _placeholderColor; \
+@synthesize placeholderFont = _placeholderFont; \
+
+#endif /* UITextFieldProtocol_synthesize_part0 */
+
 #ifndef UITextFieldProtocol_synthesize_part1
 #define UITextFieldProtocol_synthesize_part1 \
 \
@@ -73,8 +81,6 @@ NS_ASSUME_NONNULL_END
 @synthesize borderWidth = _borderWidth; \
 @synthesize cornerRadiusValue = _cornerRadiusValue; \
 @synthesize layerBorderCor = _layerBorderCor; \
-@synthesize placeholderColor = _placeholderColor; \
-@synthesize placeholderFont = _placeholderFont; \
 @synthesize title = _title; \
 @synthesize titleCor = _titleCor; \
 @synthesize titleFont = _titleFont; \
@@ -119,6 +125,7 @@ NS_ASSUME_NONNULL_END
 #ifndef UITextFieldProtocol_synthesize
 #define UITextFieldProtocol_synthesize \
 \
+UITextFieldProtocol_synthesize_part0 \
 UITextFieldProtocol_synthesize_part1 \
 UITextFieldProtocol_synthesize_part2 \
 

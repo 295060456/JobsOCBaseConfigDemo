@@ -13,6 +13,7 @@
 #import "ZLGestureLockView.h"
 #import "ZLGestureLockIndicator.h"
 #import "BaseViewController.h"
+#import "DefineProperty.h"
 
 typedef NS_ENUM(NSInteger,ZLUnlockType) {
     ZLUnlockTypeCreatePsw, // 创建手势密码

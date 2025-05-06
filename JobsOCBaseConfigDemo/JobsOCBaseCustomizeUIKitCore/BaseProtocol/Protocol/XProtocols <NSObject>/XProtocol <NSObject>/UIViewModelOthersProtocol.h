@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 /// 其他
 #pragma mark —— UI
+Prop_assign()CGFloat alpha;
+Prop_assign()BOOL opaque;
 Prop_strong(nullable)UIColor *layerBorderCor;
 Prop_assign()CGFloat layerBorderWidth;
 Prop_assign()CGFloat layerCornerRadius;
@@ -37,18 +39,26 @@ Prop_assign()NSUInteger jobsTag;
 Prop_assign()BOOL jobsSelected;
 Prop_assign()BOOL jobsEnabled;
 Prop_strong(nullable)UIAction *primaryAction;/// 新Api的点击事件
-Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
+/// 一般用于 UIButtonModel
 Prop_copy(nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
+Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
+/// 一般用于 UIButton
+Prop_copy(nullable)jobsByBtnBlock onClickBlock;
+Prop_copy(nullable)jobsByBtnBlock onLongPressGestureEventBlock;
 #pragma mark —— ZFDouYinCell
 -(void)zf_douyinRotation;
 
 @end
+
+typedef JobsReturnIDByIDBlock _Nonnull (^JobsReturnIDBlockByIDBlock)(id <UIViewModelOthersProtocol>_Nullable data);
 
 NS_ASSUME_NONNULL_END
 
 #ifndef UIViewModelOthersProtocol_synthesize
 #define UIViewModelOthersProtocol_synthesize \
 \
+@synthesize alpha = _alpha;\
+@synthesize opaque = _opaque;\
 @synthesize layerBorderCor = _layerBorderCor;\
 @synthesize layerBorderWidth = _layerBorderWidth;\
 @synthesize layerCornerRadius = _layerCornerRadius;\
@@ -61,14 +71,18 @@ NS_ASSUME_NONNULL_END
 @synthesize jobsSelected = _jobsSelected;\
 @synthesize jobsEnabled = _jobsEnabled;\
 @synthesize primaryAction = _primaryAction;\
-@synthesize longPressGestureEventBlock = _longPressGestureEventBlock;\
 @synthesize clickEventBlock = _clickEventBlock;\
+@synthesize longPressGestureEventBlock = _longPressGestureEventBlock;\
+@synthesize onClickBlock = _onClickBlock;\
+@synthesize onLongPressGestureEventBlock = _onLongPressGestureEventBlock;\
 
 #endif /* UIViewModelOthersProtocol_synthesize */
 
 #ifndef UIViewModelOthersProtocol_dynamic
 #define UIViewModelOthersProtocol_dynamic \
 \
+@dynamic alpha;\
+@dynamic opaque;\
 @dynamic layerBorderCor;\
 @dynamic layerBorderWidth;\
 @dynamic layerCornerRadius;\
@@ -81,8 +95,10 @@ NS_ASSUME_NONNULL_END
 @dynamic jobsSelected;\
 @dynamic jobsEnabled;\
 @dynamic primaryAction;\
-@dynamic longPressGestureEventBlock;\
 @dynamic clickEventBlock;\
+@dynamic longPressGestureEventBlock;\
+@dynamic onClickBlock;\
+@dynamic onLongPressGestureEventBlock;\
 
 #endif /* UIViewModelOthersProtocol_dynamic */
 

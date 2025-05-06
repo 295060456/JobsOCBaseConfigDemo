@@ -28,10 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BaseViewProtocol <UIViewModelProtocol>
 typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewProtocol> _Nullable data);
 @optional
+Prop_strong(nullable)__kindof UIView *view;
 Prop_strong(nullable)__kindof UICollectionView *collectionView;
 Prop_strong(nullable)__kindof UITableView *tableView;
 Prop_strong(nullable)__kindof UIScrollView *scrollView;
-
 Prop_strong(nullable)__kindof WKWebView *webView;
 Prop_strong(nullable)__kindof PDFView *pdfView;
 Prop_strong(nullable)__kindof UIImageView *imageView;
@@ -39,8 +39,8 @@ Prop_strong(nullable)__kindof UIButton *button;
 Prop_strong(nullable)__kindof UILabel *label;
 Prop_strong(nullable)__kindof UITextView *textView;
 Prop_strong(nullable)__kindof SZTextView *szTextView;
-Prop_strong(nullable)__kindof JobsTextView *jobsTextView;
 Prop_strong(nullable)__kindof UITextField *textField;
+Prop_strong(nullable)__kindof JobsTextView *jobsTextView;
 Prop_strong(nullable)__kindof JobsMagicTextField *magicTextField;
 Prop_strong(nullable)__kindof ZYTextField *zyTextField;
 Prop_strong(nullable)__kindof HQTextField *hqTextField;
@@ -157,6 +157,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_synthesize
 #define BaseViewProtocol_synthesize \
 \
+@synthesize view = _view;\
 @synthesize collectionView = _collectionView;\
 @synthesize tableView = _tableView;\
 @synthesize scrollView = _scrollView;\
@@ -190,6 +191,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_dynamic
 #define BaseViewProtocol_dynamic \
 \
+@dynamic view;\
 @dynamic collectionView;\
 @dynamic tableView;\
 @dynamic scrollView;\

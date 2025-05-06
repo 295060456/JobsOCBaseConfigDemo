@@ -8,6 +8,35 @@
 #import "UIButton+SimplyMake.h"
 
 @implementation UIButton (SimplyMake)
+#pragma mark —— 一些公共方法
+/// 长按方法
++(JobsRetIDByIDBlockByViewModelOthersProtocolID _Nonnull)longPressGestureActionBy{
+    return ^JobsReturnIDByIDBlock(id<UIViewModelOthersProtocol> data){
+        return data.longPressGestureEventBlock ? :
+        (data.onLongPressGestureEventBlock ? ^id(__kindof UIButton *_Nullable x) {
+            if (data.onLongPressGestureEventBlock) data.onLongPressGestureEventBlock(x);
+            return nil;
+        } : ^id(__kindof UIButton *_Nullable x) {
+            JobsLog(@"按钮的长按事件触发");
+            if (x.longPressGestureBlock) x.longPressGestureBlock(x);
+            return nil;
+        });
+    };
+}
+/// 点击方法
++(JobsRetIDByIDBlockByViewModelOthersProtocolID _Nonnull)clickActionBy{
+    return ^JobsReturnIDByIDBlock(id<UIViewModelOthersProtocol> data){
+        return data.clickEventBlock ? :
+        (data.onClickBlock ? ^id(__kindof UIButton *_Nullable x) {
+            if (data.onClickBlock) data.onClickBlock(x);
+            return nil;
+        } : ^id(__kindof UIButton *_Nullable x) {
+            JobsLog(@"按钮的点击事件触发");
+            if (x.clickBlock) x.clickBlock(x);
+            return nil;
+        });
+    };
+}
 #pragma mark —— 对老Api进行二次封装
 +(JobsReturnButtonByNSIntegerBlock _Nonnull)initByType{
     return ^__kindof UIButton *_Nullable(UIButtonType type){
@@ -310,17 +339,12 @@
                                           borderWidth:data.borderWidth
                                              selected:data.jobsSelected
                                         primaryAction:data.primaryAction
-                           longPressGestureEventBlock:data.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
-            JobsLog(@"按钮的长按事件触发");
-            if(x.longPressGestureBlock) x.longPressGestureBlock(x);
-            return nil;
-        }
-                                      clickEventBlock:data.clickEventBlock ? : ^id(__kindof UIButton *x){
-            if(x.clickBlock) x.clickBlock(x);
-            return nil;
-        }];
+                           longPressGestureEventBlock:UIButton.longPressGestureActionBy(data)
+                                      clickEventBlock:UIButton.clickActionBy(data)];
     };
 }
+
+
 /// 依靠UIButtonModel进行创建
 +(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel{
     @jobs_weakify(self)
@@ -360,15 +384,8 @@
                                           borderWidth:data.borderWidth
                                              selected:data.jobsSelected
                                         primaryAction:data.primaryAction
-                           longPressGestureEventBlock:data.longPressGestureEventBlock ? : ^id(__kindof UIButton *_Nullable x) {
-            JobsLog(@"按钮的长按事件触发");
-            if(x.longPressGestureBlock) x.longPressGestureBlock(x);
-            return nil;
-        }
-                                      clickEventBlock:data.clickEventBlock ? : ^id(__kindof UIButton *x){
-            if(x.clickBlock) x.clickBlock(x);
-            return nil;
-        }];
+                           longPressGestureEventBlock:UIButton.longPressGestureActionBy(data)
+                                      clickEventBlock:UIButton.clickActionBy(data)];
     };
 }
 /// 依靠UITextModel进行创建
@@ -410,15 +427,8 @@
                                           borderWidth:JobsWidth(0)
                                              selected:NO
                                         primaryAction:nil
-                           longPressGestureEventBlock:^id(__kindof UIButton *_Nullable x) {
-            JobsLog(@"按钮的长按事件触发");
-            if(x.longPressGestureBlock) x.longPressGestureBlock(x);
-            return nil;
-        }
-                                      clickEventBlock:^id(__kindof UIButton *x){
-            if(x.clickBlock) x.clickBlock(x);
-            return nil;
-        }];
+                           longPressGestureEventBlock:UIButton.longPressGestureActionBy(data)
+                                      clickEventBlock:UIButton.clickActionBy(data)];
     };
 }
 #pragma mark —— 一些公有方法
