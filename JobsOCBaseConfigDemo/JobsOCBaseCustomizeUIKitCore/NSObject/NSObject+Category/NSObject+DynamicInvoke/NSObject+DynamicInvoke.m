@@ -166,7 +166,7 @@ existMethodWithName:(NSString *_Nullable)methodName{
     }
 }
 /// 用block来代替selector
--(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock _Nullable)selectorBlock{
+-(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDByTwoIDBlock _Nullable)selectorBlock{
     return selectorBlocks(selectorBlock, nil, self);
 }
 /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
@@ -175,7 +175,7 @@ existMethodWithName:(NSString *_Nullable)methodName{
 ///   - block: 最终的执行体
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
-SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
+SEL _Nullable selectorBlocks(JobsReturnIDByTwoIDBlock _Nullable block,
                              NSString *_Nullable selectorName,// MethodName(self)
                              NSObject *_Nonnull target) {
     if (!block) {
@@ -225,7 +225,7 @@ SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
 }
 /// 内部调用无需暴露
 static void selectorImp(id target, SEL _cmd, id arg) {
-    JobsReturnIDBySelectorBlock block = objc_getAssociatedObject(target, _cmd);
+    JobsReturnIDByTwoIDBlock block = objc_getAssociatedObject(target, _cmd);
     if (block) block(target, arg);
 }
 /// 对 SEL和IMP的统一管理

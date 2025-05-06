@@ -128,6 +128,8 @@ Prop_copy(nullable)jobsByBtnBlock closeBtnClickAction;
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel;
 -(jobsByViewModelBlock _Nonnull)jobsRichViewByViewModel;
 -(jobsByIDBlock _Nonnull)update;
+-(JobsReturnNavBarByVoidBtnBlock _Nullable)JobsNavBarBackBtnClickBlock; /// 返回按钮的回调
+-(JobsReturnNavBarByVoidBtnBlock _Nullable)JobsNavBarCloseBtnClickBlock; /// 关闭按钮的回调
 #pragma mark —— 关于 TextField
 /// 清除数据
 -(JobsReturnViewByVoidBlock _Nonnull)cleanTextFieldValue;

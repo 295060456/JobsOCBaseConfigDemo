@@ -65,8 +65,8 @@ Prop_copy(nullable)jobsByUnsignedLongLongBlock unsignedLongLongBlock;/// 入参�
 -(void)actionUnsignedLongBlock:(jobsByUnsignedLongBlock _Nullable)UnsignedLongBlock;
 -(void)actionUnsignedLongLongBlock:(jobsByUnsignedLongLongBlock _Nullable)UnsignedLongLongBlock;
 
-Prop_copy(nullable)JobsSelectorBlock selectorBlock;
--(void)actionSelectorBlock:(JobsSelectorBlock _Nullable)SelectorBlock;
+Prop_copy(nullable)jobsByTwoIDBlock selectorBlock;
+-(void)actionSelectorBlock:(jobsByTwoIDBlock _Nullable)SelectorBlock;
 
 Prop_copy(nullable)JobsReturnIDByVoidBlock retIDByVoidBlock;/// 无入参，返回值为ID的回调
 -(void)actionRetIDByVoidBlock:(JobsReturnIDByVoidBlock _Nullable)retIDByVoidBlock;
@@ -143,8 +143,8 @@ Prop_copy(nullable)JobsReturnByUnsignedLongLongBlock retUnsignedLongLongBlock;//
 -(void)actionRetUnsignedLongBlock:(JobsReturnByUnsignedLongBlock _Nullable)retUnsignedLongBlock;
 -(void)actionRetUnsignedLongLongBlock:(JobsReturnByUnsignedLongLongBlock _Nullable)retUnsignedLongLongBlock;
 
-Prop_copy(nullable)JobsReturnIDBySelectorBlock retIDBySelectorBlock;
--(void)actionRetIDBySelectorBlock:(JobsReturnIDBySelectorBlock _Nullable)retIDBySelectorBlock;
+Prop_copy(nullable)JobsReturnIDByTwoIDBlock retIDBySelectorBlock;
+-(void)actionRetIDBySelectorBlock:(JobsReturnIDByTwoIDBlock _Nullable)retIDBySelectorBlock;
 /// 一些复合型Block
 -(JobsReturnViewByBlock1 _Nullable)JobsBlock1;
 -(JobsReturnViewByBlock2 _Nullable)JobsBlock2;

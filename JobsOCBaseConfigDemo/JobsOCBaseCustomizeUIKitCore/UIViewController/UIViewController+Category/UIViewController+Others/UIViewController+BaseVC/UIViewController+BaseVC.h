@@ -18,6 +18,7 @@
 #import "NSObject+UserInfo.h"
 #import "JobsViewNavigator.h"
 #import "NSObject+Extras.h"
+#import "UIViewController+GKCustomNavigationBar.h"
 
 #if __has_include(<ReactiveObjC/RACmetamacros.h>)
 #import <ReactiveObjC/RACmetamacros.h>
@@ -36,13 +37,6 @@
 #else
 #import "RACEXTKeyPathCoding.h"
 #endif
-
-//#if __has_include(<ReactiveObjC/RACEXTRuntimeExtensions.h>)
-//#import <ReactiveObjC/RACEXTRuntimeExtensions.h>
-//#else
-//#import "RACEXTRuntimeExtensions.h"
-//#endif
-
 /// 用导航控制器进行包装
 NS_INLINE __kindof UINavigationController * _Nullable JobsNavCtrl(UIViewController __kindof * _Nonnull viewController){
     return viewController.navigationController ? viewController : [UINavigationController.alloc initWithRootViewController:viewController];

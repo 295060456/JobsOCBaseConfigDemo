@@ -55,13 +55,13 @@ Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
 +(JobsReturnButtonByStyle3Block _Nonnull)initByStyle5;
 /// 图文混排（图片在上边 ）
-+(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleTop;
++(JobsReturnButtonByStyle7Block _Nonnull)initByStyleTop;
 /// 图文混排（图片在左边 ）
-+(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleLeft;
++(JobsReturnButtonByStyle7Block _Nonnull)initByStyleLeft;
 /// 图文混排（图片在下边 ）
-+(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleBottom;
++(JobsReturnButtonByStyle7Block _Nonnull)initByStyleBottom;
 /// 图文混排（图片在右边 ）
-+(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleRight;
++(JobsReturnButtonByStyle7Block _Nonnull)initByStyleRight;
 #pragma mark —— 依靠数据束进行创建
 +(JobsReturnButtonByVoidBlock _Nonnull)jobsInit;
 /// 依靠UIViewModel进行创建

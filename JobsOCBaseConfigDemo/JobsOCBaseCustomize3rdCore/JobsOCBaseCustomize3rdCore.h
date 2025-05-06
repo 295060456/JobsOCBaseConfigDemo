@@ -78,6 +78,12 @@
 #import "JXCategoryView.h"
 #endif
 
+#if __has_include(<GKNavigationBar/GKNavigationBar.h>)
+#import <GKNavigationBar/GKNavigationBar.h>
+#else
+#import "GKNavigationBar.h"
+#endif
+
 #import "AFSecurityPolicy+Extra.h"
 #import "IQKeyboardManager+Extra.h"
 #import "Reachability+Extra.h"
@@ -88,6 +94,8 @@
 #import "HTMLDocument+Extra.h"
 #import "SRWebSocket+Extra.h"
 #import "FSCalendar+Extra.h"
+#import "UIViewController+GKCustomNavigationBar.h"
+
 #import "JXCategoryView.h"
 #import "ZFPlayerExtras.h"
 

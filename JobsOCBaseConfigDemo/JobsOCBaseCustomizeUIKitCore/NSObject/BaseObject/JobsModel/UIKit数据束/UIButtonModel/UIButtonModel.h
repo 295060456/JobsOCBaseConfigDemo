@@ -22,39 +22,41 @@ Prop_assign()CGFloat titleWidth;
 Prop_assign()CGFloat subTitleWidth;
 #pragma mark —— 针对批量设置的UIButton的数据源
 /// 未选择状态的数据源
-Prop_strong(nullable)NSArray <NSString *>*normal_titles;// title
-Prop_strong(nullable)NSArray <UIFont *>*normal_titleFonts;// titleFont
-Prop_strong(nullable)NSArray <UIColor *>*normal_titleCors;// titleCor
-Prop_strong(nullable)NSArray <NSAttributedString *>*normal_attributedTitles;// attributedTitle
+Prop_copy(nullable)NSArray <NSString *>*normal_titles;// title
+Prop_copy(nullable)NSArray <UIFont *>*normal_titleFonts;// titleFont
+Prop_copy(nullable)NSArray <UIColor *>*normal_titleCors;// titleCor
+Prop_copy(nullable)NSArray <NSAttributedString *>*normal_attributedTitles;// attributedTitle
 
-Prop_strong(nullable)NSArray <NSString *>*normal_subTitles;// subTitle
-Prop_strong(nullable)NSArray <UIFont *>*normal_subTitleFonts;// subTitleFont
-Prop_strong(nullable)NSArray <UIColor *>*normal_subTitleCors;// subTitleCor
-Prop_strong(nullable)NSArray <NSAttributedString *>*normal_attributedSubtitles;// attributedSubtitle
+Prop_copy(nullable)NSArray <NSString *>*normal_subTitles;// subTitle
+Prop_copy(nullable)NSArray <UIFont *>*normal_subTitleFonts;// subTitleFont
+Prop_copy(nullable)NSArray <UIColor *>*normal_subTitleCors;// subTitleCor
+Prop_copy(nullable)NSArray <NSAttributedString *>*normal_attributedSubtitles;// attributedSubtitle
 
-Prop_strong(nullable)NSArray <UIColor *>*normal_baseBackgroundColors;// baseBackgroundColor
-Prop_strong(nullable)NSArray <UIImage *>*normal_backgroundImages;// backgroundImage
-Prop_strong(nullable)NSArray <UIImage *>*normal_images;// jobsResetBtnImage
-Prop_strong(nullable)NSArray <NSNumber *>*imagePaddings;// imagePadding 图像与标题之间的间距
+Prop_copy(nullable)NSArray <UIColor *>*normal_baseBackgroundColors;// baseBackgroundColor
+Prop_copy(nullable)NSArray <UIImage *>*normal_backgroundImages;// backgroundImage
+Prop_copy(nullable)NSArray <UIImage *>*normal_images;// jobsResetBtnImage
+Prop_copy(nullable)NSArray <NSNumber *>*imagePaddings;// imagePadding 图像与标题之间的间距
 /// 已选择状态的数据源
-Prop_strong(nullable)NSArray <NSString *>*selected_titles;// selectedTitle
-Prop_strong(nullable)NSArray <UIFont *>*selected_titleFonts;// selectedTitleFont
-Prop_strong(nullable)NSArray <UIColor *>*selected_titleCors;// selectedTitleCor
-Prop_strong(nullable)NSArray <NSAttributedString *>*selected_attributedTitles;// selectedAttributedSubTitle
+Prop_copy(nullable)NSArray <NSString *>*selected_titles;// selectedTitle
+Prop_copy(nullable)NSArray <UIFont *>*selected_titleFonts;// selectedTitleFont
+Prop_copy(nullable)NSArray <UIColor *>*selected_titleCors;// selectedTitleCor
+Prop_copy(nullable)NSArray <NSAttributedString *>*selected_attributedTitles;// selectedAttributedSubTitle
 
-Prop_strong(nullable)NSArray <NSString *>*selected_subTitles;// selectedSubTitle
-Prop_strong(nullable)NSArray <UIFont *>*selected_subTitleFonts;// selectedSubTitleFont
-Prop_strong(nullable)NSArray <UIColor *>*selected_subTitleCors;// selectedSubTitleCor
-Prop_strong(nullable)NSArray <NSAttributedString *>*selected_attributedSubtitles;// normal_attributedSubtitles
+Prop_copy(nullable)NSArray <NSString *>*selected_subTitles;// selectedSubTitle
+Prop_copy(nullable)NSArray <UIFont *>*selected_subTitleFonts;// selectedSubTitleFont
+Prop_copy(nullable)NSArray <UIColor *>*selected_subTitleCors;// selectedSubTitleCor
+Prop_copy(nullable)NSArray <NSAttributedString *>*selected_attributedSubtitles;// normal_attributedSubtitles
 
-Prop_strong(nullable)NSArray <UIColor *>*selected_baseBackgroundColors;// selectedBaseBackgroundColor
-Prop_strong(nullable)NSArray <UIImage *>*selected_backgroundImages;// highlightBackgroundImage
-Prop_strong(nullable)NSArray <UIImage *>*selected_Images;// highlightImage
-Prop_strong(nullable)NSArray <NSNumber *>*selected_imagePaddings;// imagePadding 图像与标题之间的间距
+Prop_copy(nullable)NSArray <UIColor *>*selected_baseBackgroundColors;// selectedBaseBackgroundColor
+Prop_copy(nullable)NSArray <UIImage *>*selected_backgroundImages;// highlightBackgroundImage
+Prop_copy(nullable)NSArray <UIImage *>*selected_Images;// highlightImage
+Prop_copy(nullable)NSArray <NSNumber *>*selected_imagePaddings;// imagePadding 图像与标题之间的间距
 #pragma mark —— 点击事件
 Prop_strong(nullable)UIAction *primaryAction;/// 新Api的点击事件
+/// 一般用于 UIButtonModel
 Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
 Prop_copy(nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
+/// 一般用于 UIButton
 Prop_copy(nullable)jobsByBtnBlock onClickBlock;
 Prop_copy(nullable)jobsByBtnBlock onLongPressGestureEventBlock;
 #pragma mark —— UI约束（Masonry）

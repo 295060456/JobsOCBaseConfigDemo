@@ -245,7 +245,7 @@
 #pragma mark —— 重新设置控件的约束（返回控件的Frame）
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginX{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.origin.x = data;
@@ -256,7 +256,7 @@
 
 -(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetRightX{
     @jobs_weakify(self)
-    return ^(CGFloat data,UIView *superView) {
+    return ^CGRect(CGFloat data,UIView *superView) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.origin.x = superView.width - data - self.width;
@@ -267,7 +267,7 @@
 
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginY{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.origin.y = data;
@@ -278,7 +278,7 @@
 
 -(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetBottomY{
     @jobs_weakify(self)
-    return ^(CGFloat data,UIView *superView) {
+    return ^CGRect(CGFloat data,UIView *superView) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.origin.x = superView.height - data - self.height;
@@ -289,7 +289,7 @@
 
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidth{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.size.width = data;
@@ -300,7 +300,7 @@
 
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeight{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.size.height = data;
@@ -311,7 +311,7 @@
 
 -(JobsReturnCGRectByCGPointBlock _Nonnull)resetOrigin{
     @jobs_weakify(self)
-    return ^(CGPoint data) {
+    return ^CGRect(CGPoint data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.origin.x = data.x;
@@ -323,7 +323,7 @@
 
 -(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSize{
     @jobs_weakify(self)
-    return ^(CGSize data) {
+    return ^CGRect(CGSize data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.size = data;
@@ -334,7 +334,7 @@
 /// 依据偏移量重设Frame
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginXByOffset{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.origin.x += data;
@@ -345,7 +345,7 @@
 
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginYByOffset{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.origin.y += data;
@@ -356,7 +356,7 @@
 
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterX{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGPoint center = self.center;
         center.x = data;
@@ -367,7 +367,7 @@
 
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterY{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGPoint center = self.center;
         center.y = data;
@@ -378,7 +378,7 @@
 
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidthByOffset{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.size.width += data;
@@ -389,7 +389,7 @@
 
 -(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeightByOffset{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.size.height += data;
@@ -400,7 +400,7 @@
 
 -(JobsReturnCGRectByCGPointBlock _Nonnull)resetOriginByOffset{
     @jobs_weakify(self)
-    return ^(CGPoint data) {
+    return ^CGRect(CGPoint data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.origin.x += data.x;
@@ -412,7 +412,7 @@
 
 -(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSizeByOffset{
     @jobs_weakify(self)
-    return ^(CGSize data) {
+    return ^CGRect(CGSize data) {
         @jobs_strongify(self)
         CGRect frame = self.frame;
         frame.size.width += data.width;

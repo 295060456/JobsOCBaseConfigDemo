@@ -16,7 +16,7 @@
         @jobs_strongify(self)
         self.view.navigator.frame = view.bounds;
         view.navigator = superview.navigator;
-        [superview addSubview:self.view.navigator];
+        superview.addSubview(self.view.navigator);
     };
 }
 
@@ -29,7 +29,7 @@
                     requestParams:viewModel];// 测试专用
     }
 }
-/// 配置GKNavigationBar
+/// 配置GKNavigationBar（不包括返回键的设定）
 -(jobsByViewModelBlock)setGKNav{
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable data) {
@@ -63,6 +63,14 @@
         self.gk_backImage = JobsIMG(@"全局返回箭头");/// 设置返回按钮图片（优先级高于gk_backStyle）
         self.gk_backStyle = GKNavigationBarBackStyleBlack;
         self.gk_navLeftBarButtonItem = UIBarButtonItem.initBy(btn ? : self.backBtnCategory);
+    };
+}
+/// 配置GKNavigationBar的标题（按钮）
+-(jobsByButtonModelBlock _Nonnull)setGKNavTitleBtnBy{
+    @jobs_weakify(self)
+    return ^(__kindof UIButtonModel *_Nullable model) {
+        @jobs_strongify(self)
+        self.gk_navTitleBtnBy(model);
     };
 }
 /// 铺满全屏展示的策略
@@ -246,29 +254,26 @@ JobsKey(_navBar)
                 self.navBarConfig.backBtnModel.jobsOffsetX = self.navBarConfig.backBtnModel.jobsOffsetX ? : JobsWidth(40);
                 self.navBarConfig.closeBtnModel.jobsOffsetX = self.navBarConfig.closeBtnModel.jobsOffsetX ? : JobsWidth(40);
             }
-            JobsLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
-            JobsLog(@"%f",self.navBarConfig.closeBtnModel.jobsOffsetX);
-    //        if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
+//            JobsLog(@"%f",self.navBarConfig.backBtnModel.jobsOffsetX);
+//            JobsLog(@"%f",self.navBarConfig.closeBtnModel.jobsOffsetX);
+//            if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
             data.navBarConfig = self.navBarConfig;
-            self.view.addSubview(data);
-            [data mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.view.addSubview(data) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self.view);
+                make.height.mas_equalTo(JobsWidth(40));
                 if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
                     make.top.equalTo(self.view);
                 }else{
                     make.top.equalTo(self.view).offset(JobsStatusBarHeight());
                 }
-                make.left.right.equalTo(self.view);
-                make.height.mas_equalTo(JobsWidth(40));
             }];self.view.refresh();
-            data.jobsRichViewByModel(nil);
-            @jobs_weakify(self)
-            [data actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
-                @jobs_strongify(self)
-                self.backBtnClickEvent(x);
-            }];
-            [data actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
-    //            @jobs_strongify(self)
-            }];
+            data.JobsRichViewByModel2(nil)
+                .JobsNavBarBackBtnClickBlock(^(__kindof UIButton *_Nullable x){
+                    @jobs_strongify(self)
+                    self.backBtnClickEvent(x);
+                }).JobsNavBarCloseBtnClickBlock(^(__kindof UIButton *_Nullable x){
+                    
+                });
         }))
     }return NavBar;
 }

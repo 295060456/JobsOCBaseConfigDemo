@@ -216,7 +216,7 @@
     };
 }
 /// 图文混排（图片在上边 ）
-+(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleTop{
++(JobsReturnButtonByStyle7Block _Nonnull)initByStyleTop{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
@@ -228,7 +228,7 @@
     };
 }
 /// 图文混排（图片在左边 ）
-+(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleLeft{
++(JobsReturnButtonByStyle7Block _Nonnull)initByStyleLeft{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
@@ -240,7 +240,7 @@
     };
 }
 /// 图文混排（图片在下边 ）
-+(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleBottom{
++(JobsReturnButtonByStyle7Block _Nonnull)initByStyleBottom{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
@@ -252,7 +252,7 @@
     };
 }
 /// 图文混排（图片在右边 ）
-+(JobsReturnButtonByStyle3_1Block _Nonnull)initByStyleRight{
++(JobsReturnButtonByStyle7Block _Nonnull)initByStyleRight{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小

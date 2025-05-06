@@ -235,14 +235,6 @@
         return self.class.heightByData(data);
     };
 }
-
--(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock)objBlock{
-    self.backBtnClickAction = objBlock;
-}
-    
--(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock)objBlock{
-    self.closeBtnClickAction = objBlock;
-}
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame{
     @jobs_weakify(self)

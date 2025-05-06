@@ -58,7 +58,7 @@ JobsDynamicPropSetAndGet(jobsByUnsignedShortBlock, unsignedShortBlock, UnsignedS
 JobsDynamicPropSetAndGet(jobsByLongBlock, longBlock, LongBlock)
 JobsDynamicPropSetAndGet(jobsByUnsignedLongBlock, unsignedLongBlock, UnsignedLongBlock)
 JobsDynamicPropSetAndGet(jobsByUnsignedLongLongBlock, unsignedLongLongBlock, UnsignedLongLongBlock)
-JobsDynamicPropSetAndGet(JobsSelectorBlock, selectorBlock, SelectorBlock)
+JobsDynamicPropSetAndGet(jobsByTwoIDBlock, selectorBlock, SelectorBlock)
 JobsDynamicPropSetAndGet(JobsReturnIDByVoidBlock, retIDByVoidBlock, RetIDByVoidBlock)
 JobsDynamicPropSetAndGet(JobsReturnIDByGestureRecognizerBlock, retIDByGestureRecognizerBlock, RetIDByGestureRecognizerBlock)
 JobsDynamicPropSetAndGet(JobsReturnIDBySELBlock, retIDBySELBlock, RetIDBySELBlock)
@@ -95,6 +95,6 @@ JobsDynamicPropSetAndGet(JobsReturnByUnsignedShortBlock, retUnsignedShortBlock, 
 JobsDynamicPropSetAndGet(JobsReturnByLongBlock, retLongBlock, RetLongBlock)
 JobsDynamicPropSetAndGet(JobsReturnByUnsignedLongBlock, retUnsignedLongBlock, RetUnsignedLongBlock)
 JobsDynamicPropSetAndGet(JobsReturnByUnsignedLongLongBlock, retUnsignedLongLongBlock, RetUnsignedLongLongBlock)
-JobsDynamicPropSetAndGet(JobsReturnIDBySelectorBlock, retIDBySelectorBlock, RetIDBySelectorBlock)
+JobsDynamicPropSetAndGet(JobsReturnIDByTwoIDBlock, retIDBySelectorBlock, RetIDBySelectorBlock)
 
 @end

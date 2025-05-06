@@ -176,6 +176,7 @@
 		84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */; };
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
 		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
+		C532D7242DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */; };
 		C53894082DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C53894062DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m */; };
 		C538940C2DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C538940A2DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.m */; };
 		C53894202DC6286D00D5FB06 /* UIContextMenuInteraction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C538941E2DC6286D00D5FB06 /* UIContextMenuInteraction+Extra.m */; };
@@ -1648,6 +1649,9 @@
 		C52417042DB61725008F9194 /* FMGameCVCell_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FMGameCVCell_2.png; sourceTree = "<group>"; };
 		C52417052DB61725008F9194 /* FMGameCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMGameCVCell.h; sourceTree = "<group>"; };
 		C52417062DB61725008F9194 /* FMGameCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMGameCVCell.m; sourceTree = "<group>"; };
+		C532D7212DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GKCustomNavigationBar.h"; sourceTree = "<group>"; };
+		C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GKCustomNavigationBar.m"; sourceTree = "<group>"; };
+		C532D7AF2DC9D6DB00917DBF /* JobsBlockDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlockDef.h; sourceTree = "<group>"; };
 		C53894052DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+BaseViewProtocol.h"; sourceTree = "<group>"; };
 		C53894062DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+BaseViewProtocol.m"; sourceTree = "<group>"; };
 		C53894092DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewCell+BaseViewProtocol.h"; sourceTree = "<group>"; };
@@ -4041,6 +4045,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				C532D7232DC9B1E000917DBF /* GKCustomNavigationBar */,
 				C5D4ADAD2DB25D74006ED3F6 /* ZFPlayer */,
 				84656A1C2DAEBCEA00D00A30 /* JXCategoryView */,
 				8432B8CF2D2049D200ADE9FF /* FSCalendar */,
@@ -5594,6 +5599,15 @@
 				C52417062DB61725008F9194 /* FMGameCVCell.m */,
 			);
 			path = FMGameCVCell;
+			sourceTree = "<group>";
+		};
+		C532D7232DC9B1E000917DBF /* GKCustomNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				C532D7212DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.h */,
+				C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */,
+			);
+			path = GKCustomNavigationBar;
 			sourceTree = "<group>";
 		};
 		C53894072DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol */ = {
@@ -10088,6 +10102,7 @@
 				CE4F289D2CA8286D002AF25B /* 确定参数的Block */,
 				84FF23112D79A7180060E317 /* JobsBizBlock.h */,
 				CE4F289E2CA8286D002AF25B /* JobsBlock.h */,
+				C532D7AF2DC9D6DB00917DBF /* JobsBlockDef.h */,
 				CE4F289F2CA8286D002AF25B /* JobsBlock.md */,
 			);
 			path = JobsBlock;
@@ -17551,6 +17566,7 @@
 				849CE6B42CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoa.m in Sources */,
 				849CE6B52CEC5F6000C359F2 /* RACGestureRecognizerActionHandler.m in Sources */,
 				849CE6B62CEC5F6000C359F2 /* UIGestureRecognizer+ReactiveCocoaProtected.m in Sources */,
+				C532D7242DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m in Sources */,
 				849CE6B72CEC5F6000C359F2 /* UIGestureRecognizer+Extra.m in Sources */,
 				CE5A65B92CA833D0006D67A7 /* JobsHotLabelByMultiLine.m in Sources */,
 				CE5A65BA2CA833D0006D67A7 /* JobsHotLabelBySingleLine.m in Sources */,

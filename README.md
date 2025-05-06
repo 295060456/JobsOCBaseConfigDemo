@@ -5434,14 +5434,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 #### 10.2、关于导航栏
 
 ```objective-c
-@jobs_weakify(self)
 self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
     config.alpha = 1;
+    config.titleImage = JobsIMG(@"BSportRedLogo");
     config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
 //            @jobs_strongify(self)
         buttonModel.normalImage = JobsIMG(@"全局返回箭头");
         buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
-        buttonModel.title = JobsInternationalization(@"Promo");
+        buttonModel.title = JobsInternationalization(@"");
         buttonModel.titleFont = bayonRegular(14);
         buttonModel.titleCor = JobsCor(@"#8A93A1");
         buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
@@ -5449,14 +5449,20 @@ self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullabl
         buttonModel.subTextAlignment = NSTextAlignmentCenter;
         buttonModel.baseBackgroundColor = JobsClearColor;
         buttonModel.imagePadding = JobsWidth(5);
-    }))
-    .onClickBy(^(__kindof UIButton *x){
-        x.selected = !x.selected;
-        @jobs_strongify(self)
-        self.backTo(0);
-    }).onLongPressGestureBy(^(id data){
-        JobsLog(@"");
-    });
+        buttonModel.clickEventBlock = ^id(__kindof UIButton *_Nullable x){
+            @jobs_strongify(self)
+            x.selected = !x.selected;
+            JobsAppTool.loginWork = FMLoginWork_MyFav;
+//            self.backTo(0);
+            self.backViewControllerCore(self);
+            return nil;
+        };
+        buttonModel.longPressGestureEventBlock = ^id(__kindof UIButton *_Nullable btn){
+            // @jobs_strongify(self)
+            return nil;
+        };
+    }));
+}));
 ```
 
 ##### 10.2.1、[**`GKNavigationBar`**](https://github.com/QuintGao/GKNavigationBar)

@@ -12,7 +12,9 @@
 #import "NSObject+Time.h"
 #import "NSValue+Extra.h"
 
-#define MethodName(obj) [NSStringFromClass([obj class]) stringByAppendingString:[@"_" stringByAppendingString:NSStringFromSelector(_cmd)]]
+#ifndef MethodName
+#define MethodName(obj) NSStringFromClass([obj class]).add(@"_").add(NSStringFromSelector(_cmd))
+#endif /* MethodName */
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,13 +47,13 @@ Prop_copy()NSMutableDictionary <NSString *, NSValue *>*methodCache;/// 定义一
 /// 判断某个实例对象是否存在某个【不带参数的方法】
 +(BOOL)judgementObj:(NSObject *_Nonnull)obj existMethodWithName:(NSString *_Nullable)methodName;
 /// 用block来代替selector。
--(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDBySelectorBlock _Nullable)selectorBlock;
+-(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDByTwoIDBlock _Nullable)selectorBlock;
 /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
 /// - Parameters:
 ///   - block: 最终的执行体
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
-SEL _Nullable selectorBlocks(JobsReturnIDBySelectorBlock _Nullable block,
+SEL _Nullable selectorBlocks(JobsReturnIDByTwoIDBlock _Nullable block,
                              NSString *_Nullable selectorName,// MethodName(self)
                              NSObject *_Nonnull target);
 /// 是否存在这样的属性，有则返回

@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByStringBlock _Nonnull)jobsPost;
 /// 接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName
-                     block:(JobsSelectorBlock _Nullable)block;
+                     block:(jobsByTwoIDBlock _Nullable)block;
 /// RAC接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName
          notificationBlock:(jobsByNotificationBlock _Nullable)block;

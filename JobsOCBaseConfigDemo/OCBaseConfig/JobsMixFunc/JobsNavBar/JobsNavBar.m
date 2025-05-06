@@ -54,7 +54,7 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
     [super layoutSubviews];
     /// 内部指定圆切角
 //    [self appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
-//                                    cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
+//                                        cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -78,27 +78,29 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-//+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
-//    @jobs_weakify(self)
-//    return ^CGSize(UIViewModel *_Nullable data){
-//        @jobs_strongify(self)
-//        return CGSizeMake(JobsWidth(self.data), JobsWidth(35));
-//    };
-//}
-
 -(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^(id _Nullable data){
         return CGSizeMake(JobsWidth(self.width), JobsWidth(35));
-//        return JobsNavBar.viewSizeByModel(data);
     };
 }
 #pragma mark —— BaseViewProtocol
--(void)actionNavBarBackBtnClickBlock:(jobsByBtnBlock _Nullable)objBlock{
-    self.backBtnClickAction = objBlock;
+/// 返回键事件
+-(JobsReturnNavBarByVoidBtnBlock _Nullable)JobsNavBarBackBtnClickBlock{
+    @jobs_weakify(self)
+    return ^__kindof JobsNavBar *_Nullable(jobsByBtnBlock _Nullable block){
+        @jobs_strongify(self)
+        self.backBtnClickAction = block;
+        return (JobsNavBar *)self;
+    };
 }
-    
--(void)actionNavBarCloseBtnClickBlock:(jobsByBtnBlock _Nullable)objBlock{
-    self.closeBtnClickAction = objBlock;
+/// 关闭键事件
+-(JobsReturnNavBarByVoidBtnBlock _Nullable)JobsNavBarCloseBtnClickBlock{
+    @jobs_weakify(self)
+    return ^__kindof JobsNavBar *_Nullable(jobsByBtnBlock _Nullable block){
+        @jobs_strongify(self)
+        self.closeBtnClickAction = block;
+        return (JobsNavBar *)self;
+    };
 }
 #pragma mark —— lazyLoad
 -(JobsNavBarConfig *)navBarConfig{
@@ -110,9 +112,9 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
                 if([data isKindOfClass:UIButton.class]){
                     UIButton *btn = (UIButton *)data;
                     if(btn.tag == 123){
-                        if(self.closeBtnClickAction)self.closeBtnClickAction(btn);
+                        if(self.closeBtnClickAction) self.closeBtnClickAction(btn);
                     }else if (btn.tag == 456){
-                        if(self.backBtnClickAction)self.backBtnClickAction(btn);
+                        if(self.backBtnClickAction) self.backBtnClickAction(btn);
                     }else{}
                 }
             }];
@@ -125,10 +127,13 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            if(NavBarConfig.attributedTitle) label.attributedText = NavBarConfig.attributedTitle;
-            label.text = NavBarConfig.title;
-            label.font = NavBarConfig.font;
-            label.textColor = NavBarConfig.titleCor;
+            if(NavBarConfig.attributedTitle){
+                label.byAttributedString(NavBarConfig.attributedTitle);
+            }else{
+                label.byText(NavBarConfig.title)
+                    .byFont(NavBarConfig.font)
+                    .byTextCor(NavBarConfig.titleCor);
+            }
             [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(self);
                 make.height.mas_equalTo(self.height);

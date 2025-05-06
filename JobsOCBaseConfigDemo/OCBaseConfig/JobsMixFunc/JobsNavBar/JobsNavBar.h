@@ -5,6 +5,8 @@
 //  Created by User on 7/24/24.
 //
 
+#import "JobsBlock.h"
+#import "DefineProperty.h"
 #import "BaseImageView.h"
 #import "BaseButton.h"
 #import "JobsNavBarConfig.h"
@@ -13,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsNavBar : BaseImageView
 
-@property(nonatomic,strong,readonly)BaseButton *backBtn;
-@property(nonatomic,strong,readonly)UILabel *titleLab;
-@property(nonatomic,strong,readonly)BaseButton *closeBtn;
+Prop_strong(readonly)BaseButton *backBtn;
+Prop_strong(readonly)UILabel *titleLab;
+Prop_strong(readonly)BaseButton *closeBtn;
 
 @end
 

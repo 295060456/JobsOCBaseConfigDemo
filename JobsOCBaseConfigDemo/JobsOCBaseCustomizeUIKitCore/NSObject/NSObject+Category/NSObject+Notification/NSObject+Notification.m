@@ -35,7 +35,7 @@
 }
 /// 接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName
-                     block:(JobsSelectorBlock _Nullable)block{
+                     block:(jobsByTwoIDBlock _Nullable)block{
     @jobs_weakify(self)
     [JobsNotificationCenter addObserver:self
                                selector:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
@@ -64,7 +64,7 @@
 }
 ///【监听所有通知】用 Block
 -(void)monitorNotification:(NSString *_Nonnull)notificationName
-                 withBlock:(JobsReturnIDBySelectorBlock _Nonnull)actionBlock{
+                 withBlock:(JobsReturnIDByTwoIDBlock _Nonnull)actionBlock{
     if (isNull(notificationName)) return;
     [self addNotificationName:notificationName
                         block:^(id _Nullable weakSelf,

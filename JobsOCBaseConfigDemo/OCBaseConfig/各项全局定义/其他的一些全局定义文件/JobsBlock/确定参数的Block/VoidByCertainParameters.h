@@ -9,21 +9,16 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <UserNotifications/UserNotifications.h>
 #import <NetworkExtension/NetworkExtension.h>
-
+#import "JobsBlockDef.h"
+///【 确定入参个数 并且 没有返回值的Block定义】
 #ifndef VoidByCertainParameters_h
 #define VoidByCertainParameters_h
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
-///【 确定入参个数 并且 没有返回值的Block定义】
 typedef void(^jobsByVoidBlock)(void);
 typedef void(^jobsByIDBlock)(id _Nullable data);
 typedef void(^jobsBySELBlock)(SEL _Nullable data);
 typedef void(^jobsByClassBlock)(Class _Nonnull cls);
-/// 多参数
-typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
-typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
-typedef void(^jobsBySelectorBlock)(id _Nullable weakSelf,id _Nullable arg);
-typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
 #pragma mark —— 关于错误
 typedef void(^jobsByErrorBlock)(NSError *_Nullable error);
 typedef void(^jobsByErrBlock)(jobsByErrorBlock _Nullable block);
@@ -169,16 +164,16 @@ typedef void(^jobsByUNUserNotificationCenterBlock)(__kindof UNUserNotificationCe
 typedef void(^jobsByUNMutableNotificationContentBlock)(__kindof UNMutableNotificationContent *_Nullable content);
 typedef void(^jobsByNEVPNManagerBlock)(__kindof NEVPNManager *_Nullable VPNManager);
 typedef void(^jobsByNEVPNProtocolIKEv2Block)(__kindof NEVPNProtocolIKEv2 *_Nullable VPNProtocolIKEv2);
+/// 多参数
+typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
+typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
+typedef void(^jobsBySelectorBlock) (Jobs_2_Arguments);
+typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
 /// weakSelf 方便使用，用来打破循环引用。使用时需要改成实际类型，否则没有代码提示
 /// selector 实际调用的方法
 /// arg 事件默认传递的对象，比如`NSNotification`，`UIButton`
-typedef void(^_Nullable JobsSelectorBlock)(id _Nullable weakSelf, id _Nullable arg);
-typedef void(^_Nullable JobsSelectorBlock1)(id _Nullable weakSelf,
-                                            id _Nullable arg,
-                                            id _Nullable data);
-
-typedef void(^jobsByTwoIDBlock)(id _Nullable data,id _Nullable data2);
-
+typedef void(^jobsByTwoIDBlock) (Jobs_2_Arguments);/// weakSelf、arg
+typedef void(^JobsSelectorBlock1) (Jobs_3_Arguments);/// weakSelf、arg、data
 #pragma clang diagnostic pop
 
 #endif /* VoidByCertainParameters_h */

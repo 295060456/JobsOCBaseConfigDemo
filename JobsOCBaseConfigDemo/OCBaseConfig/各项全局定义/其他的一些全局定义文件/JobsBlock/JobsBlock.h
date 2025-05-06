@@ -8,6 +8,7 @@
   * 全局的Block块定义
   * 基本数据类型尽量的用NSNumber进行二次封装成对象对外输出
  */
+#import "JobsBlockDef.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 /// 定义确定参数的Block
 #import "ReturnByCertainParameters.h"
@@ -20,16 +21,7 @@
 #define JobsBlock_h
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
-#define Jobs_2_Arguments (id _Nullable data,id _Nullable data2)
-#define Jobs_3_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3)
-#define Jobs_4_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4)
-#define Jobs_5_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4,id _Nullable data5)
-#define Jobs_6_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4,id _Nullable data5,id _Nullable data6)
-#define Jobs_7_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4,id _Nullable data5,id _Nullable data6,id _Nullable data7)
-#define Jobs_8_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4,id _Nullable data5,id _Nullable data6,id _Nullable data7,id _Nullable data8)
-#define Jobs_9_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4,id _Nullable data5,id _Nullable data6,id _Nullable data7,id _Nullable data8,id _Nullable data9)
-#define Jobs_10_Arguments (id _Nullable data,id _Nullable data2,id _Nullable data3,id _Nullable data4,id _Nullable data5,id _Nullable data6,id _Nullable data7,id _Nullable data8,id _Nullable data9,id _Nullable data10)
-/// 涉及到自定义类的Block定义
+#pragma mark —— 涉及到自定义类的Block定义
 typedef ComponentType(^JobsReturnComponentTypeByVoidBlock)(void);
 typedef DeviceOrientation(^JobsReturnDeviceOrientationByVoidBlock)(void);
 typedef AppLanguage(^JobsReturnAppLanguageByVoidBlock)(void);
@@ -215,6 +207,7 @@ typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(U
                                                                                UIButtonModel *_Nullable closeBtnModel);
 @class JobsNavBar;
 typedef void(^jobsByNavBarBlock)(__kindof JobsNavBar *_Nullable data);
+typedef __kindof JobsNavBar *_Nullable(^JobsReturnNavBarByVoidBtnBlock)(jobsByBtnBlock _Nullable block);
 
 @class JobsTextField;
 typedef void(^jobsByJobsTextFieldBlock)(__kindof JobsTextField *_Nullable data);
@@ -367,7 +360,11 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBl
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBlock _Nullable data);
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
-/// 涉及到第三方类的Block定义
+#pragma mark —— 涉及到第三方类的Block定义
+@class UIButtonModel;
+@class GKCustomNavigationBar;
+typedef __kindof GKCustomNavigationBar *_Nullable(^JobsReturnGKNavBarByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);
+
 @class GDFadeView;
 typedef void(^jobsByGDFadeViewBlock)(__kindof GDFadeView *_Nullable view);
 

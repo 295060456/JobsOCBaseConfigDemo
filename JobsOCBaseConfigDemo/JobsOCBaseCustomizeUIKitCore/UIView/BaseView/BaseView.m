@@ -105,17 +105,16 @@ UIViewModelProtocol_synthesize_part1
                 make.left.right.equalTo(self);
                 make.height.mas_equalTo(JobsWidth(40));
             }];self.refresh();
-            data.jobsRichViewByModel(nil);
             @jobs_weakify(self)
-            [data actionNavBarBackBtnClickBlock:^(UIButton * _Nullable x) {
-                @jobs_strongify(self)
-                self.jobsBackBtnClickEvent(x);
-                if(self.backBtnClickAction) self.backBtnClickAction(x);
-            }];
-            [data actionNavBarCloseBtnClickBlock:^(UIButton * _Nullable x) {
-                @jobs_strongify(self)
-                if(self.closeBtnClickAction)self.closeBtnClickAction(x);
-            }];
+            data.JobsRichViewByModel2(nil)
+                .JobsNavBarBackBtnClickBlock(^(__kindof UIButton *_Nullable x){
+                    @jobs_strongify(self)
+                    self.jobsBackBtnClickEvent(x);
+                    if(self.backBtnClickAction) self.backBtnClickAction(x);
+                }).JobsNavBarCloseBtnClickBlock(^(__kindof UIButton *_Nullable x){
+                    @jobs_strongify(self)
+                    if(self.closeBtnClickAction)self.closeBtnClickAction(x);
+                });
         });
     }return _navBar;
 }
