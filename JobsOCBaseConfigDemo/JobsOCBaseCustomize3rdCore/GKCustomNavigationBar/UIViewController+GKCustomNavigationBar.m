@@ -14,7 +14,7 @@
     return ^__kindof GKCustomNavigationBar *_Nullable(__kindof UIButtonModel *_Nullable model){
         @jobs_strongify(self)
         self.gk_navTitleBtnModel = model;
-        self.gk_navTitleBtn.alpha = 1;
+        if(model) self.gk_navTitleBtn.alpha = 1;
         return self.gk_navigationBar;
     };
 }
@@ -36,7 +36,7 @@ JobsKey(_gk_navTitleBtn)
     if (!navTitleBtn && self.gk_navTitleBtnModel) {
         navTitleBtn = UIButton.initByButtonModel(self.gk_navTitleBtnModel);
         Jobs_setAssociatedRETAIN_NONATOMIC(_gk_navTitleBtn, navTitleBtn)
-        /// 父控件不能是self.gk_navigationBar。否则烩造成约束与预想的出现偏离
+        /// 父控件不能是self.gk_navigationBar。否则会造成约束与预想的出现偏差
         [self.view.addSubview(navTitleBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.gk_navigationBar);
             make.size.mas_equalTo(self.gk_navTitleBtnModel.jobsSize);

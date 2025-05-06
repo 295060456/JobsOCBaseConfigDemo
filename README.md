@@ -5434,35 +5434,40 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 #### 10.2、关于导航栏
 
 ```objective-c
-self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
-    config.alpha = 1;
-    config.titleImage = JobsIMG(@"BSportRedLogo");
-    config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
+ self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
+     config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+         viewModel.alpha = 1;
+         viewModel.navBgCor = JobsClearColor;
+         viewModel.navBgImage = JobsIMG(@"");
+         viewModel.titleImage = JobsIMG(@"BSportRedLogo"); /// 配置中间的标题为图片
+     });
+     /// 配置返回键
+     config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
 //            @jobs_strongify(self)
-        buttonModel.normalImage = JobsIMG(@"全局返回箭头");
-        buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
-        buttonModel.title = JobsInternationalization(@"");
-        buttonModel.titleFont = bayonRegular(14);
-        buttonModel.titleCor = JobsCor(@"#8A93A1");
-        buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
-        buttonModel.textAlignment = NSTextAlignmentCenter;
-        buttonModel.subTextAlignment = NSTextAlignmentCenter;
-        buttonModel.baseBackgroundColor = JobsClearColor;
-        buttonModel.imagePadding = JobsWidth(5);
-        buttonModel.clickEventBlock = ^id(__kindof UIButton *_Nullable x){
-            @jobs_strongify(self)
-            x.selected = !x.selected;
-            JobsAppTool.loginWork = FMLoginWork_MyFav;
-//            self.backTo(0);
-            self.backViewControllerCore(self);
-            return nil;
-        };
-        buttonModel.longPressGestureEventBlock = ^id(__kindof UIButton *_Nullable btn){
-            // @jobs_strongify(self)
-            return nil;
-        };
-    }));
-}));
+         buttonModel.normalImage = JobsIMG(@"全局返回箭头");
+         buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
+         buttonModel.title = JobsInternationalization(@"");
+         buttonModel.titleFont = bayonRegular(14);
+         buttonModel.titleCor = JobsCor(@"#8A93A1");
+         buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
+         buttonModel.textAlignment = NSTextAlignmentCenter;
+         buttonModel.subTextAlignment = NSTextAlignmentCenter;
+         buttonModel.baseBackgroundColor = JobsClearColor;
+         buttonModel.imagePadding = JobsWidth(5);
+         buttonModel.clickEventBlock = ^id(__kindof UIButton *_Nullable x){
+             @jobs_strongify(self)
+             x.selected = !x.selected;
+             JobsAppTool.loginWork = FMLoginWork_MyFav;
+ //            self.backTo(0);
+             self.backViewControllerCore(self);
+             return nil;
+         };
+         buttonModel.longPressGestureEventBlock = ^id(__kindof UIButton *_Nullable btn){
+             // @jobs_strongify(self)
+             return nil;
+         };
+     }));
+ }));
 ```
 
 ##### 10.2.1、[**`GKNavigationBar`**](https://github.com/QuintGao/GKNavigationBar)
