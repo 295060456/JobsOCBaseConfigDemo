@@ -11,7 +11,6 @@
 /// UI
 Prop_strong()BaseButton *suspendBtn;
 Prop_strong()UIImageView *stackImageView;
-Prop_strong()UIStackView *stackView;
 /// Data
 Prop_copy()NSArray <__kindof UIButton*>*datas;
 
@@ -101,8 +100,7 @@ Prop_copy()NSArray <__kindof UIButton*>*datas;
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
-        self.addSubview(_suspendBtn);
-        [_suspendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_suspendBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(JobsWidth(20), JobsWidth(50)));
             make.centerY.equalTo(self);
             make.left.equalTo(self);
@@ -114,8 +112,7 @@ Prop_copy()NSArray <__kindof UIButton*>*datas;
     if(!_stackImageView){
         _stackImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             imageView.image = JobsIMG(@"首页右侧悬浮菜单背景图");
-            self.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(30), JobsWidth(160)));
                 make.centerY.equalTo(self);
                 make.left.equalTo(self.suspendBtn.mas_right);
@@ -123,7 +120,8 @@ Prop_copy()NSArray <__kindof UIButton*>*datas;
         });
     }return _stackImageView;
 }
-
+/// BaseViewProtocol
+@synthesize stackView = _stackView;
 -(UIStackView *)stackView{
     if(!_stackView){
         @jobs_weakify(self)
@@ -141,8 +139,7 @@ Prop_copy()NSArray <__kindof UIButton*>*datas;
                 }
             }
         });
-        self.addSubview(_stackView);
-        [_stackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.addSubview(_stackView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.stackImageView);
         }];
     }return _stackView;

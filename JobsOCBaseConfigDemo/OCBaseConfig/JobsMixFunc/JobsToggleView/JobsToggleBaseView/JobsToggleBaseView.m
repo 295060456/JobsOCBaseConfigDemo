@@ -20,6 +20,7 @@ Prop_copy()NSMutableArray <UIButtonModel *>*taggedNavDatas;
 @end
 
 @implementation JobsToggleBaseView
+/// JobsToggleNavViewProtocol
 JobsToggleNavViewProtocolSynthesize
 #pragma mark —— SysMethod
 -(void)dealloc{
@@ -167,8 +168,8 @@ JobsToggleNavViewProtocolSynthesize
                 @jobs_strongify(self)
                 data1.jobsX = 0;
                 data1.jobsY = 0;
-                data1.jobsWidth = self.makeTaggedNavViewSizeBy(data).width ? : self.taggedNavView_width;
-                data1.jobsHeight = self.makeTaggedNavViewSizeBy(data).height ? : self.taggedNavView_height;
+                data1.jobsWidth = MAX(self.makeTaggedNavViewSizeBy(data).width, self.taggedNavView_width);
+                data1.jobsHeight = MAX(self.makeTaggedNavViewSizeBy(data).height, self.taggedNavView_height);
             });
             self.addSubview(taggedNavView)
                 .JobsRichViewByModel2(self.taggedNavDatas);

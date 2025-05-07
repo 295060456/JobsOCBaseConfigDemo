@@ -12,10 +12,9 @@
     CGFloat width;
 }
 /// UI
-Prop_strong()UIStackView *stackView;/// 放在滚动视图上，可以滚动的UIStackView
 Prop_copy()NSMutableArray <UIButton *>*btnMutArr;
 /// Data
-Prop_strong()NSArray <UIViewModel *>*viewModelDataArr;// 数据源
+Prop_copy()NSArray <UIViewModel *>*viewModelDataArr;// 数据源
 Prop_copy()NSMutableArray <NSNumber *>*btnHeightMutArr;
 
 @end
@@ -173,6 +172,8 @@ Prop_copy()NSMutableArray <NSNumber *>*btnHeightMutArr;
  } NS_ENUM_AVAILABLE_IOS(9_0);
  
  */
+/// 放在滚动视图上，可以滚动的UIStackView
+@synthesize stackView = _stackView;
 -(UIStackView *)stackView{
     if (!_stackView) {
         @jobs_weakify(self)

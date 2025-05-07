@@ -1065,5 +1065,15 @@ typedef NS_ENUM(NSUInteger, SourceType) {
     SourceType_Favorite      /// 来自收藏
 };
 #endif /* SOURCE_TYPE_ENUM_DEFINED */
+/// 数据来源
+#ifndef DATA_SOURCE_TYPE_ENUM_DEFINED
+#define DATA_SOURCE_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, DataSourceType) {
+    DataSourceType_Unknown = 0,    /// 未知来源
+    DataSourceType_Login,          /// 登录
+    DataSourceType_ForgotPassword, /// 忘记密码
+};
+#endif /* DATA_SOURCE_TYPE_ENUM_DEFINED */
+
 
 #endif /* JobsDefineAllEnumHeader_h */

@@ -177,6 +177,7 @@
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
 		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
 		C532D7242DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */; };
+		C5350A0B2DCB6B260034341F /* UIViewModel+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C5350A092DCB6B260034341F /* UIViewModel+App.m */; };
 		C53894082DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C53894062DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m */; };
 		C538940C2DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C538940A2DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.m */; };
 		C53894202DC6286D00D5FB06 /* UIContextMenuInteraction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C538941E2DC6286D00D5FB06 /* UIContextMenuInteraction+Extra.m */; };
@@ -1653,6 +1654,8 @@
 		C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GKCustomNavigationBar.m"; sourceTree = "<group>"; };
 		C532D7AF2DC9D6DB00917DBF /* JobsBlockDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlockDef.h; sourceTree = "<group>"; };
 		C532DA342DCA002D00917DBF /* JobsCompoundBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCompoundBlock.h; sourceTree = "<group>"; };
+		C5350A082DCB6B260034341F /* UIViewModel+App.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewModel+App.h"; sourceTree = "<group>"; };
+		C5350A092DCB6B260034341F /* UIViewModel+App.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewModel+App.m"; sourceTree = "<group>"; };
 		C53894052DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+BaseViewProtocol.h"; sourceTree = "<group>"; };
 		C53894062DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+BaseViewProtocol.m"; sourceTree = "<group>"; };
 		C53894092DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewCell+BaseViewProtocol.h"; sourceTree = "<group>"; };
@@ -5609,6 +5612,23 @@
 				C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */,
 			);
 			path = GKCustomNavigationBar;
+			sourceTree = "<group>";
+		};
+		C5350A072DCB6B1A0034341F /* App工具类 */ = {
+			isa = PBXGroup;
+			children = (
+				C5350A0A2DCB6B260034341F /* UIViewModel+App */,
+			);
+			path = "App工具类";
+			sourceTree = "<group>";
+		};
+		C5350A0A2DCB6B260034341F /* UIViewModel+App */ = {
+			isa = PBXGroup;
+			children = (
+				C5350A082DCB6B260034341F /* UIViewModel+App.h */,
+				C5350A092DCB6B260034341F /* UIViewModel+App.m */,
+			);
+			path = "UIViewModel+App";
 			sourceTree = "<group>";
 		};
 		C53894072DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol */ = {
@@ -14954,6 +14974,7 @@
 		CECE7D022C450CBC00764AF5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C5350A072DCB6B1A0034341F /* App工具类 */,
 				CECE7D482C450DE100764AF5 /* Other.h */,
 				CECE7D202C450CCD00764AF5 /* ☀️业务模块中公用的View */,
 				CECE7D352C450CCD00764AF5 /* 网络请求 */,
@@ -17233,6 +17254,7 @@
 				CE4F27912CA825CD002AF25B /* BaiShaETProjCollectionHeaderView.m in Sources */,
 				CE5A64752CA82CC7006D67A7 /* CALayer+Anim.m in Sources */,
 				CE5A65112CA830FE006D67A7 /* UICollectionViewCell+UICollectionViewCellProtocol.m in Sources */,
+				C5350A0B2DCB6B260034341F /* UIViewModel+App.m in Sources */,
 				CE5A65122CA830FE006D67A7 /* UICollectionViewCell+ShakeAnimation.m in Sources */,
 				84A978652D1454630002A2BA /* NSObject+HTML.m in Sources */,
 				CE5A64882CA82DAC006D67A7 /* NSMutableArray+Extra.m in Sources */,

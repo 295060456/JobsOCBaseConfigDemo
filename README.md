@@ -4600,37 +4600,28 @@ static const uint32_t kSequenceBits = 12;
 * 对Masonry约束Block进行存储，一般一个View对应一个约束。先addSubview，再利用存储的约束进行绘制UI
 
   ```objective-c
-  -(JobsReturnViewByButtonModelBlock _Nonnull)showEmptyButtonBy{
-      @jobs_weakify(self)
-      return ^__kindof UIView *_Nullable(UIButtonModel *model){
-          @jobs_strongify(self)
-          if(self.hasData){
-              self.cleanSubviewBy(BaseView.class);
-              return nil;
-          }else{
-              return jobsMakeBaseView(^(__kindof BaseView *_Nullable view) {
-                  @jobs_strongify(self)
-                  view.frame = self.bounds;
-                  self.cleanSubviewBy(BaseView.class);
-                  self.addSubview(view);
-                  view.addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                      data.title = JobsInternationalization(@"No Datas");
-                      data.titleCor = JobsWhiteColor;
-                      data.titleFont = bayonRegular(JobsWidth(30));
-                      data.normalImage = JobsIMG(@"暂无数据");
-                      data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-                  })).setMasonryBy(^(MASConstraintMaker *make){
-                      @jobs_strongify(self)
-                      make.centerX.equalTo(self).offset(model.jobsOffsetX);
-                      make.centerY.equalTo(self).offset(model.jobsOffsetY);
-                      make.width.equalTo(self);
-                  }));
-              });
-          }
-      };
-  }
+   -(BaseButton *)forgotten_code_btn{
+       if(!_forgotten_code_btn){
+           @jobs_weakify(self)
+           _forgotten_code_btn = self.addSubview(BaseButton.jobsInit()
+                                                 .bgColorBy(JobsClearColor)
+                                                 .jobsResetBtnTitleCor(JobsCor(@"#FF0000"))
+                                                 .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(13)))
+                                                 .jobsResetBtnTitle(JobsInternationalization(@"Forgot Password?"))
+                                                 .onClickBy(^(UIButton *x){
+                                                     @jobs_strongify(self)
+                                                     self.getCurrentViewController.comingToPushVC(FMForgotPwdVC.new);
+                                                 }).onLongPressGestureBy(^(id data){
+                                                     JobsLog(@"");
+                                                 })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                                                     make.top.equalTo(self.textField_code.mas_bottom).offset(JobsWidth(5));
+                                                     make.right.equalTo(self.textField_code);
+                                                     make.size.mas_equalTo(CGSizeMake(JobsWidth(130), JobsWidth(15)));
+                                                 }).on();
+       }return _forgotten_code_btn;
+   }
   ```
-
+  
 * 将以前的约束全部清除，用最新的`mas_remakeConstraints`
   
 * 如果在已有的约束基础上，再更新约束`mas_updateConstraints`

@@ -212,20 +212,25 @@ def cocoPodsConfig
   
   # 这个是cocoapods的一些配置,官网并没有太详细的说明,一般采取默认就好了,也就是不写.
   post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
-      config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-    end
+    require 'open3'
+    is_apple_silicon = false
+    # 判断是否为 Apple Silicon
+    stdout, _stderr, _status = Open3.capture3('uname -m')
+    is_apple_silicon = stdout.strip == 'arm64'
+    
     # 这段代码的作用是在 CocoaPods 安装完所有依赖库之后，遍历所有生成的 Xcode 项目的 targets，并为每个 target 设置特定的构建配置。
     # 具体来说，它在 post_install 钩子中执行，用于修改生成的项目的构建配置。
     installer.generated_projects.each do |project|
       project.targets.each do |target|
         target.build_configurations.each do |config|
           config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
-          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+          # ✅ 只有 Apple Silicon 模拟器下才排除 arm64
+          if is_apple_silicon
+            config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+          end
         end
       end
     end
-    
     # 遍历 CocoaPods 项目中的所有 targets，并为每个 target 设置特定的构建配置。
     # 具体来说，它是在 post_install 钩子中执行的，用于修改 Pods 项目的构建配置。
     installer.pods_project.targets.each do |target|
@@ -244,14 +249,20 @@ def cocoPodsConfig
       # 具体来说，它是在 post_install 钩子中执行的，这意味着它会在所有 Pods 安装完成之后、写入 Xcode 项目之前被调用。
       target.build_configurations.each do |config|
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
-        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+        # ✅ 只有 Apple Silicon 模拟器下才排除 arm64
+        if is_apple_silicon
+          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+        end
       end
     end
-    
     # 这段代码的作用是在 CocoaPods 安装完所有依赖库之后，遍历 Pods 项目的所有构建配置，并设置 EXCLUDED_ARCHS 构建设置，以排除 arm64 架构。
     # 这通常是为了解决在模拟器上构建项目时遇到的 arm64 架构兼容性问题。
     installer.pods_project.build_configurations.each do |config|
-      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+      config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+      # ✅ 只有 Apple Silicon 模拟器下才排除 arm64
+      if is_apple_silicon
+        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+      end
     end
   end
 end

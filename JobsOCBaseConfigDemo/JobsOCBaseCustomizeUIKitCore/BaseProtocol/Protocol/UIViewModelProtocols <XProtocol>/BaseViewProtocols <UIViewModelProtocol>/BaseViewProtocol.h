@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BaseViewProtocol <UIViewModelProtocol>
 typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewProtocol> _Nullable data);
 @optional
+Prop_strong(nullable)__kindof UIStackView *stackView;
 Prop_strong(nullable)__kindof UIView *viewer; /// 和系统字段进行区分
 Prop_strong(nullable)__kindof UICollectionView *collectionView;
 Prop_strong(nullable)__kindof UITableView *tableView;
@@ -157,6 +158,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_synthesize
 #define BaseViewProtocol_synthesize \
 \
+@synthesize stackView = _stackView;\
 @synthesize viewer = _viewer;\
 @synthesize collectionView = _collectionView;\
 @synthesize tableView = _tableView;\
@@ -191,6 +193,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_dynamic
 #define BaseViewProtocol_dynamic \
 \
+@dynamic stackView;\
 @dynamic viewer;\
 @dynamic collectionView;\
 @dynamic tableView;\

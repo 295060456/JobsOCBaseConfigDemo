@@ -17,6 +17,15 @@
         return self;
     };
 }
+/// 执行约束
+-(JobsReturnViewByVoidBlock _Nonnull)on{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(){
+        @jobs_strongify(self)
+        [self mas_makeConstraints:self.masonryBlock];
+        return self;
+    };
+}
 /// 卸载当前view上的某个方向的约束
 -(jobsByLayoutAttributeBlock _Nonnull)uninstall{
     @jobs_weakify(self)
