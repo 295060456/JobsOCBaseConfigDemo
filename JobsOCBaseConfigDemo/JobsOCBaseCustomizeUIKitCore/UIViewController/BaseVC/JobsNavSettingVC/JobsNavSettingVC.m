@@ -115,18 +115,31 @@
     @jobs_weakify(self)
     return ^(CGFloat data){
         @jobs_strongify(self)
-        if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-            self.makeNavBarConfig(nil,nil);
-            self.navBar.hidden = !data;
-            self.navBar.alpha = data;
-        }else{
-            self.setGKNav(nil);
-            self.setGKNavBackBtn(nil);
-            if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
-            if(self.rightBarButtonItems.count) self.gk_navRightBarButtonItems = self.rightBarButtonItems;
-            self.gk_navigationBar.hidden = !data;
-            self.gk_navigationBar.alpha = data;
-        }
+        /// JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape
+        self.makeGKNavByAlpha(data);
+    };
+}
+
+-(jobsByCGFloatBlock _Nonnull)makeGKNavByAlpha{
+    @jobs_weakify(self)
+    return ^(CGFloat data){
+        @jobs_strongify(self)
+        self.setGKNav(nil);
+        self.setGKNavBackBtn(nil);
+        if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
+        if(self.rightBarButtonItems.count) self.gk_navRightBarButtonItems = self.rightBarButtonItems;
+        self.gk_navigationBar.hidden = !data;
+        self.gk_navigationBar.alpha = data;
+    };
+}
+
+-(jobsByCGFloatBlock _Nonnull)makeJobsNavByAlpha{
+    @jobs_weakify(self)
+    return ^(CGFloat data){
+        @jobs_strongify(self)
+        self.makeNavBarConfig(nil,nil);
+        self.navBar.hidden = !data;
+        self.navBar.alpha = data;
     };
 }
 
