@@ -71,6 +71,9 @@ static dispatch_once_t JobsTabBarVCOnceToken;
     
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
+        if(self.viewModel.pushOrPresent != ComingStyle_Unknown){
+            self.pushOrPresent = self.viewModel.pushOrPresent;
+        }
     }
     A = YES;
     self.delegate = self;

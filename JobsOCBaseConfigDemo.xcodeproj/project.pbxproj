@@ -187,6 +187,7 @@
 		C55BDF1C2DC4DC7300E8FE8F /* PDFDocument+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55BDF1A2DC4DC7300E8FE8F /* PDFDocument+Extra.m */; };
 		C568471F2DC6AB9D00FCB762 /* JobsTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = C568471C2DC6AB9D00FCB762 /* JobsTransitionAnimator.m */; };
 		C56847202DC6AB9D00FCB762 /* JobsNavigationTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C56847192DC6AB9D00FCB762 /* JobsNavigationTransitionManager.m */; };
+		C56B3DEA2DCC8D4500D67F74 /* FMTermsOfUseView.m in Sources */ = {isa = PBXBuildFile; fileRef = C56B3DE82DCC8D4500D67F74 /* FMTermsOfUseView.m */; };
 		C58B19722DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */; };
 		C58B1D812DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */; };
 		C58B1D822DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */; };
@@ -1674,6 +1675,8 @@
 		C56847192DC6AB9D00FCB762 /* JobsNavigationTransitionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsNavigationTransitionManager.m; sourceTree = "<group>"; };
 		C568471B2DC6AB9D00FCB762 /* JobsTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTransitionAnimator.h; sourceTree = "<group>"; };
 		C568471C2DC6AB9D00FCB762 /* JobsTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTransitionAnimator.m; sourceTree = "<group>"; };
+		C56B3DE72DCC8D4500D67F74 /* FMTermsOfUseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMTermsOfUseView.h; sourceTree = "<group>"; };
+		C56B3DE82DCC8D4500D67F74 /* FMTermsOfUseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMTermsOfUseView.m; sourceTree = "<group>"; };
 		C58B196F2DBF59F1006163A3 /* JobsTextViewStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextViewStyleTBVCell.h; sourceTree = "<group>"; };
 		C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextViewStyleTBVCell.m; sourceTree = "<group>"; };
 		C58B1D7B2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextLabStyleCVCell.h; sourceTree = "<group>"; };
@@ -5719,6 +5722,15 @@
 				C568471D2DC6AB9D00FCB762 /* JobsTransitionAnimator */,
 			);
 			path = JobsNavigationTransition;
+			sourceTree = "<group>";
+		};
+		C56B3DE92DCC8D4500D67F74 /* Terms of Use */ = {
+			isa = PBXGroup;
+			children = (
+				C56B3DE72DCC8D4500D67F74 /* FMTermsOfUseView.h */,
+				C56B3DE82DCC8D4500D67F74 /* FMTermsOfUseView.m */,
+			);
+			path = "Terms of Use";
 			sourceTree = "<group>";
 		};
 		C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */ = {
@@ -15017,6 +15029,7 @@
 		CECE7D162C450CCD00764AF5 /* 自定义弹框 */ = {
 			isa = PBXGroup;
 			children = (
+				C56B3DE92DCC8D4500D67F74 /* Terms of Use */,
 				CE2E88CB2C69E14100260207 /* 全局统一的下拉选择器改为屏幕中部弹出的列表 */,
 				CECE7D0C2C450CCD00764AF5 /* 版本升级弹窗 */,
 				CECE7D142C450CCD00764AF5 /* 弹框样式_0 */,
@@ -17274,6 +17287,7 @@
 				CE4F27982CA825CD002AF25B /* PicToStrStoreSubVC.m in Sources */,
 				CE4F27992CA825CD002AF25B /* OCDynamicRegisterVC.m in Sources */,
 				CE5A64BA2CA82F03006D67A7 /* NSObject+AppTools.m in Sources */,
+				C56B3DEA2DCC8D4500D67F74 /* FMTermsOfUseView.m in Sources */,
 				CE5A64C62CA82F5C006D67A7 /* NSObject+GKPhotoBrowser.m in Sources */,
 				CE4F279A2CA825CD002AF25B /* MSMineView2.m in Sources */,
 				CE4F279B2CA825CD002AF25B /* JobsIMListTBVCell.m in Sources */,

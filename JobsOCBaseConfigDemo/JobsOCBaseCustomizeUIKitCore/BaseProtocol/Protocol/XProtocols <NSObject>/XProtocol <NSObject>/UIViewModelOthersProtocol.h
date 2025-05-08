@@ -35,6 +35,8 @@ Prop_assign()BOOL isMultiLineShows;/// 是否多行行显示【默认单行显�
 Prop_assign()UILabelShowingType labelShowingType;
 #pragma mark —— 定位
 Prop_assign()NSUInteger jobsTag;
+#pragma mark —— 展现控制器的方式
+Prop_assign()ComingStyle pushOrPresent;
 #pragma mark —— 点击
 Prop_assign()BOOL jobsSelected;
 Prop_assign()BOOL jobsEnabled;
@@ -68,6 +70,7 @@ NS_ASSUME_NONNULL_END
 @synthesize isMultiLineShows = _isMultiLineShows;\
 @synthesize labelShowingType = _labelShowingType;\
 @synthesize jobsTag = _jobsTag;\
+@synthesize pushOrPresent = _pushOrPresent;\
 @synthesize jobsSelected = _jobsSelected;\
 @synthesize jobsEnabled = _jobsEnabled;\
 @synthesize primaryAction = _primaryAction;\
@@ -92,6 +95,7 @@ NS_ASSUME_NONNULL_END
 @dynamic isMultiLineShows;\
 @dynamic labelShowingType;\
 @dynamic jobsTag;\
+@dynamic pushOrPresent;\
 @dynamic jobsSelected;\
 @dynamic jobsEnabled;\
 @dynamic primaryAction;\

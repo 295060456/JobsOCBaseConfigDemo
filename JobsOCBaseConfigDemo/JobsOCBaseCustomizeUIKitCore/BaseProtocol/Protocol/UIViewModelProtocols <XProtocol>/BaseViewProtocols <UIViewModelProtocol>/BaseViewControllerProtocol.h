@@ -41,9 +41,9 @@ Prop_assign()BOOL setupNavigationBarHidden;
 Prop_strong(nullable)__kindof UIView *statusBar;
 Prop_strong(nullable)JobsNavBarConfig *navBarConfig;
 Prop_strong(nullable)JobsNavBar *navBar;
-Prop_strong(nullable)__kindof NSMutableArray <__kindof UIBarButtonItem *>*leftBarButtonItems;/// 左边UIBarButtonItem 数组
-Prop_strong(nullable)__kindof NSMutableArray <__kindof UIBarButtonItem *>*rightBarButtonItems;/// 右边UIBarButtonItem 数组
-Prop_strong(nullable)__kindof NSMutableArray <__kindof UIViewController *>*vcs;/// 子视图控制器 数组
+Prop_copy(nullable)__kindof NSMutableArray <__kindof UIBarButtonItem *>*leftBarButtonItems;/// 左边UIBarButtonItem 数组
+Prop_copy(nullable)__kindof NSMutableArray <__kindof UIBarButtonItem *>*rightBarButtonItems;/// 右边UIBarButtonItem 数组
+Prop_copy(nullable)__kindof NSMutableArray <__kindof UIViewController *>*vcs;/// 子视图控制器 数组
 Prop_strong(nullable)UIBarButtonItem *barButtonItem;
 /// 更新状态栏颜色为自定义的颜色
 -(jobsByCorBlock _Nonnull)updateStatusBarCor;

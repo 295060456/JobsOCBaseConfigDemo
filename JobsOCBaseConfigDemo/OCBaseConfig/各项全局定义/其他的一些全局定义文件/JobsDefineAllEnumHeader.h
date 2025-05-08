@@ -13,9 +13,9 @@
 #define JOBS_NETWORKING_ENVIR_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, JobsNetworkingEnvir) {
     JobsNetworkingEnvir_Undefined = 0,
-    JobsNetworkingEnvir_Dev,/// 开发环境
-    JobsNetworkingEnvir_Test,/// 测试环境
-    JobsNetworkingEnvir_UAT,/// UAT环境
+    JobsNetworkingEnvir_Dev,    /// 开发环境
+    JobsNetworkingEnvir_Test,   /// 测试环境
+    JobsNetworkingEnvir_UAT,    /// UAT环境
     JobsNetworkingEnvir_Product,/// 生产环境
 };
 #endif /* JOBS_NETWORKING_ENVIR_ENUM_DEFINED */
@@ -133,8 +133,9 @@ typedef NS_ENUM(NSInteger, JobsOperationType) {
 #ifndef COMING_STYLE_ENUM_DEFINED
 #define COMING_STYLE_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, ComingStyle) {
-    ComingStyle_PUSH = 0,
-    ComingStyle_PRESENT
+    ComingStyle_Unknown = 0,
+    ComingStyle_PUSH,
+    ComingStyle_PRESENT,
 };
 ///
 #ifndef JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED
@@ -1071,7 +1072,9 @@ typedef NS_ENUM(NSUInteger, SourceType) {
 typedef NS_ENUM(NSUInteger, DataSourceType) {
     DataSourceType_Unknown = 0,    /// 未知来源
     DataSourceType_Login,          /// 登录
+    DataSourceType_Register,       /// 注册
     DataSourceType_ForgotPassword, /// 忘记密码
+    DataSourceType_SettingNewPwd   /// 修改密码
 };
 #endif /* DATA_SOURCE_TYPE_ENUM_DEFINED */
 

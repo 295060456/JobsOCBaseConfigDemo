@@ -36,6 +36,9 @@ Prop_assign()HotSearchStyle hotSearchStyle;
 
     if ([self.requestParams isKindOfClass:UIViewModel.class]) {
         self.viewModel = (UIViewModel *)self.requestParams;
+        if(self.viewModel.pushOrPresent != ComingStyle_Unknown){
+            self.pushOrPresent = self.viewModel.pushOrPresent;
+        }
     }
     
     self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
