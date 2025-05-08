@@ -210,8 +210,10 @@ AppToolsProtocol
 -(JobsReturnVCByVCBlock _Nonnull)rootViewControllerBy;
 /// 依据传入的普通控制器，创建导航控制器
 +(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
+-(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
 /// 依据传入的类名，创建导航控制器
 +(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls;
+-(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls;
 /// 可以组合使用
 -(SDWebImageOptions)makeSDWebImageOptions;
 -(URLManagerModel *_Nonnull)url:(NSString *_Nonnull)url funcName:(NSString *_Nonnull)funcName;

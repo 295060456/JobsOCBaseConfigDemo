@@ -364,6 +364,12 @@ UITextFieldProtocol_dynamic
         return UINavigationController.initByRootVC(vc);
     };
 }
+
+-(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy{
+    return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
+        return NSObject.makeNavigationControllerBy(vc);
+    };
+}
 /// 依据传入的类名，创建导航控制器
 +(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls{
     return ^__kindof UINavigationController *_Nullable(Class _Nonnull cls){
@@ -372,6 +378,12 @@ UITextFieldProtocol_dynamic
             UIViewController *vc = (UIViewController *)instance;
             return UINavigationController.initByRootVC(vc);
         }else return nil;
+    };
+}
+
+-(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls{
+    return ^__kindof UINavigationController *_Nullable(Class _Nonnull cls){
+        return NSObject.makeNavigationControllerByCls(cls);
     };
 }
 /// 可以组合使用
