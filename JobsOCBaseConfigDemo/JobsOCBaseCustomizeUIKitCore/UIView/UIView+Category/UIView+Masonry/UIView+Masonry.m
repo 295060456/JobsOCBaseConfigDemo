@@ -26,6 +26,15 @@
         return self;
     };
 }
+/// 添加约束并执行
+-(JobsReturnViewByMasonryConstraintsBlock _Nonnull)masonryBy{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(jobsByMASConstraintMakerBlock _Nullable block){
+        @jobs_strongify(self)
+        self.setMasonryBy(block).on();
+        return self;
+    };
+}
 /// 卸载当前view上的某个方向的约束
 -(jobsByLayoutAttributeBlock _Nonnull)uninstall{
     @jobs_weakify(self)
@@ -52,8 +61,8 @@
 /// - Parameters:
 ///   - masonryBeforeBlock: 最初的约束
 ///   - masonryAfterBlock: 希望变到的最后的约束
--(void)jobsMasonryBeforeBlock:(void(^)(MASConstraintMaker *make))masonryBeforeBlock
-            masonryAfterBlock:(void(^)(MASConstraintMaker *make))masonryAfterBlock{
+-(void)jobsMasonryBeforeBlock:(jobsByMASConstraintMakerBlock _Nonnull)masonryBeforeBlock
+            masonryAfterBlock:(jobsByMASConstraintMakerBlock _Nonnull)masonryAfterBlock{
     [self uninstallAllLayoutAttribute];
     if(masonryBeforeBlock) [self mas_remakeConstraints:masonryBeforeBlock];
     // 告诉视图需要更新布局

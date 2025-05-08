@@ -20,9 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (Masonry)
 
 Prop_copy()jobsByMASConstraintMakerBlock masonryBlock;
+/// 实现 masonryBlock 链式方法
 -(JobsReturnViewByMasonryConstraintsBlock _Nonnull)setMasonryBy;
 /// 执行约束
 -(JobsReturnViewByVoidBlock _Nonnull)on;
+/// 添加约束并执行
+-(JobsReturnViewByMasonryConstraintsBlock _Nonnull)masonryBy;
 /// 卸载当前view上的某个方向的约束
 -(jobsByLayoutAttributeBlock _Nonnull)uninstall;
 /// 卸载当前view上的全部约束
@@ -31,8 +34,8 @@ Prop_copy()jobsByMASConstraintMakerBlock masonryBlock;
 /// - Parameters:
 ///   - masonryBeforeBlock: 最初的约束
 ///   - masonryAfterBlock: 希望变到的最后的约束
--(void)jobsMasonryBeforeBlock:(void(^)(MASConstraintMaker *make))masonryBeforeBlock
-            masonryAfterBlock:(void(^)(MASConstraintMaker *make))masonryAfterBlock;
+-(void)jobsMasonryBeforeBlock:(jobsByMASConstraintMakerBlock _Nonnull)masonryBeforeBlock
+            masonryAfterBlock:(jobsByMASConstraintMakerBlock _Nonnull)masonryAfterBlock;
 
 @end
 
