@@ -21,8 +21,7 @@
     });
     anim.removedOnCompletion = NO;
     anim.fillMode = kCAFillModeForwards;
-    [self.layer addAnimation:anim
-                      forKey:@"shake"];
+    [self.layer addAnimation:anim forKey:@"shake"];
 }
 /// 实现cell停止抖动方法
 -(void)stopShake{

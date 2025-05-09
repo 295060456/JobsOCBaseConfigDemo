@@ -131,35 +131,34 @@ AppToolsProtocol_synthesize
 -(__kindof UIButton *)button{
     if(!_button){
         @jobs_weakify(self)
-        _button = UIButton.jobsInit()
-            .bgColorBy(JobsWhiteColor)
-            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-            .jobsResetImagePadding(1)
-            .onClickBy(^(UIButton *x){
-                @jobs_strongify(self)
-                x.selected = !x.selected;
-                if(self.objBlock) self.objBlock(x);
-                if(self.viewModel){
-                    if(self.viewModel.selectedImage_) x.jobsResetBtnImage(x.selected ? self.viewModel.selectedImage_ : self.viewModel.image);
-                }
-                if(self.buttonModel){
-                    if(self.buttonModel.normalImage) x.jobsResetBtnImage(x.selected ? self.buttonModel.highlightImage : self.buttonModel.normalImage);
-                }
-            }).onLongPressGestureBy(^(id data){
-                JobsLog(@"");
-            });
-        [self.contentView.addSubview(_button) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(20), JobsWidth(20)));
-            make.left.equalTo(self.contentView).offset(JobsWidth(13));
-            make.top.equalTo(self.contentView);
-        }];
+        _button = self.contentView.addSubview(UIButton.jobsInit()
+                                              .bgColorBy(JobsWhiteColor)
+                                              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+                                              .jobsResetImagePadding(1)
+                                              .onClickBy(^(UIButton *x){
+                                                  @jobs_strongify(self)
+                                                  x.selected = !x.selected;
+                                                  if(self.objBlock) self.objBlock(x);
+                                                  if(self.viewModel){
+                                                      if(self.viewModel.selectedImage_) x.jobsResetBtnImage(x.selected ? self.viewModel.selectedImage_ : self.viewModel.image);
+                                                  }
+                                                  if(self.buttonModel){
+                                                      if(self.buttonModel.normalImage) x.jobsResetBtnImage(x.selected ? self.buttonModel.highlightImage : self.buttonModel.normalImage);
+                                                  }
+                                              }).onLongPressGestureBy(^(id data){
+                                                  JobsLog(@"");
+                                              })).masonryBy(^(MASConstraintMaker *make) {
+                                                  make.size.mas_equalTo(CGSizeMake(JobsWidth(20), JobsWidth(20)));
+                                                  make.left.equalTo(self.contentView).offset(JobsWidth(13));
+                                                  make.top.equalTo(self.contentView);
+                                              });
     }return _button;
 }
 /// 如果需要用其他的自定义的TextView，继承此类并重写-(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy;
 -(__kindof BaseTextView *)textView{
     if (!_textView) {
         @jobs_weakify(self)
-        _textView = jobsMakeBaseTextView(^(__kindof BaseTextView * _Nullable textView) {
+        _textView = self.contentView.addSubview(jobsMakeBaseTextView(^(__kindof BaseTextView * _Nullable textView) {
             @jobs_strongify(self)
             textView.delegate = self;
             textView.scrollEnabled = NO;
@@ -167,15 +166,14 @@ AppToolsProtocol_synthesize
             textView.editable = NO; /// 禁止编辑。必须 editable = NO 才能点击链接跳转
             textView.selectable = YES; /// 允许选择链接
             textView.linkTextAttributes = self.makeLinkTextAttributes;
-            [self.contentView.addSubview(textView) mas_makeConstraints:self.masonryBlock];
-        });
+        })).masonryBy(self.masonryBlock);
     }return _textView;
 }
 
 -(__kindof SZTextView *)szTextView{
     if (!_szTextView) {
         @jobs_weakify(self)
-        _szTextView = jobsMakeSZTextView(^(SZTextView * _Nonnull textView) {
+        _szTextView = self.contentView.addSubview(jobsMakeSZTextView(^(SZTextView * _Nonnull textView) {
             @jobs_strongify(self)
             textView.delegate = self;
             textView.textColor = JobsBlackColor;
@@ -192,15 +190,15 @@ AppToolsProtocol_synthesize
                 return YES;
             } subscribeNextBlock:^(id _Nullable x) {
 //                @jobs_strongify(self)
-            }];[self.contentView.addSubview(textView) mas_makeConstraints:self.masonryBlock];
-        });
+            }];
+        })).masonryBy(self.masonryBlock);
     }return _textView;
 }
 
 -(__kindof JobsTextView *)jobsTextView{
     if(!_jobsTextView){
         @jobs_weakify(self)
-        _jobsTextView = makeJobsTextView(^(__kindof JobsTextView * _Nullable textView) {
+        _jobsTextView = self.contentView.addSubview(makeJobsTextView(^(__kindof JobsTextView * _Nullable textView) {
             @jobs_strongify(self)
             textView.szTextView.delegate = self;
             textView.szTextView.textColor = JobsBlackColor;
@@ -217,8 +215,8 @@ AppToolsProtocol_synthesize
                 return YES;
             } subscribeNextBlock:^(id _Nullable x) {
 //                @jobs_strongify(self)
-            }];[self.contentView.addSubview(textView) mas_makeConstraints:self.masonryBlock];
-        });
+            }];
+        })).masonryBy(self.masonryBlock);
     }return _jobsTextView;
 }
 

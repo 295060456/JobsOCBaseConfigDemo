@@ -56,15 +56,15 @@
     return self.imageView;
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
 @synthesize imageView = _imageView;
 -(UIImageView *)imageView{
     if(!_imageView){
         @jobs_weakify(self)
-        _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+        _imageView = self.contentView.addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.contentView);
-            }];
+        })).masonryBy(^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.contentView);
         });
     }return _imageView;
 }

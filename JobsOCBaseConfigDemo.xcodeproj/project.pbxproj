@@ -1654,7 +1654,6 @@
 		C532D7212DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GKCustomNavigationBar.h"; sourceTree = "<group>"; };
 		C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GKCustomNavigationBar.m"; sourceTree = "<group>"; };
 		C532D7AF2DC9D6DB00917DBF /* JobsBlockDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlockDef.h; sourceTree = "<group>"; };
-		C532DA342DCA002D00917DBF /* JobsCompoundBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCompoundBlock.h; sourceTree = "<group>"; };
 		C5350A082DCB6B260034341F /* UIViewModel+App.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewModel+App.h"; sourceTree = "<group>"; };
 		C5350A092DCB6B260034341F /* UIViewModel+App.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewModel+App.m"; sourceTree = "<group>"; };
 		C53894052DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+BaseViewProtocol.h"; sourceTree = "<group>"; };
@@ -10137,7 +10136,6 @@
 				CE4F289E2CA8286D002AF25B /* JobsBlock.h */,
 				C532D7AF2DC9D6DB00917DBF /* JobsBlockDef.h */,
 				CE4F289F2CA8286D002AF25B /* JobsBlock.md */,
-				C532DA342DCA002D00917DBF /* JobsCompoundBlock.h */,
 			);
 			path = JobsBlock;
 			sourceTree = "<group>";

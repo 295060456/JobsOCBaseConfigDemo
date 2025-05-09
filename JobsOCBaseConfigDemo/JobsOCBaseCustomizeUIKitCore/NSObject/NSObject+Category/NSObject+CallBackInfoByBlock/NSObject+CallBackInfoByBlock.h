@@ -145,10 +145,14 @@ Prop_copy(nullable)JobsReturnByUnsignedLongLongBlock retUnsignedLongLongBlock;//
 
 Prop_copy(nullable)JobsReturnIDByTwoIDBlock retIDBySelectorBlock;
 -(void)actionRetIDBySelectorBlock:(JobsReturnIDByTwoIDBlock _Nullable)retIDBySelectorBlock;
-/// 一些复合型Block
--(JobsReturnViewByBlock1 _Nullable)JobsBlock1;
--(JobsReturnViewByBlock2 _Nullable)JobsBlock2;
--(JobsReturnViewByBlock3 _Nullable)JobsBlock3;
+/// UIView
+-(JobsReturnViewByIDBlocks _Nullable)JobsBlock1;
+-(JobsReturnIDByRetIDVoidBlocks _Nullable)JobsBlock2;
+-(JobsReturnIDByRetIDByIDBlocks _Nullable)JobsBlock3;
+/// UIViewController
+-(JobsReturnVCByIDBlocks _Nullable)JobsBlock4;
+-(JobsReturnVCByRetIDByVoidBlocks _Nullable)JobsBlock5;
+-(JobsReturnVCByRetIDByIDBlocks _Nullable)JobsBlock6;
 #pragma mark —— 多入参Block
 //Prop_copy(nullable)jobsDynArgsBlock dynArgsBlock;
 //Prop_copy(nullable)JobsReturnIDByDynArgsBlock retIDByDynArgsBlock;

@@ -58,7 +58,7 @@ BaseLayerProtocol_synthesize_part3
 -(UILabel *)label{
     if(!_label){
         @jobs_weakify(self)
-        _label = jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
+        _label = self.contentView.addSubview(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
             @jobs_strongify(self)
             /// 富文本的优先级大于普通文本
             if(self.viewModel.attributedTitle){
@@ -71,9 +71,8 @@ BaseLayerProtocol_synthesize_part3
                 label.textColor = self.viewModel.textCor;
                 label.font = self.viewModel.font;
             }
-            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.contentView);
-            }];
+        })).masonryBy(^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.contentView);
         });
     }return _label;
 }

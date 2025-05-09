@@ -66,31 +66,33 @@
     if (self.objBlock) self.objBlock(textField);// 对外统一传出TF
 }
 #pragma mark —— lazyLoad
+/// BaseViewProtocol
 @synthesize textField = _textField;
 -(ZYTextField *)textField{
     if (!_textField) {
-        _textField = ZYTextField.new;
-        _textField.delegate = self;
-        _textField.textColor = JobsBlackColor;
-        _textField.backgroundColor = JobsCor(@"#F9F9F9");
-        _textField.returnKeyType = UIReturnKeyDefault;
-        _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
-        _textField.keyboardType = UIKeyboardTypeNumberPad;
-        _textField.placeholder = JobsInternationalization(@"请输入充值金额");
-        _textField.font = UIFontWeightMediumSize(18);
-        _textField.placeholderFont = _textField.font;
-        _textField.placeholderColor = JobsCor(@"#AAAAAA");
         @jobs_weakify(self)
-        [_textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
-//            @jobs_strongify(self)
-            return YES;
-        } subscribeNextBlock:^(NSString * _Nullable x) {
+        _textField = self.contentView.addSubview(jobsMakeZYTextField(^(ZYTextField * _Nullable textField) {
             @jobs_strongify(self)
-            [self textFieldBlock:self->_textField textFieldValue:x];
-        }];
-        [self.contentView.addSubview(_textField) mas_makeConstraints:^(MASConstraintMaker *make) {
+            textField.delegate = self;
+            textField.textColor = JobsBlackColor;
+            textField.backgroundColor = JobsCor(@"#F9F9F9");
+            textField.returnKeyType = UIReturnKeyDefault;
+            textField.keyboardAppearance = UIKeyboardAppearanceDefault;
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+            textField.placeholder = JobsInternationalization(@"请输入充值金额");
+            textField.font = UIFontWeightMediumSize(18);
+            textField.placeholderFont = textField.font;
+            textField.placeholderColor = JobsCor(@"#AAAAAA");
+            [textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
+    //            @jobs_strongify(self)
+                return YES;
+            } subscribeNextBlock:^(NSString * _Nullable x) {
+                @jobs_strongify(self)
+                [self textFieldBlock:textField textFieldValue:x];
+            }];
+        })).masonryBy(^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
-        }];
+        });
     }return _textField;
 }
 

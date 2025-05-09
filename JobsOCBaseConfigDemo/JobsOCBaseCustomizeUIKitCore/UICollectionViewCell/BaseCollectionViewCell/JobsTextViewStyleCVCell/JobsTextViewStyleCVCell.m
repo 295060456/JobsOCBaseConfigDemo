@@ -69,7 +69,7 @@ BaseViewProtocol_synthesize
 -(__kindof UITextView *)textView{
     if (!_textView) {
         @jobs_weakify(self)
-        _textView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
+        _textView = self.contentView.addSubview(jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
             @jobs_strongify(self)
             textView.delegate = self;
             textView.dataDetectorTypes = UIDataDetectorTypeLink; /// 启用链接检测
@@ -85,15 +85,15 @@ BaseViewProtocol_synthesize
                 textView.textAlignment = self.viewModel.textAlignment;
                 textView.textColor = self.viewModel.textCor;
                 textView.font = self.viewModel.font;
-            }[self.contentView.addSubview(textView) mas_makeConstraints:self.masonryBlock];
-        });
+            }
+        })).masonryBy(self.masonryBlock);
     }return _textView;
 }
 
 -(__kindof SZTextView *)szTextView{
     if (!_szTextView) {
         @jobs_weakify(self)
-        _szTextView = jobsMakeSZTextView(^(SZTextView * _Nonnull textView) {
+        _szTextView = self.contentView.addSubview(jobsMakeSZTextView(^(SZTextView * _Nonnull textView) {
             @jobs_strongify(self)
             textView.delegate = self;
             textView.textColor = JobsBlackColor;
@@ -111,15 +111,15 @@ BaseViewProtocol_synthesize
                 return YES;
             } subscribeNextBlock:^(id _Nullable x) {
 //                @jobs_strongify(self)
-            }];[self.contentView.addSubview(textView) mas_makeConstraints:self.masonryBlock];
-        });
+            }];
+        })).masonryBy(self.masonryBlock);
     }return _textView;
 }
 
 -(__kindof JobsTextView *)jobsTextView{
     if(!_jobsTextView){
         @jobs_weakify(self)
-        _jobsTextView = makeJobsTextView(^(__kindof JobsTextView * _Nullable textView) {
+        _jobsTextView = self.contentView.addSubview(makeJobsTextView(^(__kindof JobsTextView * _Nullable textView) {
             @jobs_strongify(self)
             textView.szTextView.delegate = self;
             textView.szTextView.textColor = JobsBlackColor;
@@ -137,8 +137,8 @@ BaseViewProtocol_synthesize
                 return YES;
             } subscribeNextBlock:^(id _Nullable x) {
 //                @jobs_strongify(self)
-            }];[self.contentView.addSubview(textView) mas_makeConstraints:self.masonryBlock];
-        });
+            }];
+        })).masonryBy(self.masonryBlock);
     }return _jobsTextView;
 }
 

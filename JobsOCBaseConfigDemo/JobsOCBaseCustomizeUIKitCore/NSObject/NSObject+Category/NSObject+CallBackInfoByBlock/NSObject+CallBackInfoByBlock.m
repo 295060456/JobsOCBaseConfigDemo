@@ -10,8 +10,8 @@
 /// 但是如果你尝试对 nil 对象调用分类中的方法，可能会导致问题。
 /// 这是因为 nil 对象并不会执行任何方法实现，分类中的方法也不会被调用。
 @implementation NSObject (CallBackInfoByBlock)
-/// 一些复合型Block
--(JobsReturnViewByBlock1 _Nullable)JobsBlock1{
+#pragma mark —— UIView
+-(JobsReturnViewByIDBlocks _Nullable)JobsBlock1{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(jobsByIDBlock _Nullable data){
         @jobs_strongify(self)
@@ -20,7 +20,7 @@
     };
 }
 
--(JobsReturnViewByBlock2 _Nullable)JobsBlock2{
+-(JobsReturnIDByRetIDVoidBlocks _Nullable)JobsBlock2{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(JobsReturnIDByVoidBlock _Nullable data){
         @jobs_strongify(self)
@@ -29,7 +29,7 @@
     };
 }
 
--(JobsReturnViewByBlock3 _Nullable)JobsBlock3{
+-(JobsReturnIDByRetIDByIDBlocks _Nullable)JobsBlock3{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(JobsReturnIDByIDBlock _Nullable data){
         @jobs_strongify(self)
@@ -37,7 +37,34 @@
         return (UIView *)self;
     };
 }
+#pragma mark —— UIViewController
+-(JobsReturnVCByIDBlocks _Nullable)JobsBlock4{
+    @jobs_weakify(self)
+    return ^__kindof UIViewController *_Nullable(jobsByIDBlock _Nullable data){
+        @jobs_strongify(self)
+        [self setObjBlock:data];
+        return (UIViewController *)self;
+    };
+}
 
+-(JobsReturnVCByRetIDByVoidBlocks _Nullable)JobsBlock5{
+    @jobs_weakify(self)
+    return ^__kindof UIViewController *_Nullable(JobsReturnIDByVoidBlock _Nullable data){
+        @jobs_strongify(self)
+        [self setRetIDByVoidBlock:data];
+        return (UIViewController *)self;
+    };
+}
+
+-(JobsReturnVCByRetIDByIDBlocks _Nullable)JobsBlock6{
+    @jobs_weakify(self)
+    return ^__kindof UIViewController *_Nullable(JobsReturnIDByIDBlock _Nullable data){
+        @jobs_strongify(self)
+        [self setRetObjBlock:data];
+        return (UIViewController *)self;
+    };
+}
+#pragma mark —— SET/GET
 JobsDynamicPropSetAndGet(jobsByVoidBlock, voidBlock, VoidBlock)
 JobsDynamicPropSetAndGet(jobsByIDBlock, objBlock, ObjBlock)
 JobsDynamicPropSetAndGet(jobsByGestureRecognizerBlock, gestureRecognizerBlock, GestureRecognizerBlock)

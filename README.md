@@ -7556,7 +7556,84 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-#### 29.5、一些用做基类的**`UICollectionViewCell`**
+#### 29.5、单选功能
+
+在**选中**和**未选中**协议方法里面均需要写明逻辑
+
+```objective-c
+/// 取消选中操作
+-(void)collectionView:(UICollectionView *)collectionView
+didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {//@@5
+    NSLog(@"%s", __FUNCTION__);
+    JobsBtnStyleCVCell *cell = (JobsBtnStyleCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if(cell && cell.button) cell.button.jobsResetBackgroundImage(JobsIMG(@"首页切换游戏种类按钮背景图（未选择）"));
+}
+/// 选中操作
+- (void)collectionView:(UICollectionView *)collectionView
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
+    NSLog(@"%s", __FUNCTION__);
+    FMHomeMainBizSubView *subView = self.subViewMutArr[indexPath.item];
+    self.bringSubviewToFront(subView);
+    for (JobsBtnStyleCVCell *cell in collectionView.visibleCells) {
+        if(cell && cell.button) cell.button.jobsResetBackgroundImage(JobsIMG(@"首页切换游戏种类按钮背景图（未选择）"));
+    }
+    JobsBtnStyleCVCell *cell = (JobsBtnStyleCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if(cell && cell.button) cell.button.jobsResetBackgroundImage(JobsIMG(@"首页切换游戏种类按钮背景图（已选择）"));
+    /**
+     滚动到指定位置
+     _collectionView.contentOffset = CGPointMake(0,-100);
+     [_collectionView setContentOffset:CGPointMake(0, -200) animated:YES];// 只有在viewDidAppear周期 或者 手动触发才有效
+     */
+}
+```
+
+```objective-c
+-(jobsByIndexPathBlock _Nonnull)selectBy{
+    @jobs_weakify(self)
+    return ^(NSIndexPath *_Nullable indexPath){
+        @jobs_strongify(self)
+        JobsBtnStyleCVCell *cell = (JobsBtnStyleCVCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+        [cell.button updateConfiguration];
+        
+        if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:didDeselectItemAtIndexPath:)]) {
+            [self.collectionView.delegate collectionView:self.collectionView didDeselectItemAtIndexPath:indexPath];
+        }
+        
+        if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
+            [self.collectionView.delegate collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
+        }
+    };
+}
+```
+
+#### 29.6、**`UICollectionViewCell`**触发点击事件
+
+<font color=red>`UICollectionView` 的选中机制是由系统管理的</font>
+
+* 代码触发：此方法会触发**`UICollectionViewCell`**内部的刷新机制
+
+  ```objective-c
+  - (void)selectItemAtIndexPath:(nullable NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition;
+  ```
+
+  * **更新 `cell.selected` 状态**；
+  * **触发 `UICollectionViewCell` 的 `setSelected:` 方法**；
+  * **间接促使 `UIButtonConfiguration` 或 UI 状态同步更新**；
+  * **配合 `UICollectionViewDelegate` 自动调用 `didSelectItemAtIndexPath:`（如果已设置了 delegate）**。
+
+* 调用系统协议触发
+
+  ```objective-c
+  if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:didDeselectItemAtIndexPath:)]) {
+      [self.collectionView.delegate collectionView:self.collectionView didDeselectItemAtIndexPath:indexPath];
+  }
+  
+  if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:didSelectItemAtIndexPath:)]) {
+      [self.collectionView.delegate collectionView:self.collectionView didSelectItemAtIndexPath:indexPath];
+  }
+  ```
+
+#### 29.7、一些用做基类的**`UICollectionViewCell`**
 
 * **`BaseCollectionViewCell`**
 * **`JobsBaseCollectionViewCell`**
@@ -7565,7 +7642,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 * **`JobsImageViewStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`ImageView`**
 * **`JobsTextFieldStyleCVCell`**：只在**`BaseCollectionViewCell`**完整的盖一个**`TextField`**
 
-#### 29.6、**`UICollectionView`**的完整调用
+#### 29.8、**`UICollectionView`**的完整调用
 
 * <details id="UICollectionView的完整调用">
    <summary><strong>点我查看</strong></summary>

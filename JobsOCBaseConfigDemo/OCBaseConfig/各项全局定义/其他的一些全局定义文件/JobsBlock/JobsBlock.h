@@ -16,8 +16,6 @@
 /// 定义不确定参数的Block
 #import "ReturnByUnCertainParameters.h"
 #import "VoidByUnCertainParameters.h"
-/// 复合Block
-#import "JobsCompoundBlock.h"
 
 #ifndef JobsBlock_h
 #define JobsBlock_h
@@ -84,7 +82,7 @@ typedef void(^jobsByViewModelAndBOOLBlock)(__kindof UIViewModel *_Nonnull viewMo
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelAndBOOLBlock)(__kindof UIViewModel *_Nonnull viewModel,BOOL data);
 typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByVoidBlock)(void);
 typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByStringBlock)(NSString *_Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(UIViewModel *_Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef void(^jobsByViewModelBlock)(__kindof UIViewModel *_Nullable data);
 typedef void(^jobsByArrWithViewModelBlock)(__kindof NSArray <UIViewModel *>*_Nullable data);
 typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(__kindof UIViewModel *_Nullable data);
@@ -186,9 +184,7 @@ typedef NSMutableArray <UIButtonModel *>*_Nullable(^JobsReturnButtonModelArrByAr
 typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByString)(__kindof NSString *_Nullable data);
 typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByStringAndImage)(__kindof NSString *_Nullable title,UIImage *_Nullable image);
 typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByAttributedString)(__kindof NSAttributedString *_Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(UIButtonModel *_Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Block)(jobsByButtonModelBlock _Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerManagerBlock)(jobsByTimerManagerBlock _Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(__kindof UIButtonModel *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelArrayBlock)(__kindof NSArray <UIButtonModel *>*_Nullable arr);
 
 @class JobsImageModel;
@@ -209,7 +205,6 @@ typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(U
                                                                                UIButtonModel *_Nullable closeBtnModel);
 @class JobsNavBar;
 typedef void(^jobsByNavBarBlock)(__kindof JobsNavBar *_Nullable data);
-typedef __kindof JobsNavBar *_Nullable(^JobsReturnNavBarByVoidBtnBlock)(jobsByBtnBlock _Nullable block);
 
 @class JobsTextField;
 typedef void(^jobsByJobsTextFieldBlock)(__kindof JobsTextField *_Nullable data);
@@ -356,12 +351,6 @@ typedef void(^jobsByBRStringPickerViewModelBlock)(__kindof BRStringPickerViewMod
 @class JobsDecorationModel;
 typedef void(^jobsByDecorationModelBlock)(__kindof JobsDecorationModel *_Nullable model);
 typedef UIViewModel *_Nullable(^JobsReturnViewModelByDecorationModelBlock)(JobsDecorationModel *_Nullable model);
-
-typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock1)(jobsByIDBlock _Nullable data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock2)(JobsReturnIDByVoidBlock _Nullable data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByBlock3)(JobsReturnIDByIDBlock _Nullable data);
-
-typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
 #pragma mark —— 涉及到第三方类的Block定义
 @class UIButtonModel;
 @class GKCustomNavigationBar;
@@ -427,8 +416,6 @@ typedef WMZBannerView *_Nonnull(^JobsReturnWMZBannerViewByBannerParamBlock)(WMZB
 @class MASConstraintMaker;
 typedef void(^jobsByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull make);
 typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlock)(jobsByMASConstraintMakerBlock _Nullable block);
-typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
 typedef jobsByMASConstraintMakerBlock _Nonnull (^JobsReturnMASConstraintMakerByBOOLBlock)(BOOL data);
 
@@ -481,7 +468,6 @@ typedef SRWebSocket *_Nonnull(^JobsReturnSRWebSocketByNSURLRequestBlock)(NSURLRe
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByVoidBlock)(void);
 typedef void(^jobsByRACDisposableBlock)(RACDisposable *_Nullable data);
-typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable block);
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByTimeIntervalBlock)(NSTimeInterval data);
     
 @class RACSignal;
@@ -498,9 +484,6 @@ typedef void(^jobsBySZTextViewBlock)(SZTextView *_Nonnull textView);
 
 @class XZMRefreshNormalHeader;
 typedef void(^jobsByXZMRefreshNormalHeaderBlock)(XZMRefreshNormalHeader *_Nonnull data);
-
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlock)(jobsByBtnBlock _Nullable);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByIDBlock)(jobsByIDBlock _Nullable);
 
 @class YTKNetworkConfig;
 typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable data);
@@ -541,6 +524,41 @@ typedef void(^jobsByCategoryDotViewBlock)(JXCategoryDotView *_Nullable view);
 typedef void(^jobsByCategoryNumberViewBlock)(JXCategoryNumberView *_Nullable view);
 typedef void(^jobsByCategoryIndicatorBackgroundViewBlock)(JXCategoryIndicatorBackgroundView *_Nullable view);
 typedef void(^jobsCategoryIndicatorLineViewBlock)(JXCategoryIndicatorLineView *_Nullable view);
+
+#pragma mark —— 复合型Block
+
+typedef void(^jobsByRetIDByIDBlock) (JobsReturnIDByIDBlock _Nullable block);
+
+typedef id _Nullable(^JobsReturnIDByVoidBlocks)(jobsByVoidBlock _Nullable block);
+typedef id _Nullable(^JobsReturnIDByVoidIDBlocks)(jobsByIDBlock _Nullable block);
+typedef id _Nullable(^JobsReturnIDByRetIDVoidBlocks)(JobsReturnIDByVoidBlock _Nullable block);
+typedef id _Nullable(^JobsReturnIDByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
+#import "UIViewModelOthersProtocol.h"
+typedef JobsReturnIDByIDBlock _Nullable(^JobsRetIDByIDBlockByViewModelOthersProtocolID)(id<UIViewModelOthersProtocol> _Nullable data);
+
+typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlocks)(jobsByVoidBlock _Nullable block);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByIDBlocks)(jobsByIDBlock _Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDBlocks)(JobsReturnIDByVoidBlock _Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlock)(jobsByMASConstraintMakerBlock _Nullable block);
+
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Block)(jobsByButtonModelBlock _Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerManagerBlock)(jobsByTimerManagerBlock _Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlock)(jobsByBtnBlock _Nullable);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByIDBlock)(jobsByIDBlock _Nullable);
+
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable data);
+
+typedef __kindof JobsNavBar *_Nullable(^JobsReturnNavBarByVoidBtnBlock)(jobsByBtnBlock _Nullable block);
+
+typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVoidBlocks)(jobsByVoidBlock _Nullable block);
+typedef __kindof UIViewController *_Nullable(^JobsReturnVCByIDBlocks)(jobsByIDBlock _Nullable data);
+typedef __kindof UIViewController *_Nullable(^JobsReturnVCByRetIDByVoidBlocks)(JobsReturnIDByVoidBlock _Nullable data);
+typedef __kindof UIViewController *_Nullable(^JobsReturnVCByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable data);
+
+typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable block);
+
+typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
 
 #import "JobsBizBlock.h" /// 关于业务（不与JobsOCBaseConfigDemo同步）
 

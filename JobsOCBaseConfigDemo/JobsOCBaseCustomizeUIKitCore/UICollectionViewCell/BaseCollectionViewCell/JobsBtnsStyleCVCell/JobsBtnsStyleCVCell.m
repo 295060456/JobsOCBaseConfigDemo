@@ -23,6 +23,7 @@ UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
 /// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
+#pragma mark —— 复写父类相关方法和属性
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
@@ -67,20 +68,19 @@ BaseLayerProtocol_synthesize_part3
 -(BaseButton *)leftBtn{
     if(!_leftBtn){
         @jobs_weakify(self)
-        _leftBtn = BaseButton
-            .jobsInit()
-            .onClickBy(^(UIButton *x){
-                @jobs_strongify(self)
-                if (self.objBlock) self.objBlock(x);
-            }).onLongPressGestureBy(^(id data){
-                JobsLog(@"");
-            });
+        _leftBtn = self.contentView.addSubview(BaseButton
+                                               .jobsInit()
+                                               .onClickBy(^(UIButton *x){
+                                                   @jobs_strongify(self)
+                                                   if (self.objBlock) self.objBlock(x);
+                                               }).onLongPressGestureBy(^(id data){
+                                                   JobsLog(@"");
+                                               })).masonryBy(^(MASConstraintMaker *make) {
+                                                   make.centerY.equalTo(self.contentView);
+                                                   make.left.equalTo(self.contentView).offset(self.leftBtnVM.jobsOffsetX);
+                                                   make.height.mas_equalTo(self.leftBtnVM.jobsWidth);
+                                               });
         _leftBtn.tag = 1;
-        [self.contentView.addSubview(_leftBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.contentView);
-            make.left.equalTo(self.contentView).offset(self.leftBtnVM.jobsOffsetX);
-            make.height.mas_equalTo(self.leftBtnVM.jobsWidth);
-        }];
     }
     
     _leftBtn.data = self.leftBtnVM;
@@ -120,19 +120,19 @@ BaseLayerProtocol_synthesize_part3
 -(BaseButton *)rightBtn{
     if(!_rightBtn){
         @jobs_weakify(self)
-        _rightBtn = BaseButton
-            .jobsInit()
-            .onClickBy(^(UIButton *x){
-                @jobs_strongify(self)
-                if (self.objBlock) self.objBlock(x);
-        }).onLongPressGestureBy(^(id data){
-            JobsLog(@"");
-        });_rightBtn.tag = 2;
-        [self.contentView.addSubview(_rightBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.contentView);
-            make.right.equalTo(self.contentView).offset(-self.rightBtnVM.jobsOffsetX);
-            make.height.mas_equalTo(self.rightBtnVM.jobsHeight);
-        }];
+        _rightBtn = self.contentView.addSubview(BaseButton
+                                                .jobsInit()
+                                                .onClickBy(^(UIButton *x){
+                                                    @jobs_strongify(self)
+                                                    if (self.objBlock) self.objBlock(x);
+                                            }).onLongPressGestureBy(^(id data){
+                                                JobsLog(@"");
+                                            })).masonryBy(^(MASConstraintMaker *make) {
+                                                make.centerY.equalTo(self.contentView);
+                                                make.right.equalTo(self.contentView).offset(-self.rightBtnVM.jobsOffsetX);
+                                                make.height.mas_equalTo(self.rightBtnVM.jobsHeight);
+                                            });
+        _rightBtn.tag = 2;
     }
     
     _rightBtn.data = self.rightBtnVM;
