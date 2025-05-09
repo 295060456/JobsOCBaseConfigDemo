@@ -131,10 +131,24 @@ typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVo
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
 #pragma mark —— 关于 Layer
 typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCALayerBlock)(CALayer *_Nullable data);
+typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCorBlock)(UIColor *_Nullable data);
+typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCGFloatBlock)(CGFloat data);
+typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByBezierPathBlock)(UIBezierPath *_Nullable data);
+typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByBOOLBlock)(BOOL data);
+typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCGPathRefBlock)(CGPathRef _Nullable data);
+typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCGColorRefBlock)(CGColorRef _Nullable data);
+
+typedef __kindof CAShapeLayer *_Nullable(^JobsReturnCAShapeLayerByCALayerBlock)(CALayer *_Nullable data);
+typedef __kindof CAShapeLayer *_Nullable(^JobsReturnCAShapeLayerByCorBlock)(UIColor *_Nullable data);
+typedef __kindof CAShapeLayer *_Nullable(^JobsReturnCAShapeLayerByCGFloatBlock)(CGFloat data);
+typedef __kindof CAShapeLayer *_Nullable(^JobsReturnCAShapeLayerByBezierPathBlock)(UIBezierPath *_Nullable data);
+typedef __kindof CAShapeLayer *_Nullable(^JobsReturnCAShapeLayerByBOOLBlock)(BOOL data);
+typedef __kindof CAShapeLayer *_Nullable(^JobsReturnCAShapeLayerByCGPathRefBlock)(CGPathRef _Nullable data);
+typedef __kindof CAShapeLayer *_Nullable(^JobsReturnCAShapeLayerByCGColorRefBlock)(CGColorRef _Nullable data);
 #pragma mark —— 关于 View
 /// UIView
 typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlock)(void);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByStringBlock)(NSString *_Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByViewBlock)(UIView *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByInteractionBlock)(id <UIInteraction>_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByIDBlock)(id _Nullable data);

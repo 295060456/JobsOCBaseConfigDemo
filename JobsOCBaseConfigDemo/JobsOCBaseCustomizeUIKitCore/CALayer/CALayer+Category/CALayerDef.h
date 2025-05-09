@@ -1,14 +1,24 @@
 //
-//  CALayer+Transition.h
-//  Carpenter
+//  CALayerDef.h
+//  FMNormal
 //
-//  Created by 冯成林 on 15/4/23.
-//  Copyright (c) 2015年 冯成林. All rights reserved.
+//  Created by Jobs on 2025/5/9.
 //
 
-#import <QuartzCore/QuartzCore.h>
-#import "JobsBlock.h"
+#ifndef CALayerDef_h
+#define CALayerDef_h
+/// 反转方向
+#ifndef AnimReverDirection_h
+#define AnimReverDirection_h
+typedef NS_ENUM(NSUInteger, AnimReverDirection) {
+    AnimReverDirectionX = 0,    /// X轴反转
+    AnimReverDirectionY,        /// Y轴反转
+    AnimReverDirectionZ         /// Z轴反转
+};
+#endif
 /// 动画类型
+#ifndef TransitionAnimType_h
+#define TransitionAnimType_h
 typedef NS_ENUM(NSInteger, TransitionAnimType) {
     TransitionAnimTypeRippleEffect = 0,   /// 水波
     TransitionAnimTypeSuckEffect,         /// 吸走
@@ -19,7 +29,10 @@ typedef NS_ENUM(NSInteger, TransitionAnimType) {
     TransitionAnimTypePageUnCurl,         /// 合上书本
     TransitionAnimTypeRandom              /// 随机
 };
+#endif
 /// 动画方向
+#ifndef TransitionSubType_h
+#define TransitionSubType_h
 typedef NS_ENUM(NSInteger, TransitionSubType) {
     TransitionSubtypesFromTop = 0,        /// 从上
     TransitionSubtypesFromLeft,           /// 从左
@@ -27,7 +40,10 @@ typedef NS_ENUM(NSInteger, TransitionSubType) {
     TransitionSubtypesFromRight,          /// 从右
     TransitionSubtypesFromRandom          /// 随机
 };
+#endif
 /// 动画曲线
+#ifndef TransitionCurve_h
+#define TransitionCurve_h
 typedef NS_ENUM(NSInteger, TransitionCurve) {
     TransitionCurveDefault = 0,           /// 默认
     TransitionCurveEaseIn,                /// 缓进
@@ -36,31 +52,6 @@ typedef NS_ENUM(NSInteger, TransitionCurve) {
     TransitionCurveLinear,                /// 线性
     TransitionCurveRandom                 /// 随机
 };
+#endif
 
-@interface CALayer (Transition)
-/// 转场动画实例
-/// - Parameters:
-///   - animType: 转场动画类型
-///   - subType: 转动动画方向
-///   - curve:  转动动画曲线
-///   - duration: 转动动画时长
--(CATransition *_Nullable)transitionWithAnimType:(TransitionAnimType)animType
-                                         subType:(TransitionSubType)subType
-                                           curve:(TransitionCurve)curve
-                                        duration:(CGFloat)duration;
-/// 返回动画曲线
--(JobsReturnStringByIntegerBlock _Nonnull)curve;
-/// 返回动画方向
--(JobsReturnStringByIntegerBlock _Nonnull)animaSubtype;
-/// 返回动画类型
--(JobsReturnStringByIntegerBlock _Nonnull)animaTypeWithTransitionType;
-/// 添加Layer
--(JobsReturnCALayerByCALayerBlock _Nonnull)addSublayer;
-/// 删除Layer
--(jobsByVoidBlock _Nonnull)remove;
-/// 统一从数据返回对象
--(id _Nullable)objFromArray:(NSArray *_Nullable)array
-                      index:(NSUInteger)index
-                   isRamdom:(BOOL)isRamdom;
-
-@end
+#endif /* CALayerDef_h */

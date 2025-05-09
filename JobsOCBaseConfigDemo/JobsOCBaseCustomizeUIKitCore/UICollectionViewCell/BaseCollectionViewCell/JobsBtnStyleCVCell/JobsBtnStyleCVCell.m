@@ -138,11 +138,16 @@ AppToolsProtocol_synthesize
 +(instancetype)cellWithCollectionView:(nonnull UICollectionView *)collectionView
                          forIndexPath:(nonnull NSIndexPath *)indexPath{
     JobsBtnStyleCVCell *cell = JobsRegisterDequeueCollectionViewCell(JobsBtnStyleCVCell);
-    // UICollectionViewCell圆切角
-//    cell.contentView.layer.cornerRadius = cell.layer.cornerRadius = JobsWidth(8);
-//    cell.contentView.layer.borderWidth = cell.layer.borderWidth = JobsWidth(1);
-//    cell.contentView.layer.borderColor = cell.layer.borderColor = RGBA_COLOR(255, 225, 144, 1).CGColor;
-//    cell.contentView.layer.masksToBounds = cell.layer.masksToBounds = YES;
+    cell.contentView.layer
+        .cornerRadiusBy(JobsWidth(8))
+        .borderWidthBy(JobsWidth(1))
+        .borderColorBy(RGBA_COLOR(255, 225, 144, 1))
+        .masksToBoundsBy(YES);
+    cell.layer
+        .cornerRadiusBy(JobsWidth(8))
+        .borderWidthBy(JobsWidth(1))
+        .borderColorBy(RGBA_COLOR(255, 225, 144, 1))
+        .masksToBoundsBy(YES);
     cell.indexPath = indexPath;
     return cell;
 }

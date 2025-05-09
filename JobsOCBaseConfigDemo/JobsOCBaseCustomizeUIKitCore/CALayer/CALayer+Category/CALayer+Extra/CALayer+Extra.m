@@ -1,14 +1,47 @@
 //
-//  CALayer+Transition.m
-//  Carpenter
+//  CALayer+Extra.m
+//  FMNormal
 //
-//  Created by 冯成林 on 15/4/23.
-//  Copyright (c) 2015年 冯成林. All rights reserved.
+//  Created by Jobs on 2025/5/9.
 //
 
-#import "CALayer+Transition.h"
+#import "CALayer+Extra.h"
 
-@implementation CALayer (Transition)
+@implementation CALayer (Extra)
+
+-(CAAnimation *)anim_shake:(NSArray *)rotations
+                  duration:(NSTimeInterval)duration
+               repeatCount:(NSUInteger)repeatCount{
+    CAKeyframeAnimation *kfa = @"transform.rotation.z".keyframeAnimation;/// 创建关键帧动画
+    kfa.values = rotations;/// 指定值
+    kfa.duration = duration;/// 时长
+    kfa.repeatCount = repeatCount;/// 重复次数
+    kfa.removedOnCompletion = YES;/// 完成删除
+    [self addAnimation:kfa forKey:@"rotation"];/// 添加
+    return kfa;
+}
+
+-(CAAnimation *)anim_revers:(AnimReverDirection)direction
+                   duration:(NSTimeInterval)duration
+                  isReverse:(BOOL)isReverse
+                repeatCount:(NSUInteger)repeatCount
+             timingFuncName:(NSString *)timingFuncName{
+    NSString *key = @"reversAnim";
+    if([self animationForKey:key]) [self removeAnimationForKey:key];
+    NSString *directionStr = nil;
+    if(AnimReverDirectionX == direction)directionStr = @"x";
+    if(AnimReverDirectionY == direction)directionStr = @"y";
+    if(AnimReverDirectionZ == direction)directionStr = @"z";
+    CABasicAnimation *reversAnim = @"transform.rotation.".add(directionStr).basicAnimation;/// 创建普通动画
+    reversAnim.fromValue = @(0);/// 起点值
+    reversAnim.toValue = @(M_PI_2);/// 终点值
+    reversAnim.duration = duration;/// 时长
+    reversAnim.autoreverses = isReverse;/// 自动反转
+    reversAnim.removedOnCompletion = YES;/// 完成删除
+    reversAnim.repeatCount = repeatCount;/// 重复次数
+    [self addAnimation:reversAnim forKey:key];/// 添加
+    return reversAnim;
+}
 /// 转场动画实例
 /// - Parameters:
 ///   - animType: 转场动画类型
@@ -58,7 +91,7 @@
             data.add(kCATransitionFromLeft);
             data.add(kCATransitionFromBottom);
             data.add(kCATransitionFromRight);
-        }) index:subType isRamdom:(TransitionSubtypesFromRandom == subType)];
+        }) index:subType isRamdom:((NSInteger)TransitionSubtypesFromRandom == subType)];
     };
 }
 /// 返回动画类型
@@ -75,7 +108,7 @@
             data.add(@"cube");
             data.add(@"reveal");
             data.add(@"pageUnCurl");
-        })index:type isRamdom:(TransitionAnimTypeRandom == type)];
+        })index:type isRamdom:((NSInteger)TransitionAnimTypeRandom == type)];
     };
 }
 /// 添加Layer
@@ -102,6 +135,42 @@
     NSUInteger count = array.count;
     NSUInteger i = isRamdom?arc4random_uniform((u_int32_t)count) : index;
     return array[i];
+}
+#pragma mark —— 迎合链式语法而做的封装
+-(JobsReturnCALayerByCGFloatBlock _Nonnull)cornerRadiusBy{
+    @jobs_weakify(self)
+    return ^__kindof CALayer *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.cornerRadius = data;
+        return self;
+    };
+}
+
+-(JobsReturnCALayerByCGFloatBlock _Nonnull)borderWidthBy{
+    @jobs_weakify(self)
+    return ^__kindof CALayer *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.borderWidth = data;
+        return self;
+    };
+}
+
+-(JobsReturnCALayerByCorBlock _Nonnull)borderColorBy{
+    @jobs_weakify(self)
+    return ^__kindof CALayer *_Nullable(UIColor *_Nullable data){
+        @jobs_strongify(self)
+        self.borderColor = data.CGColor;
+        return self;
+    };
+}
+
+-(JobsReturnCALayerByBOOLBlock _Nonnull)masksToBoundsBy{
+    @jobs_weakify(self)
+    return ^__kindof CALayer *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.masksToBounds = data;
+        return self;
+    };
 }
 
 @end

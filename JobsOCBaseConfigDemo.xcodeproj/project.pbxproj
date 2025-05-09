@@ -206,6 +206,8 @@
 		C5BCC6352DB39BC400EFE4F3 /* DayTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6022DB39BC400EFE4F3 /* DayTitleCell.m */; };
 		C5BCC6362DB39BC400EFE4F3 /* TimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6172DB39BC400EFE4F3 /* TimeCell.m */; };
 		C5BCC6372DB39BC400EFE4F3 /* ZMJTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BCC6262DB39BC400EFE4F3 /* ZMJTextCell.m */; };
+		C5BFE2E22DCDF08100158B13 /* CALayer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BFE2DD2DCDF08100158B13 /* CALayer+Extra.m */; };
+		C5BFE2E32DCDF08100158B13 /* CAShapeLayer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BFE2DA2DCDF08100158B13 /* CAShapeLayer+Extra.m */; };
 		C5D4AB922DB24601006ED3F6 /* UIViewController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */; };
 		C5D4ADAE2DB25D74006ED3F6 /* ZFPlayerExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
@@ -516,8 +518,6 @@
 		CE4F2A6D2CA829A3002AF25B /* CasinoUpgradePopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F2A662CA829A3002AF25B /* CasinoUpgradePopupView.m */; };
 		CE5A64702CA82C65006D67A7 /* NSValue+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60902CA82C2D006D67A7 /* NSValue+Extra.m */; };
 		CE5A64742CA82CAD006D67A7 /* AVURLAsset+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A64722CA82C8F006D67A7 /* AVURLAsset+Extra.m */; };
-		CE5A64752CA82CC7006D67A7 /* CALayer+Anim.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60B02CA82C2D006D67A7 /* CALayer+Anim.m */; };
-		CE5A64762CA82CCD006D67A7 /* CALayer+Transition.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60B32CA82C2D006D67A7 /* CALayer+Transition.m */; };
 		CE5A64772CA82CE1006D67A7 /* NSArray+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60BC2CA82C2D006D67A7 /* NSArray+Tools.m */; };
 		CE5A64782CA82CE9006D67A7 /* NSAttributedString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60C32CA82C2D006D67A7 /* NSAttributedString+Extra.m */; };
 		CE5A64792CA82CEF006D67A7 /* NSMutableAttributedString+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A60C62CA82C2D006D67A7 /* NSMutableAttributedString+Extra.m */; };
@@ -1712,6 +1712,12 @@
 		C5BCC6232DB39BC400EFE4F3 /* ZMJTaskCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJTaskCell.m; sourceTree = "<group>"; };
 		C5BCC6252DB39BC400EFE4F3 /* ZMJTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZMJTextCell.h; sourceTree = "<group>"; };
 		C5BCC6262DB39BC400EFE4F3 /* ZMJTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZMJTextCell.m; sourceTree = "<group>"; };
+		C5BFE2D92DCDF08100158B13 /* CAShapeLayer+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CAShapeLayer+Extra.h"; sourceTree = "<group>"; };
+		C5BFE2DA2DCDF08100158B13 /* CAShapeLayer+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CAShapeLayer+Extra.m"; sourceTree = "<group>"; };
+		C5BFE2DC2DCDF08100158B13 /* CALayer+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Extra.h"; sourceTree = "<group>"; };
+		C5BFE2DD2DCDF08100158B13 /* CALayer+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Extra.m"; sourceTree = "<group>"; };
+		C5BFE2DF2DCDF08100158B13 /* CALayerDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CALayerDef.h; sourceTree = "<group>"; };
+		C5BFE2E12DCDF08100158B13 /* JobsCALayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCALayer.h; sourceTree = "<group>"; };
 		C5D4AB8F2DB24601006ED3F6 /* UIViewController+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extra.h"; sourceTree = "<group>"; };
 		C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extra.m"; sourceTree = "<group>"; };
 		C5D4ADAB2DB25D74006ED3F6 /* ZFPlayerExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPlayerExtras.h; sourceTree = "<group>"; };
@@ -2754,11 +2760,6 @@
 		CE5A60922CA82C2D006D67A7 /* JobsValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsValue.h; sourceTree = "<group>"; };
 		CE5A60AC2CA82C2D006D67A7 /* BaseProtocol.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = BaseProtocol.md; sourceTree = "<group>"; };
 		CE5A60AD2CA82C2D006D67A7 /* JobsBaseProtocolHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBaseProtocolHeader.h; sourceTree = "<group>"; };
-		CE5A60AF2CA82C2D006D67A7 /* CALayer+Anim.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Anim.h"; sourceTree = "<group>"; };
-		CE5A60B02CA82C2D006D67A7 /* CALayer+Anim.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Anim.m"; sourceTree = "<group>"; };
-		CE5A60B22CA82C2D006D67A7 /* CALayer+Transition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CALayer+Transition.h"; sourceTree = "<group>"; };
-		CE5A60B32CA82C2D006D67A7 /* CALayer+Transition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Transition.m"; sourceTree = "<group>"; };
-		CE5A60B62CA82C2D006D67A7 /* JobsCALayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCALayer.h; sourceTree = "<group>"; };
 		CE5A60B82CA82C2D006D67A7 /* NSArray+Safety.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safety.h"; sourceTree = "<group>"; };
 		CE5A60B92CA82C2D006D67A7 /* NSArray+Safety.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safety.m"; sourceTree = "<group>"; };
 		CE5A60BB2CA82C2D006D67A7 /* NSArray+Tools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Tools.h"; sourceTree = "<group>"; };
@@ -5914,6 +5915,34 @@
 				C5BCC6272DB39BC400EFE4F3 /* ZMJTextCell */,
 			);
 			path = ZMJCells;
+			sourceTree = "<group>";
+		};
+		C5BFE2DB2DCDF08100158B13 /* CAShapeLayer+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				C5BFE2D92DCDF08100158B13 /* CAShapeLayer+Extra.h */,
+				C5BFE2DA2DCDF08100158B13 /* CAShapeLayer+Extra.m */,
+			);
+			path = "CAShapeLayer+Extra";
+			sourceTree = "<group>";
+		};
+		C5BFE2DE2DCDF08100158B13 /* CALayer+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				C5BFE2DC2DCDF08100158B13 /* CALayer+Extra.h */,
+				C5BFE2DD2DCDF08100158B13 /* CALayer+Extra.m */,
+			);
+			path = "CALayer+Extra";
+			sourceTree = "<group>";
+		};
+		C5BFE2E02DCDF08100158B13 /* CALayer+Category */ = {
+			isa = PBXGroup;
+			children = (
+				C5BFE2DB2DCDF08100158B13 /* CAShapeLayer+Extra */,
+				C5BFE2DE2DCDF08100158B13 /* CALayer+Extra */,
+				C5BFE2DF2DCDF08100158B13 /* CALayerDef.h */,
+			);
+			path = "CALayer+Category";
 			sourceTree = "<group>";
 		};
 		C5D4AB912DB24601006ED3F6 /* UIViewController+Extra */ = {
@@ -11587,38 +11616,11 @@
 			path = BaseProtocol;
 			sourceTree = "<group>";
 		};
-		CE5A60B12CA82C2D006D67A7 /* CALayer+Anim */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A60AF2CA82C2D006D67A7 /* CALayer+Anim.h */,
-				CE5A60B02CA82C2D006D67A7 /* CALayer+Anim.m */,
-			);
-			path = "CALayer+Anim";
-			sourceTree = "<group>";
-		};
-		CE5A60B42CA82C2D006D67A7 /* CALayer+Transition */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A60B22CA82C2D006D67A7 /* CALayer+Transition.h */,
-				CE5A60B32CA82C2D006D67A7 /* CALayer+Transition.m */,
-			);
-			path = "CALayer+Transition";
-			sourceTree = "<group>";
-		};
-		CE5A60B52CA82C2D006D67A7 /* CALayer+Category */ = {
-			isa = PBXGroup;
-			children = (
-				CE5A60B12CA82C2D006D67A7 /* CALayer+Anim */,
-				CE5A60B42CA82C2D006D67A7 /* CALayer+Transition */,
-			);
-			path = "CALayer+Category";
-			sourceTree = "<group>";
-		};
 		CE5A60B72CA82C2D006D67A7 /* CALayer */ = {
 			isa = PBXGroup;
 			children = (
-				CE5A60B52CA82C2D006D67A7 /* CALayer+Category */,
-				CE5A60B62CA82C2D006D67A7 /* JobsCALayer.h */,
+				C5BFE2E02DCDF08100158B13 /* CALayer+Category */,
+				C5BFE2E12DCDF08100158B13 /* JobsCALayer.h */,
 			);
 			path = CALayer;
 			sourceTree = "<group>";
@@ -17002,7 +17004,6 @@
 				CE5A64BE2CA82F1E006D67A7 /* NSObject+Class.m in Sources */,
 				CECE7EAE2C450E5B00764AF5 /* LMJDropdownMenu+Extra.m in Sources */,
 				CECE7EA52C450E5B00764AF5 /* KTVHCDataUnitQueue.m in Sources */,
-				CE5A64762CA82CCD006D67A7 /* CALayer+Transition.m in Sources */,
 				CECE7E9E2C450E5B00764AF5 /* KTVHCDataRequest.m in Sources */,
 				CE61AD472C9EAB26002DF138 /* FM_promotion_advertise_api.m in Sources */,
 				CE5A64EE2CA8305D006D67A7 /* NSURLRequest+Extra.m in Sources */,
@@ -17263,7 +17264,6 @@
 				CE4F27902CA825CD002AF25B /* MainTableViewCellItem.m in Sources */,
 				84B8A9542D0ACE220079336D /* UIEditMenuInteraction+Extra.m in Sources */,
 				CE4F27912CA825CD002AF25B /* BaiShaETProjCollectionHeaderView.m in Sources */,
-				CE5A64752CA82CC7006D67A7 /* CALayer+Anim.m in Sources */,
 				CE5A65112CA830FE006D67A7 /* UICollectionViewCell+UICollectionViewCellProtocol.m in Sources */,
 				C5350A0B2DCB6B260034341F /* UIViewModel+App.m in Sources */,
 				CE5A65122CA830FE006D67A7 /* UICollectionViewCell+ShakeAnimation.m in Sources */,
@@ -17679,6 +17679,8 @@
 				CE8C147E2CB927540056090E /* NSObject+URLManager_4.m in Sources */,
 				CE8C147F2CB927540056090E /* NSObject+URLManager_5.m in Sources */,
 				CE4F28122CA825CD002AF25B /* JobsCommentPopUpView_viewForHeaderInSection.m in Sources */,
+				C5BFE2E22DCDF08100158B13 /* CALayer+Extra.m in Sources */,
+				C5BFE2E32DCDF08100158B13 /* CAShapeLayer+Extra.m in Sources */,
 				8464A5A42CDB74D20030409A /* FMDoorModel.m in Sources */,
 				CE4F28132CA825CD002AF25B /* JobsSearchResultDataListTBVCell.m in Sources */,
 				CE5A65AE2CA8339C006D67A7 /* BaseContentView.m in Sources */,
