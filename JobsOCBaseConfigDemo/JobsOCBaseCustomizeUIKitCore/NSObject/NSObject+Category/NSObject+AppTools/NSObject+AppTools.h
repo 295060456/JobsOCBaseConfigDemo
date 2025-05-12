@@ -20,6 +20,7 @@
 
 #import "JobsHotLabelBySingleLine.h"
 #import "JobsCustomTabBar.h"
+#import "FMTermsOfUseView.h"
 //#import "CasinoUpgradePopupView.h"
 
 #import "JobsNetworkingHeader.h"
@@ -59,6 +60,11 @@ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
+-(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleAndAction;
+-(JobsReturnNavBarConfigByStringBlock _Nullable)makeNav0ByTitle;
+-(jobsByVoidBlock _Nonnull)唤起人工客服;
+-(jobsByVoidBlock _Nonnull)唤起Telegram;
+-(jobsByVoidBlock _Nonnull)唤起FaceBook;
 /// 选择电话号码区位
 -(__kindof UIButton *)zoneCodeBtnByBlock:(jobsByIDBlock _Nonnull)block;
 /// 配置弹窗数据
@@ -73,6 +79,8 @@ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 -(JobsReturnViewModelByDecorationModelBlock _Nonnull)makeDatas;
 /// 默认文本段落样式（两端对齐）
 -(NSMutableParagraphStyle *)defaultParagraphStyle;
+/// Terms Of Use
+-(void)makeTermsOfUseByBlock:(jobsByIDBlock _Nonnull)block;
 /// 联系我们.按钮
 -(__kindof UIButton *_Nullable)makeContactBtn;
 /// 关闭.按钮

@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <WebKit/WebKit.h>
 #import <os/lock.h>
 #import "JobsBlock.h"
 #import "RACProtocol.h"
@@ -54,6 +55,13 @@ Prop_assign()ScheduledTimerType timerType; /// 用哪一种模式进行初始化
 Prop_assign()TimerStyle timerStyle;/// 逆时针模式?顺时针模式？
 Prop_assign(readonly)NSTimerCurrentStatus timerCurrentStatus;/// 定时器当前状态
 Prop_assign()TimerProcessType timerProcessType; /// 计时器运行状态
+#pragma mark —— JS
+Prop_strong(nullable)WKUserContentController *userContentCtrl;
+Prop_strong(nullable)WKScriptMessage *scriptMsg;
+Prop_copy(nullable)NSString *handlerName;
+Prop_copy(nullable)NSString *evaluateJavaScript;
+Prop_copy(nullable)NSString *customUserAgent;
+Prop_copy(nullable)jobsJSCompletionHandler completionHandlerBlock;
 #pragma mark —— Data
 Prop_copy(nullable)NSMutableArray <NSURL *>*urls;
 Prop_strong(nullable)NSURL *url;
@@ -78,6 +86,7 @@ Prop_weak(nullable)id weak_target;
 /// 强引用数据源
 Prop_strong(nullable)id data;/// 【强引用】绑定的数据源，数据类型id
 Prop_strong(nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
+Prop_strong(nullable)id modelData;/// 挂载修饰的ViewModel/UIButtonModel/TextModel...
 /// 弱引用数据源
 Prop_weak(nullable)id data_weak;/// 【弱引用】绑定的数据源，数据类型id
 Prop_weak(nullable)id requestParams_weak;/// 【弱引用】绑定的数据源，数据类型id
@@ -155,6 +164,12 @@ NS_ASSUME_NONNULL_END
 @synthesize timerStyle = _timerStyle;\
 @synthesize timerCurrentStatus = _timerCurrentStatus;\
 @synthesize timerProcessType = _timerProcessType;\
+@synthesize userContentCtrl = _userContentCtrl;\
+@synthesize scriptMsg = _scriptMsg;\
+@synthesize handlerName = _handlerName;\
+@synthesize evaluateJavaScript = _evaluateJavaScript;\
+@synthesize customUserAgent = _customUserAgent;\
+@synthesize completionHandlerBlock = _completionHandlerBlock;\
 
 #endif /* BaseProtocol_synthesize_timer */
 
@@ -176,6 +191,7 @@ NS_ASSUME_NONNULL_END
 @synthesize data = _data;\
 @synthesize data_weak = _data_weak;\
 @synthesize requestParams = _requestParams;\
+@synthesize modelData = _modelData;\
 @synthesize requestParams_weak = _requestParams_weak;\
 
 #endif /* BaseProtocol_synthesize_data */
@@ -222,6 +238,12 @@ BaseProtocol_synthesize_data \
 @dynamic timerStyle;\
 @dynamic timerCurrentStatus;\
 @dynamic timerProcessType;\
+@dynamic userContentCtrl;\
+@dynamic scriptMsg;\
+@dynamic handlerName;\
+@dynamic evaluateJavaScript;\
+@dynamic customUserAgent;\
+@dynamic completionHandlerBlock;\
 @dynamic urls;\
 @dynamic url;\
 @dynamic imageUrl;\
@@ -237,6 +259,7 @@ BaseProtocol_synthesize_data \
 @dynamic data;\
 @dynamic data_weak;\
 @dynamic requestParams;\
+@dynamic modelData;\
 @dynamic requestParams_weak;\
 
 #endif /* BaseProtocol_dynamic */

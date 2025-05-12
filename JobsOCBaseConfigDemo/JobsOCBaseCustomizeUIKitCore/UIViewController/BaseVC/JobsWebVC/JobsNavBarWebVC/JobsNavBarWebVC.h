@@ -5,11 +5,12 @@
 //  Created by Admin on 8/4/2025.
 //
 
-#import "BaseViewController.h"
+#import "JobsBaseWebVC.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@interface JobsNavBarWebVC : BaseViewController
+/// 带导航栏的WebView控制器
+@interface JobsNavBarWebVC : JobsBaseWebVC
 <
 WKNavigationDelegate
 ,WKScriptMessageHandler

@@ -201,8 +201,11 @@ typedef void(^jobsByFileFolderHandleModelBlock)(__kindof FileFolderHandleModel *
 
 @class JobsNavBarConfig;
 typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
-typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(UIButtonModel *_Nullable backBtnModel,
-                                                                               UIButtonModel *_Nullable closeBtnModel);
+typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByStringBlock)(NSString *_Nullable string);
+typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByAttributedStringBlock)(NSAttributedString *_Nullable aString);
+typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByStringAndActionBlock)(Jobs_NavBarConfig_Title_Action_Arguments);
+typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByButtonModelBlock)(Jobs_NavBarConfig_BackBtnModel_CloseBtnModel_Arguments);
+
 @class JobsNavBar;
 typedef void(^jobsByNavBarBlock)(__kindof JobsNavBar *_Nullable data);
 
@@ -526,8 +529,8 @@ typedef void(^jobsByCategoryIndicatorBackgroundViewBlock)(JXCategoryIndicatorBac
 typedef void(^jobsCategoryIndicatorLineViewBlock)(JXCategoryIndicatorLineView *_Nullable view);
 
 #pragma mark —— 复合型Block
-
-typedef void(^jobsByRetIDByIDBlock) (JobsReturnIDByIDBlock _Nullable block);
+typedef void(^jobsByRetIDByIDBlock)(JobsReturnIDByIDBlock _Nullable block);
+typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
 
 typedef id _Nullable(^JobsReturnIDByVoidBlocks)(jobsByVoidBlock _Nullable block);
 typedef id _Nullable(^JobsReturnIDByVoidIDBlocks)(jobsByIDBlock _Nullable block);

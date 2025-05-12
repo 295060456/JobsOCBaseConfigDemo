@@ -37,10 +37,14 @@ JobsKey(_gk_navTitleBtn)
         navTitleBtn = UIButton.initByButtonModel(self.gk_navTitleBtnModel);
         Jobs_setAssociatedRETAIN_NONATOMIC(_gk_navTitleBtn, navTitleBtn)
         /// 父控件不能是self.gk_navigationBar。否则会造成约束与预想的出现偏差
-        [self.view.addSubview(navTitleBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self.gk_navigationBar);
-            make.size.mas_equalTo(self.gk_navTitleBtnModel.jobsSize);
-        }];self.view.refresh();
+        self.view.addSubview(navTitleBtn).masonryBy(^(MASConstraintMaker *make) {
+            if(self.gk_navLeftBarButtonItem){
+                make.centerX.equalTo(self.gk_navigationBar);
+                make.bottom.equalTo(self.gk_navigationBar).offset(JobsWidth(-5));
+            }else{
+                make.center.equalTo(self.gk_navigationBar);
+            }make.size.mas_equalTo(self.gk_navTitleBtnModel.jobsSize);
+        });
     }return navTitleBtn;
 }
 

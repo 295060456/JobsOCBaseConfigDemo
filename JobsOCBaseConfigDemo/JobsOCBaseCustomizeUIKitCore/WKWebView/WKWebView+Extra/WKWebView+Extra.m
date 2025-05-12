@@ -32,5 +32,29 @@
         return self;
     };
 }
+#pragma mark —— Prop_copy(nullable)NSMutableArray <NSURL *>*urls;
+JobsKey(_urls)
+@dynamic urls;
+-(NSMutableArray<NSURL *> *)urls{
+    NSMutableArray *arr = Jobs_getAssociatedObject(_urls);
+    if (!arr) {
+        arr = NSMutableArray.array;
+        Jobs_setAssociatedRETAIN_NONATOMIC(_urls, arr)
+    }return arr;
+}
+
+-(void)setUrls:(NSMutableArray<NSURL *> *)urls{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_urls, urls)
+}
+#pragma mark —— Prop_strong(nullable)NSURL *url;
+JobsKey(_url)
+@dynamic url;
+-(NSURL *)url{
+    return Jobs_getAssociatedObject(_url);
+}
+
+-(void)setUrl:(NSURL *)url{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_url, url)
+}
 
 @end

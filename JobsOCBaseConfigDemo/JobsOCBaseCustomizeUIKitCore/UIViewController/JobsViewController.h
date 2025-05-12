@@ -16,7 +16,8 @@
 #import "JobsNavSettingVC.h"
 #import "JobsTabBarSettingVC.h"
 #import "BaseViewController.h"
-#import "JobsWebViewController.h"
+#import "JobsBaseWebVC.h"
+#import "JobsNavBarWebVC.h"
 #pragma mark —— Category
 // UIViewController+JXCategory
 #import "UIViewController+JXCategoryListContentViewDelegate.h"

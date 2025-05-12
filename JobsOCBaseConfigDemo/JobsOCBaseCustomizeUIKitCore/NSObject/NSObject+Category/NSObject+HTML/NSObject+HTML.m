@@ -69,4 +69,28 @@
         arr.add(@"<hr>");
     });
 }
+/// 一个常规的WebView
+-(JobsReturnWKWebViewByViewModelBlock _Nonnull)makeNormaleWebViewByViewModel{
+    @jobs_weakify(self)
+    return ^__kindof WKWebView *_Nullable(__kindof UIViewModel *_Nullable viewModel){
+        @jobs_strongify(self)
+        WKWebView *webView = WKWebView.initBy(jobsMakeWebViewConfiguration(^(__kindof WKWebViewConfiguration * _Nullable config) {
+            config.userContentController = jobsMakeUserContentController(^(__kindof WKUserContentController * _Nullable data) {
+                [data addScriptMessageHandler:self name:viewModel.handlerName]; // handler 名字
+            });
+        }));
+        webView.url = viewModel.url;
+        webView.navigationDelegate = self; // 设置代理监听网页加载状态
+        /// 从 Objective-C 调用 JavaScript 方法
+        [webView evaluateJavaScript:viewModel.evaluateJavaScript
+                  completionHandler:viewModel.completionHandlerBlock];
+        return webView;
+    };
+}
+#pragma mark —— WKScriptMessageHandler
+-(void)userContentController:(WKUserContentController *)userContentController
+     didReceiveScriptMessage:(WKScriptMessage *)message{
+    
+}
+
 @end

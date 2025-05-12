@@ -116,14 +116,6 @@
     return ^(CGFloat data){
         @jobs_strongify(self)
         /// JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape
-        self.makeGKNavByAlpha(data);
-    };
-}
-
--(jobsByCGFloatBlock _Nonnull)makeGKNavByAlpha{
-    @jobs_weakify(self)
-    return ^(CGFloat data){
-        @jobs_strongify(self)
         self.setGKNav(nil);
         self.setGKNavBackBtn(nil);
         if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
@@ -154,22 +146,28 @@
         /// 布局未响应旋转：横竖屏切换时，GKNavigationBar 有时不会触发布局更新（如 layoutSubviews），或者更新不及时。
         /// 适配 SafeArea 问题：尤其是在 iPhone X 系列横屏时，顶部的安全区域（SafeAreaInsets）处理不当，会导致导航栏遮挡内容。
         if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-            self.makeNavBarConfig(nil,nil);
-            self.navBar.hidden = !config.viewModel.alpha;
-            self.navBar.alpha = config.viewModel.alpha;
+            self.makeJobsNavByAlpha(config.viewModel.alpha);
         }else{
-            self.setGKNav(config.viewModel);/// 配置GKNavigationBar（不包括返回键的设定）
-            self.setGKNavBackBtnBy(config.backBtn);/// 配置GKNavigationBar的返回按钮
-            self.setGKNavTitleBtnBy(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-                model.backgroundImage = config.viewModel.titleImage;
-                model.jobsSize = CGSizeMake(JobsWidth(150), JobsWidth(30));
-                model.baseBackgroundColor = JobsClearColor;
-            }));
-            if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
-            if(self.rightBarButtonItems.count) self.gk_navRightBarButtonItems = self.rightBarButtonItems;
-            self.gk_navigationBar.hidden = !config.viewModel.alpha;
-            self.gk_navigationBar.alpha = config.viewModel.alpha;
+            self.makeGKNavByConfig(config);
         }
+    };
+}
+
+-(jobsByNavBarConfigBlock _Nonnull)makeGKNavByConfig{
+    @jobs_weakify(self)
+    return ^(__kindof JobsNavBarConfig *_Nullable config){
+        @jobs_strongify(self)
+        self.setGKNav(config.viewModel);/// 配置GKNavigationBar（不包括返回键的设定）
+        self.setGKNavBackBtnBy(config.backBtn);/// 配置GKNavigationBar的返回按钮
+        self.setGKNavTitleBtnBy(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.backgroundImage = config.viewModel.titleImage;
+            model.jobsSize = CGSizeMake(JobsWidth(150), JobsWidth(30));
+            model.baseBackgroundColor = JobsClearColor;
+        }));
+        if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
+        if(self.rightBarButtonItems.count) self.gk_navRightBarButtonItems = self.rightBarButtonItems;
+        self.gk_navigationBar.hidden = !config.viewModel.alpha;
+        self.gk_navigationBar.alpha = config.viewModel.alpha;
     };
 }
 

@@ -233,6 +233,8 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle5Block) (Jobs_Title
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle6Block) (Jobs_Title_Font_TitleCor_Image_DirectionalRectEdge_X_Arguments);
 /// 主文字内容、字体大小、主文字颜色、按钮图片、图文距离
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle7Block) (Jobs_Title_Font_TitleCor_Image_X_Arguments);
+#pragma mark —— 关于 UIActivityIndicatorView
+typedef __kindof UIActivityIndicatorView *_Nullable(^JobsReturnActivityIndicatorViewByNSInteger)(NSInteger data);
 #pragma mark —— 关于 UITableViewHeaderFooterView
 /// 多参数
 typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,
@@ -268,11 +270,13 @@ typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSM
 typedef __kindof PDFDocument *_Nullable(^JobsReturnPDFDocumentByURLBlock)(NSURL *_Nullable pdfURL);
 #pragma mark —— 关于 WKWebView
 #import <WebKit/WebKit.h>
+@class UIViewModel;
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByVoidBlock)(void);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByConfigurationBlock)(WKWebViewConfiguration *_Nullable config);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLRequestBlock)(__kindof NSURLRequest *_Nullable request);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByStringBlock)(NSString *_Nullable data);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLBlock)(NSURL *_Nullable URL);
+typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByViewModelBlock)(__kindof UIViewModel *_Nullable viewModel);
 #pragma mark —— 关于 控制器
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByViewBlock)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVCBlock)(__kindof UIViewController *_Nonnull vc);

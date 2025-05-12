@@ -121,14 +121,16 @@
             if(titleCor) [data setObject:titleCor forKey:NSForegroundColorAttributeName];
             if(titleFont) [data setObject:titleFont forKey:NSFontAttributeName];
             if(self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter))
-                [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment) forKey:NSParagraphStyleAttributeName];
+                [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment)
+                         forKey:NSParagraphStyleAttributeName];
         }));
         /// 设置按钮副标题的文本属性
         btnConfiguration.attributedSubtitle = attributedSubtitle ? : JobsAttributedStringByAttributes(subTitle, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
             @jobs_strongify(self)
             if (subTitleCor) [data setObject:subTitleCor forKey:NSForegroundColorAttributeName];
             if (subTitleFont) [data setObject:subTitleFont forKey:NSFontAttributeName];
-            [data setObject:self.jobsparagraphStyleByTextAlignment(subTextAlignment) forKey:NSParagraphStyleAttributeName];
+            [data setObject:self.jobsparagraphStyleByTextAlignment(subTextAlignment)
+                     forKey:NSParagraphStyleAttributeName];
         }));
     }
     {/// 其他

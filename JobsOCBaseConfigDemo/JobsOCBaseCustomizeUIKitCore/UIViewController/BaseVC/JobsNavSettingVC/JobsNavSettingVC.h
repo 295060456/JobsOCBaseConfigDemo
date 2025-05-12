@@ -18,9 +18,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsNavSettingVC : JobsMonitorVC<UIGestureRecognizerDelegate>
-#pragma mark —— 一些公有方法
+
 -(jobsByCGFloatBlock _Nonnull)makeNavByAlpha;
+-(jobsByCGFloatBlock _Nonnull)makeJobsNavByAlpha;
 -(jobsByNavBarConfigBlock _Nonnull)makeNavByConfig;
+-(jobsByNavBarConfigBlock _Nonnull)makeGKNavByConfig;
 
 @end
 

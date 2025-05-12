@@ -158,4 +158,22 @@
     CGFloat x
 #endif /* Jobs_Title_Font_TitleCor_Image_DirectionalRectEdge_X_Arguments */
 
+#ifndef Jobs_WKNavigationDelegate_Arguments
+#define Jobs_WKNavigationDelegate_Arguments \
+    WKNavigationActionPolicy policy, \
+    WKWebpagePreferences *_Nullable preferences
+#endif /* Jobs_WKNavigationDelegate_Arguments */
+
+#ifndef Jobs_NavBarConfig_Title_Action_Arguments
+#define Jobs_NavBarConfig_Title_Action_Arguments \
+    NSString *_Nullable string, \
+    JobsReturnIDByIDBlock _Nullable backActionBlock
+#endif /* Jobs_NavBarConfig_Title_Action_Arguments */
+
+#ifndef Jobs_NavBarConfig_BackBtnModel_CloseBtnModel_Arguments
+#define Jobs_NavBarConfig_BackBtnModel_CloseBtnModel_Arguments \
+    UIButtonModel *_Nullable backBtnModel, \
+    UIButtonModel *_Nullable closeBtnModel
+#endif /* Jobs_NavBarConfig_BackBtnModel_CloseBtnModel_Arguments */
+
 #endif /* JobsBlockDef_h */

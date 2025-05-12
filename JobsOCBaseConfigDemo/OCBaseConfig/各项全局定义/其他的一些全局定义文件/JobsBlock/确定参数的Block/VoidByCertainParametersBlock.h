@@ -35,6 +35,8 @@ typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable 
 #pragma mark —— 关于WKWebView.JS配置
 typedef void(^jobsByUserContentControllerBlock)(__kindof WKUserContentController *_Nullable data);
 typedef void(^jobsByWKWebViewConfigurationBlock)(__kindof WKWebViewConfiguration *_Nullable config);
+typedef void(^WKNavigationDelegateBlock1) (WKNavigationResponsePolicy policy);
+typedef void(^WKNavigationDelegateBlock2) (WKNavigationActionPolicy policy);
 #pragma mark —— 关于 JavaScript
 typedef void(^jobsByJSValueBlock)(JSValue *_Nullable value);
 #pragma mark —— 关于View
@@ -168,7 +170,8 @@ typedef void(^jobsByNEVPNProtocolIKEv2Block)(__kindof NEVPNProtocolIKEv2 *_Nulla
 typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
 typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
 typedef void(^jobsBySelectorBlock) (Jobs_2_Arguments);
-typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
+typedef void(^jobsJSCompletionHandler)(id _Nullable result, NSError *_Nullable error);
+typedef void(^WKNavigationDelegateBlock3) (Jobs_WKNavigationDelegate_Arguments);
 /// weakSelf 方便使用，用来打破循环引用。使用时需要改成实际类型，否则没有代码提示
 /// selector 实际调用的方法
 /// arg 事件默认传递的对象，比如`NSNotification`，`UIButton`

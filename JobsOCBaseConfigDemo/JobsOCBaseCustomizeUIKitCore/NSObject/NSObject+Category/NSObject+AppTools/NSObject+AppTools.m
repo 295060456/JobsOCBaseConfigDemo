@@ -62,6 +62,74 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
+-(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleAndAction{
+    return ^JobsNavBarConfig *_Nullable(NSString *_Nullable string,
+                                        JobsReturnIDByIDBlock _Nullable backActionBlock){
+        return jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
+            config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.alpha = 1;
+                viewModel.navBgCor = JobsClearColor;
+    //            viewModel.navBgImage = JobsIMG(@"");
+                viewModel.titleImage = JobsIMG(@"BSportRedLogo"); /// 配置中间的标题为图片
+            });
+            config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
+    //            @jobs_strongify(self)
+                buttonModel.normalImage = JobsIMG(@"全局返回箭头");
+                buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
+                buttonModel.title = string;
+                buttonModel.titleFont = bayonRegular(14);
+                buttonModel.titleCor = JobsCor(@"#E20808");
+                buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
+                buttonModel.textAlignment = NSTextAlignmentCenter;
+                buttonModel.subTextAlignment = NSTextAlignmentCenter;
+                buttonModel.baseBackgroundColor = JobsClearColor;
+                buttonModel.imagePadding = JobsWidth(5);
+                buttonModel.clickEventBlock = backActionBlock;
+                buttonModel.longPressGestureEventBlock = ^id(__kindof UIButton *_Nullable x){
+//                    @jobs_strongify(self)
+                    return nil;
+                };
+            }));
+        });
+    };
+}
+
+-(JobsReturnNavBarConfigByStringBlock _Nullable)makeNav0ByTitle{
+    @jobs_weakify(self)
+    return ^JobsNavBarConfig *_Nullable(NSString *_Nullable string){
+        @jobs_strongify(self)
+        return self.makeNavByTitleAndAction(string,^id(__kindof UIButton *_Nullable x){
+            @jobs_strongify(self)
+            x.selected = !x.selected;
+            self.backViewControllerCore((__kindof UIViewController *)self);
+            return nil;
+        });
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)唤起人工客服{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.jobsOpenURL(@"https://direct.lc.chat/18866559/");
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)唤起Telegram{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.jobsOpenURL(@"https://t.me/bsports_ph");
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)唤起FaceBook{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        self.jobsOpenURL(@"https://www.facebook.com/profile.php?id=61569306594235");
+    };
+}
 /// 选择电话号码区位
 -(__kindof UIButton *)zoneCodeBtnByBlock:(jobsByIDBlock _Nonnull)block{
     return BaseButton.initByStyle1(@"+".add(@"63"),
@@ -254,6 +322,15 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         data.headIndent = 0.0;/// 整体缩进(首行除外)，取值 float
         data.lineSpacing = 0;/// 行距，取值 float
     });
+}
+/// Terms Of Use
+-(void)makeTermsOfUseByBlock:(jobsByIDBlock _Nonnull)block{
+    ShowView(FMTermsOfUseView
+             .BySize(FMTermsOfUseView.viewSizeByModel(nil))
+             .JobsRichViewByModel2(nil)
+             .JobsBlock1(^(id _Nullable data) {
+                 if(block) block(data);
+             }));
 }
 /// 联系我们.按钮
 -(__kindof UIButton *_Nullable)makeContactBtn{

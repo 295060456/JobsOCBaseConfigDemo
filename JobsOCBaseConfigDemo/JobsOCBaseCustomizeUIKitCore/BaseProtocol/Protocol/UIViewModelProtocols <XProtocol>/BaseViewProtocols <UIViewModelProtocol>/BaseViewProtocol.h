@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BaseViewProtocol <UIViewModelProtocol>
 typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewProtocol> _Nullable data);
 @optional
+Prop_strong(nullable)__kindof UIActivityIndicatorView *activityIndicatorView;
 Prop_strong(nullable)__kindof UIStackView *stackView;
 Prop_strong(nullable)__kindof UIView *viewer; /// 和系统字段进行区分
 Prop_strong(nullable)__kindof UICollectionView *collectionView;
@@ -120,6 +121,9 @@ Prop_copy(nullable)jobsByBtnBlock closeBtnClickAction;
 /// 数据（字符串）定高
 -(JobsReturnCGFloatByIDBlock _Nonnull)heightByData;
 #pragma mark —— 一些功能性的
+/// makeNormaleWebView
+/// self.webView.loadRequest(self.urlString.URLRequest);
++(JobsReturnVCByWebViewBlock _Nonnull)initByWebView;
 /// 初始化的时候最好传入一个size值将其子视图的大小固定死。因为只有当父视图有Size的情况下子视图才会展开，从而避免刷新约束时候的一系列麻烦事。
 -(instancetype)initWithSize:(CGSize)thisViewSize;
 -(JobsReturnIDByCGSizeBlock _Nonnull)initWithSize;
@@ -158,6 +162,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_synthesize
 #define BaseViewProtocol_synthesize \
 \
+@synthesize activityIndicatorView = _activityIndicatorView;\
 @synthesize stackView = _stackView;\
 @synthesize viewer = _viewer;\
 @synthesize collectionView = _collectionView;\
@@ -193,6 +198,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseViewProtocol_dynamic
 #define BaseViewProtocol_dynamic \
 \
+@dynamic activityIndicatorView;\
 @dynamic stackView;\
 @dynamic viewer;\
 @dynamic collectionView;\

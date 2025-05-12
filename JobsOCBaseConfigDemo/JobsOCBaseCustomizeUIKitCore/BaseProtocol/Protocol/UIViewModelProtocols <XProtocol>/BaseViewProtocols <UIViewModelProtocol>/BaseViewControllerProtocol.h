@@ -56,6 +56,7 @@ Prop_strong(nullable)UIBarButtonItem *barButtonItem;
 /// 铺满全屏展示的策略
 -(void)fullScreenConstraintTargetView:(__kindof UIView *_Nonnull)view
                         topViewOffset:(CGFloat)topViewOffset;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,11 +7,12 @@
 
 #import <WebKit/WebKit.h>
 #import "JobsBlock.h"
+#import "BaseProtocol.h"
 #import "WKWebViewConfiguration+Extra.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WKWebView (Extra)
+@interface WKWebView (Extra)<BaseProtocol>
 
 +(JobsReturnWKWebViewByConfigurationBlock _Nonnull)initBy;
 -(JobsReturnWKWebViewByURLRequestBlock _Nonnull)loadRequest;

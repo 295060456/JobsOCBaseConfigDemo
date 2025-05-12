@@ -9,6 +9,7 @@
 #import "NSObject+Extras.h"
 
 @implementation NSObject (Extras)
+/// UITextFieldProtocol
 UITextFieldProtocol_dynamic
 #pragma mark —— 系统类单例的二次封装
 /// NSBundle
@@ -605,6 +606,7 @@ UITextFieldProtocol_dynamic
 }
 #pragma mark —— push
 /// 简洁版强制push展现一个控制器页面【不需要正向传参】
+/// self.jobsNavDirectionBy(JobsTransitionDirectionLeft);
 -(jobsByVCBlock _Nonnull)comingToPushVC{
     @jobs_weakify(self)
     return ^(__kindof UIViewController *_Nonnull viewController) {
