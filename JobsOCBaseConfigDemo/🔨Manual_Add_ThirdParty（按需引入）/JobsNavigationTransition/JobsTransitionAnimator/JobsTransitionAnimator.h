@@ -23,9 +23,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JobsTransitionAnimator : NSObject<UIViewControllerAnimatedTransitioning>
 
 Prop_assign()JobsTransitionDirection direction;
-Prop_assign()BOOL isPush;
+Prop_assign()ComingStyle comingStyle;
 
-+(instancetype)animatorWithDirection:(JobsTransitionDirection)direction isPush:(BOOL)isPush;
++(JobsReturnAnimatorByTransDirectionBlock _Nonnull)animatorByPushDirection;
++(JobsReturnAnimatorByTransDirectionBlock _Nonnull)animatorByPopDirection;
 
 @end
 
@@ -36,4 +37,3 @@ NS_INLINE __kindof JobsTransitionAnimator *_Nonnull jobsMakeTransitionAnimator(j
     if (block) block(data);
     return data;
 }
-

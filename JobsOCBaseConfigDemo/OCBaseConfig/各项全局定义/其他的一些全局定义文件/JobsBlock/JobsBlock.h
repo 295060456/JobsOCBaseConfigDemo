@@ -61,7 +61,7 @@ typedef void(^jobsByCustomTabBarVCBlock)(__kindof JobsCustomTabBarVC *_Nullable 
 typedef void(^jobsByCustomTabBarConfigBlock)(__kindof JobsCustomTabBarConfig *_Nullable tabBarConfig);
 
 @class JobsTransitionAnimator;
-typedef void(^jobsByTransitionAnimatorBlock)(__kindof JobsTransitionAnimator *_Nullable transitionAnimator);
+typedef void(^jobsByTransitionAnimatorBlock)(__kindof JobsTransitionAnimator *_Nullable animator);
  
 @class MGSwipeButtonModel;
 typedef void(^jobsByMGSwipeButtonModelBlock)(__kindof MGSwipeButtonModel *_Nullable model);
@@ -411,6 +411,12 @@ typedef void(^jobsByIQKeyboardManagerBlock)(__kindof IQKeyboardManager *_Nullabl
 
 @class CJTextField;
 typedef void(^JobsByCJTextFieldBlock)(CJTextField *_Nullable data);
+
+@class JobsTransitionAnimator;
+typedef __kindof JobsTransitionAnimator *_Nullable(^JobsReturnAnimatorByTransDirectionBlock)(JobsTransitionDirection direction);
+
+@class JobsPopHelper;
+typedef void(^jobsByPopHelperBlock)(__kindof JobsPopHelper *_Nullable helper);
 
 @class WMZBannerView;
 @class WMZBannerParam;

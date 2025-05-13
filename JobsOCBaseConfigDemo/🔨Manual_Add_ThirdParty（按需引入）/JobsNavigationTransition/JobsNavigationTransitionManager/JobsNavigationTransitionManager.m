@@ -17,7 +17,7 @@ static dispatch_once_t static_navigationTransitionManagerOnceToken;
     static_navigationTransitionManager = nil;
 }
 
-+(instancetype)sharedInstance{
++(instancetype)sharedManager{
     dispatch_once(&static_navigationTransitionManagerOnceToken, ^{
         static_navigationTransitionManager = JobsNavigationTransitionManager.new;
     });return static_navigationTransitionManager;
@@ -26,16 +26,16 @@ static dispatch_once_t static_navigationTransitionManagerOnceToken;
 +(void)setDirection:(JobsTransitionDirection)direction
 forNavigationController:(UINavigationController *)navCtrlVC{
     _storedDirection = direction;
-    navCtrlVC.delegate = self.sharedInstance;
+    navCtrlVC.delegate = self.sharedManager;
 }
 #pragma mark —— UINavigationControllerDelegate
 -(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
                                  animationControllerForOperation:(UINavigationControllerOperation)operation
                                               fromViewController:(UIViewController *)fromVC
                                                 toViewController:(UIViewController *)toVC {
-    BOOL isPush = (operation == UINavigationControllerOperationPush);
-    return [JobsTransitionAnimator animatorWithDirection:_storedDirection isPush:isPush];
+    if(operation == UINavigationControllerOperationPush) return JobsTransitionAnimator.animatorByPushDirection(_storedDirection);
+    if(operation == UINavigationControllerOperationPop) return JobsTransitionAnimator.animatorByPopDirection(_storedDirection);
+    return nil;
 }
-
 
 @end

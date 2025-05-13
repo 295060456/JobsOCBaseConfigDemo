@@ -7,14 +7,34 @@
 
 #import "JobsTransitionAnimator.h"
 
+@interface JobsTransitionAnimator ()
+
+@end
+
 @implementation JobsTransitionAnimator
 
-+(instancetype)animatorWithDirection:(JobsTransitionDirection)direction isPush:(BOOL)isPush{
-    return jobsMakeTransitionAnimator(^(__kindof JobsTransitionAnimator * _Nullable transitionAnimator) {
-        transitionAnimator.direction = direction;
-        transitionAnimator.isPush = isPush;
-    });
++(JobsReturnAnimatorByTransDirectionBlock _Nonnull)animatorByPushDirection{
+    return ^__kindof JobsTransitionAnimator *_Nullable(JobsTransitionDirection direction){
+        return jobsMakeTransitionAnimator(^(__kindof JobsTransitionAnimator * _Nullable animator) {
+            animator.direction = direction;
+            animator.comingStyle = ComingStyle_PUSH;
+        });
+    };
 }
+
++(JobsReturnAnimatorByTransDirectionBlock _Nonnull)animatorByPopDirection{
+    return ^__kindof JobsTransitionAnimator *_Nullable(JobsTransitionDirection direction){
+        return jobsMakeTransitionAnimator(^(__kindof JobsTransitionAnimator * _Nullable animator) {
+            animator.direction = direction;
+            animator.comingStyle = ComingStyle_PRESENT;
+        });
+    };
+}
+
+-(BOOL)isPush{
+    return self.comingStyle == ComingStyle_PUSH;
+}
+
 #pragma mark —— UIViewControllerAnimatedTransitioning
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
     return 1;
@@ -52,8 +72,8 @@
     }
 
     if (self.isPush) {
-        toVC.view.frame = toStartFrame;
         containerView.addSubview(toVC.view);
+        toVC.view.frame = toStartFrame;
     } else {
         [containerView insertSubview:toVC.view belowSubview:fromVC.view];
         toVC.view.frame = screenBounds;
@@ -67,7 +87,7 @@
             fromVC.view.frame = fromEndFrame;
         }
     } completion:^(BOOL finished) {
-        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
 }
 

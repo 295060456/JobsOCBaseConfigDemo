@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 /// UILabel实现背景图片
-@interface JobsBaseLabel : UIView
+@interface JobsBaseLabel : BaseLabel
 #pragma mark —— 一些公有方法
 -(UIImageView *)getBgImageView;
 -(BaseLabel *)getLabel;
