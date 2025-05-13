@@ -136,6 +136,7 @@ typedef NS_ENUM(NSUInteger, ComingStyle) {
     ComingStyle_Unknown = 0,
     ComingStyle_PUSH,
     ComingStyle_PRESENT,
+    ComingStyle_POP,
 };
 ///
 #ifndef JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED

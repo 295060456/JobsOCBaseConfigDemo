@@ -12,6 +12,7 @@
 Prop_weak()UIViewController *viewController;
 Prop_assign()JobsTransitionDirection direction;
 Prop_strong()UIPercentDrivenInteractiveTransition *interactiveTransition;
+Prop_assign()ComingStyle comingStyle;
 
 @end
 
@@ -29,6 +30,16 @@ static dispatch_once_t static_navigationTransitionManagerOnceToken;
     dispatch_once(&static_navigationTransitionManagerOnceToken, ^{
         static_navigationTransitionMgr = JobsNavigationTransitionMgr.new;
     });return static_navigationTransitionMgr;
+}
+#pragma mark —— 一些私有方法
+-(BOOL)isPush{
+    return self.comingStyle == ComingStyle_PUSH;
+}
+#pragma mark —— 一些公共方法
++(void)setDirection:(JobsTransitionDirection)direction
+forNavigationController:(UINavigationController *)navCtrlVC{
+    _storedDirection = direction;
+    navCtrlVC.delegate = self.sharedManager;
 }
 
 +(void)attachToViewController:(UIViewController *)viewController
@@ -75,17 +86,11 @@ static dispatch_once_t static_navigationTransitionManagerOnceToken;
     }]);
 }
 #pragma mark —— UINavigationControllerDelegate
+/// 当导航控制器要执行动画切换时，询问是否需要一个交互式的转场控制器
 - (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
                       interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
     return self.interactiveTransition;
 }
-
-+(void)setDirection:(JobsTransitionDirection)direction
-forNavigationController:(UINavigationController *)navCtrlVC{
-    _storedDirection = direction;
-    navCtrlVC.delegate = self.sharedManager;
-}
-#pragma mark —— UINavigationControllerDelegate
 /// 当前导航操作（push 或 pop）时，应该使用哪个自定义转场动画对象
 /// - Parameters:
 ///   - navigationController: 当前正在执行操作的导航控制器
@@ -96,9 +101,74 @@ forNavigationController:(UINavigationController *)navCtrlVC{
                                  animationControllerForOperation:(UINavigationControllerOperation)operation
                                               fromViewController:(UIViewController *)fromVC
                                                 toViewController:(UIViewController *)toVC {
-    if(operation == UINavigationControllerOperationPush) return JobsTransitionAnimator.animatorByPushDirection(_storedDirection);
-    if(operation == UINavigationControllerOperationPop) return JobsTransitionAnimator.animatorByPopDirection(_storedDirection);
-    return nil;
+    if(operation == UINavigationControllerOperationPush){
+        return jobsMakeNavigationTransitionMgr(^(__kindof JobsNavigationTransitionMgr * _Nullable manager) {
+            manager.direction = _storedDirection;
+            manager.comingStyle = ComingStyle_PUSH;
+        });
+    }
+    if(operation == UINavigationControllerOperationPop){
+        return jobsMakeNavigationTransitionMgr(^(__kindof JobsNavigationTransitionMgr * _Nullable manager) {
+            manager.direction = _storedDirection;
+            manager.comingStyle = ComingStyle_POP;
+        });
+    }return nil;
 }
+#pragma mark —— UIViewControllerAnimatedTransitioning
+-(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
+    return 1;
+}
+
+-(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext{
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC   = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView *containerView = transitionContext.containerView;
+    CGRect screenBounds = UIScreen.mainScreen.bounds;
+
+    CGRect toStartFrame = screenBounds;
+    CGRect fromEndFrame = screenBounds;
+
+    CGFloat w = screenBounds.size.width;
+    CGFloat h = screenBounds.size.height;
+
+    switch (self.direction) {
+        case JobsTransitionDirectionLeft:
+            toStartFrame = self.isPush ? CGRectOffset(screenBounds, -w, 0) : screenBounds;
+            fromEndFrame = self.isPush ? screenBounds : CGRectOffset(screenBounds, -w, 0);
+            break;
+        case JobsTransitionDirectionRight:
+            toStartFrame = self.isPush ? CGRectOffset(screenBounds, w, 0) : screenBounds;
+            fromEndFrame = self.isPush ? screenBounds : CGRectOffset(screenBounds, w, 0);
+            break;
+        case JobsTransitionDirectionTop:
+            toStartFrame = self.isPush ? CGRectOffset(screenBounds, 0, -h) : screenBounds;
+            fromEndFrame = self.isPush ? screenBounds : CGRectOffset(screenBounds, 0, -h);
+            break;
+        case JobsTransitionDirectionBottom:
+            toStartFrame = self.isPush ? CGRectOffset(screenBounds, 0, h) : screenBounds;
+            fromEndFrame = self.isPush ? screenBounds : CGRectOffset(screenBounds, 0, h);
+            break;
+    }
+
+    if (self.isPush) {
+        containerView.addSubview(toVC.view);
+        toVC.view.frame = toStartFrame;
+    } else {
+        [containerView insertSubview:toVC.view belowSubview:fromVC.view];
+        toVC.view.frame = screenBounds;
+    }
+
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+        if (self.isPush) {
+            toVC.view.frame = screenBounds;
+            fromVC.view.frame = screenBounds;
+        } else {
+            fromVC.view.frame = fromEndFrame;
+        }
+    } completion:^(BOOL finished) {
+        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+    }];
+}
+
 
 @end

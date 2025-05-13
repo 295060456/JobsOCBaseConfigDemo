@@ -6,8 +6,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JobsTransitionAnimator.h"
+#import "JobsDefineAllEnumHeader.h"
 #import "BaseProtocol.h"
+#import "DefineProperty.h"
+/// Push/pop 控制器的方向
+#ifndef JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED
+#define JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, JobsTransitionDirection) {
+    JobsTransitionDirectionLeft,   /// 从左边进，回去也到左边
+    JobsTransitionDirectionRight,  /// 从右边进，回去也到右边
+    JobsTransitionDirectionTop,    /// 从上面进，回去也到上面
+    JobsTransitionDirectionBottom  /// 从下面进，回去也到底部
+};
+#endif /* JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED */
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 <
 UINavigationControllerDelegate
 ,UIGestureRecognizerDelegate
+,UIViewControllerAnimatedTransitioning
 ,BaseProtocol
 >
 

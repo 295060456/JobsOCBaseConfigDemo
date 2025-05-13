@@ -59,9 +59,6 @@ typedef void(^jobsByCustomTabBarVCBlock)(__kindof JobsCustomTabBarVC *_Nullable 
 
 @class JobsCustomTabBarConfig;
 typedef void(^jobsByCustomTabBarConfigBlock)(__kindof JobsCustomTabBarConfig *_Nullable tabBarConfig);
-
-@class JobsTransitionAnimator;
-typedef void(^jobsByTransitionAnimatorBlock)(__kindof JobsTransitionAnimator *_Nullable animator);
  
 @class MGSwipeButtonModel;
 typedef void(^jobsByMGSwipeButtonModelBlock)(__kindof MGSwipeButtonModel *_Nullable model);
