@@ -174,8 +174,7 @@
 		84E99A442CEB4EE100ABE463 /* JobsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E99A422CEB4EE100ABE463 /* JobsWebViewController.m */; };
 		84EB570B2D102C3800AC56B0 /* NSObject+SysInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB57092D102C3800AC56B0 /* NSObject+SysInfo.m */; };
 		84EB570F2D102C7700AC56B0 /* NSSet+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB570D2D102C7700AC56B0 /* NSSet+Extra.m */; };
-		C50A428A2DD3122400F7A034 /* JobsNavigationTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A42842DD3122400F7A034 /* JobsNavigationTransitionManager.m */; };
-		C50A428B2DD3122400F7A034 /* JobsPopHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A42812DD3122400F7A034 /* JobsPopHelper.m */; };
+		C50A428A2DD3122400F7A034 /* JobsNavigationTransitionMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A42842DD3122400F7A034 /* JobsNavigationTransitionMgr.m */; };
 		C50A428C2DD3122400F7A034 /* JobsTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A42872DD3122400F7A034 /* JobsTransitionAnimator.m */; };
 		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
 		C532D7242DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */; };
@@ -1648,10 +1647,8 @@
 		87049EA4078DC085592E7D81 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2ED02A9F6B76E64C435F3F /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C69BD67B7B9615C3FD4F81 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
-		C50A42802DD3122400F7A034 /* JobsPopHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsPopHelper.h; sourceTree = "<group>"; };
-		C50A42812DD3122400F7A034 /* JobsPopHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsPopHelper.m; sourceTree = "<group>"; };
-		C50A42832DD3122400F7A034 /* JobsNavigationTransitionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNavigationTransitionManager.h; sourceTree = "<group>"; };
-		C50A42842DD3122400F7A034 /* JobsNavigationTransitionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsNavigationTransitionManager.m; sourceTree = "<group>"; };
+		C50A42832DD3122400F7A034 /* JobsNavigationTransitionMgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNavigationTransitionMgr.h; sourceTree = "<group>"; };
+		C50A42842DD3122400F7A034 /* JobsNavigationTransitionMgr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsNavigationTransitionMgr.m; sourceTree = "<group>"; };
 		C50A42862DD3122400F7A034 /* JobsTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTransitionAnimator.h; sourceTree = "<group>"; };
 		C50A42872DD3122400F7A034 /* JobsTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTransitionAnimator.m; sourceTree = "<group>"; };
 		C52417032DB61725008F9194 /* FMGameCVCell_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FMGameCVCell_1.png; sourceTree = "<group>"; };
@@ -5597,22 +5594,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C50A42822DD3122400F7A034 /* JobsPopHelper */ = {
+		C50A42852DD3122400F7A034 /* JobsNavigationTransitionMgr */ = {
 			isa = PBXGroup;
 			children = (
-				C50A42802DD3122400F7A034 /* JobsPopHelper.h */,
-				C50A42812DD3122400F7A034 /* JobsPopHelper.m */,
+				C50A42832DD3122400F7A034 /* JobsNavigationTransitionMgr.h */,
+				C50A42842DD3122400F7A034 /* JobsNavigationTransitionMgr.m */,
 			);
-			path = JobsPopHelper;
-			sourceTree = "<group>";
-		};
-		C50A42852DD3122400F7A034 /* JobsNavigationTransitionManager */ = {
-			isa = PBXGroup;
-			children = (
-				C50A42832DD3122400F7A034 /* JobsNavigationTransitionManager.h */,
-				C50A42842DD3122400F7A034 /* JobsNavigationTransitionManager.m */,
-			);
-			path = JobsNavigationTransitionManager;
+			path = JobsNavigationTransitionMgr;
 			sourceTree = "<group>";
 		};
 		C50A42882DD3122400F7A034 /* JobsTransitionAnimator */ = {
@@ -5627,8 +5615,7 @@
 		C50A42892DD3122400F7A034 /* JobsNavigationTransition */ = {
 			isa = PBXGroup;
 			children = (
-				C50A42822DD3122400F7A034 /* JobsPopHelper */,
-				C50A42852DD3122400F7A034 /* JobsNavigationTransitionManager */,
+				C50A42852DD3122400F7A034 /* JobsNavigationTransitionMgr */,
 				C50A42882DD3122400F7A034 /* JobsTransitionAnimator */,
 			);
 			path = JobsNavigationTransition;
@@ -17456,8 +17443,7 @@
 				8478D8E12D01CBE0004E8B90 /* JobsKeyValueModel.m in Sources */,
 				8478D8E22D01CBE0004E8B90 /* URLManagerModel.m in Sources */,
 				8478D8E32D01CBE0004E8B90 /* JobsCorModel.m in Sources */,
-				C50A428A2DD3122400F7A034 /* JobsNavigationTransitionManager.m in Sources */,
-				C50A428B2DD3122400F7A034 /* JobsPopHelper.m in Sources */,
+				C50A428A2DD3122400F7A034 /* JobsNavigationTransitionMgr.m in Sources */,
 				C50A428C2DD3122400F7A034 /* JobsTransitionAnimator.m in Sources */,
 				8478D8E42D01CBE0004E8B90 /* JobsAppDoorInputViewBaseStyle.m in Sources */,
 				8478D8E52D01CBE0004E8B90 /* MasonryModel.m in Sources */,

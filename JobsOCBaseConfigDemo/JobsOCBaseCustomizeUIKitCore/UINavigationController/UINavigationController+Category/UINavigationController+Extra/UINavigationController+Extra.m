@@ -23,7 +23,7 @@
     @jobs_weakify(self)
     return ^(JobsTransitionDirection data){
         @jobs_strongify(self)
-        [JobsNavigationTransitionManager setDirection:data forNavigationController:self];
+        [JobsNavigationTransitionMgr setDirection:data forNavigationController:self];
     };
 }
 

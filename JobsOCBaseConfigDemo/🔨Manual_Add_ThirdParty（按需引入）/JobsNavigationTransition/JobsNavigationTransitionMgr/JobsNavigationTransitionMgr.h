@@ -1,5 +1,5 @@
 //
-//  CustomNavigationTransitionManager.h
+//  JobsNavigationTransitionMgr.h
 //  FMNormal
 //
 //  Created by Jobs on 2025/5/4.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsNavigationTransitionManager : NSObject
+@interface JobsNavigationTransitionMgr : NSObject
 <
 UINavigationControllerDelegate
 ,UIGestureRecognizerDelegate
@@ -28,8 +28,8 @@ forNavigationController:(UINavigationController *)navCtrlVC;
 
 NS_ASSUME_NONNULL_END
 
-NS_INLINE __kindof JobsNavigationTransitionManager *_Nonnull jobsMakeNavigationTransitionManager(jobsByNavigationTransitionManagerBlock _Nonnull block){
-    JobsNavigationTransitionManager *data = JobsNavigationTransitionManager.alloc.init;
+NS_INLINE __kindof JobsNavigationTransitionMgr *_Nonnull jobsMakeNavigationTransitionMgr(jobsByNavigationTransitionManagerBlock _Nonnull block){
+    JobsNavigationTransitionMgr *data = JobsNavigationTransitionMgr.alloc.init;
     if (block) block(data);
     return data;
 }

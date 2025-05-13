@@ -1,13 +1,13 @@
 //
-//  CustomNavigationTransitionManager.m
+//  JobsNavigationTransitionMgr.m
 //  FMNormal
 //
 //  Created by Jobs on 2025/5/4.
 //
 
-#import "JobsNavigationTransitionManager.h"
+#import "JobsNavigationTransitionMgr.h"
 
-@interface JobsNavigationTransitionManager ()
+@interface JobsNavigationTransitionMgr ()
 
 Prop_weak()UIViewController *viewController;
 Prop_assign()JobsTransitionDirection direction;
@@ -15,25 +15,25 @@ Prop_strong()UIPercentDrivenInteractiveTransition *interactiveTransition;
 
 @end
 
-@implementation JobsNavigationTransitionManager
+@implementation JobsNavigationTransitionMgr
 static JobsTransitionDirection _storedDirection;
-static JobsNavigationTransitionManager *static_navigationTransitionManager = nil;
+static JobsNavigationTransitionMgr *static_navigationTransitionMgr = nil;
 static dispatch_once_t static_navigationTransitionManagerOnceToken;
 /// 单例化和销毁
 +(void)destroySingleton{
     static_navigationTransitionManagerOnceToken = 0;
-    static_navigationTransitionManager = nil;
+    static_navigationTransitionMgr = nil;
 }
 
 +(instancetype)sharedManager{
     dispatch_once(&static_navigationTransitionManagerOnceToken, ^{
-        static_navigationTransitionManager = JobsNavigationTransitionManager.new;
-    });return static_navigationTransitionManager;
+        static_navigationTransitionMgr = JobsNavigationTransitionMgr.new;
+    });return static_navigationTransitionMgr;
 }
 
 +(void)attachToViewController:(UIViewController *)viewController
            animationDirection:(JobsTransitionDirection)direction {
-    JobsNavigationTransitionManager *manager = jobsMakeNavigationTransitionManager(^(__kindof JobsNavigationTransitionManager * _Nullable manager) {
+    JobsNavigationTransitionMgr *manager = jobsMakeNavigationTransitionMgr(^(__kindof JobsNavigationTransitionMgr * _Nullable manager) {
         manager.viewController = viewController;
         manager.direction = direction;
     });
