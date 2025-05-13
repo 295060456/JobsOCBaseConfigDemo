@@ -30,11 +30,10 @@
         });
     };
 }
-
+#pragma mark —— 一些私有方法
 -(BOOL)isPush{
     return self.comingStyle == ComingStyle_PUSH;
 }
-
 #pragma mark —— UIViewControllerAnimatedTransitioning
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
     return 1;
@@ -43,8 +42,8 @@
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext{
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC   = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *containerView = [transitionContext containerView];
-    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    UIView *containerView = transitionContext.containerView;
+    CGRect screenBounds = UIScreen.mainScreen.bounds;
 
     CGRect toStartFrame = screenBounds;
     CGRect fromEndFrame = screenBounds;

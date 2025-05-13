@@ -415,8 +415,8 @@ typedef void(^JobsByCJTextFieldBlock)(CJTextField *_Nullable data);
 @class JobsTransitionAnimator;
 typedef __kindof JobsTransitionAnimator *_Nullable(^JobsReturnAnimatorByTransDirectionBlock)(JobsTransitionDirection direction);
 
-@class JobsPopHelper;
-typedef void(^jobsByPopHelperBlock)(__kindof JobsPopHelper *_Nullable helper);
+@class JobsNavigationTransitionManager;
+typedef void(^jobsByNavigationTransitionManagerBlock)(__kindof JobsNavigationTransitionManager *_Nullable manager);
 
 @class WMZBannerView;
 @class WMZBannerParam;
