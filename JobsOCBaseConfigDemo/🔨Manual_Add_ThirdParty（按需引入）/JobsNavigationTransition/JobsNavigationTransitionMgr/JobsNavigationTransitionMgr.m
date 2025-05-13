@@ -54,7 +54,7 @@ forNavigationController:(UINavigationController *)navCtrlVC{
                              manager,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     /// 禁用系统的 pop 手势
-    viewController.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    viewController.clzPopGesture();
     /// 设置导航控制器代理
     viewController.navigationController.delegate = manager;
     /// 添加自定义滑动手势
@@ -64,24 +64,26 @@ forNavigationController:(UINavigationController *)navCtrlVC{
         CGPoint translation = [gesture translationInView:gesture.view];
         CGFloat progress = translation.x / gesture.view.bounds.size.width;
         /// 右往左滑动手势
-        if (direction == JobsTransitionDirectionRight && translation.x < 0) progress = -progress; /// 转为正值
-        switch (gesture.state) {
-            case UIGestureRecognizerStateBegan:
-                manager.interactiveTransition = UIPercentDrivenInteractiveTransition.new;
-                [viewController.navigationController popViewControllerAnimated:YES];
-                break;
-            case UIGestureRecognizerStateChanged:
-                [manager.interactiveTransition updateInteractiveTransition:progress];
-                break;
-            case UIGestureRecognizerStateEnded:
-            case UIGestureRecognizerStateCancelled: {
-                if (progress > 0.3) {
-                    [manager.interactiveTransition finishInteractiveTransition];
-                } else {
-                    [manager.interactiveTransition cancelInteractiveTransition];
-                }manager.interactiveTransition = nil;
-            } break;
-            default:break;
+        if (direction == JobsTransitionDirectionLeft && translation.x < 0) progress = -progress; /// 转为正值
+        if(self.directionByPoint(translation) == direction){
+            switch (gesture.state) {
+                case UIGestureRecognizerStateBegan:
+                    manager.interactiveTransition = UIPercentDrivenInteractiveTransition.new;
+                    [viewController.navigationController popViewControllerAnimated:YES];
+                    break;
+                case UIGestureRecognizerStateChanged:
+                    [manager.interactiveTransition updateInteractiveTransition:progress];
+                    break;
+                case UIGestureRecognizerStateEnded:
+                case UIGestureRecognizerStateCancelled: {
+                    if (progress >= 0.3) {
+                        [manager.interactiveTransition finishInteractiveTransition];
+                    } else {
+                        [manager.interactiveTransition cancelInteractiveTransition];
+                    }manager.interactiveTransition = nil;
+                } break;
+                default:break;
+            }
         }
     }]);
 }
@@ -115,10 +117,11 @@ forNavigationController:(UINavigationController *)navCtrlVC{
     }return nil;
 }
 #pragma mark —— UIViewControllerAnimatedTransitioning
+/// 自定义转场动画需要多长时间
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
-    return 1;
+    return self.time;
 }
-
+/// 执行自定义的视图控制器转场动画逻辑（位移动画、缩放、透明度等）（push、pop、present、dismiss）
 -(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext{
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC   = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -166,9 +169,16 @@ forNavigationController:(UINavigationController *)navCtrlVC{
             fromVC.view.frame = fromEndFrame;
         }
     } completion:^(BOOL finished) {
+        /// 一定要调用 [transitionContext completeTransition:]，否则系统会认为转场未完成，界面卡住
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
 }
-
+/// BaseProtocol
+@synthesize time = _time;
+-(CGFloat)time{
+    if(!_time){
+        _time = 1;
+    }return _time;
+}
 
 @end

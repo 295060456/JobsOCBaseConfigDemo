@@ -99,6 +99,9 @@ Prop_strong(nullable)UIViewModel *titleModel;
 /// 解码
 -(JobsReturnStringByStringBlock _Nonnull)decodePicStr;
 #pragma mark —— <AppToolsProtocol> 其他
+/// 根据 x 和 y 的绝对值判断主方向
+-(JobsReturnStringByCGPointBlock _Nonnull)directionByTranslation;
+-(JobsReturnNSIntegerByPointBlock _Nonnull)directionByPoint;
 /// 设置普通文本
 -(UIViewModel *)configViewModelWithTitle:(NSString *_Nullable)title
                                 subTitle:(NSString *_Nullable)subTitle;

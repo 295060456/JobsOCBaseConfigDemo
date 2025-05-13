@@ -34,6 +34,7 @@ Prop_assign()BOOL becomeFirstResponder;
 Prop_assign()AppLanguage appLanguage;
 Prop_assign()CGPoint lastContentOffset; /// 主要用于记录与计算 UIScrollView 的滑动方向
 #pragma mark —— 关于计时器
+Prop_assign()CGFloat time;
 Prop_strong(nullable)NSInvocation *invocation;
 Prop_strong(nullable)NSTimer *timer;
 Prop_strong(nullable)id userInfo;
@@ -143,6 +144,7 @@ NS_ASSUME_NONNULL_END
 #ifndef BaseProtocol_synthesize_timer
 #define BaseProtocol_synthesize_timer \
 \
+@synthesize time = _time;\
 @synthesize invocation = _invocation;\
 @synthesize timer = _timer;\
 @synthesize userInfo = _userInfo;\
@@ -217,6 +219,7 @@ BaseProtocol_synthesize_data \
 @dynamic becomeFirstResponder;\
 @dynamic appLanguage;\
 @dynamic lastContentOffset;\
+@dynamic time;\
 @dynamic invocation;\
 @dynamic timer;\
 @dynamic userInfo;\

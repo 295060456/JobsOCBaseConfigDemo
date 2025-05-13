@@ -542,6 +542,26 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     };
 }
 #pragma mark —— <AppToolsProtocol> 其他
+/// 根据 x 和 y 的绝对值判断主方向
+-(JobsReturnStringByCGPointBlock _Nonnull)directionByTranslation{
+    return ^__kindof NSString *_Nullable(CGPoint translation){
+        if (fabs(translation.x) > fabs(translation.y)) {
+            return translation.x > 0 ? @"右滑" : @"左滑";/// 水平方向
+        } else {
+            return translation.y > 0 ? @"下滑" : @"上滑";/// 垂直方向
+        }
+    };
+}
+
+-(JobsReturnNSIntegerByPointBlock _Nonnull)directionByPoint{
+    return ^MoveDirection(CGPoint translation){
+        if (fabs(translation.x) > fabs(translation.y)) {
+            return translation.x > 0 ? MoveDirection_horizont_right : MoveDirection_horizont_left;/// 水平方向
+        } else {
+            return translation.y > 0 ? MoveDirection_vertical_down : MoveDirection_vertical_up;/// 垂直方向
+        }
+    };
+}
 /// 设置普通文本
 -(UIViewModel *)configViewModelWithTitle:(NSString *_Nullable)title
                                 subTitle:(NSString *_Nullable)subTitle{

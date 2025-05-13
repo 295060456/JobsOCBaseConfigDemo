@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "JobsDefineAllEnumHeader.h"
 #import "AppToolsProtocol.h"
 #import "NSObject+UserInfo.h"
 #import "NSObject+Extras.h"

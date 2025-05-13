@@ -332,6 +332,7 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByStringBlock)(__kindof NS
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCorBlock)(UIColor *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByCGPointBlock)(CGPoint data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByArrAndNSIntegerBlock)(__kindof NSArray *_Nullable arr,NSInteger index);
 /// 多参数
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateFormatterBlock)(NSTimeInterval data,

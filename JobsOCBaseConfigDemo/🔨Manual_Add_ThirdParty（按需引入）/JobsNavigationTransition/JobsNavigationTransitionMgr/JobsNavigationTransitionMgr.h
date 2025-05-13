@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIViewController+Extra.h"
 #import "JobsDefineAllEnumHeader.h"
 #import "BaseProtocol.h"
 #import "DefineProperty.h"
@@ -13,10 +14,10 @@
 #ifndef JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED
 #define JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, JobsTransitionDirection) {
-    JobsTransitionDirectionLeft,   /// 从左边进，回去也到左边
-    JobsTransitionDirectionRight,  /// 从右边进，回去也到右边
     JobsTransitionDirectionTop,    /// 从上面进，回去也到上面
     JobsTransitionDirectionBottom  /// 从下面进，回去也到底部
+    JobsTransitionDirectionLeft,   /// 从左边进，回去也到左边
+    JobsTransitionDirectionRight,  /// 从右边进，回去也到右边
 };
 #endif /* JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED */
 

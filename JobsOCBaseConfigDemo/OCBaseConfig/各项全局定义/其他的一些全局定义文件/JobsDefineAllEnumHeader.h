@@ -30,16 +30,6 @@ typedef NS_ENUM(NSUInteger, FileType) {
     FileType_PLIST         /// 属性列表文件
 };
 #endif /* FILE_TYPE_ENUM_DEFINED */
-/// Push/pop 控制器的方向
-#ifndef JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED
-#define JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, JobsTransitionDirection) {
-    JobsTransitionDirectionLeft,   /// 从左边进出
-    JobsTransitionDirectionRight,  /// 从右边进出
-    JobsTransitionDirectionTop,    /// 从上面进出
-    JobsTransitionDirectionBottom  /// 从下面进出
-};
-#endif /* JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED */
 /// 图片填充模式
 #ifndef DW_CONTENT_MODE_ENUM_DEFINED
 #define DW_CONTENT_MODE_ENUM_DEFINED
@@ -286,39 +276,39 @@ typedef NS_ENUM(NSInteger, ComponentType) {
 #ifndef JOBS_TimeZoneType
 #define JOBS_TimeZoneType
 typedef NS_ENUM(NSInteger, TimeZoneType) {
-    TimeZoneTypeUTC,           // 协调世界时
-    TimeZoneTypeGMT,           // 格林尼治标准时间
-    TimeZoneTypePST,           // 太平洋标准时间 (美国和加拿大)
-    TimeZoneTypeEST,           // 东部标准时间 (美国和加拿大)
-    TimeZoneTypeCST,           // 中部标准时间 (美国和加拿大)
-    TimeZoneTypeMST,           // 山地标准时间 (美国和加拿大)
-    TimeZoneTypeCSTChina,      // 中国标准时间
-    TimeZoneTypeJST,           // 日本标准时间
-    TimeZoneTypeBST,           // 英国夏令时
-    TimeZoneTypeAEST,          // 澳大利亚东部标准时间
-    TimeZoneTypeAWST,          // 澳大利亚西部标准时间
-    TimeZoneTypeCET,           // 欧洲中部时间
-    TimeZoneTypeMSK,           // 莫斯科标准时间
-    TimeZoneTypeIST,           // 印度标准时间
-    TimeZoneTypeBRT,           // 巴西利亚时间
-    TimeZoneTypeCSTMexico,     // 墨西哥城时间
-    TimeZoneTypeART,           // 阿根廷时间
-    TimeZoneTypeHST,           // 夏威夷标准时间
-    TimeZoneTypeAKST,          // 阿拉斯加标准时间
-    TimeZoneTypeCEST,          // 中欧夏令时
-    TimeZoneTypeEET,           // 欧洲东部时间
-    TimeZoneTypeWET,           // 欧洲西部时间
-    TimeZoneTypeNST,           // 纽芬兰标准时间
-    TimeZoneTypeAST,           // 大西洋标准时间
-    TimeZoneTypePDT,           // 太平洋夏令时
-    TimeZoneTypeMDT,           // 山地夏令时
-    TimeZoneTypeCDT,           // 中部夏令时
-    TimeZoneTypeEDT,           // 东部夏令时
-    TimeZoneTypeNZST,          // 新西兰标准时间
-    TimeZoneTypeHKT,           // 香港时间
-    TimeZoneTypeSGT,           // 新加坡时间
-    TimeZoneTypeMYT,           // 马来西亚时间
-    TimeZoneTypeKST            // 韩国标准时间
+    TimeZoneTypeUTC,           /// 协调世界时
+    TimeZoneTypeGMT,           /// 格林尼治标准时间
+    TimeZoneTypePST,           /// 太平洋标准时间 (美国和加拿大)
+    TimeZoneTypeEST,           /// 东部标准时间 (美国和加拿大)
+    TimeZoneTypeCST,           /// 中部标准时间 (美国和加拿大)
+    TimeZoneTypeMST,           /// 山地标准时间 (美国和加拿大)
+    TimeZoneTypeCSTChina,      /// 中国标准时间
+    TimeZoneTypeJST,           /// 日本标准时间
+    TimeZoneTypeBST,           /// 英国夏令时
+    TimeZoneTypeAEST,          /// 澳大利亚东部标准时间
+    TimeZoneTypeAWST,          /// 澳大利亚西部标准时间
+    TimeZoneTypeCET,           /// 欧洲中部时间
+    TimeZoneTypeMSK,           /// 莫斯科标准时间
+    TimeZoneTypeIST,           /// 印度标准时间
+    TimeZoneTypeBRT,           /// 巴西利亚时间
+    TimeZoneTypeCSTMexico,     /// 墨西哥城时间
+    TimeZoneTypeART,           /// 阿根廷时间
+    TimeZoneTypeHST,           /// 夏威夷标准时间
+    TimeZoneTypeAKST,          /// 阿拉斯加标准时间
+    TimeZoneTypeCEST,          /// 中欧夏令时
+    TimeZoneTypeEET,           /// 欧洲东部时间
+    TimeZoneTypeWET,           /// 欧洲西部时间
+    TimeZoneTypeNST,           /// 纽芬兰标准时间
+    TimeZoneTypeAST,           /// 大西洋标准时间
+    TimeZoneTypePDT,           /// 太平洋夏令时
+    TimeZoneTypeMDT,           /// 山地夏令时
+    TimeZoneTypeCDT,           /// 中部夏令时
+    TimeZoneTypeEDT,           /// 东部夏令时
+    TimeZoneTypeNZST,          /// 新西兰标准时间
+    TimeZoneTypeHKT,           /// 香港时间
+    TimeZoneTypeSGT,           /// 新加坡时间
+    TimeZoneTypeMYT,           /// 马来西亚时间
+    TimeZoneTypeKST            /// 韩国标准时间
     // 可以继续添加更多时区类型...
 };
 #endif /* JOBS_TimeZoneType */
@@ -346,9 +336,9 @@ typedef NS_ENUM(NSInteger, DeviceOrientation) {
 #ifndef MyEnums_h
 #define MyEnums_h
 typedef NS_ENUM(NSInteger, ComponentType) {
-    ComponentTypeUnknown,/// 其他
-    ComponentTypeView,/// 视图
-    ComponentTypeViewController/// 控制器
+    ComponentTypeUnknown,       /// 其他
+    ComponentTypeView,          /// 视图
+    ComponentTypeViewController /// 控制器
 };
 #endif /* MyEnums_h */
 /// 图片编码格式
@@ -367,8 +357,8 @@ typedef NS_ENUM(NSInteger, PicToStrStyle) {
 #ifndef JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
 #define JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, JhtBannerViewOrientation) {
-    BV_Orientation_Horizontal,/// 横向
-    BV_Orientation_Vertical,/// 纵向
+    BV_Orientation_Horizontal,      /// 横向
+    BV_Orientation_Vertical,        /// 纵向
 };
 #endif /* JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED */
 /// ShadowDirection
@@ -456,6 +446,16 @@ typedef NS_ENUM(NSInteger, MKRightBtnViewBtnType) {
     MKRightBtnViewBtnType_shareBtn/// 分享
 };
 #endif /* MK_RIGHT_BTN_VIEW_BTN_TYPE_ENUM_DEFINED */
+/// Push/pop 控制器的方向
+#ifndef JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED
+#define JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, JobsTransitionDirection) {
+    JobsTransitionDirectionTop,    /// 从上面进出
+    JobsTransitionDirectionBottom, /// 从下面进出
+    JobsTransitionDirectionLeft,   /// 从左边进出
+    JobsTransitionDirectionRight,  /// 从右边进出
+};
+#endif /* JOBS_TRANSITIONDIRECTION_TYPE_ENUM_DEFINED */
 /// 滑动方向
 #ifndef MOVE_DIRECTION_ENUM_DEFINED
 #define MOVE_DIRECTION_ENUM_DEFINED
