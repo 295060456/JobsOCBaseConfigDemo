@@ -19,7 +19,6 @@ Prop_strong()JobsCustomTabBar *customTabBar;
     JobsRemoveNotification(self);
     JobsLog(@"%@",JobsLocalFunc);
 }
-
 static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
 static dispatch_once_t JobsCustomTabBarVCOnceToken;
 +(instancetype)sharedManager{
@@ -57,13 +56,13 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
     self.tabBar.hidden = YES;
 //    self.view.backgroundColor = JobsGreenColor;
     self.customTabBar.alpha = 1;
+    extern NSUInteger DefaultIndex;
+    self.selectedIndex = DefaultIndex;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    extern NSUInteger DefaultIndex;
-    self.selectedIndex = DefaultIndex;
-    [AppDelegate button:AppDelegate.tabBarItemMutArr[DefaultIndex] index:DefaultIndex];
+    self.backTo(self.selectedIndex);
 }
 
 -(void)viewDidAppear:(BOOL)animated{
