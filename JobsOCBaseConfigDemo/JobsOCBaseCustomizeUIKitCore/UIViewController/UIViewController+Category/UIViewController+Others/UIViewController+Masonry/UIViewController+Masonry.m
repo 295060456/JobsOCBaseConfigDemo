@@ -66,30 +66,30 @@
     };
 }
 #pragma mark —— 添加约束并执行
--(JobsReturnViewByMasonryConstraintsAndViewBlock _Nonnull)masonryBy{
+-(JobsReturnViewByViewAndMasonryConstraintsBlock _Nonnull)masonryBy{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(jobsByMASConstraintMakerBlock _Nullable block,__kindof UIView * _Nonnull subview){
+    return ^__kindof UIView *_Nullable(__kindof UIView * _Nonnull subview,jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)
         self.setMasonryBy(block).on(subview);
-        return self.view;
+        return subview;
     };
 }
 
--(JobsReturnViewByMasonryConstraintsAndViewBlock _Nonnull)upgradeBy{
+-(JobsReturnViewByViewAndMasonryConstraintsBlock _Nonnull)upgradeBy{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(jobsByMASConstraintMakerBlock _Nullable block,__kindof UIView * _Nonnull subview){
+    return ^__kindof UIView *_Nullable(__kindof UIView * _Nonnull subview,jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)
         self.setMasonryBy(block).upgrade(subview);
-        return self.view;
+        return subview;
     };
 }
 
--(JobsReturnViewByMasonryConstraintsAndViewBlock _Nonnull)remakeBy{
+-(JobsReturnViewByViewAndMasonryConstraintsBlock _Nonnull)remakeBy{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(jobsByMASConstraintMakerBlock _Nullable block,__kindof UIView * _Nonnull subview){
+    return ^__kindof UIView *_Nullable(__kindof UIView * _Nonnull subview,jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)
         self.setMasonryBy(block).remake(subview);
-        return self.view;
+        return subview;
     };
 }
 #pragma mark —— 卸载约束

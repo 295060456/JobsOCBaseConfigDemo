@@ -10,6 +10,7 @@
 #import "JobsBlock.h"
 #import "NSString+Others.h"
 #import "SDWebImageModel.h"
+#import "DefineProperty.h"
 
 #if __has_include(<SDWebImage/SDWebImage.h>)
 #import <SDWebImage/SDWebImage.h>
@@ -17,37 +18,41 @@
 #import "SDWebImage.h"
 #endif
 
+/// SDWebImage+UIButton
+#ifndef SDWebImageButtonBlock
+#define SDWebImageButtonBlock
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDExternalCompletionBlock)(SDExternalCompletionBlock _Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDWebImageOptionsBlock)(SDWebImageOptions data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDImageLoaderProgressBlock)(SDImageLoaderProgressBlock _Nullable data);
+#endif /* SDWebImageButtonBlock */
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (SDWebImage)
 
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByURLBlock imageURL;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByImageBlock placeholderImage;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonBySDWebImageOptionsBlock options;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonBySDExternalCompletionBlock completed;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonBySDImageLoaderProgressBlock progress;
+Prop_copy(readonly,nonnull)JobsReturnButtonByURLBlock imageURL;
+Prop_copy(readonly,nonnull)JobsReturnButtonByImageBlock placeholderImage;
+Prop_copy(readonly,nonnull)JobsReturnButtonBySDWebImageOptionsBlock options;
+Prop_copy(readonly,nonnull)JobsReturnButtonBySDExternalCompletionBlock completed;
+Prop_copy(readonly,nonnull)JobsReturnButtonBySDImageLoaderProgressBlock progress;
 #pragma mark —— 设置普通图片的方法
 /// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock normalLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock highlightedlLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock disabledLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock selectedLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock focusedLoad API_AVAILABLE(ios(9.0));
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock applicationLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock reservedLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock normalLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock highlightedlLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock disabledLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock selectedLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock focusedLoad API_AVAILABLE(ios(9.0));
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock applicationLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock reservedLoad;
 #pragma mark —— 设置背景图片的方法
 /// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgNormalLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgHighlightedlLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgDisabledLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgSelectedLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgFocusedLoad API_AVAILABLE(ios(9.0));
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgApplicationLoad;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnButtonByVoidBlock bgReservedLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgNormalLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgHighlightedlLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgDisabledLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgSelectedLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgFocusedLoad API_AVAILABLE(ios(9.0));
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgApplicationLoad;
+Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgReservedLoad;
 
 @end
 

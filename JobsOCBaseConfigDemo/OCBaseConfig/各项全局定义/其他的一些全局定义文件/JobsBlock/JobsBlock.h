@@ -547,7 +547,7 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByIDBlocks)(jobsByIDBlock _Nul
 typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDBlocks)(JobsReturnIDByVoidBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlock)(jobsByMASConstraintMakerBlock _Nullable block);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsAndViewBlock)(jobsByMASConstraintMakerBlock _Nullable block,__kindof UIView * _Nonnull subview);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByViewAndMasonryConstraintsBlock)(__kindof UIView * _Nonnull subview,jobsByMASConstraintMakerBlock _Nullable block);
 
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Block)(jobsByButtonModelBlock _Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerManagerBlock)(jobsByTimerManagerBlock _Nullable data);
@@ -567,6 +567,25 @@ typedef __kindof UIViewController *_Nullable(^JobsReturnVCByMasonryConstraintsBl
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable block);
 
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
+
+#if __has_include(<SDWebImage/SDWebImage.h>)
+#import <SDWebImage/SDWebImage.h>
+#else
+#import "SDWebImage.h"
+#endif
+/// SDWebImage+UIButton
+#ifndef SDWebImageButtonBlock
+#define SDWebImageButtonBlock
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDExternalCompletionBlock)(SDExternalCompletionBlock _Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDWebImageOptionsBlock)(SDWebImageOptions data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDImageLoaderProgressBlock)(SDImageLoaderProgressBlock _Nullable data);
+#endif /* SDWebImageButtonBlock */
+/// SDWebImage+UIImageView
+#ifndef SDWebImageImageViewBlock
+#define SDWebImageImageViewBlock
+typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDExternalCompletionBlock)(SDExternalCompletionBlock _Nullable data);
+typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDWebImageOptionsBlock)(SDWebImageOptions data);
+#endif /* SDWebImageImageViewBlock */
 
 #import "JobsBizBlock.h" /// 关于业务（不与JobsOCBaseConfigDemo同步）
 

@@ -141,6 +141,10 @@ NS_INLINE UIFont *fontName(NSString *fontName,CGFloat fontSize) {
 NS_INLINE UIFont *bayonRegular(CGFloat fontSize){
     return fontName(@"Bayon-Regular", JobsWidth(fontSize));
 }
+#pragma mark —— DIN Alternate 字体
+NS_INLINE UIFont *dinAlternate(CGFloat fontSize){
+    return fontName(@"DIN Alternate", JobsWidth(fontSize));
+}
 #pragma mark —— PingFangHK 字体
 /// PingFangHK-Regular
 NS_INLINE UIFont *pingFangHKRegular(CGFloat fontSize){

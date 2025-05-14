@@ -171,40 +171,75 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSi
 
 /**
  
- _headBtn = BaseButton.jobsInit()
-     .imageURL(@"".jobsUrl)
-     .placeholderImage(JobsIMG(@"小狮子"))
-     .options(SDWebImageRefreshCached)/// 强制刷新缓存
-     .completed(^(UIImage * _Nullable image,
-                  NSError * _Nullable error,
-                  SDImageCacheType cacheType,
-                  NSURL * _Nullable imageURL) {
-         if (error) {
-             JobsLog(@"图片加载失败: %@-%@", error,imageURL);
-         } else {
-             JobsLog(@"图片加载成功");
-         }
-     }).onClickBy(^(UIButton *x){
-         @jobs_strongify(self)
-         if (self.objBlock) self.objBlock(x);
-     }).onLongPressGestureBy(^(id data){
-     JobsLog(@"");
- }).bgNormalLoad();
+ -(UIButton *)mailBtn{
+     if(!_mailBtn){
+         @jobs_weakify(self)
+         _mailBtn = BaseButton.jobsInit()
+             .imageURL(@"".jobsUrl)
+             .placeholderImage(JobsIMG(@"小狮子"))
+             .options(SDWebImageRefreshCached)/// 强制刷新缓存
+             .completed(^(UIImage * _Nullable image,
+                          NSError * _Nullable error,
+                          SDImageCacheType cacheType,
+                          NSURL * _Nullable imageURL) {
+                 if (error) {
+                     JobsLog(@"图片加载失败: %@-%@", error,imageURL);
+                 } else {
+                     JobsLog(@"图片加载成功");
+                 }
+             }).onClickBy(^(UIButton *x){
+                 @jobs_strongify(self)
+                 if (self.objBlock) self.objBlock(x);
+             }).onLongPressGestureBy(^(id data){
+             JobsLog(@"");
+         }).bgNormalLoad();
+     }return _mailBtn;
+ }
  
- _applyNowBtn = BaseButton.jobsInit()
-     .bgColorBy(JobsWhiteColor)
-     .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
-     .jobsResetImagePadding(1)
-     .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-     .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
-     .jobsResetBtnTitleCor(JobsWhiteColor)
-     .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-     .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
-     .onClickBy(^(UIButton *x){
-         JobsLog(@"");
-     }).onLongPressGestureBy(^(id data){
-         JobsLog(@"");
-     });
+ -(UIButton *)valueBtn{
+     if(!_valueBtn){
+         @jobs_weakify(self)
+         _valueBtn = BaseButton.jobsInit()
+                          .bgColorBy(JobsWhiteColor)
+                          .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+                          .jobsResetImagePadding(1)
+                          .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+                          .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+                          .jobsResetBtnTitleCor(JobsWhiteColor)
+                          .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                          .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+                          .onClickBy(^(UIButton *x){
+                              JobsLog(@"");
+                          }).onLongPressGestureBy(^(id data){
+                              JobsLog(@"");
+                          });
+     }return _valueBtn;
+ }
+ 
+ -(UIButton *)usrNameBtn{
+     if(!_usrNameBtn){
+         @jobs_weakify(self)
+         _usrNameBtn = self.masonryBy(UIButton.jobsInit()
+                                       .bgColorBy(JobsWhiteColor)
+                                       .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+                                       .jobsResetImagePadding(1)
+                                       .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+                                       .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+                                       .jobsResetBtnTitleCor(JobsWhiteColor)
+                                       .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                                       .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+                                       .onClickBy(^(UIButton *x){
+                                           JobsLog(@"");
+                                       }).onLongPressGestureBy(^(id data){
+                                           JobsLog(@"");
+                                       }),^(MASConstraintMaker *_Nonnull make){
+             make.top.equalTo(self.headIMGV);
+             make.left.equalTo(self.headIMGV.mas_right).offset(JobsWidth(10));
+             make.height.mas_equalTo(JobsWidth(16));
+         });
+         _usrNameBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
+     }return _usrNameBtn;
+ }
  
  -(BaseButton *)applyNowBtn{
      if(!_applyNowBtn){

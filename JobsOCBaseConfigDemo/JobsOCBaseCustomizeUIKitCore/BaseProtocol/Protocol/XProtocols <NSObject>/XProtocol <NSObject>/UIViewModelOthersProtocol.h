@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "DefineProperty.h"
-#import "JobsLabelDef.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "JobsBlock.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)

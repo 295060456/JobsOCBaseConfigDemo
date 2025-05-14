@@ -3087,7 +3087,6 @@
 		CE5A632E2CA82C2D006D67A7 /* UILabel+Gesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Gesture.m"; sourceTree = "<group>"; };
 		CE5A63302CA82C2D006D67A7 /* UILabel+Measure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Measure.h"; sourceTree = "<group>"; };
 		CE5A63312CA82C2D006D67A7 /* UILabel+Measure.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Measure.m"; sourceTree = "<group>"; };
-		CE5A63342CA82C2D006D67A7 /* JobsLabelDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsLabelDef.h; sourceTree = "<group>"; };
 		CE5A63362CA82C2D006D67A7 /* BaseNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationBar.h; sourceTree = "<group>"; };
 		CE5A63372CA82C2D006D67A7 /* BaseNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationBar.m; sourceTree = "<group>"; };
 		CE5A63392CA82C2D006D67A7 /* JobsNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNavigationBar.h; sourceTree = "<group>"; };
@@ -13451,7 +13450,6 @@
 			children = (
 				CE5A63262CA82C2D006D67A7 /* BaseLabel */,
 				CE5A63332CA82C2D006D67A7 /* UILabel+Category */,
-				CE5A63342CA82C2D006D67A7 /* JobsLabelDef.h */,
 			);
 			path = UILabel;
 			sourceTree = "<group>";

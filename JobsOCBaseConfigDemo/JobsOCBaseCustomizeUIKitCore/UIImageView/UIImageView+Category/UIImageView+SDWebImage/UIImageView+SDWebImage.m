@@ -9,9 +9,9 @@
 
 @implementation UIImageView (SDWebImage)
 
--(jobsByVoidBlock _Nonnull)load {
+-(JobsReturnViewByVoidBlock _Nonnull)load {
     @jobs_weakify(self)
-    return ^{
+    return ^__kindof UIImageView *_Nullable(){
         @jobs_strongify(self)
         NSURL *url = Jobs_getAssociatedObject(_imageURL);
         UIImage *placeholder = Jobs_getAssociatedObject(_placeholderImage);
@@ -21,9 +21,10 @@
                 placeholderImage:placeholder
                          options:options
                        completed:completion];
+        return self;
     };
 }
-#pragma mark —— @property(nonatomic,strong,readonly)JobsReturnImageViewByURLBlock imageURL;
+#pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewByURLBlock imageURL;
 JobsKey(_imageURL)
 @dynamic imageURL;
 -(JobsReturnImageViewByURLBlock _Nonnull)imageURL {
@@ -32,7 +33,7 @@ JobsKey(_imageURL)
         return self;
     };
 }
-#pragma mark —— @property(nonatomic,strong,readonly)JobsReturnImageViewByImageBlock placeholderImage;
+#pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewByImageBlock placeholderImage;
 JobsKey(_placeholderImage)
 @dynamic placeholderImage;
 -(JobsReturnImageViewByImageBlock _Nonnull)placeholderImage {
@@ -41,7 +42,7 @@ JobsKey(_placeholderImage)
         return self;
     };
 }
-#pragma mark —— @property(nonatomic,strong,readonly)JobsReturnImageViewBySDWebImageOptionsBlock options;
+#pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlock options;
 JobsKey(_options)
 @dynamic options;
 -(JobsReturnImageViewBySDWebImageOptionsBlock _Nonnull)options{
@@ -50,7 +51,7 @@ JobsKey(_options)
         return self;
     };
 }
-#pragma mark —— @property(nonatomic,strong,readonly)JobsReturnImageViewBySDExternalCompletionBlock completed;
+#pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlock completed;
 JobsKey(_completed)
 @dynamic completed;
 - (JobsReturnImageViewBySDExternalCompletionBlock _Nonnull)completed {

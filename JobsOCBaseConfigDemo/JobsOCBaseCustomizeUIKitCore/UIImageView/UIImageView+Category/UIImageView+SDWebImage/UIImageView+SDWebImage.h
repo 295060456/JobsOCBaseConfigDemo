@@ -8,26 +8,29 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "JobsBlock.h"
+#import "DefineProperty.h"
 
 #if __has_include(<SDWebImage/SDWebImage.h>)
 #import <SDWebImage/SDWebImage.h>
 #else
 #import "SDWebImage.h"
 #endif
-
+/// SDWebImage+UIImageView
+#ifndef SDWebImageImageViewBlock
+#define SDWebImageImageViewBlock
 typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDExternalCompletionBlock)(SDExternalCompletionBlock _Nullable data);
 typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDWebImageOptionsBlock)(SDWebImageOptions data);
+#endif /* SDWebImageImageViewBlock */
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImageView (SDWebImage)
 
-@property(nonatomic,copy,readonly,nonnull)jobsByVoidBlock load;
-
-@property(nonatomic,copy,readonly,nonnull)JobsReturnImageViewByURLBlock imageURL;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnImageViewByImageBlock placeholderImage;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlock options;
-@property(nonatomic,copy,readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlock completed;
+Prop_copy(readonly,nonnull)JobsReturnViewByVoidBlock load;
+Prop_copy(readonly,nonnull)JobsReturnImageViewByURLBlock imageURL;
+Prop_copy(readonly,nonnull)JobsReturnImageViewByImageBlock placeholderImage;
+Prop_copy(readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlock options;
+Prop_copy(readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlock completed;
 
 @end
 

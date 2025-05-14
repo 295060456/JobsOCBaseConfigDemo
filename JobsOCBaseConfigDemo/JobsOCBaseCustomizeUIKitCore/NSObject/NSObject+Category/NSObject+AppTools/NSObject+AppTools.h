@@ -63,6 +63,7 @@ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 #pragma mark —— 一些公共设置
 -(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleAndAction;
 -(JobsReturnNavBarConfigByStringBlock _Nullable)makeNav0ByTitle;
+-(JobsReturnNavBarConfigByStringBlock _Nullable)makeNav1ByTitle;
 -(jobsByVoidBlock _Nonnull)唤起人工客服;
 -(jobsByVoidBlock _Nonnull)唤起Telegram;
 -(jobsByVoidBlock _Nonnull)唤起FaceBook;
@@ -115,6 +116,10 @@ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 /// 触发退出登录模块之前，弹窗提示二次确认，确认以后再删除本地用户数据
 -(void)popUpViewToLogout;
 #pragma mark —— <AppToolsProtocol> 关于 TabBar
+/// 切换Tab
+-(jobsByNSIntegerBlock _Nonnull)backTo;
+/// 控制TabBar的显隐（在TabBarController的条件下）
+-(jobsByBOOLBlock _Nonnull)showTabBar;
 /// TabBar
 -(UITabBar *)getTabBar;
 /// 跳到首页

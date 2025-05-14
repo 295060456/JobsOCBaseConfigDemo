@@ -192,6 +192,7 @@ typedef __kindof UILabel *_Nullable(^JobsReturnLabelByText)(__kindof NSString *_
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByFont)(__kindof UIFont *_Nullable font);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByAttributedString)(__kindof NSAttributedString *_Nullable attributedString);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByTextAlignment)(NSTextAlignment textAlignment);
+typedef __kindof UILabel *_Nullable(^JobsReturnLabelByNSUIntegerBlock)(NSUInteger data);
 #pragma mark —— 关于按钮
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByControlStateBlock)(UIControlState data);
@@ -199,6 +200,7 @@ typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByBOOLBlock)(BOOL data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByCGFloatBlock)(CGFloat data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFloatBlock)(float data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSIntegerBlock)(NSInteger data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSUIntegerBlock)(NSUInteger data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextAlignmentBlock)(NSTextAlignment data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementBlock)(NSDirectionalRectEdge data);

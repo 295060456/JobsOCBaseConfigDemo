@@ -9,9 +9,9 @@
 
 @implementation UIButton (Extra)
 
--(jobsByNSIntegerBlock _Nonnull)makeBtnTitleByShowingType{
+-(JobsReturnButtonByNSUIntegerBlock _Nonnull)makeBtnTitleByShowingType{
     @jobs_weakify(self)
-    return ^(UILabelShowingType labelShowingType) {
+    return ^__kindof UIButton *_Nullable(UILabelShowingType labelShowingType) {
         @jobs_strongify(self)
         [self.superview layoutIfNeeded];
         self.titleLabel.labelShowingType = labelShowingType;
@@ -44,16 +44,14 @@
                 }];
                 if (self.objBlock) self.objBlock(@(size.height));
             }break;
-                
-            default:
-                break;
-        }
+            default:break;
+        }return self;
     };
 }
 
--(jobsByNSIntegerBlock _Nonnull)makeBtnSubTitleByShowingType{
+-(JobsReturnButtonByNSUIntegerBlock _Nonnull)makeBtnSubTitleByShowingType{
     @jobs_weakify(self)
-    return ^(UILabelShowingType labelShowingType) {
+    return ^__kindof UIButton *_Nullable(UILabelShowingType labelShowingType) {
         @jobs_strongify(self)
         [self.superview layoutIfNeeded];
         self.subtitleLabel.labelShowingType = labelShowingType;
@@ -86,10 +84,8 @@
                 }];
                 if (self.objBlock) self.objBlock(@(size.height));
             }break;
-                
-            default:
-                break;
-        }
+            default:break;
+        }return self;
     };
 }
 #pragma mark —— BaseButtonProtocol

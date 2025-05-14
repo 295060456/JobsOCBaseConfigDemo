@@ -10,9 +10,9 @@
 @implementation UILabel (Extra)
 #pragma mark —— 一些公共方法
 /// UILabel文字旋转
--(jobsByNSUIntegerBlock _Nonnull)transformLayer{
+-(JobsReturnLabelByNSUIntegerBlock _Nonnull)transformLayer{
     @jobs_weakify(self)
-    return ^(TransformLayerDirectionType directionType){
+    return ^__kindof UILabel *_Nullable(TransformLayerDirectionType directionType){
         @jobs_strongify(self)
         /**
          资料来源：
@@ -20,23 +20,24 @@
          https://github.com/wuzhenweichn/TextDirection
          */
         self.transformLayerDirectionType = directionType;
-        [self.layer addSublayer:self.shapeLayer];
+        self.layer.addSublayer(self.shapeLayer);
         self.textColor = JobsClearColor;
+        return self;
     };
 }
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
 -(JobsReturnLabelByImage _Nonnull)bgImage{
     @jobs_weakify(self)
-    return ^ __kindof UILabel *_Nullable(UIImage *_Nullable data){
+    return ^__kindof UILabel *_Nullable(UIImage *_Nullable data){
         @jobs_strongify(self)
         self.backgroundColor = self.byPatternImage(data);
         return self;
     };
 }
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
--(jobsByNSIntegerBlock _Nonnull)makeLabelByShowingType{
+-(JobsReturnLabelByNSUIntegerBlock _Nonnull)makeLabelByShowingType{
     @jobs_weakify(self)
-    return ^(UILabelShowingType labelShowingType) {
+    return ^__kindof UILabel *_Nullable(UILabelShowingType labelShowingType) {
         @jobs_strongify(self)
         /// 先刷新得出Label的frame.及其Size
         [self.superview layoutIfNeeded];
@@ -54,9 +55,7 @@
             case UILabelShowingType_03:{/// 一行显示。不定宽、不定高、定字体。宽高自适应 【单行：ByFont】 可以不要高
                 if (self.height) {
                     self.labelAutoWidthByFont();
-                    if (self.width) {
-                        self.uninstall(NSLayoutAttributeWidth);// 强制
-                    }
+                    if (self.width) self.uninstall(NSLayoutAttributeWidth);// 强制
                 }
             }break;
             case UILabelShowingType_04:{/// 一行显示。定宽、定高。缩小字体方式全展示 【单行：ByWidth】
@@ -68,15 +67,11 @@
                 if (self.width) {
                     self.numberOfLines = 0;
                     self.lineBreakMode = NSLineBreakByWordWrapping;/// 自动折行设置【默认】
-                    if (self.height) {
-                        self.uninstall(NSLayoutAttributeHeight);
-                    }
+                    if (self.height) self.uninstall(NSLayoutAttributeHeight);
                 }
             }break;
-                
-            default:
-                break;
-        }
+            default:break;
+        }return self;
     };
 }
 #pragma mark —— 系统方法链式语法封装

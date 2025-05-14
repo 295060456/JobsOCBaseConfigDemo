@@ -107,6 +107,19 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 
+-(JobsReturnNavBarConfigByStringBlock _Nullable)makeNav1ByTitle{
+    @jobs_weakify(self)
+    return ^JobsNavBarConfig *_Nullable(NSString *_Nullable string){
+        @jobs_strongify(self)
+        return self.makeNavByTitleAndAction(string,^id(__kindof UIButton *_Nullable x){
+            @jobs_strongify(self)
+            x.selected = !x.selected;
+            self.backTo(0);
+            return nil;
+        });
+    };
+}
+
 -(jobsByVoidBlock _Nonnull)唤起人工客服{
     @jobs_weakify(self)
     return ^(){
@@ -492,6 +505,18 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     [self popupShowScaleWithView:self.logOutPopupView popupParameter:self.popupParameter];
 }
 #pragma mark —— <AppToolsProtocol> 关于 TabBar
+/// 切换Tab
+-(jobsByNSIntegerBlock _Nonnull)backTo{
+    return ^(NSInteger data){
+        [AppDelegate button:AppDelegate.tabBarItemMutArr[data] index:data];
+    };
+}
+/// 控制TabBar的显隐（在TabBarController的条件下）
+-(jobsByBOOLBlock _Nonnull)showTabBar{
+    return ^(BOOL data){
+        AppDelegate.jobsCustomTabBarVC.customTabBar.jobsVisible = data;
+    };
+}
 /// TabBar
 -(UITabBar *)getTabBar{
     return AppDelegate.tabBarVC.tabBar;
