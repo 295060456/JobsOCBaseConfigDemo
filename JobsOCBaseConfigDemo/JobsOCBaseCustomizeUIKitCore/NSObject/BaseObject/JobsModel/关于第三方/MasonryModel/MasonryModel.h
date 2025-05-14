@@ -11,11 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MasonryModel : NSObject
 
-Prop_assign()MASAxisType axisType;
-Prop_assign()CGFloat fixedSpacing;
+Prop_assign()MASAxisType axisType; /// 在水平（垂直）方向上分布这些视图
+Prop_assign()CGFloat fixedSpacing; /// 指定每个视图之间的固定间距
 Prop_assign()CGFloat fixedItemLength;
-Prop_assign()CGFloat leadSpacing;
-Prop_assign()CGFloat tailSpacing;
+Prop_assign()CGFloat leadSpacing; /// 指定第一个视图与父视图左边缘（顶部）之间的距离
+Prop_assign()CGFloat tailSpacing; /// 指定最后一个视图与父视图右边缘（底部）之间的距离
 Prop_assign()CGFloat top;
 Prop_assign()CGFloat bottom;
 Prop_assign()CGFloat left;

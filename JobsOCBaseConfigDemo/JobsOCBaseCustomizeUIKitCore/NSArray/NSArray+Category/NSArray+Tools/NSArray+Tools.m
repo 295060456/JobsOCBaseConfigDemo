@@ -92,7 +92,7 @@
     return ^(BOOL data){
         @jobs_strongify(self)
         for (UIView *view in self) {
-            view.jobsVisible = data;
+            if(view.isKindOfClass(UIView.class)) view.jobsVisible = data;
         }
     };
 }
@@ -111,10 +111,10 @@
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(__kindof MasonryModel *_Nullable data){
         @jobs_strongify(self)
-        [self mas_distributeViewsAlongAxis:data.axisType/// 在水平（垂直）方向上分布这些视图
-                          withFixedSpacing:data.fixedSpacing/// 指定每个视图之间的固定间距
-                               leadSpacing:data.leadSpacing/// 指定第一个视图与父视图左边缘（顶部）之间的距离
-                               tailSpacing:data.tailSpacing];/// 指定最后一个视图与父视图右边缘（底部）之间的距离
+        [self mas_distributeViewsAlongAxis:data.axisType /// 在水平（垂直）方向上分布这些视图
+                          withFixedSpacing:data.fixedSpacing /// 指定每个视图之间的固定间距
+                               leadSpacing:data.leadSpacing /// 指定第一个视图与父视图左边缘（顶部）之间的距离
+                               tailSpacing:data.tailSpacing]; /// 指定最后一个视图与父视图右边缘（底部）之间的距离
         if(data.is_mas_makeConstraints){
             [self mas_makeConstraints:^(MASConstraintMaker *make) {
                 /// 横向拉伸以均分
