@@ -33,6 +33,7 @@ Prop_assign()TransformLayerDirectionType transformLayerDirectionType;
 -(JobsReturnLabelByNSUIntegerBlock _Nonnull)makeLabelByShowingType;
 #pragma mark —— 系统方法链式语法封装
 -(JobsReturnLabelByAttributedString _Nonnull)byAttributedString;
+-(JobsReturnLabelByCor _Nonnull)byBgCor;
 -(JobsReturnLabelByText _Nonnull)byText;
 -(JobsReturnLabelByCor _Nonnull)byTextCor;
 -(JobsReturnLabelByFont _Nonnull)byFont;

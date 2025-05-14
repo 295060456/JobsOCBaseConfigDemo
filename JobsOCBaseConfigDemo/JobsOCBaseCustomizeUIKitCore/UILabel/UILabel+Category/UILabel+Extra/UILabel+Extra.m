@@ -84,6 +84,15 @@
     };
 }
 
+-(JobsReturnLabelByCor _Nonnull)byBgCor{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(__kindof UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.backgroundColor = cor;
+        return self;
+    };
+}
+
 -(JobsReturnLabelByText _Nonnull)byText{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSString *_Nullable str){
