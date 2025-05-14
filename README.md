@@ -10949,6 +10949,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 }
 ```
 
+### 43、控制器自定义转场动画
+
+```objective-c
+/// 设置控制器的转场方向（及对应手势）
+FMHomeMenuVC *vc = [self viewController:FMHomeMenuVC.new transitionDirection:JobsTransitionDirectionLeft];
+```
+
+```objective-c
+/// 设置控制器的转场方向（及对应手势）
+-(__kindof UIViewController *_Nullable)viewController:(__kindof UIViewController *_Nonnull)viewController
+                                  transitionDirection:(JobsTransitionDirection)transitionDirection{
+    if(!viewController && viewController.isKindOfClass(UIViewController.class)) return nil;
+    /// 自定义 push/pop 控制器的动画方向
+    self.jobsNavDirectionBy(transitionDirection);
+    /// 自定义 push/pop 控制器的手势方向
+    [JobsNavigationTransitionMgr attachToViewController:viewController animationDirection:transitionDirection];
+    return viewController;
+}
+```
+
 ### Test  
 
 <details id="Test">

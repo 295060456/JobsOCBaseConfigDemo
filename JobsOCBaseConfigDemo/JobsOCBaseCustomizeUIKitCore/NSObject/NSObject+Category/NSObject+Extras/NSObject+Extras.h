@@ -29,12 +29,13 @@
 #import "MacroDef_SysWarning.h"
 
 #import "FileFolderHandleTool.h"
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
-#import "DefineConstString.h" /// 常量字符串的定义
+#import "JobsDefineAllEnumHeader.h"            /// 此文件用来存储记录全局的一些枚举
+#import "DefineConstString.h"                  /// 常量字符串的定义
 #import "JobsAppTools.h"
 #import "JobsSnowflake.h"
 #import "JobsModel.h"
 #import "JobsDropDownListView.h"
+#import "JobsNavigationTransitionMgr.h"
 
 #if __has_include(<WHToast/WHToast.h>)
 #import <WHToast/WHToast.h>
@@ -143,6 +144,9 @@ AppToolsProtocol
 -(JobsReturnVCByVCBlock _Nonnull)getCurrentViewControllerByRootVC;
 /// 自定义 push/pop 控制器的方向
 -(jobsByNSUIntegerBlock _Nonnull)jobsNavDirectionBy;
+/// 设置控制器的转场方向（及对应手势）
+-(__kindof UIViewController *_Nullable)viewController:(__kindof UIViewController *_Nonnull)viewController
+                                  transitionDirection:(JobsTransitionDirection)transitionDirection;
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
 /// @param requestParams 正向推页面传递的参数

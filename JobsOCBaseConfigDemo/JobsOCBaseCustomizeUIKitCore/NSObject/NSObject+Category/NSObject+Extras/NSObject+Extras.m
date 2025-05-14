@@ -138,6 +138,16 @@ UITextFieldProtocol_dynamic
         if(self.jobsGetCurrentViewController.navigationController) self.jobsGetCurrentViewController.navigationController.navDirectionBy(data);
     };
 }
+/// 设置控制器的转场方向（及对应手势）
+-(__kindof UIViewController *_Nullable)viewController:(__kindof UIViewController *_Nonnull)viewController
+                                  transitionDirection:(JobsTransitionDirection)transitionDirection{
+    if(!viewController && viewController.isKindOfClass(UIViewController.class)) return nil;
+    /// 自定义 push/pop 控制器的动画方向
+    self.jobsNavDirectionBy(transitionDirection);
+    /// 自定义 push/pop 控制器的手势方向
+    [JobsNavigationTransitionMgr attachToViewController:viewController animationDirection:transitionDirection];
+    return viewController;
+}
 /// 强制以Push的方式展现页面
 /// @param toPushVC 需要进行展现的页面
 /// @param requestParams 正向推页面传递的参数

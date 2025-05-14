@@ -41,7 +41,7 @@ forNavigationController:(UINavigationController *)navCtrlVC{
     _storedDirection = direction;
     navCtrlVC.delegate = self.sharedManager;
 }
-
+/// 自定义 push/pop 控制器的手势方向
 +(void)attachToViewController:(UIViewController *)viewController
            animationDirection:(JobsTransitionDirection)direction {
     JobsNavigationTransitionMgr *manager = jobsMakeNavigationTransitionMgr(^(__kindof JobsNavigationTransitionMgr * _Nullable manager) {

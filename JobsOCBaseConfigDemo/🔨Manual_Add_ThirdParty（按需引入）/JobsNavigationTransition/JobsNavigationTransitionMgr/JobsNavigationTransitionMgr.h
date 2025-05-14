@@ -33,7 +33,7 @@ UINavigationControllerDelegate
 
 +(void)setDirection:(JobsTransitionDirection)direction
 forNavigationController:(UINavigationController *)navCtrlVC;
-
+/// 自定义 push/pop 控制器的手势方向
 +(void)attachToViewController:(UIViewController *)viewController
            animationDirection:(JobsTransitionDirection)direction;
 

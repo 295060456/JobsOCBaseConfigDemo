@@ -43,5 +43,6 @@
 #import "UIViewController+SuspendBtn.h"
 #import "UIViewController+TFPopupView.h"
 #import "UIViewController+Extra.h"
+#import "UIViewController+Masonry.h"
 
 #endif /* JobsViewController_h */
