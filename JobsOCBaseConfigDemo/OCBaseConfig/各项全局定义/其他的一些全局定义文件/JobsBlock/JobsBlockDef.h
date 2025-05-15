@@ -176,4 +176,29 @@
     UIButtonModel *_Nullable closeBtnModel
 #endif /* Jobs_NavBarConfig_BackBtnModel_CloseBtnModel_Arguments */
 
+#ifndef Jobs_ViewArrayRowsColumnsBlock_Arguments
+#define Jobs_ViewArrayRowsColumnsBlock_Arguments \
+    __kindof NSArray <__kindof UIView *>*_Nullable arr, \
+    NSInteger rows, \
+    NSInteger columns
+#endif /* Jobs_ViewArrayRowsColumnsBlock_Arguments */
+
+#ifndef Jobs_KeyValueBlock_Arguments
+#define Jobs_KeyValueBlock_Arguments \
+    id <NSCopying>_Nonnull key, \
+    id _Nonnull value
+#endif /* Jobs_KeyValueBlock_Arguments */
+
+#ifndef Jobs_Key_ValueBlock_Arguments
+#define Jobs_Key_ValueBlock_Arguments \
+    NSString *_Nonnull key, \
+    id _Nullable value
+#endif /* Jobs_Key_ValueBlock_Arguments */
+
+#ifndef Jobs_JSCompletionHandlerBlock_Arguments
+#define Jobs_JSCompletionHandlerBlock_Arguments \
+    id _Nullable result, \
+    NSError *_Nullable error
+#endif /* Jobs_JSCompletionHandlerBlock_Arguments */
+
 #endif /* JobsBlockDef_h */

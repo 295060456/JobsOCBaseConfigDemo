@@ -167,11 +167,12 @@ typedef void(^jobsByUNMutableNotificationContentBlock)(__kindof UNMutableNotific
 typedef void(^jobsByNEVPNManagerBlock)(__kindof NEVPNManager *_Nullable VPNManager);
 typedef void(^jobsByNEVPNProtocolIKEv2Block)(__kindof NEVPNProtocolIKEv2 *_Nullable VPNProtocolIKEv2);
 /// 多参数
-typedef void(^jobsKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
-typedef void(^jobsByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
+typedef void(^jobsKeyValueBlock)(Jobs_KeyValueBlock_Arguments);
+typedef void(^jobsByKey_ValueBlock)(Jobs_Key_ValueBlock_Arguments);
 typedef void(^jobsBySelectorBlock) (Jobs_2_Arguments);
-typedef void(^jobsJSCompletionHandler)(id _Nullable result, NSError *_Nullable error);
+typedef void(^jobsJSCompletionHandlerBlock)(Jobs_JSCompletionHandlerBlock_Arguments);
 typedef void(^WKNavigationDelegateBlock3) (Jobs_WKNavigationDelegate_Arguments);
+typedef void(^jobsByViewArrayRowsColumnsBlock)(Jobs_ViewArrayRowsColumnsBlock_Arguments);
 /// weakSelf 方便使用，用来打破循环引用。使用时需要改成实际类型，否则没有代码提示
 /// selector 实际调用的方法
 /// arg 事件默认传递的对象，比如`NSNotification`，`UIButton`

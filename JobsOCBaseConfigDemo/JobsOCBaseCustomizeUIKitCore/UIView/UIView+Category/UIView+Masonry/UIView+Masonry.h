@@ -20,7 +20,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (Masonry)
 
 Prop_copy()jobsByMASConstraintMakerBlock masonryBlock;
-/// 实现 masonryBlock 链式方法
+#pragma mark —— 一些Masonry算法
+/// 制作一个带有n*m小矩形内容的大矩形（二次封装）
+-(jobsByViewArrayRowsColumnsBlock _Nonnull)gridLayoutBy;
+/// 制作一个带有n*m小矩形内容的大矩形（核心算法）
+-(void)setupGridWithRows:(NSInteger)rows
+                 columns:(NSInteger)columns
+               itemViews:(NSArray<__kindof UIView *> *)views
+                  margin:(CGFloat)margin
+                 spacing:(CGFloat)spacing;
+#pragma mark —— 实现 masonryBlock 链式方法
 -(JobsReturnViewByMasonryConstraintsBlock _Nonnull)setMasonryBy;
 #pragma mark —— 执行约束
 /// 含义：添加新的约束
@@ -77,5 +86,90 @@ NS_ASSUME_NONNULL_END
                                                }).on();
      }return _forgotten_code_btn;
  }
+ 
+ */
+
+/**
+ /// 2 * 3 的矩形
+ self.gridLayoutBy(jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+     arr.add(BaseButton.jobsInit()
+             .bgColorBy(JobsClearColor)
+             .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+             .jobsResetImagePadding(1)
+             .jobsResetBtnImage(JobsIMG(@"Betslip"))
+             .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+             .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+             .jobsResetBtnTitle(JobsInternationalization(@"Betslip"))
+             .onClickBy(^(UIButton *x){
+                 toast(@"Betslip");
+             }).onLongPressGestureBy(^(id data){
+                 JobsLog(@"");
+             }))
+     .add(BaseButton.jobsInit()
+         .bgColorBy(JobsClearColor)
+         .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+         .jobsResetImagePadding(1)
+         .jobsResetBtnImage(JobsIMG(@"Statement"))
+         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+         .jobsResetBtnTitle(JobsInternationalization(@"Statement"))
+         .onClickBy(^(UIButton *x){
+             toast(@"Statement");
+         }).onLongPressGestureBy(^(id data){
+             JobsLog(@"");
+         }))
+     .add(BaseButton.jobsInit()
+         .bgColorBy(JobsClearColor)
+         .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+         .jobsResetImagePadding(1)
+         .jobsResetBtnImage(JobsIMG(@"Promo"))
+         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+         .jobsResetBtnTitle(JobsInternationalization(@"Promo"))
+         .onClickBy(^(UIButton *x){
+             toast(@"Promo");
+         }).onLongPressGestureBy(^(id data){
+             JobsLog(@"");
+         }))
+     .add(BaseButton.jobsInit()
+         .bgColorBy(JobsClearColor)
+         .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+         .jobsResetImagePadding(1)
+         .jobsResetBtnImage(JobsIMG(@"Security"))
+         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+         .jobsResetBtnTitle(JobsInternationalization(@"Security"))
+         .onClickBy(^(UIButton *x){
+             toast(@"Security");
+         }).onLongPressGestureBy(^(id data){
+             JobsLog(@"");
+         }))
+     .add(BaseButton.jobsInit()
+         .bgColorBy(JobsClearColor)
+         .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+         .jobsResetImagePadding(1)
+         .jobsResetBtnImage(JobsIMG(@"Help Center"))
+         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+         .jobsResetBtnTitle(JobsInternationalization(@"Help Center"))
+         .onClickBy(^(UIButton *x){
+             toast(@"Help Center");
+         }).onLongPressGestureBy(^(id data){
+             JobsLog(@"");
+         }))
+     .add(BaseButton.jobsInit()
+         .bgColorBy(JobsClearColor)
+         .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+         .jobsResetImagePadding(1)
+         .jobsResetBtnImage(JobsIMG(@"Feedback"))
+         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+         .jobsResetBtnTitle(JobsInternationalization(@"Feedback"))
+         .onClickBy(^(UIButton *x){
+             toast(@"Feedback");
+         }).onLongPressGestureBy(^(id data){
+             JobsLog(@"");
+         }));
+ }),2,3);
  
  */

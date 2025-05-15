@@ -7863,6 +7863,95 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    
    </details>
 
+#### 29.9、**`UICollectionView`**的 `masonry`平替
+
+* 有些时候，我们需要一个类似于 `UICollectionView`的UI表现形式，但是又不希望涉及其复杂的协议以及内部约束。所以，转向于`masonry`
+
+  * 例：创建一个3 * 2 的矩形（内容为`BaseButton`）
+
+    ```objective-c
+     self.gridLayoutBy(jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+                arr.add(BaseButton.jobsInit()
+                        .bgColorBy(JobsClearColor)
+                        .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                        .jobsResetImagePadding(1)
+                        .jobsResetBtnImage(JobsIMG(@"Betslip"))
+                        .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+                        .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+                        .jobsResetBtnTitle(JobsInternationalization(@"Betslip"))
+                        .onClickBy(^(UIButton *x){
+                            JobsLog(@"");
+                        }).onLongPressGestureBy(^(id data){
+                            JobsLog(@"");
+                        }))
+                .add(BaseButton.jobsInit()
+                    .bgColorBy(JobsClearColor)
+                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                    .jobsResetImagePadding(1)
+                    .jobsResetBtnImage(JobsIMG(@"Statement"))
+                    .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+                    .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+                    .jobsResetBtnTitle(JobsInternationalization(@"Statement"))
+                    .onClickBy(^(UIButton *x){
+                        JobsLog(@"");
+                    }).onLongPressGestureBy(^(id data){
+                        JobsLog(@"");
+                    }))
+                .add(BaseButton.jobsInit()
+                    .bgColorBy(JobsClearColor)
+                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                    .jobsResetImagePadding(1)
+                    .jobsResetBtnImage(JobsIMG(@"Promo"))
+                    .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+                    .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+                    .jobsResetBtnTitle(JobsInternationalization(@"Promo"))
+                    .onClickBy(^(UIButton *x){
+                        JobsLog(@"");
+                    }).onLongPressGestureBy(^(id data){
+                        JobsLog(@"");
+                    }))
+                .add(BaseButton.jobsInit()
+                    .bgColorBy(JobsClearColor)
+                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                    .jobsResetImagePadding(1)
+                    .jobsResetBtnImage(JobsIMG(@"Security"))
+                    .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+                    .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+                    .jobsResetBtnTitle(JobsInternationalization(@"Security"))
+                    .onClickBy(^(UIButton *x){
+                        JobsLog(@"");
+                    }).onLongPressGestureBy(^(id data){
+                        JobsLog(@"");
+                    }))
+                .add(BaseButton.jobsInit()
+                    .bgColorBy(JobsClearColor)
+                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                    .jobsResetImagePadding(1)
+                    .jobsResetBtnImage(JobsIMG(@"Help Center"))
+                    .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+                    .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+                    .jobsResetBtnTitle(JobsInternationalization(@"Help Center"))
+                    .onClickBy(^(UIButton *x){
+                        JobsLog(@"");
+                    }).onLongPressGestureBy(^(id data){
+                        JobsLog(@"");
+                    }))
+                .add(BaseButton.jobsInit()
+                    .bgColorBy(JobsClearColor)
+                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                    .jobsResetImagePadding(1)
+                    .jobsResetBtnImage(JobsIMG(@"Feedback"))
+                    .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+                    .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
+                    .jobsResetBtnTitle(JobsInternationalization(@"Feedback"))
+                    .onClickBy(^(UIButton *x){
+                        JobsLog(@"");
+                    }).onLongPressGestureBy(^(id data){
+                        JobsLog(@"");
+                    }));
+            }),2,3);
+    ```
+
 ### 30、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 #### 30.1、关于<font color=red>**`UITableView`**</font>

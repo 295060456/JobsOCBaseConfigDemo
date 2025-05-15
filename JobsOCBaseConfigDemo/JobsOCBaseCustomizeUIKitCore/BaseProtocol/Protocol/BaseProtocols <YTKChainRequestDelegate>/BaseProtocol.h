@@ -62,7 +62,7 @@ Prop_strong(nullable)WKScriptMessage *scriptMsg;
 Prop_copy(nullable)NSString *handlerName;
 Prop_copy(nullable)NSString *evaluateJavaScript;
 Prop_copy(nullable)NSString *customUserAgent;
-Prop_copy(nullable)jobsJSCompletionHandler completionHandlerBlock;
+Prop_copy(nullable)jobsJSCompletionHandlerBlock completionHandlerBlock;
 #pragma mark —— Data
 Prop_copy(nullable)NSMutableArray <NSURL *>*urls;
 Prop_strong(nullable)NSURL *url;
