@@ -178,6 +178,7 @@
 		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
 		C532D7242DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */; };
 		C5350A0B2DCB6B260034341F /* UIViewModel+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C5350A092DCB6B260034341F /* UIViewModel+App.m */; };
+		C53688392DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C53688372DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.m */; };
 		C53894082DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C53894062DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m */; };
 		C538940C2DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C538940A2DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.m */; };
 		C53894202DC6286D00D5FB06 /* UIContextMenuInteraction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C538941E2DC6286D00D5FB06 /* UIContextMenuInteraction+Extra.m */; };
@@ -1658,6 +1659,9 @@
 		C532D7AF2DC9D6DB00917DBF /* JobsBlockDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlockDef.h; sourceTree = "<group>"; };
 		C5350A082DCB6B260034341F /* UIViewModel+App.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewModel+App.h"; sourceTree = "<group>"; };
 		C5350A092DCB6B260034341F /* UIViewModel+App.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewModel+App.m"; sourceTree = "<group>"; };
+		C53688352DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JobsDetailsInfoStyleTBVCell.png; sourceTree = "<group>"; };
+		C53688362DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsDetailsInfoStyleTBVCell.h; sourceTree = "<group>"; };
+		C53688372DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsDetailsInfoStyleTBVCell.m; sourceTree = "<group>"; };
 		C53894052DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+BaseViewProtocol.h"; sourceTree = "<group>"; };
 		C53894062DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+BaseViewProtocol.m"; sourceTree = "<group>"; };
 		C53894092DC611D200D5FB06 /* UICollectionViewCell+BaseViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewCell+BaseViewProtocol.h"; sourceTree = "<group>"; };
@@ -5645,6 +5649,16 @@
 				C5350A092DCB6B260034341F /* UIViewModel+App.m */,
 			);
 			path = "UIViewModel+App";
+			sourceTree = "<group>";
+		};
+		C53688382DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell */ = {
+			isa = PBXGroup;
+			children = (
+				C53688352DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.png */,
+				C53688362DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.h */,
+				C53688372DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.m */,
+			);
+			path = JobsDetailsInfoStyleTBVCell;
 			sourceTree = "<group>";
 		};
 		C53894072DC611BB00D5FB06 /* UITableViewCell+BaseViewProtocol */ = {
@@ -13761,10 +13775,10 @@
 		CE5A638B2CA82C2D006D67A7 /* BaseTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				C53688382DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell */,
 				C53F136D2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell */,
 				C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */,
 				CE5A63782CA82C2D006D67A7 /* JobsBaseTableViewCell */,
-				CE5A637D2CA82C2D006D67A7 /* iOS UITableView中Cell的自带样式 */,
 				CE5A63802CA82C2D006D67A7 /* JobsBtnStyleTBVCell */,
 				CE5A63832CA82C2D006D67A7 /* JobsImageStyleTBVCell */,
 				CE5A63862CA82C2D006D67A7 /* JobsTextLabStyleTBVCell */,
@@ -13816,6 +13830,7 @@
 		CE5A63992CA82C2D006D67A7 /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				CE5A637D2CA82C2D006D67A7 /* iOS UITableView中Cell的自带样式 */,
 				CE5A638B2CA82C2D006D67A7 /* BaseTableViewCell */,
 				CE5A63972CA82C2D006D67A7 /* UITableViewCell+Category */,
 				CE5A63982CA82C2D006D67A7 /* JobsTableViewCell.h */,
@@ -16898,6 +16913,7 @@
 				CECE7EAC2C450E5B00764AF5 /* KTVHTTPCache.m in Sources */,
 				CECE80BB2C4512BF00764AF5 /* JobsResponseModel.m in Sources */,
 				CECE7EA42C450E5B00764AF5 /* KTVHCDataUnitPool.m in Sources */,
+				C53688392DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.m in Sources */,
 				CE5A64EF2CA83065006D67A7 /* NSUserDefaults+Manager.m in Sources */,
 				CECE7EC02C450E5B00764AF5 /* TKPermissionPhoto.m in Sources */,
 				CECE7EAD2C450E5B00764AF5 /* GCDAsyncSocket.m in Sources */,

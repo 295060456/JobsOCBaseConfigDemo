@@ -47,6 +47,7 @@
     return ^__kindof UIView *_Nullable(UIView *_Nullable subView){
         @jobs_strongify(self)
         if(!self.containBy(subView)) self.view.addSubview(subView);
+        /// 只更新需要更改的约束，其余约束不变
         [subView mas_updateConstraints:self.masonryBlock];
         self.view.refresh();
         return subView;

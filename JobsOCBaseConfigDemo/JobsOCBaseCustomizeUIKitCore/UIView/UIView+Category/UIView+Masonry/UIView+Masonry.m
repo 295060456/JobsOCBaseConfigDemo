@@ -93,6 +93,7 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(){
         @jobs_strongify(self)
+        /// 只更新需要更改的约束，其余约束不变
         [self mas_updateConstraints:self.masonryBlock];
         self.refresh();
         return self;
