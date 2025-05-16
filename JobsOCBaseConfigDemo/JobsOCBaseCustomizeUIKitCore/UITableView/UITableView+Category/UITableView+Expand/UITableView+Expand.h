@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 +(instancetype)initWithStylePlain;/// 一般用这个
 +(instancetype)initWithStyleGrouped;/// 会在section之间自己预留一块空间
 +(instancetype)initWithStyleInsetGrouped API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos);
+#pragma mark —— UITableViewHeaderFooterView
+-(JobsReturnRectByNSIntegerBlock _Nonnull)rectForHeaderInSection;
+-(JobsReturnRectByNSIntegerBlock _Nonnull)rectForFooterInSection;
 #pragma mark —— UITableViewCell
 /// 对系统方法 cellForRowAtIndexPath 的二次封装
 -(JobsReturnTableViewCellByIndexPathBlock _Nonnull)cellBy;

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-///资料来源：https://github.com/Zydhjx/HeaderDemo
-///在基类覆写- (void)setFrame:(CGRect)frame方法。比如基类：BaseTableViewHeaderFooterView
+#import "DefineProperty.h"
+/// 资料来源：https://github.com/Zydhjx/HeaderDemo
+/// 在基类覆写- (void)setFrame:(CGRect)frame方法。比如基类：BaseTableViewHeaderFooterView
 @interface UITableViewHeaderFooterView (Attribute)
-
-@property(nonatomic,weak)UITableView *tableView;
+Prop_weak()UITableView *tbv;
 Prop_assign()NSUInteger section;
 
 @end

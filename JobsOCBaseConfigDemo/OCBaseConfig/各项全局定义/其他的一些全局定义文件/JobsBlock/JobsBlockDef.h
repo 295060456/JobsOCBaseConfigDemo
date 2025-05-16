@@ -100,20 +100,20 @@
 /// 主文字内容、字体大小
 #ifndef Jobs_Title_Font_Arguments
 #define Jobs_Title_Font_Arguments \
-    NSString *_Nonnull title, \
+    __kindof NSString *_Nonnull title, \
     UIFont *_Nullable font
 #endif /* Jobs_Title_Font_Arguments */
 /// 主文字内容、字体大小、主文字颜色
 #ifndef Jobs_Title_Font_TitleCor_Arguments
 #define Jobs_Title_Font_TitleCor_Arguments \
-    NSString *_Nonnull title, \
+    __kindof NSString *_Nonnull title, \
     UIFont *_Nullable font, \
     UIColor *_Nullable titleCor
 #endif /* Jobs_Title_Font_TitleCor_Arguments */
 /// 主文字内容、字体大小、主文字颜色、按钮图片、图片和文字的位置关系、x
 #ifndef Jobs_Title_Font_TitleCor_Image_imagePlacement_X_Arguments
 #define Jobs_Title_Font_TitleCor_Image_imagePlacement_X_Arguments \
-    NSString *_Nonnull title, \
+    __kindof NSString *_Nonnull title, \
     UIFont *_Nullable font, \
     UIColor *_Nullable titleCor, \
     UIImage *_Nonnull image, \
@@ -123,7 +123,7 @@
 /// 主文字内容、字体大小、主文字颜色、按钮图片、图文距离
 #ifndef Jobs_Title_Font_TitleCor_Image_X_Arguments
 #define Jobs_Title_Font_TitleCor_Image_X_Arguments \
-    NSString *_Nonnull title, \
+    __kindof NSString *_Nonnull title, \
     UIFont *_Nullable font, \
     UIColor *_Nullable titleCor, \
     UIImage *_Nonnull image, \
@@ -132,7 +132,7 @@
 /// 主文字内容、字体大小、主文字颜色、按钮图片
 #ifndef Jobs_Title_Font_TitleCor_Image_Arguments
 #define Jobs_Title_Font_TitleCor_Image_Arguments \
-    NSString *_Nonnull title, \
+    __kindof NSString *_Nonnull title, \
     UIFont *_Nullable font, \
     UIColor *_Nullable titleCor, \
     UIImage *_Nonnull image
@@ -140,7 +140,7 @@
 /// 主文字内容、字体大小、主文字颜色、按钮图片、按钮背景图片、图片和文字的位置关系
 #ifndef Jobs_Title_Font_TitleCor_Image_BackgroundImage_ImagePlacement_Arguments
 #define Jobs_Title_Font_TitleCor_Image_BackgroundImage_ImagePlacement_Arguments \
-    NSString *_Nonnull title, \
+    __kindof NSString *_Nonnull title, \
     UIFont *_Nullable font, \
     UIColor *_Nullable titleCor, \
     UIImage *_Nonnull image, \
@@ -150,7 +150,7 @@
 /// 主文字内容、字体大小、主文字颜色、按钮图片、图文相对位置、图文距离
 #ifndef Jobs_Title_Font_TitleCor_Image_DirectionalRectEdge_X_Arguments
 #define Jobs_Title_Font_TitleCor_Image_DirectionalRectEdge_X_Arguments \
-    NSString *_Nonnull title, \
+    __kindof NSString *_Nonnull title, \
     UIFont *_Nullable font, \
     UIColor *_Nullable titleCor, \
     UIImage *_Nonnull image, \
@@ -191,7 +191,7 @@
 
 #ifndef Jobs_Key_ValueBlock_Arguments
 #define Jobs_Key_ValueBlock_Arguments \
-    NSString *_Nonnull key, \
+    __kindof NSString *_Nonnull key, \
     id _Nullable value
 #endif /* Jobs_Key_ValueBlock_Arguments */
 
@@ -204,13 +204,19 @@
 #ifndef Jobs_UITableViewHeaderFooterViewBlock_Arguments
 #define Jobs_UITableViewHeaderFooterViewBlock_Arguments \
     Class _Nonnull cls, \
-    NSString *_Nullable salt
+    __kindof NSString *_Nullable salt
 #endif /* Jobs_UITableViewHeaderFooterViewBlock_Arguments */
+
+#ifndef Jobs_UITableViewHeaderFooterViewBlock2_Arguments
+#define Jobs_UITableViewHeaderFooterViewBlock2_Arguments \
+    __kindof UITableView *_Nullable tableView, \
+    __kindof NSString *_Nullable salt
+#endif /* Jobs_UITableViewHeaderFooterViewBlock2_Arguments */
 
 #ifndef Jobs_UITableViewCellBlock_Arguments
 #define Jobs_UITableViewCellBlock_Arguments \
     Class _Nonnull cls, \
-    NSString *_Nullable salt, \
+    __kindof NSString *_Nullable salt, \
     NSIndexPath *_Nonnull indexPath
 #endif /* Jobs_UITableViewCellBlock_Arguments */
 
@@ -228,8 +234,8 @@
 
 #ifndef Jobs_NSStringBlock_3_Arguments
 #define Jobs_NSStringBlock_3_Arguments \
-    NSString *_Nullable fontString, \
-    NSString *_Nullable tailString
+    __kindof NSString *_Nullable fontString, \
+    __kindof NSString *_Nullable tailString
 #endif /* Jobs_NSStringBlock_3_Arguments */
 
 #ifndef Jobs_UIColorBlock_Arguments

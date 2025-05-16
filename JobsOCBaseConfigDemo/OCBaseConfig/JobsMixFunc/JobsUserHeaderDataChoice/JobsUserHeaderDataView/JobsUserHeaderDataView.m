@@ -143,16 +143,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                   cell:cell];
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
-- (nullable __kindof UIView *)tableView:(UITableView *)tableView
-        viewForHeaderInSection:(NSInteger)section{
+/// tableView.registerHeaderFooterViewClass(JobsUserHeaderDataViewForHeaderInSection.class,@"");
+- (UIView *)tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section{
     if (self.viewModel.usesTableViewHeaderView) {
-        JobsUserHeaderDataViewForHeaderInSection *headerView = tableView.tableViewHeaderFooterView(JobsUserHeaderDataViewForHeaderInSection.class,@"");
-        headerView.section = section;
-        headerView.jobsRichViewByModel(nil);
-//        @jobs_weakify(self)
-        [headerView actionObjBlock:^(id data) {
-//            @jobs_strongify(self)
-        }];return headerView;
+        @jobs_weakify(self)
+        /// 什么不配置就是悬浮
+        /// JobsHeaderFooterViewStyleNone 还是悬浮
+        /// JobsHeaderViewStyle 不是悬浮
+        return JobsUserHeaderDataViewForHeaderInSection.initByReuseIdentifier(tableView,@"")
+            .byStyle(JobsHeaderViewStyle)/// 悬浮开关
+            .bySection(section)/// 悬浮配置
+            .JobsRichViewByModel2(nil)
+            .JobsBlock1(^(id _Nullable data) {
+                
+            });
     }return nil;
 }
 #pragma mark —— lazyLoad

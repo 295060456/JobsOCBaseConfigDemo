@@ -809,7 +809,7 @@ UITextFieldProtocol_dynamic
         return nil;
     }, MethodName(self), self) name:notificationName object:nil];
 }
-/// 用于UITableViewHeaderFooterView initByReuseIdentifier
+
 +(JobsReturnIDByStringBlock _Nonnull)initByReuseId{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){

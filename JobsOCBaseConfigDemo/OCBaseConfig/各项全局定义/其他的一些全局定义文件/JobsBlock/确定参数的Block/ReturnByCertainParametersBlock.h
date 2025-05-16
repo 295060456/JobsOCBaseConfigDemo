@@ -240,6 +240,8 @@ typedef __kindof UIActivityIndicatorView *_Nullable(^JobsReturnActivityIndicator
 #pragma mark —— 关于 UITableViewHeaderFooterView
 typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByTableViewBlock)(__kindof UITableView *_Nullable tableView);
 typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByNSIntegerBlock)(NSInteger data);
+
+typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByTableViewAndSaltBlock)(Jobs_UITableViewHeaderFooterViewBlock2_Arguments);
 typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByStringBlock)(__kindof NSString *_Nullable string);
 typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Jobs_UITableViewHeaderFooterViewBlock_Arguments);
 #pragma mark —— 关于 UITableViewCell

@@ -9,11 +9,12 @@
 
 @implementation UITableViewHeaderFooterView (BaseTableViewHeaderFooterViewProtocol)
 #pragma mark —— BaseViewProtocol
-+(JobsReturnTableViewHeaderFooterViewByStringBlock _Nonnull)initByReuseIdentifier{
++(JobsReturnTableViewHeaderFooterViewByTableViewAndSaltBlock _Nonnull)initByReuseIdentifier{
     @jobs_weakify(self)
-    return ^__kindof UITableViewHeaderFooterView *_Nullable(NSString * _Nullable salt) {
+    return ^__kindof UITableViewHeaderFooterView *_Nullable(__kindof UITableView *_Nullable tableView,
+                                                            NSString * _Nullable salt) {
         @jobs_strongify(self)
-        return self.initByReuseId(NSStringFromClass(self.class).add(salt));
+        return tableView.tableViewHeaderFooterView(self.class,salt).byTableView(tableView);
     };
 }
 
@@ -39,7 +40,7 @@
     @jobs_weakify(self)
     return ^__kindof UITableViewHeaderFooterView *_Nullable(__kindof UITableView *_Nullable tableView){
         @jobs_strongify(self)
-        self.tableView = tableView;
+        self.tbv = tableView;
         return self;
     };
 }
@@ -69,5 +70,16 @@
                           JobsWidth(5));
     };
 }
+#pragma mark —— Prop_assign()JobsHeaderFooterViewStyle headerFooterViewStyle;
+JobsKey(_headerFooterViewStyle)
+@dynamic headerFooterViewStyle;
+-(JobsHeaderFooterViewStyle)headerFooterViewStyle{
+    return [Jobs_getAssociatedObject(_headerFooterViewStyle) integerValue];
+}
+
+-(void)setHeaderFooterViewStyle:(JobsHeaderFooterViewStyle)headerFooterViewStyle{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_headerFooterViewStyle, @(headerFooterViewStyle))
+}
+
 
 @end

@@ -18,35 +18,35 @@ NS_ASSUME_NONNULL_END
  
  /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
  /// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@"");
- - (UIView *)tableView:(UITableView *)tableView
- viewForHeaderInSection:(NSInteger)section{
-     if(section == 0){
-                 return BaseTableViewHeaderFooterView
-                         .initByReuseIdentifier(@"")
-             .byStyle(JobsHeaderViewStyle)/// 不写这三句有悬浮 1
-             .bySection(section)/// 不写这三句有悬浮 2
-             .byTableView(tableView)/// 不写这三句有悬浮 2
-             .JobsRichViewByModel2(nil)
-             .JobsBlock1(^(id _Nullable data) {
-
-             });
-     }else return UIView.new;
+ - (nullable __kindof UIView *)tableView:(UITableView *)tableView
+                  viewForHeaderInSection:(NSInteger)section{
+     /// 什么不配置就是悬浮
+     /// JobsHeaderFooterViewStyleNone 还是悬浮
+     /// JobsHeaderViewStyle 不是悬浮
+     return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@"")
+         .byStyle(JobsHeaderViewStyle)/// 悬浮开关
+         .bySection(section)/// 悬浮配置
+         .JobsRichViewByModel2(nil)
+         .JobsBlock1(^(id _Nullable data) {
+             
+         });
  }
+ 
  /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
  /// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@"");
- - (nullable UIView *)tableView:(UITableView *)tableView
-         viewForFooterInSection:(NSInteger)section{
-     if(self.viewModel.usesTableViewFooterView){
-                 return BaseTableViewHeaderFooterView
-                         .initByReuseIdentifier(@"")
-             .byStyle(JobsFooterViewStyle)/// 不写这三句有悬浮 1
-             .bySection(section)/// 不写这三句有悬浮 2
-             .byTableView(tableView)/// 不写这三句有悬浮 2
-             .JobsRichViewByModel2(nil)
-             .JobsBlock1(^(id _Nullable data) {
-
-             });
-     }return nil;
+ - (nullable __kindof UIView *)tableView:(UITableView *)tableView
+            viewForFooterInSection:(NSInteger)section{
+     /// 什么不配置就是悬浮
+     /// JobsHeaderFooterViewStyleNone 还是悬浮
+     /// JobsHeaderViewStyle 不是悬浮
+     return BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@"")
+         .byStyle(JobsHeaderViewStyle)/// 悬浮开关
+         .bySection(section)/// 悬浮配置
+         .JobsRichViewByModel2(nil)
+         .JobsBlock1(^(id _Nullable data) {
+             
+         });
  }
  
  */
+

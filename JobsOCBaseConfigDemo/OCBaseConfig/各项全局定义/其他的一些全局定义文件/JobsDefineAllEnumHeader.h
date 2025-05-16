@@ -132,7 +132,8 @@ typedef NS_ENUM(NSUInteger, ComingStyle) {
 #ifndef JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED
 #define JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED
 typedef NS_ENUM(NSInteger, JobsHeaderFooterViewStyle) {
-    JobsHeaderViewStyle = 0,
+    JobsHeaderFooterViewStyleNone = 0,
+    JobsHeaderViewStyle,
     JobsFooterViewStyle
 };
 #endif /* JOBS_HEADERFOOTER_VIEW_STYLE_ENUM_DEFINED */

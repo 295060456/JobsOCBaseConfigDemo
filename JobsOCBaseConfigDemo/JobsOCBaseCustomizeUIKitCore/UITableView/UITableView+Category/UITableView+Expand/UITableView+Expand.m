@@ -29,6 +29,22 @@
 +(instancetype)initWithStyleInsetGrouped API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos){
     return [UITableView.alloc initWithFrame:CGRectZero style:UITableViewStyleInsetGrouped];
 }
+#pragma mark —— UITableViewHeaderFooterView
+-(JobsReturnRectByNSIntegerBlock _Nonnull)rectForHeaderInSection{
+    @jobs_weakify(self)
+    return ^CGRect(NSInteger section){
+        @jobs_strongify(self)
+        return [self rectForHeaderInSection:section];
+    };
+}
+
+-(JobsReturnRectByNSIntegerBlock _Nonnull)rectForFooterInSection{
+    @jobs_weakify(self)
+    return ^CGRect(NSInteger section){
+        @jobs_strongify(self)
+        return [self rectForFooterInSection:section];
+    };
+}
 #pragma mark —— UITableViewCell
 /// 对系统方法 cellForRowAtIndexPath 的二次封装
 -(JobsReturnTableViewCellByIndexPathBlock _Nonnull)cellBy{

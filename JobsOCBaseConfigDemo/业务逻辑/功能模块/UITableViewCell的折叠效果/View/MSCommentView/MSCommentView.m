@@ -139,30 +139,37 @@ heightForFooterInSectionByModel:(NSInteger)section{
     return CGFLOAT_MIN;
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+/// tableView.registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,@"");
 - (UIView *)tableView:(UITableView *)tableView
 viewForHeaderInSection:(NSInteger)section{
-    MSCommentTableHeaderFooterView *header = (MSCommentTableHeaderFooterView *)tableView.tableViewHeaderFooterView(MSCommentTableHeaderFooterView.class,@"");
-    if(!header){
-        header = [MSCommentTableHeaderFooterView.alloc initWithReuseIdentifier:MSCommentTableHeaderFooterView.class.description];
-    }
-
+    /// 什么不配置就是悬浮
+    /// JobsHeaderFooterViewStyleNone 还是悬浮
+    /// JobsHeaderViewStyle 不是悬浮
+    MSCommentTableHeaderFooterView *headerView = MSCommentTableHeaderFooterView.initByReuseIdentifier(tableView,@"")
+        .byStyle(JobsHeaderViewStyle)/// 悬浮开关
+        .bySection(section)/// 悬浮配置
+        .JobsRichViewByModel2(nil)
+        .JobsBlock1(^(id _Nullable data) {
+            
+        });
     {
-        header.numberOfTouchesRequired = 1;
-        header.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
-        header.minimumPressDuration = 0.1;
-        header.numberOfTouchesRequired = 1;
-        header.allowableMovement = 1;
-        header.userInteractionEnabled = YES;
-        header.weak_target = self;
-        header.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
+        headerView.numberOfTouchesRequired = 1;
+        headerView.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
+        headerView.minimumPressDuration = 0.1;
+        headerView.numberOfTouchesRequired = 1;
+        headerView.allowableMovement = 1;
+        headerView.userInteractionEnabled = YES;
+        headerView.weak_target = self;
+        headerView.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                              UITapGestureRecognizer *_Nullable arg) {
             MSCommentTableHeaderFooterView *header = (MSCommentTableHeaderFooterView *)arg.view;
             NSInteger section = header.tag;
             [tableView ww_foldSection:section fold:![tableView ww_isSectionFolded:section]];
             return nil;
-        }];header.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
-    }header.tag = section;
-    return header;
+        }];
+        headerView.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
+    }headerView.tag = section;
+    return headerView;
 }
 
 - (void)tableView:(UITableView *)tableView

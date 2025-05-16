@@ -178,7 +178,8 @@ heightForHeaderInSection:(NSInteger)section{///  👌
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
     @jobs_weakify(self)
-    return JobsCommentPopUpView_viewForHeaderInSection.JobsRichViewByModel(self.mjModel.listDataArr[section])/// 一级评论数据 展示在viewForHeaderInSection
+    return JobsCommentPopUpView_viewForHeaderInSection
+        .JobsRichViewByModel(self.mjModel.listDataArr[section])/// 一级评论数据 展示在viewForHeaderInSection
         .JobsBlock1(^(id _Nullable data) {/// 一级标题点击事件
             @jobs_strongify(self)
             [self 一级标题点击事件];

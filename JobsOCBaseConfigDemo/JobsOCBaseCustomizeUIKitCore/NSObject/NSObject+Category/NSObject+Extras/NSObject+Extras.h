@@ -294,7 +294,7 @@ AppToolsProtocol
 -(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClass;
 -(void)addCheckerByName:(NSString *_Nonnull)notificationName
           selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock;
-+(JobsReturnIDByStringBlock _Nonnull)initByReuseId; /// 用于UITableViewHeaderFooterView
++(JobsReturnIDByStringBlock _Nonnull)initByReuseId;
 +(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier;/// 不能用于UITableViewHeaderFooterView
 -(JobsReturnIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass;/// 不能用于UITableViewHeaderFooterView
 /// 索取对象obj里面属性名为propertyName的值，如果没有这个属性则查找返回nil

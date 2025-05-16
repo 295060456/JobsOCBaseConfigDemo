@@ -116,23 +116,28 @@ heightForFooterInSectionByModel:(NSInteger)section{
     return BaseTableViewHeaderFooterView.heightForFooterInSectionByModel(nil);
 }
 /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+/// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@"");
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
                  viewForFooterInSection:(NSInteger)section{
-    BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"")
-        .JobsRichViewByModel2(nil)
-        .JobsBlock1(^(id _Nullable data) {
-        
-    });
-    tbvFooterView.headerFooterViewStyle = JobsFooterViewStyle;
-    {
-        // 不写这两句有悬浮
-        tbvFooterView.tableView = tableView;
-        tbvFooterView.section = section;
-    }
-    /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
-    /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
-    tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xFFFFFF);
-    return tbvFooterView;
+    if(self.viewModel.usesTableViewFooterView){
+        @jobs_weakify(self)
+        /// 什么不配置就是悬浮
+        /// JobsHeaderFooterViewStyleNone 还是悬浮
+        /// JobsHeaderViewStyle 不是悬浮
+        BaseTableViewHeaderFooterView *tbvFooterView = BaseTableViewHeaderFooterView.initByReuseIdentifier(tableView,@"")
+            .byStyle(JobsHeaderViewStyle)/// 悬浮开关
+            .bySection(section)/// 悬浮配置
+            .JobsRichViewByModel2(nil)
+            .JobsBlock1(^(id _Nullable data) {
+                
+            });
+        tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
+        tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
+        /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
+        /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
+        tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xFFFFFF);
+        return tbvFooterView;
+    }return nil;
 }
 #pragma mark —— lazyLoad
 -(UIButton *)jobsCopyBtn{

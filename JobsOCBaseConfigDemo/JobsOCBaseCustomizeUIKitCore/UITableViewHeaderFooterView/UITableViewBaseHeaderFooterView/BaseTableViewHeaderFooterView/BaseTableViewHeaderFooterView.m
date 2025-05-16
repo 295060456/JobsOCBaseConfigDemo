@@ -26,13 +26,16 @@ BaseViewProtocol_synthesize
  #import "UITableViewHeaderFooterView+Attribute.h"
  在具体的子类实现，实现控制UITableViewHeaderFooterView是否悬停
  资料来源：https://github.com/Zydhjx/HeaderDemo
+ UITableView类型：UITableViewStylePlain
  */
 - (void)setFrame:(CGRect)frame {
-    if (self.headerFooterViewStyle == JobsHeaderViewStyle) {
-        [super setFrame:[self.tableView rectForHeaderInSection:self.section]];
-    }else if (self.headerFooterViewStyle == JobsFooterViewStyle){
-        [super setFrame:[self.tableView rectForFooterInSection:self.section]];
-    }else{}
+    if(self.tbv){
+        if (self.headerFooterViewStyle == JobsHeaderViewStyle) {
+            [super setFrame:self.tbv.rectForHeaderInSection(self.section)];
+        }else if (self.headerFooterViewStyle == JobsFooterViewStyle){
+            [super setFrame:self.tbv.rectForFooterInSection(self.section)];
+        }else [super setFrame:frame];/// 不悬浮
+    }else [super setFrame:frame];/// 不悬浮
 }
 
 - (void)layoutSubviews{

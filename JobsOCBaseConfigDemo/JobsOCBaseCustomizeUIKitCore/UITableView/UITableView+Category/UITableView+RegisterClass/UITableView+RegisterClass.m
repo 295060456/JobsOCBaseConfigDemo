@@ -19,7 +19,7 @@
     @jobs_weakify(self)
     return ^(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
-        if(!cls) cls = UITableViewCell.class;
+        if(!cls) cls = UITableViewHeaderFooterView.class;
         [self registerClass:cls forHeaderFooterViewReuseIdentifier:cls.description.add(salt)];
     };
 }
@@ -36,7 +36,7 @@
 /// 不使用 registerClass 直接创建 UITableViewCell ❤️复用字符串是目标类的类名❤️
 -(JobsReturnTableViewCellByClsAndSaltStrBlock _Nonnull)tableViewCellClass{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,NSString * _Nullable salt) {
+    return ^__kindof UITableViewCell *_Nullable(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
         if(!cls) cls = UITableViewCell.class;
         return [self dequeueReusableCellWithIdentifier:cls.description.add(salt)];
@@ -45,9 +45,9 @@
 /// 使用 registerClass 注册 UITableViewCell ❤️复用字符串是目标类的类名❤️
 -(JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block _Nonnull)tableViewCellClassForIndexPath{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,
-             NSString * _Nullable salt,
-             NSIndexPath * _Nonnull indexPath) {
+    return ^__kindof UITableViewCell *_Nullable(Class _Nonnull cls,
+                                                NSString * _Nullable salt,
+                                                NSIndexPath * _Nonnull indexPath) {
         @jobs_strongify(self)
         if(!cls) cls = UITableViewCell.class;
         UITableViewCell *tableViewCell = [self dequeueReusableCellWithIdentifier:cls.description.add(salt) forIndexPath:indexPath];
@@ -60,13 +60,13 @@
 /// 一种用字符串取UITableViewHeaderFooterView及其子类的方法❤️复用字符串是目标类的类名❤️
 -(JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock _Nonnull)tableViewHeaderFooterView{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls, NSString * _Nullable salt) {
+    return ^__kindof UITableViewHeaderFooterView *_Nullable(Class _Nonnull cls, NSString * _Nullable salt) {
         @jobs_strongify(self)
         if(!cls) cls = UITableViewHeaderFooterView.class;
         UITableViewHeaderFooterView *tableViewHeaderFooterView = [self dequeueReusableHeaderFooterViewWithIdentifier:cls.description.add(salt)];
         if(!tableViewHeaderFooterView){
             self.registerHeaderFooterViewClass(cls,salt);
-            tableViewHeaderFooterView = self.tableViewHeaderFooterView(cls,@"");
+            tableViewHeaderFooterView = self.tableViewHeaderFooterView(cls,salt);
         }return tableViewHeaderFooterView;
     };
 }
