@@ -8617,15 +8617,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    - (UIView *)tableView:(UITableView *)tableView
    viewForHeaderInSection:(NSInteger)section{
        UITableViewHeaderFooterView *headerView = self.tbvHeaderFooterViewMutArr[section];
-       // 不写这三句有悬浮
-       headerView.headerFooterViewStyle = JobsHeaderViewStyle;
-       headerView.tableView = tableView;
-       headerView.section = section;
-       headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data);
-       @jobs_weakify(self)
-       [headerView actionObjectBlock:^(id data) {
-           @jobs_strongify(self)
-       }];return headerView;
+       headerView.byStyle(JobsHeaderViewStyle)/// 不写这三句有悬浮 1
+           .bySection(section)/// 不写这三句有悬浮 2
+           .byTableView(tableView)/// 不写这三句有悬浮 2
+           .JobsRichViewByModel2(self.dataMutArr[section].data)
+           .JobsBlock1(^(id _Nullable data) {
+               
+           });return headerView;
    }
    
    - (void)tableView:(UITableView *)tableView
@@ -8650,8 +8648,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                                               borderWidth:JobsWidth(10)
                                                        dx:JobsWidth(0)
                                                        dy:JobsWidth(0)];
-  }
-  #pragma mark —— UIScrollViewDelegate
+   }
+   #pragma mark —— UIScrollViewDelegate
   - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
       /// 关闭悬停效果
       CGFloat sectionHeaderHeight = JobsWidth(36); /// header的高度
@@ -8810,22 +8808,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
         - (UIView *)tableView:(UITableView *)tableView
         viewForHeaderInSection:(NSInteger)section{
-            UITableViewHeaderFooterView *headerView = self.tbvHeaderFooterViewMutArr[section];
-            {
-                /**
-                 如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
-                 @synthesize headerFooterViewStyle = _headerFooterViewStyle;
-                 */
-                // 不写这三句有悬浮
-                headerView.headerFooterViewStyle = JobsHeaderViewStyle;
-                headerView.tableView = tableView;
-                headerView.section = section;
-            }
-            headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data);
-            @jobs_weakify(self)
-            [headerView actionObjectBlock:^(id data) {
-                @jobs_strongify(self)
-            }];return headerView;
+        /**
+        如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
+        @synthesize headerFooterViewStyle = _headerFooterViewStyle;
+        */
+            return BaseTableViewHeaderFooterView
+                .initByReuseIdentifier(@"")
+                .byStyle(JobsHeaderViewStyle)/// 不写这三句有悬浮 1
+                .bySection(section)/// 不写这三句有悬浮 2
+                .byTableView(tableView)/// 不写这三句有悬浮 2
+                .JobsRichViewByModel2(nil)
+                .JobsBlock1(^(id _Nullable data) {
+                    
+                });
         }
         ```
       
@@ -8838,7 +8833,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
       }
       
       - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-          return UIView.new; // 返回一个空的 UIView
+          return jobsMakeView(^(__kindof UIView * _Nullable view) {
+              
+          }); // 返回一个空的 UIView
       }
       ```
 
@@ -8864,62 +8861,15 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   - (UIView *)tableView:(UITableView *)tableView
   viewForHeaderInSection:(NSInteger)section{
       if(section == 0){
-          FMTBVHeaderFooterView1 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
-          if(!headerView){
-  //            headerView = FMTBVHeaderFooterView1.jobsInitWithReuseIdentifier(@"");// 不要用这个
-              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView1.class,@"");
-              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView1.class,@"");
-          }
-          headerView.backgroundColor = JobsRedColor;
-          // 不写这三句有悬浮
-          headerView.headerFooterViewStyle = JobsHeaderViewStyle;
-          headerView.tableView = tableView;
-          headerView.section = section;
-          headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data);
-          @jobs_weakify(self)
-          [headerView actionObjectBlock:^(id data) {
-              @jobs_strongify(self)
-          }];return headerView;
-      }else if (section == 1){
-          FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
-          if(!headerView){
-  //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
-              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
-              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
-          }
-          headerView.backgroundColor = JobsBlueColor;
-          {
-              /**
-               如果不是继承自BaseTableViewHeaderFooterView，那么在UITableViewHeaderFooterView的派生类中，添加：
-               @synthesize headerFooterViewStyle = _headerFooterViewStyle;
-               */
-              // 不写这三句有悬浮
-              headerView.headerFooterViewStyle = JobsHeaderViewStyle;
-              headerView.tableView = tableView;
-              headerView.section = section;
-          }
-          headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data);
-          @jobs_weakify(self)
-          [headerView actionObjectBlock:^(id data) {
-              @jobs_strongify(self)
-          }];return headerView;
-      }else if (section == 2){
-          FMTBVHeaderFooterView2 *headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
-          if(!headerView){
-  //            headerView = FMTBVHeaderFooterView2.jobsInitWithReuseIdentifier(@"");// 不要用这个
-              tableView.registerHeaderFooterViewClass(FMTBVHeaderFooterView2.class,@"");
-              headerView = tableView.tableViewHeaderFooterView(FMTBVHeaderFooterView2.class,@"");
-          }
-          headerView.backgroundColor = JobsYellowColor;
-          // 不写这三句有悬浮
-          headerView.headerFooterViewStyle = JobsHeaderViewStyle;
-          headerView.tableView = tableView;
-          headerView.section = section;
-          headerView.jobsRichElementsInViewWithModel(self.dataMutArr[section].data)
-          @jobs_weakify(self)
-          [headerView actionObjectBlock:^(id data) {
-              @jobs_strongify(self)
-          }];return headerView;
+  				return BaseTableViewHeaderFooterView
+  						.initByReuseIdentifier(@"")
+              .byStyle(JobsHeaderViewStyle)/// 不写这三句有悬浮 1
+              .bySection(section)/// 不写这三句有悬浮 2
+              .byTableView(tableView)/// 不写这三句有悬浮 2
+              .JobsRichViewByModel2(nil)
+              .JobsBlock1(^(id _Nullable data) {
+  
+              });
       }else return UIView.new;
   }
   
@@ -8927,28 +8877,23 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   - (nullable UIView *)tableView:(UITableView *)tableView
           viewForFooterInSection:(NSInteger)section{
       if(self.viewModel.usesTableViewFooterView){
-          BaseTableViewHeaderFooterView *tbvFooterView = tableView.tableViewHeaderFooterView(BaseTableViewHeaderFooterView.class,@"");
-          {
-              // 不写这三句有悬浮
-   						tbvFooterView.headerFooterViewStyle = JobsHeaderViewStyle;
-        		  tbvFooterView.tableView = tableView;
-         		  tbvFooterView.section = section;
-          }
-          tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
-          tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
-          tbvFooterView.jobsRichElementsInViewWithModel(nil);
-          @jobs_weakify(self)
-          [tbvFooterView actionObjectBlock:^(id data) {
-              @jobs_strongify(self)
-          }];return tbvFooterView;
+  				return BaseTableViewHeaderFooterView
+  						.initByReuseIdentifier(@"")
+              .byStyle(JobsFooterViewStyle)/// 不写这三句有悬浮 1
+              .bySection(section)/// 不写这三句有悬浮 2
+              .byTableView(tableView)/// 不写这三句有悬浮 2
+              .JobsRichViewByModel2(nil)
+              .JobsBlock1(^(id _Nullable data) {
+  
+              });
       }return nil;
   }
   ```
-
+  
   ```objective-c
   - (CGFloat)tableView:(UITableView *)tableView
   heightForHeaderInSection:(NSInteger)section{
-      return JobsWidth(36);
+  		return JobsWidth(36);
   }
   
   - (CGFloat)tableView:(UITableView *)tableView
@@ -8956,7 +8901,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
       return JobsWidth(10);
   }
   ```
-
+  
  * [<font color=red>对 **UITableView**.**section**的header和footer高度设置</font>](https://www.jianshu.com/p/65425a9d98e3)
 
    * 不实现 footer、header 设置方法，默认无 header、footer

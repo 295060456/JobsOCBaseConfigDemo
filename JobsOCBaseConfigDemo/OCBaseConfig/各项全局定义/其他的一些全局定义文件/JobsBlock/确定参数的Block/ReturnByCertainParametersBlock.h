@@ -20,7 +20,7 @@ typedef id _Nullable(^JobsReturnIDByCGSizeBlock)(CGSize data);
 typedef id _Nullable(^JobsReturnIDByCGRectBlock)(CGRect data);
 typedef id _Nullable(^JobsReturnIDByCGPointBlock)(CGPoint data);
 typedef id _Nullable(^JobsReturnIDByCGFloatBlock)(CGFloat data);
-typedef id _Nullable(^JobsReturnIDByCenterBlock)(CGFloat x,CGFloat y);
+typedef id _Nullable(^JobsReturnIDByCenterBlock)(Jobs_ReturnIDByCenterBlock_Arguments);
 
 typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
 typedef id _Nullable(^JobsReturnIDByNotificationBlock)(NSNotification *_Nullable notification);
@@ -49,7 +49,7 @@ typedef id _Nullable(^JobsReturnIDByLongBlock)(long data);
 typedef id _Nullable(^JobsReturnIDByUnsignedLongBlock)(unsigned long data);
 typedef id _Nullable(^JobsReturnIDByUnsignedLongLongBlock)(unsigned long long data);
 /// 多参数
-typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Class _Nullable cls,NSString *_Nullable salt);
+typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Jobs_UITableViewHeaderFooterViewBlock_Arguments);
 typedef id _Nullable(^JobsReturnIDByTwoIDBlock) (Jobs_2_Arguments);/// weakSelf、arg
 typedef id _Nullable(^JobsReturnIDByThreeIDBlock) (Jobs_3_Arguments);/// weakSelf、arg、data
 #pragma mark —— 关于 NSRunLoop
@@ -238,9 +238,10 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle7Block) (Jobs_Title
 #pragma mark —— 关于 UIActivityIndicatorView
 typedef __kindof UIActivityIndicatorView *_Nullable(^JobsReturnActivityIndicatorViewByNSInteger)(NSInteger data);
 #pragma mark —— 关于 UITableViewHeaderFooterView
-/// 多参数
-typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Class _Nonnull cls,
-                                                                                                                  NSString *_Nullable salt);
+typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByTableViewBlock)(__kindof UITableView *_Nullable tableView);
+typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByNSIntegerBlock)(NSInteger data);
+typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByStringBlock)(__kindof NSString *_Nullable string);
+typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock)(Jobs_UITableViewHeaderFooterViewBlock_Arguments);
 #pragma mark —— 关于 UITableViewCell
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByIDBlock)(id _Nullable data);
@@ -251,9 +252,7 @@ typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByIndexPathB
 /// 多参数
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Class _Nonnull cls,
                                                                                           NSString *_Nullable salt);
-typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Class _Nonnull cls,
-                                                                                                   NSString *_Nullable salt,
-                                                                                                   NSIndexPath *_Nonnull indexPath);
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Jobs_UITableViewCellBlock_Arguments);
 #pragma mark —— 关于 UICollectionView
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByLayoutBlock)(__kindof UICollectionViewLayout *_Nullable data);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable data);
@@ -335,12 +334,10 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByDictionaryBlock)(__kindo
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCorBlock)(UIColor *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCGPointBlock)(CGPoint data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByArrAndNSIntegerBlock)(__kindof NSArray *_Nullable arr,NSInteger index);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByArrAndNSIntegerBlock)(Jobs_NSStringBlock_1_Arguments);
 /// 多参数
-typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateFormatterBlock)(NSTimeInterval data,
-                                                                                           NSDateFormatter *_Nullable dateFormatter);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(NSString *_Nullable fontString,
-                                                                           NSString *_Nullable tailString);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateFormatterBlock)(Jobs_NSStringBlock_2_Arguments);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(Jobs_NSStringBlock_3_Arguments);
 #pragma mark —— 关于 NSRegularExpression
 typedef __kindof NSRegularExpression *_Nullable(^JobsReturnRegularExpressionByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于时间（格式）/日历/计时器/间隔时间
@@ -384,7 +381,7 @@ typedef __kindof NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NS
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
 typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
 #pragma mark —— 关于颜色
-typedef UIColor *_Nullable(^JobsReturnColorByHexAlphaBlock)(uint32_t hexValue, CGFloat alpha);
+typedef UIColor *_Nullable(^JobsReturnColorByHexAlphaBlock)(Jobs_UIColorBlock_Arguments);
 typedef UIColor *_Nullable(^JobsReturnColorByHexBlock)(uint32_t hexValue);
 typedef UIColor *_Nonnull(^JobsReturnColorByCGFloatBlock)(CGFloat data);
 typedef UIColor *_Nullable(^JobsReturnColorByNSUIntegerBlock)(NSUInteger data);

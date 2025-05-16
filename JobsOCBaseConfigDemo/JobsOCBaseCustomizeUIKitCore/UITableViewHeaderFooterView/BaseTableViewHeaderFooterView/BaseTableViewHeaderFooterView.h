@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewProtocol.h"
 #import "UIViewModelProtocol.h"
+#import "UITableViewHeaderFooterView+BaseTableViewHeaderFooterViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

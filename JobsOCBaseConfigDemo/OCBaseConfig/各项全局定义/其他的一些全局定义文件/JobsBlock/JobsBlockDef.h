@@ -201,4 +201,47 @@
     NSError *_Nullable error
 #endif /* Jobs_JSCompletionHandlerBlock_Arguments */
 
+#ifndef Jobs_UITableViewHeaderFooterViewBlock_Arguments
+#define Jobs_UITableViewHeaderFooterViewBlock_Arguments \
+    Class _Nonnull cls, \
+    NSString *_Nullable salt
+#endif /* Jobs_UITableViewHeaderFooterViewBlock_Arguments */
+
+#ifndef Jobs_UITableViewCellBlock_Arguments
+#define Jobs_UITableViewCellBlock_Arguments \
+    Class _Nonnull cls, \
+    NSString *_Nullable salt, \
+    NSIndexPath *_Nonnull indexPath
+#endif /* Jobs_UITableViewCellBlock_Arguments */
+
+#ifndef Jobs_NSStringBlock_1_Arguments
+#define Jobs_NSStringBlock_1_Arguments \
+    __kindof NSArray *_Nullable arr, \
+    NSInteger index
+#endif /* Jobs_NSStringBlock_1_Arguments */
+
+#ifndef Jobs_NSStringBlock_2_Arguments
+#define Jobs_NSStringBlock_2_Arguments \
+    NSTimeInterval data, \
+    NSDateFormatter *_Nullable dateFormatter
+#endif /* Jobs_NSStringBlock_2_Arguments */
+
+#ifndef Jobs_NSStringBlock_3_Arguments
+#define Jobs_NSStringBlock_3_Arguments \
+    NSString *_Nullable fontString, \
+    NSString *_Nullable tailString
+#endif /* Jobs_NSStringBlock_3_Arguments */
+
+#ifndef Jobs_UIColorBlock_Arguments
+#define Jobs_UIColorBlock_Arguments \
+    uint32_t hexValue, \
+    CGFloat alpha
+#endif /* Jobs_UIColorBlock_Arguments */
+
+#ifndef Jobs_ReturnIDByCenterBlock_Arguments
+#define Jobs_ReturnIDByCenterBlock_Arguments \
+    CGFloat x, \
+    CGFloat y
+#endif /* Jobs_ReturnIDByCenterBlock_Arguments */
+
 #endif /* JobsBlockDef_h */

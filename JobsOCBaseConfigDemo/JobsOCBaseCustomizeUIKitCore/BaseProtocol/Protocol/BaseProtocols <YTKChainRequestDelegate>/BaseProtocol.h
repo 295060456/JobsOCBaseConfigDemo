@@ -30,6 +30,7 @@ Prop_assign(readonly)os_unfair_lock os_lock; /// Apple 推荐的轻量级锁，�
 Prop_assign(readonly)pthread_mutex_t mutex; /// pthread_mutex_t是底层的非对象类型，不支持 ARC（自动引用计数）的内存管理规则。pthread_mutex_init(&_mutex, NULL); // 初始化互斥锁
 #pragma mark —— 一些状态
 Prop_assign()BOOL isLock;
+Prop_assign()BOOL isRead;
 Prop_assign()BOOL becomeFirstResponder;
 Prop_assign()AppLanguage appLanguage;
 Prop_assign()CGPoint lastContentOffset; /// 主要用于记录与计算 UIScrollView 的滑动方向
@@ -135,6 +136,7 @@ NS_ASSUME_NONNULL_END
 #define BaseProtocol_synthesize_state \
 \
 @synthesize isLock = _isLock;\
+@synthesize isRead = _isRead;\
 @synthesize becomeFirstResponder = _becomeFirstResponder;\
 @synthesize appLanguage = _appLanguage;\
 @synthesize lastContentOffset = _lastContentOffset;\
@@ -216,6 +218,7 @@ BaseProtocol_synthesize_data \
 @dynamic os_lock;\
 @dynamic mutex;\
 @dynamic isLock;\
+@dynamic isRead;\
 @dynamic becomeFirstResponder;\
 @dynamic appLanguage;\
 @dynamic lastContentOffset;\

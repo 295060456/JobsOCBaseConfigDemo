@@ -748,7 +748,7 @@ UITextFieldProtocol_dynamic
  */
 - (JobsReturnIDByIDBlock _Nonnull)valueForKey{
     @jobs_weakify(self)
-    return ^(NSString *key) {
+    return ^id _Nullable(NSString *key) {
         @jobs_strongify(self)
         id value = nil;
         if ([key isKindOfClass:NSString.class] &&
@@ -782,7 +782,7 @@ UITextFieldProtocol_dynamic
 
 -(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClass{
     @jobs_weakify(self)
-    return ^(Class cls) {
+    return ^BOOL(Class cls) {
         @jobs_strongify(self)
         return [self isKindOfClass:cls];
     };
@@ -809,7 +809,7 @@ UITextFieldProtocol_dynamic
         return nil;
     }, MethodName(self), self) name:notificationName object:nil];
 }
-
+/// 用于UITableViewHeaderFooterView initByReuseIdentifier
 +(JobsReturnIDByStringBlock _Nonnull)initByReuseId{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){
@@ -817,17 +817,17 @@ UITextFieldProtocol_dynamic
         return [self.class.alloc initWithReuseIdentifier:data];
     };
 }
-/// 不能用于UITableViewHeaderFooterView
+/// 不能用于UITableViewHeaderFooterView initByReuseIdentifier
 +(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier{
     @jobs_weakify(self)
-    return ^(NSString * _Nullable salt) {
+    return ^id _Nonnull(NSString * _Nullable salt) {
         @jobs_strongify(self)
         return self.initByReuseId(NSStringFromClass(self.class).add(salt));
     };
 }
 /// 不能用于UITableViewHeaderFooterView
 -(JobsReturnIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass{
-    return ^(Class _Nonnull cls,NSString * _Nullable salt) {
+    return ^id _Nonnull(Class _Nonnull cls,NSString * _Nullable salt) {
         return [cls.alloc initWithReuseIdentifier:NSStringFromClass(cls).add(salt)];
     };
 }

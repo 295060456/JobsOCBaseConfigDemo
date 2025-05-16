@@ -135,6 +135,11 @@ Prop_copy(nullable)jobsByBtnBlock closeBtnClickAction;
 -(jobsByIDBlock _Nonnull)update;
 -(JobsReturnNavBarByVoidBtnBlock _Nullable)JobsNavBarBackBtnClickBlock; /// 返回按钮的回调
 -(JobsReturnNavBarByVoidBtnBlock _Nullable)JobsNavBarCloseBtnClickBlock; /// 关闭按钮的回调
+#pragma mark —— 关于 UITableViewHeaderFooterView
++(JobsReturnTableViewHeaderFooterViewByStringBlock _Nonnull)initByReuseIdentifier;
+-(JobsReturnTableViewHeaderFooterViewByNSIntegerBlock _Nonnull)bySection;
+-(JobsReturnTableViewHeaderFooterViewByNSIntegerBlock _Nonnull)byStyle; /// 标记是TableView.HeaderView 还是 TableView.FooterView
+-(JobsReturnTableViewHeaderFooterViewByTableViewBlock _Nonnull)byTableView; /// @implementation UITableViewHeaderFooterView (Attribute)
 #pragma mark —— 关于 TextField
 /// 清除数据
 -(JobsReturnViewByVoidBlock _Nonnull)cleanTextFieldValue;

@@ -47,14 +47,14 @@
 /// 每隔num个字符添加一个空格的字符串算法
 /// @param num 默认值是4
 -(NSString *)dealWithString:(NSInteger)num{
-    NSString *doneTitle = @"";
+    NSString *doneTitle = JobsEmpty;
     if (num == 0) num = 4;
     int count = 0;
     for (int i = 0; i < self.length; i++) {
         count++;
         doneTitle = doneTitle.add([self substringWithRange:NSMakeRange(i, 1)]);
         if (count == num) {
-            doneTitle = doneTitle.add(@" ");
+            doneTitle = doneTitle.add(JobsSpace);
             count = 0;
         }
     }JobsLog(@"%@", doneTitle);
@@ -63,7 +63,7 @@
 /// 在字符串前面和后面拼接一个字符串
 -(JobsReturnStringByStringStringBlock _Nonnull)resetStringByFontAndTailStrings{
     @jobs_weakify(self)
-    return ^(NSString *fontString,NSString *tailString) {
+    return ^__kindof NSString *_Nullable(NSString *fontString,NSString *tailString) {
         @jobs_strongify(self)
         return fontString.add(self).add(tailString);
     };
@@ -71,7 +71,7 @@
 /// 在字符串前面和后面拼接一个相同的字符串
 -(JobsReturnStringByStringBlock _Nonnull)resetStringByFontAndTailString{
     @jobs_weakify(self)
-    return ^(NSString *data) {
+    return ^__kindof NSString *_Nullable(NSString *data) {
         @jobs_strongify(self)
         return data.add(self).add(data);
     };
@@ -79,7 +79,7 @@
 /// 在字符串前面拼接一个字符串
 -(JobsReturnStringByStringBlock _Nonnull)resetStringByFontString{
     @jobs_weakify(self)
-    return ^(NSString *data) {
+    return ^__kindof NSString *_Nullable(NSString *data) {
         @jobs_strongify(self)
         return data.add(self);
     };
@@ -87,7 +87,7 @@
 /// 在字符串后面拼接一个字符串
 -(JobsReturnStringByStringBlock _Nonnull)resetStringByTailString{
     @jobs_weakify(self)
-    return ^(NSString *data) {
+    return ^__kindof NSString *_Nullable(NSString *data) {
         @jobs_strongify(self)
         return self.add(data);
     };
@@ -130,7 +130,7 @@
                         lineBreakMode:(NSLineBreakMode)lineBreakMode
                                 limit:(NSInteger)limit{
     if (!replaceStrLenth) replaceStrLenth = 3;
-    if (isNull(replaceStr)) replaceStr = @".";
+    if (isNull(replaceStr)) replaceStr = JobsDot;
     /// limit 是不包括省略号的实际的限制字数
     if(!self.isPureDigit){
         JobsLog(@"当前字符串为%@,不是纯字符串，无法格式化输出",self);
@@ -138,7 +138,7 @@
     }
     NSString *resultStr = self;
     NSRange range;
-    NSString *pointStr = @"";
+    NSString *pointStr = JobsEmpty;
     for (int i = 0; i < replaceStrLenth; i++) {
         pointStr = pointStr.add(replaceStr);
     }
@@ -171,12 +171,12 @@
             NSString *tempString = StringWithUTF8String(&s);
             data.add(tempString);
         }
-    }) componentsJoinedByString:@""];
+    }) componentsJoinedByString:JobsEmpty];
     return [self stringByReplacingCharactersInRange:NSMakeRange(1, self.length - 2) withString:string];
 }
 // 加密中国的电话号码。如：13409090909 => 134****0909
 -(NSString *_Nonnull)encryptedChineseTele{
-    return [self omitByReplaceStr:@"*"
+    return [self omitByReplaceStr:JobsAsterisk
                   replaceStrLenth:4
                     lineBreakMode:NSLineBreakByTruncatingMiddle
                             limit:7];
@@ -188,54 +188,54 @@
 /// 图片URL路径补齐
 -(NSString *_Nullable)imageURLPlus{
     if(!This.BaseUrl_Image || !This.BaseUrl) return self;
-    if(!self.containsString(@"http") && isValue(self)){
+    if(!self.containsString(HTTP) && isValue(self)){
         return (isValue(This.BaseUrl_Image) ? This.BaseUrl_Image : This.BaseUrl).add(self);
     }else return self;
 }
 /// 一般的URL路径补齐
 -(NSString *_Nullable)normalURLPlus{
     if(!This.BaseUrl_Image) return self;
-    if(!self.containsString(@"http") && isValue(self)){
+    if(!self.containsString(HTTP) && isValue(self)){
         return This.BaseUrl_Image.add(self);
     }else return self;
 }
 /// 去除OC字符串中的空格
 -(NSString *)pureString{
-    return [self stringByReplacingOccurrencesOfString:JobsSpace withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsSpace withString:JobsEmpty];
 }
 /// 去除OC字符串中的小数点
 -(__kindof NSString *_Nullable)removeDecimalPoint{
-    return [self stringByReplacingOccurrencesOfString:JobsDot withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsDot withString:JobsEmpty];
 }
 /// 去除OC字符串中回车符号的转义字符：\r
 -(__kindof NSString *_Nullable)removeRetMark{
-    return [self stringByReplacingOccurrencesOfString:回车符号转义字符 withString:@""];
+    return [self stringByReplacingOccurrencesOfString:回车符号转义字符 withString:JobsEmpty];
 }
 /// 去除OC字符串中换行符号的转义字符：\n
 -(__kindof NSString *_Nullable)removeNewLineMark{
-    return [self stringByReplacingOccurrencesOfString:JobsNewline withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsNewline withString:JobsEmpty];
 }
 /// 去除OC字符串中换行符号的转义字符：\t
 -(__kindof NSString *_Nullable)removeTableMark{
-    return [self stringByReplacingOccurrencesOfString:JobsTab withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsTab withString:JobsEmpty];
 }
 /// 去除OC字符串中的等号：=
 -(__kindof NSString *_Nullable)removeEqualMark{
-    return [self stringByReplacingOccurrencesOfString:JobsEqual withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsEqual withString:JobsEmpty];
 }
 /// 去除OC字符串中的分隔符：/
 -(__kindof NSString *_Nullable)removeSeparationMark{
-    return [self stringByReplacingOccurrencesOfString:JobsSeparation withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsSeparation withString:JobsEmpty];
 }
 /// 去除OC字符串中的冒号（英文输入法）
 -(__kindof NSString *_Nullable)removeColonMark{
-    return [self stringByReplacingOccurrencesOfString:JobsColon withString:@""];
+    return [self stringByReplacingOccurrencesOfString:JobsColon withString:JobsEmpty];
 }
 /// 去除OC字符串中零宽空格的转义字符：\u200B
 /// 零宽空格 (\u200B)：顾名思义，这个字符没有任何宽度（即不可见），它的作用是插入一个“空格”，但不会占据任何可见的空间。
 /// 零宽空格在视觉上不会显示出来，但它可以在字符串中用于各种控制和格式化的目的。
 -(__kindof NSString *_Nullable)remove200BMark{
-    return [self stringByReplacingOccurrencesOfString:零宽转义字符 withString:@""];
+    return [self stringByReplacingOccurrencesOfString:零宽转义字符 withString:JobsEmpty];
 }
 /// 从字符串中提取指定范围内的子字符串
 -(JobsReturnStringByRangeBlock _Nonnull)substringWithRange{
@@ -255,12 +255,6 @@
             [data appendFormat:@"%C\n", character];
         }
     }).copy;
-}
-
--(void)de{
-    ;
-    
-    
 }
 
 @end
