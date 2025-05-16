@@ -8858,6 +8858,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 * 这里涉及到复用机制，`return`出去的是**`UITableViewHeaderFooterView`**的派生类
 
   ```objective-c
+  /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+  /// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@"");
   - (UIView *)tableView:(UITableView *)tableView
   viewForHeaderInSection:(NSInteger)section{
       if(section == 0){
@@ -8872,8 +8874,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
               });
       }else return UIView.new;
   }
-  
   /// 这里涉及到复用机制，return出去的是UITableViewHeaderFooterView的派生类
+  /// tableView.registerHeaderFooterViewClass(BaseTableViewHeaderFooterView.class,@"");
   - (nullable UIView *)tableView:(UITableView *)tableView
           viewForFooterInSection:(NSInteger)section{
       if(self.viewModel.usesTableViewFooterView){
