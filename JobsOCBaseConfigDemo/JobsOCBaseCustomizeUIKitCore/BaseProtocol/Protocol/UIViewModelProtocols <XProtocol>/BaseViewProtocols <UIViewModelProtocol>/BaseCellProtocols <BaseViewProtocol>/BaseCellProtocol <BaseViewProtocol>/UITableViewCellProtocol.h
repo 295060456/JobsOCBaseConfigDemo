@@ -89,13 +89,29 @@ Prop_assign()CGFloat imageViewFrameOffsetHeight;/// 负值缩小，正值放大
 ///   - borderWidth: 线宽
 ///   - dx: 内有介绍
 ///   - dy: 内有介绍
--(void)cutFirstAndLastTableViewCellWithBackgroundCor:(UIColor *_Nullable)cellBgCor
-                                       bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                                      cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
-                                    cornerRadiusSize:(CGSize)cornerRadiusSize
+-(void)cutFirstAndLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
+                                     bottomLineCor:(UIColor *_Nullable)bottomLineCor
+                                    cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
+                                  cornerRadiusSize:(CGSize)cornerRadiusSize
                                          borderWidth:(CGFloat)borderWidth
-                                                  dx:(CGFloat)dx
-                                                  dy:(CGFloat)dy;
+                                                dx:(CGFloat)dx
+                                                dy:(CGFloat)dy;
+/// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
+/// - Parameters:
+///   - cellBgCor: UITableViewCell 的背景色
+///   - bottomLineCor: UITableViewCell 的底部线颜色（可用于模拟分割线）
+///   - cellOutLineCor: UITableViewCell 的外线颜色（cell边框）
+///   - cornerRadiusSize: 切角弧度
+///   - borderWidth: 线宽
+///   - dx: bounds 的 insetX
+///   - dy: bounds 的 insetY
+- (void)cutLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
+                              bottomLineCor:(UIColor *_Nullable)bottomLineCor
+                             cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
+                           cornerRadiusSize:(CGSize)cornerRadiusSize
+                                borderWidth:(CGFloat)borderWidth
+                                         dx:(CGFloat)dx
+                                         dy:(CGFloat)dy;
 /// 除了最后一行以外，所有的cell的最下面的线的颜色为bottomLineCor
 /// - Parameters:
 ///   - indexPath: indexPath

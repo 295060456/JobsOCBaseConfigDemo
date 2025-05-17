@@ -7979,14 +7979,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
             JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
             NSLog(@"MMM - %ld",cell.index);
         }];
-        /// 以section为单位，每个section的第一行和最后一行的 UITableViewCell 圆角化处理
-        [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
-                                              bottomLineCor:HEXCOLOR(0xFFFFFF) 
-                                             cellOutLineCor:HEXCOLOR(0xEEE2C8)
-                                           cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
-                                                borderWidth:JobsWidth(10)
-                                                         dx:JobsWidth(0)
-                                                         dy:JobsWidth(0)];
+        /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
+        [cell cutFirstAndLastTableViewCellByBackgroundCor:HEXCOLOR(0xFFFFFF)
+                                            bottomLineCor:HEXCOLOR(0xFFFFFF)
+                                           cellOutLineCor:HEXCOLOR(0xEEE2C8)
+                                         cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
+                                              borderWidth:JobsWidth(10)
+                                                       dx:JobsWidth(0)
+                                                       dy:JobsWidth(0)];
     }
     ```
 
@@ -8209,13 +8209,45 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     作用于：`- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath`
 
     ```objective-c
-    [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
-                                          bottomLineCor:HEXCOLOR(0xFFFFFF) 
-                                         cellOutLineCor:HEXCOLOR(0xEEE2C8)
-                                       cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
-                                            borderWidth:JobsWidth(10)
-                                                     dx:JobsWidth(0)
-                                                     dy:JobsWidth(0)];
+    /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
+    /// - Parameters:
+    ///   - cellBgCor: UITableViewCell 的背景色
+    ///   - bottomLineCor: UITableViewCell 的底部线颜色
+    ///   - cellOutLineCor: UITableViewCell 的外线颜色
+    ///   - cornerRadiusSize: 切角弧度
+    ///   - borderWidth: 线宽
+    ///   - dx: 内有介绍
+    ///   - dy: 内有介绍
+    -(void)cutFirstAndLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
+                                         bottomLineCor:(UIColor *_Nullable)bottomLineCor
+                                        cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
+                                      cornerRadiusSize:(CGSize)cornerRadiusSize
+                                           borderWidth:(CGFloat)borderWidth
+                                                    dx:(CGFloat)dx
+                                                    dy:(CGFloat)dy;
+    ```
+    
+  * 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
+
+    作用于：`- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath`
+
+    ```objective-c
+    /// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
+    /// - Parameters:
+    ///   - cellBgCor: UITableViewCell 的背景色
+    ///   - bottomLineCor: UITableViewCell 的底部线颜色（可用于模拟分割线）
+    ///   - cellOutLineCor: UITableViewCell 的外线颜色（cell边框）
+    ///   - cornerRadiusSize: 切角弧度
+    ///   - borderWidth: 线宽
+    ///   - dx: bounds 的 insetX
+    ///   - dy: bounds 的 insetY
+    - (void)cutLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
+                                  bottomLineCor:(UIColor *_Nullable)bottomLineCor
+                                 cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
+                               cornerRadiusSize:(CGSize)cornerRadiusSize
+                                    borderWidth:(CGFloat)borderWidth
+                                             dx:(CGFloat)dx
+                                             dy:(CGFloat)dy;
     ```
 
 * 其他
@@ -8223,21 +8255,20 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   * 隐藏最后一个单元格的分界线
 
     ```objective-c
-    -(void)hideSeparatorLineAtLast:(NSIndexPath *)indexPath
-                              cell:(UITableViewCell *)cell{
+    -(void)hideSeparatorLineAtLast:(NSIndexPath *)indexPath cell:(UITableViewCell *)cell{
         /// 判断是否是该 section 的最后一行
         if (indexPath.row == [self numberOfRowsInSection:indexPath.section] - 1){
             cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);
         }
     }
     ```
-
+    
   * 自定义**`UITableViewCell`**的箭头
-
+  
     <font color=red>**使用前提：必须`UITableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; `打开后才可以启用**</font>
-
+  
     作用于：`- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath`
-
+  
     ```objective-c
     -(void)customAccessoryView:(jobsByIDBlock _Nullable)customAccessoryViewBlock{
         /// 不用系统自带的箭头

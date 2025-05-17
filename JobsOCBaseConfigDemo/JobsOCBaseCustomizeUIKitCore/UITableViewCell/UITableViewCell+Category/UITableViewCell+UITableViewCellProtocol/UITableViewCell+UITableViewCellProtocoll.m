@@ -141,13 +141,13 @@ UITableViewCellProtocol_dynamic
 ///   - borderWidth: 线宽
 ///   - dx: 内有介绍
 ///   - dy: 内有介绍
--(void)cutFirstAndLastTableViewCellWithBackgroundCor:(UIColor *_Nullable)cellBgCor
-                                       bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                                      cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
-                                    cornerRadiusSize:(CGSize)cornerRadiusSize
-                                         borderWidth:(CGFloat)borderWidth
-                                                  dx:(CGFloat)dx
-                                                  dy:(CGFloat)dy{
+-(void)cutFirstAndLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
+                                     bottomLineCor:(UIColor *_Nullable)bottomLineCor
+                                    cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
+                                  cornerRadiusSize:(CGSize)cornerRadiusSize
+                                       borderWidth:(CGFloat)borderWidth
+                                                dx:(CGFloat)dx
+                                                dy:(CGFloat)dy{
     if (!cellBgCor) cellBgCor = JobsWhiteColor;
     if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
     if (!cellOutLineCor) cellOutLineCor = JobsWhiteColor;
@@ -204,6 +204,64 @@ UITableViewCellProtocol_dynamic
                                   bottomLineCor:bottomLineCor
                                     borderWidth:borderWidth];
 }
+/// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
+/// - Parameters:
+///   - cellBgCor: UITableViewCell 的背景色
+///   - bottomLineCor: UITableViewCell 的底部线颜色（可用于模拟分割线）
+///   - cellOutLineCor: UITableViewCell 的外线颜色（cell边框）
+///   - cornerRadiusSize: 切角弧度
+///   - borderWidth: 线宽
+///   - dx: bounds 的 insetX
+///   - dy: bounds 的 insetY
+- (void)cutLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
+                              bottomLineCor:(UIColor *_Nullable)bottomLineCor
+                             cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
+                           cornerRadiusSize:(CGSize)cornerRadiusSize
+                                borderWidth:(CGFloat)borderWidth
+                                         dx:(CGFloat)dx
+                                         dy:(CGFloat)dy{
+    if (!cellBgCor) cellBgCor = JobsWhiteColor;
+    if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
+    if (!cellOutLineCor) cellOutLineCor = JobsWhiteColor;
+
+    CGRect bounds = [self dx:dx dy:dy];
+    NSInteger numberOfRowsInSection = self.jobsGetCurrentNumberOfRowsInSection;
+    NSIndexPath *indexPath = self.jobsGetCurrentIndexPath;
+
+    /// 仅处理 section 的最后一行
+    if (indexPath.row == numberOfRowsInSection - 1) {
+        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:bounds
+                                                         byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
+                                                               cornerRadii:cornerRadiusSize];
+
+        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            layer.borderWidth = borderWidth;
+            layer.path = bezierPath.CGPath;
+            layer.fillColor = cellBgCor.CGColor;
+            layer.strokeColor = cellOutLineCor.CGColor;
+        }) atIndex:0];
+    } else {
+        /// 其他行只绘制矩形背景（无圆角）
+        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRect:bounds];
+        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            layer.borderWidth = borderWidth;
+            layer.path = bezierPath.CGPath;
+            layer.fillColor = cellBgCor.CGColor;
+            layer.strokeColor = cellOutLineCor.CGColor;
+        }) atIndex:0];
+    }
+    
+    /// 可选：为非最后一行 cell 添加底部分割线（模拟视觉上的分隔）
+    if (indexPath.row != numberOfRowsInSection - 1) {
+        [self tableViewMakesLastRowCellAtIndexPath:indexPath
+                                            bounds:bounds
+                             numberOfRowsInSection:numberOfRowsInSection
+                                       borderWidth:borderWidth
+                                     bottomLineCor:bottomLineCor];
+    }
+}
+
+
 /// 除了最后一行以外，所有的cell的最下面的线的颜色为bottomLineCor
 /// - Parameters:
 ///   - indexPath: indexPath

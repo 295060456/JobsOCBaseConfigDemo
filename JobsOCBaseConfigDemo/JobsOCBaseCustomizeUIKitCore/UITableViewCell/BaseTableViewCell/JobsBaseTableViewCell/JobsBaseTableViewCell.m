@@ -119,8 +119,8 @@ BaseLayerProtocol_synthesize_part3
      - (void)tableView:(UITableView *)tableView
      willDisplayCell:(UITableViewCell *)cell
      forRowAtIndexPath:(NSIndexPath *)indexPath{
-     
-     [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
+     /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
+     [cell cutFirstAndLastTableViewCellByBackgroundCor:HEXCOLOR(0xFFFFFF)
                                            bottomLineCor:HEXCOLOR(0xFFFFFF)
                                           cellOutLineCor:HEXCOLOR(0xEEE2C8)
                                         cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
