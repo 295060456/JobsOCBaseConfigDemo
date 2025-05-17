@@ -42,7 +42,7 @@
     };
 }
 
--(JobsReturnCollectionViewByUIDelegateBlock _Nonnull)byNavDelegate{
+-(JobsReturnCollectionViewByUIDelegateBlock _Nonnull)byUIDelegate{
     @jobs_weakify(self)
     return ^__kindof WKWebView *_Nullable(id <WKUIDelegate>_Nullable delegate){
         @jobs_strongify(self)

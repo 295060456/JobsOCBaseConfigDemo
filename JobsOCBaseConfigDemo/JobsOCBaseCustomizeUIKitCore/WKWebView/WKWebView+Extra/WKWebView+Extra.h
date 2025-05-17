@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnWKWebViewByURLRequestBlock _Nonnull)loadRequest;
 -(JobsReturnWKWebViewByURLBlock _Nonnull)loadFileURL;
 -(JobsReturnCollectionViewByNavDelegateBlock _Nonnull)byNavDelegate;
--(JobsReturnCollectionViewByUIDelegateBlock _Nonnull)byNavDelegate;
+-(JobsReturnCollectionViewByUIDelegateBlock _Nonnull)byUIDelegate;
 
 @end
 

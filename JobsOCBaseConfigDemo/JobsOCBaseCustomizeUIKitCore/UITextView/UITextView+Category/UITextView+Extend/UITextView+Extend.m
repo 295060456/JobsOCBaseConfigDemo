@@ -19,8 +19,7 @@
     /// 强制滚动到顶部（必要）
     [self setContentOffset:CGPointZero animated:NO];
     /// 解决初始渲染偏移（适配 iOS 16+）
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
-                                 (int64_t)(0.01 * NSEC_PER_SEC)),
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(0.01 * NSEC_PER_SEC)),
                    dispatch_get_main_queue(), ^{
         [self setContentOffset:CGPointZero animated:NO];
     });
@@ -46,6 +45,33 @@
     return ^__kindof UITextView *_Nullable(id <UITextViewDelegate>_Nullable delegate){
         @jobs_strongify(self)
         self.delegate = delegate;
+        return self;
+    };
+}
+
+-(JobsReturnTextViewByStringBlock _Nonnull)byText{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(NSString *_Nullable data){
+        @jobs_strongify(self)
+        self.text = data;
+        return self;
+    };
+}
+
+-(JobsReturnTextViewByCor _Nonnull)byTextCor{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(__kindof UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.textColor = cor;
+        return self;
+    };
+}
+
+-(JobsReturnTextViewByFont _Nonnull)byFont{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(__kindof UIFont *_Nullable font){
+        @jobs_strongify(self)
+        self.font = font;
         return self;
     };
 }

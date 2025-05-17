@@ -187,6 +187,10 @@ typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemByIDBlock)(id _Nullabl
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemBySELBlock)(SEL _Nullable data);
 #pragma mark —— 关于 UITextView
 typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByDelegateBlock)(id <UITextViewDelegate>_Nullable delegate);
+typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByStringBlock)(NSString *_Nullable data);
+typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByCor)(__kindof UIColor *_Nullable cor);
+typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByFont)(__kindof UIFont *_Nullable font);
+typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByAttributedStringBlock)(__kindof NSAttributedString *_Nullable attributedString);
 #pragma mark —— 关于 UITableView
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDelegateBlock)(id <UITableViewDelegate>_Nullable delegate);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDataSourceBlock)(id <UITableViewDataSource>_Nullable dataSource);

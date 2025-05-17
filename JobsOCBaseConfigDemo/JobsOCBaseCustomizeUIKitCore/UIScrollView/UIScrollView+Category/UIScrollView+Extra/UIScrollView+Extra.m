@@ -107,6 +107,7 @@
     return ^__kindof UIScrollView *_Nullable(id <UIScrollViewDelegate>_Nullable delegate){
         @jobs_strongify(self)
         self.delegate = delegate;
+        return self;
     };
 }
 #pragma mark —— Prop_assign()ScrollDirection direction; /// UIScrollView 滑动的方向定义
