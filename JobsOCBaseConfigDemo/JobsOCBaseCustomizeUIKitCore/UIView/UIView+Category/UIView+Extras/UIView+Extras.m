@@ -600,7 +600,7 @@ JobsKey(_bottomBorderLayer)
 JobsKey(_appointCorners)
 - (JobsReturnViewByNSUIntegerBlock _Nonnull)appointCorners {
     @jobs_weakify(self)
-    return ^UIView * (UIRectCorner corners) {
+    return ^__kindof UIView *_Nullable(UIRectCorner corners) {
         @jobs_strongify(self)
         Jobs_setAssociatedRETAIN_NONATOMIC(_appointCorners, @(corners));
         return self;
@@ -610,7 +610,7 @@ JobsKey(_appointCorners)
 JobsKey(_cornerRadii)
 - (JobsReturnViewBySizeBlock _Nonnull)cornerRadii {
     @jobs_weakify(self)
-    return ^UIView * (CGSize cornerRadii) {
+    return ^__kindof UIView *_Nullable(CGSize cornerRadii) {
         @jobs_strongify(self)
         Jobs_setAssociatedRETAIN_NONATOMIC(_cornerRadii,[NSValue valueWithCGSize:cornerRadii])
         UIRectCorner corners = [Jobs_getAssociatedObject(_appointCorners) unsignedIntegerValue];

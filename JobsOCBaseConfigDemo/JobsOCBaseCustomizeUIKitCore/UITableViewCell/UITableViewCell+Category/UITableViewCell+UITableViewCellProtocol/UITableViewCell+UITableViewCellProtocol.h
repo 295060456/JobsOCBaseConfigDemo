@@ -24,10 +24,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITableViewCell (UITableViewCellProtocol)
-<
-UITableViewCellProtocol
->
+@interface UITableViewCell (UITableViewCellProtocol)<UITableViewCellProtocol>
 
 @end
 

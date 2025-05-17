@@ -8,9 +8,8 @@
 #import "UITableViewCell+UITableViewCellProtocol.h"
 
 @implementation UITableViewCell (UITableViewCellProtocol)
-#pragma mark —— @dynamic UITableViewCellProtocol
-UITableViewCellProtocol_dynamic
 #pragma mark —— UITableViewCellProtocol
+UITableViewCellProtocol_dynamic
 +(JobsReturnTableViewCellByTableViewCellStyleBlock _Nonnull)initTableViewCellWithStyle{
     @jobs_weakify(self)
     return ^(UITableViewCellStyle tableViewCellStyle) {
@@ -31,7 +30,7 @@ UITableViewCellProtocol_dynamic
     @jobs_weakify(self)
     return ^(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
-        UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
+        UITableViewCell *cell = tableView.tableViewCellClass(self.class,JobsEmpty);
         if (!cell) {
             cell = [self initTableViewCell:self withStyle:UITableViewCellStyleDefault];
             cell.settingForTableViewCell();
@@ -43,7 +42,7 @@ UITableViewCellProtocol_dynamic
     @jobs_weakify(self)
     return ^(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
-        UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
+        UITableViewCell *cell = tableView.tableViewCellClass(self.class,JobsEmpty);
         if (!cell) {
             cell = [self initTableViewCell:self withStyle:UITableViewCellStyleValue1];
             cell.settingForTableViewCell();
@@ -55,7 +54,7 @@ UITableViewCellProtocol_dynamic
     @jobs_weakify(self)
     return ^(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
-        UITableViewCell *cell = tableView.tableViewCellClass(self.class,@"");
+        UITableViewCell *cell = tableView.tableViewCellClass(self.class,JobsEmpty);
         if (!cell) {
             cell = [self initTableViewCell:self withStyle:UITableViewCellStyleValue2];
             cell.settingForTableViewCell();
@@ -67,7 +66,7 @@ UITableViewCellProtocol_dynamic
     @jobs_weakify(self)
     return ^(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
-        UITableViewCell *cell = (UITableViewCell *)tableView.tableViewCellClass(self.class,@"");
+        UITableViewCell *cell = (UITableViewCell *)tableView.tableViewCellClass(self.class,JobsEmpty);
         if (!cell) {
             cell = [self initTableViewCell:self withStyle:UITableViewCellStyleSubtitle];
             cell.settingForTableViewCell();
@@ -133,154 +132,194 @@ UITableViewCellProtocol_dynamic
 }
 #pragma mark —— UITableViewCellProtocol
 /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
-/// - Parameters:
-///   - cellBgCor: UITableViewCell 的背景色
-///   - bottomLineCor: UITableViewCell 的底部线颜色
-///   - cellOutLineCor: UITableViewCell 的外线颜色
-///   - cornerRadiusSize: 切角弧度
-///   - borderWidth: 线宽
-///   - dx: 内有介绍
-///   - dy: 内有介绍
--(void)cutFirstAndLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
-                                     bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                                    cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
-                                  cornerRadiusSize:(CGSize)cornerRadiusSize
-                                       borderWidth:(CGFloat)borderWidth
-                                                dx:(CGFloat)dx
-                                                dy:(CGFloat)dy{
-    if (!cellBgCor) cellBgCor = JobsWhiteColor;
-    if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
-    if (!cellOutLineCor) cellOutLineCor = JobsWhiteColor;
-    CGRect bounds = [self dx:dx dy:dy];
-    NSInteger numberOfRowsInSection = self.jobsGetCurrentNumberOfRowsInSection;
-    NSIndexPath *indexPath = self.jobsGetCurrentIndexPath;
-    // 绘制曲线
-    UIBezierPath *bezierPath = nil;
-    {
-        if(numberOfRowsInSection <= 1){/// 一个section里面只有一个row = 四个角都为圆角
-            bezierPath = [UIBezierPath bezierPathWithRoundedRect:bounds
-                                               byRoundingCorners:UIRectCornerAllCorners
-                                                     cornerRadii:cornerRadiusSize];
-        }else{/// 一个section里面有多个item
-            if(indexPath.row == 0){/// 首行 = 左上、右上角为圆角
-                bezierPath = [UIBezierPath bezierPathWithRoundedRect:bounds
-                                                   byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
-                                                         cornerRadii:cornerRadiusSize];
-            }else if (indexPath.row == numberOfRowsInSection - 1){/// 末行 = 左下、右下角为圆角
-                bezierPath = [UIBezierPath bezierPathWithRoundedRect:bounds
-                                                   byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
-                                                         cornerRadii:cornerRadiusSize];
-            }else{/// 中间的都为矩形
-                bezierPath = [UIBezierPath bezierPathWithRect:bounds];
+-(__kindof CALayer *)roundedCornerFirstAndLastCellByTableView:(UITableView *)tableView
+                                                    indexPath:(NSIndexPath *)indexPath
+                                                  layerConfig:(JobsLocationModel *)layerConfig{
+    // 关闭分割线
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    @jobs_weakify(self)
+    if (jobsZeroSizeValue(layerConfig.roundingCornersRadii)) layerConfig.roundingCornersRadii = CGSizeMake(JobsWidth(10.0), JobsWidth(10.0));
+    // 当前 section 的总行数
+    NSInteger numberOfRows = tableView.rowsInSection(indexPath.section);
+    // 初始化将要设置的圆角类型
+    UIRectCorner corner = 0;
+    if (numberOfRows == 1) {
+        corner = UIRectCornerAllCorners;
+    } else if (indexPath.row == 0) {
+        corner = UIRectCornerTopLeft | UIRectCornerTopRight;
+    } else if (indexPath.row == numberOfRows - 1) {
+        corner = UIRectCornerBottomLeft | UIRectCornerBottomRight;
+    } else {
+        // 中间 cell，无圆角和边框
+        self.layer.mask = nil;
+        // 移除边框 Layer（避免复用残留）
+        NSArray *sublayers = self.layer.sublayers.copy;
+        for (CALayer *sublayer in sublayers) {
+            if ([sublayer.name isEqualToString:@"rounded-border-layer"]) {
+                [sublayer removeFromSuperlayer];
+            }
+        }return self.layer;
+    }
+    // 设置圆角路径
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                   byRoundingCorners:corner
+                                                         cornerRadii:layerConfig.roundingCornersRadii];
+    self.layer.mask = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+        @jobs_strongify(self)
+        layer.frame = self.bounds;
+        layer.path = maskPath.CGPath;
+    });
+    // 添加边框 Layer（可选）
+    if (layerConfig.layerBorderCor && layerConfig.borderWidth > 0) {
+        // 移除之前旧的 border layer，避免复用叠加
+        NSArray *sublayers = self.layer.sublayers.copy;
+        for (CALayer *sublayer in sublayers) {
+            if ([sublayer.name isEqualToString:@"rounded-border-layer"]) {
+                [sublayer removeFromSuperlayer];
             }
         }
-    }
-    
-    {
-        /// 将图层添加到cell的图层中,并插到最底层
-        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
-            layer.borderWidth = borderWidth;/// 线宽
-            layer.path = bezierPath.CGPath;/// 图层边框路径
-            layer.fillColor = cellBgCor.CGColor;/// 图层填充色,也就是cell的底色
-            /*
-             如果self.tableView.style = UITableViewStyleGrouped时,每一组的首尾都会有一根分割线,目前我还没找到去掉每组首尾分割线,保留cell分割线的办法。
-             所以这里取巧,用带颜色的图层边框替代分割线。
-             这里为了美观,最好设为和tableView的底色一致。
-             设为透明,好像不起作用。
-             */
-            layer.strokeColor = cellOutLineCor.CGColor;/// 图层边框线条颜色
-        }) atIndex:0];
-    }
-    /// 除了最后一行以外，所有的cell的最下面的线的颜色为bottomLineCor
-    [self tableViewMakesLastRowCellAtIndexPath:indexPath
-                                        bounds:bounds
-                         numberOfRowsInSection:numberOfRowsInSection
-                                   borderWidth:borderWidth
-                                 bottomLineCor:bottomLineCor];
-    /// 除了第一行以外，所有的cell的最上面的线为bottomLineCor
-    [self tableViewMakesFirstRowCellAtIndexPath:indexPath
-                                         bounds:bounds
-                          numberOfRowsInSection:numberOfRowsInSection
-                                  bottomLineCor:bottomLineCor
-                                    borderWidth:borderWidth];
+        self.layer.addSublayer(jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable borderLayer) {
+            @jobs_strongify(self)
+            borderLayer.frame = self.bounds;
+            borderLayer.path = maskPath.CGPath;
+            borderLayer.strokeColor = layerConfig.layerBorderCor.CGColor;
+            borderLayer.fillColor = UIColor.clearColor.CGColor;
+            borderLayer.lineWidth = layerConfig.borderWidth;
+            borderLayer.name = @"rounded-border-layer";
+        }));
+    }return self.layer;
 }
-/// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
-/// - Parameters:
-///   - cellBgCor: UITableViewCell 的背景色
-///   - bottomLineCor: UITableViewCell 的底部线颜色（可用于模拟分割线）
-///   - cellOutLineCor: UITableViewCell 的外线颜色（cell边框）
-///   - cornerRadiusSize: 切角弧度
-///   - borderWidth: 线宽
-///   - dx: bounds 的 insetX
-///   - dy: bounds 的 insetY
-- (void)cutLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
-                              bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                             cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
-                           cornerRadiusSize:(CGSize)cornerRadiusSize
-                                borderWidth:(CGFloat)borderWidth
-                                         dx:(CGFloat)dx
-                                         dy:(CGFloat)dy{
-    if (!cellBgCor) cellBgCor = JobsWhiteColor;
-    if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
-    if (!cellOutLineCor) cellOutLineCor = JobsWhiteColor;
+/// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线），且不描边顶部
+-(__kindof CALayer *)roundedCornerLastCellByTableView:(UITableView *)tableView
+                                            indexPath:(NSIndexPath *)indexPath
+                                          layerConfig:(JobsLocationModel *)layerConfig {
 
-    CGRect bounds = [self dx:dx dy:dy];
-    NSInteger numberOfRowsInSection = self.jobsGetCurrentNumberOfRowsInSection;
-    NSIndexPath *indexPath = self.jobsGetCurrentIndexPath;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    NSInteger numberOfRows = [tableView numberOfRowsInSection:indexPath.section];
 
-    /// 仅处理 section 的最后一行
-    if (indexPath.row == numberOfRowsInSection - 1) {
-        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:bounds
-                                                         byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
-                                                               cornerRadii:cornerRadiusSize];
+    @jobs_weakify(self)
 
-        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
-            layer.borderWidth = borderWidth;
-            layer.path = bezierPath.CGPath;
-            layer.fillColor = cellBgCor.CGColor;
-            layer.strokeColor = cellOutLineCor.CGColor;
-        }) atIndex:0];
+    if (jobsZeroSizeValue(layerConfig.roundingCornersRadii)) {
+        layerConfig.roundingCornersRadii = CGSizeMake(JobsWidth(10.0), JobsWidth(10.0));
+    }
+
+    if (indexPath.row == numberOfRows - 1) {
+        // 当前为该 section 的最后一个 cell，处理圆角遮罩
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                       byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
+                                                             cornerRadii:layerConfig.roundingCornersRadii];
+
+        self.layer.mask = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            @jobs_strongify(self)
+            layer.frame = self.bounds;
+            layer.path = maskPath.CGPath;
+        });
+
+        // 处理边框
+        if (layerConfig.layerBorderCor && layerConfig.borderWidth > 0) {
+            // 移除旧的边框图层
+            NSArray *sublayers = self.layer.sublayers.copy;
+            for (CALayer *sublayer in sublayers) {
+                if ([sublayer.name isEqualToString:@"rounded-border-layer"]) {
+                    [sublayer removeFromSuperlayer];
+                }
+            }
+
+            CGFloat width = CGRectGetWidth(self.bounds);
+            CGFloat height = CGRectGetHeight(self.bounds);
+            CGFloat radius = layerConfig.roundingCornersRadii.height;
+
+            UIBezierPath *borderPath = [UIBezierPath bezierPath];
+
+            // 左下圆弧起点
+            [borderPath moveToPoint:CGPointMake(0, height - radius)];
+            // 左下圆角
+            [borderPath addArcWithCenter:CGPointMake(radius, height - radius)
+                                  radius:radius
+                              startAngle:M_PI
+                                endAngle:M_PI_2
+                               clockwise:NO];
+            // 底边线到右下角
+            [borderPath addLineToPoint:CGPointMake(width - radius, height)];
+            // 右下圆角
+            [borderPath addArcWithCenter:CGPointMake(width - radius, height - radius)
+                                  radius:radius
+                              startAngle:M_PI_2
+                                endAngle:0
+                               clockwise:NO];
+            // 右边竖线往上
+            [borderPath addLineToPoint:CGPointMake(width, 0)];
+
+            // 👉 左边竖线补充（修复左边断线问题）
+            [borderPath moveToPoint:CGPointMake(0, height - radius)];
+            [borderPath addLineToPoint:CGPointMake(0, 0)];
+
+            // 添加边框图层
+            self.layer.addSublayer(jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable borderLayer) {
+                @jobs_strongify(self)
+                borderLayer.frame = self.bounds;
+                borderLayer.path = borderPath.CGPath;
+                borderLayer.strokeColor = layerConfig.layerBorderCor.CGColor;
+                borderLayer.fillColor = UIColor.clearColor.CGColor;
+                borderLayer.lineWidth = layerConfig.borderWidth;
+                borderLayer.name = @"rounded-border-layer";
+            }));
+        }
     } else {
-        /// 其他行只绘制矩形背景（无圆角）
-        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRect:bounds];
-        [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
-            layer.borderWidth = borderWidth;
-            layer.path = bezierPath.CGPath;
-            layer.fillColor = cellBgCor.CGColor;
-            layer.strokeColor = cellOutLineCor.CGColor;
-        }) atIndex:0];
-    }
-    
-    /// 可选：为非最后一行 cell 添加底部分割线（模拟视觉上的分隔）
-    if (indexPath.row != numberOfRowsInSection - 1) {
-        [self tableViewMakesLastRowCellAtIndexPath:indexPath
-                                            bounds:bounds
-                             numberOfRowsInSection:numberOfRowsInSection
-                                       borderWidth:borderWidth
-                                     bottomLineCor:bottomLineCor];
-    }
+        // 非最后一个 cell，清除圆角遮罩和边框
+        self.layer.mask = nil;
+        NSArray *sublayers = self.layer.sublayers.copy;
+        for (CALayer *sublayer in sublayers) {
+            if ([sublayer.name isEqualToString:@"rounded-border-layer"]) {
+                [sublayer removeFromSuperlayer];
+            }
+        }
+    }return self.layer;
 }
-
-
-/// 除了最后一行以外，所有的cell的最下面的线的颜色为bottomLineCor
+/// 只描 UITableViewCell 的左右两边
+-(void)leftAndRightLineCellByTableView:(UITableView *)tableView
+                             indexPath:(NSIndexPath *)indexPath
+                           layerConfig:(JobsLocationModel *)layerConfig{
+    // 移除之前添加的边框（防止复用时重复）
+    NSArray<CALayer *> *sublayers = self.contentView.layer.sublayers.copy;
+    for (CALayer *layer in sublayers) {
+        if ([layer.name isEqualToString:@"left-border"] ||
+            [layer.name isEqualToString:@"right-border"]) {
+            [layer removeFromSuperlayer];
+        }
+    }
+    if(!layerConfig.layerBorderCor) layerConfig.layerBorderCor = JobsGrayColor;
+    if(!layerConfig.borderWidth) layerConfig.borderWidth = JobsWidth(1);
+    // 左边线
+    self.contentView.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable leftLayer) {
+        leftLayer.name = @"left-border";
+        leftLayer.backgroundColor = layerConfig.layerBorderCor.CGColor;
+        leftLayer.frame = CGRectMake(0, 0, layerConfig.borderWidth, self.contentView.bounds.size.height);
+    }));
+    // 右边线
+    self.contentView.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable rightLayer) {
+        rightLayer.name = @"right-border";
+        rightLayer.backgroundColor = layerConfig.layerBorderCor.CGColor;
+        rightLayer.frame = CGRectMake(0, 0, layerConfig.borderWidth, self.contentView.bounds.size.height);
+    }));
+}
+/// 除了最后一行以外，所有的cell的最下面的线的颜色为：layerConfig.layerBorderCor
 /// - Parameters:
 ///   - indexPath: indexPath
 ///   - bounds: bounds
 ///   - numberOfRowsInSection: 当前的UITableViewCell对应的section的的row个数
-///   - borderWidth: 线宽
-///   - bottomLineCor: cell 底部线条颜色
+///   - layerConfig: layer的配置文件
 -(void)tableViewMakesLastRowCellAtIndexPath:(NSIndexPath *_Nonnull)indexPath
                                      bounds:(CGRect)bounds
                       numberOfRowsInSection:(NSInteger)numberOfRowsInSection
-                                borderWidth:(CGFloat)borderWidth
-                              bottomLineCor:(UIColor *_Nullable)bottomLineCor{
+                                layerConfig:(JobsLocationModel *)layerConfig{
     if (!indexPath) return;
-    if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
+    if (!layerConfig.layerBorderCor) layerConfig.layerBorderCor = JobsWhiteColor;
     if (indexPath.row != numberOfRowsInSection - 1) {
         /// 将图层添加到cell的图层中,并插到最底层
         [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
-            layer.borderWidth = borderWidth;
-            layer.strokeColor = bottomLineCor.CGColor;
+            layer.borderWidth = layerConfig.borderWidth;
+            layer.strokeColor = layerConfig.layerBorderCor.CGColor;
             layer.path = jobsMakeBezierPath(^(__kindof UIBezierPath * _Nullable data) {
                 [data moveToPoint:CGPointMake(bounds.origin.x, bounds.size.height)];// 起点
                 [data addLineToPoint:CGPointMake(bounds.origin.x + bounds.size.width, bounds.size.height)];// 其他点
@@ -288,25 +327,23 @@ UITableViewCellProtocol_dynamic
         }) atIndex:1];
     }
 }
-/// 除了第一行以外，所有的cell的最上面的线为bottomLineCor
+/// 除了第一行以外，所有的cell的最上面的线为：layerConfig.layerBorderCor
 /// - Parameters:
 ///   - indexPath: indexPath
 ///   - bounds: bounds
 ///   - numberOfRowsInSection: 当前的UITableViewCell对应的section的的row个数
-///   - borderWidth: 线宽
-///   - bottomLineCor: cell 底部线条颜色
+///   - layerConfig: layer的配置文件
 -(void)tableViewMakesFirstRowCellAtIndexPath:(NSIndexPath *_Nonnull)indexPath
                                       bounds:(CGRect)bounds
                        numberOfRowsInSection:(NSInteger)numberOfRowsInSection
-                               bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                                 borderWidth:(CGFloat)borderWidth{
+                                 layerConfig:(JobsLocationModel *)layerConfig{
     if (!indexPath) return;
-    if (!bottomLineCor) bottomLineCor = JobsWhiteColor;
+    if (!layerConfig.layerBorderCor) layerConfig.layerBorderCor = JobsWhiteColor;
     if(indexPath.row){
         /// 将图层添加到cell的图层中,并插到最底层
         [self.layer insertSublayer:jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
-            layer.borderWidth = borderWidth;
-            layer.strokeColor = bottomLineCor.CGColor;
+            layer.borderWidth = layerConfig.borderWidth;
+            layer.strokeColor = layerConfig.layerBorderCor.CGColor;
             layer.path = jobsMakeBezierPath(^(__kindof UIBezierPath * _Nullable linePath) {
                 [linePath moveToPoint:CGPointMake(bounds.origin.x, 0)];/// 起点
                 [linePath addLineToPoint:CGPointMake(bounds.origin.x + bounds.size.width,0)];/// 其他点

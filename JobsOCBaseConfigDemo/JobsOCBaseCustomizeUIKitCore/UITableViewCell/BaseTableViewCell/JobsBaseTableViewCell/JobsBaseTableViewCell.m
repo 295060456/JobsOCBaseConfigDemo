@@ -93,40 +93,6 @@ BaseLayerProtocol_synthesize_part3
 -(void)jobsResetTableViewCellFrame:(CGRect)frame
                        cellOffsetX:(CGFloat)offsetX
                        cellOffsetY:(CGFloat)offsetY{
-    /**
-     参见：关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量
-     ❤️如果单独的对每一个row对应的UITableViewCell的边距有缩进则使用下列方法❤️
-     如果这个TableViewCell是JobsBaseTableViewCell则不需要复写-(void)setFrame:(CGRect)frame；否则是需要：
-     
-     UILocationProtocol
-     直接影响:
-     cell.offsetXForEach = JobsWidth(8);
-     cell.offsetYForEach = JobsWidth(6);
-     
-     // 在具体的子类去实现,分类调用异常
-     #pragma mark —— 复写父类方法
-     -(void)setFrame:(CGRect)frame{
-     JobsLog(@"self.offsetXForEach = %f",self.offsetXForEach);
-     JobsLog(@"self.offsetYForEach = %f",self.offsetYForEach);
-     frame.origin.x += self.offsetXForEach;
-     frame.origin.y += self.offsetYForEach;
-     frame.size.height -= self.offsetYForEach * 2;
-     frame.size.width -= self.offsetXForEach * 2;
-     [super setFrame:frame];
-     }
-     
-     ❤️ 如果对每一section的cell进行缩进，则在外层协议：❤️
-     - (void)tableView:(UITableView *)tableView
-     willDisplayCell:(UITableViewCell *)cell
-     forRowAtIndexPath:(NSIndexPath *)indexPath{
-     /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
-     [cell cutFirstAndLastTableViewCellByBackgroundCor:HEXCOLOR(0xFFFFFF)
-                                           bottomLineCor:HEXCOLOR(0xFFFFFF)
-                                          cellOutLineCor:HEXCOLOR(0xEEE2C8)
-                                        cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
-                                             borderWidth:JobsWidth(10) dx:JobsWidth(0) dy:JobsWidth(0)];
-     }
-     */
     if(!self.isSetTBVCellOffset){
         frame.origin.x += offsetX;
         frame.origin.y += offsetY;

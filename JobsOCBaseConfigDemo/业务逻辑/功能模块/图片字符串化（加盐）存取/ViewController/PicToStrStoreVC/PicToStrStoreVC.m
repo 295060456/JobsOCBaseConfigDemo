@@ -123,8 +123,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView hideSeparatorLineAtLast:indexPath
-                                  cell:cell];
+    [tableView hideSeparatorLineAtLast:indexPath cell:cell];
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol

@@ -361,7 +361,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 /// 关闭.按钮
 -(__kindof UIButton *_Nullable)makeCloseBtnByActionBlock:(jobsByVoidBlock _Nullable)actionBlock{
     @jobs_weakify(self)
-    return BaseButton.initByBackgroundImage(JobsIMG(@"关闭"))
+    return BaseButton.initByBackgroundImage(JobsIMG(@"关闭按钮（灰色）"))
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             if (self.objBlock) self.objBlock(x);

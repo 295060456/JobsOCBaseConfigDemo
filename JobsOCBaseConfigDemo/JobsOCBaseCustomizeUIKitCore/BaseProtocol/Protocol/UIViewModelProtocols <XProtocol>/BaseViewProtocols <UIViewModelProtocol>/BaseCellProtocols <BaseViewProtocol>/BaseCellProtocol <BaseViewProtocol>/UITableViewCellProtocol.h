@@ -81,61 +81,37 @@ Prop_assign()CGFloat imageViewFrameOffsetHeight;/// 负值缩小，正值放大
 /// 获取当前的UITableViewCell对应的section的的row个数
 -(NSInteger)jobsGetCurrentNumberOfRowsInSection;
 /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
-/// - Parameters:
-///   - cellBgCor: UITableViewCell 的背景色
-///   - bottomLineCor: UITableViewCell 的底部线颜色
-///   - cellOutLineCor: UITableViewCell 的外线颜色
-///   - cornerRadiusSize: 切角弧度
-///   - borderWidth: 线宽
-///   - dx: 内有介绍
-///   - dy: 内有介绍
--(void)cutFirstAndLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
-                                     bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                                    cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
-                                  cornerRadiusSize:(CGSize)cornerRadiusSize
-                                         borderWidth:(CGFloat)borderWidth
-                                                dx:(CGFloat)dx
-                                                dy:(CGFloat)dy;
-/// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
-/// - Parameters:
-///   - cellBgCor: UITableViewCell 的背景色
-///   - bottomLineCor: UITableViewCell 的底部线颜色（可用于模拟分割线）
-///   - cellOutLineCor: UITableViewCell 的外线颜色（cell边框）
-///   - cornerRadiusSize: 切角弧度
-///   - borderWidth: 线宽
-///   - dx: bounds 的 insetX
-///   - dy: bounds 的 insetY
-- (void)cutLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
-                              bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                             cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
-                           cornerRadiusSize:(CGSize)cornerRadiusSize
-                                borderWidth:(CGFloat)borderWidth
-                                         dx:(CGFloat)dx
-                                         dy:(CGFloat)dy;
-/// 除了最后一行以外，所有的cell的最下面的线的颜色为bottomLineCor
+-(__kindof CALayer *)roundedCornerFirstAndLastCellByTableView:(UITableView *)tableView
+                                                    indexPath:(NSIndexPath *)indexPath
+                                                  layerConfig:(JobsLocationModel *)layerConfig;
+/// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线），且不描边顶部
+-(__kindof CALayer *)roundedCornerLastCellByTableView:(UITableView *)tableView
+                                            indexPath:(NSIndexPath *)indexPath
+                                          layerConfig:(JobsLocationModel *)layerConfig;
+/// 只描 UITableViewCell 的左右两边
+-(void)leftAndRightLineCellByTableView:(UITableView *)tableView
+                             indexPath:(NSIndexPath *)indexPath
+                           layerConfig:(JobsLocationModel *)layerConfig;
+/// 除了最后一行以外，所有的cell的最下面的线的颜色为：layerConfig.layerBorderCor
 /// - Parameters:
 ///   - indexPath: indexPath
 ///   - bounds: bounds
 ///   - numberOfRowsInSection: 当前的UITableViewCell对应的section的的row个数
-///   - borderWidth: 线宽
-///   - bottomLineCor: cell 底部线条颜色
+///   - layerConfig: layer的配置文件
 -(void)tableViewMakesLastRowCellAtIndexPath:(NSIndexPath *_Nonnull)indexPath
                                      bounds:(CGRect)bounds
                       numberOfRowsInSection:(NSInteger)numberOfRowsInSection
-                                borderWidth:(CGFloat)borderWidth
-                              bottomLineCor:(UIColor *_Nullable)bottomLineCor;
-/// 除了第一行以外，所有的cell的最上面的线为bottomLineCor
+                                layerConfig:(JobsLocationModel *)layerConfig;
+/// 除了第一行以外，所有的cell的最上面的线为：layerConfig.layerBorderCor
 /// - Parameters:
 ///   - indexPath: indexPath
 ///   - bounds: bounds
 ///   - numberOfRowsInSection: 当前的UITableViewCell对应的section的的row个数
-///   - borderWidth: 线宽
-///   - bottomLineCor: cell 底部线条颜色
+///   - layerConfig: layer的配置文件
 -(void)tableViewMakesFirstRowCellAtIndexPath:(NSIndexPath *_Nonnull)indexPath
                                       bounds:(CGRect)bounds
                        numberOfRowsInSection:(NSInteger)numberOfRowsInSection
-                               bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                                 borderWidth:(CGFloat)borderWidth;
+                                 layerConfig:(JobsLocationModel *)layerConfig;
 @end
 
 NS_ASSUME_NONNULL_END
