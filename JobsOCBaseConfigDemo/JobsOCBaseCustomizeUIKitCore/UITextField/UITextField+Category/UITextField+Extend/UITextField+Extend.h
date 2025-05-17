@@ -11,6 +11,8 @@
 
 #import "JobsString.h"
 #import "JobsBlock.h"
+#import "DefineProperty.h"
+#import "UIButton+SimplyMake.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -30,6 +32,8 @@ Prop_strong()UIButton *customSysClearBtn;
 -(JobsReturnStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString;
 /// 自定义系统的清除按钮
 -(jobsByImageBlock _Nonnull)modifyClearButtonByImage;
+///
+-(JobsReturnTextFieldByDelegateBlock _Nonnull)byDelegate;
 
 @end
 

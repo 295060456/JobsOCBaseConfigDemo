@@ -29,13 +29,58 @@
     @jobs_weakify(self)
     return ^(id _Nonnull target) {
         @jobs_strongify(self)
-        self.delegate = target;
-        self.dataSource = target;
+        self.byDelegate(target);
+        self.byDataSource(target);
     };
 }
 
--(UICollectionViewCell *)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-                          collectionViewCellClass:(Class _Nullable)collectionViewCellClass{
+-(JobsReturnCollectionViewByDelegateBlock _Nonnull)byDelegate{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.delegate = delegate;
+        return self;
+    };
+}
+
+-(JobsReturnCollectionViewByDataSourceBlock _Nonnull)byDataSource{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDataSource>_Nullable dataSource){
+        @jobs_strongify(self)
+        self.dataSource = dataSource;
+        return self;
+    };
+}
+
+-(JobsReturnCollectionViewByDragDelegateBlock _Nonnull)byDragDelegate{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDragDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.dragDelegate = delegate;
+        return self;
+    };
+}
+
+-(JobsReturnCollectionViewByDropDelegateBlock _Nonnull)byDropDelegate{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDropDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.dropDelegate = delegate;
+        return self;
+    };
+}
+
+-(JobsReturnCollectionViewByDataSourcePrefetchingBlock _Nonnull)byPrefetchDataSource{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDataSourcePrefetching>_Nullable dataSourcePrefetching){
+        @jobs_strongify(self)
+        self.prefetchDataSource = dataSourcePrefetching;
+        return self;
+    };
+}
+
+-(__kindof UICollectionViewCell *)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+                                   collectionViewCellClass:(Class _Nullable)collectionViewCellClass{
     JobsLog(@"%s", __FUNCTION__);
     if (collectionViewCellClass) {
         for (UICollectionViewCell *cell in self.visibleCells) {
@@ -43,18 +88,13 @@
                 cell.selected = NO;
             }
         }
-    }
-    UICollectionViewCell *cell = (UICollectionViewCell *)self.cellBy(indexPath);
-    cell.selected = YES;
-    return cell;
+    }return self.cellBy(indexPath).bySelected(YES);;
 }
 
--(UICollectionViewCell *)didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-                            collectionViewCellClass:(Class _Nullable)collectionViewCellClass{
+-(__kindof UICollectionViewCell *)didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+                                     collectionViewCellClass:(Class _Nullable)collectionViewCellClass{
     JobsLog(@"%s", __FUNCTION__);
-    UICollectionViewCell *cell = (UICollectionViewCell *)self.cellBy(indexPath);
-    cell.selected = YES;
-    return cell;
+    return self.cellBy(indexPath).bySelected(YES);
 }
 
 @end

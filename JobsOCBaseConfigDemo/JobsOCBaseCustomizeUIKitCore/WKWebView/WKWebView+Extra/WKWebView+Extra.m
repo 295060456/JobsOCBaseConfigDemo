@@ -32,6 +32,24 @@
         return self;
     };
 }
+
+-(JobsReturnCollectionViewByNavDelegateBlock _Nonnull)byNavDelegate{
+    @jobs_weakify(self)
+    return ^__kindof WKWebView *_Nullable(id <WKNavigationDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.navigationDelegate = delegate;
+        return self;
+    };
+}
+
+-(JobsReturnCollectionViewByUIDelegateBlock _Nonnull)byNavDelegate{
+    @jobs_weakify(self)
+    return ^__kindof WKWebView *_Nullable(id <WKUIDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.UIDelegate = delegate;
+        return self;
+    };
+}
 #pragma mark —— Prop_copy(nullable)NSMutableArray <NSURL *>*urls;
 JobsKey(_urls)
 @dynamic urls;

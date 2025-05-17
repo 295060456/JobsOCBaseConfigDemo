@@ -7,15 +7,15 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-
 #import "JobsBlock.h"
+#import "DefineProperty.h"
 #import "JobsDefineAllEnumHeader.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIScrollView (Extra)
-
-Prop_assign()ScrollDirection direction; /// UIScrollView 滑动的方向定义
+/// UIScrollView 滑动的方向定义
+Prop_assign()ScrollDirection direction;
 /// 在 UIScrollViewDelegate协议方法 -(void)scrollViewDidScroll:(UIScrollView *)scrollView里进行调用
 -(ScrollDirection)scrolldirectionWhenScrollViewDidScroll;
 #pragma mark —— 一些公共方法
@@ -32,6 +32,8 @@ Prop_assign()ScrollDirection direction; /// UIScrollView 滑动的方向定义
 -(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES;
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;  的二次封装
 -(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO;
+///
+-(JobsReturnScrollViewByDelegateBlock _Nonnull)byDelegate;
 
 @end
 

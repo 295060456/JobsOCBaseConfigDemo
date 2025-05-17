@@ -185,6 +185,16 @@ typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByWindowSceneBlock)(UIWind
 /// UIMenuItem
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemByIDBlock)(id _Nullable data);
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemBySELBlock)(SEL _Nullable data);
+#pragma mark —— 关于 UITextView
+typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByDelegateBlock)(id <UITextViewDelegate>_Nullable delegate);
+#pragma mark —— 关于 UITableView
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDelegateBlock)(id <UITableViewDelegate>_Nullable delegate);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDataSourceBlock)(id <UITableViewDataSource>_Nullable dataSource);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDataSourcePrefetchingBlock)(id <UITableViewDataSourcePrefetching>_Nullable dataSourcePrefetching);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDragDelegateBlock)(id <UITableViewDragDelegate>_Nullable delegate);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDropDelegateBlock)(id <UITableViewDropDelegate>_Nullable delegate);
+#pragma mark —— 关于 UITextField
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByDelegateBlock)(id <UITextFieldDelegate>_Nullable delegate);
 #pragma mark —— 关于 Label
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByImage)(__kindof UIImage *_Nullable image);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByCor)(__kindof UIColor *_Nullable cor);
@@ -256,16 +266,23 @@ typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSalt
                                                                                           NSString *_Nullable salt);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Jobs_UITableViewCellBlock_Arguments);
 #pragma mark —— 关于 UICollectionView
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDelegateBlock)(id <UICollectionViewDelegate>_Nullable delegate);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDataSourceBlock)(id <UICollectionViewDataSource>_Nullable dataSource);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDragDelegateBlock)(id <UICollectionViewDragDelegate>_Nullable delegate);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDropDelegateBlock)(id <UICollectionViewDropDelegate>_Nullable delegate);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDataSourcePrefetchingBlock)(id <UICollectionViewDataSourcePrefetching>_Nullable dataSourcePrefetching);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByLayoutBlock)(__kindof UICollectionViewLayout *_Nullable data);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable data);
 #pragma mark —— 关于 UICollectionViewLayoutAttributes
 typedef __kindof UICollectionViewLayoutAttributes *_Nullable(^JobsReturnCollectionViewLayoutAttributesByNSIndexPathBlock)(__kindof NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于 UICollectionViewCell
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByVoidBlock)(void);
+typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByBOOLBlock)(BOOL data);
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByIDBlock)(id _Nullable data);
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByIndexPathBlock)(NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于 UIScrollView
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByDelegateBlock)(id <UIScrollViewDelegate>_Nullable delegate);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByPointBlock)(CGPoint data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByRectBlock)(CGRect data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
@@ -275,17 +292,23 @@ typedef __kindof PDFDocument *_Nullable(^JobsReturnPDFDocumentByURLBlock)(NSURL 
 #import <WebKit/WebKit.h>
 @class UIViewModel;
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByVoidBlock)(void);
+typedef __kindof WKWebView *_Nullable(^JobsReturnCollectionViewByNavDelegateBlock)(id <WKNavigationDelegate>_Nullable delegate);
+typedef __kindof WKWebView *_Nullable(^JobsReturnCollectionViewByUIDelegateBlock)(id <WKUIDelegate>_Nullable delegate);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByConfigurationBlock)(WKWebViewConfiguration *_Nullable config);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLRequestBlock)(__kindof NSURLRequest *_Nullable request);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByStringBlock)(NSString *_Nullable data);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByURLBlock)(NSURL *_Nullable URL);
 typedef __kindof WKWebView *_Nullable(^JobsReturnWKWebViewByViewModelBlock)(__kindof UIViewModel *_Nullable viewModel);
 #pragma mark —— 关于 控制器
+/// UIViewController
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByViewBlock)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVCBlock)(__kindof UIViewController *_Nonnull vc);
+typedef __kindof UIViewController *_Nullable(^JobsReturnVCByWebViewBlock)(__kindof WKWebView *_Nonnull webView);
+/// UINavigationController
+typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByDelegateBlock)(id <UINavigationControllerDelegate>_Nullable delegate);
 typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByVCBlock)(__kindof UIViewController *_Nonnull vc);
 typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByClassBlock)(Class _Nonnull cls);
-typedef __kindof UIViewController *_Nullable(^JobsReturnVCByWebViewBlock)(__kindof WKWebView *_Nonnull webView);
+/// UIAlertController
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByActionBlock)(UIAlertAction *_Nullable data);
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于 富文本
@@ -582,7 +605,7 @@ typedef unsigned long long(^JobsReturnByUnsignedLongLongBlock)(unsigned long lon
 typedef NSIndexPath *_Nonnull(^JobsReturnIndexPathByXYBlock)(CGFloat x,CGFloat y);
 #pragma mark —— 其他
 typedef UIEditMenuInteraction *_Nullable(^JobsReturnUIEditMenuInteractionByIDBlock)(id<UIEditMenuInteractionDelegate>_Nullable data);
-typedef UIContextMenuInteraction *_Nonnull(^JobsReturnContextMenuInteractionByIDBlock)(id <UIContextMenuInteractionDelegate>_Nullable data);
+typedef UIContextMenuInteraction *_Nonnull(^JobsReturnContextMenuInteractionByIDBlock)(id <UIContextMenuInteractionDelegate>_Nullable delegate);
 typedef __kindof NSXMLParser *_Nonnull(^JobsReturnNSXMLParserByNSDataBlock)(__kindof NSData *_Nullable data);
 typedef PHAssetChangeRequest *_Nonnull(^JobsReturnPHAssetChangeRequestByURLBlock)(NSURL *_Nullable url);
 typedef __kindof AVAssetImageGenerator *_Nonnull(^JobsReturnAVAssetImageGeneratorByAVURLAssetBlock)(__kindof AVURLAsset *_Nullable data);

@@ -9,6 +9,8 @@
 #import <objc/runtime.h>
 #import "JobsBlock.h"
 #import "JobsString.h"
+#import "MacroDef_Font.h"
+#import "DefineProperty.h"
 #import "UITextView+IndicateWordLimit.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
@@ -30,6 +32,7 @@ Prop_copy()NSString *resStr;
 -(RACDisposable *)jobsTextViewSubscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock;
 -(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBOOLByIDBlock _Nullable)filterBlock
                        subscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock;
+-(JobsReturnTextViewByDelegateBlock _Nonnull)byDelegate;
 /**
  IOS UITextView内容垂直居中方法 https://www.jianshu.com/p/5e4cf8488bfd
  原理：由于textView是继承自UIScrollview，所以会有ContentSize属性。

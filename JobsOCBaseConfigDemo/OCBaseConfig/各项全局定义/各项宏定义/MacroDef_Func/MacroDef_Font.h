@@ -141,6 +141,10 @@ NS_INLINE UIFont *fontName(NSString *fontName,CGFloat fontSize) {
 NS_INLINE UIFont *bayonRegular(CGFloat fontSize){
     return fontName(@"Bayon-Regular", JobsWidth(fontSize));
 }
+#pragma mark —— Helvetica Neue
+NS_INLINE UIFont *helveticaNeue(CGFloat fontSize){
+    return fontName(@"Helvetica Neue", JobsWidth(fontSize));
+}
 #pragma mark —— DIN Alternate 字体
 NS_INLINE UIFont *dinAlternate(CGFloat fontSize){
     return fontName(@"DIN Alternate", JobsWidth(fontSize));

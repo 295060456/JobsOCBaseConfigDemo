@@ -39,20 +39,37 @@
         self.rightViewMode = UITextFieldViewModeWhileEditing;
     };
 }
+
+-(JobsReturnTextFieldByDelegateBlock _Nonnull)byDelegate{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(id <UITextFieldDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.delegate = delegate;
+        return self;
+    };
+}
 #pragma mark —— Prop_strong()UIButton *customSysClearBtn;
 JobsKey(_customSysClearBtn)
 @dynamic customSysClearBtn;
 -(UIButton *)customSysClearBtn{
     UIButton *CustomSysClearBtn = Jobs_getAssociatedObject(_customSysClearBtn);
     if (!CustomSysClearBtn) {
-        CustomSysClearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        CustomSysClearBtn.frame = CGRectMake(0.0f,0.0f,15.0f,15.0f);
         @jobs_weakify(self)
-        [CustomSysClearBtn jobsBtnClickEventBlock:^id(UIButton *data) {
-            @jobs_strongify(self)
-            self.text = JobsInternationalization(@"");
-            return nil;
-        }];
+        CustomSysClearBtn = BaseButton.jobsInit()
+//            .bgColorBy(JobsWhiteColor)
+//            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+//            .jobsResetImagePadding(1)
+//            .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+//            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+//            .jobsResetBtnTitleCor(JobsWhiteColor)
+//            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+//            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+            .onClickBy(^(UIButton *x){
+                @jobs_strongify(self)
+                self.text = JobsInternationalization(@"");
+            }).onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            }).byFrame(CGRectMake(0.0f,0.0f,15.0f,15.0f));
         Jobs_setAssociatedRETAIN_NONATOMIC(_customSysClearBtn, CustomSysClearBtn)
     }return CustomSysClearBtn;
 }

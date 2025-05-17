@@ -101,6 +101,14 @@
         return self;
     };
 }
+
+-(JobsReturnScrollViewByDelegateBlock _Nonnull)byDelegate{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(id <UIScrollViewDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.delegate = delegate;
+    };
+}
 #pragma mark —— Prop_assign()ScrollDirection direction; /// UIScrollView 滑动的方向定义
 JobsKey(_direction)
 @dynamic direction;

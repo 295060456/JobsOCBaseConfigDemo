@@ -652,6 +652,15 @@ JobsKey(_cornerRadii)
     });
 }
 #pragma mark —— 其他
+-(JobsReturnViewByCorBlock _Nonnull)byBgCor{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.backgroundColor = cor;
+        return self;
+    };
+}
+
 -(JobsReturnViewByNSIntegerBlock _Nonnull)viewByID{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(NSInteger data){

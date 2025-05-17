@@ -13,8 +13,8 @@
     @jobs_weakify(self)
     return ^(id _Nonnull target) {
         @jobs_strongify(self)
-        self.delegate = target;
-        self.dataSource = target;
+        self.byDelegate(target);
+        self.byDataSource(target);
     };
 }
 #pragma mark —— UITableView
@@ -28,6 +28,51 @@
 
 +(instancetype)initWithStyleInsetGrouped API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos){
     return [UITableView.alloc initWithFrame:CGRectZero style:UITableViewStyleInsetGrouped];
+}
+
+-(JobsReturnTableViewByDelegateBlock _Nonnull)byDelegate{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(id <UITableViewDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.delegate = delegate;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByDataSourceBlock _Nonnull)byDataSource{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(id <UITableViewDataSource>_Nullable dataSource){
+        @jobs_strongify(self)
+        self.dataSource = dataSource;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByDataSourcePrefetchingBlock _Nonnull)byDataSourcePrefetching API_AVAILABLE(ios(10.0)){
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(id <UITableViewDataSourcePrefetching>_Nullable dataSourcePrefetching){
+        @jobs_strongify(self)
+        self.prefetchDataSource = dataSourcePrefetching;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByDragDelegateBlock _Nonnull)byDragDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos){
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(id <UITableViewDragDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.dragDelegate = delegate;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByDropDelegateBlock _Nonnull)byDropDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos){
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(id <UITableViewDropDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.dropDelegate = delegate;
+        return self;
+    };
 }
 #pragma mark —— UITableViewHeaderFooterView
 -(JobsReturnRectByNSIntegerBlock _Nonnull)rectForHeaderInSection{

@@ -18,4 +18,22 @@
     };
 }
 
+-(JobsReturnCollectionViewCellByBOOLBlock _Nonnull)bySelected{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionViewCell *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.selected = data;
+        return self;
+    };
+}
+
+-(JobsReturnCollectionViewCellByBOOLBlock _Nonnull)byHighlighted{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionViewCell *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.highlighted = data;
+        return self;
+    };
+}
+
 @end

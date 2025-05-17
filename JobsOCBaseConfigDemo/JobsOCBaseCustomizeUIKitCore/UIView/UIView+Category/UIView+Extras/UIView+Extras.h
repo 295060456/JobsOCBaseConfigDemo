@@ -113,6 +113,7 @@ Prop_assign()BOOL jobsVisible;
 -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners
                                      cornerRadii:(CGSize)cornerRadii;
 #pragma mark —— 其他
+-(JobsReturnViewByCorBlock _Nonnull)byBgCor;
 -(JobsReturnViewByNSIntegerBlock _Nonnull)viewByID;
 -(JobsReturnViewByGestureRecognizer _Nonnull)addGesture;
 -(JobsReturnGestureRecognizerByGestureRecognizer _Nonnull)addGestureRecognizer;

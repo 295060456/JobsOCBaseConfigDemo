@@ -40,6 +40,15 @@
         if (subscribeNextBlock) subscribeNextBlock(x);
     }];
 }
+
+-(JobsReturnTextViewByDelegateBlock _Nonnull)byDelegate{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(id <UITextViewDelegate>_Nullable delegate){
+        @jobs_strongify(self)
+        self.delegate = delegate;
+        return self;
+    };
+}
 /**
  IOS UITextView内容垂直居中方法 https://www.jianshu.com/p/5e4cf8488bfd
  原理：由于textView是继承自UIScrollview，所以会有ContentSize属性。
@@ -66,9 +75,7 @@
                 offset = UIEdgeInsetsZero;
                /// 通过一个while循环，设置textView的文字大小，使内容不超过整个textView的高度（这个根据需要可以自己设置）
                 while (contentSize.height > self.frame.size.height){
-                    if (!font) {
-                        font = [UIFont fontWithName:@"Helvetica Neue" size:18];
-                    }
+                    if (!font) font = helveticaNeue(18);
                     [self setFont:font];
                     contentSize = self.contentSize;
                 }newSize = contentSize;
@@ -88,7 +95,7 @@
     return ^__kindof NSString *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
         if (self.text.length) {
-            return [data isEqualToString:@""] ? [self.text substringToIndex:(self.text.length - 1)] : self.text.add(data);
+            return [data isEqualToString:JobsEmpty] ? [self.text substringToIndex:(self.text.length - 1)] : self.text.add(data);
         }return self.text;
     };
 }
@@ -102,10 +109,10 @@
 -(void)markedTextValue:(jobsByIDBlock _Nullable)valueBlock
           invalidBlock:(jobsByVoidBlock _Nullable)invalidBlock{
     NSString *placeholderValue = [self textInRange:self.markedTextRange];
-    if (placeholderValue.length) {//占位符有值
+    if (placeholderValue.length) {/// 占位符有值
         NSString *str = [self.text stringByReplacingOccurrencesOfString:placeholderValue
-                                                             withString:@""];
-        if (valueBlock) valueBlock(str);// 回调TextView的确定值
+                                                             withString:JobsEmpty];
+        if (valueBlock) valueBlock(str);/// 回调TextView的确定值
     }else{//占位符无值
         if (invalidBlock) invalidBlock();
     }
@@ -122,13 +129,13 @@
     if ([replacementText isEqualToString:@"\n"]) {//提行
         if (beginNewLineBlock) beginNewLineBlock(self.text);
         return NO;
-    }else if([replacementText isEqualToString:@""]){//删除
+    }else if([replacementText isEqualToString:JobsEmpty]){//删除
         /**
         删除操作是系统接收@“”作为指令内部进行删除操作
          获取需要操作的字符，最后2位，如果是emoji则删除2个字符，否则删除一个字符
          截取 textView.text 最后2位
          */
-        NSString *res = JobsInternationalization(@"");
+        NSString *res = JobsInternationalization(JobsEmpty);
         JobsLog(@"MMM = %@",self.text);
         if (self.text.length >= 2) {
             // 这里的emoji判断有点问题，不识别新版本系统的emoji，以前的旧的emoji是可以识别的，我已经给apple提了单让他们给我们写一个api
@@ -143,7 +150,7 @@
             res = [self.text substringWithRange:NSMakeRange(0, self.text.length - 1)];
             JobsLog(@"res = %@",res);
         }else{
-            res = JobsInternationalization(@"");
+            res = JobsInternationalization(JobsEmpty);
             JobsLog(@"res = %@",res);
         }
         self.currentWordNum = res.length;
@@ -155,7 +162,7 @@
             if ([self textInRange:self.markedTextRange].length) {
                 if (normalInputBlock) normalInputBlock(self.text.add(replacementText));
             }else{
-                NSString *res = @"";
+                NSString *res = JobsEmpty;
                 if (replacementText.length == 1) {//单字母输入
                     res = [self.text stringByAppendingString:replacementText];
                 }else{//按下确定键
@@ -169,7 +176,7 @@
             }
         }else{//最终确定的中文
             NSString *res = [self.text stringByReplacingOccurrencesOfString:[self textInRange:self.markedTextRange]
-                                                                 withString:@""].add(replacementText);
+                                                                 withString:JobsEmpty].add(replacementText);
             self.currentWordNum = res.length;
             /// 截断，最新输入的截取字符来满足textView到顶抵满
             if (self.currentWordNum + 1 > self.wordLimitNum) {
