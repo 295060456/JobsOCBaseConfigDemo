@@ -7979,14 +7979,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
             JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
             NSLog(@"MMM - %ld",cell.index);
         }];
-        /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
-        [cell cutFirstAndLastTableViewCellByBackgroundCor:HEXCOLOR(0xFFFFFF)
-                                            bottomLineCor:HEXCOLOR(0xFFFFFF)
-                                           cellOutLineCor:HEXCOLOR(0xEEE2C8)
-                                         cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
-                                              borderWidth:JobsWidth(10)
-                                                       dx:JobsWidth(0)
-                                                       dy:JobsWidth(0)];
+        /// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
+        [cell roundedCornerLastCellByTableView:tableView
+                                     indexPath:indexPath
+                                   layerConfig:jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            model.roundingCornersRadii = CGSizeMake(JobsWidth(10.0), JobsWidth(10.0));
+            model.borderWidth = 1;
+            model.layerBorderCor = JobsGrayColor;
+        })];
     }
     ```
 
@@ -8204,52 +8204,36 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
   * [**关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E5%85%B6%E4%BB%96.md/%E5%85%B3%E4%BA%8EUITableViewCell%E5%92%8CUICollectionViewCell%E5%9C%86%E5%88%87%E8%A7%92%2BCell%E7%9A%84%E5%81%8F%E7%A7%BB%E9%87%8F.md)
 
-  * 以section为单位，每个section的第一行和最后一行的`UITableViewCell`圆角化处理【`UITableViewCell`之间没有分割线】
-
-    作用于：`- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath`
-
     ```objective-c
-    /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
-    /// - Parameters:
-    ///   - cellBgCor: UITableViewCell 的背景色
-    ///   - bottomLineCor: UITableViewCell 的底部线颜色
-    ///   - cellOutLineCor: UITableViewCell 的外线颜色
-    ///   - cornerRadiusSize: 切角弧度
-    ///   - borderWidth: 线宽
-    ///   - dx: 内有介绍
-    ///   - dy: 内有介绍
-    -(void)cutFirstAndLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
-                                         bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                                        cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
-                                      cornerRadiusSize:(CGSize)cornerRadiusSize
-                                           borderWidth:(CGFloat)borderWidth
-                                                    dx:(CGFloat)dx
-                                                    dy:(CGFloat)dy;
+    - (void)tableView:(UITableView *)tableView
+      willDisplayCell:(UITableViewCell *)cell
+    forRowAtIndexPath:(NSIndexPath *)indexPath{
+        /// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理【cell之间没有分割线】，且不描边顶部
+        [cell roundedCornerLastCellByTableView:tableView
+                                     indexPath:indexPath
+                                   layerConfig:jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            model.roundingCornersRadii = CGSizeMake(JobsWidth(10.0), JobsWidth(10.0));
+            model.borderWidth = 1;
+            model.layerBorderCor = JobsGrayColor;
+        })];
+    }
     ```
-    
-  * 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
-
-    作用于：`- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath`
-
+  
     ```objective-c
-    /// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
-    /// - Parameters:
-    ///   - cellBgCor: UITableViewCell 的背景色
-    ///   - bottomLineCor: UITableViewCell 的底部线颜色（可用于模拟分割线）
-    ///   - cellOutLineCor: UITableViewCell 的外线颜色（cell边框）
-    ///   - cornerRadiusSize: 切角弧度
-    ///   - borderWidth: 线宽
-    ///   - dx: bounds 的 insetX
-    ///   - dy: bounds 的 insetY
-    - (void)cutLastTableViewCellByBackgroundCor:(UIColor *_Nullable)cellBgCor
-                                  bottomLineCor:(UIColor *_Nullable)bottomLineCor
-                                 cellOutLineCor:(UIColor *_Nullable)cellOutLineCor
-                               cornerRadiusSize:(CGSize)cornerRadiusSize
-                                    borderWidth:(CGFloat)borderWidth
-                                             dx:(CGFloat)dx
-                                             dy:(CGFloat)dy;
+    - (void)tableView:(UITableView *)tableView
+      willDisplayCell:(UITableViewCell *)cell
+    forRowAtIndexPath:(NSIndexPath *)indexPath{
+        /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
+        [cell roundedCornerFirstAndLastCellByTableView:tableView
+                                             indexPath:indexPath
+                                           layerConfig:jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+            model.roundingCornersRadii = CGSizeMake(JobsWidth(10.0), JobsWidth(10.0));
+            model.borderWidth = 1;
+            model.layerBorderCor = JobsGrayColor;
+        })];
+    }
     ```
-
+  
 * 其他
 
   * 隐藏最后一个单元格的分界线
@@ -8664,24 +8648,24 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
      willDisplayCell:(UITableViewCell *)cell
    forRowAtIndexPath:(NSIndexPath *)indexPath{
        /// 隐藏最后一个单元格的分界线
-       [tableView hideSeparatorLineAtLast:indexPath
-                                     cell:cell];
+       [tableView hideSeparatorLineAtLast:indexPath cell:cell];
        /// 自定义 UITableViewCell 的箭头
-      cell.img = JobsIMG(@"向右的箭头（大）");
-      @jobs_weakify(self)
-      [cell customAccessoryView:^(id data) {
-          @jobs_strongify(self)
-          JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
-          NSLog(@"MMM - %ld",cell.index);
-      }];
-      /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
-      [cell cutFirstAndLastTableViewCellWithBackgroundCor:HEXCOLOR(0xFFFFFF)
-                                            bottomLineCor:HEXCOLOR(0xFFFFFF) 
-                                           cellOutLineCor:HEXCOLOR(0xEEE2C8)
-                                         cornerRadiusSize:CGSizeMake(JobsWidth(8), JobsWidth(8))
-                                              borderWidth:JobsWidth(10)
-                                                       dx:JobsWidth(0)
-                                                      dy:JobsWidth(0)];
+       cell.img = JobsIMG(@"向右的箭头（大）");
+   //    @jobs_weakify(self)
+       [cell customAccessoryView:^(id data) {
+   //        @jobs_strongify(self)
+           JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)data;
+           JobsLog(@"MMM - %ld",cell.index);
+       }];
+       cell.accessoryView.resetWidth(10);
+       /// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线）
+       [cell roundedCornerLastCellByTableView:tableView
+                                    indexPath:indexPath
+                                  layerConfig:jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+           model.roundingCornersRadii = CGSizeMake(JobsWidth(10.0), JobsWidth(10.0));
+           model.borderWidth = 1;
+           model.layerBorderCor = JobsGrayColor;
+       })];
   }
   #pragma mark —— UIScrollViewDelegate
   - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
