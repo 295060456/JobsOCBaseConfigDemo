@@ -155,7 +155,7 @@ UITableViewCellProtocol_dynamic
         // 移除边框 Layer（避免复用残留）
         NSArray *sublayers = self.layer.sublayers.copy;
         for (CALayer *sublayer in sublayers) {
-            if ([sublayer.name isEqualToString:@"rounded-border-layer"]) {
+            if ([sublayer.name isEqualToString:RoundedBorderLayer]) {
                 [sublayer removeFromSuperlayer];
             }
         }return self.layer;
@@ -174,7 +174,7 @@ UITableViewCellProtocol_dynamic
         // 移除之前旧的 border layer，避免复用叠加
         NSArray *sublayers = self.layer.sublayers.copy;
         for (CALayer *sublayer in sublayers) {
-            if ([sublayer.name isEqualToString:@"rounded-border-layer"]) {
+            if ([sublayer.name isEqualToString:RoundedBorderLayer]) {
                 [sublayer removeFromSuperlayer];
             }
         }
@@ -185,46 +185,39 @@ UITableViewCellProtocol_dynamic
             borderLayer.strokeColor = layerConfig.layerBorderCor.CGColor;
             borderLayer.fillColor = UIColor.clearColor.CGColor;
             borderLayer.lineWidth = layerConfig.borderWidth;
-            borderLayer.name = @"rounded-border-layer";
+            borderLayer.name = RoundedBorderLayer;
         }));
     }return self.layer;
 }
 /// 以 section 为单位，仅对每个 section 的最后一行 cell 做圆角处理（cell 之间没有分割线），且不描边顶部
 -(__kindof CALayer *)roundedCornerLastCellByTableView:(UITableView *)tableView
                                             indexPath:(NSIndexPath *)indexPath
-                                          layerConfig:(JobsLocationModel *)layerConfig {
-
+                                          layerConfig:(JobsLocationModel *)layerConfig{
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSInteger numberOfRows = [tableView numberOfRowsInSection:indexPath.section];
-
     @jobs_weakify(self)
-
     if (jobsZeroSizeValue(layerConfig.roundingCornersRadii)) {
         layerConfig.roundingCornersRadii = CGSizeMake(JobsWidth(10.0), JobsWidth(10.0));
     }
-
     if (indexPath.row == numberOfRows - 1) {
         // 当前为该 section 的最后一个 cell，处理圆角遮罩
         UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                        byRoundingCorners:(UIRectCornerBottomLeft | UIRectCornerBottomRight)
                                                              cornerRadii:layerConfig.roundingCornersRadii];
-
         self.layer.mask = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
             @jobs_strongify(self)
             layer.frame = self.bounds;
             layer.path = maskPath.CGPath;
         });
-
         // 处理边框
         if (layerConfig.layerBorderCor && layerConfig.borderWidth > 0) {
             // 移除旧的边框图层
             NSArray *sublayers = self.layer.sublayers.copy;
             for (CALayer *sublayer in sublayers) {
-                if ([sublayer.name isEqualToString:@"rounded-border-layer"]) {
+                if ([sublayer.name isEqualToString:RoundedBorderLayer]) {
                     [sublayer removeFromSuperlayer];
                 }
             }
-
             CGFloat width = CGRectGetWidth(self.bounds);
             CGFloat height = CGRectGetHeight(self.bounds);
             CGFloat radius = layerConfig.roundingCornersRadii.height;
@@ -249,11 +242,9 @@ UITableViewCellProtocol_dynamic
                                clockwise:NO];
             // 右边竖线往上
             [borderPath addLineToPoint:CGPointMake(width, 0)];
-
             // 👉 左边竖线补充（修复左边断线问题）
             [borderPath moveToPoint:CGPointMake(0, height - radius)];
             [borderPath addLineToPoint:CGPointMake(0, 0)];
-
             // 添加边框图层
             self.layer.addSublayer(jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable borderLayer) {
                 @jobs_strongify(self)
@@ -262,7 +253,7 @@ UITableViewCellProtocol_dynamic
                 borderLayer.strokeColor = layerConfig.layerBorderCor.CGColor;
                 borderLayer.fillColor = UIColor.clearColor.CGColor;
                 borderLayer.lineWidth = layerConfig.borderWidth;
-                borderLayer.name = @"rounded-border-layer";
+                borderLayer.name = RoundedBorderLayer;
             }));
         }
     } else {
@@ -270,7 +261,85 @@ UITableViewCellProtocol_dynamic
         self.layer.mask = nil;
         NSArray *sublayers = self.layer.sublayers.copy;
         for (CALayer *sublayer in sublayers) {
-            if ([sublayer.name isEqualToString:@"rounded-border-layer"]) {
+            if ([sublayer.name isEqualToString:RoundedBorderLayer]) {
+                [sublayer removeFromSuperlayer];
+            }
+        }
+    }return self.layer;
+}
+/// 以section为单位，每个section的第一行的cell圆角化处理【cell之间没有分割线】
+-(__kindof CALayer *)roundedCornerFirstCellByTableView:(UITableView *)tableView
+                                             indexPath:(NSIndexPath *)indexPath
+                                           layerConfig:(JobsLocationModel *)layerConfig{
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    NSInteger numberOfRows = [tableView numberOfRowsInSection:indexPath.section];
+    @jobs_weakify(self)
+    if (jobsZeroSizeValue(layerConfig.roundingCornersRadii)) {
+        layerConfig.roundingCornersRadii = CGSizeMake(JobsWidth(10.0), JobsWidth(10.0));
+    }
+
+    if (indexPath.row == 0 && numberOfRows > 0) {
+        // 当前为该 section 的第一个 cell，处理圆角遮罩
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                       byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
+                                                             cornerRadii:layerConfig.roundingCornersRadii];
+        self.layer.mask = jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable layer) {
+            @jobs_strongify(self)
+            layer.frame = self.bounds;
+            layer.path = maskPath.CGPath;
+        });
+        // 处理边框
+        if (layerConfig.layerBorderCor && layerConfig.borderWidth > 0) {
+            // 移除旧的边框图层
+            NSArray *sublayers = self.layer.sublayers.copy;
+            for (CALayer *sublayer in sublayers) {
+                if ([sublayer.name isEqualToString:RoundedBorderLayer]) {
+                    [sublayer removeFromSuperlayer];
+                }
+            }
+            CGFloat width = CGRectGetWidth(self.bounds);
+            CGFloat height = CGRectGetHeight(self.bounds);
+            CGFloat radius = layerConfig.roundingCornersRadii.height;
+
+            UIBezierPath *borderPath = [UIBezierPath bezierPath];
+            // 左上圆弧起点
+            [borderPath moveToPoint:CGPointMake(0, radius)];
+            // 左上圆角
+            [borderPath addArcWithCenter:CGPointMake(radius, radius)
+                                  radius:radius
+                              startAngle:M_PI
+                                endAngle:3 * M_PI_2
+                               clockwise:YES];
+            // 顶部边线到右上角
+            [borderPath addLineToPoint:CGPointMake(width - radius, 0)];
+            // 右上圆角
+            [borderPath addArcWithCenter:CGPointMake(width - radius, radius)
+                                  radius:radius
+                              startAngle:3 * M_PI_2
+                                endAngle:0
+                               clockwise:YES];
+            // 右边竖线到底部
+            [borderPath addLineToPoint:CGPointMake(width, height)];
+            // 👉 左边竖线补充（修复左边断线问题）
+            [borderPath moveToPoint:CGPointMake(0, radius)];
+            [borderPath addLineToPoint:CGPointMake(0, height)];
+            // 添加边框图层
+            self.layer.addSublayer(jobsMakeCAShapeLayer(^(__kindof CAShapeLayer * _Nullable borderLayer) {
+                @jobs_strongify(self)
+                borderLayer.frame = self.bounds;
+                borderLayer.path = borderPath.CGPath;
+                borderLayer.strokeColor = layerConfig.layerBorderCor.CGColor;
+                borderLayer.fillColor = UIColor.clearColor.CGColor;
+                borderLayer.lineWidth = layerConfig.borderWidth;
+                borderLayer.name = RoundedBorderLayer;
+            }));
+        }
+    } else {
+        // 非第一个 cell，清除圆角遮罩和边框
+        self.layer.mask = nil;
+        NSArray *sublayers = self.layer.sublayers.copy;
+        for (CALayer *sublayer in sublayers) {
+            if ([sublayer.name isEqualToString:RoundedBorderLayer]) {
                 [sublayer removeFromSuperlayer];
             }
         }
@@ -279,7 +348,7 @@ UITableViewCellProtocol_dynamic
 /// 只描 UITableViewCell 的左右两边
 -(void)leftAndRightLineCellByTableView:(UITableView *)tableView
                              indexPath:(NSIndexPath *)indexPath
-                           layerConfig:(JobsLocationModel *)layerConfig{
+                           layerConfig:(JobsLocationModel *)layerConfig {
     // 移除之前添加的边框（防止复用时重复）
     NSArray<CALayer *> *sublayers = self.contentView.layer.sublayers.copy;
     for (CALayer *layer in sublayers) {
@@ -288,19 +357,26 @@ UITableViewCellProtocol_dynamic
             [layer removeFromSuperlayer];
         }
     }
-    if(!layerConfig.layerBorderCor) layerConfig.layerBorderCor = JobsGrayColor;
-    if(!layerConfig.borderWidth) layerConfig.borderWidth = JobsWidth(1);
+
+    if (!layerConfig.layerBorderCor) layerConfig.layerBorderCor = JobsGrayColor;
+    if (!layerConfig.borderWidth) layerConfig.borderWidth = JobsWidth(1);
+
+    CGFloat borderWidth = layerConfig.borderWidth;
+    CGFloat height = CGRectGetHeight(self.contentView.bounds);
+    CGFloat width  = CGRectGetWidth(self.contentView.bounds);
+
     // 左边线
     self.contentView.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable leftLayer) {
         leftLayer.name = @"left-border";
         leftLayer.backgroundColor = layerConfig.layerBorderCor.CGColor;
-        leftLayer.frame = CGRectMake(0, 0, layerConfig.borderWidth, self.contentView.bounds.size.height);
+        leftLayer.frame = CGRectMake(0, 0, borderWidth, height);
     }));
+
     // 右边线
     self.contentView.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable rightLayer) {
         rightLayer.name = @"right-border";
         rightLayer.backgroundColor = layerConfig.layerBorderCor.CGColor;
-        rightLayer.frame = CGRectMake(0, 0, layerConfig.borderWidth, self.contentView.bounds.size.height);
+        rightLayer.frame = CGRectMake(width - borderWidth, 0, borderWidth, height);
     }));
 }
 /// 除了最后一行以外，所有的cell的最下面的线的颜色为：layerConfig.layerBorderCor

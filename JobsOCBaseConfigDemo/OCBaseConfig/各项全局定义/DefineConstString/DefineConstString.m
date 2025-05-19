@@ -170,3 +170,5 @@ NSString *const 主标题文字默认占位内容 = @"主标题文字默认占�
 NSString *const 副标题文字默认占位内容 = @"副标题文字默认占位内容";
 NSString *const B体育 = @"B体育";
 NSString *const BSPORTS = @"BSPORTS";
+/// 其他
+NSString *const RoundedBorderLayer = @"rounded-border-layer";

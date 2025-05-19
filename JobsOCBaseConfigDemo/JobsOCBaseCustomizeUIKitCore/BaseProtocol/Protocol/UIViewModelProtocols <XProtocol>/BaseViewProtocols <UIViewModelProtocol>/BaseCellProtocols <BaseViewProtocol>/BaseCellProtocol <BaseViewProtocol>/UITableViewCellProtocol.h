@@ -88,6 +88,10 @@ Prop_assign()CGFloat imageViewFrameOffsetHeight;/// 负值缩小，正值放大
 -(__kindof CALayer *)roundedCornerLastCellByTableView:(UITableView *)tableView
                                             indexPath:(NSIndexPath *)indexPath
                                           layerConfig:(JobsLocationModel *)layerConfig;
+/// 以section为单位，每个section的第一行的cell圆角化处理【cell之间没有分割线】
+-(__kindof CALayer *)roundedCornerFirstCellByTableView:(UITableView *)tableView
+                                             indexPath:(NSIndexPath *)indexPath
+                                           layerConfig:(JobsLocationModel *)layerConfig;
 /// 只描 UITableViewCell 的左右两边
 -(void)leftAndRightLineCellByTableView:(UITableView *)tableView
                              indexPath:(NSIndexPath *)indexPath

@@ -170,3 +170,5 @@ FOUNDATION_EXTERN NSString *_Nonnull const 主标题文字默认占位内容;
 FOUNDATION_EXTERN NSString *_Nonnull const 副标题文字默认占位内容;
 FOUNDATION_EXTERN NSString *_Nonnull const B体育;
 FOUNDATION_EXTERN NSString *_Nonnull const BSPORTS;
+/// 其他
+FOUNDATION_EXTERN NSString *_Nonnull const RoundedBorderLayer;
