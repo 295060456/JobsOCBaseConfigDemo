@@ -1,13 +1,13 @@
 //
-//  UITableView+JobsEmptyData.m
+//  UITableView+EmptyData.m
 //  FM
 //
 //  Created by Admin on 14/11/2024.
 //
 
-#import "UITableView+JobsEmptyData.h"
+#import "UITableView+EmptyData.h"
 
-@implementation UITableView (JobsEmptyData)
+@implementation UITableView (EmptyData)
 
 +(void)initialize{
     static dispatch_once_t onceToken;

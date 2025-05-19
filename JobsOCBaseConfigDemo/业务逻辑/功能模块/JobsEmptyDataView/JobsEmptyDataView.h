@@ -14,10 +14,10 @@
 #import "MacroDef_String.h"
 #import "UILabel+Extra.h"
 #import "UIView+Extras.h"
-#import "UIScrollView+JobsEmptyData.h"
+#import "UIScrollView+EmptyData.h"
 #import "BaseView.h"
 
-#import "UITableView+JobsEmptyData.h"
-#import "UICollectionView+JobsEmptyData.h"
+#import "UITableView+EmptyData.h"
+#import "UICollectionView+EmptyData.h"
 
 #endif /* JobsEmptyDataView_h */

@@ -725,6 +725,7 @@ JobsKey(_cornerRadii)
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
         @jobs_strongify(self)
+        if(!subView) return nil;
         [self addSubview:subView];
         if(subView.masonryBlock){
             [subView mas_makeConstraints:subView.masonryBlock];

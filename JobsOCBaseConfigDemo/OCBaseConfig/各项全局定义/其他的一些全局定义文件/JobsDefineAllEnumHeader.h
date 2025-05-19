@@ -104,6 +104,16 @@ typedef NS_ENUM(NSInteger, JobsAppStatus) {
     JobsAppStatus_All
 };
 #endif /* JOBS_APP_STATUS_ENUM_DEFINED */
+/// 无数据占位图的类型
+#ifndef JobsEmptyViewType_h
+#define JobsEmptyViewType_h
+typedef NS_OPTIONS(NSUInteger, JobsEmptyViewType) {
+    JobsEmptyViewTypeNone       = 0,
+    JobsEmptyViewTypeLabel      = 1 << 0,
+    JobsEmptyViewTypeButton     = 1 << 1,
+    JobsEmptyViewTypeCustomView = 1 << 2,
+};
+#endif /* JobsEmptyViewType_h */
 /// 终端类型
 #ifndef JOBS_OPERATION_TYPE_ENUM_DEFINED
 #define JOBS_OPERATION_TYPE_ENUM_DEFINED

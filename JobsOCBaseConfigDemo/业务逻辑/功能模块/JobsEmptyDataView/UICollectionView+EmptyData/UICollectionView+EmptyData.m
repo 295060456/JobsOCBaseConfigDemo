@@ -1,13 +1,13 @@
 //
-//  UICollectionView+JobsEmptyData.m
+//  UICollectionView+EmptyData.m
 //  FM
 //
 //  Created by Admin on 14/11/2024.
 //
 
-#import "UICollectionView+JobsEmptyData.h"
+#import "UICollectionView+EmptyData.h"
 
-@implementation UICollectionView (JobsEmptyData)
+@implementation UICollectionView (EmptyData)
 
 +(void)initialize{
     static dispatch_once_t onceToken;
@@ -18,9 +18,20 @@
 }
 
 -(void)jobsReloadData{
+    // 调用原始 reloadData
     [self jobsReloadData];
-//    self.showEmptyLabelBy(self.textModelEmptyData);
-    self.showEmptyButtonBy(self.buttonModelEmptyData);
+    switch (self.jobsEmptyViewType) {
+        case JobsEmptyViewTypeLabel:{
+            self.showEmptyLabelBy(self.textModelEmptyData);
+        }break;
+        case JobsEmptyViewTypeButton:{
+            self.showEmptyButtonBy(self.buttonModelEmptyData);
+        }break;
+        case JobsEmptyViewTypeCustomView:{
+            self.showEmptyViewBy(self.emptyDataView);
+        }break;
+        default:break;
+    }
 }
 #pragma mark —— 一些私有方法
 -(BOOL)hasData{
@@ -34,18 +45,34 @@
     }return hasData;
 }
 
+-(JobsReturnViewByViewBlock _Nonnull)showEmptyViewBy{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(__kindof UIView *view){
+        @jobs_strongify(self)
+        if(self.hasData){
+            self.cleanSubviewBy(UIView.class);
+            return nil;
+        }else{
+            self.cleanSubviewBy(UIView.class);
+            view.frame = self.bounds;
+            self.addSubview(view);
+            return view;
+        }
+    };
+}
+
 -(JobsReturnViewByButtonModelBlock _Nonnull)showEmptyButtonBy{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIButtonModel *model){
         @jobs_strongify(self)
         if(self.hasData){
-            self.cleanSubviewBy(BaseView.class);
+            self.cleanSubviewBy(UIView.class);
             return nil;
         }else{
             return jobsMakeBaseView(^(__kindof BaseView *_Nullable view) {
                 @jobs_strongify(self)
                 view.frame = self.bounds;
-                self.cleanSubviewBy(BaseView.class);
+                self.cleanSubviewBy(UIView.class);
                 self.addSubview(view);
                 view.addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
                     data.title = JobsInternationalization(@"No Datas");
@@ -69,13 +96,13 @@
     return ^__kindof UIView *_Nullable(UITextModel *model){
         @jobs_strongify(self)
         if(self.hasData){
-            self.cleanSubviewBy(BaseView.class);
+            self.cleanSubviewBy(UIView.class);
             return nil;
         }else{
             return jobsMakeBaseView(^(__kindof BaseView *_Nullable view) {
                 @jobs_strongify(self)
                 view.frame = self.bounds;
-                self.cleanSubviewBy(BaseView.class);
+                self.cleanSubviewBy(UIView.class);
                 self.addSubview(view);
                 view.addSubview(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
                     label.textAlignment = model.textAlignment ? : NSTextAlignmentCenter;

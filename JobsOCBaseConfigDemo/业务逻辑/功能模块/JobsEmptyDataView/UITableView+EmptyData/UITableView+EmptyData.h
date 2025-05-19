@@ -1,5 +1,5 @@
 //
-//  UICollectionView+JobsEmptyData.h
+//  UITableView+EmptyData.h
 //  FM
 //
 //  Created by Admin on 14/11/2024.
@@ -11,12 +11,12 @@
 #import "MacroDef_String.h"
 #import "UILabel+Extra.h"
 #import "UIView+Extras.h"
-#import "UIScrollView+JobsEmptyData.h"
+#import "UIScrollView+EmptyData.h"
 #import "BaseView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UICollectionView (JobsEmptyData)
+@interface UITableView (EmptyData)
 
 @end
 

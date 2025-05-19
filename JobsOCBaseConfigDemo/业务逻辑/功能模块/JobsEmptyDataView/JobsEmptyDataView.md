@@ -24,29 +24,39 @@
 * 如果需要对按钮图标的位置进行补偿偏移：（`UICollectionView`同理）
 
   ```objective-c
+  @synthesize tableView = _tableView;
   - (UITableView *)tableView {
       if (!_tableView) {
-          _tableView = UITableView.initWithStylePlain;
-          _tableView.showsVerticalScrollIndicator = NO;
-          _tableView.showsHorizontalScrollIndicator = NO;
-          _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-          _tableView.dataLink(self);
-          _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-          
-                  _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-              data.title = JobsInternationalization(@"No Datas");
-              data.titleCor = JobsWhiteColor;
-              data.titleFont = bayonRegular(JobsWidth(30));
-              data.normalImage = JobsIMG(@"暂无数据");
-              data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-              data.jobsOffsetX = JobsWidth(-100);
-              data.jobsOffsetY = 0;
-          });
-        
-          [self addSubview:_tableView];
-          [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+          @jobs_weakify(self)
+          _tableView = self.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+              @jobs_strongify(self)
+              tableView.showsVerticalScrollIndicator = NO;
+              tableView.showsHorizontalScrollIndicator = NO;
+              tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+              tableView.dataLink(self);
+              tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+              
+              {
+  //                tableView.showEmptyViewBy(FMMaintenanceView
+  //                                          .BySize(FMMaintenanceView.viewSizeByModel(nil))
+  //                                          .JobsRichViewByModel2(nil)
+  //                                          .JobsBlock1(^(id  _Nullable data) {
+  //
+  //                                          }));
+                  
+                  tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                      data.title = JobsInternationalization(@"No Datas");
+                      data.titleCor = JobsWhiteColor;
+                      data.titleFont = bayonRegular(JobsWidth(30));
+                      data.normalImage = JobsIMG(@"暂无数据");
+                      data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+                      data.jobsOffsetX = JobsWidth(-100);
+                      data.jobsOffsetY = 0;
+                  });
+              }
+          })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
               make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-          }];
+          }).on();
       }return _tableView;
   }
   ```
@@ -55,23 +65,33 @@
   
   
   ```objective-c
+  @synthesize tableView = _tableView;
   - (UITableView *)tableView {
       if (!_tableView) {
-          _tableView = UITableView.initWithStylePlain;
-          _tableView.showsVerticalScrollIndicator = NO;
-          _tableView.showsHorizontalScrollIndicator = NO;
-          _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-          _tableView.dataLink(self);
-          _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-          _tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-              /// 这里不显示，传没有配置的UIButtonModel
-          });
-        
-          [self addSubview:_tableView];
-          [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+          @jobs_weakify(self)
+          _tableView = self.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+              @jobs_strongify(self)
+              tableView.showsVerticalScrollIndicator = NO;
+              tableView.showsHorizontalScrollIndicator = NO;
+              tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+              tableView.dataLink(self);
+              tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+              
+              {
+  //                tableView.showEmptyViewBy(FMMaintenanceView
+  //                                          .BySize(FMMaintenanceView.viewSizeByModel(nil))
+  //                                          .JobsRichViewByModel2(nil)
+  //                                          .JobsBlock1(^(id  _Nullable data) {
+  //
+  //                                          }));
+                  
+                  tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                      /// 这里不显示，传没有配置的UIButtonModel
+                  });
+              }
+          })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
               make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-          }];
+          }).on();
       }return _tableView;
   }
   ```

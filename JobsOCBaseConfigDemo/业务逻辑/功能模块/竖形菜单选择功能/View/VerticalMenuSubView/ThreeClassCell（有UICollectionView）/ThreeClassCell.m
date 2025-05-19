@@ -81,7 +81,7 @@ Prop_copy()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个ce
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return 0;//self.dataArray.count;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView
@@ -105,6 +105,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
                                                  self.sectionInsetBottom,
                                                  self.sectionInsetRight);
         }));
+        
+        {
+            _collectionView.showEmptyViewBy(FMMaintenanceView
+                                            .BySize(FMMaintenanceView.viewSizeByModel(nil))
+                                            .JobsRichViewByModel2(nil)
+                                            .JobsBlock1(^(id  _Nullable data) {
+                                                
+                                            }));
+        }
+        
         _collectionView.dataLink(self);
         _collectionView.frame = CGRectMake(JobsWidth(8.76),
                                            0,

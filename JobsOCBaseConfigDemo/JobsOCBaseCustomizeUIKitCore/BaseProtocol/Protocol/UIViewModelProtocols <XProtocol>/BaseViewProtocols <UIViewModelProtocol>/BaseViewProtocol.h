@@ -39,6 +39,7 @@ Prop_strong(nullable)__kindof PDFView *pdfView;
 Prop_strong(nullable)__kindof UIImageView *imageView;
 Prop_strong(nullable)__kindof UIButton *button;
 Prop_strong(nullable)__kindof UILabel *label;
+Prop_strong(nullable)__kindof UILabel *subLabel;
 Prop_strong(nullable)__kindof UITextView *textView;
 Prop_strong(nullable)__kindof SZTextView *szTextView;
 Prop_strong(nullable)__kindof UITextField *textField;
@@ -178,6 +179,7 @@ NS_ASSUME_NONNULL_END
 @synthesize imageView = _imageView;\
 @synthesize button = _button;\
 @synthesize label = _label;\
+@synthesize subLabel = _subLabel;\
 @synthesize textView = _textView;\
 @synthesize szTextView = _szTextView;\
 @synthesize jobsTextView = _jobsTextView;\
@@ -214,6 +216,7 @@ NS_ASSUME_NONNULL_END
 @dynamic imageView;\
 @dynamic button;\
 @dynamic label;\
+@dynamic subLabel;\
 @dynamic textView;\
 @dynamic szTextView;\
 @dynamic jobsTextView;\
