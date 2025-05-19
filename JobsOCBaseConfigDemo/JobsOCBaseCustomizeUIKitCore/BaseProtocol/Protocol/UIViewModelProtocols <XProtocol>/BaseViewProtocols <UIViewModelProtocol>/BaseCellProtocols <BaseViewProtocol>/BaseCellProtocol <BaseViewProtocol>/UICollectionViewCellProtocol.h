@@ -8,14 +8,19 @@
 #import <Foundation/Foundation.h>
 #import "UIView+Extras.h"
 #import "BaseCellProtocol.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol UICollectionViewCellProtocol <BaseCellProtocol>
 @optional
-
+#pragma mark —— 设置UICollectionViewCell
 +(instancetype)cellWithCollectionView:(UICollectionView *_Nonnull)collectionView
                          forIndexPath:(NSIndexPath *_Nonnull)indexPath;
+-(JobsReturnCollectionViewCellByIndexPathBlock _Nonnull)byIndexPath;
+-(JobsReturnCollectionViewCellByCorBlock _Nonnull)byContentViewBgCor;
+-(JobsReturnCollectionViewCellByDelegateBlock _Nonnull)byDelegate;
+#pragma mark —— 获取
 /// 获取这个UICollectionViewCell所承载的UICollectionView
 -(__kindof UICollectionView *_Nullable)jobsGetCurrentCollectionView;
 /// 获取当前的UICollectionViewCell对应的indexPath

@@ -47,6 +47,9 @@ Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮�
 /// 一般用于 UIButton
 Prop_copy(nullable)jobsByBtnBlock onClickBlock;
 Prop_copy(nullable)jobsByBtnBlock onLongPressGestureEventBlock;
+#pragma mark —— 挂载的对象
+Prop_strong(nullable)UIView *VIEW;
+Prop_strong(nullable)UIViewController *VC;
 #pragma mark —— ZFDouYinCell
 -(void)zf_douyinRotation;
 
@@ -78,6 +81,8 @@ NS_ASSUME_NONNULL_END
 @synthesize longPressGestureEventBlock = _longPressGestureEventBlock;\
 @synthesize onClickBlock = _onClickBlock;\
 @synthesize onLongPressGestureEventBlock = _onLongPressGestureEventBlock;\
+@synthesize VIEW = _VIEW;\
+@synthesize VC = _VC;\
 
 #endif /* UIViewModelOthersProtocol_synthesize */
 
@@ -103,6 +108,8 @@ NS_ASSUME_NONNULL_END
 @dynamic longPressGestureEventBlock;\
 @dynamic onClickBlock;\
 @dynamic onLongPressGestureEventBlock;\
+@dynamic VIEW;\
+@dynamic VC;\
 
 #endif /* UIViewModelOthersProtocol_dynamic */
 

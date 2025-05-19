@@ -109,9 +109,12 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MyFansTBVCell *cell = MyFansTBVCell.cellStyleValue1WithTableView(tableView);
-    cell.jobsRichElementsTableViewCellBy(@(indexPath.row % 4));
-    return cell;
+    return MyFansTBVCell.cellStyleValue1WithTableView(tableView)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(@(indexPath.row % 4))
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
 }
 /// BaseViewProtocol
 @synthesize tableView = _tableView;

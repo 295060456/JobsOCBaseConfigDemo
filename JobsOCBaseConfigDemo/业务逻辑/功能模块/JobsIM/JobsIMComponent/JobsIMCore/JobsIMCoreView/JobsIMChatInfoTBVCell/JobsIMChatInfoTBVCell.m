@@ -135,6 +135,15 @@ UITextFieldProtocol_synthesize_part2
         } return self;
     };
 }
+#pragma mark —— UITableViewCellProtocol
+-(JobsReturnMGSwipeTableCellByDelegateBlock _Nonnull)byDelegate{
+    @jobs_weakify(self)
+    return ^JobsIMChatInfoTBVCell *_Nonnull(id<MGSwipeTableCellDelegate> delegate){
+        @jobs_strongify(self)
+        self.delegate = delegate;
+        return self;
+    };
+}
 #pragma mark —— 一些私有化方法
 -(NSArray *)createLeftButtons{
     @jobs_weakify(self)
@@ -151,6 +160,24 @@ UITextFieldProtocol_synthesize_part2
             }]);
         }
     });;
+}
+
+-(JobsReturnTableViewCellByBOOLBlock _Nonnull)byAllowsMultipleSwipe{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.allowsMultipleSwipe = YES;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByBOOLBlock _Nonnull)byShowChatUserName{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.isShowChatUserName = YES;
+        return self;
+    };
 }
 
 -(NSArray *)createRightButtons{

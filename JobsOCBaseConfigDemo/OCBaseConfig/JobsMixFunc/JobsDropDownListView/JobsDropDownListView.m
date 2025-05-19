@@ -103,9 +103,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvCellMutArr[indexPath.row];
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
-    return cell;
+    return (JobsBaseTableViewCell *)self.tbvCellMutArr[indexPath.row]
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
 }
 
 - (void)tableView:(UITableView *)tableView

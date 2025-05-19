@@ -117,9 +117,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.row];
-    cell.JobsRichViewByModel2(self.dataMutArr[indexPath.row]);
-    return cell;
+    return self.tbvSectionRowCellMutArr[indexPath.row]
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
 }
 
 - (CGFloat)tableView:(UITableView *)tableView

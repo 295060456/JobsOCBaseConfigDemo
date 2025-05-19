@@ -7,14 +7,11 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
+#import "BaseCollectionViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UICollectionView (RegistrationTracking)
-
-Prop_strong()NSMutableSet <NSString *>*registeredIdentifiers;/// 自定义标志位
-// 检查某个 reuseIdentifier 是否已注册
--(JobsReturnBOOLByStringBlock _Nonnull)isRegisteredForReuseIdentifier;
+@interface UICollectionView (RegistrationTracking)<BaseCollectionViewProtocol>
 
 @end
 

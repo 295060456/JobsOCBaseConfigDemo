@@ -144,10 +144,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = UITableViewCell.cellStyleValue1WithTableView(tableView);
-    cell.accessoryType = self.dataMutArr[indexPath.row].appLanguage == JobsLanguageManager.language ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
-    return cell;
+    return UITableViewCell.cellStyleValue1WithTableView(tableView)
+        .byAccessoryType(self.dataMutArr[indexPath.row].appLanguage == JobsLanguageManager.language ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
 }
 
 - (CGFloat)tableView:(UITableView *)tableView

@@ -10,9 +10,9 @@
 @implementation UITableViewCell (UITableViewCellProtocol)
 #pragma mark —— UITableViewCellProtocol
 UITableViewCellProtocol_dynamic
-+(JobsReturnTableViewCellByTableViewCellStyleBlock _Nonnull)initTableViewCellWithStyle{
++(JobsReturnTableViewCellByCellStyleBlock _Nonnull)initTableViewCellWithStyle{
     @jobs_weakify(self)
-    return ^(UITableViewCellStyle tableViewCellStyle) {
+    return ^__kindof UITableViewCell *_Nullable(UITableViewCellStyle tableViewCellStyle) {
         @jobs_strongify(self)
         return [self.alloc initWithStyle:tableViewCellStyle
                          reuseIdentifier:self.class.description];
@@ -28,7 +28,7 @@ UITableViewCellProtocol_dynamic
 /// UITableViewCellStyleDefault = 左边：imageView＋textLabel
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     @jobs_weakify(self)
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
         UITableViewCell *cell = tableView.tableViewCellClass(self.class,JobsEmpty);
         if (!cell) {
@@ -40,7 +40,7 @@ UITableViewCellProtocol_dynamic
 /// UITableViewCellStyleValue1 = 左边：imageView＋textLabel；右边：detailTextLabel
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     @jobs_weakify(self)
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
         UITableViewCell *cell = tableView.tableViewCellClass(self.class,JobsEmpty);
         if (!cell) {
@@ -52,7 +52,7 @@ UITableViewCellProtocol_dynamic
 /// UITableViewCellStyleValue2 = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
     @jobs_weakify(self)
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
         UITableViewCell *cell = tableView.tableViewCellClass(self.class,JobsEmpty);
         if (!cell) {
@@ -64,7 +64,7 @@ UITableViewCellProtocol_dynamic
 /// UITableViewCellStyleSubtitle = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
     @jobs_weakify(self)
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
         UITableViewCell *cell = (UITableViewCell *)tableView.tableViewCellClass(self.class,JobsEmpty);
         if (!cell) {
@@ -130,7 +130,303 @@ UITableViewCellProtocol_dynamic
         return JobsWidth(44);
     };
 }
+
+-(JobsReturnTableViewCellByImageBlock _Nonnull)byImageViewData{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(UIImage *_Nonnull image){
+        @jobs_strongify(self)
+        self.imageView.image = image;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCorBlock _Nonnull)byTextLabelTextCor{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(UIColor *_Nonnull cor){
+        @jobs_strongify(self)
+        self.textLabel.textColor = cor;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCorBlock _Nonnull)byDetailTextLabelCor{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(UIColor *_Nonnull cor){
+        @jobs_strongify(self)
+        self.detailTextLabel.textColor = cor;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByFontBlock _Nonnull)byTextLabelFont{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(UIFont *_Nonnull font){
+        @jobs_strongify(self)
+        self.textLabel.font = font;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByFontBlock _Nonnull)byDetailTextLabellFont{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(UIFont *_Nonnull font){
+        @jobs_strongify(self)
+        self.detailTextLabel.font = font;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByAccessoryTypeBlock _Nonnull)byAccessoryType{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(UITableViewCellAccessoryType type){
+        @jobs_strongify(self)
+        self.accessoryType = type;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByIndexPathBlock _Nonnull)byIndexPath{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(NSIndexPath *_Nonnull indexPath){
+        @jobs_strongify(self)
+        self.indexPath = indexPath;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByIndexBlock _Nonnull)byIndex{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(NSInteger index){
+        @jobs_strongify(self)
+        self.index = index;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCorBlock _Nonnull)byContentViewBgCor{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(UIColor *_Nonnull cor){
+        @jobs_strongify(self)
+        self.contentView.backgroundColor = cor;
+        return self;
+    };
+}
 #pragma mark —— UITableViewCellProtocol
+-(JobsReturnTableViewCellByFrameBlock _Nonnull)byTextLabelFrame{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGRect frame){
+        @jobs_strongify(self)
+        self.textLabelFrame = frame;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByFrameBlock _Nonnull)byDetailTextLabelFrame{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGRect frame){
+        @jobs_strongify(self)
+        self.detailTextLabelFrame = frame;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByFrameBlock _Nonnull)byTbvCellImageViewFrame{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGRect frame){
+        @jobs_strongify(self)
+        self.tbvCellImageViewFrame = frame;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellBySizeBlock _Nonnull)byTextLabelSize{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGSize size){
+        @jobs_strongify(self)
+        self.textLabelSize = size;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellBySizeBlock _Nonnull)byDetailTextLabelSize{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGSize size){
+        @jobs_strongify(self)
+        self.detailTextLabelSize = size;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellBySizeBlock _Nonnull)byImageViewSize{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGSize size){
+        @jobs_strongify(self)
+        self.imageViewSize = size;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelWidth{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.textLabelWidth = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelHeight{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.textLabelHeight = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelWidth{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.detailTextLabelWidth = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelHeight{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.detailTextLabelHeight = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewWidth{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.imageViewWidth = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewHeight{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.imageViewHeight = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetX{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.textLabelFrameOffsetX = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetY{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.textLabelFrameOffsetY = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetWidth{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.textLabelFrameOffsetWidth = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetHeight{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.textLabelFrameOffsetHeight = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetX{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.detailTextLabelOffsetX = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetY{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.detailTextLabelOffsetY = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetWidth{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.detailTextLabelOffsetWidth = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetHeight{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.detailTextLabelOffsetHeight = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetX{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.imageViewFrameOffsetX = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetY{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.imageViewFrameOffsetY = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetWidth{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.imageViewFrameOffsetWidth = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetHeight{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.imageViewFrameOffsetHeight = data;
+        return self;
+    };
+}
 /// 以section为单位，每个section的第一行和最后一行的cell圆角化处理【cell之间没有分割线】
 -(__kindof CALayer *)roundedCornerFirstAndLastCellByTableView:(UITableView *)tableView
                                                     indexPath:(NSIndexPath *)indexPath

@@ -202,8 +202,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = UITableViewCell.cellStyleValue1WithTableView(tableView);
-    return cell;
+    return UITableViewCell.cellStyleValue1WithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryNone)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(nil)
+        .JobsBlock1(^(id _Nullable data) {
+         
+        });
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)editBtn{

@@ -8,13 +8,14 @@
 #import <UIKit/UIKit.h>
 #import "BaseCellProtocol.h"
 #import "UIMarkProtocol.h"
-
-#import "JobsRightBtnsView.h"
-
 #import "UIViewModelOthersProtocol.h"
+#import "DefineProperty.h"
+#import "JobsRightBtnsView.h"
 #import "VideoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@class JobsVideoTBVCell;
+typedef JobsVideoTBVCell *_Nonnull(^JobsReturnVideoTBVCellByDelegateBlock)(id<UIViewModelOthersProtocol> delegate);
 
 @interface JobsVideoTBVCell : UITableViewCell
 <
@@ -22,7 +23,8 @@ BaseCellProtocol,
 UIMarkProtocol
 >
 
-@property(nonatomic,weak)id<UIViewModelOthersProtocol> delegate;
+Prop_weak()id<UIViewModelOthersProtocol> delegate;
+-(JobsReturnVideoTBVCellByDelegateBlock _Nonnull)byDelegate;
 
 @end
 

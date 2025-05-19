@@ -125,9 +125,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsUserHeaderDataViewTBVCell *cell = JobsUserHeaderDataViewTBVCell.cellStyleValue2WithTableView(tableView);
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
-    return cell;
+    return JobsUserHeaderDataViewTBVCell.cellStyleValue2WithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
 }
 
 - (CGFloat)tableView:(UITableView *)tableView

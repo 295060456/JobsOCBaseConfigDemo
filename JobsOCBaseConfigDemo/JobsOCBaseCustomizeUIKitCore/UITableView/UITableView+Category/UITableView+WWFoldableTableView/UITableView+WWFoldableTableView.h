@@ -11,13 +11,14 @@
 #import <objc/runtime.h>
 #import "MacroDef_Sys.h"
 #import "MacroDef_SysWarning.h"
+#import "DefineProperty.h"
 
 @interface UITableView (WWFoldableTableView)
 /// 设为YES，让tableView具备折叠功能
-@property (assign, nonatomic) BOOL ww_foldable;
+Prop_assign()BOOL ww_foldable;
 /// 返回某个section的折叠状态。YES - 折叠中
 -(BOOL)ww_isSectionFolded:(NSInteger)section;
-///  设置指定section的折叠状态。
+/// 设置指定section的折叠状态。
 -(void)ww_foldSection:(NSInteger)section fold:(BOOL)fold;
 
 @end

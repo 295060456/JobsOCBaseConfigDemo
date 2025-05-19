@@ -193,12 +193,12 @@ numberOfRowsInSection:(NSInteger)section{
 
 -(__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LeftCell *cell = LeftCell.cellStyleDefaultWithTableView(tableView);
     @jobs_weakify(self)
-    cell.jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
-        @jobs_strongify(self)
-        data.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
-    }));return cell;
+    return LeftCell.cellStyleDefaultWithTableView(tableView)
+        .jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
+            @jobs_strongify(self)
+            data.textModel.text = self.titleMutArr[indexPath.row].textModel.text;
+        }));
 }
 
 -(CGFloat)tableView:(__kindof UITableView *)tableView

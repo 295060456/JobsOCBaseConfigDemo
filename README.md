@@ -2864,11 +2864,15 @@ classDiagram
       return self.titleMutArr.count;
   }
   
-  - (__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
+  -(__kindof UITableViewCell *)tableView:(__kindof UITableView *)tableView
                     cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-      FMMenuTBVCell *cell = FMMenuTBVCell.cellStyleDefaultWithTableView(tableView);
-      cell.jobsRichElementsCellBy(self.titleMutArr[indexPath.row]);
-      return cell;
+      return FMMenuTBVCell.cellStyleDefaultWithTableView(tableView)
+          .byAccessoryType(UITableViewCellAccessoryNone)
+          .byIndexPath(indexPath)
+          .jobsRichElementsTableViewCellBy(self.titleMutArr[indexPath.row])
+              .JobsBlock1(^(id _Nullable data) {
+               
+              });
   }
   
   - (CGFloat)tableView:(__kindof UITableView *)tableView
@@ -8616,12 +8620,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    }
    
    - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
-                	    cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-       JobsBaseTableViewCell *cell = self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
-       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-       cell.indexPath = indexPath;
-       cell.richElementsInCellWithModel(self.dataMutArr[indexPath.section][indexPath.row]);
-       return cell;
+            cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+       return JobsBaseTableViewCell.cellStyleDefaultWithTableView(tableView)
+           .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+           .byIndexPath(indexPath)
+           .jobsRichElementsTableViewCellBy(self.datas[indexPath.row])
+               .JobsBlock1(^(id _Nullable data) {
+                
+               });
    }
    
    - (CGFloat)tableView:(UITableView *)tableView
@@ -8664,8 +8670,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                                   layerConfig:jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
            model.roundingCornersRadii = CGSizeMake(JobsWidth(10.0), JobsWidth(10.0));
            model.borderWidth = 1;
-           model.layerBorderCor = JobsGrayColor;
-       })];
+          model.layerBorderCor = JobsGrayColor;
+      })];
   }
   #pragma mark —— UIScrollViewDelegate
   - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

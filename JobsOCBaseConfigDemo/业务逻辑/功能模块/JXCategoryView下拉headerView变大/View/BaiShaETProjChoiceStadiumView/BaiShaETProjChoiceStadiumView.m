@@ -188,15 +188,20 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = self.tbvCellMutArr[indexPath.row];
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
-    cell.backgroundColor = cell.contentView.backgroundColor = HEXCOLOR(0xFFFCF7);
-    cell.textLabel.textColor = HEXCOLOR(0x757575);
-    cell.textLabel.font = UIFontWeightRegularSize(16);
+    JobsBaseTableViewCell *cell = self.tbvCellMutArr[indexPath.row]
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .byContentViewBgCor(HEXCOLOR(0xFFFCF7))
+        .byTextLabelTextCor(HEXCOLOR(0x757575))
+        .byTextLabelFrameOffsetX(JobsWidth(16))
+        .byImageViewFrameOffsetX(JobsMainScreen_WIDTH() - JobsWidth(50))
+        .byTextLabelFont(UIFontWeightRegularSize(16))
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+        .JobsBlock1(^(id _Nullable data) {
+             
+        }).byBgCor(HEXCOLOR(0xFFFCF7));
     cell.imageView.image = JobsIMG(@"红色的对勾");
     cell.imageView.jobsVisible = NO;
-    cell.textLabelFrameOffsetX = JobsWidth(16);
-    cell.imageViewFrameOffsetX = JobsMainScreen_WIDTH() - JobsWidth(50);
     return cell;
 }
 #pragma mark —— lazyLoad

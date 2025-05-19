@@ -263,29 +263,31 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         case 0:{/// 热门搜索
             switch (self.hotSearchStyle) {
                 case HotSearchStyle_1:{
-                    JobsSearchShowHotwordsTBVCell *cell = JobsSearchShowHotwordsTBVCell.cellStyleValue1WithTableView(tableView);
-                    cell.indexPath = indexPath;
-                    cell.jobsRichElementsTableViewCellBy(self.hotSearchMutArr)
-                        .JobsBlock1(^(JobsHotLabelByMultiLineCVCell *cell) {/// 点击的哪个btn？
-                        @jobs_strongify(self)
-                        self.jobsSearchBar.textField.text = cell.getViewModel.textModel.text;
-                    });return cell;
+                    return JobsSearchShowHotwordsTBVCell.cellStyleValue1WithTableView(tableView)
+                        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+                        .byIndexPath(indexPath)
+                        .jobsRichElementsTableViewCellBy(self.hotSearchMutArr)
+                            .JobsBlock1(^(JobsHotLabelByMultiLineCVCell *cell) {/// 点击的哪个btn？
+                                @jobs_strongify(self)
+                                self.jobsSearchBar.textField.text = cell.getViewModel.textModel.text;
+                            });
                 }break;
                 case HotSearchStyle_2:{
-                    JobsSearchTBVCell *cell = JobsSearchTBVCell.cellStyleValue1WithTableView(tableView);
-                    cell.indexPath = indexPath;
-                    cell.jobsRichElementsTableViewCellBy(self.hotSearchMutArr)
+                    return JobsSearchTBVCell.cellStyleValue1WithTableView(tableView)
+                        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+                        .byIndexPath(indexPath)
+                        .jobsRichElementsTableViewCellBy(self.hotSearchMutArr)
                         .JobsBlock1(^(UIViewModel *data) {
-                            @jobs_strongify(self)
-                            self.jobsSearchBar.textField.text = data.textModel.text;
-                            /// 点选了推荐，则映入输入框＋存入历史
-                            /// 防止相同的元素存入
-                            if (![self filtrationData:data
-                                            atDataArr:self.listViewData
-                                       byPropertyName:@"text"]) {
-                                self.listViewData.add(data);
-                            }[self endDropDownListView];
-                        });return cell;
+                                @jobs_strongify(self)
+                                self.jobsSearchBar.textField.text = data.textModel.text;
+                                /// 点选了推荐，则映入输入框＋存入历史
+                                /// 防止相同的元素存入
+                                if (![self filtrationData:data
+                                                atDataArr:self.listViewData
+                                           byPropertyName:@"text"]) {
+                                    self.listViewData.add(data);
+                                }[self endDropDownListView];
+                            });
                 }break;
                     
                 default:{
@@ -293,11 +295,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                 }break;
             }
         }break;
-        case 1:{/// 搜索历史
-            JobsSearchShowHistoryDataTBVCell *cell = JobsSearchShowHistoryDataTBVCell.cellStyleValue1WithTableView(tableView);
-            cell.indexPath = indexPath;
-            cell.jobsRichElementsTableViewCellBy(self.listViewData[indexPath.row]);
-            return cell;
+        case 1:{
+            /// 搜索历史
+            return JobsSearchShowHistoryDataTBVCell.cellStyleValue1WithTableView(tableView)
+                .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+                .byIndexPath(indexPath)
+                .jobsRichElementsTableViewCellBy(self.listViewData[indexPath.row])
+                    .JobsBlock1(^(id _Nullable data) {
+                     
+                    });
         }break;
         default:
             return UITableViewCell.new;

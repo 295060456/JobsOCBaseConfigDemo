@@ -117,15 +117,14 @@ numberOfRowsInSection:(NSInteger)section{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MSCommentTBVCell *cell = MSCommentTBVCell.cellStyleDefaultWithTableView(tableView);
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.indexPath = indexPath;
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row]);
-    
-    CGRect cellFrame = cell.frame;
-    cellFrame.size.width -= JobsWidth(15 * 2);
-    cell.frame = cellFrame;
-    
+    MSCommentTBVCell *cell = MSCommentTBVCell.cellStyleDefaultWithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryNone)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.section].commentDataMutArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
+    cell.resetWidthByOffset(-JobsWidth(15 * 2));
     return cell;
 }
 

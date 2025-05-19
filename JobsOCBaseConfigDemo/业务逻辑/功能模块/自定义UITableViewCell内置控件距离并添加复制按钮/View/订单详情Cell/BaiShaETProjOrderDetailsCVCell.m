@@ -76,14 +76,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView);
-    
-    cell.textLabelFrameOffsetY = JobsWidth(-2);/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
-    cell.detailTextLabelOffsetY = JobsWidth(-2);/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
-    cell.textLabelFrameOffsetX = JobsWidth(-13);/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
-    cell.detailTextLabelOffsetX = JobsWidth(-65);/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
-
-    cell.jobsRichElementsTableViewCellBy(self.viewModel.jobsDataMutArr[indexPath.row]);
+    JobsBaseTableViewCell *cell = JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView)
+        .byTextLabelTextCor(HEXCOLOR(0x757575))
+        .byTextLabelFont(UIFontWeightRegularSize(12))
+        .byDetailTextLabelCor(HEXCOLOR(0x757575))
+        .byDetailTextLabellFont(UIFontWeightBoldSize(14))
+        .byTextLabelFrameOffsetY(JobsWidth(-2))/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
+        .byDetailTextLabelOffsetY(JobsWidth(-2))/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
+        .byTextLabelFrameOffsetX(JobsWidth(-13))/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
+        .byDetailTextLabelOffsetX(JobsWidth(-65))/// 这里需要设置一个偏移量去抵消有一个莫名出现的偏移量
+        .jobsRichElementsTableViewCellBy(self.viewModel.jobsDataMutArr[indexPath.row]);
     
     _jobsCopyBtn = nil;/// ❤️ 关键。[self layoutIfNeeded];会出现异常
     [cell.contentView.addSubview(self.jobsCopyBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -100,14 +102,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         }).onLongPressGestureBy(^(id data){
             JobsLog(@"");
         });
-    self.jobsCopyBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
-    self.jobsCopyBtn.cornerCutToCircleWithCornerRadius(JobsWidth(18 / 2));
-    
-    cell.textLabel.textColor = HEXCOLOR(0x757575);
-    cell.textLabel.font = UIFontWeightRegularSize(12);
-    cell.detailTextLabel.textColor = HEXCOLOR(0x3D4A58);
-    cell.detailTextLabel.font = UIFontWeightBoldSize(14);
-    
     return cell;
 }
 
@@ -142,11 +136,14 @@ heightForFooterInSectionByModel:(NSInteger)section{
 #pragma mark —— lazyLoad
 -(UIButton *)jobsCopyBtn{
     if (!_jobsCopyBtn) {
+        @jobs_weakify(self)
         _jobsCopyBtn = UIButton.jobsInit()
-        .jobsResetBtnTitle(JobsSpace.add(JobsInternationalization(@"複製")).add(JobsSpace))
-        .jobsResetBtnTitleFont(UIFontWeightBoldSize(12))
-        .jobsResetBtnTitleCor(HEXCOLOR(0x757575))
-        .bgColorBy(HEXCOLOR(0xEAEBED));
+            .jobsResetBtnTitle(JobsSpace.add(JobsInternationalization(@"複製")).add(JobsSpace))
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(12))
+            .jobsResetBtnTitleCor(HEXCOLOR(0x757575))
+            .bgColorBy(HEXCOLOR(0xEAEBED));
+        _jobsCopyBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
+        _jobsCopyBtn.cornerCutToCircleWithCornerRadius(JobsWidth(18 / 2));
     }return _jobsCopyBtn;
 }
 /// BaseViewProtocol

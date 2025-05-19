@@ -53,14 +53,18 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 #pragma mark —— UITableView 代理
 -(__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TableViewOneCell *cell = TableViewOneCell.cellStyleValue1WithTableView(tableView);
-    cell.backgroundColor = indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2;
     @jobs_weakify(self)
-    cell.jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
-        @jobs_strongify(self)
-        vm.data = self.excelConfigureData;
-        vm.buttonModel = (UIButtonModel *)self.excelConfigureData.leftListDatas[indexPath.row];
-    }));return cell;
+    return TableViewOneCell.cellStyleValue1WithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
+            @jobs_strongify(self)
+            vm.data = self.excelConfigureData;
+            vm.buttonModel = (UIButtonModel *)self.excelConfigureData.leftListDatas[indexPath.row];
+        }))
+        .JobsBlock1(^(id _Nullable data) {
+             
+        }).byBgCor(indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2);
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

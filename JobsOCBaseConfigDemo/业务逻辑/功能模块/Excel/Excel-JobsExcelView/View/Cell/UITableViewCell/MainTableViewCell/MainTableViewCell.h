@@ -10,14 +10,19 @@
 #import "JobsBlock.h"
 #import "JobsBaseTableViewCell.h"
 #import "MainTableViewCellItem.h"
+#import "DefineProperty.h"
 
 #import "BaseCellProtocol.h"
 #import "JobsExcelConfigureViewModel.h"
+
 @class UIButtonModel;
+@class MainTableViewCell;
 
 @protocol MianTableViewCellDelegate <NSObject>
 -(jobsByScrollViewBlock _Nonnull)mianTableViewCellScrollerDid;
 @end
+
+typedef MainTableViewCell *_Nonnull(^JobsReturnMainTableViewCellByDelegateBlock)(NSObject<MianTableViewCellDelegate> * _Nullable delegate);
 
 @interface MainTableViewCell : JobsBaseTableViewCell
 <
@@ -27,8 +32,11 @@ UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
 >
 /// Data
-@property(nonatomic,weak)NSObject <MianTableViewCellDelegate>*delegate;
+Prop_weak()NSObject <MianTableViewCellDelegate> *delegate;
 
 -(jobsByPointBlock _Nonnull)scrollerItemBy;
+-(JobsReturnMainTableViewCellByDelegateBlock _Nonnull)byDelegate;
 
 @end
+
+

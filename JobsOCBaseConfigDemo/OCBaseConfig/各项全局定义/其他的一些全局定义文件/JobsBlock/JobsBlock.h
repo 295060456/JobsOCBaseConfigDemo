@@ -352,6 +352,15 @@ typedef void(^jobsByBRStringPickerViewModelBlock)(__kindof BRStringPickerViewMod
 typedef void(^jobsByDecorationModelBlock)(__kindof JobsDecorationModel *_Nullable model);
 typedef UIViewModel *_Nullable(^JobsReturnViewModelByDecorationModelBlock)(JobsDecorationModel *_Nullable model);
 #pragma mark —— 涉及到第三方类的Block定义
+@class MGSwipeTableCell;
+#if __has_include(<MGSwipeTableCell/MGSwipeTableCell.h>)
+#import <MGSwipeTableCell/MGSwipeTableCell.h>
+#else
+#import "MGSwipeTableCell.h"
+#endif
+typedef __kindof MGSwipeTableCell *_Nullable(^JobsReturnMGSwipeTableCellByBOOLBlock)(BOOL data);
+typedef __kindof MGSwipeTableCell *_Nonnull(^JobsReturnMGSwipeTableCellByDelegateBlock)(id<MGSwipeTableCellDelegate> _Nullable delegate);
+
 @class UIButtonModel;
 @class GKCustomNavigationBar;
 typedef __kindof GKCustomNavigationBar *_Nullable(^JobsReturnGKNavBarByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);

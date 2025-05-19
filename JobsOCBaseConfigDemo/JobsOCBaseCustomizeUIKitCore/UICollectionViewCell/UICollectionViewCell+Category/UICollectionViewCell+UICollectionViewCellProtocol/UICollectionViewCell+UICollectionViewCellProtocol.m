@@ -36,6 +36,24 @@
 -(NSInteger)jobsGetCurrentNumberOfItemsInSection{
     return [self.jobsGetCurrentCollectionView numberOfItemsInSection:self.jobsGetCurrentIndexPath.section];
 }
+
+-(JobsReturnCollectionViewCellByIndexPathBlock _Nonnull)byIndexPath{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionViewCell *_Nullable(NSIndexPath *_Nonnull indexPath){
+        @jobs_strongify(self)
+        self.indexPath = indexPath;
+        return self;
+    };
+}
+
+-(JobsReturnCollectionViewCellByCorBlock _Nonnull)byContentViewBgCor{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionViewCell *_Nullable(UIColor *_Nonnull cor){
+        @jobs_strongify(self)
+        self.contentView.backgroundColor = cor;
+        return self;
+    };
+}
 /// 对UICollectionView上的每一组的第一个和最后一个UICollectionViewCell进行圆切角
 /// 要求切第一个UICollectionViewCell的左上+右上，最后一个UICollectionViewCell的左下和右下
 /// 作用域 ：UICollectionViewCell子类的 - (void)drawRect:(CGRect)rect

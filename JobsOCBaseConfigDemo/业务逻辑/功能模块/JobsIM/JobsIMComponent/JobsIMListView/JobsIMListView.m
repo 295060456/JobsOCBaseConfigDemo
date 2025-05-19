@@ -55,12 +55,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsIMListTBVCell *cell = JobsIMListTBVCell.cellStyleValue1WithTableView(tableView);
-    cell.indexPath = indexPath;
-    cell.delegate = self;
-    cell.allowsMultipleSwipe = YES;
-    cell.jobsRichElementsTableViewCellBy(self.jobsIMListMutArr[indexPath.row]);
-    return cell;
+    JobsIMListTBVCell *cell = JobsIMListTBVCell.cellStyleValue1WithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .byDelegate(self)
+        .jobsRichElementsTableViewCellBy(self.jobsIMListMutArr[indexPath.row])
+        .JobsBlock1(^(id _Nullable data) {
+             
+        });
+    return cell.byAllowsMultipleSwipe(YES);
 }
 #pragma mark —— MGSwipeTableCellDelegate
 -(void)swipeTableCellWillBeginSwiping:(nonnull MGSwipeTableCell *)cell{

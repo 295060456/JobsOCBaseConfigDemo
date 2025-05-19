@@ -120,9 +120,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row];
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.section][indexPath.row]);
-    return cell;
+    return self.tbvSectionRowCellMutArr[indexPath.section][indexPath.row]
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.section][indexPath.row])
+        .JobsBlock1(^(id _Nullable data) {
+                     
+        });
 }
 
 - (CGFloat)tableView:(UITableView *)tableView
@@ -180,7 +184,9 @@ viewForHeaderInSection:(NSInteger)section{
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
+    /// 隐藏最后一个单元格的分界线
     [tableView hideSeparatorLineAtLast:indexPath cell:cell];
+    /// 自定义 UITableViewCell 的箭头
     cell.img = JobsIMG(@"向右的箭头（大）");
 //    @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {

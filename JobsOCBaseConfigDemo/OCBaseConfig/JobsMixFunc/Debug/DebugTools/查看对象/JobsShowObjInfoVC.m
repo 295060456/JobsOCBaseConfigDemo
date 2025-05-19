@@ -90,11 +90,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView);
+    JobsBaseTableViewCell *cell = JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.textColor = JobsBrownColor;
     cell.textLabel.textColor = JobsBlackColor;
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
+
     return cell;
 }
 

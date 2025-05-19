@@ -64,8 +64,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsPageTBVCell *cell = JobsPageTBVCell.cellStyleSubtitleWithTableView(tableView);
-    cell.jobsRichElementsTableViewCellBy(self.dataArr[indexPath.row]);
+    JobsPageTBVCell *cell = JobsPageTBVCell.cellStyleSubtitleWithTableView(tableView)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(self.dataArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
 #warning 这里需要被修改
 //    UIViewModel *viewModel = self.dataArr[indexPath.row];
 //    viewModel.jobsWidth = JobsPageTBVCell.cellHeightByModel(nil) ? : self.cellHeight;

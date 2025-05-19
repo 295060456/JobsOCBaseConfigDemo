@@ -116,14 +116,18 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsBaseTableViewCell *cell = (JobsBaseTableViewCell *)JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView);
-    
-    cell.textLabelFrameOffsetY -= JobsWidth(2);
-    cell.detailTextLabelOffsetY -= JobsWidth(2);
-    
-    cell.contentView.backgroundColor = cell.backgroundColor = HEXCOLOR(0xFFFCF7);
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
-    return cell;
+    return JobsBaseTableViewCell.cellStyleValue1WithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .byContentViewBgCor(HEXCOLOR(0xFFFCF7))
+        .byTextLabelTextCor(HEXCOLOR(0x757575))
+        .byTextLabelFrameOffsetY(JobsWidth(-2))
+        .byDetailTextLabelOffsetY(JobsWidth(-2))
+        .byTextLabelFont(UIFontWeightRegularSize(16))
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+        .JobsBlock1(^(id _Nullable data) {
+             
+        }).byBgCor(HEXCOLOR(0xFFFCF7));
 }
 #pragma mark —— lazyLoad
 -(UIButton *)userHeaderBtn{

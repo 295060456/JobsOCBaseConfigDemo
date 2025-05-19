@@ -7,7 +7,9 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsIMDefine.h"
+#import "JobsBlock.h"
 #import "BaseCellProtocol.h"
+#import "MGSwipeTableCellProtocol.h"
 #import "UITableViewCell+Margin.h"
 
 #if __has_include(<MGSwipeTableCell/MGSwipeTableCell.h>)
@@ -21,9 +23,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsIMChatInfoTBVCell : MGSwipeTableCell<BaseCellProtocol>
+@interface JobsIMChatInfoTBVCell : MGSwipeTableCell
+<
+BaseCellProtocol,
+MGSwipeTableCellProtocol
+>
 
-Prop_assign()BOOL isShowChatUserName;//是否显示每一个聊天的用户的用户名？默认不显示
+Prop_assign()BOOL isShowChatUserName;///是否显示每一个聊天的用户的用户名？默认不显示
 
 -(NSArray *)createLeftButtons;
 -(NSArray *)createRightButtons;

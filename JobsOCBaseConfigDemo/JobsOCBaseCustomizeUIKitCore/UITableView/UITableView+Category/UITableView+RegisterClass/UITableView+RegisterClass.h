@@ -6,23 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITableView (RegisterClass)
-#pragma mark —— 注册
--(void)registerTableViewClass;
-/// 注册 HeaderFooterView 及其子类 jobsByClassBlock
--(jobsByClassAndSaltStrBlock _Nonnull)registerHeaderFooterViewClass;
-/// 注册 UITableViewCell 及其子类
--(jobsByClassAndSaltStrBlock _Nonnull)registerTableViewCellClass;
-#pragma mark —— 取值
-/// 不使用 registerClass 直接创建 UITableViewCell ❤️复用字符串是目标类的类名❤️
--(JobsReturnTableViewCellByClsAndSaltStrBlock _Nonnull)tableViewCellClass;
-/// 使用 registerClass 注册 UITableViewCell ❤️复用字符串是目标类的类名❤️
--(JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block _Nonnull)tableViewCellClassForIndexPath;
-/// 一种用字符串取UITableViewHeaderFooterView及其子类的方法❤️复用字符串是目标类的类名❤️
--(JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock _Nonnull)tableViewHeaderFooterView;
+@interface UITableView (RegisterClass)<BaseTableViewProtocol>
 
 @end
 

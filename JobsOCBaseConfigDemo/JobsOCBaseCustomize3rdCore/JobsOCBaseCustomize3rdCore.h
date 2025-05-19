@@ -84,6 +84,12 @@
 #import "GKNavigationBar.h"
 #endif
 
+#if __has_include(<MGSwipeTableCell/MGSwipeTableCell.h>)
+#import <MGSwipeTableCell/MGSwipeTableCell.h>
+#else
+#import "MGSwipeTableCell.h"
+#endif
+
 #import "AFSecurityPolicy+Extra.h"
 #import "IQKeyboardManager+Extra.h"
 #import "Reachability+Extra.h"
@@ -95,6 +101,7 @@
 #import "SRWebSocket+Extra.h"
 #import "FSCalendar+Extra.h"
 #import "UIViewController+GKCustomNavigationBar.h"
+#import "MGSwipeTableCell+Extra.h"
 
 #import "JXCategoryView.h"
 #import "ZFPlayerExtras.h"

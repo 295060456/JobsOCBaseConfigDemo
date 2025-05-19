@@ -104,11 +104,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsTextLabStyleTBVCell *cell = JobsTextLabStyleTBVCell.cellStyleDefaultWithTableView(tableView);
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.indexPath = indexPath;
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
-    return cell;
+    return JobsTextLabStyleTBVCell.cellStyleDefaultWithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryNone)
+        .byIndexPath(indexPath)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol

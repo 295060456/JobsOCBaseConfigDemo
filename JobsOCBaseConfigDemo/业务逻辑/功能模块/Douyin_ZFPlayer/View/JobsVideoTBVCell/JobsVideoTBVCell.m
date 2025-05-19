@@ -19,8 +19,9 @@ Prop_strong()VideoModel_Core *core_data;
 
 @implementation JobsVideoTBVCell
 @synthesize index = _index;
+#pragma mark —— UITableViewCellProtocol
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
-    return ^(UITableView * _Nonnull tableView) {
+    return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         JobsVideoTBVCell *cell = (JobsVideoTBVCell *)tableView.tableViewCellClass(JobsVideoTBVCell.class,@"");
         if (!cell) {
             cell = JobsVideoTBVCell.initTableViewCellWithStyle(UITableViewCellStyleSubtitle);
@@ -30,6 +31,15 @@ Prop_strong()VideoModel_Core *core_data;
     };
 }
 
+-(JobsReturnVideoTBVCellByDelegateBlock _Nonnull)byDelegate{
+    @jobs_weakify(self)
+    return ^JobsVideoTBVCell *_Nonnull(id<UIViewModelOthersProtocol> delegate){
+        @jobs_strongify(self)
+        self.delegate = delegate;
+        return self;
+    };
+}
+#pragma mark —— BaseCellProtocol
 +(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
         if ([data isKindOfClass:UITableView.class]) {

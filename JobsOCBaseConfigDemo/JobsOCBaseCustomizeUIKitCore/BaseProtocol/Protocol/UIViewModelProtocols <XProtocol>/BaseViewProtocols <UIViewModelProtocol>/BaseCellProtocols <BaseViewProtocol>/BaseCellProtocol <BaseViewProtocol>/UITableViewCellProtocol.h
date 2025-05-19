@@ -47,7 +47,7 @@ Prop_assign()CGFloat imageViewFrameOffsetWidth;/// 负值缩小，正值放大
 Prop_assign()CGFloat imageViewFrameOffsetHeight;/// 负值缩小，正值放大
 #pragma mark —— 初始化方法
 /// @implementation UITableViewCell (BaseCellProtocol)
-+(JobsReturnTableViewCellByTableViewCellStyleBlock _Nonnull)initTableViewCellWithStyle;
++(JobsReturnTableViewCellByCellStyleBlock _Nonnull)initTableViewCellWithStyle;
 +(instancetype)initTableViewCell:(Class)tableViewCellClass
                        withStyle:(UITableViewCellStyle)style;
 /// 4种UITableViewCell系统样式类型
@@ -61,6 +61,42 @@ Prop_assign()CGFloat imageViewFrameOffsetHeight;/// 负值缩小，正值放大
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView;
 /// UITableViewCellStyleSubtitle = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView;
+#pragma mark —— 设置UITableViewCell
+-(JobsReturnTableViewCellByImageBlock _Nonnull)byImageViewData;
+-(JobsReturnTableViewCellByCorBlock _Nonnull)byTextLabelTextCor;
+-(JobsReturnTableViewCellByCorBlock _Nonnull)byDetailTextLabelCor;
+-(JobsReturnTableViewCellByFontBlock _Nonnull)byTextLabelFont;
+-(JobsReturnTableViewCellByFontBlock _Nonnull)byDetailTextLabellFont;
+-(JobsReturnTableViewCellByAccessoryTypeBlock _Nonnull)byAccessoryType;
+-(JobsReturnTableViewCellByIndexPathBlock _Nonnull)byIndexPath;
+-(JobsReturnTableViewCellByIndexBlock _Nonnull)byIndex;
+-(JobsReturnTableViewCellByCorBlock _Nonnull)byContentViewBgCor;
+-(JobsReturnTableViewCellByDelegateBlock _Nonnull)byDelegate;
+/// 迎合链式语法
+-(JobsReturnTableViewCellByFrameBlock _Nonnull)byTextLabelFrame;
+-(JobsReturnTableViewCellByFrameBlock _Nonnull)byDetailTextLabelFrame;
+-(JobsReturnTableViewCellByFrameBlock _Nonnull)byTbvCellImageViewFrame;
+-(JobsReturnTableViewCellBySizeBlock _Nonnull)byTextLabelSize;
+-(JobsReturnTableViewCellBySizeBlock _Nonnull)byDetailTextLabelSize;
+-(JobsReturnTableViewCellBySizeBlock _Nonnull)byImageViewSize;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelWidth;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelHeight;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelWidth;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelHeight;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewWidth;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewHeight;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetX;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetY;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetWidth;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetHeight;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetX;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetY;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetWidth;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetHeight;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetX;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetY;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetWidth;
+-(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetHeight;
 /// UITableViewCell 的横向和纵向的缩进
 /// 在具体的子类，去覆盖-(void)setFrame:(CGRect)frame方法
 /// - Parameters:

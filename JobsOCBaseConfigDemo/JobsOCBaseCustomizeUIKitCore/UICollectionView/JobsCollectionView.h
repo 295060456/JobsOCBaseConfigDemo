@@ -10,7 +10,6 @@
 
 #pragma mark —— Base
 #import "BaseCollectionView.h"
-
 #pragma mark —— Category
 #import "UICollectionView+JobsRegisterClass.h"
 #import "UICollectionView+RegistrationTracking.h"

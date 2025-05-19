@@ -45,14 +45,20 @@ Prop_assign()CGPoint contentOffenset;
 #pragma mark —— UITableViewDataSource
 - (__kindof UITableViewCell *)tableView:(UITableView *)tableView
                   cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView);
-    cell.delegate = self;
-    cell.indexPath = indexPath;
-    cell.jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
-        vm.data = self.excelConfigureData;
-        vm.buttonModels = self.excelConfigureData.contentArr[indexPath.row];
-    }));
-//    cell.backgroundColor = cell.contentView.backgroundColor = indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2;
+    MainTableViewCell *cell = MainTableViewCell.cellStyleValue1WithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryNone)
+        .byIndexPath(indexPath)
+        .byDelegate(self)
+//        .byContentViewBgCor(indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2)
+        .jobsRichElementsTableViewCellBy(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
+            vm.data = self.excelConfigureData;
+            vm.buttonModels = self.excelConfigureData.contentArr[indexPath.row];
+        }))
+    
+        .byBgCor(indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2)
+        .JobsBlock1(^(id _Nullable data) {
+             
+        });
     return cell;
 }
 #pragma mark —— UIScrollViewDelegate

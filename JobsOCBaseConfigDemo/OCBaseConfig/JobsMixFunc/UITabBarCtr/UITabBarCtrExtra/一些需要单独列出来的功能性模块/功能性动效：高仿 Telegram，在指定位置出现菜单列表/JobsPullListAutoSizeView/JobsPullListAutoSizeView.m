@@ -83,11 +83,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(__kindof UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsPullListTBVCell *cell = JobsPullListTBVCell.cellStyleDefaultWithTableView(tableView);
-    cell.contentView.backgroundColor = self.bgColorListTBV;
-    cell.indexPath = indexPath;
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
-    return cell;
+    return JobsPullListTBVCell.cellStyleDefaultWithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .byContentViewBgCor(self.bgColorListTBV)
+        .byContentViewBgCor(self.bgColorListTBV)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+        .JobsBlock1(^(id _Nullable data) {
+             
+        })
+        .byBgCor(self.bgColorListTBV);;
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol

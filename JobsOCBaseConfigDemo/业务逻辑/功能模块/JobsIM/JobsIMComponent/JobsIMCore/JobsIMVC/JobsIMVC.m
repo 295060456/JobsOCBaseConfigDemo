@@ -140,13 +140,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    JobsIMChatInfoTBVCell *cell = JobsIMChatInfoTBVCell.cellStyleValue1WithTableView(tableView);
-    cell.isShowChatUserName = YES;
-    cell.indexPath = indexPath;
-    cell.delegate = self;
-    cell.allowsMultipleSwipe = YES;
-    cell.jobsRichElementsTableViewCellBy(self.chatInfoModelMutArr[indexPath.row]);
-    return cell;
+    JobsIMChatInfoTBVCell *cell = JobsIMChatInfoTBVCell.cellStyleValue1WithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .byDelegate(self)
+        .jobsRichElementsTableViewCellBy(self.chatInfoModelMutArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
+    return cell.byShowChatUserName(YES).byAllowsMultipleSwipe(YES);;
 }
 #if isAllowSysEdit
 /// 右划

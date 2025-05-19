@@ -50,6 +50,15 @@ Prop_copy()NSMutableArray <UIButtonModel *>*datas;
         self.collectionView.contentOffset = contentOffset;
     };
 }
+#pragma mark —— UITableViewCellProtocol
+-(JobsReturnMainTableViewCellByDelegateBlock _Nonnull)byDelegate{
+    @jobs_weakify(self)
+    return ^MainTableViewCell *_Nonnull(NSObject<MianTableViewCellDelegate> *delegate){
+        @jobs_strongify(self)
+        self.delegate = delegate;
+        return self;
+    };
+}
 #pragma mark —— UIScrollViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     JobsLog(@"MainTableViewCell - scrollView.contentOffset.x = %f",scrollView.contentOffset.x);

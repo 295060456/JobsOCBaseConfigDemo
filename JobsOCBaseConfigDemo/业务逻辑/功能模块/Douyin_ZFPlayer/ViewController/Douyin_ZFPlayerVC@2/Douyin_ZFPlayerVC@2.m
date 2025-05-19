@@ -220,11 +220,15 @@ numberOfRowsInSection:(NSInteger)section {
 -(__kindof UITableViewCell *)tableView:(UITableView *)tableView
                  cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     self.indexPath = indexPath;
-    JobsVideoTBVCell *cell = JobsVideoTBVCell.cellStyleValue1WithTableView(tableView);
-    cell.delegate = self;
-    cell.index = indexPath.row;
-    cell.jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row]);
-    return cell;
+    return JobsVideoTBVCell.cellStyleValue1WithTableView(tableView)
+        .byAccessoryType(UITableViewCellAccessoryDisclosureIndicator)
+        .byIndexPath(indexPath)
+        .byIndex(indexPath.row)
+        .byDelegate(self)
+        .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
+            .JobsBlock1(^(id _Nullable data) {
+             
+            });
 }
 
 -(void)tableView:(UITableView *)tableView

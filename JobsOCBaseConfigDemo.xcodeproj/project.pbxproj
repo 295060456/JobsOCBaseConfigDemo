@@ -213,6 +213,7 @@
 		C5BFE2E22DCDF08100158B13 /* CALayer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BFE2DD2DCDF08100158B13 /* CALayer+Extra.m */; };
 		C5BFE2E32DCDF08100158B13 /* CAShapeLayer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BFE2DA2DCDF08100158B13 /* CAShapeLayer+Extra.m */; };
 		C5BFE9EE2DD1E61700158B13 /* UIActivityIndicatorView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BFE9EC2DD1E61700158B13 /* UIActivityIndicatorView+Extra.m */; };
+		C5C5501C2DDB20B30008552F /* MGSwipeTableCell+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C550192DDB20B30008552F /* MGSwipeTableCell+Extra.m */; };
 		C5D4AB922DB24601006ED3F6 /* UIViewController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */; };
 		C5D4ADAE2DB25D74006ED3F6 /* ZFPlayerExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
@@ -1732,6 +1733,11 @@
 		C5BFE2E12DCDF08100158B13 /* JobsCALayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCALayer.h; sourceTree = "<group>"; };
 		C5BFE9EB2DD1E61700158B13 /* UIActivityIndicatorView+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+Extra.h"; sourceTree = "<group>"; };
 		C5BFE9EC2DD1E61700158B13 /* UIActivityIndicatorView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+Extra.m"; sourceTree = "<group>"; };
+		C5C550182DDB20B30008552F /* MGSwipeTableCell+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell+Extra.h"; sourceTree = "<group>"; };
+		C5C550192DDB20B30008552F /* MGSwipeTableCell+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell+Extra.m"; sourceTree = "<group>"; };
+		C5C5501A2DDB20B30008552F /* MGSwipeTableCellProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGSwipeTableCellProtocol.h; sourceTree = "<group>"; };
+		C5C550212DDB28200008552F /* BaseCollectionViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseCollectionViewProtocol.h; sourceTree = "<group>"; };
+		C5C550222DDB28200008552F /* BaseTableViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewProtocol.h; sourceTree = "<group>"; };
 		C5D4AB8F2DB24601006ED3F6 /* UIViewController+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extra.h"; sourceTree = "<group>"; };
 		C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extra.m"; sourceTree = "<group>"; };
 		C5D4ADAB2DB25D74006ED3F6 /* ZFPlayerExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPlayerExtras.h; sourceTree = "<group>"; };
@@ -4061,6 +4067,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				C5C5501B2DDB20B30008552F /* MGSwipeTableCell */,
 				C532D7232DC9B1E000917DBF /* GKCustomNavigationBar */,
 				C5D4ADAD2DB25D74006ED3F6 /* ZFPlayer */,
 				84656A1C2DAEBCEA00D00A30 /* JXCategoryView */,
@@ -4208,6 +4215,8 @@
 		8442D6C62D0C7BBC00286913 /* BaseViewProtocols <UIViewModelProtocol> */ = {
 			isa = PBXGroup;
 			children = (
+				C5C550212DDB28200008552F /* BaseCollectionViewProtocol.h */,
+				C5C550222DDB28200008552F /* BaseTableViewProtocol.h */,
 				8442D6BF2D0C7BBC00286913 /* BaseViewProtocol.h */,
 				8442D6C02D0C7BBC00286913 /* BaseViewControllerProtocol.h */,
 				8442D6C52D0C7BBC00286913 /* BaseCellProtocols <BaseViewProtocol> */,
@@ -6015,6 +6024,16 @@
 				C5BFE9EC2DD1E61700158B13 /* UIActivityIndicatorView+Extra.m */,
 			);
 			path = UIActivityIndicatorView;
+			sourceTree = "<group>";
+		};
+		C5C5501B2DDB20B30008552F /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5C550182DDB20B30008552F /* MGSwipeTableCell+Extra.h */,
+				C5C550192DDB20B30008552F /* MGSwipeTableCell+Extra.m */,
+				C5C5501A2DDB20B30008552F /* MGSwipeTableCellProtocol.h */,
+			);
+			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
 		C5D4AB912DB24601006ED3F6 /* UIViewController+Extra */ = {
@@ -17147,6 +17166,7 @@
 				CE410FE82C57B8B400AB9402 /* ZBCacheManager.m in Sources */,
 				CE5A65522CA8321D006D67A7 /* UITextView+Extend.m in Sources */,
 				CE5A65532CA8321D006D67A7 /* UITextView+IndicateWordLimit.m in Sources */,
+				C5C5501C2DDB20B30008552F /* MGSwipeTableCell+Extra.m in Sources */,
 				CE5A65862CA832FA006D67A7 /* ZFCustomControlView.m in Sources */,
 				CE5A65872CA832FA006D67A7 /* CustomZFPlayerControlView.m in Sources */,
 				CE5A65542CA8321D006D67A7 /* JobsTextView.m in Sources */,
