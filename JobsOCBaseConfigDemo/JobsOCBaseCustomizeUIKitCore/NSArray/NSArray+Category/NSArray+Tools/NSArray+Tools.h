@@ -32,7 +32,7 @@
 /// 数据计算差集
 -(JobsReturnArrayByArrayBlock _Nonnull)arrayForMinusWithOtherArray;
 -(jobsByBOOLBlock _Nonnull)jobsVisible;
--(JobsReturnArrByMasonryBlock _Nonnull)installByMasonryBlock;
+-(JobsReturnArrByMasonryBlocks _Nonnull)installByMasonryBlock;
 #pragma mark —— Masonry 均匀分布的布局方式封装
 /// 在指定的轴方向上，按照固定的间距分布多个视图。每个视图之间的间距是固定的，而不是视图本身的尺寸固定。
 -(JobsReturnArrByMasonryModelBlock _Nonnull)installByMasonryModel1;

@@ -9,6 +9,15 @@
 
 @implementation UIButton (SimplyMake)
 #pragma mark —— 一些公共方法
+/// 数据挂载
+-(JobsReturnButtonByIDBlock _Nonnull)modelDataBy{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(id _Nullable data){
+        @jobs_strongify(self)
+        self.modelData = data;
+        return self;
+    };
+}
 /// 长按方法
 +(JobsRetIDByIDBlockByViewModelOthersProtocolID _Nonnull)longPressGestureActionBy{
     return ^JobsReturnIDByIDBlock(id<UIViewModelOthersProtocol> data){
@@ -39,41 +48,43 @@
 }
 #pragma mark —— 对老Api进行二次封装
 +(JobsReturnButtonByNSIntegerBlock _Nonnull)initByType{
+    @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIButtonType type){
-        return [UIButton buttonWithType:type];
+        @jobs_strongify(self)
+        return [self.class buttonWithType:type];
     };
 }
 
 +(__kindof UIButton *)initByCustomType{
-    return UIButton.initByType(UIButtonTypeCustom);
+    return self.class.initByType(UIButtonTypeCustom);
 }
 
 +(__kindof UIButton *)initBySysType API_AVAILABLE(ios(7.0)){
-    return UIButton.initByType(UIButtonTypeSystem);
+    return self.class.initByType(UIButtonTypeSystem);
 }
 
 +(__kindof UIButton *)initByDetailDisclosureType{
-    return UIButton.initByType(UIButtonTypeDetailDisclosure);
+    return self.class.initByType(UIButtonTypeDetailDisclosure);
 }
 
 +(__kindof UIButton *)initByInfoLightType{
-    return UIButton.initByType(UIButtonTypeInfoLight);
+    return self.class.initByType(UIButtonTypeInfoLight);
 }
 
 +(__kindof UIButton *)initByInfoDarkType{
-    return UIButton.initByType(UIButtonTypeInfoDark);
+    return self.class.initByType(UIButtonTypeInfoDark);
 }
 
 +(__kindof UIButton *)initByContactAddType{
-    return UIButton.initByType(UIButtonTypeContactAdd);
+    return self.class.initByType(UIButtonTypeContactAdd);
 }
 
 +(__kindof UIButton *)initByPlainType API_AVAILABLE(tvos(11.0)) API_UNAVAILABLE(ios, watchos){
-    return UIButton.initByType(UIButtonTypePlain);
+    return self.class.initByType(UIButtonTypePlain);
 }
 
 +(__kindof UIButton *)initByCloseType API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos, watchos){
-    return UIButton.initByType(UIButtonTypeClose);
+    return self.class.initByType(UIButtonTypeClose);
 }
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠主标题内容（普通文本）进行创建
@@ -306,43 +317,42 @@
     return ^__kindof UIButton *_Nullable(UIViewModel *_Nullable data){
         @jobs_strongify(self)
         if(!data) data = UIViewModel.new;
-        UIButton *button = [self.alloc jobsInitBtnByConfiguration:data.buttonConfiguration
-                                                       background:data.backgroundConfiguration
-                                       buttonConfigTitleAlignment:data.buttonConfigurationTitleAlignment//UIButtonConfigurationTitleAlignmentAutomatic
-                                                    textAlignment:data.textAlignment//NSTextAlignmentCenter
-                                                 subTextAlignment:data.subTextAlignment//NSTextAlignmentCenter
-                                                      normalImage:data.image
-                                                   highlightImage:data.highlightImage
-                                                  attributedTitle:data.attributedTitle
-                                          selectedAttributedTitle:data.selectedAttributedTitle
-                                               attributedSubtitle:data.attributedSubTitle
-                                                            title:data.title
-                                                         subTitle:data.subTitle
-                                                        titleFont:data.titleFont
-                                                     subTitleFont:data.subTitleFont
-                                                         titleCor:data.titleCor
-                                                      subTitleCor:data.subTitleCor
-                                               titleLineBreakMode:data.titleLineBreakMode// NSLineBreakByWordWrapping
-                                            subtitleLineBreakMode:data.subtitleLineBreakMode//NSLineBreakByWordWrapping
-                                              baseBackgroundColor:data.baseBackgroundColor//JobsWhiteColor
-                                                  backgroundImage:data.backgroundImage
-                                                     imagePadding:data.imagePadding
-                                                     titlePadding:data.titlePadding
-                                                   imagePlacement:data.imagePlacement//NSDirectionalRectEdgeNone
-                                       contentHorizontalAlignment:data.contentHorizontalAlignment//UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:data.contentVerticalAlignment//UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:data.contentInsets
-                                                cornerRadiusValue:data.cornerRadiusValue
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:data.roundingCornersRadii
-                                                   layerBorderCor:data.layerBorderCor
-                                                      borderWidth:data.borderWidth
-                                                         selected:data.jobsSelected
-                                                    primaryAction:data.primaryAction
-                                       longPressGestureEventBlock:UIButton.longPressGestureActionBy(data)
-                                                  clickEventBlock:UIButton.clickActionBy(data)];
-        button.modelData = data;
-        return button;
+        return [self.alloc jobsInitBtnByConfiguration:data.buttonConfiguration
+                                           background:data.backgroundConfiguration
+                           buttonConfigTitleAlignment:data.buttonConfigurationTitleAlignment//UIButtonConfigurationTitleAlignmentAutomatic
+                                        textAlignment:data.textAlignment//NSTextAlignmentCenter
+                                     subTextAlignment:data.subTextAlignment//NSTextAlignmentCenter
+                                          normalImage:data.image
+                                       highlightImage:data.highlightImage
+                                      attributedTitle:data.attributedTitle
+                              selectedAttributedTitle:data.selectedAttributedTitle
+                                   attributedSubtitle:data.attributedSubTitle
+                                                title:data.title
+                                             subTitle:data.subTitle
+                                            titleFont:data.titleFont
+                                         subTitleFont:data.subTitleFont
+                                             titleCor:data.titleCor
+                                          subTitleCor:data.subTitleCor
+                                   titleLineBreakMode:data.titleLineBreakMode// NSLineBreakByWordWrapping
+                                subtitleLineBreakMode:data.subtitleLineBreakMode//NSLineBreakByWordWrapping
+                                  baseBackgroundColor:data.baseBackgroundColor//JobsWhiteColor
+                                      backgroundImage:data.backgroundImage
+                             highlightBackgroundImage:data.highlightBackgroundImage
+                                         imagePadding:data.imagePadding
+                                         titlePadding:data.titlePadding
+                                       imagePlacement:data.imagePlacement//NSDirectionalRectEdgeNone
+                           contentHorizontalAlignment:data.contentHorizontalAlignment//UIControlContentHorizontalAlignmentCenter
+                             contentVerticalAlignment:data.contentVerticalAlignment//UIControlContentVerticalAlignmentCenter
+                                        contentInsets:data.contentInsets
+                                    cornerRadiusValue:data.cornerRadiusValue
+                                      roundingCorners:UIRectCornerAllCorners
+                                 roundingCornersRadii:data.roundingCornersRadii
+                                       layerBorderCor:data.layerBorderCor
+                                          borderWidth:data.borderWidth
+                                             selected:data.jobsSelected
+                                        primaryAction:data.primaryAction
+                           longPressGestureEventBlock:UIButton.longPressGestureActionBy(data)
+                                      clickEventBlock:UIButton.clickActionBy(data)].modelDataBy(data);
     };
 }
 /// 依靠UIButtonModel进行创建
@@ -351,43 +361,42 @@
     return ^__kindof UIButton *_Nullable(UIButtonModel *_Nullable data){
         @jobs_strongify(self)
         if(!data) data = UIButtonModel.new;
-        UIButton *button = [self.alloc jobsInitBtnByConfiguration:data.buttonConfiguration
-                                                       background:data.backgroundConfiguration
-                                       buttonConfigTitleAlignment:data.buttonConfigurationTitleAlignment
-                                                    textAlignment:data.textAlignment
-                                                 subTextAlignment:data.subTextAlignment
-                                                      normalImage:data.normalImage
-                                                   highlightImage:data.highlightImage
-                                                  attributedTitle:data.attributedTitle
-                                          selectedAttributedTitle:data.selectedAttributedTitle
-                                               attributedSubtitle:data.attributedSubTitle
-                                                            title:data.title
-                                                         subTitle:data.subTitle
-                                                        titleFont:data.titleFont
-                                                     subTitleFont:data.subTitleFont
-                                                         titleCor:data.titleCor
-                                                      subTitleCor:data.subTitleCor
-                                               titleLineBreakMode:data.titleLineBreakMode
-                                            subtitleLineBreakMode:data.subtitleLineBreakMode
-                                              baseBackgroundColor:data.baseBackgroundColor
-                                                  backgroundImage:data.backgroundImage
-                                                     imagePadding:data.imagePadding
-                                                     titlePadding:data.titlePadding
-                                                   imagePlacement:data.imagePlacement
-                                       contentHorizontalAlignment:data.contentHorizontalAlignment
-                                         contentVerticalAlignment:data.contentVerticalAlignment
-                                                    contentInsets:data.contentInsets
-                                                cornerRadiusValue:data.cornerRadiusValue
-                                                  roundingCorners:data.roundingCorners /// UIRectCornerAllCorners
-                                             roundingCornersRadii:data.roundingCornersRadii
-                                                   layerBorderCor:data.layerBorderCor
-                                                      borderWidth:data.borderWidth
-                                                         selected:data.jobsSelected
-                                                    primaryAction:data.primaryAction
-                                       longPressGestureEventBlock:UIButton.longPressGestureActionBy(data)
-                                                  clickEventBlock:UIButton.clickActionBy(data)];
-        button.modelData = data;
-        return button;
+        return [self.alloc jobsInitBtnByConfiguration:data.buttonConfiguration
+                                           background:data.backgroundConfiguration
+                           buttonConfigTitleAlignment:data.buttonConfigurationTitleAlignment
+                                        textAlignment:data.textAlignment
+                                     subTextAlignment:data.subTextAlignment
+                                          normalImage:data.normalImage
+                                       highlightImage:data.highlightImage
+                                      attributedTitle:data.attributedTitle
+                              selectedAttributedTitle:data.selectedAttributedTitle
+                                   attributedSubtitle:data.attributedSubTitle
+                                                title:data.title
+                                             subTitle:data.subTitle
+                                            titleFont:data.titleFont
+                                         subTitleFont:data.subTitleFont
+                                             titleCor:data.titleCor
+                                          subTitleCor:data.subTitleCor
+                                   titleLineBreakMode:data.titleLineBreakMode
+                                subtitleLineBreakMode:data.subtitleLineBreakMode
+                                  baseBackgroundColor:data.baseBackgroundColor
+                                      backgroundImage:data.backgroundImage
+                             highlightBackgroundImage:data.highlightBackgroundImage
+                                         imagePadding:data.imagePadding
+                                         titlePadding:data.titlePadding
+                                       imagePlacement:data.imagePlacement
+                           contentHorizontalAlignment:data.contentHorizontalAlignment
+                             contentVerticalAlignment:data.contentVerticalAlignment
+                                        contentInsets:data.contentInsets
+                                    cornerRadiusValue:data.cornerRadiusValue
+                                      roundingCorners:data.roundingCorners /// UIRectCornerAllCorners
+                                 roundingCornersRadii:data.roundingCornersRadii
+                                       layerBorderCor:data.layerBorderCor
+                                          borderWidth:data.borderWidth
+                                             selected:data.jobsSelected
+                                        primaryAction:data.primaryAction
+                           longPressGestureEventBlock:UIButton.longPressGestureActionBy(data)
+                                      clickEventBlock:UIButton.clickActionBy(data)].modelDataBy(data);
     };
 }
 /// 依靠UITextModel进行创建
@@ -396,47 +405,46 @@
     return ^__kindof UIButton *_Nullable(UITextModel *_Nullable data){
         @jobs_strongify(self)
         if(!data) data = UITextModel.new;
-        UIButton *button = [self.alloc jobsInitBtnByConfiguration:nil
-                                                       background:nil
-                                       buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
-                                                    textAlignment:NSTextAlignmentCenter
-                                                 subTextAlignment:NSTextAlignmentCenter
-                                                      normalImage:nil
-                                                   highlightImage:nil
-                                                  attributedTitle:data.attributedTitle
-                                          selectedAttributedTitle:nil
-                                               attributedSubtitle:data.attributedSubTitle
-                                                            title:data.text
-                                                         subTitle:data.subText
-                                                        titleFont:data.font
-                                                     subTitleFont:data.subFont
-                                                         titleCor:data.textCor
-                                                      subTitleCor:data.subTextCor
-                                               titleLineBreakMode:data.lineBreakMode
-                                            subtitleLineBreakMode:data.subLineBreakMode
-                                              baseBackgroundColor:JobsWhiteColor
-                                                  backgroundImage:nil
-                                                     imagePadding:JobsWidth(0)
-                                                     titlePadding:JobsWidth(0)
-                                                   imagePlacement:NSDirectionalRectEdgeNone
-                                       contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-                                         contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-                                                    contentInsets:jobsSameDirectionalEdgeInsets(0)
-                                                cornerRadiusValue:JobsWidth(0)
-                                                  roundingCorners:UIRectCornerAllCorners
-                                             roundingCornersRadii:CGSizeZero
-                                                   layerBorderCor:nil
-                                                      borderWidth:JobsWidth(0)
-                                                         selected:NO
-                                                    primaryAction:nil
-                                       longPressGestureEventBlock:UIButton.longPressGestureActionBy(data)
-                                                  clickEventBlock:UIButton.clickActionBy(data)];
-        button.modelData = data;
-        return button;
+        return [self.alloc jobsInitBtnByConfiguration:nil
+                                           background:nil
+                           buttonConfigTitleAlignment:UIButtonConfigurationTitleAlignmentAutomatic
+                                        textAlignment:NSTextAlignmentCenter
+                                     subTextAlignment:NSTextAlignmentCenter
+                                          normalImage:nil
+                                       highlightImage:nil
+                                      attributedTitle:data.attributedTitle
+                              selectedAttributedTitle:nil
+                                   attributedSubtitle:data.attributedSubTitle
+                                                title:data.text
+                                             subTitle:data.subText
+                                            titleFont:data.font
+                                         subTitleFont:data.subFont
+                                             titleCor:data.textCor
+                                          subTitleCor:data.subTextCor
+                                   titleLineBreakMode:data.lineBreakMode
+                                subtitleLineBreakMode:data.subLineBreakMode
+                                  baseBackgroundColor:JobsWhiteColor
+                                      backgroundImage:nil
+                             highlightBackgroundImage:nil
+                                         imagePadding:JobsWidth(0)
+                                         titlePadding:JobsWidth(0)
+                                       imagePlacement:NSDirectionalRectEdgeNone
+                           contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
+                             contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
+                                        contentInsets:jobsSameDirectionalEdgeInsets(0)
+                                    cornerRadiusValue:JobsWidth(0)
+                                      roundingCorners:UIRectCornerAllCorners
+                                 roundingCornersRadii:CGSizeZero
+                                       layerBorderCor:nil
+                                          borderWidth:JobsWidth(0)
+                                             selected:NO
+                                        primaryAction:nil
+                           longPressGestureEventBlock:UIButton.longPressGestureActionBy(data)
+                                      clickEventBlock:UIButton.clickActionBy(data)].modelDataBy(data);
     };
 }
 #pragma mark —— 一些公有方法
--(JobsReturnButtonByClickBlock _Nonnull)onClickBy{
+-(JobsReturnButtonByClickBlocks _Nonnull)onClickBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
         @jobs_strongify(self)
@@ -445,7 +453,7 @@
     };
 }
 
--(JobsReturnButtonByClickBlock _Nonnull)onLongPressGestureBy{
+-(JobsReturnButtonByClickBlocks _Nonnull)onLongPressGestureBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
         @jobs_strongify(self)
@@ -454,7 +462,7 @@
     };
 }
 
--(JobsReturnButtonByTimerManagerBlock _Nonnull)heartBeatBy{
+-(JobsReturnButtonByTimerManagerBlocks _Nonnull)heartBeatBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByTimerManagerBlock block) {
         @jobs_strongify(self)

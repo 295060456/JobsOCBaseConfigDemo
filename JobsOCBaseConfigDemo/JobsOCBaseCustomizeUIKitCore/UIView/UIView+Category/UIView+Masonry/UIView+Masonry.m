@@ -65,7 +65,7 @@
     }
 }
 #pragma mark —— 实现 masonryBlock 链式方法
--(JobsReturnViewByMasonryConstraintsBlock _Nonnull)setMasonryBy{
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)setMasonryBy{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)
@@ -112,7 +112,7 @@
     };
 }
 #pragma mark —— 添加约束并执行
--(JobsReturnViewByMasonryConstraintsBlock _Nonnull)masonryBy{
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)masonryBy{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)
@@ -121,7 +121,7 @@
     };
 }
 
--(JobsReturnViewByMasonryConstraintsBlock _Nonnull)upgradeBy{
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)upgradeBy{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)
@@ -130,7 +130,7 @@
     };
 }
 
--(JobsReturnViewByMasonryConstraintsBlock _Nonnull)remakeBy{
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)remakeBy{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)

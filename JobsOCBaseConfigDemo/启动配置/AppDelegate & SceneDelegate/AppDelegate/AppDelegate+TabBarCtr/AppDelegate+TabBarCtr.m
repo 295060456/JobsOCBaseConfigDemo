@@ -240,7 +240,7 @@ static NSMutableArray <__kindof JobsTabBarItemConfig *>*_tabBarItemConfigMutArr 
 static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
 +(NSMutableArray <__kindof UIButton *>*)tabBarItemMutArr{
     if(!_tabBarItemMutArr){
-        _tabBarItemMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+        _tabBarItemMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UIButton *>* _Nullable data) {
             @jobs_weakify(self)
             data.add(BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 @jobs_strongify(self)

@@ -741,6 +741,16 @@ typedef NS_ENUM(NSInteger, FMGameListStyle){
     FMGameListStyle_Fav = 3,   /// 最爱
 };
 #endif /* FMGAMELISTSTYLE */
+/// KYC
+#ifndef VerificationStatusEnum
+#define VerificationStatusEnum
+typedef NS_ENUM(NSInteger, VerificationStatus) {
+    VerificationStatusUnverified = 0, /// 未认证
+    VerificationStatusVerifying,      /// 认证中
+    VerificationStatusVerified        /// 已认证
+};
+
+#endif /* VerificationStatusEnum */
 /// 广告类型
 #ifndef FMADSTYPE
 #define FMADSTYPE

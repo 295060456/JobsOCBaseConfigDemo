@@ -5,29 +5,145 @@
 ### 1、<font color=red>**推荐用以下这两个**</font>。在自建APi之上再进行封装一层，更加的简洁
 
 ```objective-c
+ -(UIButton *)mailBtn{
+     if(!_mailBtn){
+         @jobs_weakify(self)
+         _mailBtn = BaseButton.jobsInit()
+             .imageURL(@"".jobsUrl)
+             .placeholderImage(JobsIMG(@"小狮子"))
+             .options(SDWebImageRefreshCached)/// 强制刷新缓存
+             .completed(^(UIImage * _Nullable image,
+                          NSError * _Nullable error,
+                          SDImageCacheType cacheType,
+                          NSURL * _Nullable imageURL) {
+                 if (error) {
+                     JobsLog(@"图片加载失败: %@-%@", error,imageURL);
+                 } else {
+                     JobsLog(@"图片加载成功");
+                 }
+             }).onClickBy(^(UIButton *x){
+                 @jobs_strongify(self)
+                 if (self.objBlock) self.objBlock(x);
+             }).onLongPressGestureBy(^(id data){
+             JobsLog(@"");
+         }).bgNormalLoad();
+     }return _mailBtn;
+ }
+```
+
+```objective-c
+ -(UIButton *)valueBtn{
+     if(!_valueBtn){
+         @jobs_weakify(self)
+         _valueBtn = BaseButton.jobsInit()
+                          .bgColorBy(JobsWhiteColor)
+                          .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+                          .jobsResetImagePadding(1)
+                          .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+                          .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+                          .jobsResetBtnTitleCor(JobsWhiteColor)
+                          .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                          .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+                          .onClickBy(^(UIButton *x){
+                              JobsLog(@"");
+                          }).onLongPressGestureBy(^(id data){
+                              JobsLog(@"");
+                          });
+     }return _valueBtn;
+ }
+```
+
+```objective-c
+ -(UIButton *)usrNameBtn{
+     if(!_usrNameBtn){
+         @jobs_weakify(self)
+         _usrNameBtn = self.masonryBy(UIButton.jobsInit()
+                                       .bgColorBy(JobsWhiteColor)
+                                       .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+                                       .jobsResetImagePadding(1)
+                                       .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
+                                       .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+                                       .jobsResetBtnTitleCor(JobsWhiteColor)
+                                       .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                                       .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+                                       .onClickBy(^(UIButton *x){
+                                           JobsLog(@"");
+                                       }).onLongPressGestureBy(^(id data){
+                                           JobsLog(@"");
+                                       }),^(MASConstraintMaker *_Nonnull make){
+             make.top.equalTo(self.headIMGV);
+             make.left.equalTo(self.headIMGV.mas_right).offset(JobsWidth(10));
+             make.height.mas_equalTo(JobsWidth(16));
+         });
+         _usrNameBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
+     }return _usrNameBtn;
+ }
+```
+
+```objective-c
  -(BaseButton *)applyNowBtn{
      if(!_applyNowBtn){
-         _applyNowBtn = BaseButton.jobsInit()
-             .bgColorBy(JobsWhiteColor)
+         @jobs_weakify(self)
+         _applyNowBtn = BaseButton.initByAttributedString(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof JobsRichTextConfig *>* _Nullable data) {
+             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = JobsCor(@"#666666");
+                 data1.targetString = self.richTextMutArr[0];
+                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
+             }))
+             .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = JobsCor(@"#BA9B77");
+                 data1.targetString = self.richTextMutArr[1];
+                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
+             }))
+             .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                 @jobs_strongify(self)
+                 data1.font = UIFontWeightRegularSize(14);
+                 data1.textCor = JobsCor(@"#666666");
+                 data1.targetString = self.richTextMutArr[2];
+                 data1.paragraphStyle = self.jobsParagraphStyleCenter;
+             }));
+         }))).bgColorBy(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
              .jobsResetImagePadding(1)
              .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
              .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
              .jobsResetBtnTitleCor(JobsWhiteColor)
-             .titleFont(UIFontWeightBoldSize(JobsWidth(12)))
+             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
              .onClickBy(^(UIButton *x){
-                 JobsLog(@"");
+                 @jobs_strongify(self)
+                 x.selected = !x.selected;
+                 if (self.objBlock) self.objBlock(x);
              }).onLongPressGestureBy(^(id data){
                  JobsLog(@"");
              });
-         [self.bgImageView addSubview:_applyNowBtn];
-         [_applyNowBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-             make.size.mas_equalTo(CGSizeMake(JobsWidth(99), JobsWidth(29)));
-             make.right.equalTo(self.view).offset(JobsWidth(-166));
-             make.bottom.equalTo(self.view).offset(JobsWidth(-127));
-         }];
      }return _applyNowBtn;
+ }
+```
+
+```objective-c
+ -(BaseButton *)registerBtn{
+     if(!_registerBtn){
+         _registerBtn = BaseButton.initByTextModel(jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
+             data.text = JobsInternationalization(@"REGISTER");
+             data.textCor = JobsCor(@"#C90000");
+             data.font = bayonRegular(JobsWidth(15));
+         }))
+         .bgColorBy(JobsWhiteColor)
+         .onClickBy(^(UIButton *x){
+             JobsLog(@"");
+         }).onLongPressGestureBy(^(id data){
+             JobsLog(@"");
+         }).setLayerBy((jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+             data.layerCor = JobsCor(@"#C90000");
+             data.jobsWidth = 1;
+             data.cornerRadiusValue = JobsWidth(8);
+         })));
+     }return _registerBtn;
  }
 ```
 
@@ -91,6 +207,7 @@
                                           subtitleLineBreakMode:NSLineBreakByWordWrapping
                                             baseBackgroundColor:nil
                                                 backgroundImage:nil
+                                       highlightBackgroundImage:nil
                                                    imagePadding:JobsWidth(0)
                                                    titlePadding:JobsWidth(0)
                                                  imagePlacement:NSDirectionalRectEdgeNone

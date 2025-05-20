@@ -85,7 +85,7 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
 }
 #pragma mark —— BaseViewProtocol
 /// 返回键事件
--(JobsReturnNavBarByVoidBtnBlock _Nullable)JobsNavBarBackBtnClickBlock{
+-(JobsReturnNavBarByVoidBtnBlocks _Nullable)JobsNavBarBackBtnClickBlock{
     @jobs_weakify(self)
     return ^__kindof JobsNavBar *_Nullable(jobsByBtnBlock _Nullable block){
         @jobs_strongify(self)
@@ -94,7 +94,7 @@ Prop_strong()JobsNavBarConfig *navBarConfig;
     };
 }
 /// 关闭键事件
--(JobsReturnNavBarByVoidBtnBlock _Nullable)JobsNavBarCloseBtnClickBlock{
+-(JobsReturnNavBarByVoidBtnBlocks _Nullable)JobsNavBarCloseBtnClickBlock{
     @jobs_weakify(self)
     return ^__kindof JobsNavBar *_Nullable(jobsByBtnBlock _Nullable block){
         @jobs_strongify(self)

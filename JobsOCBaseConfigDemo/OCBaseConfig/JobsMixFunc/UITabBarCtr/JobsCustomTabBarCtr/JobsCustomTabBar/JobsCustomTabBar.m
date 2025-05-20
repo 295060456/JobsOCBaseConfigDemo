@@ -46,10 +46,14 @@
             if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationPortrait &&
                UIDevice.isBangScreen) offset = JobsBottomSafeAreaHeight();
             item.frame = CGRectMake(xPosition,
-                                    yOffset - offset,
+                                    yOffset,
                                     itemWidth,
                                     config.tabBarHeight + offset);
-            self.addSubview(item);
+            if(item.isKindOfClass(UIButton.class)){
+                UIButton *btn = (UIButton *)item;
+                btn.imageViewFrameOffsetY = config.imageViewFrameOffsetY;
+                btn.textLabelFrameOffsetY = config.textLabelFrameOffsetY;
+            }self.addSubview(item);
         }
     };
 }

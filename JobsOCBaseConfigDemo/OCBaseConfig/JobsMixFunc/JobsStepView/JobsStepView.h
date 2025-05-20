@@ -8,16 +8,27 @@
 #import "BaseView.h"
 #import "JobsBlock.h"
 #import "DefineProperty.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsStepView : BaseView
 
-Prop_strong(null_resettable)UIColor *leftLabBgCor;
-Prop_strong(null_resettable)UIColor *rightLabBgCor;
-Prop_assign()CGFloat offset;/// 值越大 = 按钮之间的距离越小
-
-+(JobsReturnButtonModelByStringAndImage _Nonnull)makeButtonModel;
++(JobsReturnButtonModelByStringAndImagesBlock _Nonnull)makeButtonModelBy;
+/// 值越大 = 按钮之间的距离越小
+-(JobsReturnStepViewByCGFloatBlock _Nonnull)byOffset;
+/// 设置左边线长度
+-(JobsReturnStepViewByCGFloatBlock _Nonnull)byLeftViewWidth;
+/// 设置右边线长度
+-(JobsReturnStepViewByCGFloatBlock _Nonnull)byRightViewWidth;
+/// 设置按钮之间的距离
+-(JobsReturnStepViewByCGFloatBlock _Nonnull)byBtnOffset;
+/// 设置左边线颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byLeftLabBgCor;
+/// 设置右边线颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byRightLabBgCor;
+/// 设置当前显示状态
+-(JobsReturnStepViewByNSIntegerBlock _Nonnull)byStatus;
 
 @end
 
@@ -33,56 +44,24 @@ NS_INLINE __kindof JobsStepView *_Nonnull jobsMakeStepView(jobsByStepViewBlock _
  
  -(JobsStepView *)stepView{
      if(!_stepView){
-         _stepView = jobsMakeStepView(^(__kindof JobsStepView * _Nullable stepView) {
-             stepView.backgroundColor = JobsClearColor;
-             stepView.offset = JobsWidth(10);
-             self.addSubview(stepView);
-             [stepView mas_makeConstraints:^(MASConstraintMaker *make) {
-                 make.top.equalTo(self).offset(JobsWidth(20));
-                 make.left.equalTo(self).offset(JobsWidth(10));
-                 make.size.mas_equalTo(stepView.viewSizeByModel(nil));
-             }];stepView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                     data1.title = JobsInternationalization(@"Unverified");
-                     data1.titleCor = JobsWhiteColor;
-                     data1.titleFont = UIFontWeightRegularSize(14);
-                     data1.normalImage = JobsIMG(@"正在进行第一步");
-                     data1.imagePlacement = NSDirectionalRectEdgeTop;
-                     data1.imagePadding = JobsWidth(8);
-                     data1.roundingCorners = UIRectCornerAllCorners;
-                     data1.leftViewWidth = JobsWidth(80);
-                     data1.rightViewWidth = JobsWidth(80);
-                     data1.baseBackgroundColor = JobsClearColor;
-                     data1.selected = YES;
-                 }));
-                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                     data1.title = JobsInternationalization(@"Verifiying");
-                     data1.titleCor = JobsWhiteColor;
-                     data1.titleFont = UIFontWeightRegularSize(14);
-                     data1.normalImage = JobsIMG(@"还未进行第二步");
-                     data1.imagePlacement = NSDirectionalRectEdgeTop;
-                     data1.imagePadding = JobsWidth(8);
-                     data1.roundingCorners = UIRectCornerAllCorners;
-                     data1.leftViewWidth = JobsWidth(80);
-                     data1.rightViewWidth = JobsWidth(80);
-                     data1.baseBackgroundColor = JobsClearColor;
-                     data1.selected = YES;
-                 }));
-                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                     data1.title = JobsInternationalization(@"Verified");
-                     data1.titleCor = JobsWhiteColor;
-                     data1.titleFont = UIFontWeightRegularSize(14);
-                     data1.normalImage = JobsIMG(@"还未进行第三步");
-                     data1.imagePlacement = NSDirectionalRectEdgeTop;
-                     data1.imagePadding = JobsWidth(8);
-                     data1.roundingCorners = UIRectCornerAllCorners;
-                     data1.leftViewWidth = JobsWidth(80);
-                     data1.rightViewWidth = JobsWidth(80);
-                     data1.baseBackgroundColor = JobsClearColor;
-                     data1.selected = YES;
-                 }));
+         _stepView = self.view.addSubview(jobsMakeStepView(^(__kindof JobsStepView * _Nullable stepView) {
+             stepView.byOffset(JobsWidth(10))
+             .byLeftViewWidth(JobsWidth(50))
+             .byRightViewWidth(JobsWidth(50))
+             .byBtnOffset(JobsWidth(50))
+             .byLeftLabBgCor(JobsCor(@"#C71A1A"))
+             .byRightLabBgCor(JobsCor(@"#C71A1A"))
+             .byStatus(VerificationStatusVerified)
+             .jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButtonModel *>* _Nullable data) {
+                 data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),JobsIMG(@"正在进行第一步"),JobsIMG(@"正在进行第一步")))
+                     .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),JobsIMG(@"还未进行第二步"),JobsIMG(@"正在进行第二步")))
+                     .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verified"),JobsIMG(@"还未进行第三步"),JobsIMG(@"正在进行第三步")));
              }));
-         });
+         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+             make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(28));
+             make.left.equalTo(self.view).offset(JobsWidth(24));
+             make.size.mas_equalTo(CGSizeMake(JobsWidth(324), JobsWidth(55)));
+         }).on().byBgCor(JobsClearColor);
      }return _stepView;
  }
  

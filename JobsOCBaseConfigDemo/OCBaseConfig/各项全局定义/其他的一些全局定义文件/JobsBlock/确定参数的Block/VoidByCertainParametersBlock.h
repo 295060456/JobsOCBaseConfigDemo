@@ -21,7 +21,6 @@ typedef void(^jobsBySELBlock)(SEL _Nullable data);
 typedef void(^jobsByClassBlock)(Class _Nonnull cls);
 #pragma mark —— 关于错误
 typedef void(^jobsByErrorBlock)(NSError *_Nullable error);
-typedef void(^jobsByErrBlock)(jobsByErrorBlock _Nullable block);
 #pragma mark —— 关于UIControl
 typedef void(^jobsByControlBlock)(UIControl *_Nullable ctrl);
 #pragma mark —— 关于Layer
@@ -35,8 +34,8 @@ typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable 
 #pragma mark —— 关于WKWebView.JS配置
 typedef void(^jobsByUserContentControllerBlock)(__kindof WKUserContentController *_Nullable data);
 typedef void(^jobsByWKWebViewConfigurationBlock)(__kindof WKWebViewConfiguration *_Nullable config);
-typedef void(^WKNavigationDelegateBlock1) (WKNavigationResponsePolicy policy);
-typedef void(^WKNavigationDelegateBlock2) (WKNavigationActionPolicy policy);
+typedef void(^WKNavigationDelegateBlock1)(WKNavigationResponsePolicy policy);
+typedef void(^WKNavigationDelegateBlock2)(WKNavigationActionPolicy policy);
 #pragma mark —— 关于 JavaScript
 typedef void(^jobsByJSValueBlock)(JSValue *_Nullable value);
 #pragma mark —— 关于View
@@ -89,9 +88,6 @@ typedef void(^jobsByLayoutAttributeBlock)(NSLayoutAttribute data);
 typedef void(^jobsByImageBlock)(UIImage *_Nullable data);
 typedef void(^jobsByCorBlock)(UIColor *_Nullable data);
 typedef void(^jobsByFontBlock)(UIFont *_Nullable font);
-/// 多参数
-typedef void(^jobsByClassAndSaltStrBlock)(Class _Nonnull cls,NSString *_Nullable salt);
-typedef void(^jobsByColor_FloatBlock)(UIColor *_Nullable,float borderWidth);
 #pragma mark —— 关于UI配置
 /// 按钮配置
 typedef void(^jobsByButtonConfigurationBlock)(UIButtonConfiguration * _Nullable config);
@@ -173,6 +169,8 @@ typedef void(^jobsBySelectorBlock) (Jobs_2_Arguments);
 typedef void(^jobsJSCompletionHandlerBlock)(Jobs_JSCompletionHandlerBlock_Arguments);
 typedef void(^WKNavigationDelegateBlock3) (Jobs_WKNavigationDelegate_Arguments);
 typedef void(^jobsByViewArrayRowsColumnsBlock)(Jobs_ViewArrayRowsColumnsBlock_Arguments);
+typedef void(^jobsByClassAndSaltStrBlock)(Jobs_UITableViewHeaderFooterViewBlock_Arguments);
+typedef void(^jobsByColor_FloatBlock)(Jobs_ReturnButtonByColor_FloatBlock_Arguments);
 /// weakSelf 方便使用，用来打破循环引用。使用时需要改成实际类型，否则没有代码提示
 /// selector 实际调用的方法
 /// arg 事件默认传递的对象，比如`NSNotification`，`UIButton`

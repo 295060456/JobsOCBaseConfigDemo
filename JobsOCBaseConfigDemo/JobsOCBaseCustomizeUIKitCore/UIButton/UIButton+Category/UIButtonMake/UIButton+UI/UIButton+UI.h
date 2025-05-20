@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
+#import "JobsMakes.h"
 #import "MacroDef_Strong@Weak.h"
 #import "MacroDef_Cor.h"
 #import "BaseProtocol.h"
@@ -60,6 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - subtitleLineBreakMode:（新Api才有的）副标题换行模式
 ///   - baseBackgroundColor: 背景颜色
 ///   - backgroundImage:背景图片
+///   - backgroundhighlightImage:背景图片（高亮）
 ///   - imagePadding: ❤️图像与标题之间的间距❤️
 ///   - titlePadding: 标题和副标题标签之间的距离
 ///   - imagePlacement: ❤️图片和文字的位置关系❤️
@@ -76,41 +78,42 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - longPressGestureEventBlock: 按钮的长按事件
 ///   - clickEventBlock: 老Api的点击事件，利用RAC实现
 ///   如果同时设置 clickEventBlock 和 primaryAction，会优先响应新的Api，再响应老的Api
--(instancetype)jobsInitBtnByConfiguration:(UIButtonConfiguration *_Nullable)btnConfiguration
-                               background:(UIBackgroundConfiguration *_Nullable)background
-               buttonConfigTitleAlignment:(UIButtonConfigurationTitleAlignment)buttonConfigTitleAlignment/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
-                            textAlignment:(NSTextAlignment)textAlignment/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】
-                         subTextAlignment:(NSTextAlignment)subTextAlignment
-                              normalImage:(UIImage *_Nullable)normalImage
-                           highlightImage:(UIImage *_Nullable)highlightImage
-                          attributedTitle:(NSAttributedString *_Nullable)attributedTitle
-                  selectedAttributedTitle:(NSAttributedString *_Nullable)selectedAttributedTitle
-                       attributedSubtitle:(NSAttributedString *_Nullable)attributedSubtitle
-                                    title:(NSString *_Nullable)title
-                                 subTitle:(NSString *_Nullable)subTitle
-                                titleFont:(UIFont *_Nullable)titleFont
-                             subTitleFont:(UIFont *_Nullable)subTitleFont
-                                 titleCor:(UIColor *_Nullable)titleCor
-                              subTitleCor:(UIColor *_Nullable)subTitleCor
-                       titleLineBreakMode:(NSLineBreakMode)titleLineBreakMode/// 对应老Api中的：UIButton.lineBreakMode
-                    subtitleLineBreakMode:(NSLineBreakMode)subtitleLineBreakMode
-                      baseBackgroundColor:(UIColor *_Nullable)baseBackgroundColor
-                          backgroundImage:(UIImage *_Nullable)backgroundImage
-                             imagePadding:(CGFloat)imagePadding
-                             titlePadding:(CGFloat)titlePadding
-                           imagePlacement:(NSDirectionalRectEdge)imagePlacement/// 定义图文关系
-               contentHorizontalAlignment:(UIControlContentHorizontalAlignment)contentHorizontalAlignment /// 针对内容
-                 contentVerticalAlignment:(UIControlContentVerticalAlignment)contentVerticalAlignment /// 针对内容
-                            contentInsets:(NSDirectionalEdgeInsets)contentInsets/// 对应老Api中的：UIButton.contentEdgeInsets
-                        cornerRadiusValue:(CGFloat)cornerRadiusValue
-                          roundingCorners:(UIRectCorner)roundingCorners
-                     roundingCornersRadii:(CGSize)roundingCornersRadii
-                           layerBorderCor:(UIColor *_Nullable)layerBorderCor
-                              borderWidth:(CGFloat)borderWidth
-                                 selected:(BOOL)selected
-                            primaryAction:(UIAction *_Nullable)primaryAction
-               longPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock
-                          clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock;
+-(__kindof UIButton *)jobsInitBtnByConfiguration:(UIButtonConfiguration *_Nullable)btnConfiguration
+                                      background:(UIBackgroundConfiguration *_Nullable)background
+                      buttonConfigTitleAlignment:(UIButtonConfigurationTitleAlignment)buttonConfigTitleAlignment/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+                                   textAlignment:(NSTextAlignment)textAlignment/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】
+                          subTextAlignment:(NSTextAlignment)subTextAlignment
+                                     normalImage:(UIImage *_Nullable)normalImage
+                                  highlightImage:(UIImage *_Nullable)highlightImage
+                                 attributedTitle:(NSAttributedString *_Nullable)attributedTitle
+                         selectedAttributedTitle:(NSAttributedString *_Nullable)selectedAttributedTitle
+                              attributedSubtitle:(NSAttributedString *_Nullable)attributedSubtitle
+                                           title:(NSString *_Nullable)title
+                                        subTitle:(NSString *_Nullable)subTitle
+                                       titleFont:(UIFont *_Nullable)titleFont
+                                    subTitleFont:(UIFont *_Nullable)subTitleFont
+                                        titleCor:(UIColor *_Nullable)titleCor
+                                     subTitleCor:(UIColor *_Nullable)subTitleCor
+                              titleLineBreakMode:(NSLineBreakMode)titleLineBreakMode/// 对应老Api中的：UIButton.lineBreakMode
+                           subtitleLineBreakMode:(NSLineBreakMode)subtitleLineBreakMode
+                             baseBackgroundColor:(UIColor *_Nullable)baseBackgroundColor
+                                 backgroundImage:(UIImage *_Nullable)backgroundImage
+                        highlightBackgroundImage:(UIImage *_Nullable)highlightBackgroundImage
+                                    imagePadding:(CGFloat)imagePadding
+                                    titlePadding:(CGFloat)titlePadding
+                                  imagePlacement:(NSDirectionalRectEdge)imagePlacement/// 定义图文关系
+                      contentHorizontalAlignment:(UIControlContentHorizontalAlignment)contentHorizontalAlignment /// 针对内容
+                        contentVerticalAlignment:(UIControlContentVerticalAlignment)contentVerticalAlignment /// 针对内容
+                                   contentInsets:(NSDirectionalEdgeInsets)contentInsets/// 对应老Api中的：UIButton.contentEdgeInsets
+                               cornerRadiusValue:(CGFloat)cornerRadiusValue
+                                 roundingCorners:(UIRectCorner)roundingCorners
+                            roundingCornersRadii:(CGSize)roundingCornersRadii
+                                  layerBorderCor:(UIColor *_Nullable)layerBorderCor
+                                     borderWidth:(CGFloat)borderWidth
+                                        selected:(BOOL)selected
+                                   primaryAction:(UIAction *_Nullable)primaryAction
+                      longPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock
+                                 clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock;
 /// @property (nonatomic, readwrite, assign) UIButtonConfigurationSize buttonSize; 这个属性，不是我们想要的UIFont。设置UIFont必须在富文本里面进行设置
 -(UIConfigurationTextAttributesTransformer)jobsSetConfigTextAttributesTransformerByTitleFont:(UIFont *_Nullable)titleFont
                                                                                  btnTitleCor:(UIColor *_Nullable)titleCor;

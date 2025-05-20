@@ -250,4 +250,47 @@
     CGFloat y
 #endif /* Jobs_ReturnIDByCenterBlock_Arguments */
 
+#ifndef Jobs_ReturnButtonModelByStringAndImagesBlock_Arguments
+#define Jobs_ReturnButtonModelByStringAndImagesBlock_Arguments \
+    __kindof NSString *_Nullable title, \
+    UIImage *_Nullable image, \
+    UIImage *_Nullable highlightImage
+#endif /* Jobs_ReturnButtonModelByStringAndImagesBlock_Arguments */
+
+#ifndef Jobs_ReturnButtonByImagePlacementAndPaddingBlock_Arguments
+#define Jobs_ReturnButtonByImagePlacementAndPaddingBlock_Arguments \
+    NSDirectionalRectEdge data, \
+    CGFloat x
+#endif /* Jobs_ReturnButtonByImagePlacementAndPaddingBlock_Arguments */
+
+#ifndef Jobs_ReturnButtonByColor_FloatBlock_Arguments
+#define Jobs_ReturnButtonByColor_FloatBlock_Arguments \
+    UIColor *_Nullable cor, \
+    float borderWidth
+#endif /* Jobs_ReturnButtonByColor_FloatBlock_Arguments */
+
+#ifndef Jobs_ReturnButtonByAttributedStringsBlock_Arguments
+#define Jobs_ReturnButtonByAttributedStringsBlock_Arguments \
+    NSAttributedString *_Nonnull title, \
+    NSAttributedString *_Nonnull subTitle
+#endif /* Jobs_ReturnButtonByAttributedStringsBlock_Arguments */
+
+#ifndef Jobs_ReturnMutableDicByKeyValueBlock_Arguments
+#define Jobs_ReturnMutableDicByKeyValueBlock_Arguments \
+    id <NSCopying>_Nonnull key, \
+    id _Nonnull value
+#endif /* Jobs_ReturnMutableDicByKeyValueBlock_Arguments */
+
+#ifndef Jobs_ReturnMutableDicByKey_ValueBlock_Arguments
+#define Jobs_ReturnMutableDicByKey_ValueBlock_Arguments \
+    NSString *_Nonnull key, \
+    id _Nullable value
+#endif /* Jobs_ReturnMutableDicByKey_ValueBlock_Arguments */
+
+#ifndef Jobs_ReturnCGRectByCGFloatAndUIViewBlock_Arguments
+#define Jobs_ReturnCGRectByCGFloatAndUIViewBlock_Arguments \
+    CGFloat data, \
+    __kindof UIView *_Nonnull superView
+#endif /* Jobs_ReturnCGRectByCGFloatAndUIViewBlock_Arguments */
+                                                                                
 #endif /* JobsBlockDef_h */

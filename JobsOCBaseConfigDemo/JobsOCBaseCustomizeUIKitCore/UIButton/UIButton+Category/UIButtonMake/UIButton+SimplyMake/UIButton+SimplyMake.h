@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "JobsBlock.h"
+#import "JobsMakes.h"
 #import "DefineProperty.h"
 #import "BaseProtocol.h"
 #import "UIButton+UI.h"
@@ -72,9 +73,9 @@ Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 /// 依靠UITextModel进行创建
 +(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel;
 #pragma mark —— 一些公有方法
--(JobsReturnButtonByClickBlock _Nonnull)onClickBy;
--(JobsReturnButtonByClickBlock _Nonnull)onLongPressGestureBy;
--(JobsReturnButtonByTimerManagerBlock _Nonnull)heartBeatBy;
+-(JobsReturnButtonByClickBlocks _Nonnull)onClickBy;
+-(JobsReturnButtonByClickBlocks _Nonnull)onLongPressGestureBy;
+-(JobsReturnButtonByTimerManagerBlocks _Nonnull)heartBeatBy;
 -(JobsReturnButtonByColorBlock _Nonnull)bgColorBy;
 -(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValueBy;
 #pragma mark —— 依据数据源进行按钮的统一重设
@@ -90,85 +91,6 @@ NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull blo
     if (block) block(data);
     return data;
 }
-#pragma mark —— UIButtonConfiguration
-NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakePlainButtonConfiguration(jobsByButtonConfigurationBlock _Nonnull block){
-    UIButtonConfiguration *data = UIButtonConfiguration.plainButtonConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeTintedButtonConfiguration(jobsByButtonConfigurationBlock _Nonnull block){
-    UIButtonConfiguration *data = UIButtonConfiguration.tintedButtonConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeGrayButtonConfiguration(jobsByButtonConfigurationBlock _Nonnull block){
-    UIButtonConfiguration *data = UIButtonConfiguration.grayButtonConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeFilledButtonConfiguration(jobsByButtonConfigurationBlock _Nonnull block){
-    UIButtonConfiguration *data = UIButtonConfiguration.filledButtonConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeBorderlessButtonConfiguration(jobsByButtonConfigurationBlock _Nonnull block){
-    UIButtonConfiguration *data = UIButtonConfiguration.borderlessButtonConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeBorderedButtonConfiguration(jobsByButtonConfigurationBlock _Nonnull block){
-    UIButtonConfiguration *data = UIButtonConfiguration.borderedButtonConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeBorderedTintedButtonConfiguration(jobsByButtonConfigurationBlock _Nonnull block){
-    UIButtonConfiguration *data = UIButtonConfiguration.borderedTintedButtonConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeBorderedProminentButtonConfiguration(jobsByButtonConfigurationBlock _Nonnull block){
-    UIButtonConfiguration *data = UIButtonConfiguration.borderedProminentButtonConfiguration;
-    if (block) block(data);
-    return data;
-}
-#pragma mark —— UIBackgroundConfiguration
-NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeClearConfiguration(jobsByBackgroundConfigurationBlock _Nonnull block){
-    UIBackgroundConfiguration *data = UIBackgroundConfiguration.clearConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListCellConfiguration(jobsByBackgroundConfigurationBlock _Nonnull block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
-    UIBackgroundConfiguration *data = UIBackgroundConfiguration.listCellConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListHeaderConfiguration(jobsByBackgroundConfigurationBlock _Nonnull block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
-    UIBackgroundConfiguration *data = UIBackgroundConfiguration.listHeaderConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListFooterConfiguration(jobsByBackgroundConfigurationBlock _Nonnull block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
-    UIBackgroundConfiguration *data = UIBackgroundConfiguration.listFooterConfiguration;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSidebarCellConfiguration(jobsByBackgroundConfigurationBlock _Nonnull block) API_UNAVAILABLE(tvos, watchos){
-    UIBackgroundConfiguration *data = UIBackgroundConfiguration.listAccompaniedSidebarCellConfiguration;
-    if (block) block(data);
-    return data;
-}
-
 /**
  
  -(UIButton *)mailBtn{

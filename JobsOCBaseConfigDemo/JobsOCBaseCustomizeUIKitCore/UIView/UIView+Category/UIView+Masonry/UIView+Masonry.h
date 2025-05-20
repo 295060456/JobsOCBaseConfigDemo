@@ -30,7 +30,7 @@ Prop_copy()jobsByMASConstraintMakerBlock masonryBlock;
                   margin:(CGFloat)margin
                  spacing:(CGFloat)spacing;
 #pragma mark —— 实现 masonryBlock 链式方法
--(JobsReturnViewByMasonryConstraintsBlock _Nonnull)setMasonryBy;
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)setMasonryBy;
 #pragma mark —— 执行约束
 /// 含义：添加新的约束
 /// 适用场景：第一次为视图添加约束
@@ -45,9 +45,9 @@ Prop_copy()jobsByMASConstraintMakerBlock masonryBlock;
 /// 行为：会移除视图上所有 Masonry 创建的约束，再应用 block 中的新约束
 -(JobsReturnViewByVoidBlock _Nonnull)remake;
 #pragma mark —— 添加约束并执行
--(JobsReturnViewByMasonryConstraintsBlock _Nonnull)masonryBy;
--(JobsReturnViewByMasonryConstraintsBlock _Nonnull)upgradeBy;
--(JobsReturnViewByMasonryConstraintsBlock _Nonnull)remakeBy;
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)masonryBy;
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)upgradeBy;
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)remakeBy;
 #pragma mark —— 卸载约束
 /// 卸载当前view上的某个方向的约束
 -(jobsByLayoutAttributeBlock _Nonnull)uninstall;

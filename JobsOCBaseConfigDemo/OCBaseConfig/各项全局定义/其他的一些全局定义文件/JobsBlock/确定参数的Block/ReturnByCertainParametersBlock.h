@@ -20,7 +20,6 @@ typedef id _Nullable(^JobsReturnIDByCGSizeBlock)(CGSize size);
 typedef id _Nullable(^JobsReturnIDByCGRectBlock)(CGRect frame);
 typedef id _Nullable(^JobsReturnIDByCGPointBlock)(CGPoint point);
 typedef id _Nullable(^JobsReturnIDByCGFloatBlock)(CGFloat data);
-typedef id _Nullable(^JobsReturnIDByCenterBlock)(Jobs_ReturnIDByCenterBlock_Arguments);
 
 typedef id _Nullable(^JobsReturnIDByIDBlock)(id _Nullable data);
 typedef id _Nullable(^JobsReturnIDByNotificationBlock)(NSNotification *_Nullable notification);
@@ -48,10 +47,6 @@ typedef id _Nullable(^JobsReturnIDByUnsignedShortBlock)(unsigned short data);
 typedef id _Nullable(^JobsReturnIDByLongBlock)(long data);
 typedef id _Nullable(^JobsReturnIDByUnsignedLongBlock)(unsigned long data);
 typedef id _Nullable(^JobsReturnIDByUnsignedLongLongBlock)(unsigned long long data);
-/// 多参数
-typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Jobs_UITableViewHeaderFooterViewBlock_Arguments);
-typedef id _Nullable(^JobsReturnIDByTwoIDBlock) (Jobs_2_Arguments);/// weakSelf、arg
-typedef id _Nullable(^JobsReturnIDByThreeIDBlock) (Jobs_3_Arguments);/// weakSelf、arg、data
 #pragma mark —— 关于 NSRunLoop
 typedef __kindof NSRunLoop *_Nullable(^JobsReturnRunLoopByTimerBlock)(NSTimer *_Nonnull timer);
 #pragma mark —— 关于数据容器
@@ -69,8 +64,6 @@ typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByDataBlock)(NSData *_Nul
 typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByURLBlock)(NSURL *_Nullable url);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByVoidBlock)(void);
 typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByDicBlock)(__kindof NSDictionary *_Nullable dic);
-typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKeyValueBlock)(id <NSCopying>_Nonnull key,id _Nonnull value);
-typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKey_ValueBlock)(NSString *_Nonnull key,id _Nullable value);
 /// 集合
 typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByIDBlock)(id _Nullable data);
 typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByArrBlock)(__kindof NSArray *_Nullable data);
@@ -88,10 +81,8 @@ typedef NSValue *_Nullable(^JobsReturnValueByPointBlock)(CGPoint point);
 typedef NSValue *_Nullable(^JobsReturnValueByVectorBlock)(CGVector data);
 typedef NSValue *_Nullable(^JobsReturnValueByRectBlock)(CGRect frame);
 typedef NSValue *_Nullable(^JobsReturnValueByAffineTransformBlock)(CGAffineTransform data);
-typedef NSValue *_Nullable(^JobsReturnValueByEdgeInsetsBlock)(UIEdgeInsets
- data);
-typedef NSValue *_Nullable(^JobsReturnValueByDirectionalEdgeInsetsBlock)(NSDirectionalEdgeInsets
- data);
+typedef NSValue *_Nullable(^JobsReturnValueByEdgeInsetsBlock)(UIEdgeInsets data);
+typedef NSValue *_Nullable(^JobsReturnValueByDirectionalEdgeInsetsBlock)(NSDirectionalEdgeInsets data);
 typedef NSValue *_Nullable(^JobsReturnValueByOffsetBlock)(UIOffset data);
 #pragma mark —— 关于贝塞尔曲线
 typedef UIBezierPath *_Nullable(^JobsReturnBezierPathByCGRectBlock)(CGRect frame);
@@ -218,6 +209,7 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSUIntegerBlock)(NSUInte
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextAlignmentBlock)(NSTextAlignment data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementBlock)(NSDirectionalRectEdge data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByIDBlock)(id _Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByDicBlock)(__kindof NSDictionary *_Nullable data);
 typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByImageBlock)(UIImage *_Nullable data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImageBlock)(UIImage *_Nonnull image);
@@ -226,29 +218,6 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFontBlock)(UIFont *_Null
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByColorBlock)(UIColor *_Nonnull cor);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStringBlock)(__kindof NSString *_Nullable data);/// 主文字内容
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByAttributedStringBlock)(NSAttributedString *_Nullable title);/// 富文本内容
-/// 多参数
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementAndPaddingBlock)(NSDirectionalRectEdge data,
-                                                                                       CGFloat x);
-typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByColor_FloatBlock)(UIColor *_Nullable,
-                                                                         float borderWidth);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitlesBlock)(NSString *_Nonnull title,
-                                                                     NSString *_Nonnull subTitle);/// 主/副 文字内容
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByAttributedStringsBlock)(NSAttributedString *_Nonnull title,
-                                                                                NSAttributedString *_Nonnull subTitle);/// 主/副 富文本内容
-/// 主文字内容、字体大小
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle1Block) (Jobs_Title_Font_Arguments);
-/// 主文字内容、字体大小、主文字颜色
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle2Block) (Jobs_Title_Font_TitleCor_Arguments);
-/// 主文字内容、字体大小、主文字颜色、按钮图片、图片和文字的位置关系、x
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle3Block) (Jobs_Title_Font_TitleCor_Image_imagePlacement_X_Arguments);
-/// 主文字内容、字体大小、主文字颜色、按钮图片
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle4Block) (Jobs_Title_Font_TitleCor_Image_Arguments);
-/// 主文字内容、字体大小、主文字颜色、按钮图片、按钮背景图片、图片和文字的位置关系
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle5Block) (Jobs_Title_Font_TitleCor_Image_BackgroundImage_ImagePlacement_Arguments);
-/// 主文字内容、字体大小、主文字颜色、按钮图片、图文相对位置、图文距离
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle6Block) (Jobs_Title_Font_TitleCor_Image_DirectionalRectEdge_X_Arguments);
-/// 主文字内容、字体大小、主文字颜色、按钮图片、图文距离
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle7Block) (Jobs_Title_Font_TitleCor_Image_X_Arguments);
 #pragma mark —— 关于 UIActivityIndicatorView
 typedef __kindof UIActivityIndicatorView *_Nullable(^JobsReturnActivityIndicatorViewByNSInteger)(NSInteger data);
 #pragma mark —— 关于 UITableViewHeaderFooterView
@@ -353,7 +322,6 @@ typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByNSUIntegerBlock)(NSUInte
 /// 因此，直接将 CGFloat 封装为 NSNumber 时，需要根据平台的不同选择正确的 NSNumber 方法。
 typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByCGFloatBlock)(CGFloat data);
 #pragma mark —— 关于字符串
-typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegersBlock)(NSInteger data, ...);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCharBlock)(char *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCharacterSetBlock)(NSCharacterSet *_Nullable data);
@@ -362,7 +330,6 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger 
 typedef __kindof NSString *_Nullable(^JobsReturnStringByUIntegerBlock)(NSUInteger data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByRangeBlock)(NSRange data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalsBlock)(NSTimeInterval data, ...);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByBOOLBlock)(BOOL data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByURLBlock)(NSURL *_Nullable data);
@@ -375,10 +342,6 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByDictionaryBlock)(__kindo
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCorBlock)(UIColor *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCGPointBlock)(CGPoint data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByArrAndNSIntegerBlock)(Jobs_NSStringBlock_1_Arguments);
-/// 多参数
-typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateFormatterBlock)(Jobs_NSStringBlock_2_Arguments);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(Jobs_NSStringBlock_3_Arguments);
 #pragma mark —— 关于 NSRegularExpression
 typedef __kindof NSRegularExpression *_Nullable(^JobsReturnRegularExpressionByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于时间（格式）/日历/计时器/间隔时间
@@ -514,8 +477,6 @@ typedef CGRect(^JobsReturnCGRectByCGSizeBlock)(CGSize size);
 typedef CGRect(^JobsReturnCGRectByCGFloatBlock)(CGFloat data);
 typedef CGRect(^JobsReturnCGRectByIDBlock)(id _Nullable data);
 typedef CGRect(^JobsReturnRectByViewBlock)(__kindof UIView *_Nonnull data);
-/// 多参数
-typedef CGRect(^JobsReturnCGRectByCGFloatAndUIViewBlock)(CGFloat data,__kindof UIView *_Nonnull superView);
 
 typedef CGPoint(^JobsReturnCGPointByVoidBlock)(void);
 typedef CGPoint(^JobsReturnCGPointByBOOLBlock)(BOOL data);
@@ -617,8 +578,6 @@ typedef unsigned long(^JobsReturnUnsignedLongByIDBlock)(id _Nullable data);
 typedef unsigned long long(^JobsReturnUnsignedLongLongByIDBlock)(id _Nullable data);
 typedef unsigned long long(^JobsReturnUnsignedLongLongByVoidBlock)(void);
 typedef unsigned long long(^JobsReturnByUnsignedLongLongBlock)(unsigned long long data);
-
-typedef NSIndexPath *_Nonnull(^JobsReturnIndexPathByXYBlock)(CGFloat x,CGFloat y);
 #pragma mark —— 其他
 typedef UIEditMenuInteraction *_Nullable(^JobsReturnUIEditMenuInteractionByIDBlock)(id<UIEditMenuInteractionDelegate>_Nullable data);
 typedef UIContextMenuInteraction *_Nonnull(^JobsReturnContextMenuInteractionByIDBlock)(id <UIContextMenuInteractionDelegate>_Nullable delegate);
@@ -626,7 +585,46 @@ typedef __kindof NSXMLParser *_Nonnull(^JobsReturnNSXMLParserByNSDataBlock)(__ki
 typedef PHAssetChangeRequest *_Nonnull(^JobsReturnPHAssetChangeRequestByURLBlock)(NSURL *_Nullable url);
 typedef __kindof AVAssetImageGenerator *_Nonnull(^JobsReturnAVAssetImageGeneratorByAVURLAssetBlock)(__kindof AVURLAsset *_Nullable data);
 typedef __kindof NSArray <PHAssetResource *>*_Nonnull(^JobsReturnArrayByPHAssetBlock)(__kindof PHAsset *_Nullable data);
+#pragma mark —— 多入参，返回 id
+typedef id _Nullable(^JobsReturnIDByCenterBlock)(Jobs_ReturnIDByCenterBlock_Arguments);
+typedef id _Nonnull(^JobsReturnIDByClsAndSaltStrBlock)(Jobs_UITableViewHeaderFooterViewBlock_Arguments);
+typedef id _Nullable(^JobsReturnIDByTwoIDBlock) (Jobs_2_Arguments);/// weakSelf、arg
+typedef id _Nullable(^JobsReturnIDByThreeIDBlock) (Jobs_3_Arguments);/// weakSelf、arg、data
+#pragma mark —— 多入参，返回 NSString
+typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegersBlock)(NSInteger data, ...);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalsBlock)(NSTimeInterval data, ...);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByArrAndNSIntegerBlock)(Jobs_NSStringBlock_1_Arguments);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateFormatterBlock)(Jobs_NSStringBlock_2_Arguments);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(Jobs_NSStringBlock_3_Arguments);
+#pragma mark —— 多入参，返回 UIButton
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementAndPaddingBlock)(Jobs_ReturnButtonByImagePlacementAndPaddingBlock_Arguments);
+typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByColor_FloatBlock)(Jobs_ReturnButtonByColor_FloatBlock_Arguments);
+/// 主/副 文字内容 title/subTitle
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitlesBlock)(Jobs_NSStringBlock_3_Arguments);
+/// 主/副 富文本内容 title/subTitle
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByAttributedStringsBlock)(Jobs_ReturnButtonByAttributedStringsBlock_Arguments);
+/// 主文字内容、字体大小
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle1Block)(Jobs_Title_Font_Arguments);
+/// 主文字内容、字体大小、主文字颜色
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle2Block)(Jobs_Title_Font_TitleCor_Arguments);
+/// 主文字内容、字体大小、主文字颜色、按钮图片、图片和文字的位置关系、x
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle3Block)(Jobs_Title_Font_TitleCor_Image_imagePlacement_X_Arguments);
+/// 主文字内容、字体大小、主文字颜色、按钮图片
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle4Block)(Jobs_Title_Font_TitleCor_Image_Arguments);
+/// 主文字内容、字体大小、主文字颜色、按钮图片、按钮背景图片、图片和文字的位置关系
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle5Block)(Jobs_Title_Font_TitleCor_Image_BackgroundImage_ImagePlacement_Arguments);
+/// 主文字内容、字体大小、主文字颜色、按钮图片、图文相对位置、图文距离
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle6Block)(Jobs_Title_Font_TitleCor_Image_DirectionalRectEdge_X_Arguments);
+/// 主文字内容、字体大小、主文字颜色、按钮图片、图文距离
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByStyle7Block)(Jobs_Title_Font_TitleCor_Image_X_Arguments);
+/// NSMutableDictionary
+typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKeyValueBlock)(Jobs_ReturnMutableDicByKeyValueBlock_Arguments);
+typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKey_ValueBlock)(Jobs_ReturnMutableDicByKey_ValueBlock_Arguments);
 
+typedef CGRect(^JobsReturnCGRectByCGFloatAndUIViewBlock)(Jobs_ReturnCGRectByCGFloatAndUIViewBlock_Arguments);
+typedef NSIndexPath *_Nonnull(^JobsReturnIndexPathByXYBlock)(Jobs_ReturnIDByCenterBlock_Arguments);
+@class UIButtonModel;
+typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByStringAndImagesBlock)(Jobs_ReturnButtonModelByStringAndImagesBlock_Arguments);
 #pragma clang diagnostic pop
 
 #endif /* ReturnByCertainParameters_h */

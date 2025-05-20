@@ -48,8 +48,8 @@ Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮�
 Prop_copy(nullable)jobsByBtnBlock onClickBlock;
 Prop_copy(nullable)jobsByBtnBlock onLongPressGestureEventBlock;
 #pragma mark —— 挂载的对象
-Prop_strong(nullable)UIView *VIEW;
-Prop_strong(nullable)UIViewController *VC;
+Prop_strong(nullable)UIView *VIEW; /// 慎用：挂载的对象除非主动置空，否则生命周期于本对象同步消亡
+Prop_strong(nullable)UIViewController *VC; /// 慎用：挂载的对象除非主动置空，否则生命周期于本对象同步消亡
 #pragma mark —— ZFDouYinCell
 -(void)zf_douyinRotation;
 

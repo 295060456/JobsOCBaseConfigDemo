@@ -16,7 +16,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "JobsBlock.h"
 #import "NSObject+AttributedStr.h"
-
+#import "NSString+Others.h"
 #pragma mark —— 关于时间/日历
 NS_INLINE __kindof NSDateComponents *_Nonnull jobsMakeDateComponents(jobsByDateComponentsBlock _Nonnull block){
     NSDateComponents *data = NSDateComponents.alloc.init;
@@ -29,26 +29,6 @@ NS_INLINE __kindof NSDateFormatter *_Nonnull jobsMakeDateFormatter(jobsByDateFor
     if (block) block(data);
     return data;
 }
-#pragma mark —— 关于UIColor的创建
-@class JobsCorModel;
-NS_INLINE __kindof UIColor *_Nonnull jobsMakeCor(jobsByCorModelBlock _Nonnull block){
-    JobsCorModel *data = JobsCorModel.alloc.init;
-    if (block) block(data);
-    return [UIColor colorWithRed:data.red
-                           green:data.green
-                            blue:data.blue
-                           alpha:data.alpha];
-}
-
-NS_INLINE __kindof UIColor *_Nonnull jobsMakeCor2(jobsByCorModelBlock _Nonnull block){
-    JobsCorModel *data = JobsCorModel.alloc.init;
-    if (block) block(data);
-    return [UIColor colorWithHue:data.hue
-                      saturation:data.saturation
-                      brightness:data.brightness
-                           alpha:data.alpha];
-}
-
 #pragma mark —— 关于贝塞尔曲线的创建
 NS_INLINE __kindof UIBezierPath *_Nonnull jobsMakeBezierPath(jobsByBezierPathBlock _Nonnull block){
     UIBezierPath *data = UIBezierPath.bezierPath;
@@ -66,6 +46,12 @@ NS_INLINE __kindof CABasicAnimation *_Nonnull jobsMakeCABasicAnimation(jobsByCAB
     return data;
 }
 #pragma mark —— 关于Layer
+NS_INLINE __kindof CAEmitterLayer *_Nonnull jobsMakeCAEmitterLayer(jobsByCAEmitterLayerBlock _Nonnull block){
+    CAEmitterLayer *layer = CAEmitterLayer.layer;
+    if (block) block(layer);
+    return layer;
+}
+
 NS_INLINE __kindof CAShapeLayer *_Nonnull jobsMakeCAShapeLayer(jobsByCAShapeLayerBlock _Nonnull block){
     CAShapeLayer *data = CAShapeLayer.layer;
     if (block) block(data);
@@ -78,6 +64,12 @@ NS_INLINE __kindof CALayer *_Nonnull jobsMakeCALayer(jobsByCALayerBlock _Nonnull
     return data;
 }
 
+NS_INLINE __kindof CAGradientLayer *_Nonnull jobsMakeCAGradientLayer(jobsByCAGradientLayerBlock _Nonnull block){
+    CAGradientLayer *data = CAGradientLayer.layer;
+    if (block) block(data);
+    return data;
+}
+#pragma mark —— 关于动画
 NS_INLINE __kindof CATransition *_Nonnull jobsMakeCATransition(jobsByCATransitionBlock _Nonnull block){
     CATransition *data = CATransition.animation;
     if (block) block(data);
@@ -86,12 +78,6 @@ NS_INLINE __kindof CATransition *_Nonnull jobsMakeCATransition(jobsByCATransitio
 
 NS_INLINE __kindof CAKeyframeAnimation *_Nonnull jobsMakeCAKeyframeAnimation(jobsByCAKeyframeAnimationBlock _Nonnull block){
     CAKeyframeAnimation *data = CAKeyframeAnimation.animation;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof CAGradientLayer *_Nonnull jobsMakeCAGradientLayer(jobsByCAGradientLayerBlock _Nonnull block){
-    CAGradientLayer *data = CAGradientLayer.layer;
     if (block) block(data);
     return data;
 }
@@ -138,7 +124,85 @@ NS_INLINE __kindof UIScreenEdgePanGestureRecognizer *_Nonnull jobsMakeScreenEdge
     if (block) block(gesture);
     return gesture;
 }
-#pragma mark —— 关于UIView的创建
+#pragma mark —— 关于 UIButtonConfiguration 的创建
+NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakePlainBtnConfig(jobsByButtonConfigurationBlock _Nullable block) {
+    UIButtonConfiguration *config = UIButtonConfiguration.plainButtonConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeTintedBtnConfig(jobsByButtonConfigurationBlock _Nullable block) {
+    UIButtonConfiguration *config = UIButtonConfiguration.tintedButtonConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeGrayBtnConfig(jobsByButtonConfigurationBlock _Nullable block) {
+    UIButtonConfiguration *config = UIButtonConfiguration.grayButtonConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeFilledBtnConfig(jobsByButtonConfigurationBlock _Nullable block) {
+    UIButtonConfiguration *config = UIButtonConfiguration.filledButtonConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeBorderlessBtnConfig(jobsByButtonConfigurationBlock _Nullable block) {
+    UIButtonConfiguration *config = UIButtonConfiguration.borderlessButtonConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeBorderedBtnConfig(jobsByButtonConfigurationBlock _Nullable block) {
+    UIButtonConfiguration *config = UIButtonConfiguration.borderedButtonConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeBorderedTintedBtnConfig(jobsByButtonConfigurationBlock _Nullable block) {
+    UIButtonConfiguration *config = UIButtonConfiguration.borderedTintedButtonConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIButtonConfiguration *_Nonnull jobsMakeBorderedProminentBtnConfig(jobsByButtonConfigurationBlock _Nullable block) {
+    UIButtonConfiguration *config = UIButtonConfiguration.borderedProminentButtonConfiguration;
+    if (block) block(config);
+    return config;
+}
+#pragma mark —— 关于 UIBackgroundConfiguration 的创建
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeClearConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) {
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.clearConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listCellConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListHeaderConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listHeaderConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListFooterConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listFooterConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListAccompaniedSidebarCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_UNAVAILABLE(tvos, watchos){
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listAccompaniedSidebarCellConfiguration;
+    if (block) block(config);
+    return config;
+}
+#pragma mark —— 关于 UIView 的创建
 NS_INLINE __kindof UIImageView *_Nonnull jobsMakeImageView(jobsByImageViewBlock _Nonnull block){
     UIImageView *data = UIImageView.alloc.init;
     data.userInteractionEnabled = YES;
@@ -177,12 +241,6 @@ NS_INLINE __kindof UIWindow *_Nonnull jobsMakeAppDelegateWindow(jobsByWindowBloc
     return data;
 }
 
-NS_INLINE __kindof NSLock *_Nonnull jobsMakeLock(jobsByLockBlock _Nullable block){
-    NSLock *data = NSLock.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
 NS_INLINE __kindof UIView *_Nonnull jobsMakeView(jobsByViewBlock _Nonnull block){
     UIView *data = UIView.alloc.init;
     if (block) block(data);
@@ -201,30 +259,54 @@ NS_INLINE __kindof PDFView *_Nonnull jobsMakePDFView(jobsByPDFViewBlock _Nonnull
     return data;
 }
 
-NS_INLINE __kindof UITabBarItem *_Nonnull jobsMakeTabBarItem(jobsByTabBarItemBlock _Nonnull block){
-    UITabBarItem *data = UITabBarItem.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UINavigationItem *_Nonnull jobsMakeNavigationItem(jobsByNavigationItemBlock _Nonnull block){
-    UINavigationItem *data = UINavigationItem.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof NSShadow *_Nonnull jobsMakeShadow(jobsByShadowBlock _Nonnull block){
-    NSShadow *data = NSShadow.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
 NS_INLINE __kindof UIPageControl *_Nonnull jobsMakePageControl(jobsByPageControlBlock _Nonnull block){
     UIPageControl *data = UIPageControl.alloc.init;
     if (block) block(data);
     return data;
 }
 
+NS_INLINE __kindof UIStackView *_Nonnull jobsMakeStackView(jobsByStackViewBlock _Nonnull block){
+    UIStackView *data = UIStackView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof CAEmitterCell *_Nonnull jobsMakeCAEmitterCell(jobsByCAEmitterCellBlock _Nonnull block){
+    CAEmitterCell *cell = CAEmitterCell.emitterCell;
+    if (block) block(cell);
+    return cell;
+}
+
+NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebView(jobsByWKWebViewBlock _Nonnull block){
+    WKWebView *data = WKWebView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UISwitch *_Nonnull jobsMakeSwitch(jobsBySwitchBlock _Nonnull block){
+    UISwitch *data = UISwitch.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UIProgressView *_Nonnull jobsMakeProgressView(jobsByProgressViewBlock _Nonnull block){
+    UIProgressView *data = UIProgressView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UIScrollView *_Nonnull jobsMakeScrollView(jobsByScrollViewBlock _Nonnull block){
+    UIScrollView *data = UIScrollView.alloc.init;
+    if (block) block(data);
+    return data;
+}
+#pragma mark —— 关于控制器的创建
+NS_INLINE __kindof UIImagePickerController *_Nonnull jobsMakeImagePickerController(jobsByImagePickerControllerBlock _Nonnull block){
+    UIImagePickerController *data = UIImagePickerController.alloc.init;
+    if (block) block(data);
+    return data;
+}
+#pragma mark —— 其他
 NS_INLINE __kindof WKUserContentController *_Nonnull jobsMakeUserContentController(jobsByUserContentControllerBlock _Nonnull block){
     WKUserContentController *data = WKUserContentController.alloc.init;
     if (block) block(data);
@@ -285,8 +367,26 @@ NS_INLINE __kindof NEVPNProtocolIKEv2 *_Nonnull jobsMakeNEVPNProtocolIKEv2(jobsB
     return data;
 }
 
-NS_INLINE __kindof UIStackView *_Nonnull jobsMakeStackView(jobsByStackViewBlock _Nonnull block){
-    UIStackView *data = UIStackView.alloc.init;
+NS_INLINE __kindof NSShadow *_Nonnull jobsMakeShadow(jobsByShadowBlock _Nonnull block){
+    NSShadow *data = NSShadow.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UIMenuController *_Nonnull jobsMakeMenuController(jobsByMenuControllerBlock _Nonnull block){
+    UIMenuController *data = UIMenuController.sharedMenuController;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UITabBarItem *_Nonnull jobsMakeTabBarItem(jobsByTabBarItemBlock _Nonnull block){
+    UITabBarItem *data = UITabBarItem.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UINavigationItem *_Nonnull jobsMakeNavigationItem(jobsByNavigationItemBlock _Nonnull block){
+    UINavigationItem *data = UINavigationItem.alloc.init;
     if (block) block(data);
     return data;
 }
@@ -327,24 +427,6 @@ NS_INLINE __kindof UIPasteboard *_Nonnull jobsMakePasteboard(jobsByPasteboardBlo
     return data;
 }
 
-NS_INLINE __kindof CAEmitterCell *_Nonnull jobsMakeCAEmitterCell(jobsByCAEmitterCellBlock _Nonnull block){
-    CAEmitterCell *cell = CAEmitterCell.emitterCell;
-    if (block) block(cell);
-    return cell;
-}
-
-NS_INLINE __kindof CAEmitterLayer *_Nonnull jobsMakeCAEmitterLayer(jobsByCAEmitterLayerBlock _Nonnull block){
-    CAEmitterLayer *layer = CAEmitterLayer.layer;
-    if (block) block(layer);
-    return layer;
-}
-
-NS_INLINE __kindof UIMenuController *_Nonnull jobsMakeMenuController(jobsByMenuControllerBlock _Nonnull block){
-    UIMenuController *data = UIMenuController.sharedMenuController;
-    if (block) block(data);
-    return data;
-}
-
 NS_INLINE __kindof UNUserNotificationCenter *_Nonnull jobsMakeUNUserNotificationCenter(jobsByUNUserNotificationCenterBlock _Nonnull block){
     UNUserNotificationCenter *data = UNUserNotificationCenter.currentNotificationCenter;
     if (block) block(data);
@@ -357,121 +439,17 @@ NS_INLINE __kindof UNMutableNotificationContent *_Nonnull jobsMakeUNMutableNotif
     return data;
 }
 
-NS_INLINE __kindof WKWebView *_Nonnull jobsMakeWKWebView(jobsByWKWebViewBlock _Nonnull block){
-    WKWebView *data = WKWebView.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
 NS_INLINE __kindof JSContext *_Nonnull jobsMakeJSContext(jobsByJSContextBlock _Nonnull block){
     JSContext *data = JSContext.alloc.init;
     if (block) block(data);
     return data;
 }
 
-NS_INLINE __kindof UISwitch *_Nonnull jobsMakeSwitch(jobsBySwitchBlock _Nonnull block){
-    UISwitch *data = UISwitch.alloc.init;
+NS_INLINE __kindof NSLock *_Nonnull jobsMakeLock(jobsByLockBlock _Nullable block){
+    NSLock *data = NSLock.alloc.init;
     if (block) block(data);
     return data;
 }
-
-NS_INLINE __kindof UIProgressView *_Nonnull jobsMakeProgressView(jobsByProgressViewBlock _Nonnull block){
-    UIProgressView *data = UIProgressView.alloc.init;
-    if (block) block(data);
-    return data;
-}
-
-NS_INLINE __kindof UIScrollView *_Nonnull jobsMakeScrollView(jobsByScrollViewBlock _Nonnull block){
-    UIScrollView *data = UIScrollView.alloc.init;
-    if (block) block(data);
-    return data;
-}
-#pragma mark —— 关于控制器的创建
-NS_INLINE __kindof UIImagePickerController *_Nonnull jobsMakeImagePickerController(jobsByImagePickerControllerBlock _Nonnull block){
-    UIImagePickerController *data = UIImagePickerController.alloc.init;
-    if (block) block(data);
-    return data;
-}
-#pragma mark —— 关于结构体的创建
-@class JobsLocationModel;
-#pragma mark —— NSIndexPath
-NS_INLINE NSIndexPath *_Nonnull jobsMakeIndexPathByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-    JobsLocationModel *data = JobsLocationModel.alloc.init;
-    if (block) block(data);
-    return [NSIndexPath indexPathForRow:data.row inSection:data.section];
-}
-
-NS_INLINE NSIndexPath *_Nonnull jobsMakeIndexPathZero(void){
-    return [NSIndexPath indexPathForRow:0 inSection:0];
-}
-#pragma mark —— UIEdgeInsets
-NS_INLINE UIEdgeInsets jobsMakeEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-    JobsLocationModel *data = JobsLocationModel.alloc.init;
-    if (block) block(data);
-    return UIEdgeInsetsMake(data.jobsTop,
-                            data.jobsLeft,
-                            data.jobsBottom,
-                            data.jobsRight);
-}
-/// 构建一个四边距离相等的 UIEdgeInsets
-NS_INLINE UIEdgeInsets jobsMakeSameEdgeInset(CGFloat insets){
-    return jobsMakeEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
-        data.jobsTop = insets;
-        data.jobsLeft = insets;
-        data.jobsBottom = insets;
-        data.jobsRight = insets;
-    });
-}
-#pragma mark —— NSDirectionalEdgeInsets
-NS_INLINE NSDirectionalEdgeInsets jobsMakeDirectionalEdgeInsetsByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-    JobsLocationModel *data = JobsLocationModel.alloc.init;
-    if (block) block(data);
-    return NSDirectionalEdgeInsetsMake(data.jobsTop,
-                                       data.jobsLeft,
-                                       data.jobsBottom,
-                                       data.jobsRight);
-}
-/// 构建一个内边距相等的 NSDirectionalEdgeInsets
-NS_INLINE NSDirectionalEdgeInsets jobsSameDirectionalEdgeInsets(CGFloat x){
-    return jobsMakeDirectionalEdgeInsetsByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
-        data.jobsTop = x;
-        data.jobsLeft = x;
-        data.jobsBottom = x;
-        data.jobsRight = x;
-    });
-}
-#pragma mark —— CGRect
-NS_INLINE CGRect jobsMakeCGRectByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-    JobsLocationModel *data = JobsLocationModel.alloc.init;
-    if (block) block(data);
-    return CGRectMake(data.jobsX,
-                      data.jobsY,
-                      data.jobsWidth,
-                      data.jobsHeight);
-}
-
-NS_INLINE CGRect jobsMakeFrameByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-    return jobsMakeCGRectByLocationModelBlock(block);
-}
-#pragma mark —— CGPoint
-NS_INLINE CGPoint jobsMakeCGPointByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-    JobsLocationModel *data = JobsLocationModel.alloc.init;
-    if (block) block(data);
-    return CGPointMake(data.jobsX, data.jobsY);
-}
-#pragma mark —— CGSize
-NS_INLINE CGSize jobsMakeCGSizeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-    JobsLocationModel *data = JobsLocationModel.alloc.init;
-    if (block) block(data);
-    return CGSizeMake(data.jobsWidth, data.jobsHeight);
-}
-#pragma mark —— NSRange
-NS_INLINE NSRange jobsMakeRangeByLocationModelBlock(jobsByLocationModelBlock _Nonnull block){
-    JobsLocationModel *data = JobsLocationModel.alloc.init;
-    if (block) block(data);
-    return NSMakeRange(data.location, data.length);
-}
-
 #pragma clang diagnostic pop
 
 #endif /* JobsMakes_h */

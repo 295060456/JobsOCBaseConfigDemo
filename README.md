@@ -9259,25 +9259,28 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 ![Xnip2024-08-01_15-38-18](./assets/Xnip2024-08-01_15-38-18.jpg)
 
   ```objective-c
-  -(JobsStepView *)stepView{
-      if(!_stepView){
-          @jobs_weakify(self)
-          _stepView = jobsMakeStepView(^(__kindof JobsStepView * _Nullable stepView) {
-              @jobs_strongify(self)
-              stepView.backgroundColor = JobsClearColor;
-              stepView.offset = JobsWidth(10);
-              [self.addSubview(stepView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                  make.top.equalTo(self).offset(JobsWidth(20));
-                  make.left.equalTo(self).offset(JobsWidth(10));
-                  make.size.mas_equalTo(stepView.viewSizeByModel(nil));
-              }];stepView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-                  data.add(JobsStepView.makeButtonModel(JobsInternationalization(@"Unverified"),JobsIMG(@"正在进行第一步")))
-                  .add(JobsStepView.makeButtonModel(JobsInternationalization(@"Verifiying"),JobsIMG(@"还未进行第二步")))
-                  .add(JobsStepView.makeButtonModel(JobsInternationalization(@"Verified"),JobsIMG(@"还未进行第三步")));
-              }));
-          });
-      }return _stepView;
-  }
+   -(JobsStepView *)stepView{
+       if(!_stepView){
+           _stepView = self.view.addSubview(jobsMakeStepView(^(__kindof JobsStepView * _Nullable stepView) {
+               stepView.byOffset(JobsWidth(10))
+               .byLeftViewWidth(JobsWidth(50))
+               .byRightViewWidth(JobsWidth(50))
+               .byBtnOffset(JobsWidth(50))
+               .byLeftLabBgCor(JobsCor(@"#C71A1A"))
+               .byRightLabBgCor(JobsCor(@"#C71A1A"))
+               .byStatus(VerificationStatusVerified)
+               .jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButtonModel *>* _Nullable data) {
+                   data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),JobsIMG(@"正在进行第一步"),JobsIMG(@"正在进行第一步")))
+                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),JobsIMG(@"还未进行第二步"),JobsIMG(@"正在进行第二步")))
+                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verified"),JobsIMG(@"还未进行第三步"),JobsIMG(@"正在进行第三步")));
+               }));
+           })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+               make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(28));
+               make.left.equalTo(self.view).offset(JobsWidth(24));
+               make.size.mas_equalTo(CGSizeMake(JobsWidth(324), JobsWidth(55)));
+           }).on().byBgCor(JobsClearColor);
+       }return _stepView;
+   }
   #pragma mark —— 一些公有方法
   +(JobsReturnButtonModelByStringAndImage _Nonnull)makeButtonModel{
       return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable title,UIImage *_Nullable image){

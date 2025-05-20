@@ -33,3 +33,21 @@ NS_INLINE __kindof JobsCorModel *_Nonnull jobsMakeCorModel(jobsByCorModelBlock _
     if (block) block(data);
     return data;
 }
+
+NS_INLINE __kindof UIColor *_Nonnull jobsMakeCor(jobsByCorModelBlock _Nonnull block){
+    JobsCorModel *data = JobsCorModel.alloc.init;
+    if (block) block(data);
+    return [UIColor colorWithRed:data.red
+                           green:data.green
+                            blue:data.blue
+                           alpha:data.alpha];
+}
+
+NS_INLINE __kindof UIColor *_Nonnull jobsMakeCor2(jobsByCorModelBlock _Nonnull block){
+    JobsCorModel *data = JobsCorModel.alloc.init;
+    if (block) block(data);
+    return [UIColor colorWithHue:data.hue
+                      saturation:data.saturation
+                      brightness:data.brightness
+                           alpha:data.alpha];
+}

@@ -36,6 +36,7 @@
 ///   - subtitleLineBreakMode:（新Api才有的）副标题换行模式
 ///   - baseBackgroundColor: 背景颜色
 ///   - backgroundImage:背景图片
+///   - backgroundhighlightImage:背景图片（高亮）
 ///   - imagePadding: ❤️图像与标题之间的间距❤️
 ///   - titlePadding: 标题和副标题标签之间的距离
 ///   - imagePlacement: ❤️图片和文字的位置关系❤️
@@ -51,169 +52,134 @@
 ///   - longPressGestureEventBlock: 按钮的长按事件
 ///   - clickEventBlock: 老Api的点击事件，利用RAC实现
 ///   如果同时设置 clickEventBlock 和 primaryAction，会优先响应新的Api，再响应老的Api
--(instancetype)jobsInitBtnByConfiguration:(UIButtonConfiguration *_Nullable)btnConfiguration
-                               background:(UIBackgroundConfiguration *_Nullable)background
-               buttonConfigTitleAlignment:(UIButtonConfigurationTitleAlignment)buttonConfigTitleAlignment/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
-                            textAlignment:(NSTextAlignment)textAlignment/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】
-                         subTextAlignment:(NSTextAlignment)subTextAlignment
-                              normalImage:(UIImage *_Nullable)normalImage
-                           highlightImage:(UIImage *_Nullable)highlightImage
-                          attributedTitle:(NSAttributedString *_Nullable)attributedTitle
-                  selectedAttributedTitle:(NSAttributedString *_Nullable)selectedAttributedTitle
-                       attributedSubtitle:(NSAttributedString *_Nullable)attributedSubtitle
-                                    title:(NSString *_Nullable)title
-                                 subTitle:(NSString *_Nullable)subTitle
-                                titleFont:(UIFont *_Nullable)titleFont
-                             subTitleFont:(UIFont *_Nullable)subTitleFont
-                                 titleCor:(UIColor *_Nullable)titleCor
-                              subTitleCor:(UIColor *_Nullable)subTitleCor
-                       titleLineBreakMode:(NSLineBreakMode)titleLineBreakMode/// 对应老Api中的：UIButton.lineBreakMode
-                    subtitleLineBreakMode:(NSLineBreakMode)subtitleLineBreakMode
-                      baseBackgroundColor:(UIColor *_Nullable)baseBackgroundColor
-                          backgroundImage:(UIImage *_Nullable)backgroundImage
-                             imagePadding:(CGFloat)imagePadding
-                             titlePadding:(CGFloat)titlePadding
-                           imagePlacement:(NSDirectionalRectEdge)imagePlacement/// 定义图文关系
-               contentHorizontalAlignment:(UIControlContentHorizontalAlignment)contentHorizontalAlignment /// 针对内容
-                 contentVerticalAlignment:(UIControlContentVerticalAlignment)contentVerticalAlignment /// 针对内容
-                            contentInsets:(NSDirectionalEdgeInsets)contentInsets/// 对应老Api中的：UIButton.contentEdgeInsets
-                        cornerRadiusValue:(CGFloat)cornerRadiusValue
-                          roundingCorners:(UIRectCorner)roundingCorners
-                     roundingCornersRadii:(CGSize)roundingCornersRadii
-                           layerBorderCor:(UIColor *_Nullable)layerBorderCor
-                              borderWidth:(CGFloat)borderWidth
-                                 selected:(BOOL)selected
-                            primaryAction:(UIAction *_Nullable)primaryAction
-               longPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock
-                          clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
-    if(!btnConfiguration) btnConfiguration = UIButtonConfiguration.filledButtonConfiguration;
-    if(!background) background = UIBackgroundConfiguration.clearConfiguration;
-    self.titleFont = titleFont;
-    self.subTitleFont = subTitleFont;
-    self.selected = selected;
+-(__kindof UIButton *)jobsInitBtnByConfiguration:(UIButtonConfiguration *_Nullable)btnConfiguration
+                                      background:(UIBackgroundConfiguration *_Nullable)background
+                      buttonConfigTitleAlignment:(UIButtonConfigurationTitleAlignment)buttonConfigTitleAlignment/// 针对文本的对齐方式 UIButtonConfiguration.titleAlignment 【新Api】
+                                   textAlignment:(NSTextAlignment)textAlignment/// 针对文本的对齐方式 UIButton.titleLabel.titleAlignment【老Api】
+                          subTextAlignment:(NSTextAlignment)subTextAlignment
+                                     normalImage:(UIImage *_Nullable)normalImage
+                                  highlightImage:(UIImage *_Nullable)highlightImage
+                                 attributedTitle:(NSAttributedString *_Nullable)attributedTitle
+                         selectedAttributedTitle:(NSAttributedString *_Nullable)selectedAttributedTitle
+                              attributedSubtitle:(NSAttributedString *_Nullable)attributedSubtitle
+                                           title:(NSString *_Nullable)title
+                                        subTitle:(NSString *_Nullable)subTitle
+                                       titleFont:(UIFont *_Nullable)titleFont
+                                    subTitleFont:(UIFont *_Nullable)subTitleFont
+                                        titleCor:(UIColor *_Nullable)titleCor
+                                     subTitleCor:(UIColor *_Nullable)subTitleCor
+                              titleLineBreakMode:(NSLineBreakMode)titleLineBreakMode/// 对应老Api中的：UIButton.lineBreakMode
+                           subtitleLineBreakMode:(NSLineBreakMode)subtitleLineBreakMode
+                             baseBackgroundColor:(UIColor *_Nullable)baseBackgroundColor
+                                 backgroundImage:(UIImage *_Nullable)backgroundImage
+                        highlightBackgroundImage:(UIImage *_Nullable)highlightBackgroundImage
+                                    imagePadding:(CGFloat)imagePadding
+                                    titlePadding:(CGFloat)titlePadding
+                                  imagePlacement:(NSDirectionalRectEdge)imagePlacement/// 定义图文关系
+                      contentHorizontalAlignment:(UIControlContentHorizontalAlignment)contentHorizontalAlignment /// 针对内容
+                        contentVerticalAlignment:(UIControlContentVerticalAlignment)contentVerticalAlignment /// 针对内容
+                                   contentInsets:(NSDirectionalEdgeInsets)contentInsets/// 对应老Api中的：UIButton.contentEdgeInsets
+                               cornerRadiusValue:(CGFloat)cornerRadiusValue
+                                 roundingCorners:(UIRectCorner)roundingCorners
+                            roundingCornersRadii:(CGSize)roundingCornersRadii
+                                  layerBorderCor:(UIColor *_Nullable)layerBorderCor
+                                     borderWidth:(CGFloat)borderWidth
+                                        selected:(BOOL)selected
+                                   primaryAction:(UIAction *_Nullable)primaryAction
+                      longPressGestureEventBlock:(JobsReturnIDByIDBlock _Nullable)longPressGestureEventBlock
+                                 clickEventBlock:(JobsReturnIDByIDBlock _Nullable)clickEventBlock{
     @jobs_weakify(self)
-    {/// 一般的文字
-        btnConfiguration.title = title;
-        btnConfiguration.subtitle = subTitle;
-        btnConfiguration.titlePadding = titlePadding;
-        btnConfiguration.baseForegroundColor = titleCor;/// 文本颜色
-        btnConfiguration.titleAlignment = buttonConfigTitleAlignment;/// 文本的对齐方式
-        btnConfiguration.titleLineBreakMode = titleLineBreakMode;/// 主标题的提行方式
-        btnConfiguration.subtitleLineBreakMode = subtitleLineBreakMode;/// 副标题的提行方式
-        btnConfiguration.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:titleFont
-                                                                                                      btnTitleCor:titleCor];
-        btnConfiguration.subtitleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:subTitleFont
-                                                                                                         btnTitleCor:subTitleCor];
-    }
-    {/// 图片
-        btnConfiguration.imagePadding = imagePadding;/// 设置图像与标题之间的间距
-        btnConfiguration.image = normalImage;
-        btnConfiguration.imagePlacement = imagePlacement;
-        background.edgesAddingLayoutMarginsToBackgroundInsets = imagePlacement;
-        background.image = backgroundImage;
-        /// ❤️要设置UIButton.imageView的宽\高\尺寸\坐标，请参阅 BaseButtonProtocol❤️
-    }
-#warning 这个方法，同时设置了普通文本和富文本，其实是走富文本的创建路线。富文本4要素：文字信息、文字颜色、段落、字体
-    {/// 富文本 优先级高于普通文本
-        /// 设置按钮标题的文本属性
-        btnConfiguration.attributedTitle = attributedTitle ? : JobsAttributedStringByAttributes(title, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
-            @jobs_strongify(self)
-            if(titleCor) [data setObject:titleCor forKey:NSForegroundColorAttributeName];
-            if(titleFont) [data setObject:titleFont forKey:NSFontAttributeName];
-            if(self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter))
-                [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment)
-                         forKey:NSParagraphStyleAttributeName];
-        }));
-        /// 设置按钮副标题的文本属性
-        btnConfiguration.attributedSubtitle = attributedSubtitle ? : JobsAttributedStringByAttributes(subTitle, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
-            @jobs_strongify(self)
-            if (subTitleCor) [data setObject:subTitleCor forKey:NSForegroundColorAttributeName];
-            if (subTitleFont) [data setObject:subTitleFont forKey:NSFontAttributeName];
-            [data setObject:self.jobsparagraphStyleByTextAlignment(subTextAlignment)
-                     forKey:NSParagraphStyleAttributeName];
-        }));
-    }
-    {/// 其他
-        /// 内边距
-        btnConfiguration.contentInsets = contentInsets;
-        background.backgroundInsets = contentInsets;
-        /// 背景颜色
-        background.backgroundColor = baseBackgroundColor;
-        btnConfiguration.baseBackgroundColor = baseBackgroundColor;
-        /// 圆切角
-        background.cornerRadius = cornerRadiusValue;
-        /// 描边的颜色和线宽
-        background.strokeColor = layerBorderCor;
-        background.strokeWidth = borderWidth;
-    }
-    
-    btnConfiguration.background = background;
-    UIButton *btn = nil;
-    
-    if(self.deviceSystemVersion.floatValue >= 15.0){
-        btn = [self.class buttonWithConfiguration:btnConfiguration
-                                    primaryAction:primaryAction];
-        
-        //        JobsLog(@"%@",btnConfiguration);
-        //        JobsLog(@"%@",btn.configuration);
-        //        JobsLog(@"");
-        /**
-         UIAction *action = [UIAction actionWithTitle:@"按钮点击操作"
-         image:nil
-         identifier:nil
-         handler:^(__kindof UIAction * _Nonnull action) {
-         JobsLog(@"按钮被点击了！");
-         // 在这里执行按钮点击时的操作
-         }];
-         */
-    }else{
-        if(self == UIButton.initBySysType){
-            btn = self;
-            /// 公共设置
-            self.normalStateImageBy(normalImage);
-            self.jobsResetBtnTitleFont(titleFont);
-            
-            if(attributedTitle){
-                self.jobsResetBtnNormalAttributedTitle(attributedTitle);
-            }else{
-                self.normalStateTitleBy(title);
-                self.normalStateTitleColorBy(titleCor);
-            }
-            SuppressWdeprecatedDeclarationsWarning(btn.contentEdgeInsets = UIEdgeInsetsMake(contentInsets.top,
-                                                                                            contentInsets.leading,
-                                                                                            contentInsets.bottom,
-                                                                                            contentInsets.trailing););
-            if(selectedAttributedTitle) self.selectedAttributedTitleBy(selectedAttributedTitle);
-            /// 在按钮高亮状态变化时，使用 configurationUpdateHandler 来自定义图像样式
-            self.configurationUpdateHandler = ^(UIButton * _Nonnull updatedButton) {
-                updatedButton.configuration.image = updatedButton.isHighlighted ? highlightImage : normalImage;
-            };
-            self.titleLabel.textAlignment = textAlignment;
-            self.jobsResetImagePlacement_Padding(imagePlacement,imagePadding);
-        }else{
-            JobsLog(@"初始化UIButton失败");
-            NSAssert(0, @"初始化失败");
-        }
-    }
-    {/// 公共设置
-        if(self.deviceSystemVersion.floatValue < 15.0){
-            btn.layerByBorderCor(layerBorderCor).layerByBorderWidth(borderWidth);/// 描边
-        }
-        
+    self.selected = selected;
+    if(self.deviceSystemVersion.floatValue <= 15.0){
+        UIButton *btn = self.class.initBySysType;
+        self.titleFont = titleFont;
+        self.subTitleFont = subTitleFont;
+        if(self.deviceSystemVersion.floatValue < 15.0) btn.layerByBorderCor(layerBorderCor).layerByBorderWidth(borderWidth);/// 描边
         if(roundingCorners == UIRectCornerAllCorners && jobsZeroSizeValue(roundingCornersRadii)){
             btn.cornerCutToCircleWithCornerRadius(cornerRadiusValue);/// 圆切角（四个角全部按照统一的标准切）
         }else{
-            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners
-                                               cornerRadii:roundingCornersRadii];/// 圆切角（指定某个角按照统一的标准Size切）
+            [btn appointCornerCutToCircleByRoundingCorners:roundingCorners cornerRadii:roundingCornersRadii];/// 圆切角（指定某个角按照统一的标准Size切）
         }
         /// 内容的对齐方式
         btn.contentVerticalAlignment = contentVerticalAlignment;
         btn.contentHorizontalAlignment = contentHorizontalAlignment;
         /// 按钮的点击事件
-        btn.jobsBtnClickEventByBlock(clickEventBlock);
+        if(btn.jobsBtnClickEventByBlock) btn.jobsBtnClickEventByBlock(clickEventBlock);
         /// 按钮的长按事件
-        btn.jobsBtnLongPressGestureEventByBlock(longPressGestureEventBlock);
-    }return btn;
+        if(btn.jobsBtnLongPressGestureEventByBlock) btn.jobsBtnLongPressGestureEventByBlock(longPressGestureEventBlock);
+        return btn;
+    }else{
+        if(!background) background = jobsMakeClearConfiguration(^(UIBackgroundConfiguration * _Nullable config) {
+            @jobs_strongify(self)
+            background.image = self.isHighlighted ? highlightBackgroundImage : backgroundImage;
+            background.edgesAddingLayoutMarginsToBackgroundInsets = imagePlacement;
+            
+            background.backgroundInsets = contentInsets;/// 内边距
+            background.backgroundColor = baseBackgroundColor;/// 背景颜色
+            background.cornerRadius = cornerRadiusValue;/// 圆切角
+            /// 描边的颜色和线宽
+            background.strokeColor = layerBorderCor;
+            background.strokeWidth = borderWidth;
+            /// ❤️要设置UIButton.imageView的宽\高\尺寸\坐标，请参阅 BaseButtonProtocol❤️
+        });
+        if(btnConfiguration){
+            // JobsLog(@"%@",btnConfiguration);
+            // JobsLog(@"%@",btn.configuration);
+            // JobsLog(@"");
+            /**
+             UIAction *action = [UIAction actionWithTitle:@"按钮点击操作"  image:nil
+                                                        identifier:nil
+                                                        handler:^(__kindof UIAction * _Nonnull action) {
+                                                            JobsLog(@"按钮被点击了！");
+                                                            // 在这里执行按钮点击时的操作
+             }];
+             */
+            return [self.class buttonWithConfiguration:btnConfiguration primaryAction:primaryAction];
+        }else{
+            UIButton *btn = [self.class buttonWithConfiguration:jobsMakeFilledBtnConfig(^(UIButtonConfiguration * _Nullable config) {
+                @jobs_strongify(self)
+                /// 一般的文字
+                config.title = title;
+                config.subtitle = subTitle;
+                config.titlePadding = titlePadding;
+                config.baseForegroundColor = titleCor;/// 文本颜色
+                config.titleAlignment = buttonConfigTitleAlignment;/// 文本的对齐方式
+                config.titleLineBreakMode = titleLineBreakMode;/// 主标题的提行方式
+                config.subtitleLineBreakMode = subtitleLineBreakMode;/// 副标题的提行方式
+                config.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:titleFont btnTitleCor:titleCor];
+                config.subtitleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:subTitleFont btnTitleCor:subTitleCor];
+                /// 图片
+                config.image = self.isHighlighted ? highlightImage : normalImage;
+                config.imagePadding = imagePadding;/// 设置图像与标题之间的间距
+                config.imagePlacement = imagePlacement;
+                /// 富文本（优先级高于普通文本）
+                /// 这个方法，同时设置了普通文本和富文本，其实是走富文本的创建路线。富文本4要素：文字信息、文字颜色、段落、字体
+                /// 设置按钮标题的文本属性
+                config.attributedTitle = attributedTitle ? : JobsAttributedStringByAttributes(title, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                    @jobs_strongify(self)
+                    if(titleCor) [data setObject:titleCor forKey:NSForegroundColorAttributeName];
+                    if(titleFont) [data setObject:titleFont forKey:NSFontAttributeName];
+                    if(self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter))
+                        [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment) forKey:NSParagraphStyleAttributeName];
+                }));
+                /// 设置按钮副标题的文本属性
+                config.attributedSubtitle = attributedSubtitle ? : JobsAttributedStringByAttributes(subTitle, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                    @jobs_strongify(self)
+                    if (subTitleCor) [data setObject:subTitleCor forKey:NSForegroundColorAttributeName];
+                    if (subTitleFont) [data setObject:subTitleFont forKey:NSFontAttributeName];
+                    [data setObject:self.jobsparagraphStyleByTextAlignment(subTextAlignment) forKey:NSParagraphStyleAttributeName];
+                }));
+                config.contentInsets = contentInsets;/// 内边距
+                config.baseBackgroundColor = baseBackgroundColor;/// 背景颜色
+                config.background = background;
+            }) primaryAction:primaryAction];
+            /// 按钮的点击事件
+            if(btn.jobsBtnClickEventByBlock) btn.jobsBtnClickEventByBlock(clickEventBlock);
+            /// 按钮的长按事件
+            if(btn.jobsBtnLongPressGestureEventByBlock) btn.jobsBtnLongPressGestureEventByBlock(longPressGestureEventBlock);
+            return btn;
+        }
+    }
 }
 /// @property (nonatomic, readwrite, assign) UIButtonConfigurationSize buttonSize; 这个属性，不是我们想要的UIFont。设置UIFont必须在富文本里面进行设置
 -(UIConfigurationTextAttributesTransformer)jobsSetConfigTextAttributesTransformerByTitleFont:(UIFont *_Nullable)titleFont

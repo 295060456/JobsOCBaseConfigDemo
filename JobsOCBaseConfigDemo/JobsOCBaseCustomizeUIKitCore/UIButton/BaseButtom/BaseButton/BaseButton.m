@@ -112,8 +112,10 @@ BaseButtonProtocol_synthesize
                 if(!jobsZeroSizeValue(self.subTextLabelSize)){
                     self.subtitleLabel.resetSize(self.subTextLabelSize);
                 }
-                self.subtitleLabel.resetOriginXByOffset(self.subTextLabelFrameOffsetX);
-                self.subtitleLabel.resetOriginYByOffset(self.subTextLabelFrameOffsetY);
+                if(self.subtitleLabel){
+                    self.subtitleLabel.resetOriginXByOffset(self.subTextLabelFrameOffsetX);
+                    self.subtitleLabel.resetOriginYByOffset(self.subTextLabelFrameOffsetY);
+                }
             }
         }
         
@@ -121,8 +123,10 @@ BaseButtonProtocol_synthesize
             if (!jobsZeroSizeValue(self.imageViewSize)) {
                 self.imageView.resetSize(self.imageViewSize);
             }
-            self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
-            self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
+            if(self.imageView){
+                self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
+                self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
+            }
         }
     }
     
@@ -142,17 +146,17 @@ BaseButtonProtocol_synthesize
         {
             if (!jobsZeroSizeValue(self.subTextLabelSize)) {
                 if (@available(iOS 15.0, *)) {
-                    self.subtitleLabel.resetSize(self.subTextLabelSize);
+                    if(self.subtitleLabel) self.subtitleLabel.resetSize(self.subTextLabelSize);
                 }
             }
             if(self.subTextLabelFrameResetX){
                 if (@available(iOS 15.0, *)) {
-                    self.subtitleLabel.resetOriginX(self.subTextLabelFrameResetX);
+                    if(self.subtitleLabel) self.subtitleLabel.resetOriginX(self.subTextLabelFrameResetX);
                 }
             }
             if(self.subTextLabelFrameResetY){
                 if (@available(iOS 15.0, *)) {
-                    self.subtitleLabel.resetOriginY(self.subTextLabelFrameResetY);
+                    if(self.subtitleLabel) self.subtitleLabel.resetOriginY(self.subTextLabelFrameResetY);
                 }
             }
         }
@@ -180,18 +184,22 @@ BaseButtonProtocol_synthesize
         
         {
             if (@available(iOS 15.0, *)) {
-                self.subtitleLabel.resetWidthByOffset(self.subTextLabelWidth);
-                self.subtitleLabel.resetHeightByOffset(self.subTextLabelHeight);
-                self.subtitleLabel.resetOriginXByOffset(self.subTextLabelFrameOffsetX);
-                self.subtitleLabel.resetOriginYByOffset(self.subTextLabelFrameOffsetY);
+                if(self.subtitleLabel) {
+                    self.subtitleLabel.resetWidthByOffset(self.subTextLabelWidth);
+                    self.subtitleLabel.resetHeightByOffset(self.subTextLabelHeight);
+                    self.subtitleLabel.resetOriginXByOffset(self.subTextLabelFrameOffsetX);
+                    self.subtitleLabel.resetOriginYByOffset(self.subTextLabelFrameOffsetY);
+                }
             }
         }
 
         {
-            self.imageView.resetWidthByOffset(self.imageViewWidth);
-            self.imageView.resetHeightByOffset(self.imageViewHeight);
-            self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
-            self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
+            if(self.imageView){
+                self.imageView.resetWidthByOffset(self.imageViewWidth);
+                self.imageView.resetHeightByOffset(self.imageViewHeight);
+                self.imageView.resetOriginXByOffset(self.imageViewFrameOffsetX);
+                self.imageView.resetOriginYByOffset(self.imageViewFrameOffsetY);
+            }
         }
     }
 
