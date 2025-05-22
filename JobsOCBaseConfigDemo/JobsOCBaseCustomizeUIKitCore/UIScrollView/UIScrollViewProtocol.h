@@ -44,6 +44,9 @@ Prop_assign()ScrollDirection direction;
 -(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO;
 ///
 -(JobsReturnScrollViewByDelegateBlock _Nonnull)byDelegate;
+-(JobsReturnScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy;
+-(JobsReturnScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy;
+-(JobsReturnScrollViewBySizeBlock _Nonnull)byContentSize;
 #pragma mark —— AnimationKit
 -(void)moveAnimWithSortingType:(SortingType)sortingType
                 animationBlock:(jobsByVoidBlock _Nullable)animationBlock

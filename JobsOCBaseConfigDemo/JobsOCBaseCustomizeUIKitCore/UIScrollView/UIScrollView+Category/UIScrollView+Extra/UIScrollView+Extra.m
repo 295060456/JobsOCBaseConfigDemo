@@ -110,6 +110,33 @@
         return self;
     };
 }
+
+-(JobsReturnScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.showsVerticalScrollIndicator = data;
+        return self;
+    };
+}
+
+-(JobsReturnScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.showsHorizontalScrollIndicator = data;
+        return self;
+    };
+}
+
+-(JobsReturnScrollViewBySizeBlock _Nonnull)byContentSize{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(CGSize size){
+        @jobs_strongify(self)
+        self.contentSize = size;
+        return self;
+    };
+}
 #pragma mark —— Prop_assign()ScrollDirection direction; /// UIScrollView 滑动的方向定义
 JobsKey(_direction)
 @dynamic direction;

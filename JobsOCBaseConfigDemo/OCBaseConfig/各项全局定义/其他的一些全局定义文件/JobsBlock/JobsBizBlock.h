@@ -123,4 +123,8 @@ typedef UIViewModel *_Nullable(^jobsByGetDepositDiscountActivityRecordModelBlock
 typedef FMAccModel *_Nullable(^JobsReturnAccModelByArrBlock)(__kindof NSArray *_Nullable arr);
 typedef void(^jobsByFMAccModelBlock)(__kindof FMAccModel *_Nullable model);
 
+@class KYCBaseView;
+typedef __kindof KYCBaseView *_Nullable(^JobsReturnKYCBaseViewByStatusBlock)(VerificationStatus status);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByStatusBlock)(VerificationStatus status);
+
 #endif /* JobsBizBlock_h */

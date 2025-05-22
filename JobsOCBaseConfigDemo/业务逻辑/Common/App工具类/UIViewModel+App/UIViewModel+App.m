@@ -17,5 +17,15 @@ JobsKey(_dataSourceType)
 -(void)setDataSourceType:(DataSourceType)dataSourceType{
     Jobs_setAssociatedRETAIN_NONATOMIC(_dataSourceType, @(dataSourceType))
 }
+#pragma mark —— Prop_assign()KYCStatus kycStatus;
+JobsKey(_kycStatus)
+@dynamic kycStatus;
+-(KYCStatus)kycStatus{
+    return [Jobs_getAssociatedObject(_kycStatus) unsignedIntegerValue];
+}
+
+-(void)setKycStatus:(KYCStatus)kycStatus{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_kycStatus, @(kycStatus))
+}
 
 @end

@@ -9263,9 +9263,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        if(!_stepView){
            _stepView = self.view.addSubview(jobsMakeStepView(^(__kindof JobsStepView * _Nullable stepView) {
                stepView.byOffset(JobsWidth(10))
-               .byLeftViewWidth(JobsWidth(50))
-               .byRightViewWidth(JobsWidth(50))
-               .byBtnOffset(JobsWidth(50))
+               .byLeftViewWidth(JobsWidth(60))
+               .byRightViewWidth(JobsWidth(60))
+               .byBtnOffset(JobsWidth(60))
+               .byFirstBtnLeftOffset(JobsWidth(24))
                .byLeftLabHighlightBgCor(JobsCor(@"#C71A1A"))
                .byRightLabHighlightBgCor(JobsCor(@"#C71A1A"))
                .byLeftLabNormalBgCor(JobsGrayColor)
@@ -9277,10 +9278,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                        .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verified"),JobsIMG(@"还未进行第三步"),JobsIMG(@"正在进行第三步")));
                }));
            })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-               make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(28));
-               make.left.equalTo(self.view).offset(JobsWidth(24));
-               make.size.mas_equalTo(CGSizeMake(JobsWidth(324), JobsWidth(55)));
-           }).on().byBgCor(JobsClearColor);
+               make.top.equalTo(self.gk_navigationBar.mas_bottom);
+               make.centerX.equalTo(self.view);
+               make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(100)));
+           }).on().byBgCor(JobsWhiteColor);
        }return _stepView;
    }
   ```

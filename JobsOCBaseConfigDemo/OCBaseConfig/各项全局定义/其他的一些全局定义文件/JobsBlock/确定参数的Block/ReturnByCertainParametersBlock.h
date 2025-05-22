@@ -268,9 +268,11 @@ typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellBy
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByDelegateBlock)(UIColor *_Nullable cor);
 #pragma mark —— 关于 UIScrollView
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByBOOLBlock)(BOOL data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByDelegateBlock)(id <UIScrollViewDelegate>_Nullable delegate);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByPointBlock)(CGPoint data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByRectBlock)(CGRect frame);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewBySizeBlock)(CGSize size);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
 #pragma mark —— 关于 PDF
 typedef __kindof PDFDocument *_Nullable(^JobsReturnPDFDocumentByURLBlock)(NSURL *_Nullable pdfURL);

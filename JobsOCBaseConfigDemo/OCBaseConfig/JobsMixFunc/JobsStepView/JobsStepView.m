@@ -17,6 +17,7 @@ Prop_strong(null_resettable)UIColor *rightLabNormalBgCor;
 Prop_assign()CGFloat leftViewWidth;
 Prop_assign()CGFloat rightViewWidth;
 Prop_assign()CGFloat btnOffset;
+Prop_assign()CGFloat firstBtnLeftOffset;
 Prop_assign()CGFloat offset;/// 值越大 = 按钮之间的距离越小
 Prop_copy()NSMutableArray <__kindof BaseButton *>*btnMutArr;
 Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
@@ -105,6 +106,15 @@ Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
         return self;
     };
 }
+/// 设置第一个按钮距离父视图左边的距离
+-(JobsReturnStepViewByCGFloatBlock _Nonnull)byFirstBtnLeftOffset{
+    @jobs_weakify(self)
+    return ^ __kindof JobsStepView *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.firstBtnLeftOffset = data;
+        return self;
+    };
+}
 /// 设置左边线（高亮）颜色
 -(JobsReturnStepViewByColorBlock _Nonnull)byLeftLabHighlightBgCor{
     @jobs_weakify(self)
@@ -190,7 +200,7 @@ Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
                 }];
             }else{
                 [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.equalTo(self);
+                    make.left.equalTo(self).offset(self.firstBtnLeftOffset);
                 }];
             }
             
