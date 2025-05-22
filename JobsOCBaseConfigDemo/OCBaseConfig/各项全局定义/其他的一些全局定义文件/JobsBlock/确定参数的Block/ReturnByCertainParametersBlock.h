@@ -193,6 +193,7 @@ typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByDelegateBlock)(id 
 #pragma mark —— 关于 Label
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByImage)(__kindof UIImage *_Nullable image);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByCor)(__kindof UIColor *_Nullable cor);
+typedef __kindof UILabel *_Nullable(^JobsReturnLabelByBtn)(__kindof UIButton *_Nullable btn);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByText)(__kindof NSString *_Nullable str);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByFont)(__kindof UIFont *_Nullable font);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByAttributedString)(__kindof NSAttributedString *_Nullable attributedString);

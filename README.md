@@ -9266,9 +9266,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                .byLeftViewWidth(JobsWidth(50))
                .byRightViewWidth(JobsWidth(50))
                .byBtnOffset(JobsWidth(50))
-               .byLeftLabBgCor(JobsCor(@"#C71A1A"))
-               .byRightLabBgCor(JobsCor(@"#C71A1A"))
-               .byStatus(VerificationStatusVerified)
+               .byLeftLabHighlightBgCor(JobsCor(@"#C71A1A"))
+               .byRightLabHighlightBgCor(JobsCor(@"#C71A1A"))
+               .byLeftLabNormalBgCor(JobsGrayColor)
+               .byRightLabNormalBgCor(JobsGrayColor)
+               .byStatus(VerificationStatusVerifying)
                .jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButtonModel *>* _Nullable data) {
                    data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),JobsIMG(@"正在进行第一步"),JobsIMG(@"正在进行第一步")))
                        .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),JobsIMG(@"还未进行第二步"),JobsIMG(@"正在进行第二步")))
@@ -9281,25 +9283,29 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
            }).on().byBgCor(JobsClearColor);
        }return _stepView;
    }
-  #pragma mark —— 一些公有方法
-  +(JobsReturnButtonModelByStringAndImage _Nonnull)makeButtonModel{
-      return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable title,UIImage *_Nullable image){
-          return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-              data1.title = title;
-              data1.titleCor = JobsWhiteColor;
-              data1.titleFont = UIFontWeightRegularSize(14);
-              data1.normalImage = image;
-              data1.imagePlacement = NSDirectionalRectEdgeTop;
-              data1.imagePadding = JobsWidth(8);
-              data1.roundingCorners = UIRectCornerAllCorners;
-              data1.leftViewWidth = JobsWidth(80);
-              data1.rightViewWidth = JobsWidth(80);
-              data1.baseBackgroundColor = JobsClearColor;
-              data1.jobsSelected = YES;
-          });
-      };
-  }
   ```
+
+```objective-c
+#pragma mark —— 一些公有方法
++(JobsReturnButtonModelByStringAndImagesBlock _Nonnull)makeButtonModelBy{
+    return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable title,
+                                              UIImage *_Nullable image,
+                                              UIImage *_Nullable highlightImage){
+        return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.title = title;
+            model.titleCor = JobsGrayColor;
+            model.selectedTitleCor = JobsCor(@"#111111");
+            model.titleFont = pingFangHKRegular(JobsWidth(14));
+            model.normalImage = image;
+            model.highlightImage = highlightImage;
+            model.imagePlacement = NSDirectionalRectEdgeTop;
+            model.imagePadding = JobsWidth(8);
+            model.roundingCorners = UIRectCornerAllCorners;
+            model.baseBackgroundColor = JobsClearColor;
+        });
+    };
+}
+```
 
 
 ### 32、关于**`UITabBarController`** <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>

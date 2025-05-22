@@ -10,8 +10,10 @@
 @interface JobsStepView ()
 
 Prop_assign()VerificationStatus status;
-Prop_strong(null_resettable)UIColor *leftLabBgCor;
-Prop_strong(null_resettable)UIColor *rightLabBgCor;
+Prop_strong(null_resettable)UIColor *leftLabHighlightBgCor;
+Prop_strong(null_resettable)UIColor *rightLabHighlightBgCor;
+Prop_strong(null_resettable)UIColor *leftLabNormalBgCor;
+Prop_strong(null_resettable)UIColor *rightLabNormalBgCor;
 Prop_assign()CGFloat leftViewWidth;
 Prop_assign()CGFloat rightViewWidth;
 Prop_assign()CGFloat btnOffset;
@@ -103,21 +105,39 @@ Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
         return self;
     };
 }
-/// 设置左边线颜色
--(JobsReturnStepViewByColorBlock _Nonnull)byLeftLabBgCor{
+/// 设置左边线（高亮）颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byLeftLabHighlightBgCor{
     @jobs_weakify(self)
     return ^__kindof JobsStepView *_Nullable(UIColor *_Nullable cor){
         @jobs_strongify(self)
-        self.leftLabBgCor = cor;
+        self.leftLabHighlightBgCor = cor;
         return self;
     };
 }
-/// 设置右边线颜色
--(JobsReturnStepViewByColorBlock _Nonnull)byRightLabBgCor{
+/// 设置左边线（普通）颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byLeftLabNormalBgCor{
     @jobs_weakify(self)
     return ^__kindof JobsStepView *_Nullable(UIColor *_Nullable cor){
         @jobs_strongify(self)
-        self.rightLabBgCor = cor;
+        self.leftLabNormalBgCor = cor;
+        return self;
+    };
+}
+/// 设置右边线（高亮）颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byRightLabHighlightBgCor{
+    @jobs_weakify(self)
+    return ^__kindof JobsStepView *_Nullable(UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.rightLabHighlightBgCor = cor;
+        return self;
+    };
+}
+/// 设置右边线（普通）颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byRightLabNormalBgCor{
+    @jobs_weakify(self)
+    return ^__kindof JobsStepView *_Nullable(UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.rightLabNormalBgCor = cor;
         return self;
     };
 }
@@ -135,16 +155,17 @@ Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
     return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable title,
                                               UIImage *_Nullable image,
                                               UIImage *_Nullable highlightImage){
-        return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-            data1.title = title;
-            data1.titleCor = JobsCor(@"#111111");
-            data1.titleFont = pingFangHKRegular(JobsWidth(14));
-            data1.normalImage = image;
-            data1.highlightImage = highlightImage;
-            data1.imagePlacement = NSDirectionalRectEdgeTop;
-            data1.imagePadding = JobsWidth(8);
-            data1.roundingCorners = UIRectCornerAllCorners;
-            data1.baseBackgroundColor = JobsClearColor;
+        return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
+            model.title = title;
+            model.titleCor = JobsGrayColor;
+            model.selectedTitleCor = JobsCor(@"#111111");
+            model.titleFont = pingFangHKRegular(JobsWidth(14));
+            model.normalImage = image;
+            model.highlightImage = highlightImage;
+            model.imagePlacement = NSDirectionalRectEdgeTop;
+            model.imagePadding = JobsWidth(8);
+            model.roundingCorners = UIRectCornerAllCorners;
+            model.baseBackgroundColor = JobsClearColor;
         });
     };
 }
@@ -155,6 +176,7 @@ Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
         @jobs_strongify(self)
         int f = 0;
         for (UIButtonModel *buttonModel in self.btnModelMutArr) {
+            /// 数据源创建按钮
             BaseButton *btn = BaseButton.initByButtonModel(buttonModel);
             [self.addSubview(btn) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self);
@@ -174,50 +196,58 @@ Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
             
             if(self.btnMutArr.count){
                 if (f == self.btnModelMutArr.count - 1){
-                    [self makeLeftLab:btn buttonModel:buttonModel];
+                    self.makeLeftLabBy(btn);
                 }else{
-                    [self makeLeftLab:btn buttonModel:buttonModel];
-                    [self makeRightLab:btn buttonModel:buttonModel];
+                    self.makeLeftLabBy(btn);
+                    self.makeRightLabBy(btn);
                 }
             }else{
-                [self makeRightLab:btn buttonModel:buttonModel];
+                self.makeRightLabBy(btn);
             }
             self.btnMutArr.add(btn);
             f++;
         }
         for (NSInteger i = 0; i <= status; i++) {
             if (i < self.btnMutArr.count) {
-                self.btnMutArr[i].highlighted = YES;
-                [self.btnMutArr[i] setNeedsUpdateConfiguration];/// 会触发 configurationUpdateHandler
+                self.btnMutArr[i].jobsResetImage(self.btnModelMutArr[i].highlightImage);
+                self.btnMutArr[i].jobsResetBtnTitleCor(self.btnModelMutArr[i].selectedTitleCor);
+                if(self.btnMutArr[i].leftLab) self.btnMutArr[i].leftLab.byBgCor(self.leftLabHighlightBgCor);
+                if(self.btnMutArr[i].rightLab) self.btnMutArr[i].rightLab.byBgCor(self.rightLabHighlightBgCor);
             }
         }
     };
 }
 
--(void)makeRightLab:(UIButton *)btn buttonModel:(UIButtonModel *)buttonModel{
+-(JobsReturnLabelByBtn _Nonnull)makeRightLabBy{
     @jobs_weakify(self)
-    jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-        @jobs_strongify(self)
-        [self.addSubview(label.byBgCor(self.rightLabBgCor)) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(btn.imageView);
-            make.left.equalTo(btn.mas_right);
-            make.height.mas_equalTo(1);
-            make.width.mas_equalTo(self.rightViewWidth);
-        }];
-    }).alpha = 1;
+    return ^__kindof UILabel *_Nullable(__kindof UIButton *_Nullable btn){
+        return jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            btn.rightLab = label;
+            [self.addSubview(label.byBgCor(self.rightLabNormalBgCor)) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(btn.imageView);
+                make.left.equalTo(btn.mas_right);
+                make.height.mas_equalTo(1);
+                make.width.mas_equalTo(self.rightViewWidth);
+            }];
+        });
+    };
 }
 
--(void)makeLeftLab:(UIButton *)btn buttonModel:(UIButtonModel *)buttonModel{
+-(JobsReturnLabelByBtn _Nonnull)makeLeftLabBy{
     @jobs_weakify(self)
-    jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-        @jobs_strongify(self)
-        [self.addSubview(label.byBgCor(self.leftLabBgCor)) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(btn.imageView);
-            make.right.equalTo(btn.mas_left);
-            make.height.mas_equalTo(1);
-            make.width.mas_equalTo(self.leftViewWidth);
-        }];
-    }).alpha = 1;
+    return ^__kindof UILabel *_Nullable(__kindof UIButton *_Nullable btn){
+        return jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            @jobs_strongify(self)
+            btn.leftLab = label;
+            [self.addSubview(label.byBgCor(self.leftLabNormalBgCor)) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(btn.imageView);
+                make.right.equalTo(btn.mas_left);
+                make.height.mas_equalTo(1);
+                make.width.mas_equalTo(self.leftViewWidth);
+            }];
+        });
+    };
 }
 #pragma mark —— lazyLoad
 -(NSMutableArray<BaseButton *> *)btnMutArr{
@@ -232,18 +262,6 @@ Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
     }return _btnModelMutArr;
 }
 
--(UIColor *)leftLabBgCor{
-    if(!_leftLabBgCor){
-        _leftLabBgCor = JobsWhiteColor;
-    }return _leftLabBgCor;
-}
-
--(UIColor *)rightLabBgCor{
-    if(!_rightLabBgCor){
-        _rightLabBgCor = JobsWhiteColor;
-    }return _rightLabBgCor;
-}
-
 -(CGFloat)leftViewWidth{
     if(!_leftViewWidth){
         _leftViewWidth = JobsWidth(80);
@@ -254,6 +272,30 @@ Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
     if(!_rightViewWidth){
         _rightViewWidth = JobsWidth(80);
     }return _rightViewWidth;
+}
+
+-(UIColor *)leftLabHighlightBgCor{
+    if(!_leftLabHighlightBgCor){
+        _leftLabHighlightBgCor = JobsWhiteColor;
+    }return _leftLabHighlightBgCor;
+}
+
+-(UIColor *)rightLabHighlightBgCor{
+    if(!_rightLabHighlightBgCor){
+        _rightLabHighlightBgCor = JobsWhiteColor;
+    }return _rightLabHighlightBgCor;
+}
+
+-(UIColor *)leftLabNormalBgCor{
+    if(!_leftLabNormalBgCor){
+        _leftLabNormalBgCor = JobsGrayColor;
+    }return _leftLabNormalBgCor;
+}
+
+-(UIColor *)rightLabNormalBgCor{
+    if(!_rightLabNormalBgCor){
+        _rightLabNormalBgCor = JobsGrayColor;
+    }return _rightLabNormalBgCor;
 }
 
 @end

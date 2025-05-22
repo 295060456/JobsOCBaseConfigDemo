@@ -8,6 +8,15 @@
 #import "UIButton+UIButtonConfiguration.h"
 
 @implementation UIButton (UIButtonConfiguration)
+
+-(jobsByVoidBlock _Nonnull)updateConfigBy{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        [self setNeedsUpdateConfiguration];
+        [self updateConfiguration];
+    };
+}
 /// UIButtonConfiguration 创建的UIbutton修改字体以及颜色的方法
 /// 注意⚠️因为UIConfigurationTextAttributesTransformer是没有办法直接获取到里面的字体的，只能从外面生成以后直接赋值，也就是每次修改需要给一个完整的UIConfigurationTextAttributesTransformer对象进UIButtonConfiguration
 -(void)jobsSetBtnTitleFont:(UIFont *_Nullable)titleFont
@@ -27,12 +36,13 @@
         UIButtonConfiguration *config = self.configuration.copy;
         if (configurationBlock) configurationBlock(config);
         self.configuration = config;
-        [self updateConfiguration];
+        self.updateConfigBy();
     } return self;
 }
 
 -(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock{
     [self jobsUpdateButtonConfiguration:configurationBlock];
+    self.updateConfigBy();
     return self.configuration;
 }
 ///【最新的Api】修改主标题的对齐方式
@@ -388,7 +398,7 @@
         /// 应用新颜色，同时保持字体
         self.jobsResetTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:currentFont btnTitleCor:data]);
         /// 应用更新后的配置
-        [self updateConfiguration];
+        self.updateConfigBy();
         return self.configuration;
     };
 }
@@ -412,7 +422,7 @@
         /// 使用 subtitleTextAttributesTransformer 设置新颜色，保持现有字体
         self.jobsResetSubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:currentSubtitleFont btnTitleCor:data]);
         /// 应用更新后的配置
-        [self updateConfiguration];
+        self.updateConfigBy();
         return self.configuration;
     };
 }

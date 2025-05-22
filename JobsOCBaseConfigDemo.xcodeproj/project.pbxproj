@@ -217,6 +217,7 @@
 		C5C5501C2DDB20B30008552F /* MGSwipeTableCell+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C550192DDB20B30008552F /* MGSwipeTableCell+Extra.m */; };
 		C5D4AB922DB24601006ED3F6 /* UIViewController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */; };
 		C5D4ADAE2DB25D74006ED3F6 /* ZFPlayerExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */; };
+		C5EE93AB2DDED58F00806CB3 /* UIButton+JobsStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE93A92DDED58F00806CB3 /* UIButton+JobsStepView.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
 		CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3E2CAE671C00233F0F /* NSString+Replace.m */; };
 		CE260F462CAE671C00233F0F /* NSString+Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F412CAE671C00233F0F /* NSString+Statistics.m */; };
@@ -1747,6 +1748,8 @@
 		C5D4AB902DB24601006ED3F6 /* UIViewController+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extra.m"; sourceTree = "<group>"; };
 		C5D4ADAB2DB25D74006ED3F6 /* ZFPlayerExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPlayerExtras.h; sourceTree = "<group>"; };
 		C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerExtras.m; sourceTree = "<group>"; };
+		C5EE93A82DDED58F00806CB3 /* UIButton+JobsStepView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+JobsStepView.h"; sourceTree = "<group>"; };
+		C5EE93A92DDED58F00806CB3 /* UIButton+JobsStepView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+JobsStepView.m"; sourceTree = "<group>"; };
 		CE260F282CAE671C00233F0F /* NSString+Time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Time.h"; sourceTree = "<group>"; };
 		CE260F292CAE671C00233F0F /* NSString+Time.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Time.m"; sourceTree = "<group>"; };
 		CE260F2B2CAE671C00233F0F /* NSString+Conversion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Conversion.h"; sourceTree = "<group>"; };
@@ -6067,6 +6070,15 @@
 				C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */,
 			);
 			path = ZFPlayer;
+			sourceTree = "<group>";
+		};
+		C5EE93AA2DDED58F00806CB3 /* UIButton+JobsStepView */ = {
+			isa = PBXGroup;
+			children = (
+				C5EE93A82DDED58F00806CB3 /* UIButton+JobsStepView.h */,
+				C5EE93A92DDED58F00806CB3 /* UIButton+JobsStepView.m */,
+			);
+			path = "UIButton+JobsStepView";
 			sourceTree = "<group>";
 		};
 		CE260F2A2CAE671C00233F0F /* NSString+Time */ = {
@@ -12912,6 +12924,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A62722CA82C2D006D67A7 /* UIButton+SDWebImage */,
+				C5EE93AA2DDED58F00806CB3 /* UIButton+JobsStepView */,
 				8405D1982D08656F00DE33FE /* UIButtonMake */,
 				CE5A62782CA82C2D006D67A7 /* UIButton+Animation */,
 				CE5A627B2CA82C2D006D67A7 /* UIButton+Extra */,
@@ -17499,6 +17512,7 @@
 				8478D8DC2D01CBE0004E8B90 /* SDWebImageModel.m in Sources */,
 				8478D8DD2D01CBE0004E8B90 /* UIButtonModel.m in Sources */,
 				8478D8DE2D01CBE0004E8B90 /* UserDefaultModel.m in Sources */,
+				C5EE93AB2DDED58F00806CB3 /* UIButton+JobsStepView.m in Sources */,
 				8478D8DF2D01CBE0004E8B90 /* DynamicInvoke.m in Sources */,
 				8478D8E02D01CBE0004E8B90 /* JobsDecorationModel.m in Sources */,
 				8478D8E12D01CBE0004E8B90 /* JobsKeyValueModel.m in Sources */,

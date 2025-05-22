@@ -62,6 +62,12 @@ BaseButtonProtocol_synthesize
 -(void)setFrame:(CGRect)frame{
     [super setFrame:frame];
 }
+//@synthesize highlighted = _highlighted;
+//-(void)setHighlighted:(BOOL)highlighted{
+//    _highlighted = highlighted;
+//    self.jobsResetImage(highlighted ? self.highlightImage : self.normalImage);
+//    self.jobsResetBtnBgImage(highlighted ? self.highlightBackgroundImage : self.backgroundImage);
+//}
 /// 判断触摸点是否在 UITextView 内
 /// 当 UIButton.enabled = NO时，此方法不响应
 -(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{

@@ -8,6 +8,7 @@
 #import "BaseView.h"
 #import "JobsBlock.h"
 #import "DefineProperty.h"
+#import "UIButton+JobsStepView.h"
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,10 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnStepViewByCGFloatBlock _Nonnull)byRightViewWidth;
 /// 设置按钮之间的距离
 -(JobsReturnStepViewByCGFloatBlock _Nonnull)byBtnOffset;
-/// 设置左边线颜色
--(JobsReturnStepViewByColorBlock _Nonnull)byLeftLabBgCor;
-/// 设置右边线颜色
--(JobsReturnStepViewByColorBlock _Nonnull)byRightLabBgCor;
+/// 设置左边线（高亮）颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byLeftLabHighlightBgCor;
+/// 设置左边线（普通）颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byLeftLabNormalBgCor;
+/// 设置右边线（高亮）颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byRightLabHighlightBgCor;
+/// 设置右边线（普通）颜色
+-(JobsReturnStepViewByColorBlock _Nonnull)byRightLabNormalBgCor;
 /// 设置当前显示状态
 -(JobsReturnStepViewByNSIntegerBlock _Nonnull)byStatus;
 
@@ -49,9 +54,11 @@ NS_INLINE __kindof JobsStepView *_Nonnull jobsMakeStepView(jobsByStepViewBlock _
              .byLeftViewWidth(JobsWidth(50))
              .byRightViewWidth(JobsWidth(50))
              .byBtnOffset(JobsWidth(50))
-             .byLeftLabBgCor(JobsCor(@"#C71A1A"))
-             .byRightLabBgCor(JobsCor(@"#C71A1A"))
-             .byStatus(VerificationStatusVerified)
+             .byLeftLabHighlightBgCor(JobsCor(@"#C71A1A"))
+             .byRightLabHighlightBgCor(JobsCor(@"#C71A1A"))
+             .byLeftLabNormalBgCor(JobsGrayColor)
+             .byRightLabNormalBgCor(JobsGrayColor)
+             .byStatus(VerificationStatusVerifying)
              .jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButtonModel *>* _Nullable data) {
                  data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),JobsIMG(@"正在进行第一步"),JobsIMG(@"正在进行第一步")))
                      .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),JobsIMG(@"还未进行第二步"),JobsIMG(@"正在进行第二步")))
