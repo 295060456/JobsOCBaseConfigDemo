@@ -11,8 +11,8 @@
 #import "MacroDef_Strong@Weak.h"
 #import "NSObject+WHToast.h"
 #import "NSObject+CurrentDevice.h"
-#import "UIViewController+HXExtension.h"
 #import "HXPhotoPickerModel.h"
+//#import "UIViewController+HXExtension.h"
 
 #if __has_include(<HXPhotoPicker/HXPhotoPicker.h>)
 #import <HXPhotoPicker/HXPhotoPicker.h>
@@ -35,8 +35,8 @@ HXCustomNavigationControllerDelegate
 ,UINavigationControllerDelegate
 >
 
-Prop_strong()HXPhotoManager *photoManager;//选取图片的数据管理类
-Prop_copy()NSMutableArray <HXPhotoModel *>*historyPhotoDataMutArr;/// 与之相对应的是self.photoManager.afterSelectedArray
+Prop_strong()HXPhotoManager *photoManager; /// 选取图片的数据管理类
+Prop_copy()NSMutableArray <HXPhotoModel *>*historyPhotoDataMutArr; /// 与之相对应的是self.photoManager.afterSelectedArray
 Prop_copy()NSMutableArray <HXPhotoModel *>*photosDataMutArr;
 Prop_copy()NSMutableArray <HXPhotoModel *>*videosDataMutArr;
 /// HXPhotoPicker 弹出系统相册选择页面

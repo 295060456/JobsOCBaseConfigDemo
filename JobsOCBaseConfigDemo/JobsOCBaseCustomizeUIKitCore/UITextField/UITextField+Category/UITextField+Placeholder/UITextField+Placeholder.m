@@ -8,14 +8,15 @@
 #import "UITextField+Placeholder.h"
 
 @implementation UITextField (Placeholder)
+/// UITextModelProtocol
 UITextModelProtocol_dynamic
 /// 修改Placeholder亦可以通过富文本来完成
--(NSAttributedString *)_defaultAttributedPlaceholder{
+-(__kindof NSAttributedString *)_defaultAttributedPlaceholder{
     return self.richTextWithDataConfigMutArr(self.titleAttributedDataMutArr);
 }
 
 -(UILabel *)placeholderLabel{
-    if (isNull(self.placeholder)) self.placeholder = @" ";
+    if (isNull(self.placeholder)) self.placeholder = JobsSpace;
     Ivar ivar = class_getInstanceVariable(UITextField.class, "_placeholderLabel");
     UILabel *placeholderLabel = object_getIvar(self, ivar);
     placeholderLabel.numberOfLines = 0;/// 默认折行处理
@@ -58,15 +59,15 @@ JobsKey(_titleAttributedDataMutArr)
     if (!TitleAttributedDataMutArr) {
         @jobs_weakify(self)
         TitleAttributedDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray *_Nullable data) {
-            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
+            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable config) {
                 @jobs_strongify(self)
-                data1.targetString = self.placeholder;
-                data1.font = UIFontWeightRegularSize(10);
-                data1.textCor = JobsBlueColor;
-        //        data1.underlineStyle;
-        //        data1.paragraphStyle;
-        //        data1.urlStr;
-                data1.range = NSMakeRange(0, self.placeholder.length);
+                config.targetString = self.placeholder;
+                config.font = UIFontWeightRegularSize(10);
+                config.textCor = JobsBlueColor;
+//                config.underlineStyle;
+//                config.paragraphStyle;
+//                config.urlStr;
+                config.range = NSMakeRange(0, self.placeholder.length);
             }));
         });Jobs_setAssociatedRETAIN_NONATOMIC(_titleAttributedDataMutArr, TitleAttributedDataMutArr)
     }return TitleAttributedDataMutArr;

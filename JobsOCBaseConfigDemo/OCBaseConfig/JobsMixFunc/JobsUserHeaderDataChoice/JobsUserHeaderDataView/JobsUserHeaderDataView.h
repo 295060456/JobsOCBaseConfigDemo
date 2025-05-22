@@ -6,6 +6,7 @@
 //
 
 #import "BaseView.h"
+#import "JobsBlock.h"
 #import "JobsUserHeaderDataViewTBVCell.h"
 #import "JobsUserHeaderDataViewForHeaderInSection.h"
 #import "UITableView+RegisterClass.h"
@@ -18,6 +19,9 @@ BaseViewProtocol
 ,UITableViewDelegate
 ,UITableViewDataSource
 >
+
++(__kindof JobsUserHeaderDataView *)makeImageByBlock:(jobsByIDBlock _Nullable)block
+                                         finishBlock:(jobsByVoidBlock)finishBlock;
 
 @end
 

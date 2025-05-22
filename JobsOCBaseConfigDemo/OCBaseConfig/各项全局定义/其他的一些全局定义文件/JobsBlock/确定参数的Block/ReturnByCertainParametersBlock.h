@@ -190,6 +190,16 @@ typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDragDelegateBlock)
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDropDelegateBlock)(id <UITableViewDropDelegate>_Nullable delegate);
 #pragma mark —— 关于 UITextField
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByDelegateBlock)(id <UITextFieldDelegate>_Nullable delegate);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByBOOLBlock)(BOOL data);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByModeBlock)(UITextFieldViewMode mode);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByKeyboardAppearanceBlock)(UIKeyboardAppearance appearance);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByKeyboardTypeBlock)(UIKeyboardType type);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByReturnKeyTypeBlock)(UIReturnKeyType type);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByStringBlock)(__kindof NSString *_Nullable str);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByAttributedStringBlock)(__kindof NSAttributedString *_Nullable str);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByFontBlock)(__kindof UIFont *_Nullable font);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByCorBlock)(__kindof UIColor *_Nullable cor);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByImageBlock)(__kindof UIImage *_Nullable image);
 #pragma mark —— 关于 Label
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByImage)(__kindof UIImage *_Nullable image);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByCor)(__kindof UIColor *_Nullable cor);

@@ -8,15 +8,24 @@
 #import "JobsTextField.h"
 
 @interface JobsTextField ()
-
+/// Data
+Prop_assign()CGFloat leftViewByOutLineOffset; /// 这个值需要在leftView之前设置才有效
+Prop_assign()CGFloat leftViewByTextFieldOffset;
+Prop_assign()CGFloat rightViewByOutLineOffset; /// 这个值需要在rightView之前设置才有效
+Prop_assign()CGFloat rightViewByTextFieldOffset;
+Prop_strong(null_resettable)UIColor *realTextFieldBgCor;
 Prop_copy(nullable)JobsReturnIDByIDBlock otherActionBlock;
 
 @end
 
 @implementation JobsTextField
+/// BaseViewProtocol
 BaseViewProtocol_synthesize
+/// UITextFieldProtocol
 UITextFieldProtocol_synthesize
+/// BaseProtocol
 BaseProtocol_synthesize
+/// RACProtocol
 RACProtocol_synthesize
 #pragma mark —— SysMethod
 -(instancetype)init{
@@ -44,6 +53,87 @@ RACProtocol_synthesize
 #pragma mark —— 一些公有方法
 -(void)otherActionBlock:(JobsReturnIDByIDBlock _Nullable)otherActionBlock{
     self.otherActionBlock = otherActionBlock;
+}
+/// 这个值需要在leftView之前设置才有效
+-(JobsReturnJobsTextFieldByCGFloatBlock _Nonnull)byLeftViewByOutLineOffset{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(CGFloat data){
+        @jobs_strongify(self)
+        self.leftViewByOutLineOffset = data;
+        return self;
+    };
+}
+
+-(JobsReturnJobsTextFieldByCGFloatBlock _Nonnull)byLeftViewByTextFieldOffset{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(CGFloat data){
+        @jobs_strongify(self)
+        self.leftViewByTextFieldOffset = data;
+        return self;
+    };
+}
+/// 这个值需要在rightView之前设置才有效
+-(JobsReturnJobsTextFieldByCGFloatBlock _Nonnull)byRightViewByOutLineOffset{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(CGFloat data){
+        @jobs_strongify(self)
+        self.rightViewByOutLineOffset = data;
+        return self;
+    };
+}
+
+-(JobsReturnJobsTextFieldByCGFloatBlock _Nonnull)byRightViewByTextFieldOffset{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(CGFloat data){
+        @jobs_strongify(self)
+        self.rightViewByTextFieldOffset = data;
+        return self;
+    };
+}
+
+-(JobsReturnJobsTextFieldByCorBlock _Nonnull)byRealTextFieldBgCor{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.realTextFieldBgCor = cor;
+        return self;
+    };
+}
+
+-(JobsReturnJobsTextFieldByViewBlock _Nonnull)byLeftView{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(__kindof UIView *_Nullable view){
+        @jobs_strongify(self)
+        self.leftView = view;
+        return self;
+    };
+}
+
+-(JobsReturnJobsTextFieldByViewBlock _Nonnull)byRightView{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(__kindof UIView *_Nullable view){
+        @jobs_strongify(self)
+        self.rightView = view;
+        return self;
+    };
+}
+
+-(JobsReturnJobsTextFieldByCorBlock _Nonnull)byTitleCor{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.titleCor = cor;
+        return self;
+    };
+}
+
+-(JobsReturnJobsTextFieldByBOOLBlock _Nonnull)byTextFieldSecureTextEntry{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(BOOL data){
+        @jobs_strongify(self)
+        self.textFieldSecureTextEntry = data;
+        return self;
+    };
 }
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
@@ -201,28 +291,27 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
 -(UITextField *)realTextField{
     if(!_realTextField){
         @jobs_weakify(self)
-        _realTextField = jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
+        _realTextField = self.addSubview(jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
             @jobs_strongify(self)
-            textField.delegate = self;
-            textField.secureTextEntry = self.textFieldSecureTextEntry;/// secureTextEntry 必须先于 text 设置，否则可能会触发系统Bug：导致无法输入的情况
-            textField.text = self.title;
-            textField.font = self.titleFont;
-            textField.textColor = self.titleCor;
-            textField.backgroundColor = self.realTextFieldBgCor;
-            textField.leftViewMode = self.leftViewMode;
-            textField.rightViewMode = self.rightViewMode;
-            textField.attributedPlaceholder = self.attributedPlaceholder;
-            textField.placeholder = self.textFieldPlaceholder;
-            textField.returnKeyType = self.returnKeyType;
-            textField.keyboardAppearance = self.keyboardAppearance;
-            textField.keyboardType = self.keyboardType;
-            textField.placeholderColor = self.placeholderColor;
-            textField.placeholderFont = self.placeholderFont;
-            [self.addSubview(textField) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.bottom.equalTo(self);
-                make.left.equalTo(self.leftView ? self.leftView.mas_right : self).offset(self.leftViewByTextFieldOffset);
-                make.right.equalTo(self.rightView ? self.rightView.mas_left : self).offset(-self.rightViewByTextFieldOffset);
-            }];
+            textField.byDelegate(self)
+                .bySecureTextEntry(self.textFieldSecureTextEntry)/// secureTextEntry 必须先于 text 设置，否则可能会触发系统Bug：导致无法输入的情况
+                .byText(self.title)
+                .byFont(self.titleFont)
+                .byTextCor(self.titleCor)
+                .byLeftViewMode(self.leftViewMode)
+                .byRightViewMode(self.rightViewMode)
+                .byAttributedPlaceholder(self.attributedPlaceholder)
+                .byPlaceholder(self.textFieldPlaceholder)
+                .byReturnKeyType(self.returnKeyType_)
+                .byKeyboardAppearance(self.keyboardAppearance_)
+                .byKeyboardType(self.keyboardType_)
+                .byPlaceholderColor(self.placeholderColor)
+                .byPlaceholderFont(self.placeholderFont)
+                .byBgCor(self.realTextFieldBgCor);
+        })).setMasonryBy(^(MASConstraintMaker *make){
+            make.top.bottom.equalTo(self);
+            make.left.equalTo(self.leftView ? self.leftView.mas_right : self).offset(self.leftViewByTextFieldOffset);
+            make.right.equalTo(self.rightView ? self.rightView.mas_left : self).offset(-self.rightViewByTextFieldOffset);
         });
         [_realTextField jobsTextFieldEventFilterBlock:^BOOL(id data) {
 //            @jobs_strongify(self)

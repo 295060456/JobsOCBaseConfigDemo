@@ -61,6 +61,38 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 -(void)layoutSubviews{
     [super layoutSubviews];
 }
+#pragma mark —— 一些公有方法
++(__kindof JobsUserHeaderDataView *)makeImageByBlock:(jobsByIDBlock _Nullable)block
+                                         finishBlock:(jobsByVoidBlock)finishBlock{
+    @jobs_weakify(self)
+    self.popupParameter = nil;
+    JobsUserHeaderDataView *view = JobsUserHeaderDataView
+        .BySize(JobsUserHeaderDataView.viewSizeByModel(nil))
+        .JobsRichViewByModel2(nil)
+        .JobsBlock1(^(JobsUserHeaderDataViewTBVCell *cell) {
+            @jobs_strongify(self)
+            if (cell.getTitleValue.isEqualToString(JobsInternationalization(拍照))) {
+                self.invokeSysCamera();/// 完全意义上的调用系统的相机拍照功能
+            }else if (cell.getTitleValue.isEqualToString(JobsInternationalization(从相册中选取))){
+                [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
+                    @jobs_strongify(self)
+                    self.photoManager = data.photoManager;
+                    [data.photoList hx_requestImageWithOriginal:NO
+                                                     completion:^(NSArray<UIImage *>*_Nullable imageArray,
+                                                                  NSArray<HXPhotoModel *>*_Nullable errorArray) {
+                        @jobs_strongify(self)
+                        if(block) block(NSMutableArray.initBy(imageArray).lastObject);/// 永远值显示最后选择的图
+                    }];
+                } failBlock:^(HXPhotoPickerModel *data) {
+    //                @jobs_strongify(self)
+                }];
+            }else if (cell.getTitleValue.isEqualToString(JobsInternationalization(取消))){
+//                    @jobs_strongify(self)
+            }else{}
+            if(finishBlock) finishBlock();
+        });
+    return view;
+}
 #pragma mark —— 一些私有方法
 +(NSMutableArray<UIViewModel *> *)createDataMutArr{
     return jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable arr) {

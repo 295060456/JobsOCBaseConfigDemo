@@ -134,6 +134,9 @@ FOUNDATION_EXTERN NSString *_Nonnull const KYC状态;
 FOUNDATION_EXTERN NSString *_Nonnull const 菲律宾货币符号;
 FOUNDATION_EXTERN NSString *_Nonnull const 已点击;
 FOUNDATION_EXTERN NSString *_Nonnull const 未点击;
+FOUNDATION_EXTERN NSString *_Nonnull const 拍照;
+FOUNDATION_EXTERN NSString *_Nonnull const 从相册中选取;
+FOUNDATION_EXTERN NSString *_Nonnull const 取消;
 /*
  * 常用符号大全
  * 特殊符号 编号序号 数学符号 爱心符号 标点符号 单位符号 货币符号 箭头符号 符号图案 制表符 皇冠符号

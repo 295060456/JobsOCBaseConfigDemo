@@ -52,7 +52,7 @@
                 /// 在不全局集成@implementation UILabel (AutoScroll)的前提下
                 /// 要求本类是 BaseLabel
             }break;
-            case UILabelShowingType_03:{/// 一行显示。不定宽、不定高、定字体。宽高自适应 【单行：ByFont】 可以不要高
+            case UILabelShowingType_03:{/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
                 if (self.height) {
                     self.labelAutoWidthByFont();
                     if (self.width) self.uninstall(NSLayoutAttributeWidth);// 强制

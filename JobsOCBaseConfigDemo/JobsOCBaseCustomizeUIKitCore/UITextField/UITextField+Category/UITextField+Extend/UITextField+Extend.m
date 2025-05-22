@@ -48,10 +48,145 @@
         return self;
     };
 }
+
+-(JobsReturnTextFieldByBOOLBlock _Nonnull)bySecureTextEntry{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.secureTextEntry = data;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByModeBlock _Nonnull)byClearButtonMode{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(UITextFieldViewMode data){
+        @jobs_strongify(self)
+        self.clearButtonMode = data;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByModeBlock _Nonnull)byLeftViewMode{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(UITextFieldViewMode data){
+        @jobs_strongify(self)
+        self.leftViewMode = data;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByModeBlock _Nonnull)byRightViewMode{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(UITextFieldViewMode data){
+        @jobs_strongify(self)
+        self.rightViewMode = data;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByStringBlock _Nonnull)byText{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(__kindof NSString *_Nullable str){
+        @jobs_strongify(self)
+        self.text = str;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByFontBlock _Nonnull)byFont{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(__kindof UIFont *_Nullable font){
+        @jobs_strongify(self)
+        self.font = font;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByCorBlock _Nonnull)byTextCor{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(__kindof UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.textColor = cor;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByStringBlock _Nonnull)byPlaceholder{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(__kindof NSString *_Nullable str){
+        @jobs_strongify(self)
+        self.placeholder = str;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByCorBlock _Nonnull)byPlaceholderColor{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(__kindof UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.placeholderColor = cor;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByFontBlock _Nonnull)byPlaceholderFont{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(__kindof UIFont *_Nullable font){
+        @jobs_strongify(self)
+        self.placeholderFont = font;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByAttributedStringBlock _Nonnull)byAttributedText{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(__kindof NSAttributedString *_Nullable str){
+        @jobs_strongify(self)
+        self.attributedText = str;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByAttributedStringBlock _Nonnull)byAttributedPlaceholder{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(__kindof NSAttributedString *_Nullable str){
+        @jobs_strongify(self)
+        self.attributedPlaceholder = str;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByKeyboardAppearanceBlock _Nonnull)byKeyboardAppearance{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(UIKeyboardAppearance appearance){
+        @jobs_strongify(self)
+        self.keyboardAppearance = appearance;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByKeyboardTypeBlock _Nonnull)byKeyboardType{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(UIKeyboardType type){
+        @jobs_strongify(self)
+        self.keyboardType = type;
+        return self;
+    };
+}
+
+-(JobsReturnTextFieldByReturnKeyTypeBlock _Nonnull)byReturnKeyType{
+    @jobs_weakify(self)
+    return ^__kindof UITextField *_Nullable(UIReturnKeyType type){
+        @jobs_strongify(self)
+        self.returnKeyType = type;
+        return self;
+    };
+}
 #pragma mark —— Prop_strong()UIButton *customSysClearBtn;
 JobsKey(_customSysClearBtn)
 @dynamic customSysClearBtn;
--(UIButton *)customSysClearBtn{
+-(__kindof UIButton *)customSysClearBtn{
     UIButton *CustomSysClearBtn = Jobs_getAssociatedObject(_customSysClearBtn);
     if (!CustomSysClearBtn) {
         @jobs_weakify(self)
@@ -74,7 +209,7 @@ JobsKey(_customSysClearBtn)
     }return CustomSysClearBtn;
 }
 
--(void)setCustomSysClearBtn:(UIButton *)customSysClearBtn{
+-(void)setCustomSysClearBtn:(__kindof UIButton *)customSysClearBtn{
     Jobs_setAssociatedRETAIN_NONATOMIC(_customSysClearBtn, customSysClearBtn)
 }
 

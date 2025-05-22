@@ -76,16 +76,15 @@ Prop_strong()UILabel *titleLab;
 -(UILabel *)titleLab{
     if (!_titleLab) {
         @jobs_weakify(self)
-        _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+        _titleLab = self.contentView.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"请设置标题") : self.viewModel.textModel.text;
-            label.textColor = self.viewModel.textModel.textCor;
-            label.font = self.viewModel.textModel.font;
-            label.textAlignment = NSTextAlignmentCenter;
-            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.contentView);
-            }];
-        });
+            label.byText(isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"请设置标题") : self.viewModel.textModel.text)
+                .byTextCor(self.viewModel.textModel.textCor)
+                .byFont(self.viewModel.textModel.font)
+                .byTextAlignment(NSTextAlignmentCenter);
+        })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+            make.edges.equalTo(self.contentView);
+        }).on();
     }return _titleLab;
 }
 

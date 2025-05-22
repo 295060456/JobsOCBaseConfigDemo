@@ -134,6 +134,9 @@ NSString *const KYC状态 = @"KYC状态";
 NSString *const 菲律宾货币符号 = @"₱";
 NSString *const 已点击 = @"已点击";
 NSString *const 未点击 = @"未点击";
+NSString *const 拍照 = @"拍照";
+NSString *const 从相册中选取 = @"从相册中选取";
+NSString *const 取消 = @"取消";
 /*
  * 常用符号大全
  * 特殊符号 编号序号 数学符号 爱心符号 标点符号 单位符号 货币符号 箭头符号 符号图案 制表符 皇冠符号

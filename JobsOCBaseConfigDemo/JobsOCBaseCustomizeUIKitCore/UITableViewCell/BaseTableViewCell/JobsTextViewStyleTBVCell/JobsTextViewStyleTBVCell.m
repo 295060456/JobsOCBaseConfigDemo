@@ -141,9 +141,9 @@ BaseViewProtocol_synthesize
             textView.szTextView.delegate = self;
             textView.szTextView.textColor = JobsBlackColor;
             textView.backgroundColor = JobsCor(@"#F9F9F9");
-            textView.returnKeyType = UIReturnKeyDefault;
-            textView.keyboardAppearance = UIKeyboardAppearanceDefault;
-            textView.keyboardType = UIKeyboardTypeNumberPad;
+            textView.returnKeyType_ = UIReturnKeyDefault;
+            textView.keyboardAppearance_ = UIKeyboardAppearanceDefault;
+            textView.keyboardType_ = UIKeyboardTypeNumberPad;
             textView.placeholder = JobsInternationalization(@"请输入充值金额");
             textView.font = UIFontWeightMediumSize(18);
             textView.placeholderFont = textView.font;
