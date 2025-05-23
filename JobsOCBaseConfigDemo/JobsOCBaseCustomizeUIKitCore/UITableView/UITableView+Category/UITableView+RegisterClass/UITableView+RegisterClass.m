@@ -10,26 +10,43 @@
 @implementation UITableView (RegisterClass)
 #pragma mark —— 注册
 -(void)registerTableViewClass{
-    [self registerClass:UITableViewCell.class
- forCellReuseIdentifier:UITableViewCell.class.description.add(@"")];
+    [self registerClass:UITableViewCell.class forCellReuseIdentifier:UITableViewCell.class.description.add(@"")];
     /// 以此类推
 }
-/// 注册 HeaderFooterView 及其子类 jobsByClassBlock
--(jobsByClassAndSaltStrBlock _Nonnull)registerHeaderFooterViewClass{
+/// 不加盐注册
+-(jobsByClassBlock _Nonnull)registerTableViewClassBy{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,NSString * _Nullable salt) {
+    return ^(Class _Nonnull cls){
+        @jobs_strongify(self)
+        [self registerClass:cls forCellReuseIdentifier:cls.description];
+    };
+}
+/// 加盐注册
+-(jobsByClassAndSaltBlock _Nonnull)registerTableViewClassBySalt{
+    @jobs_weakify(self)
+    return ^(Class _Nonnull cls,__kindof NSString *_Nullable salt){
+        @jobs_strongify(self)
+        [self registerClass:cls forCellReuseIdentifier:cls.description.add(salt)];
+    };
+}
+/// 注册 HeaderFooterView 及其子类 jobsByClassBlock
+-(JobsReturnTableViewByClassAndSaltStrBlock _Nonnull)registerHeaderFooterViewClass{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
         if(!cls) cls = UITableViewHeaderFooterView.class;
         [self registerClass:cls forHeaderFooterViewReuseIdentifier:cls.description.add(salt)];
+        return self;
     };
 }
 /// 注册 UITableViewCell 及其子类
--(jobsByClassAndSaltStrBlock _Nonnull)registerTableViewCellClass{
+-(JobsReturnTableViewByClassAndSaltStrBlock _Nonnull)registerTableViewCellClass{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,NSString * _Nullable salt) {
+    return ^__kindof UITableView *_Nullable(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
         if(!cls) cls = UITableViewCell.class;
         [self registerClass:cls forCellReuseIdentifier:cls.description.add(salt)];
+        return self;
     };
 }
 #pragma mark —— 取值

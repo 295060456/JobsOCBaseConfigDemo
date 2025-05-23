@@ -20,7 +20,7 @@ Prop_strong()NSMutableSet <NSString *>*registeredIdentifiers;/// 自定义标志
 +(JobsReturnCollectionViewByLayoutBlock _Nonnull)initByLayout;
 /// 对系统方法 cellForItemAtIndexPath 的二次封装
 -(JobsReturnCollectionViewCellByIndexPathBlock _Nonnull)cellBy;
--(jobsByIDBlock _Nonnull)dataLink;
+-(JobsReturnScrollViewByIDBlock _Nonnull)dataLink;
 -(JobsReturnCollectionViewByDelegateBlock _Nonnull)byDelegate;
 -(JobsReturnCollectionViewByDataSourceBlock _Nonnull)byDataSource;
 -(JobsReturnCollectionViewByDragDelegateBlock _Nonnull)byDragDelegate;

@@ -101,7 +101,7 @@
         return self;
     };
 }
-
+#pragma mark —— UIScrollViewProtocol
 -(JobsReturnScrollViewByDelegateBlock _Nonnull)byDelegate{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(id <UIScrollViewDelegate>_Nullable delegate){
@@ -134,6 +134,15 @@
     return ^__kindof UIScrollView *_Nullable(CGSize size){
         @jobs_strongify(self)
         self.contentSize = size;
+        return self;
+    };
+}
+
+-(JobsReturnScrollViewByBOOLBlock _Nonnull)byScrollEnabled{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.scrollEnabled = data;
         return self;
     };
 }

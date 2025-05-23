@@ -177,12 +177,20 @@ typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByWindowSceneBlock)(UIWind
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemByIDBlock)(id _Nullable data);
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemBySELBlock)(SEL _Nullable data);
 #pragma mark —— 关于 UITextView
+typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByBOOLBlock)(BOOL data);
+typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByAttributedTextBlock)(__kindof NSAttributedString * _Nullable attributedText);
+typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByDicBlock)(__kindof NSDictionary <NSAttributedStringKey,id>* _Nullable dic);
 typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByDelegateBlock)(id <UITextViewDelegate>_Nullable delegate);
 typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByStringBlock)(NSString *_Nullable data);
 typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByCor)(__kindof UIColor *_Nullable cor);
-typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByFont)(__kindof UIFont *_Nullable font);
+typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByFontBlock)(__kindof UIFont *_Nullable font);
 typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByAttributedStringBlock)(__kindof NSAttributedString *_Nullable attributedString);
 #pragma mark —— 关于 UITableView
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByBOOLBlock)(BOOL data);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByEdgeInsetsBlock)(UIEdgeInsets inset);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByCorBlock)(UIColor *_Nullable cor);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByViewBlock)(__kindof UIView *_Nullable view);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByCellSeparatorStyleBlock)(UITableViewCellSeparatorStyle style);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDelegateBlock)(id <UITableViewDelegate>_Nullable delegate);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDataSourceBlock)(id <UITableViewDataSource>_Nullable dataSource);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDataSourcePrefetchingBlock)(id <UITableViewDataSourcePrefetching>_Nullable dataSourcePrefetching);
@@ -278,12 +286,15 @@ typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellBy
 typedef __kindof UICollectionViewCell *_Nullable(^JobsReturnCollectionViewCellByDelegateBlock)(UIColor *_Nullable cor);
 #pragma mark —— 关于 UIScrollView
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByVoidBlock)(void);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByIDBlock)(id _Nullable data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByBOOLBlock)(BOOL data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByDelegateBlock)(id <UIScrollViewDelegate>_Nullable delegate);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByPointBlock)(CGPoint data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByRectBlock)(CGRect frame);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewBySizeBlock)(CGSize size);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
+@class UIButtonModel;
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByButtonModelBlock)(__kindof UIButtonModel *_Nullable buttonModel);
 #pragma mark —— 关于 PDF
 typedef __kindof PDFDocument *_Nullable(^JobsReturnPDFDocumentByURLBlock)(NSURL *_Nullable pdfURL);
 #pragma mark —— 关于 WKWebView
@@ -609,6 +620,8 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalsBlock)(NSTi
 typedef __kindof NSString *_Nullable(^JobsReturnStringByArrAndNSIntegerBlock)(Jobs_NSStringBlock_1_Arguments);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalAndDateFormatterBlock)(Jobs_NSStringBlock_2_Arguments);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByStringStringBlock)(Jobs_NSStringBlock_3_Arguments);
+#pragma mark —— 多入参，返回 UITableView
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByClassAndSaltStrBlock)(Jobs_UITableViewHeaderFooterViewBlock_Arguments);
 #pragma mark —— 多入参，返回 UIButton
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementAndPaddingBlock)(Jobs_ReturnButtonByImagePlacementAndPaddingBlock_Arguments);
 typedef __kindof UIButton *_Nonnull(^JobsReturnButtonByColor_FloatBlock)(Jobs_ReturnButtonByColor_FloatBlock_Arguments);

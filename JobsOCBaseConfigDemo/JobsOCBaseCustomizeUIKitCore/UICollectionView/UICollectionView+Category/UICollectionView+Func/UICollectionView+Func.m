@@ -25,12 +25,13 @@
     };
 }
 
--(jobsByIDBlock _Nonnull)dataLink{
+-(JobsReturnScrollViewByIDBlock _Nonnull)dataLink{
     @jobs_weakify(self)
-    return ^(id _Nonnull target) {
+    return ^__kindof UICollectionView *_Nullable(id _Nonnull target) {
         @jobs_strongify(self)
         self.byDelegate(target);
         self.byDataSource(target);
+        return self;
     };
 }
 

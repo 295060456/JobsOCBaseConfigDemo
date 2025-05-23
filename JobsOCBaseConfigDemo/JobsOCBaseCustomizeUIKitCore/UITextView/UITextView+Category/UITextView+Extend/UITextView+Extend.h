@@ -35,7 +35,11 @@ Prop_copy()NSString *resStr;
 -(JobsReturnTextViewByDelegateBlock _Nonnull)byDelegate;
 -(JobsReturnTextViewByStringBlock _Nonnull)byText;
 -(JobsReturnTextViewByCor _Nonnull)byTextCor;
--(JobsReturnTextViewByFont _Nonnull)byFont;
+-(JobsReturnTextViewByFontBlock _Nonnull)byFont;
+-(JobsReturnTextViewByBOOLBlock _Nonnull)byUserInteractionEnabled;
+-(JobsReturnTextViewByBOOLBlock _Nonnull)byEditable;
+-(JobsReturnTextViewByDicBlock _Nonnull)byLinkTextAttributes;
+-(JobsReturnTextViewByAttributedTextBlock _Nonnull)byAttributedText;
 /**
  IOS UITextView内容垂直居中方法 https://www.jianshu.com/p/5e4cf8488bfd
  原理：由于textView是继承自UIScrollview，所以会有ContentSize属性。

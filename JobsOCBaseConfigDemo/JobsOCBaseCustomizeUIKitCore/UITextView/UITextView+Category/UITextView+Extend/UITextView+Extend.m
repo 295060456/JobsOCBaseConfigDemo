@@ -67,11 +67,47 @@
     };
 }
 
--(JobsReturnTextViewByFont _Nonnull)byFont{
+-(JobsReturnTextViewByFontBlock _Nonnull)byFont{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(__kindof UIFont *_Nullable font){
         @jobs_strongify(self)
         self.font = font;
+        return self;
+    };
+}
+
+-(JobsReturnTextViewByBOOLBlock _Nonnull)byUserInteractionEnabled{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.userInteractionEnabled = data;
+        return self;
+    };
+}
+
+-(JobsReturnTextViewByBOOLBlock _Nonnull)byEditable{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.editable = data;
+        return self;
+    };
+}
+
+-(JobsReturnTextViewByDicBlock _Nonnull)byLinkTextAttributes{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(__kindof NSDictionary <NSAttributedStringKey,id>*dic){
+        @jobs_strongify(self)
+        self.linkTextAttributes = dic;
+        return self;
+    };
+}
+
+-(JobsReturnTextViewByAttributedTextBlock _Nonnull)byAttributedText{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(__kindof NSAttributedString *attributedText){
+        @jobs_strongify(self)
+        self.attributedText = attributedText;
         return self;
     };
 }

@@ -26,3 +26,20 @@ BaseViewProtocol
 @end
 
 NS_ASSUME_NONNULL_END
+/**
+ -(JobsUserHeaderDataView *)userHeaderDataView{
+     if(!_userHeaderDataView){
+         @jobs_weakify(self)
+         _userHeaderDataView = [JobsUserHeaderDataView.new makeImageByBlock:^(UIImage *_Nullable image) {
+             @jobs_strongify(self)
+             self.currentBtn.jobsResetBtnBgImage(image);/// 永远值显示最后选择的图
+         } finishBlock:^{
+             @jobs_strongify(self)
+             [self->_userHeaderDataView tf_hide:^{
+                 @jobs_strongify(self)
+                 self.popupParameter = nil;
+             }];
+         }];
+     }return _userHeaderDataView;
+ }
+ */

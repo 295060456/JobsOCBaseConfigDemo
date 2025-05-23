@@ -9,12 +9,13 @@
 
 @implementation UITableView (Expand)
 #pragma mark —— 数据源
--(jobsByIDBlock _Nonnull)dataLink{
+-(JobsReturnScrollViewByIDBlock _Nonnull)dataLink{
     @jobs_weakify(self)
-    return ^(id _Nonnull target) {
+    return ^__kindof UITableView *(id _Nonnull target) {
         @jobs_strongify(self)
         self.byDelegate(target);
         self.byDataSource(target);
+        return self;
     };
 }
 #pragma mark —— UITableView
@@ -29,7 +30,7 @@
 +(instancetype)initWithStyleInsetGrouped API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos){
     return [UITableView.alloc initWithFrame:CGRectZero style:UITableViewStyleInsetGrouped];
 }
-
+#pragma mark —— BaseTableViewProtocol
 -(JobsReturnTableViewByDelegateBlock _Nonnull)byDelegate{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(id <UITableViewDelegate>_Nullable delegate){
@@ -71,6 +72,60 @@
     return ^__kindof UITableView *_Nullable(id <UITableViewDropDelegate>_Nullable delegate){
         @jobs_strongify(self)
         self.dropDelegate = delegate;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByCellSeparatorStyleBlock _Nonnull)bySeparatorStyle{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(UITableViewCellSeparatorStyle style){
+        @jobs_strongify(self)
+        self.separatorStyle = style;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByCorBlock _Nonnull)bySeparatorColor{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(UIColor *_Nullable cor){
+        @jobs_strongify(self)
+        self.separatorColor = cor;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByBOOLBlock _Nonnull)byShowsVerticalScrollIndicator{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.showsVerticalScrollIndicator = data;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByViewBlock _Nonnull)byTableHeaderView{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(__kindof UIView *_Nullable view){
+        @jobs_strongify(self)
+        self.tableHeaderView = view;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByViewBlock _Nonnull)byTableFooterView{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(__kindof UIView *_Nullable view){
+        @jobs_strongify(self)
+        self.tableFooterView = view;
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByEdgeInsetsBlock _Nonnull)byContentInset{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(UIEdgeInsets inset){
+        @jobs_strongify(self)
+        self.contentInset = inset;
         return self;
     };
 }

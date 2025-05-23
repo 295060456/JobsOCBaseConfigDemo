@@ -292,5 +292,11 @@
     CGFloat data, \
     __kindof UIView *_Nonnull superView
 #endif /* Jobs_ReturnCGRectByCGFloatAndUIViewBlock_Arguments */
+
+#ifndef Jobs_ByClassAndSaltBlock_Arguments
+#define Jobs_ByClassAndSaltBlock_Arguments \
+    Class _Nonnull cls, \
+    __kindof NSString *_Nullable salt
+#endif /* Jobs_ByClassAndSaltBlock_Arguments */
                                                                                 
 #endif /* JobsBlockDef_h */

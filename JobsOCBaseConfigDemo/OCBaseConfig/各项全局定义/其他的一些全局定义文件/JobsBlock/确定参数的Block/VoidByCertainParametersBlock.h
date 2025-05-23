@@ -163,6 +163,7 @@ typedef void(^jobsByUNMutableNotificationContentBlock)(__kindof UNMutableNotific
 typedef void(^jobsByNEVPNManagerBlock)(__kindof NEVPNManager *_Nullable VPNManager);
 typedef void(^jobsByNEVPNProtocolIKEv2Block)(__kindof NEVPNProtocolIKEv2 *_Nullable VPNProtocolIKEv2);
 /// 多参数
+typedef void(^jobsByClassAndSaltBlock)(Jobs_ByClassAndSaltBlock_Arguments);
 typedef void(^jobsKeyValueBlock)(Jobs_KeyValueBlock_Arguments);
 typedef void(^jobsByKey_ValueBlock)(Jobs_Key_ValueBlock_Arguments);
 typedef void(^jobsBySelectorBlock) (Jobs_2_Arguments);

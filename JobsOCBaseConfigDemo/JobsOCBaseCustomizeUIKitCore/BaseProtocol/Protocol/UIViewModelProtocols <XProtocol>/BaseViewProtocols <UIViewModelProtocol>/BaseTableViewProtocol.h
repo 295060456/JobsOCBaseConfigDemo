@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol BaseTableViewProtocol <NSObject>
 @optional
 #pragma mark —— 数据源
--(jobsByIDBlock _Nonnull)dataLink;
+-(JobsReturnScrollViewByIDBlock _Nonnull)dataLink;
 #pragma mark —— UITableView
 +(instancetype)initWithStylePlain;/// 一般用这个
 +(instancetype)initWithStyleGrouped;/// 会在section之间自己预留一块空间
@@ -23,6 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnTableViewByDataSourcePrefetchingBlock _Nonnull)byDataSourcePrefetching API_AVAILABLE(ios(10.0));
 -(JobsReturnTableViewByDragDelegateBlock _Nonnull)byDragDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
 -(JobsReturnTableViewByDropDelegateBlock _Nonnull)byDropDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
+-(JobsReturnTableViewByCellSeparatorStyleBlock _Nonnull)bySeparatorStyle;
+-(JobsReturnTableViewByCorBlock _Nonnull)bySeparatorColor;
+-(JobsReturnTableViewByBOOLBlock _Nonnull)byShowsVerticalScrollIndicator;
+-(JobsReturnTableViewByViewBlock _Nonnull)byTableHeaderView;
+-(JobsReturnTableViewByViewBlock _Nonnull)byTableFooterView;
+-(JobsReturnTableViewByEdgeInsetsBlock _Nonnull)byContentInset;
 #pragma mark —— UITableViewHeaderFooterView
 -(JobsReturnRectByNSIntegerBlock _Nonnull)rectForHeaderInSection;
 -(JobsReturnRectByNSIntegerBlock _Nonnull)rectForFooterInSection;
@@ -52,10 +58,14 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)hideSeparatorLineAtLast:(NSIndexPath *)indexPath cell:(__kindof UITableViewCell *)cell;
 #pragma mark —— RegisterClass
 -(void)registerTableViewClass;
+/// 不加盐注册
+-(jobsByClassBlock _Nonnull)registerTableViewClassBy;
+/// 加盐注册
+-(jobsByClassAndSaltBlock _Nonnull)registerTableViewClassBySalt;
 /// 注册 HeaderFooterView 及其子类 jobsByClassBlock
--(jobsByClassAndSaltStrBlock _Nonnull)registerHeaderFooterViewClass;
+-(JobsReturnTableViewByClassAndSaltStrBlock _Nonnull)registerHeaderFooterViewClass;
 /// 注册 UITableViewCell 及其子类
--(jobsByClassAndSaltStrBlock _Nonnull)registerTableViewCellClass;
+-(JobsReturnTableViewByClassAndSaltStrBlock _Nonnull)registerTableViewCellClass;
 /// 不使用 registerClass 直接创建 UITableViewCell ❤️复用字符串是目标类的类名❤️
 -(JobsReturnTableViewCellByClsAndSaltStrBlock _Nonnull)tableViewCellClass;
 /// 使用 registerClass 注册 UITableViewCell ❤️复用字符串是目标类的类名❤️

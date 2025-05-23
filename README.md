@@ -2949,19 +2949,35 @@ classDiagram
   -(UITableView *)tableView{
       if (!_tableView){
           @jobs_weakify(self)
-          _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+          _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
               @jobs_strongify(self)
-              tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-              tableView.dataLink(self);
-              tableView.showsVerticalScrollIndicator = NO;
-              tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-              [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                  make.left.equalTo(self.view);
-                  make.top.equalTo(self.navBar.mas_bottom);
-                  make.bottom.equalTo(self.view);
-                  make.width.mas_equalTo(MenuWidth);
-              }];
-          });
+              tableView.bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                  .bySeparatorColor(HEXCOLOR(0xEEE2C8))
+                  .byShowsVerticalScrollIndicator(NO)
+                  .registerHeaderFooterViewClass(FMInBoxTableViewHeaderView.class,@"")
+                  .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                      /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                  }))
+                  .byTableFooterView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                      /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                  }))
+                  .dataLink(self)
+                  .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                      data.title = JobsInternationalization(@"NO MESSAGES FOUND");
+                      data.titleCor = JobsWhiteColor;
+                      data.titleFont = bayonRegular(JobsWidth(30));
+                      data.normalImage = JobsIMG(@"小狮子");
+                  }))
+                  .byScrollEnabled(YES)
+                  .byBgCor(JobsClearColor);
+              
+          })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+              @jobs_strongify(self)
+              make.left.equalTo(self.view);
+              make.top.equalTo(self.navBar.mas_bottom);
+              make.bottom.equalTo(self.view);
+              make.width.mas_equalTo(MenuWidth);
+          }).on();
       }return _tableView;
   }
   
@@ -8310,48 +8326,44 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        if (!_tableView) {
            /// 一般用 initWithStylePlain。initWithStyleGrouped会自己预留一块空间
            @jobs_weakify(self)
-           _tableView = jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView) {
+           _tableView = self.view.addSubview(jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView) {
                @jobs_strongify(self)
-               tableView.dataLink(self);
-               tableView.backgroundColor = JobsClearColor;
-               tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-               tableView.separatorColor = HEXCOLOR(0xEEE2C8);
-               tableView.showsVerticalScrollIndicator = NO;
-               tableView.scrollEnabled = YES;
-               
-               tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                   /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-               });
-               tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                   /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-               });
-               tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-               tableView.registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil);
-               [tableView registerTableViewClass];
+               tableView.bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                   .bySeparatorColor(HEXCOLOR(0xEEE2C8))
+                   .byShowsVerticalScrollIndicator(NO)
+                   .registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil)
+                   .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
+                   .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                       /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                   }))
+                   .byTableFooterView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                       /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                   }))
+                   .dataLink(self)
+                   .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                       data.title = JobsInternationalization(@"NO MESSAGES FOUND");
+                       data.titleCor = JobsWhiteColor;
+                       data.titleFont = bayonRegular(JobsWidth(30));
+                       data.normalImage = JobsIMG(@"小狮子");
+                   }))
+                   .byScrollEnabled(YES)
+                   .byBgCor(JobsClearColor);
+   
                if(@available(iOS 11.0, *)) {
                    tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
                }else{
                    SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
                }
                
-               {
-                   tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
-                       @jobs_strongify(self)
-                       self.feedbackGenerator(nil);//震动反馈
-                       self->_tableView.endRefreshing(YES);
-                       return nil;
-                   }]);
-                   tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-               }
-               
-               {
-                   tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                       data.title = JobsInternationalization(@"NO MESSAGES FOUND");
-                       data.titleCor = JobsWhiteColor;
-                       data.titleFont = bayonRegular(JobsWidth(30));
-                       data.normalImage = JobsIMG(@"小狮子");
-                   });
-               }
+   //            {
+   //                tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+   //                    @jobs_strongify(self)
+   //                    self.feedbackGenerator(nil);//震动反馈
+   //                    self->_tableView.endRefreshing(YES);
+   //                    return nil;
+   //                }]);
+   //                tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+   //            }
                
    //            {/// 设置tabAnimated相关属性
    //                // 可以不进行手动初始化，将使用默认属性
@@ -8361,50 +8373,32 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    //                [tableView tab_startAnimation];   // 开启动画
    //            }
                
-               [self.view addSubview:tableView];
-               [self fullScreenConstraintTargetView:tableView topViewOffset:0];
-               
-               /// 判断是否是子类，如果是子类则不调用。
-               /// 因为这里懒加载了约束，子类调用这个属性再进行二次约束会出现一些刷新异常
-               /// 比如在子类 mas_updateConstraints和mas_remakeConstraints 刷新约束均异常
-   //            if (self.class == 本类的类名.class) {
-   //                tableView.dataLink(self);
-   ////                [self layoutIfNeeded];// 数据链接了以后有Frame直接走协议；如果先有frame再链接数据，则不走协议
-   //                [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-   //                    make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(10));
-   //                    make.left.equalTo(self.contentView).offset(JobsWidth(24));
-   //                    make.right.equalTo(self.contentView).offset(JobsWidth(-24));
-   //                    make.height.mas_equalTo(子TableViewCell的高度 * self.dataMutArr.vm1.count + JobsWidth(5));
-   //                }];
-   //            }
-               
-               [self layoutIfNeeded];
-               @jobs_weakify(self)
-               {
-                 [tableView xzm_addNormalHeaderWithTarget:self
-                                                    action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                        id _Nullable arg) {
-                     NSLog(@"SSSS加载新的数据，参数: %@", arg);
-                     @jobs_strongify(self)
-                     /// 在需要结束刷新的时候调用（只能调用一次）
-                     /// _tableView.endRefreshing();
-                     return nil;
-                 }, MethodName(self), self)];
-   
-                 [tableView xzm_addNormalFooterWithTarget:self
-                                                    action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-                                                                                        id _Nullable arg) {
-                     NSLog(@"SSSS加载新的数据，参数: %@", arg);
-                     @jobs_strongify(self)
-                     /// 在需要结束刷新的时候调用（只能调用一次）
-                     /// _tableView.endRefreshing();
-                     return nil;
-                 }, MethodName(self), self)];
-                 [tableView.xzm_header beginRefreshing];
-             }
-   
-               [tableView.xzm_header beginRefreshing];
-           });
+   //            {
+   //              [tableView xzm_addNormalHeaderWithTarget:self
+   //                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+   //                                                                                     id _Nullable arg) {
+   //                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
+   //                  @jobs_strongify(self)
+   //                  /// 在需要结束刷新的时候调用（只能调用一次）
+   //                  /// _tableView.endRefreshing();
+   //                  return nil;
+   //              }, MethodName(self), self)];
+   //
+   //              [tableView xzm_addNormalFooterWithTarget:self
+   //                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+   //                                                                                     id _Nullable arg) {
+   //                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
+   //                  @jobs_strongify(self)
+   //                  /// 在需要结束刷新的时候调用（只能调用一次）
+   //                  /// _tableView.endRefreshing();
+   //                  return nil;
+   //              }, MethodName(self), self)];
+   //              [tableView.xzm_header beginRefreshing];
+   //          }
+           })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+               @jobs_strongify(self)
+               /// TODO
+           }).on();
        }return _tableView;
    }
    ```
@@ -8680,21 +8674,21 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
            model.borderWidth = 1;
           model.layerBorderCor = JobsGrayColor;
       })];
-  }
-  #pragma mark —— UIScrollViewDelegate
-  - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-      /// 关闭悬停效果
-      CGFloat sectionHeaderHeight = JobsWidth(36); /// header的高度
-      if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
-          scrollView.resetContentInsetTop(-scrollView.contentOffset.y);
-      } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
-          scrollView.resetContentInsetTop(-sectionHeaderHeight);
-      }
-      scrollView.resetContentInsetOffsetBottom(200);/// 额外增加的可滑动区域距离
-  }
-  ```
-  
-  </details>
+   }
+   #pragma mark —— UIScrollViewDelegate
+   - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+       /// 关闭悬停效果
+       CGFloat sectionHeaderHeight = JobsWidth(36); /// header的高度
+       if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
+           scrollView.resetContentInsetTop(-scrollView.contentOffset.y);
+       } else if (scrollView.contentOffset.y >= sectionHeaderHeight) {
+           scrollView.resetContentInsetTop(-sectionHeaderHeight);
+       }
+       scrollView.resetContentInsetOffsetBottom(200);/// 额外增加的可滑动区域距离
+   }
+   ```
+   
+   </details>
 #### 30.2、关于<font id=UITableViewHeaderFooterView color=red>**`UITableViewHeaderFooterView`**</font>（**`viewForHeaderInSection`**）
 
 * **`UICollectionView`**没有类型相关的东西，有如下替代方案

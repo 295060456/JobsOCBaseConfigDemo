@@ -47,6 +47,7 @@ Prop_assign()ScrollDirection direction;
 -(JobsReturnScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy;
 -(JobsReturnScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy;
 -(JobsReturnScrollViewBySizeBlock _Nonnull)byContentSize;
+-(JobsReturnScrollViewByBOOLBlock _Nonnull)byScrollEnabled;
 #pragma mark —— AnimationKit
 -(void)moveAnimWithSortingType:(SortingType)sortingType
                 animationBlock:(jobsByVoidBlock _Nullable)animationBlock
@@ -98,6 +99,7 @@ Prop_strong()__kindof UIView *emptyDataView;
 -(JobsReturnViewByViewBlock _Nonnull)showEmptyViewBy;
 -(JobsReturnViewByButtonModelBlock _Nonnull)showEmptyButtonBy;
 -(JobsReturnViewByTextModelBlock _Nonnull)showEmptyLabelBy;
+-(JobsReturnScrollViewByButtonModelBlock _Nonnull)emptyDataByButtonModel;
 
 @end
 
