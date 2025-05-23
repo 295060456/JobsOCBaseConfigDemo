@@ -25,7 +25,7 @@
             }
             if([self isKindOfClass:UIView.class]){
                 UIView *view = (UIView *)self;
-                viewController = (UIViewController *)self.getViewControllerByView(view);
+                viewController = self.getViewControllerByView(view) ? : self.getCurrentViewController;
             }
             if(viewController){
                 [viewController hx_presentSelectPhotoControllerWithManager:self.photoManager

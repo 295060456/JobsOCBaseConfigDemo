@@ -82,9 +82,11 @@
     return ^__kindof UIViewController <BaseViewControllerProtocol>*_Nullable(__kindof WKWebView *_Nonnull webView){
         @jobs_strongify(self)
         UIViewController <BaseViewControllerProtocol>*vc = (UIViewController *)self.class.new;
+        @jobs_weakify(vc)
         vc.webView = webView;
         vc.view.addSubview(webView)
             .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                @jobs_strongify(vc)
                 make.edges.equalTo(vc.view);
         }).on();
         webView.loadRequest(webView.url.URLRequest);/// 创建即加载

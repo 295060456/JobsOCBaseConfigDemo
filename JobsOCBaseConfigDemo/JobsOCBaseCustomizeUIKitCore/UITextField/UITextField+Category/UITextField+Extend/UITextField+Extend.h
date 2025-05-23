@@ -57,6 +57,7 @@ NS_ASSUME_NONNULL_END
 /**
  -(UITextField *)idTypeTextField{
      if(!_idTypeTextField){
+         @jobs_weakify(self)
          _idTypeTextField = self.addSubview(jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
              textField.byDelegate(self)
                  .bySecureTextEntry(NO)
@@ -74,6 +75,7 @@ NS_ASSUME_NONNULL_END
              data.jobsWidth = 1;
              data.cornerRadiusValue = JobsWidth(32 / 2);
          })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+             @jobs_strongify(self)
              make.top.equalTo(self.idTypeTitleLab.mas_bottom).offset(JobsWidth(8));
              make.left.equalTo(self.section_1_titleLab);
              make.width.mas_equalTo(JobsWidth(345));

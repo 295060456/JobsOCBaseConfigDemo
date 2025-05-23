@@ -83,6 +83,7 @@ Prop_strong()UILabel *titleLab;
                 .byFont(self.viewModel.textModel.font)
                 .byTextAlignment(NSTextAlignmentCenter);
         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+            @jobs_strongify(self)
             make.edges.equalTo(self.contentView);
         }).on();
     }return _titleLab;

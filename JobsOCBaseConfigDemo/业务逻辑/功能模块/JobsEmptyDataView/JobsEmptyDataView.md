@@ -55,6 +55,7 @@
                   });
               }
           })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+              @jobs_strongify(self)
               make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
           }).on();
       }return _tableView;
@@ -90,15 +91,9 @@
                   });
               }
           })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+              @jobs_strongify(self)
               make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
           }).on();
       }return _tableView;
   }
   ```
-  
-  
-  
-  
-
-
-

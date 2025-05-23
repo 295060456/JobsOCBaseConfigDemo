@@ -76,11 +76,13 @@ Prop_strong()UILabel *timeLab;
 @synthesize label = _label;
 -(__kindof UILabel *)label{
     if(!_label){
+        @jobs_weakify(self)
         _label = self.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             label.byText(JobsInternationalization(@"UNDER MAINTENANCE"))
                 .byTextCor(JobsCor(@"#8A93A1"))
                 .byFont(pingFangHKSemibold(JobsWidth(20)));
         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+            @jobs_strongify(self)
             make.top.equalTo(self.imageView.mas_bottom).offset(JobsWidth(0));
             make.left.equalTo(self);
             make.size.mas_equalTo(CGSizeMake(JobsWidth(270), JobsWidth(28)));
@@ -90,6 +92,7 @@ Prop_strong()UILabel *timeLab;
 @synthesize subLabel = _subLabel;
 -(__kindof UILabel *)subLabel{
     if(!_subLabel){
+        @jobs_weakify(self)
         _subLabel = self.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             label.byText(JobsInternationalization(@"Dear Valued Customers:")
                          .add(JobsNewline)
@@ -97,6 +100,7 @@ Prop_strong()UILabel *timeLab;
                 .byTextCor(JobsCor(@"#8A93A1"))
                 .byFont(pingFangHKSemibold(JobsWidth(11)));
         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+            @jobs_strongify(self)
             make.top.equalTo(self.label.mas_bottom).offset(JobsWidth(5));
             make.left.equalTo(self);
             make.width.mas_equalTo(JobsWidth(270));
@@ -107,6 +111,7 @@ Prop_strong()UILabel *timeLab;
 
 -(UILabel *)timeLab{
     if(!_timeLab){
+        @jobs_weakify(self)
         _timeLab = self.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             label.byText(JobsInternationalization(@"Maintenance Time:")
                          .add(JobsNewline)
@@ -118,6 +123,7 @@ Prop_strong()UILabel *timeLab;
                 .byTextCor(JobsCor(@"#8A93A1"))
                 .byFont(pingFangHKSemibold(JobsWidth(11)));
         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+            @jobs_strongify(self)
             make.top.equalTo(self.subLabel.mas_bottom).offset(JobsWidth(5));
             make.left.equalTo(self);
             make.width.mas_equalTo(JobsWidth(270));

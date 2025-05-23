@@ -62,12 +62,11 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
     [super layoutSubviews];
 }
 #pragma mark —— 一些公有方法
-+(__kindof JobsUserHeaderDataView *)makeImageByBlock:(jobsByIDBlock _Nullable)block
+-(__kindof JobsUserHeaderDataView *)makeImageByBlock:(jobsByIDBlock _Nullable)block
                                          finishBlock:(jobsByVoidBlock)finishBlock{
     @jobs_weakify(self)
     self.popupParameter = nil;
-    JobsUserHeaderDataView *view = JobsUserHeaderDataView
-        .BySize(JobsUserHeaderDataView.viewSizeByModel(nil))
+    self.bySize(JobsUserHeaderDataView.viewSizeByModel(nil))
         .JobsRichViewByModel2(nil)
         .JobsBlock1(^(JobsUserHeaderDataViewTBVCell *cell) {
             @jobs_strongify(self)
@@ -91,7 +90,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
             }else{}
             if(finishBlock) finishBlock();
         });
-    return view;
+    return self;
 }
 #pragma mark —— 一些私有方法
 +(NSMutableArray<UIViewModel *> *)createDataMutArr{

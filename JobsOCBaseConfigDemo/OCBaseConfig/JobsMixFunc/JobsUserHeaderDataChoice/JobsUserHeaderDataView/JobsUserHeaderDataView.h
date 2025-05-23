@@ -20,7 +20,7 @@ BaseViewProtocol
 ,UITableViewDataSource
 >
 
-+(__kindof JobsUserHeaderDataView *)makeImageByBlock:(jobsByIDBlock _Nullable)block
+-(__kindof JobsUserHeaderDataView *)makeImageByBlock:(jobsByIDBlock _Nullable)block
                                          finishBlock:(jobsByVoidBlock)finishBlock;
 
 @end

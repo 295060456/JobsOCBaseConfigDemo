@@ -10882,8 +10882,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   
   </details>
 
-
-
 ### 40、自动布局 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * **SDAutoLayout** 和 **Masonry** 一起使用时可能会导致冲突
@@ -10957,7 +10955,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   #endif
   ```
 
-### 41、颜色透明度
+### 41、颜色透明度 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 * 手动提取颜色的 RGB 分量并创建一个新的颜色对象，这样可以更加灵活地控制颜色的生成过程
 
@@ -11024,7 +11022,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 }
 ```
 
-### 43、控制器自定义转场动画
+### 43、控制器自定义转场动画 <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
 
 ```objective-c
 /// 设置控制器的转场方向（及对应手势）
@@ -11042,6 +11040,93 @@ FMHomeMenuVC *vc = [self viewController:FMHomeMenuVC.new transitionDirection:Job
     [JobsNavigationTransitionMgr attachToViewController:viewController animationDirection:transitionDirection];
     return viewController;
 }
+```
+
+### 44、Layer <a href="#前言" style="font-size:17px; color:green;"><b>回到顶部</b></a>
+
+* `-(JobsReturnViewByCorBlock _Nonnull)layerByBorderCor;`
+* `-(JobsReturnViewByFloatBlock _Nonnull)layerByBorderWidth;`
+* `-(JobsReturnViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius;`
+
+```objective-c
+-(FMAnnouncementView *)announcementView{
+    if(!_announcementView){
+        @jobs_weakify(self)
+        _announcementView = self.addSubview(FMAnnouncementView
+                                            .JobsRichViewByModel(nil)
+                                            .JobsBlock1(^(id _Nullable data) {
+                                           
+                                       })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                                           @jobs_strongify(self)
+                                           make.size.mas_equalTo(CGSizeMake(JobsWidth(345), JobsWidth(28)));
+                                           make.centerX.equalTo(self);
+                                           make.top.equalTo(self).offset(JobsWidth(8));
+                                       }).on()
+            .layerByBorderCor(JobsCor(@"#FFD8D8"))
+            .layerByBorderWidth(1)
+            .cornerCutToCircleWithCornerRadius(JobsWidth(8));
+    }return _announcementView;
+}
+```
+
+* `-(JobsReturnViewByLocationModelBlock _Nonnull)setLayerBy;`
+
+```objective-c
+@synthesize jobsTextField = _jobsTextField;
+-(JobsTextField *)jobsTextField{
+    if(!_jobsTextField){
+        @jobs_weakify(self)
+        _jobsTextField = self.addSubview(makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
+            @jobs_strongify(self)
+            data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
+            data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
+            data.realTextField.byReturnKeyType(UIReturnKeyDefault)
+                .byKeyboardAppearance(UIKeyboardAppearanceDefault)
+                .byKeyboardType(UIKeyboardTypePhonePad)
+                .byLeftViewMode(UITextFieldViewModeNever)
+                .byRightViewMode(UITextFieldViewModeNever)
+                .byPlaceholder(JobsInternationalization(@""))
+                .byPlaceholderColor(JobsCor(@"#BBBBBB"))
+                .byPlaceholderFont(pingFangTCRegular(15))
+                .byAttributedPlaceholder(nil)
+                .byTextCor(JobsCor(@"#788190"))
+                .bySecureTextEntry(NO);
+            data.byLeftViewByOutLineOffset(JobsWidth(4))
+                .byLeftViewByTextFieldOffset(JobsWidth(10))
+                .byRightViewByTextFieldOffset(JobsWidth(4))
+                .byRightViewByOutLineOffset(JobsWidth(14))
+                .byLeftView(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+                    imageView.image = JobsIMG(@"🔍");
+                    imageView.sizer = CGSizeMake(JobsWidth(15), JobsWidth(15));
+                }))
+                .byBgCor(JobsCor(@"#f7f7f7"))
+                .JobsRichViewByModel2(nil)
+                // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
+                .JobsBlock1(^(id _Nullable data) {
+                    JobsLog(@"ddf = %@",data);
+                });
+        })).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+            data.layerCor = JobsCor(@"#BBBBBB");
+            data.jobsWidth = 1;
+            data.cornerRadiusValue = JobsWidth(8);
+        })).setMasonryBy(^(MASConstraintMaker *make){
+            @jobs_strongify(self)
+            make.left.right.equalTo(self.announcementView);
+            make.top.equalTo(self.announcementView.mas_bottom).offset(JobsWidth(5));
+            make.height.mas_equalTo(JobsWidth(22));
+        }).on();
+    }return _jobsTextField;
+}
+```
+
+* `-(JobsReturnViewByLocationModelBlock _Nonnull)layerBy;`
+
+```objective-c
+cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+  model.layerCor = JobsClearColor;
+  model.jobsWidth = JobsWidth(0.5f);
+  model.masksToBounds = YES;
+}));
 ```
 
 ### Test  

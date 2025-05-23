@@ -36,11 +36,9 @@ Prop_strong(nonnull) UITextField *realTextField;
 /// 这个值需要在rightView之前设置才有效
 -(JobsReturnJobsTextFieldByCGFloatBlock _Nonnull)byRightViewByOutLineOffset;
 -(JobsReturnJobsTextFieldByCGFloatBlock _Nonnull)byRightViewByTextFieldOffset;
--(JobsReturnJobsTextFieldByCorBlock _Nonnull)byRealTextFieldBgCor;
+
 -(JobsReturnJobsTextFieldByViewBlock _Nonnull)byLeftView;
 -(JobsReturnJobsTextFieldByViewBlock _Nonnull)byRightView;
--(JobsReturnJobsTextFieldByCorBlock _Nonnull)byTitleCor;
--(JobsReturnJobsTextFieldByBOOLBlock _Nonnull)byTextFieldSecureTextEntry;
 
 @end
 
@@ -98,14 +96,13 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
                  .byPlaceholder(JobsInternationalization(@"Pick a Date"))
                  .byPlaceholderColor(JobsCor(@"#BBBBBB"))
                  .byPlaceholderFont(pingFangTCRegular(15))
-                 .byAttributedPlaceholder(nil);
+                 .byAttributedPlaceholder(nil)
+                 .byTextCor(JobsCor(@"#788190"))
+                 .bySecureTextEntry(NO);
              data.byLeftViewByOutLineOffset(JobsWidth(4))
                  .byLeftViewByTextFieldOffset(JobsWidth(4))
                  .byRightViewByTextFieldOffset(JobsWidth(4))
                  .byRightViewByOutLineOffset(JobsWidth(14))
-                 .byRealTextFieldBgCor(JobsCor(@"F5F5F5"))
-                 .byTitleCor(JobsCor(@"#788190"))
-                 .byTextFieldSecureTextEntry(YES)
                  .byLeftView(BaseButton.jobsInit()
                              .jobsResetBtnBgImage(JobsIMG(@"📅"))
                              .onClickBy(^(UIButton *x){
@@ -133,6 +130,7 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
              data.jobsWidth = 1;
              data.cornerRadiusValue = JobsWidth(8);
          })).setMasonryBy(^(MASConstraintMaker *make){
+             @jobs_strongify(self)
              make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(40)));
              make.top.equalTo(self.birthDayTitleLab.mas_bottom).offset(JobsWidth(10));
              make.left.equalTo(self.scrollView).offset(JobsWidth(19));

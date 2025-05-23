@@ -11,6 +11,7 @@
 #import "MacroDef_Strong@Weak.h"
 #import "NSObject+WHToast.h"
 #import "NSObject+CurrentDevice.h"
+#import "NSObject+Extras.h"
 #import "HXPhotoPickerModel.h"
 //#import "UIViewController+HXExtension.h"
 

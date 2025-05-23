@@ -80,6 +80,7 @@ NS_ASSUME_NONNULL_END
                                                }).onLongPressGestureBy(^(id data){
                                                    JobsLog(@"");
                                                })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                                                   @jobs_strongify(self)
                                                    make.top.equalTo(self.textField_code.mas_bottom).offset(JobsWidth(5));
                                                    make.right.equalTo(self.textField_code);
                                                    make.size.mas_equalTo(CGSizeMake(JobsWidth(130), JobsWidth(15)));

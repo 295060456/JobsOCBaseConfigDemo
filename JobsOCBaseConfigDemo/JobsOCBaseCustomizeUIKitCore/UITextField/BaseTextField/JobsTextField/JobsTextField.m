@@ -13,7 +13,7 @@ Prop_assign()CGFloat leftViewByOutLineOffset; /// 这个值需要在leftView之�
 Prop_assign()CGFloat leftViewByTextFieldOffset;
 Prop_assign()CGFloat rightViewByOutLineOffset; /// 这个值需要在rightView之前设置才有效
 Prop_assign()CGFloat rightViewByTextFieldOffset;
-Prop_strong(null_resettable)UIColor *realTextFieldBgCor;
+
 Prop_copy(nullable)JobsReturnIDByIDBlock otherActionBlock;
 
 @end
@@ -91,15 +91,6 @@ RACProtocol_synthesize
     };
 }
 
--(JobsReturnJobsTextFieldByCorBlock _Nonnull)byRealTextFieldBgCor{
-    @jobs_weakify(self)
-    return ^__kindof JobsTextField *_Nonnull(UIColor *_Nullable cor){
-        @jobs_strongify(self)
-        self.realTextFieldBgCor = cor;
-        return self;
-    };
-}
-
 -(JobsReturnJobsTextFieldByViewBlock _Nonnull)byLeftView{
     @jobs_weakify(self)
     return ^__kindof JobsTextField *_Nonnull(__kindof UIView *_Nullable view){
@@ -117,24 +108,6 @@ RACProtocol_synthesize
         return self;
     };
 }
-
--(JobsReturnJobsTextFieldByCorBlock _Nonnull)byTitleCor{
-    @jobs_weakify(self)
-    return ^__kindof JobsTextField *_Nonnull(UIColor *_Nullable cor){
-        @jobs_strongify(self)
-        self.titleCor = cor;
-        return self;
-    };
-}
-
--(JobsReturnJobsTextFieldByBOOLBlock _Nonnull)byTextFieldSecureTextEntry{
-    @jobs_weakify(self)
-    return ^__kindof JobsTextField *_Nonnull(BOOL data){
-        @jobs_strongify(self)
-        self.textFieldSecureTextEntry = data;
-        return self;
-    };
-}
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
@@ -147,7 +120,15 @@ RACProtocol_synthesize
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.leftView.alpha = 1;
-        self.realTextField.alpha = 1;
+        [self.realTextField jobsTextFieldEventFilterBlock:^BOOL(id data) {
+//            @jobs_strongify(self)
+            JobsLog(@"");
+            return YES;
+        } subscribeNextBlock:^(NSString * _Nullable x) {
+            @jobs_strongify(self)
+            self.realTextField.text = x;
+            if (self.objBlock) self.objBlock(x);
+        }];
         self.rightView.alpha = 1;
     };
 }
@@ -227,45 +208,6 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
     
 }
 #pragma mark —— UITextFieldProtocol
--(void)setTextFieldPlaceholder:(NSString *)textFieldPlaceholder{
-    _textFieldPlaceholder = textFieldPlaceholder;
-    _realTextField.placeholder = _textFieldPlaceholder;
-}
-
--(void)setPlaceholderColor:(UIColor *)placeholderColor{
-    _placeholderColor = placeholderColor;
-    _realTextField.placeholderColor = _placeholderColor;
-}
-
--(void)setPlaceholderFont:(UIFont *)placeholderFont{
-    _placeholderFont = placeholderFont;
-    _realTextField.placeholderFont = _placeholderFont;
-}
-
--(void)setTitleFont:(UIFont *)titleFont{
-    _titleFont = titleFont;
-    _realTextField.font = titleFont;
-}
-
--(void)setTextFieldSecureTextEntry:(BOOL)textFieldSecureTextEntry{
-    _textFieldSecureTextEntry = textFieldSecureTextEntry;
-    self.realTextField.secureTextEntry = textFieldSecureTextEntry;
-}
-
--(void)setTitleCor:(UIColor *)titleCor{
-    _titleCor = titleCor;
-    _realTextField.textColor = titleCor;
-}
-
--(void)setTitle:(NSString *)title{
-    _title = title;
-    self.realTextField.text = title;
-}
-
--(NSString *)title{
-    return _realTextField.text;
-}
-
 -(void)setLeftView:(UIView *)leftView{
     _leftView = leftView;
     [self.addSubview(_leftView) mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -293,60 +235,14 @@ willDismissEditMenuWithAnimator:(id<UIEditMenuInteractionAnimating>)animator{
         @jobs_weakify(self)
         _realTextField = self.addSubview(jobsMakeTextField(^(__kindof UITextField * _Nullable textField) {
             @jobs_strongify(self)
-            textField.byDelegate(self)
-                .bySecureTextEntry(self.textFieldSecureTextEntry)/// secureTextEntry 必须先于 text 设置，否则可能会触发系统Bug：导致无法输入的情况
-                .byText(self.title)
-                .byFont(self.titleFont)
-                .byTextCor(self.titleCor)
-                .byLeftViewMode(self.leftViewMode)
-                .byRightViewMode(self.rightViewMode)
-                .byAttributedPlaceholder(self.attributedPlaceholder)
-                .byPlaceholder(self.textFieldPlaceholder)
-                .byReturnKeyType(self.returnKeyType_)
-                .byKeyboardAppearance(self.keyboardAppearance_)
-                .byKeyboardType(self.keyboardType_)
-                .byPlaceholderColor(self.placeholderColor)
-                .byPlaceholderFont(self.placeholderFont)
-                .byBgCor(self.realTextFieldBgCor);
+            textField.byDelegate(self);
         })).setMasonryBy(^(MASConstraintMaker *make){
+            @jobs_strongify(self)
             make.top.bottom.equalTo(self);
             make.left.equalTo(self.leftView ? self.leftView.mas_right : self).offset(self.leftViewByTextFieldOffset);
             make.right.equalTo(self.rightView ? self.rightView.mas_left : self).offset(-self.rightViewByTextFieldOffset);
-        });
-        [_realTextField jobsTextFieldEventFilterBlock:^BOOL(id data) {
-//            @jobs_strongify(self)
-            JobsLog(@"");
-            return YES;
-        } subscribeNextBlock:^(NSString * _Nullable x) {
-            @jobs_strongify(self)
-            self.realTextField.text = x;
-            if (self.objBlock) self.objBlock(x);
-        }];
+        }).on();
     }return _realTextField;
-}
-
--(UIColor *)titleCor{
-    if(!_titleCor){
-        _titleCor = JobsBlackColor;
-    }return _titleCor;
-}
-
--(UIColor *)realTextFieldBgCor{
-    if(!_realTextFieldBgCor){
-        _realTextFieldBgCor = JobsWhiteColor;
-    }return _realTextFieldBgCor;
-}
-
--(UIColor *)placeholderColor{
-    if(!_placeholderColor){
-        _placeholderColor = JobsBlackColor;
-    }return _placeholderColor;
-}
-
--(UIFont *)placeholderFont{
-    if(!_placeholderFont){
-        _placeholderFont = JobsFontRegular(JobsWidth(14));
-    }return _placeholderFont;
 }
 
 @end
