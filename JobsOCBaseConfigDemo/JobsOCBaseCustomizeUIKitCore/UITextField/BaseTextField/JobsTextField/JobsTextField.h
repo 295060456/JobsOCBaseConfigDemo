@@ -88,17 +88,6 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
              @jobs_strongify(self)
              data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
              data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
-             data.realTextField.byReturnKeyType(UIReturnKeyDefault)
-                 .byKeyboardAppearance(UIKeyboardAppearanceDefault)
-                 .byKeyboardType(UIKeyboardTypePhonePad)
-                 .byLeftViewMode(UITextFieldViewModeNever)
-                 .byRightViewMode(UITextFieldViewModeNever)
-                 .byPlaceholder(JobsInternationalization(@"Pick a Date"))
-                 .byPlaceholderColor(JobsCor(@"#BBBBBB"))
-                 .byPlaceholderFont(pingFangTCRegular(15))
-                 .byAttributedPlaceholder(nil)
-                 .byTextCor(JobsCor(@"#788190"))
-                 .bySecureTextEntry(NO);
              data.byLeftViewByOutLineOffset(JobsWidth(4))
                  .byLeftViewByTextFieldOffset(JobsWidth(4))
                  .byRightViewByTextFieldOffset(JobsWidth(4))
@@ -125,6 +114,18 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
                  .JobsBlock1(^(id _Nullable data) {
                      JobsLog(@"ddf = %@",data);
                  });
+             data.realTextField
+                 .byReturnKeyType(UIReturnKeyDefault)
+                 .byKeyboardAppearance(UIKeyboardAppearanceDefault)
+                 .byKeyboardType(UIKeyboardTypePhonePad)
+                 .byLeftViewMode(UITextFieldViewModeNever)
+                 .byRightViewMode(UITextFieldViewModeNever)
+                 .byPlaceholder(JobsInternationalization(@"Pick a Date"))
+                 .byPlaceholderColor(JobsCor(@"#BBBBBB"))
+                 .byPlaceholderFont(pingFangTCRegular(15))
+                 .byAttributedPlaceholder(nil)
+                 .byTextCor(JobsCor(@"#788190"))
+                 .bySecureTextEntry(NO);
          })).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
              data.layerCor = JobsCor(@"#BBBBBB");
              data.jobsWidth = 1;

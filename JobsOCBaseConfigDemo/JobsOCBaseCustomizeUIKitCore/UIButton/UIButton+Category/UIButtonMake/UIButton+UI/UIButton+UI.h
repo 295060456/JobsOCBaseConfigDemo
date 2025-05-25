@@ -242,7 +242,7 @@ NS_ASSUME_NONNULL_END
  
  _headBtn = BaseButton.jobsInit()
     .imageURL(@"".jobsUrl)
-    .placeholderImage(JobsIMG(@"小狮子"))
+    .placeholderImage(JobsIMG(@"用户默认头像"))
     .options(SDWebImageRefreshCached)/// 强制刷新缓存
     .completed(^(UIImage * _Nullable image,
                  NSError * _Nullable error,

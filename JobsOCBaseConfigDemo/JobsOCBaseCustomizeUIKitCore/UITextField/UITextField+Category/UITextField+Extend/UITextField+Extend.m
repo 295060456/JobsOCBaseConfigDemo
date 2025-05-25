@@ -152,7 +152,8 @@
     @jobs_weakify(self)
     return ^__kindof UITextField *_Nullable(__kindof NSAttributedString *_Nullable str){
         @jobs_strongify(self)
-        self.attributedPlaceholder = str;
+        /// 这里如不判空，则placeholder写不进去
+        if(str) self.attributedPlaceholder = str;
         return self;
     };
 }

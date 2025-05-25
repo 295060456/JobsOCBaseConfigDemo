@@ -1259,29 +1259,17 @@ classDiagram
 * <font color=red>`JobsTextField`</font>：**`BaseView`**
 
   ```objective-c
-  -(JobsTextField *)textField_birthDay{
+   -(JobsTextField *)textField_birthDay{
        if(!_textField_birthDay){
            @jobs_weakify(self)
            _textField_birthDay = self.scrollView.addSubview(makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
                @jobs_strongify(self)
                data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
                data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
-               data.realTextField.byReturnKeyType(UIReturnKeyDefault)
-                   .byKeyboardAppearance(UIKeyboardAppearanceDefault)
-                   .byKeyboardType(UIKeyboardTypePhonePad)
-                   .byLeftViewMode(UITextFieldViewModeNever)
-                   .byRightViewMode(UITextFieldViewModeNever)
-                   .byPlaceholder(JobsInternationalization(@"Pick a Date"))
-                   .byPlaceholderColor(JobsCor(@"#BBBBBB"))
-                   .byPlaceholderFont(pingFangTCRegular(15))
-                   .byAttributedPlaceholder(nil);
                data.byLeftViewByOutLineOffset(JobsWidth(4))
                    .byLeftViewByTextFieldOffset(JobsWidth(4))
                    .byRightViewByTextFieldOffset(JobsWidth(4))
                    .byRightViewByOutLineOffset(JobsWidth(14))
-                   .byRealTextFieldBgCor(JobsCor(@"F5F5F5"))
-                   .byTitleCor(JobsCor(@"#788190"))
-                   .byTextFieldSecureTextEntry(YES)
                    .byLeftView(BaseButton.jobsInit()
                                .jobsResetBtnBgImage(JobsIMG(@"📅"))
                                .onClickBy(^(UIButton *x){
@@ -1304,11 +1292,24 @@ classDiagram
                    .JobsBlock1(^(id _Nullable data) {
                        JobsLog(@"ddf = %@",data);
                    });
+               data.realTextField
+                   .byReturnKeyType(UIReturnKeyDefault)
+                   .byKeyboardAppearance(UIKeyboardAppearanceDefault)
+                   .byKeyboardType(UIKeyboardTypePhonePad)
+                   .byLeftViewMode(UITextFieldViewModeNever)
+                   .byRightViewMode(UITextFieldViewModeNever)
+                   .byPlaceholder(JobsInternationalization(@"Pick a Date"))
+                   .byPlaceholderColor(JobsCor(@"#BBBBBB"))
+                   .byPlaceholderFont(pingFangTCRegular(15))
+                   .byAttributedPlaceholder(nil)
+                   .byTextCor(JobsCor(@"#788190"))
+                   .bySecureTextEntry(NO);
            })).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
                data.layerCor = JobsCor(@"#BBBBBB");
                data.jobsWidth = 1;
                data.cornerRadiusValue = JobsWidth(8);
            })).setMasonryBy(^(MASConstraintMaker *make){
+               @jobs_strongify(self)
                make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(40)));
                make.top.equalTo(self.birthDayTitleLab.mas_bottom).offset(JobsWidth(10));
                make.left.equalTo(self.scrollView).offset(JobsWidth(19));
@@ -11066,51 +11067,63 @@ FMHomeMenuVC *vc = [self viewController:FMHomeMenuVC.new transitionDirection:Job
 * `-(JobsReturnViewByLocationModelBlock _Nonnull)setLayerBy;`
 
 ```objective-c
-@synthesize jobsTextField = _jobsTextField;
--(JobsTextField *)jobsTextField{
-    if(!_jobsTextField){
-        @jobs_weakify(self)
-        _jobsTextField = self.addSubview(makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
-            @jobs_strongify(self)
-            data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
-            data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
-            data.realTextField.byReturnKeyType(UIReturnKeyDefault)
-                .byKeyboardAppearance(UIKeyboardAppearanceDefault)
-                .byKeyboardType(UIKeyboardTypePhonePad)
-                .byLeftViewMode(UITextFieldViewModeNever)
-                .byRightViewMode(UITextFieldViewModeNever)
-                .byPlaceholder(JobsInternationalization(@""))
-                .byPlaceholderColor(JobsCor(@"#BBBBBB"))
-                .byPlaceholderFont(pingFangTCRegular(15))
-                .byAttributedPlaceholder(nil)
-                .byTextCor(JobsCor(@"#788190"))
-                .bySecureTextEntry(NO);
-            data.byLeftViewByOutLineOffset(JobsWidth(4))
-                .byLeftViewByTextFieldOffset(JobsWidth(10))
-                .byRightViewByTextFieldOffset(JobsWidth(4))
-                .byRightViewByOutLineOffset(JobsWidth(14))
-                .byLeftView(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-                    imageView.image = JobsIMG(@"🔍");
-                    imageView.sizer = CGSizeMake(JobsWidth(15), JobsWidth(15));
-                }))
-                .byBgCor(JobsCor(@"#f7f7f7"))
-                .JobsRichViewByModel2(nil)
-                // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
-                .JobsBlock1(^(id _Nullable data) {
-                    JobsLog(@"ddf = %@",data);
-                });
-        })).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-            data.layerCor = JobsCor(@"#BBBBBB");
-            data.jobsWidth = 1;
-            data.cornerRadiusValue = JobsWidth(8);
-        })).setMasonryBy(^(MASConstraintMaker *make){
-            @jobs_strongify(self)
-            make.left.right.equalTo(self.announcementView);
-            make.top.equalTo(self.announcementView.mas_bottom).offset(JobsWidth(5));
-            make.height.mas_equalTo(JobsWidth(22));
-        }).on();
-    }return _jobsTextField;
-}
+ -(JobsTextField *)textField_birthDay{
+     if(!_textField_birthDay){
+         @jobs_weakify(self)
+         _textField_birthDay = self.scrollView.addSubview(makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
+             @jobs_strongify(self)
+             data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
+             data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
+             data.byLeftViewByOutLineOffset(JobsWidth(4))
+                 .byLeftViewByTextFieldOffset(JobsWidth(4))
+                 .byRightViewByTextFieldOffset(JobsWidth(4))
+                 .byRightViewByOutLineOffset(JobsWidth(14))
+                 .byLeftView(BaseButton.jobsInit()
+                             .jobsResetBtnBgImage(JobsIMG(@"📅"))
+                             .onClickBy(^(UIButton *x){
+                                 JobsLog(@"");
+                             }).onLongPressGestureBy(^(id data){
+                                 JobsLog(@"");
+                             }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
+                 .byRightView(BaseButton.jobsInit()
+                              .jobsResetBtnBgImage(JobsIMG(@"向下的箭头"))
+                              .onClickBy(^(UIButton *x){
+                                  @jobs_strongify(self)
+                                  self.popupParameter = nil;
+                                  ShowView(self.calenderView);
+                              }).onLongPressGestureBy(^(id data){
+                                  JobsLog(@"");
+                              }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
+                 .byBgCor(JobsCor(@"#f7f7f7"))
+                 .JobsRichViewByModel2(nil)
+                 // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
+                 .JobsBlock1(^(id _Nullable data) {
+                     JobsLog(@"ddf = %@",data);
+                 });
+             data.realTextField
+                 .byReturnKeyType(UIReturnKeyDefault)
+                 .byKeyboardAppearance(UIKeyboardAppearanceDefault)
+                 .byKeyboardType(UIKeyboardTypePhonePad)
+                 .byLeftViewMode(UITextFieldViewModeNever)
+                 .byRightViewMode(UITextFieldViewModeNever)
+                 .byPlaceholder(JobsInternationalization(@"Pick a Date"))
+                 .byPlaceholderColor(JobsCor(@"#BBBBBB"))
+                 .byPlaceholderFont(pingFangTCRegular(15))
+                 .byAttributedPlaceholder(nil)
+                 .byTextCor(JobsCor(@"#788190"))
+                 .bySecureTextEntry(NO);
+         })).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+             data.layerCor = JobsCor(@"#BBBBBB");
+             data.jobsWidth = 1;
+             data.cornerRadiusValue = JobsWidth(8);
+         })).setMasonryBy(^(MASConstraintMaker *make){
+             @jobs_strongify(self)
+             make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(40)));
+             make.top.equalTo(self.birthDayTitleLab.mas_bottom).offset(JobsWidth(10));
+             make.left.equalTo(self.scrollView).offset(JobsWidth(19));
+         }).on();
+     }return _textField_birthDay;
+ }
 ```
 
 * `-(JobsReturnViewByLocationModelBlock _Nonnull)layerBy;`
