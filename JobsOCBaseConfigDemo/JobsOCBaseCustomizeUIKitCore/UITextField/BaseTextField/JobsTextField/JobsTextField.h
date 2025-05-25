@@ -40,6 +40,8 @@ Prop_strong(nonnull) UITextField *realTextField;
 -(JobsReturnJobsTextFieldByViewBlock _Nonnull)byLeftView;
 -(JobsReturnJobsTextFieldByViewBlock _Nonnull)byRightView;
 
+-(JobsReturnJobsTextFieldByBOOLBlock _Nonnull)byNotAllowEdit;
+
 @end
 
 NS_ASSUME_NONNULL_END

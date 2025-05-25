@@ -108,6 +108,15 @@ RACProtocol_synthesize
         return self;
     };
 }
+
+-(JobsReturnJobsTextFieldByBOOLBlock _Nonnull)byNotAllowEdit{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(BOOL data){
+        @jobs_strongify(self)
+        self.notAllowEdit = data;
+        return self;
+    };
+}
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {

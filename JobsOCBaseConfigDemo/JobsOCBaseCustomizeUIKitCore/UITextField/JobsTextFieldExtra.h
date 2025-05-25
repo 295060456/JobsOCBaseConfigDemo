@@ -28,8 +28,8 @@
      return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
          @jobs_strongify(self)
          /// 获取所有需要监控的输入框
- //        data.add(textField1.rac_textSignal);
- //        data.add(textField2.rac_textSignal);
+ //        data.add(textField1.rac_textSignal)
+ //        .add(textField2.rac_textSignal);
      });
  }
  /// 如果UITextField不可用，则监控UITextField.text
@@ -38,8 +38,8 @@
      return [jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
          @jobs_strongify(self)
          /// 获取所有需要监控的输入框
- //            data.add(textField1.realTextField);
- //            data.add(textField2.realTextField);
+ //            data.add(textField1.realTextField)
+ //            .add(textField2.realTextField);
      }).rac_sequence map:^id(UITextField *textField) {
          return [RACSignal merge:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
              data.add(textField.rac_textSignal);/// 监听用户输入
@@ -63,7 +63,7 @@
      @jobs_strongify(self)
      self.submitBtn.enabled = bothHaveText.boolValue;
       if (bothHaveText.boolValue) {
-          self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT"));
+          self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT（可点击）"));
       }else{
           self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT（不可点击）"));
       }
