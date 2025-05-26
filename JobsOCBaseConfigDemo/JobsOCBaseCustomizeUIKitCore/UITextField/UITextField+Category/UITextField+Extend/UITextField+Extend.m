@@ -25,7 +25,7 @@
     return ^__kindof NSString *_Nullable(NSString *_Nullable replacementString){
         @jobs_strongify(self)
         if (self.text.length >= 1) {
-            return replacementString.isEqualToString(@"") ? self.text.substringToIndex(self.text.length - 1) : self.text.add(replacementString);
+            return replacementString.isEqualToString(JobsEmpty) ? self.text.substringToIndex(self.text.length - 1) : self.text.add(replacementString);
         }else return replacementString;
     };
 }

@@ -15,6 +15,12 @@
     };
 }
 
++(JobsReturnWindowByFrameBlock _Nonnull)initByFrame{
+    return ^__kindof UIWindow *_Nullable(CGRect frame){
+        return [UIWindow.alloc initWithFrame:UIScreen.mainScreen.bounds];
+    };
+}
+
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
           withEvent:(UIEvent *)event{
     if (self.objBlock) self.objBlock(self);

@@ -322,6 +322,24 @@ UITextFieldProtocol_dynamic
         @"WebKitLoggingEnabled".userDefaultsByBOOL(YES);
     };
 }
+/// 将 NSDate  *转换输出成人类可读的（年\月\日）时间（字符串）
+-(JobsReturnStringByDateBlock _Nonnull)toReadableDayTimeByDate{
+    return ^__kindof NSString *_Nullable(NSDate *_Nullable date){
+        return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
+            dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
+            dateFormatter.dateFormat = @"yyyy-MM-dd"; /// 格式化为日期字符串
+        }).stringByDate(date);
+    };
+}
+/// 将 NSDate  *转换输出成人类可读的（年\月\日\时\分\秒）时间（字符串）
+-(JobsReturnStringByDateBlock _Nonnull)toReadableTimeByDate{
+    return ^__kindof NSString *_Nullable(NSDate *_Nullable date){
+        return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
+            dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
+            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss"; /// 格式化为日期字符串
+        }).stringByDate(date);
+    };
+}
 /// 将 NSTimeInterval 按照 NSDateFormatter 转换输出成人类可读的时间
 -(JobsReturnStringByTimeModelBlock _Nonnull)toReadableTimeBy{
     return ^__kindof NSString *_Nullable(JobsTimeModel *_Nullable dateModel){

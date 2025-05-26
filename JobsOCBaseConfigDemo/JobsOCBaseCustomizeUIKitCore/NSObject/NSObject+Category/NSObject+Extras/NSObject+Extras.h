@@ -201,6 +201,10 @@ AppToolsProtocol
 /// UIAlertController + UIAlertAction
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
 -(JobsReturnAlertControllerByAlertModelBlock _Nonnull)makeAlertControllerByAlertModel;
+/// 将 NSDate  *转换输出成人类可读的（年\月\日）时间（字符串）
+-(JobsReturnStringByDateBlock _Nonnull)toReadableDayTimeByDate;
+/// 将 NSDate  *转换输出成人类可读的（年\月\日\时\分\秒）时间（字符串）
+-(JobsReturnStringByDateBlock _Nonnull)toReadableTimeByDate;
 /// 将 NSTimeInterval 按照 NSDateFormatter 转换输出成人类可读的时间
 -(JobsReturnStringByTimeModelBlock _Nonnull)toReadableTimeBy;
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径

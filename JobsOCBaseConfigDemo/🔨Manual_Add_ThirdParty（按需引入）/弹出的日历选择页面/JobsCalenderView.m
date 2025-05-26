@@ -177,25 +177,25 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
 -(FSCalendar *)calendar{
     if(!_calendar){
         @jobs_weakify(self)
-        _calendar = jobsMakeFSCalendar(^(__kindof FSCalendar * _Nullable calendar) {
+        _calendar = self.addSubview(jobsMakeFSCalendar(^(__kindof FSCalendar * _Nullable calendar) {
             @jobs_strongify(self)
-//            calendar.calendarHeaderView.backgroundColor = JobsRedColor;
-//            calendar.calendarWeekdayView.backgroundColor = JobsYellowColor;
             calendar.dataSource = self;
             calendar.delegate = self;
+            calendar.frame = CGRectMake(0, 0, self.width, self.height);
             calendar.calendarHeaderView.backgroundColor = JobsLightGrayColor.colorWithAlphaComponentBy(.1f);
             calendar.appearance.headerMinimumDissolvedAlpha = 1;
             calendar.appearance.headerDateFormat = @"yyyy年MM月";
             calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
-            calendar.appearance.headerTitleFont = [UIFont boldSystemFontOfSize:20];
-            calendar.appearance.headerTitleColor = [UIColor blackColor];
+            calendar.appearance.headerTitleFont = pingFangHKBold(JobsWidth(20));
+            calendar.appearance.headerTitleColor = JobsBlackColor;
             calendar.swipeToChooseGesture.enabled = YES;
             calendar.allowsMultipleSelection = YES;
-            [self addSubview:calendar];
-            [calendar mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
-            }];calendar.refresh();
-        });
+//            calendar.calendarHeaderView.backgroundColor = JobsRedColor;
+//            calendar.calendarWeekdayView.backgroundColor = JobsYellowColor;
+        })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+            @jobs_strongify(self)
+            make.edges.equalTo(self);
+        }).on();
     }return _calendar;
 }
 

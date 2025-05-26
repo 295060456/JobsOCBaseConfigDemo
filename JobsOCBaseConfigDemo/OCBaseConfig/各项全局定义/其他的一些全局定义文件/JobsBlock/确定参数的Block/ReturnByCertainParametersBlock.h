@@ -172,6 +172,7 @@ typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByImageBlock)(UIImage
 typedef __kindof UIImageView *_Nonnull(^JobsReturnImageViewByURLBlock)(NSURL *_Nullable data);
 /// UIWindow
 typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByVoidBlock)(void);
+typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByFrameBlock)(CGRect frame);
 typedef __kindof UIWindow *_Nullable(^JobsReturnWindowByWindowSceneBlock)(UIWindowScene *_Nullable data);
 /// UIMenuItem
 typedef __kindof UIMenuItem *_Nullable(^JobsReturnMenuItemByIDBlock)(id _Nullable data);
