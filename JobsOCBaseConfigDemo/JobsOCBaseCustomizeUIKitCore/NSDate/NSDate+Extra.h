@@ -27,10 +27,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// 对系统方法 timeIntervalSinceDate 的二次封装
 -(JobsReturnTimeIntervalByDateBlock _Nonnull)timeIntervalSinceDate;
 #pragma mark —— Date 对象的转化
-/// 将NSDate（通过NSDateFormatter）转化为可视化的时间字符串（年/月/日）
+/// 将NSDate *转化为可视化的时间字符串
+/// 入参：日期格式化标准（NSDateFormatter *）缺省标准：年/月/日
 -(JobsReturnStringByDateFormatterBlock _Nonnull)toReadableTime;
-/// 将NSDate（通过NSString）转化为可视化的时间字符串（年/月/日）
+/// 将NSDate *转化为可视化的时间字符串
+/// 入参：日期格式化标准（NSString *）缺省标准：年/月/日
 -(JobsReturnStringByStringBlock _Nonnull)toReadableTimeBy;
+/// 将 NSDate  *转换输出成人类可读的（年\月\日）时间（字符串）
+-(NSString *_Nullable)readableDayTime;
+/// 将 NSDate  *转换输出成人类可读的（年\月\日\时\分\秒）时间（字符串）
+-(NSString *_Nullable)readableTime;
 
 @end
 

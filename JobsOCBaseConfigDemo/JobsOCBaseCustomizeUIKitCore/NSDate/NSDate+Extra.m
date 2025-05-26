@@ -43,36 +43,44 @@
     };
 }
 #pragma mark —— Date 对象的转化
-/// 将NSDate（通过NSDateFormatter）转化为可视化的时间字符串（年/月/日）
+/// 将NSDate *转化为可视化的时间字符串
+/// 入参：日期格式化标准（NSDateFormatter *）缺省标准：年/月/日
 -(JobsReturnStringByDateFormatterBlock _Nonnull)toReadableTime{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSDateFormatter *_Nullable data){
         @jobs_strongify(self)
         if(!data){
             data = jobsMakeDateFormatter(^(__kindof NSDateFormatter *_Nullable data) {
-                data.dateFormat = @"yyyy"
-                    .add(@"-")
-                    .add(@"MM")
-                    .add(@"-")
-                    .add(@"dd");
+                data.dateFormat = @"yyyy-MM-dd";
             });
         }return data.stringByDate(self);
     };
 }
-/// 将NSDate（通过NSString）转化为可视化的时间字符串（年/月/日）
+/// 将NSDate *转化为可视化的时间字符串
+/// 入参：日期格式化标准（NSString *）缺省标准：年/月/日
 -(JobsReturnStringByStringBlock _Nonnull)toReadableTimeBy{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
-        if(isNull(data)) data = @"yyyy"
-            .add(@"-")
-            .add(@"MM")
-            .add(@"-")
-            .add(@"dd");
+        if(isNull(data)) data = @"yyyy-MM-dd";
         return jobsMakeDateFormatter(^(__kindof NSDateFormatter *_Nullable dateFormatter) {
             dateFormatter.dateFormat = data;
         }).stringByDate(self);
     };
+}
+/// 将 NSDate  *转换输出成人类可读的（年\月\日）时间（字符串）
+-(NSString *_Nullable)readableDayTime{
+    return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
+        dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
+        dateFormatter.dateFormat = @"yyyy-MM-dd"; /// 格式化为日期字符串
+    }).stringByDate(self);
+}
+/// 将 NSDate  *转换输出成人类可读的（年\月\日\时\分\秒）时间（字符串）
+-(NSString *_Nullable)readableTime{
+    return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
+        dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
+        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss"; /// 格式化为日期字符串
+    }).stringByDate(self);
 }
 
 @end

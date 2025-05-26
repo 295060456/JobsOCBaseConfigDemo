@@ -351,14 +351,14 @@ typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByNSUIntegerBlock)(NSUInte
 typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByCGFloatBlock)(CGFloat data);
 #pragma mark —— 关于字符串
 typedef __kindof NSString *_Nullable(^JobsReturnStringByVoidBlock)(void);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByCharBlock)(char *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByCharacterSetBlock)(NSCharacterSet *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByBOOLBlock)(BOOL data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCGFloatBlock)(CGFloat data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIntegerBlock)(NSInteger data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByUIntegerBlock)(NSUInteger data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByRangeBlock)(NSRange data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByTimeIntervalBlock)(NSTimeInterval data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByBOOLBlock)(BOOL data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByCGPointBlock)(CGPoint data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByCharBlock)(char *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByIDBlock)(id _Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByURLBlock)(NSURL *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDateBlock)(NSDate *_Nullable date);
@@ -369,7 +369,7 @@ typedef __kindof NSString *_Nullable(^JobsReturnStringByStringBlock)(__kindof NS
 typedef __kindof NSString *_Nullable(^JobsReturnStringByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByCorBlock)(UIColor *_Nullable data);
 typedef __kindof NSString *_Nullable(^JobsReturnStringByArrBlock)(__kindof NSArray *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsReturnStringByCGPointBlock)(CGPoint data);
+typedef __kindof NSString *_Nullable(^JobsReturnStringByCharacterSetBlock)(NSCharacterSet *_Nullable data);
 #pragma mark —— 关于 NSRegularExpression
 typedef __kindof NSRegularExpression *_Nullable(^JobsReturnRegularExpressionByStringBlock)(NSString *_Nullable data);
 #pragma mark —— 关于时间（格式）/日历/计时器/间隔时间
