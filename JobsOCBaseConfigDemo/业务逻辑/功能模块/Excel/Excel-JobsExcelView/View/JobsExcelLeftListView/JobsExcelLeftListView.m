@@ -86,23 +86,81 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
 @synthesize tableView = _tableView;
-- (UITableView *)tableView {
+-(UITableView *)tableView{
     if (!_tableView) {
+        /// 一般用 initWithStylePlain。initWithStyleGrouped会自己预留一块空间
         @jobs_weakify(self)
-        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+        _tableView = self.addSubview(jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.showsHorizontalScrollIndicator = NO;
-            tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                /// 这里不显示，传没有配置的UIButtonModel
-            });
-            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-            }];
-        });
+            tableView.bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                .bySeparatorColor(HEXCOLOR(0xEEE2C8))
+//                .registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil)
+                .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
+                .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                    /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                }))
+                .byTableFooterView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                    /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                }))
+                .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                    data.title = JobsInternationalization(@"NO MESSAGES FOUND");
+                    data.titleCor = JobsWhiteColor;
+                    data.titleFont = bayonRegular(JobsWidth(30));
+                    data.normalImage = JobsIMG(@"小狮子");
+                }))
+                .showsVerticalScrollIndicatorBy(NO)
+                .showsHorizontalScrollIndicatorBy(NO)
+                .byScrollEnabled(YES)
+                .byBgCor(JobsClearColor);
+
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }
+            
+//            {
+//                tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+//                    @jobs_strongify(self)
+//                    self.feedbackGenerator(nil);//震动反馈
+//                    self->_tableView.endRefreshing(YES);
+//                    return nil;
+//                }]);
+//                tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+//            }
+            
+//            {/// 设置tabAnimated相关属性
+//                // 可以不进行手动初始化，将使用默认属性
+//                tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
+//                                                                      cellHeight:[JobsBaseTableViewCell cellHeightWithModel:nil]];
+//                tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+//                [tableView tab_startAnimation];   // 开启动画
+//            }
+            
+//            {
+//              [tableView xzm_addNormalHeaderWithTarget:self
+//                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+//                                                                                     id _Nullable arg) {
+//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
+//                  @jobs_strongify(self)
+//                  /// 在需要结束刷新的时候调用（只能调用一次）
+//                  /// _tableView.endRefreshing();
+//                  return nil;
+//              }, MethodName(self), self)];
+//
+//              [tableView xzm_addNormalFooterWithTarget:self
+//                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+//                                                                                     id _Nullable arg) {
+//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
+//                  @jobs_strongify(self)
+//                  /// 在需要结束刷新的时候调用（只能调用一次）
+//                  /// _tableView.endRefreshing();
+//                  return nil;
+//              }, MethodName(self), self)];
+//              [tableView.xzm_header beginRefreshing];
+//          }
+        })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+            @jobs_strongify(self)
+            make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
     }return _tableView;
 }
 

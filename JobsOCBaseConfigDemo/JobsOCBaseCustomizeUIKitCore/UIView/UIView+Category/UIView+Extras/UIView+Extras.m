@@ -10,7 +10,7 @@
 
 @implementation UIView (Extras)
 #pragma mark —— init
-+(JobsReturnViewByRectBlock _Nonnull)initByFrame{
++(JobsReturnViewByFrameBlock _Nonnull)initByFrame{
     return ^__kindof UIView *_Nullable(CGRect data){
         return [UIView.alloc initWithFrame:data];
     };
@@ -39,6 +39,23 @@
         }else{
             self.jobsRichViewByModel(data);
         }return self;
+    };
+}
+
+-(JobsReturnScrollViewByIDBlock _Nonnull)dataLink{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *(id _Nonnull target) {
+        @jobs_strongify(self)
+        if(self.isKindOfClass(UICollectionView.class)){
+            UICollectionView *view = (UICollectionView *)self;
+            view.byDelegate(target);
+            view.byDataSource(target);
+        }
+        if(self.isKindOfClass(UITableView.class)){
+            UITableView *view = (UITableView *)self;
+            view.byDelegate(target);
+            view.byDataSource(target);
+        }return (UIScrollView *)self;
     };
 }
 
@@ -959,15 +976,23 @@ JobsKey(_cornerRadii)
         }
     }).CGPath;
 }
+
+-(jobsByCGFloatBlock _Nonnull)byVisible{
+    @jobs_weakify(self)
+    return ^(CGFloat alpha){
+        @jobs_strongify(self)
+        self.jobsVisible = alpha;
+    };
+}
 /// 设置控件是否可见，对影响可视化的hidden 和 alpha属性进行操作
 /// 需要特别注意的是：这个地方的jobsVisible不能属性化，否则在某些情况下会出现异常（只会走子类方法不会走分类方法）
 JobsKey(_jobsVisible)
--(BOOL)jobsVisible{
-    BOOL JobsVisible = [Jobs_getAssociatedObject(_jobsVisible) boolValue];
+-(CGFloat)jobsVisible{
+    BOOL JobsVisible = [Jobs_getAssociatedObject(_jobsVisible) floatValue];
     return JobsVisible;
 }
 
--(void)setJobsVisible:(BOOL)jobsVisible{
+-(void)setJobsVisible:(CGFloat)jobsVisible{
     self.hidden = !jobsVisible;
     self.alpha = jobsVisible;
     Jobs_setAssociatedRETAIN_NONATOMIC(_jobsVisible, @(jobsVisible))

@@ -17,9 +17,6 @@ UITableViewDelegate
 ,UITableViewDataSource
 >
 
-//Prop_assign()CGFloat cellHeight;
-//Prop_assign()CGFloat cellWidth;
-
 -(UITableView *)tableView;
 
 @end

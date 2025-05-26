@@ -41,8 +41,9 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 
 @interface UIView (Extras) <BaseViewProtocol,BaseCellProtocol>
 #pragma mark —— init
-+(JobsReturnViewByRectBlock _Nonnull)initByFrame;
-Prop_assign()BOOL jobsVisible;
++(JobsReturnViewByFrameBlock _Nonnull)initByFrame;
+Prop_assign()CGFloat jobsVisible;
+-(jobsByCGFloatBlock _Nonnull)byVisible;
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame;
 -(jobsByStringBlock _Nonnull)jobsLogPoint;

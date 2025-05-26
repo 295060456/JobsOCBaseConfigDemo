@@ -133,6 +133,7 @@ Prop_copy(nullable)jobsByBtnBlock closeBtnClickAction;
 -(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel2;
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel;
 -(jobsByViewModelBlock _Nonnull)jobsRichViewByViewModel;
+-(JobsReturnScrollViewByIDBlock _Nonnull)dataLink; /// 用于 UIScrollView/UITableView/UICollectionView 的数据源绑定
 -(jobsByIDBlock _Nonnull)update;
 -(JobsReturnNavBarByVoidBtnBlocks _Nullable)JobsNavBarBackBtnClickBlock; /// 返回按钮的回调
 -(JobsReturnNavBarByVoidBtnBlocks _Nullable)JobsNavBarCloseBtnClickBlock; /// 关闭按钮的回调

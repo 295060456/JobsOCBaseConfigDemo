@@ -130,7 +130,7 @@
     };
 }
 /// 设置控件的 Frame
-+(JobsReturnViewByRectBlock _Nonnull)ByFrame{
++(JobsReturnViewByFrameBlock _Nonnull)ByFrame{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGRect data){
         @jobs_strongify(self)
@@ -195,7 +195,7 @@
     };
 }
 /// 设置控件的 Frame
--(JobsReturnViewByRectBlock _Nonnull)byFrame{
+-(JobsReturnViewByFrameBlock _Nonnull)byFrame{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGRect data){
         @jobs_strongify(self)

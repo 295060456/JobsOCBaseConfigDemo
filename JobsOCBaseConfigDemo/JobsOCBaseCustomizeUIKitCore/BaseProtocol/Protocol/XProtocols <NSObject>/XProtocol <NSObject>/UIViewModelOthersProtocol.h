@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 /// 其他
 #pragma mark —— UI
-Prop_assign()CGFloat alpha;
+Prop_assign()CGFloat Alpha;
 Prop_assign()BOOL opaque;
 Prop_strong(nullable)UIColor *layerBorderCor;
 Prop_assign()CGFloat layerBorderWidth;
@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_END
 #ifndef UIViewModelOthersProtocol_synthesize
 #define UIViewModelOthersProtocol_synthesize \
 \
-@synthesize alpha = _alpha;\
+@synthesize Alpha = _Alpha;\
 @synthesize opaque = _opaque;\
 @synthesize layerBorderCor = _layerBorderCor;\
 @synthesize layerBorderWidth = _layerBorderWidth;\
@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_END
 #ifndef UIViewModelOthersProtocol_dynamic
 #define UIViewModelOthersProtocol_dynamic \
 \
-@dynamic alpha;\
+@dynamic Alpha;\
 @dynamic opaque;\
 @dynamic layerBorderCor;\
 @dynamic layerBorderWidth;\

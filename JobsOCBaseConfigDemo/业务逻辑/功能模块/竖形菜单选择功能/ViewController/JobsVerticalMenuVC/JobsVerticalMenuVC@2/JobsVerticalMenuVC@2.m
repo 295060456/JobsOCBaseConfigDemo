@@ -404,7 +404,6 @@ referenceSizeForFooterInSection:(NSInteger)section{
         @jobs_weakify(self)
         _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
             tableView.bounces = NO;
             tableView.backgroundColor = JobsClearColor;
             tableView.showsVerticalScrollIndicator = NO;
@@ -413,7 +412,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                                          JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
                                          TableViewWidth,
                                          JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
-        }));
+        })).dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
     }return _tableView;
 }
 /// BaseViewProtocol

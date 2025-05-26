@@ -69,7 +69,7 @@ Prop_assign()CGPoint Origin;
 #pragma mark ——【类方法】设置控件的约束（返回控件自己本身）
 +(JobsReturnViewBySizeBlock _Nonnull)BySize;
 /// 设置控件的 Frame
-+(JobsReturnViewByRectBlock _Nonnull)ByFrame;
++(JobsReturnViewByFrameBlock _Nonnull)ByFrame;
 /// 设置控件的 Origin
 +(JobsReturnViewByPointBlock _Nonnull)ByOrigin;
 /// 设置控件的 Width
@@ -82,7 +82,7 @@ Prop_assign()CGPoint Origin;
 /// 设置控件的 Size
 -(JobsReturnViewBySizeBlock _Nonnull)bySize;
 /// 设置控件的 Frame
--(JobsReturnViewByRectBlock _Nonnull)byFrame;
+-(JobsReturnViewByFrameBlock _Nonnull)byFrame;
 /// 设置控件的 Origin
 -(JobsReturnViewByPointBlock _Nonnull)byOrigin;
 /// 设置控件的 Width

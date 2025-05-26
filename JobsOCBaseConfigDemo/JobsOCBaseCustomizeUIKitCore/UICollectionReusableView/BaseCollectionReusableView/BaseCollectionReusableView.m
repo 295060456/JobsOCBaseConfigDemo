@@ -35,7 +35,7 @@ UIPictureAndBackGroundCorProtocol_synthesize
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model;
-        self.bgImageView.jobsVisible = model.bgImage;
+        self.bgImageView.byVisible(model.bgImage ? YES : NO);
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -49,15 +49,14 @@ UIPictureAndBackGroundCorProtocol_synthesize
 -(UIImageView *)bgImageView{
     if (!_bgImageView) {
         @jobs_weakify(self)
-        _bgImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+        _bgImageView = self.addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            self.addSubview(imageView);
-            [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
-            }];
-        });
-    }_bgImageView.image = self.viewModel.bgImage;
-    return _bgImageView;
+            imageView.image = self.viewModel.bgImage;
+        })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+            @jobs_strongify(self)
+            make.edges.equalTo(self);
+        }).on();
+    }return _bgImageView;
 }
 
 @end

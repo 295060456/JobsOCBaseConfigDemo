@@ -150,7 +150,7 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByFloatBlock)(CGFloat data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByNSUIntegerBlock)(NSUInteger data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByNSIntegerBlock)(NSInteger data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewBySizeBlock)(CGSize size);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByRectBlock)(CGRect frame);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByFrameBlock)(CGRect frame);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByPointBlock)(CGPoint data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByCenterBlock)(CGFloat x,CGFloat y);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByClassBlock)(Class _Nonnull cls);

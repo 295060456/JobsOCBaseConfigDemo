@@ -41,6 +41,8 @@ Prop_strong(nonnull) UITextField *realTextField;
 -(JobsReturnJobsTextFieldByViewBlock _Nonnull)byRightView;
 
 -(JobsReturnJobsTextFieldByBOOLBlock _Nonnull)byNotAllowEdit;
+/// 只有在输入框不允许编辑的大前提之下，才允许加入手势
+-(JobsReturnJobsTextFieldByGestureRecognizerBlock _Nonnull)byGesture;
 
 @end
 

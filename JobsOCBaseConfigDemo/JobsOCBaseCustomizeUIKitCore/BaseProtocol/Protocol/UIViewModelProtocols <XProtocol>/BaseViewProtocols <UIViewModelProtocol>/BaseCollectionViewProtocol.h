@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "UIScrollViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BaseCollectionViewProtocol <NSObject>
+@protocol BaseCollectionViewProtocol <UIScrollViewProtocol>
 @optional
 #pragma mark —— RegistrationTracking
 Prop_strong()NSMutableSet <NSString *>*registeredIdentifiers;/// 自定义标志位

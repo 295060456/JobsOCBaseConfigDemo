@@ -70,10 +70,10 @@ UIPictureAndBackGroundCorProtocol_synthesize
     }return _closeBtnModel;
 }
 
--(NSString *)title{
-    if(!_title){
-        _title = JobsInternationalization(@"JobsNavBar");
-    }return _title;
+-(NSString *)text{
+    if(!_text){
+        _text = JobsInternationalization(@"JobsNavBar");
+    }return _text;
 }
 
 -(UIFont *)font{
@@ -82,10 +82,10 @@ UIPictureAndBackGroundCorProtocol_synthesize
     }return _font;
 }
 
--(UIColor *)titleCor{
-    if(!_titleCor){
-        _titleCor = JobsCor(@"#FFC700");
-    }return _titleCor;
+-(UIColor *)textCor{
+    if(!_textCor){
+        _textCor = JobsCor(@"#FFC700");
+    }return _textCor;
 }
 
 -(UIColor *)bgCor{

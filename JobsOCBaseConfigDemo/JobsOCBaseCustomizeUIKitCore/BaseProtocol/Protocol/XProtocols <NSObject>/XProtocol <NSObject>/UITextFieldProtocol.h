@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 #pragma mark —— 关于数据
 /// UITextField.text
-Prop_copy(nullable)NSString *title; /// 主标题
-Prop_strong(nullable)UIColor *titleCor; /// 主标题文字颜色
-Prop_strong(nullable)UIFont *titleFont; /// 主标题字体
+Prop_copy(nullable)NSString *text; /// 主标题
+Prop_strong(nullable)UIColor *textCor; /// 主标题文字颜色
+Prop_strong(nullable)UIFont *textFont; /// 主标题字体
 /// UITextField.placeholder
 Prop_copy(nullable)NSString *textFieldPlaceholder; /// 避免与系统的 placeholder 产生冲突
 Prop_strong(nullable)UIColor *placeholderColor;
@@ -71,6 +71,8 @@ NS_ASSUME_NONNULL_END
 \
 @synthesize placeholderColor = _placeholderColor; \
 @synthesize placeholderFont = _placeholderFont; \
+@synthesize text = _text; \
+@synthesize textCor = _textCor; \
 
 #endif /* UITextFieldProtocol_synthesize_part0 */
 
@@ -81,9 +83,7 @@ NS_ASSUME_NONNULL_END
 @synthesize borderWidth = _borderWidth; \
 @synthesize cornerRadiusValue = _cornerRadiusValue; \
 @synthesize layerBorderCor = _layerBorderCor; \
-@synthesize title = _title; \
-@synthesize titleCor = _titleCor; \
-@synthesize titleFont = _titleFont; \
+@synthesize textFont = _textFont; \
 
 #endif /* UITextFieldProtocol_synthesize_part1 */
 
@@ -134,9 +134,9 @@ UITextFieldProtocol_synthesize_part2 \
 #ifndef UITextFieldProtocol_dynamic
 #define UITextFieldProtocol_dynamic \
 \
-@dynamic title;\
-@dynamic titleCor; \
-@dynamic titleFont; \
+@dynamic text;\
+@dynamic textCor; \
+@dynamic textFont; \
 @dynamic textFieldPlaceholder; \
 @dynamic placeholderColor; \
 @dynamic placeholderFont; \

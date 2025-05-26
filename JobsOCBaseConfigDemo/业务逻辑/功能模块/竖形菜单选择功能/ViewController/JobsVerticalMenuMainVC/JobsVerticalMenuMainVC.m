@@ -165,11 +165,11 @@ viewForHeaderInSection:(NSInteger)section{
             .JobsBlock1(^(id _Nullable data) {
                 
             });
-        tbvFooterView.backgroundColor = HEXCOLOR(0xEAEBED);
-        tbvFooterView.backgroundView.backgroundColor = HEXCOLOR(0xEAEBED);
+        tbvFooterView.byBgCor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.backgroundView.byBgCor(HEXCOLOR(0xEAEBED));
         /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
         /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
-        tbvFooterView.contentView.backgroundColor = HEXCOLOR(0xFFFFFF);
+        tbvFooterView.contentView.byBgCor(HEXCOLOR(0xEAEBED));
         return tbvFooterView;
     }return nil;
 }

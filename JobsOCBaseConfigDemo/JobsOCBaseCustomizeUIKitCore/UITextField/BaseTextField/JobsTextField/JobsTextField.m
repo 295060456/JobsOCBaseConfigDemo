@@ -117,6 +117,15 @@ RACProtocol_synthesize
         return self;
     };
 }
+/// 只有在输入框不允许编辑的大前提之下，才允许加入手势
+-(JobsReturnJobsTextFieldByGestureRecognizerBlock _Nonnull)byGesture{
+    @jobs_weakify(self)
+    return ^__kindof JobsTextField *_Nonnull(__kindof UIGestureRecognizer * _Nullable gesture){
+        @jobs_strongify(self)
+        if(self.notAllowEdit) self.realTextField.addGesture(gesture);
+        return self;
+    };
+}
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
@@ -137,8 +146,7 @@ RACProtocol_synthesize
             @jobs_strongify(self)
             self.realTextField.text = x;
             if (self.objBlock) self.objBlock(x);
-        }];
-        self.rightView.alpha = 1;
+        }];self.rightView.alpha = 1;
     };
 }
 #pragma mark —— UITextFieldDelegate

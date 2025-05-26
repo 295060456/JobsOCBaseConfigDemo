@@ -209,6 +209,7 @@ typedef void(^jobsByNavBarBlock)(__kindof JobsNavBar *_Nullable data);
 typedef void(^jobsByJobsTextFieldBlock)(__kindof JobsTextField *_Nullable data);
 typedef __kindof JobsTextField *_Nonnull(^JobsReturnJobsTextFieldByCGFloatBlock)(CGFloat data);
 typedef __kindof JobsTextField *_Nonnull(^JobsReturnJobsTextFieldByBOOLBlock)(BOOL data);
+typedef __kindof JobsTextField *_Nonnull(^JobsReturnJobsTextFieldByGestureRecognizerBlock)(__kindof UIGestureRecognizer * _Nullable gesture);
 typedef __kindof JobsTextField *_Nonnull(^JobsReturnJobsTextFieldByCorBlock)(UIColor *_Nullable cor);
 typedef __kindof JobsTextField *_Nonnull(^JobsReturnJobsTextFieldByViewBlock)(__kindof UIView *_Nullable view);
 typedef __kindof JobsTextField *_Nullable(^JobsReturnJobsTextFieldByModeBlock)(UITextFieldViewMode mode);
@@ -305,6 +306,7 @@ typedef void(^jobsByExcelConfigureViewModelBlock)(JobsExcelConfigureViewModel *_
 
 @class PopListBaseView;
 typedef void(^jobsByPopListBaseViewBlock)(PopListBaseView *_Nullable data);
+typedef PopListBaseView *_Nonnull(^JobsReturnPopListBaseViewByID)(id _Nullable data);
 
 @class JobsExcelView;
 typedef void(^jobsByExcelViewBlock)(__kindof JobsExcelView *_Nullable view);

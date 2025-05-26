@@ -207,7 +207,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
             tableView.showsVerticalScrollIndicator = NO;
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
@@ -217,7 +216,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 data.jobsWidth = TableViewWidth;
                 data.jobsHeight = JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight;
             });
-        }));
+        })).dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
     }return _tableView;
 }
 

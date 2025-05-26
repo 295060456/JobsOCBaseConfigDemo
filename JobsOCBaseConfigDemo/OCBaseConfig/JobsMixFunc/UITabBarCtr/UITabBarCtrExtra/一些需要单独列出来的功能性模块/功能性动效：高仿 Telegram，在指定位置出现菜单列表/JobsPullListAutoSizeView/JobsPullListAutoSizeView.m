@@ -104,7 +104,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             @jobs_strongify(self)
             tableView.scrollEnabled = NO;
             tableView.cornerCutToCircleWithCornerRadius(JobsWidth(3)); /// 圆润
-            tableView.dataLink(self);
             CGRect d = [self.targetView convertRect:self.targetView.bounds toView:MainWindow];
             CGFloat tableviewHeight = self.listTbVCellHeight * self.dataMutArr.count;
             CGFloat tableviewY = d.origin.y - tableviewHeight - self.listTbVOffset;
@@ -113,7 +112,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                                          tableviewY < 0 ? tableviewY += tableviewHeight : tableviewY,
                                          self.listTbVWidth, /// 相对固定
                                          tableviewHeight); /// 相对固定
-        }));
+        })).dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
     }return _tableView;
 }
 

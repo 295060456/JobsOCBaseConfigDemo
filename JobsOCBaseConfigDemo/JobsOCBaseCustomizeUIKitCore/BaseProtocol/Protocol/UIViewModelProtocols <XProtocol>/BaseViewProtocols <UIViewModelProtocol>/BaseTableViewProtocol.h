@@ -7,10 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "UIScrollViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol BaseTableViewProtocol <NSObject>
+@protocol BaseTableViewProtocol <UIScrollViewProtocol>
 @optional
 #pragma mark —— 数据源
 -(JobsReturnScrollViewByIDBlock _Nonnull)dataLink;
@@ -25,7 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnTableViewByDropDelegateBlock _Nonnull)byDropDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
 -(JobsReturnTableViewByCellSeparatorStyleBlock _Nonnull)bySeparatorStyle;
 -(JobsReturnTableViewByCorBlock _Nonnull)bySeparatorColor;
--(JobsReturnTableViewByBOOLBlock _Nonnull)byShowsVerticalScrollIndicator;
 -(JobsReturnTableViewByViewBlock _Nonnull)byTableHeaderView;
 -(JobsReturnTableViewByViewBlock _Nonnull)byTableFooterView;
 -(JobsReturnTableViewByEdgeInsetsBlock _Nonnull)byContentInset;

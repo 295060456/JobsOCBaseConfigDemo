@@ -45,7 +45,8 @@ AppToolsProtocol
 ,UITextViewDelegate
 >
 /// UI
-@property(nonatomic,strong,nullable)JobsUserModel *doorModel;
+Prop_strong(nullable)JobsUserModel *doorModel;
+Prop_strong(nullable)__kindof UIActivityIndicatorView *loadingIndicator;
 Prop_strong()BaseButton *联系客服;
 Prop_strong()BaseButton *立即注册;
 Prop_strong()UILabel *separateLab;/// 分割线
@@ -154,6 +155,9 @@ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 /// 收藏的假数据 JobsIMG(@"PG");JobsIMG(@"点赞");
 -(NSMutableArray <__kindof UIViewModel *>*)favDataMutArr;
 -(HTTPRequestHeaderLanguageType)currentLanguageType;
+#pragma mark —— Loading动画
+-(jobsByViewBlock _Nonnull)showLoadingIndicatorBy;
+-(jobsByVoidBlock _Nonnull)hideLoadingIndicator;
 #pragma mark —— 弹出框。为了防止业务层的变化，弹出框定义在NSObject层
 /// Debug模式下的弹出框 及其相关的数据封装
 -(UIViewModel *)testPopViewData;

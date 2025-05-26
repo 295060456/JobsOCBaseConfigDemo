@@ -33,7 +33,6 @@
               tableView.showsVerticalScrollIndicator = NO;
               tableView.showsHorizontalScrollIndicator = NO;
               tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-              tableView.dataLink(self);
               tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
               
               {
@@ -57,7 +56,7 @@
           })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
               @jobs_strongify(self)
               make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-          }).on();
+          }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
       }return _tableView;
   }
   ```
@@ -75,7 +74,6 @@
               tableView.showsVerticalScrollIndicator = NO;
               tableView.showsHorizontalScrollIndicator = NO;
               tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-              tableView.dataLink(self);
               tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
               
               {
@@ -93,7 +91,7 @@
           })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
               @jobs_strongify(self)
               make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-          }).on();
+          }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
       }return _tableView;
   }
   ```

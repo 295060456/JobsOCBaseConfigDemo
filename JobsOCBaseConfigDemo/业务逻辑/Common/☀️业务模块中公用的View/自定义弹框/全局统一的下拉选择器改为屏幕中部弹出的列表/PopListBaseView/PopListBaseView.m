@@ -22,7 +22,7 @@ Prop_copy()NSMutableArray <__kindof NSString *>*datas;
 #pragma mark —— SysMethod
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+        self.byBgCor(JobsClearColor.colorWithAlphaComponentBy(0));
     }return self;
 }
 
@@ -39,7 +39,7 @@ Prop_copy()NSMutableArray <__kindof NSString *>*datas;
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+        self.byBgCor(JobsClearColor.colorWithAlphaComponentBy(0));
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -47,7 +47,7 @@ Prop_copy()NSMutableArray <__kindof NSString *>*datas;
     @jobs_weakify(self)
     return ^(NSMutableArray <__kindof UIViewModel *>* model) {
         @jobs_strongify(self)
-        self.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+        self.byBgCor(JobsClearColor.colorWithAlphaComponentBy(0));
         self.dataMutArr = model;
         self.tableView.reloadDatas();
     };
@@ -76,14 +76,14 @@ Prop_copy()NSMutableArray <__kindof NSString *>*datas;
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIViewModel *viewModel = self.dataMutArr[indexPath.row];
     for (JobsTextLabStyleTBVCell *visibleCell in tableView.visibleCells) {
-        visibleCell.backgroundColor = visibleCell.contentView.backgroundColor = viewModel.bgCor;
-        visibleCell.label.textColor = viewModel.textCor;
+        visibleCell.byBgCor(viewModel.bgCor);
+        visibleCell.contentView.byBgCor(viewModel.bgCor);
+        visibleCell.label.byTextCor(viewModel.textCor);
     }
     JobsTextLabStyleTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = cell.contentView.backgroundColor = viewModel.bgSelectedCor;
-    cell.label.textColor = viewModel.selectedTextCor;
-//    id text = cell.viewModel.text;
-//    id placeholder = cell.viewModel.placeholder;
+    cell.byBgCor(viewModel.bgSelectedCor);
+    cell.contentView.byBgCor(viewModel.bgSelectedCor);
+    cell.label.byTextCor(viewModel.selectedTextCor);
     if (self.objBlock) self.objBlock(cell);/// 数据在cell.viewModel
     [self tf_hide:nil];
 }
@@ -109,7 +109,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         .byIndexPath(indexPath)
         .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
             .JobsBlock1(^(id _Nullable data) {
-             
+
             });
 }
 #pragma mark —— lazyLoad
@@ -117,26 +117,35 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 @synthesize tableView = _tableView;
 -(__kindof UITableView *)tableView{
     if (!_tableView) {
-        _tableView = UITableView.initWithStylePlain;
-        _tableView.dataLink(self);
-        _tableView.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.separatorColor = JobsCor(@"#1E1E1E");
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.scrollEnabled = YES;
-        _tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-            /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-        });
-        _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-        if(@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
-        [self.addSubview(_tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
+        @jobs_weakify(self)
+        _tableView = self.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+            tableView
+                .bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                .bySeparatorColor(JobsCor(@"#1E1E1E"))
+                .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
+                .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                    /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                }))
+                .byTableFooterView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                    /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                }))
+                .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                    data.title = JobsInternationalization(@"NO MESSAGES FOUND");
+                    data.titleCor = JobsWhiteColor;
+                    data.titleFont = bayonRegular(JobsWidth(30));
+                    data.normalImage = JobsIMG(@"小狮子");
+                }))
+                .showsVerticalScrollIndicatorBy(NO)
+                .showsHorizontalScrollIndicatorBy(NO)
+                .byScrollEnabled(YES)
+                .byBgCor(JobsClearColor);
+            if(@available(iOS 11.0, *)) {
+                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            }
+        })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+            @jobs_strongify(self)
             make.edges.equalTo(self);
-        }];
+        }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
     }return _tableView;
 }
 

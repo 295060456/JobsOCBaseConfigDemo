@@ -127,4 +127,8 @@ typedef void(^jobsByFMAccModelBlock)(__kindof FMAccModel *_Nullable model);
 typedef __kindof KYCBaseView *_Nullable(^JobsReturnKYCBaseViewByStatusBlock)(VerificationStatus status);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByStatusBlock)(VerificationStatus status);
 
+@class PhilippinesModel;
+typedef void(^jobsByArrBlock)(__kindof NSMutableArray<__kindof UIViewModel *> * _Nullable models);
+typedef void(^jobsByPhilippinesModelsBlock)(jobsByArrBlock _Nullable completionBlock);
+
 #endif /* JobsBizBlock_h */

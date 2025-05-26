@@ -46,13 +46,13 @@
                 @jobs_strongify(self)
                 view.frame = self.bounds;
                 view.cleanSubviewBy(BaseView.class);
-                self.addSubview(view);
-                view.addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                    data.title = JobsInternationalization(@"No Datas");
-                    data.titleCor = JobsWhiteColor;
-                    data.titleFont = bayonRegular(JobsWidth(30));
-                    data.normalImage = JobsIMG(@"暂无数据");
-                    data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+                self.addSubview(view)
+                    .addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                        data.title = JobsInternationalization(@"No Datas");
+                        data.titleCor = JobsWhiteColor;
+                        data.titleFont = bayonRegular(JobsWidth(30));
+                        data.normalImage = JobsIMG(@"暂无数据");
+                        data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                 })).setMasonryBy(^(MASConstraintMaker *make){
                     @jobs_strongify(self)
                     make.centerX.equalTo(self).offset(model.jobsOffsetX);

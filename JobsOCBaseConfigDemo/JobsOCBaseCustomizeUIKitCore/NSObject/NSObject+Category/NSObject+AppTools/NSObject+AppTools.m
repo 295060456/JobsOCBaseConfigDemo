@@ -67,7 +67,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                                         JobsReturnIDByIDBlock _Nullable backActionBlock){
         return jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
             config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.alpha = 1;
+                viewModel.Alpha = 1;
                 viewModel.navBgCor = JobsClearColor;
     //            viewModel.navBgImage = JobsIMG(@"");
                 viewModel.titleImage = JobsIMG(@"BSportRedLogo"); /// 配置中间的标题为图片
@@ -755,6 +755,30 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         return HTTPRequestHeaderLanguageOther;
     }
 }
+#pragma mark —— Loading动画
+-(jobsByViewBlock _Nonnull)showLoadingIndicatorBy{
+    @jobs_weakify(self)
+    return ^(__kindof UIView *_Nullable view){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            @jobs_strongify(self)
+            self.loadingIndicator.center = view.center;
+            view.addSubview(self.loadingIndicator);
+            self.loadingIndicator.byVisible(1);
+            [self.loadingIndicator startAnimating];
+        });
+    };
+}
+
+-(jobsByVoidBlock _Nonnull)hideLoadingIndicator{
+    @jobs_weakify(self)
+    return ^(){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            @jobs_strongify(self)
+            self.loadingIndicator.byVisible(0);
+            [self.loadingIndicator stopAnimating];
+        });
+    };
+}
 #pragma mark —— 弹出框。为了防止业务层的变化，弹出框定义在NSObject层
 /// Debug模式下的弹出框 及其相关的数据封装
 -(UIViewModel *)testPopViewData{
@@ -1184,6 +1208,21 @@ JobsKey(_loginModel)
     }else{
         self.deleteUserInfoByUserName(用户信息);
     }
+}
+#pragma mark —— Prop_strong(nullable)__kindof UIActivityIndicatorView *loadingIndicator;
+JobsKey(_loadingIndicator)
+@dynamic loadingIndicator;
+-(__kindof UIActivityIndicatorView *)loadingIndicator{
+    UIActivityIndicatorView *view = Jobs_getAssociatedObject(_loadingIndicator);
+    if (!view) {
+        view = [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+        view.color = JobsGrayColor;
+        Jobs_setAssociatedRETAIN_NONATOMIC(_loadingIndicator, view)
+    }return view;
+}
+
+-(void)setActivityIndicatorView:(__kindof UIActivityIndicatorView *)loadingIndicator{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_loadingIndicator, loadingIndicator)
 }
 
 @end

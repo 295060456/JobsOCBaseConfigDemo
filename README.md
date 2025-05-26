@@ -2962,7 +2962,6 @@ classDiagram
                   .byTableFooterView(jobsMakeView(^(__kindof UIView * _Nullable view) {
                       /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
                   }))
-                  .dataLink(self)
                   .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
                       data.title = JobsInternationalization(@"NO MESSAGES FOUND");
                       data.titleCor = JobsWhiteColor;
@@ -2978,7 +2977,7 @@ classDiagram
               make.top.equalTo(self.navBar.mas_bottom);
               make.bottom.equalTo(self.view);
               make.width.mas_equalTo(MenuWidth);
-          }).on();
+          }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
       }return _tableView;
   }
   
@@ -8340,7 +8339,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                    .byTableFooterView(jobsMakeView(^(__kindof UIView * _Nullable view) {
                        /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
                    }))
-                   .dataLink(self)
                    .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
                        data.title = JobsInternationalization(@"NO MESSAGES FOUND");
                        data.titleCor = JobsWhiteColor;
@@ -8399,7 +8397,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
            })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
                @jobs_strongify(self)
                /// TODO
-           }).on();
+           }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
        }return _tableView;
    }
    ```

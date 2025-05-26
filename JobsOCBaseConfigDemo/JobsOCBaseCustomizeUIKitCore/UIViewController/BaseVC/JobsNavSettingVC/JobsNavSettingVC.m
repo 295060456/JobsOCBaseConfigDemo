@@ -146,7 +146,7 @@
         /// 布局未响应旋转：横竖屏切换时，GKNavigationBar 有时不会触发布局更新（如 layoutSubviews），或者更新不及时。
         /// 适配 SafeArea 问题：尤其是在 iPhone X 系列横屏时，顶部的安全区域（SafeAreaInsets）处理不当，会导致导航栏遮挡内容。
         if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-            self.makeJobsNavByAlpha(config.viewModel.alpha);
+            self.makeJobsNavByAlpha(config.viewModel.Alpha);
         }else{
             self.makeGKNavByConfig(config);
         }
@@ -166,8 +166,8 @@
         }));
         if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
         if(self.rightBarButtonItems.count) self.gk_navRightBarButtonItems = self.rightBarButtonItems;
-        self.gk_navigationBar.hidden = !config.viewModel.alpha;
-        self.gk_navigationBar.alpha = config.viewModel.alpha;
+        self.gk_navigationBar.hidden = !config.viewModel.Alpha;
+        self.gk_navigationBar.alpha = config.viewModel.Alpha;
     };
 }
 
