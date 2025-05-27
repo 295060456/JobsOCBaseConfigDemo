@@ -17,7 +17,7 @@
     };
 }
 
--(jobsByErrBlock _Nonnull)notificationRequestCompletionHandlerBy{
+-(jobsByErrBlocks _Nonnull)notificationRequestCompletionHandlerBy{
     @jobs_weakify(self)
     return ^(jobsByErrorBlock _Nullable block){
         @jobs_strongify(self)

@@ -147,6 +147,8 @@ Prop_assign()CGFloat imageViewFrameOffsetHeight;
 -(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel;
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)richButtonByModel;
+/// 其他
+-(JobsReturnTableViewCellByUIEdgeInsetsBlock _Nonnull)byContentEdgeInsets;
 
 @end
 

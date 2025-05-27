@@ -139,6 +139,15 @@ BaseViewProtocol_synthesize
     /// 圆切角
     _button.jobsResetBtnCornerRadiusValue(buttonModel.cornerRadiusValue);
 }
+#pragma mark —— BaseButtonProtocol
+-(JobsReturnTableViewCellByUIEdgeInsetsBlock _Nonnull)byContentEdgeInsets{
+    @jobs_weakify(self)
+    return ^__kindof UITableViewCell *_Nullable(UIEdgeInsets insets){
+        @jobs_strongify(self)
+        self.contentEdgeInsets = insets;
+        return self;
+    };
+}
 #pragma mark —— lazyLoad
 -(BaseButton *)button{
     if(!_button){

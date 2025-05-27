@@ -8,6 +8,7 @@
 #import "JobsMonitorVC.h"
 #import "JobsBlock.h"
 #import "UIViewController+BaseNavigationBar.h"
+#import "UIView+Extras.h"
 
 #if __has_include(<GKNavigationBar/GKNavigationBar.h>)
 #import <GKNavigationBar/GKNavigationBar.h>
@@ -47,7 +48,7 @@ NS_ASSUME_NONNULL_END
          buttonModel.normalImage = JobsIMG(@"全局返回箭头");
          buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
          buttonModel.title = JobsInternationalization(@"");
-         buttonModel.titleFont = bayonRegular(14);
+         buttonModel.titleFont = bayonRegular(18);
          buttonModel.titleCor = JobsCor(@"#8A93A1");
          buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
          buttonModel.textAlignment = NSTextAlignmentCenter;

@@ -5,6 +5,9 @@
 //  Created by Admin on 6/3/2025.
 //
 /// 关于业务（不与JobsOCBaseConfigDemo同步）
+
+#import "JobsBlockDef.h"
+
 #ifndef JobsBizBlock_h
 #define JobsBizBlock_h
 
@@ -19,8 +22,8 @@ typedef void(^jobsByChildCommentModelBlock)(__kindof JobsChildCommentModel *_Nul
 
 @class MSCommentDetailModel;
 @class MSCommentModel;
-typedef void(^jobsByMSCommentDetailModelBlock)(MSCommentDetailModel *_Nullable data);
-typedef void(^jobsByMSCommentModelBlock)(MSCommentModel *_Nullable data);
+typedef void(^jobsByMSCommentDetailModelBlock)(MSCommentDetailModel *_Nullable model);
+typedef void(^jobsByMSCommentModelBlock)(MSCommentModel *_Nullable model);
 
 @class JobsIMListDataModel;
 typedef void(^jobsByIMListDataModelBlock)(__kindof JobsIMListDataModel *_Nullable model);
@@ -43,72 +46,71 @@ typedef void(^jobsByThreeClassCellBlock)(__kindof ThreeClassCell *_Nullable cell
 @class GoodsClassModel;
 typedef void(^jobsByGoodsClassModelBlock)(GoodsClassModel *_Nullable model);
 typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByIntBlock)(int data);
-typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByInt2Block)(NSUInteger data1,int data2);
-typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByIntStringBlock)(int data1,NSString *_Nullable data2);
+typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByInt2Block)(Jobs_ReturnGoodsClassModelByInt2Block_Arguments);
+typedef __kindof GoodsClassModel *_Nullable(^JobsReturnGoodsClassModelByIntStringBlock)(Jobs_ReturnGoodsClassModelByIntStringBlock_Arguments);
 
 @class FMBannerAdsModel;
 @class WMZBannerParam;
 @class JobsBtnStyleCVCell;
-typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable data);
-typedef void(^jobsByBannerAdsModelAndCellBlock)(__kindof FMBannerAdsModel *_Nullable
-                                                data,JobsBtnStyleCVCell *_Nonnull cell);
+typedef void(^jobsByBannerAdsModelBlock)(__kindof FMBannerAdsModel *_Nullable model);
+typedef void(^jobsByBannerAdsModelAndCellBlock)(Jobs_ByBannerAdsModelAndCellBlock_Arguments);
 
-typedef WMZBannerParam *_Nonnull(^JobsReturnWMZBannerParamByArrBlock)(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data);
-typedef WMZBannerParam *_Nonnull(^JobsReturnWMZBannerParamByArrAndADTypeBlock)(__kindof NSMutableArray <FMBannerAdsModel *>*_Nullable data,FMAdsType ADType);
+typedef WMZBannerParam *_Nonnull(^JobsReturnWMZBannerParamByArrBlock)(__kindof NSArray <FMBannerAdsModel *>*_Nullable models);
+typedef WMZBannerParam *_Nonnull(^JobsReturnWMZBannerParamByArrAndADTypeBlock)(__kindof NSArray <FMBannerAdsModel *>*_Nullable models,FMAdsType ADType);
 typedef void(^jobsByWMZBannerParamBlock)(WMZBannerParam *_Nullable data);
 
 @class JobsMsgDataModel;
-typedef void(^jobsByMsgDataModelBlock)(__kindof JobsMsgDataModel *_Nullable data);
+typedef void(^jobsByMsgDataModelBlock)(__kindof JobsMsgDataModel *_Nullable model);
 
 @class JobsToggleBaseView;
-typedef JobsToggleBaseView *_Nonnull(^JobsReturnToggleBaseViewByArrBlock)(NSMutableArray *_Nullable data);
+typedef JobsToggleBaseView *_Nonnull(^JobsReturnToggleBaseViewByArrBlock)(__kindof NSArray *_Nullable arr);
 
 @class FM_updatePassword_model;
-typedef void(^jobsByUpdatePasswordModelBlock)(__kindof FM_updatePassword_model *_Nullable data);
+typedef void(^jobsByUpdatePasswordModelBlock)(__kindof FM_updatePassword_model *_Nullable model);
 
 @class FMLikeModel;
-typedef void(^jobsByLikeModelBlock)(__kindof FMLikeModel *_Nullable data);
+typedef void(^jobsByLikeModelBlock)(__kindof FMLikeModel *_Nullable model);
 
 @class FMKYCInfoModel;
-typedef void(^jobsByKYCInfoModelBlock)(__kindof FMKYCInfoModel *_Nullable data);
+typedef void(^jobsByKYCInfoModelBlock)(__kindof FMKYCInfoModel *_Nullable model);
 
 @class FMHotGameListModel;
-typedef void(^jobsByHotGameListModelBlock)(__kindof FMHotGameListModel *_Nullable data);
+typedef void(^jobsByHotGameListModelBlock)(__kindof FMHotGameListModel *_Nullable model);
 
 @class FMGameHomeSubMobileModel;
-typedef void(^jobsByGameHomeSubMobileModelBlock)(__kindof FMGameHomeSubMobileModel *_Nullable data);
+typedef void(^jobsByGameHomeSubMobileModelBlock)(__kindof FMGameHomeSubMobileModel *_Nullable model);
 
 @class FMInboxModel;
-typedef void(^jobsByInboxModelBlock)(__kindof FMInboxModel *_Nullable inboxModel);
+typedef void(^jobsByInboxModelBlock)(__kindof FMInboxModel *_Nullable model);
 
 @class FMInboxTitleModel;
-typedef void(^jobsByInboxTitleModelBlock)(__kindof FMInboxTitleModel *_Nullable inboxTitleModel);
+typedef void(^jobsByInboxTitleModelBlock)(__kindof FMInboxTitleModel *_Nullable model);
 
 @class FMSubjectModel;
-typedef void(^jobsBySubjectModelBlock)(__kindof FMSubjectModel *_Nullable subjectModel);
+typedef void(^jobsBySubjectModelBlock)(__kindof FMSubjectModel *_Nullable model);
 
 @class FMDateModel;
-typedef void(^jobsByFMDateModelBlock)(__kindof FMDateModel *_Nullable dateModel);
+typedef void(^jobsByFMDateModelBlock)(__kindof FMDateModel *_Nullable model);
 
 @class FMTypeModel;
-typedef void(^jobsByTypeModelBlock)(__kindof FMTypeModel *_Nullable typeModel);
+typedef void(^jobsByTypeModelBlock)(__kindof FMTypeModel *_Nullable model);
 
 @class FMMyBetOrderDetailModel;
-typedef void(^jobsByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable data);
+typedef void(^jobsByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable model);
 
 @class FMPagerModel;
-typedef void(^jobsByPagerModelBlock)(__kindof FMPagerModel *_Nullable data);
+typedef void(^jobsByPagerModelBlock)(__kindof FMPagerModel *_Nullable model);
 
 @class FMReportTradeModel;
 typedef void(^jobsByReportTradeModelBlock)(__kindof FMReportTradeModel *_Nullable model);
 
 @class FMMyBetOrderDetailModel;
-typedef void(^jobsByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable data);
-typedef JobsExcelConfigureViewModel *_Nullable(^JobsReturnExcelConfigureDataByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable data);
-typedef JobsExcelConfigureViewModel *_Nullable(^JobsReturnExcelConfigureDataByReportTradeModelBlock)(__kindof FMReportTradeModel *_Nullable data);
+typedef void(^jobsByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable model);
+typedef JobsExcelConfigureViewModel *_Nullable(^JobsReturnExcelConfigureDataByMyBetOrderDetailModelBlock)(__kindof FMMyBetOrderDetailModel *_Nullable model);
+typedef JobsExcelConfigureViewModel *_Nullable(^JobsReturnExcelConfigureDataByReportTradeModelBlock)(__kindof FMReportTradeModel *_Nullable model);
 
 @class FMBankDataSubModel;
-typedef void(^jobsByBankDataSubModelBlock)(__kindof FMBankDataSubModel *_Nullable subModel);
+typedef void(^jobsByBankDataSubModelBlock)(__kindof FMBankDataSubModel *_Nullable model);
 
 @class FMBankDataModel;
 typedef void(^jobsByBankDataModelBlock)(__kindof FMBankDataModel *_Nullable model);
@@ -129,6 +131,7 @@ typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByStatusBlock)(Ver
 
 @class PhilippinesModel;
 typedef void(^jobsByArrBlock)(__kindof NSMutableArray<__kindof UIViewModel *> * _Nullable models);
-typedef void(^jobsByPhilippinesModelsBlock)(jobsByArrBlock _Nullable completionBlock);
+typedef void(^jobsByPhilippinesModelsBlocks)(jobsByArrBlock _Nullable completionBlock);
+
 
 #endif /* JobsBizBlock_h */

@@ -47,6 +47,10 @@ typedef id _Nullable(^JobsReturnIDByUnsignedShortBlock)(unsigned short data);
 typedef id _Nullable(^JobsReturnIDByLongBlock)(long data);
 typedef id _Nullable(^JobsReturnIDByUnsignedLongBlock)(unsigned long data);
 typedef id _Nullable(^JobsReturnIDByUnsignedLongLongBlock)(unsigned long long data);
+#pragma mark —— 关于 NSPointerArray
+typedef void *_Nullable(^JobsReturnPointerByNSUIntegerBlock)(NSUInteger index);
+typedef __kindof NSPointerArray *_Nullable(^JobsReturnPointerArrayByPointerBlock)(void *_Nullable pointer);
+typedef __kindof NSPointerArray *_Nullable(^JobsReturnPointerArrayByNSUIntegerBlock)(NSUInteger index);
 #pragma mark —— 关于 NSRunLoop
 typedef __kindof NSRunLoop *_Nullable(^JobsReturnRunLoopByTimerBlock)(NSTimer *_Nonnull timer);
 #pragma mark —— 关于数据容器
@@ -67,7 +71,7 @@ typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByDicBlock)(__kindof 
 /// 集合
 typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByIDBlock)(id _Nullable data);
 typedef __kindof NSSet *_Nullable(^JobsReturnNSSetByArrBlock)(__kindof NSArray *_Nullable data);
-typedef NSMutableSet *_Nullable(^JobsReturnNSMutableSetByIDBlock)(id _Nullable data);
+typedef __kindof NSMutableSet *_Nullable(^JobsReturnNSMutableSetByIDBlock)(id _Nullable data);
 #pragma mark —— 关于 NSBundle
 typedef NSBundle *_Nullable(^JobsReturnBundleByStringBlock)(__kindof NSString *_Nullable data);
 typedef NSBundle *_Nullable(^JobsReturnBundleByURLBlock)(NSURL *_Nullable data);
@@ -254,6 +258,7 @@ typedef __kindof UITableViewHeaderFooterView *_Nullable(^JobsReturnTableViewHead
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByVoidBlock)(void);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByAccessoryTypeBlock)(UITableViewCellAccessoryType type);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCellStyleBlock)(UITableViewCellStyle tableViewCellStyle);
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByUIEdgeInsetsBlock)(UIEdgeInsets insets);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByFrameBlock)(CGRect frame);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellBySizeBlock)(CGSize size);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCGFloatBlock)(CGFloat data);

@@ -42,19 +42,19 @@ JobsKey(_placeholderImage)
         return self;
     };
 }
-#pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlock options;
+#pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlocks options;
 JobsKey(_options)
 @dynamic options;
--(JobsReturnImageViewBySDWebImageOptionsBlock _Nonnull)options{
+-(JobsReturnImageViewBySDWebImageOptionsBlocks _Nonnull)options{
     return ^__kindof UIImageView *_Nullable(SDWebImageOptions options) {
         Jobs_setAssociatedRETAIN_NONATOMIC(_options, @(options));
         return self;
     };
 }
-#pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlock completed;
+#pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlocks completed;
 JobsKey(_completed)
 @dynamic completed;
-- (JobsReturnImageViewBySDExternalCompletionBlock _Nonnull)completed {
+- (JobsReturnImageViewBySDExternalCompletionBlocks _Nonnull)completed {
     return ^__kindof UIImageView *_Nullable(SDExternalCompletionBlock completion) {
         Jobs_setAssociatedCOPY_NONATOMIC(_completed,completion);
         return self;

@@ -270,7 +270,7 @@ AppToolsProtocol
 /// 简洁版强制push展现一个控制器页面【需要正向传参】
 -(jobsByVCAndDataBlock _Nonnull)comingToPushVCByRequestParams;
 /// 代理检测和回调
--(jobsDelegateBlock _Nonnull)jobsDelegate;
+-(jobsDelegateBlocks _Nonnull)jobsDelegate;
 /// GKNavigationBar 返回按钮点击方法
 ///【子类需要覆写 】创建返回键的点击事件
 -(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent;

@@ -77,7 +77,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                 buttonModel.normalImage = JobsIMG(@"全局返回箭头");
                 buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
                 buttonModel.title = string;
-                buttonModel.titleFont = bayonRegular(14);
+                buttonModel.titleFont = bayonRegular(18);
                 buttonModel.titleCor = JobsCor(@"#E20808");
                 buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
                 buttonModel.textAlignment = NSTextAlignmentCenter;
@@ -688,7 +688,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.title = JobsInternationalization(@"HOT Games");
+            model.title = JobsInternationalization(@"SLOT GAMES");
             model.subTitle = JobsInternationalization(@"");
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
@@ -699,7 +699,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.title = JobsInternationalization(@"HOT Games");
+            model.title = JobsInternationalization(@"LIVE GAMES");
             model.subTitle = JobsInternationalization(@"");
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
@@ -710,7 +710,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.title = JobsInternationalization(@"HOT Games");
+            model.title = JobsInternationalization(@"TABLE GAMES");
             model.subTitle = JobsInternationalization(@"");
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));

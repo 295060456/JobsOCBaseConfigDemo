@@ -672,7 +672,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 代理检测和回调
--(jobsDelegateBlock _Nonnull)jobsDelegate{
+-(jobsDelegateBlocks _Nonnull)jobsDelegate{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data,jobsByVoidBlock block) {
         @jobs_strongify(self)

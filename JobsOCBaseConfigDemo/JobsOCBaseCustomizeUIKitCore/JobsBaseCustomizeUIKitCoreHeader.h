@@ -195,6 +195,8 @@
 #import "UIContextMenuInteraction+Extra.h"
 #pragma mark —— UIActivityIndicatorView
 #import "UIActivityIndicatorView+Extra.h"
+#pragma mark —— NSPointerArray
+#import "NSPointerArray+Extra.h"
 
 #import "JobsMakes.h"
 

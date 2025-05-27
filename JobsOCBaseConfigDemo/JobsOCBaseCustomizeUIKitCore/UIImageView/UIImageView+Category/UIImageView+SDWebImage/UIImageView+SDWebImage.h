@@ -18,8 +18,8 @@
 /// SDWebImage+UIImageView
 #ifndef SDWebImageImageViewBlock
 #define SDWebImageImageViewBlock
-typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDExternalCompletionBlock)(SDExternalCompletionBlock _Nullable data);
-typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDWebImageOptionsBlock)(SDWebImageOptions data);
+typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDExternalCompletionBlocks)(SDExternalCompletionBlock _Nullable data);
+typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDWebImageOptionsBlocks)(SDWebImageOptions data);
 #endif /* SDWebImageImageViewBlock */
 
 NS_ASSUME_NONNULL_BEGIN
@@ -29,8 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 Prop_copy(readonly,nonnull)JobsReturnViewByVoidBlock load;
 Prop_copy(readonly,nonnull)JobsReturnImageViewByURLBlock imageURL;
 Prop_copy(readonly,nonnull)JobsReturnImageViewByImageBlock placeholderImage;
-Prop_copy(readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlock options;
-Prop_copy(readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlock completed;
+Prop_copy(readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlocks options;
+Prop_copy(readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlocks completed;
 
 @end
 

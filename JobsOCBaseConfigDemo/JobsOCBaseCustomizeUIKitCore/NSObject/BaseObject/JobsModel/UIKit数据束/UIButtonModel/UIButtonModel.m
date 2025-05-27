@@ -57,7 +57,7 @@ RACProtocol_synthesize
     }return _roundingCorners;
 }
 
--(JobsReturnRACDisposableByReturnIDByIDBlock _Nullable)jobsReturnedTestBlock{
+-(JobsReturnRACDisposableByReturnIDByIDBlocks _Nullable)jobsReturnedTestBlock{
     if(!_jobsReturnedTestBlock){
         _jobsReturnedTestBlock = ^RACDisposable *_Nonnull(JobsReturnIDByIDBlock _Nullable data) {
             JobsLog(@"JobsTestBlock");

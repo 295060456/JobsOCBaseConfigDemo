@@ -166,8 +166,7 @@
         }));
         if(self.leftBarButtonItems.count) self.gk_navLeftBarButtonItems = self.leftBarButtonItems;
         if(self.rightBarButtonItems.count) self.gk_navRightBarButtonItems = self.rightBarButtonItems;
-        self.gk_navigationBar.hidden = !config.viewModel.Alpha;
-        self.gk_navigationBar.alpha = config.viewModel.Alpha;
+        self.gk_navigationBar.byVisible(config.viewModel.Alpha);
     };
 }
 

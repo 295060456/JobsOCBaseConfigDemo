@@ -21,9 +21,9 @@
 /// SDWebImage+UIButton
 #ifndef SDWebImageButtonBlock
 #define SDWebImageButtonBlock
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDExternalCompletionBlock)(SDExternalCompletionBlock _Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDWebImageOptionsBlock)(SDWebImageOptions data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDImageLoaderProgressBlock)(SDImageLoaderProgressBlock _Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDExternalCompletionBlocks)(SDExternalCompletionBlock _Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDWebImageOptionsBlocks)(SDWebImageOptions data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDImageLoaderProgressBlocks)(SDImageLoaderProgressBlock _Nullable data);
 #endif /* SDWebImageButtonBlock */
 
 NS_ASSUME_NONNULL_BEGIN
@@ -32,9 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 Prop_copy(readonly,nonnull)JobsReturnButtonByURLBlock imageURL;
 Prop_copy(readonly,nonnull)JobsReturnButtonByImageBlock placeholderImage;
-Prop_copy(readonly,nonnull)JobsReturnButtonBySDWebImageOptionsBlock options;
-Prop_copy(readonly,nonnull)JobsReturnButtonBySDExternalCompletionBlock completed;
-Prop_copy(readonly,nonnull)JobsReturnButtonBySDImageLoaderProgressBlock progress;
+Prop_copy(readonly,nonnull)JobsReturnButtonBySDWebImageOptionsBlocks options;
+Prop_copy(readonly,nonnull)JobsReturnButtonBySDExternalCompletionBlocks completed;
+Prop_copy(readonly,nonnull)JobsReturnButtonBySDImageLoaderProgressBlocks progress;
 #pragma mark —— 设置普通图片的方法
 /// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
 Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock normalLoad;

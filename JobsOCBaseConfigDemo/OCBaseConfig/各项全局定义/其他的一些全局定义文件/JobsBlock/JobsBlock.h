@@ -28,8 +28,7 @@ typedef AppLanguage(^JobsReturnAppLanguageByVoidBlock)(void);
 typedef DeviceOrientation(^JobsReturnDeviceOrientationByViewBlock)(__kindof UIView *_Nullable data);
 typedef NSTimeZone *_Nullable(^JobsReturnTimeZoneByTypeBlock)(TimeZoneType timeZoneType);
 typedef id _Nullable(^JobsReturnIDByAppLanguageBlock)(AppLanguage data);
-typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(ComponentType componentType,
-                                                                 __kindof UIView *_Nullable data);
+typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(Jobs_ReturnIDByComponentTypeAndUIViewBlock_Arguments);
 @class JobsTextView;
 typedef void(^jobsByJobsTextViewBlock)(__kindof JobsTextView *_Nullable textView);
 
@@ -52,40 +51,40 @@ typedef void(^jobsByBitsMonitorSuspendLabBlock)(__kindof JobsBitsMonitorSuspendL
 typedef void(^jobsByBaseViewBlock)(__kindof BaseView *_Nullable view);
 
 @class JobsTabBarVC;
-typedef void(^jobsByTabBarVCBlock)(__kindof JobsTabBarVC *_Nullable tabBarVC);
+typedef void(^jobsByTabBarVCBlock)(__kindof JobsTabBarVC *_Nullable vc);
 
 @class JobsCustomTabBarVC;
-typedef void(^jobsByCustomTabBarVCBlock)(__kindof JobsCustomTabBarVC *_Nullable tabBarVC);
+typedef void(^jobsByCustomTabBarVCBlock)(__kindof JobsCustomTabBarVC *_Nullable vc);
 
 @class JobsCustomTabBarConfig;
-typedef void(^jobsByCustomTabBarConfigBlock)(__kindof JobsCustomTabBarConfig *_Nullable tabBarConfig);
+typedef void(^jobsByCustomTabBarConfigBlock)(__kindof JobsCustomTabBarConfig *_Nullable config);
  
 @class MGSwipeButtonModel;
 typedef void(^jobsByMGSwipeButtonModelBlock)(__kindof MGSwipeButtonModel *_Nullable model);
 
 @class JobsRichTextConfig;
-typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable data);
-typedef void(^jobsByRichTextConfigBlock)(__kindof JobsRichTextConfig *_Nullable data);
+typedef NSMutableAttributedString *_Nullable(^JobsReturnAttributedStringByRichTextConfigArrayBlock)(NSArray <JobsRichTextConfig *>* _Nullable configs);
+typedef void(^jobsByRichTextConfigBlock)(__kindof JobsRichTextConfig *_Nullable config);
 
 @class SDWebImageModel;
-typedef void(^jobsBySDWebImageModelBlock)(__kindof SDWebImageModel *_Nullable data);
+typedef void(^jobsBySDWebImageModelBlock)(__kindof SDWebImageModel *_Nullable model);
 
 @class URLManagerModel;
-typedef void(^jobsByURLManagerModelBlock)(__kindof URLManagerModel *_Nullable data);
+typedef void(^jobsByURLManagerModelBlock)(__kindof URLManagerModel *_Nullable model);
 typedef URLManagerModel *_Nullable(^JobsReturnURLManagerModelByStringBlock)(NSString *_Nullable data);
 
 @class UIViewModel;
-typedef void(^jobsByViewModelAndBOOLBlock)(__kindof UIViewModel *_Nonnull viewModel,BOOL data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelAndBOOLBlock)(__kindof UIViewModel *_Nonnull viewModel,BOOL data);
+typedef void(^jobsByViewModelAndBOOLBlock)(Jobs_ViewModelAndBOOLBlock_Arguments);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelAndBOOLBlock)(Jobs_ViewModelAndBOOLBlock_Arguments);
 typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByVoidBlock)(void);
 typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByStringBlock)(NSString *_Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(__kindof UIViewModel *_Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(__kindof UIViewModel *_Nullable model);
 typedef void(^jobsByViewModelBlock)(__kindof UIViewModel *_Nullable data);
-typedef void(^jobsByArrWithViewModelBlock)(__kindof NSArray <UIViewModel *>*_Nullable data);
-typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(__kindof UIViewModel *_Nullable data);
-typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullable data);
-typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable data);
-typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable data);
+typedef void(^jobsByArrWithViewModelBlock)(__kindof NSArray <__kindof UIViewModel *>*_Nullable models);
+typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(__kindof UIViewModel *_Nullable model);
+typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullable model);
+typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable model);
+typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable arr);
 
 @class BaseTableView;
 typedef void(^jobsByBaseTableViewBlock)(__kindof BaseTableView *_Nullable tableView);
@@ -98,44 +97,44 @@ typedef void(^jobsByAppDoorModelBlock)(__kindof JobsAppDoorModel *_Nullable mode
 typedef BOOL(^JobsReturnBOOLByAppDoorModelBlock)(__kindof JobsAppDoorModel *_Nullable model);
 
 @class UNNotificationRequestModel;
-typedef void(^jobsByUNNotificationRequestModelBlock)(UNNotificationRequestModel *_Nullable data);
-typedef __kindof UNNotificationRequest *_Nullable(^JobsReturnUNNotificationRequestByModelBlock)(UNNotificationRequestModel *_Nullable data);
+typedef void(^jobsByUNNotificationRequestModelBlock)(UNNotificationRequestModel *_Nullable model);
+typedef __kindof UNNotificationRequest *_Nullable(^JobsReturnUNNotificationRequestByModelBlock)(UNNotificationRequestModel *_Nullable model);
  
 @class JobsAlertModel;
-typedef void(^jobsByAlertModelBlock)(JobsAlertModel *_Nullable data);
-typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByAlertModelBlock)(JobsAlertModel *_Nullable data);
+typedef void(^jobsByAlertModelBlock)(JobsAlertModel *_Nullable model);
+typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByAlertModelBlock)(JobsAlertModel *_Nullable model);
 
 @class UITextModel;
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nullable data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByTextModelBlock)(UITextModel *_Nullable data);
-typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextModelBlock)(UITextModel *_Nullable model);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByTextModelBlock)(UITextModel *_Nullable model);
+typedef void(^jobsByTextModelBlock)(__kindof UITextModel *_Nullable model);
 
 @class JobsMagicTextField;
 typedef void(^jobsByMagicTextFieldBlock)(__kindof JobsMagicTextField *_Nullable textField);
 
 @class RACModel;
-typedef void(^jobsByRACModelBlock)(RACModel *_Nullable data);
+typedef void(^jobsByRACModelBlock)(RACModel *_Nullable model);
 
 @class JobsGestureModel;
-typedef void(^jobsByGestureModelBlock)(JobsGestureModel *_Nullable data);
+typedef void(^jobsByGestureModelBlock)(JobsGestureModel *_Nullable model);
 
 @class JobsIMChatInfoModel;
-typedef void(^jobsByIMChatInfoModelBlock)(JobsIMChatInfoModel *_Nullable data);
+typedef void(^jobsByIMChatInfoModelBlock)(JobsIMChatInfoModel *_Nullable model);
 
 @class NSTimerManager;
-typedef void(^jobsByTimerManagerBlock)(NSTimerManager *_Nullable data);
+typedef void(^jobsByTimerManagerBlock)(NSTimerManager *_Nullable manager);
 
 @class ButtonTimerConfigModel;
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerConfigModelBlock)(ButtonTimerConfigModel *_Nonnull data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerConfigModelBlock)(ButtonTimerConfigModel *_Nonnull model);
 
 @class JobsAppDoorInputViewBaseStyleModel;
-typedef void(^jobsByAppDoorInputViewBaseStyleModelBlock)(JobsAppDoorInputViewBaseStyleModel *_Nullable data);
+typedef void(^jobsByAppDoorInputViewBaseStyleModelBlock)(JobsAppDoorInputViewBaseStyleModel *_Nullable model);
 @class JobsAppDoorInputViewBaseStyle;
-typedef JobsAppDoorInputViewBaseStyle *_Nullable(^JobsReturnAppDoorInputViewBaseStyleByClassBlock)(Class _Nonnull data);
+typedef JobsAppDoorInputViewBaseStyle *_Nullable(^JobsReturnAppDoorInputViewBaseStyleByClassBlock)(Class _Nonnull cls);
 
 @class JobsCorModel;
-typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(UIColor *_Nullable data);
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
+typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(__kindof UIColor *_Nullable data);
 typedef void(^jobsByCorModelBlock)(JobsCorModel *_Nullable data);
 
 @class JobsMenuView;
@@ -143,24 +142,24 @@ typedef void(^jobsByMenuViewBlock)(__kindof JobsMenuView *_Nullable view);
 
 @class JobsViewNavigator;
 typedef void(^jobsByViewNavigatorBlock)(__kindof JobsViewNavigator *_Nullable navigator);
-typedef JobsViewNavigator *_Nonnull(^JobsReturnViewNavigatorByViewAndAnimatedBlock)(__kindof UIView *_Nullable view,BOOL animated);
+typedef JobsViewNavigator *_Nonnull(^JobsReturnViewNavigatorByViewAndAnimatedBlock)(Jobs_ReturnViewNavigatorByViewAndAnimatedBlock_Arguments);
 typedef JobsViewNavigator *_Nonnull(^JobsReturnViewNavigatorByBOOLBlock)(BOOL data);
 
 @class ButtonTimerConfigModel;
-typedef void(^jobsByButtonTimerConfigModelBlock)(__kindof ButtonTimerConfigModel *_Nullable data);
+typedef void(^jobsByButtonTimerConfigModelBlock)(__kindof ButtonTimerConfigModel *_Nullable model);
 
 @class BaseNavigationBar;
 typedef void(^jobsByBaseNavigationBarBlock)(__kindof BaseNavigationBar *_Nullable navBar);
 
 @class MasonryModel;
-typedef void(^jobsByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
-typedef id _Nullable(^JobsReturnIDByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
-typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryModelBlock)(__kindof MasonryModel *_Nullable data);
+typedef void(^jobsByMasonryModelBlock)(__kindof MasonryModel *_Nullable model);
+typedef id _Nullable(^JobsReturnIDByMasonryModelBlock)(__kindof MasonryModel *_Nullable model);
+typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryModelBlock)(__kindof MasonryModel *_Nullable model);
 
 @class LZTabBar;
 typedef void(^jobsByLZTabBarBlock)(__kindof LZTabBar *_Nullable tabBar);
 @class LZTabBarItem;
-typedef void(^jobsByLZTabBarItemBlock)(__kindof LZTabBarItem *_Nullable tabBarItem);
+typedef void(^jobsByLZTabBarItemBlock)(__kindof LZTabBarItem *_Nullable item);
 
 @class UITextFieldModel;
 typedef void(^jobsByTextFieldModelBlock)(__kindof UITextFieldModel *_Nullable model);
@@ -173,15 +172,15 @@ typedef __kindof BaseUploadFileRequest *_Nullable(^JobsReturnRequestByFileModelB
 
 @class UIButtonModel;
 typedef void(^jobsByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);
-typedef void(^jobsByButtonModelAndBOOLBlock)(__kindof UIButtonModel *_Nonnull buttonModel,BOOL data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelAndBOOLBlock)(__kindof UIButtonModel *_Nonnull buttonModel,BOOL data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelBlock)(UIButtonModel *_Nullable data);
+typedef void(^jobsByButtonModelAndBOOLBlock)(Jobs_ByButtonModelAndBOOLBlock_Arguments);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelAndBOOLBlock)(Jobs_ByButtonModelAndBOOLBlock_Arguments);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelBlock)(UIButtonModel *_Nullable model);
 typedef BOOL(^JobsReturnBOOLByButtonModelBlock)(UIButtonModel *_Nullable data);
-typedef NSMutableArray <UIButtonModel *>*_Nullable(^JobsReturnButtonModelArrByArrBlock)(__kindof NSArray *_Nullable data);
-typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByString)(__kindof NSString *_Nullable data);
-typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByAttributedString)(__kindof NSAttributedString *_Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(__kindof UIButtonModel *_Nullable data);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelArrayBlock)(__kindof NSArray <UIButtonModel *>*_Nullable arr);
+typedef NSMutableArray <UIButtonModel *>*_Nullable(^JobsReturnButtonModelArrByArrBlock)(__kindof NSArray *_Nullable arr);
+typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByString)(__kindof NSString *_Nullable string);
+typedef __kindof UIButtonModel *_Nullable(^JobsReturnButtonModelByAttributedString)(__kindof NSAttributedString *_Nullable aString);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModelBlock)(__kindof UIButtonModel *_Nullable model);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByButtonModelArrayBlock)(__kindof NSArray <UIButtonModel *>*_Nullable models);
 
 @class JobsImageModel;
 typedef void(^jobsByImageModelBlock)(__kindof JobsImageModel *_Nullable model);
@@ -196,7 +195,7 @@ typedef void(^jobsByTabBarBlock)(JobsTabBar *_Nullable tabBar);
 typedef void(^jobsByFileFolderHandleModelBlock)(__kindof FileFolderHandleModel *_Nullable model);
 
 @class JobsNavBarConfig;
-typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable data);
+typedef void(^jobsByNavBarConfigBlock)(__kindof JobsNavBarConfig *_Nullable config);
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByStringBlock)(NSString *_Nullable string);
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByAttributedStringBlock)(NSAttributedString *_Nullable aString);
 typedef JobsNavBarConfig *_Nullable(^JobsReturnNavBarConfigByStringAndActionBlock)(Jobs_NavBarConfig_Title_Action_Arguments);
@@ -239,23 +238,23 @@ typedef void(^jobsByToggleBaseViewBlock)(JobsToggleBaseView *_Nullable toggleBas
 typedef void(^jobsByHotLabelBlock)(__kindof JobsHotLabelBySingleLine *_Nullable view);
 
 @class FileNameModel;
-typedef FileNameModel *_Nonnull(^JobsReturnFileNameModelByFileFullNameStringBlock)(NSString *_Nullable FileFullName);
+typedef FileNameModel *_Nonnull(^JobsReturnFileNameModelByFileFullNameStringBlock)(NSString *_Nullable fileFullName);
 
 @class JobsUserModel;
 typedef __kindof JobsUserModel<NSCoding> *_Nullable(^JobsReturnUserModelByVoidBlock)(void);
 typedef __kindof JobsUserModel<NSCoding> *_Nullable(^JobsReturnUserModelByKeyBlock)(NSString *_Nullable key);
-typedef void(^jobsByUserModelBlock)(__kindof JobsUserModel <NSCoding>*_Nullable userModel);
+typedef void(^jobsByUserModelBlock)(__kindof JobsUserModel <NSCoding>*_Nullable model);
 typedef void(^jobsByIDAndKeyBlock)(NSObject <NSCoding> *_Nonnull userModel,
                                    NSString *_Nullable key);
 @class UserDefaultModel;
 typedef void(^jobsByUserDefaultModelBlock)(UserDefaultModel *_Nonnull data);
 
 @class JobsTabBarItemConfig;
-typedef void(^jobsByTabBarItemConfigBlock)(__kindof JobsTabBarItemConfig *_Nullable data);
-typedef __kindof UITabBarItem *_Nullable(^JobsReturnTabBarItemByConfigBlock)(__kindof JobsTabBarItemConfig *_Nullable data);
+typedef void(^jobsByTabBarItemConfigBlock)(__kindof JobsTabBarItemConfig *_Nullable config);
+typedef __kindof UITabBarItem *_Nullable(^JobsReturnTabBarItemByConfigBlock)(__kindof JobsTabBarItemConfig *_Nullable config);
 
 @class LZTabBarConfig;
-typedef void(^jobsByLZTabBarConfigBlock)(__kindof LZTabBarConfig *_Nullable data);
+typedef void(^jobsByLZTabBarConfigBlock)(__kindof LZTabBarConfig *_Nullable config);
 
 @class MJRefreshConfigModel;
 typedef void(^jobsByRefreshConfigModelBlock)(__kindof MJRefreshConfigModel *_Nullable model);
@@ -264,21 +263,21 @@ typedef void(^jobsByRefreshConfigModelBlock)(__kindof MJRefreshConfigModel *_Nul
 typedef void(^jobsByHXPhotoPickerModelBlock)(__kindof HXPhotoPickerModel *_Nullable model);
 
 @class JobsParagraphStyleModel;
-typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *_Nullable data);
-typedef __kindof NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *_Nullable data);
+typedef void(^jobsByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *_Nullable model);
+typedef __kindof NSMutableAttributedString *_Nullable(^JobsReturnMutAttributedStringByParagraphStyleModelBlock)(__kindof JobsParagraphStyleModel *_Nullable model);
 
 @class JobsLocationModel;
 typedef void(^jobsByLocationModelBlock)(__kindof JobsLocationModel *_Nullable model);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByLocationModelBlock)(__kindof JobsLocationModel *_Nullable data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByLocationModelBlock)(__kindof JobsLocationModel *_Nullable model);
 
 @class GTCaptcha4Model;
 typedef void(^jobsByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable model);
-typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
+typedef __kindof NSDictionary *_Nullable(^JobsReturnDicByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable model);
 
 @class FMDoorModel;
 typedef void(^jobsByDoorModelBlock)(__kindof FMDoorModel *_Nullable model);
-typedef __kindof FMDoorModel *_Nullable(^JobsDoorModelBlock)(__kindof FMDoorModel *_Nullable data);
-typedef __kindof FMDoorModel *_Nullable(^JobsReturnDoorModelByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable data);
+typedef __kindof FMDoorModel *_Nullable(^JobsDoorModelBlock)(__kindof FMDoorModel *_Nullable model);
+typedef __kindof FMDoorModel *_Nullable(^JobsReturnDoorModelByGTCaptcha4ModelBlock)(__kindof GTCaptcha4Model *_Nullable model);
 
 @class FMNameModel;
 typedef void(^jobsByNameModelBlock)(__kindof FMNameModel *_Nullable model);
@@ -287,22 +286,22 @@ typedef void(^jobsByNameModelBlock)(__kindof FMNameModel *_Nullable model);
 typedef void(^jobsByWithDrawModelBlock)(__kindof FMWithDrawModel *_Nullable model);
 
 @class JobsTimeModel;
-typedef void(^jobsByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);
-typedef NSString *_Nullable(^JobsReturnStringByTimeModelBlock)(__kindof JobsTimeModel *_Nullable data);
+typedef void(^jobsByTimeModelBlock)(__kindof JobsTimeModel *_Nullable model);
+typedef NSString *_Nullable(^JobsReturnStringByTimeModelBlock)(__kindof JobsTimeModel *_Nullable model);
 typedef JobsTimeModel *_Nullable(^JobsReturnTimeModelByIntegerBlock)(NSInteger timeSec);
 typedef JobsTimeModel *_Nullable(^JobsReturnTimeModelByStringBlock)(NSString *_Nullable dateFormat);
 
 @class VideoModel_Core;
-typedef void(^jobsByVideoModelCoreBlock)(__kindof VideoModel_Core *_Nullable data);
+typedef void(^jobsByVideoModelCoreBlock)(__kindof VideoModel_Core *_Nullable model);
 
 @class NotificationModel;
-typedef void(^jobsByNotificationModelBlock)(NotificationModel *_Nullable data);
+typedef void(^jobsByNotificationModelBlock)(NotificationModel *_Nullable model);
 
 @class NSNotificationKeyboardModel;
-typedef void(^jobsByNSNotificationKeyboardModelBlock)(NSNotificationKeyboardModel *_Nullable data);
+typedef void(^jobsByNSNotificationKeyboardModelBlock)(NSNotificationKeyboardModel *_Nullable model);
 
 @class JobsExcelConfigureViewModel;
-typedef void(^jobsByExcelConfigureViewModelBlock)(JobsExcelConfigureViewModel *_Nullable data);
+typedef void(^jobsByExcelConfigureViewModelBlock)(JobsExcelConfigureViewModel *_Nullable model);
 
 @class PopListBaseView;
 typedef void(^jobsByPopListBaseViewBlock)(PopListBaseView *_Nullable data);
@@ -322,7 +321,7 @@ typedef void(^jobsByUserHeaderDataViewTBVCellBlock)(JobsUserHeaderDataViewTBVCel
 
 @class JobsKeyValueModel;
 typedef void(^jobsByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);
-typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKeyValueModelBlock)(JobsKeyValueModel *_Nullable data);
+typedef NSMutableDictionary *_Nonnull(^JobsReturnMutableDicByKeyValueModelBlock)(JobsKeyValueModel *_Nullable model);
 
 @class SPAlertControllerConfig;
 typedef void(^jobsBySPAlertControllerConfigBlock)(__kindof SPAlertControllerConfig *_Nullable config);
@@ -335,24 +334,24 @@ typedef void(^jobsByCustomTabBarBlock)(__kindof JobsCustomTabBar *_Nullable cust
 typedef JobsCustomTabBar *_Nullable(^JobsReturnCustomTabBarByViewBlock)(__kindof UIView *_Nullable view);
 
 @class JobsResponseModel;
-typedef void(^jobsByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
-typedef id _Nullable(^JobsReturnIDByResponseModelBlock)(JobsResponseModel *_Nullable responseModel);
+typedef void(^jobsByResponseModelBlock)(JobsResponseModel *_Nullable model);
+typedef id _Nullable(^JobsReturnIDByResponseModelBlock)(JobsResponseModel *_Nullable model);
 
 @class IpifyModel;
-typedef void(^jobsByIpifyModelBlock)(IpifyModel *_Nullable ipifyModel);
+typedef void(^jobsByIpifyModelBlock)(IpifyModel *_Nullable model);
 
 @class IPApiModel;
-typedef void(^jobsByIPApiModelBlock)(IPApiModel *_Nullable iPApiModel);
+typedef void(^jobsByIPApiModelBlock)(IPApiModel *_Nullable model);
 
 @class IpinfoModel;
-typedef void(^jobsByIpinfoModelBlock)(IpinfoModel *_Nullable ipinfoModel);
+typedef void(^jobsByIpinfoModelBlock)(IpinfoModel *_Nullable model);
 
 @class RequestTool;
-typedef void(^jobsByRequestToolBlock)(RequestTool *_Nullable requestTool);
+typedef void(^jobsByRequestToolBlock)(RequestTool *_Nullable tool);
 
 @class BaseModel;
-typedef void(^jobsByBaseModelBlock)(__kindof BaseModel *_Nullable baseModel);
-typedef void(^jobsByBaseModelAndIndexBlock)(__kindof BaseModel *_Nullable baseModel,NSInteger index);
+typedef void(^jobsByBaseModelBlock)(__kindof BaseModel *_Nullable model);
+typedef void(^jobsByBaseModelAndIndexBlock)(__kindof BaseModel *_Nullable model,NSInteger index);
 
 @class BRStringPickerViewModel;
 typedef void(^jobsByBRStringPickerViewModelBlock)(__kindof BRStringPickerViewModel *_Nullable model);
@@ -396,7 +395,7 @@ typedef void(^jobsByFSCalendarBlock)(__kindof FSCalendar *_Nullable calendar);
 
 @class HXPhotoView;
 @class HXPhotoManager;
-typedef HXPhotoView *_Nullable(^JobsReturnHXPhotoViewByPhotoManagerBlock)(HXPhotoManager *_Nullable manager);
+typedef HXPhotoView *_Nullable(^JobsReturnHXPhotoViewByPhotoManagerBlock)(__kindof HXPhotoManager *_Nullable manager);
 
 @class HTMLDocument;
 typedef HTMLDocument *_Nullable(^JobsReturnHTMLDocumentByStringBlock)(__kindof NSString *_Nullable string);
@@ -414,8 +413,8 @@ typedef void(^jobsByHXPhotoConfigurationBlock)(__kindof HXPhotoConfiguration *_N
 typedef void(^jobsByBRPickerStyleBlock)(__kindof BRPickerStyle *_Nullable pickerStyle);
 typedef void(^jobsByBRDatePickerViewBlock)(__kindof BRDatePickerView *_Nullable datePickerView);
 typedef void(^jobsByBRAddressPickerViewBlock)(__kindof BRAddressPickerView *_Nullable addressPickerView);
-typedef BRDatePickerView *_Nonnull(^JobsReturnBRDatePickerViewByPickerStyleBlock)(BRPickerStyle *_Nullable style);
-typedef BRAddressPickerView *_Nonnull(^JobsReturnBRAddressPickerViewByPickerStyleBlock)(BRPickerStyle *_Nullable style);
+typedef BRDatePickerView *_Nonnull(^JobsReturnBRDatePickerViewByPickerStyleBlock)(__kindof BRPickerStyle *_Nullable style);
+typedef BRAddressPickerView *_Nonnull(^JobsReturnBRAddressPickerViewByPickerStyleBlock)(__kindof BRPickerStyle *_Nullable style);
 typedef BRStringPickerView *_Nonnull(^JobsReturnBRStringPickerViewByPickerModeBlock)(NSInteger mode);
 
 @class AFSecurityPolicy;
@@ -438,68 +437,68 @@ typedef void(^jobsByNavigationTransitionManagerBlock)(__kindof JobsNavigationTra
 typedef WMZBannerView *_Nonnull(^JobsReturnWMZBannerViewByBannerParamBlock)(WMZBannerParam *_Nonnull bannerParam);
 
 @class MASConstraintMaker;
+typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
 typedef void(^jobsByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull make);
 typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull data);
-typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
 typedef jobsByMASConstraintMakerBlock _Nonnull (^JobsReturnMASConstraintMakerByBOOLBlock)(BOOL data);
 
 @class MJRefreshNormalHeader;
-typedef MJRefreshNormalHeader *_Nonnull(^JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshNormalHeader *_Nonnull(^JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshNormalHeaderBlock)(MJRefreshNormalHeader *_Nullable view);
 @class MJRefreshStateHeader;
-typedef MJRefreshStateHeader *_Nonnull(^JobsReturnMJRefreshStateHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshStateHeader *_Nonnull(^JobsReturnMJRefreshStateHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshStateHeaderBlock)(MJRefreshStateHeader *_Nullable view);
 @class MJRefreshHeader;
-typedef MJRefreshHeader *_Nonnull(^JobsReturnMJRefreshHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshHeader *_Nonnull(^JobsReturnMJRefreshHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshHeaderBlock)(MJRefreshHeader *_Nullable view);
 @class MJRefreshGifHeader;
-typedef MJRefreshGifHeader *_Nonnull(^JobsReturnMJRefreshGifHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshGifHeader *_Nonnull(^JobsReturnMJRefreshGifHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshGifHeaderBlock)(MJRefreshGifHeader *_Nullable view);
 @class MJRefreshAutoGifFooter;
-typedef MJRefreshAutoGifFooter *_Nonnull(^JobsReturnMJRefreshAutoGifFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshAutoGifFooter *_Nonnull(^JobsReturnMJRefreshAutoGifFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshAutoGifFooterBlock)(MJRefreshAutoGifFooter *_Nullable view);
 @class MJRefreshBackNormalFooter;
-typedef MJRefreshBackNormalFooter *_Nonnull(^JobsReturnMJRefreshBackNormalFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshBackNormalFooter *_Nonnull(^JobsReturnMJRefreshBackNormalFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshBackNormalFooterBlock)(MJRefreshBackNormalFooter *_Nullable view);
 @class MJRefreshAutoNormalFooter;
-typedef MJRefreshAutoNormalFooter *_Nonnull(^JobsReturnMJRefreshAutoNormalFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshAutoNormalFooter *_Nonnull(^JobsReturnMJRefreshAutoNormalFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshAutoNormalFooterBlock)(MJRefreshAutoNormalFooter *_Nullable view);
 @class MJRefreshAutoStateFooter;
-typedef MJRefreshAutoStateFooter *_Nonnull(^JobsReturnMJRefreshAutoStateFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshAutoStateFooter *_Nonnull(^JobsReturnMJRefreshAutoStateFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshAutoStateFooterBlock)(MJRefreshAutoStateFooter *_Nullable view);
 @class MJRefreshAutoFooter;
-typedef MJRefreshAutoFooter *_Nonnull(^JobsReturnMJRefreshAutoFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshAutoFooter *_Nonnull(^JobsReturnMJRefreshAutoFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshAutoFooterBlock)(MJRefreshAutoFooter *_Nullable view);
 @class MJRefreshBackGifFooter;
-typedef MJRefreshBackGifFooter *_Nonnull(^JobsReturnMJRefreshBackGifFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshBackGifFooter *_Nonnull(^JobsReturnMJRefreshBackGifFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshBackGifFooterBlock)(MJRefreshBackGifFooter *_Nullable view);
 @class MJRefreshBackStateFooter;
-typedef MJRefreshBackStateFooter *_Nonnull(^JobsReturnMJRefreshBackStateFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshBackStateFooter *_Nonnull(^JobsReturnMJRefreshBackStateFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshBackStateFooterBlock)(MJRefreshBackStateFooter *_Nullable view);
 @class MJRefreshBackFooter;
-typedef MJRefreshBackFooter *_Nonnull(^JobsReturnMJRefreshBackFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshBackFooter *_Nonnull(^JobsReturnMJRefreshBackFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshBackFooterBlock)(MJRefreshBackFooter *_Nullable view);
 @class MJRefreshFooter;
-typedef MJRefreshFooter *_Nonnull(^JobsReturnMJRefreshFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef MJRefreshFooter *_Nonnull(^JobsReturnMJRefreshFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshFooterBlock)(MJRefreshFooter *_Nullable view);
 @class LOTAnimationMJRefreshHeader;
-typedef LOTAnimationMJRefreshHeader *_Nonnull(^JobsReturnLOTAnimationMJRefreshHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull refreshConfigModel);
+typedef LOTAnimationMJRefreshHeader *_Nonnull(^JobsReturnLOTAnimationMJRefreshHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByLOTAnimationMJRefreshHeaderBlock)(LOTAnimationMJRefreshHeader *_Nullable view);
 
 @class SRWebSocket;
-typedef SRWebSocket *_Nonnull(^JobsReturnSRWebSocketByNSURLRequestBlock)(NSURLRequest *_Nullable webSocket);
+typedef SRWebSocket *_Nonnull(^JobsReturnSRWebSocketByNSURLRequestBlock)(NSURLRequest *_Nullable request);
 
 @class RACDisposable;
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByVoidBlock)(void);
-typedef void(^jobsByRACDisposableBlock)(RACDisposable *_Nullable data);
+typedef void(^jobsByRACDisposableBlock)(RACDisposable *_Nullable disposable);
 typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByTimeIntervalBlock)(NSTimeInterval data);
     
 @class RACSignal;
 typedef NSArray<RACSignal *>*_Nonnull(^JobsReturnRACSignalArrByVoidBlock)(void);
 
 @class GKPhotoBrowser;
-typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull data);
-typedef GKPhotoBrowser *_Nullable(^JobsReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock)(__kindof NSArray * _Nullable photosArray,NSInteger currentIndex);
+typedef void(^jobsByGKPhotoBrowserBlock)(GKPhotoBrowser *_Nonnull browser);
+typedef GKPhotoBrowser *_Nullable(^JobsReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock)(Jobs_ReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock_Arguments);
 @class GKPhoto;
 typedef void(^jobsByGKPhotoBlock)(GKPhoto *_Nonnull data);
 
@@ -507,7 +506,7 @@ typedef void(^jobsByGKPhotoBlock)(GKPhoto *_Nonnull data);
 typedef void(^jobsBySZTextViewBlock)(SZTextView *_Nonnull textView);
 
 @class XZMRefreshNormalHeader;
-typedef void(^jobsByXZMRefreshNormalHeaderBlock)(XZMRefreshNormalHeader *_Nonnull data);
+typedef void(^jobsByXZMRefreshNormalHeaderBlock)(__kindof XZMRefreshNormalHeader *_Nonnull data);
 
 @class YTKNetworkConfig;
 typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable data);
@@ -520,7 +519,7 @@ typedef void(^jobsByYTKChainRequestBlock)(YTKChainRequest *_Nullable chainReques
 
 @class YTKBatchRequest;
 typedef void(^jobsByYTKBatchRequestBlock)(__kindof YTKBatchRequest *_Nullable data);
-typedef __kindof YTKBatchRequest *_Nullable(^JobsReturnBatchRequestByArrBlock)(__kindof NSArray <YTKRequest *>*_Nullable data);
+typedef __kindof YTKBatchRequest *_Nullable(^JobsReturnBatchRequestByArrBlock)(__kindof NSArray <YTKRequest *>*_Nullable requests);
 
 @class YTKBaseRequest;
 typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
@@ -528,7 +527,7 @@ typedef JobsResponseModel *_Nullable(^JobsReturnResponseModelByYTKBaseRequestBlo
 typedef void(^JobsHandelNoSuccessBlock)(__kindof YTKBaseRequest *_Nonnull request);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByVoidBlock)(void);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByIDBlock)(id _Nullable data);
-typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByDictionaryBlock)(NSDictionary *_Nullable data);
+typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByDictionaryBlock)(NSDictionary *_Nullable dic);
 
 @class ZFAVPlayerManager;
 typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullable data);
@@ -542,17 +541,17 @@ typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nulla
 @class JXCategoryNumberView;
 @class JXCategoryIndicatorBackgroundView;
 @class JXCategoryIndicatorLineView;
-typedef void(^jobsByCategoryTitleViewBlock)(JXCategoryTitleView *_Nullable view);
-typedef void(^jobsByCategoryImageViewBlock)(JXCategoryImageView *_Nullable view);
-typedef void(^jobsByCategoryDotViewBlock)(JXCategoryDotView *_Nullable view);
-typedef void(^jobsByCategoryNumberViewBlock)(JXCategoryNumberView *_Nullable view);
-typedef void(^jobsByCategoryIndicatorBackgroundViewBlock)(JXCategoryIndicatorBackgroundView *_Nullable view);
-typedef void(^jobsCategoryIndicatorLineViewBlock)(JXCategoryIndicatorLineView *_Nullable view);
+typedef void(^jobsByCategoryTitleViewBlock)(__kindof JXCategoryTitleView *_Nullable view);
+typedef void(^jobsByCategoryImageViewBlock)(__kindof JXCategoryImageView *_Nullable view);
+typedef void(^jobsByCategoryDotViewBlock)(__kindof JXCategoryDotView *_Nullable view);
+typedef void(^jobsByCategoryNumberViewBlock)(__kindof JXCategoryNumberView *_Nullable view);
+typedef void(^jobsByCategoryIndicatorBackgroundViewBlock)(__kindof JXCategoryIndicatorBackgroundView *_Nullable view);
+typedef void(^jobsCategoryIndicatorLineViewBlock)(__kindof JXCategoryIndicatorLineView *_Nullable view);
 
 #pragma mark —— 复合型Block
-typedef void(^jobsByErrBlock)(jobsByErrorBlock _Nullable block);
-typedef void(^jobsByRetIDByIDBlock)(JobsReturnIDByIDBlock _Nullable block);
-typedef void(^jobsDelegateBlock)(NSString *_Nullable data,jobsByVoidBlock _Nullable block);
+typedef void(^jobsByErrBlocks)(jobsByErrorBlock _Nullable block);
+typedef void(^jobsByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
+typedef void(^jobsDelegateBlocks)(Jobs_DelegateBlocks_Arguments);
 
 typedef id _Nullable(^JobsReturnIDByVoidBlocks)(jobsByVoidBlock _Nullable block);
 typedef id _Nullable(^JobsReturnIDByVoidIDBlocks)(jobsByIDBlock _Nullable block);
@@ -566,12 +565,12 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByIDBlocks)(jobsByIDBlock _Nul
 typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDBlocks)(JobsReturnIDByVoidBlock _Nullable block);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlocks)(jobsByMASConstraintMakerBlock _Nullable block);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByViewAndMasonryConstraintsBlocks)(__kindof UIView * _Nonnull subview,jobsByMASConstraintMakerBlock _Nullable block);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByViewAndMasonryConstraintsBlocks)(Jobs_ReturnViewByViewAndMasonryConstraintsBlocks_Arguments);
 
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Blocks)(jobsByButtonModelBlock _Nullable block);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerManagerBlocks)(jobsByTimerManagerBlock _Nullable block);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlocks)(jobsByBtnBlock _Nullable);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByIDBlocks)(jobsByIDBlock _Nullable);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlocks)(jobsByBtnBlock _Nullable block);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonByIDBlocks)(jobsByIDBlock _Nullable block);
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable block);
 
@@ -583,7 +582,7 @@ typedef __kindof UIViewController *_Nullable(^JobsReturnVCByRetIDByVoidBlocks)(J
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByMasonryConstraintsBlocks)(jobsByMASConstraintMakerBlock _Nullable block);
 
-typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlock)(JobsReturnIDByIDBlock _Nullable block);
+typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
 
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlocks)(jobsByMASConstraintMakerBlock _Nonnull block);
 
@@ -595,15 +594,15 @@ typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlocks)(jobsByMASCons
 /// SDWebImage+UIButton
 #ifndef SDWebImageButtonBlock
 #define SDWebImageButtonBlock
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDExternalCompletionBlock)(SDExternalCompletionBlock _Nullable data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDWebImageOptionsBlock)(SDWebImageOptions data);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDImageLoaderProgressBlock)(SDImageLoaderProgressBlock _Nullable data);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDExternalCompletionBlocks)(SDExternalCompletionBlock _Nullable completionBlock);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDWebImageOptionsBlocks)(SDWebImageOptions options);
+typedef __kindof UIButton *_Nullable(^JobsReturnButtonBySDImageLoaderProgressBlocks)(SDImageLoaderProgressBlock _Nullable progressBlock);
 #endif /* SDWebImageButtonBlock */
 /// SDWebImage+UIImageView
 #ifndef SDWebImageImageViewBlock
 #define SDWebImageImageViewBlock
-typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDExternalCompletionBlock)(SDExternalCompletionBlock _Nullable data);
-typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDWebImageOptionsBlock)(SDWebImageOptions data);
+typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDExternalCompletionBlocks)(SDExternalCompletionBlock _Nullable completionBlock);
+typedef __kindof UIImageView *_Nullable(^JobsReturnImageViewBySDWebImageOptionsBlocks)(SDWebImageOptions options);
 #endif /* SDWebImageImageViewBlock */
 
 #import "JobsBizBlock.h" /// 关于业务（不与JobsOCBaseConfigDemo同步）

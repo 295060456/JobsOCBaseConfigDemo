@@ -298,5 +298,83 @@
     Class _Nonnull cls, \
     __kindof NSString *_Nullable salt
 #endif /* Jobs_ByClassAndSaltBlock_Arguments */
-                                                                                
+
+#ifndef Jobs_ReturnIDByComponentTypeAndUIViewBlock_Arguments
+#define Jobs_ReturnIDByComponentTypeAndUIViewBlock_Arguments \
+    ComponentType componentType, \
+    __kindof UIView *_Nullable view
+#endif /* Jobs_ReturnIDByComponentTypeAndUIViewBlock_Arguments */
+
+#ifndef Jobs_ViewModelAndBOOLBlock_Arguments
+#define Jobs_ViewModelAndBOOLBlock_Arguments \
+    __kindof UIViewModel *_Nonnull model, \
+    BOOL data
+#endif /* Jobs_ViewModelAndBOOLBlock_Arguments */
+
+#ifndef Jobs_ReturnViewNavigatorByViewAndAnimatedBlock_Arguments
+#define Jobs_ReturnViewNavigatorByViewAndAnimatedBlock_Arguments \
+    __kindof UIView *_Nullable view, \
+    BOOL animated
+#endif /* Jobs_ReturnViewNavigatorByViewAndAnimatedBlock_Arguments */
+
+#ifndef Jobs_ByButtonModelAndBOOLBlock_Arguments
+#define Jobs_ByButtonModelAndBOOLBlock_Arguments \
+    __kindof UIButtonModel *_Nonnull model, \
+    BOOL data
+#endif /* Jobs_ByButtonModelAndBOOLBlock_Arguments */
+
+#ifndef Jobs_ReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock_Arguments
+#define Jobs_ReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock_Arguments \
+    __kindof NSArray * _Nullable photosArray, \
+    NSInteger currentIndex
+#endif /* Jobs_ReturnGKPhotoBrowserByPhotosArrayAndCurrentIndexBlock_Arguments */
+
+#ifndef Jobs_DelegateBlocks_Arguments
+#define Jobs_DelegateBlocks_Arguments \
+    NSString *_Nullable string, \
+    jobsByVoidBlock _Nullable block
+#endif /* Jobs_DelegateBlocks_Arguments */
+
+#ifndef Jobs_ReturnViewByViewAndMasonryConstraintsBlocks_Arguments
+#define Jobs_ReturnViewByViewAndMasonryConstraintsBlocks_Arguments \
+    __kindof UIView * _Nonnull subview, \
+    jobsByMASConstraintMakerBlock _Nullable block
+#endif /* Jobs_ReturnViewByViewAndMasonryConstraintsBlocks_Arguments */
+
+#ifndef Jobs_ReturnGoodsClassModelByInt2Block_Arguments
+#define Jobs_ReturnGoodsClassModelByInt2Block_Arguments \
+    NSUInteger data1, \
+    int data2
+#endif /* Jobs_ReturnGoodsClassModelByInt2Block_Arguments */
+
+#ifndef Jobs_ReturnGoodsClassModelByIntStringBlock_Arguments
+#define Jobs_ReturnGoodsClassModelByIntStringBlock_Arguments \
+    int data1, \
+    NSString *_Nullable data2
+#endif /* Jobs_ReturnGoodsClassModelByIntStringBlock_Arguments */
+
+#ifndef Jobs_ByBannerAdsModelAndCellBlock_Arguments
+#define Jobs_ByBannerAdsModelAndCellBlock_Arguments \
+    __kindof FMBannerAdsModel *_Nullable model, \
+    JobsBtnStyleCVCell *_Nonnull cell
+#endif /* Jobs_ByBannerAdsModelAndCellBlock_Arguments */
+
+#ifndef Jobs_ByVCAndDataBlock_Arguments
+#define Jobs_ByVCAndDataBlock_Arguments \
+    __kindof UIViewController *_Nullable viewController, \
+    id _Nullable data
+#endif /* Jobs_ByVCAndDataBlock_Arguments */
+
+#ifndef Jobs_ByView2Block_Arguments
+#define Jobs_ByView2Block_Arguments \
+    __kindof UIView *_Nullable superview, \
+    __kindof UIView *_Nullable view
+#endif /* Jobs_ByView2Block_Arguments */
+
+#ifndef Jobs_ByViewAndDataBlock_Arguments
+#define Jobs_ByViewAndDataBlock_Arguments \
+    __kindof UIView *_Nullable view, \
+    id _Nullable data
+#endif /* Jobs_ByViewAndDataBlock_Arguments */
+
 #endif /* JobsBlockDef_h */

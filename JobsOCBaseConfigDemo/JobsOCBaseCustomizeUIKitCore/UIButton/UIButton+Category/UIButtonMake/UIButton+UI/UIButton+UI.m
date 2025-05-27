@@ -221,7 +221,7 @@
     return self.jobsBtnClickEventByBlock(subscribeNextBlock);
 }
 
--(JobsReturnRACDisposableByReturnIDByIDBlock _Nonnull)jobsBtnClickEventByBlock{
+-(JobsReturnRACDisposableByReturnIDByIDBlocks _Nonnull)jobsBtnClickEventByBlock{
     @jobs_weakify(self)
     return ^RACDisposable *_Nonnull(JobsReturnIDByIDBlock _Nullable block){
         @jobs_strongify(self)
@@ -235,7 +235,7 @@
     return self.jobsBtnLongPressGestureEventByBlock(longPressGestureEventBlock);
 }
 
--(jobsByRetIDByIDBlock _Nonnull)jobsBtnLongPressGestureEventByBlock{
+-(jobsByRetIDByIDBlocks _Nonnull)jobsBtnLongPressGestureEventByBlock{
     @jobs_weakify(self)
     return ^(JobsReturnIDByIDBlock _Nullable block){
         @jobs_strongify(self)
