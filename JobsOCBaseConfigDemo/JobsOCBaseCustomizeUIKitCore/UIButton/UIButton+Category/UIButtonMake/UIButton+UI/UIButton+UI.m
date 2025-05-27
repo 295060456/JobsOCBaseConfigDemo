@@ -111,15 +111,15 @@
     }else{
         if(!background) background = jobsMakeClearConfiguration(^(UIBackgroundConfiguration * _Nullable config) {
             @jobs_strongify(self)
-            background.image = self.isHighlighted ? highlightBackgroundImage : backgroundImage;
-            background.edgesAddingLayoutMarginsToBackgroundInsets = imagePlacement;
+            config.image = self.isHighlighted ? highlightBackgroundImage : backgroundImage;
+            config.edgesAddingLayoutMarginsToBackgroundInsets = imagePlacement;
             
-            background.backgroundInsets = contentInsets;/// 内边距
-            background.backgroundColor = baseBackgroundColor;/// 背景颜色
-            background.cornerRadius = cornerRadiusValue;/// 圆切角
+            config.backgroundInsets = contentInsets;/// 内边距
+            config.backgroundColor = baseBackgroundColor;/// 背景颜色
+            config.cornerRadius = cornerRadiusValue;/// 圆切角
             /// 描边的颜色和线宽
-            background.strokeColor = layerBorderCor;
-            background.strokeWidth = borderWidth;
+            config.strokeColor = layerBorderCor;
+            config.strokeWidth = borderWidth;
             /// ❤️要设置UIButton.imageView的宽\高\尺寸\坐标，请参阅 BaseButtonProtocol❤️
         });
         if(btnConfiguration){
@@ -148,7 +148,7 @@
                 config.subtitleLineBreakMode = subtitleLineBreakMode;/// 副标题的提行方式
                 config.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:titleFont btnTitleCor:titleCor];
                 config.subtitleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:subTitleFont btnTitleCor:subTitleCor];
-                /// 图片
+                /// 前景图片
                 config.image = self.isHighlighted ? highlightImage : normalImage;
                 config.imagePadding = imagePadding;/// 设置图像与标题之间的间距
                 config.imagePlacement = imagePlacement;

@@ -292,6 +292,7 @@ BaseButtonProtocol_synthesize
 @synthesize selected = _selected;
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
+    _selected = selected;
     if([self.data isKindOfClass:UIViewModel.class]){
         UIViewModel *viewModel = (UIViewModel *)self.data;
         self.jobsResetBtnImage(selected ? viewModel.selectedImage_ : viewModel.image);
