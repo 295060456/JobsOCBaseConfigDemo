@@ -42,19 +42,12 @@
 #import "Lottie.h"
 #endif
 
-//#if __has_include(<ReactiveObjC/RACEXTRuntimeExtensions.h>)
-//#import <ReactiveObjC/RACEXTRuntimeExtensions.h>
-//#else
-//#import "RACEXTRuntimeExtensions.h"
-//#endif
-
 NS_ASSUME_NONNULL_BEGIN
-
 /// 下拉刷新Lottie动画
 @interface LOTAnimationMJRefreshHeader : MJRefreshGifHeader
 
-Prop_strong()MJRefreshConfigModel *refreshConfigModel;
-Prop_assign()CGSize lOTAnimationViewSize;
+-(JobsReturnLOTAnimationMJRefreshHeaderByRefreshConfigModelBlock _Nonnull)byRefreshConfigModel;
+-(JobsReturnLOTAnimationMJRefreshHeaderBySizeBlock _Nonnull)bySize;
 
 @end
 

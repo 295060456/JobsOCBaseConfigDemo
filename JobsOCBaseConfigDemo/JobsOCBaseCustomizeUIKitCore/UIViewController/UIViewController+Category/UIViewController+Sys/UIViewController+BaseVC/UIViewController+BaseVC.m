@@ -258,22 +258,22 @@ JobsKey(_navBar)
 //            JobsLog(@"%f",self.navBarConfig.closeBtnModel.jobsOffsetX);
 //            if(!self.navBarConfig.title) self.navBarConfig.title = self.viewModel.textModel.text;
             data.navBarConfig = self.navBarConfig;
-            [self.view.addSubview(data) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.equalTo(self.view);
-                make.height.mas_equalTo(JobsWidth(40));
-                if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-                    make.top.equalTo(self.view);
-                }else{
-                    make.top.equalTo(self.view).offset(JobsStatusBarHeight());
-                }
-            }];self.view.refresh();
-            data.JobsRichViewByModel2(nil)
-                .JobsNavBarBackBtnClickBlock(^(__kindof UIButton *_Nullable x){
-                    @jobs_strongify(self)
-                    self.backBtnClickEvent(x);
-                }).JobsNavBarCloseBtnClickBlock(^(__kindof UIButton *_Nullable x){
-                    
-                });
+            self.view.addSubview(data.JobsRichViewByModel2(nil)
+                                 .JobsNavBarBackBtnClickBlock(^(__kindof UIButton *_Nullable x){
+                                     @jobs_strongify(self)
+                                     self.backBtnClickEvent(x);
+                                 }).JobsNavBarCloseBtnClickBlock(^(__kindof UIButton *_Nullable x){
+                                     
+                                 })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                                     @jobs_strongify(self)
+                                     make.left.right.equalTo(self.view);
+                                     make.height.mas_equalTo(JobsWidth(40));
+                                     if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
+                                         make.top.equalTo(self.view);
+                                     }else{
+                                         make.top.equalTo(self.view).offset(JobsStatusBarHeight());
+                                     }
+                                 }).on();
         }))
     }return NavBar;
 }

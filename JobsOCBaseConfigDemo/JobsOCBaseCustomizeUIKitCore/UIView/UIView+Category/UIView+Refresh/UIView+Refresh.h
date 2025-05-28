@@ -11,6 +11,7 @@
 #import "NSObject+Extras.h"
 #import "NSObject+DynamicInvoke.h"
 #import "MJRefresh+Extra.h"
+#import "UILabel+Extra.h"
 
 #import "LOTAnimationMJRefreshHeader.h"
 #import "MJRefreshConfigModel.h"
@@ -61,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// https://github.com/CoderMJLee/MJRefresh/issues/1495
 @interface UIView (Refresh)
 /// MJRefresh 作用于targetView
-@property(nonatomic,weak)UIScrollView *mjRefreshTargetView;
+Prop_weak()UIScrollView *mjRefreshTargetView;
 
 Prop_strong()MJRefreshConfigModel *refreshConfigHeader;//头部的配置信息
 Prop_strong()MJRefreshConfigModel *refreshConfigFooter;//尾部的配置信息

@@ -48,6 +48,10 @@ Prop_assign()ScrollDirection direction;
 -(JobsReturnScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy;
 -(JobsReturnScrollViewBySizeBlock _Nonnull)byContentSize;
 -(JobsReturnScrollViewByBOOLBlock _Nonnull)byScrollEnabled;
+-(JobsReturnScrollViewByBOOLBlock _Nonnull)byBounces;
+-(JobsReturnScrollViewByUIEdgeInsetsBlock _Nonnull)byEdgeInsets;
+-(JobsReturnScrollViewByMJRefreshHeaderBlock _Nonnull)byMJRefreshHeader;
+-(JobsReturnScrollViewByMJRefreshFooterBlock _Nonnull)byMJRefreshFooter;
 #pragma mark —— AnimationKit
 -(void)moveAnimWithSortingType:(SortingType)sortingType
                 animationBlock:(jobsByVoidBlock _Nullable)animationBlock

@@ -7735,70 +7735,121 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    ```
    
    ```objective-c
+   /// BaseViewProtocol
+   @synthesize collectionView = _collectionView;
    -(BaseCollectionView *)collectionView{
        if (!_collectionView) {
            @jobs_weakify(self)
-           _collectionView = BaseCollectionView.initByLayout(jobsMakeCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
+           _collectionView = self.addSubview(BaseCollectionView
+                                             .initByLayout(self.horizontalLayout)
+                                             .registerCollectionViewClass()
+                                             .registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@"")
+                                             .registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@"")
+                                             .registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"")
+                                             .byEdgeInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+                                             .byBounces(NO)///设置为NO，使得collectionView只能上拉，不能下拉
+                                             .dataLink(self)
+                                             /// 普通的MJRefreshHeader（二选一）
+                                             .byMJRefreshHeader(_collectionView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                                                 @jobs_strongify(self)
+                                                 self.feedbackGenerator(nil);//震动反馈
+                                                 self->_collectionView.endRefreshing(YES);
+                                                 return nil;
+                                             }]))
+                                             /// MJRefreshHeader的拓展：下拉刷新Lottie动画（二选一）
+                                             .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
+                                                 
+                                             })))
+                                             .byMJRefreshFooter(_collectionView.MJRefreshAutoNormalFooterBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                                                 @jobs_strongify(self)
+                                                 self.feedbackGenerator(nil);//震动反馈
+                                                 self->_collectionView.endRefreshing(YES);
+                                                 return nil;
+                                             }]))
+                                             .showsVerticalScrollIndicatorBy(NO)
+                                             .showsHorizontalScrollIndicatorBy(NO)
+                                             /// 无数据占位：用默认的图文占位表达（二选一）
+                                             .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                                                 data.title = JobsInternationalization(@"NO BANK CARD FOUND");
+                                                 data.titleCor = JobsWhiteColor;
+                                                 data.titleFont = bayonRegular(JobsWidth(30));
+                                                 data.normalImage = JobsIMG(@"用户默认头像");
+                                             }))
+                                             /// 无数据占位：用自定义的视图表达（二选一）
+                                             .showEmptyViewBy(FMMaintenanceView
+                                                              .BySize(FMMaintenanceView.viewSizeByModel(nil))
+                                                              .JobsRichViewByModel2(nil)
+                                                              .JobsBlock1(^(id  _Nullable data) {
+                                                                  
+                                                              }))
+                                             )
+           .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
                @jobs_strongify(self)
-               data = self.verticalLayout;
-   //            data.itemSize = CGSizeMake(100, 100);  // 设置单元格尺寸
-   //            data.minimumLineSpacing = 10;  // 设置行间距
-   //            data.minimumInteritemSpacing = 10;  // 设置单元格之间的间距
-   //            data.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);  // 设置 section 的内边距
-           }));
-           _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
-           _collectionView.dataLink(self);
-           _collectionView.showsVerticalScrollIndicator = NO;
-           _collectionView.showsHorizontalScrollIndicator = NO;
-           _collectionView.bounces = NO;
+               make.centerX.equalTo(self);
+               make.top.equalTo(self.jobsTextField.mas_bottom).offset(JobsWidth(5));
+               make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() - JobsWidth(30), JobsWidth(72)));
+           }).on().byBgCor(JobsClearColor);
            
-           _collectionView.registerCollectionViewClass();
-           _collectionView.registerCollectionViewCellClass(MSMineView6CVCell.class,@"");
+           _collectionView.setContentOffsetByYES(CGPointMake(0, 0));// 这句最快在 viewWillLayoutSubviews 有效
            
-           {
-               _collectionView.mj_header = self.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                   data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-                   data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-                   data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-                   data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                   data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
-                   data.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
-                   data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                       @jobs_strongify(self)
-                       self.feedbackGenerator();//震动反馈
-                       self->_collectionView.endRefreshing(YES);
-                       return nil;
-                   };
-               }));
-               _collectionView.mj_footer = self.MJRefreshBackNormalFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                   data.stateIdleTitle = JobsInternationalization(@"");
-                   data.pullingTitle = JobsInternationalization(@"");
-                   data.refreshingTitle = JobsInternationalization(@"");
-                   data.willRefreshTitle = JobsInternationalization(@"");
-                   data.noMoreDataTitle = JobsInternationalization(@"");
-                   data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                       @jobs_strongify(self)
-                       self->_collectionView.endRefreshing(YES);
-                       return nil;
-                   };
-               }));
-           }
-         
-           {
-               _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClass:HomeCVCell.class
-                                                                                 cellSize:HomeCVCell.cellSizeByModel(nil)];
-               _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
-               _collectionView.tabAnimated.canLoadAgain = YES;
-               _collectionView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
-   //            _collectionView.tabAnimated.animatedBackgroundColor = JobsRedColor;
-               [_collectionView tab_startAnimation];   // 开启动画
+           {/// 水平刷新控件
+               [_collectionView xzm_addNormalHeaderWithTarget:self
+                                                       action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                                           id _Nullable arg) {
+                   NSLog(@"SSSS加载新的数据，参数: %@", arg);
+                   @jobs_strongify(self)
+                   /// 在需要结束刷新的时候调用（只能调用一次）
+                   /// _collectionView.endRefreshing();
+                   return nil;
+               }, MethodName(self), self)];
+               
+               [_collectionView xzm_addNormalFooterWithTarget:self
+                                                       action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                                                                                           id _Nullable arg) {
+                   NSLog(@"SSSS加载新的数据，参数: %@", arg);
+                   @jobs_strongify(self)
+                   /// 在需要结束刷新的时候调用（只能调用一次）
+                   /// _collectionView.endRefreshing();
+                   return nil;
+               }, MethodName(self), self)];
+               // 隐藏时间
+               _collectionView.xzm_header.updatedTimeHidden = YES;
+               [_collectionView.xzm_header beginRefreshing];
            }
            
-           [self addSubview:_collectionView];
-           [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-               make.top.left.right.equalTo(self);
-               make.height.mas_equalTo(JobsWidth(102));
-           }];
+   //        {
+   //            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+   //                arr.add(DDCollectionViewCell_Style2.class)
+   //                .add(DDCollectionViewCell_Style3.class)
+   //                .add(DDCollectionViewCell_Style4.class);
+   //            })
+   //                                                                              cellSizeArray:jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+   //                arr.add(NSValue.bySize([DDCollectionViewCell_Style2 cellSizeWithModel:nil]))
+   //                    .add(NSValue.bySize([DDCollectionViewCell_Style3 cellSizeWithModel:nil]))
+   //                    .add(NSValue.bySize([DDCollectionViewCell_Style4 cellSizeWithModel:nil]))
+   //            })
+   //                                                                         animatedCountArray:@[@(1),@(1),@(1)]];
+   //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+   //                                                   viewSize:[BaseCollectionReusableView_Style1 collectionReusableViewSizeWithModel:nil]
+   //                                                  toSection:0];
+   //            [_collectionView.tabAnimated addHeaderViewClass:BaseCollectionReusableView_Style1.class
+   //                                                   viewSize:[BaseCollectionReusableView_Style2 collectionReusableViewSizeWithModel:nil]
+   //                                                  toSection:2];
+   //
+   //            _collectionView.tabAnimated.containNestAnimation = YES;
+   //            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+   //            _collectionView.tabAnimated.canLoadAgain = YES;
+   //            [_collectionView tab_startAnimation];   // 开启动画
+   //        }
+   //        {
+   //            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClass:HomeCVCell.class
+   //                                                                              cellSize:HomeCVCell.cellSizeByModel(nil)];
+   //            _collectionView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
+   //            _collectionView.tabAnimated.canLoadAgain = YES;
+   //            _collectionView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
+   ////            _collectionView.tabAnimated.animatedBackgroundColor = JobsRedColor;
+   //            [_collectionView tab_startAnimation];   // 开启动画
+   //        }
        }return _collectionView;
    }
    ```

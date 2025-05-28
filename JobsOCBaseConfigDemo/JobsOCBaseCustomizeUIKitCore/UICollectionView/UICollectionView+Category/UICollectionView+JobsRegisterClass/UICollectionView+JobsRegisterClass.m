@@ -11,9 +11,9 @@
 /// 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
 /// UICollectionView 本身并没有直接提供公开的 API 来检查某个 reuseIdentifier 是否已经注册
 /// 可以用方法交换去插入一个自定义标志位（NSMutableSet）
--(jobsByVoidBlock _Nonnull)registerCollectionViewClass{
+-(JobsReturnCollectionViewByVoidBlock _Nonnull)registerCollectionViewClass{
     @jobs_weakify(self)
-    return ^(void) {
+    return ^__kindof UICollectionView *_Nullable() {
         @jobs_strongify(self)
         self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class,@"");
         self.registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"");
@@ -31,64 +31,65 @@
         self.registerCollectionViewCellClass(JobsImageViewStyleCVCell.class,@"");
         self.registerCollectionViewCellClass(JobsTextFieldStyleCVCell.class,@"");
         self.registerCollectionViewCellClass(ThreeClassCell.class,@"");
+        return self;
     };
 }
 #pragma mark —— 注册 UICollectionViewCell 及其子类
--(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass{
+-(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,
-             NSString * _Nullable salt) {
+    return ^__kindof UICollectionView *_Nullable(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
         self.registerCollectionViewCellClass_(cls,cls.description.add(salt));
+        return self;
     };
 }
 
--(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass_{
+-(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass_{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,
-             NSString * _Nullable reuseIdentifier) {
+    return ^__kindof UICollectionView *_Nullable(Class _Nonnull cls,NSString * _Nullable reuseIdentifier) {
         @jobs_strongify(self)
         [self registerClass:cls forCellWithReuseIdentifier:reuseIdentifier];
+        return self;
     };
 }
 #pragma mark —— 注册 UICollectionElementKindSectionHeader 及其子类
--(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass{
+-(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,
-             NSString * _Nullable salt) {
+    return ^__kindof UICollectionView *_Nullable(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
-        self.registerCollectionElementKindSectionHeaderClass_(cls,cls.description.add(salt));
+        if(cls) self.registerCollectionElementKindSectionHeaderClass_(cls,cls.description.add(salt));
+        return self;
     };
 }
 
--(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass_{
+-(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass_{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,
-             NSString * _Nullable reuseIdentifier) {
+    return ^__kindof UICollectionView *_Nullable(Class _Nonnull cls,NSString * _Nullable reuseIdentifier) {
         @jobs_strongify(self)
         [self registerClass:cls
         forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
         withReuseIdentifier:reuseIdentifier];
+        return self;
     };
 }
 #pragma mark —— 注册 UICollectionElementKindSectionFooter 及其子类
--(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass{
+-(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,
-             NSString * _Nullable salt) {
+    return ^__kindof UICollectionView *_Nullable(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
-        self.registerCollectionElementKindSectionFooterClass_(cls,cls.description.add(salt));
+        if(cls) self.registerCollectionElementKindSectionFooterClass_(cls,cls.description.add(salt));
+        return self;
     };
 }
 
--(jobsByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass_{
+-(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass_{
     @jobs_weakify(self)
-    return ^(Class _Nonnull cls,
-             NSString * _Nullable reuseIdentifier) {
+    return ^__kindof UICollectionView *_Nullable(Class _Nonnull cls,NSString * _Nullable reuseIdentifier) {
         @jobs_strongify(self)
         [self registerClass:cls
         forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
         withReuseIdentifier:reuseIdentifier];
+        return self;
     };
 }
 #pragma mark —— 依据字符串取值

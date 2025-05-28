@@ -62,9 +62,16 @@ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;
 #pragma mark —— 一些公共设置
--(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleAndAction;
+/// 设置返回按钮的文字、返回按钮的行为（默认导航栏标题（图片）为 BSportRedLogo）
+-(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleImageAndAction;
+/// 设置导航栏标题（文字）、返回按钮的文字、返回按钮的行为
+-(JobsReturnNavBarConfigByStringsAndActionBlock _Nullable)makeNavByTitlesAndAction;
+/// 设置返回按钮的文字（默认退回上一个页面）
 -(JobsReturnNavBarConfigByStringBlock _Nullable)makeNav0ByTitle;
+/// 设置返回按钮的文字（默认退回TabBar0）
 -(JobsReturnNavBarConfigByStringBlock _Nullable)makeNav1ByTitle;
+/// 设置导航栏标题、返回按钮文字、返回按钮的行为
+-(JobsReturnNavBarConfigByStringsBlock _Nullable)makeNav2ByTitle;
 -(jobsByVoidBlock _Nonnull)唤起人工客服;
 -(jobsByVoidBlock _Nonnull)唤起Telegram;
 -(jobsByVoidBlock _Nonnull)唤起FaceBook;

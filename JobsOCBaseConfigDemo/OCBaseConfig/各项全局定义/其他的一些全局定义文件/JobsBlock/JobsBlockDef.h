@@ -170,6 +170,13 @@
     JobsReturnIDByIDBlock _Nullable backActionBlock
 #endif /* Jobs_NavBarConfig_Title_Action_Arguments */
 
+#ifndef Jobs_NavBarConfig_Titles_Action_Arguments
+#define Jobs_NavBarConfig_Titles_Action_Arguments \
+    NSString *_Nullable title, \
+    NSString *_Nullable backTitle, \
+    JobsReturnIDByIDBlock _Nullable backActionBlock
+#endif /* Jobs_NavBarConfig_Titles_Action_Arguments */
+
 #ifndef Jobs_NavBarConfig_BackBtnModel_CloseBtnModel_Arguments
 #define Jobs_NavBarConfig_BackBtnModel_CloseBtnModel_Arguments \
     UIButtonModel *_Nullable backBtnModel, \

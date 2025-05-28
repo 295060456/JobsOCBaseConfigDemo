@@ -15,16 +15,11 @@
         @jobs_strongify(self)
         if (self.protocol(@"MJRefreshProtocol")) {
             UIView <MJRefreshProtocol>*view = (UIView <MJRefreshProtocol>*)self;
-            // 普通闲置状态
-            view.refreshStateIdleByString (data.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            view.refreshStatePullingByString (data.pullingTitle);
-            // 正在刷新中的状态
-            view.refreshStateRefreshingByString (data.refreshingTitle);
-            // 即将刷新的状态
-            view.refreshStateWillRefreshByString (data.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            view.refreshStateNoMoreDataByString (data.noMoreDataTitle);
+            view.refreshStateIdleByString (data.stateIdleTitle)/// 普通闲置状态
+                .refreshStatePullingByString (data.pullingTitle)/// 松开就可以进行刷新的状态
+                .refreshStateRefreshingByString (data.refreshingTitle)/// 正在刷新中的状态
+                .refreshStateWillRefreshByString (data.willRefreshTitle)/// 即将刷新的状态
+                .refreshStateNoMoreDataByString (data.noMoreDataTitle);/// 所有数据加载完毕，没有更多的数据了
         }
     };
 }
@@ -43,90 +38,81 @@
     @jobs_weakify(self)
     return ^LOTAnimationMJRefreshHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        LOTAnimationMJRefreshHeader *lotAnimationMJRefreshHeader = [LOTAnimationMJRefreshHeader headerWithRefreshingBlock:^{
+        LOTAnimationMJRefreshHeader *refreshHeader = [LOTAnimationMJRefreshHeader headerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {//图片
-            // 普通闲置状态
-            lotAnimationMJRefreshHeader.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr);
-            // 松开就可以进行刷新的状态
-            lotAnimationMJRefreshHeader.refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr);
+            refreshHeader.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr)/// 普通闲置状态
+            .refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr)/// 松开就可以进行刷新的状态
+            .refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr)/// 即将刷新的状态
+            .refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);/// 所有数据加载完毕，没有更多的数据了
             // 正在刷新中的状态
-            [lotAnimationMJRefreshHeader setImages:self.refreshConfigHeader.refreshingPicsMutArr
-                                          duration:self.refreshConfigHeader.refreshingDuration
-                                          forState:MJRefreshStateRefreshing];
-            // 即将刷新的状态
-            lotAnimationMJRefreshHeader.refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr);
-            // 所有数据加载完毕，没有更多的数据了
-            lotAnimationMJRefreshHeader.refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);
+            [refreshHeader setImages:self.refreshConfigHeader.refreshingPicsMutArr
+                            duration:self.refreshConfigHeader.refreshingDuration
+                            forState:MJRefreshStateRefreshing];
         }
         {//文字
-            // 普通闲置状态
-            lotAnimationMJRefreshHeader.refreshStateIdleByString(refreshConfigModel.stateIdleTitle);
-            // 松开就可以进行刷新的状态
-            lotAnimationMJRefreshHeader.refreshStatePullingByString(refreshConfigModel.pullingTitle);
-            // 正在刷新中的状态
-            lotAnimationMJRefreshHeader.refreshStateRefreshingByString(refreshConfigModel.refreshingTitle);
-            // 即将刷新的状态
-            lotAnimationMJRefreshHeader.refreshStateWillRefreshByString(refreshConfigModel.willRefreshTitle);
-            // 所有数据加载完毕，没有更多的数据了
-            lotAnimationMJRefreshHeader.refreshStateNoMoreDataByString(refreshConfigModel.noMoreDataTitle);
+            refreshHeader.refreshStateIdleByString(refreshConfigModel.stateIdleTitle)/// 普通闲置状态
+            .refreshStatePullingByString(refreshConfigModel.pullingTitle)/// 松开就可以进行刷新的状态
+            .refreshStateRefreshingByString(refreshConfigModel.refreshingTitle)/// 正在刷新中的状态
+            .refreshStateWillRefreshByString(refreshConfigModel.willRefreshTitle)/// 即将刷新的状态
+            .refreshStateNoMoreDataByString(refreshConfigModel.noMoreDataTitle);/// 所有数据加载完毕，没有更多的数据了
         }
         {//其他
-            // 设置字体
-            lotAnimationMJRefreshHeader.stateLabel.font = refreshConfigModel.font;
-            // 设置颜色
-            lotAnimationMJRefreshHeader.stateLabel.textColor = refreshConfigModel.textColor;
+            refreshHeader.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            lotAnimationMJRefreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             // 震动特效反馈
             if (refreshConfigModel.isShake) self.震动特效反馈();
-        }return lotAnimationMJRefreshHeader;
+        }return refreshHeader;
     };
 }
+
 -(JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock _Nonnull)MJRefreshNormalHeaderBy{
     @jobs_weakify(self)
-    return ^MJRefreshNormalHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshNormalHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshNormalHeader *refreshNormalHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        MJRefreshNormalHeader *refreshHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         self.handleWord(refreshConfigModel);/// 文字
         {//其他
-            // 设置字体
-            refreshNormalHeader.stateLabel.font = refreshConfigModel.font;
-            // 设置颜色
-            refreshNormalHeader.stateLabel.textColor = refreshConfigModel.textColor;
+            refreshHeader.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            refreshNormalHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             //震动特效反馈
             if (refreshConfigModel.isShake) self.震动特效反馈();
-        }return refreshNormalHeader;
+        }return refreshHeader;
     };
 }
+
 -(JobsReturnMJRefreshStateHeaderByRefreshConfigModelBlock _Nonnull)MJRefreshStateHeaderBy{
     @jobs_weakify(self)
-    return ^MJRefreshStateHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshStateHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshStateHeader *refreshStateHeader = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        MJRefreshStateHeader *refreshHeader = [MJRefreshStateHeader headerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         self.handleWord(refreshConfigModel);/// 文字
         {//其他
-            // 设置字体
-            refreshStateHeader.stateLabel.font = refreshConfigModel.font;
-            // 设置颜色
-            refreshStateHeader.stateLabel.textColor = refreshConfigModel.textColor;
+            refreshHeader.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            refreshStateHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             //震动特效反馈
             if (refreshConfigModel.isShake) self.震动特效反馈();
-        }return refreshStateHeader;
+        }return refreshHeader;
     };
 }
+
 -(JobsReturnMJRefreshHeaderByRefreshConfigModelBlock _Nonnull)MJRefreshHeaderBy{
     @jobs_weakify(self)
-    return ^MJRefreshHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
         MJRefreshHeader *refreshHeader = [MJRefreshHeader headerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
@@ -139,209 +125,196 @@
         }return refreshHeader;
     };
 }
+
 -(JobsReturnMJRefreshGifHeaderByRefreshConfigModelBlock _Nonnull)MJRefreshGifHeaderBy{
     @jobs_weakify(self)
-    return ^MJRefreshGifHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshGifHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshGifHeader *refreshGifHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        MJRefreshGifHeader *refreshHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {//图片
-            // 普通闲置状态
-            refreshGifHeader.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr);
-            // 松开就可以进行刷新的状态
-            refreshGifHeader.refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr);
-            // 正在刷新中的状态
-            [refreshGifHeader setImages:refreshConfigModel.refreshingPicsMutArr
-                               duration:refreshConfigModel.refreshingDuration
-                               forState:MJRefreshStateRefreshing];
-            // 即将刷新的状态
-            refreshGifHeader.refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr);
-            // 所有数据加载完毕，没有更多的数据了
-            refreshGifHeader.refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);
+            refreshHeader.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr)/// 普通闲置状态
+            .refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr)/// 松开就可以进行刷新的状态
+            .refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr)/// 即将刷新的状态
+            .refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);/// 所有数据加载完毕，没有更多的数据了
+            /// 正在刷新中的状态
+            [refreshHeader setImages:refreshConfigModel.refreshingPicsMutArr
+                            duration:refreshConfigModel.refreshingDuration
+                            forState:MJRefreshStateRefreshing];
         }
         self.handleWord(refreshConfigModel);/// 文字
         {//其他
-            // 设置字体
-            refreshGifHeader.stateLabel.font = refreshConfigModel.font;
-            // 设置颜色
-            refreshGifHeader.stateLabel.textColor = refreshConfigModel.textColor;
+            refreshHeader.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            refreshGifHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             //震动特效反馈
             if (refreshConfigModel.isShake) self.震动特效反馈();
-        }return refreshGifHeader;
+        }return refreshHeader;
     };
 }
 /// Footer
 -(JobsReturnMJRefreshAutoGifFooterByRefreshConfigModelBlock _Nonnull)MJRefreshAutoGifFooterBy{
     @jobs_weakify(self)
-    return ^MJRefreshAutoGifFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshAutoGifFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshAutoGifFooter *refreshAutoGifFooter = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        MJRefreshAutoGifFooter *refreshFooter = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {// 图片
-            // 普通闲置状态
-            refreshAutoGifFooter.refreshStatePullingByImages (refreshConfigModel.stateIdlePicsMutArr);
-            // 松开就可以进行刷新的状态
-            refreshAutoGifFooter.refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr);
-            // 正在刷新中的状态
-            [refreshAutoGifFooter setImages:refreshConfigModel.refreshingPicsMutArr
-                                   duration:refreshConfigModel.refreshingDuration
-                                   forState:MJRefreshStateRefreshing];
-            // 即将刷新的状态
-            refreshAutoGifFooter.refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr);
-            // 所有数据加载完毕，没有更多的数据了
-            refreshAutoGifFooter.refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);
+            refreshFooter.refreshStatePullingByImages (refreshConfigModel.stateIdlePicsMutArr)/// 普通闲置状态
+                .refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr)/// 松开就可以进行刷新的状态
+                .refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr)/// 即将刷新的状态
+                .refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);/// 所有数据加载完毕，没有更多的数据了
+            /// 正在刷新中的状态
+            [refreshFooter setImages:refreshConfigModel.refreshingPicsMutArr
+                            duration:refreshConfigModel.refreshingDuration
+                            forState:MJRefreshStateRefreshing];
         }
         self.handleWord(refreshConfigModel);/// 文字
         {//其他
-            // 设置字体
-            refreshAutoGifFooter.stateLabel.font = refreshConfigModel.font;
-            // 设置颜色
-            refreshAutoGifFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            refreshFooter.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            refreshAutoGifFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }return refreshAutoGifFooter;
+        }return refreshFooter;
     };
 }
+
 -(JobsReturnMJRefreshBackNormalFooterByRefreshConfigModelBlock _Nonnull)MJRefreshBackNormalFooterBy{
     @jobs_weakify(self)
-    return ^MJRefreshBackNormalFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshBackNormalFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshBackNormalFooter *refreshBackNormalFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        MJRefreshBackNormalFooter *refreshFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             if(self.refreshConfigFooter.loadBlock) self.refreshConfigFooter.loadBlock(nil);
         }];
         self.handleWord(refreshConfigModel);/// 文字 (此模式下只有文字而没有图片)
         {//其他
-            // 设置字体
-            refreshBackNormalFooter.stateLabel.font = refreshConfigModel.font;
-            // 设置颜色
-            refreshBackNormalFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            refreshFooter.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            refreshBackNormalFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }return refreshBackNormalFooter;
+        }return refreshFooter;
     };
 }
+
 -(JobsReturnMJRefreshAutoNormalFooterByRefreshConfigModelBlock _Nonnull)MJRefreshAutoNormalFooterBy{
     @jobs_weakify(self)
-    return ^MJRefreshAutoNormalFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshAutoNormalFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshAutoNormalFooter *refreshAutoNormalFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        MJRefreshAutoNormalFooter *refreshFooter = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         self.handleWord(refreshConfigModel);/// 文字
         {//其他
-            // 设置字体
-            refreshAutoNormalFooter.stateLabel.font = refreshConfigModel.font;
-            // 设置颜色
-            refreshAutoNormalFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            refreshFooter.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            refreshAutoNormalFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }return refreshAutoNormalFooter;
+        }return refreshFooter;
     };
 }
+
 -(JobsReturnMJRefreshAutoStateFooterByRefreshConfigModelBlock _Nonnull)MJRefreshAutoStateFooterBy{
     @jobs_weakify(self)
-    return ^MJRefreshAutoStateFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshAutoStateFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshAutoStateFooter *refreshAutoStateFooter = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
+        MJRefreshAutoStateFooter *refreshFooter = [MJRefreshAutoStateFooter footerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         self.handleWord(refreshConfigModel);/// 文字
         {//其他
-            // 设置字体
-            refreshAutoStateFooter.stateLabel.font = refreshConfigModel.font;
-            // 设置颜色
-            refreshAutoStateFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            refreshFooter.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            refreshAutoStateFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             if (refreshConfigModel.isShake) self.震动特效反馈();
-        }return refreshAutoStateFooter;
+        }return refreshFooter;
     };
 }
+
 -(JobsReturnMJRefreshAutoFooterByRefreshConfigModelBlock _Nonnull)MJRefreshAutoFooterBy{
-//    @jobs_weakify(self)
-    return ^MJRefreshAutoFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
-//        @jobs_strongify(self)
-        MJRefreshAutoFooter *refreshAutoFooter = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+    return ^__kindof MJRefreshAutoFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+        MJRefreshAutoFooter *refreshFooter = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
-        }];return refreshAutoFooter;
+        }];return refreshFooter;
     };
 }
 -(JobsReturnMJRefreshBackGifFooterByRefreshConfigModelBlock _Nonnull)MJRefreshBackGifFooterBy{
     @jobs_weakify(self)
-    return ^MJRefreshBackGifFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshBackGifFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshBackGifFooter *refreshBackGifFooter = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+        MJRefreshBackGifFooter *refreshFooter = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {// 图片
-            // 普通闲置状态
-            refreshBackGifFooter.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr);
-            // 松开就可以进行刷新的状态
-            refreshBackGifFooter.refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr);
+            refreshFooter.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr)// 普通闲置状态
+                .refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr)// 松开就可以进行刷新的状态
+                .refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr)// 即将刷新的状态
+                .refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);// 所有数据加载完毕，没有更多的数据了
             // 正在刷新中的状态
-            [refreshBackGifFooter setImages:refreshConfigModel.refreshingPicsMutArr
-                                   duration:refreshConfigModel.refreshingDuration
-                                   forState:MJRefreshStateRefreshing];
-            // 即将刷新的状态
-            refreshBackGifFooter.refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr);
-            // 所有数据加载完毕，没有更多的数据了
-            refreshBackGifFooter.refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);
+            [refreshFooter setImages:refreshConfigModel.refreshingPicsMutArr
+                            duration:refreshConfigModel.refreshingDuration
+                            forState:MJRefreshStateRefreshing];
         }
         self.handleWord(refreshConfigModel);/// 文字
         {//其他
-            // 设置字体
-            refreshBackGifFooter.stateLabel.font = refreshConfigModel.font;
-            // 设置颜色
-            refreshBackGifFooter.stateLabel.textColor = refreshConfigModel.textColor;
+            refreshFooter.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            refreshBackGifFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             if (refreshConfigModel.isShake) self.震动特效反馈();
-        }return refreshBackGifFooter;
+        }return refreshFooter;
     };
 }
+
 -(JobsReturnMJRefreshBackStateFooterByRefreshConfigModelBlock _Nonnull)MJRefreshBackStateFooterBy{
     @jobs_weakify(self)
-    return ^MJRefreshBackStateFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshBackStateFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshBackStateFooter *refreshBackStateFooter = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        MJRefreshBackStateFooter *refreshFooter = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
             if(self.refreshConfigFooter.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         self.handleWord(refreshConfigModel);/// 文字
         {//其他
-            // 设置字体
-            refreshBackStateFooter.stateLabel.font = self.refreshConfigFooter.font;
-            // 设置颜色
-            refreshBackStateFooter.stateLabel.textColor = self.refreshConfigFooter.textColor;
+            refreshFooter.stateLabel
+                .byFont(refreshConfigModel.font)// 设置字体
+                .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
-            refreshBackStateFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+            refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             if (self.refreshConfigFooter.isShake) self.震动特效反馈();
-        }return refreshBackStateFooter;
+        }return refreshFooter;
     };
 }
+
 -(JobsReturnMJRefreshBackFooterByRefreshConfigModelBlock _Nonnull)MJRefreshBackFooterBy{
     @jobs_weakify(self)
-    return ^MJRefreshBackFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshBackFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
-        MJRefreshBackFooter *refreshBackFooter = [MJRefreshBackFooter footerWithRefreshingBlock:^{
+        MJRefreshBackFooter *refreshFooter = [MJRefreshBackFooter footerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {//其他
             if (refreshConfigModel.isShake) self.震动特效反馈();
             // 根据拖拽比例自动切换透明度
-            refreshBackFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
-        }return refreshBackFooter;
+            refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
+        }return refreshFooter;
     };
 }
+
 -(JobsReturnMJRefreshFooterByRefreshConfigModelBlock _Nonnull)MJRefreshFooterBy{
     @jobs_weakify(self)
-    return ^MJRefreshFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
+    return ^__kindof MJRefreshFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
         @jobs_strongify(self)
         MJRefreshFooter *refreshFooter = [MJRefreshFooter footerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
@@ -657,11 +630,11 @@
 JobsKey(_lotAnimMJRefreshHeader)
 @dynamic lotAnimMJRefreshHeader;
 -(LOTAnimationMJRefreshHeader *)lotAnimMJRefreshHeader{
-    LOTAnimationMJRefreshHeader *lotAnimMJRefreshHeader = Jobs_getAssociatedObject(_lotAnimMJRefreshHeader);
-    if (!lotAnimMJRefreshHeader) {
-        lotAnimMJRefreshHeader = self.LOTAnimationMJRefreshHeaderBy(self.refreshConfigHeader);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_lotAnimMJRefreshHeader, lotAnimMJRefreshHeader);
-    }return lotAnimMJRefreshHeader;
+    LOTAnimationMJRefreshHeader *refreshHeader = Jobs_getAssociatedObject(_lotAnimMJRefreshHeader);
+    if (!refreshHeader) {
+        refreshHeader = self.LOTAnimationMJRefreshHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_lotAnimMJRefreshHeader, refreshHeader);
+    }return refreshHeader;
 }
 
 -(void)setLotAnimMJRefreshHeader:(LOTAnimationMJRefreshHeader *)lotAnimMJRefreshHeader{
@@ -671,11 +644,11 @@ JobsKey(_lotAnimMJRefreshHeader)
 JobsKey(_mjRefreshNormalHeader)
 @dynamic mjRefreshNormalHeader;
 -(MJRefreshNormalHeader *)mjRefreshNormalHeader{
-    MJRefreshNormalHeader *MjRefreshNormalHeader = Jobs_getAssociatedObject(_mjRefreshNormalHeader);
-    if (!MjRefreshNormalHeader) {
-        MjRefreshNormalHeader = self.MJRefreshNormalHeaderBy(self.refreshConfigHeader);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshNormalHeader, MjRefreshNormalHeader)
-    }return MjRefreshNormalHeader;
+    MJRefreshNormalHeader *refreshHeader = Jobs_getAssociatedObject(_mjRefreshNormalHeader);
+    if (!refreshHeader) {
+        refreshHeader = self.MJRefreshNormalHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshNormalHeader, refreshHeader)
+    }return refreshHeader;
 }
 
 -(void)setMjRefreshNormalHeader:(MJRefreshNormalHeader *)mjRefreshNormalHeader{
@@ -685,11 +658,11 @@ JobsKey(_mjRefreshNormalHeader)
 JobsKey(_mjRefreshStateHeader)
 @dynamic mjRefreshStateHeader;
 -(MJRefreshStateHeader *)mjRefreshStateHeader{
-    MJRefreshStateHeader *MjRefreshStateHeader = Jobs_getAssociatedObject(_mjRefreshStateHeader);
-    if (!MjRefreshStateHeader) {
-        MjRefreshStateHeader = self.MJRefreshStateHeaderBy(self.refreshConfigHeader);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshStateHeader, MjRefreshStateHeader)
-    }return MjRefreshStateHeader;
+    MJRefreshStateHeader *refreshHeader = Jobs_getAssociatedObject(_mjRefreshStateHeader);
+    if (!refreshHeader) {
+        refreshHeader = self.MJRefreshStateHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshStateHeader, refreshHeader)
+    }return refreshHeader;
 }
 
 -(void)setMjRefreshStateHeader:(MJRefreshStateHeader *)mjRefreshStateHeader{
@@ -699,11 +672,11 @@ JobsKey(_mjRefreshStateHeader)
 JobsKey(_mjRefreshHeader)
 @dynamic mjRefreshHeader;
 -(MJRefreshHeader *)mjRefreshHeader{
-    MJRefreshHeader *MjRefreshHeader = Jobs_getAssociatedObject(_mjRefreshHeader);
-    if (!MjRefreshHeader) {
-        MjRefreshHeader = self.MJRefreshHeaderBy(self.refreshConfigHeader);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshHeader, MjRefreshHeader)
-    }return MjRefreshHeader;
+    MJRefreshHeader *refreshHeader = Jobs_getAssociatedObject(_mjRefreshHeader);
+    if (!refreshHeader) {
+        refreshHeader = self.MJRefreshHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshHeader, refreshHeader)
+    }return refreshHeader;
 }
 
 -(void)setMjRefreshHeader:(MJRefreshHeader *)mjRefreshHeader{
@@ -713,11 +686,11 @@ JobsKey(_mjRefreshHeader)
 JobsKey(_mjRefreshGifHeader)
 @dynamic mjRefreshGifHeader;
 -(MJRefreshGifHeader *)mjRefreshGifHeader{
-    MJRefreshGifHeader *MjRefreshGifHeader = Jobs_getAssociatedObject(_mjRefreshGifHeader);
-    if (!MjRefreshGifHeader) {
-        MjRefreshGifHeader = self.MJRefreshGifHeaderBy(self.refreshConfigHeader);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshGifHeader, MjRefreshGifHeader)
-    }return MjRefreshGifHeader;
+    MJRefreshGifHeader *refreshHeader = Jobs_getAssociatedObject(_mjRefreshGifHeader);
+    if (!refreshHeader) {
+        refreshHeader = self.MJRefreshGifHeaderBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshGifHeader, refreshHeader)
+    }return refreshHeader;
 }
 
 -(void)setMjRefreshGifHeader:(MJRefreshGifHeader *)mjRefreshGifHeader{
@@ -728,11 +701,11 @@ JobsKey(_mjRefreshGifHeader)
 JobsKey(_mjRefreshAutoGifFooter)
 @dynamic mjRefreshAutoGifFooter;
 -(MJRefreshAutoGifFooter *)mjRefreshAutoGifFooter{
-    MJRefreshAutoGifFooter *MjRefreshAutoGifFooter = Jobs_getAssociatedObject(_mjRefreshAutoGifFooter);
-    if (!MjRefreshAutoGifFooter) {
-        MjRefreshAutoGifFooter = self.MJRefreshAutoGifFooterBy(self.refreshConfigHeader);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoGifFooter, MjRefreshAutoGifFooter)
-    }return MjRefreshAutoGifFooter;
+    MJRefreshAutoGifFooter *refreshFooter = Jobs_getAssociatedObject(_mjRefreshAutoGifFooter);
+    if (!refreshFooter) {
+        refreshFooter = self.MJRefreshAutoGifFooterBy(self.refreshConfigHeader);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoGifFooter, refreshFooter)
+    }return refreshFooter;
 }
 
 -(void)setMjRefreshAutoGifFooter:(MJRefreshAutoGifFooter *)mjRefreshAutoGifFooter{
@@ -742,11 +715,11 @@ JobsKey(_mjRefreshAutoGifFooter)
 JobsKey(_mjRefreshBackNormalFooter)
 @dynamic mjRefreshBackNormalFooter;
 -(MJRefreshBackNormalFooter *)mjRefreshBackNormalFooter{
-    MJRefreshBackNormalFooter *MjRefreshBackNormalFooter = Jobs_getAssociatedObject(_mjRefreshBackNormalFooter);
-    if (!MjRefreshBackNormalFooter) {
-        MjRefreshBackNormalFooter = self.MJRefreshBackNormalFooterBy(self.refreshConfigFooter);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackNormalFooter, MjRefreshBackNormalFooter)
-    }return MjRefreshBackNormalFooter;
+    MJRefreshBackNormalFooter *refreshFooter = Jobs_getAssociatedObject(_mjRefreshBackNormalFooter);
+    if (!refreshFooter) {
+        refreshFooter = self.MJRefreshBackNormalFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackNormalFooter, refreshFooter)
+    }return refreshFooter;
 }
 
 -(void)setMjRefreshBackNormalFooter:(MJRefreshBackNormalFooter *)mjRefreshBackNormalFooter{
@@ -756,11 +729,11 @@ JobsKey(_mjRefreshBackNormalFooter)
 JobsKey(_mjRefreshAutoNormalFooter)
 @dynamic mjRefreshAutoNormalFooter;
 -(MJRefreshAutoNormalFooter *)mjRefreshAutoNormalFooter{
-    MJRefreshAutoNormalFooter *MjRefreshAutoNormalFooter = Jobs_getAssociatedObject(_mjRefreshAutoNormalFooter);
-    if (!MjRefreshAutoNormalFooter) {
-        MjRefreshAutoNormalFooter = self.MJRefreshAutoNormalFooterBy(self.refreshConfigFooter);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoNormalFooter, MjRefreshAutoNormalFooter)
-    }return MjRefreshAutoNormalFooter;
+    MJRefreshAutoNormalFooter *refreshFooter = Jobs_getAssociatedObject(_mjRefreshAutoNormalFooter);
+    if (!refreshFooter) {
+        refreshFooter = self.MJRefreshAutoNormalFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoNormalFooter, refreshFooter)
+    }return refreshFooter;
 }
 
 -(void)setMjRefreshAutoNormalFooter:(MJRefreshAutoNormalFooter *)mjRefreshAutoNormalFooter{
@@ -770,11 +743,11 @@ JobsKey(_mjRefreshAutoNormalFooter)
 JobsKey(_mjRefreshAutoStateFooter)
 @dynamic mjRefreshAutoStateFooter;
 -(MJRefreshAutoStateFooter *)mjRefreshAutoStateFooter{
-    MJRefreshAutoStateFooter *MjRefreshAutoStateFooter = Jobs_getAssociatedObject(_mjRefreshAutoStateFooter);
-    if (!MjRefreshAutoStateFooter) {
-        MjRefreshAutoStateFooter = self.MJRefreshAutoStateFooterBy(self.refreshConfigFooter);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoStateFooter, MjRefreshAutoStateFooter)
-    }return MjRefreshAutoStateFooter;
+    MJRefreshAutoStateFooter *refreshFooter = Jobs_getAssociatedObject(_mjRefreshAutoStateFooter);
+    if (!refreshFooter) {
+        refreshFooter = self.MJRefreshAutoStateFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoStateFooter, refreshFooter)
+    }return refreshFooter;
 }
 
 -(void)setMjRefreshAutoStateFooter:(MJRefreshAutoStateFooter *)mjRefreshAutoStateFooter{
@@ -784,11 +757,11 @@ JobsKey(_mjRefreshAutoStateFooter)
 JobsKey(_mjRefreshAutoFooter)
 @dynamic mjRefreshAutoFooter;
 -(MJRefreshAutoFooter *)mjRefreshAutoFooter{
-    MJRefreshAutoFooter *MjRefreshAutoFooter = Jobs_getAssociatedObject(_mjRefreshAutoFooter);
-    if (!MjRefreshAutoFooter) {
-        MjRefreshAutoFooter = self.MJRefreshAutoFooterBy(self.refreshConfigFooter);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoFooter, MjRefreshAutoFooter)
-    }return MjRefreshAutoFooter;
+    MJRefreshAutoFooter *refreshFooter = Jobs_getAssociatedObject(_mjRefreshAutoFooter);
+    if (!refreshFooter) {
+        refreshFooter = self.MJRefreshAutoFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshAutoFooter, refreshFooter)
+    }return refreshFooter;
 }
 
 -(void)setMjRefreshAutoFooter:(MJRefreshAutoFooter *)mjRefreshAutoFooter{
@@ -798,11 +771,11 @@ JobsKey(_mjRefreshAutoFooter)
 JobsKey(_mjRefreshBackGifFooter)
 @dynamic mjRefreshBackGifFooter;
 -(MJRefreshBackGifFooter *)mjRefreshBackGifFooter{
-    MJRefreshBackGifFooter *MjRefreshBackGifFooter = Jobs_getAssociatedObject(_mjRefreshBackGifFooter);
-    if (!MjRefreshBackGifFooter) {
-        MjRefreshBackGifFooter = self.MJRefreshBackGifFooterBy(self.refreshConfigFooter);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackGifFooter, MjRefreshBackGifFooter);
-    }return MjRefreshBackGifFooter;
+    MJRefreshBackGifFooter *refreshFooter = Jobs_getAssociatedObject(_mjRefreshBackGifFooter);
+    if (!refreshFooter) {
+        refreshFooter = self.MJRefreshBackGifFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackGifFooter, refreshFooter);
+    }return refreshFooter;
 }
 
 -(void)setMjRefreshBackGifFooter:(MJRefreshBackGifFooter *)mjRefreshBackGifFooter{
@@ -812,11 +785,11 @@ JobsKey(_mjRefreshBackGifFooter)
 JobsKey(_mjRefreshBackStateFooter)
 @dynamic mjRefreshBackStateFooter;
 -(MJRefreshBackStateFooter *)mjRefreshBackStateFooter{
-    MJRefreshBackStateFooter *MjRefreshBackStateFooter = Jobs_getAssociatedObject(_mjRefreshBackStateFooter);
-    if (!MjRefreshBackStateFooter) {
-        MjRefreshBackStateFooter = self.MJRefreshBackStateFooterBy(self.refreshConfigFooter);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackStateFooter, MjRefreshBackStateFooter);
-    }return MjRefreshBackStateFooter;
+    MJRefreshBackStateFooter *refreshFooter = Jobs_getAssociatedObject(_mjRefreshBackStateFooter);
+    if (!refreshFooter) {
+        refreshFooter = self.MJRefreshBackStateFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackStateFooter, refreshFooter);
+    }return refreshFooter;
 }
 
 -(void)setMjRefreshBackStateFooter:(MJRefreshBackStateFooter *)mjRefreshBackStateFooter{
@@ -826,11 +799,11 @@ JobsKey(_mjRefreshBackStateFooter)
 JobsKey(_mjRefreshBackFooter)
 @dynamic mjRefreshBackFooter;
 -(MJRefreshBackFooter *)mjRefreshBackFooter{
-    MJRefreshBackFooter *MjRefreshBackFooter = Jobs_getAssociatedObject(_mjRefreshBackFooter);
-    if (!MjRefreshBackFooter) {
-        MjRefreshBackFooter = self.MJRefreshBackFooterBy(self.refreshConfigFooter);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackFooter, MjRefreshBackFooter);
-    }return MjRefreshBackFooter;
+    MJRefreshBackFooter *refreshFooter = Jobs_getAssociatedObject(_mjRefreshBackFooter);
+    if (!refreshFooter) {
+        refreshFooter = self.MJRefreshBackFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshBackFooter, refreshFooter);
+    }return refreshFooter;
 }
 
 -(void)setMjRefreshBackFooter:(MJRefreshBackFooter *)mjRefreshBackFooter{
@@ -840,17 +813,17 @@ JobsKey(_mjRefreshBackFooter)
 JobsKey(_mjRefreshFooter)
 @dynamic mjRefreshFooter;
 -(MJRefreshFooter *)mjRefreshFooter{
-    MJRefreshFooter *MjRefreshFooter = Jobs_getAssociatedObject(_mjRefreshFooter);
-    if (!MjRefreshFooter) {
-        MjRefreshFooter = self.MJRefreshFooterBy(self.refreshConfigFooter);
-        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshFooter, MjRefreshFooter)
-    }return MjRefreshFooter;
+    MJRefreshFooter *refreshFooter = Jobs_getAssociatedObject(_mjRefreshFooter);
+    if (!refreshFooter) {
+        refreshFooter = self.MJRefreshFooterBy(self.refreshConfigFooter);
+        Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshFooter, refreshFooter)
+    }return refreshFooter;
 }
 
 -(void)setMjRefreshFooter:(MJRefreshFooter *)mjRefreshFooter{
     Jobs_setAssociatedRETAIN_NONATOMIC(_mjRefreshFooter, mjRefreshFooter)
 }
-#pragma mark —— @property(nonatomic,weak)UIScrollView *mjRefreshTargetView; MJRefresh 作用于targetView
+#pragma mark —— Prop_weak()UIScrollView *mjRefreshTargetView; MJRefresh 作用于targetView
 JobsKey(_mjRefreshTargetView)
 @dynamic mjRefreshTargetView;
 -(UIScrollView *)mjRefreshTargetView{

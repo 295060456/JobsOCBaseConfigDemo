@@ -139,12 +139,7 @@
     @jobs_weakify(self)
     return ^(__kindof JobsNavBarConfig *_Nullable config){
         @jobs_strongify(self)
-        /// GKNavigationBar 对横屏不兼容
-        /// 常见横屏兼容性问题：
-        /// 导航栏位置错乱：横屏时 GKNavigationBar 可能没有正确适配 statusBar 和 navigationBar 的高度，导致位置偏移。
-        /// 高度计算不准确：框架默认是基于竖屏设计的，横屏时高度没有自动根据 UIScreen 旋转调整。
-        /// 布局未响应旋转：横竖屏切换时，GKNavigationBar 有时不会触发布局更新（如 layoutSubviews），或者更新不及时。
-        /// 适配 SafeArea 问题：尤其是在 iPhone X 系列横屏时，顶部的安全区域（SafeAreaInsets）处理不当，会导致导航栏遮挡内容。
+        /// GKNavigationBar 对横屏可能不兼容
         if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
             self.makeJobsNavByAlpha(config.viewModel.Alpha);
         }else{

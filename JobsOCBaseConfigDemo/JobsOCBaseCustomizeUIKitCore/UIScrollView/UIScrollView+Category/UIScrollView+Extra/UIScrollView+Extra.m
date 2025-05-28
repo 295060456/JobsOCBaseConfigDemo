@@ -146,6 +146,44 @@
         return self;
     };
 }
+
+-(JobsReturnScrollViewByBOOLBlock _Nonnull)byBounces{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.bounces = data;
+        return self;
+    };
+}
+
+-(JobsReturnScrollViewByUIEdgeInsetsBlock _Nonnull)byEdgeInsets{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(UIEdgeInsets insets){
+        @jobs_strongify(self)
+        self.contentInset = insets;
+        return self;
+    };
+}
+
+-(JobsReturnScrollViewByMJRefreshHeaderBlock _Nonnull)byMJRefreshHeader{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(MJRefreshHeader * _Nullable header){
+        @jobs_strongify(self)
+        self.mj_header = header;
+        self.mj_header.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
+        return self;
+    };
+}
+
+-(JobsReturnScrollViewByMJRefreshFooterBlock _Nonnull)byMJRefreshFooter{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(MJRefreshFooter * _Nullable header){
+        @jobs_strongify(self)
+        self.mj_footer = header;
+        self.mj_footer.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
+        return self;
+    };
+}
 #pragma mark —— Prop_assign()ScrollDirection direction; /// UIScrollView 滑动的方向定义
 JobsKey(_direction)
 @dynamic direction;

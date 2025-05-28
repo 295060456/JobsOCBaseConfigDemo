@@ -273,17 +273,19 @@ typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCorBlock)(
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByFontBlock)(UIFont *_Nonnull font);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByDelegateBlock)(id<NSObject> _Nonnull delegate);
 /// 多参数
-typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Class _Nonnull cls,
-                                                                                          NSString *_Nullable salt);
+typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByClsAndSaltStrBlock)(Jobs_ByClassAndSaltBlock_Arguments);
 typedef __kindof UITableViewCell *_Nullable(^JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block)(Jobs_UITableViewCellBlock_Arguments);
 #pragma mark —— 关于 UICollectionView
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByVoidBlock)(void);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBOOLBlock)(BOOL data);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDelegateBlock)(id <UICollectionViewDelegate>_Nullable delegate);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDataSourceBlock)(id <UICollectionViewDataSource>_Nullable dataSource);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDragDelegateBlock)(id <UICollectionViewDragDelegate>_Nullable delegate);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDropDelegateBlock)(id <UICollectionViewDropDelegate>_Nullable delegate);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDataSourcePrefetchingBlock)(id <UICollectionViewDataSourcePrefetching>_Nullable dataSourcePrefetching);
-typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByLayoutBlock)(__kindof UICollectionViewLayout *_Nullable data);
-typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable data);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByLayoutBlock)(__kindof UICollectionViewLayout *_Nullable layout);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable layout);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByClassAndSaltStrBlock)(Jobs_UITableViewHeaderFooterViewBlock_Arguments);
 #pragma mark —— 关于 UICollectionViewLayoutAttributes
 typedef __kindof UICollectionViewLayoutAttributes *_Nullable(^JobsReturnCollectionViewLayoutAttributesByNSIndexPathBlock)(__kindof NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于 UICollectionViewCell
@@ -301,6 +303,7 @@ typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByDelegateBlock)(i
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByPointBlock)(CGPoint data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByRectBlock)(CGRect frame);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewBySizeBlock)(CGSize size);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByUIEdgeInsetsBlock)(UIEdgeInsets insets);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
 @class UIButtonModel;
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByButtonModelBlock)(__kindof UIButtonModel *_Nullable buttonModel);

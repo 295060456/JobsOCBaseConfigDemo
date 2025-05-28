@@ -62,18 +62,19 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
--(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleAndAction{
+/// 设置返回按钮的文字、返回按钮的行为（默认导航栏标题（图片）为 BSportRedLogo）
+-(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleImageAndAction{
     return ^JobsNavBarConfig *_Nullable(NSString *_Nullable string,
                                         JobsReturnIDByIDBlock _Nullable backActionBlock){
         return jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
             config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.Alpha = 1;
                 viewModel.navBgCor = JobsClearColor;
-    //            viewModel.navBgImage = JobsIMG(@"");
+                viewModel.navBgImage = JobsIMG(@"");
                 viewModel.titleImage = JobsIMG(@"BSportRedLogo"); /// 配置中间的标题为图片
             });
             config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
-    //            @jobs_strongify(self)
+                // @jobs_strongify(self)
                 buttonModel.normalImage = JobsIMG(@"全局返回箭头");
                 buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
                 buttonModel.title = string;
@@ -86,32 +87,81 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                 buttonModel.imagePadding = JobsWidth(5);
                 buttonModel.clickEventBlock = backActionBlock;
                 buttonModel.longPressGestureEventBlock = ^id(__kindof UIButton *_Nullable x){
-//                    @jobs_strongify(self)
+                    // @jobs_strongify(self)
                     return nil;
                 };
             }));
         });
     };
 }
-
+/// 设置导航栏标题（文字）、返回按钮的文字、返回按钮的行为
+-(JobsReturnNavBarConfigByStringsAndActionBlock _Nullable)makeNavByTitlesAndAction{
+    return ^JobsNavBarConfig *_Nullable(NSString *_Nullable title,
+                                        NSString *_Nullable backTitle,
+                                        JobsReturnIDByIDBlock _Nullable backActionBlock){
+        return jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
+            config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
+                viewModel.Alpha = 1;
+                viewModel.navBgCor = JobsClearColor;
+                viewModel.textModel.text = title;
+                viewModel.textModel.font = bayonRegular(JobsWidth(18));
+                viewModel.navBgImage = JobsIMG(@"");
+            });
+            config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
+                // @jobs_strongify(self)
+                buttonModel.normalImage = JobsIMG(@"全局返回箭头");
+                buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
+                buttonModel.title = backTitle;
+                buttonModel.titleFont = bayonRegular(18);
+                buttonModel.titleCor = JobsCor(@"#E20808");
+                buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
+                buttonModel.textAlignment = NSTextAlignmentCenter;
+                buttonModel.subTextAlignment = NSTextAlignmentCenter;
+                buttonModel.baseBackgroundColor = JobsClearColor;
+                buttonModel.imagePadding = JobsWidth(5);
+                buttonModel.clickEventBlock = backActionBlock;
+                buttonModel.longPressGestureEventBlock = ^id(__kindof UIButton *_Nullable x){
+                    // @jobs_strongify(self)
+                    return nil;
+                };
+            }));
+        });
+    };
+}
+/// 设置返回按钮的文字（默认退回上一个页面）
 -(JobsReturnNavBarConfigByStringBlock _Nullable)makeNav0ByTitle{
     @jobs_weakify(self)
     return ^JobsNavBarConfig *_Nullable(NSString *_Nullable string){
         @jobs_strongify(self)
-        return self.makeNavByTitleAndAction(string,^id(__kindof UIButton *_Nullable x){
+        return self.makeNavByTitleImageAndAction(string,^id(__kindof UIButton *_Nullable x){
             @jobs_strongify(self)
             x.selected = !x.selected;
+            /// 退回上一个页面
             self.backViewControllerCore((__kindof UIViewController *)self);
             return nil;
         });
     };
 }
-
+/// 设置返回按钮的文字（默认退回TabBar0）
 -(JobsReturnNavBarConfigByStringBlock _Nullable)makeNav1ByTitle{
     @jobs_weakify(self)
     return ^JobsNavBarConfig *_Nullable(NSString *_Nullable string){
         @jobs_strongify(self)
-        return self.makeNavByTitleAndAction(string,^id(__kindof UIButton *_Nullable x){
+        return self.makeNavByTitleImageAndAction(string,^id(__kindof UIButton *_Nullable x){
+            @jobs_strongify(self)
+            x.selected = !x.selected;
+            /// 退回TabBar0
+            self.backTo(0);
+            return nil;
+        });
+    };
+}
+/// 设置导航栏标题、返回按钮文字、返回按钮的行为
+-(JobsReturnNavBarConfigByStringsBlock _Nullable)makeNav2ByTitle{
+    @jobs_weakify(self)
+    return ^JobsNavBarConfig *_Nullable(NSString *_Nullable title,NSString *_Nullable backBtnTitle){
+        @jobs_strongify(self)
+        return self.makeNavByTitlesAndAction(title,backBtnTitle,^id(__kindof UIButton *_Nullable x){
             @jobs_strongify(self)
             x.selected = !x.selected;
             self.backTo(0);
