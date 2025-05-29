@@ -62,7 +62,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
     };
 }
 #pragma mark —— 一些公共设置
-/// 设置返回按钮的文字、返回按钮的行为（默认导航栏标题（图片）为 BSportRedLogo）
+/// 设置返回按钮的文字、返回按钮的行为（默认导航栏标题（图片）为 BLuckyRedLogo）
 -(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleImageAndAction{
     return ^JobsNavBarConfig *_Nullable(NSString *_Nullable string,
                                         JobsReturnIDByIDBlock _Nullable backActionBlock){
@@ -71,7 +71,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                 viewModel.Alpha = 1;
                 viewModel.navBgCor = JobsClearColor;
                 viewModel.navBgImage = JobsIMG(@"");
-                viewModel.titleImage = JobsIMG(@"BSportRedLogo"); /// 配置中间的标题为图片
+                viewModel.titleImage = JobsIMG(@"BLuckyRedLogo"); /// 配置中间的标题为图片
             });
             config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 // @jobs_strongify(self)
@@ -165,6 +165,20 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
             @jobs_strongify(self)
             x.selected = !x.selected;
             self.backTo(0);
+            return nil;
+        });
+    };
+}
+
+-(JobsReturnNavBarConfigByStringsBlock _Nullable)makeNav3ByTitle{
+    @jobs_weakify(self)
+    return ^JobsNavBarConfig *_Nullable(NSString *_Nullable title,NSString *_Nullable backBtnTitle){
+        @jobs_strongify(self)
+        return self.makeNavByTitlesAndAction(title,backBtnTitle,^id(__kindof UIButton *_Nullable x){
+            @jobs_strongify(self)
+            x.selected = !x.selected;
+            /// 退回上一个页面
+            self.backViewControllerCore((__kindof UIViewController *)self);
             return nil;
         });
     };

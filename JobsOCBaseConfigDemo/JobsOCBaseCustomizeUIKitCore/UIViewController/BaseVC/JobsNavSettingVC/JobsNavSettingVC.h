@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_END
          viewModel.alpha = 1;
          viewModel.navBgCor = JobsClearColor;
          viewModel.navBgImage = JobsIMG(@"");
-         viewModel.titleImage = JobsIMG(@"BSportRedLogo"); /// 配置中间的标题为图片
+         viewModel.titleImage = JobsIMG(@"BLuckyRedLogo"); /// 配置中间的标题为图片
      });
      /// 配置返回键
      config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {

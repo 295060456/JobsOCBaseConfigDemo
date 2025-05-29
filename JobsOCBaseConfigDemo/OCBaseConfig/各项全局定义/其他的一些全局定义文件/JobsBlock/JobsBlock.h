@@ -541,18 +541,49 @@ typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullabl
 @class ZFIJKPlayerManager;
 typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nullable data);
 
-@class JXCategoryTitleView;
-@class JXCategoryImageView;
-@class JXCategoryDotView;
-@class JXCategoryNumberView;
-@class JXCategoryIndicatorBackgroundView;
-@class JXCategoryIndicatorLineView;
+#if __has_include(<JXCategoryView/JXCategoryView.h>)
+#import <JXCategoryView/JXCategoryView.h>
+#else
+#import "JXCategoryView.h"
+#endif
 typedef void(^jobsByCategoryTitleViewBlock)(__kindof JXCategoryTitleView *_Nullable view);
 typedef void(^jobsByCategoryImageViewBlock)(__kindof JXCategoryImageView *_Nullable view);
 typedef void(^jobsByCategoryDotViewBlock)(__kindof JXCategoryDotView *_Nullable view);
 typedef void(^jobsByCategoryNumberViewBlock)(__kindof JXCategoryNumberView *_Nullable view);
-typedef void(^jobsByCategoryIndicatorBackgroundViewBlock)(__kindof JXCategoryIndicatorBackgroundView *_Nullable view);
-typedef void(^jobsCategoryIndicatorLineViewBlock)(__kindof JXCategoryIndicatorLineView *_Nullable view);
+typedef void(^jobsByCategoryIndicatorBackgroundViewBlock)(__kindof JXCategoryIndicatorBackgroundView *_Nullable bgView);
+typedef void(^jobsCategoryIndicatorLineViewBlock)(__kindof JXCategoryIndicatorLineView *_Nullable indicator);
+
+typedef __kindof JXCategoryListContainerView *_Nullable(^JobsReturnCategoryListContainerViewByNSIntegerBlock)(NSInteger data);
+typedef __kindof JXCategoryIndicatorView *_Nullable(^JobsReturnCategoryIndicatorViewByViewsBlock)(__kindof NSArray <__kindof UIView <JXCategoryIndicatorProtocol>*>* _Nullable views);
+
+typedef __kindof JXCategoryBaseView *_Nullable(^JobsReturnCategoryBaseViewByVoidBlock)(void);
+typedef __kindof JXCategoryBaseView *_Nullable(^JobsReturnCategoryBaseViewByDelegateBlock)(id<JXCategoryViewDelegate> _Nullable delegate);
+typedef __kindof JXCategoryBaseView *_Nullable(^JobsReturnCategoryBaseViewByListContainerBlock)(id<JXCategoryViewListContainer> _Nullable listContainer);
+typedef __kindof JXCategoryBaseView *_Nullable(^JobsReturnCategoryBaseViewByCGFloatBlock)(CGFloat data);
+typedef __kindof JXCategoryBaseView *_Nullable(^JobsReturnCategoryBaseViewByViewBlock)(__kindof UIView *_Nullable view);
+
+typedef __kindof JXCategoryTitleView *_Nullable(^JobsReturnCategoryTitleViewByCorBlock)(__kindof UIColor *_Nullable cor);
+typedef __kindof JXCategoryTitleView *_Nullable(^JobsReturnCategoryTitleViewByFontBlock)(UIFont *_Nullable font);
+typedef __kindof JXCategoryTitleView *_Nullable(^JobsReturnCategoryTitleViewByStringsBlock)(__kindof NSArray <__kindof NSString *>* _Nullable strings);
+typedef __kindof JXCategoryTitleView *_Nullable(^JobsReturnCategoryTitleViewByNSIntegerBlock)(NSInteger data);
+typedef __kindof JXCategoryTitleView *_Nullable(^JobsReturnCategoryTitleViewByBOOLBlock)(BOOL data);
+
+typedef __kindof JXCategoryImageView *_Nullable(^JobsReturnCategoryImageViewByStringsBlock)(__kindof NSArray <__kindof NSString *>* _Nullable strings);
+typedef __kindof JXCategoryImageView *_Nullable(^JobsReturnCategoryImageViewBySizeBlock)(CGSize size);
+typedef __kindof JXCategoryImageView *_Nullable(^JobsReturnCategoryImageViewByCGFloatBlock)(CGFloat data);
+typedef __kindof JXCategoryImageView *_Nullable(^JobsReturnCategoryImageViewByBOOLBlock)(BOOL data);
+typedef __kindof JXCategoryImageView *_Nullable(^JobsReturnCategoryImageViewByNSIntegerBlock)(NSInteger data);
+typedef __kindof JXCategoryImageView *_Nullable(^JobsReturnCategoryImageViewByIndicatorLineViewsBlock)(__kindof NSArray <__kindof JXCategoryIndicatorLineView *>* _Nullable indicatorLineViews);
+
+typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewByRelativePositionBlock)(JXCategoryDotRelativePosition relativePosition);
+typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewByCGFloatBlock)(CGFloat data);
+typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewBySizeBlock)(CGSize size);
+typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewByPointBlock)(CGPoint point);
+typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewByCorBlock)(__kindof UIColor *_Nullable cor);
+typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewByNumbersBlock)(__kindof NSArray <__kindof NSNumber *>* _Nullable numbers);
+typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByNumbersBlock)(__kindof NSArray <__kindof NSNumber *>* _Nullable numbers);
+typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByCGPointBlock)(CGPoint point);
+typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByReturnStringByIntegerBlocks)(JobsReturnStringByIntegerBlock _Nullable block);
 
 #pragma mark —— 复合型Block
 typedef void(^jobsByErrBlocks)(jobsByErrorBlock _Nullable block);

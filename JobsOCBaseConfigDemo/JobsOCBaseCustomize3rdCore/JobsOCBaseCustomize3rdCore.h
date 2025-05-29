@@ -103,7 +103,7 @@
 #import "UIViewController+GKCustomNavigationBar.h"
 #import "MGSwipeTableCell+Extra.h"
 
-#import "JXCategoryView.h"
+#import "JXCategoryExtra.h"
 #import "ZFPlayerExtras.h"
 
 #endif /* JobsOCBaseCustomize3rdCore_h */

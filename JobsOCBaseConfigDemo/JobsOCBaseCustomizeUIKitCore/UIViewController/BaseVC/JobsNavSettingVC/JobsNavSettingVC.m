@@ -53,7 +53,7 @@
 //    });
 //    self.makeNavByConfig(jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
 //        config.alpha = 1;
-//        config.titleImage = JobsIMG(@"BSportRedLogo"); /// 配置中间的标题为图片
+//        config.titleImage = JobsIMG(@"BLuckyRedLogo"); /// 配置中间的标题为图片
 //        /// 配置返回键
 //        config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
 ////            @jobs_strongify(self)

@@ -1,11 +1,12 @@
 //
-//  JXCategoryView.h
-//  FM_Normal
+//  JXCategoryExtra.h
+//  FMNormal
 //
-//  Created by Admin on 15/4/2025.
+//  Created by Jobs on 2025/5/29.
 //
 
-#import "BaseView.h"
+#ifndef JXCategoryExtra_h
+#define JXCategoryExtra_h
 
 #if __has_include(<JXCategoryView/JXCategoryView.h>)
 #import <JXCategoryView/JXCategoryView.h>
@@ -13,13 +14,13 @@
 #import "JXCategoryView.h"
 #endif
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface JXCategoryView : BaseView
-
-@end
-
-NS_ASSUME_NONNULL_END
+#import "JXCategoryBaseView+Extra.h"
+#import "JXCategoryTitleView+Extra.h"
+#import "JXCategoryImageView+Extra.h"
+#import "JXCategoryNumberView+Extra.h"
+#import "JXCategoryDotView+Extra.h"
+#import "JXCategoryListContainerView+Extra.h"
+#import "JXCategoryIndicatorView+Extra.h"
 
 NS_INLINE __kindof JXPagerView *_Nonnull jobsMakeCategoryPagerView(id<JXPagerViewDelegate> _Nonnull delegate){
     JXPagerView *data = [JXPagerView.alloc initWithDelegate:delegate];
@@ -73,3 +74,6 @@ NS_INLINE __kindof JXCategoryListContainerView *_Nonnull jobsMakeCategoryListCon
                                                                                delegate:delegate];
     return data;
 }
+
+
+#endif /* JXCategoryExtra_h */

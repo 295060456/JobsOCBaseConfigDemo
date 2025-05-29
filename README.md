@@ -2253,18 +2253,18 @@ classDiagram
   ```
 
   ```objective-c
-  /// 此属性决定依附于此的viewController
   Prop_strong()JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
   -(JXCategoryListContainerView *)listContainerView{
       if (!_listContainerView) {
-          _listContainerView = jobsMakeCategoryListContainerViewByCollectionViewStyle(self);
-          _listContainerView.defaultSelectedIndex = 1;// 默认从第二个开始显示
-          self.view.addSubview(_listContainerView);
-          [_listContainerView mas_makeConstraints:^(MASConstraintMaker *make) {
+          @jobs_weakify(self)
+          _listContainerView = self.view.addSubview(jobsMakeCategoryListContainerViewByCollectionViewStyle(self)
+                                                    .byDefaultSelectedIndex(1))/// 默认从第二个开始显示)
+          .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+              @jobs_strongify(self)
   //            make.edges.equalTo(self.view);
               make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(listContainerViewDefaultOffset);
               make.left.right.bottom.equalTo(self.view);
-          }];[self.view layoutIfNeeded];
+          }).on();
           /// ❤️在需要的地方写❤️
           NSNumber *currentIndex = self.listContainerView.valueForKey(@"currentIndex");
           NSLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",currentIndex.intValue);
@@ -2356,182 +2356,173 @@ classDiagram
 
   * ```objective-c
     Prop_strong()JXCategoryTitleView *categoryView;/// 文字
-    -(JXCategoryTitleView *)categoryView{
-        if (!_categoryView) {
-            @jobs_weakify(self)
-            _categoryView = jobsMakeCategoryTitleView(^(JXCategoryTitleView * _Nullable view) {
-                @jobs_strongify(self)
-                view.backgroundColor = JobsClearColor;
-                view.titleSelectedColor = JobsWhiteColor;
-                view.titleColor = JobsWhiteColor;
-                view.titleFont = UIFontWeightRegularSize(JobsWidth(18));
-                view.titleSelectedFont = UIFontWeightRegularSize(JobsWidth(28));
-                view.delegate = self;
-                view.titles = self.titles;
-                view.titleColorGradientEnabled = YES;
-                /// 跟随的指示器
-                view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                    arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
-                        view.indicatorColor = HEXCOLOR(0xFFEABA);
-                        view.indicatorHeight = JobsWidth(4);
-                        view.indicatorWidthIncrement = JobsWidth(10);
-                        view.verticalMargin = 0;
-                    }));
-                });
-                view.defaultSelectedIndex = 1;// 默认从第二个开始显示
-                view.cellSpacing = JobsWidth(-20);
-                /// 关联cotentScrollView，关联之后才可以互相联动！！！
-                view.contentScrollView = self.listContainerView.scrollView;
-                /// BackgroundView 椭圆形
-                view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                    arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
-                        view.indicatorHeight = JobsWidth(30);
-                        view.indicatorWidth = JobsWidth(76);
-                        view.indicatorColor = HEXCOLOR(0xFFEABA);
-                        view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
-                    }));
-                });self.view.addSubview(view);
-                [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
-                    make.left.right.equalTo(self.view);
-                    make.height.mas_equalTo(listContainerViewDefaultOffset);
-                }];[self.view layoutIfNeeded];
-            });
-    
-        }return _categoryView;
-    }
+     -(JXCategoryTitleView *)categoryView{
+         if(!_categoryView){
+             @jobs_weakify(self)
+             _categoryView = self.view.addSubview(jobsMakeCategoryTitleView(^(JXCategoryTitleView * _Nullable view) {
+                 @jobs_strongify(self)
+                 view.byTitleSelectedColor(JobsRedColor)
+                     .byTitleColor(JobsGrayColor)
+                     .byTitleFont(UIFontWeightRegularSize(JobsWidth(10)))
+                     .byTitleSelectedFont(UIFontWeightRegularSize(JobsWidth(11)))
+                     .byTitles(self.titles)
+                     .byTitleColorGradientEnabled(YES)
+                     .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray <JXCategoryIndicatorBackgroundView *>* _Nullable arr) {
+                         arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable indicator) {
+                             indicator.indicatorColor = HEXCOLOR(0xFFEABA);
+                             indicator.indicatorHeight = JobsWidth(4);
+                             indicator.indicatorWidthIncrement = JobsWidth(10);
+                             indicator.verticalMargin = 0;
+                         }));
+                     }))/// 跟随的指示器（二选一）
+                     .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray <JXCategoryIndicatorBackgroundView *>* _Nullable arr) {
+                         arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable bgView) {
+                             bgView.indicatorHeight = JobsWidth(30);
+                             bgView.indicatorWidth = JobsWidth(76);
+                             bgView.indicatorColor = HEXCOLOR(0xFFEABA);
+                             bgView.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
+                         }));
+                     }))/// 跟随的指示器（二选一）BackgroundView 椭圆形
+                     .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
+                     .byCellSpacing(JobsWidth(-20))
+                     .byContentScrollView(self.listContainerView.scrollView)/// 关联cotentScrollView，关联之后才可以互相联动！！！
+                     .byDelegate(self)
+                     .byBgCor(JobsClearColor);
+             })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                 @jobs_strongify(self)
+                 make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
+                 make.left.right.equalTo(self.view);
+                 make.height.mas_equalTo(listContainerViewDefaultOffset);
+             }).on();
+         }return _categoryView;
+     }
     ```
-
+    
   * ```objective-c
     Prop_strong()JXCategoryImageView *categoryView;/// 纯图
-    -(JXCategoryImageView *)categoryView{
-        if (!_categoryView) {
-            _categoryView = jobsMakeCategoryImageView(^(JXCategoryImageView * _Nullable view) {
-                view.backgroundColor = UIColor.clearColor;
-                view.delegate = self;
-                view.imageNames = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
-                    arr.add(@"彩票_已选择")
-                        .add(@"电子_已选择")
-                        .add(@"棋牌_已选择")
-                        .add(@"全部游戏_已选择")
-                        .add(@"体育_已选择")
-                        .add(@"真人直播_已选择");
-                });
-                view.selectedImageNames = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
-                    arr.add(@"彩票_已选择")
-                        .add(@"电子_已选择")
-                        .add(@"棋牌_已选择")
-                        .add(@"全部游戏_已选择")
-                        .add(@"体育_已选择")
-                        .add(@"真人直播_已选择");
-                });
-                view.imageInfoArray = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
-                    arr.add(@"彩票_已选择")
-                        .add(@"电子_已选择")
-                        .add(@"棋牌_已选择")
-                        .add(@"全部游戏_已选择")
-                        .add(@"体育_已选择")
-                        .add(@"真人直播_已选择");
-                });
-                view.selectedImageInfoArray = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
-                    arr.add(@"彩票_已选择")
-                        .add(@"电子_已选择")
-                        .add(@"棋牌_已选择")
-                        .add(@"全部游戏_已选择")
-                        .add(@"体育_已选择")
-                        .add(@"真人直播_已选择");
-                });
-                
-                view.imageSize = CGSizeMake(JobsWidth(30), JobsWidth(30));
-                view.imageCornerRadius = JobsWidth(8);
-                view.imageZoomEnabled = YES;
-                view.imageZoomScale = 2;
-    
-                view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                    arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
-                        view.indicatorColor = HEXCOLOR(0xFFEABA);
-                        view.indicatorHeight = JobsWidth(4);
-                        view.indicatorWidthIncrement = JobsWidth(10);
-                        view.verticalMargin = 0;
-                    }));
-                });
-                view.defaultSelectedIndex = 1;// 默认从第二个开始显示
-                view.cellSpacing = JobsWidth(-20);
-                // 关联cotentScrollView，关联之后才可以互相联动！！！
-                view.contentScrollView = self.listContainerView.scrollView;//
-                view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                    arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
-                        view.indicatorHeight = JobsWidth(30);
-                        view.indicatorWidth = JobsWidth(76);
-                        view.indicatorColor = HEXCOLOR(0xFFEABA);
-                        view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
-                    }));
-                });
-                self.view.addSubview(view);
-                [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
-                    make.left.right.equalTo(self.view);
-                    make.height.mas_equalTo(listContainerViewDefaultOffset);
-                }];[self.view layoutIfNeeded];
-            });
-        }return _categoryView;
-    }
+     -(JXCategoryImageView *)categoryView{
+         if (!_categoryView) {
+             @jobs_weakify(self)
+             _categoryView = self.view.addSubview(jobsMakeCategoryImageView(^(JXCategoryImageView * _Nullable view) {
+                 view.byImageNames(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
+                     arr.add(@"彩票_已选择")
+                         .add(@"电子_已选择")
+                         .add(@"棋牌_已选择")
+                         .add(@"全部游戏_已选择")
+                         .add(@"体育_已选择")
+                         .add(@"真人直播_已选择");
+                 }))
+                 .bySelectedImageNames(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
+                     arr.add(@"彩票_已选择")
+                         .add(@"电子_已选择")
+                         .add(@"棋牌_已选择")
+                         .add(@"全部游戏_已选择")
+                         .add(@"体育_已选择")
+                         .add(@"真人直播_已选择");
+                 }))
+                 .byImageInfoArray(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
+                     arr.add(@"彩票_已选择")
+                         .add(@"电子_已选择")
+                         .add(@"棋牌_已选择")
+                         .add(@"全部游戏_已选择")
+                         .add(@"体育_已选择")
+                         .add(@"真人直播_已选择");
+                 }))
+                 .bySelectedImageInfoArray(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
+                     arr.add(@"彩票_已选择")
+                         .add(@"电子_已选择")
+                         .add(@"棋牌_已选择")
+                         .add(@"全部游戏_已选择")
+                         .add(@"体育_已选择")
+                         .add(@"真人直播_已选择");
+                 }))
+                 .byImageSize(CGSizeMake(JobsWidth(30), JobsWidth(30)))
+                 .byImageCornerRadius(JobsWidth(8))
+                 .byImageZoomEnabled(YES)
+                 .byImageZoomScale(2)
+                 .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
+                 .byCellSpacing(JobsWidth(-20))
+                 .byContentScrollView(self.listContainerView.scrollView)/// 关联cotentScrollView，关联之后才可以互相联动！！！
+                 .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray <JXCategoryIndicatorLineView *>* _Nullable arr) {
+                     arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
+                         view.indicatorColor = HEXCOLOR(0xFFEABA);
+                         view.indicatorHeight = JobsWidth(4);
+                         view.indicatorWidthIncrement = JobsWidth(10);
+                         view.verticalMargin = 0;
+                     }));
+                 }))/// 二选一
+                 .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                     arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
+                         view.indicatorHeight = JobsWidth(30);
+                         view.indicatorWidth = JobsWidth(76);
+                         view.indicatorColor = HEXCOLOR(0xFFEABA);
+                         view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
+                     }));
+                 }))/// 二选一
+                 .byDelegate(self)
+                 .byBgCor(JobsClearColor);
+             }))
+             .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                 @jobs_strongify(self)
+                 make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
+                 make.left.right.equalTo(self.view);
+                 make.height.mas_equalTo(listContainerViewDefaultOffset);
+             }).on();
+         }return _categoryView;
+     }
     ```
-
+    
   * ```objective-c
     Prop_strong()JXCategoryDotView *categoryView;/// 右上角带红点
-    -(JXCategoryDotView *)categoryView{
-        if (!_categoryView) {
-            _categoryView = jobsMakeCategoryDotView(^(JXCategoryDotView * _Nullable view) {
-                view.delegate = self;
-                view.dotStates = jobsMakeMutArr(^(__kindof NSMutableArray <NSNumber *>* _Nullable arr) {
-                    arr.add(@YES)
-                        .add(@NO)
-                        .add(@NO)
-                        .add(@NO)
-                        .add(@NO)
-                        .add(@NO);
-                });
-                view.titles = self.titles;
-                view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                    arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
-                        view.indicatorColor = HEXCOLOR(0xFFEABA);
-                        view.indicatorHeight = JobsWidth(4);
-                        view.indicatorWidthIncrement = JobsWidth(10);
-                        view.verticalMargin = 0;
-                    }));
-                });
-                view.backgroundColor = HEXCOLOR(0xFCFBFB);
-                view.titleSelectedColor = HEXCOLOR(0xAE8330);
-                view.titleColor = HEXCOLOR(0xC4C4C4);
-                view.titleFont = UIFontWeightBoldSize(JobsWidth(12));
-                view.titleSelectedFont = UIFontWeightBoldSize(JobsWidth(14));
-                view.defaultSelectedIndex = 1;//默认从第二个开始显示
-                view.titleColorGradientEnabled = YES;
-        //        view.titleLabelZoomEnabled = YES;//默认为NO。为YES时titleSelectedFont失效，以titleFont为准。这句话貌似有点问题，等作者回复
-                view.listContainer = self.listContainerView;
-                /// BackgroundView 椭圆形
-                view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                    arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
-                        view.indicatorHeight = JobsWidth(30);
-                        view.indicatorWidth = JobsWidth(76);
-                        view.indicatorColor = HEXCOLOR(0xFFEABA);
-                        view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
-                    }));
-                });
-                view.dotSize = CGSizeMake(JobsWidth(5), JobsWidth(5));
-                // 关联cotentScrollView，关联之后才可以互相联动！！！
-                view.contentScrollView = self.listContainerView.scrollView;
-                [view reloadDataWithoutListContainer];
-                self.view.addSubview(view);
-                [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
-                    make.left.right.equalTo(self.view);
-                    make.height.mas_equalTo(listContainerViewDefaultOffset);
-                }];
-            });
-        }return _categoryView;
-    }
+     -(JXCategoryDotView *)categoryView{
+         if (!_categoryView) {
+             @jobs_weakify(self)
+             _categoryView = self.view.addSubview(jobsMakeCategoryDotView(^(JXCategoryDotView * _Nullable view) {
+                 view.byDotStates(jobsMakeMutArr(^(__kindof NSMutableArray <NSNumber *>* _Nullable arr) {
+                     arr.add(@YES)
+                         .add(@NO)
+                         .add(@NO)
+                         .add(@NO)
+                         .add(@NO)
+                         .add(@NO);
+                 }))
+                 .byDotSize(CGSizeMake(JobsWidth(5), JobsWidth(5)))
+                 .byTitleSelectedColor(HEXCOLOR(0xAE8330))
+                 .byTitleColor(HEXCOLOR(0xC4C4C4))
+                 .byTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                 .byTitleSelectedFont(UIFontWeightBoldSize(JobsWidth(14)))
+                 .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
+                 .byTitleColorGradientEnabled(YES)
+                 .byTitles(self.titles)
+                 .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                     arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
+                         view.indicatorColor = HEXCOLOR(0xFFEABA);
+                         view.indicatorHeight = JobsWidth(4);
+                         view.indicatorWidthIncrement = JobsWidth(10);
+                         view.verticalMargin = 0;
+                     }));
+                 }))/// 二选一
+                 .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                     arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
+                         view.indicatorHeight = JobsWidth(30);
+                         view.indicatorWidth = JobsWidth(76);
+                         view.indicatorColor = HEXCOLOR(0xFFEABA);
+                         view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
+                     }));
+                 }))/// 二选一：BackgroundView 椭圆形
+                 .byContentScrollView(self.listContainerView.scrollView)/// 关联cotentScrollView，关联之后才可以互相联动！！！
+                 .byListContainer(self.listContainerView)
+                 .reloadDatasWithoutListContainer()
+                 .byDelegate(self)
+                 .byBgCor(HEXCOLOR(0xFCFBFB));
+             })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                 @jobs_strongify(self)
+                 make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                 make.left.right.equalTo(self.view);
+                 make.height.mas_equalTo(listContainerViewDefaultOffset);
+             }).on();
+         }return _categoryView;
+     }
     
     - (void)categoryView:(JXCategoryBaseView *)categoryView
     didSelectedItemAtIndex:(NSInteger)index {
@@ -2550,69 +2541,66 @@ classDiagram
         }
     }
     ```
-
+    
   * ```objective-c
     Prop_strong()JXCategoryNumberView *categoryView;/// 右上角带文字
     -(JXCategoryNumberView *)categoryView{
-        if (!_categoryView) {
-            _categoryView = jobsMakeCategoryNumberView(^(JXCategoryNumberView * _Nullable view) {
-                view.delegate = self;
-                view.titles = self.titles;
-                view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                    arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
-                        view.indicatorColor = HEXCOLOR(0xFFEABA);
-                        view.indicatorHeight = JobsWidth(4);
-                        view.indicatorWidthIncrement = JobsWidth(10);
-                        view.verticalMargin = 0;
-                    }));
-                });
-                view.backgroundColor = HEXCOLOR(0xFCFBFB);
-                view.titleSelectedColor = HEXCOLOR(0xAE8330);
-                view.titleColor = HEXCOLOR(0xC4C4C4);
-                view.titleFont = UIFontWeightBoldSize(JobsWidth(12));
-                view.titleSelectedFont = UIFontWeightBoldSize(JobsWidth(14));
-                view.defaultSelectedIndex = 1;//默认从第二个开始显示
-                view.titleColorGradientEnabled = YES;
-                //        view.titleLabelZoomEnabled = YES;//默认为NO。为YES时titleSelectedFont失效，以titleFont为准。这句话貌似有点问题，等作者回复
-                view.listContainer = self.listContainerView;
-                view.counts = jobsMakeMutArr(^(__kindof NSMutableArray <NSNumber *>* _Nullable arr) {
-                    arr.add(@1)
-                        .add(@1)
-                        .add(@1)
-                        .add(@1)
-                        .add(@1)
-                        .add(@1);
-                });
-                view.numberLabelOffset = CGPointMake(JobsWidth(5), JobsWidth(2));
-                /// 内部默认不会格式化数字，直接转成字符串显示。比如业务需要数字超过999显示999+，可以通过该block实现。
-                view.numberStringFormatterBlock = ^NSString *(NSInteger number) {
-                    if (number > 999) {
-                        return @"999+";
-                    }return [NSString stringWithFormat:@"%ld", (long)number];
-                };
-                /// 关联cotentScrollView，关联之后才可以互相联动！！！
-                view.contentScrollView = self.listContainerView.scrollView;
-                /// BackgroundView 椭圆形
-                view.indicators = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                    arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
-                        view.indicatorHeight = JobsWidth(30);
-                        view.indicatorWidth = JobsWidth(76);
-                        view.indicatorColor = HEXCOLOR(0xFFEABA);
-                        view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
-                    }));
-                });
-                [view reloadDataWithoutListContainer];
-                self.view.addSubview(view);
-                [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
-                    make.left.right.equalTo(self.view);
-                    make.height.mas_equalTo(listContainerViewDefaultOffset);
-                }];
-            });
-        }return _categoryView;
-    }
+         if (!_categoryView) {
+             @jobs_weakify(self)
+             _categoryView = self.view.addSubview(jobsMakeCategoryNumberView(^(JXCategoryNumberView * _Nullable view) {
+                 view.byNumberLabelOffset(CGPointMake(JobsWidth(5), JobsWidth(2)))
+                     .byCounts(jobsMakeMutArr(^(__kindof NSMutableArray <NSNumber *>* _Nullable arr) {
+                         arr.add(@1)
+                             .add(@1)
+                             .add(@1)
+                             .add(@1)
+                             .add(@1)
+                             .add(@1);
+                     }))
+                     /// 内部默认不会格式化数字，直接转成字符串显示。比如业务需要数字超过999显示999+，可以通过该block实现。
+                     .byNumberStringFormatterBlock(^NSString *(NSInteger number) {
+                         if (number > 999) {
+                             return @"999+";
+                         }return [NSString stringWithFormat:@"%ld", (long)number];
+                     })
+                     .byTitles(self.titles)
+                     .byTitleSelectedColor(HEXCOLOR(0xAE8330))
+                     .byTitleColor(HEXCOLOR(0xC4C4C4))
+                     .byTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                     .byTitleSelectedFont(UIFontWeightBoldSize(JobsWidth(14)))
+                     .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
+                     .byTitleColorGradientEnabled(YES)
+                     .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                         arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
+                             view.indicatorColor = HEXCOLOR(0xFFEABA);
+                             view.indicatorHeight = JobsWidth(4);
+                             view.indicatorWidthIncrement = JobsWidth(10);
+                             view.verticalMargin = 0;
+                         }));
+                     }))/// 二选一
+                     .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                         arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
+                             view.indicatorHeight = JobsWidth(30);
+                             view.indicatorWidth = JobsWidth(76);
+                             view.indicatorColor = HEXCOLOR(0xFFEABA);
+                             view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
+                         }));
+                     }))/// 二选一：BackgroundView 椭圆形
+                     .byContentScrollView(self.listContainerView.scrollView) /// 关联cotentScrollView，关联之后才可以互相联动！！！
+                     .byListContainer(self.listContainerView)
+                     .reloadDatasWithoutListContainer()
+                     .byDelegate(self)
+                     .byBgCor(HEXCOLOR(0xFCFBFB));
+             })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                 @jobs_strongify(self)
+                 make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                 make.left.right.equalTo(self.view);
+                 make.height.mas_equalTo(listContainerViewDefaultOffset);
+             }).on();
+         }return _categoryView;
+     }
     ```
-
+  
 * 对于子菜单是视图控制器的：推荐使用`JobsToggleBaseView`
 
   ```objective-c
