@@ -34,14 +34,14 @@
                        context:(void *)context {
     if ([object isEqual:self.mjRefreshGifHeader] &&
         self.mjRefreshGifHeader.state == MJRefreshStatePulling) {
-        self.feedbackGenerator(nil);
+        NSObject.feedbackGenerator(nil);
     }else if (([object isEqual:self.mjRefreshAutoGifFooter] ||
                [object isEqual:self.mjRefreshBackNormalFooter] ||
                [object isEqual:self.mjRefreshAutoNormalFooter]) && (self.mjRefreshAutoGifFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshBackNormalFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshAutoNormalFooter.state == MJRefreshStatePulling)
              ) {
-        self.feedbackGenerator(nil);
+        NSObject.feedbackGenerator(nil);
     }else{}
 }
 #pragma mark —— Prop_strong()MJRefreshConfigModel *refreshConfigHeader;//头部的配置信息

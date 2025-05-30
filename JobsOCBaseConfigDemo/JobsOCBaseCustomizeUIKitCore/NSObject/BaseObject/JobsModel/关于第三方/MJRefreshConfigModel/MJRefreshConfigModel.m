@@ -9,6 +9,14 @@
 
 @implementation MJRefreshConfigModel
 
+-(JobsReturnMJRefreshConfigModelByReturnIDByIDBlocks _Nonnull)byLoadBlock{
+    @jobs_weakify(self)
+    return ^MJRefreshConfigModel *_Nullable(JobsReturnIDByIDBlock block){
+        @jobs_strongify(self)
+        self.loadBlock = block;
+        return self;
+    };
+}
 #pragma mark —— lazyLoad 默认配置
 /// Font
 -(UIFont *)font{

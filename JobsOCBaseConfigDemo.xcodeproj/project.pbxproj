@@ -223,6 +223,10 @@
 		C58B19722DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B19702DBF59F1006163A3 /* JobsTextViewStyleTBVCell.m */; };
 		C58B1D812DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */; };
 		C58B1D822DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */; };
+		C5932C1D2DE9A4240021F5FC /* MJRefreshBackStateFooter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5932C172DE9A4240021F5FC /* MJRefreshBackStateFooter+Extra.m */; };
+		C5932C1E2DE9A4240021F5FC /* MJRefreshStateHeader+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5932C1A2DE9A4240021F5FC /* MJRefreshStateHeader+Extra.m */; };
+		C5932C1F2DE9A4240021F5FC /* MJRefreshAutoStateFooter+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5932C142DE9A4240021F5FC /* MJRefreshAutoStateFooter+Extra.m */; };
+		C5932C272DE9A63F0021F5FC /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5932C252DE9A63F0021F5FC /* BaseTableViewCell.m */; };
 		C59351E22DD71A0B00C0572B /* JobsTBVHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C59351DF2DD71A0B00C0572B /* JobsTBVHeaderFooterView.m */; };
 		C59351E32DD71A0B00C0572B /* BaseTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C59351DC2DD71A0B00C0572B /* BaseTableViewHeaderFooterView.m */; };
 		C5A185AB2DD1E8D900C5B84E /* JobsNavBarWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A185A52DD1E8D900C5B84E /* JobsNavBarWebVC.m */; };
@@ -1760,6 +1764,14 @@
 		C58B1D7C2DBF9A5F006163A3 /* JobsTextLabStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextLabStyleCVCell.m; sourceTree = "<group>"; };
 		C58B1D7E2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTextViewStyleCVCell.h; sourceTree = "<group>"; };
 		C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTextViewStyleCVCell.m; sourceTree = "<group>"; };
+		C5932C132DE9A4240021F5FC /* MJRefreshAutoStateFooter+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefreshAutoStateFooter+Extra.h"; sourceTree = "<group>"; };
+		C5932C142DE9A4240021F5FC /* MJRefreshAutoStateFooter+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MJRefreshAutoStateFooter+Extra.m"; sourceTree = "<group>"; };
+		C5932C162DE9A4240021F5FC /* MJRefreshBackStateFooter+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefreshBackStateFooter+Extra.h"; sourceTree = "<group>"; };
+		C5932C172DE9A4240021F5FC /* MJRefreshBackStateFooter+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MJRefreshBackStateFooter+Extra.m"; sourceTree = "<group>"; };
+		C5932C192DE9A4240021F5FC /* MJRefreshStateHeader+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefreshStateHeader+Extra.h"; sourceTree = "<group>"; };
+		C5932C1A2DE9A4240021F5FC /* MJRefreshStateHeader+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MJRefreshStateHeader+Extra.m"; sourceTree = "<group>"; };
+		C5932C242DE9A63F0021F5FC /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		C5932C252DE9A63F0021F5FC /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		C59351DB2DD71A0B00C0572B /* BaseTableViewHeaderFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewHeaderFooterView.h; sourceTree = "<group>"; };
 		C59351DC2DD71A0B00C0572B /* BaseTableViewHeaderFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewHeaderFooterView.m; sourceTree = "<group>"; };
 		C59351DE2DD71A0B00C0572B /* JobsTBVHeaderFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTBVHeaderFooterView.h; sourceTree = "<group>"; };
@@ -4103,6 +4115,7 @@
 			isa = PBXGroup;
 			children = (
 				84392BBD2CF4A3AF000D441F /* JobsOCBaseCustomize3rdCore.h */,
+				C5932C1C2DE9A4240021F5FC /* MJRefresh */,
 				C550C9962DE84F31001033A6 /* JXCategoryView */,
 				C5C5501B2DDB20B30008552F /* MGSwipeTableCell */,
 				C532D7232DC9B1E000917DBF /* GKCustomNavigationBar */,
@@ -6147,6 +6160,52 @@
 				C58B1D7F2DBF9A5F006163A3 /* JobsTextViewStyleCVCell.m */,
 			);
 			path = JobsTextViewStyleCVCell;
+			sourceTree = "<group>";
+		};
+		C5932C152DE9A4240021F5FC /* MJRefreshAutoStateFooter */ = {
+			isa = PBXGroup;
+			children = (
+				C5932C132DE9A4240021F5FC /* MJRefreshAutoStateFooter+Extra.h */,
+				C5932C142DE9A4240021F5FC /* MJRefreshAutoStateFooter+Extra.m */,
+			);
+			path = MJRefreshAutoStateFooter;
+			sourceTree = "<group>";
+		};
+		C5932C182DE9A4240021F5FC /* MJRefreshBackStateFooter */ = {
+			isa = PBXGroup;
+			children = (
+				C5932C162DE9A4240021F5FC /* MJRefreshBackStateFooter+Extra.h */,
+				C5932C172DE9A4240021F5FC /* MJRefreshBackStateFooter+Extra.m */,
+			);
+			path = MJRefreshBackStateFooter;
+			sourceTree = "<group>";
+		};
+		C5932C1B2DE9A4240021F5FC /* MJRefreshStateHeader */ = {
+			isa = PBXGroup;
+			children = (
+				C5932C192DE9A4240021F5FC /* MJRefreshStateHeader+Extra.h */,
+				C5932C1A2DE9A4240021F5FC /* MJRefreshStateHeader+Extra.m */,
+			);
+			path = MJRefreshStateHeader;
+			sourceTree = "<group>";
+		};
+		C5932C1C2DE9A4240021F5FC /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				C5932C152DE9A4240021F5FC /* MJRefreshAutoStateFooter */,
+				C5932C182DE9A4240021F5FC /* MJRefreshBackStateFooter */,
+				C5932C1B2DE9A4240021F5FC /* MJRefreshStateHeader */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
+		C5932C262DE9A63F0021F5FC /* BaseTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5932C242DE9A63F0021F5FC /* BaseTableViewCell.h */,
+				C5932C252DE9A63F0021F5FC /* BaseTableViewCell.m */,
+			);
+			path = BaseTableViewCell;
 			sourceTree = "<group>";
 		};
 		C59351DD2DD71A0B00C0572B /* BaseTableViewHeaderFooterView */ = {
@@ -14210,9 +14269,10 @@
 			path = JobsBtnsStyleTBVCell;
 			sourceTree = "<group>";
 		};
-		CE5A638B2CA82C2D006D67A7 /* BaseTableViewCell */ = {
+		CE5A638B2CA82C2D006D67A7 /* JobsBaseTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				C5932C262DE9A63F0021F5FC /* BaseTableViewCell */,
 				C53688382DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell */,
 				C53F136D2DC0BD5F006F2ED6 /* JobsBtnTextViewStyleTBVCell */,
 				C58B19712DBF59F1006163A3 /* JobsTextViewStyleTBVCell */,
@@ -14222,7 +14282,7 @@
 				CE5A63862CA82C2D006D67A7 /* JobsTextLabStyleTBVCell */,
 				CE5A638A2CA82C2D006D67A7 /* JobsBtnsStyleTBVCell */,
 			);
-			path = BaseTableViewCell;
+			path = JobsBaseTableViewCell;
 			sourceTree = "<group>";
 		};
 		CE5A638E2CA82C2D006D67A7 /* UITableViewCell+Margin */ = {
@@ -14269,7 +14329,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5A637D2CA82C2D006D67A7 /* iOS UITableView中Cell的自带样式 */,
-				CE5A638B2CA82C2D006D67A7 /* BaseTableViewCell */,
+				CE5A638B2CA82C2D006D67A7 /* JobsBaseTableViewCell */,
 				CE5A63972CA82C2D006D67A7 /* UITableViewCell+Category */,
 				CE5A63982CA82C2D006D67A7 /* JobsTableViewCell.h */,
 			);
@@ -17147,6 +17207,9 @@
 				CE8C146F2CB91ADE0056090E /* NSObject+URLManager_1.m in Sources */,
 				CECE7D6A2C450DED00764AF5 /* AppDelegate+TabBarCtr.m in Sources */,
 				CECE7EDF2C450E5B00764AF5 /* ZMJCell+CustomView.m in Sources */,
+				C5932C1D2DE9A4240021F5FC /* MJRefreshBackStateFooter+Extra.m in Sources */,
+				C5932C1E2DE9A4240021F5FC /* MJRefreshStateHeader+Extra.m in Sources */,
+				C5932C1F2DE9A4240021F5FC /* MJRefreshAutoStateFooter+Extra.m in Sources */,
 				8493F1E82CD3A64F00011DD1 /* NSObject+YTKRequest.m in Sources */,
 				CE5A64842CA82D7B006D67A7 /* NSDate+Extra.m in Sources */,
 				8401507E2CF4501B00211910 /* WKWebViewConfiguration+Extra.m in Sources */,
@@ -17341,6 +17404,7 @@
 				8461A5022D0804990081C41D /* NSString+Menu.m in Sources */,
 				8461A5032D0804990081C41D /* NSString+Reachability.m in Sources */,
 				CE5A662F2CA83740006D67A7 /* NSData+Base64.m in Sources */,
+				C5932C272DE9A63F0021F5FC /* BaseTableViewCell.m in Sources */,
 				CE5A64D92CA82FF0006D67A7 /* NSObject+Sound.m in Sources */,
 				CE61AD592C9EAB26002DF138 /* JobsNetworkingAPI.m in Sources */,
 				CE5A65222CA83155006D67A7 /* UIImageView+GIF.m in Sources */,

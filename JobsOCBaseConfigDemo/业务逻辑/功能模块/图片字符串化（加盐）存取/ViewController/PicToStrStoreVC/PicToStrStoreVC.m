@@ -140,11 +140,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
             });
             tableView.tableFooterView = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-                label.text = JobsInternationalization(@"- 没有更多的内容了 -");
-                label.font = UIFontWeightRegularSize(12);
-                label.textAlignment = NSTextAlignmentCenter;
-                label.textColor = HEXCOLOR(0xB0B0B0);
-        //        label.size = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48));
+                label.byText(JobsInternationalization(@"- 没有更多的内容了 -"))
+                    .byFont(UIFontWeightRegularSize(12))
+                    .byTextCor(HEXCOLOR(0xB0B0B0))
+                    .byTextAlignment(NSTextAlignmentCenter);
+//                label.size = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48));
                 label.makeLabelByShowingType(UILabelShowingType_03);
             });/// 这里接入的就是一个UIView的派生类
             tableView.separatorColor = HEXCOLOR(0xEEEEEE);
@@ -154,8 +154,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                                       JobsWidth(0));
             {
                 tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
-                    @jobs_strongify(self )
-                    self.feedbackGenerator(nil);/// 震动反馈
+                    NSObject.feedbackGenerator(nil);/// 震动反馈
                     tableView.endRefreshing(YES);
                     return nil;
                 }]);

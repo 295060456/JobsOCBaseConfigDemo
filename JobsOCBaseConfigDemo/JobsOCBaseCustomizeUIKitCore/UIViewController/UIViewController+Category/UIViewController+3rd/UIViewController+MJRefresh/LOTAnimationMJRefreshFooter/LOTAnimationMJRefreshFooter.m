@@ -8,6 +8,7 @@
 #import "LOTAnimationMJRefreshFooter.h"
 
 static const CGFloat OffsetBetweenStateLabelAndAnimationView = 5;//StateLabel 和 AnimationView 之间的间距
+
 @interface LOTAnimationMJRefreshFooter ()
 
 Prop_strong()LOTAnimationView *animationView;
@@ -39,15 +40,15 @@ Prop_strong()LOTAnimationView *animationView;
 // 更新状态文案
 - (void)updateStateLabelText{
     [self setTitle:self.refreshConfigModel.stateIdleTitle
-          forState:MJRefreshStateIdle];//普通闲置状态
+          forState:MJRefreshStateIdle];/// 普通闲置状态
     [self setTitle:self.refreshConfigModel.pullingTitle
-          forState:MJRefreshStatePulling];//松开就可以进行刷新的状态
+          forState:MJRefreshStatePulling];/// 松开就可以进行刷新的状态
     [self setTitle:self.refreshConfigModel.refreshingTitle
-          forState:MJRefreshStateRefreshing];//正在刷新中的状态
+          forState:MJRefreshStateRefreshing];/// 正在刷新中的状态
     [self setTitle:self.refreshConfigModel.willRefreshTitle
-          forState:MJRefreshStateWillRefresh];//即将刷新的状态
+          forState:MJRefreshStateWillRefresh];/// 即将刷新的状态
     [self setTitle:self.refreshConfigModel.noMoreDataTitle
-          forState:MJRefreshStateNoMoreData];//所有数据加载完毕，没有更多的数据了
+          forState:MJRefreshStateNoMoreData];/// 所有数据加载完毕，没有更多的数据了
 }
 /**
  MJRefreshStateIdle,   //   普通闲置状态
@@ -79,20 +80,20 @@ Prop_strong()LOTAnimationView *animationView;
 
 - (void)beginRefreshing{
     [super beginRefreshing];
-    if (self.objBlock) self.objBlock(@(RefreshingType_beginRefreshing));
+    if (self.objBlock) self.objBlock(@(RefreshingType_BeginRefreshing));
 }
 
 - (void)endRefreshing{
     [super endRefreshing];
-    if (self.objBlock) self.objBlock(@(RefreshingType_endRefreshing));
+    if (self.objBlock) self.objBlock(@(RefreshingType_EndRefreshing));
 }
 #pragma mark —— lazyLoad
 - (LOTAnimationView *)animationView{
     if (!_animationView) {
         NSString *filePaths = JobsPathForBuddleIMG(nil,
-                                               @"JsonRes",
-                                               nil,
-                                               @"下拉刷新.json");
+                                                   @"JsonRes",
+                                                   nil,
+                                                   @"下拉刷新.json");
         _animationView = [LOTAnimationView animationWithFilePath:filePaths];
         _animationView.loopAnimation = YES;
         _animationView.sizer = self.lOTAnimationViewSize;

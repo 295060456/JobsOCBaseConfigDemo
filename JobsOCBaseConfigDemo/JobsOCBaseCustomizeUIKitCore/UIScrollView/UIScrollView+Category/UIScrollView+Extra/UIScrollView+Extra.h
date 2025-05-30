@@ -7,33 +7,18 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-#import "JobsBlock.h"
-#import "DefineProperty.h"
+#import "UIScrollViewProtocol.h"
 #import "JobsDefineAllEnumHeader.h"
+
+#if __has_include(<MJRefresh/MJRefresh.h>)
+#import <MJRefresh/MJRefresh.h>
+#else
+#import "MJRefresh.h"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIScrollView (Extra)
-/// UIScrollView 滑动的方向定义
-Prop_assign()ScrollDirection direction;
-/// 在 UIScrollViewDelegate协议方法 -(void)scrollViewDidScroll:(UIScrollView *)scrollView里进行调用
--(ScrollDirection)scrolldirectionWhenScrollViewDidScroll;
-#pragma mark —— 一些公共方法
--(JobsReturnViewByVoidBlock _Nonnull)reloadDatas;
-/// 得到visibleCells
--(NSArray <UIView *>*_Nullable)scrollViewCells;
-/// 依据index得到cell
--(JobsReturnViewByNSUIntegerBlock _Nonnull)scrollViewCellsByIndex;
-/// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
--(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByYES;
-/// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
--(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByNO;
-/// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;   的二次封装
--(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES;
-/// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;  的二次封装
--(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO;
-///
--(JobsReturnScrollViewByDelegateBlock _Nonnull)byDelegate;
+@interface UIScrollView (Extra)<UIScrollViewProtocol>
 
 @end
 

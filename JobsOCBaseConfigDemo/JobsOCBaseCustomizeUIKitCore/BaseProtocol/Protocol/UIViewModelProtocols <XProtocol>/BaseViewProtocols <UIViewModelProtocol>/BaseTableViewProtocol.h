@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— UITableViewCell
 /// 对系统方法 cellForRowAtIndexPath 的二次封装
 -(JobsReturnTableViewCellByIndexPathBlock _Nonnull)cellBy;
+-(JobsReturnTableViewByMJRefreshHeaderBlock _Nonnull)byMJRefreshHeader;
+-(JobsReturnTableViewByMJRefreshFooterBlock _Nonnull)byMJRefreshFooter;
 /// 对系统方法 numberOfRowsInSection 的二次封装
 -(JobsReturnByNSIntegerBlock _Nonnull)rowsInSection;
 -(__kindof UITableViewCell *)didSelectRowAtIndexPath:(NSIndexPath *)indexPath

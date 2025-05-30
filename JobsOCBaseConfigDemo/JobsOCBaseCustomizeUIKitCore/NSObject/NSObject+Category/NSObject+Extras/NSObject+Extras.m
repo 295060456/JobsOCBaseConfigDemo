@@ -226,7 +226,7 @@ UITextFieldProtocol_dynamic
 }
 #pragma mark —— 功能性的
 /// 刷新控件的头部数据
--(MJRefreshConfigModel *_Nonnull)refreshHeaderDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock{
+-(MJRefreshConfigModel *_Nullable)mjHeaderDefaultConfig{
     return jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
         data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
         data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
@@ -234,19 +234,26 @@ UITextFieldProtocol_dynamic
         data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
         data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
         data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
-        data.loadBlock = loadBlock;
     });
 }
+
+-(MJRefreshConfigModel *_Nonnull)refreshHeaderDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock{
+    return self.mjHeaderDefaultConfig.byLoadBlock(loadBlock);
+}
 /// 刷新控件的尾部数据
--(MJRefreshConfigModel *_Nonnull)refreshFooterDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock{
+-(MJRefreshConfigModel *_Nullable)mjFooterDefaultConfig{
     return jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
         data.stateIdleTitle = JobsInternationalization(@"");
         data.pullingTitle = JobsInternationalization(@"");
         data.refreshingTitle = JobsInternationalization(@"");
         data.willRefreshTitle = JobsInternationalization(@"");
         data.noMoreDataTitle = JobsInternationalization(@"");
-        data.loadBlock = loadBlock;
+        data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
     });
+}
+
+-(MJRefreshConfigModel *_Nonnull)refreshFooterDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock{
+    return self.mjFooterDefaultConfig.byLoadBlock(loadBlock);
 }
 /// 切换到主VC
 -(jobsByVCBlock _Nonnull)switchToMainVC{
@@ -538,17 +545,6 @@ UITextFieldProtocol_dynamic
                                                              error:&error];
         if(error) JobsLog(@"error = %@",error);
         return jsonData;
-    };
-}
-
--(jobsByVoidBlock _Nonnull)震动特效反馈{
-    @jobs_weakify(self)
-    return ^(){
-        @jobs_strongify(self)
-        [self addObserver:self
-               forKeyPath:@"state"
-                  options:NSKeyValueObservingOptionNew
-                  context:nil];
     };
 }
 /**
@@ -1114,7 +1110,7 @@ UITextFieldProtocol_dynamic
     }return !recordToday.isEqualToString(today);
 }
 /// 震动特效反馈
-- (jobsByViewBlock _Nonnull)feedbackGenerator {
++(jobsByViewBlock _Nonnull)feedbackGenerator {
     @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable view) {
         @jobs_strongify(self)

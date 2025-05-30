@@ -77,9 +77,9 @@ typedef URLManagerModel *_Nullable(^JobsReturnURLManagerModelByStringBlock)(NSSt
 typedef void(^jobsByViewModelAndBOOLBlock)(Jobs_ViewModelAndBOOLBlock_Arguments);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelAndBOOLBlock)(Jobs_ViewModelAndBOOLBlock_Arguments);
 typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByVoidBlock)(void);
-typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByStringBlock)(NSString *_Nullable data);
+typedef __kindof UIViewModel *_Nullable(^JobsReturnViewModelByStringBlock)(NSString *_Nullable string);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByViewModelBlock)(__kindof UIViewModel *_Nullable model);
-typedef void(^jobsByViewModelBlock)(__kindof UIViewModel *_Nullable data);
+typedef void(^jobsByViewModelBlock)(__kindof UIViewModel *_Nullable model);
 typedef void(^jobsByArrWithViewModelBlock)(__kindof NSArray <__kindof UIViewModel *>*_Nullable models);
 typedef CGSize(^JobsReturnCGSizeByViewModelBlock)(__kindof UIViewModel *_Nullable model);
 typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullable model);
@@ -257,9 +257,6 @@ typedef __kindof UITabBarItem *_Nullable(^JobsReturnTabBarItemByConfigBlock)(__k
 
 @class LZTabBarConfig;
 typedef void(^jobsByLZTabBarConfigBlock)(__kindof LZTabBarConfig *_Nullable config);
-
-@class MJRefreshConfigModel;
-typedef void(^jobsByRefreshConfigModelBlock)(__kindof MJRefreshConfigModel *_Nullable model);
 
 @class HXPhotoPickerModel;
 typedef void(^jobsByHXPhotoPickerModelBlock)(__kindof HXPhotoPickerModel *_Nullable model);
@@ -441,7 +438,11 @@ typedef WMZBannerView *_Nonnull(^JobsReturnWMZBannerViewByBannerParamBlock)(WMZB
 @class MASConstraintMaker;
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull data);
 typedef void(^jobsByMASConstraintMakerBlock)(MASConstraintMaker *_Nonnull make);
-/// MJRefreshHeader
+
+@class MJRefreshConfigModel;
+typedef void(^jobsByRefreshConfigModelBlock)(__kindof MJRefreshConfigModel *_Nullable model);
+@class MJRefreshStateHeader;
+typedef __kindof MJRefreshStateHeader *_Nullable(^JobsReturnMJRefreshStateHeaderByMJRefreshConfigModelBlock)(MJRefreshConfigModel *_Nullable config);
 @class MJRefreshNormalHeader;
 typedef __kindof MJRefreshNormalHeader *_Nonnull(^JobsReturnMJRefreshNormalHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshNormalHeaderBlock)(__kindof MJRefreshNormalHeader *_Nullable view);
@@ -450,6 +451,8 @@ typedef __kindof MJRefreshStateHeader *_Nonnull(^JobsReturnMJRefreshStateHeaderB
 typedef void(^jobsByMJRefreshStateHeaderBlock)(__kindof MJRefreshStateHeader *_Nullable view);
 @class MJRefreshHeader;
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMJRefreshHeaderBlock)(__kindof MJRefreshHeader *_Nullable header);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByMJRefreshHeaderBlock)(__kindof MJRefreshHeader *_Nullable header);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByMJRefreshHeaderBlock)(__kindof MJRefreshHeader *_Nullable header);
 typedef __kindof MJRefreshHeader *_Nonnull(^JobsReturnMJRefreshHeaderByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshHeaderBlock)(__kindof MJRefreshHeader *_Nullable view);
 @class MJRefreshGifHeader;
@@ -460,6 +463,8 @@ typedef void(^jobsByMJRefreshGifHeaderBlock)(__kindof MJRefreshGifHeader *_Nulla
 typedef __kindof MJRefreshFooter *_Nonnull(^JobsReturnMJRefreshFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshFooterBlock)(__kindof MJRefreshFooter *_Nullable view);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMJRefreshFooterBlock)(__kindof MJRefreshFooter *_Nullable footer);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByMJRefreshFooterBlock)(__kindof MJRefreshFooter *_Nullable footer);
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByMJRefreshFooterBlock)(__kindof MJRefreshFooter *_Nullable footer);
 @class MJRefreshAutoGifFooter;
 typedef __kindof MJRefreshAutoGifFooter *_Nonnull(^JobsReturnMJRefreshAutoGifFooterByRefreshConfigModelBlock)(MJRefreshConfigModel *_Nonnull model);
 typedef void(^jobsByMJRefreshAutoGifFooterBlock)(__kindof MJRefreshAutoGifFooter *_Nullable view);
@@ -624,6 +629,8 @@ typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlocks)(Jo
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlocks)(jobsByMASConstraintMakerBlock _Nonnull block);
 typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull block);
 typedef jobsByMASConstraintMakerBlock _Nonnull(^JobsReturnMASConstraintMakerByBOOLBlock)(BOOL data);
+
+typedef MJRefreshConfigModel *_Nullable(^JobsReturnMJRefreshConfigModelByReturnIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
 
 #if __has_include(<SDWebImage/SDWebImage.h>)
 #import <SDWebImage/SDWebImage.h>

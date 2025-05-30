@@ -380,6 +380,14 @@ typedef NS_ENUM(NSInteger, PicToStrStyle) {
     PicToStrStyle_MIME,/// 图片 转 MIME
 };
 #endif /* PIC_TO_STR_STYLE_ENUM_DEFINED */
+/// 刷新阶段
+#ifndef REFRESHING_TYPE_ENUM_DEFINED
+#define REFRESHING_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, RefreshingType) {
+    RefreshingType_BeginRefreshing = 0, /// 开始刷新
+    RefreshingType_EndRefreshing        /// 结束刷新
+};
+#endif /* REFRESHING_TYPE_ENUM_DEFINED */
 /// banner滚动方向
 #ifndef JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED
 #define JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED

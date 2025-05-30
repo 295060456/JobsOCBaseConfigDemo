@@ -14,6 +14,16 @@
 #import "NSString+Conversion.h"
 #import "NSString+Others.h"
 #import "NSMutableArray+Extra.h"
+#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+/// 刷新阶段
+#ifndef REFRESHING_TYPE_ENUM_DEFINED
+#define REFRESHING_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, RefreshingType) {
+    RefreshingType_BeginRefreshing = 0, /// 开始刷新
+    RefreshingType_EndRefreshing        /// 结束刷新
+};
+#endif /* REFRESHING_TYPE_ENUM_DEFINED */
+NS_ASSUME_NONNULL_BEGIN
 /**
  MJRefreshStateIdle,   //   普通闲置状态
  MJRefreshStatePulling,   //   松开就可以进行刷新的状态
@@ -21,15 +31,6 @@
  MJRefreshStateWillRefresh,   //   即将刷新的状态
  MJRefreshStateNoMoreData   //   所有数据加载完毕，没有更多的数据了
  */
-NS_ASSUME_NONNULL_BEGIN
-
-typedef enum : NSInteger {
-    /// 开始刷新
-    RefreshingType_beginRefreshing = 0,
-    /// 结束刷新
-    RefreshingType_endRefreshing
-} RefreshingType;
-
 @interface MJRefreshConfigModel : NSObject
 
 #pragma mark —— Font
@@ -58,9 +59,10 @@ Prop_copy()NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
 Prop_copy()NSString *jsonLottiefilePaths;
 Prop_copy()JobsReturnIDByIDBlock loadBlock;
 #pragma mark —— 其他
-/** 根据拖拽比例自动切换透明度 */
-@property(assign,nonatomic,getter=isAutomaticallyChangeAlpha)BOOL automaticallyChangeAlpha;
+Prop_assign(getter=isAutomaticallyChangeAlpha)BOOL automaticallyChangeAlpha;/// 根据拖拽比例自动切换透明度
 Prop_assign()BOOL isShake;/// 是否需要震动反馈？默认不需要
+
+-(JobsReturnMJRefreshConfigModelByReturnIDByIDBlocks _Nonnull)byLoadBlock;
 
 @end
 
@@ -71,3 +73,4 @@ NS_INLINE __kindof MJRefreshConfigModel *_Nonnull jobsMakeRefreshConfigModel(job
     if (block) block(model);
     return model;
 }
+

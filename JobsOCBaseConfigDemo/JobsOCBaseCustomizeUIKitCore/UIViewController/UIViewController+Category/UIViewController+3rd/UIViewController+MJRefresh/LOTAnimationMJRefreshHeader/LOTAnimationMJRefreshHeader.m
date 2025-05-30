@@ -71,12 +71,12 @@ Prop_assign()CGSize lOTAnimationViewSize;
 
 - (void)beginRefreshing{
     [super beginRefreshing];
-    if (self.objBlock) self.objBlock(@(RefreshingType_beginRefreshing));
+    if (self.objBlock) self.objBlock(@(RefreshingType_BeginRefreshing));
 }
 
 - (void)endRefreshing{
     [super endRefreshing];
-    if (self.objBlock) self.objBlock(@(RefreshingType_endRefreshing));
+    if (self.objBlock) self.objBlock(@(RefreshingType_EndRefreshing));
 }
 #pragma mark —— 一些公有方法
 -(JobsReturnLOTAnimationMJRefreshHeaderBySizeBlock _Nonnull)bySize{

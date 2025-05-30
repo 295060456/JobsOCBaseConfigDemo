@@ -63,7 +63,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (Refresh)
 /// MJRefresh 作用于targetView
 Prop_weak()UIScrollView *mjRefreshTargetView;
-
 Prop_strong()MJRefreshConfigModel *refreshConfigHeader;//头部的配置信息
 Prop_strong()MJRefreshConfigModel *refreshConfigFooter;//尾部的配置信息
 #pragma mark —— MJRefreshHeader
@@ -82,6 +81,8 @@ Prop_strong()MJRefreshBackGifFooter *mjRefreshBackGifFooter;
 Prop_strong()MJRefreshBackStateFooter *mjRefreshBackStateFooter;
 Prop_strong()MJRefreshBackFooter *mjRefreshBackFooter;
 Prop_strong()MJRefreshFooter *mjRefreshFooter;
+#pragma mark —— 配置刷新文案
+-(jobsByRefreshConfigModelBlock _Nonnull)handleWord;
 #pragma mark —— UI刷新（调用系统底层方法）
 -(jobsByVoidBlock _Nonnull)refresh;
 #pragma mark —— 创建不同类型的MJHeader 和 MJFootor

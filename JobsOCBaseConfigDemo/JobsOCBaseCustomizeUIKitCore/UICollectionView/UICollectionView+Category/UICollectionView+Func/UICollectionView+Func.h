@@ -9,6 +9,12 @@
 #import "BaseCollectionViewProtocol.h"
 #import "UICollectionViewCell+BaseViewProtocol.h"
 
+#if __has_include(<MJRefresh/MJRefresh.h>)
+#import <MJRefresh/MJRefresh.h>
+#else
+#import "MJRefresh.h"
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UICollectionView (Func)<BaseCollectionViewProtocol>

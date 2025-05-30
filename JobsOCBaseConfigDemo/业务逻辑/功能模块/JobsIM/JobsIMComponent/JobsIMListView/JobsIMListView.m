@@ -67,7 +67,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 }
 #pragma mark —— MGSwipeTableCellDelegate
 -(void)swipeTableCellWillBeginSwiping:(nonnull MGSwipeTableCell *)cell{
-    self.feedbackGenerator(nil);//震动反馈
+    NSObject.feedbackGenerator(nil);//震动反馈
 }
 /// 点击了第几个滑动出现的按钮？
 -(BOOL)swipeTableCell:(MGSwipeTableCell *)cell

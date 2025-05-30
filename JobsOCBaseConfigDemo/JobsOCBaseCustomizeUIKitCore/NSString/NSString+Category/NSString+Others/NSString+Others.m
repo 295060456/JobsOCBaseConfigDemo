@@ -156,6 +156,14 @@
         return JobsMutableString([self stringByAppendingString:str]);/// 原始字符串不会改变，输出一个新的字符串
     };
 }
+/// OC 普通字符串+富文本
+-(JobsReturnAttributedStringByAttributedStringBlock _Nonnull)addByAttributedString{
+    @jobs_weakify(self)
+    return ^__kindof NSAttributedString *_Nullable(__kindof NSAttributedString *_Nonnull aString) {
+        @jobs_strongify(self)
+        return NSMutableAttributedString.initByString(self).add(aString);
+    };
+}
 /// 获取到最后一个字符
 -(NSString *_Nonnull)getLastChars{
     return self.substringFromIndex(self.length - 1);

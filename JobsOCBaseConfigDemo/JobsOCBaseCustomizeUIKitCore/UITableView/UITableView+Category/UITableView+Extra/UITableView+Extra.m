@@ -120,6 +120,35 @@
         return self;
     };
 }
+
+-(JobsReturnTableViewByMJRefreshConfigModelBlock _Nonnull)byMJRefreshConfigModel{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(MJRefreshConfigModel *_Nullable refreshConfigModel){
+        @jobs_strongify(self)
+        self.handleWord(refreshConfigModel);/// 文字
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByMJRefreshHeaderBlock _Nonnull)byMJRefreshHeader{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(__kindof MJRefreshHeader * _Nullable header){
+        @jobs_strongify(self)
+        self.mj_header = header;
+        self.mj_header.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
+        return self;
+    };
+}
+
+-(JobsReturnTableViewByMJRefreshFooterBlock _Nonnull)byMJRefreshFooter{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *_Nullable(__kindof MJRefreshFooter * _Nullable header){
+        @jobs_strongify(self)
+        self.mj_footer = header;
+        self.mj_footer.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
+        return self;
+    };
+}
 #pragma mark —— UITableViewHeaderFooterView
 -(JobsReturnRectByNSIntegerBlock _Nonnull)rectForHeaderInSection{
     @jobs_weakify(self)

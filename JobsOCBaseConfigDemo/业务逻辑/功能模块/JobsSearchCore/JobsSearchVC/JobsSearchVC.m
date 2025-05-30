@@ -392,7 +392,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             
             {
                 tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
-                    self.feedbackGenerator(nil);//震动反馈
+                    NSObject.feedbackGenerator(nil);//震动反馈
                     tableView.endRefreshing(YES);
     //                self.endRefreshingWithNoMoreData(self->_tableView);
                     return nil;

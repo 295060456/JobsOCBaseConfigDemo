@@ -204,6 +204,8 @@ typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDataSourceBlock)(i
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDataSourcePrefetchingBlock)(id <UITableViewDataSourcePrefetching>_Nullable dataSourcePrefetching);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDragDelegateBlock)(id <UITableViewDragDelegate>_Nullable delegate);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDropDelegateBlock)(id <UITableViewDropDelegate>_Nullable delegate);
+@class MJRefreshConfigModel;
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByMJRefreshConfigModelBlock)(MJRefreshConfigModel *_Nullable config);
 #pragma mark —— 关于 UITextField
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByDelegateBlock)(id <UITextFieldDelegate>_Nullable delegate);
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByBOOLBlock)(BOOL data);
@@ -285,6 +287,8 @@ typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDropDele
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByDataSourcePrefetchingBlock)(id <UICollectionViewDataSourcePrefetching>_Nullable dataSourcePrefetching);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByLayoutBlock)(__kindof UICollectionViewLayout *_Nullable layout);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable layout);
+@class MJRefreshConfigModel;
+typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByMJRefreshConfigModelBlock)(MJRefreshConfigModel *_Nullable config);
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByClassAndSaltStrBlock)(Jobs_UITableViewHeaderFooterViewBlock_Arguments);
 #pragma mark —— 关于 UICollectionViewLayoutAttributes
 typedef __kindof UICollectionViewLayoutAttributes *_Nullable(^JobsReturnCollectionViewLayoutAttributesByNSIndexPathBlock)(__kindof NSIndexPath *_Nullable indexPath);
@@ -305,6 +309,8 @@ typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByRectBlock)(CGRec
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewBySizeBlock)(CGSize size);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByUIEdgeInsetsBlock)(UIEdgeInsets insets);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
+@class MJRefreshConfigModel;
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMJRefreshConfigModelBlock)(MJRefreshConfigModel *_Nullable config);
 @class UIButtonModel;
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByButtonModelBlock)(__kindof UIButtonModel *_Nullable buttonModel);
 #pragma mark —— 关于 PDF
@@ -331,13 +337,15 @@ typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByVCBlock)(_
 typedef __kindof UINavigationController *_Nullable(^JobsReturnNavCtrByClassBlock)(Class _Nonnull cls);
 /// UIAlertController
 typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByActionBlock)(UIAlertAction *_Nullable data);
-typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByStringBlock)(NSString *_Nullable data);
+typedef __kindof UIAlertController *_Nullable(^JobsReturnAlertControllerByStringBlock)(__kindof NSString *_Nullable data);
 #pragma mark —— 关于 富文本
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByVoidBlock)(void);
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByNSUIntegerBlock)(NSUInteger data);
-typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(NSString *_Nullable data);
-typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(NSAttributedString *_Nonnull data);
+typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByStringBlock)(__kindof NSString *_Nullable string);
+typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByAttributedStringBlock)(__kindof NSAttributedString *_Nonnull aString);
 typedef __kindof NSAttributedString *_Nullable(^JobsReturnAttributedStringByColorBlock)(UIColor *_Nonnull data);
+typedef __kindof NSMutableAttributedString *_Nullable(^JobsReturnMutableAttributedStringByStringBlock)(__kindof NSString *_Nullable string);
+typedef __kindof NSMutableAttributedString *_Nullable(^JobsReturnMutableAttributedStringByAttributedStringBlock)(__kindof NSAttributedString *_Nonnull aString);
 #pragma mark —— NSNumber
 typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByCharBlock)(char data);
 typedef __kindof NSNumber *_Nullable(^JobsReturnNumberByUnsignedCharBlock)(unsigned char data);

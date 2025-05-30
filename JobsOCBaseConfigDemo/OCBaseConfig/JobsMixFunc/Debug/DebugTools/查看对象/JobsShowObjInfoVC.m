@@ -127,7 +127,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             {
                 tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self.feedbackGenerator(nil);/// 震动反馈
+                    NSObject.feedbackGenerator(nil);/// 震动反馈
                     if (self.dataMutArr.count) [self.dataMutArr removeAllObjects];
                     /// 装载数据
                     if ([self.viewModel.requestParams isKindOfClass:NSObject.class]) {

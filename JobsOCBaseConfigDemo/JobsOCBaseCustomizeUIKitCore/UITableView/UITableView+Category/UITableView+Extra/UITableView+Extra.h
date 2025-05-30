@@ -9,6 +9,12 @@
 #import "JobsBlock.h"
 #import "BaseTableViewProtocol.h"
 
+#if __has_include(<MJRefresh/MJRefresh.h>)
+#import <MJRefresh/MJRefresh.h>
+#else
+#import "MJRefresh.h"
+#endif
+
 /**
  ❤️UITableViewStylePlain ❤️
  不实现footer、header设置方法，默认无header、footer；
@@ -112,7 +118,7 @@ NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(jobsByT
  //            {
  //                tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
  //                    @jobs_strongify(self)
- //                    self.feedbackGenerator(nil);//震动反馈
+ //                    NSObject.feedbackGenerator(nil);//震动反馈
  //                    self->_tableView.endRefreshing(YES);
  //                    return nil;
  //                }]);

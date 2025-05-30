@@ -33,7 +33,7 @@
   * [x] 公共的协议簇 **BaseProtocol**<br>
   * [x] 统一的**Block**管理：[**<font color=red>JobsBlock</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md)<br>
   * [x] 统一数据源的封装：[**<font color=red>UIViewModel</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/UIViewModelFamily/UIViewModel)<br>
-  * [x] UIButton兼容最新Api：**UIButtonConfiguration**<br>
+  * [x] `UIButton`兼容最新Api：**UIButtonConfiguration**<br>
   * [x] 统一的UI组件库**JobsOCBaseCustomizeUIKitCore**<br>
   * [x] 统一注册全局的 **UICollectionViewCell**、**CollectionReusableView-Header**、**CollectionReusableView—Footer**<br>
   * [x] [<font color=red>不注册也可以使用**UICollectionViewCell**、**CollectionReusableView-Header**、**CollectionReusableView—Footer**</font>](#关于UICollectionView的注册机制)<br>
@@ -2936,14 +2936,15 @@ classDiagram
   /// BaseViewProtocol
   @synthesize tableView = _tableView;
   -(UITableView *)tableView{
-      if (!_tableView){
+      if (!_tableView) {
+          /// 一般用 initWithStylePlain。initWithStyleGrouped会自己预留一块空间
           @jobs_weakify(self)
-          _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+          _tableView = self.view.addSubview(jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView) {
               @jobs_strongify(self)
               tableView.bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
                   .bySeparatorColor(HEXCOLOR(0xEEE2C8))
-                  .byShowsVerticalScrollIndicator(NO)
-                  .registerHeaderFooterViewClass(FMInBoxTableViewHeaderView.class,@"")
+                  .registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil)
+                  .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
                   .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
                       /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
                   }))
@@ -2956,15 +2957,78 @@ classDiagram
                       data.titleFont = bayonRegular(JobsWidth(30));
                       data.normalImage = JobsIMG(@"小狮子");
                   }))
+                  /// 普通的MJRefreshHeader（触发事件）（二选一）
+                  .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                      @jobs_strongify(self)
+                      /// TODO
+                      NSObject.feedbackGenerator(nil);/// 震动反馈
+                      self->_collectionView.endRefreshing(YES);
+                  }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
+                  /// MJRefreshHeader的拓展：下拉刷新Lottie动画（二选一）
+                  .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
+                      
+                  })))
+                  /// 普通的MJRefreshFooter（触发事件）
+                  .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                      @jobs_strongify(self)
+                      /// TODO
+                      NSObject.feedbackGenerator(nil);/// 震动反馈
+                      self->_collectionView.endRefreshing(YES);
+                  }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+                  .showsVerticalScrollIndicatorBy(NO)
+                  .showsHorizontalScrollIndicatorBy(NO)
                   .byScrollEnabled(YES)
                   .byBgCor(JobsClearColor);
+  
+              if(@available(iOS 11.0, *)) {
+                  tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+              }else{
+                  SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
+              }
               
+  //            {
+  //                tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+  //                    @jobs_strongify(self)
+  //                    self.feedbackGenerator(nil);//震动反馈
+  //                    self->_tableView.endRefreshing(YES);
+  //                    return nil;
+  //                }]);
+  //                tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+  //            }
+              
+  //            {/// 设置tabAnimated相关属性
+  //                // 可以不进行手动初始化，将使用默认属性
+  //                tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
+  //                                                                      cellHeight:[JobsBaseTableViewCell cellHeightWithModel:nil]];
+  //                tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
+  //                [tableView tab_startAnimation];   // 开启动画
+  //            }
+              
+  //            {
+  //              [tableView xzm_addNormalHeaderWithTarget:self
+  //                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+  //                                                                                     id _Nullable arg) {
+  //                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
+  //                  @jobs_strongify(self)
+  //                  /// 在需要结束刷新的时候调用（只能调用一次）
+  //                  /// _tableView.endRefreshing();
+  //                  return nil;
+  //              }, MethodName(self), self)];
+  //
+  //              [tableView xzm_addNormalFooterWithTarget:self
+  //                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+  //                                                                                     id _Nullable arg) {
+  //                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
+  //                  @jobs_strongify(self)
+  //                  /// 在需要结束刷新的时候调用（只能调用一次）
+  //                  /// _tableView.endRefreshing();
+  //                  return nil;
+  //              }, MethodName(self), self)];
+  //              [tableView.xzm_header beginRefreshing];
+  //          }
           })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
               @jobs_strongify(self)
-              make.left.equalTo(self.view);
-              make.top.equalTo(self.navBar.mas_bottom);
-              make.bottom.equalTo(self.view);
-              make.width.mas_equalTo(MenuWidth);
+              /// TODO
           }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
       }return _tableView;
   }
@@ -7735,25 +7799,25 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                                              .registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@"")
                                              .registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"")
                                              .byEdgeInsets(UIEdgeInsetsMake(0, 0, 0, 0))
-                                             .byBounces(NO)///设置为NO，使得collectionView只能上拉，不能下拉
-                                             .dataLink(self)
-                                             /// 普通的MJRefreshHeader（二选一）
-                                             .byMJRefreshHeader(_collectionView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                                             /// 普通的MJRefreshHeader（触发事件）（二选一）
+                                             .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
                                                  @jobs_strongify(self)
-                                                 self.feedbackGenerator(nil);//震动反馈
+                                                 /// TODO
+                                                 NSObject.feedbackGenerator(nil);/// 震动反馈
                                                  self->_collectionView.endRefreshing(YES);
-                                                 return nil;
-                                             }]))
+                                             }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
                                              /// MJRefreshHeader的拓展：下拉刷新Lottie动画（二选一）
                                              .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
                                                  
                                              })))
-                                             .byMJRefreshFooter(_collectionView.MJRefreshAutoNormalFooterBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+                                             /// 普通的MJRefreshFooter（触发事件）
+                                             .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
                                                  @jobs_strongify(self)
-                                                 self.feedbackGenerator(nil);//震动反馈
+                                                 /// TODO
+                                                 NSObject.feedbackGenerator(nil);/// 震动反馈
                                                  self->_collectionView.endRefreshing(YES);
-                                                 return nil;
-                                             }]))
+                                             }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+                                             .byBounces(NO)///设置为NO，使得collectionView只能上拉，不能下拉
                                              .showsVerticalScrollIndicatorBy(NO)
                                              .showsHorizontalScrollIndicatorBy(NO)
                                              /// 无数据占位：用默认的图文占位表达（二选一）
@@ -7776,7 +7840,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                make.centerX.equalTo(self);
                make.top.equalTo(self.jobsTextField.mas_bottom).offset(JobsWidth(5));
                make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() - JobsWidth(30), JobsWidth(72)));
-           }).on().byBgCor(JobsClearColor);
+           }).on().byBgCor(JobsClearColor).dataLink(self);
            
            _collectionView.setContentOffsetByYES(CGPointMake(0, 0));// 这句最快在 viewWillLayoutSubviews 有效
            
@@ -7930,9 +7994,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    
    </details>
 
-#### 29.9、**`UICollectionView`**的 `masonry`平替
+#### 29.9、**`UICollectionView`**的 `Masonry`平替
 
-* 有些时候，我们需要一个类似于 `UICollectionView`的UI表现形式，但是又不希望涉及其复杂的协议以及内部约束。所以，转向于`masonry`
+* 有些时候，我们需要一个类似于 `UICollectionView`的UI表现形式，但是又不希望涉及其复杂的协议以及内部约束。所以，转向于`Masonry`
 
   * 例：创建一个3 * 2 的矩形（内容为`BaseButton`）
 
@@ -8019,7 +8083,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
             }),2,3);
     ```
 
-### 30、<font color=red id=创建UITableView>创建`UITableView`</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 30、<font color=red id=创建UITableView>创建**`UITableView`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
 
 #### 30.1、关于<font color=red>**`UITableView`**</font>
 
@@ -8369,7 +8433,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                @jobs_strongify(self)
                tableView.bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
                    .bySeparatorColor(HEXCOLOR(0xEEE2C8))
-                   .byShowsVerticalScrollIndicator(NO)
                    .registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil)
                    .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
                    .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
@@ -8384,6 +8447,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                        data.titleFont = bayonRegular(JobsWidth(30));
                        data.normalImage = JobsIMG(@"小狮子");
                    }))
+                   /// 普通的MJRefreshHeader（触发事件）（二选一）
+                   .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                       @jobs_strongify(self)
+                       /// TODO
+                       NSObject.feedbackGenerator(nil);/// 震动反馈
+                       self->_collectionView.endRefreshing(YES);
+                   }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
+                   /// MJRefreshHeader的拓展：下拉刷新Lottie动画（二选一）
+                   .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
+                       
+                   })))
+                   /// 普通的MJRefreshFooter（触发事件）
+                   .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                       @jobs_strongify(self)
+                       /// TODO
+                       NSObject.feedbackGenerator(nil);/// 震动反馈
+                       self->_collectionView.endRefreshing(YES);
+                   }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+                   .showsVerticalScrollIndicatorBy(NO)
+                   .showsHorizontalScrollIndicatorBy(NO)
                    .byScrollEnabled(YES)
                    .byBgCor(JobsClearColor);
    

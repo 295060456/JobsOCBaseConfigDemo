@@ -9,6 +9,15 @@
 
 @implementation UILabel (Extra)
 #pragma mark —— 一些公共方法
+/// 将label.text + label.textColor + label.font;包装成富文本
+-(__kindof NSMutableAttributedString *)makeAttributedStringBySelfText{
+    return NSMutableAttributedString.initByAttributedString([NSAttributedString.alloc initWithString:self.text
+                                                                                          attributes:@{
+        NSForegroundColorAttributeName: self.textColor,
+        NSFontAttributeName: self.font
+        }
+    ]);
+}
 /// UILabel文字旋转
 -(JobsReturnLabelByNSUIntegerBlock _Nonnull)transformLayer{
     @jobs_weakify(self)
@@ -98,6 +107,33 @@
     return ^__kindof UILabel *_Nullable(__kindof NSString *_Nullable str){
         @jobs_strongify(self)
         self.text = str;
+        return self;
+    };
+}
+
+-(JobsReturnLabelByText _Nonnull)byNextText{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(__kindof NSString *_Nullable str){
+        @jobs_strongify(self)
+        self.text = self.text.add(str);
+        return self;
+    };
+}
+
+-(JobsReturnLabelByAttributedString _Nonnull)byNextAttributedText{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
+        @jobs_strongify(self)
+        self.attributedText = self.text.addByAttributedString(attributedString);
+        return self;
+    };
+}
+
+-(JobsReturnLabelByAttributedString _Nonnull)byNextAttributedTextWithvalue{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
+        @jobs_strongify(self)
+        self.attributedText = self.makeAttributedStringBySelfText.add(attributedString);
         return self;
     };
 }

@@ -101,6 +101,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *)substringBeforeColon;
 /// OC字符串拼接
 -(JobsReturnStringByStringBlock _Nonnull)add;
+/// OC 普通字符串+富文本
+-(JobsReturnAttributedStringByAttributedStringBlock _Nonnull)addByAttributedString;
 /// 获取到最后一个字符
 -(NSString *_Nonnull)getLastChars;
 /// 获取到最后一个非空格字符

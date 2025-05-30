@@ -185,8 +185,10 @@ AppToolsProtocol
 -(void)monitorContentOffsetScrollView:(UIScrollView *_Nonnull)scrollView;
 #pragma mark —— 功能性的
 /// 刷新控件的头部数据
+-(MJRefreshConfigModel *_Nullable)mjHeaderDefaultConfig;
 -(MJRefreshConfigModel *_Nonnull)refreshHeaderDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock;
 /// 刷新控件的尾部数据
+-(MJRefreshConfigModel *_Nullable)mjFooterDefaultConfig;
 -(MJRefreshConfigModel *_Nonnull)refreshFooterDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock;
 /// 切换到主VC
 -(jobsByVCBlock _Nonnull)switchToMainVC;
@@ -238,7 +240,6 @@ AppToolsProtocol
 -(__kindof UICollectionViewFlowLayout *_Nonnull)horizontalLayout;
 /// JSON对象转NSData
 -(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject;
--(jobsByVoidBlock _Nonnull)震动特效反馈;
 /**
  注意：有些时候UIApplication.sharedApplication.keyWindow获取到的window有frame，而windowScene.windows.firstObject获取到的window没有frame
  
@@ -358,7 +359,7 @@ AppToolsProtocol
 /// 判断是否是App今日的首次启动
 -(BOOL)isTodayAppFirstLaunch;
 /// 震动特效反馈
--(jobsByViewBlock _Nonnull)feedbackGenerator;
++(jobsByViewBlock _Nonnull)feedbackGenerator;
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
 -(JobsReturnBOOLByVoidBlock _Nonnull)didUserPressLockButton;
 /// iOS 限制自动锁屏 lockSwitch:YES(关闭自动锁屏)

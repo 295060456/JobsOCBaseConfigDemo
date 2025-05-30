@@ -8,7 +8,8 @@
 #import "UIView+Refresh.h"
 
 @implementation UIView (Refresh)
-#pragma mark —— 一些私有方法
+#pragma mark —— 一些公有方法
+/// 配置刷新文案
 -(jobsByRefreshConfigModelBlock _Nonnull)handleWord{
     @jobs_weakify(self)
     return ^(__kindof MJRefreshConfigModel *_Nullable data){
@@ -65,7 +66,7 @@
             // 根据拖拽比例自动切换透明度
             refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             // 震动特效反馈
-            if (refreshConfigModel.isShake) self.震动特效反馈();
+            if (refreshConfigModel.isShake) NSObject.feedbackGenerator(nil);
         }return refreshHeader;
     };
 }
@@ -85,7 +86,7 @@
             // 根据拖拽比例自动切换透明度
             refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             //震动特效反馈
-            if (refreshConfigModel.isShake) self.震动特效反馈();
+            if (refreshConfigModel.isShake) NSObject.feedbackGenerator(nil);
         }return refreshHeader;
     };
 }
@@ -105,15 +106,13 @@
             // 根据拖拽比例自动切换透明度
             refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             //震动特效反馈
-            if (refreshConfigModel.isShake) self.震动特效反馈();
+            if (refreshConfigModel.isShake) NSObject.feedbackGenerator(nil);
         }return refreshHeader;
     };
 }
 
 -(JobsReturnMJRefreshHeaderByRefreshConfigModelBlock _Nonnull)MJRefreshHeaderBy{
-    @jobs_weakify(self)
     return ^__kindof MJRefreshHeader *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
-        @jobs_strongify(self)
         MJRefreshHeader *refreshHeader = [MJRefreshHeader headerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
@@ -121,7 +120,7 @@
             // 根据拖拽比例自动切换透明度
             refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             // 震动特效反馈
-            if (refreshConfigModel.isShake) self.震动特效反馈();
+            if (refreshConfigModel.isShake) NSObject.feedbackGenerator(nil);
         }return refreshHeader;
     };
 }
@@ -151,7 +150,7 @@
             // 根据拖拽比例自动切换透明度
             refreshHeader.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
             //震动特效反馈
-            if (refreshConfigModel.isShake) self.震动特效反馈();
+            if (refreshConfigModel.isShake) NSObject.feedbackGenerator(nil);
         }return refreshHeader;
     };
 }
@@ -180,7 +179,7 @@
                 .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
             refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
+            if (self.refreshConfigFooter.isShake) NSObject.feedbackGenerator(nil);
         }return refreshFooter;
     };
 }
@@ -199,7 +198,7 @@
                 .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
             refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
+            if (self.refreshConfigFooter.isShake) NSObject.feedbackGenerator(nil);
         }return refreshFooter;
     };
 }
@@ -218,7 +217,7 @@
                 .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
             refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
+            if (self.refreshConfigFooter.isShake) NSObject.feedbackGenerator(nil);
         }return refreshFooter;
     };
 }
@@ -237,7 +236,7 @@
                 .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
             refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
-            if (refreshConfigModel.isShake) self.震动特效反馈();
+            if (refreshConfigModel.isShake) NSObject.feedbackGenerator(nil);
         }return refreshFooter;
     };
 }
@@ -273,7 +272,7 @@
                 .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
             refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
-            if (refreshConfigModel.isShake) self.震动特效反馈();
+            if (refreshConfigModel.isShake) NSObject.feedbackGenerator(nil);
         }return refreshFooter;
     };
 }
@@ -292,20 +291,18 @@
                 .byTextCor(refreshConfigModel.textColor);// 设置颜色
             // 根据拖拽比例自动切换透明度
             refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
-            if (self.refreshConfigFooter.isShake) self.震动特效反馈();
+            if (self.refreshConfigFooter.isShake) NSObject.feedbackGenerator(nil);
         }return refreshFooter;
     };
 }
 
 -(JobsReturnMJRefreshBackFooterByRefreshConfigModelBlock _Nonnull)MJRefreshBackFooterBy{
-    @jobs_weakify(self)
     return ^__kindof MJRefreshBackFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
-        @jobs_strongify(self)
         MJRefreshBackFooter *refreshFooter = [MJRefreshBackFooter footerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {//其他
-            if (refreshConfigModel.isShake) self.震动特效反馈();
+            if (refreshConfigModel.isShake) NSObject.feedbackGenerator(nil);
             // 根据拖拽比例自动切换透明度
             refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
         }return refreshFooter;
@@ -313,14 +310,12 @@
 }
 
 -(JobsReturnMJRefreshFooterByRefreshConfigModelBlock _Nonnull)MJRefreshFooterBy{
-    @jobs_weakify(self)
     return ^__kindof MJRefreshFooter *_Nonnull(MJRefreshConfigModel *_Nonnull refreshConfigModel){
-        @jobs_strongify(self)
         MJRefreshFooter *refreshFooter = [MJRefreshFooter footerWithRefreshingBlock:^{
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {//其他
-            if (refreshConfigModel.isShake) self.震动特效反馈();
+            if (refreshConfigModel.isShake) NSObject.feedbackGenerator(nil);
             // 根据拖拽比例自动切换透明度
             refreshFooter.automaticallyChangeAlpha = refreshConfigModel.automaticallyChangeAlpha;
         }return refreshFooter;
@@ -608,14 +603,14 @@
                        context:(void *)context {
     if ([object isEqual:self.mjRefreshGifHeader] &&
         self.mjRefreshGifHeader.state == MJRefreshStatePulling) {
-        self.feedbackGenerator(nil);
+        NSObject.feedbackGenerator(nil);
     }else if (([object isEqual:self.mjRefreshAutoGifFooter] ||
                [object isEqual:self.mjRefreshBackNormalFooter] ||
                [object isEqual:self.mjRefreshAutoNormalFooter]) && (self.mjRefreshAutoGifFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshBackNormalFooter.state == MJRefreshStatePulling ||
                                                                     self.mjRefreshAutoNormalFooter.state == MJRefreshStatePulling)
              ) {
-        self.feedbackGenerator(nil);
+        NSObject.feedbackGenerator(nil);
     }else{}
 }
 /**

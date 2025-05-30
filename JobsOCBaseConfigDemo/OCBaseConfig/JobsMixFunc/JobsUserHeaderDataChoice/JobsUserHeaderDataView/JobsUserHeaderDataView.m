@@ -224,7 +224,7 @@ viewForHeaderInSection:(NSInteger)section{
             {
                 tableView.mj_header = self.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
                     @jobs_strongify(self)
-                    self.feedbackGenerator(nil);/// 震动反馈
+                    NSObject.feedbackGenerator(nil);/// 震动反馈
                     return nil;
                 }]);
                 tableView.mj_footer = self.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {

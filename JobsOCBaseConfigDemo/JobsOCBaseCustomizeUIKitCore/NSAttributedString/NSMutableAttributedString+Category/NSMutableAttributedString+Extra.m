@@ -9,13 +9,13 @@
 
 @implementation NSMutableAttributedString (Extra)
 /// 对系统方法 initWithAttributedString 的二次封装
-+(JobsReturnAttributedStringByAttributedStringBlock _Nonnull)initByAttributedString{
++(JobsReturnMutableAttributedStringByAttributedStringBlock _Nonnull)initByAttributedString{
     return ^__kindof NSAttributedString *_Nullable(NSAttributedString *_Nonnull data){
         return [NSMutableAttributedString.alloc initWithAttributedString:data];
     };
 }
 /// 对系统方法 initWithString 的二次封装
-+(JobsReturnAttributedStringByStringBlock _Nonnull)initByString{
++(JobsReturnMutableAttributedStringByStringBlock _Nonnull)initByString{
     return ^__kindof NSAttributedString *_Nullable(NSString *_Nullable data){
         return [NSMutableAttributedString.alloc initWithString:data];
     };

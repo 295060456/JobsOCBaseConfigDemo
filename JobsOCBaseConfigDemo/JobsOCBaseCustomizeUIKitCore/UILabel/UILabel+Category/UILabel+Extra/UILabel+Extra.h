@@ -13,6 +13,7 @@
 #import "UIBezierPath+Extras.h"
 #import "CALayer+Extra.h"
 #import "NSObject+Extras.h"
+#import "NSString+Others.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,6 +26,8 @@ Prop_assign()CGFloat lastValue;
 Prop_strong()CAShapeLayer *shapeLayer;
 Prop_assign()TransformLayerDirectionType transformLayerDirectionType;
 #pragma mark —— 一些公共方法
+/// 将label.text + label.textColor + label.font;包装成富文本
+-(__kindof NSMutableAttributedString *)makeAttributedStringBySelfText;
 /// UILabel文字旋转
 -(JobsReturnLabelByNSUIntegerBlock _Nonnull)transformLayer;
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
@@ -35,6 +38,9 @@ Prop_assign()TransformLayerDirectionType transformLayerDirectionType;
 -(JobsReturnLabelByAttributedString _Nonnull)byAttributedString;
 -(JobsReturnLabelByCor _Nonnull)byBgCor;
 -(JobsReturnLabelByText _Nonnull)byText;
+-(JobsReturnLabelByText _Nonnull)byNextText;
+-(JobsReturnLabelByAttributedString _Nonnull)byNextAttributedText;
+-(JobsReturnLabelByAttributedString _Nonnull)byNextAttributedTextWithvalue;
 -(JobsReturnLabelByCor _Nonnull)byTextCor;
 -(JobsReturnLabelByFont _Nonnull)byFont;
 -(JobsReturnLabelByTextAlignment _Nonnull)byTextAlignment;
