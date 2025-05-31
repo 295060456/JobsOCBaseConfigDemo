@@ -511,17 +511,22 @@ static NSMutableArray <__kindof UINavigationController *>*_navCtrMutArr = nil;
 #pragma mark —— 一些公有方法
 /// 切换控制器
 +(void)button:(__kindof UIButton *)button index:(NSUInteger)index{
-    int t = 0;
-    for (__kindof UIButton *btn in AppDelegate.tabBarItemMutArr) {
-        btn.jobsResetBtnImage(self.imageUnSelectedMutArr[t]);
-        btn.jobsResetBtnTitleCor(JobsCor(@"#FFFFFF"));
-        btn.jobsResetBtnBgImage(JobsIMG(@"TabBarItem选中的背景色（透明）"));
-        t+=1;
-    }
+    AppDelegate.switchByIndex(index);
     button.jobsResetBtnImage(self.imageSelectedMutArr[index]);
-    button.jobsResetBtnTitleCor(JobsCor(@"#FFF500"));
-    button.jobsResetBtnBgImage(JobsIMG(@"TabBarItem选中的背景色"));
-    self.jobsCustomTabBarVC.customSelectIndex(index);
+    button.jobsResetBtnTitleCor(JobsCor(@"#C71B1B"));
+}
+
++(jobsByNSUIntegerBlock _Nonnull)switchByIndex{
+    @jobs_weakify(self)
+    return ^(NSUInteger index){
+        @jobs_strongify(self)
+        int t = 0;
+        for (__kindof UIButton *btn in AppDelegate.tabBarItemMutArr) {
+            btn.jobsResetBtnImage(self.imageUnSelectedMutArr[t]);
+            btn.jobsResetBtnTitleCor(JobsCor(@"#8A93A1"));
+            t+=1;
+        }self.jobsCustomTabBarVC.customSelectIndex(index);
+    };
 }
 /// 刷新 TabBarTitle
 -(void)refreshTabBarTitle{

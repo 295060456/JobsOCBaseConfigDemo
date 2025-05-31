@@ -45,6 +45,7 @@ Prop_strong(class)NSMutableArray <__kindof UINavigationController *>*navCtrMutAr
 #pragma mark —— 一些公有方法
 /// 切换控制器
 +(void)button:(__kindof UIButton *)button index:(NSUInteger)index;
++(jobsByNSUIntegerBlock _Nonnull)switchByIndex;
 /// 刷新 TabBarTitle
 -(void)refreshTabBarTitle;
 
