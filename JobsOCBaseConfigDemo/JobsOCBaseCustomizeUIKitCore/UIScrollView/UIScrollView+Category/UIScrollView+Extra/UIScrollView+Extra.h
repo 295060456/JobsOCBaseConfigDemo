@@ -9,6 +9,7 @@
 #import <objc/runtime.h>
 #import "UIScrollViewProtocol.h"
 #import "JobsDefineAllEnumHeader.h"
+#import "UIView+Measure.h"
 
 #if __has_include(<MJRefresh/MJRefresh.h>)
 #import <MJRefresh/MJRefresh.h>

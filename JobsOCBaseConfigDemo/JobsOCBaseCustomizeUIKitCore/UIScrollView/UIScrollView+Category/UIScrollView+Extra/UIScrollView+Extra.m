@@ -138,6 +138,24 @@
     };
 }
 
+-(JobsReturnScrollViewByCGFloatBlock _Nonnull)byContentWidth{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.contentSize = CGSizeMake(data ? : self.width, self.contentSize.height ? : self.height);
+        return self;
+    };
+}
+
+-(JobsReturnScrollViewByCGFloatBlock _Nonnull)byContentHeight{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(CGFloat data){
+        @jobs_strongify(self)
+        self.contentSize = CGSizeMake(self.contentSize.width ? : self.width, data ? : self.height);
+        return self;
+    };
+}
+
 -(JobsReturnScrollViewByBOOLBlock _Nonnull)byScrollEnabled{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(BOOL data){

@@ -521,7 +521,7 @@
     return ^__kindof UIButton *_Nullable(__kindof UIButtonModel *_Nonnull buttonModel,BOOL selected){
         @jobs_strongify(self)
         /// 图（背景颜色）
-        self.jobsResetBtnBgCor(selected ? buttonModel.baseBackgroundColor : buttonModel.baseBackgroundColor);/// 更改：按钮背景色
+        self.jobsResetBtnBgCor(selected ? buttonModel.selectedBaseBackgroundColor : buttonModel.baseBackgroundColor);/// 更改：按钮背景色
         self.jobsResetBtnBgImage(selected ? buttonModel.highlightBackgroundImage : buttonModel.backgroundImage);/// 更改：按钮背景图片
         self.jobsResetBtnImage(selected ? buttonModel.highlightImage : buttonModel.normalImage);/// 更改：按钮图片
         /// 主标题

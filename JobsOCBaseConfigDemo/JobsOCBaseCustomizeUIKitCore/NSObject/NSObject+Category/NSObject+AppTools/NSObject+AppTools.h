@@ -61,6 +61,23 @@ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 #pragma mark —— 测试调试专用
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;
+/// 调试 scrollView
+-(jobsByScrollViewBlock _Nonnull)checkScrollView;
+#pragma mark —— 计算UICollectionView.ContentSize
+/// 计算 UICollectionView 所需的完整 contentSize（不滚动情况下能完全展示所有 cell）
+/// - Parameters:
+///   - itemCount: UICollectionViewCell的个数
+///   - itemsPerLine: 每行（或每列）展示的 cell 个数，垂直滚动时代表每行个数，水平滚动时代表每列个数
+///   - cellSize: 每个 UICollectionViewCell 的尺寸（CGSize）
+///   - lineSpacing: 行间距（垂直方向间隔）
+///   - interItemSpacing: 列间距（水平方向间隔）
+///   - direction: UICollectionView 的滚动方向
+-(CGSize)jobsCollectionViewContentSizeByItemCount:(NSUInteger)itemCount
+                                     itemsPerLine:(NSUInteger)itemsPerLine
+                                         cellSize:(CGSize)cellSize
+                                      lineSpacing:(CGFloat)lineSpacing
+                                 interItemSpacing:(CGFloat)interItemSpacing
+                                        direction:(UICollectionViewScrollDirection)direction;
 #pragma mark —— 一些公共设置
 /// 设置返回按钮的文字、返回按钮的行为（默认导航栏标题（图片）为 BLuckyRedLogo）
 -(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleImageAndAction;

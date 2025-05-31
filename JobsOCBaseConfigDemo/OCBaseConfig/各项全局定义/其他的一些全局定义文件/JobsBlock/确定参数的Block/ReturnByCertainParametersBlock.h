@@ -307,6 +307,7 @@ typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByDelegateBlock)(i
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByPointBlock)(CGPoint data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByRectBlock)(CGRect frame);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewBySizeBlock)(CGSize size);
+typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByCGFloatBlock)(CGFloat data);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByUIEdgeInsetsBlock)(UIEdgeInsets insets);
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByMutArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
 @class MJRefreshConfigModel;

@@ -48,6 +48,8 @@ Prop_assign()ScrollDirection direction;
 -(JobsReturnScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy;
 -(JobsReturnScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy;
 -(JobsReturnScrollViewBySizeBlock _Nonnull)byContentSize;
+-(JobsReturnScrollViewByCGFloatBlock _Nonnull)byContentWidth;
+-(JobsReturnScrollViewByCGFloatBlock _Nonnull)byContentHeight;
 -(JobsReturnScrollViewByBOOLBlock _Nonnull)byScrollEnabled;
 -(JobsReturnScrollViewByBOOLBlock _Nonnull)byBounces;
 -(JobsReturnScrollViewByUIEdgeInsetsBlock _Nonnull)byEdgeInsets;

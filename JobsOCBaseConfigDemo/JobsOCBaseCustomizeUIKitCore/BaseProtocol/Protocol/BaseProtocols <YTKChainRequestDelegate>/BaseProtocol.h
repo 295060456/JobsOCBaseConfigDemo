@@ -89,6 +89,9 @@ Prop_weak(nullable)id weak_target;
 Prop_strong(nullable)id data;/// 【强引用】绑定的数据源，数据类型id
 Prop_strong(nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
 Prop_strong(nullable)id modelData;/// 挂载修饰的ViewModel/UIButtonModel/TextModel...
+Prop_assign()CGFloat value_CGFloat;
+Prop_assign()NSInteger value_NSInteger;
+Prop_assign()NSUInteger value_NSUInteger;
 /// 弱引用数据源
 Prop_weak(nullable)id data_weak;/// 【弱引用】绑定的数据源，数据类型id
 Prop_weak(nullable)id requestParams_weak;/// 【弱引用】绑定的数据源，数据类型id
@@ -196,6 +199,9 @@ NS_ASSUME_NONNULL_END
 @synthesize data_weak = _data_weak;\
 @synthesize requestParams = _requestParams;\
 @synthesize modelData = _modelData;\
+@synthesize value_CGFloat = _value_CGFloat;\
+@synthesize value_NSInteger = _value_NSInteger;\
+@synthesize value_NSUInteger = _value_NSUInteger;\
 @synthesize requestParams_weak = _requestParams_weak;\
 
 #endif /* BaseProtocol_synthesize_data */
@@ -266,6 +272,9 @@ BaseProtocol_synthesize_data \
 @dynamic data_weak;\
 @dynamic requestParams;\
 @dynamic modelData;\
+@dynamic value_CGFloat;\
+@dynamic value_NSInteger;\
+@dynamic value_NSUInteger;\
 @dynamic requestParams_weak;\
 
 #endif /* BaseProtocol_dynamic */

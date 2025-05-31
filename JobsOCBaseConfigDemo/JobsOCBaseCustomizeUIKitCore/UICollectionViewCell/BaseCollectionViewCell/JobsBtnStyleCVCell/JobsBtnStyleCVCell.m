@@ -205,7 +205,7 @@ AppToolsProtocol_synthesize
     if(self.buttonModel){
         _webView = self.makeWebViewByString(isValue(self.buttonModel.title) ? self.buttonModel.title : self.buttonModel.subTitle);
     }
-    _webView.backgroundColor = JobsClearColor;
+    _webView.byBgCor(JobsClearColor);
     _webView.opaque = NO; // 设置不透明为 NO，确保背景透明
     self.contentView.addSubview(_webView).masonryBy(self.masonryBlock);
     self.refresh();
@@ -217,7 +217,7 @@ AppToolsProtocol_synthesize
         @jobs_weakify(self)
         _masonryBlock = ^(MASConstraintMaker *make) {
             @jobs_strongify(self)
-            make.edges.equalTo(self);///
+            make.edges.equalTo(self.contentView);///
             /// 如果这里用self.contentView，在某些情况下，约束会失灵。因为self.contentView的生命周期的缘故，还没有完全展开
         };
     }return _masonryBlock;

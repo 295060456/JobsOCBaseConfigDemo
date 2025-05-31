@@ -1123,6 +1123,20 @@ typedef NS_ENUM(NSUInteger, DataSourceType) {
     DataSourceType_SettingNewPwd   /// 修改密码
 };
 #endif /* DATA_SOURCE_TYPE_ENUM_DEFINED */
-
+/// 资金渠道
+#ifndef JOBS_FUNDS_CHANNEL_ENUM_DEFINED
+#define JOBS_FUNDS_CHANNEL_ENUM_DEFINED
+typedef NS_ENUM(NSInteger, JobsFundsChannel) {
+    JobsFundsChannel_AllBank = 0,
+    JobsFundsChannel_FortunePay,
+    JobsFundsChannel_GCash,
+    JobsFundsChannel_instarPay,
+    JobsFundsChannel_Lazada,
+    JobsFundsChannel_maya,
+    JobsFundsChannel_pisopay,
+    JobsFundsChannel_QRPh,
+    JobsFundsChannel_UnionBank,
+};
+#endif /* JOBS_FUNDS_CHANNEL_ENUM_DEFINED */
 
 #endif /* JobsDefineAllEnumHeader_h */

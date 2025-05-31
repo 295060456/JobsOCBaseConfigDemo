@@ -61,6 +61,49 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         }
     };
 }
+/// 调试 scrollView
+-(jobsByScrollViewBlock _Nonnull)checkScrollView{
+    return ^(__kindof UIScrollView *_Nullable scrollView){
+        NSLog(@"contentSize: %@", NSStringFromCGSize(scrollView.contentSize));
+        NSLog(@"bounds.size: %@", NSStringFromCGSize(scrollView.bounds.size));
+        NSLog(@"scrollEnabled: %@", scrollView.scrollEnabled ? @"YES" : @"NO");
+        NSLog(@"userInteractionEnabled: %@", scrollView.userInteractionEnabled ? @"YES" : @"NO");
+        NSLog(@"panGestureRecognizer.enabled: %@", scrollView.panGestureRecognizer.enabled ? @"YES" : @"NO");
+        NSLog(@"subviews: %@", scrollView.subviews);
+        NSLog(@":");
+    };
+}
+#pragma mark —— 计算UICollectionView.ContentSize
+/// 计算 UICollectionView 所需的完整 contentSize（不滚动情况下能完全展示所有 cell）
+/// - Parameters:
+///   - itemCount: UICollectionViewCell的个数
+///   - itemsPerLine: 每行（或每列）展示的 cell 个数，垂直滚动时代表每行个数，水平滚动时代表每列个数
+///   - cellSize: 每个 UICollectionViewCell 的尺寸（CGSize）
+///   - lineSpacing: 行间距（垂直方向间隔）
+///   - interItemSpacing: 列间距（水平方向间隔）
+///   - direction: UICollectionView 的滚动方向
+-(CGSize)jobsCollectionViewContentSizeByItemCount:(NSUInteger)itemCount
+                                     itemsPerLine:(NSUInteger)itemsPerLine
+                                         cellSize:(CGSize)cellSize
+                                      lineSpacing:(CGFloat)lineSpacing
+                                 interItemSpacing:(CGFloat)interItemSpacing
+                                        direction:(UICollectionViewScrollDirection)direction{
+    if (itemCount == 0 || itemsPerLine == 0) return CGSizeZero;
+    switch (direction) {
+        case UICollectionViewScrollDirectionVertical: {
+            NSUInteger rows = (itemCount + itemsPerLine - 1) / itemsPerLine;
+            CGFloat height = cellSize.height * rows + lineSpacing * (rows - 1);
+            CGFloat width = cellSize.width * itemsPerLine + interItemSpacing * (itemsPerLine - 1);
+            return CGSizeMake(width, height);
+        }
+        case UICollectionViewScrollDirectionHorizontal: {
+            NSUInteger columns = (itemCount + itemsPerLine - 1) / itemsPerLine;
+            CGFloat width = cellSize.width * columns + interItemSpacing * (columns - 1);
+            CGFloat height = cellSize.height * itemsPerLine + lineSpacing * (itemsPerLine - 1);
+            return CGSizeMake(width, height);
+        }default:return CGSizeZero;
+    }
+}
 #pragma mark —— 一些公共设置
 /// 设置返回按钮的文字、返回按钮的行为（默认导航栏标题（图片）为 BLuckyRedLogo）
 -(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleImageAndAction{
