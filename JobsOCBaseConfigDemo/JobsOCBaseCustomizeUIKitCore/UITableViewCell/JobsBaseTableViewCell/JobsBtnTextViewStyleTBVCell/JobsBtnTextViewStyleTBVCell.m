@@ -174,6 +174,7 @@ AppToolsProtocol_synthesize
         @jobs_weakify(self)
         _textView = jobsMakeBaseTextView(^(__kindof BaseTextView * _Nullable textView) {
             @jobs_strongify(self)
+            textView.byBgCor(JobsClearColor);
             textView.delegate = self;
             textView.scrollEnabled = NO;
             textView.dataDetectorTypes = UIDataDetectorTypeLink; /// 启用链接检测
@@ -217,7 +218,8 @@ AppToolsProtocol_synthesize
             @jobs_strongify(self)
             textView.szTextView.delegate = self;
             textView.szTextView.textColor = JobsBlackColor;
-            textView.backgroundColor = JobsCor(@"#F9F9F9");
+            textView.szTextView.byBgCor(JobsClearColor);
+            textView.byBgCor(JobsClearColor);
             textView.returnKeyType_ = UIReturnKeyDefault;
             textView.keyboardAppearance_ = UIKeyboardAppearanceDefault;
             textView.keyboardType_ = UIKeyboardTypeNumberPad;

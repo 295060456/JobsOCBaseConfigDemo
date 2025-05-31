@@ -54,7 +54,8 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBar.hidden = YES;
-//    self.view.backgroundColor = JobsGreenColor;
+    self.delegate = self;
+//    self.view.byBgCor(JobsGreenColor);
     self.customTabBar.alpha = 1;
     extern NSUInteger DefaultIndex;
     self.selectedIndex = DefaultIndex;
@@ -65,8 +66,17 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
     self.backTo(self.selectedIndex);
 }
 
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+}
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    self.resetSubVCViewHeight();
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -75,6 +85,11 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+}
+#pragma mark —— UITabBarControllerDelegate
+-(void)tabBarController:(UITabBarController *)tabBarController
+didSelectViewController:(UIViewController *)viewController{
+    self.resetSubVCViewHeight();
 }
 #pragma mark —— 一些公有方法
 -(jobsByNSUIntegerBlock _Nonnull)customSelectIndex{

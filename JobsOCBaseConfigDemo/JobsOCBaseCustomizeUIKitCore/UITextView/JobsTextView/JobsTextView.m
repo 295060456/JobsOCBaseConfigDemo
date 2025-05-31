@@ -100,7 +100,7 @@ static dispatch_once_t static_textViewOnceToken;
         @jobs_weakify(self)
         _szTextView = jobsMakeSZTextView(^(SZTextView * _Nonnull textView) {
             @jobs_strongify(self)
-            textView.backgroundColor = JobsCor(@"#FEF4F3");
+            textView.byBgCor(JobsClearColor);
             textView.editable = YES;
             [self.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).offset(JobsWidth(5));
@@ -138,9 +138,9 @@ static dispatch_once_t static_textViewOnceToken;
         @jobs_weakify(self)
         _countLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.textColor = JobsWhiteColor;
-            label.textAlignment = NSTextAlignmentCenter;
-            label.font = UIFontWeightBoldSize(12);
+            label.byTextCor(JobsWhiteColor)
+                .byFont(UIFontWeightBoldSize(12))
+                .byTextAlignment(NSTextAlignmentCenter);
             [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(JobsWidth(17));
                 make.bottom.mas_equalTo(-JobsWidth(8));

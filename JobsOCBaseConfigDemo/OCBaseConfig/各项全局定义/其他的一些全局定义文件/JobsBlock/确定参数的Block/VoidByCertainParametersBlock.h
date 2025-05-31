@@ -128,6 +128,7 @@ typedef void(^jobsByIntBlock)(int data);
 typedef void(^jobsByUnsignedIntBlock)(unsigned int data);
 typedef void(^jobsByFloatBlock)(float data);
 typedef void(^jobsByDoubleBlock)(double data);
+typedef void(^jobsByCGFloatBlock)(CGFloat data);
 typedef void(^jobsByCharBlock)(char data);
 typedef void(^jobsByUnsignedCharBlock)(unsigned char data);
 typedef void(^jobsByShortBlock)(short data);

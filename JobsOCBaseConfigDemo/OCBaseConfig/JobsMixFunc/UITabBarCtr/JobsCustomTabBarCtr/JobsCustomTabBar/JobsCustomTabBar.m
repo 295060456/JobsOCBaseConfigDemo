@@ -35,7 +35,7 @@
     return ^(){
         @jobs_strongify(self)
         JobsCustomTabBarConfig *config = AppDelegate.jobsCustomTabBarConfig;/// 此时还没有初始化 JobsCustomTabBarConfig.sharedManager;
-        self.backgroundColor = config.tabBarBackgroundImage ? self.byPatternImage(config.tabBarBackgroundImage) :config.tabBarBackgroundColor;
+        self.byBgCor(config.tabBarBackgroundImage ? self.byPatternImage(config.tabBarBackgroundImage) :config.tabBarBackgroundColor);
         NSInteger itemCount = config.tabBarItems.count;
         CGFloat itemWidth = (config.tabBarWidth ? : JobsRealWidth()) / itemCount;
         for (NSInteger index = 0; index < itemCount; index++) {
@@ -62,7 +62,7 @@
     @jobs_weakify(self)
     return ^(__kindof UIView *_Nullable view){
         @jobs_strongify(self)
-        [view addSubview:self];
+        view.addSubview(self);
         if(!jobsZeroRectValue(JobsCustomTabBarConfig_appDelegate.tabBarFrame)){
             self.frame = JobsCustomTabBarConfig_appDelegate.tabBarFrame;
         }else{
@@ -98,7 +98,7 @@
                     // 这里使用 JobsCustomTabBarConfig.sharedManager.tabBarWidth 会崩
                     make.width.mas_equalTo(JobsCustomTabBarConfig_appDelegate.tabBarWidth);
                 }
-            }];[view layoutIfNeeded];
+            }];view.refresh();
         }
     };
 }

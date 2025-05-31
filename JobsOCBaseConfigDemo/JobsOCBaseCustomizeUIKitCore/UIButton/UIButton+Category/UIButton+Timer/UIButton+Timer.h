@@ -69,35 +69,32 @@ NS_ASSUME_NONNULL_END
          data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
          data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
          data.labelShowingType = UILabelShowingType_01;//【换行模式】
-         data.secondStr = @" ".add(JobsInternationalization(@"S"));
+         data.secondStr = JobsSpace.add(JobsInternationalization(@"S"));
          /// 计时器未开始【静态值】
          data.readyPlayValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-             model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
+             model.jobsSize = CGSizeMake(JobsWidth(70), JobsWidth(30));
              model.bgCor = JobsClearColor;
              model.layerBorderCor = JobsClearColor;
-             model.titleCor = JobsWhiteColor;
+             model.titleCor = JobsCor(@"#DE3A3A");
              model.title = JobsInternationalization(@"GET CODE");
-             model.titleFont = bayonRegular(JobsWidth(12));
-             model.backgroundImage = JobsIMG(@"获取验证码背景图");
+             model.titleFont = bayonRegular(JobsWidth(16));
          });
          /// 计时器进行中【动态值】
          data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-             model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
+             model.jobsSize = CGSizeMake(JobsWidth(70), JobsWidth(30));
              model.bgCor = JobsClearColor;
-             model.title = @"  ";
+             model.title = JobsSpace;
              model.layerBorderCor = JobsClearColor;
-             model.titleCor = JobsWhiteColor;
-             model.titleFont = bayonRegular(JobsWidth(12));
-             model.backgroundImage = JobsIMG(@"获取验证码背景图");
+             model.titleCor = JobsCor(@"#DE3A3A");
+             model.titleFont = bayonRegular(JobsWidth(16));
          });
          /// 计时器结束【静态值】
          data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-             model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
+             model.jobsSize = CGSizeMake(JobsWidth(70), JobsWidth(30));
              model.bgCor = JobsClearColor;
-             model.titleCor = JobsWhiteColor;
+             model.titleCor = JobsCor(@"#DE3A3A");
              model.title = JobsInternationalization(@"GET CODE");
-             model.titleFont = bayonRegular(JobsWidth(12));
-             model.backgroundImage = JobsIMG(@"获取验证码背景图");
+             model.titleFont = bayonRegular(JobsWidth(16));
          });
      })).onClickBy(^(__kindof UIButton *x){
          /// 回调到外层取值，以满足后续业务需要

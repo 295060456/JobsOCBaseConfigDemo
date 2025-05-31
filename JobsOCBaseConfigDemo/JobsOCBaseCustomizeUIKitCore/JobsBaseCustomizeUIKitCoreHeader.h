@@ -197,6 +197,8 @@
 #import "UIActivityIndicatorView+Extra.h"
 #pragma mark —— NSPointerArray
 #import "NSPointerArray+Extra.h"
+#pragma mark —— UITabBarController
+#import "UITabBarController+Extra.h"
 
 #import "JobsMakes.h"
 

@@ -16,7 +16,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JobsCustomTabBarVC : UITabBarController<BaseProtocol>
+@interface JobsCustomTabBarVC : UITabBarController
+<
+UITabBarControllerDelegate
+,BaseProtocol
+>
 
 -(jobsByNSUIntegerBlock _Nonnull)customSelectIndex;
 -(JobsCustomTabBar *)customTabBar;

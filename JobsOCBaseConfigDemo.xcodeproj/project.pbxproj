@@ -249,6 +249,7 @@
 		C5BFE2E22DCDF08100158B13 /* CALayer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BFE2DD2DCDF08100158B13 /* CALayer+Extra.m */; };
 		C5BFE2E32DCDF08100158B13 /* CAShapeLayer+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BFE2DA2DCDF08100158B13 /* CAShapeLayer+Extra.m */; };
 		C5BFE9EE2DD1E61700158B13 /* UIActivityIndicatorView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BFE9EC2DD1E61700158B13 /* UIActivityIndicatorView+Extra.m */; };
+		C5C1BD432DEB307E00B2B3D6 /* UITabBarController+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C1BD412DEB307E00B2B3D6 /* UITabBarController+Extra.m */; };
 		C5C3B20D2DDB46E800A56800 /* UIScrollView+EmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C3B20B2DDB46E800A56800 /* UIScrollView+EmptyData.m */; };
 		C5C3B21A2DDB482A00A56800 /* FMMaintenanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C3B2172DDB482A00A56800 /* FMMaintenanceView.m */; };
 		C5C3B4A42DDB4C3400A56800 /* UICollectionView+EmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C3B49F2DDB4C3400A56800 /* UICollectionView+EmptyData.m */; };
@@ -1818,6 +1819,8 @@
 		C5BFE2E12DCDF08100158B13 /* JobsCALayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsCALayer.h; sourceTree = "<group>"; };
 		C5BFE9EB2DD1E61700158B13 /* UIActivityIndicatorView+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIActivityIndicatorView+Extra.h"; sourceTree = "<group>"; };
 		C5BFE9EC2DD1E61700158B13 /* UIActivityIndicatorView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIActivityIndicatorView+Extra.m"; sourceTree = "<group>"; };
+		C5C1BD402DEB307E00B2B3D6 /* UITabBarController+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+Extra.h"; sourceTree = "<group>"; };
+		C5C1BD412DEB307E00B2B3D6 /* UITabBarController+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+Extra.m"; sourceTree = "<group>"; };
 		C5C3B20A2DDB46E800A56800 /* UIScrollView+EmptyData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyData.h"; sourceTree = "<group>"; };
 		C5C3B20B2DDB46E800A56800 /* UIScrollView+EmptyData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyData.m"; sourceTree = "<group>"; };
 		C5C3B20E2DDB46EC00A56800 /* UIScrollViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScrollViewProtocol.h; sourceTree = "<group>"; };
@@ -6454,6 +6457,15 @@
 				C5BFE9EC2DD1E61700158B13 /* UIActivityIndicatorView+Extra.m */,
 			);
 			path = UIActivityIndicatorView;
+			sourceTree = "<group>";
+		};
+		C5C1BD422DEB307E00B2B3D6 /* UITabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				C5C1BD402DEB307E00B2B3D6 /* UITabBarController+Extra.h */,
+				C5C1BD412DEB307E00B2B3D6 /* UITabBarController+Extra.m */,
+			);
+			path = UITabBarController;
 			sourceTree = "<group>";
 		};
 		C5C3B20C2DDB46E800A56800 /* UIScrollView+EmptyData */ = {
@@ -14855,6 +14867,7 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				C5C1BD422DEB307E00B2B3D6 /* UITabBarController */,
 				C56B69F02DE5EAB500E7B1EA /* NSPointerArray */,
 				C5BFE9ED2DD1E61700158B13 /* UIActivityIndicatorView */,
 				C538941F2DC6286D00D5FB06 /* UIContextMenuInteraction */,
@@ -17971,6 +17984,7 @@
 				CE5A65652CA8325F006D67A7 /* UIView+AutoSelfAdaptionSize.m in Sources */,
 				CE5A65662CA8325F006D67A7 /* UIView+BackgroundImage.m in Sources */,
 				CE5A65672CA8325F006D67A7 /* UIView+Navigator.m in Sources */,
+				C5C1BD432DEB307E00B2B3D6 /* UITabBarController+Extra.m in Sources */,
 				CE5A65682CA8325F006D67A7 /* UIView+Refresh.m in Sources */,
 				CE5A64F62CA830A8006D67A7 /* IrregularBtn.m in Sources */,
 				CE5A64F72CA830A8006D67A7 /* RBCLikeButton.m in Sources */,
