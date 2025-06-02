@@ -29,6 +29,61 @@ AppToolsProtocol_synthesize
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
 }
+#pragma mark —— 复写系统方法
+@synthesize selected = _selected;
+-(BOOL)isSelected{
+    return _selected;
+}
+
+-(void)setSelected:(BOOL)selected{
+    [super setSelected:selected];
+    _selected = selected;
+    self.button.selected = selected;
+    
+    if(self.buttonModel){
+        self.button.jobsResetBtnTitle(selected ? (self.buttonModel.selectedTitle ? : self.buttonModel.title) : self.buttonModel.title);
+        self.button.jobsResetBtnTitleCor(selected ? (self.buttonModel.selectedTitleCor ? : self.buttonModel.titleCor) : self.buttonModel.titleCor);
+        self.button.jobsResetBtnTitleFont(selected ? (self.buttonModel.selectedTitleFont ? : self.buttonModel.titleFont) : self.buttonModel.titleFont);
+        
+        self.button.jobsResetBtnSubTitle(selected ? (self.buttonModel.selectedSubTitle ? : self.buttonModel.subTitle) : self.buttonModel.subTitle);
+        self.button.jobsResetBtnSubTitleCor(selected ? (self.buttonModel.selectedTitleCor ? : self.buttonModel.subTitleCor) : self.buttonModel.subTitleCor);
+        self.button.jobsResetBtnSubTitleFont(selected ? (self.buttonModel.selectedSubTitleFont ? : self.buttonModel.subTitleFont) : self.buttonModel.subTitleFont);
+
+        if(self.buttonModel.attributedTitle || self.buttonModel.selectedAttributedTitle){
+            self.button.jobsResetAttributedTitle(selected ? (self.buttonModel.selectedAttributedTitle ? : self.buttonModel.attributedTitle): self.buttonModel.attributedTitle);
+        }
+        
+        if(self.buttonModel.attributedSubTitle || self.buttonModel.selectedAttributedSubTitle){
+            self.button.jobsResetAttributedSubtitle(selected ? (self.buttonModel.selectedAttributedSubTitle ? : self.buttonModel.attributedSubTitle) : self.buttonModel.attributedSubTitle);
+        }
+
+        self.button.jobsResetBtnImage(selected ? (self.buttonModel.highlightImage ? : self.buttonModel.normalImage) : self.buttonModel.normalImage);
+        self.button.jobsResetBtnBgImage(selected ? (self.buttonModel.highlightBackgroundImage ? : self.buttonModel.backgroundImage) : self.buttonModel.backgroundImage);
+        self.button.jobsResetBtnBgCor(selected ? (self.buttonModel.selectedBaseBackgroundColor ? : self.buttonModel.baseBackgroundColor) : self.buttonModel.baseBackgroundColor);
+    }
+    
+    if(self.viewModel){
+        self.button.jobsResetBtnTitle(selected ? (self.viewModel.selectedTitle ? : self.viewModel.title) : self.viewModel.title);
+        self.button.jobsResetBtnTitleCor(selected ? (self.viewModel.selectedTitleCor ? : self.viewModel.titleCor) : self.viewModel.titleCor);
+        self.button.jobsResetBtnTitleFont(selected ? (self.viewModel.selectedTitleFont ? : self.viewModel.titleFont) : self.viewModel.titleFont);
+        
+        self.button.jobsResetBtnSubTitle(selected ? (self.viewModel.selectedSubTitle ? : self.viewModel.subTitle) : self.viewModel.subTitle);
+        self.button.jobsResetBtnSubTitleCor(selected ? (self.viewModel.selectedTitleCor ? : self.viewModel.subTitleCor) : self.viewModel.subTitleCor);
+        self.button.jobsResetBtnSubTitleFont(selected ? (self.viewModel.selectedSubTitleFont ? : self.viewModel.subTitleFont) : self.viewModel.subTitleFont);
+        
+        if(self.viewModel.attributedTitle || self.viewModel.selectedAttributedTitle){
+            self.button.jobsResetAttributedTitle(selected ? (self.viewModel.selectedAttributedTitle ? : self.viewModel.attributedTitle): self.viewModel.attributedTitle);
+        }
+        
+        if(self.viewModel.attributedSubTitle || self.viewModel.selectedAttributedSubTitle){
+            self.button.jobsResetAttributedSubtitle(selected ? (self.viewModel.selectedAttributedSubTitle ? : self.viewModel.attributedSubTitle) : self.viewModel.attributedSubTitle);
+        }
+        
+        self.button.jobsResetBtnImage(selected ? (self.viewModel.highlightImage ? : self.viewModel.normalImage) : self.viewModel.normalImage);
+        self.button.jobsResetBtnBgImage(selected ? (self.viewModel.highlightBackgroundImage ? : self.viewModel.backgroundImage) : self.viewModel.backgroundImage);
+        self.button.jobsResetBtnBgCor(selected ? (self.viewModel.selectedBaseBackgroundColor ? : self.viewModel.baseBackgroundColor) : self.viewModel.baseBackgroundColor);
+    }
+}
 #pragma mark —— 一些公有方法
 -(jobsByIDBlock _Nonnull)makeUp{
     @jobs_weakify(self)
@@ -73,7 +128,7 @@ AppToolsProtocol_synthesize
         /// 背景图
         if(viewModel.normalBgImageURL){
             self.button.imageURL(viewModel.normalBgImageURLString.imageURLPlus.jobsUrl)
-                .placeholderImage(viewModel.normalImage)
+                .placeholderImage(viewModel.backgroundImage)
                 .options(self.makeSDWebImageOptions)
                 .completed(^(UIImage *_Nullable image,
                              NSError *_Nullable error,
@@ -192,7 +247,9 @@ AppToolsProtocol_synthesize
         /// enabled = NO ,则不响应：-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event（此方法不要写在分类里面）
         _button.enabled = NO; /// 这个属性为YES，则优先响应Btn。这个属性为NO，则响应 UITableViewCell 协议方法
         _button.userInteractionEnabled = YES;
-        self.contentView.addSubview(_button).masonryBy(self.masonryBlock);
+        self.contentView
+            .addSubview(_button)
+            .masonryBy(self.masonryBlock);
     }return _button;
 }
 
@@ -207,7 +264,9 @@ AppToolsProtocol_synthesize
     }
     _webView.byBgCor(JobsClearColor);
     _webView.opaque = NO; // 设置不透明为 NO，确保背景透明
-    self.contentView.addSubview(_webView).masonryBy(self.masonryBlock);
+    self.contentView
+        .addSubview(_webView)
+        .masonryBy(self.masonryBlock);
     self.refresh();
     return _webView;
 }
