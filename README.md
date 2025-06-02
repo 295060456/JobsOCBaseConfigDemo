@@ -11087,10 +11087,26 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        由于 `scrollView` 本身**没有明确的宽度限制**（AutoLayout 会推断其内容宽度），子视图的左右对齐会导致系统不清楚到底该有多宽，从而得出错误的或不明确的 `contentSize.width`，通常是 0 或屏幕外的错误值。
     * `contentSize` 无法正确计算，导致无法滚动
     * 将此改为`make.width.equalTo(self.scrollView.mas_width);`问题得以解决
+    
   * 慎用`centerX`、`centerY`、`center`。⚠️ 常见问题场景：
     * 在 `UIScrollView` 中使用 `centerX`（`ScrollView` 的 `contentSize` 是由其子视图决定的，但 `centerX` 不会影响子视图的实际尺寸或边缘对齐。）
     * 子视图没有设置 `width` 和 `centerX` 同时使用
     * 动画或动态更新时 `center` 类约束优先级冲突（居中是个对齐逻辑，而你有时可能想偏移或重设位置）
+    
+  * `mas_updateConstraints`只能更新已经锚定view的约束，如果更换View是无法实现更新的。此时需要用到`mas_remakeConstraints`
+  
+    ```objective-c
+    [self.submitBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+          make.top.equalTo(targetView.mas_bottom).offset(JobsWidth(10));
+          make.centerX.equalTo(self.scrollView);
+          make.size.mas_equalTo(CGSizeMake(JobsWidth(345), JobsWidth(50)));
+    }];
+    
+    如果只希望将make.top.equalTo(targetView.mas_bottom).offset(JobsWidth(10));替换成make.top.equalTo(targetView2.mas_bottom).offset(JobsWidth(10));
+    
+    mas_updateConstraints无效
+    只能用mas_remakeConstraints
+    ```
 
 #### 40.2、[**`SDAutoLayout`**](https://github.com/gsdios/SDAutoLayout)
 
