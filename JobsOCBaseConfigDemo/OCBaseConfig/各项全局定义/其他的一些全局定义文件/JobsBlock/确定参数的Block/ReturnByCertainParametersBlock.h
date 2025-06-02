@@ -197,6 +197,7 @@ typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByAttributedStringBloc
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByBOOLBlock)(BOOL data);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByEdgeInsetsBlock)(UIEdgeInsets inset);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByCorBlock)(UIColor *_Nullable cor);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByUIScrollViewContentInsetAdjustmentBehaviorBlock)(UIScrollViewContentInsetAdjustmentBehavior behavior);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByViewBlock)(__kindof UIView *_Nullable view);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByCellSeparatorStyleBlock)(UITableViewCellSeparatorStyle style);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByDelegateBlock)(id <UITableViewDelegate>_Nullable delegate);

@@ -138,6 +138,22 @@
     };
 }
 
+-(jobsByViewBlock _Nonnull)_showViewCore3{
+    @jobs_weakify(self)
+    return ^(UIView *_Nonnull data) {
+        @jobs_strongify(self)
+        self.popupParameter.dragEnable = YES;
+        self.popupParameter.backgroundColor = JobsBlackColor.colorWithAlphaComponentBy(.3f);
+        self.popupParameter.disuseBackgroundTouchHide = NO;/// 允许点击背景消失弹框
+        [self checkByView:data action:^{
+            @jobs_strongify(self)
+            [data tf_showSlide:MainWindow
+                     direction:PopupDirectionBottom
+                    popupParam:self.popupParameter];
+        }];
+    };
+}
+
 -(jobsByViewBlock _Nonnull)_showTipsCore{
     @jobs_weakify(self)
     return ^(UIView *_Nonnull data) {
@@ -151,13 +167,31 @@
     };
 }
 #pragma mark —— PopView
-/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（不带数据）
+/// 出现的弹窗（出现在屏幕中央）需要手动触发关闭——禁止点击背景消失弹框（不带数据）
 -(jobsByViewBlock _Nonnull)show_view{
     @jobs_weakify(self)
     return ^(__kindof UIView *_Nonnull data) {
         @jobs_strongify(self)
         self.popupParameter.popupSize = !jobsZeroSizeValue(data.sizer) ? data.sizer : data.viewSizeByModel(nil);
         self._showViewCore(data);
+    };
+}
+/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（不带数据）
+-(jobsByViewBlock _Nonnull)show_view2{
+    @jobs_weakify(self)
+    return ^(UIView *_Nonnull data) {
+        @jobs_strongify(self)
+        self.popupParameter.popupSize = !jobsZeroSizeValue(data.sizer) ? data.sizer : data.viewSizeByModel(nil);
+        self._showViewCore2(data);
+    };
+}
+/// 出现的弹窗（出现在屏幕下方）需要手动触发关闭——禁止点击背景消失弹框（不带数据）
+-(jobsByViewBlock _Nonnull)show_view3{
+    @jobs_weakify(self)
+    return ^(__kindof UIView *_Nonnull data) {
+        @jobs_strongify(self)
+        self.popupParameter.popupSize = !jobsZeroSizeValue(data.sizer) ? data.sizer : data.viewSizeByModel(nil);
+        self._showViewCore3(data);
     };
 }
 /// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（带数据）
@@ -176,15 +210,6 @@
         @jobs_strongify(self)
         self.popupParameter.popupSize = data ? view.viewSizeByModel(data) : view.sizer;
         self._showViewCore(view);
-    };
-}
-/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（不带数据）
--(jobsByViewBlock _Nonnull)show_view2{
-    @jobs_weakify(self)
-    return ^(UIView *_Nonnull data) {
-        @jobs_strongify(self)
-        self.popupParameter.popupSize = !jobsZeroSizeValue(data.sizer) ? data.sizer : data.viewSizeByModel(nil);
-        self._showViewCore2(data);
     };
 }
 /// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（带数据）

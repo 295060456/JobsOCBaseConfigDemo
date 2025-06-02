@@ -107,6 +107,8 @@ Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 -(JobsReturnViewModelByDecorationModelBlock _Nonnull)makeDatas;
 /// 默认文本段落样式（两端对齐）
 -(NSMutableParagraphStyle *)defaultParagraphStyle;
+/// 默认文本段落样式（左端对齐）
+-(NSMutableParagraphStyle *)defaultParagraphStyle2;
 /// Terms Of Use
 -(void)makeTermsOfUseByBlock:(jobsByIDBlock _Nonnull)block;
 /// 联系我们.按钮

@@ -66,8 +66,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 弹出一个弹窗
 @interface NSObject (TFPopup)
 /// Data
-Prop_strong()TFPopupParam *popupParameter;
-Prop_strong()TFPopupParam *tipsParameter;
+Prop_strong(nullable)TFPopupParam *popupParameter;
+Prop_strong(nullable)TFPopupParam *tipsParameter;
 #pragma mark —— 保证弹窗一定是被初始化
 -(__kindof UIView *)checkByView:(UIView *)view action:(jobsByVoidBlock _Nullable)action;
 #pragma mark —— 关闭所有的弹出提示框
@@ -87,14 +87,16 @@ Prop_strong()TFPopupParam *tipsParameter;
 -(void)popupShowSlideWithView:(UIView __kindof *_Nonnull)view
                popupParameter:(TFPopupParam *_Nullable)popupParameter;
 #pragma mark —— PopView
-/// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（不带数据）
+/// 出现的弹窗（出现在屏幕中央）需要手动触发关闭——禁止点击背景消失弹框（不带数据）
 -(jobsByViewBlock _Nonnull)show_view;
+/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（不带数据）
+-(jobsByViewBlock _Nonnull)show_view2;
+/// 出现的弹窗（出现在屏幕下方）需要手动触发关闭——禁止点击背景消失弹框（不带数据）
+-(jobsByViewBlock _Nonnull)show_view3;
 /// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（带数据）
 -(jobsByViewAndDataBlock _Nonnull)show_viewByModel;
 /// 出现的弹窗需要手动触发关闭——禁止点击背景消失弹框（带数据）
 -(jobsByViewAndDataBlock _Nonnull)showViewByModel;
-/// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（不带数据）
--(jobsByViewBlock _Nonnull)show_view2;
 /// 出现的弹窗需要手动触发关闭——允许点击背景消失弹框（带数据）
 -(jobsByViewAndDataBlock _Nonnull)showViewByModel2;
 /// 出现的弹窗自动触发关闭（不带数据）

@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsReturnTableViewByDragDelegateBlock _Nonnull)byDragDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
 -(JobsReturnTableViewByDropDelegateBlock _Nonnull)byDropDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos);
 -(JobsReturnTableViewByCellSeparatorStyleBlock _Nonnull)bySeparatorStyle;
+-(JobsReturnTableViewByUIScrollViewContentInsetAdjustmentBehaviorBlock _Nonnull)byContentInsetAdjustmentBehavior API_AVAILABLE(ios(11.0), tvos(11.0)) API_UNAVAILABLE(watchos);
 -(JobsReturnTableViewByCorBlock _Nonnull)bySeparatorColor;
 -(JobsReturnTableViewByViewBlock _Nonnull)byTableHeaderView;
 -(JobsReturnTableViewByViewBlock _Nonnull)byTableFooterView;

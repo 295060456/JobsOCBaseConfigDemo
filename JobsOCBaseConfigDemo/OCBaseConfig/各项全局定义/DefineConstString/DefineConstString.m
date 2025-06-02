@@ -108,6 +108,7 @@ NSString *const JobsSpace = @" ";            /// 空格
 NSString *const JobsEmpty = @"";             /// 空字符串
 NSString *const JobsComma = @",";            /// 逗号
 NSString *const JobsDot = @".";              /// 句号
+NSString *const JobsPoint = @"·";            /// 点
 NSString *const JobsColon = @":";            /// 冒号
 NSString *const JobsSemicolon = @";";        /// 分号
 NSString *const JobsDash = @"-";             /// 连字符

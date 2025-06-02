@@ -108,6 +108,7 @@ FOUNDATION_EXTERN NSString *_Nonnull const JobsSpace;           /// 空格
 FOUNDATION_EXTERN NSString *_Nonnull const JobsEmpty;           /// 空字符串
 FOUNDATION_EXTERN NSString *_Nonnull const JobsComma;           /// 逗号
 FOUNDATION_EXTERN NSString *_Nonnull const JobsDot;             /// 句号
+FOUNDATION_EXTERN NSString *_Nonnull const JobsPoint;           /// 点
 FOUNDATION_EXTERN NSString *_Nonnull const JobsColon;           /// 冒号
 FOUNDATION_EXTERN NSString *_Nonnull const JobsSemicolon;       /// 分号
 FOUNDATION_EXTERN NSString *_Nonnull const JobsDash;            /// 连字符

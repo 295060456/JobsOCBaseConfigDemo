@@ -443,6 +443,17 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         data.lineSpacing = 0;/// 行距，取值 float
     });
 }
+/// 默认文本段落样式（左端对齐）
+-(NSMutableParagraphStyle *)defaultParagraphStyle2{
+    return jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
+        data.alignment = NSTextAlignmentLeft;/// 左端对齐
+        data.paragraphSpacing = 0;/// 段距，取值 float
+        data.paragraphSpacingBefore = 0;/// 段首空间，取值 float
+        data.firstLineHeadIndent = 0.0;/// 首行缩进，取值 float
+        data.headIndent = 0.0;/// 整体缩进(首行除外)，取值 float
+        data.lineSpacing = 0;/// 行距，取值 float
+    });
+}
 /// Terms Of Use
 -(void)makeTermsOfUseByBlock:(jobsByIDBlock _Nonnull)block{
     ShowView(FMTermsOfUseView

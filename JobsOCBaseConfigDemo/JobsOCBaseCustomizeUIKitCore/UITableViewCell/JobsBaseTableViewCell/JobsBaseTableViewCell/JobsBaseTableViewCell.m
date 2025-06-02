@@ -22,6 +22,8 @@ UIViewModelProtocol_synthesize_part1
 UIViewModelProtocol_synthesize_part2
 /// BaseLayerProtocol
 BaseLayerProtocol_synthesize_part3
+/// AppToolsProtocol
+AppToolsProtocol_synthesize
 #pragma mark —— UITableViewCellProtocol
 /// 4种UITableViewCell系统样式类型
 /// UITableViewCellStyleDefault ：左边有一个显示图片的imageView和一个标题textLabel。
@@ -172,40 +174,64 @@ BaseLayerProtocol_synthesize_part3
 #pragma mark —— BaseCellProtocol
 -(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
-    return ^__kindof UITableViewCell *_Nullable(UIViewModel __kindof *_Nullable model) {
+    return ^__kindof UITableViewCell *_Nullable(id model) {
         @jobs_strongify(self)
+        /**
+         将某个字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
+         -(NSString *)omitByReplaceStr:(NSString *_Nullable)replaceStr
+                       replaceStrLenth:(NSInteger)replaceStrLenth
+                         lineBreakMode:(NSLineBreakMode)lineBreakMode
+                                 limit:(NSInteger)limit;
+         */
         if (model) {
-            self.viewModel = model;
-            /**
-             将某个字符串进行限定字符个数，二次包装以后对外输出。【截取完了以后添加替换字符】
-             -(NSString *)omitByReplaceStr:(NSString *_Nullable)replaceStr
-                           replaceStrLenth:(NSInteger)replaceStrLenth
-                             lineBreakMode:(NSLineBreakMode)lineBreakMode
-                                     limit:(NSInteger)limit;
-             */
-            if(self.textLabel){
-                if (model.textModel.attributedTitle) {
-                    self.textLabel.attributedText = model.textModel.attributedTitle;
-                }else{
-                    self.textLabel.text = model.textModel.text;
-                    self.textLabel.textColor = self.viewModel.textModel.textCor;
-                    self.textLabel.font = self.viewModel.textModel.font;
-                }self.textLabel.numberOfLines = 0;
+            if([model isKindOfClass:UIViewModel.class]){
+                self.viewModel = model;
+                if(self.textLabel){
+                    if (self.viewModel.textModel.attributedTitle) {
+                        self.textLabel.attributedText = self.viewModel.textModel.attributedTitle;
+                    }else{
+                        self.textLabel.text = self.viewModel.textModel.text;
+                        self.textLabel.textColor = self.viewModel.textModel.textCor;
+                        self.textLabel.font = self.viewModel.textModel.font;
+                    }self.textLabel.numberOfLines = 0;
+                }
+                
+                if(self.detailTextLabel){
+                    if (self.viewModel.subTextModel.attributedTitle) {
+                        self.detailTextLabel.attributedText = self.viewModel.subTextModel.attributedTitle;
+                    }else{
+                        self.detailTextLabel.text = self.viewModel.subTextModel.text;
+                        self.detailTextLabel.textColor = self.viewModel.subTextModel.textCor;
+                        self.detailTextLabel.font = self.viewModel.subTextModel.font;
+                        self.detailTextLabel.width = UITableViewCellSubTitleWidth;
+                        self.detailTextLabel.makeLabelByShowingType(UILabelShowingType_05);
+                    }self.detailTextLabel.numberOfLines = 0;
+                }self.imageView.image = self.viewModel.image;
             }
-            
-            if(self.detailTextLabel){
-                if (model.subTextModel.attributedTitle) {
-                    self.detailTextLabel.attributedText = model.subTextModel.attributedTitle;
-                }else{
-                    self.detailTextLabel.text = model.subTextModel.text;
-                    self.detailTextLabel.textColor = self.viewModel.subTextModel.textCor;
-                    self.detailTextLabel.font = self.viewModel.subTextModel.font;
-                    self.detailTextLabel.width = UITableViewCellSubTitleWidth;
-                    self.detailTextLabel.makeLabelByShowingType(UILabelShowingType_05);
-                }self.detailTextLabel.numberOfLines = 0;
+            if([model isKindOfClass:UIButtonModel.class]){
+                self.buttonModel = model;
+                if(self.textLabel){
+                    if (self.buttonModel.attributedTitle) {
+                        self.textLabel.attributedText = self.buttonModel.attributedTitle;
+                    }else{
+                        self.textLabel.text = self.buttonModel.title;
+                        self.textLabel.textColor = self.buttonModel.titleCor;
+                        self.textLabel.font = self.buttonModel.titleFont;
+                    }self.textLabel.numberOfLines = 0;
+                }
+                
+                if(self.detailTextLabel){
+                    if (self.viewModel.subTextModel.attributedTitle) {
+                        self.detailTextLabel.attributedText = self.buttonModel.attributedTitle;
+                    }else{
+                        self.detailTextLabel.text = self.buttonModel.subTitle;
+                        self.detailTextLabel.textColor = self.buttonModel.subTitleCor;
+                        self.detailTextLabel.font = self.buttonModel.subTitleFont;
+                        self.detailTextLabel.width = UITableViewCellSubTitleWidth;
+                        self.detailTextLabel.makeLabelByShowingType(UILabelShowingType_05);
+                    }self.detailTextLabel.numberOfLines = 0;
+                }self.imageView.image = self.buttonModel.normalImage;
             }
-            
-            self.imageView.image = self.viewModel.image;
         }return self;
     };
 }
