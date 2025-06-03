@@ -13,6 +13,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CALayer (Extra)
+/// 适用于通过字符串来创建对象动画的场景
+-(JobsReturnCALayerByCAPropertyAnimationBlock _Nonnull)addAnimationBy;
+-(JobsReturnCALayerByCAPropertyAnimationBlock _Nonnull)removeAnimationBy;
+-(JobsReturnCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)addAnimation;
+-(JobsReturnCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)removeAnimation;
 
 -(CAAnimation *)anim_shake:(NSArray *)rotations
                   duration:(NSTimeInterval)duration

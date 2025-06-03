@@ -96,6 +96,7 @@
                 [self textFieldBlock:textField textFieldValue:x];
             }];
         })).masonryBy(^(MASConstraintMaker *make) {
+            @jobs_strongify(self)
             make.edges.equalTo(self.contentView);
         });
     }return _textField;

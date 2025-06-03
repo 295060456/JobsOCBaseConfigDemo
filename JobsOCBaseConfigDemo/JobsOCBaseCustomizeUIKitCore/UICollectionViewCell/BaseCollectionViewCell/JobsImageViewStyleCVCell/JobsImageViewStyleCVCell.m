@@ -66,11 +66,13 @@
 -(UIImageView *)imageView{
     if(!_imageView){
         @jobs_weakify(self)
-        _imageView = self.contentView.addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-            @jobs_strongify(self)
-        })).masonryBy(^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.contentView);
-        });
+        _imageView = self.contentView
+            .addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+                @jobs_strongify(self)
+            })).masonryBy(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                make.edges.equalTo(self.contentView);
+            });
     }return _imageView;
 }
 

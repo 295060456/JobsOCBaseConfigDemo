@@ -57,13 +57,16 @@ Prop_strong()UIImageView *detailsInfoImageView;
 #pragma mark —— lazyLoad
 -(UIImageView *)detailsInfoImageView{
     if(!_detailsInfoImageView){
-        _detailsInfoImageView = self.contentView.addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-            imageView.backgroundColor = JobsClearColor;
-        })).masonryBy(^(MASConstraintMaker *_Nonnull make){
-            make.centerY.equalTo(self.contentView);
-            make.right.equalTo(self.contentView);
-            make.size.mas_equalTo(CGSizeMake(JobsWidth(50), JobsWidth(50)));
-        });
+        @jobs_weakify(self)
+        _detailsInfoImageView = self.contentView
+            .addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+                imageView.backgroundColor = JobsClearColor;
+            })).masonryBy(^(MASConstraintMaker *_Nonnull make){
+                @jobs_strongify(self)
+                make.centerY.equalTo(self.contentView);
+                make.right.equalTo(self.contentView);
+                make.size.mas_equalTo(CGSizeMake(JobsWidth(50), JobsWidth(50)));
+            });
     }return _detailsInfoImageView;
 }
 

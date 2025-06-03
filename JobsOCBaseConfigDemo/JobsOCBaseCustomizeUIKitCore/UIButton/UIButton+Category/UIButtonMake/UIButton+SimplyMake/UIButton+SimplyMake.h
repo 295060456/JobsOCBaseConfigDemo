@@ -155,6 +155,7 @@ NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull blo
                                        }).onLongPressGestureBy(^(id data){
                                            JobsLog(@"");
                                        }),^(MASConstraintMaker *_Nonnull make){
+             @jobs_strongify(self)
              make.top.equalTo(self.headIMGV);
              make.left.equalTo(self.headIMGV.mas_right).offset(JobsWidth(10));
              make.height.mas_equalTo(JobsWidth(16));

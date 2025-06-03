@@ -173,6 +173,9 @@
 		C50A428A2DD3122400F7A034 /* JobsNavigationTransitionMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = C50A42842DD3122400F7A034 /* JobsNavigationTransitionMgr.m */; };
 		C51E9F1F2DE4B2D700A935C3 /* UITableView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C51E9F1D2DE4B2D700A935C3 /* UITableView+Extra.m */; };
 		C52417082DB61725008F9194 /* FMGameCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C52417062DB61725008F9194 /* FMGameCVCell.m */; };
+		C53191742DEEE4A300755EAD /* CABasicAnimation+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C53191722DEEE4A300755EAD /* CABasicAnimation+Extra.m */; };
+		C53191752DEEE4A300755EAD /* CAAnimation+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C531916C2DEEE4A300755EAD /* CAAnimation+Extra.m */; };
+		C53191762DEEE4A300755EAD /* CAPropertyAnimation+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C531916F2DEEE4A300755EAD /* CAPropertyAnimation+Extra.m */; };
 		C532D7242DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */; };
 		C5350A0B2DCB6B260034341F /* UIViewModel+App.m in Sources */ = {isa = PBXBuildFile; fileRef = C5350A092DCB6B260034341F /* UIViewModel+App.m */; };
 		C53688392DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C53688372DD5C90500848F77 /* JobsDetailsInfoStyleTBVCell.m */; };
@@ -1667,6 +1670,12 @@
 		C52417042DB61725008F9194 /* FMGameCVCell_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FMGameCVCell_2.png; sourceTree = "<group>"; };
 		C52417052DB61725008F9194 /* FMGameCVCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMGameCVCell.h; sourceTree = "<group>"; };
 		C52417062DB61725008F9194 /* FMGameCVCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMGameCVCell.m; sourceTree = "<group>"; };
+		C531916B2DEEE4A300755EAD /* CAAnimation+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Extra.h"; sourceTree = "<group>"; };
+		C531916C2DEEE4A300755EAD /* CAAnimation+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+Extra.m"; sourceTree = "<group>"; };
+		C531916E2DEEE4A300755EAD /* CAPropertyAnimation+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CAPropertyAnimation+Extra.h"; sourceTree = "<group>"; };
+		C531916F2DEEE4A300755EAD /* CAPropertyAnimation+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CAPropertyAnimation+Extra.m"; sourceTree = "<group>"; };
+		C53191712DEEE4A300755EAD /* CABasicAnimation+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CABasicAnimation+Extra.h"; sourceTree = "<group>"; };
+		C53191722DEEE4A300755EAD /* CABasicAnimation+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CABasicAnimation+Extra.m"; sourceTree = "<group>"; };
 		C532D7212DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+GKCustomNavigationBar.h"; sourceTree = "<group>"; };
 		C532D7222DC9B1E000917DBF /* UIViewController+GKCustomNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+GKCustomNavigationBar.m"; sourceTree = "<group>"; };
 		C532D7AF2DC9D6DB00917DBF /* JobsBlockDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsBlockDef.h; sourceTree = "<group>"; };
@@ -5657,6 +5666,33 @@
 				C52417062DB61725008F9194 /* FMGameCVCell.m */,
 			);
 			path = FMGameCVCell;
+			sourceTree = "<group>";
+		};
+		C531916D2DEEE4A300755EAD /* CAAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				C531916B2DEEE4A300755EAD /* CAAnimation+Extra.h */,
+				C531916C2DEEE4A300755EAD /* CAAnimation+Extra.m */,
+			);
+			path = CAAnimation;
+			sourceTree = "<group>";
+		};
+		C53191702DEEE4A300755EAD /* CAPropertyAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				C531916E2DEEE4A300755EAD /* CAPropertyAnimation+Extra.h */,
+				C531916F2DEEE4A300755EAD /* CAPropertyAnimation+Extra.m */,
+			);
+			path = CAPropertyAnimation;
+			sourceTree = "<group>";
+		};
+		C53191732DEEE4A300755EAD /* CABasicAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				C53191712DEEE4A300755EAD /* CABasicAnimation+Extra.h */,
+				C53191722DEEE4A300755EAD /* CABasicAnimation+Extra.m */,
+			);
+			path = CABasicAnimation;
 			sourceTree = "<group>";
 		};
 		C532D7232DC9B1E000917DBF /* GKCustomNavigationBar */ = {
@@ -14867,6 +14903,9 @@
 			children = (
 				CE5A608E2CA82C2D006D67A7 /* JobsBaseCustomizeUIKitCoreHeader.h */,
 				84AA8F462CE330310004501A /* JobsMakes.h */,
+				C531916D2DEEE4A300755EAD /* CAAnimation */,
+				C53191702DEEE4A300755EAD /* CAPropertyAnimation */,
+				C53191732DEEE4A300755EAD /* CABasicAnimation */,
 				C5C1BD422DEB307E00B2B3D6 /* UITabBarController */,
 				C56B69F02DE5EAB500E7B1EA /* NSPointerArray */,
 				C5BFE9ED2DD1E61700158B13 /* UIActivityIndicatorView */,
@@ -17626,6 +17665,9 @@
 				CE4F27932CA825CD002AF25B /* TransparentRegionVC.m in Sources */,
 				CE4F27942CA825CD002AF25B /* JobsTopViewItem.m in Sources */,
 				CE4F27952CA825CD002AF25B /* MyCollectionVC.m in Sources */,
+				C53191742DEEE4A300755EAD /* CABasicAnimation+Extra.m in Sources */,
+				C53191752DEEE4A300755EAD /* CAAnimation+Extra.m in Sources */,
+				C53191762DEEE4A300755EAD /* CAPropertyAnimation+Extra.m in Sources */,
 				CE5A648A2CA82DBB006D67A7 /* NSMutableDictionary+Ordered.m in Sources */,
 				CE4F27962CA825CD002AF25B /* JobsWalletVC.m in Sources */,
 				C53F13622DC0BC18006F2ED6 /* NSObject+AttributedStr.m in Sources */,

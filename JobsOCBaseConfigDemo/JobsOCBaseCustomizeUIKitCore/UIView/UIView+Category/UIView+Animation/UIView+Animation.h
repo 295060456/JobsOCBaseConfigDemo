@@ -43,11 +43,14 @@ Prop_assign()CGFloat rotateChangeAngle;
 Prop_assign()CGFloat currentAngle;
 Prop_assign()CGFloat durationTime;
 Prop_assign()CGFloat delayTime;
-Prop_assign()BOOL isStopRotateAnimation;//默认值为NO（一直旋转）
+Prop_assign()BOOL isStopRotateAnimation;/// 默认值为NO（一直旋转）
 Prop_strong()CAKeyframeAnimation *shakeAnim;
 #pragma mark —— 一些功能方法
 -(JobsReturnViewByBOOLBlock _Nonnull)抖动动画;
+/// 一直不停地旋转
 -(JobsReturnViewByBOOLBlock _Nonnull)旋转动画;
+/// 旋转一定时间之后停止下来
+-(JobsReturnViewByFloatBlock _Nonnull)旋转动画By;
 -(JobsReturnViewByVoidBlock _Nonnull)图片从小放大;
 -(JobsReturnViewByVoidBlock _Nonnull)视图上下一直来回跳动的动画;
 /// 点击放大再缩小

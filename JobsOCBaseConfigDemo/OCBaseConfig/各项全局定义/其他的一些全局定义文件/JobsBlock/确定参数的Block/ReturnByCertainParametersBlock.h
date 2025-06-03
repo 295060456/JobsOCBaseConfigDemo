@@ -125,6 +125,7 @@ typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVo
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByVoidStarBlock)(void *_Nullable key);
 typedef __kindof UIGestureRecognizer *_Nullable(^JobsReturnGestureRecognizerByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
 #pragma mark —— 关于 Layer
+typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCAPropertyAnimationBlock)(__kindof CAPropertyAnimation *_Nullable animation);
 typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCALayerBlock)(CALayer *_Nullable data);
 typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCorBlock)(UIColor *_Nullable data);
 typedef __kindof CALayer *_Nullable(^JobsReturnCALayerByCGFloatBlock)(CGFloat data);
@@ -458,8 +459,22 @@ typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByVoidBloc
 typedef __kindof NSParagraphStyle *_Nullable(^JobsReturnParagraphStyleByTextAlignmentBlock)(NSTextAlignment data);
 #pragma mark —— 关于 动画
 #import <QuartzCore/QuartzCore.h>
-typedef CAKeyframeAnimation *_Nullable(^JobsReturnCAKeyframeAnimationByStringBlock)(NSString *_Nullable data);
-typedef CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByStringBlock)(NSString *_Nullable data);
+typedef CAKeyframeAnimation *_Nullable(^JobsReturnCAKeyframeAnimationByStringBlock)(__kindof NSString *_Nullable data);
+typedef __kindof CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByStringBlock)(__kindof NSString *_Nullable data);
+typedef __kindof CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByIDBlock)(id _Nullable data);
+typedef __kindof CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByCFTimeIntervalBlock)(CFTimeInterval data);
+typedef __kindof CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByFloatBlock)(float data);
+typedef __kindof CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByBOOLBlock)(BOOL data);
+typedef __kindof CABasicAnimation *_Nullable(^JobsReturnCABasicAnimationByCAMediaTimingFillModeBlock)(CAMediaTimingFillMode _Nullable data);
+
+typedef __kindof CAPropertyAnimation *_Nullable(^JobsReturnCAPropertyAnimationByBOOLBlock)(BOOL data);
+typedef __kindof CAPropertyAnimation *_Nullable(^JobsReturnCAPropertyAnimationByStringBlock)(NSString *_Nullable data);
+typedef __kindof CAPropertyAnimation *_Nullable(^JobsReturnCAPropertyAnimationByCAValueFunctionBlock)(CAValueFunction *_Nullable data);
+typedef __kindof CAPropertyAnimation *_Nullable(^JobsReturnCAPropertyAnimationByCAPropertyAnimationBlock)(__kindof CAPropertyAnimation *_Nullable animation);
+
+typedef __kindof CAAnimation *_Nullable(^JobsReturnCAAnimationByCAMediaTimingFunctionBlock)(CAMediaTimingFunction *_Nullable data);
+typedef __kindof CAAnimation *_Nullable(^JobsReturnCAAnimationByDelegateBlock)(id<CAAnimationDelegate> _Nullable delegate);
+typedef __kindof CAAnimation *_Nullable(^JobsReturnCAAnimationByBOOLBlock)(BOOL data);
 #pragma mark —— 关于 JavaScript
 typedef JSValue *_Nullable(^JobsReturnJSValueByStringBlock)(NSString *_Nullable jsCode);
 #pragma mark —— UIImpactFeedbackGenerator

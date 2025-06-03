@@ -68,16 +68,16 @@ Prop_strong()UILabel *textLab;
 -(UILabel *)textLab{
     if (!_textLab) {
         @jobs_weakify(self)
-        _textLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+        _textLab = self.contentView.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = self.viewModel.bgCor;
             label.textColor = self.viewModel.textModel.textCor;
             label.textAlignment = NSTextAlignmentCenter;
             label.text = self.viewModel.textModel.text;
             label.font = self.viewModel.textModel.font;
-            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.contentView);
-            }];
+        })).masonryBy(^(MASConstraintMaker *make) {
+            @jobs_strongify(self)
+            make.edges.equalTo(self.contentView);
         });
     }return _textLab;
 }

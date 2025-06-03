@@ -8,6 +8,44 @@
 #import "CALayer+Extra.h"
 
 @implementation CALayer (Extra)
+/// 适用于通过字符串来创建对象动画的场景
+-(JobsReturnCALayerByCAPropertyAnimationBlock _Nonnull)addAnimationBy{
+    @jobs_weakify(self)
+    return ^ __kindof CALayer *_Nullable(__kindof CAPropertyAnimation *_Nullable animation){
+        @jobs_strongify(self)
+        if(animation.keyPath){
+            [self addAnimation:animation forKey:animation.keyPath];
+        }return self;
+    };
+}
+
+-(JobsReturnCALayerByCAPropertyAnimationBlock _Nonnull)removeAnimationBy{
+    @jobs_weakify(self)
+    return ^ __kindof CALayer *_Nullable(__kindof CAPropertyAnimation *_Nullable animation){
+        @jobs_strongify(self)
+        [self removeAnimationForKey:animation.keyPath];
+        return self;
+    };
+}
+
+-(JobsReturnCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)addAnimation{
+    @jobs_weakify(self)
+    return ^ __kindof CAPropertyAnimation *_Nullable(__kindof CAPropertyAnimation *_Nullable animation){
+        @jobs_strongify(self)
+        if(animation.keyPath){
+            [self addAnimation:animation forKey:animation.keyPath];
+        }return animation;
+    };
+}
+
+-(JobsReturnCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)removeAnimation{
+    @jobs_weakify(self)
+    return ^ __kindof CAPropertyAnimation *_Nullable(__kindof CAPropertyAnimation *_Nullable animation){
+        @jobs_strongify(self)
+        [self removeAnimationForKey:animation.keyPath];
+        return animation;
+    };
+}
 
 -(CAAnimation *)anim_shake:(NSArray *)rotations
                   duration:(NSTimeInterval)duration
@@ -17,7 +55,7 @@
     kfa.duration = duration;/// 时长
     kfa.repeatCount = repeatCount;/// 重复次数
     kfa.removedOnCompletion = YES;/// 完成删除
-    [self addAnimation:kfa forKey:@"rotation"];/// 添加
+    self.addAnimationBy(kfa);/// 添加
     return kfa;
 }
 
@@ -26,20 +64,20 @@
                   isReverse:(BOOL)isReverse
                 repeatCount:(NSUInteger)repeatCount
              timingFuncName:(NSString *)timingFuncName{
-    NSString *key = @"reversAnim";
-    if([self animationForKey:key]) [self removeAnimationForKey:key];
     NSString *directionStr = nil;
     if(AnimReverDirectionX == direction)directionStr = @"x";
     if(AnimReverDirectionY == direction)directionStr = @"y";
     if(AnimReverDirectionZ == direction)directionStr = @"z";
-    CABasicAnimation *reversAnim = @"transform.rotation.".add(directionStr).basicAnimation;/// 创建普通动画
+    NSString *key = @"transform.rotation.".add(directionStr);
+    if([self animationForKey:key]) [self removeAnimationForKey:key];
+    CABasicAnimation *reversAnim = key.basicAnimation;/// 创建普通动画
     reversAnim.fromValue = @(0);/// 起点值
     reversAnim.toValue = @(M_PI_2);/// 终点值
     reversAnim.duration = duration;/// 时长
     reversAnim.autoreverses = isReverse;/// 自动反转
     reversAnim.removedOnCompletion = YES;/// 完成删除
     reversAnim.repeatCount = repeatCount;/// 重复次数
-    [self addAnimation:reversAnim forKey:key];/// 添加
+    self.addAnimationBy(reversAnim);/// 添加
     return reversAnim;
 }
 /// 转场动画实例

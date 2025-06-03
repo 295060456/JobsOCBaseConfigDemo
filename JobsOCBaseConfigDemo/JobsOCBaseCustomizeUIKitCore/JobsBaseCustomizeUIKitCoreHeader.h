@@ -199,6 +199,12 @@
 #import "NSPointerArray+Extra.h"
 #pragma mark —— UITabBarController
 #import "UITabBarController+Extra.h"
+#pragma mark —— CABasicAnimation
+#import "CABasicAnimation+Extra.h"
+#pragma mark —— CAAnimation
+#import "CAAnimation+Extra.h"
+#pragma mark —— CAPropertyAnimation
+#import "CAPropertyAnimation+Extra.h"
 
 #import "JobsMakes.h"
 

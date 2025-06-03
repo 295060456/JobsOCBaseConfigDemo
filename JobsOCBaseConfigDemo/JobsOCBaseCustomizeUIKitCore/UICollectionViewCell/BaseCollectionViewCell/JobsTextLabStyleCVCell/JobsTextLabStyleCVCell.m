@@ -77,6 +77,7 @@ BaseLayerProtocol_synthesize_part3
                 label.font = self.viewModel.font;
             }
         })).masonryBy(^(MASConstraintMaker *make) {
+            @jobs_strongify(self)
             make.edges.equalTo(self.contentView);
         });
     }return _label;

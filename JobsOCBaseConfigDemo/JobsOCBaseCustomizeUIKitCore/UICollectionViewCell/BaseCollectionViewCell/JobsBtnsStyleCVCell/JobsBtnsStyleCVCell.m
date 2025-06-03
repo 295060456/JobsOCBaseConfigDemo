@@ -81,6 +81,7 @@ BaseLayerProtocol_synthesize_part3
                                                }).onLongPressGestureBy(^(id data){
                                                    JobsLog(@"");
                                                })).masonryBy(^(MASConstraintMaker *make) {
+                                                   @jobs_strongify(self)
                                                    make.centerY.equalTo(self.contentView);
                                                    make.left.equalTo(self.contentView).offset(self.leftBtnVM.jobsOffsetX);
                                                    make.height.mas_equalTo(self.leftBtnVM.jobsWidth);
@@ -133,6 +134,7 @@ BaseLayerProtocol_synthesize_part3
                                             }).onLongPressGestureBy(^(id data){
                                                 JobsLog(@"");
                                             })).masonryBy(^(MASConstraintMaker *make) {
+                                                @jobs_strongify(self)
                                                 make.centerY.equalTo(self.contentView);
                                                 make.right.equalTo(self.contentView).offset(-self.rightBtnVM.jobsOffsetX);
                                                 make.height.mas_equalTo(self.rightBtnVM.jobsHeight);

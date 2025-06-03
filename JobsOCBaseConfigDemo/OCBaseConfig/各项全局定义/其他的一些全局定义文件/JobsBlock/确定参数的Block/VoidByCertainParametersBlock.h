@@ -21,17 +21,18 @@ typedef void(^jobsBySELBlock)(SEL _Nullable data);
 typedef void(^jobsByClassBlock)(Class _Nonnull cls);
 #pragma mark —— 关于错误
 typedef void(^jobsByErrorBlock)(NSError *_Nullable error);
-#pragma mark —— 关于UIControl
+#pragma mark —— 关于 UIControl
 typedef void(^jobsByControlBlock)(UIControl *_Nullable ctrl);
-#pragma mark —— 关于Layer
+#pragma mark —— 关于CALayer
 typedef void(^jobsByCAShapeLayerBlock)(__kindof CAShapeLayer *_Nullable layer);
 typedef void(^jobsByCALayerBlock)(__kindof CALayer *_Nullable layer);
 typedef void(^jobsByCATransitionBlock)(__kindof CATransition *_Nullable transition);
-#pragma mark —— 关于Animation
+typedef void(^JobsByCAPropertyAnimationBlock)(__kindof CAPropertyAnimation *_Nullable animation);
+#pragma mark —— 关于 Animation
 typedef void(^jobsByCAKeyframeAnimationBlock)(__kindof CAKeyframeAnimation *_Nullable animation);
 typedef void(^jobsByCAGradientLayerBlock)(__kindof CAGradientLayer *_Nullable layer);
 typedef void(^jobsByCABasicAnimationBlock)(__kindof CABasicAnimation *_Nullable animation);
-#pragma mark —— 关于WKWebView.JS配置
+#pragma mark —— 关于 WKWebView.JS配置
 typedef void(^jobsByUserContentControllerBlock)(__kindof WKUserContentController *_Nullable data);
 typedef void(^jobsByWKWebViewConfigurationBlock)(__kindof WKWebViewConfiguration *_Nullable config);
 typedef void(^WKNavigationDelegateBlock1)(WKNavigationResponsePolicy policy);

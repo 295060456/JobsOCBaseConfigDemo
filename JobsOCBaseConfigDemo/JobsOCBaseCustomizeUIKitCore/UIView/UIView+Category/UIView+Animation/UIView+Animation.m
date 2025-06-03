@@ -18,7 +18,7 @@
         return self;
     };
 }
-
+/// 一直不停地旋转
 -(JobsReturnViewByBOOLBlock _Nonnull)旋转动画{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(BOOL start) {
@@ -49,6 +49,26 @@
         }return self;
     };
 }
+/// 旋转一定时间之后停止下来
+-(JobsReturnViewByFloatBlock _Nonnull)旋转动画By{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(CGFloat data) {
+        @jobs_strongify(self)
+        // 设置目标角度（例如：旋转360度）
+        CGFloat angleInRadians = self.currentAngle * (M_PI / 180.0f);
+        CGAffineTransform endTransform = CGAffineTransformMakeRotation(angleInRadians);
+        [UIView animateWithDuration:data /// 只旋转data秒
+                              delay:0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+            @jobs_strongify(self)
+            self.transform = endTransform;
+        } completion:^(BOOL finished) {
+            // 动画完成后不再递归调用
+        }];return self;
+    };
+}
+
 -(JobsReturnViewByVoidBlock _Nonnull)图片从小放大{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable() {
