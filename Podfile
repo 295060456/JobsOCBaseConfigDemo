@@ -1,3 +1,6 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
 ## 通过 Bundler 运行 CocoaPods 命令
 ## bundle exec pod update
 #begin
@@ -40,6 +43,9 @@ inhibit_all_warnings!
 # 用于指定你的 Pod 项目应使用静态库而不是动态库。
 # 这个选项主要用于解决某些与动态库相关的兼容性和性能问题。
 use_frameworks! :linkage => :static
+
+# 全局 modular headers（和 use_frameworks! 不能同时使用）
+# use_modular_headers!
 
 # 单元测试框架
 def testApp
