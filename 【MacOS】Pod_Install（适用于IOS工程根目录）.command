@@ -108,6 +108,19 @@ check_and_set_mirror() {
         _JobsPrint_Green "您不在中国大陆，将使用默认镜像。"
     fi
 }
+# 自动判断芯片架构并执行对应的 pod install
+pod_install_auto() {
+  echo "🔍 正在检测芯片架构..."
+  ARCH_NAME="$(uname -m)"
+  echo "✅ 当前架构: $ARCH_NAME"
+  if [[ "$ARCH_NAME" == "arm64" ]]; then
+    echo "🍎 检测到 Apple Silicon 芯片，使用 Rosetta 执行 pod install"
+    arch -x86_64 pod install
+  else
+    echo "💻 检测到 Intel 芯片，直接执行 pod install"
+    pod install
+  fi
+}
 # 运行 pod install
 run_pod_install() {
     _JobsPrint_Green "当前路径: $CURRENT_DIRECTORY"
@@ -116,7 +129,9 @@ run_pod_install() {
         _JobsPrint_Green "已找到 Podfile 文件，pod install 操作开始"
         # 切换到当前目录并运行 pod install 命令
         cd "$CURRENT_DIRECTORY"
-        pod install
+        rm -rf ~/Library/Developer/Xcode/DerivedData # 清理 Xcode 缓存并重启构建
+        pod deintegrate # 让 Xcode 项目回到没有使用 CocoaPods 之前的状态。
+        pod_install_auto
         _JobsPrint_Green "显示依赖关系"
         cat Podfile.lock
     else
