@@ -11310,6 +11310,91 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 }));
 ```
 
+### 45、响应链 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+
+* |                    方法名                    |                  作用                  | 是否影响是否响应 `touchesBegan / touchesEnded` |                          说明                           |
+  | :------------------------------------------: | :------------------------------------: | :--------------------------------------------: | :-----------------------------------------------------: |
+  |       `- (BOOL)pointInside:withEvent:`       | 判断点击点是否在当前视图“可点击区域”内 |                 ✅ 是第一步判断                 | 若返回 NO，当前 view 和其子视图都不再考虑，事件会被忽略 |
+  |       `- (UIView *)hitTest:withEvent:`       | 递归查找最终响应事件的视图（从上到下） |                ✅ 决定最终接收者                |       若当前视图或其子视图命中，则返回最终响应者        |
+  | `- (void)touchesBegan:` / `touchesEnded:` 等 |         事件真正的响应逻辑处理         |     ✅ 只有命中并返回为最终响应者才会被调用     |        若上面两个流程未命中，则不会触发这些方法         |
+
+
+* ```mermaid
+  graph TD
+      A[用户点击屏幕] --> B[UIWindow 开始 hitTest]
+      B --> C[调用 pointInside 方法]
+      C --> D{是否命中}
+      D -->|NO| Z[返回 nil 不响应事件]
+      D -->|YES| E[继续对子视图递归 hitTest]
+      E --> F[找到最前面的 subview]
+      F --> G[再次调用 pointInside 方法]
+      G -->|YES| H[命中 subview 继续递归]
+      G -->|NO| I[检查下一个 subview]
+      H --> J[最终找到命中的 View]
+      J --> K[返回作为响应者的 View]
+      K --> L[调用 touches 相关方法]
+      I --> G
+  ```
+
+* 只有在 **需要自定义事件传递路径或拦截事件** 时，才需要关心 `hitTest:withEvent:`
+
+* `pointInside:` 和 `hitTest:` 经常**一起使用**；
+
+* 单独修改 `pointInside:` 只能控制"是否命中当前 view"，但不决定"最终由谁响应"，这个是 `hitTest:` 做的；
+
+* `- (BOOL)pointInside:withEvent:`+`- (UIView *)hitTest:withEvent:`==>`- (void)touchesBegan:` / `touchesEnded:`
+
+* 默认情况下，如果此 view：`userInteractionEnabled = YES`＋`alpha > 0.01`＋`hidden = NO`+`点击的 point 在 bounds 内` ==> 就会返回 YES，即会响应点击事件。
+
+  如果希望某个视图（即使是透明的）**也能接收点击事件**，那么可以在这个视图的子类中重写：
+
+  ```objective-c
+  @interface MyOverlayView : UIView
+  @end
+  
+  @implementation MyOverlayView
+  /// 默认情况下透明 view 是不会响应事件的，重写这个方法就可以
+  -(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+      if (CGRectContainsPoint(self.specialTouchArea, point)) {
+          return YES;// 即使透明，也可以响应事件
+      }return NO; // 点不在区域内就当没点中
+  }
+  
+  @end
+  ```
+
+* 按钮点击的完整流程（当你点击按钮时，系统内部会这样做）
+
+  * 调用 `hitTest:withEvent:` → 找到这个按钮
+  * 系统把事件交给按钮
+  * 按钮内部触发 `TouchDown` → `TouchUpInside`
+  * 最终执行你设置的 `buttonClicked:` 方法
+
+  ```objective-c
+  UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(50, 50, 100, 40)];
+  [btn setTitle:@"点击我" forState:UIControlStateNormal];
+  [btn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+  [cell.contentView addSubview:btn];
+  ```
+
+* 让父视图相应事件（而非按钮）
+
+  ```text
+  MyTransparentView
+  ├── UIButton
+  ```
+
+  ```objective-c
+  /// MyTransparentView.m
+  - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+      return self; // 强行让自己接收事件
+  }
+  
+  - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+      return YES;
+  }
+  ```
+
 ### Test  
 
 <details id="Test">
