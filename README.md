@@ -10,6 +10,17 @@
 
 [toc]
 
+<script>
+fetch(location.href)
+  .then(r => r.text())
+  .then(t => {
+    const lines = t.split('\n').length;
+    document.getElementById('line-count').innerText = `行数统计：${lines} 行`;
+  });
+</script>
+
+<p id="line-count">正在统计行数...</p>
+
 ## <font id=前言>前言</font>
 
 * **工欲善其事必先利其器**
