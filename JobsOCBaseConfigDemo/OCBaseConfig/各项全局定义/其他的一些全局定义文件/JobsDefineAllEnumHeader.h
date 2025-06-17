@@ -104,16 +104,7 @@ typedef NS_ENUM(NSInteger, JobsAppStatus) {
     JobsAppStatus_All
 };
 #endif /* JOBS_APP_STATUS_ENUM_DEFINED */
-/// 无数据占位图的类型
-#ifndef JobsEmptyViewType_h
-#define JobsEmptyViewType_h
-typedef NS_OPTIONS(NSUInteger, JobsEmptyViewType) {
-    JobsEmptyViewTypeNone       = 0,
-    JobsEmptyViewTypeLabel      = 1 << 0,
-    JobsEmptyViewTypeButton     = 1 << 1,
-    JobsEmptyViewTypeCustomView = 1 << 2,
-};
-#endif /* JobsEmptyViewType_h */
+
 /// 终端类型
 #ifndef JOBS_OPERATION_TYPE_ENUM_DEFINED
 #define JOBS_OPERATION_TYPE_ENUM_DEFINED
@@ -339,35 +330,6 @@ typedef NS_ENUM(NSInteger, TimeZoneType) {
     // 可以继续添加更多时区类型...
 };
 #endif /* JOBS_TimeZoneType */
-/// 系统支持语言
-#ifndef APP_LANGUAGE_ENUM_DEFINED
-#define APP_LANGUAGE_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, AppLanguage) {
-    AppLanguageBySys,/// App语言跟随当前系统
-    AppLanguageChineseSimplified, /// zh-Hans：简体中文
-    AppLanguageChineseTraditional,/// zh-Hant：繁体中文
-    AppLanguageEnglish,           /// en：标准英语
-    AppLanguageTagalog            /// tl：菲律宾他加禄语
-};
-#endif/* APP_LANGUAGE_ENUM_DEFINED */
-/// 屏幕方向
-#ifndef DeviceOrientation_typedef
-#define DeviceOrientation_typedef
-typedef NS_ENUM(NSInteger, DeviceOrientation) {
-    DeviceOrientationUnknown, /// 未知方向
-    DeviceOrientationPortrait,/// 竖屏
-    DeviceOrientationLandscape /// 横屏
-};
-#endif /* DeviceOrientation_typedef */
-/// 当前类型
-#ifndef MyEnums_h
-#define MyEnums_h
-typedef NS_ENUM(NSInteger, ComponentType) {
-    ComponentTypeUnknown,       /// 其他
-    ComponentTypeView,          /// 视图
-    ComponentTypeViewController /// 控制器
-};
-#endif /* MyEnums_h */
 /// 图片编码格式
 #ifndef PIC_TO_STR_STYLE_ENUM_DEFINED
 #define PIC_TO_STR_STYLE_ENUM_DEFINED
@@ -396,37 +358,11 @@ typedef NS_ENUM(NSInteger, JhtBannerViewOrientation) {
     BV_Orientation_Vertical,        /// 纵向
 };
 #endif /* JHT_BANNER_VIEW_ORIENTATION_ENUM_DEFINED */
-/// ShadowDirection
-#ifndef ShadowDirection_h
-#define ShadowDirection_h
-typedef NS_OPTIONS(NSUInteger, ShadowDirection) {
-    ShadowDirection_top = 0,
-    ShadowDirection_down = 1 << 0,
-    ShadowDirection_left = 1 << 1,
-    ShadowDirection_right = 1 << 2,
-    ShadowDirection_leftTop = 1 << 3,
-    ShadowDirection_leftDown = 1 << 4,
-    ShadowDirection_rightTop = 1 << 5,
-    ShadowDirection_rightDown = 1 << 6,
-    ShadowDirection_All = ~0UL
-};
-#endif /* ShadowDirection_h */
 /// JobsDropDownListView的方向
 typedef enum : NSInteger {
     JobsDropDownListViewDirection_Down = 0,
     JobsDropDownListViewDirection_UP
 } JobsDropDownListViewDirection;
-/// UIBorderSideType
-#ifndef UIBorderSideType_h
-#define UIBorderSideType_h
-typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
-    UIBorderSideTypeAll  = 0,
-    UIBorderSideTypeTop = 1 << 0,
-    UIBorderSideTypeBottom = 1 << 1,
-    UIBorderSideTypeLeft = 1 << 2,
-    UIBorderSideTypeRight = 1 << 3,
-};
-#endif /* UIBorderSideType_h */
 /**
  后台定义：
  
@@ -516,14 +452,6 @@ typedef NS_ENUM(NSInteger, ScrollDirection) {
     ScrollDirectionLeft_Down,/// 左下👈🏻👇🏻
 };
 #endif /* ScrollDirection_h */
-///
-#ifndef JOBS_INDEX_PATH_STRUCT_DEFINED
-#define JOBS_INDEX_PATH_STRUCT_DEFINED
-typedef struct {
-    NSInteger section;
-    NSInteger rowOrItem;
-} JobsIndexPath; /// 这样写的话，外面可以JobsIndexPath.section 进行调用
-#endif /* JOBS_INDEX_PATH_STRUCT_DEFINED */
 /// 比较结果
 #ifndef COMPARE_RES_ENUM_DEFINED
 #define COMPARE_RES_ENUM_DEFINED
@@ -1138,5 +1066,49 @@ typedef NS_ENUM(NSInteger, JobsFundsChannel) {
     JobsFundsChannel_UnionBank,
 };
 #endif /* JOBS_FUNDS_CHANNEL_ENUM_DEFINED */
+/// 无数据占位图的类型
+#ifndef JobsEmptyViewType_h
+#define JobsEmptyViewType_h
+typedef NS_OPTIONS(NSUInteger, JobsEmptyViewType) {
+    JobsEmptyViewTypeNone       = 0,
+    JobsEmptyViewTypeLabel      = 1 << 0,
+    JobsEmptyViewTypeButton     = 1 << 1,
+    JobsEmptyViewTypeCustomView = 1 << 2,
+};
+#endif /* JobsEmptyViewType_h */
+/// ShadowDirection
+#ifndef ShadowDirection_h
+#define ShadowDirection_h
+typedef NS_OPTIONS(NSUInteger, ShadowDirection) {
+    ShadowDirection_top = 0,
+    ShadowDirection_down = 1 << 0,
+    ShadowDirection_left = 1 << 1,
+    ShadowDirection_right = 1 << 2,
+    ShadowDirection_leftTop = 1 << 3,
+    ShadowDirection_leftDown = 1 << 4,
+    ShadowDirection_rightTop = 1 << 5,
+    ShadowDirection_rightDown = 1 << 6,
+    ShadowDirection_All = ~0UL
+};
+#endif /* ShadowDirection_h */
+/// UIBorderSideType
+#ifndef UIBorderSideType_h
+#define UIBorderSideType_h
+typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
+    UIBorderSideTypeAll  = 0,
+    UIBorderSideTypeTop = 1 << 0,
+    UIBorderSideTypeBottom = 1 << 1,
+    UIBorderSideTypeLeft = 1 << 2,
+    UIBorderSideTypeRight = 1 << 3,
+};
+#endif /* UIBorderSideType_h */
+///
+#ifndef JOBS_INDEX_PATH_STRUCT_DEFINED
+#define JOBS_INDEX_PATH_STRUCT_DEFINED
+typedef struct {
+    NSInteger section;
+    NSInteger rowOrItem;
+} JobsIndexPath; /// 这样写的话，外面可以JobsIndexPath.section 进行调用
+#endif /* JOBS_INDEX_PATH_STRUCT_DEFINED */
 
 #endif /* JobsDefineAllEnumHeader_h */
