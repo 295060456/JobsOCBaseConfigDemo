@@ -110,20 +110,34 @@ check_and_set_mirror() {
 }
 # 运行 pod update
 run_pod_update() {
-    _JobsPrint_Green "当前路径: $CURRENT_DIRECTORY"
-    # 检查是否存在Podfile文件
+    echo "🔍 正在检测芯片架构..."
+    ARCH_NAME="$(uname -m)"
+    echo "✅ 当前架构: $ARCH_NAME"
+    echo "📂 当前路径: $CURRENT_DIRECTORY"
+
     if [ -f "$CURRENT_DIRECTORY/Podfile" ]; then
-        _JobsPrint_Green "已找到 Podfile 文件，pod install 操作开始"
-        # 在新的终端中运行pod install命令
-        # 切换到当前目录并运行 pod install 命令
+        echo "📄 已找到 Podfile，开始 pod update 操作..."
         cd "$CURRENT_DIRECTORY"
+        echo "🧹 清除本地 Pod 缓存..."
         pod cache clean --all
+        echo "🔄 更新本地 Specs 仓库..."
         pod repo update
-        pod install
-        _JobsPrint_Green "显示依赖关系"
+        pod_update_auto # 自动判断芯片架构并执行对应的 pod update
+        echo "📦 当前 Podfile.lock 内容如下："
         cat Podfile.lock
     else
-        _JobsPrint_Red "没找到 Podfile 文件，pod install 操作自动终止"
+        echo "❌ 没有找到 Podfile，pod update 操作终止"
+    fi
+}
+# 自动判断芯片架构并执行对应的 pod update
+pod_update_auto(){
+    echo "🔍 正在检测芯片架构..."
+    if [[ "$ARCH_NAME" == "arm64" ]]; then
+        echo "🍎 Apple Silicon 芯片，使用 Rosetta 模式执行 pod update"
+        arch -x86_64 pod update
+    else
+        echo "💻 Intel 芯片，直接执行 pod update"
+        pod update
     fi
 }
 # 将 .xcworkspace 文件快捷方式创建到桌面
