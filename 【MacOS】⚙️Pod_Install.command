@@ -10,6 +10,7 @@ print_green "🛠️ 脚本功能："
 print_green "1️⃣ 自动判断当前目录是 iOS 工程还是 Flutter 工程。"
 print_green "2️⃣ 对于 Apple Silicon 架构自动使用 Rosetta 兼容方式执行 pod install。"
 print_green "3️⃣ 自动进入正确目录并执行 pod install --repo-update。"
+print_green "4️⃣ Pod 安装成功后，在桌面生成 .xcworkspace 快捷方式。"
 print_green "📌 请确保已正确安装 CocoaPods。"
 echo ""
 read "?👉 按下回车键继续执行，或按 Ctrl+C 取消..."
@@ -45,6 +46,25 @@ install_pod() {
   fi
 
   print_success "🎉 Pod 安装完成"
+
+  # ✅ 查找 xcworkspace 文件
+  local workspace_file="$(find . -maxdepth 1 -name '*.xcworkspace' | head -n 1)"
+  if [[ -n "$workspace_file" ]]; then
+    local workspace_name="$(basename "$workspace_file")"
+    local desktop_link="$HOME/Desktop/$workspace_name"
+
+    print_info "🔗 检测到 workspace: $workspace_name"
+    
+    # 删除已有的同名链接或文件
+    if [[ -e "$desktop_link" || -L "$desktop_link" ]]; then
+      rm -f "$desktop_link"
+    fi
+
+    ln -s "$PWD/$workspace_name" "$desktop_link"
+    print_success "📎 已在桌面创建快捷方式: $workspace_name"
+  else
+    print_error "未检测到生成的 .xcworkspace 文件"
+  fi
 }
 
 # ✅ 主逻辑判断
