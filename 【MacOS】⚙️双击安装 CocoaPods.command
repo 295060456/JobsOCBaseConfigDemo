@@ -1058,8 +1058,8 @@ update_cocoapods() {
     pod repo update
     _JobsPrint_Green "CocoaPods 本地库已更新."
 }
-# 安装 CocoaPods
-install_cocoapods() {
+# 安装 gem.CocoaPods
+install_gem_cocoapods() {
     _JobsPrint_Yellow "正在执行: ${funcstack[1]}()"
     choice=$(printf "1. 安装稳定版 CocoaPods\n2. 安装预览版 CocoaPods" | fzf --prompt "请选择安装方式：")
     case $choice in
@@ -1087,6 +1087,12 @@ install_cocoapods() {
 #        # 这个插件允许开发者直接尝试使用一个 CocoaPod，而无需手动在项目中集成。它可以快速地克隆一个库的示例项目，安装依赖，并打开这个项目，使得评估和试用第三方库变得更加简单。
 #        cocoapods-try
       
+    update_cocoapods
+    pod cache clean --all
+}
+# 安装 brew.CocoaPods
+install_brew_cocoapods() {
+    brew install cocoapods
     update_cocoapods
     pod cache clean --all
 }
@@ -1144,7 +1150,8 @@ check_and_setup_cocoapods() {
         _JobsPrint_Red "CocoaPods 未安装."
     fi
     _JobsPrint_Green "开始安装 CocoaPods..."
-    install_cocoapods
+#    install_gem_cocoapods
+    install_brew_cocoapods
     _JobsPrint_Green "检查 CocoaPods 的安装是否成功..."
     gem which cocoapods
     
