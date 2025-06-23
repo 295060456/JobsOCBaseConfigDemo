@@ -18,7 +18,7 @@ _color_echo green "🛠️ 脚本功能："
 _color_echo green "1️⃣ 自动清理无效模拟器（无法启动的）。"
 _color_echo green "2️⃣ 获取所有可用的 iPhone 机型和 iOS 系统版本，组合供用户选择。"
 _color_echo green "3️⃣ 创建指定设备+系统组合的模拟器，自动命名并启动。"
-_color_echo green "🧩 模拟器名称格式：机型@版本 - 构建号@时间戳"
+_color_echo green "🧩 模拟器名称格式：iPhone 15（实际名称）| iOS 版本 - 构建号 | 创建时间（仅用于显示）"
 echo ""
 read "?👉 按下回车键继续执行，或按 Ctrl+C 取消..."
 
@@ -75,23 +75,24 @@ for d in "${device_types[@]}"; do
   done
 done
 
-# 🎯 用户选择（逆序 + 美化 + 对齐）
-selected=$(printf "%s\n" "${combos[@]}" | awk -F'[|+]' '{printf "📱 %-30s | %-30s [%s + %s]\n", $2, $4, $1, $3}' | tac | fzf --height=30% --reverse --border --prompt="📱 选择要创建的模拟器: ")
+# 🎯 用户选择
+selected=$(printf "%s\n" "${combos[@]}" | awk -F'[|+]' '{printf "%-30s | %-30s [%s + %s]\n", $2, $4, $1, $3}' | tac | fzf --height=30% --reverse --border --prompt=" 选择要创建的模拟器: ")
 
 # ⛏️ 提取 ID
 device_type_id=$(echo "$selected" | sed -E 's/.*\[(.*) \+ (.*)\]/\1/')
 runtime_id=$(echo "$selected" | sed -E 's/.*\[(.*) \+ (.*)\]/\2/')
 
-# 🧾 提取名称
-device_name=$(echo "$selected" | awk -F'\\+' '{print $1}' | awk '{$1=$1};1')
-system_line=$(echo "$selected" | awk -F'\\+' '{print $2}' | sed -E 's/\[.*//')
-version=$(echo "$system_line" | sed -E 's/.*iOS ([0-9.]+) \(.*/\1/')
-build=$(echo "$system_line" | sed -E 's/.*iOS [0-9.]+ \(([^)]+)\).*/\1/')
+# ✅ 手动提取干净的字段
+device_label=$(echo "$selected" | cut -d '[' -f1 | awk '{$1=$1};1')
+device_name=$(echo "$device_label" | cut -d '|' -f1 | awk '{$1=$1};1')
+version=$(echo "$device_label" | sed -E 's/.*iOS ([0-9.]+).*/\1/')
+build=$(echo "$device_label" | sed -E 's/.*- ([0-9A-Z]+)\).*/\1/')
 current_time=$(date "+%Y.%m.%d %H:%M")
 
-# 🧱 模拟器名称优化
-sim_name="${device_name}@${version} - ${build}@${current_time}"
-_color_echo blue "🛠️ 创建模拟器: $sim_name"
+# 🧱 命名与输出
+sim_name="$device_name"
+pretty_sim_name="$device_name | iOS $version - $build | $current_time"
+_color_echo blue "🛠️ 创建模拟器: $pretty_sim_name"
 
 # 🛑 关闭模拟器
 _color_echo yellow "🛑 正在关闭所有运行中的模拟器..."
@@ -113,8 +114,8 @@ xcrun simctl boot "$sim_id" 2>/tmp/sim_boot_log.txt
 if grep -q "Unable to boot device because it cannot be located on disk" /tmp/sim_boot_log.txt; then
   _color_echo red "❌ 启动失败：runtime 文件丢失，将自动清理该模拟器..."
   xcrun simctl delete "$sim_id"
-  _color_echo yellow "🗑️ 模拟器 $sim_name 已被删除（ID: $sim_id）"
+  _color_echo yellow "🗑️ 模拟器 $pretty_sim_name 已被删除（ID: $sim_id）"
   exit 1
 fi
 
-_color_echo green "✅ 模拟器 $sim_name 已成功启动（ID: $sim_id）"
+_color_echo green "✅ 模拟器 $pretty_sim_name 已成功启动（ID: $sim_id）"

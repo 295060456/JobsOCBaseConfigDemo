@@ -40,8 +40,12 @@ update_pod() {
     print_info "🍎 使用 Rosetta 执行 pod update"
     arch -x86_64 pod update
   else
+    print_info "💻 如果本地的索引（repo）是旧的，即使远程有新版本，pod update 也不知道，就更新不了。"
+    print_info "💻 直接执行 pod repo update"
+    pod repo update # 更新本地的 CocoaPods 索引仓库（类似于刷新源列表）。
+    sleep 1  # ⏱️ 等待一下 Git repo 操作完成，增强稳定性
     print_info "💻 直接执行 pod update"
-    pod update
+    pod update # 根据 Podfile 中的版本要求，从当前已知的 pod 索引版本中选取满足条件的最新版本。
   fi
 
   print_success "🎉 Pod 更新完成"
