@@ -215,16 +215,16 @@
 
 ## 时间复杂度、空间复杂度 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
+> * 时间复杂度：做事要几步？
+> * 空间复杂度：占地要几张纸？
+
 ```c
 for (int i = 0; i < n; i++) {
     printf("Hello\n");
 }
 🕒 时间复杂度是 O(n)，因为它打印了 n次，做了 n件事。
-💾 空间复杂度是 O(1)，因为它没有开额外的内存（不管 n 是多少，都不需要更多空间）。
+💾 空间复杂度是 O(1)，因为它没有开额外的内存（不管 n 是多少，都不需要更多空间）
 ```
-
-* 时间复杂度：做事要几步？
-* 空间复杂度：占地要几张纸？
 
 ## 内存对齐：结构体（struct） VS 联合体（union）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
@@ -671,171 +671,176 @@ for (int i = 0; i < n; i++) {
 ## ***OC.AssociatedObjects（关联对象）***<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
 * Swift是没有关联对象：因为 Swift 不直接继承自 Objective-C 的运行时机制；
+
 * 允许你向已有的类中添加属性，而无需修改类的源代码；
+
 * 依赖于 Objective-C 运行时机制；
+
 * 可以动态地将一个对象与一个 key 关联起来，然后可以在运行时根据这个 key 来获取或设置关联的对象；**根据key来进行值存取，如果key不是全局唯一，就会出现异常；**
+
 * 基本数据类型，需要包装成**NSNumber**进行存储
+
 * 关联对象***不会影响类的继承体系***，也***不会改变类的实例变量***，而是将额外的数据***存储在一个全局的关联表***中；
   * 导入 `<objc/runtime.h>` 头文件；
   * 创建一个 key，作为关联对象的唯一标识符。这个 key 是一个静态变量，通常是一个唯一的地址，你可以使用 `static` 关键字来定义；
   * 使用 `objc_setAssociatedObject` 函数将对象与 key 关联起来，并设置关联的策略（如 `OBJC_ASSOCIATION_RETAIN` 或 `OBJC_ASSOCIATION_ASSIGN`）以及要关联的对象；
   * 使用 `objc_getAssociatedObject` 函数根据 key 获取关联的对象；
   * 如果需要，使用 `objc_removeAssociatedObjects` 函数来移除与对象相关的所有关联对象；
-
-***对Block*** <font color="red">存取策略：`OBJC_ASSOCIATION_COPY_NONATOMIC`</font>
-
-```objective-c
-#import <Foundation/Foundation.h>
-#import <objc/runtime.h>
-
-@interface NSNotificationCenter (JobsBlock)
-@property(nonatomic,copy)void (^jobsNotificationBlock)(NSNotification *notification);
-@end
   
-@implementation NSNotificationCenter (JobsBlock)
+* ***对Block*** <font color="red">存取策略：`OBJC_ASSOCIATION_COPY_NONATOMIC`</font>
+  
+  ```objective-c
+  #import <Foundation/Foundation.h>
+  #import <objc/runtime.h>
+  
+  @interface NSNotificationCenter (JobsBlock)
+  @property(nonatomic,copy)void (^jobsNotificationBlock)(NSNotification *notification);
+  @end
+    
+  @implementation NSNotificationCenter (JobsBlock)
+  
+  -(void (^)(NSNotification *))jobsNotificationBlock {
+      return objc_getAssociatedObject(self, _cmd);
+  }
+  
+  -(void)setJobsNotificationBlock:(void (^)(NSNotification *))jobsNotificationBlock {
+      objc_setAssociatedObject(self,
+                               _cmd,
+                               jobsNotificationBlock,
+                               OBJC_ASSOCIATION_COPY_NONATOMIC);
+  }
+  
+  @end
+  ```
+  
+* ***对方法*** *方法用`NSStringFromSelector`包装成字符串对象进行存取。* <font color="red">存取策略：`OBJC_ASSOCIATION_COPY_NONATOMIC`</font>
+  
+  ```objective-c
+  #import <Foundation/Foundation.h>
+  #import <objc/runtime.h>
+  
+  @interface UIViewController (BaseVC)
+  @property(nonatomic,assign)SEL selector;
+  @end
+  
+  @implementation UIViewController (BaseVC)
+  
+  static char *UIViewController_BaseVC_selector = "UIViewController_BaseVC_selector";
+  
+  - (SEL)selector {
+      return objc_getAssociatedObject(self, UIViewController_BaseVC_selector);
+  }
+  
+  - (void)setSelector:(SEL)selector {
+      objc_setAssociatedObject(self, UIViewController_BaseVC_selector, NSStringFromSelector(selector), OBJC_ASSOCIATION_COPY_NONATOMIC);
+  }
+  
+  @end
+  ```
+  
+* ***对基本数据类型*** *需要封装成NSNumber对象进行存取* <font color="red">存取策略：`OBJC_ASSOCIATION_RETAIN_NONATOMIC`</font>
+  
+  ```objective-c
+  #import <Foundation/Foundation.h>
+  #import <objc/runtime.h>
+  
+  @interface UIViewController (BaseVC)
+  @property(nonatomic,assign)BOOL setupNavigationBarHidden;
+  @end
+  
+  @implementation UIViewController (BaseVC)
+  
+  static char *UIViewController_BaseVC_setupNavigationBarHidden = "UIViewController_BaseVC_setupNavigationBarHidden";
+  @dynamic setupNavigationBarHidden;
+  #pragma mark —— @property(nonatomic,assign)BOOL setupNavigationBarHidden;
+  -(BOOL)setupNavigationBarHidden{
+      BOOL SetupNavigationBarHidden = [objc_getAssociatedObject(self, UIViewController_BaseVC_setupNavigationBarHidden) boolValue];
+      return SetupNavigationBarHidden;
+  }
+  
+  -(void)setSetupNavigationBarHidden:(BOOL)setupNavigationBarHidden{
+      objc_setAssociatedObject(self,
+                               UIViewController_BaseVC_setupNavigationBarHidden,
+                               [NSNumber numberWithBool:setupNavigationBarHidden],
+                               OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+  }
+  
+  @end
+  ```
+  
+* ***对结构体属性*** *需要`NSValue`来进行包装* <font color="red">存取策略：`OBJC_ASSOCIATION_RETAIN_NONATOMIC`</font>
+  
+  ```objective-c
+  #import <Foundation/Foundation.h>
+  #import <objc/runtime.h>
+  
+  @interface UIViewController (BaseVC)
+  @property(nonatomic,assign)CGRect rect;
+  @property(nonatomic,assign)CGPoint point;
+  @end
+  
+  @implementation UIViewController (BaseVC)
+  
+  static char *UIViewController_BaseVC_rect = "UIViewController_BaseVC_rect";
+  static char *UIViewController_BaseVC_point = "UIViewController_BaseVC_point";
+  
+  - (CGRect)rect {
+      NSValue *value = objc_getAssociatedObject(self, UIViewController_BaseVC_rect);
+      return [value CGRectValue];
+  }
+  
+  - (void)setRect:(CGRect)rect {
+      NSValue *value = [NSValue valueWithCGRect:rect];
+      objc_setAssociatedObject(self, UIViewController_BaseVC_rect, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+  }
+  
+  - (CGPoint)point {
+      NSValue *value = objc_getAssociatedObject(self, UIViewController_BaseVC_point);
+      return [value CGPointValue];
+  }
+  
+  - (void)setPoint:(CGPoint)point {
+      NSValue *value = [NSValue valueWithCGPoint:point];
+      objc_setAssociatedObject(self, UIViewController_BaseVC_point, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+  }
+  
+  @end
+  ```
+  
+* ***对一般的对象*** <font color="red">存取策略：`OBJC_ASSOCIATION_RETAIN_NONATOMIC`</font>
+  
+  ```objective-c
+  #import <Foundation/Foundation.h>
+  #import <objc/runtime.h>
+  
+  @interface UIViewController (BaseVC)
+  @property(nonatomic,strong)UIBarButtonItem *backBtnCategoryItem;
+  @end
+  
+  @implementation UIViewController (BaseVC)
+  
+  static char *BaseVC_BackBtn_backBtnCategoryItem = "BaseVC_BackBtn_backBtnCategoryItem";
+  @dynamic backBtnCategoryItem;
+  #pragma mark —— @property(nonatomic,strong)UIBarButtonItem *backBtnCategoryItem;
+  -(UIBarButtonItem *)backBtnCategoryItem{
+      UIBarButtonItem *BackBtnCategoryItem = objc_getAssociatedObject(self, BaseVC_BackBtn_backBtnCategoryItem);
+      if (!BackBtnCategoryItem) {
+          BackBtnCategoryItem = [UIBarButtonItem.alloc initWithCustomView:self.backBtnCategory];
+          [self setBackBtnCategoryItem:BackBtnCategoryItem];
+      }return BackBtnCategoryItem;
+  }
+  
+  -(void)setBackBtnCategoryItem:(UIBarButtonItem *)backBtnCategoryItem{
+      objc_setAssociatedObject(self,
+                               BaseVC_BackBtn_backBtnCategoryItem,
+                               backBtnCategoryItem,
+                               OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+  }
+  
+  @end
+  ```
 
--(void (^)(NSNotification *))jobsNotificationBlock {
-    return objc_getAssociatedObject(self, _cmd);
-}
-
--(void)setJobsNotificationBlock:(void (^)(NSNotification *))jobsNotificationBlock {
-    objc_setAssociatedObject(self,
-                             _cmd,
-                             jobsNotificationBlock,
-                             OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-@end
-```
-
-***对方法*** *方法用`NSStringFromSelector`包装成字符串对象进行存取。* <font color="red">存取策略：`OBJC_ASSOCIATION_COPY_NONATOMIC`</font>
-
-```objective-c
-#import <Foundation/Foundation.h>
-#import <objc/runtime.h>
-
-@interface UIViewController (BaseVC)
-@property(nonatomic,assign)SEL selector;
-@end
-
-@implementation UIViewController (BaseVC)
-
-static char *UIViewController_BaseVC_selector = "UIViewController_BaseVC_selector";
-
-- (SEL)selector {
-    return objc_getAssociatedObject(self, UIViewController_BaseVC_selector);
-}
-
-- (void)setSelector:(SEL)selector {
-    objc_setAssociatedObject(self, UIViewController_BaseVC_selector, NSStringFromSelector(selector), OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-@end
-```
-
-***对基本数据类型*** *需要封装成NSNumber对象进行存取* <font color="red">存取策略：`OBJC_ASSOCIATION_RETAIN_NONATOMIC`</font>
-
-```objective-c
-#import <Foundation/Foundation.h>
-#import <objc/runtime.h>
-
-@interface UIViewController (BaseVC)
-@property(nonatomic,assign)BOOL setupNavigationBarHidden;
-@end
-
-@implementation UIViewController (BaseVC)
-
-static char *UIViewController_BaseVC_setupNavigationBarHidden = "UIViewController_BaseVC_setupNavigationBarHidden";
-@dynamic setupNavigationBarHidden;
-#pragma mark —— @property(nonatomic,assign)BOOL setupNavigationBarHidden;
--(BOOL)setupNavigationBarHidden{
-    BOOL SetupNavigationBarHidden = [objc_getAssociatedObject(self, UIViewController_BaseVC_setupNavigationBarHidden) boolValue];
-    return SetupNavigationBarHidden;
-}
-
--(void)setSetupNavigationBarHidden:(BOOL)setupNavigationBarHidden{
-    objc_setAssociatedObject(self,
-                             UIViewController_BaseVC_setupNavigationBarHidden,
-                             [NSNumber numberWithBool:setupNavigationBarHidden],
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-@end
-```
-
-***对结构体属性*** *需要`NSValue`来进行包装* <font color="red">存取策略：`OBJC_ASSOCIATION_RETAIN_NONATOMIC`</font>
-
-```objective-c
-#import <Foundation/Foundation.h>
-#import <objc/runtime.h>
-
-@interface UIViewController (BaseVC)
-@property(nonatomic,assign)CGRect rect;
-@property(nonatomic,assign)CGPoint point;
-@end
-
-@implementation UIViewController (BaseVC)
-
-static char *UIViewController_BaseVC_rect = "UIViewController_BaseVC_rect";
-static char *UIViewController_BaseVC_point = "UIViewController_BaseVC_point";
-
-- (CGRect)rect {
-    NSValue *value = objc_getAssociatedObject(self, UIViewController_BaseVC_rect);
-    return [value CGRectValue];
-}
-
-- (void)setRect:(CGRect)rect {
-    NSValue *value = [NSValue valueWithCGRect:rect];
-    objc_setAssociatedObject(self, UIViewController_BaseVC_rect, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (CGPoint)point {
-    NSValue *value = objc_getAssociatedObject(self, UIViewController_BaseVC_point);
-    return [value CGPointValue];
-}
-
-- (void)setPoint:(CGPoint)point {
-    NSValue *value = [NSValue valueWithCGPoint:point];
-    objc_setAssociatedObject(self, UIViewController_BaseVC_point, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-@end
-```
-
-***对一般的对象*** <font color="red">存取策略：`OBJC_ASSOCIATION_RETAIN_NONATOMIC`</font>
-
-```objective-c
-#import <Foundation/Foundation.h>
-#import <objc/runtime.h>
-
-@interface UIViewController (BaseVC)
-@property(nonatomic,strong)UIBarButtonItem *backBtnCategoryItem;
-@end
-
-@implementation UIViewController (BaseVC)
-
-static char *BaseVC_BackBtn_backBtnCategoryItem = "BaseVC_BackBtn_backBtnCategoryItem";
-@dynamic backBtnCategoryItem;
-#pragma mark —— @property(nonatomic,strong)UIBarButtonItem *backBtnCategoryItem;
--(UIBarButtonItem *)backBtnCategoryItem{
-    UIBarButtonItem *BackBtnCategoryItem = objc_getAssociatedObject(self, BaseVC_BackBtn_backBtnCategoryItem);
-    if (!BackBtnCategoryItem) {
-        BackBtnCategoryItem = [UIBarButtonItem.alloc initWithCustomView:self.backBtnCategory];
-        [self setBackBtnCategoryItem:BackBtnCategoryItem];
-    }return BackBtnCategoryItem;
-}
-
--(void)setBackBtnCategoryItem:(UIBarButtonItem *)backBtnCategoryItem{
-    objc_setAssociatedObject(self,
-                             BaseVC_BackBtn_backBtnCategoryItem,
-                             backBtnCategoryItem,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-@end
-```
-
-## ViewController的11个生命周期（按照执行顺序排列）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## `UIViewController`的11个生命周期（按照执行顺序排列）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
 * `initWithCoder`：通过nib文件初始化时触发。
 * `awakeFromNib`：nib文件被加载的时候，会发生一个awakeFromNib的消息到nib文件中的每个对象。
@@ -892,7 +897,8 @@ static char *BaseVC_BackBtn_backBtnCategoryItem = "BaseVC_BackBtn_backBtnCategor
 3、在实际应用中，需要注意使用 KVO 和 KVC 时的内存管理和性能问题，以确保应用的稳定性和性能优化；
 ```
 ### KVO相应的观察方法
-**`observeValueForKeyPath:ofObject:change:context:`**
+
+> **`observeValueForKeyPath:ofObject:change:context:`**
 
 - 这是 [***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察) 观察者对象必须实现的方法之一；
 - 当被观察对象的属性值发生变化时，系统会调用这个方法，并传递一些参数，包括被观察的属性的键路径、被观察的对象、属性的改变信息以及上下文信息；
@@ -940,26 +946,30 @@ static char *BaseVC_BackBtn_backBtnCategoryItem = "BaseVC_BackBtn_backBtnCategor
 #### <font color="red">***在使用KVO的时候会使用的KVC吗？***</font>（会，间接使用）
 
 * 在使用[***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察) 时，通常不会直接使用 [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储)，因为**它们是两个独立的特性**。然而，在某些情况下，它们**可能会间接地结合使用**；
+  
+  > 虽然**在实现** [***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)  **时可能会涉及到使用**  [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储)  **来指定属性路径和获取属性值**，但是它们本质上是两个不同的概念。 [***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)  是一种观察者模式，用于监听对象属性的变化，而 [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储) 则是<u>一种机制</u>，用于通过键（key）来访问对象的属性。
+  
   * **注册观察者时的键路径**： 在注册观察者时，需要提供要观察的属性的键路径。这个键路径通常是通过 [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储) 的方式指定的，因为它需要准确地指定被观察属性的路径;
-  ```objective-c
-  [object addObserver:self 
-          forKeyPath:@"propertyName" 
-          options:NSKeyValueObservingOptionNew 
-          context:nil];
-  ```
+  
+    ```objective-c
+    [object addObserver:self 
+            forKeyPath:@"propertyName" 
+            options:NSKeyValueObservingOptionNew 
+            context:nil];
+    ```
   * **观察者获取属性值**： 在观察者对象中，当收到属性变化的通知时，可能会使用  [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储) 来获取被观察对象的属性值;
-  ```objective-c
-  - (void)observeValueForKeyPath:(NSString *)keyPath
-          ofObject:(id)object 
-          change:(NSDictionary *)change 
-          context:(void *)context {
-      if ([keyPath isEqualToString:@"propertyName"]) {
-          id newValue = [object valueForKey:@"propertyName"];
-          // 处理属性变化后的操作
-      }
-  }
-  ```
-    虽然**在实现** [***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)  **时可能会涉及到使用**  [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储)  **来指定属性路径和获取属性值**，但是它们本质上是两个不同的概念。 [***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)  是一种观察者模式，用于监听对象属性的变化，而 [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储) 则是<u>一种机制</u>，用于通过键（key）来访问对象的属性。
+  
+    ```objective-c
+    - (void)observeValueForKeyPath:(NSString *)keyPath
+            ofObject:(id)object 
+            change:(NSDictionary *)change 
+            context:(void *)context {
+        if ([keyPath isEqualToString:@"propertyName"]) {
+            id newValue = [object valueForKey:@"propertyName"];
+            // 处理属性变化后的操作
+        }
+    }
+    ```
 ## MVP <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
 * MVP（**M**odel-**V**iew-**P**resenter）模式是一种软件架构模式，用于设计和组织用户界面（UI）代码；
@@ -1133,7 +1143,7 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   * 1024到49151是***注册端口***；
   * 49152到65535是***动态或私有端口***；
 * 端口的使用是通过网络协议来管理的，典型的例子是TCP和UDP；
-## int *p = &a <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## `int *p = &a` <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 * 这行代码是在C或C++中声明了一个整数指针变量 `p`，并将其初始化为变量 `a` 的地址；
 * `&a` 表示取变量 `a` 的地址，然后将这个地址赋给指针变量 `p`；
 * 这样，`p` 就指向了变量 `a` 的位置，可以通过 `p` 来访问和操作变量 `a`；
@@ -1141,7 +1151,9 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 * 整数指针是指一个指针，其目标是整数类型的变量
 ## *OC*.非正式协议 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
-是一种约定，用于描述类的方法，***但不要求实现特定的接口或遵循特定的协议***。它允许类在不采用正式协议的情况下，<u>***通过向类添加方法来实现特定功能***</u>。非正式协议在OC 中是一种**常见的设计模式**，特别是在框架和库中。它们使得代码更加灵活，允许开发者通过遵循约定而不是强制性接口来实现特定功能。非正式协议的特点包括：
+>  是一种约定，用于描述类的方法，***但不要求实现特定的接口或遵循特定的协议***。它允许类在不采用正式协议的情况下，<u>***通过向类添加方法来实现特定功能***</u>。非正式协议在OC 中是一种**常见的设计模式**，特别是在框架和库中。它们使得代码更加灵活，允许开发者通过遵循约定而不是强制性接口来实现特定功能。
+
+**非正式协议的特点包括**👇🏻
 
 * 没有明确的接口：与正式协议不同，非正式协议没有明确定义的接口或者协议声明。它仅仅是一组方法的约定。
 
@@ -1536,7 +1548,9 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 }
 @end
 ```
-<span style="color:Blue; font-weight:bold;">***在这个示例中，`UserService` 类在构造函数中接受一个 `Logger` 对象作为参数，然后将其存储在实例变量中。这样，调用 `UserService` 的代码可以提供自己的 `Logger` 实例，从而实现了依赖注入。***</font>
+
+<span style="color:Blue; font-weight:bold;">***在这个示例中，`UserService` 类在构造函数中接受一个 `Logger` 对象作为参数，然后将其存储在实例变量中。这样，调用 `UserService` 的代码可以提供自己的 `Logger` 实例，从而实现了依赖注入。***</span>
+
 ## 函数（方法）签名 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 * 指函数的声明或定义，其中包含了***函数的名称***、***参数列表***和***返回类型***；
   * **函数名称：** 函数的标识符，用于唯一标识函数；
@@ -1545,64 +1559,68 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 * 它描述了函数的输入参数以及返回值的类型，用于**确定函数的类型和使用方式，用于唯一标识一个特定的函数或方法**；
 ## 方法的重载：<font color="red">系统将会识别为2个不同的方法</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
-方法的重载（Overloading）是指在同一个类中定义多个同名但参数列表不同的方法方法的参数列表必须不同。参数列表包括参数的类型、数量和顺序。
+> 方法的重载（Overloading）是指在同一个类中定义多个同名但参数列表不同的方法方法的参数列表必须不同。参数列表包括参数的类型、数量和顺序。
 
 * Swift 支持方法的重载：***仅仅参数顺序不一致，Swift 不会将其视为方法重载***。因为 Swift 方法的标识符是由方法名和参数类型构成的，**参数顺序不会影响方法的标识符**<font color="red">（相对于Java语言，更加的严格）</font>
-```swift
-class MathFunctions {
-    // 方法重载：参数为两个整数
-    func add(_ a: Int, _ b: Int) -> Int {
-        return a + b
-    }
 
-    // 方法重载：参数为三个整数
-    func add(_ a: Int, _ b: Int, _ c: Int) -> Int {
-        return a + b + c
-    }
-
-    // 方法重载：参数为两个浮点数
-    func add(_ a: Double, _ b: Double) -> Double {
-        return a + b
-    }
-}
-
-let math = MathFunctions()
-
-// 调用不同的重载方法
-print("Sum of 2 and 3 is: \(math.add(2, 3))")
-print("Sum of 2, 3 and 4 is: \(math.add(2, 3, 4))")
-print("Sum of 2.5 and 3.5 is: \(math.add(2.5, 3.5))")
-```
+  ```swift
+  class MathFunctions {
+      // 方法重载：参数为两个整数
+      func add(_ a: Int, _ b: Int) -> Int {
+          return a + b
+      }
+  
+      // 方法重载：参数为三个整数
+      func add(_ a: Int, _ b: Int, _ c: Int) -> Int {
+          return a + b + c
+      }
+  
+      // 方法重载：参数为两个浮点数
+      func add(_ a: Double, _ b: Double) -> Double {
+          return a + b
+      }
+  }
+  
+  let math = MathFunctions()
+  
+  // 调用不同的重载方法
+  print("Sum of 2 and 3 is: \(math.add(2, 3))")
+  print("Sum of 2, 3 and 4 is: \(math.add(2, 3, 4))")
+  print("Sum of 2.5 and 3.5 is: \(math.add(2.5, 3.5))")
+  ```
 * OC 没有方法的重载
+
 * Dart 没有方法的重载
+
 * Java 支持方法的重载：***仅仅参数顺序不同，也会被视为重载的不同方法***
-```java
-public class OverloadExample {
-    // 方法重载：参数为两个整数
-    public int add(int a, int b) {
-        return a + b;
-    }
 
-    // 方法重载：参数为三个整数
-    public int add(int a, int b, int c) {
-        return a + b + c;
-    }
-
-    // 方法重载：参数为两个浮点数
-    public double add(double a, double b) {
-        return a + b;
-    }
-
-    public static void main(String[] args) {
-        OverloadExample example = new OverloadExample();
-
-        // 调用不同的重载方法
-        System.out.println("Sum of 2 and 3 is: " + example.add(2, 3));
-        System.out.println("Sum of 2, 3 and 4 is: " + example.add(2, 3, 4));
-        System.out.println("Sum of 2.5 and 3.5 is: " + example.add(2.5, 3.5));
-    }
-}
-```
+  ```java
+  public class OverloadExample {
+      // 方法重载：参数为两个整数
+      public int add(int a, int b) {
+          return a + b;
+      }
+  
+      // 方法重载：参数为三个整数
+      public int add(int a, int b, int c) {
+          return a + b + c;
+      }
+  
+      // 方法重载：参数为两个浮点数
+      public double add(double a, double b) {
+          return a + b;
+      }
+  
+      public static void main(String[] args) {
+          OverloadExample example = new OverloadExample();
+  
+          // 调用不同的重载方法
+          System.out.println("Sum of 2 and 3 is: " + example.add(2, 3));
+          System.out.println("Sum of 2, 3 and 4 is: " + example.add(2, 3, 4));
+          System.out.println("Sum of 2.5 and 3.5 is: " + example.add(2.5, 3.5));
+      }
+  }
+  ```
 ## <font color="red">***OC.定时器***</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
 ### GCD
@@ -1675,48 +1693,50 @@ public class OverloadExample {
   * **主队列和全局队列（Main and Global Queues）**： 主队列是一个串行队列，用于在应用程序的主线程上执行任务。全局队列是一个并发队列，由系统提供，可以用于执行后台任务。全局队列分为多个优先级，从高到低分别是高、默认、低和后台；
   * **信号量（Dispatch Semaphores）**： GCD 提供了***信号量机制***，可以控制并发任务的数量。通过信号量，您可以限制同时执行的任务数量，避免过多的并发导致资源竞争或性能问题；
   * **调度组（Dispatch Groups）**： 调度组是一种用于管理多个任务的机制，它可以让您监视一组任务的完成状态。您可以使用调度组来等待一组任务全部完成后再执行其他操作，或者在一组任务完成时执行特定的处理；
+  
 * 线程组：`dispatch_group_t`
   * 允许等待一组任务完成后再执行其他操作；
+  
   * 可以向线程组添加任务，并使用`dispatch_group_notify`方法来设置一个回调，该回调将在所有任务完成后被调用；
-
-```objective-c
-// 导入必要的头文件
-#import <Foundation/Foundation.h>
-
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        // 创建一个串行队列
-        dispatch_queue_t queue = dispatch_queue_create("com.example.queue", DISPATCH_QUEUE_SERIAL);
-        // 创建一个线程组
-        dispatch_group_t group = dispatch_group_create();
-        // 向线程组中添加任务
-        dispatch_group_async(group, queue, ^{
-            // 第一个异步任务
-            NSLog(@"Task 1 started");
-            sleep(2); // 模拟耗时操作
-            NSLog(@"Task 1 completed");
-        });
-        dispatch_group_async(group, queue, ^{
-            // 第二个异步任务
-            NSLog(@"Task 2 started");
-            sleep(3); // 模拟耗时操作
-            NSLog(@"Task 2 completed");
-        });
-        // 设置一个回调，在所有任务完成后执行
-        dispatch_group_notify(group, queue, ^{
-            NSLog(@"All tasks completed");
-        });
-        // 等待线程组中的任务完成
-        dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
-        NSLog(@"Main thread continues after all tasks completed");
-    }return 0;
-}
-/**
-创建了一个串行队列和一个线程组。
-然后，向线程组中添加了两个异步任务，并设置了一个回调，以便在所有任务完成后执行。
-最后，调用了dispatch_group_wait函数，使当前线程等待线程组中的任务完成。
-*/
-```
+  
+    ```objective-c
+    // 导入必要的头文件
+    #import <Foundation/Foundation.h>
+    
+    int main(int argc, const char * argv[]) {
+        @autoreleasepool {
+            // 创建一个串行队列
+            dispatch_queue_t queue = dispatch_queue_create("com.example.queue", DISPATCH_QUEUE_SERIAL);
+            // 创建一个线程组
+            dispatch_group_t group = dispatch_group_create();
+            // 向线程组中添加任务
+            dispatch_group_async(group, queue, ^{
+                // 第一个异步任务
+                NSLog(@"Task 1 started");
+                sleep(2); // 模拟耗时操作
+                NSLog(@"Task 1 completed");
+            });
+            dispatch_group_async(group, queue, ^{
+                // 第二个异步任务
+                NSLog(@"Task 2 started");
+                sleep(3); // 模拟耗时操作
+                NSLog(@"Task 2 completed");
+            });
+            // 设置一个回调，在所有任务完成后执行
+            dispatch_group_notify(group, queue, ^{
+                NSLog(@"All tasks completed");
+            });
+            // 等待线程组中的任务完成
+            dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+            NSLog(@"Main thread continues after all tasks completed");
+        }return 0;
+    }
+    /**
+    创建了一个串行队列和一个线程组。
+    然后，向线程组中添加了两个异步任务，并设置了一个回调，以便在所有任务完成后执行。
+    最后，调用了dispatch_group_wait函数，使当前线程等待线程组中的任务完成。
+    */
+    ```
 
 * GCD的定时器
 
@@ -1818,7 +1838,8 @@ RunLoop.main.run()
   * **KVO 监听**： *NSOperation* 支持 [***KVO（Key-Value Observing）***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)，允许您监视操作的执行状态和属性的变化。通过观察操作的 `isExecuting`、`isFinished` 和 `isCancelled` 等属性，您可以了解操作的执行情况。
 ## ***OC.Runtime.消息转发机制*** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
-Objective-C 中的消息转发机制是一种在***运行时动态处理未知消息***的机制：<font color="red">***当一个对象接收到一个它无法识别的消息时，Objective-C 运行时系统会通过一系列的步骤来处理这个未知消息，并尝试找到合适的接收者来处理该消息***</font>。
+> Objective-C 中的消息转发机制是一种在***运行时动态处理未知消息***的机制：<font color="red">***当一个对象接收到一个它无法识别的消息时，Objective-C 运行时系统会通过一系列的步骤来处理这个未知消息，并尝试找到合适的接收者来处理该消息***</font>。
+
 消息转发机制一般分为三个阶段：
 
 1. **动态方法解析（Dynamic Method Resolution）**：
@@ -1896,7 +1917,7 @@ Objective-C 中的消息转发机制是一种在***运行时动态处理未知�
 
 ## ***OC.database*** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
-### ***OC.SQLite***
+### ***OC.SQLißte***
 
 * 零配置：可在无需配置的情况下使用的简单的数据库引擎
 * C库：跨平台
@@ -2056,6 +2077,50 @@ int main(int argc, const char * argv[]) {
     }return 0;
 }
 ```
+## ❗FAQ
+
+* **`POST`**能做一切操作，可是为什么还要有**`PUT`**、**`PATCH`**、**`DELETE`**❓（经典问题）
+
+  * 语义明确（语义化 API）➡️ 使用不同的 HTTP 方法，能让人一眼看懂接口的**用途**，代码更清晰、逻辑更规范。
+
+    | 方法     | 语义说明                                   |
+    | -------- | ------------------------------------------ |
+    | `POST`   | 创建资源（可能不确定资源位置）             |
+    | `PUT`    | 更新整个资源（或者新增一个已知地址的资源） |
+    | `PATCH`  | 部分更新资源                               |
+    | `DELETE` | 删除资源                                   |
+
+  * 符合 RESTful 规范
+
+    > REST 设计理念强调：**不同操作使用不同的动词来表达意图**，这样系统更统一、可扩展性更强。
+
+    ```http
+    GET    /users/123       -> 获取用户信息
+    POST   /users           -> 新建用户
+    PUT    /users/123       -> 替换用户信息
+    PATCH  /users/123       -> 更新部分字段
+    DELETE /users/123       -> 删除用户
+    ```
+
+  * 幂等性（Idempotency）区别
+
+    ➡️ 例如你调用 5 次 `PUT /users/123`，结果还是一样。但你调用 5 次 `POST /users`，可能创建了 5 个用户。
+
+    | 方法     | 幂等性   | 说明                           |
+    | -------- | -------- | ------------------------------ |
+    | `POST`   | ❌ 否     | 每次都会创建新资源或产生副作用 |
+    | `PUT`    | ✅ 是     | 多次请求结果一致（替换资源）   |
+    | `PATCH`  | ⚠️ 不一定 | 取决于实现                     |
+    | `DELETE` | ✅ 是     | 多次删除结果一样               |
+
+  * ✅ 4. **便于中间件、缓存、API 网关优化**
+
+    > 很多 **代理服务器 / 网关 / 缓存系统** 会根据 HTTP 方法来决定是否缓存或转发请求。例如：
+    >
+    > - `GET` 可以缓存
+    > - `POST` 一般不缓存
+    > - `PUT/PATCH/DELETE` 通常绕过缓存或严格校验
+
 ## 其他 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
 * [**iOS封装dylib并调用**](# https://blog.csdn.net/qq_44974089/article/details/130806590)
@@ -2093,24 +2158,31 @@ int main(int argc, const char * argv[]) {
   
 * <span style="color:purple; font-weight:bold;">**打开了VPN，使用Charles抓包工具会失灵**</span>
 
-* <span style="color:purple; font-weight:bold;">**Git 不允许在一个仓库中嵌套另一个Git仓库**。</span>这是因为每个Git仓库都需要有一个独特的`.git`目录来存储版本控制相关的信息，而如果嵌套使用，就会导致冲突和混淆。
+* <span style="color:purple; font-weight:bold;">**Git 不允许在一个仓库中嵌套另一个Git仓库**。</span>
+  
+  > 这是因为每个Git仓库都需要有一个独特的`.git`目录来存储版本控制相关的信息，而如果嵌套使用，就会导致冲突和混淆。
+  
   在你的情况下，有几个备选的解决方案：
   
   * **子模块（Submodule）：**
-  使用 Git 的子模块是一个常见的方法，可以将一个仓库嵌套到另一个仓库中。你可以将每个子文件夹作为一个独立的子模块。子模块允许你将其他Git仓库嵌套到你的项目中，每个子模块有自己的`.git`目录。
-  在你的主项目目录中运行：
-  ```bash
-  git submodule add <repository-url> <path-to-submodule>
-  ```
+    使用 Git 的子模块是一个常见的方法，可以将一个仓库嵌套到另一个仓库中。你可以将每个子文件夹作为一个独立的子模块。子模块允许你将其他Git仓库嵌套到你的项目中，每个子模块有自己的`.git`目录。
+    在你的主项目目录中运行：
+  
+    ```bash
+    git submodule add <repository-url> <path-to-submodule>
+    ```
+  
   其中，`<repository-url>` 是子模块的Git仓库地址，`<path-to-submodule>` 是子模块存储的目录路径。
   * **单一仓库：**
-  如果你希望这三个子文件夹共享同一个Git仓库，而不是各自有独立的仓库，那么可以将它们合并为一个单一的Git仓库。将这三个子文件夹的内容复制到主项目目录下，然后使用一次性的 `git init` 进行初始化。
-  ```bash
-  cd /path/to/main/project
-  git init
-  git add .
-  git commit -m "Initial commit"
-  ```
+    如果你希望这三个子文件夹共享同一个Git仓库，而不是各自有独立的仓库，那么可以将它们合并为一个单一的Git仓库。将这三个子文件夹的内容复制到主项目目录下，然后使用一次性的 `git init` 进行初始化。
+  
+    ```bash
+    cd /path/to/main/project
+    git init
+    git add .
+    git commit -m "Initial commit"
+    ```
+  
   这样，你的整个项目都在同一个仓库中了。
   * **多个独立仓库：**
   如果你希望保持这三个子文件夹的独立性，而且不希望使用子模块，你可以维护这四个仓库（主项目和三个子项目）作为独立的Git仓库。这样，你需要在每个子文件夹中独立进行版本控制。
@@ -2142,37 +2214,43 @@ int main(int argc, const char * argv[]) {
   
   * **生成SSH密钥：**
     打开终端（在Linux或macOS上）或Git Bash（在Windows上），然后运行以下命令生成SSH密钥：
-  ```bash
-  ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-  ```
+    
+    ```bash
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    ```
+  
     替换`your_email@example.com`为您在GitHub上注册的电子邮件地址。
   
     按照提示，您可以选择性地输入文件名和密码。
   
     如果您不输入文件名，将使用默认的`id_rsa`和`id_rsa.pub`文件。
-  * **将SSH密钥添加到ssh-agent（仅适用于Linux和macOS）：**如果您使用Linux或macOS，可以通过以下命令将SSH密钥添加到ssh-agent：
-  ```bash
-  eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/id_rsa
-  ```
+  * **将SSH密钥添加到ssh-agent（仅适用于Linux和macOS）：**如果您使用Linux或macOS，可以通过以下命令将SSH密钥添加到`ssh-agent`：
+  
+    ```bash
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_rsa
+    ```
+  
     请注意，`~/.ssh/id_rsa`是您生成的SSH密钥的路径，如果您选择了不同的文件名，则相应地更改。
   * **将SSH密钥添加到GitHub帐户：**复制SSH密钥的内容：
-  ```bash
-  cat ~/.ssh/id_rsa.pub
-  ```
+  
+    ```bash
+    cat ~/.ssh/id_rsa.pub
+    ```
+  
     然后，将输出的公钥复制到GitHub上。
     登录GitHub，转到`Settings` > `SSH and GPG keys` > `New SSH key`，将公钥粘贴到"Key"字段中，并为密钥命名。
   * **测试SSH连接:**运行以下命令测试SSH连接：
-  ```bash
-  ssh -T git@github.com
-  ```
+  
+    ```bash
+    ssh -T git@github.co
+    ```
+  
   如果一切设置正确，您将看到一条欢迎消息，并确认连接成功；
   这样，您就成功配置了GitHub的SSH，可以通过SSH安全地与GitHub仓库通信，**而无需每次都输入用户名和密码**；
   请记住，安全性是关键，因此请**妥善保存私钥**，并避免在不受信任的地方使用私钥。
   
-  * 其他问题支援
-  
-    [***Using SSH over the HTTPS port***](# https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port)
+  * 其他问题支援：[***Using SSH over the HTTPS port***](# https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port)
   
 * <span style="color:purple; font-weight:bold;">**文件数据则可以通过 `multipart/form-data` 格式进行编码，并作为消息体的一部分发送到服务器（用POST）**</span>
 
@@ -2181,114 +2259,120 @@ int main(int argc, const char * argv[]) {
   * **推送通知类型**：
     - **本地通知**：***由应用程序本身发出，无需连接到远程服务器***。本地通知可以在特定时间触发或在用户进入或退出特定地理位置时触发；
   
-    ```objective-c
-    #import "ViewController.h"
-    #import <UserNotifications/UserNotifications.h>
+      ```objective-c
+      #import "ViewController.h"
+      #import <UserNotifications/UserNotifications.h>
+      
+      @implementation ViewController
+      
+      - (void)viewDidLoad {
+          [super viewDidLoad];
+      }
+      /**
+      	用户点击按钮时，将触发一个本地通知。
+      	本地通知的标题和正文内容已经设置，并且在 5 秒后触发。
+      	当用户收到通知时，设备将会播放默认提示音
+      */
+      - (IBAction)scheduleLocalNotification:(UIButton *)sender {
+          UNMutableNotificationContent *content = UNMutableNotificationContent.new;
+          content.title = @"本地通知标题";
+          content.body = @"这是一个本地通知示例";
+          content.sound = UNNotificationSound.defaultSound;
+          // 触发时间为 5 秒后
+          UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:5 repeats:NO];
+          // 创建通知请求
+          UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNotification" 
+                                                                                content:content
+                                                                                trigger:trigger];
+          // 将通知请求添加到用户通知中心
+          [UNUserNotificationCenter.currentNotificationCenter addNotificationRequest:request 
+                                                               withCompletionHandler:^(NSError * _Nullable error) {
+      				if (error) {
+                  NSLog(@"添加本地通知请求出错：%@", error.localizedDescription);
+              } else {
+                  NSLog(@"本地通知请求已添加成功");
+              }
+          }];
+      }
+      
+      @end
+      ```
     
-    @implementation ViewController
+      ```objective-c
+      import UIKit
+      import UserNotifications
+      
+      @UIApplicationMain
+      class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+      
+          func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+              // 请求通知权限
+              UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+                  if granted {
+                      print("用户已授权通知权限")
+                  } else {
+                      print("用户未授权通知权限")
+                  }
+              }
+              // 注册远程通知
+              application.registerForRemoteNotifications()
+              // 设置 UNUserNotificationCenterDelegate
+              UNUserNotificationCenter.current().delegate = self
+              return true
+          }
+          // 处理远程通知注册成功
+          func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+              print("远程通知注册成功，设备令牌：\(deviceToken)")
+              // 将设备令牌发送给后端服务器
+          }
+          // 处理远程通知注册失败
+          func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+              print("远程通知注册失败：\(error.localizedDescription)")
+          }
+          // 接收远程通知
+          func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+              print("接收到远程通知：\(notification.request.content.userInfo)")
+              // 在此处理接收到的通知
+              // 播放提示音
+              completionHandler([.alert, .sound])
+          }
+          // iOS 10 及以上版本的接收远程通知的方法
+          func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+              print("接收到远程通知响应：\(response.notification.request.content.userInfo)")
+              // 在此处理接收到的通知响应
+              completionHandler()
+          }
+      }
+      ```
     
-    - (void)viewDidLoad {
-        [super viewDidLoad];
-    }
-    /**
-    	用户点击按钮时，将触发一个本地通知。
-    	本地通知的标题和正文内容已经设置，并且在 5 秒后触发。
-    	当用户收到通知时，设备将会播放默认提示音
-    */
-    - (IBAction)scheduleLocalNotification:(UIButton *)sender {
-        UNMutableNotificationContent *content = UNMutableNotificationContent.new;
-        content.title = @"本地通知标题";
-        content.body = @"这是一个本地通知示例";
-        content.sound = UNNotificationSound.defaultSound;
-        // 触发时间为 5 秒后
-        UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:5 repeats:NO];
-        // 创建通知请求
-        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"localNotification" 
-                                                                              content:content
-                                                                              trigger:trigger];
-        // 将通知请求添加到用户通知中心
-        [UNUserNotificationCenter.currentNotificationCenter addNotificationRequest:request 
-                                                             withCompletionHandler:^(NSError * _Nullable error) {
-    				if (error) {
-                NSLog(@"添加本地通知请求出错：%@", error.localizedDescription);
-            } else {
-                NSLog(@"本地通知请求已添加成功");
-            }
-        }];
-    }
+      *在`Info.plist`文件中添加**请求通知权限的配置**代码*
     
-    @end
-    ```
-    ```swift
-    import UIKit
-    import UserNotifications
+      ```xml
+      <key>NSUserNotificationAlertStyle</key>
+      <string>alert</string>
+      <key>UIUserInterfaceStyle</key>
+      <string>Light</string>
+      ```
     
-    @UIApplicationMain
-    class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+      *在 **AppDelegate.m***中的`didFinishLaunchingWithOptions`方法内，添加如下代码：*
     
-        func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-            // 请求通知权限
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
-                if granted {
-                    print("用户已授权通知权限")
-                } else {
-                    print("用户未授权通知权限")
-                }
-            }
-            // 注册远程通知
-            application.registerForRemoteNotifications()
-            // 设置 UNUserNotificationCenterDelegate
-            UNUserNotificationCenter.current().delegate = self
-            return true
-        }
-        // 处理远程通知注册成功
-        func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-            print("远程通知注册成功，设备令牌：\(deviceToken)")
-            // 将设备令牌发送给后端服务器
-        }
-        // 处理远程通知注册失败
-        func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-            print("远程通知注册失败：\(error.localizedDescription)")
-        }
-        // 接收远程通知
-        func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-            print("接收到远程通知：\(notification.request.content.userInfo)")
-            // 在此处理接收到的通知
-            // 播放提示音
-            completionHandler([.alert, .sound])
-        }
-        // iOS 10 及以上版本的接收远程通知的方法
-        func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-            print("接收到远程通知响应：\(response.notification.request.content.userInfo)")
-            // 在此处理接收到的通知响应
-            completionHandler()
-        }
-    }
-    ```
+      ```objective-c
+      [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+          if (granted) {
+              NSLog(@"用户已授权通知权限");
+          } else {
+              NSLog(@"用户未授权通知权限");
+          }
+      }];
+      ```
     
-    *在`Info.plist`文件中添加**请求通知权限的配置**代码*
-    
-    ```xml
-    <key>NSUserNotificationAlertStyle</key>
-    <string>alert</string>
-    <key>UIUserInterfaceStyle</key>
-    <string>Light</string>
-    ```
-    *在 **AppDelegate.m***中的`didFinishLaunchingWithOptions`方法内，添加如下代码：*
-    ```objective-c
-    [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-            NSLog(@"用户已授权通知权限");
-        } else {
-            NSLog(@"用户未授权通知权限");
-        }
-    }];
-    ```
     - **远程通知**：***由远程服务器发出，通过苹果的 APNs 服务将通知发送到用户设备上***。远程通知允许开发者在应用程序不在前台时向用户发送消息；
+    
   * **APNs 服务:** ***A***pple ***P***ush ***N***otification ***s***ervice
     
-    - 开发者需要在*[苹果开发者中心](https://developer.apple.com/cn/)*注册应用程序的 ***bundle identifier***，并获取一个 ***APNs 证书***来与***APNs***服务器通信；
-    - 通过 **APNs** 服务，开发者可以向用户设备发送远程通知，并指定通知的内容、声音、标志等参数；
+    > * 开发者需要在*[苹果开发者中心](https://developer.apple.com/cn/)*注册应用程序的 ***bundle identifier***，并获取一个 ***APNs 证书***来与***APNs***服务器通信；
+    > * 通过 **APNs** 服务，开发者可以向用户设备发送远程通知，并指定通知的内容、声音、标志等参数；
+    
     ```json
     {
       "aps": {
@@ -2303,70 +2387,72 @@ int main(int argc, const char * argv[]) {
       }
     }
     ```
+    
   * **推送通知的实现**：
     
-    - 在应用程序中配置推送通知的权限，并请求用户允许发送通知；
-    - 使用 Apple 提供的 ***UNUserNotificationCenter*** API 来请求用户的推送通知权限，并处理用户对通知的响应；
-    - 配置应用程序的通知设置，包括通知内容、声音、标志等；
-    - 在应用程序的远程服务器端生成和发送推送通知。服务器端通常使用推送通知服务商提供的 API 来与 APNs 服务器通信，如 ***F***irebase ***C***loud ***M***essaging（FCM）、***OneSignal*** 等；
-    - 接收到推送通知后，应用程序可以在前台或后台执行一些自定义逻辑，如更新界面、处理数据等；
-  ```objective-c
-  #import "AppDelegate.h"
-  #import <UserNotifications/UserNotifications.h>
+    > * 在应用程序中配置推送通知的权限，并请求用户允许发送通知；
+    > * 使用 Apple 提供的 ***UNUserNotificationCenter*** API 来请求用户的推送通知权限，并处理用户对通知的响应；
+    > * 配置应用程序的通知设置，包括通知内容、声音、标志等；
+    > * 在应用程序的远程服务器端生成和发送推送通知。服务器端通常使用推送通知服务商提供的 API 来与 APNs 服务器通信，如 ***F***irebase ***C***loud ***M***essaging（FCM）、***OneSignal*** 等；
+    > * 接收到推送通知后，应用程序可以在前台或后台执行一些自定义逻辑，如更新界面、处理数据等；
   
-  @interface AppDelegate () <UNUserNotificationCenterDelegate>
+    ```objective-c
+    #import "AppDelegate.h"
+    #import <UserNotifications/UserNotifications.h>
+    
+    @interface AppDelegate () <UNUserNotificationCenterDelegate>
+    
+    @end
+    
+    @implementation AppDelegate
+    
+    - (BOOL)application:(UIApplication *)application 
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+        // 请求通知权限
+        [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge) 
+         completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted) {
+                NSLog(@"用户已授权通知权限");
+            } else {
+                NSLog(@"用户未授权通知权限");
+            }
+        }];
+        // 注册远程通知
+        [UIApplication.sharedApplication registerForRemoteNotifications];
+        // 设置 UNUserNotificationCenterDelegate
+        UNUserNotificationCenter.currentNotificationCenter.delegate = self;
+        return YES;
+    }
+    // 处理远程通知注册成功
+    - (void)application:(UIApplication *)application
+    didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+        NSLog(@"远程通知注册成功，设备令牌：%@", deviceToken);
+        // 将设备令牌发送给后端服务器
+    }
+    // 处理远程通知注册失败
+    - (void)application:(UIApplication *)application
+    didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+        NSLog(@"远程通知注册失败：%@", error.localizedDescription);
+    }
+    // 接收远程通知
+    - (void)application:(UIApplication *)application
+    didReceiveRemoteNotification:(NSDictionary *)userInfo
+    fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+        NSLog(@"接收到远程通知：%@", userInfo);
+        // 在此处理接收到的通知
+        completionHandler(UIBackgroundFetchResultNewData);
+    }
+    // iOS 10 及以上版本的接收远程通知的方法
+    - (void)userNotificationCenter:(UNUserNotificationCenter *)center 
+    didReceiveNotificationResponse:(UNNotificationResponse *)response
+    withCompletionHandler:(void (^)(void))completionHandler {
+        NSLog(@"接收到远程通知响应：%@", response.notification.request.content.userInfo);
+        // 在此处理接收到的通知响应
+        completionHandler();
+    }
+    
+    @end
   
-  @end
-  
-  @implementation AppDelegate
-  
-  - (BOOL)application:(UIApplication *)application 
-  didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-      // 请求通知权限
-      [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionSound | UNAuthorizationOptionBadge) 
-       completionHandler:^(BOOL granted, NSError * _Nullable error) {
-          if (granted) {
-              NSLog(@"用户已授权通知权限");
-          } else {
-              NSLog(@"用户未授权通知权限");
-          }
-      }];
-      // 注册远程通知
-      [UIApplication.sharedApplication registerForRemoteNotifications];
-      // 设置 UNUserNotificationCenterDelegate
-      UNUserNotificationCenter.currentNotificationCenter.delegate = self;
-      return YES;
-  }
-  // 处理远程通知注册成功
-  - (void)application:(UIApplication *)application
-  didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-      NSLog(@"远程通知注册成功，设备令牌：%@", deviceToken);
-      // 将设备令牌发送给后端服务器
-  }
-  // 处理远程通知注册失败
-  - (void)application:(UIApplication *)application
-  didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-      NSLog(@"远程通知注册失败：%@", error.localizedDescription);
-  }
-  // 接收远程通知
-  - (void)application:(UIApplication *)application
-  didReceiveRemoteNotification:(NSDictionary *)userInfo
-  fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-      NSLog(@"接收到远程通知：%@", userInfo);
-      // 在此处理接收到的通知
-      completionHandler(UIBackgroundFetchResultNewData);
-  }
-  // iOS 10 及以上版本的接收远程通知的方法
-  - (void)userNotificationCenter:(UNUserNotificationCenter *)center 
-  didReceiveNotificationResponse:(UNNotificationResponse *)response
-  withCompletionHandler:(void (^)(void))completionHandler {
-      NSLog(@"接收到远程通知响应：%@", response.notification.request.content.userInfo);
-      // 在此处理接收到的通知响应
-      completionHandler();
-  }
-  
-  @end
-  ```
   * **推送通知的处理**：
     - 当用户收到推送通知时，通知会显示在设备的通知中心，并发出声音和/或振动。用户可以点击通知来打开应用程序或执行其他操作；
     - 应用程序可以在接收到推送通知时执行自定义操作，如展示特定界面、更新数据等；
