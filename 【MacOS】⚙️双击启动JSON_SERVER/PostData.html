@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>POST 提交 - 全功能日志展示</title>
+  <script src="config.js"></script>
+  <style>
+    :root {
+      --bg: #f0f2f5;       --text: #333;        --card-bg: #fff;
+      --border: #eee;      --primary: #1890ff;  --pre-bg: #f6f8fa;
+      --online: #52c41a;   --offline: #ff4d4f;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1e1e1e;    --text: #ddd;        --card-bg: #2c2c2c;
+        --border: #444;   --primary: #40a9ff;  --pre-bg: #2e2e2e;
+      }
+    }
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+         background:var(--bg);color:var(--text);margin:0;padding:30px;}
+    #netStatus{text-align:center;padding:10px;font-weight:bold;color:#fff;
+               background:var(--online);border-radius:6px;margin-bottom:20px;}
+    .offline{background:var(--offline)!important;}
+    .container{max-width:720px;margin:auto;background:var(--card-bg);
+               padding:25px 30px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.08);
+               border:1px solid var(--border);}
+    h2{text-align:center;color:var(--primary);}
+    .info-label{background:rgba(24,144,255,.1);border-left:5px solid var(--primary);
+                padding:12px 16px;margin:20px 0;border-radius:6px;}
+    .section-title{font-weight:bold;font-size:15px;color:var(--primary);
+                   margin:24px 0 6px;}
+    form label{display:block;margin-top:12px;font-weight:500;}
+    input{width:100%;padding:8px 12px;font-size:14px;border:1px solid #ccc;
+          border-radius:6px;margin-top:4px;background:#fff;box-sizing:border-box;
+          transition:border-color .3s;}
+    @media (prefers-color-scheme:dark){
+      input{background:#1e1e1e;color:#eee;border-color:#555;}
+    }
+    input:focus{border-color:var(--primary);outline:none;}
+    .data-section{background:var(--pre-bg);border:1px solid var(--border);
+                  padding:16px;border-radius:8px;margin-top:10px;}
+    button{background:var(--primary);color:#fff;border:none;padding:12px 20px;
+           font-size:16px;border-radius:6px;cursor:pointer;transition:background .3s;}
+    button:hover{background:#40a9ff;}
+    .action-btn{float:right;margin:-40px 0 10px 5px;padding:5px 10px;
+                font-size:12px;background:#eee;border:1px solid #ccc;border-radius:4px;}
+    .action-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+    pre{margin-top:20px;background:var(--pre-bg);padding:16px;border-radius:6px;
+        font-size:14px;white-space:pre-wrap;border-left:5px solid var(--primary);
+        overflow-x:auto;}
+  </style>
+</head>
+<body>
+  <!-- 网络状态 & IP -->
+  <div id="netStatus">🔄 检测网络状态中...</div>
+
+  <div class="container">
+    <h2>POST 提交测试 - 全功能日志展示</h2>
+
+    <p class="info-label">
+      📌 提交后将展示完整请求 / 响应 / 耗时 / 时间戳 / 客户端IP 等信息，并可复制或下载 JSON。
+    </p>
+
+    <!-- 表单 -->
+    <form id="postForm">
+      <div class="section-title">msg:</div>
+      <input type="text" name="msg" value="创建成功" required>
+
+      <div class="section-title">code:</div>
+      <input type="number" name="code" value="201" required>
+
+      <div class="section-title">data 部分：</div>
+      <div class="data-section">
+        <label>title:
+          <input type="text" name="title" value="示例文章标题" required>
+        </label>
+        <label>author.id:
+          <input type="number" name="author_id" value="1" required>
+        </label>
+        <label>author.name:
+          <input type="text" name="author_name" value="张三" required>
+        </label>
+        <label>author.email:
+          <input type="email" name="author_email" value="test@example.com" required>
+        </label>
+        <label>tags:
+          <input type="text" name="tags" value="tag1,tag2">
+        </label>
+        <label>metadata.views:
+          <input type="number" name="views" value="100">
+        </label>
+        <label>metadata.likes:
+          <input type="number" name="likes" value="10">
+        </label>
+        <label>metadata.published_at:
+          <input type="datetime-local" name="published_at" id="published_at">
+        </label>
+      </div>
+
+      <button type="submit">提交 POST 请求</button>
+    </form>
+
+    <!-- 操作按钮 -->
+    <button class="action-btn" id="downloadBtn" onclick="downloadJSON()" disabled>💾 下载响应 JSON</button>
+    <button class="action-btn" onclick="copyResponse()">📋 复制全部输出</button>
+
+    <!-- 输出区 -->
+    <pre id="response">📭 等待提交...</pre>
+  </div>
+
+  <script>
+    /* ---------- 初始化默认时间 ---------- */
+    const pad = n => n.toString().padStart(2,'0');
+    const now = new Date();
+    document.getElementById('published_at').value =
+      `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
+    /* ---------- 网络状态 & IP ---------- */
+    const netStatus = document.getElementById('netStatus');
+    let clientIP = '获取中...';
+    fetch('https://api.ipify.org?format=json')
+      .then(r=>r.json()).then(d=>{clientIP=d.ip; updateNetworkStatus();})
+      .catch(()=>{clientIP='未知'; updateNetworkStatus();});
+
+    function updateNetworkStatus(){
+      const online = navigator.onLine;
+      netStatus.textContent = `${online ? '✅ 网络已连接' : '⚠️ 网络已断开'} | IP: ${clientIP}`;
+      netStatus.classList.toggle('offline', !online);
+    }
+    window.addEventListener('online', updateNetworkStatus);
+    window.addEventListener('offline', updateNetworkStatus);
+
+    /* ---------- 全局变量 ---------- */
+    const responseBox = document.getElementById('response');
+    let lastResponseJSON = null;
+
+    /* ---------- 复制 ---------- */
+    function copyResponse(){
+      navigator.clipboard.writeText(responseBox.textContent)
+        .then(()=>alert('✅ 已复制到剪贴板'))
+        .catch(err=>alert('❌ 复制失败：'+err));
+    }
+
+    /* ---------- 下载 ---------- */
+    function downloadJSON(){
+      if(!lastResponseJSON){
+        alert('⚠️ 还没有可下载的响应体');
+        return;
+      }
+      const blob = new Blob([JSON.stringify(lastResponseJSON,null,2)],{type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'response.json'; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    /* ---------- 表单提交 ---------- */
+    document.getElementById('postForm').addEventListener('submit', async e=>{
+      e.preventDefault();
+      lastResponseJSON = null;
+      document.getElementById('downloadBtn').disabled = true;
+
+      /* 组装请求体 */
+      const f = new FormData(e.target);
+      const payload = {
+        msg: f.get('msg'),
+        code: Number(f.get('code')),
+        data:{
+          title:f.get('title'),
+          author:{
+            id:Number(f.get('author_id')),
+            name:f.get('author_name'),
+            email:f.get('author_email')
+          },
+          tags:f.get('tags').split(',').map(t=>t.trim()).filter(Boolean),
+          metadata:{
+            views:Number(f.get('views')),
+            likes:Number(f.get('likes')),
+            published_at:new Date(f.get('published_at')).toISOString()
+          }
+        }
+      };
+
+      /* 打印请求信息 */
+      const url = `http://localhost:${JSON_SERVER_PORT}/posts`;
+      const headers = {'Content-Type':'application/json'};
+      responseBox.textContent =
+        `📍 开始时间: ${new Date().toISOString()}\n`+
+        `📤 请求信息：\nURL: ${url}\nMethod: POST\nHeaders: ${JSON.stringify(headers,null,2)}\n`+
+        `Body:\n${JSON.stringify(payload,null,2)}\n\n⏳ 正在等待响应...\n`;
+
+      const t0 = performance.now();
+      const t0Date = new Date();
+
+      try{
+        const res = await fetch(url,{method:'POST',headers,body:JSON.stringify(payload)});
+        const t1 = performance.now();
+        const t1Date = new Date();
+        const duration = Math.round(t1 - t0);
+
+        const resHeaders = {};
+        res.headers.forEach((v,k)=>resHeaders[k]=v);
+        const statusLine = `${res.status} ${res.statusText}`;
+        const json = await res.json();
+        lastResponseJSON = json;
+        document.getElementById('downloadBtn').disabled = false;
+
+        responseBox.textContent +=
+          `\n✅ 结束时间: ${t1Date.toISOString()}\n`+
+          `⏱️ 耗时: ${duration} ms\n`+
+          `响应状态码: ${statusLine}\n\n`+
+          `响应头:\n${JSON.stringify(resHeaders,null,2)}\n\n`+
+          `响应体:\n${JSON.stringify(json,null,2)}\n`;
+      }catch(err){
+        responseBox.textContent += `\n❌ 请求失败：${err}\n`;
+      }
+    });
+  </script>
+</body>
+</html>
