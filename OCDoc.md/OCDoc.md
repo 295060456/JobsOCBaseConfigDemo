@@ -316,7 +316,7 @@ for (int i = 0; i < n; i++) {
   * atomic 属性是线程安全的，但在实际开发中很少使用，因为其性能开销较高，而且它并不能解决所有线程安全问题。
   * 开发中推荐使用 nonatomic，同时通过其他手段（如 GCD 或 NSLock）来实现真正的线程安全。 
 
-## <font color="red">***strong/copy ***</font><a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## <font color="red">***strong/copy***</font><a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
 * **只有对不可变对象进行copy操作是指针复制（浅复制），其它情况都是内容复制（深复制）！**
 
@@ -473,7 +473,7 @@ for (int i = 0; i < n; i++) {
     @property(nonatomic,copy)JobsReturnIDByIDBlock loadBlock;
     ```
 
-  * 原因：<u>可能这个Block是栈Block</u>
+  * 原因：<u>**可能这个Block是栈Block**</u>
 
     * **内存管理：** 使用 `copy` 修饰符可以确保在设置 block 属性时，会将 block 复制到堆上，而不是简单地引用。这样可以避免在 block 在栈上分配时出现内存管理问题。
     
@@ -553,25 +553,25 @@ for (int i = 0; i < n; i++) {
 
   * 示例
 
-    * ```c
-      #include <stdio.h>
-      
-      int main() {
-          int arr[10];
-          /// int 表示数组的元素类型是整数。
-          /// (*p) 表示 p 是一个指针。
-          /// [10] 表示数组的大小是10。
-          int (*p)[10] = &arr;
-      
-          for(int i = 0; i < 10; i++) {
-              (*p)[i] = i; // 使用数组指针访问数组元素
-          }
-      
-          for(int i = 0; i < 10; i++) {
-              printf("%d ", (*p)[i]);
-          }return 0;
-      }
-      ```
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        int arr[10];
+        /// int 表示数组的元素类型是整数。
+        /// (*p) 表示 p 是一个指针。
+        /// [10] 表示数组的大小是10。
+        int (*p)[10] = &arr;
+    
+        for(int i = 0; i < 10; i++) {
+            (*p)[i] = i; // 使用数组指针访问数组元素
+        }
+    
+        for(int i = 0; i < 10; i++) {
+            printf("%d ", (*p)[i]);
+        }return 0;
+    }
+    ```
 
 * 指针数组（Array of Pointers）
 
@@ -581,24 +581,24 @@ for (int i = 0; i < n; i++) {
 
   * 示例
 
-    * ```c
-      #include <stdio.h>
-      
-      int main() {
-          int a = 1, b = 2, c = 3;
-          /// int * 表示数组的元素是指向整数的指针。
-      		/// p[3] 表示数组的大小是3。
-          int *p[3];
-      
-          p[0] = &a;
-          p[1] = &b;
-          p[2] = &c;
-      
-          for(int i = 0; i < 3; i++) {
-              printf("%d ", *p[i]); // 使用指针数组访问变量的值
-          }return 0;
-      }
-      ```
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        int a = 1, b = 2, c = 3;
+        /// int * 表示数组的元素是指向整数的指针。
+    		/// p[3] 表示数组的大小是3。
+        int *p[3];
+    
+        p[0] = &a;
+        p[1] = &b;
+        p[2] = &c;
+    
+        for(int i = 0; i < 3; i++) {
+            printf("%d ", *p[i]); // 使用指针数组访问变量的值
+        }return 0;
+    }
+    ```
 
 
 ## 常见锁 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
@@ -631,7 +631,7 @@ for (int i = 0; i < n; i++) {
 
 ## <font id=OC.copy>OC.copy</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
-* 可变对象.copy == 不可变对象
+* **可变对象.copy == 不可变对象**
 
 * 暴露的属性是 `NSString`、`NSArray`、`NSDictionary` 这些不可变类型；
 
@@ -862,6 +862,10 @@ for (int i = 0; i < n; i++) {
 
 ## KVC 和 KVO <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
+> 1、KVO 和 KVC 在实际开发中经常一起结合使用，以实现对对象属性的动态访问和监听；
+> 2、这两个特性能够使得代码更加灵活，同时也方便了数据模型和视图之间的通信；
+> 3、在实际应用中，需要注意使用 KVO 和 KVC 时的内存管理和性能问题，以确保应用的稳定性和性能优化；
+
 ### KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值**<font color="red">存储</font>
 
 * 通过key⭢对象属性。不需要通过`set/get`方法；
@@ -891,11 +895,6 @@ for (int i = 0; i < n; i++) {
   * 实现相应的观察方法
   * 当被观察的属性值变化时，观察者对象的观察方法会被调用
 * 对于 KVO 来说，被观察的属性必须符合一定的**命名规范**，通常以 `@property` 定义的属性都可以被观察；
-```
-1、KVO 和 KVC 在实际开发中经常一起结合使用，以实现对对象属性的动态访问和监听；
-2、这两个特性能够使得代码更加灵活，同时也方便了数据模型和视图之间的通信；
-3、在实际应用中，需要注意使用 KVO 和 KVC 时的内存管理和性能问题，以确保应用的稳定性和性能优化；
-```
 ### KVO相应的观察方法
 
 > **`observeValueForKeyPath:ofObject:change:context:`**
@@ -916,22 +915,54 @@ for (int i = 0; i < n; i++) {
 @end
 
 @interface Observer : NSObject
+@property (nonatomic, strong) MyObject *obj;
 @end
 
 @implementation Observer
+
 - (instancetype)init {
     if (self = [super init]) {
-        MyObject *obj = MyObject.new;
+        self.obj = [MyObject new];
         // 添加观察者
-        [obj addObserver:self 
-              forKeyPath:@"name"
-                 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-        // 修改属性值
-        obj.name = @"New Name";
-    }return self;
+        [self.obj addObserver:self
+                   forKeyPath:@"name"
+                      options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                      context:nil];
+        
+        // 触发观察
+        self.obj.name = @"New Name";
+    }
+    return self;
 }
-// 实现观察者的回调方法
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NS
+// KVO 回调方法
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    if ([keyPath isEqualToString:@"name"]) {
+        NSLog(@"🔍 属性 name 发生变化: %@ → %@",
+              change[NSKeyValueChangeOldKey],
+              change[NSKeyValueChangeNewKey]);
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+// 记得移除观察者（dealloc 中）
+- (void)dealloc {
+    [self.obj removeObserver:self forKeyPath:@"name"];
+    NSLog(@"✅ 已移除观察者");
+}
+
+@end
+// 测试主函数
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        Observer *observer = [[Observer alloc] init];
+        // 稍作停留，确保观察触发
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+    }
+    return 0;
+}
 ```
 ### KVC 和 KVO的相互调用问题
 
@@ -1559,7 +1590,9 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 * 它描述了函数的输入参数以及返回值的类型，用于**确定函数的类型和使用方式，用于唯一标识一个特定的函数或方法**；
 ## 方法的重载：<font color="red">系统将会识别为2个不同的方法</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
-> 方法的重载（Overloading）是指在同一个类中定义多个同名但参数列表不同的方法方法的参数列表必须不同。参数列表包括参数的类型、数量和顺序。
+> * 方法的重载（Overloading）是指在同一个类中定义多个同名但参数列表不同的方法。
+>   * 方法的参数列表必须不同；
+>   * 参数列表包括参数的类型、数量和顺序。
 
 * Swift 支持方法的重载：***仅仅参数顺序不一致，Swift 不会将其视为方法重载***。因为 Swift 方法的标识符是由方法名和参数类型构成的，**参数顺序不会影响方法的标识符**<font color="red">（相对于Java语言，更加的严格）</font>
 
@@ -1670,6 +1703,43 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 
 ### pthread
 
+```objective-c
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <unistd.h>
+
+void *print_message(void *arg) {
+    char *message = (char *)arg;
+    printf("子线程：%s\n", message);
+    return NULL;
+}
+
+int main() {
+    pthread_t thread1, thread2;
+
+    char *msg1 = "线程1正在运行...";
+    char *msg2 = "线程2正在运行...";
+
+    // 创建线程
+    if (pthread_create(&thread1, NULL, print_message, msg1) != 0) {
+        perror("创建线程1失败");
+        exit(1);
+    }
+    if (pthread_create(&thread2, NULL, print_message, msg2) != 0) {
+        perror("创建线程2失败");
+        exit(1);
+    }
+
+    // 等待线程结束
+    pthread_join(thread1, NULL);
+    pthread_join(thread2, NULL);
+
+    printf("主线程：所有子线程执行完毕。\n");
+    return 0;
+}
+```
+
 * *pthread（**P**OSIX **Thread**s）*是一套<font color="red">***C语言编写***</font>的**跨平台多线程API**，**使用难度大**，需要**手动管理线程生命周期**。（需要更加谨慎地处理线程的同步和互斥操作，以避免出现死锁、数据竞争等问题）
   * **线程创建和管理**： pthread 库允许程序员创建、销毁、等待和控制线程的执行。通过调用 pthread_create 函数，程序可以创建新的线程并指定线程执行的函数。程序还可以使用 pthread_join 函数等待线程的结束，并使用 pthread_exit 函数退出当前线程；
   * **线程同步**： pthread 提供了一系列的同步机制，如互斥锁（Mutex）、条件变量（Condition Variable）、信号量（Semaphore）等，可以用于多线程之间的同步和互斥操作。这些同步机制可以帮助程序员避免多个线程同时访问共享资源导致的竞态条件和数据不一致性问题；
@@ -1677,6 +1747,25 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   * **线程取消和退出**： pthread 允许程序员取消线程的执行，并在需要时优雅地退出线程。程序员可以使用 pthread_cancel 函数取消指定线程的执行，并使用 pthread_exit 函数主动退出当前线程；
   * **线程局部存储**： pthread 提供了线程局部存储（Thread-Specific Data，TSD）的机制，允许程序员为每个线程分配独立的存储空间。这些存储空间对于每个线程是私有的，可以用于存储线程特定的数据；
 ### NSThread
+
+```objective-c
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        MyThreadTask *task = [[MyThreadTask alloc] init];
+        // 创建并启动线程
+        NSThread *thread = [[NSThread alloc] initWithTarget:task selector:@selector(runTask:) object:@"Hello from thread!"];
+        [thread start];
+        // 主线程日志
+        NSLog(@"🌍 主线程：%@", [NSThread currentThread]);
+        // 等待子线程执行（可选，简单方式是 sleep）
+        [NSThread sleepForTimeInterval:1.0];
+    }return 0;
+}
+
+- (void)runTask:(NSString *)message {
+    NSLog(@"👤 子线程：%@，线程：%@", message, [NSThread currentThread]);
+}
+```
 
 * Cocoa 框架中的一部分<font color="red">***（较为底层）***</font>。面向对象操作线程，使用相对简单，需要手动管理线程生命周期；
   * **线程创建和管理**： 使用 `NSThread` 类，您可以创建新的线程，并通过调用 `start` 方法来启动线程的执行。您可以在创建线程时指定线程执行的方法，并传递参数给该方法。通过 `isExecuting` 和 `isFinished` 等属性，您可以查询线程的执行状态；
@@ -1828,6 +1917,83 @@ RunLoop.main.run()
 
 ### NSOperation
 
+> 使用 `NSBlockOperation`
+
+```objective-c
+#import <Foundation/Foundation.h>
+
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+            NSLog(@"🧵 执行任务，线程：%@", [NSThread currentThread]);
+        }];
+        // 也可以添加多个 block（并发执行）
+        [operation addExecutionBlock:^{
+            NSLog(@"📌 附加任务1，线程：%@", [NSThread currentThread]);
+        }];
+        [operation addExecutionBlock:^{
+            NSLog(@"📌 附加任务2，线程：%@", [NSThread currentThread]);
+        }];
+        [operation start]; // ⚠️ 如果直接调用 start，会在当前线程（通常是主线程）同步执行
+    }return 0;
+}
+```
+
+> 配合 `NSOperationQueue` 异步执行
+
+```objective-c
+#import <Foundation/Foundation.h>
+
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
+            NSLog(@"任务1 - %@", [NSThread currentThread]);
+        }];
+        NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
+            NSLog(@"任务2 - %@", [NSThread currentThread]);
+        }];
+        [queue addOperation:op1];
+        [queue addOperation:op2];
+        // 主线程等待一会以观察子线程输出
+        [NSThread sleepForTimeInterval:1.0];
+    }return 0;
+}
+```
+
+> 添加任务依赖关系
+
+```objective-c
+NSBlockOperation *downloadOp = [NSBlockOperation blockOperationWithBlock:^{
+    NSLog(@"📥 下载完成");
+}];
+
+NSBlockOperation *processOp = [NSBlockOperation blockOperationWithBlock:^{
+    NSLog(@"📦 处理完成");
+}];
+
+[processOp addDependency:downloadOp];
+
+NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+[queue addOperations:@[downloadOp, processOp] waitUntilFinished:NO];
+```
+
+> 自定义 NSOperation 子类（用于复杂任务）
+
+```objective-c
+@interface MyOperation : NSOperation
+@end
+
+@implementation MyOperation
+  
+- (void)main {
+    if (self.isCancelled) return;
+    NSLog(@"🔧 自定义任务运行中：%@", [NSThread currentThread]);
+}
+
+@end
+```
+
 * <font color="red">***基于GCD***</font>的封装，面向对象操作线程，提供了比[***GCD***](# GCD)更丰富的API：限制最大并发数，设置任务依赖关系；
 * 但是它<font color="red">***它不能直接使用***</font>，因为它是一个抽象类，可以继承它或者使用系统定义*NSInvocationOperation*或*NSBlockOperation*。自动管理线程生命周期；
   * **任务管理**： *NSOperation* 封装了一个执行任务的对象，可以用于执行各种类型的任务。您可以通过子类化 *NSOperation* 类，实现自定义的任务逻辑，并在其中执行所需的操作。
@@ -1917,7 +2083,7 @@ RunLoop.main.run()
 
 ## ***OC.database*** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
 
-### ***OC.SQLißte***
+### ***OC.SQLite***
 
 * 零配置：可在无需配置的情况下使用的简单的数据库引擎
 * C库：跨平台
