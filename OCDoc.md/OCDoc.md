@@ -2245,6 +2245,480 @@ int main(int argc, const char * argv[]) {
 ```
 ## ❗FAQ
 
+* <font color=red>**如何用`UITableView`来处理大数据灌入的业务场景**</font>
+
+  * 懒加载 + 分页机制
+
+  * 复用`UITableViewCell`
+  
+  * 提前计算高度（避免自动计算影响性能）
+  
+  * 分页 + 服务端下发数据摘要（点击进入详情页时，再请求完整数据）
+  
+      > **数据摘要**是一种让列表页展示内容**更快、更轻、更流畅**的后端策略。只返回必要信息，延迟加载重内容，是大数据 App 的核心优化技巧。
+  
+      * | 模式       | 说明                                                         |
+        | ---------- | ------------------------------------------------------------ |
+        | ✅ 数据摘要 | 服务端只返回 ID、标题、缩略图、时间等基础字段，列表中快速展示 |
+        | ❌ 数据全量 | 服务端返回完整详情（大图、多段文本、评论等），浪费带宽和内存 |
+  
+      * | 客户端功能         | 后端返回字段设计建议               |
+        | ------------------ | ---------------------------------- |
+        | 快速显示缩略图     | 提供压缩图 URL（如 `thumbUrl`）    |
+        | 快速显示摘要文本   | `summary` 字段提前拼接好           |
+        | 页面优化滚动       | 每页数据量和字段长度限制在合理范围 |
+        | 支持下拉刷新和续载 | 后端支持分页参数 `page`, `size`    |
+  
+  * 避免频繁 **`reloadData`**
+  
+    * 不要每次数据变动都 **`reloadData`**，优先使用：
+  
+      ```objective-c
+      [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+      ```
+  
+    * **`reloadData`** 如果一定要用，建议 `dispatch_async(dispatch_get_main_queue(), ^{ ... })`
+  
+  * 使用轻量 Model，避免大对象
+  
+    * 数据模型应只包含展示所需字段，避免将图片、富文本、数据库连接等塞入模型
+  
+  * 异步处理耗时任务
+  
+  * 预加载（可选）
+  
+    ```objective-c
+    - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+        NSIndexPath *lastVisibleIndexPath = [[self.tableView indexPathsForVisibleRows] lastObject];
+        if (lastVisibleIndexPath.row > self.dataSource.count - 10) {
+            [self loadMoreData];
+        }
+    }
+    ```
+    
+  * 💥考虑使用 Diffable DataSource（iOS 13+）
+  
+    * 如果你在支持 iOS 13+，建议使用 `UITableViewDiffableDataSource` 实现增量更新，性能更佳。
+    
+  * 💥替代方案（极大数据）如果数据量达到几万条甚至几十万条，可以考虑：
+  
+    * `UICollectionView` + `UICollectionViewCompositionalLayout`（更强的分片加载能力）
+    
+      > * 在 `UICollectionView` 中，**UICollectionViewCompositionalLayout** 是 Apple 从 **iOS 13** 引入的一种 **全新的布局系统**，全名是：**UICollectionViewCompositionalLayout**
+      >
+      > * **UICollectionViewCompositionalLayout**是一种模块化构建**UICollectionView**布局的`积木式`方式，让你用少量代码实现复杂结构，性能更好，灵活性极高。
+      >
+      > * ```objective-c
+      >   UICollectionViewCompositionalLayout
+      >    └── Section（NSCollectionLayoutSection）
+      >         └── Group（NSCollectionLayoutGroup）
+      >              └── Item（NSCollectionLayoutItem）
+      >   ```
+      >
+      > * ```objective-c
+      >   /// 必须使用 UICollectionViewCompositionalLayout 初始化
+      >   /// 建议使用 UICollectionViewDiffableDataSource 配合使用（管理数据更方便）
+      >   UICollectionViewCompositionalLayout *layout =
+      >       [[UICollectionViewCompositionalLayout alloc] initWithSectionProvider:^NSCollectionLayoutSection *(NSInteger sectionIndex, id<NSCollectionLayoutEnvironment> layoutEnvironment) {
+      >       // 1. 定义每个 item 大小（宽占满，高为 44）
+      >       NSCollectionLayoutSize *itemSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0]
+      >                                                                          heightDimension:[NSCollectionLayoutDimension absoluteDimension:44]];
+      >       NSCollectionLayoutItem *item = [NSCollectionLayoutItem itemWithLayoutSize:itemSize];
+      >       // 2. 定义 group（一行一个 item）
+      >       NSCollectionLayoutSize *groupSize = [NSCollectionLayoutSize sizeWithWidthDimension:[NSCollectionLayoutDimension fractionalWidthDimension:1.0]
+      >                                                                           heightDimension:[NSCollectionLayoutDimension absoluteDimension:44]];
+      >       NSCollectionLayoutGroup *group = [NSCollectionLayoutGroup horizontalGroupWithLayoutSize:groupSize subitems:@[item]];
+      >       // 3. 定义 section（一个 group 组成一个 section）
+      >       NSCollectionLayoutSection *section = [NSCollectionLayoutSection sectionWithGroup:group];
+      >       return section;
+      >   }];
+      >   ```
+      >
+      > * | 优点     | 说明                                   |
+      >   | -------- | -------------------------------------- |
+      >   | 灵活     | 横向滚动、瀑布流、嵌套布局都能轻松实现 |
+      >   | 性能     | Apple 专门优化过，比手写 layout 更快   |
+      >   | 模块化   | Section 可以单独配置，多个样式共存     |
+      >   | 简洁     | 少量代码即可定义复杂布局               |
+      >   | iOS 原生 | 不需要三方库                           |
+    
+  * <font color=red>**Facebook**.`AsyncDisplayKit`（后改名为[**Texture**](https://github.com/TextureGroup/Texture)框架、开源、**高性能 iOS.UI 框架**）</font>
+    
+      > * 核心目标就是：**流畅地渲染复杂界面，大数据量不卡顿**
+      >
+      > * [**Texture**](https://github.com/TextureGroup/Texture)和 **UIKit** 可以互相嵌套、协同使用。你可以把 **Node** 嵌入 **UIKit** 视图中，也可以把 **UIView** 添加进 **Node** 树中。
+      >
+      >   ```objective-c
+      >   /// Node 嵌入 UIKit（常用）
+      >   
+      >   /// node.view 是延迟生成的 UIView，只有访问时才真正创建。
+      >   ASDisplayNode *node = [[ASDisplayNode alloc] init];
+      >   node.frame = CGRectMake(10, 100, 200, 50);
+      >   node.backgroundColor = UIColor.redColor;
+      >   
+      >   [self.view addSubview:node.view]; // ✅ node.view 就是实际的 UIView
+      >   ```
+      >
+      >   ```objective-c
+      >   /// UIView 嵌入 Node（不推荐。如需）
+      >   
+      >   UILabel *label = [[UILabel alloc] init];
+      >   label.text = @"传统 UILabel";
+      >   /// initWithViewBlock: 的机制允许将任何 UIKit 控件包装成一个 Node
+      >   ASDisplayNode *node = [[ASDisplayNode alloc] initWithViewBlock:^UIView * _Nonnull{
+      >       return label;
+      >   }];
+      >   ```
+      >
+      >   ```objective-c
+      >   /// 控制器级别互相嵌套
+      >   /// ASViewController 是 UIViewController 的子类，可以当成普通 VC 使用
+      >   ASViewController *vc = [[ASViewController alloc] initWithNode:rootNode];
+      >   [self.navigationController pushViewController:vc animated:YES];
+      >   ```
+      >
+      > * 所有 UI 元素都是 **Node**
+      >
+      >   | UIKit 类             | Texture 对应类（Node）                        | 说明                                |
+      >   | -------------------- | --------------------------------------------- | ----------------------------------- |
+      >   | `UIView`             | `ASDisplayNode`                               | 所有 Node 的基类，代表可渲染视图    |
+      >   | `UILabel`            | `ASTextNode`                                  | 异步文本节点，支持富文本，异步绘制  |
+      >   | `UITextView`         | `ASTextNode` + `userInteractionEnabled = YES` | 支持文本交互                        |
+      >   | `UIButton`           | `ASButtonNode`                                | 支持异步文本、图片的按钮            |
+      >   | `UIImageView`        | `ASImageNode`                                 | 异步图片节点，支持本地和网络图片    |
+      >   | `UITableView`        | `ASTableNode`                                 | 异步表格列表，内部是 UITableView    |
+      >   | `UICollectionView`   | `ASCollectionNode`                            | 异步瀑布流，内部是 UICollectionView |
+      >   | `UIScrollView`       | `ASScrollNode`                                | 异步滚动容器，可横纵方向配置        |
+      >   | `UITextField`        | `ASEditableTextNode`                          | 可编辑文本输入节点                  |
+      >   | `UIStackView`        | `ASStackLayoutSpec`                           | 异步布局容器（Flexbox 风格）        |
+      >   | `UILayoutConstraint` | `ASLayoutSpec` 系列（Inset、Ratio 等）        | 替代 AutoLayout 的布局工具          |
+      >   | `UIViewController`   | `ASViewController`                            | 与 Node 配合使用的控制器            |
+      >
+      > * 生命周期与 UIKit 差异点
+      >
+      >   | 点                | 说明                                                         |
+      >   | ----------------- | ------------------------------------------------------------ |
+      >   | View 不立即生成   | 所有 Node 默认 **不会立刻生成 UIView/CALayer**，直到真正需要展示 |
+      >   | 不推荐 addSubview | 推荐使用 `layoutSpecThatFits:` 来描述布局，而不是直接 add    |
+      >   | 支持异步构建 UI   | 可以在 `ASCellNode` 的 `init` 中构建复杂 UI，无需触发主线程  |
+      >
+      > * 图片自动缓存 + 解码
+      >
+      >   > 1、自动处理图片解码、缓存、异步加载
+      >   >
+      >   > 2、支持网络图片和本地图片
+      >   >
+      >   > 3、比 **SDWebImage** 更省力（甚至内置预解码）
+      >
+      > * **布局系统灵活**
+      >
+      >   > 1、内建 Flexbox（类似 CSS）
+      >   >
+      >   > 2、支持自动布局、手动布局
+      >   >
+      >   > 3、不依赖 AutoLayout，性能更高
+      >
+      > * | 特性        | 传统 UIKit                       | AsyncDisplayKit（Texture）                                   |
+      >   | ----------- | -------------------------------- | ------------------------------------------------------------ |
+      >   | 绘制线程    | 主线程                           | **后台线程异步绘制**                                         |
+      >   | UI 更新方式 | 主线程操作 View 层级、绘图等     | 后台线程生成内容，主线程只展示                               |
+      >   | 滚动性能    | 数据越多越卡顿                   | 1、**UI 无阻塞、不卡顿、（60FPS ）滚动流畅**（提前渲染）<br/>2、尤其适合复杂 UI（图文混排、富文本、图片等） |
+      >   | 卡顿原因    | 主线程既要布局又要绘制，容易阻塞 | 主线程只负责展示，耗时任务在后台完成                         |
+      >   | 渲染机制    | `UIView.drawRect:`               | `ASDisplayNode.display`                                      |
+      >   | 节点模型    | UIKit 中的 `UIView`/`UILabel` 等 | 使用 `ASDisplayNode` 统一管理显示内容                        |
+      >   | 是否懒加载  | 否                               | 是。节点在需要时才加载：<br>只创建即将显示的部分节点（非全量 init） |
+      >   | 多线程安全  | 需要手动处理                     | 内部封装良好，线程安全                                       |
+      >   | 使用复杂度  | 简单直接                         | 相对复杂，但性能优越                                         |
+      >   | 适合场景    | 小量静态 UI                      | **大量数据、高性能滚动列表**（如朋友圈、Feed）               |
+      >
+      > * Demo：实现一个支持异步加载的 `ASTableView`，每个 cell 展示：一张图片（网络异步加载）+ 一段标题文字（ASTextNode）
+      >
+      >   ```ruby
+      >   platform :ios, '11.0'
+      >   use_frameworks!
+      >   
+      >   target 'AsyncTableDemo' do
+      >     pod 'Texture'
+      >   end
+      >   ```
+      >
+      >   ```objective-c
+      >   #import <AsyncDisplayKit/AsyncDisplayKit.h>
+      >   
+      >   @interface MyCellNode : ASCellNode
+      >   
+      >   - (instancetype)initWithTitle:(NSString *)title imageURL:(NSURL *)url;
+      >   
+      >   @end
+      >   ```
+      >
+      >   ```objective-c
+      >   #import "MyCellNode.h"
+      >   
+      >   @interface MyCellNode ()
+      >   @property (nonatomic, strong) ASTextNode *titleNode;
+      >   @property (nonatomic, strong) ASNetworkImageNode *imageNode;
+      >   @end
+      >   
+      >   @implementation MyCellNode
+      >   
+      >   - (instancetype)initWithTitle:(NSString *)title imageURL:(NSURL *)url {
+      >       self = [super init];
+      >       if (self) {
+      >           self.automaticallyManagesSubnodes = YES;
+      >   
+      >           _titleNode = [[ASTextNode alloc] init];
+      >           _titleNode.attributedText = [[NSAttributedString alloc] initWithString:title
+      >                                                                        attributes:@{
+      >               NSFontAttributeName: [UIFont boldSystemFontOfSize:16],
+      >               NSForegroundColorAttributeName: UIColor.darkTextColor
+      >           }];
+      >   
+      >           _imageNode = [[ASNetworkImageNode alloc] init];
+      >           _imageNode.URL = url;
+      >           _imageNode.style.preferredSize = CGSizeMake(60, 60);
+      >           _imageNode.cornerRadius = 8;
+      >           _imageNode.clipsToBounds = YES;
+      >   
+      >           [self setSelectionStyle:ASTableViewCellSelectionStyleNone];
+      >       }
+      >       return self;
+      >   }
+      >   
+      >   - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
+      >       _titleNode.style.flexShrink = 1.0;
+      >   
+      >       ASStackLayoutSpec *horizontalStack = [ASStackLayoutSpec
+      >           stackLayoutSpecWithDirection:ASStackLayoutDirectionHorizontal
+      >           spacing:10
+      >           justifyContent:ASStackLayoutJustifyContentStart
+      >           alignItems:ASStackLayoutAlignItemsCenter
+      >           children:@[_imageNode, _titleNode]];
+      >   
+      >       UIEdgeInsets insets = UIEdgeInsetsMake(10, 15, 10, 15);
+      >       return [ASInsetLayoutSpec insetLayoutSpecWithInsets:insets child:horizontalStack];
+      >   }
+      >   
+      >   @end
+      >   ```
+      >
+      >   ```objective-c
+      >   #import <AsyncDisplayKit/AsyncDisplayKit.h>
+      >   #import "MyCellNode.h"
+      >   
+      >   @interface AsyncTableVC : ASViewController<ASTableNode *><ASTableDataSource, ASTableDelegate>
+      >   @property (nonatomic, strong) ASTableNode *tableNode;
+      >   @property (nonatomic, strong) NSArray<NSDictionary *> *dataSource;
+      >   @end
+      >   
+      >   @implementation AsyncTableVC
+      >   
+      >   - (instancetype)init {
+      >       _tableNode = [[ASTableNode alloc] initWithStyle:UITableViewStylePlain];
+      >       self = [super initWithNode:_tableNode];
+      >       if (self) {
+      >           _tableNode.delegate = self;
+      >           _tableNode.dataSource = self;
+      >           self.title = @"Async Table";
+      >           self.dataSource = [self fakeData];
+      >       }
+      >       return self;
+      >   }
+      >   
+      >   - (NSArray *)fakeData {
+      >       NSMutableArray *arr = @[].mutableCopy;
+      >       for (int i = 0; i < 100; i++) {
+      >           [arr addObject:@{
+      >               @"title": [NSString stringWithFormat:@"第 %d 条内容：异步加载 Cell", i+1],
+      >               @"image": @"https://picsum.photos/60"
+      >           }];
+      >       }
+      >       return arr;
+      >   }
+      >   
+      >   #pragma mark - ASTableDataSource
+      >   
+      >   - (NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section {
+      >       return self.dataSource.count;
+      >   }
+      >   
+      >   - (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath {
+      >       NSDictionary *dict = self.dataSource[indexPath.row];
+      >       NSString *title = dict[@"title"];
+      >       NSURL *imgURL = [NSURL URLWithString:dict[@"image"]];
+      >   
+      >       return ^ASCellNode *{
+      >           return [[MyCellNode alloc] initWithTitle:title imageURL:imgURL];
+      >       };
+      >   }
+      >   
+      >   @end
+      >   ```
+      >
+      >   ```objective-c
+      >   #import "AppDelegate.h"
+      >   #import "AsyncTableVC.h"
+      >   
+      >   @implementation AppDelegate
+      >   /// 设置为根控制器
+      >   - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+      >       self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+      >       self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[AsyncTableVC alloc] init]];
+      >       [self.window makeKeyAndVisible];
+      >       return YES;
+      >   }
+      >   
+      >   @end
+      >   ```
+      >
+      > * ## ❗注意事项
+      >
+      >   1、 `ASDisplayNode.view` 不能过早访问，否则失去异步构建优势（建议在 `didLoad` 或之后访问）
+      >   2、 `ASCellNode` 中不要强行访问 UIKit，否则会阻塞异步布局
+      >   3、 嵌套使用时注意线程：Node 可在子线程布局，UIKit 只能在主线程操作
+    
+  * 💥**Instagram**.[**IGListKit**](https://github.com/Instagram/IGListKit)
+  
+    > * **Instagram（Meta）团队开源** 的一个高性能列表框架，专门用来解决 UIKit 中 `UICollectionView` 在处理**复杂数据结构和动态列表更新**时性能低下、代码臃肿的问题。
+    >
+    > * | 项目     | 内容                                                         |
+    >   | -------- | ------------------------------------------------------------ |
+    >   | 名称     | [**IGListKit**](https://github.com/Instagram/IGListKit)      |
+    >   | 作者     | Instagram（Meta）开源                                        |
+    >   | 语言     | Objective-C / Swift（桥接）                                  |
+    >   | 基于     | UICollectionView                                             |
+    >   | 核心概念 | Section Controller                                           |
+    >   | 适用场景 | **动态 Cell 高度、多个 Cell 类型混排、数据频繁刷新等复杂场景** |
+    >
+    >   ✅ [**IGListKit**](https://github.com/Instagram/IGListKit) 的优势
+    >
+    >   | 优势             | 描述                                                         |
+    >   | ---------------- | ------------------------------------------------------------ |
+    >   | 🚀 高性能         | 支持差异化更新（diffing），不必 reloadData，全局刷新不会卡顿 |
+    >   | 🔄 数据驱动       | 每条数据和 UI 完全解耦，自动计算哪些 Cell 改变               |
+    >   | 🔗 松耦合结构     | 数据 <-> SectionController 分离，易于维护与复用              |
+    >   | 📦 支持 Cell 嵌套 | 支持嵌套列表，如：Feed + 评论结构                            |
+    >   | 🧠 Diff 算法      | 使用 `IGListDiffable` 协议对比旧数据与新数据，高效更新 UI    |
+    >
+    > * Demo：
+    >
+    >   ```ruby
+    >   pod 'IGListKit'
+    >   ```
+    >   
+    >   ```objective-c
+    >   #import <IGListKit/IGListDiffable.h>
+    >   
+    >   @interface FruitModel : NSObject <IGListDiffable>
+    >   @property (nonatomic, copy) NSString *name;
+    >   @end
+    >   
+    >   @implementation FruitModel
+    >   
+    >   - (id<NSObject>)diffIdentifier {
+    >       return self.name;
+    >   }
+    >   
+    >   - (BOOL)isEqualToDiffableObject:(nullable id<IGListDiffable>)object {
+    >       return [self.name isEqualToString:((FruitModel *)object).name];
+    >   }
+    >   
+    >   @end
+    >   ```
+    >   
+    >   ```objective-c
+    >   #import <IGListKit/IGListSectionController.h>
+    >   
+    >   @interface FruitSectionController : IGListSectionController
+    >   @property (nonatomic, strong) FruitModel *model;
+    >   @end
+    >   
+    >   @implementation FruitSectionController
+    >   
+    >   - (NSInteger)numberOfItems {
+    >       return 1;
+    >   }
+    >   
+    >   - (CGSize)sizeForItemAtIndex:(NSInteger)index {
+    >       return CGSizeMake(self.collectionContext.containerSize.width, 44);
+    >   }
+    >   
+    >   - (UICollectionViewCell *)cellForItemAtIndex:(NSInteger)index {
+    >       UICollectionViewCell *cell = [self.collectionContext dequeueReusableCellOfClass:UICollectionViewCell.class
+    >                                                                 forSectionController:self
+    >                                                                              atIndex:index];
+    >       
+    >       // 清除旧内容
+    >       for (UIView *subview in cell.contentView.subviews) [subview removeFromSuperview];
+    >       
+    >       UILabel *label = [[UILabel alloc] initWithFrame:cell.contentView.bounds];
+    >       label.text = self.model.name;
+    >       [cell.contentView addSubview:label];
+    >       return cell;
+    >   }
+    >   
+    >   - (void)didUpdateToObject:(id)object {
+    >       self.model = object;
+    >   }
+    >   @end
+    >   ```
+    >   
+    >   ```objective-c
+    >   #import <IGListKit/IGListKit.h>
+    >   /// 控制器中绑定 IGListAdapter
+    >   @interface ViewController () <IGListAdapterDataSource>
+    >   @property (nonatomic, strong) IGListAdapter *adapter;
+    >   @property (nonatomic, strong) UICollectionView *collectionView;
+    >   @property (nonatomic, strong) NSArray<FruitModel *> *data;
+    >   @end
+    >   
+    >   @implementation ViewController
+    >   
+    >   - (void)viewDidLoad {
+    >       [super viewDidLoad];
+    >       
+    >       self.data = @[
+    >           [self fruit:@"苹果"],
+    >           [self fruit:@"香蕉"],
+    >           [self fruit:@"橘子"]
+    >       ];
+    >       
+    >       UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+    >       self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    >       [self.view addSubview:self.collectionView];
+    >       
+    >       self.adapter = [[IGListAdapter alloc] initWithUpdater:[IGListAdapterUpdater new]
+    >                                              viewController:self];
+    >       self.adapter.collectionView = self.collectionView;
+    >       self.adapter.dataSource = self;
+    >   }
+    >   
+    >   - (FruitModel *)fruit:(NSString *)name {
+    >       FruitModel *m = [FruitModel new];
+    >       m.name = name;
+    >       return m;
+    >   }
+    >   
+    >   // IGListAdapterDataSource
+    >   - (NSArray<id<IGListDiffable>> *)objectsForListAdapter:(IGListAdapter *)listAdapter {
+    >       return self.data;
+    >   }
+    >   
+    >   - (IGListSectionController *)listAdapter:(IGListAdapter *)listAdapter sectionControllerForObject:(id)object {
+    >       return [FruitSectionController new];
+    >   }
+    >   
+    >   - (nullable UIView *)emptyViewForListAdapter:(IGListAdapter *)listAdapter {
+    >       return nil;
+    >   }
+    >   @end
+    >   ```
+    >   
+    > * ⚠️ 注意
+    >
+    >   1、对初学者不算轻量，学习曲线略高
+    >   2、不适合简单列表，适合复杂业务模块化
+  
 * **`POST`**能做一切操作，可是为什么还要有**`PUT`**、**`PATCH`**、**`DELETE`**❓（经典问题）
 
   * 语义明确（语义化 API）➡️ 使用不同的 HTTP 方法，能让人一眼看懂接口的**用途**，代码更清晰、逻辑更规范。
