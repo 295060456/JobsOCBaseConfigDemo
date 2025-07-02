@@ -20,8 +20,8 @@
     CGSize _pageSize; /// 单页的尺寸（代理传入的值）
     NSRange _visibleRange; /// 可视范围
 }
-Prop_copy()NSMutableArray *cardViewArray; /// 装有cardView 数组
-Prop_copy()NSMutableArray *reusableArray; /// 可重用cardView 数组
+Prop_strong()NSMutableArray *cardViewArray; /// 装有cardView 数组
+Prop_strong()NSMutableArray *reusableArray; /// 可重用cardView 数组
 Prop_strong()UIScrollView *insideScrollView;
 
 @end

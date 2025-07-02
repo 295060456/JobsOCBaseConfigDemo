@@ -9,7 +9,7 @@
 
 @interface MSCommentView ()
 /// Data
-Prop_copy()NSMutableArray <MSCommentModel *>*dataMutArr;
+Prop_strong()NSMutableArray <MSCommentModel *>*dataMutArr;
 
 @end
 

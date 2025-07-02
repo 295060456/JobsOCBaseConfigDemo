@@ -15,8 +15,8 @@ Prop_strong()UILabel *chatUserNameLab;/// 用户名
 Prop_strong()UILabel *chatContentLab;/// 聊天信息承接
 Prop_strong()UILabel *timeLab;
 Prop_strong()UILongPressGestureRecognizer *longPG;
-Prop_copy()NSMutableArray <UIImage *>*chatBubbleMutArr;
-Prop_copy()NSMutableArray <UIMenuItem *>*menuItemMutArr;
+Prop_strong()NSMutableArray <UIImage *>*chatBubbleMutArr;
+Prop_strong()NSMutableArray <UIMenuItem *>*menuItemMutArr;
 /// data
 Prop_copy()NSString *senderChatTextStr;/// 该聊天的文本信息
 Prop_copy()NSString *senderChatTextTimeStr;/// 该聊天的时间戳
@@ -26,8 +26,8 @@ Prop_copy()NSString *identification;/// 该聊天对应的数据库坐标ID
 Prop_assign()CGFloat contentHeight;/// 内容高
 Prop_assign()CGFloat contentWidth;/// 内容宽
 Prop_assign()InfoLocation infoLocation;
-Prop_copy()NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
-Prop_copy()NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
+Prop_strong()NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
+Prop_strong()NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
 
 @end
 

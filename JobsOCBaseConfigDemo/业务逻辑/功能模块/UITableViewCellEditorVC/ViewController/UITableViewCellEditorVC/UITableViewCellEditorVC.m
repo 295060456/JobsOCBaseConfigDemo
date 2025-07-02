@@ -12,8 +12,8 @@
 Prop_strong()BaseButton *editBtn;
 Prop_strong()MsgEditBoardView *msgEditBoardView;
 /// Data
-Prop_copy()NSMutableArray <JobsMsgDataModel *>*dataMutArr;
-Prop_copy()NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
+Prop_strong()NSMutableArray <JobsMsgDataModel *>*dataMutArr;
+Prop_strong()NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
 
 @end
 

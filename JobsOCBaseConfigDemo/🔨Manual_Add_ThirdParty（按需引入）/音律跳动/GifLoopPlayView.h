@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 Prop_assign()BOOL stopped;// YES: 没有播放，NO：正在播放
 Prop_assign()CGFloat duration;// 动图执行周期
-Prop_copy()NSMutableArray<UIImage *> *gifMutArr;// 要播放的动画序列
+Prop_strong()NSMutableArray<UIImage *> *gifMutArr;// 要播放的动画序列
 Prop_strong()UIImage *pauseImage;// 暂停时显示的图片
 
 @end

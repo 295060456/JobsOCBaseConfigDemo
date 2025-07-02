@@ -9,7 +9,7 @@
 
 @interface JobsUserHeaderDataView ()
 /// Data
-Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 

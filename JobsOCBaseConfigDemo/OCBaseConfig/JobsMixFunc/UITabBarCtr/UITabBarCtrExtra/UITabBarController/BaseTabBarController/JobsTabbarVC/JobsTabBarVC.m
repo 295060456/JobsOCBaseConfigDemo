@@ -16,8 +16,8 @@ Prop_strong(readwrite)JobsTabBar *myTabBar;/// myTabBar.humpOffsetY 凸起的高
 /// Data
 Prop_assign()BOOL isOpenPPBadge;
 Prop_assign()NSInteger subViewControllerCount;
-Prop_copy()NSMutableArray <UIView *>*UITabBarButtonMutArr;/// UITabBarButton 是内部类 直接获取不到，需要间接获取
-Prop_copy()NSMutableArray <UIViewModel *>*pullListAutoSizeViewMutArr;
+Prop_strong()NSMutableArray <UIView *>*UITabBarButtonMutArr;/// UITabBarButton 是内部类 直接获取不到，需要间接获取
+Prop_strong()NSMutableArray <UIViewModel *>*pullListAutoSizeViewMutArr;
 
 @end
 

@@ -10,9 +10,9 @@
 @interface JobsWalletVC ()
 /// Data
 Prop_strong()TMSCollectionViewLayout *tms_layout;
-Prop_copy()NSMutableArray <NSMutableArray <UIViewModel *>*>*dataSourceMutArr;/// Cell的数据源
-Prop_copy()NSMutableArray <UIViewModel *>*sectionHeaderDataSource;/// sectionHeader的数据源
-Prop_copy()NSMutableArray <UIViewModel *>*sectionFooterDataSource;/// sectionFooter的数据源
+Prop_strong()NSMutableArray <NSMutableArray <UIViewModel *>*>*dataSourceMutArr;/// Cell的数据源
+Prop_strong()NSMutableArray <UIViewModel *>*sectionHeaderDataSource;/// sectionHeader的数据源
+Prop_strong()NSMutableArray <UIViewModel *>*sectionFooterDataSource;/// sectionFooter的数据源
 
 @end
 

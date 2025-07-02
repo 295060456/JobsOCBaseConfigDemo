@@ -32,7 +32,7 @@ Prop_strong()BRDatePickerView *datePickerView;/// 时间选择器
 Prop_strong()BRAddressPickerView *addressPickerView;/// 地址选择器
 /// Data
 Prop_assign()BRStringPickerMode brStringPickerMode;
-Prop_copy()NSMutableArray *BRStringPickerViewDataMutArr;
+Prop_strong()NSMutableArray *BRStringPickerViewDataMutArr;
 Prop_strong()BRPickerStyle *customStyle;
 /// 时间选择器
 //-(void)makeDatePickerDoneBlock:(BRDoneClickBlock)clickDoneBlock

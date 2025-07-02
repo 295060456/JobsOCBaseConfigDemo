@@ -27,7 +27,7 @@ Prop_copy()NSString *updateTime;
 
 @interface CasinoCustomerContactModel : BaseModel
 
-Prop_copy()NSMutableArray <CasinoCustomerContactElementModel *>*customerList;
+Prop_strong()NSMutableArray <CasinoCustomerContactElementModel *>*customerList;
 Prop_strong()CasinoCustomerContactElementModel *onlineUrl;
 Prop_strong()CasinoCustomerContactElementModel *telephone;
 

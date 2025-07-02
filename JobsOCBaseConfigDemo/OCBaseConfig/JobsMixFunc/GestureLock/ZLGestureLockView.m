@@ -10,8 +10,8 @@
 
 @interface ZLGestureLockView ()
 
-Prop_copy()NSMutableArray *selectBtns;
-Prop_copy()NSMutableArray *errorBtns;//错误的按钮数组
+Prop_strong()NSMutableArray *selectBtns;
+Prop_strong()NSMutableArray *errorBtns;//错误的按钮数组
 Prop_assign()BOOL finished;//是否完成
 Prop_assign()CGPoint currentPoint;//当前触摸点
 Prop_assign()ResultKindType resultType;//学生端结果

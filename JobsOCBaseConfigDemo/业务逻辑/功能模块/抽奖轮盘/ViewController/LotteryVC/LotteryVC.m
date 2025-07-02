@@ -9,8 +9,8 @@
 
 @interface LotteryVC ()
 /// Data
-Prop_copy()NSMutableArray <__kindof UITableViewCell *>*tbvSectionRowCellMutArr;
-Prop_copy()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
+Prop_strong()NSMutableArray <__kindof UITableViewCell *>*tbvSectionRowCellMutArr;
+Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 

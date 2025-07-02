@@ -13,7 +13,7 @@ Prop_strong()JobsDropDownListView *dropDownListView;
 Prop_strong()BaseButton *btn;
 Prop_strong()UISwitch *switcher;
 /// Data
-Prop_copy()NSMutableArray <UIViewModel *>*listViewData;
+Prop_strong()NSMutableArray <UIViewModel *>*listViewData;
 Prop_strong()UIColor *cor;
 Prop_assign()JobsDropDownListViewDirection dropDownListViewDirection;
 

@@ -10,8 +10,8 @@
 
 @interface JobsTabBar ()
 
-Prop_copy()NSMutableArray <__kindof UIView *>*tabBarButtons;
-Prop_copy()NSMutableArray <__kindof LOTAnimationView *>*lOTAnimationViews;
+Prop_strong()NSMutableArray <__kindof UIView *>*tabBarButtons;
+Prop_strong()NSMutableArray <__kindof LOTAnimationView *>*lOTAnimationViews;
 
 @end
 

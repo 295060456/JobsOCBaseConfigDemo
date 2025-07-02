@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 给UICollectionView的每个section加背景
 @interface KFZShopCatoryFlowLayput : UICollectionViewFlowLayout
 
-Prop_copy()NSMutableArray <NSNumber *>*affectedSectionsMutArr;//受影响的section组
+Prop_strong()NSMutableArray <NSNumber *>*affectedSectionsMutArr;//受影响的section组
 Prop_assign()CGFloat offsetX;
 Prop_assign()CGFloat offsetY;
 Prop_assign()CGFloat offsetWidth;

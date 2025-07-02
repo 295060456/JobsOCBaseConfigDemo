@@ -12,7 +12,7 @@
 Prop_assign()CGFloat itemHeight;/// 一个cell 的高度
 Prop_assign()NSInteger columns;/// 一行有多少列
 Prop_assign()NSInteger rowCount;/// 一共有都是行
-Prop_copy()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个cell
+Prop_strong()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个cell
 
 @end
 

@@ -33,7 +33,7 @@ NS_INLINE __kindof FMHomeMainBizSubView *_Nonnull jobsMakeBizSubView(jobsByBizSu
 
 /**
  
- Prop_copy()NSMutableArray <FMHomeMainBizSubView *>*subViewMutArr;
+ Prop_strong()NSMutableArray <FMHomeMainBizSubView *>*subViewMutArr;
  
  FMHomeMainBizSubView *subView = self.subViewMutArr[indexPath.item];
  self.bringSubviewToFront(subView);

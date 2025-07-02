@@ -9,7 +9,7 @@
 
 @interface MyCollectionVC ()
 /// Data
-Prop_copy()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
+Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
 
 @end
 

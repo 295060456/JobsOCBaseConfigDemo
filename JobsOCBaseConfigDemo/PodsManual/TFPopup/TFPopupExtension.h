@@ -33,8 +33,8 @@ Prop_assign()CGSize popupArea;
 
 Prop_strong()UIButton *defaultBackgroundView;
 Prop_assign()NSInteger backgroundViewCount;
-Prop_copy()NSMutableArray *backgroundViewArray;
-Prop_copy()NSMutableArray *backgroundViewFrameArray;
+Prop_strong()NSMutableArray *backgroundViewArray;
+Prop_strong()NSMutableArray *backgroundViewFrameArray;
 
 Prop_assign()BOOL disuseShowAlphaAnimation;
 Prop_assign()CGFloat showFromAlpha;
@@ -98,7 +98,7 @@ Prop_assign()CGRect  dragDissmissFrame;
 @class TFPopupPoolBridge;
 @interface TFPopupPool : NSObject
 //已经弹出的弹窗，弱引用记录
-Prop_copy()NSMutableArray <TFPopupPoolBridge *>*pool;
+Prop_strong()NSMutableArray <TFPopupPoolBridge *>*pool;
 
 +(void)refreshPool;
 +(void)addToPool:(UIView *)popupView;

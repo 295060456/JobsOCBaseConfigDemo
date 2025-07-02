@@ -13,8 +13,8 @@ Prop_strong()SpreadsheetView *spreadsheetView;
 Prop_assign()SortedColumn sortedColumn;
 /// data
 Prop_strong()NSArray<NSString *> *header;
-Prop_copy()NSMutableArray <NSArray<NSString *> *>*excelData;
-Prop_copy()NSMutableArray <NSArray<NSString *> *>*original_excelData;
+Prop_strong()NSMutableArray <NSArray<NSString *> *>*excelData;
+Prop_strong()NSMutableArray <NSArray<NSString *> *>*original_excelData;
 Prop_copy()NSString *content;
 
 @end

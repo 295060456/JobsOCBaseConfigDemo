@@ -11,13 +11,13 @@
 /// UI
 Prop_strong()ThreeClassCell *tempCell;
 /// Data
-Prop_copy()NSMutableArray <GoodsClassModel *>*leftDataArray;/// 左边的数据源
-Prop_copy()NSMutableArray <GoodsClassModel *>*rightDataArray;/// 右边的数据源
+Prop_strong()NSMutableArray <GoodsClassModel *>*leftDataArray;/// 左边的数据源
+Prop_strong()NSMutableArray <GoodsClassModel *>*rightDataArray;/// 右边的数据源
 Prop_strong()GoodsClassModel *rightViewCurrentSelectModel;
 Prop_strong()UIViewModel *leftViewCurrentSelectModel;
-Prop_copy()NSMutableArray <UIButtonModel *>*leftCellDataMutArr;
-Prop_copy()NSMutableArray <UIButtonModel *>*cellDataMutArr;
-Prop_copy()NSMutableArray <NSString *>*cellTitleMutArr;
+Prop_strong()NSMutableArray <UIButtonModel *>*leftCellDataMutArr;
+Prop_strong()NSMutableArray <UIButtonModel *>*cellDataMutArr;
+Prop_strong()NSMutableArray <NSString *>*cellTitleMutArr;
 Prop_assign()NSUInteger thisIndex;
 
 @end

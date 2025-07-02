@@ -31,7 +31,7 @@ NS_INLINE __kindof PopListBaseView *_Nonnull jobsMakePopListBaseView(jobsByPopLi
 /**
  
  Prop_strong()PopListBaseView *nationalPopListView;
- Prop_copy()NSMutableArray <__kindof UIViewModel *>*nationalPopList_dataMutArr;
+ Prop_strong()NSMutableArray <__kindof UIViewModel *>*nationalPopList_dataMutArr;
  
  -(PopListBaseView *)nationalPopListView{
      if(!_nationalPopListView){

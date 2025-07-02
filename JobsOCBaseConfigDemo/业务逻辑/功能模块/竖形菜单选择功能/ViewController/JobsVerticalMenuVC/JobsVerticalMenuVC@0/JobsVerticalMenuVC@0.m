@@ -12,9 +12,9 @@
 Prop_strong()BaseButton *editBtn;
 Prop_strong()JobsSearchBar *searchView;
 /// Data
-Prop_copy()NSMutableArray <__kindof UIView *>*rightViewArray; /// 右侧的视图数组
-Prop_copy()NSMutableArray <__kindof UIViewModel *>*titleMutArr;
-Prop_copy()NSMutableArray <__kindof UIViewModel *>*leftDataArray; /// 左边的数据源
+Prop_strong()NSMutableArray <__kindof UIView *>*rightViewArray; /// 右侧的视图数组
+Prop_strong()NSMutableArray <__kindof UIViewModel *>*titleMutArr;
+Prop_strong()NSMutableArray <__kindof UIViewModel *>*leftDataArray; /// 左边的数据源
 Prop_strong()UIViewModel *leftViewCurrentSelectModel;
 
 @end

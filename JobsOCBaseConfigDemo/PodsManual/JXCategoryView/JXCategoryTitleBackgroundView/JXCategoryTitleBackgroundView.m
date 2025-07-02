@@ -10,7 +10,7 @@
 
 @interface JXCategoryTitleBackgroundView ()
 
-Prop_copy()NSMutableArray <JXCategoryTitleBackgroundCellModel *>*tempMutArray;
+Prop_strong()NSMutableArray <JXCategoryTitleBackgroundCellModel *>*tempMutArray;
 
 @end
 

@@ -12,8 +12,8 @@ BOOL ISLogin;
 /// UI
 Prop_strong()BaseButton *userHeadBtn;
 /// Data
-Prop_copy()NSMutableArray <UITableViewCell *>*tbvCellMutArr;
-Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_strong()NSMutableArray <UITableViewCell *>*tbvCellMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
 

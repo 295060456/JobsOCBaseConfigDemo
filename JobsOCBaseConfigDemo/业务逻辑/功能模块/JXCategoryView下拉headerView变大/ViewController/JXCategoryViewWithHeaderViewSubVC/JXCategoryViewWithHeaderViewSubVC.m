@@ -17,8 +17,8 @@
 /// UI
 Prop_strong()BaiShaETProjChoiceStadiumView *choiceStadiumView;
 // Data
-Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
-Prop_copy()NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*cvcellMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_strong()NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*cvcellMutArr;
 
 @end
 

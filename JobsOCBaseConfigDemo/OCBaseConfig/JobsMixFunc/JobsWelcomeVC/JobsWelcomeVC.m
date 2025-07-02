@@ -11,7 +11,7 @@
 // UI
 Prop_strong()UIPageControl *pageControl;
 // Data
-Prop_copy()NSMutableArray <NSString *>*dataMutArr;
+Prop_strong()NSMutableArray <NSString *>*dataMutArr;
 
 @end
 

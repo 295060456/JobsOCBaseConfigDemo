@@ -13,7 +13,7 @@
     NSInteger _numberOfPages;
     NSInteger _currentPage;
 }
-Prop_copy()NSMutableArray *imageArr;
+Prop_strong()NSMutableArray *imageArr;
 @end
 @implementation WMZBannerControl
 

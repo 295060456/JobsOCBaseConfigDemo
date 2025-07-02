@@ -84,7 +84,7 @@ Prop_copy()NSString *weight;
 
 @interface VideoModel : BaseModel
 
-Prop_copy()NSMutableArray <VideoModel_Core *>*listMutArr;
+Prop_strong()NSMutableArray <VideoModel_Core *>*listMutArr;
 
 @end
 

@@ -19,8 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsAppDoorContentView : BaseContentView
 
-Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
-Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
+Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
+Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
 Prop_strong()JobsAppDoorModel *appDoorModel;/// 网络请求的传入参数
 /// 获取存储按钮
 -(UIButton *)getStoreCodeBtn;

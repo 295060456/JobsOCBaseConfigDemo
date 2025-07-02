@@ -19,8 +19,8 @@ Prop_strong()BaseButton *customBtn;
 @property(nonatomic,weak)NSNumber *currentIndex;
 @property(nonatomic,weak)JXCategoryPopupSubVC *vc;
 /// Data
-Prop_copy()NSMutableArray <NSString *>*titleMutArr;
-Prop_copy()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+Prop_strong()NSMutableArray <NSString *>*titleMutArr;
+Prop_strong()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
 
 @end
 

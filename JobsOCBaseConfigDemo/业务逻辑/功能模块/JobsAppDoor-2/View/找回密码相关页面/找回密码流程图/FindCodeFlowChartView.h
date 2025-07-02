@@ -26,9 +26,9 @@ Prop_assign()NSInteger flowNum;
 ///当前流程序号 从0开始
 Prop_assign()NSInteger currentFlowSerialNum;
 
-Prop_copy()NSMutableArray <NSString *>*titleMutArr;
-Prop_copy()NSMutableArray <NSString *>*subTitleMutArr;
-Prop_copy()NSMutableArray <UIImage *>*backImageMutArr;
+Prop_strong()NSMutableArray <NSString *>*titleMutArr;
+Prop_strong()NSMutableArray <NSString *>*subTitleMutArr;
+Prop_strong()NSMutableArray <UIImage *>*backImageMutArr;
 
 @end
 

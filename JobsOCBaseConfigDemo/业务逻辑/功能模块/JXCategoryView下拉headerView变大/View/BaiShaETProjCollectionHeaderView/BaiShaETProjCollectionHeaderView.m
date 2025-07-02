@@ -15,11 +15,11 @@ Prop_strong()UILabel *leftLab;
 Prop_strong()UILabel *rightLab;
 Prop_strong()JobsAnimationLabel *animationLab;
 /// Data
-Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
-Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_strong()NSMutableArray <NSString *>*richTextMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 
-Prop_copy()NSMutableArray <NSMutableArray <NSString *>*>*richTextMutArr2;
-Prop_copy()NSMutableArray <NSMutableArray <JobsRichTextConfig *>*>*richTextConfigMutArr2;
+Prop_strong()NSMutableArray <NSMutableArray <NSString *>*>*richTextMutArr2;
+Prop_strong()NSMutableArray <NSMutableArray <JobsRichTextConfig *>*>*richTextConfigMutArr2;
 
 @end
 

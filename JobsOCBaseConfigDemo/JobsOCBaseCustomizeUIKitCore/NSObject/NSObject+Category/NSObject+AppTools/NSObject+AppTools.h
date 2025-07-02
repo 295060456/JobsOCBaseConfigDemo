@@ -52,12 +52,12 @@ Prop_strong()BaseButton *立即注册;
 Prop_strong()UILabel *separateLab;/// 分割线
 Prop_strong()UITextView *connectionTipsTV;/// 承接富文本:如需幫助，請聯繫專屬客服
 /// Data
-Prop_copy()NSMutableArray<__kindof UIViewModel *> *hotLabelDataMutArr;
-Prop_copy()NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
+Prop_strong()NSMutableArray<__kindof UIViewModel *> *hotLabelDataMutArr;
+Prop_strong()NSMutableArray<NSString *> *jxCategoryViewTitleMutArr;
 // 关于富文本:如需幫助，請聯繫專屬客服
 Prop_strong()NSMutableAttributedString *attributedStringData;
-Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
-Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+Prop_strong()NSMutableArray <NSString *>*richTextMutArr;
+Prop_strong()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 #pragma mark —— 测试调试专用
 /// 查询当下的本地登录数据
 -(jobsByVoidBlock _Nullable)checkLoginData;

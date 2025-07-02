@@ -13,7 +13,7 @@ Prop_strong()JobsIMInputview *inputview;
 Prop_strong()BaseButton *shareBtn;
 Prop_strong()UIColor *bgColour;
 /// data
-Prop_copy()NSMutableArray <JobsIMChatInfoModel *>*chatInfoModelMutArr;//聊天信息
+Prop_strong()NSMutableArray <JobsIMChatInfoModel *>*chatInfoModelMutArr;//聊天信息
 Prop_strong()JobsIMChatInfoModel *chatInfoModel;
 
 @end

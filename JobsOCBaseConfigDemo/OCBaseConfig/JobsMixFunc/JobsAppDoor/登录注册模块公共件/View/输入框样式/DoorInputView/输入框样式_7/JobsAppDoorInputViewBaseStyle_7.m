@@ -15,7 +15,7 @@ Prop_strong()UIImageView *leftIMGV;
 Prop_strong()UIButton *chooseBtn;
 /// Data
 Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
-Prop_copy()NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
 Prop_strong()UIViewModel *chooseBtnViewModel;
 Prop_assign()CGSize chooseBtnSize;
 

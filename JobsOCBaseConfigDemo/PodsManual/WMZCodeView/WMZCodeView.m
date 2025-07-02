@@ -22,7 +22,7 @@ Prop_strong()UIView *nineView;                  //九宫格view
 Prop_strong()WMZSlider *WMZSlider;              //自定义滑动
 Prop_strong()WMZSlider *slider;                 //滑动
 /// Data
-Prop_copy()NSMutableArray *btnArr;              //按钮数组
+Prop_strong()NSMutableArray *btnArr;              //按钮数组
 Prop_copy()NSString *name;                      //文本图片 默认图片“A”
 Prop_copy()NSString *allChinese;                //所显示的所有中文
 Prop_copy()NSString *factChinese;               //实际需要点击的中文

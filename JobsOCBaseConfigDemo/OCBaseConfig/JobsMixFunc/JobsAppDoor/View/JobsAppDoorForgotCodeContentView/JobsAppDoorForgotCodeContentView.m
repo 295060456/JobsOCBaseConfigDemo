@@ -173,7 +173,7 @@ Prop_strong()JobsHotLabelBySingleLine *hl;
 /**
     在 @interface NSObject (AppTools)<AppToolsProtocol>里
     对下列属性进行统一管理
-    Prop_copy()NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
+    Prop_strong()NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
     Prop_strong()BaiShaETProjCustomerContactModel *customerContactModel;
  */
 //-(NSMutableArray<UIViewModel *> *)hotLabelDataMutArr{

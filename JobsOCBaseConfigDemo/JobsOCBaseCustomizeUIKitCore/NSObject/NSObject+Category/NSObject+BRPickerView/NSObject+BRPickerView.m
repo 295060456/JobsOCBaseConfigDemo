@@ -233,7 +233,7 @@ JobsKey(_brStringPickerMode)
 -(void)setBrStringPickerMode:(BRStringPickerMode)brStringPickerMode{
     Jobs_setAssociatedRETAIN_NONATOMIC(_brStringPickerMode, @(brStringPickerMode))
 }
-#pragma mark —— Prop_copy()NSMutableArray *BRStringPickerViewDataMutArr;
+#pragma mark —— Prop_strong()NSMutableArray *BRStringPickerViewDataMutArr;
 JobsKey(_BRStringPickerViewDataMutArr)
 @dynamic BRStringPickerViewDataMutArr;
 -(NSMutableArray *)BRStringPickerViewDataMutArr{

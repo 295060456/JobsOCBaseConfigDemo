@@ -13,9 +13,9 @@ Prop_strong()BaseButton *scanBtn;
 Prop_strong()JobsSearchBar *jobsSearchBar;
 Prop_strong()JobsDropDownListView *dropDownListView;
 /// Data
-Prop_copy()NSMutableArray <__kindof UIViewModel *>*sectionTitleMutArr;
-Prop_copy()NSMutableArray <__kindof UIViewModel *>*hotSearchMutArr;
-Prop_copy()NSMutableArray <__kindof UIViewModel *>*listViewData;
+Prop_strong()NSMutableArray <__kindof UIViewModel *>*sectionTitleMutArr;
+Prop_strong()NSMutableArray <__kindof UIViewModel *>*hotSearchMutArr;
+Prop_strong()NSMutableArray <__kindof UIViewModel *>*listViewData;
 Prop_strong()UIColor *bgColour;
 Prop_copy()NSString *titleStr;//标题
 Prop_assign()CGRect tableViewRect;

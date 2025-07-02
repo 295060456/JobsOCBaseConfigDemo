@@ -78,8 +78,8 @@ NS_ASSUME_NONNULL_END
  Prop_strong()UITextView *connectionTipsTV;
  
  Prop_strong()NSMutableAttributedString *attributedStringData;
- Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
- Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+ Prop_strong()NSMutableArray <NSString *>*richTextMutArr;
+ Prop_strong()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
  
  -(UILabel *)connectionTipsLab{
      if (!_connectionTipsLab) {

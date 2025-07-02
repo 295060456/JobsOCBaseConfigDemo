@@ -12,8 +12,8 @@
 Prop_strong()BaseButton *editBtn;
 Prop_strong()JobsSearchBar *searchView;
 /// Data
-Prop_copy()NSMutableArray <UIViewModel *>*titleMutArr;
-Prop_copy()NSMutableArray <UIViewModel *>*leftDataArray;/// 左边的数据源
+Prop_strong()NSMutableArray <UIViewModel *>*titleMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*leftDataArray;/// 左边的数据源
 Prop_strong()UIViewModel *leftViewCurrentSelectModel;
 
 @end

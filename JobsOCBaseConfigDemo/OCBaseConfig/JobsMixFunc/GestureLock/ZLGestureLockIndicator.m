@@ -10,7 +10,7 @@
 
 @interface ZLGestureLockIndicator()
 
-Prop_copy()NSMutableArray *btns;
+Prop_strong()NSMutableArray *btns;
 
 @end
 

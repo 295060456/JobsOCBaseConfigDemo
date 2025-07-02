@@ -13,7 +13,7 @@ static CGFloat const itemInnerInset = 10; // 被遮盖的cell头部留出的距�
 
 @interface TMSCollectionViewLayout ()
 
-Prop_copy()NSMutableArray <UICollectionViewLayoutAttributes *>* attrubutesArray;
+Prop_strong()NSMutableArray <UICollectionViewLayoutAttributes *>* attrubutesArray;
 /** 点击的item */
 Prop_strong()NSIndexPath *clickIndexPath;
 /** 是否展开 */

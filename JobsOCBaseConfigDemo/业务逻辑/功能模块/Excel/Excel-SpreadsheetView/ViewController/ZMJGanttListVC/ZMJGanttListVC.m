@@ -17,12 +17,12 @@ Prop_strong()ZMJTaskView *taskView;
 Prop_assign()ZMJDisplayMode displayMode;
 Prop_strong()NSDate *startDate;
 Prop_strong()NSDate *endDate;
-Prop_copy()NSMutableArray<NSDate *> *years;
-Prop_copy()NSMutableArray<NSDate *> *weeks;
-Prop_copy()NSMutableArray<NSDate *> *months;
-Prop_copy()NSMutableArray<NSDate *> *days;
-Prop_copy()NSMutableArray<ZMJTask *> *tasks;
-Prop_copy()NSMutableArray<UIColor *> *colors;
+Prop_strong()NSMutableArray<NSDate *> *years;
+Prop_strong()NSMutableArray<NSDate *> *weeks;
+Prop_strong()NSMutableArray<NSDate *> *months;
+Prop_strong()NSMutableArray<NSDate *> *days;
+Prop_strong()NSMutableArray<ZMJTask *> *tasks;
+Prop_strong()NSMutableArray<UIColor *> *colors;
 
 @end
 

@@ -55,8 +55,8 @@ Prop_copy(null_resettable)NSMutableArray <UIButtonModel *>*topHeaderDatas;
 Prop_copy(null_resettable)NSMutableArray <UIButtonModel *>*leftListDatas;
 
 Prop_copy(nonnull)NSMutableArray <NSMutableArray <NSString *>*>*contentTitles;
-Prop_copy()NSMutableArray <NSString *>*_Nullable topHeaderTitles;
-Prop_copy()NSMutableArray <NSString *>*_Nullable leftTitles;
+Prop_strong()NSMutableArray <NSString *>*_Nullable topHeaderTitles;
+Prop_strong()NSMutableArray <NSString *>*_Nullable leftTitles;
 
 @end
 

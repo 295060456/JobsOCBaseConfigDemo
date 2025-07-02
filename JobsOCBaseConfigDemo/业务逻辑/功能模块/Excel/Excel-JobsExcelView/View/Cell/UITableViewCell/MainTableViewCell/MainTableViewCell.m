@@ -11,7 +11,7 @@
 @interface MainTableViewCell()
 /// Data
 Prop_strong()JobsExcelConfigureViewModel *excelConfigureData;
-Prop_copy()NSMutableArray <UIButtonModel *>*datas;
+Prop_strong()NSMutableArray <UIButtonModel *>*datas;
 
 @end
 

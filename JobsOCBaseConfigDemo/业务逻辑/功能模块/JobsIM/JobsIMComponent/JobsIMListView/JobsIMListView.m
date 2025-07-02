@@ -11,7 +11,7 @@
 /// UI
 Prop_strong()UIColor *bgColour;
 /// Data
-Prop_copy()NSMutableArray <JobsIMListDataModel *>*jobsIMListMutArr;
+Prop_strong()NSMutableArray <JobsIMListDataModel *>*jobsIMListMutArr;
 
 @end
 

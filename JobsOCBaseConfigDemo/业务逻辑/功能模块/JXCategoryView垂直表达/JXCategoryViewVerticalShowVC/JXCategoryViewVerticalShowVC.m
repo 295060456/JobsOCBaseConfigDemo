@@ -13,10 +13,10 @@ Prop_strong()JXCategoryTitleView *categoryView;/// 文字
 Prop_strong()JXCategoryIndicatorLineView *lineView;/// 跟随的指示器
 Prop_strong()JXCategoryListContainerView *listContainerView;/// 此属性决定依附于此的viewController
 /// Data
-Prop_copy()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
-Prop_copy()NSMutableArray <NSString *>*titleMutArr;
-//Prop_copy()NSMutableArray <NSString *>*imageNames;
-//Prop_copy()NSMutableArray <NSString *>*selectedImageNames;
+Prop_strong()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+Prop_strong()NSMutableArray <NSString *>*titleMutArr;
+//Prop_strong()NSMutableArray <NSString *>*imageNames;
+//Prop_strong()NSMutableArray <NSString *>*selectedImageNames;
 
 @end
 

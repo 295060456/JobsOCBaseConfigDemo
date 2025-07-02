@@ -9,7 +9,7 @@
 
 @interface JobsTuple ()
 
-Prop_copy()NSMutableArray *valueMutArr;
+Prop_strong()NSMutableArray *valueMutArr;
 
 @end
 

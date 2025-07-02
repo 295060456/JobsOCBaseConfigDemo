@@ -14,7 +14,7 @@ Prop_strong(nullable)CustomZFPlayerControlView *customPlayerControlView;
 /// Data
 Prop_strong(nullable)ZFAVPlayerManager *playerManager;
 Prop_strong()VideoModel_Core *videoModel_Core;
-Prop_copy()NSMutableArray <NSURL *>*assetURLs;
+Prop_strong()NSMutableArray <NSURL *>*assetURLs;
 
 @end
 

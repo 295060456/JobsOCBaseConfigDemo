@@ -13,7 +13,7 @@
 Prop_strong()__kindof UIView *sliderView;
 /// Data
 Prop_assign()NSUInteger current_index;
-Prop_copy()NSMutableArray <UIButtonModel *>*buttonModels;
+Prop_strong()NSMutableArray <UIButtonModel *>*buttonModels;
 
 @end
 

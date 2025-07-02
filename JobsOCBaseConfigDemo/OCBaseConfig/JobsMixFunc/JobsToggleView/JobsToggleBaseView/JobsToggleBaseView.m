@@ -13,9 +13,9 @@
 Prop_strong()JobsToggleNavView *taggedNavView;
 Prop_strong()UIScrollView *bgScroll;
 /// Data
-Prop_copy()NSMutableArray <NSString *>*tempTitles;
-Prop_copy()NSMutableArray <__kindof UIView <BaseViewProtocol>*>*tempLabs;
-Prop_copy()NSMutableArray <UIButtonModel *>*taggedNavDatas;
+Prop_strong()NSMutableArray <NSString *>*tempTitles;
+Prop_strong()NSMutableArray <__kindof UIView <BaseViewProtocol>*>*tempLabs;
+Prop_strong()NSMutableArray <UIButtonModel *>*taggedNavDatas;
 
 @end
 

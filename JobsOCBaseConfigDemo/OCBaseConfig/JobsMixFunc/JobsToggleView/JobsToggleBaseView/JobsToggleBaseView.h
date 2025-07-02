@@ -31,7 +31,7 @@ Prop_assign()CGFloat taggedNavView_height; /// 一整个导航栏的高度。默
 Prop_assign()CGFloat taggedNavView_width; /// 一整个导航栏的宽度
 Prop_assign()CGFloat taggedNavView_bgScroll_offset; /// 导航栏和可滑动子视图之间垂直方向上的距离
 Prop_strong()UIColor *taggedNavViewBgColor; /// 导航栏的背景颜色
-Prop_copy()NSMutableArray <__kindof UIView<BaseViewProtocol> *>*scrollContentViews;/// 可滑动的子视图的【唯一的】数据源
+Prop_strong()NSMutableArray <__kindof UIView<BaseViewProtocol> *>*scrollContentViews;/// 可滑动的子视图的【唯一的】数据源
 Prop_weak()__kindof UIButton *currentSelectedBtn;
 /// 当前显示的View
 -(jobsByNSIntegerBlock _Nonnull)switchViewsBy;

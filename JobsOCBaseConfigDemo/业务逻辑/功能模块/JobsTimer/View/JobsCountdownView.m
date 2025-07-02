@@ -17,8 +17,8 @@ Prop_strong()JobsTimeModel *formatTime;
 Prop_strong()UIButtonModel *timerProcessModel;
 Prop_copy()NSString *minutesStr;
 Prop_copy()NSString *secondStr;
-Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
-Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
+Prop_strong()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+Prop_strong()NSMutableArray <NSString *>*richTextMutArr;
 Prop_strong()NSMutableParagraphStyle *paragraphStyle;
 
 @end

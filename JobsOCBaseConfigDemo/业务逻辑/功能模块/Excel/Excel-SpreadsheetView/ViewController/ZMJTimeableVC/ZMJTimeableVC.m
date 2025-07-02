@@ -10,7 +10,7 @@
 @interface ZMJTimeableVC ()
 
 Prop_strong()SpreadsheetView *spreadsheetView;
-Prop_copy()NSMutableArray<NSString *> *channels;
+Prop_strong()NSMutableArray<NSString *> *channels;
 Prop_assign()NSInteger numberOfRows;
 Prop_strong()NSMutableDictionary<NSIndexPath *, NSArray<NSNumber *> *> *slotInfo;
 Prop_strong()NSDateFormatter *hourFormatter;

@@ -37,8 +37,8 @@ NS_ASSUME_NONNULL_END
  使用方式：新建一个view，并复制粘贴下列内容👇🏻
  
  /// UI
- Prop_copy()NSMutableArray <NSString *>*btnTitleMutArr;
- Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
+ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
  Prop_strong()JobsHotLabelWithMultiLineModel *hotLabelModel;
  Prop_strong()JobsHeaderFooterViewModel *headerViewModel;
  Prop_strong()JobsHeaderFooterViewModel *footerViewModel;

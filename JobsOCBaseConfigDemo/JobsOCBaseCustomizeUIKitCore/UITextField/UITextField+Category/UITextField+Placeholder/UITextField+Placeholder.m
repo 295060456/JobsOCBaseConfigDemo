@@ -52,7 +52,7 @@ JobsKey(_placeholderFont)
     self.placeholderLabel.font = placeholderFont;
     Jobs_setAssociatedRETAIN_NONATOMIC(_placeholderFont, placeholderFont)
 }
-#pragma mark —— Prop_copy()NSMutableArray <JobsRichTextConfig *>*titleAttributedDataMutArr;
+#pragma mark —— Prop_strong()NSMutableArray <JobsRichTextConfig *>*titleAttributedDataMutArr;
 JobsKey(_titleAttributedDataMutArr)
 -(NSMutableArray<JobsRichTextConfig *> *)titleAttributedDataMutArr{
     NSMutableArray *TitleAttributedDataMutArr = Jobs_getAssociatedObject(_titleAttributedDataMutArr);

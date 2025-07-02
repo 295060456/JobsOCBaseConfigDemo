@@ -29,7 +29,7 @@ Prop_copy()NSString *indexs;
 Prop_copy()NSString *iconUrl;
 Prop_copy()NSString *showUrl;
 Prop_copy()NSString *productUrl;
-Prop_copy()NSMutableArray <GoodsClassModel *>*childrenList;
+Prop_strong()NSMutableArray <GoodsClassModel *>*childrenList;
 
 @end
 

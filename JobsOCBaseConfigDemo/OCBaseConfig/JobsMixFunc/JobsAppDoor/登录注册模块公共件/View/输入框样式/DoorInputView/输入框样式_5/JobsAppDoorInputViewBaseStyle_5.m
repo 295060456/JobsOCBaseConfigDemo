@@ -17,7 +17,7 @@ Prop_strong()BaseButton *securityModeBtn;
 Prop_strong()BaseButton *chooseBtn;
 /// Data
 Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
-Prop_copy()NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*jobsPageViewDataMutArr;
 Prop_assign()CGSize chooseBtnSize;
 Prop_strong()UIViewModel *chooseBtnViewModel;
 

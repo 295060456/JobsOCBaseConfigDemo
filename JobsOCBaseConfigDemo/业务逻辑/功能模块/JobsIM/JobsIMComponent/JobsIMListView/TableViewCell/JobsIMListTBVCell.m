@@ -12,8 +12,8 @@
 Prop_strong()UILabel *timeLab;
 Prop_strong()UILongPressGestureRecognizer *longPG;
 
-Prop_copy()NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
-Prop_copy()NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
+Prop_strong()NSMutableArray <MGSwipeButtonModel *>*leftBtnMutArr;
+Prop_strong()NSMutableArray <MGSwipeButtonModel *>*rightBtnMutArr;
 Prop_copy()NSString *usernameStr;
 Prop_copy()NSString *contentStr;
 Prop_copy()NSString *timeStr;

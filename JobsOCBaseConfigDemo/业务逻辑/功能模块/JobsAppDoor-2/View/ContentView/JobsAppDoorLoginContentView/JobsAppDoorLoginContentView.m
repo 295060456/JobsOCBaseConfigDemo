@@ -17,8 +17,8 @@ Prop_strong()BaseButton *sendBtn;/// 登录
 Prop_strong()BaseButton *storeCodeBtn;/// 记住密码
 Prop_strong()BaseButton *findCodeBtn;/// 忘记密码
 /// Data
-Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
-Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
+Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
+Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputViewBaseStyleMutArr;
 
 @end
 

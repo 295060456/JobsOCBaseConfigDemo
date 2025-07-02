@@ -9,8 +9,8 @@
 
 @interface ExcelVC ()
 /// Data
-Prop_copy()NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
-Prop_copy()NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
+Prop_strong()NSMutableArray <NSMutableArray <__kindof UITableViewCell *>*>*tbvSectionRowCellMutArr;
+Prop_strong()NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutArr;
 
 @end
 

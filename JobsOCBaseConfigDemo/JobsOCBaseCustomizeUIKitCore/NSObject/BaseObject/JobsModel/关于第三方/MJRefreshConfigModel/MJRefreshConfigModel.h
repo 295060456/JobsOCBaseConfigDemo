@@ -50,11 +50,11 @@ Prop_copy()NSString *refreshingTitle;
 Prop_copy()NSString *willRefreshTitle;
 Prop_copy()NSString *noMoreDataTitle;
 #pragma mark —— 静态图内部拼接出的动效，而非Gif
-Prop_copy()NSMutableArray <UIImage *>*stateIdlePicsMutArr;
-Prop_copy()NSMutableArray <UIImage *>*pullingPicsMutArr;
-Prop_copy()NSMutableArray <UIImage *>*refreshingPicsMutArr;
-Prop_copy()NSMutableArray <UIImage *>*willRefreshPicsMutArr;
-Prop_copy()NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
+Prop_strong()NSMutableArray <UIImage *>*stateIdlePicsMutArr;
+Prop_strong()NSMutableArray <UIImage *>*pullingPicsMutArr;
+Prop_strong()NSMutableArray <UIImage *>*refreshingPicsMutArr;
+Prop_strong()NSMutableArray <UIImage *>*willRefreshPicsMutArr;
+Prop_strong()NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
 #pragma mark —— Lottie配置
 Prop_copy()NSString *jsonLottiefilePaths;
 Prop_copy()JobsReturnIDByIDBlock loadBlock;

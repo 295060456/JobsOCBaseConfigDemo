@@ -12,7 +12,7 @@
 Prop_strong()UIButton *cameraBtn;
 Prop_strong()UIButton *photoAlbumBtn;
 /// Data
-Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
+Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
 
 @end
 

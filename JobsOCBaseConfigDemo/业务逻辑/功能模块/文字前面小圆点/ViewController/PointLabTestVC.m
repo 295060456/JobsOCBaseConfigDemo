@@ -13,7 +13,7 @@ Prop_strong()UILabel *label2;
 /// Data
 Prop_strong()NSMutableAttributedString *attributedString;
 Prop_strong()NSMutableAttributedString *attributedString2;
-Prop_copy()NSMutableArray<NSString *> *items;
+Prop_strong()NSMutableArray<NSString *> *items;
 Prop_copy()NSString *dot;
 
 @end

@@ -18,7 +18,7 @@ Prop_strong()UIScrollView *menuView;
 Prop_strong()UIView *bottomView;
 Prop_strong()UIView *lineView;
 Prop_strong()UIView *rightview;
-Prop_copy()NSMutableArray <__kindof UIButton *>*btnMutArr;
+Prop_strong()NSMutableArray <__kindof UIButton *>*btnMutArr;
 Prop_strong()NSArray <__kindof UIView *>*viewArray;
 /// Data
 Prop_assign()NSInteger newChoseTag;  /// 选择的button tag

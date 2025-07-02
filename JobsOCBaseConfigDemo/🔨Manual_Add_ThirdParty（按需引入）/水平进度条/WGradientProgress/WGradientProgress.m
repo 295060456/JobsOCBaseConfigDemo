@@ -16,7 +16,7 @@ Prop_strong()CAGradientLayer *gradLayer;/// 通过改变layer的宽度来实现�
 /// Data
 Prop_strong()NSTimerManager *nsTimerManager_color;/// 主管线条颜色的翻滚
 Prop_strong()NSTimerManager *nsTimerManager_length;/// 主管线条长度的递增
-Prop_copy()NSMutableArray *colors;
+Prop_strong()NSMutableArray *colors;
 
 @end
 

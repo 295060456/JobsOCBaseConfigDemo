@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsMenuView : BaseView
 /// Data
-Prop_copy()NSMutableArray <NSString *>*titleMutArr;
-Prop_copy()NSMutableArray <__kindof UIView *>*subViewMutArr;
-Prop_copy()NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
-Prop_copy()NSMutableArray <UIImage *>*select_titleBgImageMutArr;
-Prop_copy()NSMutableArray <UIImage *>*normal_titleImageMutArr;
-Prop_copy()NSMutableArray <NSNumber *>*imagePaddings;
+Prop_strong()NSMutableArray <NSString *>*titleMutArr;
+Prop_strong()NSMutableArray <__kindof UIView *>*subViewMutArr;
+Prop_strong()NSMutableArray <UIImage *>*normal_titleBgImageMutArr;
+Prop_strong()NSMutableArray <UIImage *>*select_titleBgImageMutArr;
+Prop_strong()NSMutableArray <UIImage *>*normal_titleImageMutArr;
+Prop_strong()NSMutableArray <NSNumber *>*imagePaddings;
 
 Prop_strong()JobsLinkageMenuViewConfig *linkageMenuViewConfig;
 

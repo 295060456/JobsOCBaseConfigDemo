@@ -64,8 +64,8 @@ Prop_strong()UIColor *cor;
 Prop_strong()UITableView *tableView;
 Prop_strong()BaiShaETProjChoiceStadiumTBVHeaderView *tbvHeaderView;
 /// Data
-Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
-Prop_copy()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_strong()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
 
 @end
 

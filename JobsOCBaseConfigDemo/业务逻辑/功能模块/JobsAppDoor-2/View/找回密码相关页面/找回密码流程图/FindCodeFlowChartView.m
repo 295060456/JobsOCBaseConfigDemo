@@ -70,7 +70,7 @@
 
 @interface FindCodeFlowChartView ()
 
-Prop_copy()NSMutableArray <FlowChartSingleElementView *>*singleElementMutArr;
+Prop_strong()NSMutableArray <FlowChartSingleElementView *>*singleElementMutArr;
 
 @end
 

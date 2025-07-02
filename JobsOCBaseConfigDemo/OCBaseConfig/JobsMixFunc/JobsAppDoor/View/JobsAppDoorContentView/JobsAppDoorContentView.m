@@ -20,9 +20,9 @@ Prop_strong()UIButton *sendBtn;/// 登录 & 注册按钮 （本页面请求可�
 Prop_strong()UIButton *storeCodeBtn;/// 记住密码
 Prop_strong()UIButton *findCodeBtn;/// 忘记密码
 /// Data
-Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
-Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
-Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
+Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*loginDoorInputViewBaseStyleModelMutArr;
+Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
+Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
 
 @end
 

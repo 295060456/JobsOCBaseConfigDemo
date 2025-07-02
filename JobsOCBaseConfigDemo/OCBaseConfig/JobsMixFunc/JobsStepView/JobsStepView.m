@@ -19,8 +19,8 @@ Prop_assign()CGFloat rightViewWidth;
 Prop_assign()CGFloat btnOffset;
 Prop_assign()CGFloat firstBtnLeftOffset;
 Prop_assign()CGFloat offset;/// 值越大 = 按钮之间的距离越小
-Prop_copy()NSMutableArray <__kindof BaseButton *>*btnMutArr;
-Prop_copy()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
+Prop_strong()NSMutableArray <__kindof BaseButton *>*btnMutArr;
+Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
 
 @end
 

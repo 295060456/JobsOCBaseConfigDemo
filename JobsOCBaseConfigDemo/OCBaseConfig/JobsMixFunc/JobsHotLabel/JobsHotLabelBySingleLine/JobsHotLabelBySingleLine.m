@@ -12,10 +12,10 @@
     CGFloat width;
 }
 /// UI
-Prop_copy()NSMutableArray <UIButton *>*btnMutArr;
+Prop_strong()NSMutableArray <UIButton *>*btnMutArr;
 /// Data
 Prop_copy()NSArray <UIViewModel *>*viewModelDataArr;// 数据源
-Prop_copy()NSMutableArray <NSNumber *>*btnHeightMutArr;
+Prop_strong()NSMutableArray <NSNumber *>*btnHeightMutArr;
 
 @end
 

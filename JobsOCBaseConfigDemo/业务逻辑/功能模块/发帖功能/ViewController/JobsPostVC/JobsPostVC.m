@@ -25,7 +25,7 @@ Prop_copy()NSString *inputDataHistoryString;
 Prop_copy()NSString *pictures;
 Prop_copy()NSString *videos;
 Prop_copy()NSString *coverVideo;
-Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
+Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
 Prop_strong()NSData *videosData;
 Prop_strong()NSURL *videosUrl;
 Prop_assign()BOOL isUpload;

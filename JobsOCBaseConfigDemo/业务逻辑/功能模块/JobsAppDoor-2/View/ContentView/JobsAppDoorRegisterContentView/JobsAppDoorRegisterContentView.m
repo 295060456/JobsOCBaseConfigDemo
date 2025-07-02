@@ -16,8 +16,8 @@ Prop_strong()BaseButton *backToLoginBtn;/// 返回登录
 Prop_strong()UILabel *titleLab;/// 标题
 Prop_strong()BaseButton *sendBtn;/// 注册按钮
 /// Data
-Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
-Prop_copy()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
+Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyleModel *>*registerDoorInputViewBaseStyleModelMutArr;
+Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputViewBaseStyleMutArr;
 
 @end
 

@@ -14,7 +14,7 @@ Prop_strong()ZFDouYinControlView *controlView;
 Prop_strong()ZFCustomControlView *fullControlView;
 Prop_strong()JobsBitsMonitorSuspendLab *bitsMonitorSuspendLab;
 /// Data
-Prop_copy()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
+Prop_strong()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
 
 @end
 

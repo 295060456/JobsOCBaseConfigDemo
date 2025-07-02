@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_END
  @property(nonatomic,weak)UIView *popUpCustomView;
  @property(nonatomic,weak)NSNumber *currentIndex;
  @property(nonatomic,weak)BaiShaETProjAlreadySettledSubBaseVC *vc;
- Prop_copy()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+ Prop_strong()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
  
  -(NSMutableArray<UIViewController *> *)childVCMutArr{
      if (!_childVCMutArr) {

@@ -10,6 +10,6 @@
 /// 不规则多边形按钮
 @interface IrregularBtn : UIButton
 
-Prop_copy()NSMutableArray <NSValue *>*pointMutArr;
+Prop_strong()NSMutableArray <NSValue *>*pointMutArr;
 
 @end

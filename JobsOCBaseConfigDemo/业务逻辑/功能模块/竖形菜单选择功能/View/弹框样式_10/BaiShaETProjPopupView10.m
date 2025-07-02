@@ -16,7 +16,7 @@ Prop_strong()BaseButton *cancelBtn;
 Prop_strong()BaseButton *sureBtn;
 Prop_strong()UIView *bgView;
 /// Data
-Prop_copy()NSMutableArray <UIViewModel *>*dataMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 Prop_assign()NSInteger selectedIndex;
 
 @end

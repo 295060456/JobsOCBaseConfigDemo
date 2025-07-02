@@ -16,10 +16,10 @@
 /// UI
 Prop_strong()BaseButton *btn_1;
 Prop_strong()BaseButton *btn_2;
-Prop_copy()NSMutableArray <NSString *>*richTextMutArr;
-Prop_copy()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
+Prop_strong()NSMutableArray <NSString *>*richTextMutArr;
+Prop_strong()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 /// Data
-Prop_copy()NSMutableArray <UIImage *>*photosImageMutArr;
+Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
 
 @end
 

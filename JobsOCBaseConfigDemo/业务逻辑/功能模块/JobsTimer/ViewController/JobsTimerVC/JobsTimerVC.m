@@ -11,9 +11,9 @@
 /// UI
 Prop_strong()UIButton *countDownBtn;
 Prop_strong()JobsCountdownView *countdownView;
-Prop_copy()NSMutableArray <UIButton *>*btnMutArr;
+Prop_strong()NSMutableArray <UIButton *>*btnMutArr;
 /// Data
-Prop_copy()NSMutableArray <NSString *>*btnTitleMutArr;
+Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 
 @end
 

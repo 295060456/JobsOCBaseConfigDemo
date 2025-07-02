@@ -14,7 +14,7 @@ Prop_strong()RBCLikeButton *loveBtn;/// 点赞
 Prop_strong()BaseButton *commentBtn;/// 评论
 Prop_strong()BaseButton *shareBtn;/// 分享
 /// Data
-Prop_copy()NSMutableArray <__kindof UIButton *>*masonryViewArr;
+Prop_strong()NSMutableArray <__kindof UIButton *>*masonryViewArr;
 Prop_assign()BOOL isSelected;
 
 @end

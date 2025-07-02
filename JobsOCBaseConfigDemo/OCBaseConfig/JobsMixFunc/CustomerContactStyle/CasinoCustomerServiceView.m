@@ -17,7 +17,7 @@ Prop_strong()UIImageView *leftIMGV;
 Prop_strong()UIImageView *rightIMGV;
 Prop_strong()JobsHotLabelBySingleLine *hl;
 /// Data
-Prop_copy()NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
+Prop_strong()NSMutableArray <UIViewModel *>*hotLabelDataMutArr;
 Prop_strong()CasinoCustomerContactModel *customerContactModel;
 
 @end

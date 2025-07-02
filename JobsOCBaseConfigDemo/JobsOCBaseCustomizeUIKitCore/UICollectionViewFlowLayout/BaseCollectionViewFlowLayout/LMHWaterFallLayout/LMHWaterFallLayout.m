@@ -18,9 +18,9 @@ static const UIEdgeInsets LMHDefaultEdgeInsets = {10,10,10,10};
 
 @interface LMHWaterFallLayout()
 /// 存放所有的布局属性
-Prop_copy()NSMutableArray *attrsArr;
+Prop_strong()NSMutableArray *attrsArr;
 /// 存放所有列的当前高度
-Prop_copy()NSMutableArray *columnHeights;
+Prop_strong()NSMutableArray *columnHeights;
 /// 内容的高度
 Prop_assign()CGFloat contentHeight;
 

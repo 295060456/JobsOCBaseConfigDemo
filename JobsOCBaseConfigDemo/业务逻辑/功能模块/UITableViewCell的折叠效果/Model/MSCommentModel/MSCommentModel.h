@@ -18,7 +18,7 @@ Prop_copy()NSString *rowTitle;
 @interface MSCommentModel : BaseModel
 
 Prop_copy()NSString *sectionTitle;
-Prop_copy()NSMutableArray <MSCommentDetailModel *>*commentDataMutArr;
+Prop_strong()NSMutableArray <MSCommentDetailModel *>*commentDataMutArr;
 
 @end
 

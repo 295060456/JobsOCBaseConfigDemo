@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsRecordPresentedViewController : NSObject<BaseProtocol>
 
-Prop_copy()NSMutableArray <__kindof UIViewController *>*presentedVCMutArr;
+Prop_strong()NSMutableArray <__kindof UIViewController *>*presentedVCMutArr;
 
 @end
 /// 防止过多的presented模态推出ViewController

@@ -14,8 +14,8 @@ Prop_strong()JXCategoryTitleView *categoryView;/// 文字
 Prop_strong()JXPagerView *pagerView;
 Prop_strong()BaiShaETProjCollectionHeaderView *collectionHeaderView;
 /// Data
-Prop_copy()NSMutableArray <NSString *>*titleMutArr;
-Prop_copy()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
+Prop_strong()NSMutableArray <NSString *>*titleMutArr;
+Prop_strong()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
 
 @end
 
