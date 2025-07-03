@@ -95,6 +95,7 @@
 #import "PointLabTestVC.h"
 #import "CalendarVC.h"/// 日历功能
 #import "JobsScrollLabelVC.h" /// 当文本超出的时候，滚动展现文字的Label
+#import "NSProxyDemoVC.h"
 /// 公共图
 #import "CommonViews.h"
 

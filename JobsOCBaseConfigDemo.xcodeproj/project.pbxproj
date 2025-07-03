@@ -267,6 +267,12 @@
 		C5E878692E155110006C3B22 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = C5E878682E155110006C3B22 /* .gitkeep */; };
 		C5E8786B2E155114006C3B22 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = C5E8786A2E155114006C3B22 /* .gitkeep */; };
 		C5E878752E155144006C3B22 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = C5E878742E155144006C3B22 /* .gitkeep */; };
+		C5E878BD2E1556D2006C3B22 /* NSProxyDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E878BC2E1556D2006C3B22 /* NSProxyDemoVC.m */; };
+		C5E878C42E155808006C3B22 /* RealServiceA.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E878C32E155808006C3B22 /* RealServiceA.m */; };
+		C5E878C92E155822006C3B22 /* RealServiceB.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E878C82E155822006C3B22 /* RealServiceB.m */; };
+		C5E878CC2E1558A8006C3B22 /* MyProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E878CB2E1558A8006C3B22 /* MyProxy.m */; };
+		C5E878D12E155B5F006C3B22 /* WeakTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E878D02E155B5F006C3B22 /* WeakTarget.m */; };
+		C5E878D52E155D0E006C3B22 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E878D42E155D0E006C3B22 /* Person.m */; };
 		C5EE93AB2DDED58F00806CB3 /* UIButton+JobsStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE93A92DDED58F00806CB3 /* UIButton+JobsStepView.m */; };
 		CE260F442CAE671C00233F0F /* NSString+Eomji.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F2F2CAE671C00233F0F /* NSString+Eomji.m */; };
 		CE260F452CAE671C00233F0F /* NSString+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = CE260F3E2CAE671C00233F0F /* NSString+Replace.m */; };
@@ -1817,8 +1823,6 @@
 		C5D4ADAB2DB25D74006ED3F6 /* ZFPlayerExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPlayerExtras.h; sourceTree = "<group>"; };
 		C5D4ADAC2DB25D74006ED3F6 /* ZFPlayerExtras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPlayerExtras.m; sourceTree = "<group>"; };
 		C5E878562E1550C3006C3B22 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		C5E878582E1550C9006C3B22 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		C5E8785A2E1550CF006C3B22 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		C5E8785E2E1550E3006C3B22 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		C5E878602E1550EF006C3B22 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		C5E878622E1550F3006C3B22 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -1856,6 +1860,19 @@
 		C5E878B02E1553CD006C3B22 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitkeep; path = ../../../../../../../../Desktop/.gitkeep; sourceTree = "<group>"; };
 		C5E878B82E15549D006C3B22 /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitkeep; path = ../../../../../../../../Desktop/.gitkeep; sourceTree = "<group>"; };
 		C5E878B92E1554A2006C3B22 /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitkeep; path = ../../../../../../../../Desktop/.gitkeep; sourceTree = "<group>"; };
+		C5E878BB2E1556D2006C3B22 /* NSProxyDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSProxyDemoVC.h; sourceTree = "<group>"; };
+		C5E878BC2E1556D2006C3B22 /* NSProxyDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSProxyDemoVC.m; sourceTree = "<group>"; };
+		C5E878BE2E1557B1006C3B22 /* MyService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyService.h; sourceTree = "<group>"; };
+		C5E878C22E155808006C3B22 /* RealServiceA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealServiceA.h; sourceTree = "<group>"; };
+		C5E878C32E155808006C3B22 /* RealServiceA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealServiceA.m; sourceTree = "<group>"; };
+		C5E878C72E155822006C3B22 /* RealServiceB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealServiceB.h; sourceTree = "<group>"; };
+		C5E878C82E155822006C3B22 /* RealServiceB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealServiceB.m; sourceTree = "<group>"; };
+		C5E878CA2E1558A8006C3B22 /* MyProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyProxy.h; sourceTree = "<group>"; };
+		C5E878CB2E1558A8006C3B22 /* MyProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyProxy.m; sourceTree = "<group>"; };
+		C5E878CF2E155B5F006C3B22 /* WeakTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeakTarget.h; sourceTree = "<group>"; };
+		C5E878D02E155B5F006C3B22 /* WeakTarget.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeakTarget.m; sourceTree = "<group>"; };
+		C5E878D32E155D0E006C3B22 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		C5E878D42E155D0E006C3B22 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		C5EE93A82DDED58F00806CB3 /* UIButton+JobsStepView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+JobsStepView.h"; sourceTree = "<group>"; };
 		C5EE93A92DDED58F00806CB3 /* UIButton+JobsStepView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+JobsStepView.m"; sourceTree = "<group>"; };
 		CE260F282CAE671C00233F0F /* NSString+Time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Time.h"; sourceTree = "<group>"; };
@@ -5579,25 +5596,19 @@
 		C50657832E15504400EC39EB /* NSProxy功能探究 */ = {
 			isa = PBXGroup;
 			children = (
+				C5E878C02E1557E6006C3B22 /* Model */,
 				C50657862E15506100EC39EB /* View */,
 				C50657852E15505800EC39EB /* ViewController */,
-				C50657842E15505300EC39EB /* Model */,
+				C5E878BE2E1557B1006C3B22 /* MyService.h */,
 			);
 			path = "NSProxy功能探究";
-			sourceTree = "<group>";
-		};
-		C50657842E15505300EC39EB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C5E8785A2E1550CF006C3B22 /* .gitkeep */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C50657852E15505800EC39EB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C5E878582E1550C9006C3B22 /* .gitkeep */,
+				C5E878BB2E1556D2006C3B22 /* NSProxyDemoVC.h */,
+				C5E878BC2E1556D2006C3B22 /* NSProxyDemoVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -6733,6 +6744,63 @@
 				8493F1E92CD3A7E000011DD1 /* YTKCustomBaseRequest.h */,
 			);
 			path = Headers;
+			sourceTree = "<group>";
+		};
+		C5E878C02E1557E6006C3B22 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C5E878D22E155D01006C3B22 /* Person */,
+				C5E878CE2E155B39006C3B22 /* MyProxy */,
+				C5E878CD2E155B33006C3B22 /* WeakTarget */,
+				C5E878C52E15580C006C3B22 /* RealServiceA */,
+				C5E878C62E155817006C3B22 /* RealServiceB */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C5E878C52E15580C006C3B22 /* RealServiceA */ = {
+			isa = PBXGroup;
+			children = (
+				C5E878C22E155808006C3B22 /* RealServiceA.h */,
+				C5E878C32E155808006C3B22 /* RealServiceA.m */,
+			);
+			path = RealServiceA;
+			sourceTree = "<group>";
+		};
+		C5E878C62E155817006C3B22 /* RealServiceB */ = {
+			isa = PBXGroup;
+			children = (
+				C5E878C72E155822006C3B22 /* RealServiceB.h */,
+				C5E878C82E155822006C3B22 /* RealServiceB.m */,
+			);
+			path = RealServiceB;
+			sourceTree = "<group>";
+		};
+		C5E878CD2E155B33006C3B22 /* WeakTarget */ = {
+			isa = PBXGroup;
+			children = (
+				C5E878CF2E155B5F006C3B22 /* WeakTarget.h */,
+				C5E878D02E155B5F006C3B22 /* WeakTarget.m */,
+			);
+			path = WeakTarget;
+			sourceTree = "<group>";
+		};
+		C5E878CE2E155B39006C3B22 /* MyProxy */ = {
+			isa = PBXGroup;
+			children = (
+				C5E878CA2E1558A8006C3B22 /* MyProxy.h */,
+				C5E878CB2E1558A8006C3B22 /* MyProxy.m */,
+			);
+			path = MyProxy;
+			sourceTree = "<group>";
+		};
+		C5E878D22E155D01006C3B22 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				C5E878D32E155D0E006C3B22 /* Person.h */,
+				C5E878D42E155D0E006C3B22 /* Person.m */,
+			);
+			path = Person;
 			sourceTree = "<group>";
 		};
 		C5EE93AA2DDED58F00806CB3 /* UIButton+JobsStepView */ = {
@@ -17327,6 +17395,7 @@
 				CE8C146E2CB91ADE0056090E /* NSObject+URLManager_2.m in Sources */,
 				84E4013E2CC60D3100C8303A /* This+URLManager_Base.m in Sources */,
 				CE8C146F2CB91ADE0056090E /* NSObject+URLManager_1.m in Sources */,
+				C5E878C92E155822006C3B22 /* RealServiceB.m in Sources */,
 				CECE7D6A2C450DED00764AF5 /* AppDelegate+TabBarCtr.m in Sources */,
 				CECE7EDF2C450E5B00764AF5 /* ZMJCell+CustomView.m in Sources */,
 				C5932C1D2DE9A4240021F5FC /* MJRefreshBackStateFooter+Extra.m in Sources */,
@@ -17395,6 +17464,7 @@
 				8432B64A2D1DAFC900ADE9FF /* FileFolderHandleModel.m in Sources */,
 				CECE7EC22C450E5B00764AF5 /* TKPermissionPublic.m in Sources */,
 				CE5A64AD2CA82EA0006D67A7 /* JobsSEL_IMP.m in Sources */,
+				C5E878BD2E1556D2006C3B22 /* NSProxyDemoVC.m in Sources */,
 				CECE7EE12C450E5B00764AF5 /* ZWPullMenuModel.m in Sources */,
 				CECE7E902C450E5B00764AF5 /* HTTPLogging.m in Sources */,
 				CECE7EE32C450E5B00764AF5 /* ZWPullMenuView.m in Sources */,
@@ -17415,6 +17485,7 @@
 				CECE7E942C450E5B00764AF5 /* KTVHCError.m in Sources */,
 				CECE7EB52C450E5B00764AF5 /* TKPermissionContacts.m in Sources */,
 				CE5A64742CA82CAD006D67A7 /* AVURLAsset+Extra.m in Sources */,
+				C5E878D52E155D0E006C3B22 /* Person.m in Sources */,
 				CECE7D3D2C450CCD00764AF5 /* JobsOCBaseConfigTestPopupView.m in Sources */,
 				CECE7E952C450E5B00764AF5 /* KTVHCLog.m in Sources */,
 				CECE7EA92C450E5B00764AF5 /* KTVHCHTTPServer.m in Sources */,
@@ -17512,6 +17583,7 @@
 				C5BCC6312DB39BC400EFE4F3 /* SlotCell.m in Sources */,
 				C5BCC6322DB39BC400EFE4F3 /* TextCell.m in Sources */,
 				C5BCC6332DB39BC400EFE4F3 /* HourCell.m in Sources */,
+				C5E878CC2E1558A8006C3B22 /* MyProxy.m in Sources */,
 				C5BCC6342DB39BC400EFE4F3 /* HeaderCell.m in Sources */,
 				C5BCC6352DB39BC400EFE4F3 /* DayTitleCell.m in Sources */,
 				C5BCC6362DB39BC400EFE4F3 /* TimeCell.m in Sources */,
@@ -17559,6 +17631,7 @@
 				CE5A65872CA832FA006D67A7 /* CustomZFPlayerControlView.m in Sources */,
 				CE5A65542CA8321D006D67A7 /* JobsTextView.m in Sources */,
 				CE5A65552CA8321D006D67A7 /* BaseTextView.m in Sources */,
+				C5E878C42E155808006C3B22 /* RealServiceA.m in Sources */,
 				CECE7EA62C450E5B00764AF5 /* KTVHCDownload.m in Sources */,
 				CE5A64B22CA82EBF006D67A7 /* JobsTuple.m in Sources */,
 				CECE7E7E2C450E5B00764AF5 /* JXCategoryTimelineView.m in Sources */,
@@ -18181,6 +18254,7 @@
 				CE5A65492CA831FE006D67A7 /* ZYTextField.m in Sources */,
 				CE5A654A2CA831FE006D67A7 /* CJTextField.m in Sources */,
 				CE5A654B2CA831FE006D67A7 /* HQTextField.m in Sources */,
+				C5E878D12E155B5F006C3B22 /* WeakTarget.m in Sources */,
 				CE5A654C2CA831FE006D67A7 /* JobsMagicTextField.m in Sources */,
 				CE5A654D2CA831FE006D67A7 /* JobsTextField.m in Sources */,
 				CE410FEB2C57B8B400AB9402 /* ZBURLRequest.m in Sources */,
