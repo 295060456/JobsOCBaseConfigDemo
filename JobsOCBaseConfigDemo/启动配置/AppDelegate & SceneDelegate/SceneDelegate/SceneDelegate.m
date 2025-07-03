@@ -28,7 +28,6 @@ SceneDelegate *sceneDelegate;
                                     id _Nullable arg) {
             @jobs_strongify(self)
             NSNotification *notification = (NSNotification *)arg;
-            @jobs_strongify(self)
             JobsLog(@"通知传递过来的 = %@",notification.object);
             self.windowScene = notification.object;
         }];

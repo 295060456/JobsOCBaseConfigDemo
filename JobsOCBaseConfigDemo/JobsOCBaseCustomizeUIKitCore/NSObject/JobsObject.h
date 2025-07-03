@@ -15,7 +15,7 @@
 /// 作用于全局的工具类（单例模式）
 #import "JobsAppTools.h"
 /// App 开屏广告
-#import "JobsLaunchAdMgr.h"
+//#import "JobsLaunchAdMgr.h"
 /// App 语言国际化
 #import "JobsLanguageManager.h"
 /// 文件夹操作

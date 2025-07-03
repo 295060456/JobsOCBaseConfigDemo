@@ -21,9 +21,12 @@
 
 +(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initLightStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {
             return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleLight forView:view];
-        } else return UIImpactFeedbackGenerator.initByLightStyle;
+        } else
+#endif
+        {return UIImpactFeedbackGenerator.initByLightStyle;}
     };
 }
 
@@ -33,9 +36,12 @@
 
 +(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initMediumStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {
             return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleMedium forView:view];
-        } else return UIImpactFeedbackGenerator.initByMediumStyle;
+        } else 
+#endif
+        {return UIImpactFeedbackGenerator.initByMediumStyle;}
     };
 }
 
@@ -45,9 +51,12 @@
 
 +(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initHeavyStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {
             return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleHeavy forView:view];
-        } else return UIImpactFeedbackGenerator.initByHeavyStyle;
+        } else 
+#endif
+        {return UIImpactFeedbackGenerator.initByHeavyStyle;}
     };
 }
 
@@ -57,9 +66,12 @@
 
 +(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initSoftStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {
             return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleSoft forView:view];
-        } else return UIImpactFeedbackGenerator.initBySoftStyle;
+        } else
+#endif
+        {return UIImpactFeedbackGenerator.initBySoftStyle;}
     };
 }
 
@@ -69,9 +81,12 @@
 
 +(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initRigidStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {
             return [UIImpactFeedbackGenerator feedbackGeneratorWithStyle:UIImpactFeedbackStyleRigid forView:view];
-        } else return UIImpactFeedbackGenerator.initByRigidStyle;
+        } else 
+#endif
+        {return UIImpactFeedbackGenerator.initByRigidStyle;}
     };
 }
 

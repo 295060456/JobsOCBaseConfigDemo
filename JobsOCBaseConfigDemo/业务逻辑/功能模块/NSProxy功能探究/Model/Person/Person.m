@@ -9,7 +9,7 @@
 
 @implementation Person
 
--(void)setName:(NSString *)name{
+-(void)setJobsName:(NSString *)name{
     NSLog(@"👤 我的名字设置为：%@", name);
 }
 

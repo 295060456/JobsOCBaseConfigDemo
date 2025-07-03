@@ -101,11 +101,11 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
 }
 #pragma mark —— JobsDoorInputViewProtocol
 -(ZYTextField *_Nullable)getTextField{
-    return _textField;
+    return _zyTextField;
 }
 
 -(NSString *_Nullable)textFieldValue{
-    return _textField.text;
+    return _zyTextField.text;
 }
 #pragma mark —— lazyLoad
 -(BaseButton *)securityModelBtn{
@@ -149,14 +149,14 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
                 self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));
             }else{
                 JobsLog(@"输入的字符为 = %@",x);
-                [self block:self->_textField
+                [self block:self->_zyTextField
                       value:x];
             }
         }];
         [self.addSubview(_zyTextField) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
-    }return _textField;
+    }return _zyTextField;
 }
 
 -(UILabel *)titleLab{

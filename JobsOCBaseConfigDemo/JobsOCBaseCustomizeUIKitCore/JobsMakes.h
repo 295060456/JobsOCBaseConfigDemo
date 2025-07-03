@@ -179,20 +179,38 @@ NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeClearConfiguratio
     return config;
 }
 
-NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
-    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listCellConfiguration;
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListPlainCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listPlainCellConfiguration;
     if (block) block(config);
     return config;
 }
 
-NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListHeaderConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
-    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listHeaderConfiguration;
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListPlainHeaderFooterConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listPlainHeaderFooterConfiguration;
     if (block) block(config);
     return config;
 }
 
-NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListFooterConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
-    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listFooterConfiguration;
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListGroupedCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listGroupedCellConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListGroupedHeaderFooterConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listGroupedHeaderFooterConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListSidebarHeaderConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_UNAVAILABLE(tvos, watchos){
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listSidebarHeaderConfiguration;
+    if (block) block(config);
+    return config;
+}
+
+NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull jobsMakeListSidebarCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block) API_UNAVAILABLE(watchos) API_UNAVAILABLE(tvos) {
+    UIBackgroundConfiguration *config = UIBackgroundConfiguration.listSidebarCellConfiguration;
     if (block) block(config);
     return config;
 }

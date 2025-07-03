@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Person : NSObject
 
--(void)setName:(NSString *)name;
+-(void)setJobsName:(NSString *)name;
 
 @end
 

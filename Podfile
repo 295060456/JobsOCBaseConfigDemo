@@ -167,7 +167,7 @@ def videoFunc
   pod 'ZFPlayer' # https://github.com/renzifeng/ZFPlayer
   pod 'ZFPlayer/ControlView'
   pod 'ZFPlayer/AVPlayer'
-  # pod 'ZFPlayer/ijkplayer'
+#  pod 'ZFPlayer/ijkplayer'
 #  pod 'KTVHTTPCache' # 边下边播
 #  pod 'VIMediaCache' # https://github.com/vitoziv/VIMediaCache 边下边播
 end

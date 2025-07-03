@@ -105,6 +105,7 @@
 
 #import "JXCategoryExtra.h"
 #import "ZFPlayerExtras.h"
+#import "ZFIJKPlayerManager.h"
 
 #endif /* JobsOCBaseCustomize3rdCore_h */
 

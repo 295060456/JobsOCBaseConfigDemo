@@ -83,7 +83,7 @@
     return ^(){
         MyProxy *proxy = MyProxy.proxy;
         proxy.addWeakTargetBy(Person.new);
-        [proxy setName:@"JobsHi"];
+        [(id)proxy setJobsName:@"JobsHi"];
     };
 }
 

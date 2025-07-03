@@ -16,6 +16,7 @@
 
 #import "ZFDouYinControlView.h"
 #import "ZFCustomControlView.h"
+#import "ZFIJKPlayerManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,11 +32,13 @@ NS_INLINE __kindof ZFAVPlayerManager *_Nonnull jobsMakeZFAVPlayerManager(jobsByZ
     return data;
 }
 
+#if __has_include(<IJKMediaFramework/IJKMediaFramework.h>)
 NS_INLINE __kindof ZFIJKPlayerManager *_Nonnull jobsMakeZFIJKPlayerManager(jobsByZFIJKPlayerManagerBlock _Nonnull block){
     ZFIJKPlayerManager *data = ZFIJKPlayerManager.alloc.init;
     if (block) block(data);
     return data;
 }
+#endif
 
 NS_INLINE __kindof ZFDouYinControlView *_Nonnull jobsMakeZFDouYinControlView(jobsByZFDouYinControlViewBlock _Nonnull block){
     ZFDouYinControlView *data = ZFDouYinControlView.alloc.init;
