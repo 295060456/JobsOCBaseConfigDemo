@@ -33,10 +33,12 @@ typedef id _Nullable(^JobsReturnIDByComponentTypeAndUIViewBlock)(Jobs_ReturnIDBy
 typedef void(^jobsByJobsTextViewBlock)(__kindof JobsTextView *_Nullable textView);
 
 @class ZFAVPlayerManager;
+@class ZFIJKPlayerManager;
 @class ZFDouYinControlView;
 @class ZFCustomControlView;
 @class CustomZFPlayerControlView;
 typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullable manager);
+typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nullable manager);
 typedef void(^jobsByZFDouYinControlViewBlock)(__kindof ZFDouYinControlView *_Nullable controlView);
 typedef void(^jobsByZFCustomControlViewBlock)(__kindof ZFCustomControlView *_Nullable controlView);
 typedef void(^jobsByCustomZFPlayerControlViewBlock)(__kindof CustomZFPlayerControlView *_Nullable controlView);
@@ -540,11 +542,7 @@ typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByVoidBlock)(void
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByIDBlock)(id _Nullable data);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByDictionaryBlock)(NSDictionary *_Nullable dic);
 
-@class ZFAVPlayerManager;
-typedef void(^jobsByZFAVPlayerManagerBlock)(__kindof ZFAVPlayerManager *_Nullable data);
 
-@class ZFIJKPlayerManager;
-typedef void(^jobsByZFIJKPlayerManagerBlock)(__kindof ZFIJKPlayerManager *_Nullable data);
 
 #if __has_include(<JXCategoryView/JXCategoryView.h>)
 #import <JXCategoryView/JXCategoryView.h>
