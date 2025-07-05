@@ -866,6 +866,51 @@ for (int i = 0; i < n; i++) {
 > 2、这两个特性能够使得代码更加灵活，同时也方便了数据模型和视图之间的通信；
 > 3、在实际应用中，需要注意使用 KVO 和 KVC 时的内存管理和性能问题，以确保应用的稳定性和性能优化；
 
+### __covariant、__contravariant
+
+> * 在 Objective-C 中，`__covariant` 和 `__contravariant` 是用于 **泛型类型参数协变性（covariance）与逆变性（contravariance）** 的关键字。它们出现在泛型类的声明中，目的是为编译器提供**类型安全的协变/逆变检查**，尤其是在泛型和容器类型传递之间转换时更有用。
+> * 不使用时默认是**不变（invariant）**：默认情况下，泛型是**不变的**：`MyArray<NSString *>` 和 `MyArray<NSObject *>` 之间互相赋值会编译报错。
+> * 一般写代码用不到，除非封装框架
+
+| 关键字            | 中文含义 | 作用                            | 示例含义                                                   |
+| ----------------- | -------- | ------------------------------- | ---------------------------------------------------------- |
+| `__covariant`     | 协变     | 允许**子类向上转型**（子 ➜ 父） | `NSArray<NSString *>` 可以赋值给 `NSArray<NSObject *>`     |
+| `__contravariant` | 逆变     | 允许**父类向下转型**（父 ➜ 子） | `MyHandler<NSObject *>` 可以赋值给 `MyHandler<NSString *>` |
+
+* 协变（`__covariant`）—— 常用于只读容器，如 `NSArray`
+
+  ```objective-c
+  @interface MyArray<__covariant ObjectType> : NSObject
+  @property (nonatomic, strong) ObjectType object;
+  @end
+  
+  MyArray<NSString *> *strArray = [MyArray new];
+  MyArray<NSObject *> *objArray = strArray; // ✅ 合法
+  ```
+
+  ```objective-c
+  /// 允许 NSArray<NSString *> * 赋值给 NSArray<NSObject *> *
+  @interface NSArray<__covariant ObjectType> : NSObject <NSCopying, NSMutableCopying, NSSecureCoding, NSFastEnumeration>
+  
+  @end 
+  ```
+
+* 逆变（`__contravariant`）—— 常用于处理器/回调类，表示只写行为
+
+  > * 苹果的 API 中 **几乎没有使用 `__contravariant`**
+  >   * Apple 很少封装“只写”的泛型类，比如“只接收对象”的处理器或回调类型。
+  >   * Apple 大多通过 `id`、`SEL`、`delegate`、`target-action` 模式实现动态分发，不依赖泛型逆变。
+  >   * Apple 更注重稳定和兼容，不使用容易让开发者困惑的语言特性，尤其是在泛型不参与运行时的 Objective-C 中。
+
+  ```objective-c
+  @interface MyHandler<__contravariant ObjectType> : NSObject
+  - (void)handle:(ObjectType)obj;
+  @end
+  
+  MyHandler<NSObject *> *objHandler = [MyHandler new];
+  MyHandler<NSString *> *strHandler = objHandler; // ✅ 合法
+  ```
+
 ### KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值**<font color="red">存储</font>
 
 * 通过key⭢对象属性。不需要通过`set/get`方法；
