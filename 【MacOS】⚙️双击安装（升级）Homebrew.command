@@ -83,6 +83,7 @@ brew install watchman
 brew install gnupg
 brew install oclint
 brew install yarn
+brew install flutter
 brew install ruby
 
 echo ""
