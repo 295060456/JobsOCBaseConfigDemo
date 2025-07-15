@@ -67,6 +67,11 @@ def debugPods
   #pod 'LookinServer', :configurations => ['Debug'] # https://lookin.work/
 end
 
+# Flutter框架
+def flutterPods
+  pod 'Flutter'
+end
+
 # 几乎每个App都会用到的
 def appCommon
 #  pod 'JobsBlock' # https://github.com/295060456/JobsBlock
@@ -282,6 +287,7 @@ target 'JobsOCBaseConfigDemo' do
   ui # UI相关
   func # 一些功能性
   database # 数据库
+  flutterPods # Flutter框架
   
   cocoPodsConfig # 基础的公共配置
 end

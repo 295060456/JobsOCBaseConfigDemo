@@ -142,6 +142,12 @@
 #import "TABAnimated.h"
 #endif
 
+#if __has_include(<Flutter/Flutter.h>)
+#import <Flutter/Flutter.h>
+#else
+#import "Flutter.h"
+#endif
+
 #if __has_include(<Reachability/Reachability.h>)
 #import <Reachability/Reachability.h>
 #else

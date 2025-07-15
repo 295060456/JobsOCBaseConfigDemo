@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		404857BA34B9C9AB6F5E4714 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		90E04F79B6CBEA72A6701F04 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */; };
+		C53BE3BD2E265E54004A72BE /* NativeWebViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */; };
+		C53BE3C12E265EAC004A72BE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3C02E265EAC004A72BE /* WebViewController.m */; };
 		C55C796B2E16748E00B56985 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55C79692E16748E00B56985 /* Main.storyboard */; };
 		C55C79732E16749000B56985 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55C79712E16749000B56985 /* LaunchScreen.storyboard */; };
 		C55C79812E16749000B56985 /* JobsOCBaseConfigDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C79802E16749000B56985 /* JobsOCBaseConfigDemoTests.m */; };
@@ -1308,6 +1310,11 @@
 		5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		783BEB47B91611719A54A8B7 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		A005B1F583EEB5024538D01D /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C53BE3BA2E265E39004A72BE /* JobsOCBaseConfigDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JobsOCBaseConfigDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		C53BE3BB2E265E54004A72BE /* NativeWebViewPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeWebViewPlugin.h; sourceTree = "<group>"; };
+		C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeWebViewPlugin.m; sourceTree = "<group>"; };
+		C53BE3BF2E265EAC004A72BE /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		C53BE3C02E265EAC004A72BE /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		C55C795D2E16748E00B56985 /* JobsOCBaseConfigDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobsOCBaseConfigDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55C796A2E16748E00B56985 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C55C79722E16749000B56985 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -3881,9 +3888,37 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C53BE3B62E265E1F004A72BE /* Flutter */ = {
+			isa = PBXGroup;
+			children = (
+				C53BE3BE2E265E9A004A72BE /* WebViewController */,
+				C53BE3B72E265E2D004A72BE /* NativeWebViewPlugin */,
+			);
+			path = Flutter;
+			sourceTree = "<group>";
+		};
+		C53BE3B72E265E2D004A72BE /* NativeWebViewPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				C53BE3BB2E265E54004A72BE /* NativeWebViewPlugin.h */,
+				C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */,
+			);
+			path = NativeWebViewPlugin;
+			sourceTree = "<group>";
+		};
+		C53BE3BE2E265E9A004A72BE /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C53BE3BF2E265EAC004A72BE /* WebViewController.h */,
+				C53BE3C02E265EAC004A72BE /* WebViewController.m */,
+			);
+			path = WebViewController;
+			sourceTree = "<group>";
+		};
 		C55C79542E16748E00B56985 = {
 			isa = PBXGroup;
 			children = (
+				C53BE3BA2E265E39004A72BE /* JobsOCBaseConfigDemo-Bridging-Header.h */,
 				C55C795F2E16748E00B56985 /* JobsOCBaseConfigDemo */,
 				C55C797F2E16749000B56985 /* JobsOCBaseConfigDemoTests */,
 				C55C79892E16749000B56985 /* JobsOCBaseConfigDemoUITests */,
@@ -4540,6 +4575,7 @@
 		C55C7AB92E167B5D00B56985 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				C53BE3B62E265E1F004A72BE /* Flutter */,
 				C55C7B6D2E167B5E00B56985 /* 本地通知 */,
 				C55C7B8F2E167B5E00B56985 /* 测试剪切板提示关闭 */,
 				C55C7D242E167B5F00B56985 /* 抽奖轮盘 */,
@@ -17027,6 +17063,7 @@
 				C55C795A2E16748E00B56985 /* Frameworks */,
 				C55C795B2E16748E00B56985 /* Resources */,
 				303400429DC1557E1EC51DF5 /* [CP] Copy Pods Resources */,
+				65AA9437C99FCD02CA12CD98 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -17086,6 +17123,7 @@
 				TargetAttributes = {
 					C55C795C2E16748E00B56985 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1640;
 					};
 					C55C797B2E16749000B56985 = {
 						CreatedOnToolsVersion = 15.2;
@@ -17506,8 +17544,12 @@
 			);
 			inputFileListPaths = (
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -17534,6 +17576,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65AA9437C99FCD02CA12CD98 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		99243361AFE16ACA3ED4E6F6 /* [CP] Check Pods Manifest.lock */ = {
@@ -17848,6 +17909,7 @@
 				C55C8D9A2E167B6D00B56985 /* UIScrollView+FDFullscreenPopGesture.m in Sources */,
 				C55C8BFA2E167B6B00B56985 /* JobsAppDoorInputViewBaseStyleModel.m in Sources */,
 				C55C89FE2E167B6900B56985 /* ChannelCell.m in Sources */,
+				C53BE3C12E265EAC004A72BE /* WebViewController.m in Sources */,
 				C55C8D052E167B6D00B56985 /* JobsAppDoorInputViewBaseStyle_4.m in Sources */,
 				C55C8ED62E167B6F00B56985 /* MJRefreshAutoStateFooter+Extra.m in Sources */,
 				C55C8BA52E167B6B00B56985 /* BaseViewController.m in Sources */,
@@ -18271,6 +18333,7 @@
 				C55C89CB2E167B6900B56985 /* BaiShaETProjVIPSubCVFooterView.m in Sources */,
 				C55C8BEE2E167B6B00B56985 /* JobsLanguageManager.m in Sources */,
 				C55C89DE2E167B6900B56985 /* JXCategoryViewVerticalShowVC.m in Sources */,
+				C53BE3BD2E265E54004A72BE /* NativeWebViewPlugin.m in Sources */,
 				C55C8C482E167B6C00B56985 /* NSObject+RichText.m in Sources */,
 				C55C8C732E167B6C00B56985 /* XLSphereView.m in Sources */,
 				C55C8C572E167B6C00B56985 /* NSObject+UserInfo.m in Sources */,
@@ -18696,6 +18759,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JobsOCBaseConfigDemo/JobsOCBaseConfigDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -18726,6 +18790,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "JobsOCBaseConfigDemo/业务逻辑/功能模块/Flutter/NativeWebViewPlugin/JobsOCBaseConfigDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -18736,6 +18803,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = JobsOCBaseConfigDemo/JobsOCBaseConfigDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -18766,6 +18834,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "JobsOCBaseConfigDemo/业务逻辑/功能模块/Flutter/NativeWebViewPlugin/JobsOCBaseConfigDemo-Bridging-Header.h";
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
