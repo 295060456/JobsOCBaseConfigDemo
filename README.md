@@ -148,6 +148,76 @@
     ```
 ### 3、iOS模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
 
+* iOS模拟器目录
+
+  * ```shell
+    ~/Library/Developer/CoreSimulator/Devices/
+    ```
+
+    > <font color=red>**最常用的目录**</font>
+    >
+    > 🧼 清理建议：清理 `~/Library/Developer/CoreSimulator/Devices/` 可以释放大量空间，但会移除所有模拟器的 App 安装数据。
+    >
+    > **每个模拟器实例对应一个 UUID 子目录**。子目录包含该模拟器的所有数据，例如：
+    >
+    > - 应用程序数据（App 安装后的容器、沙盒）
+    > - `data/` 目录里有模拟器的 Documents、tmp、Library 等路径
+    > - `device.plist` 存储了模拟器的配置信息（名称、系统版本、状态等）
+    > - `logs/` 保存了日志
+    >
+    > 当你运行模拟器、安装应用、查看沙盒路径，访问的就是这个目录中的对应路径。
+
+  * ```
+    ~/Library/Developer/CoreSimulator/Volumes/
+    ```
+
+    > 🧼 清理建议：`Volumes/` 通常空间不大，**可以直接删除**，Xcode 会自动重新创建。
+    >
+    > * 存放模拟器用到的 **挂载卷（Volumes）数据**。
+    >
+    > - 用于模拟 **iOS 设备的磁盘结构**，包括 `/Volumes` 中的挂载点。
+    > - 一些 App 或系统组件可能会在模拟器中访问 `/Volumes` 路径（类似 macOS 磁盘挂载），就会挂载此目录中的数据。
+    >
+    > 例如：模拟器运行中，如果用户或 App 尝试挂载外部磁盘，或创建虚拟磁盘（如 .dmg 文件），就可能映射到这个目录。
+    >
+    > 📌 注意事项：
+    >
+    > - 通常这个目录在未特殊使用挂载卷的模拟器中是空的。
+    > - 可被清理，Xcode 会在需要时自动重新创建。
+
+* 查看目前有的iOS模拟器安装包
+
+  ```shell
+  xcrun simctl list runtimes
+  ```
+
+* 打印所有模拟器实例路径和设备名称
+
+  ```shell
+  xcrun simctl list devices -j | jq -r '.devices | to_entries[] | .value[] | select(.isAvailable == true) | "\(.name) (\(.state))\n↪︎  Path: ~/Library/Developer/CoreSimulator/Devices/\(.udid)\n"' 
+  ```
+
+  或，
+
+  ```shell
+  xcrun simctl list devices | grep -E '^    ' | while read -r line; do
+    name=$(echo "$line" | cut -d '(' -f1 | xargs)
+    uuid=$(echo "$line" | grep -oE '[A-F0-9\-]{36}')
+    echo "$name"
+    echo "↪︎  Path: ~/Library/Developer/CoreSimulator/Devices/$uuid"
+    echo ""
+  done
+  ```
+
+* 最新版本的XCode（目前是：16.4），在设备选择器里面点选了较低版本的iOS模拟器（比如说：iPhone 7），只能通过命令行进行实例化并打开
+
+  ```shell
+  xcrun simctl list devices | grep 'iPhone 7'
+  xcrun simctl boot "iPhone 7"
+  ```
+
+  ![image-20250716140527403](./assets/image-20250716140527403.png)
+
 * 命令行唤起 iOS模拟器
 
   ```shell
@@ -155,40 +225,6 @@
   ```
 
 * 如果更新或者删除xcode，那么下载的iOS模拟器将会丢失
-
-* 模拟器文件通常存储在以下路径
-
-  ```shell
-  open ~/Library/Developer/CoreSimulator/Volumes/
-  ```
-
-* 备份iOS模拟器文件夹到桌面`Volumes`
-
-  脚本自动化：[**【MacOS】备份iOS模拟器.command**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%A4%87%E4%BB%BDiOS%E6%A8%A1%E6%8B%9F%E5%99%A8.command)
-
-  ```shell
-  #!/bin/bash
-  
-  # 创建桌面上的Volumes文件夹（如果不存在）
-  mkdir -p ~/Desktop/Volumes
-  # 使用rsync复制目录并显示进度
-  sudo rsync -avh --progress /Library/Developer/CoreSimulator/Volumes/ ~/Desktop/Volumes/
-  echo "Volumes文件夹已成功复制到桌面。"
-  ```
-
-* 还原iOS模拟器（执行完毕后，需要重启xcode）
-
-  脚本自动化：[**【MacOS】恢复iOS模拟器.command**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%81%A2%E5%A4%8DiOS%E6%A8%A1%E6%8B%9F%E5%99%A8.command)
-  
-  ```shell
-  #!/bin/bash
-  
-  # 确保目标目录存在
-  sudo mkdir -p /Library/Developer/CoreSimulator/Volumes
-  # 使用rsync复制目录并显示进度
-  sudo rsync -avh --progress ~/Desktop/Volumes/ /Library/Developer/CoreSimulator/Volumes/
-  echo "桌面的Volumes文件夹内容已成功复制到/Library/Developer/CoreSimulator/Volumes。"
-  ```
 
 ### 4、`lldb`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
 
@@ -206,14 +242,7 @@ Current targets:
 * 查看`Command Line Tools`版本
 
   ```shell
-  Last login: Wed Jul 10 09:58:40 on ttys003
-  ➜  Desktop pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
-  
-  package-id: com.apple.pkg.CLTools_Executables
-  version: 15.3.0.0.1.1708646388
-  volume: /
-  location: /
-  install-time: 1719293997
+  pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
   ```
 
 ### 6、xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
@@ -3904,7 +3933,7 @@ static const uint32_t kSequenceBits = 12;
     self.view.backgroundColor = [UIColor.redColor colorWithAlphaComponent:0.5f];
     ```
 
-* <font color=red>**nil**</font> vs <font color=red>**NULL**</font>
+* <font color=red>**nil**</font> 🆚 <font color=red>**NULL**</font>
 
   * ```objective-c
   NSObject *object = nil; // object 是一个空指针，不指向任何对象。

@@ -3,119 +3,155 @@
 # ✅ 彩色输出函数
 _color_echo() {
   local color="$1"
-  local message="$2"
+  local text="$2"
   case "$color" in
-    green)  echo "\033[32m${message}\033[0m" ;;
-    red)    echo "\033[31m${message}\033[0m" ;;
-    blue)   echo "\033[34m${message}\033[0m" ;;
-    yellow) echo "\033[33m${message}\033[0m" ;;
-    *)      echo "$message" ;;
+    green) echo "\033[32m$text\033[0m" ;;
+    red) echo "\033[31m$text\033[0m" ;;
+    yellow) echo "\033[33m$text\033[0m" ;;
+    blue) echo "\033[34m$text\033[0m" ;;
+    cyan) echo "\033[36m$text\033[0m" ;;
+    *) echo "$text" ;;
   esac
 }
 
-# ✅ 显示脚本功能说明并等待用户确认
-_color_echo green "🛠️ 脚本功能："
-_color_echo green "1️⃣ 自动清理无效模拟器（无法启动的）。"
-_color_echo green "2️⃣ 获取所有可用的 iPhone 机型和 iOS 系统版本，组合供用户选择。"
-_color_echo green "3️⃣ 创建指定设备+系统组合的模拟器，自动命名并启动。"
-_color_echo green "🧩 模拟器名称格式：iPhone 15（实际名称）| iOS 版本 - 构建号 | 创建时间（仅用于显示）"
-echo ""
-read "?👉 按下回车键继续执行，或按 Ctrl+C 取消..."
+# ✅ Logo
+_color_echo cyan "═════════════════════════════════════════════════════════════════════"
+_color_echo cyan "📱 iOS 模拟器创建器 - 使用 fzf 选择设备与系统版本"
+_color_echo cyan "═════════════════════════════════════════════════════════════════════"
 
-# ✅ 检查 Homebrew
-check_and_install_brew() {
-  if ! command -v brew &>/dev/null; then
-    _color_echo red "🍺 未检测到 Homebrew，正在自动安装..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    _color_echo green "✅ Homebrew 安装完成"
-    export PATH="/opt/homebrew/bin:$PATH"
-  else
-    _color_echo green "✅ Homebrew 已安装"
-  fi
-}
+# ✅ 彻底关闭模拟器
+_color_echo yellow "🛑 正在彻底关闭所有 iOS 模拟器..."
+xcrun simctl shutdown all >/dev/null 2>&1
+osascript -e 'quit app "Simulator"' >/dev/null 2>&1
+sleep 1
+pgrep -f Simulator >/dev/null && pkill -f Simulator && \
+  _color_echo green "✅ 已彻底关闭模拟器" || \
+  _color_echo green "✅ 模拟器已关闭"
 
-# ✅ 检查 fzf
-check_and_install_fzf() {
-  if ! command -v fzf &>/dev/null; then
-    _color_echo blue "🔧 正在安装 fzf..."
-    brew install fzf
-  else
-    _color_echo green "✅ fzf 已安装"
-  fi
-}
+# ✅ Homebrew 自检
+if ! command -v brew &>/dev/null; then
+  _color_echo yellow "🧩 未检测到 Homebrew，正在安装..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || {
+    _color_echo red "❌ Homebrew 安装失败"
+    exit 1
+  }
+  _color_echo green "✅ Homebrew 安装成功"
+else
+  _color_echo blue "🔄 Homebrew 已安装，更新中..."
+  brew update && brew upgrade
+  _color_echo green "✅ Homebrew 已更新"
+fi
 
-# ✅ 自动清理无效模拟器
-clean_invalid_simulators() {
-  _color_echo blue "🧹 正在清理无效模拟器（无法 boot）..."
-  boot_fail_ids=$(xcrun simctl list devices | grep -i "unavailable" | grep -oE '[A-F0-9\-]{36}')
-  for id in $boot_fail_ids; do
-    _color_echo yellow "🗑️ 删除无效模拟器 ID: $id"
-    xcrun simctl delete "$id"
+# ✅ fzf 自检
+if ! command -v fzf &>/dev/null; then
+  _color_echo yellow "🧩 未检测到 fzf，安装中..."
+  brew install fzf || {
+    _color_echo red "❌ fzf 安装失败"
+    exit 1
+  }
+  _color_echo green "✅ fzf 安装成功"
+else
+  _color_echo blue "🔄 fzf 已安装，升级中..."
+  brew upgrade fzf
+  _color_echo green "✅ fzf 已是最新版"
+fi
+
+# ✅ 开始循环
+while true; do
+  echo ""
+  _color_echo yellow "📌 如果你想复制上面命令，请现在复制完再按回车继续..."
+  read "?⏸️ 按回车继续选择设备和系统："
+
+  # ✅ 获取设备类型
+  _color_echo blue "📦 获取可用设备类型..."
+  device_options=("${(@f)$(xcrun simctl list devicetypes |
+    grep '^iPhone' |
+    sed -E 's/^(.+) \((.+)\)$/📱 \1|\2/')}")
+
+  [[ ${#device_options[@]} -eq 0 ]] && _color_echo red "❌ 未找到设备类型" && exit 1
+
+  selected_device_display=$(printf "%s\n" "${device_options[@]}" |
+    cut -d'|' -f1 |
+    fzf --prompt="👉 选择设备型号 > " --height=40% --reverse)
+
+  [[ -z "$selected_device_display" ]] && _color_echo yellow "⚠️ 未选择设备，正在退出..." && exit 0
+
+  for entry in "${device_options[@]}"; do
+    [[ "${entry%%|*}" == "$selected_device_display" ]] && selected_device_id="${entry##*|}" && break
   done
-  _color_echo green "✅ 无效模拟器清理完成"
-}
 
-# ✅ 初始化
-check_and_install_brew
-check_and_install_fzf
-clean_invalid_simulators
+  _color_echo green "✅ 你选择的设备是：$selected_device_display"
+  _color_echo green "🔗 设备 ID：$selected_device_id"
+  echo ""
 
-# 📦 获取设备类型和系统
-_color_echo blue "📦 获取可用设备类型..."
-device_types=("${(@f)$(xcrun simctl list devicetypes | grep 'iPhone' | sed -E 's/^(.*) \((.*)\)/\2|\1/')}")
+  # ✅ 获取 Runtime
+  _color_echo blue "🧬 获取可用系统版本..."
+  runtime_options=("${(@f)$(xcrun simctl list runtimes |
+    grep "iOS" |
+    grep -v "unavailable" |
+    sed -En 's/^.*(iOS [0-9.]+) \([^)]+\) - (com\.apple\.CoreSimulator\.SimRuntime\.[^)]+).*$/🧬 \1|\2/p')}")
 
-_color_echo blue "📦 获取可用 iOS 运行时..."
-runtimes=("${(@f)$(xcrun simctl list runtimes | grep 'iOS' | grep -v 'unavailable' | grep -v '(null)' | sed -E 's/^(.*) \((.*)\) - (.*)/\3|\1 (\2)/')}")
+  [[ ${#runtime_options[@]} -eq 0 ]] && _color_echo red "❌ 未找到 Runtime" && exit 1
 
-# 🧩 组合设备+系统
-combos=()
-for d in "${device_types[@]}"; do
-  for r in "${runtimes[@]}"; do
-    combos+=("${d}+${r}")
+  selected_runtime_display=$(printf "%s\n" "${runtime_options[@]}" |
+    cut -d'|' -f1 |
+    fzf --prompt="👉 选择系统版本 > " --height=40% --reverse)
+
+  [[ -z "$selected_runtime_display" ]] && _color_echo yellow "⚠️ 未选择系统版本，正在退出..." && exit 0
+
+  for entry in "${runtime_options[@]}"; do
+    [[ "${entry%%|*}" == "$selected_runtime_display" ]] && selected_runtime_id="${entry##*|}" && break
   done
+
+  _color_echo green "🧬 你选择的系统版本是：$selected_runtime_display"
+  _color_echo green "🔗 Runtime ID：$selected_runtime_id"
+  echo ""
+
+  # ✅ 创建模拟器
+  sim_name="MySim_$(date +%s | tail -c 6)"
+  _color_echo blue "🚀 正在创建模拟器 $sim_name ..."
+  sim_create_output=$(xcrun simctl create "$sim_name" "$selected_device_id" "$selected_runtime_id" 2>&1)
+
+  if [[ "$sim_create_output" == *"Unable to create a device for device type"* ]]; then
+    device_name="${selected_device_display#📱 }"
+    system_name="${selected_runtime_display#🧬 }"
+
+    _color_echo red "❌ 创建失败：该组合不受支持"
+    _color_echo yellow "💡 设备：$device_name"
+    _color_echo yellow "💡 系统：$system_name"
+    echo ""
+    _color_echo green "📋 请尝试以下操作以手动启动模拟器："
+    _color_echo green "🔍 查找设备：xcrun simctl list devices | grep '$device_name'"
+    _color_echo green "🚀 启动设备：xcrun simctl boot \"$device_name\""
+    _color_echo green "🖥️ 打开 GUI：open -a Simulator"
+    echo ""
+    _color_echo green "💡 如果模拟器没有显示，请执行以下命令处理假后台："
+    _color_echo green "xcrun simctl shutdown all >/dev/null 2>&1"
+    _color_echo green "osascript -e 'quit app \"Simulator\"' >/dev/null 2>&1"
+    _color_echo green "sleep 1"
+    _color_echo green "pgrep -f Simulator >/dev/null && pkill -f Simulator"
+    _color_echo green "open -a Simulator"
+    _color_echo green "iOS 模拟器实例化的目录：~/Library/Developer/CoreSimulator/Devices/"
+    
+    echo ""
+    _color_echo yellow "🔁 请重新选择有效的设备与系统组合..."
+    sleep 2
+    continue
+  elif [[ -z "$sim_create_output" ]]; then
+    _color_echo red "❌ 模拟器创建失败（未知错误）"
+    sleep 1
+    continue
+  else
+    sim_id="$sim_create_output"
+    _color_echo green "✅ 模拟器创建成功：$sim_name"
+    _color_echo green "🆔 模拟器 ID：$sim_id"
+    _color_echo yellow "🚀 启动模拟器中..."
+    xcrun simctl boot "$sim_id" >/dev/null 2>&1
+    open -a Simulator
+    _color_echo green "✅ 模拟器已打开：$sim_name"
+    break
+  fi
+
 done
 
-# 🎯 用户选择
-selected=$(printf "%s\n" "${combos[@]}" | awk -F'[|+]' '{printf "%-30s | %-30s [%s + %s]\n", $2, $4, $1, $3}' | tac | fzf --height=30% --reverse --border --prompt=" 选择要创建的模拟器: ")
-
-# ⛏️ 提取 ID
-device_type_id=$(echo "$selected" | sed -E 's/.*\[(.*) \+ (.*)\]/\1/')
-runtime_id=$(echo "$selected" | sed -E 's/.*\[(.*) \+ (.*)\]/\2/')
-
-# ✅ 手动提取干净的字段
-device_label=$(echo "$selected" | cut -d '[' -f1 | awk '{$1=$1};1')
-device_name=$(echo "$device_label" | cut -d '|' -f1 | awk '{$1=$1};1')
-version=$(echo "$device_label" | sed -E 's/.*iOS ([0-9.]+).*/\1/')
-build=$(echo "$device_label" | sed -E 's/.*- ([0-9A-Z]+)\).*/\1/')
-current_time=$(date "+%Y.%m.%d %H:%M")
-
-# 🧱 命名与输出
-sim_name="$device_name"
-pretty_sim_name="$device_name | iOS $version - $build | $current_time"
-_color_echo blue "🛠️ 创建模拟器: $pretty_sim_name"
-
-# 🛑 关闭模拟器
-_color_echo yellow "🛑 正在关闭所有运行中的模拟器..."
-xcrun simctl shutdown all
-
-# 🚀 创建模拟器
-sim_id=$(xcrun simctl create "$sim_name" "$device_type_id" "$runtime_id")
-if [ -z "$sim_id" ]; then
-  _color_echo red "❌ 创建失败，请检查设备/系统是否有效"
-  exit 1
-fi
-
-# 启动模拟器
-open -a Simulator
-sleep 2
-_color_echo blue "🚀 正在启动模拟器..."
-xcrun simctl boot "$sim_id" 2>/tmp/sim_boot_log.txt
-
-if grep -q "Unable to boot device because it cannot be located on disk" /tmp/sim_boot_log.txt; then
-  _color_echo red "❌ 启动失败：runtime 文件丢失，将自动清理该模拟器..."
-  xcrun simctl delete "$sim_id"
-  _color_echo yellow "🗑️ 模拟器 $pretty_sim_name 已被删除（ID: $sim_id）"
-  exit 1
-fi
-
-_color_echo green "✅ 模拟器 $pretty_sim_name 已成功启动（ID: $sim_id）"
+exit 0
