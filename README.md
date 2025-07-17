@@ -14,16 +14,6 @@
 
 ## 🔥<font id=前言>前言</font>
 
-<p align="center">
-  <iframe width="560" height="315"
-    src="https://www.youtube.com/embed/UGw136_F7ZA"
-    title="演示视频"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
-</p>
-
 * **工欲善其事必先利其器**
 * **站在巨人的肩膀上，才能看得更远**
 * **面向信仰编程**
