@@ -101,7 +101,7 @@
 }
 /// 复制到系统剪切板
 -(JobsReturnStringByVoidBlock _Nonnull)pasteboard{
-    return ^() {
+    return ^__kindof NSString *_Nullable() {
         @jobs_weakify(self)
         return jobsMakePasteboard(^(__kindof UIPasteboard * _Nullable pasteboard) {
             @jobs_strongify(self)

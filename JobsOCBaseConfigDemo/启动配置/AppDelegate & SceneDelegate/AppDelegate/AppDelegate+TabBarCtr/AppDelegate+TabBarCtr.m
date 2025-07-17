@@ -42,6 +42,7 @@ static JobsCustomTabBarVC *_jobsCustomTabBarVC = nil;
     if(!_jobsCustomTabBarVC){
         _jobsCustomTabBarVC = jobsMakeSharedManagerCustomTabBarVC(^(__kindof JobsCustomTabBarVC * _Nullable tabBarVC) {
             tabBarVC.viewControllers = AppDelegate.viewCtrlByTabBarCtrlConfigMutArr;
+            NSLog(@"");
         });
     }return _jobsCustomTabBarVC;
 }

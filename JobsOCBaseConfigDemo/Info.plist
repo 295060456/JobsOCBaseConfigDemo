@@ -56,7 +56,23 @@
             <string>UIInterfaceOrientationLandscapeRight</string>
         </array>
         <!--❤️【UIApplicationSceneManifest】iOS 13 开始引入。支持多窗口应用程序，允许用户在 iPad 和 macOS 上运行多个实例的应用程序❤️-->
-        <!--TODO-->
+        <key>UIApplicationSceneManifest</key>
+        <dict>
+            <key>UIApplicationSupportsMultipleScenes</key>
+            <true/>
+            <key>UISceneConfigurations</key>
+            <dict>
+                <key>UIWindowSceneSessionRoleApplication</key>
+                <array>
+                    <dict>
+                        <key>UISceneConfigurationName</key>
+                        <string>Default Configuration</string>
+                        <key>UISceneDelegateClassName</key>
+                        <string>SceneDelegate</string>
+                    </dict>
+                </array>
+            </dict>
+        </dict>
         <!--❤️【CFBundleIcons】切换App图标专用❤️-->
         <!--❤️UIUserInterfaceStyle 用于指定应用程序的用户界面风格：控制应用程序在系统的暗黑模式和亮模式之间的行为❤️-->
         <key>UIUserInterfaceStyle</key>

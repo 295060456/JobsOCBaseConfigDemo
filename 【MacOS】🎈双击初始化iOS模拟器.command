@@ -108,7 +108,9 @@ while true; do
   echo ""
 
   # ✅ 创建模拟器
-  sim_name="MySim_$(date +%s | tail -c 6)"
+  device_name="${selected_device_display#📱 }"
+  datetime=$(date "+%Y.%m.%d %H:%M:%S")
+  sim_name="${device_name}@${datetime}"
   _color_echo blue "🚀 正在创建模拟器 $sim_name ..."
   sim_create_output=$(xcrun simctl create "$sim_name" "$selected_device_id" "$selected_runtime_id" 2>&1)
 
