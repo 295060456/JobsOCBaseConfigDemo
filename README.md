@@ -1,11 +1,22 @@
 # <font color=red>iOS.OC靶场🧪项目</font><基础配置的说明>
+
 <p align="left">
-  <a><img src="https://img.shields.io/badge/pod-1.15.2-brightgreen" alt="cocoapods" title="cocoapods"/></a>
-  <a><img src="https://img.shields.io/badge/OC-orange" alt="OC" title="OC"/></a>
-  <a><img src="https://img.shields.io/badge/xcode-15.4-blue" alt="xcode" title="xcode"/>  </a>
-  <a><img src="https://img.shields.io/badge/github-actions-black" alt="github actions" title="github actions"/></a>
-  <a href="https://github.com/295060456/JobsOCBaseConfigDemo"><img src="https://img.shields.io/github/license/295060456/JobsOCBaseConfigDemo?style=flat" alt="License" title="License"/></a>
-  <a href="https://github.com/295060456/JobsOCBaseConfigDemo"><img src="https://img.shields.io/badge/platform-iOS-lightgrey?style=flat" alt="Platform" title="Platform"/></a>
+  <a><img src="https://img.shields.io/badge/pod-1.15.2-brightgreen" alt="CocoaPods"/></a>
+  <a><img src="https://img.shields.io/badge/OC-orange" alt="Objective-C"/></a>
+  <a><img src="https://img.shields.io/badge/Xcode-15.4-blue" alt="Xcode"/></a>
+  <a><img src="https://img.shields.io/badge/iOS-17.5+-critical" alt="iOS"/></a>
+  <a><img src="https://img.shields.io/github/actions/workflow/status/295060456/JobsOCBaseConfigDemo/ci.yml?branch=main" alt="Build Status"/></a>
+  <a><img src="https://img.shields.io/github/languages/top/295060456/JobsOCBaseConfigDemo?color=blueviolet" alt="Top Language"/></a>
+  <a href="https://github.com/295060456/JobsOCBaseConfigDemo/stargazers"><img src="https://img.shields.io/github/stars/295060456/JobsOCBaseConfigDemo?style=flat-square&color=yellow" alt="Stars"/></a>
+  <a href="https://github.com/295060456/JobsOCBaseConfigDemo/network"><img src="https://img.shields.io/github/forks/295060456/JobsOCBaseConfigDemo?style=flat-square&color=blue" alt="Forks"/></a>
+  <a href="https://github.com/295060456/JobsOCBaseConfigDemo/watchers"><img src="https://img.shields.io/github/watchers/295060456/JobsOCBaseConfigDemo?style=flat-square&color=orange" alt="Watchers"/></a>
+  <a href="https://github.com/295060456/JobsOCBaseConfigDemo"><img src="https://img.shields.io/github/license/295060456/JobsOCBaseConfigDemo?style=flat&color=success" alt="License"/></a>
+  <a><img src="https://img.shields.io/github/issues/295060456/JobsOCBaseConfigDemo?color=important" alt="Issues"/></a>
+  <a><img src="https://img.shields.io/github/v/release/295060456/JobsOCBaseConfigDemo?display_name=tag&sort=semver&color=9cf" alt="Release"/></a>
+  <a><img src="https://img.shields.io/github/last-commit/295060456/JobsOCBaseConfigDemo?color=ff69b4" alt="Last Commit"/></a>
+  <a><img src="https://img.shields.io/github/downloads/295060456/JobsOCBaseConfigDemo/total?color=informational" alt="Downloads"/></a>
+  <a><img src="https://img.shields.io/github/issues-pr/295060456/JobsOCBaseConfigDemo?color=blueviolet" alt="Pull Requests"/></a>
+  <a><img src="https://img.shields.io/github/languages/code-size/295060456/JobsOCBaseConfigDemo" alt="Code Size"/></a>
 </p>
 
 [toc]
