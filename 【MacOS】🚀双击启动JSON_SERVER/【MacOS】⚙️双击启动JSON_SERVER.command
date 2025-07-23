@@ -1,9 +1,23 @@
 #!/bin/sh
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
-print_message() {
-    echo "\033[31m$1\033[0m"
+# 彩色输出封装
+print_colored() {
+  case "$1" in
+    green) color="32" ;;  # 成功/已安装
+    red) color="31" ;;    # 错误/未安装
+    yellow) color="33" ;; # 警告/占用
+    blue) color="34" ;;   # 普通信息
+    *) color="0" ;;
+  esac
+  shift
+  echo "\033[${color}m$*\033[0m"
 }
+
+print_success() { print_colored green "✅ $*"; }
+print_error()   { print_colored red   "❌ $*"; }
+print_warn()    { print_colored yellow "⚠️ $*"; }
+print_info()    { print_colored blue  "$*"; }
 
 print_intro() {
     echo ""
@@ -23,58 +37,58 @@ print_intro() {
 
 get_current_directory() {
     current_directory=$(dirname "$(readlink -f "$0")")
-    print_message "📂 当前路径为: $current_directory"
+    print_info "📂 当前路径为: $current_directory"
     cd "$current_directory"
 }
 
 check_brew() {
     if ! command -v brew >/dev/null 2>&1; then
-        print_message "🍺 未检测到 Homebrew，正在安装..."
+        print_error "未检测到 Homebrew，正在安装..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     else
-        print_message "✅ Homebrew 已安装"
+        print_success "Homebrew 已安装"
     fi
 }
 
 check_npm() {
     if ! command -v npm >/dev/null 2>&1; then
-        print_message "📦 未检测到 npm，正在通过 Homebrew 安装 Node.js..."
+        print_error "未检测到 npm，正在通过 Homebrew 安装 Node.js..."
         brew install node
     else
-        print_message "✅ npm 已检测到"
+        print_success "npm 已检测到"
     fi
 }
 
 check_json_server() {
     if ! command -v json-server >/dev/null 2>&1; then
-        print_message "🧰 未检测到 json-server，开始安装..."
+        print_error "未检测到 json-server，开始安装..."
         npm install -g json-server
     else
-        print_message "🔄 json-server 已安装，检查版本..."
+        print_info "json-server 已安装，检查版本..."
         latest=$(npm show json-server version)
         current=$(npm list -g json-server --depth=0 2>/dev/null | grep json-server | awk -F@ '{print $2}')
         if [ "$latest" != "$current" ]; then
-            print_message "⬆️ 更新 json-server：$current → $latest"
+            print_warn "更新 json-server：$current → $latest"
             npm install -g json-server@latest
         else
-            print_message "✅ json-server 已是最新版本：$current"
+            print_success "json-server 已是最新版本：$current"
         fi
     fi
 }
 
 check_fzf() {
     if ! command -v fzf >/dev/null 2>&1; then
-        print_message "🧭 未检测到 fzf，正在安装..."
+        print_error "未检测到 fzf，正在安装..."
         brew install fzf
     else
-        print_message "✅ fzf 已安装"
+        print_success "fzf 已安装"
     fi
 }
 
 find_available_port() {
     port=3000
     while lsof -i tcp:$port >/dev/null 2>&1; do
-        echo "⚠️ 端口 $port 被占用，尝试下一个..."
+        print_warn "端口 $port 被占用，尝试下一个..."
         port=$((port + 1))
     done
     echo "$port"
@@ -92,45 +106,57 @@ select_json_file() {
         elif [[ -d "$input_path" ]]; then
             json_files=($(find "$input_path" -type f -name "*.json" 2>/dev/null))
             if [ ${#json_files[@]} -eq 0 ]; then
-                print_message "❌ 所选文件夹下未找到 .json 文件"
+                print_error "所选文件夹下未找到 .json 文件"
                 exit 1
             fi
             selected_file=$(printf "%s\n" "${json_files[@]}" | fzf --height 20 --reverse --border)
         else
-            print_message "❌ 无效路径：不是 .json 文件或文件夹"
+            print_error "无效路径：不是 .json 文件或文件夹"
             exit 1
         fi
     else
         json_files=($(find . -type f -name "*.json" 2>/dev/null))
         if [ ${#json_files[@]} -eq 0 ]; then
-            print_message "❌ 当前目录及子目录中没有找到 .json 文件"
+            print_error "当前目录及子目录中没有找到 .json 文件"
             exit 1
         fi
         selected_file=$(printf "%s\n" "${json_files[@]}" | fzf --height 20 --reverse --border)
     fi
 
     if [ -z "$selected_file" ]; then
-        print_message "⚠️ 未选择任何文件"
+        print_warn "未选择任何文件"
         exit 0
     fi
 
-    print_message "✅ 您选择了: $selected_file"
+    print_success "您选择了: $selected_file"
 
     json_server_path=$(command -v json-server)
     if [ ! -x "$json_server_path" ]; then
-        print_message "❌ 找不到 json-server 可执行文件"
+        print_error "找不到 json-server 可执行文件"
         exit 1
     fi
 
     selected_port=$(find_available_port | tail -n1)
-    echo "🚀 启动 json-server，监听端口: $selected_port"
+    print_info "🚀 启动 json-server，监听端口: $selected_port"
 
     echo "const JSON_SERVER_PORT = $selected_port;" > config.js
-    echo "📄 已生成 config.js 用于 post_form.html 引用"
+    print_success "已生成 config.js 用于 post_form.html 引用"
 
-    "$json_server_path" "$selected_file" --port "$selected_port" &
-    sleep 1
-    open "http://localhost:$selected_port/"
+    echo ""
+    read -p "👉 按下回车后台运行（推荐），输入任意字符再回车则前台运行：" run_mode
+
+    if [ -z "$run_mode" ]; then
+        "$json_server_path" "$selected_file" --port "$selected_port" > /dev/null 2>&1 &
+        print_success "已在后台运行 json-server（PID $!）"
+        sleep 1
+        open "http://localhost:$selected_port/"
+        print_info "👋 可关闭终端窗口，不影响后台服务"
+    else
+        print_info "🔍 前台模式运行中，按 Ctrl+C 可停止服务"
+        sleep 1
+        open "http://localhost:$selected_port/"
+        "$json_server_path" "$selected_file" --port "$selected_port"
+    fi
 }
 
 main() {
@@ -141,7 +167,7 @@ main() {
     check_json_server
     check_fzf
     select_json_file
-    print_message "👋 关闭窗口后，json-server 将自动退出"
+    print_info "👋 json-server 执行完成，如为后台运行请自行终止"
 }
 
 main
