@@ -1,1 +1,2 @@
-const JSON_SERVER_PORT = 3009;
+const JSON_SERVER_PORT = 3001;
+module.exports = { JSON_SERVER_PORT };

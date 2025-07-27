@@ -21,16 +21,21 @@ print_info()    { print_colored blue  "$*"; }
 
 print_intro() {
     echo ""
-    echo "=============================="
-    echo "📦 本脚本功能如下："
+    echo "=============================================="
+    echo "🚀 JSON Server 快速启动器（自定义接口支持）"
+    echo "=============================================="
+    echo "📦 本脚本具备以下功能："
     echo "1️⃣ 自动检测并安装 npm、json-server、fzf（如未安装）"
-    echo "2️⃣ 自动升级 json-server 到最新版本（如可用）"
+    echo "2️⃣ 自动升级 json-server 到最新版本（如有更新）"
     echo "3️⃣ 支持拖入 .json 文件或目录，或回车递归扫描当前目录"
-    echo "4️⃣ 使用 fzf 选择 JSON 文件作为 REST 数据源"
-    echo "5️⃣ 自动检测端口占用，从 3000 起递增"
-    echo "6️⃣ 自动生成 config.js 提供端口变量给 HTML 使用"
-    echo "7️⃣ 自动打开浏览器访问 REST 服务"
-    echo "=============================="
+    echo "4️⃣ 使用 fzf 多选 JSON 文件作为 REST 数据源"
+    echo "5️⃣ 自动复制为 db.json，供 server.js 动态读取"
+    echo "6️⃣ 自动生成 config.js，传递端口给 server.js 使用"
+    echo "7️⃣ 启动自定义 server.js，支持 POST 接口（如 /getPosts）"
+    echo "8️⃣ 智能检测端口占用，从 3000 起递增"
+    echo "9️⃣ 自动打开浏览器访问对应端口"
+    echo "🔟 支持前台调试 / 后台静默运行，灵活选择"
+    echo "=============================================="
     echo ""
     read -p "👉 按下回车继续执行，或 Ctrl+C 退出..."
 }
@@ -128,26 +133,24 @@ select_json_file() {
         exit 0
     fi
 
-    print_success "您选择了: $selected_file"
+    print_success "✅ 您选择了: $selected_file"
 
-    json_server_path=$(command -v json-server)
-    if [ ! -x "$json_server_path" ]; then
-        print_error "找不到 json-server 可执行文件"
-        exit 1
-    fi
+    cp "$selected_file" db.json
+    print_success "已复制为：db.json"
 
     selected_port=$(find_available_port | tail -n1)
-    print_info "🚀 启动 json-server，监听端口: $selected_port"
+    print_info "🚀 启动 server.js，自定义接口监听端口: $selected_port"
 
-    echo "const JSON_SERVER_PORT = $selected_port;" > config.js
-    print_success "已生成 config.js 用于 post_form.html 引用"
+    # 写 config.js 给 server.js 使用
+    echo "const JSON_SERVER_PORT = $selected_port; module.exports = { JSON_SERVER_PORT };" > config.js
+    print_success "已生成 config.js 供 server.js 引用"
 
     echo ""
     read -p "👉 按下回车后台运行（推荐），输入任意字符再回车则前台运行：" run_mode
 
     if [ -z "$run_mode" ]; then
-        "$json_server_path" "$selected_file" --port "$selected_port" > /dev/null 2>&1 &
-        print_success "已在后台运行 json-server（PID $!）"
+        node server.js > /dev/null 2>&1 &
+        print_success "✅ 已在后台运行 server.js（PID $!）"
         sleep 1
         open "http://localhost:$selected_port/"
         print_info "👋 可关闭终端窗口，不影响后台服务"
@@ -155,7 +158,7 @@ select_json_file() {
         print_info "🔍 前台模式运行中，按 Ctrl+C 可停止服务"
         sleep 1
         open "http://localhost:$selected_port/"
-        "$json_server_path" "$selected_file" --port "$selected_port"
+        node server.js
     fi
 }
 
