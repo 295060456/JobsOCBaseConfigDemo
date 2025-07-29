@@ -1,4 +1,4 @@
-# <font color=red>iOS.OC靶场🧪项目</font><基础配置的说明>
+# **iOS.OC**<font color=red>🧪靶场项目</font>@配置说明
 
 <p align="left">
   <a><img src="https://img.shields.io/badge/pod-1.15.2-brightgreen" alt="CocoaPods"/></a>
@@ -28,6 +28,7 @@
 * **工欲善其事必先利其器**
 * **站在巨人的肩膀上，才能看得更远**
 * **面向信仰编程**
+* 🔔 温馨提示：👉  [<font color=red>**完整展示本文档**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/README.md)
 
 ## 一、🎯目的和功效 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
 
