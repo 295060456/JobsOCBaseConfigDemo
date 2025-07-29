@@ -13,6 +13,19 @@ print_success() { echo "\033[32m$1\033[0m"; }
 print_warn()    { echo "\033[33m$1\033[0m"; }
 print_error()   { echo "\033[31m$1\033[0m"; }
 
+# ---------------------- 智能切换 Homebrew 源 ----------------------
+check_and_set_homebrew_mirror() {
+  local test_url="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+    cecho yellow "🌐 正在测试 Homebrew 官方源可达性..."
+
+  if curl --connect-timeout 3 -s --head "$test_url" | /usr/bin/grep -q "200 OK"; then
+    cecho green "✅ Homebrew 官方源可访问，继续使用默认源"
+  else
+    cecho red "⚠️ 官方源访问失败，仅设置清华 Bottle 镜像（Git 仓库镜像已停用）"
+    export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+  fi
+}
+
 # ✅ 自检并安装 brew / fzf
 check_and_install_tools() {
   print_info "🧪 正在检查必要工具：brew、fzf..."
@@ -62,6 +75,9 @@ echo "4️⃣ 再次回车停止录屏"
 echo "======================================="
 read "?📎 按回车继续..."
 
+# ✅ 智能切换 Homebrew
+check_and_set_homebrew_mirror
+
 # ✅ 工具自检
 check_and_install_tools
 
@@ -89,11 +105,21 @@ device_name=$(echo "$selected_line" | awk -F '[()]' '{print $1}' | sed 's/ *$//'
 
 print_success "✅ 你选择的设备是：$device_name [$device_udid]"
 
-# ✅ 关闭所有模拟器（防止假后台）
-print_info "🧹 正在关闭所有正在运行的模拟器..."
-osascript -e 'quit app "Simulator"' >/dev/null 2>&1 || true
-xcrun simctl shutdown all >/dev/null 2>&1 || true
-sleep 1
+# ✅ 智能判断是否为假后台，只有在假后台才关闭模拟器
+print_info "🧪 正在检测模拟器是否为假后台..."
+
+booted_check=$(xcrun simctl list devices | grep "(Booted)")
+simulator_running=$(pgrep -f Simulator)
+
+if [[ -z "$booted_check" && -n "$simulator_running" ]]; then
+  print_warn "⚠️ 模拟器疑似处于假后台，准备强制关闭..."
+  osascript -e 'quit app "Simulator"' >/dev/null 2>&1 || true
+  xcrun simctl shutdown all >/dev/null 2>&1 || true
+  pkill -f Simulator >/dev/null 2>&1 || true
+  print_success "✅ 已强制关闭假后台模拟器"
+else
+  print_success "✅ 模拟器状态正常，无需关闭"
+fi
 
 # ✅ 启动模拟器
 print_info "🚀 启动模拟器中..."
