@@ -1,6 +1,6 @@
-#! /bin/sh
+#!/bin/zsh
 
-# 关闭所有iOS模拟器
+# ✅ 关闭所有iOS模拟器
 xcrun simctl shutdown all
 # 检查是否有iOS模拟器进程存在(存在即杀进程)
 if pgrep -f 'Simulator' >/dev/null; then
@@ -11,6 +11,5 @@ else
     echo "没有找到iOS模拟器进程"
 fi
 
-# 打开xcode模拟器
+# ✅ 打开xcode模拟器
 open -a Simulator
-

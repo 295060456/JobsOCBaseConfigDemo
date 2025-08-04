@@ -256,6 +256,22 @@ NS_INLINE CGFloat JobsRealWidth(void){
     return JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape ? JobsDeviceRealHeight() :JobsDeviceRealWidth();
 }
 #pragma mark ——【全局比例尺】
+/// 基准设计尺寸
+#ifndef JobsDesignWidth
+#define JobsDesignWidth 375.0
+#endif
+
+#ifndef JobsDesignHeight
+#define JobsDesignHeight 812.0
+#endif
+/// 宽度适配（基于设计稿宽度）
+static inline CGFloat ScaleW(CGFloat value) {
+    return value * (UIScreen.mainScreen.bounds.size.width / JobsDesignWidth);
+}
+/// 高度适配（基于设计稿高度）
+static inline CGFloat ScaleH(CGFloat value) {
+    return value * (UIScreen.mainScreen.bounds.size.height / JobsDesignHeight);
+}
 /// https://www.strerr.com/screen.html
 /// 屏幕像素标准转化：输入原型图上的宽和高，对外输出App对应的移动设备的真实宽高
 /**

@@ -48,6 +48,8 @@ Prop_strong()BaseButton *btn;
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
     self.btn.alpha = 1;
+    
+    CGRect rect = CGRectMake(ScaleW(20), ScaleH(10), ScaleW(200), ScaleH(44));
 }
 
 -(void)viewWillAppear:(BOOL)animated{

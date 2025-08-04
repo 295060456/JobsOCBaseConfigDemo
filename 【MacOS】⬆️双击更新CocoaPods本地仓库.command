@@ -1,85 +1,97 @@
 #!/bin/zsh
 
-# ✅ 彩色输出
-color_echo() {
-  local color="$1"
-  local msg="$2"
-  case $color in
-    red)    echo "\033[31m$msg\033[0m" ;;
-    green)  echo "\033[32m$msg\033[0m" ;;
-    yellow) echo "\033[33m$msg\033[0m" ;;
-    blue)   echo "\033[34m$msg\033[0m" ;;
-    *)      echo "$msg" ;;
-  esac
+# ✅ 日志与彩色输出
+SCRIPT_BASENAME=$(basename "$0" | sed 's/\.[^.]*$//')
+LOG_FILE="/tmp/${SCRIPT_BASENAME}.log"
+
+log()            { echo -e "$1" | tee -a "$LOG_FILE"; }
+color_echo()     { log "\033[1;32m$1\033[0m"; }         # ✅ 正常绿色输出
+info_echo()      { log "\033[1;34mℹ $1\033[0m"; }       # ℹ 信息
+success_echo()   { log "\033[1;32m✔ $1\033[0m"; }       # ✔ 成功
+warn_echo()      { log "\033[1;33m⚠ $1\033[0m"; }       # ⚠ 警告
+warm_echo()      { log "\033[1;33m$1\033[0m"; }         # 🟡 温馨提示（无图标）
+note_echo()      { log "\033[1;35m➤ $1\033[0m"; }       # ➤ 说明
+error_echo()     { log "\033[1;31m✖ $1\033[0m"; }       # ✖ 错误
+err_echo()       { log "\033[1;31m$1\033[0m"; }         # 🔴 错误纯文本
+debug_echo()     { log "\033[1;35m🐞 $1\033[0m"; }      # 🐞 调试
+highlight_echo() { log "\033[1;36m🔹 $1\033[0m"; }      # 🔹 高亮
+gray_echo()      { log "\033[0;90m$1\033[0m"; }         # ⚫ 次要信息
+bold_echo()      { log "\033[1m$1\033[0m"; }            # 📝 加粗
+underline_echo() { log "\033[4m$1\033[0m"; }            # 🔗 下划线
+
+# ✅ 初始化项目根路径
+init_basedir() {
+  basedir=$(cd "$(dirname "$0")"; pwd -P)
+  gray_echo "📂 当前项目的绝对路径: $basedir"
 }
 
-# ✅ 功能说明
-color_echo green "🛠️ 脚本功能："
-color_echo green "1️⃣ 给所有当前目录下的文件添加可执行权限"
-color_echo green "2️⃣ 自动删除 .xcworkspace、Pods、Podfile.lock"
-color_echo green "3️⃣ 自动执行 pod install / pod repo update"
-color_echo green "🧩 同时兼容 Flutter 和原生 iOS 项目"
-echo ""
-read "?👉 按下回车键继续执行，或按 Ctrl+C 取消..."
+# ✅ 自述信息
+print_intro() {
+  clear
+  success_echo "🛠️ 脚本功能："
+  success_echo "1️⃣ 给当前目录所有文件添加可执行权限"
+  success_echo "2️⃣ 自动删除 .xcworkspace、Pods、Podfile.lock"
+  success_echo "3️⃣ 自动执行 pod install / pod repo update"
+  success_echo "🧩 同时兼容 Flutter 与原生 iOS 项目"
+  echo ""
+  read "?👉 按下回车键继续执行，或按 Ctrl+C 取消..."
+}
 
-# ✅ 获取当前目录
-basedir=$(cd "$(dirname "$0")"; pwd -P)
-color_echo blue "📂 当前项目的绝对路径: $basedir"
+# ✅ 添加执行权限
+make_files_executable() {
+  for file in "$basedir"/*; do
+    if [[ -f "$file" ]]; then
+      chmod +x "$file"
+      success_echo "已添加执行权限：$(basename "$file")"
+    fi
+  done
+}
 
-# ✅ 给文件加执行权限
-for file in "$basedir"/*; do
-  if [ -f "$file" ]; then
-    chmod +x "$file"
-    color_echo green "✅ 添加执行权限: $(basename "$file")"
+# ✅ 清理 CocoaPods 缓存
+clean_pod_cache() {
+  project_file=$(find "$basedir" -maxdepth 1 -name "*.xcodeproj" | head -n 1)
+  if [[ -z "$project_file" ]]; then
+    error_echo "❌ 未找到 .xcodeproj 文件，请确认项目路径正确"
+    exit 1
   fi
-done
 
-# ✅ 提取 .xcodeproj 工程名
-project_file=$(find "$basedir" -maxdepth 1 -name "*.xcodeproj" | head -n 1)
-if [[ -z "$project_file" ]]; then
-  color_echo red "❌ 未找到 .xcodeproj 文件，请确认项目路径正确"
-  exit 1
-fi
+  ProjName=$(basename "$project_file" .xcodeproj)
+  success_echo "✅ 当前工程名称为：$ProjName"
 
-ProjName=$(basename "$project_file" .xcodeproj)
-color_echo green "✅ 当前工程名称为: $ProjName"
+  local xcworkspace="$basedir/${ProjName}.xcworkspace"
+  local pods_dir="$basedir/Pods"
+  local podfile_lock="$basedir/Podfile.lock"
 
-# ✅ 构造相关路径
-Proj_xcworkspace_filePath="$basedir/${ProjName}.xcworkspace"
-Proj_Pods_folderPath="$basedir/Pods"
-Proj_PodfileLock_filePath="$basedir/Podfile.lock"
+  [[ -d "$xcworkspace" ]] && warn_echo "🗑️ 删除：$xcworkspace" && rm -rf "$xcworkspace"
+  [[ -d "$pods_dir" ]] && warn_echo "🗑️ 删除：$pods_dir" && rm -rf "$pods_dir"
+  [[ -f "$podfile_lock" ]] && warn_echo "🗑️ 删除：$podfile_lock" && rm -f "$podfile_lock"
 
-# ✅ 删除旧内容
-if [[ -d "$Proj_xcworkspace_filePath" ]]; then
-  color_echo yellow "🗑️ 正在删除: $Proj_xcworkspace_filePath"
-  rm -rf "$Proj_xcworkspace_filePath"
-fi
+  success_echo "✅ 工程 $ProjName 的旧缓存清理完毕"
+}
 
-if [[ -d "$Proj_Pods_folderPath" ]]; then
-  color_echo yellow "🗑️ 正在删除: $Proj_Pods_folderPath"
-  rm -rf "$Proj_Pods_folderPath"
-fi
+# ✅ 执行 CocoaPods 安装
+run_pod_install() {
+  cd "$basedir" || exit 1
 
-if [[ -f "$Proj_PodfileLock_filePath" ]]; then
-  color_echo yellow "🗑️ 正在删除: $Proj_PodfileLock_filePath"
-  rm -f "$Proj_PodfileLock_filePath"
-fi
+  if [[ -f "$basedir/pubspec.yaml" && -d "$basedir/ios" ]]; then
+    warn_echo "🧩 检测到 Flutter 工程，进入 ios 执行 pod install"
+    cd ios || exit 1
+  fi
 
-color_echo green "✅ 工程 $ProjName 的旧缓存清理完毕"
-color_echo blue "🚀 开始重新安装依赖..."
+  info_echo "🚀 正在执行 pod install..."
+  pod install
+  pod setup
+  pod repo update --verbose
+  success_echo "🎉 CocoaPods 安装与更新完成"
+}
 
-# ✅ 进入项目目录并执行 pod install
-cd "$basedir" || exit 1
+# ✅ 主函数入口
+main() {
+    init_basedir                           # 初始化项目根路径
+    print_intro                            # 自述信息
+    make_files_executable                  # 🔐 添加当前目录所有文件的执行权限
+    clean_pod_cache                        # 🧹 清除 Pods 缓存、workspace 和 lock
+    run_pod_install                        # ⚙️ 执行 pod install 相关流程
+}
 
-# ✅ 判断是否为 Flutter 工程
-if [[ -f "$basedir/pubspec.yaml" && -d "$basedir/ios" ]]; then
-  color_echo yellow "🧩 检测到 Flutter 工程，进入 ios 执行 pod install"
-  cd ios || exit 1
-fi
-
-# ✅ CocoaPods 安装流程
-pod install
-pod setup
-pod repo update --verbose
-
-color_echo green "🎉 CocoaPods 安装与更新完成"
+main "$@"
