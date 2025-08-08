@@ -24,7 +24,7 @@ init_env() {
   export CURL_HTTP_VERSION=1.1
   info_echo "📡 强制设置 CURL_HTTP_VERSION=1.1，避免 HTTP2 CDN 拉取错误"
 
-  BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+  BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")" && pwd)"
   cd "$BASE_DIR"
   info_echo "📌 当前起点路径: $BASE_DIR"
 
