@@ -32,7 +32,42 @@ shutdown_simulators() {
   xcrun simctl shutdown all >/dev/null 2>&1
   osascript -e 'quit app "Simulator"' >/dev/null 2>&1
   sleep 1
-  pgrep -f Simulator >/dev/null && pkill -f Simulator && success_echo "✔ 已彻底关闭模拟器" || success_echo "✔ 模拟器已关闭"
+  pgrep -f Simulator >/dev/null && pkill -f Simulator && success_echo "已彻底关闭模拟器" || success_echo "模拟器已关闭"
+}
+
+# ✅ 单行写文件（避免重复写入）
+inject_shellenv_block() {
+    local id="$1"           # 参数1：环境变量块 ID，如 "homebrew_env"
+    local shellenv="$2"     # 参数2：实际要写入的 shellenv 内容，如 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+    local header="# >>> ${id} 环境变量 >>>"  # 自动生成注释头
+
+    # 参数校验
+    if [[ -z "$id" || -z "$shellenv" ]]; then
+    error_echo "❌ 缺少参数：inject_shellenv_block <id> <shellenv>"
+    return 1
+    fi
+
+    # 若用户未选择该 ID，则跳过写入
+    if [[ ! " ${selected_envs[*]} " =~ " $id " ]]; then
+    warn_echo "⏭️ 用户未选择写入环境：$id，跳过"
+    return 0
+    fi
+
+    # 避免重复写入
+    if grep -Fq "$header" "$PROFILE_FILE"; then
+      info_echo "📌 已存在 header：$header"
+    elif grep -Fq "$shellenv" "$PROFILE_FILE"; then
+      info_echo "📌 已存在 shellenv：$shellenv"
+    else
+      echo "" >> "$PROFILE_FILE"
+      echo "$header" >> "$PROFILE_FILE"
+      echo "$shellenv" >> "$PROFILE_FILE"
+      success_echo "✅ 已写入：$header"
+    fi
+
+    # 当前 shell 生效
+    eval "$shellenv"
+    success_echo "🟢 shellenv 已在当前终端生效"
 }
 
 # ✅ 判断芯片架构（ARM64 / x86_64）
@@ -42,43 +77,59 @@ get_cpu_arch() {
 
 # ✅ 自检安装 🍺 Homebrew（自动架构判断）
 install_homebrew() {
-  arch=$(get_cpu_arch)
+  local arch="$(get_cpu_arch)"                   # 获取当前架构（arm64 或 x86_64）
+  local shell_path="${SHELL##*/}"                # 获取当前 shell 名称（如 zsh、bash）
+  local profile_file=""
+  local brew_bin=""
+  local shellenv_cmd=""
+
   if ! command -v brew &>/dev/null; then
-    _color_echo yellow "🧩 未检测到 Homebrew，正在安装 ($arch)..."
+    warn_echo "🧩 未检测到 Homebrew，正在安装中...（架构：$arch）"
+
     if [[ "$arch" == "arm64" ]]; then
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || {
-        _color_echo red "❌ Homebrew 安装失败"
+        error_echo "❌ Homebrew 安装失败（arm64）"
         exit 1
       }
+      brew_bin="/opt/homebrew/bin/brew"
     else
       arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || {
-        _color_echo red "❌ Homebrew 安装失败（x86_64）"
+        error_echo "❌ Homebrew 安装失败（x86_64）"
         exit 1
       }
+      brew_bin="/usr/local/bin/brew"
     fi
-    _color_echo green "✅ Homebrew 安装成功"
+
+    success_echo "✅ Homebrew 安装成功"
+
+    # ==== 注入 shellenv 到对应配置文件（自动生效） ====
+    shellenv_cmd="eval \"\$(${brew_bin} shellenv)\""
+
+    case "$shell_path" in
+      zsh)   profile_file="$HOME/.zprofile" ;;
+      bash)  profile_file="$HOME/.bash_profile" ;;
+      *)     profile_file="$HOME/.profile" ;;
+    esac
+
+    inject_shellenv_block "$profile_file" "$shellenv_cmd"
+
   else
-    _color_echo blue "🔄 Homebrew 已安装，更新中..."
-    brew update && brew upgrade && brew cleanup
-    _color_echo green "✅ Homebrew 已更新"
+    info_echo "🔄 Homebrew 已安装，正在更新..."
+    brew update && brew upgrade && brew cleanup && brew doctor && brew -v
+    success_echo "✅ Homebrew 已更新"
   fi
 }
 
 # ✅ 自检安装 Homebrew.fzf
 install_fzf() {
   if ! command -v fzf &>/dev/null; then
-    method=$(fzf_select "通过 Homebrew 安装" "通过 Git 安装")
-    case $method in
-      *Homebrew*) brew install fzf;;
-      *Git*)
-        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install --all
-        ;;
-      *) err "❌ 取消安装 fzf";;
-    esac
+    note_echo "📦 未检测到 fzf，正在通过 Homebrew 安装..."
+    brew install fzf || { error_echo "❌ fzf 安装失败"; exit 1; }
+    success_echo "✅ fzf 安装成功"
   else
-    _color_echo blue "🔄 fzf 已安装，升级中..."
-    brew upgrade fzf
-    _color_echo green "✅ fzf 已是最新版"
+    info_echo "🔄 fzf 已安装，升级中..."
+    brew upgrade fzf && brew cleanup
+    success_echo "✅ fzf 已是最新版"
   fi
 }
 
@@ -151,12 +202,12 @@ interactive_simulator_creation_loop() {
     note_echo "📌 如果你想复制上面命令，请现在复制完再按回车继续..."
     read "?⏸️ 按回车继续选择设备和系统："
 
-    select_device_type             # ✅ 选择设备型号
+    select_device_type                      # ✅ 选择设备型号
     echo ""
-    select_runtime                 # ✅ 选择系统版本
+    select_runtime                          # ✅ 选择系统版本
     echo ""
 
-    create_and_boot_simulator && break  # ✅ 创建成功则退出循环，否则重新选择
+    create_and_boot_simulator && break      # ✅ 创建成功则退出循环，否则重新选择
   done
 }
 

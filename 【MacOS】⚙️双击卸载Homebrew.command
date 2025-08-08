@@ -44,9 +44,7 @@ confirm_uninstall() {
 uninstall_homebrew() {
   info_echo "正在卸载 Homebrew..."
 
-  # ---------- 1. 尝试 untap 和 cleanup ----------
-  gray_echo "🧹 正在尝试 untap 和 cleanup..."
-  brew untap homebrew/core || true
+  # ---------- 1. 尝试 cleanup ----------
   brew cleanup || true
 
   # ---------- 2. 官方卸载脚本 ----------

@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")" && pwd)"
+
 # ✅ 日志与彩色输出
 SCRIPT_BASENAME=$(basename "$0" | sed 's/\.[^.]*$//')   # 当前脚本名（去掉扩展名）
 LOG_FILE="/tmp/${SCRIPT_BASENAME}.log"                  # 设置对应的日志文件路径
@@ -90,9 +92,7 @@ authorize_dragged_paths() {
 # ✅ 主函数入口
 main() {
   clear
-  SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
   print_intro                                              # ✅ 自述信息
-
   read -r "?📥 拖入路径或输入命令后回车：" input_paths
 
   if [[ -z "$input_paths" ]]; then

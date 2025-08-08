@@ -271,7 +271,7 @@ Current targets:
   * 错误的原因通常是因为在**Interface Builder**中指定的类名与实际代码中的类名不匹配
   * 在`*.Storyboard`或`*.xib`文件中，选择**View Controller**，查看**Identity Inspector**，确保**Class**字段中的类名拼写正确（这里的处理方式是删除），并且**Module**字段留空或选择正确的模块（通常是你的项目名）。
 
-  ![image-20240715141329097](./assets/image-20240715141329097.png)
+  <img src="./assets/image-20240715141329097.png" alt="image-20240715141329097" style="zoom:50%;" />
 
 #### 6.2、`Arguments Passed On Launch`标签设置
 
@@ -346,7 +346,7 @@ Current targets:
 
 * 日志配置：添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
 
-  ![image-20240629161626945](./assets/image-20240629161626945.png)
+  <img src="./assets/image-20240629161626945.png" alt="image-20240629161626945" style="zoom:50%;" />
 
 ### 7、🖨️ 打印 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
 
@@ -482,7 +482,7 @@ Current targets:
   pod 'JobsBlock' # https://github.com/295060456/JobsBlock
   ```
 
-  ![image-20240706110034202](./assets/image-20240706110034202.png)
+  <img src="./assets/image-20240706110034202.png" alt="image-20240706110034202" style="zoom:80%;" />
 
 * <font color=red>因为**CDN**同步的原因，有些第三方pod并不能在[**cocoapods.org**](https://cocoapods.org/)被成功的搜索到，这就导致如果`pod install`拉取不到代码，可能需要切换镜像，然后再进行操作。建议运行项目根目录下的2个脚本文件，自动获取</font>
 
@@ -3365,7 +3365,7 @@ classDiagram
 
 #### 31.3、雪花算法的ID结构
 
-雪花算法生成的ID是一个64位的整数，具体结构如下：![twitter](./assets/twitter.png)
+雪花算法生成的ID是一个64位的整数，具体结构如下：<img src="./assets/twitter.png" alt="twitter" style="zoom:67%;" />
 
 ```scss
 | 1 bit (符号位) | 41 bits (时间戳) | 10 bits (机器ID) | 12 bits (序列号) |
@@ -4120,11 +4120,11 @@ static const uint32_t kSequenceBits = 12;
 
 * 删除新建工程默认生成的`ViewController` (或者不包含进工程目录，防止进入编译期)
 
-  ![image-20240715150036945](./assets/image-20240715150036945.png)
+  <img src="./assets/image-20240715150036945.png" alt="image-20240715150036945" style="zoom:80%;" />
 
 * 删除`SceneDelegate.h`和 `SceneDelegate.m`   (或者不包含进工程目录，防止进入编译期)
 
-  ![image-20240715145437169](./assets/image-20240715145437169.png)
+  <img src="./assets/image-20240715145437169.png" alt="image-20240715145437169" style="zoom:80%;" />
 
 * [处理：**`Unknown class ViewController in Interface Builder file.`**](#Unknown_class_in_Interface_Builder_file)
 
@@ -7203,7 +7203,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     - `name` (**String**)
     - `age` (**Integer 32**)
 
-    ![image-20240706231719263](./assets/image-20240706231719263.png)
+    <img src="./assets/image-20240706231719263.png" alt="image-20240706231719263" style="zoom:67%;" />
 
   * `AppDelegate`设置**Core Data**堆栈
 
@@ -8896,14 +8896,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
   * 如果同时设置了`sectionHeaderHeight`和`sectionFooterHeight` ，=> 那么在每一个`sectionHeader`距离上一组的尾部，总会有一段距离（这个距离是22）
 
-    ![image-20240809204830509](./assets/image-20240809204830509.png)
+    <img src="./assets/image-20240809204830509.png" alt="image-20240809204830509" style="zoom:50%;" />
 
   * 如果只设置`sectionHeaderHeight`（<u>或者不管这个值设置的有多小</u>），而不设置`sectionFooterHeight` ，=> 那么在每一个`sectionHeader`距离上一组的尾部，总会有一段距离（这个距离是22）
 
-    ![image-20240809204646831](./assets/image-20240809204646831.png)
+    <img src="./assets/image-20240809204646831.png" alt="image-20240809204646831" style="zoom:50%;" />
 
   * 如果不设置`sectionHeaderHeight`，只设置`sectionFooterHeight` ，=> <font color=red>**那么每个组之间无缝隙丝滑相接**</font>
-  ![image-20240809204521742](./assets/image-20240809204521742.png)
+  <img src="./assets/image-20240809204521742.png" alt="image-20240809204521742" style="zoom:50%;" />
 
 * 高度的优先级 => <font color=red>**协议方法的优先级 > 属性的优先级**</font>
 
@@ -9220,7 +9220,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     }
     ```
 
-    ![image-20240809204521742](./assets/UITableViewCellStyleDefault.png)
+    <img src="./assets/UITableViewCellStyleDefault.png" alt="image-20240809204521742" style="zoom:50%;" />
 
   * <font color=blue>**UITableViewCellStyleSubtitle**</font>
 
@@ -9239,7 +9239,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     }
     ```
 
-    ![image-20240809204521742](./assets/UITableViewCellStyleSubtitle.png)
+    <img src="./assets/UITableViewCellStyleSubtitle.png" alt="image-20240809204521742" style="zoom:50%;" />
 
   * <font color=blue>**UITableViewCellStyleValue1**</font>
 
@@ -9258,7 +9258,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     }
     ```
 
-    ![image-20240809204521742](./assets/UITableViewCellStyleValue1.png)
+    <img src="./assets/UITableViewCellStyleValue1.png" alt="image-20240809204521742" style="zoom:50%;" />
 
   * <font color=blue>**UITableViewCellStyleValue2**</font>
 
@@ -9277,7 +9277,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     }
     ```
 
-    ![image-20240809204521742](./assets/UITableViewCellStyleValue2.png)
+    <img src="./assets/UITableViewCellStyleValue2.png" alt="image-20240809204521742" style="zoom:50%;" />
 
 * 一些用做基类的**`UITableViewCell`**
 
@@ -9391,7 +9391,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
 #### 30.4、锚定点击的控件下方（动画）出现的下拉菜单[**`JobsDropDownListView`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/JobsDropDownListView)
 
-![image-20240803101851035](./assets/image-20240803101851035.png)
+<img src="./assets/image-20240803101851035.png" alt="image-20240803101851035" style="zoom:67%;" />
 
 * 内部用**`UITableView`**创建
 
@@ -9455,7 +9455,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
 ### 31、**`JobsStepView`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
 
-![Xnip2024-08-01_15-38-18](./assets/Xnip2024-08-01_15-38-18.jpg)
+<img src="./assets/Xnip2024-08-01_15-38-18.jpg" alt="Xnip2024-08-01_15-38-18" style="zoom:50%;" />
 
   ```objective-c
    -(JobsStepView *)stepView{
@@ -11242,7 +11242,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    })));
   ```
 
-  ![UIAlertController+UIAlertAction](./assets/UIAlertController+UIAlertAction.png)
+  <img src="./assets/UIAlertController+UIAlertAction.png" alt="UIAlertController+UIAlertAction" style="zoom:50%;" />
 
 ### 43、PDF的处理 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
 
