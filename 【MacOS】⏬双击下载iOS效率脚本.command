@@ -2,7 +2,7 @@
 
 # ✅ 全局变量
 REPO_URL="https://github.com/295060456/JobsCommand.iOS.git"
-CLONE_DIR="$HOME/将此文件夹管理的脚本拖到此iOS项目的根目录运行.command"
+CLONE_DIR="$(dirname "${BASH_SOURCE[0]:-${(%):-%x}}")/将此文件夹管理的脚本拖到此iOS项目的根目录运行.command"
 
 # ✅ 彩色输出
 SCRIPT_BASENAME=$(basename "$0" | sed 's/\.[^.]*$//')
@@ -29,7 +29,7 @@ main() {
     info_echo "🚀 正在执行脚本..."
     /bin/zsh "$CLONE_DIR/SourceTree.sh"
     
-    open $HOME/SourceTree.sh
+    open $CLONE_DIR
 }
 
 main "$@"
