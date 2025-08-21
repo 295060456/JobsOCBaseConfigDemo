@@ -31,7 +31,7 @@
 * **站在巨人的肩膀上，才能看得更远**
 * **面向信仰编程**
 
-## 一、🎯目的和功效 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 一、🎯目的和功效 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 品控标准（只能严格的保证编译器正常，而不能完全保证运行时的不出错）
   * 一定要保证这个工程的成功编译通过，方便以后项目直接进行引用，乃至开新版本
@@ -47,7 +47,7 @@
   * 作为其他项目的参考，可以快速的了解到项目的架构，代码规范，以及一些设计模式
   * 这么一些优秀的成果，其来源不仅仅是来自于作者本身的持续付出与积累。更是这个领域大家庭中各路优秀作者的智慧结晶
 
-## 二、🌈特色一览 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 二、🌈特色一览 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>**自主研发**</font>
   * [x] 公共的协议簇 **`BaseProtocol`**<br>
@@ -121,9 +121,9 @@
   * [x] 实用性脚本`*.command`<br>
   * [x] 对`info.plist`的备份<br>
 
-## 三、🧨几点重要说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 三、🧨几点重要说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### 1、特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 1、特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 对中文的兼容性非常好，所以可以中文命名路径（比如文件夹名称）
 
@@ -136,7 +136,7 @@
   ![image-20240706113246025](./assets/image-20240706113246025.png)
 
 
-### 2、在Apple芯片（目前是M系列）编译失败的解决方案 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 2、在Apple芯片（目前是M系列）编译失败的解决方案 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * 禁用系统完整性保护 (<font color=red>**S**</font>ystem <font color=red>**I**</font>ntegrity <font color=red>**P**</font>rotection, <font color=red>**SIP**</font>)   <font color=red>**如果不禁用，会对某些文件夹有读写权限控制**</font>
   * 重启**MacOS**，长按开机键，直到🌏页面，进入恢复模式
   * 在恢复模式的**macOS**实用工具窗口中，选择“实用工具”菜单，然后选择“终端”以打开终端窗口
@@ -164,7 +164,7 @@
     ```shell
     pod install
     ```
-### 3、**iOS**模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 3、**iOS**模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **iOS**模拟器目录
 
@@ -244,7 +244,7 @@
 
 * 如果更新或者删除**xcode**，那么下载的**iOS**模拟器将会丢失
 
-### 4、`lldb`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 4、`lldb`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ```shell
 (lldb) target list
@@ -255,7 +255,7 @@ Current targets:
 * target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
 ```
 
-### 5、`Command Line Tools` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 5、`Command Line Tools` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 查看`Command Line Tools`版本
 
@@ -263,7 +263,7 @@ Current targets:
   pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
   ```
 
-### 6、xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 6、xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 6.1、新工程配置
 
@@ -349,7 +349,7 @@ Current targets:
 
   <img src="./assets/image-20240629161626945.png" alt="image-20240629161626945" style="zoom:50%;" />
 
-### 7、🖨️ 打印 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 7、🖨️ 打印 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 7.1、重写打印输出
 
@@ -450,12 +450,12 @@ Current targets:
   ```
 
 
-### 8、iOS xcode <font color=red>代码块</font>，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 8、iOS xcode <font color=red>代码块</font>，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/295060456/JobsCodeSnippets.git)
 * 脚本自动化：[**`【MacOS】安装JobsCodeSnippets.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%AE%89%E8%A3%85JobsCodeSnippets.command)
 
-### 9、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>**
+### 9、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
 
 * 电脑桌面新建文件夹，并重命名为`payload`
 
@@ -473,7 +473,7 @@ Current targets:
 
 * 脚本自动化：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
 
-### 10、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 10、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 背景意义：**统一全局的Block定义，减少冗余代码**
 
@@ -531,7 +531,7 @@ Current targets:
   }];
   ```
 
-### 11、[**<font color=red>`BaseProtocol` 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 11、[**<font color=red>`BaseProtocol` 相关继承结构关系图</font>**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/BaseProtocol/BaseProtocol.md) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **如果两个对象都继承了共同的协议，互相包含会造成编译器错误**
 
@@ -608,14 +608,14 @@ classDiagram
 
 ```
 
-### 12、**`UIViewModelFamily`（将持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>**
+### 12、**`UIViewModelFamily`（将持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
 * `UITextModel`是专门针对文本的<font color=red>**数据束**</font>
 * 结合`BaseProtocol`进行封装
 * 减少冗余代码，将公用头文件提升到协议进行定义
-### 13、`JobsOCBaseCustomizeUIKitCore` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 13、`JobsOCBaseCustomizeUIKitCore` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 产生背景
   * OC的基类是单继承
@@ -624,7 +624,7 @@ classDiagram
   * 继承和分类应该结合使用，功能各有优劣
   * 分类即是"超级继承"，不需要产生额外的分类，方便管理和调用
 
-### 14、📏<font id=度量衡>**度量衡**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 14、📏<font id=度量衡>**度量衡**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > [**手机屏幕尺寸大全**](https://www.strerr.com/screen.html)
 >
@@ -806,7 +806,7 @@ classDiagram
     }
     ```
 
-### 15、字符串 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 15、字符串 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **富文本字符串的优先级要高于普通字符串。也就意味着，如果调用了富文本字符串，即便将其设置为nil，普通字符串的设置依然不会奏效**
 
@@ -1000,7 +1000,7 @@ classDiagram
 
 #### 15.7、更多...
 
-### 16、`UILabel`的自适应 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 16、`UILabel`的自适应 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 影响范围：**`UILabe`** 和 **`UIButton`**
 
@@ -1056,7 +1056,7 @@ classDiagram
   }
   ```
 
-### 17、文件介绍 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 17、文件介绍 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 各项宏定义
 
@@ -1115,7 +1115,7 @@ classDiagram
   #import "NSObject+URLManager.h
   ```
 
-### 18、输入框（**`UITextField`**） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 18、输入框（**`UITextField`**） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 18.1、**`UITextFieldDelegate`**
 
@@ -1652,7 +1652,7 @@ classDiagram
   }
   ```
 
-### 19、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 19、[<font color=red>**寻找系统关键变量**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * [**寻找当前控制器 **](#寻找当前控制器 )
 
 * 获取**window**
@@ -1849,7 +1849,7 @@ classDiagram
       };
   }
   ```
-### 20、[**`JobsTabBarCtrl`-深层次自定义`UITabbar`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/%E6%B7%B1%E5%BA%A6%E6%8B%93%E5%B1%95%E7%B3%BB%E7%BB%9FUITabBar%E5%85%A8%E5%AE%B6%E6%A1%B6/JobsTabbarCtrl.md) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 20、[**`JobsTabBarCtrl`-深层次自定义`UITabbar`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/%E6%B7%B1%E5%BA%A6%E6%8B%93%E5%B1%95%E7%B3%BB%E7%BB%9FUITabBar%E5%85%A8%E5%AE%B6%E6%A1%B6/JobsTabbarCtrl.md) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 背景介绍
   * 完全继承自系统Api，最大化兼容系统特色
@@ -1872,7 +1872,7 @@ classDiagram
     * 支持`PPBadgeView`
     * 支持强行自检跳转登录模块
 
-### 21、iOS横竖屏切换 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 21、iOS横竖屏切换 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * [**相关文档：iOS 横竖屏切换**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md)
 
@@ -1911,7 +1911,7 @@ classDiagram
   
   * [**如果锚定`view.traitCollection.verticalSizeClass`**](#锚定`view.traitCollection.verticalSizeClass`)，则需要配置 <font color=green>`- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window`</font> 方可正常检测横竖屏
 
-### 22、🧰 <font color=red>**全局工具箱**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 22、🧰 <font color=red>**全局工具箱**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * [**JobsAppTools**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/JobsAppTools) （单例模式）
 
@@ -1933,7 +1933,7 @@ classDiagram
 
 * [**`JobsLoadingImage`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIImage/JobsLoadingImage)：**图片存取**
 
-### 23、<font color=red>`View` 和 `ViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 23、<font color=red>`View` 和 `ViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 两者都是属于UI层
 
@@ -1987,7 +1987,7 @@ classDiagram
     -(void)dealloc
     ```
 
-### 24、<font color=red>**`AppDelegate`** 和 **`SceneDelegate`** </font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 24、<font color=red>**`AppDelegate`** 和 **`SceneDelegate`** </font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 在iOS 13及更高版本中，Apple引入了多窗口支持，这意味着一个应用程序可以拥有多个场景（Scene），每个场景都有自己的生命周期和界面
 
@@ -2060,7 +2060,7 @@ classDiagram
     }
     ```
 
-### 25、**`UIScrollView` **的滚动生命周期 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 25、**`UIScrollView` **的滚动生命周期 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 有2种方式驱动滚动效果
 
@@ -2090,7 +2090,7 @@ classDiagram
   * 如果开启了分页滚动，即：`UIScrollView.pagingEnabled = YES;`。如果`scrollView.contentOffset.x`为负，<u>最后在这个方法里面会被调整为0</u>
   * 因为这个方法会被反复调用多次，所以一般的逻辑处理，不建议在这里进行处理
 
-### 26、对象间传值比较（**通知**/**Block**/**协议**）<a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 26、对象间传值比较（**通知**/**Block**/**协议**）<a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 26.1、正向传值一般是通过初始化方法、属性等手段正向传入
 
@@ -2142,7 +2142,7 @@ classDiagram
 * 对象间传值一般的业务场景是：需要传值的对象之间至多有一个中间对象。此时建议用**Block**
 * <font color=red>如果需要涉及到多点订阅，那么使用**通知**或者**协议**</font>
 
-### 27、数据解析 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 27、数据解析 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 27.1、对`json`数据的解析
 
@@ -2301,7 +2301,7 @@ classDiagram
           }).bgNormalLoad();
   ```
 
-### 28、水平菜单切换 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 28、水平菜单切换 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 对于子菜单是视图控制器的：推荐使用`JXCategoryView`
 
@@ -2745,7 +2745,7 @@ classDiagram
    }
   ```
 
-### 29、<font color=blue>**竖形菜单**</font>方案 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 29、<font color=blue>**竖形菜单**</font>方案 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 29.1、左边的目录是`UITableView`，右边的内容是<font color=purper>`UIView`</font>
 
@@ -3226,7 +3226,7 @@ classDiagram
 * [**`JobsVerticalMenuVC@1`**]() <font color=red>**强烈推荐**</font>
 * [**`JXCategoryView`**](https://github.com/pujiaxin33/JXCategoryView)的垂直表达（<u>目前没有做到很好的支持，只能通过取巧</u>）<font color=red>**不推荐**</font>
 
-### 30、**Excel**方案：[**JobsExcelView**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/Excel/Excel-JobsExcelView/View/JobsExcelView) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 30、**Excel**方案：[**JobsExcelView**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97/Excel/Excel-JobsExcelView/View/JobsExcelView) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 框架介绍
 
@@ -3346,7 +3346,7 @@ classDiagram
   }
   ```
 
-### 31、❄️雪花算法 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 31、❄️雪花算法 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > `Snowflake ID`或`Snowflake Algorithm`
 
@@ -3525,7 +3525,7 @@ static const uint32_t kSequenceBits = 12;
 }
 ```
 
-### 32、数据的归档和解档 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 32、数据的归档和解档 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 32.1、数据的序列化
 
@@ -3699,7 +3699,7 @@ static const uint32_t kSequenceBits = 12;
   }
   ```
 
-### 33、容器类的二次封装使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 33、容器类的二次封装使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 数组
 
@@ -3804,7 +3804,7 @@ static const uint32_t kSequenceBits = 12;
   }
   ```
 
-### 34、📃协议属性的使用  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 34、📃协议属性的使用  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 协议的属性值无法在控制台用`po`进行打印输出，只能通过`NSLog`。因为当本类的成员变量列表已经部署完毕了以后，再部署以runtime的形式部署分类的属性
 
@@ -3896,7 +3896,7 @@ static const uint32_t kSequenceBits = 12;
   }
   ```
 
-### 35、**Runtime** 获取`.m`文件的属性（指针） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 35、**Runtime** 获取`.m`文件的属性（指针） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * ```objective-c
   WMZBannerControl *bannerControl = _bannerView.getObjByName(@"bannerControl");
@@ -3932,7 +3932,7 @@ static const uint32_t kSequenceBits = 12;
   * 看是否有**isAaa**变量，如果有，直接取
   * 返回<font color=red>**nil**</font>
 
-### 36、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 36、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 
@@ -4044,9 +4044,9 @@ static const uint32_t kSequenceBits = 12;
     layer.frame = CGRectMake(0, 0, 628, self.frame.size.height);/// 不崩溃
     ```
 
-## 四、🪵架构相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 四、🪵架构相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### 1、[**不使用 Storyboard + 使用自定义的控制器（ViewController@1）**](#https://blog.csdn.net/htwhtw123/article/details/125348408) + **不使用多场景** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 1、[**不使用 Storyboard + 使用自定义的控制器（ViewController@1）**](#https://blog.csdn.net/htwhtw123/article/details/125348408) + **不使用多场景** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 给`AppDelegate.h`添加属性，作为渲染的window
 
@@ -4129,14 +4129,14 @@ static const uint32_t kSequenceBits = 12;
 
 * [处理：**`Unknown class ViewController in Interface Builder file.`**](#Unknown_class_in_Interface_Builder_file)
 
-### 2、iOS新建应用使用多场景 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 2、iOS新建应用使用多场景 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * TODO
 
 
-## 五、💥代码讲解 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 五、💥代码讲解 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### 1、🔘**`UIButton.UIButtonConfiguration`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 1、🔘**`UIButton.UIButtonConfiguration`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 <details id="UIButton">
 <summary><strong>点我了解详情</strong></summary>
 
@@ -4610,7 +4610,7 @@ static const uint32_t kSequenceBits = 12;
 
  </details>
 
-### 2、⏰ 倒计时按钮的封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 2、⏰ 倒计时按钮的封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注实现类 [**@interface UIButton (Timer)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+Timer)
 
@@ -4729,7 +4729,7 @@ static const uint32_t kSequenceBits = 12;
       }
       ```
 
-### 3、[**`Masonry`**](https://github.com/SnapKit/Masonry) 的一些使用技巧 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 3、[**`Masonry`**](https://github.com/SnapKit/Masonry) 的一些使用技巧 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * ```ruby
   pod 'Masonry' # https://github.com/SnapKit/Masonry NO_SMP
@@ -4941,7 +4941,7 @@ static const uint32_t kSequenceBits = 12;
 
 </details>
 
-### 4、退出`ViewController`的时候，需要做的操作 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 4、退出`ViewController`的时候，需要做的操作 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 <details id="退出ViewController的时候，需要做的操作">
  <summary><strong>点我了解详情</strong></summary>
@@ -5002,7 +5002,7 @@ static const uint32_t kSequenceBits = 12;
 
 </details>
 
-### 5、实例对象的**weak**化，避免循环引用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 5、实例对象的**weak**化，避免循环引用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 <details id="相关定义">
 <summary><strong>点我了解详情：相关定义</strong></summary>
 
@@ -5071,7 +5071,7 @@ static const uint32_t kSequenceBits = 12;
  ```
 </details>
 
-### 6、**使用block，对`@selector`的替代封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 6、**使用block，对`@selector`的替代封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 <details id="使用block，对selector的封装，避免方法割裂">
  <summary><strong>点我了解详情</strong></summary>
@@ -5285,7 +5285,7 @@ static const uint32_t kSequenceBits = 12;
   }
   ```
 
-### 7、`UIViewModel`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 7、`UIViewModel`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 将数据束`UIViewModel`绑定到UI中，包括一些UI交互事件
 
@@ -5334,7 +5334,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 </details>
 
-### 8、统一注册全局的 `UICollectionViewCell` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 8、统一注册全局的 `UICollectionViewCell` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * 不注册相对应当`UICollectionViewCell`相关子类，使用时会崩溃
 
 * 系统注册`UICollectionViewCell`相关子类，是利用字符串作为桥梁进行操作
@@ -5351,7 +5351,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   [_collectionView registerCollectionViewClass];
   ```
 
-### 9、全局的弹出框 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 9、全局的弹出框 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 9.1、全局统一的<font color=red>**提示弹出框**</font>
 
@@ -5500,7 +5500,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }];
     ```
 
-### 10、关于`UIViewController`的一些配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 10、关于`UIViewController`的一些配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ####  10.1、`BaseViewController`
 
@@ -5930,7 +5930,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   -(UIViewController *_Nullable)currentController;
   ```
 
-### 11、`KVC`的封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 11、`KVC`的封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
@@ -5956,7 +5956,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   UIImageView *headIcon = self.valueForKeyBlock(@"headIcon");/// 账户头像
   ```
 
-### 12、👂 **键盘监听** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 12、👂 **键盘监听** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注实现类：[**`@implementation NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+Extras)
 
@@ -5998,7 +5998,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }];
   ```
 
-### 13、**iOS** 状态栏颜色的修改 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 13、**iOS** 状态栏颜色的修改 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 13.1、颜色的修改
 
@@ -6073,7 +6073,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 #### 13.3、[状态栏高度的封装](#度量衡)
 
-### 14、对`NSUserDefaults.standardUserDefaults` 的二次封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 14、对`NSUserDefaults.standardUserDefaults` 的二次封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 14.1、使用<font color=red>**宏定义**</font>对`NSUserDefaults.standardUserDefaults` 的二次封装
 
@@ -6209,7 +6209,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   +(jobsByStringBlock _Nonnull)deleteWithKey;
   ```
 
-### 15、对小型本地化数据的读取（`NSUserDefaults`） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 15、对小型本地化数据的读取（`NSUserDefaults`） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
   * 产生背景：方便临时调试，避免打印输出
 
@@ -6226,7 +6226,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-### 16、📺 视频播放器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 16、📺 视频播放器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注实现类：[**@interface UIView (ZFPlayer)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+ZFPlayer)
 
@@ -6241,7 +6241,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
    #  pod 'VIMediaCache' # https://github.com/vitoziv/VIMediaCache 边下边播
    ```
 
-### 17、动画相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 17、动画相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * `Podfile`
 
@@ -6251,7 +6251,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 关注实现类：[**@interface UIView (Animation)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView%2BCategory/UIView%2BAnimation)
 
-### 18、👋手势封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 18、👋手势封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 封装方式1：所有的手势都是在View上添加以及触发的
 
@@ -6314,7 +6314,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }
   }
   ```
-### 19、富文本 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 19、富文本 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 富文本是告诉系统，某段文字的表达方式。<u>其本质是一个带配置信息的字符串</u>
 
@@ -6690,7 +6690,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
       }
       ```
 
-### 20、⌚️时间戳的处理 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 20、⌚️时间戳的处理 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
  时间为`2024-12-05 15:30:00（北京时间，UTC+8）`
  秒级时间戳：`1701761400`
@@ -6722,7 +6722,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   self.dateByTimeInterval(111).toReadableTime(nil);
   ```
 
-### 21、字符串定义 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 21、字符串定义 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 *  在`*.h`文件中定义
    
@@ -6748,7 +6748,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   NSString *const UserDefaultKey_AppLanguage = @"AppLanguage";
   ```
 
-### 22、<font color=red>**万物回调**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 22、<font color=red>**万物回调**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 产生背景：点击事件的带参回调
 
@@ -6781,7 +6781,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-### 23、📷系统相机相册调取 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 23、📷系统相机相册调取 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 借助第三方[**`HXPhotoPicker`**](https://github.com/SilenceLove/HXPhotoPicker)
 
@@ -6957,7 +6957,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-### 24、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 24、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 在 **OC**中，`static` 关键字用于声明静态变量。这些变量在整个应用程序的生命周期内只会被初始化一次，并且它们的作用域仅限于定义它们的文件
 
@@ -7042,7 +7042,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   }
   ```
 
-### 25、🔗 打开`URL` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 25、🔗 打开`URL` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注实现类：[**@interface NSObject (OpenURL)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+OpenURL)
 
@@ -7063,7 +7063,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
               }];
   ```
 
-### 26、🗄️ 数据库 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 26、🗄️ 数据库 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **FMDB**
 
@@ -7350,11 +7350,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     @end
     ```
 
-### 27、🫆指纹识别 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 27、🫆指纹识别 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注实现类：[**@interface  TouchID : NSObject**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/BaseObject/TouchID)
 
-### 28、**`UIScrollView`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 28、**`UIScrollView`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 如果需要将**`UIScrollView`**拖动到某个地方，就不能拖动了，需要配置其**contentSize**属性
 
@@ -7376,7 +7376,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 要获取 **`UIScrollView`** 滑动的距离，你可以使用 `contentOffset` 属性。`contentOffset` 表示 `UIScrollView` 的内容视图的原点相对于 **`UIScrollView`**自身边界的偏移量。
 
-### 29、<font id=创建UICollectionView color=red>创建**`UICollectionView`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 29、<font id=创建UICollectionView color=red>创建**`UICollectionView`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 29.1、关于**`UICollectionView`**
 
@@ -8160,7 +8160,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
             }),2,3);
     ```
 
-### 30、<font color=red id=创建UITableView>创建**`UITableView`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 30、<font color=red id=创建UITableView>创建**`UITableView`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 30.1、关于<font color=red>**`UITableView`**</font>
 
@@ -9454,7 +9454,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   }
   ```
 
-### 31、**`JobsStepView`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 31、**`JobsStepView`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 <img src="./assets/Xnip2024-08-01_15-38-18.jpg" alt="Xnip2024-08-01_15-38-18" style="zoom:50%;" />
 
@@ -9509,7 +9509,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 ```
 
 
-### 32、关于**`UITabBarController`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 32、关于**`UITabBarController`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 32.1、架构说明
 
@@ -9533,7 +9533,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
 #### 32.2、[自定义 **`UITabBarController`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/JobsMixFunc/UITabBarCtr/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md)
 
-### 33、🔪切角 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 33、🔪切角 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 切整个View的4个角为统一的切角参数
 
@@ -9574,7 +9574,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   }
   ```
 
-### 34、刷新控件 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 34、刷新控件 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=blue>都是锚定在其公共父类**UIScrollView**</font>
 
@@ -10032,7 +10032,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     }
     ```
 
-### 35、<font color=red>**网络请求框架**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 35、<font color=red>**网络请求框架**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * ```objective-c
   -(void)基础的网络请求示例{
@@ -10715,7 +10715,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        }
       ```
 
-### 36、数据容器 = 数组 + 字典 + 集合 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 36、数据容器 = 数组 + 字典 + 集合 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 从底层开始，有且只有如下的容器类
 
@@ -10754,7 +10754,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   
 * **原则上，是不希望在数据容器上用继承关系的。因为这样可能会导致一些未知错误的发生。**但是可以用分类的方式，定义一些算法方面的方法，减少应用层的负担
 
-### 37、第三方验证码 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 37、第三方验证码 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 37.1、[网易验证码](https://github.com/yidun/NTESVerifyCode)的二次封装
 
@@ -10806,7 +10806,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   }
   ```
 
-### 38、<font color=red id=UIView支持push和pop>让 **`UIView`**像 **`UINavigationController`**一样支持 push 和 pop</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 38、<font color=red id=UIView支持push和pop>让 **`UIView`**像 **`UINavigationController`**一样支持 push 和 pop</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=green size=5>**pop**</font>
 
@@ -10967,7 +10967,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
       self.navigator.pushView(self.pushView,YES);
       ```
 
-### 39、轮播图 [**WMZBanner**](https://github.com/wwmz/WMZBanner) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 39、轮播图 [**WMZBanner**](https://github.com/wwmz/WMZBanner) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>**作者停止维护**</font>
 
@@ -11074,7 +11074,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   
   </details>
 
-### 40、自动布局 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 40、自动布局 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **SDAutoLayout** 和 **Masonry** 一起使用时可能会导致冲突
 
@@ -11201,7 +11201,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   #endif
   ```
 
-### 41、颜色透明度 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 41、颜色透明度 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 手动提取颜色的 RGB 分量并创建一个新的颜色对象，这样可以更加灵活地控制颜色的生成过程
 
@@ -11215,7 +11215,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   JobsBlackColor.colorWithAlphaComponent(0.5f);
   ```
 
-### 42、数据模型的封装调用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 42、数据模型的封装调用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 42.1、封装系统Api（关注[**`JobsMakes.h`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/JobsMakes.h)）
 
@@ -11245,7 +11245,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
   <img src="./assets/UIAlertController+UIAlertAction.png" alt="UIAlertController+UIAlertAction" style="zoom:50%;" />
 
-### 43、PDF的处理 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 43、PDF的处理 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ```objective-c
 #import <PDFKit/PDFKit.h> /// 处理PDF
@@ -11268,7 +11268,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 }
 ```
 
-### 43、控制器自定义转场动画 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 43、控制器自定义转场动画 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ```objective-c
 /// 设置控制器的转场方向（及对应手势）
@@ -11288,7 +11288,7 @@ FMHomeMenuVC *vc = [self viewController:FMHomeMenuVC.new transitionDirection:Job
 }
 ```
 
-### 44、Layer <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 44、Layer <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * `-(JobsReturnViewByCorBlock _Nonnull)layerByBorderCor;`
 * `-(JobsReturnViewByFloatBlock _Nonnull)layerByBorderWidth;`
@@ -11387,7 +11387,7 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 }));
 ```
 
-### 45、响应链 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+### 45、响应链 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 |                    方法名                    |                  作用                  | 是否影响是否响应 `touchesBegan / touchesEnded` |                          说明                           |
 | :------------------------------------------: | :------------------------------------: | :--------------------------------------------: | :-----------------------------------------------------: |
@@ -11472,7 +11472,7 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
   }
   ```
 
-## 六、🐢<font color=red>**马甲包**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 六、🐢<font color=red>**马甲包**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ### 1、相关资料
 
@@ -11482,7 +11482,7 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 
 * [**confuse**](https://github.com/520coding/confuse)
 
-## 七、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 七、[一些文档和资料](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ### 1、配置相关
 * [**解决xcode出现：SDK does not contain 'libarclite' 错误**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E8%A7%A3%E5%86%B3Xcode%E5%87%BA%E7%8E%B0%EF%BC%9ASDK%20does%20not%20contain%20'libarclite'%20%E9%94%99%E8%AF%AF)
@@ -11575,7 +11575,9 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 * DebugLogDescription 会崩溃：`id value = self.valueForKeyBlock(name) ? : @"nil";//默认值为nil字符串`
 * 侧滑菜单：`JXCategoryView`垂直表达
 * 其他
-## 八、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 八、打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * 浏览器打开并输入 
   ```html
   feedbackassistant://
+
+<font id=🔚>🔚</font>
