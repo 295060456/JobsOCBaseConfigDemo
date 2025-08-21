@@ -1,4 +1,4 @@
-# **iOS.OC**<font color=red>🧪靶场项目</font>@配置说明
+# **iOS.OC**@<font color=red>靶场项目</font>蓝皮书📘
 
 <p align="left">
   <a><img src="https://img.shields.io/badge/pod-1.15.2-brightgreen" alt="CocoaPods"/></a>
