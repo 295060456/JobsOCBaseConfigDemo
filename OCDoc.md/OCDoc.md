@@ -452,18 +452,19 @@ for (int i = 0; i < n; i++) {
     ```
   
 * ❤️**Block 的存储**
-  * *Block* 是一个**对象**，它在***[堆](# 堆(Heap))上分配***内存；
+  * *Block* 是一个**对象**，它在**[堆](# 堆(Heap))上分配**内存；
   
   * <font color="red">当一个 *Block* 捕获了一个 `__block` 修饰的变量时，*Block* 不会直接捕获这个变量的值，而是**捕获了一个指向变量的指针**</font>；
   
   * 当 *Block* 在创建时，会检查其所引用的外部变量，如果有被 `__block` 修饰的变量， *Block*将这些变量的地址包装到一个结构体中，然后将这个结构体的指针传递给 *Block*；
-    **Block 的三种形式（存储位置）** <a href="#内存分布" style="font-size:17px; color:green;"><b>⏫</b></a>
-  
-    | Block 类型       | 存储位置               | 地址相对大小 | 是否捕获外部变量 | 是否可自动复制到堆                |
-    | ---------------- | ---------------------- | ------------ | ---------------- | --------------------------------- |
-    | **Global Block** | 全局区（Data Segment） | 低地址       | ❌ 否             | ❌ 否                              |
-    | **Heap Block**   | 堆（Heap）             | 中地址       | ✅ 是             | ✅ 是（需 `copy` 或 `Block_copy`） |
-    | **Stack Block**  | 栈（Stack）            | 高地址       | ✅ 是             | ❌ 否                              |
+    
+  * **Block 的三种形式（存储位置）** <a href="#内存分布" style="font-size:17px; color:green;"><b>⏫</b></a>
+    
+    | Block 类型       | 存储位置 | 地址相对大小 | 是否捕获外部变量 | 是否可自动复制到堆 |                                                         |
+    | ---------------- | -------- | ------------ | ---------------- | ------------------ | ------------------------------------------------------- |
+    | **Global Block** | 全局区   | 低地址       | ❌ 否             | ❌ 否               | 不捕获任何变量的 Block，存放在全局数据区，不需要 `copy` |
+    | **Heap Block**   | 堆       | 中地址       | ✅ 是             | ✅ 是（需 `copy`）  | 通过 `copy` 从栈拷贝到堆，生命周期可控。                |
+    | **Stack Block**  | 栈       | 高地址       | ✅ 是             | ❌ 否               | 默认创建时在栈上，函数返回后就失效                      |
     
     > ✅ 建议：凡是需要将 Block 作为属性使用的情况，必须使用 `copy` 修饰，确保 Block 从栈复制到堆，避免野指针崩溃问题。
   
@@ -475,8 +476,36 @@ for (int i = 0; i < n; i++) {
   
 * <font color=red>**不可以和属性合用**</font>：因为它与**Objective-C**的内存管理和属性访问语义不兼容
 
-  * **内存管理问题**：`__block`变量会在**block**中被捕获，并且在不同的上下文中可能会被不同的内存管理规则处理（特别是在ARC模式下）。这与属性的内存管理（`strong`、`weak`等）会产生冲突。
-  * **访问方法**：属性在**Objective-C**中通过`getter`和`setter`方法访问。使用`__block`修饰符会绕过这些访问方法，直接操作实例变量，破坏了属性的封装性和一致性。
+  > 错误的写法（此时，应该去掉 __block）
+  >
+  > ```objective-c
+  > @property (nonatomic,copy,nullable) __block void (^completion)(NSString *result);
+  > ```
+  >
+  > * `__block` 关键字**只允许**修饰**局部变量**，它的作用是“允许在 block 内修改该局部变量的绑定”。
+  > * 不能修饰 `@property` 的声明。写在这里虽然编译器可能有时不报错，但语义是错的，而且容易触发奇怪的警告或 UB。
+  > * 属性的修饰符（`copy`/`strong`/`weak`）负责对象引用计数；`__block` 是捕获规则，和属性机制不搭界。放在属性上没有意义。
+
+  * 真正需要 `__block` 的场景：只有在**方法或函数内部**，想要在 block 内部改变一个外部局部变量时，才写 `__block`
+
+    ```objective-c
+    - (void)doSomething {
+        __block BOOL finished = NO;
+        self.completion = ^(NSString *r) {
+            finished = YES;   // 可以改，因为用了 __block
+        };
+    }
+    ```
+
+    ```objective-c
+    /// 在 block 内避免循环引用：
+    __weak typeof(self) weakSelf = self;
+    self.completion = ^(NSString *r) {
+        __strong typeof(weakSelf) self = weakSelf;
+        if (!self) return;
+        self.status = r;   // 正常走 setter
+    };
+    ```
 
 * <font color=red>**Block 属性必须使用 `copy` 修饰符**，不能用 `assign`，否则会引发严重错误</font>
 
@@ -486,7 +515,7 @@ for (int i = 0; i < n; i++) {
     @property(nonatomic,copy)JobsReturnIDByIDBlock loadBlock;
     ```
 
-  * 原因：<u>**可能这个Block是栈Block**</u>
+  * 原因：<u>**可能这个Block是栈Block（默认创建时在栈上，函数返回后就失效）**</u>
 
     * **内存管理：** 使用 `copy` 修饰符可以确保在设置 block 属性时，会将 block 复制到堆上，而不是简单地引用。这样可以避免在 block 在栈上分配时出现内存管理问题。
     
