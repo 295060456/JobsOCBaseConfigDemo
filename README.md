@@ -127,7 +127,7 @@
 
 * [**计算机底层的秘密**](https://github.com/295060456/JobsDocs/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82%E7%9A%84%E7%A7%98%E5%AF%86.pdf)
 * [**Git的使用**](https://github.com/295060456/JobsDocs/tree/main/Git%E7%9A%84%E4%BD%BF%E7%94%A8.md)
-* [**移动端上架流程**](https://github.com/295060456/JobsDocs/blob/main/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8A%E6%9E%B6%E6%B5%81%E7%A8%8B.md/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8A%E6%9E%B6%E6%B5%81%E7%A8%8B.md)
+* [**移动端上架流程**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8A%E6%9E%B6%E6%B5%81%E7%A8%8B.md/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8A%E6%9E%B6%E6%B5%81%E7%A8%8B.md)
 * [**Apple生成 *.p12文件**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6.md)
 * [**iOS音视频**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/iOS%E9%9F%B3%E8%A7%86%E9%A2%91/iOS%E9%9F%B3%E8%A7%86%E9%A2%91.md)
 * [**UITableView**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/UITableView/UITableView.md)
@@ -137,7 +137,7 @@
 * [**本地通知**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E6%9C%AC%E5%9C%B0%E9%80%9A%E7%9F%A5.md/%E6%9C%AC%E5%9C%B0%E9%80%9A%E7%9F%A5.md)
 * [**横屏UI切换**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md)
 * [**自定义 UITabBarController**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md)
-* [**配置info.plist**](https://github.com/295060456/JobsDocs/blob/main/%E9%85%8D%E7%BD%AEinfo.plist/%E9%85%8D%E7%BD%AEinfo.plist.md)
+* [**配置info.plist**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E9%85%8D%E7%BD%AEinfo.plist/%E9%85%8D%E7%BD%AEinfo.plist.md)
 * [**解决Xcode出现：SDK does not contain 'libarclite' 错误**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E8%A7%A3%E5%86%B3Xcode%E5%87%BA%E7%8E%B0%EF%BC%9ASDK%20does%20not%20contain%20'libarclite'%20%E9%94%99%E8%AF%AF/README.md)
 * [**JXCategoryView框架的使用**](https://github.com/295060456/JobsDocs/tree/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/JXCategoryView)
 * [**MJExtension用法**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/MJExtension%E7%94%A8%E6%B3%95/MJExtension%E7%94%A8%E6%B3%95.md)
