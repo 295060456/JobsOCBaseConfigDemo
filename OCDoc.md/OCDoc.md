@@ -1238,7 +1238,7 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 @end
 ```
 
-## 雪花算法（Snowflake）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## 雪花算法 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 雪花算法（Snowflake）是一种分布式唯一ID生成算法；
 * 最初**由Twitter开发**用于**生成全局唯一的ID**；
