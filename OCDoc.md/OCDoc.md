@@ -14,12 +14,70 @@
 
 ![IMAGE 2024-09-09 23:23:12](./assets/IMAGE 2024-09-09 23:23:12.jpg)
 
-* `int *p = &a`  
-  * 这行代码是在C或C++中声明了一个整数指针变量 `p`，并将其初始化为变量 `a` 的地址；
-  * `&a` 表示取变量 `a` 的地址，然后将这个地址赋给指针变量 `p`；
-  * 这样，`p` 就指向了变量 `a` 的位置，可以通过 `p` 来访问和操作变量 `a`；
-  * `int *p` 表示 `p` 是一个整数指针，可以用来存储整数变量的地址；
-  * 整数指针是指一个指针，其目标是整数类型的变量
+### `int *p = &a`  
+
+* 这行代码是在C或C++中声明了一个整数指针变量 `p`，并将其初始化为变量 `a` 的地址；
+* `&a` 表示取变量 `a` 的地址，然后将这个地址赋给指针变量 `p`；
+* 这样，`p` 就指向了变量 `a` 的位置，可以通过 `p` 来访问和操作变量 `a`；
+* `int *p` 表示 `p` 是一个整数指针，可以用来存储整数变量的地址；
+* 整数指针是指一个指针，其目标是整数类型的变量
+
+### 数组指针 和 指针数组 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* <font color=red>**数组指针（Pointer to Array）**</font>
+
+  * <u>本质是指针</u>
+
+  * 是指向整个数组的指针
+
+  * 示例
+
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        int arr[10];
+        /// int 表示数组的元素类型是整数。
+        /// (*p) 表示 p 是一个指针。
+        /// [10] 表示数组的大小是10。
+        int (*p)[10] = &arr;
+    
+        for(int i = 0; i < 10; i++) {
+            (*p)[i] = i; // 使用数组指针访问数组元素
+        }
+    
+        for(int i = 0; i < 10; i++) {
+            printf("%d ", (*p)[i]);
+        }return 0;
+    }
+    ```
+
+* 指针数组（Array of Pointers）
+
+  * <u>本质是数组</u>
+
+  * 是一个数组，其中的每个元素都是指针
+
+  * 示例
+
+    ```c
+    #include <stdio.h>
+    
+    int main() {
+        int a = 1, b = 2, c = 3;
+        /// int * 表示数组的元素是指向整数的指针。
+    		/// p[3] 表示数组的大小是3。
+        int *p[3];
+    
+        p[0] = &a;
+        p[1] = &b;
+        p[2] = &c;
+    
+        for(int i = 0; i < 3; i++) {
+            printf("%d ", *p[i]); // 使用指针数组访问变量的值
+        }return 0;
+    }
+    ```
 
 ## <font color="red" id=内存分布>**内存分布**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
@@ -584,64 +642,6 @@ for (int i = 0; i < n; i++) {
 * 其他
   * 由于SSD的速度比RAM慢得多，**使用虚拟内存会导致系统性能下降**
   * **SSD有写入寿命限制**，频繁使用虚拟内存可能会加速SSD的磨损
-
-## 数组指针 和 指针数组 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-
-* <font color=red>**数组指针（Pointer to Array）**</font>
-
-  * <u>本质是指针</u>
-
-  * 是指向整个数组的指针
-
-  * 示例
-
-    ```c
-    #include <stdio.h>
-    
-    int main() {
-        int arr[10];
-        /// int 表示数组的元素类型是整数。
-        /// (*p) 表示 p 是一个指针。
-        /// [10] 表示数组的大小是10。
-        int (*p)[10] = &arr;
-    
-        for(int i = 0; i < 10; i++) {
-            (*p)[i] = i; // 使用数组指针访问数组元素
-        }
-    
-        for(int i = 0; i < 10; i++) {
-            printf("%d ", (*p)[i]);
-        }return 0;
-    }
-    ```
-
-* 指针数组（Array of Pointers）
-
-  * <u>本质是数组</u>
-
-  * 是一个数组，其中的每个元素都是指针
-
-  * 示例
-
-    ```c
-    #include <stdio.h>
-    
-    int main() {
-        int a = 1, b = 2, c = 3;
-        /// int * 表示数组的元素是指向整数的指针。
-    		/// p[3] 表示数组的大小是3。
-        int *p[3];
-    
-        p[0] = &a;
-        p[1] = &b;
-        p[2] = &c;
-    
-        for(int i = 0; i < 3; i++) {
-            printf("%d ", *p[i]); // 使用指针数组访问变量的值
-        }return 0;
-    }
-    ```
-
 
 ## 常见锁 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
@@ -1255,13 +1255,16 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 * 与IPv4不同的是，**IPv6不需要像IPv4一样分出专门的私有地址范围**，因为IPv6的地址空间足够大，**允许每个设备都有一个全局唯一的地址**。
 * 总的IPv6地址-端口对数目：2<sup>128</sup> x 2<sup>16</sup> = 2<sup>144</sup>  **这是IPv6网络中可能的唯一的地址-端口对的总数**
 **与IPv4相比，IPv6具有更大的地址空间和端口数目，而且IPv6中没有像IPv4那样需要特别保留的地址范围，因此它实际上提供了更多的灵活性。**
-## 一个IP能有多少个端口 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-* 每个IPv4地址和IPv6地址一样，都有**65535**个端口：2^16次方（约**65,536**）
-  * 0到1023是***系统保留端口***；
-  * 1024到49151是***注册端口***；
-  * 49152到65535是***动态或私有端口***；
-* 端口的使用是通过网络协议来管理的，典型的例子是TCP和UDP；
-## *OC*.非正式协议 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## 一个IP能有多少个端口（2<sup>16</sup>，约**65,536**） <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+* 每个IPv4地址和IPv6地址一样，都有**65535**个端口：2<sup>16</sup>（约**65,536**）
+  | 范围          | 个数  | 2 的次方表示   | 名称          |
+  | ------------- | ----- | -------------- | ------------- |
+  | 0 ~ 1023      | 1024  | 2¹⁰            | 系统保留端口  |
+  | 1024 ~ 49151  | 48128 | 2¹⁵ + 2¹⁴ - 2² | 注册端口      |
+  | 49152 ~ 65535 | 16384 | 2¹⁴            | 动态/私有端口 |
+  | **总计**      | 65536 | 2¹⁶            | 全部端口空间  |
+* 端口的使用是通过网络协议来管理的。典型的例子是TCP和UDP；
+## OC.非正式协议 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 >  是一种约定，用于描述类的方法，***但不要求实现特定的接口或遵循特定的协议***。它允许类在不采用正式协议的情况下，<u>***通过向类添加方法来实现特定功能***</u>。非正式协议在OC 中是一种**常见的设计模式**，特别是在框架和库中。它们使得代码更加灵活，允许开发者通过遵循约定而不是强制性接口来实现特定功能。
 
@@ -1285,7 +1288,7 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   这种非正式的协议使得 UITableView 可以更加灵活地适应不同的使用场景，同时也简化了开发者的代码编写。
   ```
 
-## <font color="red">***OC和JS交互***</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## <font color="red">**OC和JS交互**</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 通常情况下是通过**字符串**进行交流
 
@@ -1610,58 +1613,66 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   ```
 ## **OC.依赖注入** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-<font color="red">***在 Objective-C 中，虽然没有像一些现代语言（如Java、C#、Swift等）中那样内置的依赖注入容器，但仍然可以手动实现依赖注入模式。***</font>
-***Logger.h：***
+* <font color="red">**在 Objective-C 中，虽然没有像一些现代语言（如Java、C#、Swift等）中那样内置的依赖注入容器，但仍然可以手动实现依赖注入模式。**</font>
 
-```objective-c
-#import <Foundation/Foundation.h>
+  > <span style="color:Blue; font-weight:bold;">**在这个示例中，`UserService` 类在构造函数中接受一个 `Logger` 对象作为参数，然后将其存储在实例变量中。这样，调用 `UserService` 的代码可以提供自己的 `Logger` 实例，从而实现了依赖注入。**</span>
 
-@interface Logger : NSObject
-- (void)log:(NSString *)message;
-@end
-```
-***Logger.m：***
-```objective-c
-#import "Logger.h"
+  * ***Logger.h：***
 
-@implementation Logger
-- (void)log:(NSString *)message {
-    NSLog(@"%@", message);
-}
-@end
-```
-***UserService.h：***
-```objective-c
-#import <Foundation/Foundation.h>
-#import "Logger.h"
+    ```objective-c
+    #import <Foundation/Foundation.h>
+    
+    @interface Logger : NSObject
+    - (void)log:(NSString *)message;
+    @end
+    ```
 
-@interface UserService : NSObject
+  * ***Logger.m：***
 
-@property(nonatomic, strong) Logger *logger;
-- (instancetype)initWithLogger:(Logger *)logger;
-- (void)doSomething;
+    ```objective-c
+    #import "Logger.h"
+    
+    @implementation Logger
+    - (void)log:(NSString *)message {
+        NSLog(@"%@", message);
+    }
+    @end
+    ```
 
-@end
-```
-***UserService.m：***
-```objective-c
-#import "UserService.h"
+  * ***UserService.h：***
 
-@implementation UserService
-- (instancetype)initWithLogger:(Logger *)logger {
-    if (self = [super init]) {
-        self.logger = logger;
-    }return self;
-}
+    ```objective-c
+    #import <Foundation/Foundation.h>
+    #import "Logger.h"
+    
+    @interface UserService : NSObject
+    
+    @property(nonatomic, strong) Logger *logger;
+    - (instancetype)initWithLogger:(Logger *)logger;
+    - (void)doSomething;
+    
+    @end
+    ```
 
-- (void)doSomething {
-    // 使用依赖注入的 Logger 对象记录日志
-    [self.logger log:@"Something is done in UserService"];
-}
-@end
-```
+  * ***UserService.m：***
 
-<span style="color:Blue; font-weight:bold;">***在这个示例中，`UserService` 类在构造函数中接受一个 `Logger` 对象作为参数，然后将其存储在实例变量中。这样，调用 `UserService` 的代码可以提供自己的 `Logger` 实例，从而实现了依赖注入。***</span>
+    ```objective-c
+    #import "UserService.h"
+    
+    @implementation UserService
+    - (instancetype)initWithLogger:(Logger *)logger {
+        if (self = [super init]) {
+            self.logger = logger;
+        }return self;
+    }
+    
+    - (void)doSomething {
+        // 使用依赖注入的 Logger 对象记录日志
+        [self.logger log:@"Something is done in UserService"];
+    }
+    
+    @end
+    ```
 
 ## 函数（方法）签名 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * 指函数的声明或定义，其中包含了***函数的名称***、***参数列表***和***返回类型***；
@@ -1702,9 +1713,9 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   print("Sum of 2, 3 and 4 is: \(math.add(2, 3, 4))")
   print("Sum of 2.5 and 3.5 is: \(math.add(2.5, 3.5))")
   ```
-* OC 没有方法的重载
+* **OC 没有方法的重载**
 
-* Dart 没有方法的重载
+* **Dart 没有方法的重载**
 
 * Java 支持方法的重载：***仅仅参数顺序不同，也会被视为重载的不同方法***
 
@@ -1784,50 +1795,69 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 
 ### pthread <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-```objective-c
+> *pthread（**P**OSIX **Thread**s）*是一套<font color="red">***C语言编写***</font>的**跨平台多线程API**，**使用难度大**，需要**手动管理线程生命周期**。（需要更加谨慎地处理线程的同步和互斥操作，以避免出现死锁、数据竞争等问题）
+>
+> * **线程创建和管理**： pthread 库允许程序员创建、销毁、等待和控制线程的执行。通过调用 pthread_create 函数，程序可以创建新的线程并指定线程执行的函数。程序还可以使用 pthread_join 函数等待线程的结束，并使用 pthread_exit 函数退出当前线程；
+> * **线程同步**： pthread 提供了一系列的同步机制，如互斥锁（Mutex）、条件变量（Condition Variable）、信号量（Semaphore）等，可以用于多线程之间的同步和互斥操作。这些同步机制可以帮助程序员避免多个线程同时访问共享资源导致的竞态条件和数据不一致性问题；
+> * **线程调度和优先级**： pthread 允许程序员设置线程的调度策略和优先级，以及控制线程的调度行为。程序员可以通过设置线程的属性来指定线程的调度策略和优先级，以及其他相关的属性；
+> * **线程取消和退出**： pthread 允许程序员取消线程的执行，并在需要时优雅地退出线程。程序员可以使用 pthread_cancel 函数取消指定线程的执行，并使用 pthread_exit 函数主动退出当前线程；
+> * **线程局部存储**： pthread 提供了线程局部存储（Thread-Specific Data，TSD）的机制，允许程序员为每个线程分配独立的存储空间。这些存储空间对于每个线程是私有的，可以用于存储线程特定的数据；
+
+```c
+/// main.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <string.h>   // strerror
 #include <unistd.h>
 
-void *print_message(void *arg) {
-    char *message = (char *)arg;
+static void *print_message(void *arg) {
+    const char *message = (const char *)arg;  // 传入的是字符串字面量，静态存储期，安全
     printf("子线程：%s\n", message);
     return NULL;
 }
 
-int main() {
+int main(void) {
     pthread_t thread1, thread2;
 
-    char *msg1 = "线程1正在运行...";
-    char *msg2 = "线程2正在运行...";
+    const char *msg1 = "线程1正在运行...";
+    const char *msg2 = "线程2正在运行...";
 
-    // 创建线程
-    if (pthread_create(&thread1, NULL, print_message, msg1) != 0) {
-        perror("创建线程1失败");
-        exit(1);
-    }
-    if (pthread_create(&thread2, NULL, print_message, msg2) != 0) {
-        perror("创建线程2失败");
-        exit(1);
+    int rc;
+
+    rc = pthread_create(&thread1, NULL, print_message, (void *)msg1);
+    if (rc != 0) {
+        fprintf(stderr, "创建线程1失败: %s\n", strerror(rc)); // pthread_* 返回错误码，不一定设置 errno
+        exit(EXIT_FAILURE);
     }
 
-    // 等待线程结束
+    rc = pthread_create(&thread2, NULL, print_message, (void *)msg2);
+    if (rc != 0) {
+        fprintf(stderr, "创建线程2失败: %s\n", strerror(rc));
+        exit(EXIT_FAILURE);
+    }
+
     pthread_join(thread1, NULL);
     pthread_join(thread2, NULL);
 
-    printf("主线程：所有子线程执行完毕。\n");
+    puts("主线程：所有子线程执行完毕。");
     return 0;
 }
 ```
 
-* *pthread（**P**OSIX **Thread**s）*是一套<font color="red">***C语言编写***</font>的**跨平台多线程API**，**使用难度大**，需要**手动管理线程生命周期**。（需要更加谨慎地处理线程的同步和互斥操作，以避免出现死锁、数据竞争等问题）
-  * **线程创建和管理**： pthread 库允许程序员创建、销毁、等待和控制线程的执行。通过调用 pthread_create 函数，程序可以创建新的线程并指定线程执行的函数。程序还可以使用 pthread_join 函数等待线程的结束，并使用 pthread_exit 函数退出当前线程；
-  * **线程同步**： pthread 提供了一系列的同步机制，如互斥锁（Mutex）、条件变量（Condition Variable）、信号量（Semaphore）等，可以用于多线程之间的同步和互斥操作。这些同步机制可以帮助程序员避免多个线程同时访问共享资源导致的竞态条件和数据不一致性问题；
-  * **线程调度和优先级**： pthread 允许程序员设置线程的调度策略和优先级，以及控制线程的调度行为。程序员可以通过设置线程的属性来指定线程的调度策略和优先级，以及其他相关的属性；
-  * **线程取消和退出**： pthread 允许程序员取消线程的执行，并在需要时优雅地退出线程。程序员可以使用 pthread_cancel 函数取消指定线程的执行，并使用 pthread_exit 函数主动退出当前线程；
-  * **线程局部存储**： pthread 提供了线程局部存储（Thread-Specific Data，TSD）的机制，允许程序员为每个线程分配独立的存储空间。这些存储空间对于每个线程是私有的，可以用于存储线程特定的数据；
+```c
+gcc main.c -pthread -o demo
+```
+
 ### NSThread <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+> Cocoa 框架中的一部分<font color="red">***（较为底层）***</font>。面向对象操作线程，使用相对简单，需要手动管理线程生命周期；
+>
+> * **线程创建和管理**： 使用 `NSThread` 类，您可以创建新的线程，并通过调用 `start` 方法来启动线程的执行。您可以在创建线程时指定线程执行的方法，并传递参数给该方法。通过 `isExecuting` 和 `isFinished` 等属性，您可以查询线程的执行状态；
+> * **线程调度和优先级**： `NSThread` 允许您设置线程的调度优先级，以及控制线程的调度行为。您可以使用 `threadPriority` 属性来设置线程的优先级，范围为 0.0 到 1.0，其中 1.0 表示最高优先级。您还可以使用 `sleepForTimeInterval:` 方法来让线程休眠一段时间；
+> * **线程同步**： `NSThread` 并没有提供专门的同步机制，但您可以使用其他的同步机制，如互斥锁（`NSLock`）、条件变量（`NSCondition`）等，来确保多个线程之间的同步和互斥操作。您可以在不同的线程中使用这些同步机制来避免竞态条件和数据不一致性问题；
+> * **线程退出**： `NSThread` 并没有提供退出线程的方法，但您可以通过让线程执行完其任务后自行退出来实现线程的结束。在线程的执行方法中，您可以使用 `exit` 方法或直接返回来退出线程；
+> * **线程局部存储**： `NSThread` 并不直接支持线程局部存储的机制，但您可以使用线程的字典属性来实现类似的功能。每个 `NSThread` 对象都有一个 `threadDictionary` 属性，您可以使用这个属性来存储和访问线程特定的数据；
 
 ```objective-c
 int main(int argc, const char * argv[]) {
@@ -1848,12 +1878,6 @@ int main(int argc, const char * argv[]) {
 }
 ```
 
-* Cocoa 框架中的一部分<font color="red">***（较为底层）***</font>。面向对象操作线程，使用相对简单，需要手动管理线程生命周期；
-  * **线程创建和管理**： 使用 `NSThread` 类，您可以创建新的线程，并通过调用 `start` 方法来启动线程的执行。您可以在创建线程时指定线程执行的方法，并传递参数给该方法。通过 `isExecuting` 和 `isFinished` 等属性，您可以查询线程的执行状态；
-  * **线程调度和优先级**： `NSThread` 允许您设置线程的调度优先级，以及控制线程的调度行为。您可以使用 `threadPriority` 属性来设置线程的优先级，范围为 0.0 到 1.0，其中 1.0 表示最高优先级。您还可以使用 `sleepForTimeInterval:` 方法来让线程休眠一段时间；
-  * **线程同步**： `NSThread` 并没有提供专门的同步机制，但您可以使用其他的同步机制，如互斥锁（`NSLock`）、条件变量（`NSCondition`）等，来确保多个线程之间的同步和互斥操作。您可以在不同的线程中使用这些同步机制来避免竞态条件和数据不一致性问题；
-  * **线程退出**： `NSThread` 并没有提供退出线程的方法，但您可以通过让线程执行完其任务后自行退出来实现线程的结束。在线程的执行方法中，您可以使用 `exit` 方法或直接返回来退出线程；
-  * **线程局部存储**： `NSThread` 并不直接支持线程局部存储的机制，但您可以使用线程的字典属性来实现类似的功能。每个 `NSThread` 对象都有一个 `threadDictionary` 属性，您可以使用这个属性来存储和访问线程特定的数据；
 ### GCD <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * GCD（***G***rand ***C***entral ***D***ispatch）是苹果（Apple.Inc）多核编程解决方案（多线程处理技术），使用起来非常方便。需要自己实现如：限制并发数，任务间的依赖等功能。自动管理线程生命周期。
@@ -1910,179 +1934,180 @@ int main(int argc, const char * argv[]) {
 
 * GCD的定时器
 
-*创建了一个定时器，每隔1秒执行一次任务。定时器在10秒后被取消，然后程序退出。可以根据需要调整定时器的间隔时间。*
+  > 创建了一个定时器，每隔1秒执行一次任务。定时器在10秒后被取消，然后程序退出。可以根据需要调整定时器的间隔时间。
 
-***OC.GCD.Timer***
+  * **OC.GCD.Timer**
 
-```objective-c
-#import <Foundation/Foundation.h>
+    ```objective-c
+    #import <Foundation/Foundation.h>
+    
+    int main(int argc, const char * argv[]) {
+        @autoreleasepool {
+            // 创建DispatchSourceTimer对象
+            dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 
+                                                             0, 
+                                                             0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+            // 设置定时器的初始时间、间隔时间和精度
+            dispatch_source_set_timer(timer,
+                                      dispatch_time(DISPATCH_TIME_NOW, 0), 
+                                      1ull * NSEC_PER_SEC, 
+                                      100ull * NSEC_PER_MSEC);
+            // 设定定时器的执行任务
+            dispatch_source_set_event_handler(timer, ^{
+                // 这里是定时器触发时执行的任务
+                NSLog(@"Timer fired!");
+            });
+            // 启动定时器
+            dispatch_resume(timer);
+            // 为了让程序不立即结束，可以让主线程等待一段时间
+            // 这里只是为了演示目的，实际中你可能会有其他的需要
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 
+                                         (int64_t)(10.0 * NSEC_PER_SEC)),
+                           dispatch_get_main_queue(), ^{
+                // 取消定时器
+                dispatch_source_cancel(timer);
+                NSLog(@"Timer canceled!");
+                // 退出程序
+                exit(EXIT_SUCCESS);
+            });
+            // 让主线程开始运行RunLoop，以便定时器能够工作
+            NSRunLoop.mainRunLoop.run;
+        }return 0;
+    }
+    ```
 
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        // 创建DispatchSourceTimer对象
-        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 
-                                                         0, 
-                                                         0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
-        // 设置定时器的初始时间、间隔时间和精度
-        dispatch_source_set_timer(timer,
-                                  dispatch_time(DISPATCH_TIME_NOW, 0), 
-                                  1ull * NSEC_PER_SEC, 
-                                  100ull * NSEC_PER_MSEC);
-        // 设定定时器的执行任务
-        dispatch_source_set_event_handler(timer, ^{
-            // 这里是定时器触发时执行的任务
-            NSLog(@"Timer fired!");
-        });
-        // 启动定时器
-        dispatch_resume(timer);
-        // 为了让程序不立即结束，可以让主线程等待一段时间
-        // 这里只是为了演示目的，实际中你可能会有其他的需要
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 
-                                     (int64_t)(10.0 * NSEC_PER_SEC)),
-                       dispatch_get_main_queue(), ^{
-            // 取消定时器
-            dispatch_source_cancel(timer);
-            NSLog(@"Timer canceled!");
-            // 退出程序
-            exit(EXIT_SUCCESS);
-        });
-        // 让主线程开始运行RunLoop，以便定时器能够工作
-        NSRunLoop.mainRunLoop.run;
-    }return 0;
-}
-```
+  * **Swift.GCD.Timer**
 
-***Swift.GCD.Timer***
-
-```swift
-import Foundation
-
-// 创建一个DispatchSourceTimer对象
-let timer = DispatchSource.makeTimerSource()
-// 设置定时器的初始时间、间隔时间和队列
-timer.schedule(deadline: .now(),
-               repeating: .seconds(1), 
-               leeway: .milliseconds(100))
-// 设定定时器的执行任务
-timer.setEventHandler {
-    // 这里是定时器触发时执行的任务
-    print("Timer fired!")
-}
-// 获取一个全局队列并将定时器事件处理程序调度到该队列上
-let queue = DispatchQueue.global()
-timer.setEventHandler(handler: {
-    queue.async {
+    ```objective-c
+    import Foundation
+    
+    // 创建一个DispatchSourceTimer对象
+    let timer = DispatchSource.makeTimerSource()
+    // 设置定时器的初始时间、间隔时间和队列
+    timer.schedule(deadline: .now(),
+                   repeating: .seconds(1), 
+                   leeway: .milliseconds(100))
+    // 设定定时器的执行任务
+    timer.setEventHandler {
+        // 这里是定时器触发时执行的任务
         print("Timer fired!")
     }
-})
-// 启动定时器
-timer.activate()
-// 为了让程序不立即结束，可以让主线程等待一段时间
-// 这里只是为了演示目的，实际中你可能会有其他的需要
-let mainQueue = DispatchQueue.main
-mainQueue.asyncAfter(deadline: .now() + .seconds(10)) {
-    // 取消定时器
-    timer.cancel()
-    print("Timer canceled!")
-    // 退出程序
-    exit(EXIT_SUCCESS)
-}
-// 让主线程开始运行RunLoop，以便定时器能够工作
-RunLoop.main.run()
-/**
-  这段代码创建了一个定时器，每隔1秒执行一次任务。
-  你可以根据需要调整定时器的间隔时间。
-  在这个例子中，定时器在10秒后被取消，然后程序退出。
-*/
-```
+    // 获取一个全局队列并将定时器事件处理程序调度到该队列上
+    let queue = DispatchQueue.global()
+    timer.setEventHandler(handler: {
+        queue.async {
+            print("Timer fired!")
+        }
+    })
+    // 启动定时器
+    timer.activate()
+    // 为了让程序不立即结束，可以让主线程等待一段时间
+    // 这里只是为了演示目的，实际中你可能会有其他的需要
+    let mainQueue = DispatchQueue.main
+    mainQueue.asyncAfter(deadline: .now() + .seconds(10)) {
+        // 取消定时器
+        timer.cancel()
+        print("Timer canceled!")
+        // 退出程序
+        exit(EXIT_SUCCESS)
+    }
+    // 让主线程开始运行RunLoop，以便定时器能够工作
+    RunLoop.main.run()
+    /**
+      这段代码创建了一个定时器，每隔1秒执行一次任务。
+      你可以根据需要调整定时器的间隔时间。
+      在这个例子中，定时器在10秒后被取消，然后程序退出。
+    ```
 
 ### NSOperation  <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-> 使用 `NSBlockOperation`
+> * <font color="red">***基于GCD***</font>的封装，面向对象操作线程，提供了比[***GCD***](# GCD)更丰富的API：限制最大并发数，设置任务依赖关系；
+> * 但是它<font color="red">***它不能直接使用***</font>，因为它是一个抽象类，可以继承它或者使用系统定义*NSInvocationOperation*或*NSBlockOperation*。自动管理线程生命周期；
+>   * **任务管理**： *NSOperation* 封装了一个执行任务的对象，可以用于执行各种类型的任务。您可以通过子类化 *NSOperation* 类，实现自定义的任务逻辑，并在其中执行所需的操作。
+>   * **任务依赖**： *NSOperation* 提供了任务依赖的机制，允许您指定任务之间的依赖关系。这样，您可以确保某个任务在其依赖的所有任务完成后才开始执行。通过 `addDependency:` 方法，您可以为一个操作添加一个或多个依赖。
+>   * **任务队列**： *NSOperationQueue* 是用于管理 *NSOperation* 对象的队列，它负责调度和执行队列中的操作。您可以将操作添加到队列中，并指定执行顺序、并发性等属性。队列可以是串行队列或并发队列，分别用于按顺序执行任务或并行执行任务。
+>   * **线程管理**： *NSOperation* 可以自动管理线程，无需手动创建线程。*NSOperationQueue* 内部会自动创建并管理线程池，根据需要创建和回收线程，以确保任务的高效执行。
+>   * **取消和暂停**： *NSOperation* 提供了取消和暂停任务的机制。您可以调用 `cancel` 方法取消任务的执行，或者调用 `setSuspended:` 方法暂停队列的执行。取消任务不会立即终止任务的执行，但会在任务执行下一个检查点时提前结束任务。
+>   * **KVO 监听**： *NSOperation* 支持 [***KVO（Key-Value Observing）***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)，允许您监视操作的执行状态和属性的变化。通过观察操作的 `isExecuting`、`isFinished` 和 `isCancelled` 等属性，您可以了解操作的执行情况。
 
-```objective-c
-#import <Foundation/Foundation.h>
+* 使用 `NSBlockOperation`
 
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-            NSLog(@"🧵 执行任务，线程：%@", [NSThread currentThread]);
-        }];
-        // 也可以添加多个 block（并发执行）
-        [operation addExecutionBlock:^{
-            NSLog(@"📌 附加任务1，线程：%@", [NSThread currentThread]);
-        }];
-        [operation addExecutionBlock:^{
-            NSLog(@"📌 附加任务2，线程：%@", [NSThread currentThread]);
-        }];
-        [operation start]; // ⚠️ 如果直接调用 start，会在当前线程（通常是主线程）同步执行
-    }return 0;
-}
-```
-
-> 配合 `NSOperationQueue` 异步执行
-
-```objective-c
-#import <Foundation/Foundation.h>
-
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
-            NSLog(@"任务1 - %@", [NSThread currentThread]);
-        }];
-        NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
-            NSLog(@"任务2 - %@", [NSThread currentThread]);
-        }];
-        [queue addOperation:op1];
-        [queue addOperation:op2];
-        // 主线程等待一会以观察子线程输出
-        [NSThread sleepForTimeInterval:1.0];
-    }return 0;
-}
-```
-
-> 添加任务依赖关系
-
-```objective-c
-NSBlockOperation *downloadOp = [NSBlockOperation blockOperationWithBlock:^{
-    NSLog(@"📥 下载完成");
-}];
-
-NSBlockOperation *processOp = [NSBlockOperation blockOperationWithBlock:^{
-    NSLog(@"📦 处理完成");
-}];
-
-[processOp addDependency:downloadOp];
-
-NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-[queue addOperations:@[downloadOp, processOp] waitUntilFinished:NO];
-```
-
-> 自定义 NSOperation 子类（用于复杂任务）
-
-```objective-c
-@interface MyOperation : NSOperation
-@end
-
-@implementation MyOperation
+  ```objective-c
+  #import <Foundation/Foundation.h>
   
-- (void)main {
-    if (self.isCancelled) return;
-    NSLog(@"🔧 自定义任务运行中：%@", [NSThread currentThread]);
-}
+  int main(int argc, const char * argv[]) {
+      @autoreleasepool {
+          NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+              NSLog(@"🧵 执行任务，线程：%@", [NSThread currentThread]);
+          }];
+          // 也可以添加多个 block（并发执行）
+          [operation addExecutionBlock:^{
+              NSLog(@"📌 附加任务1，线程：%@", [NSThread currentThread]);
+          }];
+          [operation addExecutionBlock:^{
+              NSLog(@"📌 附加任务2，线程：%@", [NSThread currentThread]);
+          }];
+          [operation start]; // ⚠️ 如果直接调用 start，会在当前线程（通常是主线程）同步执行
+      }return 0;
+  }
+  ```
 
-@end
-```
+* 配合 `NSOperationQueue` 异步执行
 
-* <font color="red">***基于GCD***</font>的封装，面向对象操作线程，提供了比[***GCD***](# GCD)更丰富的API：限制最大并发数，设置任务依赖关系；
-* 但是它<font color="red">***它不能直接使用***</font>，因为它是一个抽象类，可以继承它或者使用系统定义*NSInvocationOperation*或*NSBlockOperation*。自动管理线程生命周期；
-  * **任务管理**： *NSOperation* 封装了一个执行任务的对象，可以用于执行各种类型的任务。您可以通过子类化 *NSOperation* 类，实现自定义的任务逻辑，并在其中执行所需的操作。
-  * **任务依赖**： *NSOperation* 提供了任务依赖的机制，允许您指定任务之间的依赖关系。这样，您可以确保某个任务在其依赖的所有任务完成后才开始执行。通过 `addDependency:` 方法，您可以为一个操作添加一个或多个依赖。
-  * **任务队列**： *NSOperationQueue* 是用于管理 *NSOperation* 对象的队列，它负责调度和执行队列中的操作。您可以将操作添加到队列中，并指定执行顺序、并发性等属性。队列可以是串行队列或并发队列，分别用于按顺序执行任务或并行执行任务。
-  * **线程管理**： *NSOperation* 可以自动管理线程，无需手动创建线程。*NSOperationQueue* 内部会自动创建并管理线程池，根据需要创建和回收线程，以确保任务的高效执行。
-  * **取消和暂停**： *NSOperation* 提供了取消和暂停任务的机制。您可以调用 `cancel` 方法取消任务的执行，或者调用 `setSuspended:` 方法暂停队列的执行。取消任务不会立即终止任务的执行，但会在任务执行下一个检查点时提前结束任务。
-  * **KVO 监听**： *NSOperation* 支持 [***KVO（Key-Value Observing）***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)，允许您监视操作的执行状态和属性的变化。通过观察操作的 `isExecuting`、`isFinished` 和 `isCancelled` 等属性，您可以了解操作的执行情况。
+  ```objective-c
+  #import <Foundation/Foundation.h>
+  
+  int main(int argc, const char * argv[]) {
+      @autoreleasepool {
+          NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+          NSBlockOperation *op1 = [NSBlockOperation blockOperationWithBlock:^{
+              NSLog(@"任务1 - %@", [NSThread currentThread]);
+          }];
+          NSBlockOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{
+              NSLog(@"任务2 - %@", [NSThread currentThread]);
+          }];
+          [queue addOperation:op1];
+          [queue addOperation:op2];
+          // 主线程等待一会以观察子线程输出
+          [NSThread sleepForTimeInterval:1.0];
+      }return 0;
+  }
+  ```
+
+
+* 添加任务依赖关系
+
+  ```objective-c
+  NSBlockOperation *downloadOp = [NSBlockOperation blockOperationWithBlock:^{
+      NSLog(@"📥 下载完成");
+  }];
+  
+  NSBlockOperation *processOp = [NSBlockOperation blockOperationWithBlock:^{
+      NSLog(@"📦 处理完成");
+  }];
+  
+  [processOp addDependency:downloadOp];
+  
+  NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+  [queue addOperations:@[downloadOp, processOp] waitUntilFinished:NO];
+  ```
+
+* 自定义 NSOperation 子类（用于复杂任务）
+
+  ```objective-c
+  @interface MyOperation : NSOperation
+  @end
+  
+  @implementation MyOperation
+    
+  - (void)main {
+      if (self.isCancelled) return;
+      NSLog(@"🔧 自定义任务运行中：%@", [NSThread currentThread]);
+  }
+  
+  @end
+  ```
+
 ## **OC.Runtime.消息转发机制** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > Objective-C 中的消息转发机制是一种在***运行时动态处理未知消息***的机制：<font color="red">***当一个对象接收到一个它无法识别的消息时，Objective-C 运行时系统会通过一系列的步骤来处理这个未知消息，并尝试找到合适的接收者来处理该消息***</font>。
@@ -2102,8 +2127,8 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 [**dylib动态库加载过程分析**](# https://zhuanlan.zhihu.com/p/24875905)
 
 * Windows系统的动态库是DLL文件，Linux系统是so文件，macOS系统的动态库则使用dylib文件作为动态库
-* dyld是苹果操作系统一个重要组成部分，它是开源的。任何人可以通过苹果官网下载它的源码来阅读理解它的运作方式（下载地址：[Source Browser](https://link.zhihu.com/?target=http%3A//opensource.apple.com/tarballs/dyld)），了解系统加载动态库的细节。
-* dylib本质上是一个Mach-O格式的文件，它与普通的Mach-O执行文件几乎使用一样的结构，只是在文件类型上一个是MH_DYLIB，一个是MH_EXECUTE
+* `dylib`是苹果操作系统一个重要组成部分，它是开源的。任何人可以通过苹果官网下载它的源码来阅读理解它的运作方式（下载地址：[Source Browser](https://link.zhihu.com/?target=http%3A//opensource.apple.com/tarballs/dyld)），了解系统加载动态库的细节。
+* `dylib`**本质上是一个Mach-O格式的文件**，它与普通的Mach-O执行文件几乎使用一样的结构，只是在文件类型上一个是**MH_DYLIB**，一个是**MH_EXECUTE**
 * 在系统的`/usr/lib`目录下，存放了大量供系统与应用程序调用的动态库文件
 * 动态库不能直接运行，而是需要通过系统的动态链接加载器进行加载到内存后执行
 * `dyld`加载时，为了优化程序启动，启用了共享缓存（shared cache）技术
@@ -2147,7 +2172,7 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     * ⑥ `callInitialize`
     * ⑦ `objc_msgSend(cls, SEL_initialize)`：给 cls 对象发送 initialize 消息
 
-## [**objc_msgSend 方法调用流程**](https://www.jianshu.com/p/a5d818d90a6e) <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## [**`objc_msgSend` 方法调用流程**](https://www.jianshu.com/p/a5d818d90a6e) <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 在`OC`中调用一个方法时，编译器会根据情况调用以下函数中的一个进行消息传递：`objc_msgSend`、`objc_msgSend_stret`、`objc_msgSendSuper`、`objc_msgSendSuper_stret`
   * 当方法调用者为`super`时会调用`objc_msgSendSuper`；
@@ -2166,63 +2191,66 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 
 ### OC.[**SQLite**](https://sqlite.org/)  <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 零配置：可在无需配置的情况下使用的简单的数据库引擎
-* C库：跨平台
-* 适用于嵌入式系统、移动应用和小型项目
+> * 零配置：可在无需配置的情况下使用的简单的数据库引擎
+> * C库：跨平台
+> * 适用于嵌入式系统、移动应用和小型项目
 
-***需要在Xcode项目中添加`libsqlite3.tbd`库***
+* **需要在Xcode项目中添加`libsqlite3.tbd`库**
 
-```objective-c
-#import <sqlite3.h>
-// 打开数据库连接
-sqlite3 *database;
-NSString *databasePath;
+  ```objective-c
+  #import <sqlite3.h>
+  // 打开数据库连接
+  sqlite3 *database;
+  NSString *databasePath;
+  
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  databasePath = [documentsDirectory stringByAppendingPathComponent:@"test.db"];
+  
+  if (sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+      NSLog(@"数据库打开成功！");
+      // 创建表格
+      const char *sqlStatement = "CREATE TABLE IF NOT EXISTS contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER)";
+      char *errorMessage;
+      if (sqlite3_exec(database, sqlStatement, NULL, NULL, &errorMessage) != SQLITE_OK) {
+          NSLog(@"创建表格失败: %s", errorMessage);
+      }
+      // 插入数据
+      const char *insertStatement = "INSERT INTO contacts (name, age) VALUES (?, ?)";
+      sqlite3_stmt *compiledStatement;
+      if (sqlite3_prepare_v2(database, insertStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+          sqlite3_bind_text(compiledStatement, 1, [@"John Doe" UTF8String], -1, SQLITE_TRANSIENT);
+          sqlite3_bind_int(compiledStatement, 2, 30);
+  
+          if (sqlite3_step(compiledStatement) != SQLITE_DONE) {
+              NSLog(@"插入数据失败！");
+          }
+      }
+      sqlite3_finalize(compiledStatement);
+      // 查询数据
+      const char *selectStatement = "SELECT * FROM contacts";
+      if (sqlite3_prepare_v2(database, selectStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+          while (sqlite3_step(compiledStatement) == SQLITE_ROW) {
+              int contactID = sqlite3_column_int(compiledStatement, 0);
+              NSString *name = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)];
+              int age = sqlite3_column_int(compiledStatement, 2);
+              NSLog(@"ID: %d, Name: %@, Age: %d", contactID, name, age);
+          }
+      }
+      sqlite3_finalize(compiledStatement);
+      // 关闭数据库连接
+      sqlite3_close(database);
+  } else {
+      NSLog(@"数据库打开失败！");
+  }
+  ```
 
-NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-NSString *documentsDirectory = [paths objectAtIndex:0];
-databasePath = [documentsDirectory stringByAppendingPathComponent:@"test.db"];
-
-if (sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
-    NSLog(@"数据库打开成功！");
-    // 创建表格
-    const char *sqlStatement = "CREATE TABLE IF NOT EXISTS contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER)";
-    char *errorMessage;
-    if (sqlite3_exec(database, sqlStatement, NULL, NULL, &errorMessage) != SQLITE_OK) {
-        NSLog(@"创建表格失败: %s", errorMessage);
-    }
-    // 插入数据
-    const char *insertStatement = "INSERT INTO contacts (name, age) VALUES (?, ?)";
-    sqlite3_stmt *compiledStatement;
-    if (sqlite3_prepare_v2(database, insertStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
-        sqlite3_bind_text(compiledStatement, 1, [@"John Doe" UTF8String], -1, SQLITE_TRANSIENT);
-        sqlite3_bind_int(compiledStatement, 2, 30);
-
-        if (sqlite3_step(compiledStatement) != SQLITE_DONE) {
-            NSLog(@"插入数据失败！");
-        }
-    }
-    sqlite3_finalize(compiledStatement);
-    // 查询数据
-    const char *selectStatement = "SELECT * FROM contacts";
-    if (sqlite3_prepare_v2(database, selectStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
-        while (sqlite3_step(compiledStatement) == SQLITE_ROW) {
-            int contactID = sqlite3_column_int(compiledStatement, 0);
-            NSString *name = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)];
-            int age = sqlite3_column_int(compiledStatement, 2);
-            NSLog(@"ID: %d, Name: %@, Age: %d", contactID, name, age);
-        }
-    }
-    sqlite3_finalize(compiledStatement);
-    // 关闭数据库连接
-    sqlite3_close(database);
-} else {
-    NSLog(@"数据库打开失败！");
-}
-```
 ### OC.[**FMDB**](https://github.com/ccgus/fmdb)  <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-* **需要使用SQL语言**
-* 对***[SQLite](# OC.SQLite)进行封装***的库（纯OC库，跨平台性不佳），***[SQLite](# OC.SQLite)***本身是一个轻量级的数据库引擎，在处理小型数据集时性能良好。但是在<font color="red">***处理大型数据集时可能会出现性能瓶颈***</font>
-* 本身不提供实时数据同步功能，如果需要实现实时数据同步，你需要自己编写代码来实现
+
+> * **需要使用SQL语言**
+> * 对***[SQLite](# OC.SQLite)进行封装***的库（纯OC库，跨平台性不佳），***[SQLite](# OC.SQLite)***本身是一个轻量级的数据库引擎，在处理小型数据集时性能良好。但是在<font color="red">***处理大型数据集时可能会出现性能瓶颈***</font>
+> * 本身不提供实时数据同步功能，如果需要实现实时数据同步，你需要自己编写代码来实现
+
 ```objective-c
 // ViewController.m
 #import "ViewController.h"
@@ -2279,9 +2307,9 @@ if (sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
 @end
 ```
 ### OC.[**Realm**](https://github.com/realm)（强烈推荐） <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-* <font color="red">***不需要会SQL语言***</font>
-* 跨平台
-* 实时数据同步
+> * <font color="red">**不需要会SQL语言**</font>
+> * 跨平台
+> * 实时数据同步
 
 ```objective-c
 #import <Realm/Realm.h>
