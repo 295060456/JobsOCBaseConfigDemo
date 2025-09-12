@@ -4,11 +4,24 @@
 
 当前总行数：0 行
 
+## 🔥<font id=前言>前言</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* 对OC相关概念的总结和梳理
+
+## C语言指针 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
 ![IMAGE 2024-09-09 23:23:08](./assets/IMAGE 2024-09-09 23:23:08.jpg)
 
 ![IMAGE 2024-09-09 23:23:12](./assets/IMAGE 2024-09-09 23:23:12.jpg)
 
-## <font color="red" id=前言>***内存分布***</font>
+* `int *p = &a`  
+  * 这行代码是在C或C++中声明了一个整数指针变量 `p`，并将其初始化为变量 `a` 的地址；
+  * `&a` 表示取变量 `a` 的地址，然后将这个地址赋给指针变量 `p`；
+  * 这样，`p` 就指向了变量 `a` 的位置，可以通过 `p` 来访问和操作变量 `a`；
+  * `int *p` 表示 `p` 是一个整数指针，可以用来存储整数变量的地址；
+  * 整数指针是指一个指针，其目标是整数类型的变量
+
+## <font color="red" id=内存分布>**内存分布**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ```lua
 +-----------------------------------------------------------------------------------------------------------+
@@ -49,7 +62,7 @@
 >   * **BSS段（Block Started by Symbol）**：包含未初始化的全局变量和静态变量，也属于全局区。变量在程序启动时会自动初始化为零。
 >   * **常量区**：存储常量（如字面量字符串和编译期决定的只读变量）。在一些实现中，常量区也会和代码段合并，通常会归类到全局区的一部分。
 
-## 内存数据 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 内存数据  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 一般我们都是小端机器（高位相反），即：
 
@@ -74,9 +87,9 @@
 
   * Float8字节、Double16字节
 
-## 数据结构 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 数据结构 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼 <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a></b></a>
 
-### 数据结构总览
+### 数据结构总览 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 一维线性结构
 
@@ -109,7 +122,7 @@
   | **跳表 (Skip List)**          | 类似多层链表，查找效率接近平衡树       | Redis 内部、排序结构 |
   | **位图 (BitMap)**             | 用一堆 0/1 表示状态                    | 去重、统计、压缩存储 |
 
-### 各个数据结构的介绍
+### 各个数据结构的介绍 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 树（Tree）
 
@@ -151,7 +164,7 @@
     * **灵活性**：哈希表适用于各种类型的数据，可以存储键值对、对象等各种形式的数据；
     * **空间效率**：尽管哈希表可能会消耗一定的内存空间，但在大多数情况下，哈希表的空间效率是很高的，尤其是在数据量较大时；
 
-## 内存表示 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 内存表示 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>内存只负责记录，实际释义是通过程序来的，通过不同的数据类型来展现其表达的真正含义</font>
 
@@ -213,7 +226,7 @@
     * 指数部分用于表示数的大小；
     * 尾数部分则包含数值的有效数字；
 
-## 时间复杂度、空间复杂度 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 时间复杂度、空间复杂度 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > * 时间复杂度：做事要几步？
 > * 空间复杂度：占地要几张纸？
@@ -226,7 +239,7 @@ for (int i = 0; i < n; i++) {
 💾 空间复杂度是 O(1)，因为它没有开额外的内存（不管 n 是多少，都不需要更多空间）
 ```
 
-## 内存对齐：结构体（struct） VS 联合体（union）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 内存对齐：结构体（struct） VS 联合体（union）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 | 项目         | `struct`（结构体）                                | `union`（共用体）                   |
 | ------------ | ------------------------------------------------- | ----------------------------------- |
@@ -300,7 +313,7 @@ for (int i = 0; i < n; i++) {
     	}s1; //12 = 4 * 3
     ```
 
-## <font color="red">***atomic/nonatomic***</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## <font color="red">**atomic/nonatomic**</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 在 iOS 的 Objective-C 中，原子属性（atomic property） 是 `@property` 的一种属性修饰符，它决定了属性的线程安全性。如果声明为 atomic，编译器会为这个属性的 getter 和 setter 方法生成某种程度的线程安全代码，确保在多线程访问时，属性的值总是返回一个完整的对象。
 * 原子属性的特点：
@@ -316,7 +329,7 @@ for (int i = 0; i < n; i++) {
   * atomic 属性是线程安全的，但在实际开发中很少使用，因为其性能开销较高，而且它并不能解决所有线程安全问题。
   * 开发中推荐使用 nonatomic，同时通过其他手段（如 GCD 或 NSLock）来实现真正的线程安全。 
 
-## <font color="red">***strong/copy***</font><a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## <font color="red">**strong/copy**</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **只有对不可变对象进行copy操作是指针复制（浅复制），其它情况都是内容复制（深复制）！**
 
@@ -361,7 +374,7 @@ for (int i = 0; i < n; i++) {
   使用 copy 则确保即使传入的是一个可变对象，属性也只会保留一个不可变的副本，从而避免了这种不确定性。
   ```
 
-## <font color="red">***OC/C.Block***</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## <font color="red">**OC/C.Block**</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * ***Block* 的捕获变量：** 当一个 *Block* 被创建时，它会捕获在其内部使用的外部变量。  
   
@@ -528,7 +541,7 @@ for (int i = 0; i < n; i++) {
       @end
       ```
 
-## 固态硬盘可以替代内存进行工作吗？<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 固态硬盘可以替代内存进行工作吗？<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 结论
   * 都利用了：**闪存技术**（Flash memory）
@@ -543,7 +556,7 @@ for (int i = 0; i < n; i++) {
   * 由于SSD的速度比RAM慢得多，**使用虚拟内存会导致系统性能下降**
   * **SSD有写入寿命限制**，频繁使用虚拟内存可能会加速SSD的磨损
 
-## 数组指针 和 指针数组 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 数组指针 和 指针数组 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>**数组指针（Pointer to Array）**</font>
 
@@ -601,7 +614,7 @@ for (int i = 0; i < n; i++) {
     ```
 
 
-## 常见锁 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 常见锁 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 互斥锁（Mutex, Mutual Exclusion Lock）：
   * 互斥锁是一种基本的锁，用于确保一次只有一个线程可以访问某资源。
@@ -618,18 +631,18 @@ for (int i = 0; i < n; i++) {
   * 自旋锁是轻量级锁，如果锁被占用，线程不会立即挂起，而是会不断尝试获取锁。
   * 自旋锁适合加锁时间非常短的场景，因为线程在等待时不会切换上下文，效率更高。
 
-## OC里面有没有类似于Java里面的`linkedhashset`的东西 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## OC里面有没有类似于Java里面的`linkedhashset`的东西 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 在Objective-C中，没有直接类似于Java中*LinkedHashSet*的数据结构；
 * 但是，你可以使用*NSOrderedSet*，它是一个有序不可变集合，保留了元素的插入顺序；
 * 如果你需要可变版本，可以使用*NSMutableOrderedSet*。这不同于*LinkedHashSet*，但提供了一种有序且不包含重复元素的选择；
 
-## 可能会存在属性没有对应的 `getter` 和 `setter` 方法的情况 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 可能会存在属性没有对应的 `getter` 和 `setter` 方法的情况 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 一个例子是使用 `@dynamic` 关键字来声明属性。在使用 Core Data 框架或者实现了自定义的动态属性存取方法时，你可能会使用 `@dynamic` 来告诉编译器，该属性的 `getter` 和 `setter` 方法由运行时或其他方式动态生成，而不是在编译时静态声明。
 * 另一个例子是在 Objective-C 中使用[**关联对象（Associated Objects）**](# OC.AssociatedObjects（关联对象）)。关联对象允许你向已有的类中添加属性，而无需修改类的源代码。这种情况下，你可能不会显式地声明属性的 getter 和 setter 方法，而是通过关联对象来存取属性值。
 
-## <font id=OC.copy>OC.copy</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## <font id=OC.copy>OC.copy</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **可变对象.copy == 不可变对象**
 
@@ -668,7 +681,7 @@ for (int i = 0; i < n; i++) {
   } 
   ```
 
-## ***OC.AssociatedObjects（关联对象）***<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## **OC.AssociatedObjects（关联对象）**<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * Swift是没有关联对象：因为 Swift 不直接继承自 Objective-C 的运行时机制；
 
@@ -840,7 +853,7 @@ for (int i = 0; i < n; i++) {
   @end
   ```
 
-## `UIViewController`的11个生命周期（按照执行顺序排列）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## `UIViewController`的11个生命周期（按照执行顺序排列）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * `initWithCoder`：通过nib文件初始化时触发。
 * `awakeFromNib`：nib文件被加载的时候，会发生一个awakeFromNib的消息到nib文件中的每个对象。
@@ -854,19 +867,19 @@ for (int i = 0; i < n; i++) {
 * `viewWillDisappear`：视图控制器的view将要从window上消失。
 * `viewDidDisappear`：视图控制器的view已经从window上消失。
 
-## 序列化 VS 反序列化 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 序列化 VS 反序列化 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > 序列化：将对象（如数组、字典、模型等）**转换为字节流（如 JSON、二进制、XML）**，用于持久化（保存到文件、磁盘）或传输（如网络）。
 >
 > 反序列化：将字节流（JSON、XML、二进制等）**还原成原始对象（如数组、字典、模型）**。
 
-## KVC 和 KVO <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## KVC 和 KVO <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > 1、KVO 和 KVC 在实际开发中经常一起结合使用，以实现对对象属性的动态访问和监听；
 > 2、这两个特性能够使得代码更加灵活，同时也方便了数据模型和视图之间的通信；
 > 3、在实际应用中，需要注意使用 KVO 和 KVC 时的内存管理和性能问题，以确保应用的稳定性和性能优化；
 
-### __covariant、__contravariant
+### __covariant、__contravariant <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > * 在 Objective-C 中，`__covariant` 和 `__contravariant` 是用于 **泛型类型参数协变性（covariance）与逆变性（contravariance）** 的关键字。它们出现在泛型类的声明中，目的是为编译器提供**类型安全的协变/逆变检查**，尤其是在泛型和容器类型传递之间转换时更有用。
 > * 不使用时默认是**不变（invariant）**：默认情况下，泛型是**不变的**：`MyArray<NSString *>` 和 `MyArray<NSObject *>` 之间互相赋值会编译报错。
@@ -911,7 +924,7 @@ for (int i = 0; i < n; i++) {
   MyHandler<NSString *> *strHandler = objHandler; // ✅ 合法
   ```
 
-### KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值**<font color="red">存储</font>
+### KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值**<font color="red">存储</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 通过key⭢对象属性。不需要通过`set/get`方法；
 * KVC 和 KVO 的 keyPath 可以是属性、实例变量、成员变量；
@@ -926,7 +939,7 @@ for (int i = 0; i < n; i++) {
 * 也有一些特殊情况下的对象不支持 KVC。例如：
   * 未定义键的属性：如果[***一个属性没有对应的 `getter` 和 `setter` 方法***](# 可能会存在属性没有对应的 `getter` 和 `setter` 方法的情况)，或者不符合 KVC 的命名规范，那么该属性就不支持 KVC。
 
-### KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性**<font color="red">观察</font>
+### KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性**<font color="red">观察</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * KVO 是一种**观察者模式**的实现，它**允许一个对象（非类）监听另一个对象的属性的变化**；
 * KVO只能被KVC触发，包括使用`setValue:forKey:`方法和点语法；
@@ -940,7 +953,7 @@ for (int i = 0; i < n; i++) {
   * 实现相应的观察方法
   * 当被观察的属性值变化时，观察者对象的观察方法会被调用
 * 对于 KVO 来说，被观察的属性必须符合一定的**命名规范**，通常以 `@property` 定义的属性都可以被观察；
-### KVO相应的观察方法
+### KVO相应的观察方法 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > **`observeValueForKeyPath:ofObject:change:context:`**
 
@@ -1009,9 +1022,9 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 ```
-### KVC 和 KVO的相互调用问题
+### KVC 和 KVO的相互调用问题 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-#### <font color="red">***在使用KVC的时候会使用的KVO吗？***</font>（不会）
+#### <font color="red">**在使用KVC的时候会使用的KVO吗？**</font>（不会）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 虽然在使用 [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储)时不会直接用到 [***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察) ，但是它们通常会**结合使用**。特别是在设计模式中的 MVC（Model-View-Controller）中：
   * Model 层通常会**负责存储应用程序的数据**，并且可能会实现 [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储)，以便其他部分可以通过键路径来访问和修改这些数据；
@@ -1019,7 +1032,7 @@ int main(int argc, const char * argv[]) {
   * Controller 层则充当了**数据的处理和业务逻辑的中介**；
 * 在这种情况下，当 Model 层的属性通过 [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储) 进行更改时，View 层可能会通过  [***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)  接收到通知，并相应地更新界面。因此，尽管在直接的语法上并不会在使用 KVC 时调用  [***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)  的方法，但在应用程序的整体架构中，它们往往是相辅相成的；
 
-#### <font color="red">***在使用KVO的时候会使用的KVC吗？***</font>（会，间接使用）
+#### <font color="red">**在使用KVO的时候会使用的KVC吗？**</font>（会，间接使用）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 在使用[***KVO***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察) 时，通常不会直接使用 [***KVC***](# KVC（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***C***</font>oding）：**键值存储)，因为**它们是两个独立的特性**。然而，在某些情况下，它们**可能会间接地结合使用**；
   
@@ -1046,7 +1059,7 @@ int main(int argc, const char * argv[]) {
         }
     }
     ```
-## MVP <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## MVP <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * MVP（**M**odel-**V**iew-**P**resenter）模式是一种软件架构模式，用于设计和组织用户界面（UI）代码；
 * 它是**基于MVC**（**M**odel-**V**iew-**C**ontroller）模式的变种，***旨在解决 MVC 模式中 Controller 过于臃肿和难以测试的问题***；
@@ -1196,7 +1209,7 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 @end
 ```
 
-## 雪花算法（Snowflake）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 雪花算法（Snowflake）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 雪花算法（Snowflake）是一种分布式唯一ID生成算法；
 * 最初**由Twitter开发**用于**生成全局唯一的ID**；
@@ -1207,25 +1220,19 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   * **机器ID**：用来标识不同的机器，确保不同机器生成的ID不会发生冲突。在一些实现中，这个部分通常包括了数据中心ID和机器ID；
   * **序列号（Sequence Number）**：用来解决同一毫秒内生成多个ID时的冲突问题。序列号占用了一定的位数，可以确保在同一毫秒内生成的ID在机器ID相同的情况下是唯一的；
 * 10位的机器ID可以表示的不同节点数量为2的10次方，即1024。因此，在雪花算法中，**系统可以容纳最多1024个不同的节点（机器）**，每个节点都被分配一个唯一的10位机器ID。这确保了在同一时间内，最多有1024个不同的节点可以生成唯一的ID，防止ID冲突；
-## IPv6 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## IPv6 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * IPv6地址空间更大，为128位，这使得有更多的地址组合。
 * IPv6中的端口号仍然是16位，因此有2^16（65536）个可能的端口号。
 * 与IPv4不同的是，**IPv6不需要像IPv4一样分出专门的私有地址范围**，因为IPv6的地址空间足够大，**允许每个设备都有一个全局唯一的地址**。
 * 总的IPv6地址-端口对数目：2<sup>128</sup> x 2<sup>16</sup> = 2<sup>144</sup>  **这是IPv6网络中可能的唯一的地址-端口对的总数**
 **与IPv4相比，IPv6具有更大的地址空间和端口数目，而且IPv6中没有像IPv4那样需要特别保留的地址范围，因此它实际上提供了更多的灵活性。**
-## 一个IP能有多少个端口 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 一个IP能有多少个端口 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * 每个IPv4地址和IPv6地址一样，都有**65535**个端口：2^16次方（约**65,536**）
   * 0到1023是***系统保留端口***；
   * 1024到49151是***注册端口***；
   * 49152到65535是***动态或私有端口***；
 * 端口的使用是通过网络协议来管理的，典型的例子是TCP和UDP；
-## `int *p = &a` <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
-* 这行代码是在C或C++中声明了一个整数指针变量 `p`，并将其初始化为变量 `a` 的地址；
-* `&a` 表示取变量 `a` 的地址，然后将这个地址赋给指针变量 `p`；
-* 这样，`p` 就指向了变量 `a` 的位置，可以通过 `p` 来访问和操作变量 `a`；
-* `int *p` 表示 `p` 是一个整数指针，可以用来存储整数变量的地址；
-* 整数指针是指一个指针，其目标是整数类型的变量
-## *OC*.非正式协议 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## *OC*.非正式协议 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 >  是一种约定，用于描述类的方法，***但不要求实现特定的接口或遵循特定的协议***。它允许类在不采用正式协议的情况下，<u>***通过向类添加方法来实现特定功能***</u>。非正式协议在OC 中是一种**常见的设计模式**，特别是在框架和库中。它们使得代码更加灵活，允许开发者通过遵循约定而不是强制性接口来实现特定功能。
 
@@ -1249,7 +1256,7 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   这种非正式的协议使得 UITableView 可以更加灵活地适应不同的使用场景，同时也简化了开发者的代码编写。
   ```
 
-## <font color="red">***OC和JS交互***</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## <font color="red">***OC和JS交互***</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 通常情况下是通过**字符串**进行交流
 
@@ -1572,7 +1579,7 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   
   @end
   ```
-## ***OC.依赖注入*** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## **OC.依赖注入** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 <font color="red">***在 Objective-C 中，虽然没有像一些现代语言（如Java、C#、Swift等）中那样内置的依赖注入容器，但仍然可以手动实现依赖注入模式。***</font>
 ***Logger.h：***
@@ -1627,13 +1634,13 @@ ViewController.m       // 控制器，组合 View 和 Presenter
 
 <span style="color:Blue; font-weight:bold;">***在这个示例中，`UserService` 类在构造函数中接受一个 `Logger` 对象作为参数，然后将其存储在实例变量中。这样，调用 `UserService` 的代码可以提供自己的 `Logger` 实例，从而实现了依赖注入。***</span>
 
-## 函数（方法）签名 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 函数（方法）签名 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * 指函数的声明或定义，其中包含了***函数的名称***、***参数列表***和***返回类型***；
   * **函数名称：** 函数的标识符，用于唯一标识函数；
   * **参数列表：**包含函数接受的参数及其类型。参数列表可以为空，也可以包含一个或多个参数，每个参数包含参数名称和类型。在函数签名中，参数列表的顺序和参数类型是非常重要的，它们决定了函数调用时传递参数的方式；形参的顺序不会影响方法签名的确定。
   * **返回类型：** 指定函数执行完成后返回的值的类型。返回类型可以是任何数据类型，包括基本数据类型（例如整数、浮点数、布尔值等）以及复合数据类型（例如数组、结构体、对象等）；
 * 它描述了函数的输入参数以及返回值的类型，用于**确定函数的类型和使用方式，用于唯一标识一个特定的函数或方法**；
-## 方法的重载：<font color="red">系统将会识别为2个不同的方法</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## 方法的重载：<font color="red">系统将会识别为2个不同的方法</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > * 方法的重载（Overloading）是指在同一个类中定义多个同名但参数列表不同的方法。
 >   * 方法的参数列表必须不同；
@@ -1699,9 +1706,9 @@ ViewController.m       // 控制器，组合 View 和 Presenter
       }
   }
   ```
-## <font color="red">***OC.定时器***</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## <font color="red">**OC.定时器**</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### GCD
+### GCD <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **优势：**
   * **简单易用：** GCD 提供了简单易用的 API，使得在应用程序中执行并发任务变得非常容易。你只需使用几行代码就可以实现任务的并行执行。
@@ -1715,7 +1722,7 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   * **竞争条件：** 如果不正确地使用 GCD，可能会导致竞争条件和死锁等并发问题，因此在编写并发代码时需要特别小心。
   * **不适合所有场景：** 虽然 GCD 可以满足大多数应用程序的并发需求，但并不适用于所有类型的并发任务，特别是涉及到复杂的同步和通信问题时可能需要使用其他并发技术。
 
-### NSTimer
+### NSTimer <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 优势：
   * **简单易用：** NSTimer 的使用非常简单，只需创建一个实例并指定一个目标方法和触发时间间隔，然后将其添加到运行循环中即可。
@@ -1729,7 +1736,7 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   * **内存管理：** 如果 NSTimer 持有它的目标对象，而目标对象又持有 NSTimer，可能会导致循环引用和内存泄漏的问题，因此在使用时需要小心管理内存。
   * **不适合高频率任务：** 如果需要执行高频率的任务，例如每秒钟执行多次，使用 NSTimer 可能会影响性能，因为 NSTimer 的触发时间间隔是相对较长的。
 
-### CADisplayLink
+### CADisplayLink <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 是 iOS 中用于实现动画的定时器类。可以让应用程序在下一次屏幕刷新之前执行特定的操作，通常用于实现流畅的动画效果
 
@@ -1744,9 +1751,9 @@ ViewController.m       // 控制器，组合 View 和 Presenter
   * **不适合所有场景：** CADisplayLink 适用于实现基于帧率的动画效果，但并不适用于所有类型的动画，例如复杂的过渡效果或基于物理引擎的动画。
   * **需谨慎管理：** 使用 CADisplayLink 进行动画更新时，需要谨慎管理内存和资源，避免出现内存泄漏或性能问题。
 
-## <font color="red">***OC.多线程***</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## <font color="red">**OC.多线程**</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### pthread
+### pthread <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ```objective-c
 #include <stdio.h>
@@ -1791,7 +1798,7 @@ int main() {
   * **线程调度和优先级**： pthread 允许程序员设置线程的调度策略和优先级，以及控制线程的调度行为。程序员可以通过设置线程的属性来指定线程的调度策略和优先级，以及其他相关的属性；
   * **线程取消和退出**： pthread 允许程序员取消线程的执行，并在需要时优雅地退出线程。程序员可以使用 pthread_cancel 函数取消指定线程的执行，并使用 pthread_exit 函数主动退出当前线程；
   * **线程局部存储**： pthread 提供了线程局部存储（Thread-Specific Data，TSD）的机制，允许程序员为每个线程分配独立的存储空间。这些存储空间对于每个线程是私有的，可以用于存储线程特定的数据；
-### NSThread
+### NSThread <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ```objective-c
 int main(int argc, const char * argv[]) {
@@ -1818,7 +1825,7 @@ int main(int argc, const char * argv[]) {
   * **线程同步**： `NSThread` 并没有提供专门的同步机制，但您可以使用其他的同步机制，如互斥锁（`NSLock`）、条件变量（`NSCondition`）等，来确保多个线程之间的同步和互斥操作。您可以在不同的线程中使用这些同步机制来避免竞态条件和数据不一致性问题；
   * **线程退出**： `NSThread` 并没有提供退出线程的方法，但您可以通过让线程执行完其任务后自行退出来实现线程的结束。在线程的执行方法中，您可以使用 `exit` 方法或直接返回来退出线程；
   * **线程局部存储**： `NSThread` 并不直接支持线程局部存储的机制，但您可以使用线程的字典属性来实现类似的功能。每个 `NSThread` 对象都有一个 `threadDictionary` 属性，您可以使用这个属性来存储和访问线程特定的数据；
-### GCD
+### GCD <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * GCD（***G***rand ***C***entral ***D***ispatch）是苹果（Apple.Inc）多核编程解决方案（多线程处理技术），使用起来非常方便。需要自己实现如：限制并发数，任务间的依赖等功能。自动管理线程生命周期。
   * **队列（Dispatch Queues）**： GCD 使用队列来管理任务的执行。队列可以是串行队列（Serial Queue）或并发队列（Concurrent Queue）。串行队列中的任务按照 FIFO（先进先出）的顺序依次执行，而并发队列中的任务可以同时执行；
@@ -1960,7 +1967,7 @@ RunLoop.main.run()
 */
 ```
 
-### NSOperation
+### NSOperation  <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > 使用 `NSBlockOperation`
 
@@ -2047,7 +2054,7 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
   * **线程管理**： *NSOperation* 可以自动管理线程，无需手动创建线程。*NSOperationQueue* 内部会自动创建并管理线程池，根据需要创建和回收线程，以确保任务的高效执行。
   * **取消和暂停**： *NSOperation* 提供了取消和暂停任务的机制。您可以调用 `cancel` 方法取消任务的执行，或者调用 `setSuspended:` 方法暂停队列的执行。取消任务不会立即终止任务的执行，但会在任务执行下一个检查点时提前结束任务。
   * **KVO 监听**： *NSOperation* 支持 [***KVO（Key-Value Observing）***](# KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性观察)，允许您监视操作的执行状态和属性的变化。通过观察操作的 `isExecuting`、`isFinished` 和 `isCancelled` 等属性，您可以了解操作的执行情况。
-## ***OC.Runtime.消息转发机制*** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## **OC.Runtime.消息转发机制** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > Objective-C 中的消息转发机制是一种在***运行时动态处理未知消息***的机制：<font color="red">***当一个对象接收到一个它无法识别的消息时，Objective-C 运行时系统会通过一系列的步骤来处理这个未知消息，并尝试找到合适的接收者来处理该消息***</font>。
 
@@ -2061,7 +2068,7 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
    如果备用接收者也无法处理消息，最后的选择是使用完整的消息转发机制。Objective-C 运行时会调用 `-forwardInvocation:` 方法，并将消息包装成一个 *NSInvocation* 对象传递给该方法。在 `-forwardInvocation:` 方法中，对象可以选择将消息发送给其他对象，或者抛出异常，或者其他自定义处理。如果 `-forwardInvocation:` 方法没有被实现，或者在其中没有将消息发送给其他对象，那么将会抛出一个 *NSInvalidArgumentException* 异常。
    通过这三个阶段，Objective-C 运行时可以实现动态消息处理的能力，使得对象能够在运行时动态地处理未知消息，从而增强了语言的灵活性和动态性；
 
-## dylib <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## `dylib` <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 [**dylib动态库加载过程分析**](# https://zhuanlan.zhihu.com/p/24875905)
 
@@ -2070,11 +2077,11 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 * dylib本质上是一个Mach-O格式的文件，它与普通的Mach-O执行文件几乎使用一样的结构，只是在文件类型上一个是MH_DYLIB，一个是MH_EXECUTE
 * 在系统的`/usr/lib`目录下，存放了大量供系统与应用程序调用的动态库文件
 * 动态库不能直接运行，而是需要通过系统的动态链接加载器进行加载到内存后执行
-* dyld加载时，为了优化程序启动，启用了共享缓存（shared cache）技术
+* `dyld`加载时，为了优化程序启动，启用了共享缓存（shared cache）技术
 * 共享缓存是以文件形式存放在`/var/db/dyld/`目录下的，生成共享缓存的**update_dyld_shared_cache**程序位于是`/usr/bin/`目录下
 * **在没有依赖关系的情况下，动态库的加载顺序由`Link Binary With Libraries`中的顺序决定，当然我们可以通过`Link Binary With Libraries`来控制动态库的加载顺序。**
 
-## `+load` 和 `+initialize` 的区别 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## `+load` 和 `+initialize` 的区别 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 [**iOS之 +(void)load与+(void)initialize理解**](# https://blog.csdn.net/C_philadd/article/details/117994960)
 
@@ -2111,7 +2118,7 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     * ⑥ `callInitialize`
     * ⑦ `objc_msgSend(cls, SEL_initialize)`：给 cls 对象发送 initialize 消息
 
-## [**objc_msgSend 方法调用流程**](https://www.jianshu.com/p/a5d818d90a6e) <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## [**objc_msgSend 方法调用流程**](https://www.jianshu.com/p/a5d818d90a6e) <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 在`OC`中调用一个方法时，编译器会根据情况调用以下函数中的一个进行消息传递：`objc_msgSend`、`objc_msgSend_stret`、`objc_msgSendSuper`、`objc_msgSendSuper_stret`
   * 当方法调用者为`super`时会调用`objc_msgSendSuper`；
@@ -2126,9 +2133,9 @@ NSOperationQueue *queue = [[NSOperationQueue alloc] init];
   * 动态方法解析
   * 消息转发
 
-## ***OC.database*** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a>
+## **OC.database** <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### ***OC.SQLite***
+### OC.[**SQLite**](https://sqlite.org/)  <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 零配置：可在无需配置的情况下使用的简单的数据库引擎
 * C库：跨平台
@@ -2183,7 +2190,7 @@ if (sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
     NSLog(@"数据库打开失败！");
 }
 ```
-### ***OC.FMDB***
+### OC.[**FMDB**](https://github.com/ccgus/fmdb)  <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * **需要使用SQL语言**
 * 对***[SQLite](# OC.SQLite)进行封装***的库（纯OC库，跨平台性不佳），***[SQLite](# OC.SQLite)***本身是一个轻量级的数据库引擎，在处理小型数据集时性能良好。但是在<font color="red">***处理大型数据集时可能会出现性能瓶颈***</font>
 * 本身不提供实时数据同步功能，如果需要实现实时数据同步，你需要自己编写代码来实现
@@ -2242,7 +2249,7 @@ if (sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
 
 @end
 ```
-### ***OC.Realm（强烈推荐）***
+### OC.[**Realm**](https://github.com/realm)（强烈推荐） <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * <font color="red">***不需要会SQL语言***</font>
 * 跨平台
 * 实时数据同步
@@ -2288,7 +2295,7 @@ int main(int argc, const char * argv[]) {
     }return 0;
 }
 ```
-## ❗FAQ
+## ❗FAQ <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>**如何用`UITableView`来处理大数据灌入的业务场景**</font>
 
@@ -3144,3 +3151,6 @@ int main(int argc, const char * argv[]) {
   * **注意事项**：
     - 推送通知的发送需要注意用户隐私和数据保护法规，确保用户的个人数据不被滥用；
     - 在发送推送通知时，需要考虑用户体验，避免发送过多或无关紧要的通知，以免打扰用户；
+  
+    <a id="🔚" href="#前言" style="font-size:17px; color:green; font-weight:bold;">我是有底线的👉点我回到首页</a>
+
