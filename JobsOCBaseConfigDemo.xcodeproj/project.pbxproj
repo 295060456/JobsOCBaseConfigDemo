@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044273872E8148680084B25C /* JobsScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 044273852E8148680084B25C /* JobsScale.m */; };
 		404857BA34B9C9AB6F5E4714 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		90E04F79B6CBEA72A6701F04 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		C53BE3BD2E265E54004A72BE /* NativeWebViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */; };
@@ -1302,6 +1303,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		044273842E8148680084B25C /* JobsScale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsScale.h; sourceTree = "<group>"; };
+		044273852E8148680084B25C /* JobsScale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsScale.m; sourceTree = "<group>"; };
 		20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40ED0B9FDF5152B123562CEA /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3865,6 +3868,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044273862E8148680084B25C /* JobsScale */ = {
+			isa = PBXGroup;
+			children = (
+				044273842E8148680084B25C /* JobsScale.h */,
+				044273852E8148680084B25C /* JobsScale.m */,
+			);
+			path = JobsScale;
+			sourceTree = "<group>";
+		};
 		064F8B1BE36F6BEECAF8233E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -13901,38 +13913,39 @@
 		C55C84F82E167B6500B56985 /* JobsMixFunc */ = {
 			isa = PBXGroup;
 			children = (
-				C55C84F92E167B6500B56985 /* JobsToggleView */,
-				C55C85012E167B6500B56985 /* 图形验证码 */,
-				C55C85042E167B6500B56985 /* JobsBitsMonitor */,
-				C55C850C2E167B6500B56985 /* JobsAppDoor */,
-				C55C855C2E167B6500B56985 /* 在指定的y区间内滑动视图 */,
-				C55C85632E167B6500B56985 /* JobsUserHeaderDataChoice */,
 				C55C856F2E167B6500B56985 /* JobsMixFunc.h */,
-				C55C85702E167B6500B56985 /* JobsHotLabel */,
-				C55C857B2E167B6500B56985 /* CustomerContactStyle */,
-				C55C857F2E167B6500B56985 /* 分享弹窗 */,
-				C55C85882E167B6500B56985 /* JobsViewNavigator */,
+				044273862E8148680084B25C /* JobsScale */,
 				C55C858B2E167B6500B56985 /* 播放器控制层 */,
-				C55C85922E167B6500B56985 /* JobsTitleView01 */,
+				C55C857F2E167B6500B56985 /* 分享弹窗 */,
 				C55C85962E167B6500B56985 /* 广告或者公示弹出框 */,
-				C55C859A2E167B6500B56985 /* JobsShowNumView */,
-				C55C85A12E167B6500B56985 /* JobsStepView */,
+				C55C86942E167B6500B56985 /* 手势滑动返回 */,
+				C55C85012E167B6500B56985 /* 图形验证码 */,
+				C55C855C2E167B6500B56985 /* 在指定的y区间内滑动视图 */,
+				C55C857B2E167B6500B56985 /* CustomerContactStyle */,
+				C55C86832E167B6500B56985 /* Debug */,
+				C55C865E2E167B6500B56985 /* GestureLock */,
+				C55C85C82E167B6500B56985 /* JobsAdNoticeView */,
+				C55C850C2E167B6500B56985 /* JobsAppDoor */,
+				C55C86742E167B6500B56985 /* JobsBasePopupView */,
+				C55C85042E167B6500B56985 /* JobsBitsMonitor */,
+				C55C85EF2E167B6500B56985 /* JobsCustomView */,
+				C55C868F2E167B6500B56985 /* JobsDropDownListView */,
+				C55C85EB2E167B6500B56985 /* JobsFiltrationView */,
+				C55C85702E167B6500B56985 /* JobsHotLabel */,
 				C55C85A52E167B6500B56985 /* JobsImageNumberView */,
 				C55C85C52E167B6500B56985 /* JobsLinkageMenuView */,
-				C55C85C82E167B6500B56985 /* JobsAdNoticeView */,
-				C55C85CB2E167B6500B56985 /* JobsNavBar */,
 				C55C85D12E167B6500B56985 /* JobsMenuView */,
-				C55C85E22E167B6500B56985 /* JobsWelcomeVC */,
-				C55C85EB2E167B6500B56985 /* JobsFiltrationView */,
-				C55C85EF2E167B6500B56985 /* JobsCustomView */,
-				C55C85F32E167B6500B56985 /* UITabBarCtr */,
-				C55C865E2E167B6500B56985 /* GestureLock */,
+				C55C85CB2E167B6500B56985 /* JobsNavBar */,
 				C55C866E2E167B6500B56985 /* JobsPageTBV */,
-				C55C86742E167B6500B56985 /* JobsBasePopupView */,
+				C55C859A2E167B6500B56985 /* JobsShowNumView */,
+				C55C85A12E167B6500B56985 /* JobsStepView */,
 				C55C86782E167B6500B56985 /* JobsSuspend */,
-				C55C86832E167B6500B56985 /* Debug */,
-				C55C868F2E167B6500B56985 /* JobsDropDownListView */,
-				C55C86942E167B6500B56985 /* 手势滑动返回 */,
+				C55C85922E167B6500B56985 /* JobsTitleView01 */,
+				C55C84F92E167B6500B56985 /* JobsToggleView */,
+				C55C85632E167B6500B56985 /* JobsUserHeaderDataChoice */,
+				C55C85882E167B6500B56985 /* JobsViewNavigator */,
+				C55C85E22E167B6500B56985 /* JobsWelcomeVC */,
+				C55C85F32E167B6500B56985 /* UITabBarCtr */,
 			);
 			path = JobsMixFunc;
 			sourceTree = "<group>";
@@ -17739,6 +17752,7 @@
 				C55C8CDD2E167B6C00B56985 /* RYCuteView.m in Sources */,
 				C55C8AF12E167B6A00B56985 /* PointLabBaseView.m in Sources */,
 				C55C89EA2E167B6900B56985 /* JobsViewNavigatorTestVC.m in Sources */,
+				044273872E8148680084B25C /* JobsScale.m in Sources */,
 				C55C8B7B2E167B6B00B56985 /* NSString+Menu.m in Sources */,
 				C55C8BBE2E167B6B00B56985 /* CAPropertyAnimation+Extra.m in Sources */,
 				C55C8BFE2E167B6B00B56985 /* JobsLocationModel.m in Sources */,

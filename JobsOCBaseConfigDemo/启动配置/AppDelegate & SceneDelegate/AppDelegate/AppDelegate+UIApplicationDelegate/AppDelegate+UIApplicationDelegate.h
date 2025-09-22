@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "AppDelegate+Func.h"
+#import "JobsScale.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

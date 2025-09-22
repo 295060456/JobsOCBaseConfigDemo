@@ -13,6 +13,11 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // 以你的设计稿尺寸为准（举例 390x844、或 375x812）
+    JXScaleSetup(375.0, 812.0);
+    // 如果你希望“按安全区可见区域”来缩放，用这个：
+    // JXScaleSetupUsingSafeArea(375.0, 812.0);
+    
     JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
     JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
     JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
