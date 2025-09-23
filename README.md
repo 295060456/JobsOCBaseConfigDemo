@@ -225,6 +225,10 @@
 
 ### 1、几点特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
+* 个别地区（比如：柬埔寨），需要将浏览器语言改为英文状态，方可进入[**苹果开发者网站**](https://developer.apple.com/)
+
+* [**quicktype**](https://app.quicktype.io/)：从 **JSON** / **GraphQL** /其它数据格式 自动生成对应语言的类型定义
+
 * **xcode**对中文的兼容性非常好，所以可以中文命名路径（比如文件夹名称）
 
 * <font color=blue>**xcode工程名不能有特殊字符（比如下划线）。否则会造成：虽然可以在iOS模拟器上面正常运行，但是却会在真机上编译失败**</font>
@@ -11593,7 +11597,6 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 
 ### 1、急需解决 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-  * 按照Flutter的写法，将比例尺分离成x和y轴的写法（用AI）
   * 研究[**ComponentKit**](https://componentkit.org/)（以前叫做 **Async Display Kit**） 
 
 ### 2、亟待解决 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
