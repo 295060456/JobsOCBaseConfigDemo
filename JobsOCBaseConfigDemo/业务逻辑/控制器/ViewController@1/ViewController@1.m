@@ -64,6 +64,9 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsRedColor;
+    if (@available(iOS 11.0, *)) {
+        [UIColor colorNamed:@"TextColor0"];
+    }
     @jobs_weakify(self)
     self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)

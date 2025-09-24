@@ -11481,7 +11481,21 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 
 * [**Apple生成 `*.p12`文件**](https://github.com/295060456/JobsDocs/blob/main/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6.md)
 
-### 75、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 75、使用`Color Set`  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+<p align="center">
+  <img src="./assets/image-20250924174524340.png" width="20%"/>
+  <img src="./assets/image-20250924175200501.png" width="65%"/>
+</p>
+
+
+```objective-c
+if (@available(iOS 11.0, *)) {
+    [UIColor colorNamed:@"TextColor0"];
+}
+```
+
+### 76、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 
