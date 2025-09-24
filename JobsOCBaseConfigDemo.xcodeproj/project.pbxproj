@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0438A71A2E840034008F763B /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0438A7192E840034008F763B /* ColorAssets.xcassets */; };
 		044273872E8148680084B25C /* JobsScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 044273852E8148680084B25C /* JobsScale.m */; };
 		404857BA34B9C9AB6F5E4714 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		90E04F79B6CBEA72A6701F04 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */; };
@@ -1303,6 +1304,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0438A7192E840034008F763B /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
 		044273842E8148680084B25C /* JobsScale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsScale.h; sourceTree = "<group>"; };
 		044273852E8148680084B25C /* JobsScale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsScale.m; sourceTree = "<group>"; };
 		20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -3868,6 +3870,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0438A7182E840025008F763B /* 颜色资源 */ = {
+			isa = PBXGroup;
+			children = (
+				0438A7192E840034008F763B /* ColorAssets.xcassets */,
+			);
+			path = "颜色资源";
+			sourceTree = "<group>";
+		};
 		044273862E8148680084B25C /* JobsScale */ = {
 			isa = PBXGroup;
 			children = (
@@ -16140,6 +16150,7 @@
 		C55C881A2E167B6700B56985 /* 资源文件管理 */ = {
 			isa = PBXGroup;
 			children = (
+				0438A7182E840025008F763B /* 颜色资源 */,
 				C55C881B2E167B6700B56985 /* TSV文件 */,
 				C55C881F2E167B6700B56985 /* 图片资源文件 */,
 				C55C88502E167B6700B56985 /* Plist资源文件 */,
@@ -17432,6 +17443,7 @@
 				C55C8AAA2E167B6A00B56985 /* Menu@2x.png in Resources */,
 				C55C8D322E167B6D00B56985 /* 3@3x.png in Resources */,
 				C55C8E732E167B6E00B56985 /* NotoSansDisplay_Condensed-Medium.ttf in Resources */,
+				0438A71A2E840034008F763B /* ColorAssets.xcassets in Resources */,
 				C55C8E7F2E167B6E00B56985 /* NotoSansDisplay_ExtraCondensed-Regular.ttf in Resources */,
 				C55C8E692E167B6E00B56985 /* NotoSansDisplay_Condensed-Black.ttf in Resources */,
 				C55C8DED2E167B6E00B56985 /* refresh.png in Resources */,
