@@ -227,6 +227,8 @@
 
 * 个别地区（比如：柬埔寨），需要将浏览器语言改为英文状态，方可进入[**苹果开发者网站**](https://developer.apple.com/)
 
+* [**过期的模拟器配件**](https://github.com/295060456/Xcode_Sys_lib)
+
 * [**quicktype**](https://app.quicktype.io/)：从 **JSON** / **GraphQL** /其它数据格式 自动生成对应语言的类型定义
 
 * **xcode**对中文的兼容性非常好，所以可以中文命名路径（比如文件夹名称）
