@@ -223,13 +223,19 @@
 
 ## 四、🧨代码周边 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### 1、几点特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-
-* 个别地区（比如：柬埔寨），需要将浏览器语言改为英文状态，方可进入[**苹果开发者网站**](https://developer.apple.com/)
+### 1、软件支持 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * [**过期的模拟器配件**](https://github.com/295060456/Xcode_Sys_lib)
 
 * [**quicktype**](https://app.quicktype.io/)：从 **JSON** / **GraphQL** /其它数据格式 自动生成对应语言的类型定义
+
+* [**snipaste**](https://www.snipaste.com/)：截图工具
+
+* [**Sip**](https://sipapp.io/)：取色器
+
+### 2、几点特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* 个别地区（比如：柬埔寨），需要将浏览器语言改为英文状态，方可进入[**苹果开发者网站**](https://developer.apple.com/)
 
 * **xcode**对中文的兼容性非常好，所以可以中文命名路径（比如文件夹名称）
 
@@ -242,7 +248,7 @@
   ![image-20240706113246025](./assets/image-20240706113246025.png)
 
 
-### 2、在Apple芯片（目前是M系列）编译失败的解决方案 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 3、在Apple芯片（目前是M系列）编译失败的解决方案 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * 禁用系统完整性保护 (<font color=red>**S**</font>ystem <font color=red>**I**</font>ntegrity <font color=red>**P**</font>rotection, <font color=red>**SIP**</font>)   <font color=red>**如果不禁用，会对某些文件夹有读写权限控制**</font>
   * 重启**MacOS**，长按开机键，直到🌏页面，进入恢复模式
   * 在恢复模式的**macOS**实用工具窗口中，选择“实用工具”菜单，然后选择“终端”以打开终端窗口
@@ -270,7 +276,7 @@
     ```shell
     pod install
     ```
-### 3、**iOS**模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 4、**iOS**模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **iOS**存在假后台现象，有时需要主动手动关闭进程
 
@@ -352,7 +358,7 @@
 
 * 如果更新或者删除**xcode**，那么下载的**iOS**模拟器将会丢失
 
-### 4、`lldb`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 5、`lldb`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ```shell
 (lldb) target list
@@ -363,17 +369,56 @@ Current targets:
 * target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
 ```
 
-### 5、`Command Line Tools` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 6、<font color=red>**C**</font>ommand <font color=red>**L**</font>ine <font color=red>**T**</font>ools <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 查看`Command Line Tools`版本
+* 安装
+
+  * （通过终端）下载安装`Command Line Tools`
+
+    ```
+    xcode-select --install
+    ```
+
+  * 通过 Xcode 安装
+
+    * 打开 Xcode
+    * 在菜单栏选择 **Xcode > Settings > Locations**
+    * 在 <font color=red>**C**</font>ommand <font color=red>**L**</font>ine <font color=red>**T**</font>ools 下拉菜单中选择对应的 Xcode 版本
+
+* 卸载
 
   ```shell
-  pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+  sudo rm -rf /Library/Developer/CommandLineTools
+  xcode-select --install
   ```
 
-### 6、xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+* 切换
 
-#### 6.1、新工程配置  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+  ```shell
+  sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+  ```
+
+* 验证命令
+
+  ```shell
+  ➜  ~ xcode-select -p
+  /Applications/Xcode.app/Contents/Developer
+  ```
+
+* 查看<font color=red>**C**</font>ommand <font color=red>**L**</font>ine <font color=red>**T**</font>ools版本
+
+  ```shell
+  ➜  ~ pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+  package-id: com.apple.pkg.CLTools_Executables
+  version: 26.0.0.0.1.1757719676
+  volume: /
+  location: /
+  install-time: 1758341956
+  ```
+
+### 7、⚙️ xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+#### 7.1、⚙️ 新工程配置  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font id =Unknown_class_in_Interface_Builder_file>处理编译器警告：**`Unknown class in Interface Builder file`**</font>
 
@@ -382,7 +427,7 @@ Current targets:
 
   <img src="./assets/image-20240715141329097.png" alt="image-20240715141329097" style="zoom:50%;" />
 
-#### 6.2、`Arguments Passed On Launch`标签设置  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 7.2、🏷️`Arguments Passed On Launch`标签设置  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 设置应用的语言环境
 
@@ -451,15 +496,15 @@ Current targets:
   -AppleTextDirection YES
   ```
 
-#### 6.3、`Environment Variables`标签  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 7.3、🏷️ `Environment Variables`标签  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 日志配置：添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
 
   <img src="./assets/image-20240629161626945.png" alt="image-20240629161626945" style="zoom:50%;" />
 
-### 7、🖨️ 调试打印 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 8、🖨️ 调试打印 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-#### 7.1、重写打印输出  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 8.1、🖨️ 重写打印输出  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注文件：[**MacroDef_Log.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Sys/MacroDef_Log.h)
 
@@ -531,7 +576,7 @@ Current targets:
     label.jobsLogSize(@"打印的时候额外添加的标识字符");
     ```
   
-#### 7.2、利用**Runtime**的机制打印类的内容  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 8.2、🖨️ 利用**Runtime**的机制打印类的内容  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 返回并打印成员变量列表
 
@@ -557,40 +602,45 @@ Current targets:
   -(NSMutableArray <NSString *>*)printProtocolList;
   ```
 
+### 9、Xcode@Objc  <font color=red>代码块</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### 8、iOS xcode <font color=red>代码块</font>，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+> 提升编码效率必备之首选
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/295060456/JobsCodeSnippets.git)
 * 脚本自动化：[**`【MacOS】安装JobsCodeSnippets.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%AE%89%E8%A3%85JobsCodeSnippets.command)
 
-### 9、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
+### 10、**📦打包`*.ipa` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
 
-* 电脑桌面新建文件夹，并重命名为`payload`
+* 手动打包流程
 
-* 真机运行项目（不同设备，不同芯片组，底层指令集不一致）
+  * 电脑桌面新建文件夹，并重命名为`payload`
 
-* 打开项目工程目录下`Products`，里面有个`*.app`
+  * 真机运行项目（不同设备，不同芯片组，底层指令集不一致）
 
-  ![image-20240704113342353](./assets/image-20240704113342353.png)
+  * 打开项目工程目录下`Products`，里面有个`*.app`
 
-* 将这个`*.app`复制到刚才电脑桌面新建的`payload`文件夹
+    ![image-20240704113342353](./assets/image-20240704113342353.png)
 
-* 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包
+  * 将这个`*.app`复制到刚才电脑桌面新建的`payload`文件夹
 
-* 将这个`zip`格式的压缩包，强行改名`*.ipa`
+  * 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包
 
-* 脚本自动化：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
+  * 将这个`zip`格式的压缩包，强行改名`*.ipa`
 
-### 10、🐢<font color=red>**马甲包**</font>  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+* 脚本自动化打包工具：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
+
+### 11、🐢<font color=red>**马甲包**</font>  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
   * 相关资料
     * https://github.com/520coding/confuse/blob/master/README_ZH.md
   * 相关工具
     * [**confuse**](https://github.com/520coding/confuse)
 
-### 11、 打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://)  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-  * ```html
-    feedbackassistant://
-    ```
+### 12、 打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://)  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+> ```url
+> feedbackassistant://
+> ```
+
 ## 五、💥代码讲解 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ### 1、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
