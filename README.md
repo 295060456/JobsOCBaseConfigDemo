@@ -11535,19 +11535,26 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 
 * [**Apple生成 `*.p12`文件**](https://github.com/295060456/JobsDocs/blob/main/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6.md)
 
-### 75、使用`Color Set`  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 75、🖼️ <font color=red>**使用`Color Set`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-<p align="center">
-  <img src="./assets/image-20250924174524340.png" width="20%"/>
-  <img src="./assets/image-20250924175200501.png" width="65%"/>
-</p>
+* 选中图片以后，跳到第四个选项卡
 
+  ```swift
+  if #available(iOS 11.0, *) {
+      UIColor(named: "TextColor0")
+  }
+  ```
 
-```objective-c
-if (@available(iOS 11.0, *)) {
-    [UIColor colorNamed:@"TextColor0"];
-}
-```
+  <p align="center">
+    <img src="./assets/image-20250924174836800.png" width="20%"/>
+    <img src="./assets/image-20250924175446796.png" width="60%"/>
+  </p>
+
+* 支持暗黑模式
+
+  > Dark优先级高一些，如果在Dark里面没有找到对应的图片，会去Any找
+
+![image-20251001161600357](./assets/image-20251001161600357.png)
 
 ### 76、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
