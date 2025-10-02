@@ -7017,88 +7017,201 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-### 51、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 51、<font id=Objc单例>**Objc单例**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 在 **OC**中，`static` 关键字用于声明静态变量。这些变量在整个应用程序的生命周期内只会被初始化一次，并且它们的作用域仅限于定义它们的文件
+> - 在 **OC** 中，`static` 关键字声明的静态变量具有**进程生命周期**，作用域受限于其声明位置（文件/函数/块）。
+> - 覆盖 `allocWithZone:` 的目的，是**防止外部 `alloc/init` 绕过单例**；**切记不要**在 `allocWithZone:` 里调用 `sharedInstance`，否则会形成递归（`alloc → allocWithZone: → sharedInstance → alloc → …`）。
+> - 单例宏收敛在 `MacroDef_Singleton.h`，可一键切换 `dispatch_once` 与 `@synchronized` 实现。
+>
 
-* 在单例实现中，如果覆盖了 `allocWithZone:`应该确保初始化方法也使用这个覆盖的方法进行实例化
+#### 51.1、实现目标 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 单例宏：关注文件 `MacroDef_Singleton.h`
+```objective-c
+MyManager *m1 = [MyManager sharedInstance];
+MyManager *m2 = MyManager.new;            // 同一个实例
+MyManager *m3 = MyManager.alloc.init;     // 同一个实例
+MyManager *m4 = m1.copy;                  // 同一个实例
+MyManager *m5 = m1.mutableCopy;           // 同一个实例
+NSLog(@"%p %p %p %p" %p", m1, m2, m3, m4, m5);
+```
 
-* 以`GCD`的方式实现
+#### 51.2、实现方式 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-  * `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
-  * `JobsCustomTabBarVCOnceToken`为0才会进`dispatch_once`
+| 项目                   | <font color=red>`@synchronized`</font> | `dispatch_once`                 |
+| ---------------------- | :------------------------------------- | ------------------------------- |
+| 线程安全               | ✅                                      | ✅                               |
+| 性能                   | ⚠️略慢（锁）                            | ✅更快                           |
+| 实现简洁               | 一般                                   | ✅简单                           |
+| ARC兼容                | ✅                                      | ✅                               |
+| **是否可以被手动销毁** | <font color=red>**可以**</font>        | <font color=red>**不行**</font> |
+| 推荐程度               | ⚠️旧项目可用                            | ✅现代标准                       |
+
+- **GCD 方式：`dispatch_once`（<font color=red>最推荐</font>，但是不能主动的手动被销毁）**
+
+  - `onceToken` 必须是**静态/全局且零初始化**；`dispatch_once` 在**并发条件下也只执行一次**指定的初始化代码，线程安全。
+  - 仍需覆盖 `allocWithZone:` 与 `copy/mutableCopy`，**封口**外部创建与拷贝路径。
+  - <font color=red>**用 `dispatch_once` 的单例无法“销毁并重建”**（once 不能重置），只“重置/失效”</font>
 
   ```objective-c
-  static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
-  static dispatch_once_t JobsCustomTabBarVCOnceToken;
-  
-  + (instancetype)sharedManager {
-      dispatch_once(&JobsCustomTabBarVCOnceToken, ^{
-  				if(!JobsCustomTabBarVCInstance){
-              JobsCustomTabBarVCInstance = [super allocWithZone:NULL].init;
-          }
-      });return JobsCustomTabBarVCInstance;
+  // 宏已封装：见 MacroDef_Singleton.h
+  // 最终效果（要点）：
+  + (instancetype)sharedInstance {
+      static dispatch_once_t onceToken;
+      dispatch_once(&onceToken, ^{
+          _instance = [[self alloc] init];
+      });return _instance;
   }
   
-  + (void)destroyInstance {
-      JobsCustomTabBarVCInstance = nil;
-      JobsCustomTabBarVCOnceToken = 0;
-  }
-  /// 防止外部使用 alloc/init 等创建新实例
   + (instancetype)allocWithZone:(struct _NSZone *)zone {
-      return [self sharedManager];
+      @synchronized(self) {                 // 防外部 alloc/init 绕过
+          if (!_instance) {
+              _instance = [super allocWithZone:zone];
+          }return _instance;
+      }
   }
-  /// 防止外部使用 alloc/init 等创建新实例
-  - (instancetype)copyWithZone:(NSZone *)zone {
-      return self;
+  
+  + (instancetype)new {
+      return [self sharedInstance];
   }
-  /// 防止外部调用copy
-  - (instancetype)mutableCopyWithZone:(NSZone *)zone {
-      return self;
+  
+  - (id)copyWithZone:(NSZone *)zone        { return self; }
+  - (id)mutableCopyWithZone:(NSZone *)zone { return self; }
+  ```
+
+- **<font color=red>`@synchronized`</font> 方式**
+
+  * 通过双重检查锁（DCL）降低锁开销；`allocWithZone:` 同样要封口
+
+  * 性能略逊于 **GCD**，但逻辑路径直观，便于理解。
+
+  * <font color=red>**可以“销毁并重建”**，但要自行保证：销毁时**外部没有线程在用**，否则有悬空指针风险。</font>
+
+  * 安全、不递归、支持 <font color=red>**alloc**</font>/<font color=red>**init**</font>
+  
+    ```objective-c
+    static id _instance = nil;// 单例指针。可以观察这个指针是否为nil来判断此单例是否被销毁
+    + (instancetype)sharedInstance {
+        if (!_instance) {// 提高性能，避免每次都进锁
+            @synchronized(self) {// 锁定当前类对象，保证多线程下只创建一次实例。
+                if (!_instance) {// // 防止多个线程同时通过第一次检查。
+                    _instance = [[self alloc] init];
+                }
+            }
+        }return _instance;
+    }
+    
+    + (instancetype)allocWithZone:(struct _NSZone *)zone {
+        @synchronized(self) {
+            if (!_instance) {
+                _instance = [super allocWithZone:zone];
+            }return _instance;
+        }
+    }
+    
+    + (instancetype)new {
+        return [self sharedInstance];
+    }
+    
+    - (id)copyWithZone:(NSZone *)zone        { return self; }
+    - (id)mutableCopyWithZone:(NSZone *)zone { return self; }
+    ```
+
+#### 51.3、单例的销毁 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* 当前单例的销毁：无强引用时触发 `- (void)dealloc`
+
+  ```objective-c
+  /// 真·销毁
+  + (void)destroySharedInstance {
+      @synchronized (self) {
+          _instance = nil;          // 若外部无其它强引用，会立即 dealloc
+      }
+  }
+  
+  - (void)dealloc {
+      /// TODO ⬇️ 安全地释放资源
   }
   ```
 
-* 以<font color=red>**`@synchronized`**</font>的方式实现
+* 多子类各自单例（支持销毁）
 
-  <font color=red>**`@synchronized`**</font>关键字用于实现线程安全,它确保一段代码在同一时间内只能被一个线程执行，从而防止多个线程同时访问和修改共享资源，避免数据竞争和不一致性问题
+  用于<u>每个子类一个单例</u>的体系
 
   ```objective-c
-  static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
+  // BaseSingleton.h
+  @interface BaseSingleton : NSObject
+  + (instancetype)sharedInstance;
+  + (void)destroySharedInstance;   // 销毁当前类的单例
+  @end
   
-  + (instancetype)sharedManager {
-      @synchronized (self) {
-          if (JobsCustomTabBarVCInstance == nil) {
-              JobsCustomTabBarVCInstance = [[super allocWithZone:NULL] init];
+  // BaseSingleton.m
+  @implementation BaseSingleton
+  static NSMutableDictionary<Class, id> *g_instances;
+  static dispatch_once_t g_once;
+  
+  + (void)initialize {
+      if (self == [BaseSingleton class]) {
+          dispatch_once(&g_once, ^{ g_instances = [NSMutableDictionary dictionary]; });
+      }
+  }
+  
+  + (instancetype)sharedInstance {
+      @synchronized (g_instances) {
+          id obj = g_instances[self];
+          if (!obj) {
+              obj = [[self alloc] init];              // 触发 allocWithZone:
+              g_instances[(id<NSCopying>)self] = obj;
+          }return obj;
+      }
+  }
+  
+  + (instancetype)allocWithZone:(struct _NSZone *)zone {
+      @synchronized (g_instances) {
+          id obj = g_instances[self];
+          if (!obj) {
+              obj = [super allocWithZone:zone];
+              g_instances[(id<NSCopying>)self] = obj;
+          }return obj;
+      }
+  }
+  
+  + (void)destroySharedInstance {
+      @synchronized (g_instances) {
+          id obj = g_instances[self];
+          if (obj) {
+              // TODO（可选）：把对象标记为已失效并主动释放/关闭它持有的一切外部资源，让它从此“不可再用”
+              g_instances[(id<NSCopying>)self] = nil; // 移除强引用
           }
       }
-      return JobsCustomTabBarVCInstance;
   }
   
-  + (void)destroyInstance {
-      @synchronized (self) {
-          JobsCustomTabBarVCInstance = nil;
-      }
-  }
+  - (id)copyWithZone:(NSZone *)zone        { return self; }
+  - (id)mutableCopyWithZone:(NSZone *)zone { return self; }
   
-  /// 防止外部使用 alloc/init 等创建新实例
-  + (instancetype)allocWithZone:(struct _NSZone *)zone {
-      return [self sharedManager];
-  }
-  /// 防止外部使用 alloc/init 等创建新实例
-  - (instancetype)copyWithZone:(NSZone *)zone {
-      return self;
-  }
-  /// 防止外部调用copy
-  - (instancetype)mutableCopyWithZone:(NSZone *)zone {
-      return self;
-  }
-  // 初始化代码可以放在这里
-  - (instancetype)init {
-      if (self = [super init]) {
-          // Initialization code
-      }return self;
+  @end
+  ```
+
+#### 51.4、注意事项 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* **禁止**在 `allocWithZone:` 里调用 `sharedInstance`（递归崩）
+
+* 继承型单例要对共享映射结构**所有访问**加锁（或串行队列），否则并发下会出现重复实例或数据竞争
+
+* **ARC** 环境下，不需要重写 `retain/release`；只需覆盖 `copy/mutableCopy` 返回 `self`
+
+* `dispatch_once_t` 为 0 才会进 `dispatch_once`
+
+  > `onceToken` **必须是静态/全局且零初始化**
+  >
+  > `dispatch_once` **无论多少线程并发调用，只会执行一次 block**
+
+  ```objective-c
+  + (instancetype)sharedInstance {
+      static dispatch_once_t onceToken;
+      dispatch_once(&onceToken, ^{
+          _instance = [[self alloc] init];
+      });
+      return _instance;
   }
   ```
 
@@ -7125,9 +7238,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 53、🗄️ 数据库 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* **FMDB**
+* [**FMDB**](https://github.com/ccgus/fmdb)
 
-  <font color=blue>**需要写SQL**</font>
+  > <font color=blue>**需要写SQL**</font>
 
   ```objective-c
   #if __has_include(<FMDB/FMDB.h>)
@@ -7206,8 +7319,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * **Realm**
 
-  * <font color=red>**不需要写SQL，pod一键集成**</font>
-  * **model**需要继承自**RLMObject**
+  > * <font color=red>**不需要写SQL，pod一键集成**</font>
+  > * **model**需要继承自**RLMObject**
 
   ```objective-c
   #if __has_include(<Realm/Realm.h>)
