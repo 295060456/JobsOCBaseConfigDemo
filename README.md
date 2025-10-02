@@ -170,6 +170,7 @@
   * [**本地通知**](TODO)
 * [**横屏UI切换**](TODO)
 * [**自定义 UITabBarController**](TODO)
+* [**中国公民身份证校验规则**](https://github.com/295060456/JobsDocs/blob/main/中国公民身份证校验规则.md/中国公民身份证校验规则.md)
 
 ### 4、相关研究 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
