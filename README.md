@@ -236,6 +236,12 @@
 
 * [**Sip**](https://sipapp.io/)：取色器
 
+* [**UI界面调试工具**](https://lookin.work/)
+
+  > ```ruby
+  > pod 'LookinServer', :configurations => ['Debug']
+  > ```
+
 ### 2、几点特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 个别地区（比如：柬埔寨），需要将浏览器语言改为英文状态，方可进入[**苹果开发者网站**](https://developer.apple.com/)
