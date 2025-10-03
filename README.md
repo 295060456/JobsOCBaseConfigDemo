@@ -236,7 +236,7 @@
 
 * [**Sip**](https://sipapp.io/)：取色器
 
-* [**UI界面调试工具**](https://lookin.work/)**](https://lookin.work/)（必须是有线连接）
+* [**UI界面调试工具**](https://lookin.work/)](https://lookin.work/)（必须是有线连接，并且**`Lookin.app`**要先于项目文件启动）
 
   > ```ruby
   > pod 'LookinServer', :configurations => ['Debug']
