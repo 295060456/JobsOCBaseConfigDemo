@@ -11788,7 +11788,20 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
     layer.frame = CGRectMake(0, 0, 628, self.frame.size.height);/// 不崩溃
     ```
 
-## 六、TODO <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## 六、<font color=red>**F**</font><font color=green>**A**</font><font color=blue>**Q**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* 在**Objc**里面，主类有一个**方法A**，分类里面也有一个**方法A**，它们都是同名的，那么在执行的时候，是执行分类的还是主类的**方法A** ❓
+
+  > **运行时调用时，会执行分类的方法，覆盖主类的实现**
+
+* 那么如果在两个分类文件里面都写了同一个名方法，在实际调用的时候，执行谁 ❓
+
+  * 最终在运行时注册类方法表时，**后加载的分类会覆盖前面的**；（后编译进二进制的分类实现）
+  * 所以在大型项目中，如果多个模块都给同一个类写了相同方法名的分类，会导致：
+    - 调用结果 **不确定**；
+    - 甚至不同环境下结果会不一样。
+
+## 七、TODO <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ### 1、急需解决 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
