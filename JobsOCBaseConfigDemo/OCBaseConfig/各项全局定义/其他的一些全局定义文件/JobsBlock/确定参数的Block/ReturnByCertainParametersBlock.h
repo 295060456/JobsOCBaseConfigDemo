@@ -90,6 +90,16 @@ typedef NSValue *_Nullable(^JobsReturnValueByDirectionalEdgeInsetsBlock)(NSDirec
 typedef NSValue *_Nullable(^JobsReturnValueByOffsetBlock)(UIOffset data);
 #pragma mark —— 关于贝塞尔曲线
 typedef UIBezierPath *_Nullable(^JobsReturnBezierPathByCGRectBlock)(CGRect frame);
+#pragma mark —— 关于UIBackgroundConfiguration
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByColorBlock)(UIColor *_Nullable data);
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByCGFloatBlock)(CGFloat data);
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByInsetsBlock)(NSDirectionalEdgeInsets data);
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByViewBlock)(UIView *_Nullable data);
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByImageBlock)(UIImage *_Nullable data);
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByContentModeBlock)(UIViewContentMode data);
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByVisualEffectBlock)(UIVisualEffect *_Nullable data);
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByRectEdgeBlock)(NSDirectionalRectEdge data);
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByColorTransformerBlock)(UIConfigurationColorTransformer _Nullable transformer);
 #pragma mark —— 关于按钮配置信息
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByFontBlock)(UIFont *_Nullable data);
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByButtonConfigurationBlock)(UIButtonConfiguration *_Nullable config);

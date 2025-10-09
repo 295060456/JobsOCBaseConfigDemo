@@ -21,6 +21,7 @@
 #import "UIButton+UIButtonConfiguration.h"
 #import "UIButton+TextView.h"
 #import "UIButton+UIControlState.h"
+#import "UIButtonConfiguration+Extra.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>

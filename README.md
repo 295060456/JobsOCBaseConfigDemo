@@ -236,6 +236,14 @@
 
 * [**Sip**](https://sipapp.io/)：取色器
 
+* [**CocoaPods**](https://cocoapods.org/)
+
+* [**配置SourceTree脚本**](https://github.com/295060456/SourceTree.sh)
+
+* [**代码块**](https://github.com/295060456/JobsCodeSnippets)
+
+* [**图片占位符**](https://picsum.photos/)
+
 * [**UI界面调试工具**](https://lookin.work/)](https://lookin.work/)（必须是有线连接，并且**`Lookin.app`**要先于项目文件启动）
 
   > ```ruby

@@ -111,15 +111,13 @@
     }else{
         if(!background) background = jobsMakeClearConfiguration(^(UIBackgroundConfiguration * _Nullable config) {
             @jobs_strongify(self)
-            config.image = self.isHighlighted ? highlightBackgroundImage : backgroundImage;
-            config.edgesAddingLayoutMarginsToBackgroundInsets = imagePlacement;
-            
-            config.backgroundInsets = contentInsets;/// 内边距
-            config.backgroundColor = baseBackgroundColor;/// 背景颜色
-            config.cornerRadius = cornerRadiusValue;/// 圆切角
-            /// 描边的颜色和线宽
-            config.strokeColor = layerBorderCor;
-            config.strokeWidth = borderWidth;
+            config.byImage(self.isHighlighted ? highlightBackgroundImage : backgroundImage)
+                .byEdgesAddingLayoutMarginsToBackgroundInsets(imagePlacement) // ✅ 新增的链式
+                .byBackgroundInsets(contentInsets)                            // 内边距
+                .byBackgroundColor(baseBackgroundColor)                       // 背景颜色
+                .byCornerRadius(cornerRadiusValue)                            // 圆切角
+                .byStrokeColor(layerBorderCor)                                // 描边颜色
+                .byStrokeWidth(borderWidth);                                  // 描边线宽
             /// ❤️要设置UIButton.imageView的宽\高\尺寸\坐标，请参阅 BaseButtonProtocol❤️
         });
         if(btnConfiguration){
@@ -139,39 +137,39 @@
             UIButton *btn = [self.class buttonWithConfiguration:jobsMakeFilledBtnConfig(^(UIButtonConfiguration * _Nullable config) {
                 @jobs_strongify(self)
                 /// 一般的文字
-                config.title = title;
-                config.subtitle = subTitle;
-                config.titlePadding = titlePadding;
-                config.baseForegroundColor = titleCor;/// 文本颜色
-                config.titleAlignment = buttonConfigTitleAlignment;/// 文本的对齐方式
-                config.titleLineBreakMode = titleLineBreakMode;/// 主标题的提行方式
-                config.subtitleLineBreakMode = subtitleLineBreakMode;/// 副标题的提行方式
-                config.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:titleFont btnTitleCor:titleCor];
-                config.subtitleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:subTitleFont btnTitleCor:subTitleCor];
-                /// 前景图片
-                config.image = self.isHighlighted ? highlightImage : normalImage;
-                config.imagePadding = imagePadding;/// 设置图像与标题之间的间距
-                config.imagePlacement = imagePlacement;
-                /// 富文本（优先级高于普通文本）
-                /// 这个方法，同时设置了普通文本和富文本，其实是走富文本的创建路线。富文本4要素：文字信息、文字颜色、段落、字体
-                /// 设置按钮标题的文本属性
-                config.attributedTitle = attributedTitle ? : JobsAttributedStringByAttributes(title, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
-                    @jobs_strongify(self)
-                    if(titleCor) [data setObject:titleCor forKey:NSForegroundColorAttributeName];
-                    if(titleFont) [data setObject:titleFont forKey:NSFontAttributeName];
-                    if(self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter))
-                        [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment) forKey:NSParagraphStyleAttributeName];
-                }));
-                /// 设置按钮副标题的文本属性
-                config.attributedSubtitle = attributedSubtitle ? : JobsAttributedStringByAttributes(subTitle, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
-                    @jobs_strongify(self)
-                    if (subTitleCor) [data setObject:subTitleCor forKey:NSForegroundColorAttributeName];
-                    if (subTitleFont) [data setObject:subTitleFont forKey:NSFontAttributeName];
-                    [data setObject:self.jobsparagraphStyleByTextAlignment(subTextAlignment) forKey:NSParagraphStyleAttributeName];
-                }));
-                config.contentInsets = contentInsets;/// 内边距
-                config.baseBackgroundColor = baseBackgroundColor;/// 背景颜色
-                config.background = background;
+                config.byTitle(title)
+                    .bySubtitle(subTitle)
+                    .byTitlePadding(titlePadding)
+                    .byBaseForegroundColor(titleCor)                                  /// 文本颜色
+                    .byTitleAlignment(buttonConfigTitleAlignment)                      /// 文本的对齐方式
+                    .byTitleLineBreakMode(titleLineBreakMode)                          /// 主标题的提行方式
+                    .bySubtitleLineBreakMode(subtitleLineBreakMode)                    /// 副标题的提行方式
+                    .byTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:titleFont btnTitleCor:titleCor])
+                    .bySubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:subTitleFont btnTitleCor:subTitleCor])
+                    /// 前景图片
+                    .byImage(self.isHighlighted ? highlightImage : normalImage)
+                    .byImagePadding(imagePadding)                                      /// 设置图像与标题之间的间距
+                    .byImagePlacement(imagePlacement)
+                    /// 富文本（优先级高于普通文本）
+                    /// 这个方法，同时设置了普通文本和富文本，其实是走富文本的创建路线。富文本4要素：文字信息、文字颜色、段落、字体
+                    /// 设置按钮标题的文本属性
+                    .byAttributedTitle(attributedTitle ? : JobsAttributedStringByAttributes(title, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                        @jobs_strongify(self)
+                        if(titleCor) [data setObject:titleCor forKey:NSForegroundColorAttributeName];
+                        if(titleFont) [data setObject:titleFont forKey:NSFontAttributeName];
+                        if(self.jobsparagraphStyleByTextAlignment(NSTextAlignmentCenter))
+                            [data setObject:self.jobsparagraphStyleByTextAlignment(textAlignment) forKey:NSParagraphStyleAttributeName];
+                    })))
+                    /// 设置按钮副标题的文本属性
+                    .byAttributedSubtitle(attributedSubtitle ? : JobsAttributedStringByAttributes(subTitle, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                        @jobs_strongify(self)
+                        if (subTitleCor) [data setObject:subTitleCor forKey:NSForegroundColorAttributeName];
+                        if (subTitleFont) [data setObject:subTitleFont forKey:NSFontAttributeName];
+                        [data setObject:self.jobsparagraphStyleByTextAlignment(subTextAlignment) forKey:NSParagraphStyleAttributeName];
+                    })))
+                    .byContentInsets(contentInsets)                                    /// 内边距
+                    .byBaseBackgroundColor(baseBackgroundColor)                        /// 背景颜色
+                    .byBackground(background);
             }) primaryAction:primaryAction];
             /// 按钮的点击事件
             if(btn.jobsBtnClickEventByBlock) btn.jobsBtnClickEventByBlock(clickEventBlock);
@@ -340,7 +338,7 @@
             @jobs_weakify(self)
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 @jobs_strongify(self)
-                config.titleTextAttributesTransformer = [self jobsSetConfigTextAttributesTransformerByTitleFont:font btnTitleCor:self.titleColorForNormalState];
+                config.byTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:font btnTitleCor:self.titleColorForNormalState]);
             }];
         } else self.titleLabel.font = font;
         return self;
@@ -353,14 +351,14 @@
             @jobs_weakify(self)
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 @jobs_strongify(self)
-                config.attributedTitle = JobsAttributedStringByAttributes(self.titleForNormalState, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
+                config.byAttributedTitle(JobsAttributedStringByAttributes(self.titleForNormalState, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
                     @jobs_strongify(self)
                     data.add(NSForegroundColorAttributeName,self.titleColorByNormalState);
 //                    data.add(NSFontAttributeName,self.titleFont);
                     data.add(NSParagraphStyleAttributeName,self.jobsparagraphStyleByTextAlignment (textAlignment));
-                }));
+                })));
             }];
-        } else self.titleLabel.textAlignment = textAlignment;
+        } else self.titleLabel.byTextAlignment(textAlignment);
         return self;
     };
 }
@@ -389,9 +387,8 @@
         @jobs_weakify(self)
         return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
             @jobs_strongify(self)
-            config.subtitleTextAttributesTransformer =
-            [self jobsSetConfigTextAttributesTransformerByTitleFont:font
-                                                        btnTitleCor:self.getTitleColorByTransformer(config.subtitleTextAttributesTransformer)];
+            config.bySubtitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:font
+                                                                                                   btnTitleCor:self.getTitleColorByTransformer(config.subtitleTextAttributesTransformer)]);
         }];
     };
 }
@@ -465,7 +462,7 @@
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration *_Nullable config) {
-                config.background.strokeColor = layerBorderCor;
+                config.background.byStrokeColor(layerBorderCor);
                 if (@available(iOS 16.0, *)) {
                     if(!config.background.strokeWidth) config.background.strokeWidth = 0.5f;
                 }else if(!self.layer.borderWidth) self.layer.borderWidth = 0.5f;
@@ -481,7 +478,7 @@
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration *_Nullable config) {
-                config.background.strokeWidth = borderWidth;
+                config.background.byStrokeWidth(borderWidth);
             }];
         } else self.layer.borderWidth = borderWidth;
         return self;
@@ -496,7 +493,7 @@
         if(title){
             if (@available(iOS 16.0, *)) {
                 return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration *_Nullable config) {
-                    config.attributedTitle = title;
+                    config.byAttributedTitle(title);
                 }];
             } else self.normalStateAttributedTitleBy(title);
         }return self;
@@ -523,8 +520,8 @@
         @jobs_strongify(self)
         if(title){
             self.jobsResetBtnNormalAttributedTitle(title.changeTextColorBy(JobsClearColor).removeHyperlinks);
-            self.titleTextView.frame = self.titleLabel.frame;
-            self.titleTextView.attributedText = title;
+            self.titleTextView.byFrame(self.titleLabel.frame);
+            self.titleTextView.byAttributedText(title);
             self.jobsResetBtnNormalAttributedTitle(nil);
         }return self;
     };
@@ -536,8 +533,8 @@
         @jobs_strongify(self)
         if(title){
             self.jobsResetBtnNormalAttributedSubTitle(title.changeTextColorBy(JobsClearColor));
-            self.subtitleTextView.frame = self.subtitleLabel.frame;
-            self.subtitleTextView.attributedText = title;
+            self.subtitleTextView.byFrame(self.subtitleLabel.frame);
+            self.subtitleTextView.byAttributedText(title);
             self.jobsResetBtnNormalAttributedSubTitle(nil);
         }return self;
     };
@@ -550,8 +547,8 @@
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration *_Nullable config) {
-                config.imagePlacement = data;/// 设置按钮的图文关系
-                config.imagePadding = x;/// 设置按钮的图文间距
+                config.byImagePlacement(data) // 设置按钮的图文关系
+                    .byImagePadding(x);       // 设置按钮的图文间距
             }];
         } else return [self layoutButtonWithEdgeInsetsStyle:data imagePadding:x];
     };
