@@ -11,6 +11,18 @@
 		044273872E8148680084B25C /* JobsScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 044273852E8148680084B25C /* JobsScale.m */; };
 		046CFA7A2E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */; };
 		046CFA7E2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */; };
+		04C2F0E22E98EC4C00BA05A9 /* MVPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0D02E98EC4C00BA05A9 /* MVPLoginViewController.m */; };
+		04C2F0E32E98EC4C00BA05A9 /* MVPLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0CE2E98EC4C00BA05A9 /* MVPLoginPresenter.m */; };
+		04C2F0E42E98EC4C00BA05A9 /* DemoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0CA2E98EC4C00BA05A9 /* DemoListViewController.m */; };
+		04C2F0E52E98EC4C00BA05A9 /* VIPERLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0E02E98EC4C00BA05A9 /* VIPERLoginViewController.m */; };
+		04C2F0E62E98EC4C00BA05A9 /* MVVMLoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0D52E98EC4C00BA05A9 /* MVVMLoginViewModel.m */; };
+		04C2F0E72E98EC4C00BA05A9 /* VIPERLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0DB2E98EC4C00BA05A9 /* VIPERLoginPresenter.m */; };
+		04C2F0E82E98EC4C00BA05A9 /* VIPERLoginRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0DE2E98EC4C00BA05A9 /* VIPERLoginRouter.m */; };
+		04C2F0E92E98EC4C00BA05A9 /* MVVMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0D32E98EC4C00BA05A9 /* MVVMLoginViewController.m */; };
+		04C2F0EA2E98EC4C00BA05A9 /* MockAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0C52E98EC4C00BA05A9 /* MockAuthService.m */; };
+		04C2F0EB2E98EC4C00BA05A9 /* UserCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0C72E98EC4C00BA05A9 /* UserCredential.m */; };
+		04C2F0EC2E98EC4C00BA05A9 /* VIPERLoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0D92E98EC4C00BA05A9 /* VIPERLoginInteractor.m */; };
+		04C2F0ED2E98EC4C00BA05A9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 04C2F0D72E98EC4C00BA05A9 /* README.md */; };
 		404857BA34B9C9AB6F5E4714 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
 		90E04F79B6CBEA72A6701F04 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		C53BE3BD2E265E54004A72BE /* NativeWebViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */; };
@@ -1313,6 +1325,32 @@
 		046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBackgroundConfiguration+Extra.m"; sourceTree = "<group>"; };
 		046CFA7C2E978DF4005A88B4 /* UIButtonConfiguration+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButtonConfiguration+Extra.h"; sourceTree = "<group>"; };
 		046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButtonConfiguration+Extra.m"; sourceTree = "<group>"; };
+		04C2F0C32E98EC4C00BA05A9 /* AuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
+		04C2F0C42E98EC4C00BA05A9 /* MockAuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockAuthService.h; sourceTree = "<group>"; };
+		04C2F0C52E98EC4C00BA05A9 /* MockAuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockAuthService.m; sourceTree = "<group>"; };
+		04C2F0C62E98EC4C00BA05A9 /* UserCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCredential.h; sourceTree = "<group>"; };
+		04C2F0C72E98EC4C00BA05A9 /* UserCredential.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCredential.m; sourceTree = "<group>"; };
+		04C2F0C92E98EC4C00BA05A9 /* DemoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoListViewController.h; sourceTree = "<group>"; };
+		04C2F0CA2E98EC4C00BA05A9 /* DemoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoListViewController.m; sourceTree = "<group>"; };
+		04C2F0CC2E98EC4C00BA05A9 /* MVPLoginContracts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVPLoginContracts.h; sourceTree = "<group>"; };
+		04C2F0CD2E98EC4C00BA05A9 /* MVPLoginPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVPLoginPresenter.h; sourceTree = "<group>"; };
+		04C2F0CE2E98EC4C00BA05A9 /* MVPLoginPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVPLoginPresenter.m; sourceTree = "<group>"; };
+		04C2F0CF2E98EC4C00BA05A9 /* MVPLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVPLoginViewController.h; sourceTree = "<group>"; };
+		04C2F0D02E98EC4C00BA05A9 /* MVPLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVPLoginViewController.m; sourceTree = "<group>"; };
+		04C2F0D22E98EC4C00BA05A9 /* MVVMLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVVMLoginViewController.h; sourceTree = "<group>"; };
+		04C2F0D32E98EC4C00BA05A9 /* MVVMLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVVMLoginViewController.m; sourceTree = "<group>"; };
+		04C2F0D42E98EC4C00BA05A9 /* MVVMLoginViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVVMLoginViewModel.h; sourceTree = "<group>"; };
+		04C2F0D52E98EC4C00BA05A9 /* MVVMLoginViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVVMLoginViewModel.m; sourceTree = "<group>"; };
+		04C2F0D72E98EC4C00BA05A9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		04C2F0D82E98EC4C00BA05A9 /* VIPERLoginInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginInteractor.h; sourceTree = "<group>"; };
+		04C2F0D92E98EC4C00BA05A9 /* VIPERLoginInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPERLoginInteractor.m; sourceTree = "<group>"; };
+		04C2F0DA2E98EC4C00BA05A9 /* VIPERLoginPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginPresenter.h; sourceTree = "<group>"; };
+		04C2F0DB2E98EC4C00BA05A9 /* VIPERLoginPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPERLoginPresenter.m; sourceTree = "<group>"; };
+		04C2F0DC2E98EC4C00BA05A9 /* VIPERLoginProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginProtocols.h; sourceTree = "<group>"; };
+		04C2F0DD2E98EC4C00BA05A9 /* VIPERLoginRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginRouter.h; sourceTree = "<group>"; };
+		04C2F0DE2E98EC4C00BA05A9 /* VIPERLoginRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPERLoginRouter.m; sourceTree = "<group>"; };
+		04C2F0DF2E98EC4C00BA05A9 /* VIPERLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginViewController.h; sourceTree = "<group>"; };
+		04C2F0E02E98EC4C00BA05A9 /* VIPERLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPERLoginViewController.m; sourceTree = "<group>"; };
 		20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40ED0B9FDF5152B123562CEA /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3911,6 +3949,79 @@
 			path = UIButtonConfiguration;
 			sourceTree = "<group>";
 		};
+		04C2F0B22E98E7B000BA05A9 /* 架构探究 */ = {
+			isa = PBXGroup;
+			children = (
+				04C2F0C82E98EC4C00BA05A9 /* Common */,
+				04C2F0CB2E98EC4C00BA05A9 /* List */,
+				04C2F0D12E98EC4C00BA05A9 /* MVP */,
+				04C2F0D62E98EC4C00BA05A9 /* MVVM */,
+				04C2F0D72E98EC4C00BA05A9 /* README.md */,
+				04C2F0E12E98EC4C00BA05A9 /* VIPER */,
+			);
+			path = "架构探究";
+			sourceTree = "<group>";
+		};
+		04C2F0C82E98EC4C00BA05A9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				04C2F0C32E98EC4C00BA05A9 /* AuthService.h */,
+				04C2F0C42E98EC4C00BA05A9 /* MockAuthService.h */,
+				04C2F0C52E98EC4C00BA05A9 /* MockAuthService.m */,
+				04C2F0C62E98EC4C00BA05A9 /* UserCredential.h */,
+				04C2F0C72E98EC4C00BA05A9 /* UserCredential.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		04C2F0CB2E98EC4C00BA05A9 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				04C2F0C92E98EC4C00BA05A9 /* DemoListViewController.h */,
+				04C2F0CA2E98EC4C00BA05A9 /* DemoListViewController.m */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		04C2F0D12E98EC4C00BA05A9 /* MVP */ = {
+			isa = PBXGroup;
+			children = (
+				04C2F0CC2E98EC4C00BA05A9 /* MVPLoginContracts.h */,
+				04C2F0CD2E98EC4C00BA05A9 /* MVPLoginPresenter.h */,
+				04C2F0CE2E98EC4C00BA05A9 /* MVPLoginPresenter.m */,
+				04C2F0CF2E98EC4C00BA05A9 /* MVPLoginViewController.h */,
+				04C2F0D02E98EC4C00BA05A9 /* MVPLoginViewController.m */,
+			);
+			path = MVP;
+			sourceTree = "<group>";
+		};
+		04C2F0D62E98EC4C00BA05A9 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				04C2F0D22E98EC4C00BA05A9 /* MVVMLoginViewController.h */,
+				04C2F0D32E98EC4C00BA05A9 /* MVVMLoginViewController.m */,
+				04C2F0D42E98EC4C00BA05A9 /* MVVMLoginViewModel.h */,
+				04C2F0D52E98EC4C00BA05A9 /* MVVMLoginViewModel.m */,
+			);
+			path = MVVM;
+			sourceTree = "<group>";
+		};
+		04C2F0E12E98EC4C00BA05A9 /* VIPER */ = {
+			isa = PBXGroup;
+			children = (
+				04C2F0D82E98EC4C00BA05A9 /* VIPERLoginInteractor.h */,
+				04C2F0D92E98EC4C00BA05A9 /* VIPERLoginInteractor.m */,
+				04C2F0DA2E98EC4C00BA05A9 /* VIPERLoginPresenter.h */,
+				04C2F0DB2E98EC4C00BA05A9 /* VIPERLoginPresenter.m */,
+				04C2F0DC2E98EC4C00BA05A9 /* VIPERLoginProtocols.h */,
+				04C2F0DD2E98EC4C00BA05A9 /* VIPERLoginRouter.h */,
+				04C2F0DE2E98EC4C00BA05A9 /* VIPERLoginRouter.m */,
+				04C2F0DF2E98EC4C00BA05A9 /* VIPERLoginViewController.h */,
+				04C2F0E02E98EC4C00BA05A9 /* VIPERLoginViewController.m */,
+			);
+			path = VIPER;
+			sourceTree = "<group>";
+		};
 		064F8B1BE36F6BEECAF8233E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -4621,6 +4732,7 @@
 		C55C7AB92E167B5D00B56985 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				04C2F0B22E98E7B000BA05A9 /* 架构探究 */,
 				C53BE3B62E265E1F004A72BE /* Flutter */,
 				C55C7B6D2E167B5E00B56985 /* 本地通知 */,
 				C55C7B8F2E167B5E00B56985 /* 测试剪切板提示关闭 */,
@@ -17397,6 +17509,7 @@
 				C55C8DA12E167B6D00B56985 /* JobsBlock.md in Resources */,
 				C55C8E712E167B6E00B56985 /* NotoSansDisplay_Condensed-ExtraBold.ttf in Resources */,
 				C55C8CDF2E167B6C00B56985 /* RYCuteView.webp in Resources */,
+				04C2F0ED2E98EC4C00BA05A9 /* README.md in Resources */,
 				C55C8CFC2E167B6D00B56985 /* 输入框样式_2.png in Resources */,
 				C55C8D842E167B6D00B56985 /* gesture_indicator_normal@2x.png in Resources */,
 				C55C8B552E167B6A00B56985 /* iOS 获取手机型号、系统版本.png in Resources */,
@@ -17948,6 +18061,17 @@
 				C55C8C2A2E167B6B00B56985 /* NSObject+GTCaptcha4.m in Sources */,
 				C55C8A762E167B6A00B56985 /* JobsInfoTBVCell.m in Sources */,
 				C55C8D902E167B6D00B56985 /* JobsBasePopupView.m in Sources */,
+				04C2F0E22E98EC4C00BA05A9 /* MVPLoginViewController.m in Sources */,
+				04C2F0E32E98EC4C00BA05A9 /* MVPLoginPresenter.m in Sources */,
+				04C2F0E42E98EC4C00BA05A9 /* DemoListViewController.m in Sources */,
+				04C2F0E52E98EC4C00BA05A9 /* VIPERLoginViewController.m in Sources */,
+				04C2F0E62E98EC4C00BA05A9 /* MVVMLoginViewModel.m in Sources */,
+				04C2F0E72E98EC4C00BA05A9 /* VIPERLoginPresenter.m in Sources */,
+				04C2F0E82E98EC4C00BA05A9 /* VIPERLoginRouter.m in Sources */,
+				04C2F0E92E98EC4C00BA05A9 /* MVVMLoginViewController.m in Sources */,
+				04C2F0EA2E98EC4C00BA05A9 /* MockAuthService.m in Sources */,
+				04C2F0EB2E98EC4C00BA05A9 /* UserCredential.m in Sources */,
+				04C2F0EC2E98EC4C00BA05A9 /* VIPERLoginInteractor.m in Sources */,
 				C55C8B7D2E167B6B00B56985 /* NSString+ID.m in Sources */,
 				C55C8B802E167B6B00B56985 /* NSString+Path.m in Sources */,
 				C55C89E32E167B6900B56985 /* FMDB_VC.m in Sources */,
