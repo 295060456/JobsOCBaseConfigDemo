@@ -244,6 +244,14 @@
 
 * [**图片占位符**](https://picsum.photos/)
 
+* [**帮小忙@腾讯QQ浏览器在线工具箱**](https://tool.browser.qq.com/)
+
+* [**Mac破解软件**](https://mac.macxz.com/)
+
+* [**波测**](https://www.boce.com/)
+
+* [**uuwallet@虚拟卡**](https://www.uuwallet.com/)
+
 * [**UI界面调试工具**](https://lookin.work/)](https://lookin.work/)（必须是有线连接，并且**`Lookin.app`**要先于项目文件启动）
 
   > ```ruby
