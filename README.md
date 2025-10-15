@@ -654,13 +654,70 @@ Current targets:
 
 * 脚本自动化打包工具：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
 
-### 11、🐢<font color=red>**马甲包**</font>  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 11、应用程序图片 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+#### 11.1、iOS <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+> 1️⃣ **@3x 的引入点是 iPhone 6 Plus（iOS 8）**。
+>  6/7/8 的 **非 Plus** 机型始终是 **@2x**；6/7/8 **Plus** 是 **@3x**（而且渲染 1242×2208 后再下采样到 1080×1920 显示，这是当年的 downsampling 特性）。
+>
+> 2️⃣ **后来大量机型是 @3x**：iPhone X、XS/XS Max、11 Pro/Pro Max、12/12 mini/12 Pro/Pro Max、13/13 mini/13 Pro/Pro Max、14/14 Plus/14 Pro/Pro Max、15/15 Plus/15 Pro/Pro Max（以及后续大多数）。
+>  **仍是 @2x 的典型**：iPhone XR、iPhone 11、各代 iPhone SE。
+>
+> 3️⃣ **iPad 到现在都没有 @3x**，都是 **@2x**（含 iPad Pro）。
+
+* 启动图
+  * 历史标准
+    * **iPhone 3GS**：320×480 → `Default~iphone.png`
+    * **iPhone 4/4S**（Retina）：640×960 → `Default@2x~iphone.png`
+    * **iPhone 5/5s/SE(1st)**：640×1136 → `Default-568h@2x~iphone.png`
+    * **iPhone 6/7/8**：750×1334 → `Default-667h@2x.png`（或 LaunchImage 槽位 `375w-667h@2x`）
+    * **iPhone 6/7/8 Plus**：1242×2208（系统缩放到 1080×1920 显示）→ `Default-736h@3x.png` / 槽位 `414w-736h@3x`
+    * **iPad（非 Retina）**：768×1024（竖）/ 1024×768（横）。**iPad Retina**：1536×2048（竖）/ 2048×1536（横）
+    * **iPhone X / XS**：1125×2436（竖）等刘海机型在静态图时代也有人配，但官方当时已更**鼓励用 Launch Storyboard 适配安全区**。
+  * 👉 当前，苹果已彻底废弃静态 **LaunchImage**，上架App Store多尺寸位图会被拒。必须用 **LaunchScreen.storyboard** 自适应布局（Auto Layout／Safe Area／矢量或等比约束）。<font color=red>**如果非要放品牌图，用约束让它自适应 @2x/@3x，而不是提交一堆固定像素图**</font>
+* 应用程序图标
+  * App Store（营销图标）：**1024×1024 px**，**不允许透明**（无 alpha）
+  * 在设备上的必需尺寸（像素）
+    * iPhone 主屏：**180×180**（@3x），**120×120**（@2x）
+    * iPad 主屏：**167×167**（iPad Pro），**152×152**（iPad）
+    * Spotlight：**120×120**（iPhone @3x）、**80×80**（@2x，含 iPad）
+    * 设置（Settings）：**87×87**（@3x iPhone）、**58×58**（@2x，含 iPad）
+    * 通知（Notifications）：**60×60**（@3x iPhone）、**40×40**（@2x，含 iPad）
+
+#### 11.2、Android <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+> ldpi：（@0.75x）
+
+* 启动图
+  * 品牌横幅：**200×80 dp** →
+    * mdpi：200×80 （@1x）
+    * hdpi：300×120（@1.5x）
+    * xhdpi：400×160（@2x）
+    * xxhdpi：600×240（@3x）
+    * xxxhdpi：800×320（@4x）
+* 应用程序图标
+  * 带背景的应用图标：**240×240 dp**（内容需装进 **160 dp** 直径圆内）
+    * mdpi：240；360；480；720；960 px
+  * 无背景的应用图标：**288×288 dp**（内容需装进 **192 dp** 圆内）
+    * mdpi：288；432；576；864；1152 px
+  * **自适应图标（Adaptive Icon，API 26+）**：前景层 + 背景层 **各 108×108 dp** 画布；**前景可视安全区建议 ≤66×66 dp**，四周 **18 dp** 供蒙版/动效裁切。常见像素导出：
+    * mdpi：108 px
+    * hdpi：162 px
+    * xhdpi：216 px
+    * xxhdpi：324 px
+    * xxxhdpi：432 px
+  * **旧设备（Legacy Launcher 图标）**（如仍需兼容）：48、72、96、144、192 px（mdpi…xxxhdpi）
+  * **Google Play 上架图标（商店用）**：**512×512 px, 32-bit PNG, sRGB，≤1MB**（Play 会统一蒙版/投影）。这与启动器图标不同，单独上传。
+
+### 12、🐢<font color=red>**马甲包**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
   * 相关资料
     * https://github.com/520coding/confuse/blob/master/README_ZH.md
   * 相关工具
     * [**confuse**](https://github.com/520coding/confuse)
 
-### 12、 打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://)  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 13、 打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > ```url
 > feedbackassistant://
@@ -803,7 +860,7 @@ classDiagram
 
 ```
 
-### 3、**`UIViewModelFamily`（将持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
+### 3、**`UIViewModelFamily`（将持续更新）<a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
