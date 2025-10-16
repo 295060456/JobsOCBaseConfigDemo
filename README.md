@@ -11749,7 +11749,181 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 
 ![image-20251001161600357](./assets/image-20251001161600357.png)
 
-### 76、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 76、[📖](https://sdwebimage.github.io/documentation/sdwebimage/) [**`SDWebImage`**](https://github.com/SDWebImage/SDWebImage) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+#### 76.1、`SDAnimatedImage` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* **SDAnimatedImage 是 [`SDWebImage`](https://github.com/SDWebImage/SDWebImage) 提供的“可播放的动态图像对象”**（继承自 `UIImage`），搭配 **`SDAnimatedImageView`** 来播放。它解决了 `UIImage.animatedImage…` 一次性把所有帧解码进内存、容易内存暴涨/掉帧的问题
+
+  * **按需解码**：不是把 **GIF**/**APNG**/**WebP** 全部帧一次性放进内存，而是“边播边解码 + 帧缓存策略”，显著降低峰值内存
+  * **多格式动画**：不仅是 **GIF**，还支持 **APNG**、**WebP**、**HEIC**/**HEIF**、**AVIF** 等（通过对应 coder 插件）
+  * **可控缓存**：有最大缓冲区、帧复用等策略，平衡 **CPU 解码** 🆚 **内存占用**
+  * **即插即用**：API 形态跟 `UIImage` 相近；只要把 `SDAnimatedImage` 赋给 `SDAnimatedImageView.image` 就能平滑播放
+  * **更顺滑**：基于 `CADisplayLink` 的驱动，按每帧的真实 duration 播放，不容易掉帧或节奏不对
+
+* 和系统 `UIImage.animatedImage…` 的差异
+
+  | 点       | `UIImage.animatedImage` | `SDAnimatedImage`                                     |
+  | -------- | ----------------------- | ----------------------------------------------------- |
+  | 解码策略 | 预解所有帧              | 按需解码 + 帧缓存                                     |
+  | 内存峰值 | 高（帧数×分辨率×通道）  | 低很多                                                |
+  | 支持格式 | 主要 **GIF**            | **GIF**/**APNG**/**WebP**/**HEIC**/**AVIF**（配插件） |
+  | 播放视图 | `UIImageView`           | `SDAnimatedImageView`（更顺滑、控件化）               |
+
+* 使用方式
+
+  * 一次性注册（AppDelegate）
+
+    ```objective-c
+    // AppDelegate.m
+    @import SDWebImage;
+    @import SDWebImageWebPCoder;   // 需要 WebP 动图就加
+    //#import <SDWebImageAVIFCoder/SDImageAVIFCoder.h> // 需要 AVIF 的话
+    
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+        [[SDImageCodersManager sharedManager] addCoder:[SDImageWebPCoder sharedCoder]];
+        // [[SDImageCodersManager sharedManager] addCoder:[SDImageAVIFCoder sharedCoder]];
+        return YES;
+    }
+    ```
+
+  * 基础播放（本地 Data / Bundle 文件）
+
+    ```objective-c
+    @import SDWebImage;
+    
+    SDAnimatedImageView *imageView = [SDAnimatedImageView new];
+    imageView.frame = CGRectMake(20, 100, 200, 200);
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:imageView];
+    
+    // 从 data 构造
+    NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"demo" ofType:@"gif"]];
+    SDAnimatedImage *anim = [[SDAnimatedImage alloc] initWithData:data scale:[UIScreen mainScreen].scale];
+    imageView.image = anim;           // 关键：用 SDAnimatedImageView 播放 SDAnimatedImage
+    imageView.animationRepeatCount = 0; // 0 = 无限循环
+    // [imageView startAnimating];     // 通常设置 image 后会自动播放
+    ```
+
+  * 从 URL 加载（最常见）
+
+    ```objective-c
+    @import SDWebImage;
+    
+    SDAnimatedImageView *iv = [SDAnimatedImageView new];
+    iv.frame = CGRectMake(20, 320, 200, 200);
+    iv.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:iv];
+    
+    NSURL *url = [NSURL URLWithString:@"https://example.com/a.webp"];
+    SDWebImageOptions opts = SDWebImageRetryFailed | SDWebImageHighPriority; // 举例
+    [iv sd_setImageWithURL:url
+           placeholderImage:nil
+                    options:opts
+                   progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                       // 需要的话做进度 UI
+                   }
+                  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                      if (error) {
+                          NSLog(@"load error: %@", error);
+                      }
+                  }];
+    ```
+
+  * **`UITableViewCell`** 场景（复用安全、停止/启动动画）
+
+    ```objective-c
+    // AnimatedImageCell.h
+    @import UIKit;
+    @class SDAnimatedImageView;
+    
+    @interface AnimatedImageCell : UITableViewCell
+    - (void)configWithURL:(NSURL *)url;
+    @end
+    ```
+
+    ```objective-c
+    // AnimatedImageCell.m
+    @import SDWebImage;
+    #import "AnimatedImageCell.h"
+    
+    @interface AnimatedImageCell ()
+    @property (nonatomic, strong) SDAnimatedImageView *gifView;
+    @end
+    
+    @implementation AnimatedImageCell
+    
+    - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+        if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+            _gifView = [SDAnimatedImageView new];
+            _gifView.contentMode = UIViewContentModeScaleAspectFill;
+            _gifView.clipsToBounds = YES;
+            [self.contentView addSubview:_gifView];
+        }
+        return self;
+    }
+    
+    - (void)layoutSubviews {
+        [super layoutSubviews];
+        _gifView.frame = self.contentView.bounds;
+    }
+    
+    - (void)prepareForReuse {
+        [super prepareForReuse];
+        // 复用前停止并清理旧图，避免错播 & CPU 浪费
+        [_gifView stopAnimating];
+        [_gifView sd_cancelCurrentImageLoad];
+        _gifView.image = nil;
+    }
+    
+    - (void)configWithURL:(NSURL *)url {
+        // 也可以设置占位图
+        [_gifView sd_setImageWithURL:url
+                    placeholderImage:nil
+                             options:(SDWebImageRetryFailed | SDWebImageLowPriority)
+                            progress:nil
+                           completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (error) {
+                NSLog(@"gif load failed: %@", error);
+            }
+            // 加载完成后会自动播；若需手控：[_gifView startAnimating];
+        }];
+    }
+    
+    @end
+    ```
+
+  * 常见控制 & 参数
+
+    ```objective-c
+    // 停止/开始
+    [imageView stopAnimating];
+    [imageView startAnimating];
+    
+    // 循环次数（0 = 无限）
+    imageView.animationRepeatCount = 0;
+    
+    // 仅第一帧占位（滚动列表省电）
+    imageView.shouldCustomLoopCount = NO; // 默认 NO
+    imageView.autoPlayAnimatedImage = YES; // 默认 YES
+    
+    // 全局/单图编码选项（比如禁用解码预拉伸）
+    SDWebImageContext *ctx = @{
+        SDWebImageContextImageScaleFactor : @(UIScreen.mainScreen.scale),
+        SDWebImageContextAnimatedImageClass : SDAnimatedImage.class, // 明确指定
+    };
+    [imageView sd_setImageWithURL:url placeholderImage:nil options:0 context:ctx];
+    
+    // 限制内存帧缓存（更细：SDAnimatedImageView 有 maxBufferSize；新版本已内部自适应）
+    ```
+
+* 特别注意
+
+  * **一定用 `SDAnimatedImageView`** 来播 `SDAnimatedImage`，不要用系统 `UIImageView`。
+  * 需要 **WebP**/**AVIF** 等，**别忘装对应 coder 插件并注册**。
+  * 超大、超长动图仍会吃 CPU，必要时**限制尺寸/帧率或懒加载**。
+
+### 77、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 
