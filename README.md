@@ -140,6 +140,7 @@
 * [**Git的使用**](TODO)
 * [**同一应用设置不同图标和名称**](TODO)
 * [**Mac配置个人热点**](TODO)
+* [**苹果开发者账户续费**](https://account.apple.com/account/manage/section/payment)
 
 ### 2、面试相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
@@ -210,6 +211,7 @@
 ### 5、其他研究 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * [**LYM的研究成果**](TODO)
+* [**创建自定义模版**](https://juejin.cn/post/6974702344021737485)
 * [**iOS项目常用的第三方框架**](https://www.cnblogs.com/sundaysgarden/articles/14208764.html)
 * [**滚动数字显示**](https://github.com/lf19940514/LFScrollNumberDemo)
 * https://github.com/SeongBrave/Swift__OC/blob/master/README.md?plain=1
