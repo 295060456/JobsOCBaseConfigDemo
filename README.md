@@ -226,9 +226,9 @@
   * [**创建Framework**](https://github.com/yanmingLiu/Xminds/blob/main/iOS/%E5%88%9B%E5%BB%BAFramework.md)
   * [**计算机底层的秘密**](TODO)
 
-## 四、🧨开发周边支持 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## 四、🧨开发支持 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### 1、相关软件支持 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 1、周边相关支持 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * [**过期的模拟器配件**](https://github.com/295060456/Xcode_Sys_lib)
 
@@ -254,11 +254,18 @@
 
 * [**uuwallet@虚拟卡**](https://www.uuwallet.com/)
 
-* [**UI界面调试工具**](https://lookin.work/)](https://lookin.work/)（必须是有线连接，并且**`Lookin.app`**要先于项目文件启动）
+* **注入调试工具**
 
-  > ```ruby
-  > pod 'LookinServer', :configurations => ['Debug']
-  > ```
+  * 同时支持 [**Swift**](https://developer.apple.com/swift/), **Objc**& **C++ **的代码热重载工具！
+
+    * [**InjectionIII**](https://github.com/johnno1962/InjectionIII)
+    * [**InjectionNext**](https://github.com/johnno1962/InjectionNext)
+
+  * [**UI界面调试工具**](https://lookin.work/)（必须是有线连接，并且**`Lookin.app`**要先于项目文件启动）
+
+    > ```ruby
+    > pod 'LookinServer', :configurations => ['Debug']
+    > ```
 
 ### 2、几点特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
