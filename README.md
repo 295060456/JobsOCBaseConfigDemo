@@ -12051,6 +12051,17 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 
   > **运行时调用时，会执行分类的方法，覆盖主类的实现**
 
+* 为什么在[**Masonry**](https://github.com/SnapKit/Masonry)/[**SnapKit**](https://github.com/SnapKit/SnapKit)里面可以不用**weak**化的`self`❓
+
+  * 因为 [**Masonry**](https://github.com/SnapKit/Masonry)/[**SnapKit**](https://github.com/SnapKit/SnapKit) 的约束闭包是**同步执行、不会被保存（non-escaping）**的
+  
+    > `mas_makeConstraints:` 的实现本质上就是：创建一个 `MASConstraintMaker`，**立刻**调用你传进来的 **block**，然后安装约束，整个过程当场结束，不会把 **block** 存到任何被 `self` 持有的地方，自然也就**不会形成 self ↔︎ block 的循环引用**。
+  
+  * 只有当**闭包会被保存/逃逸**时才需要 `weak self`，例如：
+  
+    - 把 **block** 存成 `self.someBlock = ^{ ... self ... };`（典型循环引用）
+    - 传给会把 **block** 保存在属性里的对象，而这个对象又被 `self` 强持有
+  
 * 那么如果在两个分类文件里面都写了同一个名方法，在实际调用的时候，执行谁 ❓
 
   * 最终在运行时注册类方法表时，**后加载的分类会覆盖前面的**；（后编译进二进制的分类实现）
