@@ -11,19 +11,7 @@
 		044273872E8148680084B25C /* JobsScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 044273852E8148680084B25C /* JobsScale.m */; };
 		046CFA7A2E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */; };
 		046CFA7E2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */; };
-		04C2F0E22E98EC4C00BA05A9 /* MVPLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0D02E98EC4C00BA05A9 /* MVPLoginViewController.m */; };
-		04C2F0E32E98EC4C00BA05A9 /* MVPLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0CE2E98EC4C00BA05A9 /* MVPLoginPresenter.m */; };
-		04C2F0E42E98EC4C00BA05A9 /* DemoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0CA2E98EC4C00BA05A9 /* DemoListViewController.m */; };
-		04C2F0E52E98EC4C00BA05A9 /* VIPERLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0E02E98EC4C00BA05A9 /* VIPERLoginViewController.m */; };
-		04C2F0E62E98EC4C00BA05A9 /* MVVMLoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0D52E98EC4C00BA05A9 /* MVVMLoginViewModel.m */; };
-		04C2F0E72E98EC4C00BA05A9 /* VIPERLoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0DB2E98EC4C00BA05A9 /* VIPERLoginPresenter.m */; };
-		04C2F0E82E98EC4C00BA05A9 /* VIPERLoginRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0DE2E98EC4C00BA05A9 /* VIPERLoginRouter.m */; };
-		04C2F0E92E98EC4C00BA05A9 /* MVVMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0D32E98EC4C00BA05A9 /* MVVMLoginViewController.m */; };
-		04C2F0EA2E98EC4C00BA05A9 /* MockAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0C52E98EC4C00BA05A9 /* MockAuthService.m */; };
-		04C2F0EB2E98EC4C00BA05A9 /* UserCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0C72E98EC4C00BA05A9 /* UserCredential.m */; };
-		04C2F0EC2E98EC4C00BA05A9 /* VIPERLoginInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2F0D92E98EC4C00BA05A9 /* VIPERLoginInteractor.m */; };
-		04C2F0ED2E98EC4C00BA05A9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 04C2F0D72E98EC4C00BA05A9 /* README.md */; };
-		404857BA34B9C9AB6F5E4714 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
+		04BF805A2EB213E6008E2F2A /* NSString+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF80592EB213E6008E2F2A /* NSString+Image.m */; };
 		90E04F79B6CBEA72A6701F04 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		C53BE3BD2E265E54004A72BE /* NativeWebViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */; };
 		C53BE3C12E265EAC004A72BE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3C02E265EAC004A72BE /* WebViewController.m */; };
@@ -647,7 +635,6 @@
 		C55C8C282E167B6B00B56985 /* toastLoading.gif in Resources */ = {isa = PBXBuildFile; fileRef = C55C82CB2E167B6300B56985 /* toastLoading.gif */; };
 		C55C8C292E167B6B00B56985 /* NSObject+WHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82CC2E167B6300B56985 /* NSObject+WHToast.m */; };
 		C55C8C2A2E167B6B00B56985 /* NSObject+GTCaptcha4.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82CF2E167B6300B56985 /* NSObject+GTCaptcha4.m */; };
-		C55C8C2B2E167B6B00B56985 /* NSObject+LiveChat.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82D32E167B6300B56985 /* NSObject+LiveChat.m */; };
 		C55C8C2C2E167B6B00B56985 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82D52E167B6300B56985 /* NSObject+YTKRequest.m */; };
 		C55C8C2D2E167B6B00B56985 /* NSObject+SPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82D92E167B6300B56985 /* NSObject+SPAlertController.m */; };
 		C55C8C2E2E167B6B00B56985 /* NSObject+SYSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82DC2E167B6300B56985 /* NSObject+SYSAlertController.m */; };
@@ -1297,7 +1284,6 @@
 		C55C8EE72E167B6F00B56985 /* HXPhotoManager+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C893B2E167B6800B56985 /* HXPhotoManager+Extra.m */; };
 		C55C8EE82E167B6F00B56985 /* HXPhotoView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C893D2E167B6800B56985 /* HXPhotoView+Extra.m */; };
 		C5DBF4F62E16C05B00032B4B /* ZFIJKPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DBF4F52E16C05A00032B4B /* ZFIJKPlayerManager.m */; };
-		E5E8573CD5074D0B634BC586 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C490D4DC0FD2DAD112B84C8 /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1325,40 +1311,11 @@
 		046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBackgroundConfiguration+Extra.m"; sourceTree = "<group>"; };
 		046CFA7C2E978DF4005A88B4 /* UIButtonConfiguration+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButtonConfiguration+Extra.h"; sourceTree = "<group>"; };
 		046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButtonConfiguration+Extra.m"; sourceTree = "<group>"; };
-		04C2F0C32E98EC4C00BA05A9 /* AuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
-		04C2F0C42E98EC4C00BA05A9 /* MockAuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockAuthService.h; sourceTree = "<group>"; };
-		04C2F0C52E98EC4C00BA05A9 /* MockAuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockAuthService.m; sourceTree = "<group>"; };
-		04C2F0C62E98EC4C00BA05A9 /* UserCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCredential.h; sourceTree = "<group>"; };
-		04C2F0C72E98EC4C00BA05A9 /* UserCredential.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCredential.m; sourceTree = "<group>"; };
-		04C2F0C92E98EC4C00BA05A9 /* DemoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoListViewController.h; sourceTree = "<group>"; };
-		04C2F0CA2E98EC4C00BA05A9 /* DemoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoListViewController.m; sourceTree = "<group>"; };
-		04C2F0CC2E98EC4C00BA05A9 /* MVPLoginContracts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVPLoginContracts.h; sourceTree = "<group>"; };
-		04C2F0CD2E98EC4C00BA05A9 /* MVPLoginPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVPLoginPresenter.h; sourceTree = "<group>"; };
-		04C2F0CE2E98EC4C00BA05A9 /* MVPLoginPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVPLoginPresenter.m; sourceTree = "<group>"; };
-		04C2F0CF2E98EC4C00BA05A9 /* MVPLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVPLoginViewController.h; sourceTree = "<group>"; };
-		04C2F0D02E98EC4C00BA05A9 /* MVPLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVPLoginViewController.m; sourceTree = "<group>"; };
-		04C2F0D22E98EC4C00BA05A9 /* MVVMLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVVMLoginViewController.h; sourceTree = "<group>"; };
-		04C2F0D32E98EC4C00BA05A9 /* MVVMLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVVMLoginViewController.m; sourceTree = "<group>"; };
-		04C2F0D42E98EC4C00BA05A9 /* MVVMLoginViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MVVMLoginViewModel.h; sourceTree = "<group>"; };
-		04C2F0D52E98EC4C00BA05A9 /* MVVMLoginViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MVVMLoginViewModel.m; sourceTree = "<group>"; };
-		04C2F0D72E98EC4C00BA05A9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		04C2F0D82E98EC4C00BA05A9 /* VIPERLoginInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginInteractor.h; sourceTree = "<group>"; };
-		04C2F0D92E98EC4C00BA05A9 /* VIPERLoginInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPERLoginInteractor.m; sourceTree = "<group>"; };
-		04C2F0DA2E98EC4C00BA05A9 /* VIPERLoginPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginPresenter.h; sourceTree = "<group>"; };
-		04C2F0DB2E98EC4C00BA05A9 /* VIPERLoginPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPERLoginPresenter.m; sourceTree = "<group>"; };
-		04C2F0DC2E98EC4C00BA05A9 /* VIPERLoginProtocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginProtocols.h; sourceTree = "<group>"; };
-		04C2F0DD2E98EC4C00BA05A9 /* VIPERLoginRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginRouter.h; sourceTree = "<group>"; };
-		04C2F0DE2E98EC4C00BA05A9 /* VIPERLoginRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPERLoginRouter.m; sourceTree = "<group>"; };
-		04C2F0DF2E98EC4C00BA05A9 /* VIPERLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIPERLoginViewController.h; sourceTree = "<group>"; };
-		04C2F0E02E98EC4C00BA05A9 /* VIPERLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIPERLoginViewController.m; sourceTree = "<group>"; };
+		04BF80582EB213E6008E2F2A /* NSString+Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Image.h"; sourceTree = "<group>"; };
+		04BF80592EB213E6008E2F2A /* NSString+Image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Image.m"; sourceTree = "<group>"; };
 		20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
-		2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40ED0B9FDF5152B123562CEA /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		458ACDF4054C46DCE5931882 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		5C490D4DC0FD2DAD112B84C8 /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		783BEB47B91611719A54A8B7 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; sourceTree = "<group>"; };
-		A005B1F583EEB5024538D01D /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C53BE3BA2E265E39004A72BE /* JobsOCBaseConfigDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JobsOCBaseConfigDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		C53BE3BB2E265E54004A72BE /* NativeWebViewPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeWebViewPlugin.h; sourceTree = "<group>"; };
 		C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeWebViewPlugin.m; sourceTree = "<group>"; };
@@ -3868,7 +3825,6 @@
 		C5DBF5F72E16CAE000032B4B /* JobsLaunchAdMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLaunchAdMgr.m; sourceTree = "<group>"; };
 		C5DBF5F92E16CAE100032B4B /* JobsLaunchAdMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLaunchAdMgr.h; sourceTree = "<group>"; };
 		C5DBF5FA2E16CAE100032B4B /* JobsLaunchAdMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLaunchAdMgr.m; sourceTree = "<group>"; };
-		E41B151CB291889500AB8F89 /* Pods-JobsOCBaseConfigDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3899,7 +3855,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5E8573CD5074D0B634BC586 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3907,7 +3862,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				404857BA34B9C9AB6F5E4714 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3949,85 +3903,28 @@
 			path = UIButtonConfiguration;
 			sourceTree = "<group>";
 		};
-		04C2F0B22E98E7B000BA05A9 /* 架构探究 */ = {
+		04BF80542EB20FA7008E2F2A /* storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				04C2F0C82E98EC4C00BA05A9 /* Common */,
-				04C2F0CB2E98EC4C00BA05A9 /* List */,
-				04C2F0D12E98EC4C00BA05A9 /* MVP */,
-				04C2F0D62E98EC4C00BA05A9 /* MVVM */,
-				04C2F0D72E98EC4C00BA05A9 /* README.md */,
-				04C2F0E12E98EC4C00BA05A9 /* VIPER */,
+				C55C79692E16748E00B56985 /* Main.storyboard */,
+				C55C79712E16749000B56985 /* LaunchScreen.storyboard */,
 			);
-			path = "架构探究";
+			path = storyboard;
 			sourceTree = "<group>";
 		};
-		04C2F0C82E98EC4C00BA05A9 /* Common */ = {
+		04BF80552EB213A4008E2F2A /* NSString+Image */ = {
 			isa = PBXGroup;
 			children = (
-				04C2F0C32E98EC4C00BA05A9 /* AuthService.h */,
-				04C2F0C42E98EC4C00BA05A9 /* MockAuthService.h */,
-				04C2F0C52E98EC4C00BA05A9 /* MockAuthService.m */,
-				04C2F0C62E98EC4C00BA05A9 /* UserCredential.h */,
-				04C2F0C72E98EC4C00BA05A9 /* UserCredential.m */,
+				04BF80582EB213E6008E2F2A /* NSString+Image.h */,
+				04BF80592EB213E6008E2F2A /* NSString+Image.m */,
 			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		04C2F0CB2E98EC4C00BA05A9 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				04C2F0C92E98EC4C00BA05A9 /* DemoListViewController.h */,
-				04C2F0CA2E98EC4C00BA05A9 /* DemoListViewController.m */,
-			);
-			path = List;
-			sourceTree = "<group>";
-		};
-		04C2F0D12E98EC4C00BA05A9 /* MVP */ = {
-			isa = PBXGroup;
-			children = (
-				04C2F0CC2E98EC4C00BA05A9 /* MVPLoginContracts.h */,
-				04C2F0CD2E98EC4C00BA05A9 /* MVPLoginPresenter.h */,
-				04C2F0CE2E98EC4C00BA05A9 /* MVPLoginPresenter.m */,
-				04C2F0CF2E98EC4C00BA05A9 /* MVPLoginViewController.h */,
-				04C2F0D02E98EC4C00BA05A9 /* MVPLoginViewController.m */,
-			);
-			path = MVP;
-			sourceTree = "<group>";
-		};
-		04C2F0D62E98EC4C00BA05A9 /* MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				04C2F0D22E98EC4C00BA05A9 /* MVVMLoginViewController.h */,
-				04C2F0D32E98EC4C00BA05A9 /* MVVMLoginViewController.m */,
-				04C2F0D42E98EC4C00BA05A9 /* MVVMLoginViewModel.h */,
-				04C2F0D52E98EC4C00BA05A9 /* MVVMLoginViewModel.m */,
-			);
-			path = MVVM;
-			sourceTree = "<group>";
-		};
-		04C2F0E12E98EC4C00BA05A9 /* VIPER */ = {
-			isa = PBXGroup;
-			children = (
-				04C2F0D82E98EC4C00BA05A9 /* VIPERLoginInteractor.h */,
-				04C2F0D92E98EC4C00BA05A9 /* VIPERLoginInteractor.m */,
-				04C2F0DA2E98EC4C00BA05A9 /* VIPERLoginPresenter.h */,
-				04C2F0DB2E98EC4C00BA05A9 /* VIPERLoginPresenter.m */,
-				04C2F0DC2E98EC4C00BA05A9 /* VIPERLoginProtocols.h */,
-				04C2F0DD2E98EC4C00BA05A9 /* VIPERLoginRouter.h */,
-				04C2F0DE2E98EC4C00BA05A9 /* VIPERLoginRouter.m */,
-				04C2F0DF2E98EC4C00BA05A9 /* VIPERLoginViewController.h */,
-				04C2F0E02E98EC4C00BA05A9 /* VIPERLoginViewController.m */,
-			);
-			path = VIPER;
+			path = "NSString+Image";
 			sourceTree = "<group>";
 		};
 		064F8B1BE36F6BEECAF8233E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */,
-				5C490D4DC0FD2DAD112B84C8 /* Pods_JobsOCBaseConfigDemoTests.framework */,
-				2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4037,10 +3934,6 @@
 			children = (
 				40ED0B9FDF5152B123562CEA /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */,
 				20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */,
-				E41B151CB291889500AB8F89 /* Pods-JobsOCBaseConfigDemoTests.debug.xcconfig */,
-				783BEB47B91611719A54A8B7 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */,
-				A005B1F583EEB5024538D01D /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */,
-				458ACDF4054C46DCE5931882 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -4109,8 +4002,6 @@
 				C55C7A152E167B5D00B56985 /* 业务逻辑 */,
 				C55C7E892E167B6000B56985 /* Info.plist */,
 				C55C88F32E167B6800B56985 /* JobsOCBaseConfigDemoPrefixHeader.pch */,
-				C55C79692E16748E00B56985 /* Main.storyboard */,
-				C55C79712E16749000B56985 /* LaunchScreen.storyboard */,
 				C55C79742E16749000B56985 /* JobsOCBaseConfigDemo.entitlements */,
 			);
 			path = JobsOCBaseConfigDemo;
@@ -4732,7 +4623,6 @@
 		C55C7AB92E167B5D00B56985 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
-				04C2F0B22E98E7B000BA05A9 /* 架构探究 */,
 				C53BE3B62E265E1F004A72BE /* Flutter */,
 				C55C7B6D2E167B5E00B56985 /* 本地通知 */,
 				C55C7B8F2E167B5E00B56985 /* 测试剪切板提示关闭 */,
@@ -8315,10 +8205,10 @@
 		C55C7E8A2E167B6200B56985 /* JobsOCBaseCustomizeUIKitCore */ = {
 			isa = PBXGroup;
 			children = (
-				046CFA7B2E978DE9005A88B4 /* UIButtonConfiguration */,
-				046CFA742E97897A005A88B4 /* UIBackgroundConfiguration */,
 				C55C7FD52E167B6200B56985 /* JobsMakes.h */,
 				C55C7FDF2E167B6200B56985 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				046CFA7B2E978DE9005A88B4 /* UIButtonConfiguration */,
+				046CFA742E97897A005A88B4 /* UIBackgroundConfiguration */,
 				C55C7E8B2E167B6200B56985 /* NSTextCheckingResult */,
 				C55C7E8E2E167B6200B56985 /* PDFDocument */,
 				C55C7E912E167B6200B56985 /* UIImage */,
@@ -10198,6 +10088,7 @@
 		C55C808E2E167B6200B56985 /* NSString+Category */ = {
 			isa = PBXGroup;
 			children = (
+				04BF80552EB213A4008E2F2A /* NSString+Image */,
 				C55C808F2E167B6200B56985 /* NSString+Conversion */,
 				C55C80922E167B6200B56985 /* NSString+WKWebView */,
 				C55C80952E167B6200B56985 /* NSString+Others */,
@@ -10239,8 +10130,8 @@
 		C55C80952E167B6200B56985 /* NSString+Others */ = {
 			isa = PBXGroup;
 			children = (
-				C55C80962E167B6200B56985 /* NSString+Others.m */,
 				C55C80972E167B6200B56985 /* NSString+Others.h */,
+				C55C80962E167B6200B56985 /* NSString+Others.m */,
 			);
 			path = "NSString+Others";
 			sourceTree = "<group>";
@@ -16288,6 +16179,7 @@
 		C55C881A2E167B6700B56985 /* 资源文件管理 */ = {
 			isa = PBXGroup;
 			children = (
+				04BF80542EB20FA7008E2F2A /* storyboard */,
 				0438A7182E840025008F763B /* 颜色资源 */,
 				C55C881B2E167B6700B56985 /* TSV文件 */,
 				C55C881F2E167B6700B56985 /* 图片资源文件 */,
@@ -17240,7 +17132,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C55C79932E16749000B56985 /* Build configuration list for PBXNativeTarget "JobsOCBaseConfigDemoTests" */;
 			buildPhases = (
-				99243361AFE16ACA3ED4E6F6 /* [CP] Check Pods Manifest.lock */,
 				C55C79782E16749000B56985 /* Sources */,
 				C55C79792E16749000B56985 /* Frameworks */,
 				C55C797A2E16749000B56985 /* Resources */,
@@ -17259,7 +17150,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C55C79962E16749000B56985 /* Build configuration list for PBXNativeTarget "JobsOCBaseConfigDemoUITests" */;
 			buildPhases = (
-				4A725740266DD29CB8069222 /* [CP] Check Pods Manifest.lock */,
 				C55C79822E16749000B56985 /* Sources */,
 				C55C79832E16749000B56985 /* Frameworks */,
 				C55C79842E16749000B56985 /* Resources */,
@@ -17509,7 +17399,6 @@
 				C55C8DA12E167B6D00B56985 /* JobsBlock.md in Resources */,
 				C55C8E712E167B6E00B56985 /* NotoSansDisplay_Condensed-ExtraBold.ttf in Resources */,
 				C55C8CDF2E167B6C00B56985 /* RYCuteView.webp in Resources */,
-				04C2F0ED2E98EC4C00BA05A9 /* README.md in Resources */,
 				C55C8CFC2E167B6D00B56985 /* 输入框样式_2.png in Resources */,
 				C55C8D842E167B6D00B56985 /* gesture_indicator_normal@2x.png in Resources */,
 				C55C8B552E167B6A00B56985 /* iOS 获取手机型号、系统版本.png in Resources */,
@@ -17707,11 +17596,13 @@
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
@@ -17720,67 +17611,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4A725740266DD29CB8069222 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JobsOCBaseConfigDemoUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		65AA9437C99FCD02CA12CD98 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		99243361AFE16ACA3ED4E6F6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JobsOCBaseConfigDemoTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -18061,17 +17910,6 @@
 				C55C8C2A2E167B6B00B56985 /* NSObject+GTCaptcha4.m in Sources */,
 				C55C8A762E167B6A00B56985 /* JobsInfoTBVCell.m in Sources */,
 				C55C8D902E167B6D00B56985 /* JobsBasePopupView.m in Sources */,
-				04C2F0E22E98EC4C00BA05A9 /* MVPLoginViewController.m in Sources */,
-				04C2F0E32E98EC4C00BA05A9 /* MVPLoginPresenter.m in Sources */,
-				04C2F0E42E98EC4C00BA05A9 /* DemoListViewController.m in Sources */,
-				04C2F0E52E98EC4C00BA05A9 /* VIPERLoginViewController.m in Sources */,
-				04C2F0E62E98EC4C00BA05A9 /* MVVMLoginViewModel.m in Sources */,
-				04C2F0E72E98EC4C00BA05A9 /* VIPERLoginPresenter.m in Sources */,
-				04C2F0E82E98EC4C00BA05A9 /* VIPERLoginRouter.m in Sources */,
-				04C2F0E92E98EC4C00BA05A9 /* MVVMLoginViewController.m in Sources */,
-				04C2F0EA2E98EC4C00BA05A9 /* MockAuthService.m in Sources */,
-				04C2F0EB2E98EC4C00BA05A9 /* UserCredential.m in Sources */,
-				04C2F0EC2E98EC4C00BA05A9 /* VIPERLoginInteractor.m in Sources */,
 				C55C8B7D2E167B6B00B56985 /* NSString+ID.m in Sources */,
 				C55C8B802E167B6B00B56985 /* NSString+Path.m in Sources */,
 				C55C89E32E167B6900B56985 /* FMDB_VC.m in Sources */,
@@ -18324,8 +18162,8 @@
 				C55C8C552E167B6C00B56985 /* NSObject+Algorithm.m in Sources */,
 				C55C8A082E167B6900B56985 /* TimeCell.m in Sources */,
 				C55C8C6A2E167B6C00B56985 /* ZYTextField.m in Sources */,
-				C55C8C2B2E167B6B00B56985 /* NSObject+LiveChat.m in Sources */,
 				C55C8C452E167B6C00B56985 /* NSObject+DeviceID.m in Sources */,
+				04BF805A2EB213E6008E2F2A /* NSString+Image.m in Sources */,
 				C55C8B092E167B6A00B56985 /* UITableViewCell+WhiteArrows.m in Sources */,
 				C55C8CD12E167B6C00B56985 /* WGradientProgressView.m in Sources */,
 				C55C8C1B2E167B6B00B56985 /* JobsMonitorNetwoking.m in Sources */,
@@ -18942,7 +18780,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SRJ5YK8B3X;
+				DEVELOPMENT_TEAM = 8LVJBHA68K;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/PodsManual/极验验证码",
@@ -18950,11 +18789,38 @@
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JobsOCBaseConfigDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CFBundleDisplayName;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(NSAppleMusicUsageDescription)";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "$(NSBluetoothAlwaysUsageDescription)";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "$(NSBluetoothPeripheralUsageDescription)";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "$(NSCalendarsUsageDescription)";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(NSCameraUsageDescription)";
+				INFOPLIST_KEY_NSContactsUsageDescription = "$(NSContactsUsageDescription)";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "$(NSFaceIDUsageDescription)";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "$(NSHealthShareUsageDescription)";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "$(NSHealthUpdateUsageDescription)";
+				INFOPLIST_KEY_NSHomeKitUsageDescription = "$(NSHomeKitUsageDescription)";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "$(NSLocationAlwaysAndWhenInUseUsageDescription)";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "$(NSLocationAlwaysUsageDescription)";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(NSLocationWhenInUseUsageDescription)";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(NSMicrophoneUsageDescription)";
+				INFOPLIST_KEY_NSMotionUsageDescription = "$(NSMotionUsageDescription)";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(NSPhotoLibraryAddUsageDescription)";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(NSPhotoLibraryUsageDescription)";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "$(NSRemindersUsageDescription)";
+				INFOPLIST_KEY_NSSiriUsageDescription = "$(NSSiriUsageDescription)";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "$(NSSpeechRecognitionUsageDescription)";
+				INFOPLIST_KEY_NSVideoSubscriberAccountUsageDescription = "$(NSVideoSubscriberAccountUsageDescription)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -18966,7 +18832,7 @@
 					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/其他/Sys.lib/Libarclite",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skin4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -18988,7 +18854,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SRJ5YK8B3X;
+				DEVELOPMENT_TEAM = 8LVJBHA68K;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/PodsManual/极验验证码",
@@ -18996,11 +18863,38 @@
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JobsOCBaseConfigDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CFBundleDisplayName;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(NSAppleMusicUsageDescription)";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "$(NSBluetoothAlwaysUsageDescription)";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "$(NSBluetoothPeripheralUsageDescription)";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "$(NSCalendarsUsageDescription)";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(NSCameraUsageDescription)";
+				INFOPLIST_KEY_NSContactsUsageDescription = "$(NSContactsUsageDescription)";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "$(NSFaceIDUsageDescription)";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "$(NSHealthShareUsageDescription)";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "$(NSHealthUpdateUsageDescription)";
+				INFOPLIST_KEY_NSHomeKitUsageDescription = "$(NSHomeKitUsageDescription)";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "$(NSLocationAlwaysAndWhenInUseUsageDescription)";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "$(NSLocationAlwaysUsageDescription)";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(NSLocationWhenInUseUsageDescription)";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(NSMicrophoneUsageDescription)";
+				INFOPLIST_KEY_NSMotionUsageDescription = "$(NSMotionUsageDescription)";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "$(NSPhotoLibraryAddUsageDescription)";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(NSPhotoLibraryUsageDescription)";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "$(NSRemindersUsageDescription)";
+				INFOPLIST_KEY_NSSiriUsageDescription = "$(NSSiriUsageDescription)";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "$(NSSpeechRecognitionUsageDescription)";
+				INFOPLIST_KEY_NSVideoSubscriberAccountUsageDescription = "$(NSVideoSubscriberAccountUsageDescription)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -19012,7 +18906,7 @@
 					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/其他/Sys.lib/Libarclite",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skin4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -19024,13 +18918,13 @@
 		};
 		C55C79942E16749000B56985 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E41B151CB291889500AB8F89 /* Pods-JobsOCBaseConfigDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -19042,13 +18936,13 @@
 		};
 		C55C79952E16749000B56985 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 783BEB47B91611719A54A8B7 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -19060,11 +18954,12 @@
 		};
 		C55C79972E16749000B56985 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A005B1F583EEB5024538D01D /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -19076,11 +18971,12 @@
 		};
 		C55C79982E16749000B56985 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 458ACDF4054C46DCE5931882 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

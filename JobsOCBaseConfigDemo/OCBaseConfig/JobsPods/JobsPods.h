@@ -418,8 +418,6 @@
 #import "ZFVolumeBrightnessView.h"
 #endif
 
-@import LiveChat;
-
 //暂时用不着的、重复的、过时的
 //#import "PureLayout.h"
 //#import "MyLayout.h"

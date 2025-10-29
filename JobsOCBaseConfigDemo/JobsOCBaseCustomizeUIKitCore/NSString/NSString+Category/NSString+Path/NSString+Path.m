@@ -36,7 +36,7 @@
 -(NSString *)pathForResourceWithName{
     // 拆分文件名和扩展名
     NSString *name = self.stringByDeletingPathExtension;
-    NSString *extension = self.pathExtension;
+//    NSString *extension = self.pathExtension;
     // 使用 NSBundle 获取文件路径
     NSString *filePath = [NSBundle.mainBundle pathForResource:name ofType:nil];
     return filePath;

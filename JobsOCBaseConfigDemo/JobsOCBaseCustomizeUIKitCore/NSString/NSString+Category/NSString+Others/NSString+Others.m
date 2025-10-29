@@ -32,7 +32,12 @@
 #pragma mark —— 关于URL
 /// 返回网址相关的NSURL *
 -(NSURL *_Nonnull)jobsUrl{
-    return [NSURL URLWithString:self];
+    NSString *s = self.byTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet);
+    if (!isValue(s)) { return nil; }
+    if ([s hasPrefix:@"//"]) { s = @"https:".add(s); }
+    // 允许中文与特殊字符
+    NSString *encoded = [s stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLFragmentAllowedCharacterSet];
+    return [NSURL URLWithString:encoded ?: s];
 }
 /// NSString => NSURLRequest
 -(NSMutableURLRequest *_Nonnull)URLRequest{
@@ -91,7 +96,8 @@
 /// 输入单词的首字母大写（适用于拼接set方法）
 -(NSString *_Nonnull)capitalizeFirstLetter{
     if(self.length){
-        return self.substringToIndex(1).uppercaseString.add(self.substringFromIndex(1));
+        return self.substringToIndex(1).uppercaseString
+            .add(self.substringFromIndex(1));
     }else return self;
 }
 /// 清除SDImage的图片缓存（用url为key）
