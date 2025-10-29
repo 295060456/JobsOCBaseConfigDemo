@@ -12,24 +12,23 @@
 #pragma mark —— UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    // 以你的设计稿尺寸为准（举例 390x844、或 375x812）
     JXScaleSetup(375.0, 812.0);
-    // 如果你希望“按安全区可见区域”来缩放，用这个：
-    // JXScaleSetupUsingSafeArea(375.0, 812.0);
-    
     JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
     JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
     JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
-    
     JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
-    
+
     self.localNotifications();
     self.launchFunc2();
-    AppDelegate.launchFunc1();
+    AppDelegate.launchFunc1();          // 如遇“重复副作用”，可改到 SceneDelegate，或在此加 @available 保护
+    AppDelegate.tabBarVC.ppBadge(YES);  // 同上
 
-    AppDelegate.tabBarVC.ppBadge(YES);
-    
+    if (@available(iOS 13.0, *)) {
+        // 👉 iOS 13+ 由 SceneDelegate 负责挂窗，这里不再创建 window
+        return YES;
+    }
+
+    // 👉 iOS 12 及以下，沿用你原有逻辑创建 window
     self.window = jobsMakeAppDelegateWindow(^(__kindof UIWindow * _Nullable window) {
         window.rootViewController = RootViewController;
         [window makeKeyAndVisible];

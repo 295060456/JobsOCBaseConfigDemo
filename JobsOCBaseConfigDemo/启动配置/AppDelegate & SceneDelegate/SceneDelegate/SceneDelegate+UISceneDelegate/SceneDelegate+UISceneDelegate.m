@@ -17,8 +17,17 @@ willConnectToSession:(UISceneSession *)session
     [JobsAppTools.sharedManager appDelegateWindowBlock:nil
                               sceneDelegateWindowBlock:^(id _Nullable data) {
         @jobs_strongify(self);
-        self.window = data;
+        UIWindowScene *ws = (UIWindowScene *)scene;
+        // ① 窗口兜底
+        self.window = (UIWindow *)data ?: [[UIWindow alloc] initWithWindowScene:ws];
+        self.window.windowScene = ws;
+        self.window.frame = ws.coordinateSpace.bounds;
+        // ② 复用你原先的入口
+        self.window.rootViewController = RootViewController;      // 或 [AppDelegate tabBarNavCtrl]
+        [self.window makeKeyAndVisible];
+        // ③ 保留你原有的启动副作用（如需）
         AppDelegate.launchFunc1();
+        AppDelegate.tabBarVC.ppBadge(YES); // 需要在 root 就绪后设置的话，这里比 AppDelegate 更稳
     }];
 }
 
