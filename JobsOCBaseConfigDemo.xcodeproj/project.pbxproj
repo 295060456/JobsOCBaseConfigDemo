@@ -14105,8 +14105,8 @@
 		C55C85182E167B6500B56985 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C55C85192E167B6500B56985 /* JobsAppDoorVC.m */,
 				C55C851A2E167B6500B56985 /* JobsAppDoorVC.h */,
+				C55C85192E167B6500B56985 /* JobsAppDoorVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

@@ -16,12 +16,11 @@
 /// UI
 Prop_strong()JobsAppDoorLogoContentView *logoContentView;
 Prop_strong()JobsAppDoorContentView *jobsAppDoorContentView;/// 登录和注册
-@property(nonatomic,strong,nullable)JobsAppDoorForgotCodeContentView *forgotCodeContentView;/// 忘记密码
-Prop_strong()UIButton *customerServiceBtn;
-@property(nonatomic,strong,nullable)UIImageView *bgImgV;
-@property(nonatomic,strong,nullable)ZFPlayerController *player;
-@property(nonatomic,strong,nullable)ZFAVPlayerManager *playerManager;
-@property(nonatomic,strong,nullable)CustomZFPlayerControlView *customPlayerControlView;
+Prop_strong(nullable)JobsAppDoorForgotCodeContentView *forgotCodeContentView;/// 忘记密码
+Prop_strong(nullable)UIImageView *bgImgV;
+Prop_strong(nullable)ZFPlayerController *player;
+Prop_strong(nullable)ZFAVPlayerManager *playerManager;
+Prop_strong(nullable)CustomZFPlayerControlView *customPlayerControlView;
 /// Data
 Prop_assign()BOOL registerDoorInputEditing;
 Prop_assign()CGFloat logoContentViewY;/// 初始高度
