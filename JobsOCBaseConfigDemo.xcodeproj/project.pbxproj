@@ -4664,7 +4664,7 @@
 				C55C7BCF2E167B5E00B56985 /* JXCategoryView垂直表达 */,
 				C55C7BA02E167B5E00B56985 /* JXCategoryView下拉headerView变大 */,
 				C55C7AD42E167B5D00B56985 /* Masonry的应用与实践 */,
-				C55C7D592E167B5F00B56985 /* NSProxy功能探究 */,
+				C55C7D592E167B5F00B56985 /* NSProxy功能探究（只有在OC里面OK） */,
 				C55C7CB32E167B5E00B56985 /* NSTimerManager模块测试 */,
 				C55C7D862E167B5F00B56985 /* OC动态添加类、方法列表、属性列表 */,
 				C55C7AC22E167B5D00B56985 /* PeekAndPop */,
@@ -7179,7 +7179,7 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7D592E167B5F00B56985 /* NSProxy功能探究 */ = {
+		C55C7D592E167B5F00B56985 /* NSProxy功能探究（只有在OC里面OK） */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D5A2E167B5F00B56985 /* MyService.h */,
@@ -7187,7 +7187,7 @@
 				C55C7D6C2E167B5F00B56985 /* View */,
 				C55C7D6E2E167B5F00B56985 /* ViewController */,
 			);
-			path = "NSProxy功能探究";
+			path = "NSProxy功能探究（只有在OC里面OK）";
 			sourceTree = "<group>";
 		};
 		C55C7D5B2E167B5F00B56985 /* Model */ = {
@@ -17597,8 +17597,12 @@
 			);
 			inputFileListPaths = (
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -17612,8 +17616,12 @@
 			);
 			inputFileListPaths = (
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

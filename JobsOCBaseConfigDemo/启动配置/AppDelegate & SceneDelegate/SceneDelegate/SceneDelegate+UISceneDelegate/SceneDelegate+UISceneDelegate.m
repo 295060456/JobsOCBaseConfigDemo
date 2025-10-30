@@ -58,4 +58,15 @@ willConnectToSession:(UISceneSession *)session
     JobsPostNotification(退到后台停止播放ZFPlayer, nil);
 }
 
+// ✅ 横竖切换 / 尺寸变化时，随场景更新窗口 Frame（防止再次出现半屏）
+- (void)windowScene:(UIWindowScene *)windowScene
+didUpdateCoordinateSpace:(id<UICoordinateSpace>)previousCoordinateSpace
+interfaceOrientation:(UIInterfaceOrientation)previousInterfaceOrientation
+   traitCollection:(UITraitCollection *)previousTraitCollection {
+    if (windowScene == self.window.windowScene) {
+        self.window.frame = windowScene.coordinateSpace.bounds;
+        self.window.rootViewController.view.frame = self.window.bounds;
+    }
+}
+
 @end

@@ -164,6 +164,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
                 @jobs_strongify(self)
                 JobsLog(@"输入的字符为 = %@",x);
                 self.securityModeBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
+                if(!x) return;
                 if (x.isContainsSpecialSymbolsString(nil)) {
                     self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));
                 }else{

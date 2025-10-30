@@ -13,10 +13,10 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     JXScaleSetup(375.0, 812.0);
-    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
-    JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
-    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
-    JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
+//    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+//    JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
+//    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
+//    JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
 
     self.localNotifications();
     self.launchFunc2();
@@ -27,8 +27,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         // 👉 iOS 13+ 由 SceneDelegate 负责挂窗，这里不再创建 window
         return YES;
     }
-
-    // 👉 iOS 12 及以下，沿用你原有逻辑创建 window
+    // 👉 iOS 12 及以下，沿用原有逻辑创建 window
     self.window = jobsMakeAppDelegateWindow(^(__kindof UIWindow * _Nullable window) {
         window.rootViewController = RootViewController;
         [window makeKeyAndVisible];

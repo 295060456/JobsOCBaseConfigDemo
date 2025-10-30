@@ -533,8 +533,10 @@
         @jobs_strongify(self)
         if(title){
             self.jobsResetBtnNormalAttributedSubTitle(title.changeTextColorBy(JobsClearColor));
-            self.subtitleTextView.byFrame(self.subtitleLabel.frame);
-            self.subtitleTextView.byAttributedText(title);
+            if (@available(iOS 15.0, *)) {
+                self.subtitleTextView.byFrame(self.subtitleLabel.frame);
+                self.subtitleTextView.byAttributedText(title);
+            }
             self.jobsResetBtnNormalAttributedSubTitle(nil);
         }return self;
     };
@@ -547,6 +549,7 @@
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration *_Nullable config) {
+                if (!config) return;
                 config.byImagePlacement(data) // 设置按钮的图文关系
                     .byImagePadding(x);       // 设置按钮的图文间距
             }];
