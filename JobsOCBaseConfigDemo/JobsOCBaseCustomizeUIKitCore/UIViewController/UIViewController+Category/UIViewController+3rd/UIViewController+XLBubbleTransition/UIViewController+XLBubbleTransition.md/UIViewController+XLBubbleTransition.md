@@ -11,7 +11,7 @@ self.xl_popTranstion = [XLBubbleTransition transitionWithAnchorRect:self.postBtn
     if (!_postBtn) {
         _postBtn = JobsSuspendBtn.new;
         _postBtn.backgroundColor = JobsClearColor;
-        [_postBtn setImage:JobsIMG(@"编辑")
+        [_postBtn setImage:@"编辑".img
                   forState:UIControlStateNormal];
         _postBtn.isAllowDrag = NO;//悬浮效果必须要的参数
         @jobs_weakify(self)

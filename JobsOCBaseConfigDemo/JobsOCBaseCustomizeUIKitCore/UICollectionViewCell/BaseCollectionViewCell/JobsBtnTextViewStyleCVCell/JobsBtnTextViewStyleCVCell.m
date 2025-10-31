@@ -152,7 +152,7 @@ AppToolsProtocol_synthesize
                                                   }
                                               }).onLongPressGestureBy(^(id data){
                                                   JobsLog(@"");
-                                              })).masonryBy(^(MASConstraintMaker *make) {
+                                              })).byAdd(^(MASConstraintMaker *make) {
                                                   make.size.mas_equalTo(CGSizeMake(JobsWidth(20), JobsWidth(20)));
                                                   make.left.equalTo(self.contentView).offset(JobsWidth(13));
                                                   make.top.equalTo(self.contentView);
@@ -171,7 +171,7 @@ AppToolsProtocol_synthesize
             textView.editable = NO; /// 禁止编辑。必须 editable = NO 才能点击链接跳转
             textView.selectable = YES; /// 允许选择链接
             textView.linkTextAttributes = self.makeLinkTextAttributes;
-        })).masonryBy(self.masonryBlock);
+        })).byAdd(self.masonryBlock);
     }return _textView;
 }
 
@@ -196,7 +196,7 @@ AppToolsProtocol_synthesize
             } subscribeNextBlock:^(id _Nullable x) {
 //                @jobs_strongify(self)
             }];
-        })).masonryBy(self.masonryBlock);
+        })).byAdd(self.masonryBlock);
     }return _textView;
 }
 
@@ -221,7 +221,7 @@ AppToolsProtocol_synthesize
             } subscribeNextBlock:^(id _Nullable x) {
 //                @jobs_strongify(self)
             }];
-        })).masonryBy(self.masonryBlock);
+        })).byAdd(self.masonryBlock);
     }return _jobsTextView;
 }
 

@@ -94,7 +94,7 @@ Prop_strong()CAKeyframeAnimation *anim;
 #pragma mark —— lazyLoad
 - (UIImageView *)iconBtn {
     if (!_iconBtn) {
-        _iconBtn = [UIImageView.alloc initWithImage:JobsIMG(@"del_Photo")];
+        _iconBtn = [UIImageView.alloc initWithImage:@"del_Photo".img];
         _iconBtn.userInteractionEnabled = YES;
         _iconBtn.ableRespose = YES;
         [_iconBtn addGestureRecognizer:self.iconBtnTap];

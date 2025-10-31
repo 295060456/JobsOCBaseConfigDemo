@@ -118,8 +118,8 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
             });
             config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 // @jobs_strongify(self)
-                buttonModel.normalImage = JobsIMG(@"全局返回箭头");
-                buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
+                buttonModel.normalImage = @"全局返回箭头".img;
+                buttonModel.highlightImage = @"全局返回箭头".img;
                 buttonModel.title = string;
                 buttonModel.titleFont = bayonRegular(18);
                 buttonModel.titleCor = JobsCor(@"#E20808");
@@ -152,8 +152,8 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
             });
             config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 // @jobs_strongify(self)
-                buttonModel.normalImage = JobsIMG(@"全局返回箭头");
-                buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
+                buttonModel.normalImage = @"全局返回箭头".img;
+                buttonModel.highlightImage = @"全局返回箭头".img;
                 buttonModel.title = backTitle;
                 buttonModel.titleFont = bayonRegular(18);
                 buttonModel.titleCor = JobsCor(@"#E20808");
@@ -516,10 +516,10 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     @jobs_weakify(self)
     return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
         @jobs_strongify(self)
-//        data.backgroundImage = JobsIMG(@"返回");
-        data.highlightBackgroundImage = JobsIMG(@"返回");
-        data.highlightImage = JobsIMG(@"返回");
-        data.normalImage = JobsIMG(@"返回");
+//        data.backgroundImage = @"返回".img
+        data.highlightBackgroundImage = @"返回".img;
+        data.highlightImage = @"返回".img;
+        data.normalImage = @"返回".img;
         data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
         data.title = self.viewModel.backBtnTitleModel.text;
         data.font = self.viewModel.backBtnTitleModel.font;

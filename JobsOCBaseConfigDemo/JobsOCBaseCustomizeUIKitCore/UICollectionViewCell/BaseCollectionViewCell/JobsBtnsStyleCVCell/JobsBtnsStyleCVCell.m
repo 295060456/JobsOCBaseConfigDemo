@@ -80,7 +80,7 @@ BaseLayerProtocol_synthesize_part3
                                                    if (self.objBlock) self.objBlock(x);
                                                }).onLongPressGestureBy(^(id data){
                                                    JobsLog(@"");
-                                               })).masonryBy(^(MASConstraintMaker *make) {
+                                               })).byAdd(^(MASConstraintMaker *make) {
                                                    @jobs_strongify(self)
                                                    make.centerY.equalTo(self.contentView);
                                                    make.left.equalTo(self.contentView).offset(self.leftBtnVM.jobsOffsetX);
@@ -133,7 +133,7 @@ BaseLayerProtocol_synthesize_part3
                                                     if (self.objBlock) self.objBlock(x);
                                             }).onLongPressGestureBy(^(id data){
                                                 JobsLog(@"");
-                                            })).masonryBy(^(MASConstraintMaker *make) {
+                                            })).byAdd(^(MASConstraintMaker *make) {
                                                 @jobs_strongify(self)
                                                 make.centerY.equalTo(self.contentView);
                                                 make.right.equalTo(self.contentView).offset(-self.rightBtnVM.jobsOffsetX);

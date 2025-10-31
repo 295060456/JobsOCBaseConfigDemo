@@ -197,8 +197,8 @@ UILocationProtocol_dynamic
                 for (UIView *view in control.subviews){
                     if ([view isKindOfClass:UIImageView.class]) {
                         UIImageView *img = (UIImageView *)view;
-                        if (JobsIMG(@"按钮已选中") && JobsIMG(@"按钮未选中")) {
-                            img.image = self.selected ? JobsIMG(@"按钮已选中") : JobsIMG(@"按钮未选中");
+                        if (@"按钮已选中".img && @"按钮未选中".img) {
+                            img.image = self.selected ? @"按钮已选中".img : @"按钮未选中".img;
                         }
                     }
                 }

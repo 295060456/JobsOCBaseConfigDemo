@@ -69,7 +69,7 @@
         _imageView = self.contentView
             .addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
                 @jobs_strongify(self)
-            })).masonryBy(^(MASConstraintMaker *make) {
+            })).byAdd(^(MASConstraintMaker *make) {
                 @jobs_strongify(self)
                 make.edges.equalTo(self.contentView);
             });

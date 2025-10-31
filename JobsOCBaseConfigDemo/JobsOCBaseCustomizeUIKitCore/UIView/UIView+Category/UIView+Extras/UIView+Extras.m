@@ -496,7 +496,7 @@ JobsKey(_bottomBorderLayer)
 /// 调用方式：view.leftBorderColor(color).leftBorderWidth(borderType);
 -(JobsReturnViewByFloatBlock _Nonnull)leftBorderWidth{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat borderWidth){
+    return ^__kindof UIView *_Nullable(float borderWidth){
         @jobs_strongify(self)
         CALayer *layer = self.leftBorderLayer;
         layer.frame = CGRectMake(0,
@@ -509,7 +509,7 @@ JobsKey(_bottomBorderLayer)
 /// 调用方式：view.rightBorderColor(color).rightBorderWidth(borderType);
 -(JobsReturnViewByFloatBlock _Nonnull)rightBorderWidth{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat borderWidth){
+    return ^__kindof UIView *_Nullable(float borderWidth){
         @jobs_strongify(self)
         CALayer *layer = self.rightBorderLayer;
         layer.frame = CGRectMake(self.frame.size.width - borderWidth,
@@ -522,7 +522,7 @@ JobsKey(_bottomBorderLayer)
 /// 调用方式：view.topBorderColor(color).topBorderWidth(borderType);
 -(JobsReturnViewByFloatBlock _Nonnull)topBorderWidth{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat borderWidth){
+    return ^__kindof UIView *_Nullable(float borderWidth){
         @jobs_strongify(self)
         CALayer *layer = self.topBorderLayer;
         layer.frame = CGRectMake(0,
@@ -535,7 +535,7 @@ JobsKey(_bottomBorderLayer)
 /// 调用方式：view.bottomBorderColor(color).bottomBorderWidth(borderType);
 -(JobsReturnViewByFloatBlock _Nonnull)bottomBorderWidth{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat borderWidth){
+    return ^__kindof UIView *_Nullable(float borderWidth){
         @jobs_strongify(self)
         CALayer *layer = self.bottomBorderLayer;
         layer.frame = CGRectMake(0,
@@ -596,7 +596,7 @@ JobsKey(_bottomBorderLayer)
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
 -(JobsReturnViewByFloatBlock _Nonnull)layerByBorderWidth{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat borderWidth) {
+    return ^__kindof UIView *_Nullable(float borderWidth) {
         @jobs_strongify(self)
         self.layer.borderWidth = borderWidth;
         return self;
@@ -606,7 +606,7 @@ JobsKey(_bottomBorderLayer)
 /// 切整个View的4个角为统一的切角参数
 -(JobsReturnViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat cornerRadiusValue) {
+    return ^__kindof UIView *_Nullable(float cornerRadiusValue) {
         @jobs_strongify(self)
         self.layer.cornerRadius = cornerRadiusValue;
         self.layer.masksToBounds = YES;
@@ -977,11 +977,12 @@ JobsKey(_cornerRadii)
     }).CGPath;
 }
 
--(jobsByCGFloatBlock _Nonnull)byVisible{
+-(JobsReturnViewByCGFloatBlock _Nonnull)byVisible{
     @jobs_weakify(self)
-    return ^(CGFloat alpha){
+    return ^__kindof UIView *_Nullable(CGFloat alpha){
         @jobs_strongify(self)
         self.jobsVisible = alpha;
+        return self;
     };
 }
 /// 设置控件是否可见，对影响可视化的hidden 和 alpha属性进行操作

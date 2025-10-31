@@ -45,9 +45,9 @@ Prop_copy()jobsByMASConstraintMakerBlock masonryBlock;
 /// 行为：会移除视图上所有 Masonry 创建的约束，再应用 block 中的新约束
 -(JobsReturnViewByVoidBlock _Nonnull)remake;
 #pragma mark —— 添加约束并执行
--(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)masonryBy;
--(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)upgradeBy;
--(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)remakeBy;
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)byAdd;
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)byUpgrade;
+-(JobsReturnViewByMasonryConstraintsBlocks _Nonnull)byRemake;
 #pragma mark —— 卸载约束
 /// 卸载当前view上的某个方向的约束
 -(jobsByLayoutAttributeBlock _Nonnull)uninstall;
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_END
              .bgColorBy(JobsClearColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
              .jobsResetImagePadding(1)
-             .jobsResetBtnImage(JobsIMG(@"Betslip"))
+             .jobsResetBtnImage(@"Betslip".img))
              .jobsResetBtnTitleCor(JobsCor(@"#666666"))
              .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"Betslip"))
@@ -110,7 +110,7 @@ NS_ASSUME_NONNULL_END
          .bgColorBy(JobsClearColor)
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
-         .jobsResetBtnImage(JobsIMG(@"Statement"))
+         .jobsResetBtnImage(@"Statement".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(JobsInternationalization(@"Statement"))
@@ -123,7 +123,7 @@ NS_ASSUME_NONNULL_END
          .bgColorBy(JobsClearColor)
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
-         .jobsResetBtnImage(JobsIMG(@"Promo"))
+         .jobsResetBtnImage(@"Promo".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(JobsInternationalization(@"Promo"))
@@ -136,7 +136,7 @@ NS_ASSUME_NONNULL_END
          .bgColorBy(JobsClearColor)
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
-         .jobsResetBtnImage(JobsIMG(@"Security"))
+         .jobsResetBtnImage(@"Security".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(JobsInternationalization(@"Security"))
@@ -149,7 +149,7 @@ NS_ASSUME_NONNULL_END
          .bgColorBy(JobsClearColor)
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
-         .jobsResetBtnImage(JobsIMG(@"Help Center"))
+         .jobsResetBtnImage(@"Help Center".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(JobsInternationalization(@"Help Center"))
@@ -162,7 +162,7 @@ NS_ASSUME_NONNULL_END
          .bgColorBy(JobsClearColor)
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
-         .jobsResetBtnImage(JobsIMG(@"Feedback"))
+         .jobsResetBtnImage(@"Feedback".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(JobsInternationalization(@"Feedback"))

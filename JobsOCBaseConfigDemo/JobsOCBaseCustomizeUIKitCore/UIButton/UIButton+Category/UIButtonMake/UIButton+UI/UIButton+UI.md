@@ -10,7 +10,7 @@
          @jobs_weakify(self)
          _mailBtn = BaseButton.jobsInit()
              .imageURL(@"".jobsUrl)
-             .placeholderImage(JobsIMG(@"用户默认头像"))
+             .placeholderImage(@"用户默认头像".img)
              .options(SDWebImageRefreshCached)/// 强制刷新缓存
              .completed(^(UIImage * _Nullable image,
                           NSError * _Nullable error,
@@ -39,8 +39,8 @@
                           .bgColorBy(JobsWhiteColor)
                           .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
                           .jobsResetImagePadding(1)
-                          .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-                          .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+                          .jobsResetBtnImage(@"APPLY NOW".img)
+                          .jobsResetBtnBgImage(@"APPLY NOW".img)
                           .jobsResetBtnTitleCor(JobsWhiteColor)
                           .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
                           .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -57,12 +57,12 @@
  -(UIButton *)usrNameBtn{
      if(!_usrNameBtn){
          @jobs_weakify(self)
-         _usrNameBtn = self.masonryBy(UIButton.jobsInit()
+         _usrNameBtn = self.byAdd(UIButton.jobsInit()
                                        .bgColorBy(JobsWhiteColor)
                                        .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
                                        .jobsResetImagePadding(1)
-                                       .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-                                       .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+                                       .jobsResetBtnImage(@"APPLY NOW".img)
+                                       .jobsResetBtnBgImage(@"APPLY NOW".img)
                                        .jobsResetBtnTitleCor(JobsWhiteColor)
                                        .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
                                        .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -110,8 +110,8 @@
          }))).bgColorBy(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
              .jobsResetImagePadding(1)
-             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-             .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+             .jobsResetBtnImage(@"APPLY NOW".img)
+             .jobsResetBtnBgImage(@"APPLY NOW".img)
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -152,14 +152,14 @@
 -(BaseButton *)playBtn{
     if(!_playBtn){
         _playBtn = BaseButton.initByStyle3(title,
-                                  nil,
-                                  JobsBlackColor,
-                                  JobsIMG(@"弹窗取消按钮背景图"))
+                                           nil,
+                                           JobsBlackColor,
+                                           @"弹窗取消按钮背景图".img)
         .bgColorBy(JobsWhiteColor)
         .cornerRadiusValueBy(buttonModel.cornerRadiusValueBy)
         .onClickBy(^(UIButton *btn){
             btn.selected = !btn.selected;
-            btn.jobsResetBtnBgImage(btn.selected ? JobsIMG(@"弹窗取消按钮背景图") : JobsIMG(@"弹窗取消按钮背景图"));
+            btn.jobsResetBtnBgImage(btn.selected ? @"弹窗取消按钮背景图".img : @"弹窗取消按钮背景图".img);
             
             btn.jobsResetBtnLayerBorderCor(HEXCOLOR(0xAE8330));/// 重设Btn的描边线段的颜色
             btn.jobsResetBtnLayerBorderWidth(0.5f);/// 重设Btn的描边线段的宽度

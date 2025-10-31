@@ -76,7 +76,7 @@ BaseLayerProtocol_synthesize_part3
                 label.textColor = self.viewModel.textCor;
                 label.font = self.viewModel.font;
             }
-        })).masonryBy(^(MASConstraintMaker *make) {
+        })).byAdd(^(MASConstraintMaker *make) {
             @jobs_strongify(self)
             make.edges.equalTo(self.contentView);
         });

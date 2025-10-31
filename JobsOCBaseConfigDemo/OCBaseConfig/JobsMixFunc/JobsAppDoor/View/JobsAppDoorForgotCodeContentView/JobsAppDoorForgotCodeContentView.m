@@ -87,7 +87,7 @@ Prop_strong()JobsHotLabelBySingleLine *hl;
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(JobsWidth(8))
             .jobsResetBtnImage(JobsIMG(@"用户名称"))
-            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnBgImage(@"APPLY NOW".img)
             .jobsResetBtnTitleCor(Cor4)
             .jobsResetBtnTitleFont(UIFontWeightMediumSize(13))
             .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))

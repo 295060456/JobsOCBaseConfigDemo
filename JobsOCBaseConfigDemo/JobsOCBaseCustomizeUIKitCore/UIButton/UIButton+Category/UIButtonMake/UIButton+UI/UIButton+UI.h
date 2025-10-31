@@ -230,8 +230,8 @@ NS_ASSUME_NONNULL_END
      .bgColorBy(JobsWhiteColor)
      .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
      .jobsResetImagePadding(1)
-     .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-     .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+     .jobsResetBtnImage(@"APPLY NOW".img))
+     .jobsResetBtnBgImage(@"APPLY NOW".img)
      .jobsResetBtnTitleCor(JobsWhiteColor)
      .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
      .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -243,7 +243,7 @@ NS_ASSUME_NONNULL_END
  
  _headBtn = BaseButton.jobsInit()
     .imageURL(@"".jobsUrl)
-    .placeholderImage(JobsIMG(@"用户默认头像"))
+    .placeholderImage(@"用户默认头像".img))
     .options(SDWebImageRefreshCached)/// 强制刷新缓存
     .completed(^(UIImage * _Nullable image,
                  NSError * _Nullable error,
@@ -289,8 +289,8 @@ NS_ASSUME_NONNULL_END
          }))).bgColorBy(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
              .jobsResetImagePadding(1)
-             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-             .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+             .jobsResetBtnImage(@"APPLY NOW".img))
+             .jobsResetBtnBgImage(@"APPLY NOW".img))
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))

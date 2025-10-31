@@ -163,7 +163,7 @@ Prop_assign()CGSize chooseBtnSize;
             .jobsResetImagePlacement(NSDirectionalRectEdgeTrailing)
             .jobsResetImagePadding(JobsWidth(8))
             .jobsResetBtnImage(self.chooseBtnViewModel.image)
-            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnBgImage(@"APPLY NOW".img)
             .jobsResetBtnTitleCor(self.chooseBtnViewModel.textModel.textCor)
             .jobsResetBtnTitleFont(self.chooseBtnViewModel.textModel.font)
             .jobsResetBtnTitle(self.chooseBtnViewModel.textModel.text)

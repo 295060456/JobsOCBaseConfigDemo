@@ -102,7 +102,7 @@ NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(jobsByT
                      data.title = JobsInternationalization(@"NO MESSAGES FOUND");
                      data.titleCor = JobsWhiteColor;
                      data.titleFont = bayonRegular(JobsWidth(30));
-                     data.normalImage = JobsIMG(@"小狮子");
+                     data.normalImage = @"小狮子".img;
                  }))
                  .showsVerticalScrollIndicatorBy(NO)
                  .showsHorizontalScrollIndicatorBy(NO)

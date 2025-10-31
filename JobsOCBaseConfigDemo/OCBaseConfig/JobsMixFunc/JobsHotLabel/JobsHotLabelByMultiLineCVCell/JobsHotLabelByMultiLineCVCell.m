@@ -75,7 +75,7 @@ Prop_strong()UILabel *textLab;
             label.textAlignment = NSTextAlignmentCenter;
             label.text = self.viewModel.textModel.text;
             label.font = self.viewModel.textModel.font;
-        })).masonryBy(^(MASConstraintMaker *make) {
+        })).byAdd(^(MASConstraintMaker *make) {
             @jobs_strongify(self)
             make.edges.equalTo(self.contentView);
         });

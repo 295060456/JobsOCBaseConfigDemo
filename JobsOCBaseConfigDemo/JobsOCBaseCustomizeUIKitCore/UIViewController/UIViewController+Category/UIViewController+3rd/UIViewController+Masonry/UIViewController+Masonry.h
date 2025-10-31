@@ -38,9 +38,9 @@ Prop_copy()jobsByMASConstraintMakerBlock masonryBlock;
 /// 行为：会移除视图上所有 Masonry 创建的约束，再应用 block 中的新约束
 -(JobsReturnViewByViewBlock _Nonnull)remake;
 #pragma mark —— 添加约束并执行
--(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)masonryBy;
--(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)upgradeBy;
--(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)remakeBy;
+-(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)byAdd;
+-(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)byUpgrade;
+-(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)byRemake;
 #pragma mark —— 卸载约束
 /// 卸载当前view上的某个方向的约束
 -(jobsByLayoutAttributeBlock _Nonnull)uninstall;

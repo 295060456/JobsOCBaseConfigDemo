@@ -15,7 +15,7 @@ JobsKey(_backgroundConfig)
     UIBackgroundConfiguration *BackgroundConfig = Jobs_getAssociatedObject(_backgroundConfig);
     if (!BackgroundConfig) {
         BackgroundConfig = UIBackgroundConfiguration.listPlainHeaderFooterConfiguration;
-        BackgroundConfig.image = JobsIMG(@"设置_背景1");
+        BackgroundConfig.image = @"设置_背景1".img;
         BackgroundConfig.backgroundInsets = NSDirectionalEdgeInsetsMake(JobsWidth(3),
                                                                         JobsWidth(15),
                                                                         JobsWidth(3),

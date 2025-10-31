@@ -39,7 +39,7 @@ JobsKey(_gk_navTitleBtn)
         /// 父控件不能是self.gk_navigationBar。否则会造成约束与预想的出现偏差
         @jobs_weakify(self)
         self.view.addSubview(navTitleBtn)
-            .masonryBy(^(MASConstraintMaker *make) {
+            .byAdd(^(MASConstraintMaker *make) {
                 @jobs_strongify(self)
                 if(self.gk_navLeftBarButtonItem){
                     make.centerX.equalTo(self.gk_navigationBar);

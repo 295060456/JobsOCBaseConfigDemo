@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_END
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.img = JobsIMG(@"删除");
+    cell.img = @"删除".img;
     @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {
         @jobs_strongify(self)
@@ -48,8 +48,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 */
 
 /**
- 【需求说明】UITableView里面3个cell，accessoryView用button替代，要求最后一个cell的button.img = JobsIMG(@"向右的箭头（小）");，其他cell的button.img = JobsIMG(@"红色的对勾");
- 
+ 【需求说明】UITableView里面3个cell，accessoryView用button替代，要求最后一个cell的button.img = @"向右的箭头（小）".img，其他cell的button.img = @"红色的对勾".img;
+
  1、❤️因为UITableView的复用机制，这里不能直接用UITableView.selected来进行标注，必须用到model来selected其进行标注❤️
  - (void)tableView:(UITableView *)tableView
  didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -75,15 +75,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
      UIViewModel *viewModel = self.dataMutArr[indexPath.row];
      if (viewModel.jobsSelected) {
          cell.size = CGSizeMake(JobsWidth(18), JobsWidth(12.86));
-         cell.img = JobsIMG(@"红色的对勾");
+         cell.img = @"红色的对勾".img;
      }else{
          cell.size = CGSizeMake(JobsWidth(10), JobsWidth(18.3));//缺省值
-         cell.img = JobsIMG(@"空白图");
+         cell.img = @"空白图".img;
      }
      
      if (indexPath.row == 2) {
          cell.size = CGSizeMake(JobsWidth(10), JobsWidth(18.3));//缺省值
-         cell.img = JobsIMG(@"向右的箭头（小）");
+         cell.img = @"向右的箭头（小）".img;
      }
 
      @jobs_weakify(self)
