@@ -22,7 +22,7 @@
 * `int *p` 表示 `p` 是一个整数指针，可以用来存储整数变量的地址；
 * 整数指针是指一个指针，其目标是整数类型的变量
 
-### 数组指针 和 指针数组 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 数组<font color=red>指针</font> 和 指针<font color=red>数组</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>**数组指针（Pointer to Array）**</font>
 
@@ -628,7 +628,7 @@ for (int i = 0; i < n; i++) {
       @end
       ```
 
-## 固态硬盘可以替代内存进行工作吗？<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## 固态硬盘可以替代内存进行工作吗？（不能完全替代）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 结论
   * 都利用了：**闪存技术**（Flash memory）
@@ -660,7 +660,7 @@ for (int i = 0; i < n; i++) {
   * 自旋锁是轻量级锁，如果锁被占用，线程不会立即挂起，而是会不断尝试获取锁。
   * 自旋锁适合加锁时间非常短的场景，因为线程在等待时不会切换上下文，效率更高。
 
-## OC里面有没有类似于Java里面的`linkedhashset`的东西 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## OC里面有没有类似于Java里面的`linkedhashset`的东西 （没有）<a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 在Objective-C中，没有直接类似于Java中*LinkedHashSet*的数据结构；
 * 但是，你可以使用*NSOrderedSet*，它是一个有序不可变集合，保留了元素的插入顺序；
@@ -898,9 +898,8 @@ for (int i = 0; i < n; i++) {
 
 ## 序列化 VS 反序列化 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-> 序列化：将对象（如数组、字典、模型等）**转换为字节流（如 JSON、二进制、XML）**，用于持久化（保存到文件、磁盘）或传输（如网络）。
->
-> 反序列化：将字节流（JSON、XML、二进制等）**还原成原始对象（如数组、字典、模型）**。
+* 序列化：将对象（如数组、字典、模型等）**转换为字节流（如 JSON、二进制、XML）**，用于持久化（保存到文件、磁盘）或传输（如网络）。
+* 反序列化：将字节流（JSON、XML、二进制等）**还原成原始对象（如数组、字典、模型）**。
 
 ## KVC 和 KVO <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
@@ -971,17 +970,62 @@ for (int i = 0; i < n; i++) {
 ### KVO（<font color="red">***K***</font>ey-<font color="red">***V***</font>alue <font color="red">***O***</font>bserving）：**属性**<font color="red">观察</font> <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * KVO 是一种**观察者模式**的实现，它**允许一个对象（非类）监听另一个对象的属性的变化**；
-* KVO只能被KVC触发，包括使用`setValue:forKey:`方法和点语法；
-* 不是所有的类都支持KVO：
-  * ***类必须直接或间接地继承自NSObject（即，类必须实例为对象）***：这是因为KVO是基于OC.runtime系统的，它利用了OC的动态特性来观察对象属性的变化；一个常见的反例是 Core Graphics（Quartz）框架中的许多类型，如 CGPoint、CGSize、CGRect 等。这些类型是 C 语言结构体，而不是 OC 对象，因此它们不继承自 NSObject，并且不支持 KVO。
-  * ***被观察的属性必须是对象的属性，而非标量类型***（例如int、float等）；
-  * ***被观察的属性必须使用属性访问器方法***（通常是`set/get`方法），***而不是直接访问实例变量***；
+* **KVO只能被KVC触发**，包括使用`setValue:forKey:`方法和点语法；
+* <font color=red>**不是所有的类都支持KVO**</font>
+  * **支持KVO的类必须直接或间接地继承自NSObject（即，类必须实例为对象）**，这是因为KVO是基于OC.runtime系统的，它利用了OC的动态特性来观察对象属性的变化；
+  * 一个常见的反例是 Core Graphics（Quartz）框架中的许多类型，如 CGPoint、CGSize、CGRect 等。这些类型是 C 语言结构体，而不是 OC 对象，因此它们不继承自 NSObject，并且不支持 KVO；
+  * **被观察的属性必须是对象的属性，而非标量类型**（例如int、float等）；
+  * **被观察的属性必须使用属性访问器方法***（通常是`set/get`方法），**而不是直接访问实例变量***；
 * 当被监听对象的某个属性发生变化时，注册了观察者的对象会收到通知，从而可以采取相应的操作；
 * KVO的使用步骤：
   * 先注册观察者
   * 实现相应的观察方法
   * 当被观察的属性值变化时，观察者对象的观察方法会被调用
 * 对于 KVO 来说，被观察的属性必须符合一定的**命名规范**，通常以 `@property` 定义的属性都可以被观察；
+* RAC的绑定和监听
+### [**RAC**](https://github.com/ReactiveCocoa/ReactiveObjC) <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+#### 🧊冷信号
+
+* 特点：每个订阅都会独立触发一次 → “点播”
+
+  - 每个订阅者都会触发一次“放电影”的动作（副作用）
+  - 每个人看到的内容是完整的，但互相独立
+
+* `createSignal`、网络请求、定制的耗时任务 → 都是冷信号
+
+  ```objective-c
+  RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> sub) {
+      NSLog(@"🎬 播放一次电影");
+      [sub sendNext:@"片段1"];
+      [sub sendCompleted];
+      return nil;
+  }];
+  
+  [signal subscribeNext:...]; // 播放一次电影
+  [signal subscribeNext:...]; // 再播放一次
+  ```
+
+#### 🔥 热信号
+
+* 特点：所有订阅共享一个事件源 → “直播”。
+
+  - 数据源本身一直在发生，不会因为“你订阅了”才重新开始
+  - 多个订阅者共享同一个事件源
+
+* `rac_textSignal`（监听输入框）、KVO、通知、按钮点击事件 → 都是热信号
+
+  ```objective-c
+  [[self.textField rac_textSignal] subscribeNext:^(NSString *t) {
+      NSLog(@"观众A 收到: %@", t);
+  }];
+  
+  [[self.textField rac_textSignal] subscribeNext:^(NSString *t) {
+      NSLog(@"观众B 收到: %@", t);
+  }];
+  // A 和 B 收到的事件完全相同，来自同一个输入框
+  ```
+
 ### KVO相应的观察方法 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > **`observeValueForKeyPath:ofObject:change:context:`**
@@ -1675,7 +1719,7 @@ ViewController.m       // 控制器，组合 View 和 Presenter
     ```
 
 ## 函数（方法）签名 <a href="#内存分布" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-* 指函数的声明或定义，其中包含了***函数的名称***、***参数列表***和***返回类型***；
+* 指函数的声明或定义，其中包含了**函数的名称**、**参数列表**和**返回类型**；
   * **函数名称：** 函数的标识符，用于唯一标识函数；
   * **参数列表：**包含函数接受的参数及其类型。参数列表可以为空，也可以包含一个或多个参数，每个参数包含参数名称和类型。在函数签名中，参数列表的顺序和参数类型是非常重要的，它们决定了函数调用时传递参数的方式；形参的顺序不会影响方法签名的确定。
   * **返回类型：** 指定函数执行完成后返回的值的类型。返回类型可以是任何数据类型，包括基本数据类型（例如整数、浮点数、布尔值等）以及复合数据类型（例如数组、结构体、对象等）；
