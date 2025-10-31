@@ -213,7 +213,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                          JobsWidth(30),
                                          JobsWidth(56),
                                          JobsWidth(56));
-            imageView.image = JobsIMG(@"gesture_headIcon");
+            imageView.image = @"gesture_headIcon".img;
             self.view.addSubview(imageView);
         });
     }return _headIcon;

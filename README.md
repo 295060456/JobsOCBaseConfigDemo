@@ -1606,14 +1606,14 @@ classDiagram
                    .byRightViewByTextFieldOffset(JobsWidth(4))
                    .byRightViewByOutLineOffset(JobsWidth(14))
                    .byLeftView(BaseButton.jobsInit()
-                               .jobsResetBtnBgImage(JobsIMG(@"📅"))
+                               .jobsResetBtnBgImage(@"📅".img)
                                .onClickBy(^(UIButton *x){
                                    JobsLog(@"");
                                }).onLongPressGestureBy(^(id data){
                                    JobsLog(@"");
                                }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
                    .byRightView(BaseButton.jobsInit()
-                                .jobsResetBtnBgImage(JobsIMG(@"向下的箭头"))
+                                .jobsResetBtnBgImage(@"向下的箭头".img)
                                 .onClickBy(^(UIButton *x){
                                     @jobs_strongify(self)
                                     self.popupParameter = nil;
@@ -1659,7 +1659,7 @@ classDiagram
           @jobs_weakify(self)
           _textFieldLeftView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
               @jobs_strongify(self)
-              imageView.image = JobsIMG(@"UserLogoTextFieldLeftImage");
+              imageView.image = @"UserLogoTextFieldLeftImage".img;
               imageView.sizer = CGSizeMake(JobsWidth(15), JobsWidth(15));
           });
       }return _textFieldLeftView;
@@ -1670,7 +1670,7 @@ classDiagram
           @jobs_weakify(self)
           _textFieldRightView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
               @jobs_strongify(self)
-              imageView.image = JobsIMG(@"UserLogoTextFieldRightImage");
+              imageView.image = @"UserLogoTextFieldRightImage".img;
               imageView.sizer = CGSizeMake(JobsWidth(16), JobsWidth(16));
           });
       }return _textFieldRightView;
@@ -1902,10 +1902,10 @@ classDiagram
      }] subscribeNext:^(NSNumber *bothHaveText) {
          @jobs_strongify(self);
   //        if (bothHaveText.boolValue) {
-  //            self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT"));
+  //            self.submitBtn.jobsResetBtnBgImage(@"SUBMIT".img);
   //            self.submitBtn.enabled = YES;
   //        } else {
-  //            self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT（不可点击）"));
+  //            self.submitBtn.jobsResetBtnBgImage(@"SUBMIT（不可点击）".img);
   //            self.submitBtn.enabled = NO;
   //        }
      }];
@@ -2043,7 +2043,7 @@ classDiagram
       return ^(){
       	  @jobs_strongify(self)
           self.saveUserInfo(jobsMakeUserModel(^(__kindof JobsUserModel<NSCoding> * _Nullable userModel) {
-              userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
+              userModel.userHeaderIMG = @"用户默认头像".img;
               userModel.userName = @"张三丰";
               userModel.phone = @"13487878787".encryptedChineseTele;
           }));
@@ -3055,33 +3055,33 @@ classDiagram
              if([x isKindOfClass:UIButton.class]){
                  UIButton *btn = (UIButton *)x;
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TOP GAMES")]){
-                     self.bgImageView.image = JobsIMG(@"TOP GAMES");
-                     self.topImageView.image = JobsIMG(@"Top_Games");
+                     self.bgImageView.image = @"TOP GAMES".img;
+                     self.topImageView.image = @"Top_Games".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SLOT GAMES")]){
-                     self.bgImageView.image = JobsIMG(@"SLOT GAMES");
-                     self.topImageView.image = JobsIMG(@"Slot_Games");
+                     self.bgImageView.image = @"SLOT GAMES".img;
+                     self.topImageView.image = @"Slot_Games".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"LIVE CASINO")]){
-                     self.bgImageView.image = JobsIMG(@"LIVE CASINO");
-                     self.topImageView.image = JobsIMG(@"Live_Casino");
+                     self.bgImageView.image = @"LIVE CASINO".img;
+                     self.topImageView.image = @"Live_Casino".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TABLE GAMES")]){
-                     self.bgImageView.image = JobsIMG(@"TABLE GAMES");
-                     self.topImageView.image = JobsIMG(@"Table_Games");
+                     self.bgImageView.image = @"TABLE GAMES".img;
+                     self.topImageView.image = @"Table_Games".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SPORTS")]){
-                     self.bgImageView.image = JobsIMG(@"SPORTS");
-                     self.topImageView.image = JobsIMG(@"Sports");
+                     self.bgImageView.image = @"SPORTS".img;
+                     self.topImageView.image = @"Sports".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"FINSHING")]){
-                     self.bgImageView.image = JobsIMG(@"FINSHING");
-                     self.topImageView.image = JobsIMG(@"Fishing");
+                     self.bgImageView.image = @"FINSHING".img;
+                     self.topImageView.image = @"Fishing".img;
                  }
              }
          }];
@@ -3158,9 +3158,9 @@ classDiagram
       
       // 使用原则：底图有 + 底色有 = 优先使用底图数据
       // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-      // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+      // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
       self.viewModel.navBgCor = JobsClearColor.colorWithAlphaComponentBy(0);
-  //    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+  //    self.viewModel.navBgImage = @"导航栏左侧底图".img;
   }
   
   - (void)viewDidLoad {
@@ -3290,7 +3290,7 @@ classDiagram
                       data.title = JobsInternationalization(@"NO MESSAGES FOUND");
                       data.titleCor = JobsWhiteColor;
                       data.titleFont = bayonRegular(JobsWidth(30));
-                      data.normalImage = JobsIMG(@"小狮子");
+                      data.normalImage = @"小狮子".img;
                   }))
                   /// 普通的MJRefreshHeader（触发事件）（二选一）
                   .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -3390,27 +3390,27 @@ classDiagram
               data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"ALL");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
-                  viewModel.image = JobsIMG(@"All_activity_小图标");
-                  viewModel.bgSelectedImage = JobsIMG(@"All_activity");
+                  viewModel.image = @"All_activity_小图标".img;
+                  viewModel.bgSelectedImage = @"All_activity".img;
                   viewModel.isMark = YES;
               }));
               data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"Daily");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
-                  viewModel.image = JobsIMG(@"Daily_activity_小图标");
-                  viewModel.bgSelectedImage = JobsIMG(@"Daily_activity");
+                  viewModel.image = @"Daily_activity_小图标".img;
+                  viewModel.bgSelectedImage = @"Daily_activity".img;
               }));
               data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"New Account");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
-                  viewModel.image = JobsIMG(@"NewAcc_activity_小图标");
-                  viewModel.bgSelectedImage = JobsIMG(@"NewAcc_activity");
+                  viewModel.image = @"NewAcc_activity_小图标".img;
+                  viewModel.bgSelectedImage = @"NewAcc_activity".img;
               }));
               data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"Limited Time");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
-                  viewModel.image = JobsIMG(@"LimitedTimeOffer_activity_小图标");
-                  viewModel.bgSelectedImage = JobsIMG(@"LimitedTimeOffer_activity");
+                  viewModel.image = @"LimitedTimeOffer_activity_小图标".img;
+                  viewModel.bgSelectedImage = @"LimitedTimeOffer_activity".img;
               }));
           });
       }return _titleMutArr;
@@ -4529,8 +4529,8 @@ static const uint32_t kSequenceBits = 12;
              .bgColor(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
              .jobsResetImagePadding(1)
-             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-             .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+             .jobsResetBtnImage(@"APPLY NOW".img)
+             .jobsResetBtnBgImage(@"APPLY NOW".img)
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .titleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -4553,7 +4553,7 @@ static const uint32_t kSequenceBits = 12;
   ```objective-c
   _headBtn = BaseButton.jobsInit()
      .imageURL(@"".jobsUrl)
-     .placeholderImage(JobsIMG(@"小狮子"))
+     .placeholderImage(@"小狮子".img)
      .options(SDWebImageRefreshCached)/// 强制刷新缓存
      .completed(^(UIImage * _Nullable image,
                   NSError * _Nullable error,
@@ -4603,8 +4603,8 @@ static const uint32_t kSequenceBits = 12;
           }))).bgColor(JobsWhiteColor)
               .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
               .jobsResetImagePadding(1)
-              .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-              .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+              .jobsResetBtnImage(@"APPLY NOW".img)
+              .jobsResetBtnBgImage(@"APPLY NOW".img)
               .jobsResetBtnTitleCor(JobsWhiteColor)
               .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
               .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -4783,7 +4783,7 @@ static const uint32_t kSequenceBits = 12;
               model.titleCor = JobsWhiteColor;
               model.title = JobsInternationalization(@"GET CODE");
               model.titleFont = bayonRegular(JobsWidth(12));
-              model.backgroundImage = JobsIMG(@"获取验证码背景图");
+              model.backgroundImage = @"获取验证码背景图".img;
           });
           /// 计时器进行中【动态值】
           data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
@@ -4793,7 +4793,7 @@ static const uint32_t kSequenceBits = 12;
               model.layerBorderCor = JobsClearColor;
               model.titleCor = JobsWhiteColor;
               model.titleFont = bayonRegular(JobsWidth(12));
-              model.backgroundImage = JobsIMG(@"获取验证码背景图");
+              model.backgroundImage = @"获取验证码背景图".img;
           });
           /// 计时器结束【静态值】
           data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
@@ -4802,7 +4802,7 @@ static const uint32_t kSequenceBits = 12;
               model.titleCor = JobsWhiteColor;
               model.title = JobsInternationalization(@"GET CODE");
               model.titleFont = bayonRegular(JobsWidth(12));
-              model.backgroundImage = JobsIMG(@"获取验证码背景图");
+              model.backgroundImage = @"获取验证码背景图".img;
           });
       })).onClickBy(^(__kindof UIButton *x){
           /// 回调到外层取值，以满足后续业务需要
@@ -5735,14 +5735,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
          viewModel.alpha = 1;
          viewModel.navBgCor = JobsClearColor;
-         viewModel.navBgImage = JobsIMG(@"");
-         viewModel.titleImage = JobsIMG(@"BSportRedLogo"); /// 配置中间的标题为图片
+         viewModel.navBgImage = @"".img;
+         viewModel.titleImage = @"BSportRedLogo".img; /// 配置中间的标题为图片
      });
      /// 配置返回键
      config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
 //            @jobs_strongify(self)
-         buttonModel.normalImage = JobsIMG(@"全局返回箭头");
-         buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
+         buttonModel.normalImage = @"全局返回箭头".img;
+         buttonModel.highlightImage = @"全局返回箭头".img;
          buttonModel.title = JobsInternationalization(@"");
          buttonModel.titleFont = bayonRegular(14);
          buttonModel.titleCor = JobsCor(@"#8A93A1");
@@ -5844,10 +5844,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     -(UIButtonModel *)closeBtnModel{
         if(!_closeBtnModel){
             _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                data.backgroundImage = JobsIMG(@"联系我们");
-    //            data.highlightBackgroundImage = JobsIMG(@"联系我们");
-    //            data.jobsResetBtnImage = JobsIMG(@"联系我们");
-    //            data.highlightImage = JobsIMG(@"联系我们");
+                data.backgroundImage = @"联系我们".img;
+    //            data.highlightBackgroundImage = @"联系我们".img;
+    //            data.jobsResetBtnImage = @"联系我们".img;
+    //            data.highlightImage = @"联系我们".img;
     //            data.imagePadding = JobsWidth(5);
                 data.roundingCorners = UIRectCornerAllCorners;
                 data.baseBackgroundColor = JobsClearColor;
@@ -5859,10 +5859,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             @jobs_strongify(self)
-    //        data.backgroundImage = JobsIMG(@"返回");
-            data.selected_backgroundImage = JobsIMG(@"返回");
-            data.highlightImage = JobsIMG(@"返回");
-            data.normalImage = JobsIMG(@"返回");
+    //        data.backgroundImage = @"返回".img;
+            data.selected_backgroundImage = @"返回".img;
+            data.highlightImage = @"返回".img;
+            data.normalImage = @"返回".img;
             data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
             data.title = self.viewModel.backBtnTitleModel.text;
             data.font = self.viewModel.backBtnTitleModel.font;
@@ -6033,7 +6033,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           JobsSuspendBtn *SuspendBtn = Jobs_getAssociatedObject(_suspendBtn);
           if (!SuspendBtn) {
               @jobs_weakify(self)
-              SuspendBtn = self.view.addSubview(JobsSuspendBtn.initByNormalImage(JobsIMG(@"旋转"))
+              SuspendBtn = self.view.addSubview(JobsSuspendBtn.initByNormalImage(@"旋转".img)
                                                 .onClickBy(^(UIButton *x){
                                                     @jobs_strongify(self)
                                                     x.selected = !x.selected;
@@ -7005,7 +7005,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         if(!_frontPicBtn){
             @jobs_weakify(self)
             _frontPicBtn = BaseButton.jobsInit()
-                .jobsResetBtnBgImage(JobsIMG(@"上传ID正面照"))
+                .jobsResetBtnBgImage(@"上传ID正面照".img)
                 .onClickBy(^(UIButton *x){
                     JobsLog(@"上传ID正面照");
                     ShowView(jobsMakePopListBaseView(^(PopListBaseView * _Nullable data) {
@@ -7057,7 +7057,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         if(!_holdOnIDBtn){
             @jobs_weakify(self)
             _holdOnIDBtn = BaseButton.jobsInit()
-                .jobsResetBtnBgImage(JobsIMG(@"上传手持ID正面照"))
+                .jobsResetBtnBgImage(@"上传手持ID正面照".img)
                 .onClickBy(^(UIButton *x){
                     JobsLog(@"上传手持ID正面照");
                     [self.userHeaderDataView tf_showSlide:jobsGetMainWindow()
@@ -7985,7 +7985,7 @@ NSLog(@"%p %p %p %p" %p", m1, m2, m3, m4, m5);
 didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {//@@5
     NSLog(@"%s", __FUNCTION__);
     JobsBtnStyleCVCell *cell = (JobsBtnStyleCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if(cell && cell.button) cell.button.jobsResetBackgroundImage(JobsIMG(@"首页切换游戏种类按钮背景图（未选择）"));
+    if(cell && cell.button) cell.button.jobsResetBackgroundImage(@"首页切换游戏种类按钮背景图（未选择）".img);
 }
 /// 选中操作
 - (void)collectionView:(UICollectionView *)collectionView
@@ -7994,10 +7994,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     FMHomeMainBizSubView *subView = self.subViewMutArr[indexPath.item];
     self.bringSubviewToFront(subView);
     for (JobsBtnStyleCVCell *cell in collectionView.visibleCells) {
-        if(cell && cell.button) cell.button.jobsResetBackgroundImage(JobsIMG(@"首页切换游戏种类按钮背景图（未选择）"));
+        if(cell && cell.button) cell.button.jobsResetBackgroundImage(@"首页切换游戏种类按钮背景图（未选择）".img);
     }
     JobsBtnStyleCVCell *cell = (JobsBtnStyleCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if(cell && cell.button) cell.button.jobsResetBackgroundImage(JobsIMG(@"首页切换游戏种类按钮背景图（已选择）"));
+    if(cell && cell.button) cell.button.jobsResetBackgroundImage(@"首页切换游戏种类按钮背景图（已选择）".img);
     /**
      滚动到指定位置
      _collectionView.contentOffset = CGPointMake(0,-100);
@@ -8099,7 +8099,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    //+(CGFloat)cellHeightWithModel:(id _Nullable)model;
    //具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
    +(CGSize)cellSizeWithModel:(UIImage *_Nullable)model{
-       if ([model isEqual:JobsIMG(@"小数点")]) {
+       if ([model isEqual:@"小数点".img]) {
            return CGSizeMake(JobsWidth(15), JobsWidth(28));
        }return CGSizeMake(JobsWidth(19), JobsWidth(28));
    }
@@ -8164,7 +8164,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                                                  data.title = JobsInternationalization(@"NO BANK CARD FOUND");
                                                  data.titleCor = JobsWhiteColor;
                                                  data.titleFont = bayonRegular(JobsWidth(30));
-                                                 data.normalImage = JobsIMG(@"用户默认头像");
+                                                 data.normalImage = @"用户默认头像".img;
                                              }))
                                              /// 无数据占位：用自定义的视图表达（二选一）
                                              .showEmptyViewBy(FMMaintenanceView
@@ -8345,7 +8345,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                         .bgColorBy(JobsClearColor)
                         .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                         .jobsResetImagePadding(1)
-                        .jobsResetBtnImage(JobsIMG(@"Betslip"))
+                        .jobsResetBtnImage(@"Betslip".img)
                         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                         .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                         .jobsResetBtnTitle(JobsInternationalization(@"Betslip"))
@@ -8358,7 +8358,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Statement"))
+                    .jobsResetBtnImage(@"Statement".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Statement"))
@@ -8371,7 +8371,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Promo"))
+                    .jobsResetBtnImage(@"Promo".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Promo"))
@@ -8384,7 +8384,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Security"))
+                    .jobsResetBtnImage(@"Security".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Security"))
@@ -8397,7 +8397,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Help Center"))
+                    .jobsResetBtnImage(@"Help Center".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Help Center"))
@@ -8410,7 +8410,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Feedback"))
+                    .jobsResetBtnImage(@"Feedback".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Feedback"))
@@ -8442,7 +8442,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         [tableView hideSeparatorLineAtLast:indexPath
                                       cell:cell];
         /// 自定义 UITableViewCell 的箭头
-        cell.img = JobsIMG(@"向右的箭头（大）");
+        cell.img = @"向右的箭头（大）".img;
         @jobs_weakify(self)
         [cell customAccessoryView:^(id data) {
             @jobs_strongify(self)
@@ -8784,7 +8784,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                        data.title = JobsInternationalization(@"NO MESSAGES FOUND");
                        data.titleCor = JobsWhiteColor;
                        data.titleFont = bayonRegular(JobsWidth(30));
-                       data.normalImage = JobsIMG(@"小狮子");
+                       data.normalImage = @"小狮子".img;
                    }))
                    /// 普通的MJRefreshHeader（触发事件）（二选一）
                    .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -9118,7 +9118,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        /// 隐藏最后一个单元格的分界线
        [tableView hideSeparatorLineAtLast:indexPath cell:cell];
        /// 自定义 UITableViewCell 的箭头
-       cell.img = JobsIMG(@"向右的箭头（大）");
+       cell.img = @"向右的箭头（大）".img;
    //    @jobs_weakify(self)
        [cell customAccessoryView:^(id data) {
    //        @jobs_strongify(self)
@@ -9735,9 +9735,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                .byRightLabNormalBgCor(JobsGrayColor)
                .byStatus(VerificationStatusVerifying)
                .jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButtonModel *>* _Nullable data) {
-                   data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),JobsIMG(@"正在进行第一步"),JobsIMG(@"正在进行第一步")))
-                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),JobsIMG(@"还未进行第二步"),JobsIMG(@"正在进行第二步")))
-                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verified"),JobsIMG(@"还未进行第三步"),JobsIMG(@"正在进行第三步")));
+                   data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),@"正在进行第一步".img,@"正在进行第一步".img))
+                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),@"还未进行第二步".img,@"正在进行第二步".img))
+                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verified"),@"还未进行第三步".img,@"正在进行第三步".img));
                }));
            })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
                make.top.equalTo(self.gk_navigationBar.mas_bottom);
@@ -10172,7 +10172,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         // 设置普通状态的动画图片
         NSMutableArray <UIImage *>*idleImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             for (NSUInteger i = 1; i<=60; i++) {
-                data.add(JobsIMG([NSString stringWithFormat:@"dropdown_anim__000%zd", i]));
+                data.add([NSString stringWithFormat:@"dropdown_anim__000%zd", i].img);
             }
         });
     
@@ -10181,7 +10181,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         // 设置正在刷新状态的动画图片
         NSMutableArray <UIImage *>*refreshingImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             for (NSUInteger i = 1; i<=3; i++) {
-                data.add(JobsIMG([NSString stringWithFormat:@"dropdown_loading_0%zd", i]));
+                data.add([NSString stringWithFormat:@"dropdown_loading_0%zd", i].img);
             }
         });
     
@@ -10229,7 +10229,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         // 设置普通状态的动画图片
         NSMutableArray <UIImage *>*idleImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             for (NSUInteger i = 1; i<=60; i++) {
-                data.add(JobsIMG([NSString stringWithFormat:@"dropdown_anim__000%zd", i]));
+                data.add([NSString stringWithFormat:@"dropdown_anim__000%zd", i].img);
             }
         });
     
@@ -10238,7 +10238,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         // 设置正在刷新状态的动画图片
         NSMutableArray <UIImage *>*refreshingImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             for (NSUInteger i = 1; i<=3; i++) {
-                data.add(JobsIMG([NSString stringWithFormat:@"dropdown_loading_0%zd", i]));
+                data.add([NSString stringWithFormat:@"dropdown_loading_0%zd", i].img);
             }
         });
     
@@ -11592,14 +11592,14 @@ FMHomeMenuVC *vc = [self viewController:FMHomeMenuVC.new transitionDirection:Job
                  .byRightViewByTextFieldOffset(JobsWidth(4))
                  .byRightViewByOutLineOffset(JobsWidth(14))
                  .byLeftView(BaseButton.jobsInit()
-                             .jobsResetBtnBgImage(JobsIMG(@"📅"))
+                             .jobsResetBtnBgImage(@"📅".img)
                              .onClickBy(^(UIButton *x){
                                  JobsLog(@"");
                              }).onLongPressGestureBy(^(id data){
                                  JobsLog(@"");
                              }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
                  .byRightView(BaseButton.jobsInit()
-                              .jobsResetBtnBgImage(JobsIMG(@"向下的箭头"))
+                              .jobsResetBtnBgImage(@"向下的箭头".img)
                               .onClickBy(^(UIButton *x){
                                   @jobs_strongify(self)
                                   self.popupParameter = nil;

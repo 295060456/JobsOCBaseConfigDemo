@@ -52,7 +52,7 @@
 /// 旋转一定时间之后停止下来
 -(JobsReturnViewByFloatBlock _Nonnull)旋转动画By{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat data) {
+    return ^__kindof UIView *_Nullable(float data) {
         @jobs_strongify(self)
         // 设置目标角度（例如：旋转360度）
         CGFloat angleInRadians = self.currentAngle * (M_PI / 180.0f);

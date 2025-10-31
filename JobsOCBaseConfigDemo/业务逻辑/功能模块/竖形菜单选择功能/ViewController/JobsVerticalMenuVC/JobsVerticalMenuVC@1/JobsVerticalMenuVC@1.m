@@ -39,11 +39,11 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+//    self.viewModel.bgImage = @"启动页SLOGAN".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+    self.viewModel.navBgImage = @"导航栏左侧底图".img;
     self.makeSubVC();
 }
 
@@ -58,7 +58,7 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
     self.rightBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
         @jobs_strongify(self)
         data.add(UIBarButtonItem.initBy(BaseButton.jobsInit()
-                                        .jobsResetBtnImage(JobsIMG(@"消息"))
+                                        .jobsResetBtnImage(@"消息".img)
                                         .onClickBy(^(UIButton *x){
                                             @jobs_strongify(self)
                                             if (self.objBlock) self.objBlock(x);
@@ -67,7 +67,7 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
                                         })));
         data.add(UIBarButtonItem.initBy(BaseButton.jobsInit()
                                         .bgColorBy(JobsWhiteColor)
-                                        .jobsResetBtnImage(JobsIMG(@"人工客服"))
+                                        .jobsResetBtnImage(@"人工客服".img)
                                         .onClickBy(^(UIButton *x){
                                             @jobs_strongify(self)
                                             if (self.objBlock) self.objBlock(x);
@@ -278,7 +278,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             .bgColorBy(HEXCOLOR(0xFCFBFB))
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(JobsWidth(5.75))
-            .jobsResetBtnBgImage(JobsIMG(@"编辑"))
+            .jobsResetBtnBgImage(@"编辑".img)
             .jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"编辑"))

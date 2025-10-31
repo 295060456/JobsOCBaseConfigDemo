@@ -76,7 +76,7 @@ Prop_strong()UIImageView *launchImageView;
         _launchImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.frame = self.view.bounds;
-            imageView.image = JobsIMG(@"BSport");
+            imageView.image = @"BSport".img;
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             self.view.addSubview(imageView);
         });

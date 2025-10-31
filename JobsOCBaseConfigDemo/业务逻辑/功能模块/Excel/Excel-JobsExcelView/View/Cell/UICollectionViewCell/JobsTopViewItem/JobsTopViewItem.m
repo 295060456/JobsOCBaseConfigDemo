@@ -72,7 +72,7 @@ Prop_assign()CGSize size;
         @jobs_weakify(self)
         _bgImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            imageView.image = JobsIMG(@"投注记录");
+            imageView.image = @"投注记录".img;
             [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(0, 0, 0, 0));
             }];

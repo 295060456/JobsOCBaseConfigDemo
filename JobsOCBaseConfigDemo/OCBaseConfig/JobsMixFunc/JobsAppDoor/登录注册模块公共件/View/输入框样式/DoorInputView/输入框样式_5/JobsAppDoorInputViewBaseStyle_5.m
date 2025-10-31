@@ -327,7 +327,7 @@ Prop_strong()UIViewModel *chooseBtnViewModel;
             data.bgCor = JobsClearColor;
             data.jobsWidth = self.chooseBtnSize.width;
             data.subTextModel.text = JobsInternationalization(@"");
-            data.image = JobsIMG(@"向下的箭头");
+            data.image = @"向下的箭头".img;
         });
     }return _chooseBtnViewModel;
 }

@@ -35,7 +35,7 @@ Prop_strong()NSArray <UIViewModel *>*dataArr;
         @jobs_strongify(self)
         self.dataArr = model;
         self.tableView.reloadDatas();
-    //    self.backgroundImageView.image = JobsIMG(@"抖动钱包抖币用途");
+    //    self.backgroundImageView.image = @"抖动钱包抖币用途".img;
     //    self.imageView_1.alpha = 1;
     //    self.imageView_2.alpha = 1;
     //    self.valueLab.text = model.goldNumber;

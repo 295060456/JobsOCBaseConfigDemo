@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_END
  -(JobsAppDoorInputViewBaseStyleModel *)配置金额输入框{
      if (!_配置金额输入框) {
          _配置金额输入框 = JobsAppDoorInputViewBaseStyleModel.new;
- //        _配置金额输入框.leftViewIMG = JobsIMG(@"安全");
+ //        _配置金额输入框.leftViewIMG = @"安全".img;
          _配置金额输入框.textModel.text = JobsInternationalization(@"最大金额");
          _配置金额输入框.placeHolderStr = JobsInternationalization(@"請輸入取款金額");
          _配置金额输入框.placeholderFont = UIFontWeightRegularSize(14);

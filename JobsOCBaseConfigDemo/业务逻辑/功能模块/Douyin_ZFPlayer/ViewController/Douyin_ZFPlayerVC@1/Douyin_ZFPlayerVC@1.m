@@ -41,11 +41,11 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*__block dataMutArr;
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+//    self.viewModel.bgImage = @"启动页SLOGAN".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+    self.viewModel.navBgImage = @"导航栏左侧底图".img;
 }
 
 -(void)viewDidLoad{
@@ -315,7 +315,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                     data.subTitle = JobsInternationalization(@"骚等片刻");
                     data.titleCor = JobsWhiteColor;
                     data.titleFont = bayonRegular(JobsWidth(30));
-                    data.normalImage = JobsIMG(@"暂无数据");
+                    data.normalImage = @"暂无数据".img;
                     data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                 });
             }

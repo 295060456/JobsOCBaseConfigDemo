@@ -35,7 +35,7 @@ Prop_strong()UIImageView *textIMGV;
 
 +(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
     return ^CGSize(UIImage *_Nullable data){
-        if ([data isEqual:JobsIMG(@"小数点")]) {
+        if ([data isEqual:@"小数点".img]) {
             return CGSizeMake(JobsWidth(15), JobsWidth(28));
         }return CGSizeMake(JobsWidth(19), JobsWidth(28));
     };

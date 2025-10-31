@@ -17,7 +17,7 @@
 
 -(void)greatAtEmpty{
     UIButton *btn = self.great;
-    btn.jobsResetBtnImage(JobsIMG(@"空白图"));
+    btn.jobsResetBtnImage(@"空白图".img);
     btn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTrailing,JobsWidth(5));
 }
 

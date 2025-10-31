@@ -338,7 +338,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!_closeBtn) {
         @jobs_weakify(self)
         _closeBtn = BaseButton.jobsInit()
-            .jobsResetBtnBgImage(JobsIMG(@"关闭"))
+            .jobsResetBtnBgImage(@"关闭".img)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
@@ -362,7 +362,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             .initByStyle3(JobsInternationalization(@"恢复默认"),
                           UIFontWeightRegularSize(18)
                           ,HEXCOLOR(0xB0B0B0)
-                          ,JobsIMG(@"弹窗取消按钮"))
+                          ,@"弹窗取消按钮".img)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
@@ -387,7 +387,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             .initByStyle3(JobsInternationalization(@"完成")
                           ,UIFontWeightRegularSize(18)
                           ,JobsBlackColor
-                          ,JobsIMG(@"弹窗提交按钮"))
+                          ,@"弹窗提交按钮".img)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;

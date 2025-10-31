@@ -113,8 +113,8 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
             config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.Alpha = 1;
                 viewModel.navBgCor = JobsClearColor;
-                viewModel.navBgImage = JobsIMG(@"");
-                viewModel.titleImage = JobsIMG(@"BLuckyRedLogo"); /// 配置中间的标题为图片
+                viewModel.navBgImage = @"".img;
+                viewModel.titleImage = @"BLuckyRedLogo".img; /// 配置中间的标题为图片
             });
             config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 // @jobs_strongify(self)
@@ -148,7 +148,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                 viewModel.navBgCor = JobsClearColor;
                 viewModel.textModel.text = title;
                 viewModel.textModel.font = bayonRegular(JobsWidth(18));
-                viewModel.navBgImage = JobsIMG(@"");
+                viewModel.navBgImage = @"".img;
             });
             config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
                 // @jobs_strongify(self)
@@ -466,7 +466,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 /// 联系我们.按钮
 -(__kindof UIButton *_Nullable)makeContactBtn{
     @jobs_weakify(self)
-    return BaseButton.initByBackgroundImage(JobsIMG(@"联系我们"))
+    return BaseButton.initByBackgroundImage(@"联系我们".img)
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             if (self.objBlock) self.objBlock(x);
@@ -479,7 +479,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 /// 关闭.按钮
 -(__kindof UIButton *_Nullable)makeCloseBtnByActionBlock:(jobsByVoidBlock _Nullable)actionBlock{
     @jobs_weakify(self)
-    return BaseButton.initByBackgroundImage(JobsIMG(@"关闭按钮（灰色）"))
+    return BaseButton.initByBackgroundImage(@"关闭按钮（灰色）".img)
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             if (self.objBlock) self.objBlock(x);
@@ -767,7 +767,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 }
 /// （在登陆与否的情况下）默认的用户头像
 -(UIImage *)defaultHeaderImage{
-    return self.isLogin ? JobsIMG(@"default_avatar_white") : JobsIMG(@"未登录默认头像（灰）");
+    return self.isLogin ? @"default_avatar_white".img : @"未登录默认头像（灰）".img;
 }
 /// 字符串当前语言环境
 -(NSString *)currentLanguage{
@@ -788,10 +788,10 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.subTitle = JobsInternationalization(@"");
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
-            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
-            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
-            model.highlightImage = JobsIMG(@"HOT Games");
-            model.normalImage = JobsIMG(@"HOT Games");
+            model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
+            model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
+            model.highlightImage = @"HOT Games".img;
+            model.normalImage = @"HOT Games".img;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
@@ -799,10 +799,10 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.subTitle = JobsInternationalization(@"");
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
-            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
-            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
-            model.highlightImage = JobsIMG(@"SPORTS");
-            model.normalImage = JobsIMG(@"SPORTS");
+            model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
+            model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
+            model.highlightImage = @"SPORTS".img;
+            model.normalImage = @"SPORTS".img;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
@@ -810,10 +810,10 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.subTitle = JobsInternationalization(@"");
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
-            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
-            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
-            model.highlightImage = JobsIMG(@"SLOT GAMES");
-            model.normalImage = JobsIMG(@"SLOT GAMES");
+            model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
+            model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
+            model.highlightImage = @"SLOT GAMES".img;
+            model.normalImage = @"SLOT GAMES".img;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
@@ -821,10 +821,10 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.subTitle = JobsInternationalization(@"");
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
-            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
-            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
-            model.highlightImage = JobsIMG(@"LIVE GAMES");
-            model.normalImage = JobsIMG(@"LIVE GAMES");
+            model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
+            model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
+            model.highlightImage = @"LIVE GAMES".img;
+            model.normalImage = @"LIVE GAMES".img;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
@@ -832,32 +832,32 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.subTitle = JobsInternationalization(@"");
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
-            model.backgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（未选择）");
-            model.highlightBackgroundImage = JobsIMG(@"首页切换游戏种类按钮背景图（已选择）");
-            model.highlightImage = JobsIMG(@"TABLE GAMES");
-            model.normalImage = JobsIMG(@"TABLE GAMES");
+            model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
+            model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
+            model.highlightImage = @"TABLE GAMES".img;
+            model.normalImage = @"TABLE GAMES".img;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         }));
     });
 }
-/// 收藏的假数据 JobsIMG(@"PG");JobsIMG(@"点赞");
+/// 收藏的假数据 @"PG".img;@"点赞".img;
 -(NSMutableArray <__kindof UIViewModel *>*)favDataMutArr{
     return jobsMakeMutArr(^(__kindof NSMutableArray<UIViewModel *> * _Nullable arr) {
         arr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
-            data.bgImage = JobsIMG(@"FlementalLinkFire");
+            data.bgImage = @"FlementalLinkFire".img;
             data.imageUrl = @"https://zh.wikipedia.org/wiki/File:Jiang_Zemin_2002.jpg".jobsUrl;
-            data.image = JobsIMG(@"点赞");
+            data.image = @"点赞".img;
             data.text = JobsInternationalization(@"FlementalLinkFire");
         })).add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
-            data.bgImage = JobsIMG(@"DragonSoar");
+            data.bgImage = @"DragonSoar".img;
             data.imageUrl = @"https://zh.wikipedia.org/wiki/File:Deng_Xiaoping_at_the_arrival_ceremony_for_the_Vice_Premier_of_China_(cropped).jpg".jobsUrl;
-            data.image = JobsIMG(@"点赞");
+            data.image = @"点赞".img;
             data.text = JobsInternationalization(@"DragonSoar");
         })).add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
-            data.bgImage = JobsIMG(@"StreetFighter");
+            data.bgImage = @"StreetFighter".img;
             data.imageUrl = @"https://zh.wikipedia.org/wiki/File:Zhu_Rongji_in_2000.jpg".jobsUrl;
-            data.image = JobsIMG(@"点赞");
+            data.image = @"点赞".img;
             data.text = JobsInternationalization(@"ELEMENTAL LINK");
         }));
     });

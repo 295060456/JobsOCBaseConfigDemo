@@ -129,7 +129,7 @@ static dispatch_once_t static_codeViewOnceToken;
             [self refreshAction];
             return nil;
         }];
-        self.refresh.jobsResetBtnImage(JobsIMG(@"refresh"));
+        self.refresh.jobsResetBtnImage(@"refresh".img);
         self.refresh;
     })];
     self.resetHeight(CGRectGetMaxY(self.refresh.frame) + WMZmargin);
@@ -151,7 +151,7 @@ static dispatch_once_t static_codeViewOnceToken;
                                           CGRectGetMaxY(self.tipLabel.frame) + WMZmargin,
                                           self.width - WMZmargin * 2,
                                           WMZimageHeight);
-        self.mainImage.image = JobsIMG(self.name);
+        self.mainImage.image = self.name.img;
         self.mainImage.contentMode =  UIViewContentModeScaleAspectFill;
         self.mainImage.clipsToBounds = YES;
         self.mainImage.userInteractionEnabled = YES;
@@ -163,7 +163,7 @@ static dispatch_once_t static_codeViewOnceToken;
                                         CGRectGetMaxY(self.mainImage.frame) + WMZmargin,
                                         40,
                                         40);
-        self.refresh.jobsResetBtnImage(JobsIMG(@"refresh"));
+        self.refresh.jobsResetBtnImage(@"refresh".img);
         @jobs_weakify(self)
         [self.refresh jobsBtnClickEventBlock:^id(id data) {
             @jobs_strongify(self)
@@ -186,7 +186,7 @@ static dispatch_once_t static_codeViewOnceToken;
                                       self.height+ 6 );
     self.WMZSlider.minimumTrackTintColor = JobsClearColor;
     self.WMZSlider.maximumTrackTintColor = JobsClearColor;
-    UIImage *tempImage = JobsIMG(@"SliderBtn");
+    UIImage *tempImage = @"SliderBtn".img;
     tempImage = tempImage.imageScaleToSize(CGSizeMake(self.height+6, self.height+6));
     [self.WMZSlider setThumbImage:tempImage forState:UIControlStateNormal];
     [self.WMZSlider setThumbImage:tempImage forState:UIControlStateHighlighted];
@@ -218,7 +218,7 @@ static dispatch_once_t static_codeViewOnceToken;
 }
 /// 添加可移动的图片
 - (void)addMoveImage{
-    UIImage *jobsResetBtnImage = JobsIMG(self.name);
+    UIImage *jobsResetBtnImage = self.name.img;
     jobsResetBtnImage = jobsResetBtnImage.dw_RescaleImageToSize(CGSizeMake(self.width-WMZmargin*2, WMZimageHeight));
     self.mainImage.image = jobsResetBtnImage;
     [self.mainImage addSubview:({
@@ -424,7 +424,7 @@ static dispatch_once_t static_codeViewOnceToken;
         [self.WMZSlider setValue:0 animated:YES];
     }
     if (self.type == CodeTypeLabel||self.type ==CodeTypeNineLabel) {
-        self.mainImage.image = JobsIMG(self.name);
+        self.mainImage.image = self.name.img;
         self.factChinese = nil;
         self.allChinese = nil;
         [self setMyTipLabetText];

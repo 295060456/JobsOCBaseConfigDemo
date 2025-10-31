@@ -63,9 +63,9 @@
      @jobs_strongify(self)
      self.submitBtn.enabled = bothHaveText.boolValue;
       if (bothHaveText.boolValue) {
-          self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT（可点击）"));
+          self.submitBtn.jobsResetBtnBgImage(@"SUBMIT（可点击）".img);
       }else{
-          self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT（不可点击）"));
+          self.submitBtn.jobsResetBtnBgImage(@"SUBMIT（不可点击）".img);
       }
     }];
  }

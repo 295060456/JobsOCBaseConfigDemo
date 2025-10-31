@@ -163,7 +163,7 @@ static dispatch_once_t static_userModelOnceToken;
 //
 //-(UIImage *)userHeaderIMG{
 //    if (!_userHeaderIMG) {
-//        _userHeaderIMG = JobsIMG(@"用户默认头像");
+//        _userHeaderIMG = @"用户默认头像".img;
 //    }return _userHeaderIMG;
 //}
 

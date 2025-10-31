@@ -88,7 +88,7 @@ static dispatch_once_t static_mineView2OnceToken;
         _btn1 = BaseButton.initByStyleLeft(JobsInternationalization(@"入职Mata"),
                                            UIFontWeightRegularSize(14),
                                            JobsBlackColor,
-                                           JobsIMG(@"入职Mata"),
+                                           @"入职Mata".img,
                                            JobsWidth(10))
             .bgColorBy(JobsWhiteColor)
             .cornerRadiusValueBy(JobsWidth(8))

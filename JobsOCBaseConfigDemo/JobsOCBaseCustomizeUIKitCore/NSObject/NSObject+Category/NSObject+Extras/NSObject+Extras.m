@@ -1220,7 +1220,7 @@ UITextFieldProtocol_dynamic
             NSString *temp = JobsFormattedString(@"%C",buffer[i]);
             /// 数字映射图片
             if (temp.isEqualToString(@".")) temp = @"小数点";
-            data.add(JobsIMG(temp));
+            data.add(temp.img);
         }
     });
 }

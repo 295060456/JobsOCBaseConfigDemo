@@ -35,7 +35,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = JobsWhiteColor;
-        self.backgroundImageView.image = JobsIMG(@"测试弹窗的背景图");
+        self.backgroundImageView.image = @"测试弹窗的背景图".img;
     }return self;
 }
 
@@ -90,8 +90,8 @@ static dispatch_once_t static_testPopupViewOnceToken;
     if (!_testPopupViewSureBtn) {
         @jobs_weakify(self)
         _testPopupViewSureBtn = UIButton.jobsInit()
-        .jobsResetBtnBgImage(JobsIMG(@"测试弹窗的确定按钮"))
-        .selectedStateBackgroundImageBy(JobsIMG(@"测试弹窗的确定按钮"))
+        .jobsResetBtnBgImage(@"测试弹窗的确定按钮".img)
+        .selectedStateBackgroundImageBy(@"测试弹窗的确定按钮".img)
         .jobsResetBtnTitle(JobsInternationalization(@"确定"))
         .jobsResetBtnTitleCor(JobsBlackColor)
         .jobsResetBtnTitleFont(UIFontWeightRegularSize(18))

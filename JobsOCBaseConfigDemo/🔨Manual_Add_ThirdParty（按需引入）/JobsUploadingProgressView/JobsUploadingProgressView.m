@@ -40,8 +40,8 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
         static_uploadingProgressView = self;
         [MainWindow addSubview:self];
         [MainWindow bringSubviewToFront:self];
-        self.imge = JobsIMG(@"icon_upload_imge");
-        self.strokeColor = self.byPatternImage(JobsIMG(@"gradualColor").imageResize(CGSizeMake(50, 25)));; //圆环底色
+        self.imge = @"icon_upload_imge".img;
+        self.strokeColor = self.byPatternImage(@"gradualColor".img.imageResize(CGSizeMake(50, 25)));; //圆环底色
         self.radius = 34;
 
         self.hidden = YES;

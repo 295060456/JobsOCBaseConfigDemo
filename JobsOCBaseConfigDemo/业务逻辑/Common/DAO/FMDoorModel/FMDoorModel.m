@@ -232,7 +232,7 @@
 
 -(UIImage *)userDefaultHeadImage{
     if(!_userDefaultHeadImage){
-        _userDefaultHeadImage = JobsIMG(@"用户默认头像");
+        _userDefaultHeadImage = @"用户默认头像".img;
     }return _userDefaultHeadImage;
 }
 

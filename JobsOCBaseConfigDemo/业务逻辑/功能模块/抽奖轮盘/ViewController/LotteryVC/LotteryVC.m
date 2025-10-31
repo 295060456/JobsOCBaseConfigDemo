@@ -35,11 +35,11 @@ Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");/// self.gk_navBackgroundImage 和 self.bgImageView
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;/// self.gk_navBackgroundImage 和 self.bgImageView
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.bgImage = JobsIMG(@"新首页的底图");
+    self.viewModel.bgImage = @"新首页的底图".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);/// self.gk_navBackgroundColor 和 self.view.backgroundColor
-//    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+//    self.viewModel.navBgImage = @"导航栏左侧底图".img;
 }
 
 - (void)viewDidLoad {
@@ -182,7 +182,7 @@ viewForHeaderInSection:(NSInteger)section{
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView hideSeparatorLineAtLast:indexPath cell:cell];
-    cell.img = JobsIMG(@"向右的箭头（大）");
+    cell.img = @"向右的箭头（大）".img;
 //    @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {
 //        @jobs_strongify(self)
@@ -221,7 +221,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     data.title = JobsInternationalization(@"NO MESSAGES FOUND");
                     data.titleCor = JobsWhiteColor;
                     data.titleFont = bayonRegular(JobsWidth(30));
-                    data.normalImage = JobsIMG(@"小狮子");
+                    data.normalImage = @"小狮子".img;
                 }))
                 .showsVerticalScrollIndicatorBy(NO)
                 .byScrollEnabled(YES)

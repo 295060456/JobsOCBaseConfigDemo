@@ -11,7 +11,7 @@
 		044273872E8148680084B25C /* JobsScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 044273852E8148680084B25C /* JobsScale.m */; };
 		046CFA7A2E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */; };
 		046CFA7E2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */; };
-		04BF805A2EB213E6008E2F2A /* NSString+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF80592EB213E6008E2F2A /* NSString+Image.m */; };
+		047E48F92EB4537700881898 /* NSObject+image.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E48F82EB4537700881898 /* NSObject+image.m */; };
 		90E04F79B6CBEA72A6701F04 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		C53BE3BD2E265E54004A72BE /* NativeWebViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */; };
 		C53BE3C12E265EAC004A72BE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3C02E265EAC004A72BE /* WebViewController.m */; };
@@ -1311,8 +1311,8 @@
 		046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBackgroundConfiguration+Extra.m"; sourceTree = "<group>"; };
 		046CFA7C2E978DF4005A88B4 /* UIButtonConfiguration+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButtonConfiguration+Extra.h"; sourceTree = "<group>"; };
 		046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButtonConfiguration+Extra.m"; sourceTree = "<group>"; };
-		04BF80582EB213E6008E2F2A /* NSString+Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Image.h"; sourceTree = "<group>"; };
-		04BF80592EB213E6008E2F2A /* NSString+Image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Image.m"; sourceTree = "<group>"; };
+		047E48F72EB4537700881898 /* NSObject+image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+image.h"; sourceTree = "<group>"; };
+		047E48F82EB4537700881898 /* NSObject+image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+image.m"; sourceTree = "<group>"; };
 		20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		40ED0B9FDF5152B123562CEA /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3903,6 +3903,15 @@
 			path = UIButtonConfiguration;
 			sourceTree = "<group>";
 		};
+		047E48F62EB4536300881898 /* NSObject+image */ = {
+			isa = PBXGroup;
+			children = (
+				047E48F72EB4537700881898 /* NSObject+image.h */,
+				047E48F82EB4537700881898 /* NSObject+image.m */,
+			);
+			path = "NSObject+image";
+			sourceTree = "<group>";
+		};
 		04BF80542EB20FA7008E2F2A /* storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -3910,15 +3919,6 @@
 				C55C79712E16749000B56985 /* LaunchScreen.storyboard */,
 			);
 			path = storyboard;
-			sourceTree = "<group>";
-		};
-		04BF80552EB213A4008E2F2A /* NSString+Image */ = {
-			isa = PBXGroup;
-			children = (
-				04BF80582EB213E6008E2F2A /* NSString+Image.h */,
-				04BF80592EB213E6008E2F2A /* NSString+Image.m */,
-			);
-			path = "NSString+Image";
 			sourceTree = "<group>";
 		};
 		064F8B1BE36F6BEECAF8233E /* Frameworks */ = {
@@ -10088,7 +10088,6 @@
 		C55C808E2E167B6200B56985 /* NSString+Category */ = {
 			isa = PBXGroup;
 			children = (
-				04BF80552EB213A4008E2F2A /* NSString+Image */,
 				C55C808F2E167B6200B56985 /* NSString+Conversion */,
 				C55C80922E167B6200B56985 /* NSString+WKWebView */,
 				C55C80952E167B6200B56985 /* NSString+Others */,
@@ -11999,6 +11998,7 @@
 		C55C82AE2E167B6300B56985 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				047E48F62EB4536300881898 /* NSObject+image */,
 				C55C82AF2E167B6300B56985 /* NSObject+Swizzling */,
 				C55C82B32E167B6300B56985 /* NSObject+OpenURL */,
 				C55C82B62E167B6300B56985 /* NSObject+Measure */,
@@ -18118,6 +18118,7 @@
 				C55C8DD82E167B6E00B56985 /* HTTPDynamicFileResponse.m in Sources */,
 				C55C8B482E167B6A00B56985 /* UICollectionViewLayoutAttributes+Extra.m in Sources */,
 				C55C8E1E2E167B6E00B56985 /* UIScrollView+TFPopup.m in Sources */,
+				047E48F92EB4537700881898 /* NSObject+image.m in Sources */,
 				C55C8A172E167B6900B56985 /* JobsSettingGestureVC.m in Sources */,
 				C55C8E122E167B6E00B56985 /* TKPermissionReminder.m in Sources */,
 				C55C89812E167B6900B56985 /* JobsSearchDataCVCell.m in Sources */,
@@ -18159,7 +18160,6 @@
 				C55C8A082E167B6900B56985 /* TimeCell.m in Sources */,
 				C55C8C6A2E167B6C00B56985 /* ZYTextField.m in Sources */,
 				C55C8C452E167B6C00B56985 /* NSObject+DeviceID.m in Sources */,
-				04BF805A2EB213E6008E2F2A /* NSString+Image.m in Sources */,
 				C55C8B092E167B6A00B56985 /* UITableViewCell+WhiteArrows.m in Sources */,
 				C55C8CD12E167B6C00B56985 /* WGradientProgressView.m in Sources */,
 				C55C8C1B2E167B6B00B56985 /* JobsMonitorNetwoking.m in Sources */,

@@ -362,8 +362,8 @@ UITextFieldProtocol_synthesize_part2
 -(NSMutableArray<UIImage *> *)chatBubbleMutArr{
     if (!_chatBubbleMutArr) {
         _chatBubbleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIImage *>* _Nullable arr) {
-            arr.add(JobsIMG(@"左气泡"))
-            .add(JobsIMG(@"右气泡"));
+            arr.add(@"左气泡".img)
+            .add(@"右气泡".img);
         });
     }return _chatBubbleMutArr;
 }
@@ -412,17 +412,17 @@ UITextFieldProtocol_synthesize_part2
         _leftBtnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
             arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = JobsInternationalization(@"L1");
-                model.IconIMG = JobsIMG(@"Check");
+                model.IconIMG = @"Check".img;
                 model.bgCor = JobsGreenColor;
             }))
             .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = JobsInternationalization(@"L2");
-                model.IconIMG = JobsIMG(@"Fav");
+                model.IconIMG = @"Fav".img;
                 model.bgCor = RGBA_COLOR(0, 0x99, 0xcc, 1);
             }))
             .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = JobsInternationalization(@"L3");
-                model.IconIMG = JobsIMG(@"Menu");
+                model.IconIMG = @"Menu".img;
                 model.bgCor = RGBA_COLOR(0.59, 0.29, 0.08, 1);
             }));
         });
@@ -434,17 +434,17 @@ UITextFieldProtocol_synthesize_part2
         _rightBtnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
             arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = @"R1";
-                model.IconIMG = JobsIMG(@"Class");
+                model.IconIMG = @"Class".img;
                 model.bgCor = JobsPurpleColor;
             }))
             .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = @"R2";
-                model.IconIMG = JobsIMG(@"Drop");
+                model.IconIMG = @"Drop".img;
                 model.bgCor = JobsDarkTextColor;
             }))
             .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
                 model.titleStr = @"R3";
-                model.IconIMG = JobsIMG(@"Header");
+                model.IconIMG = @"Header".img;
                 model.bgCor = JobsCyanColor;
             }));
         });

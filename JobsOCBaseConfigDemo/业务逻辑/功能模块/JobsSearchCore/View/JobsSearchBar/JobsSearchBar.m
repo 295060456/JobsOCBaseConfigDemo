@@ -50,7 +50,7 @@ Prop_strong()BaseButton *cancelBtn;
             textField.placeholder = JobsInternationalization(@"请输入搜索内容");
             textField.delegate = self;
             textField.leftView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-                imageView.image = JobsIMG(@"放大镜");
+                imageView.image = @"放大镜".img;
             });
             textField.textColor = JobsPurpleColor;
             textField.inputAccessoryView = JobsAdNoticeView

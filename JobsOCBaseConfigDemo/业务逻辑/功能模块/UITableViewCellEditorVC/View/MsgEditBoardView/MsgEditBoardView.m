@@ -134,8 +134,8 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
     if (!_allChooseBtn) {
         @jobs_weakify(self)
         _allChooseBtn = UIButton.jobsInit()
-        .jobsResetBtnImage(JobsIMG(@"按钮未选中"))
-        .selectedStateImageBy(JobsIMG(@"按钮已选中"))
+        .jobsResetBtnImage(@"按钮未选中".img)
+        .selectedStateImageBy(@"按钮已选中".img)
         .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
         .jobsResetBtnTitleFont(UIFontWeightBoldSize(14))
         .jobsResetBtnTitle(JobsInternationalization(@"全選"))

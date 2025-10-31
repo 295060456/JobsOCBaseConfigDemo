@@ -37,8 +37,8 @@ Prop_assign()ResultKindType resultType;//学生端结果
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.userInteractionEnabled = NO;
         
-        btn.jobsResetBtnImage(JobsIMG(@"灰色椭圆"));
-        btn.selectedStateImageBy(JobsIMG(@"橙色椭圆"));
+        btn.jobsResetBtnImage(@"灰色椭圆".img);
+        btn.selectedStateImageBy(@"橙色椭圆".img);
         [self addSubview:btn];
         btn.tag = i + 1;
     }
@@ -118,7 +118,7 @@ Prop_assign()ResultKindType resultType;//学生端结果
                 [[UIColor redColor] set];
                 for (int i = 0; i < self.errorBtns.count; i++) {
                     UIButton *btn =  [self.errorBtns objectAtIndex:i];
-                    btn.jobsResetBtnImage(JobsIMG(@"红色椭圆"));
+                    btn.jobsResetBtnImage(@"红色椭圆".img);
                 }break;
             case ResultKindTypeNoEnough:{
                     [JobsClearColor set];
@@ -147,8 +147,8 @@ Prop_assign()ResultKindType resultType;//学生端结果
     
     if (pan.state == UIGestureRecognizerStateBegan) {
         for (UIButton *btn in _errorBtns) {
-            btn.jobsResetBtnImage(JobsIMG(@"灰色椭圆"));
-            btn.selectedStateImageBy(JobsIMG(@"橙色椭圆"));
+            btn.jobsResetBtnImage(@"灰色椭圆".img);
+            btn.selectedStateImageBy(@"橙色椭圆".img);
         }
         [self.errorBtns removeAllObjects];
     }
@@ -229,7 +229,7 @@ Prop_assign()ResultKindType resultType;//学生端结果
             [JobsClearColor set];
             for (int i = 0; i < self.errorBtns.count; i++) {
                 UIButton *btn =  [self.errorBtns objectAtIndex:i];
-                btn.jobsResetBtnImage(JobsIMG(@"灰色椭圆"));
+                btn.jobsResetBtnImage(@"灰色椭圆".img);
             }
             [self.errorBtns removeAllObjects];
         }

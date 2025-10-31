@@ -59,7 +59,7 @@ Prop_strong()VideoModel_Core *core_data;
             self.rotation.alpha = 1;
             self.coverImageView
                     .imageURL(self.core_data.videoImg.jobsUrl)
-                    .placeholderImage(JobsIMG(@"视频封面"))
+                    .placeholderImage(@"视频封面".img)
                     .options(self.makeSDWebImageOptions)
                     .completed(^(UIImage * _Nullable image,
                                  NSError * _Nullable error,
@@ -115,7 +115,7 @@ Prop_strong()VideoModel_Core *core_data;
 -(UIButton *)rotation{
     if (!_rotation){
         @jobs_weakify(self)
-        _rotation = UIButton.initByNormalImage(JobsIMG(@"zfplayer_rotaiton"))
+        _rotation = UIButton.initByNormalImage(@"zfplayer_rotaiton".img)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 JobsLog(@"");

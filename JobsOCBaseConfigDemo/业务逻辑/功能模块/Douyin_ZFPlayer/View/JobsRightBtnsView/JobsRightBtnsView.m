@@ -129,7 +129,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         _loveBtn = RBCLikeButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"点赞")),
                                                 UIFontWeightRegularSize(12),
                                                 JobsCor(@"#EA2918"),
-                                                JobsIMG(@"视频未点赞"),
+                                                @"视频未点赞".img,
                                                 JobsWidth(5))
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .onClickBy(^(UIButton *x){
@@ -148,7 +148,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         [self addSubview:_loveBtn];
         [self layoutIfNeeded];
     }
-    _loveBtn.jobsResetBtnImage(_loveBtn.selected ? JobsIMG(@"视频未点赞") : JobsIMG(@"视频未点赞"));
+    _loveBtn.jobsResetBtnImage(_loveBtn.selected ? @"视频未点赞".img : @"视频未点赞".img);
     return _loveBtn;
 }
 
@@ -158,7 +158,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         _commentBtn = BaseButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"评论")),
                                                 UIFontWeightRegularSize(12),
                                                 JobsCor(@"#EA2918"),
-                                                JobsIMG(@"视频评论"),
+                                                @"视频评论".img,
                                                 JobsWidth(5))
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .onClickBy(^(UIButton *x){
@@ -197,7 +197,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         _shareBtn = RBCLikeButton.initByStyleTop(self.viewModel.textModel.text.replace(JobsInternationalization(@"分享")),
                                                  UIFontWeightRegularSize(12),
                                                  JobsCor(@"#EA2918"),
-                                                 JobsIMG(@"分享"),
+                                                 @"分享".img,
                                                  JobsWidth(5))
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .onClickBy(^(UIButton *x){

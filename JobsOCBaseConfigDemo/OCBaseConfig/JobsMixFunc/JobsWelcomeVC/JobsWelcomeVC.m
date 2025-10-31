@@ -37,11 +37,11 @@ Prop_strong()NSMutableArray <NSString *>*dataMutArr;
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-//        self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+//        self.viewModel.navBgImage = @"导航栏左侧底图".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+    self.viewModel.navBgImage = @"导航栏左侧底图".img;
 }
 
 - (void)viewDidLoad {
@@ -77,7 +77,7 @@ Prop_strong()NSMutableArray <NSString *>*dataMutArr;
         }else{
             imageName = [NSString stringWithFormat:@"启动页_%ld",i];
         }
-        [imageView sd_setImageWithURL:[NSURL URLWithString:self.dataMutArr[i]] placeholderImage:JobsIMG(imageName)];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:self.dataMutArr[i]] placeholderImage:imageName.img];
         [self.scrollView addSubview:imageView];
     }
 }

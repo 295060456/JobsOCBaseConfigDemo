@@ -91,12 +91,12 @@ Prop_copy()NSArray <__kindof UIButton*>*datas;
     if(!_suspendBtn){
         @jobs_weakify(self)
         _suspendBtn = self.addSubview(BaseButton
-                                      .initByBackgroundImage(JobsIMG(@"首页悬浮按钮（朝左）"))
+                                      .initByBackgroundImage(@"首页悬浮按钮（朝左）".img)
                                       .onClickBy(^(UIButton *x){
                                           JobsLog(@"");
                                           @jobs_strongify(self)
                                           x.selected = !x.selected;
-                                          x.jobsResetBtnBgImage(x.selected ? JobsIMG(@"首页悬浮按钮（朝右）") : JobsIMG(@"首页悬浮按钮（朝左）"));
+                                          x.jobsResetBtnBgImage(x.selected ? @"首页悬浮按钮（朝右）".img : @"首页悬浮按钮（朝左）".img);
                                           if (self.objBlock) self.objBlock(x);
                                       }).onLongPressGestureBy(^(id data){
                                           JobsLog(@"");
@@ -114,7 +114,7 @@ Prop_copy()NSArray <__kindof UIButton*>*datas;
     if(!_stackImageView){
         @jobs_weakify(self)
         _stackImageView = self.addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-            imageView.byImage(JobsIMG(@"首页右侧悬浮菜单背景图"));
+            imageView.byImage(@"首页右侧悬浮菜单背景图".img);
         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
             @jobs_strongify(self)
             make.size.mas_equalTo(CGSizeMake(JobsWidth(30), JobsWidth(160)));

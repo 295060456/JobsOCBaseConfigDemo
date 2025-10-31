@@ -40,11 +40,11 @@ Prop_strong()NSMutableArray <UIViewModel *>*sectionFooterDataSource;/// sectionF
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+//    self.viewModel.bgImage = @"启动页SLOGAN".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+    self.viewModel.navBgImage = @"导航栏左侧底图".img;
 }
 
 - (void)viewDidLoad {
@@ -213,17 +213,17 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
                     data2.textModel.text = JobsInternationalization(@"上海银行");
                     data2.subTextModel.text = JobsInternationalization(@"**** 7895");
-                    data2.image = JobsIMG(@"第一银行");
+                    data2.image = @"第一银行".img;
                 }));
                 data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
                     data2.textModel.text = JobsInternationalization(@"国泰世华");
                     data2.subTextModel.text = JobsInternationalization(@"**** 2345");
-                    data2.image = JobsIMG(@"国泰世华");
+                    data2.image = @"国泰世华".img;
                 }));
                 data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
                     data2.textModel.text = JobsInternationalization(@"台湾银行");
                     data2.subTextModel.text = JobsInternationalization(@"**** 7654");
-                    data2.image = JobsIMG(@"台湾银行");
+                    data2.image = @"台湾银行".img;
                 }));
             }));
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data1) {

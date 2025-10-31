@@ -38,7 +38,7 @@
         @jobs_weakify(self)
         _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            imageView.image = JobsIMG(@"登录弹窗");
+            imageView.image = @"登录弹窗".img;
 
             {
                 imageView.numberOfTouchesRequired = 1;

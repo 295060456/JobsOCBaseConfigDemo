@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_END
  -(JobsAppDoorInputViewBaseStyleModel *)配置选择区号并输入手机号{
      if (!_配置选择区号并输入手机号) {
          _配置选择区号并输入手机号 = JobsAppDoorInputViewBaseStyleModel.new;
-         _配置选择区号并输入手机号.leftViewIMG = JobsIMG(@"小手机图标");
+         _配置选择区号并输入手机号.leftViewIMG = @"小手机图标".img;
          _配置选择区号并输入手机号.placeHolderStr = JobsInternationalization(@"请输入您的手机号");
  //        配置选择区号并输入手机号.placeholderColor = HEXCOLOR(0xC4C4C4);
          _配置选择区号并输入手机号.placeholderFont = UIFontWeightRegularSize(JobsWidth(16));
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_END
          _配置选择区号并输入手机号.leftViewMode = UITextFieldViewModeAlways;
          _配置选择区号并输入手机号.moveDistance = JobsWidth(60);
          _配置选择区号并输入手机号.titleStrCor = _配置选择区号并输入手机号.placeholderColor = HEXCOLOR_ALPHA(0xC4C4C4,1.f);
- //        配置选择区号并输入手机号.background = JobsIMG(@"设置弹出框输入框背景图");
+ //        配置选择区号并输入手机号.background = @"设置弹出框输入框背景图".img;
      }return _配置选择区号并输入手机号;
  }
 

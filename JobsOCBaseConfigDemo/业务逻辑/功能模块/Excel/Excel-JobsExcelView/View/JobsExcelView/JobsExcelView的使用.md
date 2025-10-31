@@ -111,7 +111,7 @@ Prop_strong()JobsExcelView *excelView;
 //                            buttonModel.textAlignment = NSTextAlignmentRight;
                             buttonModel.imagePlacement = NSDirectionalRectEdgeTrailing;
                             buttonModel.imagePadding = JobsWidth(8);
-                            buttonModel.normalImage = JobsIMG(@"复制图标");
+                            buttonModel.normalImage = @"复制图标".img;
                             buttonModel.clickEventBlock = ^id _Nullable(UIButton *_Nullable data) {
                                 data.titleForNormalState.pasteboard();
                                 return nil;

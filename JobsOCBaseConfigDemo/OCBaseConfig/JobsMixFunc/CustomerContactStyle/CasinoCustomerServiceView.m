@@ -35,7 +35,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
 
 -(instancetype)init{
     if (self = [super init]) {
-        self.backgroundImageView.image = JobsIMG(@"客服_背景图");
+        self.backgroundImageView.image = @"客服_背景图".img;
         [self customerContact];
     }return self;
 }
@@ -104,7 +104,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
         @jobs_weakify(self)
         _contactCustomerServiceBtn = BaseButton.jobsInit()
             .bgColorBy(JobsWhiteColor)
-            .jobsResetBtnImage(JobsIMG(@"zaixiankefu_en"))
+            .jobsResetBtnImage(@"zaixiankefu_en".img)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 JobsLog(@"返回登录");
@@ -133,7 +133,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
         @jobs_weakify(self)
         _closeBtn = BaseButton.jobsInit()
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
-            .jobsResetBtnBgImage(JobsIMG(@"客服_关闭按钮"))
+            .jobsResetBtnBgImage(@"客服_关闭按钮".img)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
@@ -194,7 +194,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
         @jobs_weakify(self)
         _leftIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            imageView.image = JobsIMG(@"客服_左线");
+            imageView.image = @"客服_左线".img;
             self.addSubview(imageView);
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(51.6), JobsWidth(1)));
@@ -210,7 +210,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
         @jobs_weakify(self)
         _rightIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            imageView.image = JobsIMG(@"客服_右线");
+            imageView.image = @"客服_右线".img;
             self.addSubview(imageView);
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(51.6), JobsWidth(1)));

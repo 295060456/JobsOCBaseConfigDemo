@@ -85,7 +85,7 @@ Prop_strong()JobsGetiOSNewestVersionModel *iOSNewestVersionModel;
         _cancelBtn.jobsResetBtnTitle(JobsInternationalization(@"Cancel"));
         _cancelBtn.jobsResetBtnTitleCor(HEXCOLOR(0x502600));
         _cancelBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
-        _cancelBtn.jobsResetBtnBgImage(JobsIMG(@"弹窗取消按钮背景图"));
+        _cancelBtn.jobsResetBtnBgImage(@"弹窗取消按钮背景图".img);
         @jobs_weakify(self)
         [_cancelBtn jobsBtnClickEventBlock:^id(UIButton *x) {
             @jobs_strongify(self)
@@ -106,7 +106,7 @@ Prop_strong()JobsGetiOSNewestVersionModel *iOSNewestVersionModel;
         _sureBtn = UIButton.new;
         _sureBtn.jobsResetBtnTitle(JobsInternationalization(@"Sure"));
         _sureBtn.jobsResetBtnTitleCor(HEXCOLOR(0x502600));
-        _sureBtn.jobsResetBtnBgImage(JobsIMG(@"弹窗确定按钮背景图"));
+        _sureBtn.jobsResetBtnBgImage(@"弹窗确定按钮背景图".img);
         _sureBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         @jobs_weakify(self)
         [_sureBtn jobsBtnClickEventBlock:^id(UIButton *x) {

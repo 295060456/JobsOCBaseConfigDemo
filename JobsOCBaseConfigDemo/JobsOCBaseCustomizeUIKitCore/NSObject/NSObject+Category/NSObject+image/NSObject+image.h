@@ -1,23 +1,19 @@
 //
-//  NSString+Image.h
+//  NSObject+image.h
 //  JobsOCBaseConfigDemo
 //
-//  Created by Mac on 10/29/25.
+//  Created by Mac on 10/31/25.
 //
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
 
-#if __has_include(<SDWebImage/SDWebImage.h>)
-#import <SDWebImage/SDWebImage.h>
-#else
-#import "SDWebImage.h"
-#endif
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSString (Image)
-/// 获取本地图像
+@interface NSObject (image)
+/// 获取本地GIF图像
+-(nullable UIImage *)gif_img;
+/// 获取本地普通图像
 -(nullable UIImage *)img;
 /// 获取网络图像
 -(void)fetchImageByPlaceholder:(UIImage *)placeholder
@@ -28,4 +24,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-

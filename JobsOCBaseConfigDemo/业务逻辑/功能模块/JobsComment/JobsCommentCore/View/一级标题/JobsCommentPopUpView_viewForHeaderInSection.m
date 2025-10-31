@@ -85,7 +85,7 @@ Prop_strong()JobsFirstCommentModel *firstCommentModel;
     if (self.firstCommentModel.headImg.jobsCanOpenUrl) {
         self->_userInfoBtn
             .imageURL(self.firstCommentModel.headImg.imageURLPlus.jobsUrl)
-            .placeholderImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"用户默认头像"))
+            .placeholderImage(@"动态头像 尺寸126".gif_img ? : @"用户默认头像".img)
             .options(self.makeSDWebImageOptions)
             .completed(^(UIImage * _Nullable image,
                          NSError * _Nullable error,
@@ -98,7 +98,7 @@ Prop_strong()JobsFirstCommentModel *firstCommentModel;
                 }
             }).normalLoad();
     }else{
-        self->_userInfoBtn.jobsResetBtnImage(JobsGifIMG(@"动态头像 尺寸126") ? : JobsIMG(@"头像01"));
+        self->_userInfoBtn.jobsResetBtnImage(@"动态头像 尺寸126".gif_img ? : @"头像01".img);
     }
     
     _userInfoBtn.jobsResetAttributedTitle([AttributedString initWithString:self.firstCommentModel.nickname

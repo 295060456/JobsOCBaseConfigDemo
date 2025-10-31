@@ -21,7 +21,7 @@
 #endif
 
 #import "NSString+Others.h"
-#import "NSString+Image.h"
+#import "NSObject+Image.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

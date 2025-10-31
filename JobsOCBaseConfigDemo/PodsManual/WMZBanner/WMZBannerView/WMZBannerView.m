@@ -259,14 +259,14 @@
     return tmpCell;
 }
 
-- (void)setIconData:(UIImageView *)icon withData:(id)data{
+- (void)setIconData:(UIImageView *)icon withData:(NSString *)data{
     if (!data) return;
     if ([data isKindOfClass:NSString.class]) {
         if ([(NSString *)data hasPrefix:@"http"]) {
             NSString *url = data;
             icon
                 .imageURL(url.imageURLPlus.jobsUrl)
-                .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
+                .placeholderImage(self.param.wPlaceholderImage.img)
                 .options(self.makeSDWebImageOptions)
                 .completed(^(UIImage * _Nullable image,
                              NSError * _Nullable error,
@@ -278,7 +278,7 @@
                         JobsLog(@"图片加载成功");
                     }
                 }).load();
-        }else icon.image = JobsIMG(data);
+        }else icon.image = data.img;
     }
 }
 
