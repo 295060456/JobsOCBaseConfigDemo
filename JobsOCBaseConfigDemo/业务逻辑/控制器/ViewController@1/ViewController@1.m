@@ -50,11 +50,11 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
         // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-        // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+        // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
         self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-    //    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+    //    self.viewModel.bgImage = @"启动页SLOGAN".img;
         self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-        self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+        self.viewModel.navBgImage = @"导航栏左侧底图".img;
     }
     /// 装填用户信息数据
     /// json生成器 ： https://www.site24x7.com/zhcn/tools/json-generator.html
@@ -64,6 +64,9 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsRedColor;
+    if (@available(iOS 11.0, *)) {
+        [UIColor colorNamed:@"TextColor0"];
+    }
     @jobs_weakify(self)
     self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
@@ -171,7 +174,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_userHeadBtn) {
         @jobs_weakify(self)
         _userHeadBtn = BaseButton
-            .initByNormalImage(JobsIMG(@"首页_头像"))
+            .initByNormalImage(@"首页_头像".img)
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)

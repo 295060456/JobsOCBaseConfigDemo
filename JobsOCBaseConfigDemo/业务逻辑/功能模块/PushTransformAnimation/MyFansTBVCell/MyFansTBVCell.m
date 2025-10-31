@@ -67,7 +67,7 @@
         @jobs_strongify(self)
         self.imgView
                 .imageURL(@" ".jobsUrl)
-                .placeholderImage(JobsIMG(toStringByInt([model intValue]).add(@".jpeg")))
+                .placeholderImage(toStringByInt([model intValue]).add(@".jpeg").img)
                 .options(self.makeSDWebImageOptions)
                 .completed(^(UIImage * _Nullable image,
                              NSError * _Nullable error,

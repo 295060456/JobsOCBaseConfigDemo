@@ -51,8 +51,8 @@ UIPictureAndBackGroundCorProtocol_synthesize
     if(!_closeBtnModel){
         @jobs_weakify(self)
         _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel *_Nullable data) {
-            data.backgroundImage = JobsIMG(@"关闭");
-            data.highlightBackgroundImage = JobsIMG(@"关闭");
+            data.backgroundImage = @"关闭".img;
+            data.highlightBackgroundImage = @"关闭".img;
             data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
             data.titleCor = JobsClearColor;
             data.selectedTitleCor = JobsClearColor;

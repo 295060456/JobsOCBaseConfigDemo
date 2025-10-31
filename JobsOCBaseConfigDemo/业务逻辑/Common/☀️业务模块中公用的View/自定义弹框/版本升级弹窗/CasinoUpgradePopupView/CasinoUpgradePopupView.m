@@ -54,7 +54,7 @@ Prop_strong()CasinoUpgradeContentView *upgradeContentView;
         @jobs_weakify(self)
         _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            imageView.image = JobsIMG(@"弹窗升级背景图");
+            imageView.image = @"弹窗升级背景图".img;
             [self.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.equalTo(self);
                 make.top.equalTo(self).offset(-JobsWidth(117));

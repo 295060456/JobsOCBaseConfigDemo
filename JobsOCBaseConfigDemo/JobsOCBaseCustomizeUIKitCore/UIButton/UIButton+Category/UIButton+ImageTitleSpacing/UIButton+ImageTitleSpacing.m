@@ -19,7 +19,7 @@
      if(!_btnConfig){
          _btnConfig = UIButtonConfiguration.filledButtonConfiguration;
          {// 图片
-             _btnConfig.image = JobsIMG(@"入职Mata"); // 替换为你的图像名称
+             _btnConfig.image =@"入职Mata".img; // 替换为你的图像名称
              _btnConfig.imagePlacement = NSDirectionalRectEdgeLeading;// 这里将图像放置在标题的前面
              _btnConfig.imagePadding = 10;// 设置图像与标题之间的间距
          }
@@ -56,7 +56,7 @@
              _btn1 = [UIButton buttonWithConfiguration:self.btnConfig primaryAction:nil];
          }else{
              _btn1 = UIButton.new;
-             _btn1.jobsResetBtnImage = JobsIMG(@"入职Mata");
+             _btn1.jobsResetBtnImage = @"入职Mata".img;
              _btn1.titleFont = UIFontWeightRegularSize(14);
              _btn1.jobsResetBtnTitle = JobsInternationalization(@"入职Mata");
              _btn1.jobsResetBtnTitleCor = JobsBlackColor;

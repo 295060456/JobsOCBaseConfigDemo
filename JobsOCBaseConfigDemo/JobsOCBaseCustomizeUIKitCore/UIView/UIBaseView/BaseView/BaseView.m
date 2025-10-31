@@ -122,10 +122,10 @@ UIViewModelProtocol_synthesize_part1
 -(UIButtonModel *)closeBtnModel{
     if(!_closeBtnModel){
         _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-            data.backgroundImage = JobsIMG(@"联系我们");
-    //        data.highlightBackgroundImage = JobsIMG(@"联系我们");
-    //        data.jobsResetBtnImage = JobsIMG(@"联系我们");
-    //        data.highlightImage = JobsIMG(@"联系我们");
+            data.backgroundImage = @"联系我们".img;
+    //        data.highlightBackgroundImage = @"联系我们".img
+    //        data.jobsResetBtnImage = @"联系我们".img
+    //        data.highlightImage = @"联系我们".img
     //        data.imagePadding = JobsWidth(5);
             data.roundingCorners = UIRectCornerAllCorners;
             data.baseBackgroundColor = JobsClearColor;

@@ -58,11 +58,11 @@ Prop_strong()UITextModel *postTextModel;
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-//        self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+//        self.viewModel.bgImage = @"启动页SLOGAN".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+    self.viewModel.navBgImage = @"导航栏左侧底图".img;
     
     {
         JobsPostDelViewHeight = JobsPostDelView.viewSizeByModel(nil).height;
@@ -260,7 +260,7 @@ Prop_strong()UITextModel *postTextModel;
 -(void)releaseBtnState:(NSArray *)photoDataArr
        inputDataString:(NSString *)inputDataString{
     self.releaseBtn.enabled = photoDataArr.count || inputDataString.length;
-    self.releaseBtn.jobsResetBtnBgImage(self.releaseBtn.enabled ? JobsIMG(@"发布") : JobsIMG(@"未发布"));
+    self.releaseBtn.jobsResetBtnBgImage(self.releaseBtn.enabled ? @"发布".img : @"未发布".img);
 }
 #pragma mark —— HXPhotoViewDelegate
 /// 在这里获取到点选的资料
@@ -355,7 +355,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         @jobs_weakify(self)
         _releaseBtn = BaseButton.jobsInit()
             .bgColorBy(JobsWhiteColor)
-            .jobsResetBtnBgImage(JobsIMG(@"未发布"))
+            .jobsResetBtnBgImage(@"未发布".img)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(JobsInternationalization(@"发布"))

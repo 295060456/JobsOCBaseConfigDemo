@@ -43,7 +43,7 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 #pragma mark —— init
 +(JobsReturnViewByFrameBlock _Nonnull)initByFrame;
 Prop_assign()CGFloat jobsVisible;
--(jobsByCGFloatBlock _Nonnull)byVisible;
+-(JobsReturnViewByCGFloatBlock _Nonnull)byVisible;
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame;
 -(jobsByStringBlock _Nonnull)jobsLogPoint;

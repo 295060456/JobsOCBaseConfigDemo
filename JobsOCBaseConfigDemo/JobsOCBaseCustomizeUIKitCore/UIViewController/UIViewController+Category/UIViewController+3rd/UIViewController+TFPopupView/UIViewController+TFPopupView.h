@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_END
      if (!_filterBtn) {
          _filterBtn = UIButton.new;
          _filterBtn.jobsResetBtnTitle = JobsInternationalization(@"篩選");
-         _filterBtn.jobsResetBtnImage = JobsIMG(@"向下的箭头");
+         _filterBtn.jobsResetBtnImage = @"向下的箭头".img);
          _filterBtn.titleFont = fontName(@"NotoSans-Bold", 12);
          _filterBtn.jobsResetBtnTitleCor = HEXCOLOR(0x3D4A58);
          [self.view addSubview:_filterBtn];

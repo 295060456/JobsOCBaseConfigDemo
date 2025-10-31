@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		404857BA34B9C9AB6F5E4714 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */; };
+		0438A71A2E840034008F763B /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0438A7192E840034008F763B /* ColorAssets.xcassets */; };
+		044273872E8148680084B25C /* JobsScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 044273852E8148680084B25C /* JobsScale.m */; };
+		046CFA7A2E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */; };
+		046CFA7E2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */; };
+		047E48F92EB4537700881898 /* NSObject+image.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E48F82EB4537700881898 /* NSObject+image.m */; };
 		90E04F79B6CBEA72A6701F04 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		C53BE3BD2E265E54004A72BE /* NativeWebViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */; };
 		C53BE3C12E265EAC004A72BE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3C02E265EAC004A72BE /* WebViewController.m */; };
@@ -631,7 +635,6 @@
 		C55C8C282E167B6B00B56985 /* toastLoading.gif in Resources */ = {isa = PBXBuildFile; fileRef = C55C82CB2E167B6300B56985 /* toastLoading.gif */; };
 		C55C8C292E167B6B00B56985 /* NSObject+WHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82CC2E167B6300B56985 /* NSObject+WHToast.m */; };
 		C55C8C2A2E167B6B00B56985 /* NSObject+GTCaptcha4.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82CF2E167B6300B56985 /* NSObject+GTCaptcha4.m */; };
-		C55C8C2B2E167B6B00B56985 /* NSObject+LiveChat.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82D32E167B6300B56985 /* NSObject+LiveChat.m */; };
 		C55C8C2C2E167B6B00B56985 /* NSObject+YTKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82D52E167B6300B56985 /* NSObject+YTKRequest.m */; };
 		C55C8C2D2E167B6B00B56985 /* NSObject+SPAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82D92E167B6300B56985 /* NSObject+SPAlertController.m */; };
 		C55C8C2E2E167B6B00B56985 /* NSObject+SYSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C82DC2E167B6300B56985 /* NSObject+SYSAlertController.m */; };
@@ -1281,7 +1284,6 @@
 		C55C8EE72E167B6F00B56985 /* HXPhotoManager+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C893B2E167B6800B56985 /* HXPhotoManager+Extra.m */; };
 		C55C8EE82E167B6F00B56985 /* HXPhotoView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C893D2E167B6800B56985 /* HXPhotoView+Extra.m */; };
 		C5DBF4F62E16C05B00032B4B /* ZFIJKPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DBF4F52E16C05A00032B4B /* ZFIJKPlayerManager.m */; };
-		E5E8573CD5074D0B634BC586 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C490D4DC0FD2DAD112B84C8 /* Pods_JobsOCBaseConfigDemoTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1302,14 +1304,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0438A7192E840034008F763B /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
+		044273842E8148680084B25C /* JobsScale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsScale.h; sourceTree = "<group>"; };
+		044273852E8148680084B25C /* JobsScale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsScale.m; sourceTree = "<group>"; };
+		046CFA782E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBackgroundConfiguration+Extra.h"; sourceTree = "<group>"; };
+		046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBackgroundConfiguration+Extra.m"; sourceTree = "<group>"; };
+		046CFA7C2E978DF4005A88B4 /* UIButtonConfiguration+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButtonConfiguration+Extra.h"; sourceTree = "<group>"; };
+		046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButtonConfiguration+Extra.m"; sourceTree = "<group>"; };
+		047E48F72EB4537700881898 /* NSObject+image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+image.h"; sourceTree = "<group>"; };
+		047E48F82EB4537700881898 /* NSObject+image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+image.m"; sourceTree = "<group>"; };
 		20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
-		2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40ED0B9FDF5152B123562CEA /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		458ACDF4054C46DCE5931882 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
-		5C490D4DC0FD2DAD112B84C8 /* Pods_JobsOCBaseConfigDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		783BEB47B91611719A54A8B7 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.release.xcconfig"; sourceTree = "<group>"; };
-		A005B1F583EEB5024538D01D /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoUITests/Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C53BE3BA2E265E39004A72BE /* JobsOCBaseConfigDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JobsOCBaseConfigDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		C53BE3BB2E265E54004A72BE /* NativeWebViewPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeWebViewPlugin.h; sourceTree = "<group>"; };
 		C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeWebViewPlugin.m; sourceTree = "<group>"; };
@@ -3819,7 +3825,6 @@
 		C5DBF5F72E16CAE000032B4B /* JobsLaunchAdMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLaunchAdMgr.m; sourceTree = "<group>"; };
 		C5DBF5F92E16CAE100032B4B /* JobsLaunchAdMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobsLaunchAdMgr.h; sourceTree = "<group>"; };
 		C5DBF5FA2E16CAE100032B4B /* JobsLaunchAdMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobsLaunchAdMgr.m; sourceTree = "<group>"; };
-		E41B151CB291889500AB8F89 /* Pods-JobsOCBaseConfigDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemoTests/Pods-JobsOCBaseConfigDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3850,7 +3855,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5E8573CD5074D0B634BC586 /* Pods_JobsOCBaseConfigDemoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3858,19 +3862,69 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				404857BA34B9C9AB6F5E4714 /* Pods_JobsOCBaseConfigDemoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0438A7182E840025008F763B /* 颜色资源 */ = {
+			isa = PBXGroup;
+			children = (
+				0438A7192E840034008F763B /* ColorAssets.xcassets */,
+			);
+			path = "颜色资源";
+			sourceTree = "<group>";
+		};
+		044273862E8148680084B25C /* JobsScale */ = {
+			isa = PBXGroup;
+			children = (
+				044273842E8148680084B25C /* JobsScale.h */,
+				044273852E8148680084B25C /* JobsScale.m */,
+			);
+			path = JobsScale;
+			sourceTree = "<group>";
+		};
+		046CFA742E97897A005A88B4 /* UIBackgroundConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				046CFA782E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.h */,
+				046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */,
+			);
+			path = UIBackgroundConfiguration;
+			sourceTree = "<group>";
+		};
+		046CFA7B2E978DE9005A88B4 /* UIButtonConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				046CFA7C2E978DF4005A88B4 /* UIButtonConfiguration+Extra.h */,
+				046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */,
+			);
+			path = UIButtonConfiguration;
+			sourceTree = "<group>";
+		};
+		047E48F62EB4536300881898 /* NSObject+image */ = {
+			isa = PBXGroup;
+			children = (
+				047E48F72EB4537700881898 /* NSObject+image.h */,
+				047E48F82EB4537700881898 /* NSObject+image.m */,
+			);
+			path = "NSObject+image";
+			sourceTree = "<group>";
+		};
+		04BF80542EB20FA7008E2F2A /* storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C55C79692E16748E00B56985 /* Main.storyboard */,
+				C55C79712E16749000B56985 /* LaunchScreen.storyboard */,
+			);
+			path = storyboard;
+			sourceTree = "<group>";
+		};
 		064F8B1BE36F6BEECAF8233E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */,
-				5C490D4DC0FD2DAD112B84C8 /* Pods_JobsOCBaseConfigDemoTests.framework */,
-				2916B0B720D2C556294E7855 /* Pods_JobsOCBaseConfigDemoUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3880,10 +3934,6 @@
 			children = (
 				40ED0B9FDF5152B123562CEA /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */,
 				20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */,
-				E41B151CB291889500AB8F89 /* Pods-JobsOCBaseConfigDemoTests.debug.xcconfig */,
-				783BEB47B91611719A54A8B7 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */,
-				A005B1F583EEB5024538D01D /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */,
-				458ACDF4054C46DCE5931882 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -3952,8 +4002,6 @@
 				C55C7A152E167B5D00B56985 /* 业务逻辑 */,
 				C55C7E892E167B6000B56985 /* Info.plist */,
 				C55C88F32E167B6800B56985 /* JobsOCBaseConfigDemoPrefixHeader.pch */,
-				C55C79692E16748E00B56985 /* Main.storyboard */,
-				C55C79712E16749000B56985 /* LaunchScreen.storyboard */,
 				C55C79742E16749000B56985 /* JobsOCBaseConfigDemo.entitlements */,
 			);
 			path = JobsOCBaseConfigDemo;
@@ -4616,7 +4664,7 @@
 				C55C7BCF2E167B5E00B56985 /* JXCategoryView垂直表达 */,
 				C55C7BA02E167B5E00B56985 /* JXCategoryView下拉headerView变大 */,
 				C55C7AD42E167B5D00B56985 /* Masonry的应用与实践 */,
-				C55C7D592E167B5F00B56985 /* NSProxy功能探究 */,
+				C55C7D592E167B5F00B56985 /* NSProxy功能探究（只有在OC里面OK） */,
 				C55C7CB32E167B5E00B56985 /* NSTimerManager模块测试 */,
 				C55C7D862E167B5F00B56985 /* OC动态添加类、方法列表、属性列表 */,
 				C55C7AC22E167B5D00B56985 /* PeekAndPop */,
@@ -7131,7 +7179,7 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7D592E167B5F00B56985 /* NSProxy功能探究 */ = {
+		C55C7D592E167B5F00B56985 /* NSProxy功能探究（只有在OC里面OK） */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D5A2E167B5F00B56985 /* MyService.h */,
@@ -7139,7 +7187,7 @@
 				C55C7D6C2E167B5F00B56985 /* View */,
 				C55C7D6E2E167B5F00B56985 /* ViewController */,
 			);
-			path = "NSProxy功能探究";
+			path = "NSProxy功能探究（只有在OC里面OK）";
 			sourceTree = "<group>";
 		};
 		C55C7D5B2E167B5F00B56985 /* Model */ = {
@@ -8159,6 +8207,8 @@
 			children = (
 				C55C7FD52E167B6200B56985 /* JobsMakes.h */,
 				C55C7FDF2E167B6200B56985 /* JobsBaseCustomizeUIKitCoreHeader.h */,
+				046CFA7B2E978DE9005A88B4 /* UIButtonConfiguration */,
+				046CFA742E97897A005A88B4 /* UIBackgroundConfiguration */,
 				C55C7E8B2E167B6200B56985 /* NSTextCheckingResult */,
 				C55C7E8E2E167B6200B56985 /* PDFDocument */,
 				C55C7E912E167B6200B56985 /* UIImage */,
@@ -10079,8 +10129,8 @@
 		C55C80952E167B6200B56985 /* NSString+Others */ = {
 			isa = PBXGroup;
 			children = (
-				C55C80962E167B6200B56985 /* NSString+Others.m */,
 				C55C80972E167B6200B56985 /* NSString+Others.h */,
+				C55C80962E167B6200B56985 /* NSString+Others.m */,
 			);
 			path = "NSString+Others";
 			sourceTree = "<group>";
@@ -11948,6 +11998,7 @@
 		C55C82AE2E167B6300B56985 /* NSObject+Category */ = {
 			isa = PBXGroup;
 			children = (
+				047E48F62EB4536300881898 /* NSObject+image */,
 				C55C82AF2E167B6300B56985 /* NSObject+Swizzling */,
 				C55C82B32E167B6300B56985 /* NSObject+OpenURL */,
 				C55C82B62E167B6300B56985 /* NSObject+Measure */,
@@ -13901,38 +13952,39 @@
 		C55C84F82E167B6500B56985 /* JobsMixFunc */ = {
 			isa = PBXGroup;
 			children = (
-				C55C84F92E167B6500B56985 /* JobsToggleView */,
-				C55C85012E167B6500B56985 /* 图形验证码 */,
-				C55C85042E167B6500B56985 /* JobsBitsMonitor */,
-				C55C850C2E167B6500B56985 /* JobsAppDoor */,
-				C55C855C2E167B6500B56985 /* 在指定的y区间内滑动视图 */,
-				C55C85632E167B6500B56985 /* JobsUserHeaderDataChoice */,
 				C55C856F2E167B6500B56985 /* JobsMixFunc.h */,
-				C55C85702E167B6500B56985 /* JobsHotLabel */,
-				C55C857B2E167B6500B56985 /* CustomerContactStyle */,
-				C55C857F2E167B6500B56985 /* 分享弹窗 */,
-				C55C85882E167B6500B56985 /* JobsViewNavigator */,
+				044273862E8148680084B25C /* JobsScale */,
 				C55C858B2E167B6500B56985 /* 播放器控制层 */,
-				C55C85922E167B6500B56985 /* JobsTitleView01 */,
+				C55C857F2E167B6500B56985 /* 分享弹窗 */,
 				C55C85962E167B6500B56985 /* 广告或者公示弹出框 */,
-				C55C859A2E167B6500B56985 /* JobsShowNumView */,
-				C55C85A12E167B6500B56985 /* JobsStepView */,
+				C55C86942E167B6500B56985 /* 手势滑动返回 */,
+				C55C85012E167B6500B56985 /* 图形验证码 */,
+				C55C855C2E167B6500B56985 /* 在指定的y区间内滑动视图 */,
+				C55C857B2E167B6500B56985 /* CustomerContactStyle */,
+				C55C86832E167B6500B56985 /* Debug */,
+				C55C865E2E167B6500B56985 /* GestureLock */,
+				C55C85C82E167B6500B56985 /* JobsAdNoticeView */,
+				C55C850C2E167B6500B56985 /* JobsAppDoor */,
+				C55C86742E167B6500B56985 /* JobsBasePopupView */,
+				C55C85042E167B6500B56985 /* JobsBitsMonitor */,
+				C55C85EF2E167B6500B56985 /* JobsCustomView */,
+				C55C868F2E167B6500B56985 /* JobsDropDownListView */,
+				C55C85EB2E167B6500B56985 /* JobsFiltrationView */,
+				C55C85702E167B6500B56985 /* JobsHotLabel */,
 				C55C85A52E167B6500B56985 /* JobsImageNumberView */,
 				C55C85C52E167B6500B56985 /* JobsLinkageMenuView */,
-				C55C85C82E167B6500B56985 /* JobsAdNoticeView */,
-				C55C85CB2E167B6500B56985 /* JobsNavBar */,
 				C55C85D12E167B6500B56985 /* JobsMenuView */,
-				C55C85E22E167B6500B56985 /* JobsWelcomeVC */,
-				C55C85EB2E167B6500B56985 /* JobsFiltrationView */,
-				C55C85EF2E167B6500B56985 /* JobsCustomView */,
-				C55C85F32E167B6500B56985 /* UITabBarCtr */,
-				C55C865E2E167B6500B56985 /* GestureLock */,
+				C55C85CB2E167B6500B56985 /* JobsNavBar */,
 				C55C866E2E167B6500B56985 /* JobsPageTBV */,
-				C55C86742E167B6500B56985 /* JobsBasePopupView */,
+				C55C859A2E167B6500B56985 /* JobsShowNumView */,
+				C55C85A12E167B6500B56985 /* JobsStepView */,
 				C55C86782E167B6500B56985 /* JobsSuspend */,
-				C55C86832E167B6500B56985 /* Debug */,
-				C55C868F2E167B6500B56985 /* JobsDropDownListView */,
-				C55C86942E167B6500B56985 /* 手势滑动返回 */,
+				C55C85922E167B6500B56985 /* JobsTitleView01 */,
+				C55C84F92E167B6500B56985 /* JobsToggleView */,
+				C55C85632E167B6500B56985 /* JobsUserHeaderDataChoice */,
+				C55C85882E167B6500B56985 /* JobsViewNavigator */,
+				C55C85E22E167B6500B56985 /* JobsWelcomeVC */,
+				C55C85F32E167B6500B56985 /* UITabBarCtr */,
 			);
 			path = JobsMixFunc;
 			sourceTree = "<group>";
@@ -14053,8 +14105,8 @@
 		C55C85182E167B6500B56985 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C55C85192E167B6500B56985 /* JobsAppDoorVC.m */,
 				C55C851A2E167B6500B56985 /* JobsAppDoorVC.h */,
+				C55C85192E167B6500B56985 /* JobsAppDoorVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -16127,6 +16179,8 @@
 		C55C881A2E167B6700B56985 /* 资源文件管理 */ = {
 			isa = PBXGroup;
 			children = (
+				04BF80542EB20FA7008E2F2A /* storyboard */,
+				0438A7182E840025008F763B /* 颜色资源 */,
 				C55C881B2E167B6700B56985 /* TSV文件 */,
 				C55C881F2E167B6700B56985 /* 图片资源文件 */,
 				C55C88502E167B6700B56985 /* Plist资源文件 */,
@@ -17078,7 +17132,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C55C79932E16749000B56985 /* Build configuration list for PBXNativeTarget "JobsOCBaseConfigDemoTests" */;
 			buildPhases = (
-				99243361AFE16ACA3ED4E6F6 /* [CP] Check Pods Manifest.lock */,
 				C55C79782E16749000B56985 /* Sources */,
 				C55C79792E16749000B56985 /* Frameworks */,
 				C55C797A2E16749000B56985 /* Resources */,
@@ -17097,7 +17150,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C55C79962E16749000B56985 /* Build configuration list for PBXNativeTarget "JobsOCBaseConfigDemoUITests" */;
 			buildPhases = (
-				4A725740266DD29CB8069222 /* [CP] Check Pods Manifest.lock */,
 				C55C79822E16749000B56985 /* Sources */,
 				C55C79832E16749000B56985 /* Frameworks */,
 				C55C79842E16749000B56985 /* Resources */,
@@ -17419,6 +17471,7 @@
 				C55C8AAA2E167B6A00B56985 /* Menu@2x.png in Resources */,
 				C55C8D322E167B6D00B56985 /* 3@3x.png in Resources */,
 				C55C8E732E167B6E00B56985 /* NotoSansDisplay_Condensed-Medium.ttf in Resources */,
+				0438A71A2E840034008F763B /* ColorAssets.xcassets in Resources */,
 				C55C8E7F2E167B6E00B56985 /* NotoSansDisplay_ExtraCondensed-Regular.ttf in Resources */,
 				C55C8E692E167B6E00B56985 /* NotoSansDisplay_Condensed-Black.ttf in Resources */,
 				C55C8DED2E167B6E00B56985 /* refresh.png in Resources */,
@@ -17556,28 +17609,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4A725740266DD29CB8069222 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JobsOCBaseConfigDemoUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		65AA9437C99FCD02CA12CD98 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -17595,28 +17626,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		99243361AFE16ACA3ED4E6F6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JobsOCBaseConfigDemoTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -17717,6 +17726,7 @@
 				C55C8B282E167B6A00B56985 /* BaseView.m in Sources */,
 				C55C8A372E167B6900B56985 /* UICollectionView+EmptyData.m in Sources */,
 				C55C8B602E167B6A00B56985 /* UNCalendarNotificationTrigger+Extra.m in Sources */,
+				046CFA7A2E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m in Sources */,
 				C55C8DE42E167B6E00B56985 /* DDNumber.m in Sources */,
 				C55C8DBE2E167B6E00B56985 /* KTVHCURLTool.m in Sources */,
 				C55C8A3E2E167B6900B56985 /* GetCustomerContactApi.m in Sources */,
@@ -17739,6 +17749,7 @@
 				C55C8CDD2E167B6C00B56985 /* RYCuteView.m in Sources */,
 				C55C8AF12E167B6A00B56985 /* PointLabBaseView.m in Sources */,
 				C55C89EA2E167B6900B56985 /* JobsViewNavigatorTestVC.m in Sources */,
+				044273872E8148680084B25C /* JobsScale.m in Sources */,
 				C55C8B7B2E167B6B00B56985 /* NSString+Menu.m in Sources */,
 				C55C8BBE2E167B6B00B56985 /* CAPropertyAnimation+Extra.m in Sources */,
 				C55C8BFE2E167B6B00B56985 /* JobsLocationModel.m in Sources */,
@@ -17914,6 +17925,7 @@
 				C55C8ED62E167B6F00B56985 /* MJRefreshAutoStateFooter+Extra.m in Sources */,
 				C55C8BA52E167B6B00B56985 /* BaseViewController.m in Sources */,
 				C55C8CB92E167B6C00B56985 /* JhtBannerCardView.m in Sources */,
+				046CFA7E2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m in Sources */,
 				C55C8B322E167B6A00B56985 /* UIView+EmptyData.m in Sources */,
 				C55C8D932E167B6D00B56985 /* JobsSuspendLab.m in Sources */,
 				C55C8A8C2E167B6A00B56985 /* JobsVerticalMenuSubView.m in Sources */,
@@ -18106,6 +18118,7 @@
 				C55C8DD82E167B6E00B56985 /* HTTPDynamicFileResponse.m in Sources */,
 				C55C8B482E167B6A00B56985 /* UICollectionViewLayoutAttributes+Extra.m in Sources */,
 				C55C8E1E2E167B6E00B56985 /* UIScrollView+TFPopup.m in Sources */,
+				047E48F92EB4537700881898 /* NSObject+image.m in Sources */,
 				C55C8A172E167B6900B56985 /* JobsSettingGestureVC.m in Sources */,
 				C55C8E122E167B6E00B56985 /* TKPermissionReminder.m in Sources */,
 				C55C89812E167B6900B56985 /* JobsSearchDataCVCell.m in Sources */,
@@ -18146,7 +18159,6 @@
 				C55C8C552E167B6C00B56985 /* NSObject+Algorithm.m in Sources */,
 				C55C8A082E167B6900B56985 /* TimeCell.m in Sources */,
 				C55C8C6A2E167B6C00B56985 /* ZYTextField.m in Sources */,
-				C55C8C2B2E167B6B00B56985 /* NSObject+LiveChat.m in Sources */,
 				C55C8C452E167B6C00B56985 /* NSObject+DeviceID.m in Sources */,
 				C55C8B092E167B6A00B56985 /* UITableViewCell+WhiteArrows.m in Sources */,
 				C55C8CD12E167B6C00B56985 /* WGradientProgressView.m in Sources */,
@@ -18764,7 +18776,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SRJ5YK8B3X;
+				DEVELOPMENT_TEAM = 8LVJBHA68K;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/PodsManual/极验验证码",
@@ -18772,11 +18785,38 @@
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JobsOCBaseConfigDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CFBundleDisplayName;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSContactsUsageDescription = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "";
+				INFOPLIST_KEY_NSHomeKitUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSMotionUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "";
+				INFOPLIST_KEY_NSSiriUsageDescription = "";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
+				INFOPLIST_KEY_NSVideoSubscriberAccountUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -18788,7 +18828,7 @@
 					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/其他/Sys.lib/Libarclite",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skin4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -18810,7 +18850,8 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SRJ5YK8B3X;
+				DEVELOPMENT_TEAM = 8LVJBHA68K;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/PodsManual/极验验证码",
@@ -18818,11 +18859,38 @@
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JobsOCBaseConfigDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CFBundleDisplayName;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "";
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSContactsUsageDescription = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "";
+				INFOPLIST_KEY_NSHomeKitUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSMotionUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "";
+				INFOPLIST_KEY_NSSiriUsageDescription = "";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "";
+				INFOPLIST_KEY_NSVideoSubscriberAccountUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -18834,7 +18902,7 @@
 					"$(PROJECT_DIR)/JobsOCBaseConfigDemo/其他/Sys.lib/Libarclite",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.skin4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -18846,13 +18914,13 @@
 		};
 		C55C79942E16749000B56985 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E41B151CB291889500AB8F89 /* Pods-JobsOCBaseConfigDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -18864,13 +18932,13 @@
 		};
 		C55C79952E16749000B56985 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 783BEB47B91611719A54A8B7 /* Pods-JobsOCBaseConfigDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -18882,11 +18950,12 @@
 		};
 		C55C79972E16749000B56985 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A005B1F583EEB5024538D01D /* Pods-JobsOCBaseConfigDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -18898,11 +18967,12 @@
 		};
 		C55C79982E16749000B56985 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 458ACDF4054C46DCE5931882 /* Pods-JobsOCBaseConfigDemoUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

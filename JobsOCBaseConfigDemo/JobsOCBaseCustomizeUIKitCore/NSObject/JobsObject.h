@@ -131,5 +131,7 @@
 #import "JobsLocker.h"
 /// 富文本配置
 #import "NSObject+AttributedStr.h"
+/// 获取图片
+#import "NSObject+image.h"
 
 #endif /* JobsObject_h */

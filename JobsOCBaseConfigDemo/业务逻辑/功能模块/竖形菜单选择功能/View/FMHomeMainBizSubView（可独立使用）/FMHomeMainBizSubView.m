@@ -83,7 +83,7 @@ Prop_assign()NSUInteger thisIndex;
         @jobs_strongify(self)
         for (int i = 0; i < self.thisIndex + 1; i++) {
             arr.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-                model.backgroundImage = JobsIMG(self.cellTitleMutArr[self.thisIndex].add(已点击));
+                model.backgroundImage = self.cellTitleMutArr[self.thisIndex].add(已点击.img);
                 model.titleCor = HEXCOLOR(0xC4C4C4);
                 model.titleFont = UIFontWeightRegularSize(12);
                 model.baseBackgroundColor = JobsRedColor;
@@ -98,7 +98,7 @@ Prop_assign()NSUInteger thisIndex;
     return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable data){
 //        @jobs_strongify(self)
         return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.backgroundImage = JobsIMG(data.add(未点击));
+            model.backgroundImage = data.add(未点击.img);
             model.title = @"";
             model.subTitle = @"";
             model.baseBackgroundColor = JobsClearColor;
@@ -116,9 +116,9 @@ Prop_assign()NSUInteger thisIndex;
         if (self.leftDataArray.count) self.leftViewCurrentSelectModel = self.leftDataArray.objectAt(index);
         self.collectionView.setContentOffsetByYES(CGPointMake(0, JobsWidth(-5)));
         for (int i = 0; i < self.leftCellDataMutArr.count; i++) {
-            self.leftCellDataMutArr[i].backgroundImage = JobsIMG(self.cellTitleMutArr[i].add(未点击));
+            self.leftCellDataMutArr[i].backgroundImage = self.cellTitleMutArr[i].add(未点击.img);
         }
-        self.leftCellDataMutArr[index].backgroundImage = JobsIMG(self.cellTitleMutArr[index].add(已点击));
+        self.leftCellDataMutArr[index].backgroundImage = self.cellTitleMutArr[index].add(已点击.img);
         self.tableView.reloadDatas();
     };
 }
@@ -212,7 +212,7 @@ Prop_assign()NSUInteger thisIndex;
             /// ViewModel
             model.imageUrl = @"https://zh.wikipedia.org/wiki/File:Jiang_Zemin_2002.jpg".jobsUrl;
             model.text = JobsInternationalization(@"FlementalLinkFire");
-            model.image = JobsIMG(@"点赞");
+            model.image = @"点赞".img;
             JobsLog(@"%@",model.bgImage);
             model.childrenList = jobsMakeMutArr(^(__kindof NSMutableArray <GoodsClassModel *>*_Nullable arr) {
                 @jobs_strongify(self)

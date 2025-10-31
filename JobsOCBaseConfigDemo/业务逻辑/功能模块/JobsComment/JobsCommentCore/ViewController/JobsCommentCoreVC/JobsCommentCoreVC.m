@@ -234,7 +234,7 @@ heightForHeaderInSection:(NSInteger)section{///  👌
                     data.subTitle = JobsInternationalization(@"来发布第一条吧");
                     data.titleCor = JobsWhiteColor;
                     data.titleFont = bayonRegular(JobsWidth(30));
-                    data.normalImage = JobsIMG(@"暂无数据");
+                    data.normalImage = @"暂无数据".img;
                     data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                 });
             }

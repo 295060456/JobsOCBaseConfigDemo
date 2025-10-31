@@ -65,7 +65,7 @@ Prop_strong()UILabel *timeLab;
 -(__kindof UIImageView *)imageView{
     if(!_imageView){
         _imageView = self.addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-            imageView.image = JobsIMG(@"维护（小狮子）");
+            imageView.image = @"维护（小狮子）".img;
         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
             make.top.equalTo(self).offset(JobsWidth(5));
             make.left.equalTo(self).offset(JobsWidth(41.44));

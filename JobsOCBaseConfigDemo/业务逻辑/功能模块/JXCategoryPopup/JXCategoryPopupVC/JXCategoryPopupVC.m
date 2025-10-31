@@ -224,7 +224,7 @@ ratio:(CGFloat)ratio {
             .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeTrailing)
             .jobsResetImagePadding(JobsWidth(6))
-            .jobsResetBtnImage(JobsIMG(@"筛选箭头（向下）"))
+            .jobsResetBtnImage(@"筛选箭头（向下）".img)
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(fontName(@"NotoSans-Bold", 12))
             .jobsResetBtnTitle(JobsInternationalization(@"篩選"))

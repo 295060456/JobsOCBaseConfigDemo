@@ -86,8 +86,8 @@ Prop_strong()JobsHotLabelBySingleLine *hl;
             .bgColorBy(Cor1)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(JobsWidth(8))
-            .jobsResetBtnImage(JobsIMG(@"用户名称"))
-            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnImage(@"用户名称".img)
+            .jobsResetBtnBgImage(@"APPLY NOW".img)
             .jobsResetBtnTitleCor(Cor4)
             .jobsResetBtnTitleFont(UIFontWeightMediumSize(13))
             .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -114,7 +114,7 @@ Prop_strong()JobsHotLabelBySingleLine *hl;
         @jobs_weakify(self)
         _contactCustomerServiceBtn = BaseButton.jobsInit()
             .bgColorBy(JobsWhiteColor)
-            .jobsResetBtnImage(JobsIMG(@"zaixiankefu_en"))
+            .jobsResetBtnImage(@"zaixiankefu_en".img)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 [self endEditing:YES];

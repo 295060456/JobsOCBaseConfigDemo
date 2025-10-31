@@ -97,14 +97,14 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
                  .byRightViewByTextFieldOffset(JobsWidth(4))
                  .byRightViewByOutLineOffset(JobsWidth(14))
                  .byLeftView(BaseButton.jobsInit()
-                             .jobsResetBtnBgImage(JobsIMG(@"📅"))
+                             .jobsResetBtnBgImage(@"📅".img)
                              .onClickBy(^(UIButton *x){
                                  JobsLog(@"");
                              }).onLongPressGestureBy(^(id data){
                                  JobsLog(@"");
                              }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
                  .byRightView(BaseButton.jobsInit()
-                              .jobsResetBtnBgImage(JobsIMG(@"向下的箭头"))
+                              .jobsResetBtnBgImage(@"向下的箭头".img)
                               .onClickBy(^(UIButton *x){
                                   @jobs_strongify(self)
                                   self.popupParameter = nil;

@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_END
  -(JobsAppDoorInputViewBaseStyleModel *)inputViewDataModel{
      if (!_inputViewDataModel) {
          _inputViewDataModel = JobsAppDoorInputViewBaseStyleModel.new;
-         _inputViewDataModel.leftViewIMG = JobsIMG(@"搜索");
+         _inputViewDataModel.leftViewIMG = @"搜索".img;
          _inputViewDataModel.textModel.text = JobsInternationalization(@"");
          _inputViewDataModel.placeHolderStr = JobsInternationalization(@"搜索");
          _inputViewDataModel.isShowDelBtn = YES;

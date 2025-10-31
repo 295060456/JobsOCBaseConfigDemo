@@ -54,7 +54,7 @@
              @jobs_strongify(self)
              data.add(BaseButton.jobsInit()
                       .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
-                      .jobsResetBtnBgImage(JobsIMG(@"纸飞机账户绑定"))
+                      .jobsResetBtnBgImage(@"纸飞机账户绑定".img)
                       .onClickBy(^(UIButton *x){
                           toast(@"纸飞机");
                       }).onLongPressGestureBy(^(id data){
@@ -62,7 +62,7 @@
                       }));
              data.add(BaseButton.jobsInit()
                       .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
-                      .jobsResetBtnBgImage(JobsIMG(@"脸书账户绑定"))
+                      .jobsResetBtnBgImage(@"脸书账户绑定".img)
                       .onClickBy(^(UIButton *x){
                           toast(@"脸书");
                       }).onLongPressGestureBy(^(id data){
@@ -70,7 +70,7 @@
                       }));
              data.add(BaseButton.jobsInit()
                       .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
-                      .jobsResetBtnBgImage(JobsIMG(@"Viber账户绑定"))
+                      .jobsResetBtnBgImage(@"Viber账户绑定".img)
                       .onClickBy(^(UIButton *x){
                           toast(@"Viber");
                       }).onLongPressGestureBy(^(id data){

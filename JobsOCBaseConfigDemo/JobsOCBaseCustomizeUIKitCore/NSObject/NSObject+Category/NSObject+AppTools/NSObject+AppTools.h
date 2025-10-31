@@ -179,7 +179,7 @@ Prop_strong()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 -(NSString *)currentLanguage;
 /// 首页的假数据
 -(NSMutableArray <__kindof UIButtonModel *>*)gameDataMutArr;
-/// 收藏的假数据 JobsIMG(@"PG");JobsIMG(@"点赞");
+/// 收藏的假数据 @"PG".img;@"点赞".img;
 -(NSMutableArray <__kindof UIViewModel *>*)favDataMutArr;
 -(HTTPRequestHeaderLanguageType)currentLanguageType;
 #pragma mark —— Loading动画

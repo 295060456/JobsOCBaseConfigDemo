@@ -25,9 +25,10 @@
 #pragma mark —— 成功图标和文字，展示在屏幕中间
 +(jobsByStringBlock _Nonnull)jobsToastSuccessMsg{
     return ^(NSString *_Nullable successMsg) {
-        [WHToast showSuccessWithMessage:successMsg
-                               duration:1.5
-                          finishHandler:nil];
+        [WHToast showImage:@"成功".img
+                   message:successMsg
+                  duration:1.5
+             finishHandler:nil];
     };
 }
 
@@ -39,9 +40,10 @@
 #pragma mark —— 失败图标和文字，展示在屏幕中间
 +(jobsByStringBlock _Nonnull)jobsToastErrMsg{
     return ^(NSString *_Nullable errMsg) {
-        [WHToast showErrorWithMessage:errMsg
-                             duration:1.5
-                        finishHandler:nil];
+        [WHToast showImage:@"失败".img
+                   message:errMsg
+                  duration:1.5
+             finishHandler:nil];
     };
 }
 

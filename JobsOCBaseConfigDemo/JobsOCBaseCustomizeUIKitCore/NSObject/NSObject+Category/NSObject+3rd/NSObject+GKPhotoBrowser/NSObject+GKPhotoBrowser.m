@@ -52,7 +52,7 @@ NS_INLINE __kindof GKPhotoBrowser *_Nonnull jobsMakeGKPhotoBrowserByPhotosArray(
                                                       BOOL * _Nonnull stop) {
             data.add(jobsMakeGKPhoto(^(GKPhoto * _Nonnull photo) {
                 photo.image = obj;
-                photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
+                photo.placeholderImage = @"plliza_empy_placehoder".img;
             }));
         }];
     }),indexPath.row,^(GKPhotoBrowser *_Nonnull browser){
@@ -70,7 +70,7 @@ NS_INLINE __kindof GKPhotoBrowser *_Nonnull jobsMakeGKPhotoBrowserByPhotosArray(
                                                      BOOL * _Nonnull stop) {
             data.add(jobsMakeGKPhoto(^(GKPhoto * _Nonnull photo) {
                 photo.url = obj;
-                photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
+                photo.placeholderImage = @"plliza_empy_placehoder".img;
             }));
         }];
     }),indexPath.row,^(GKPhotoBrowser *_Nonnull browser){
@@ -88,7 +88,7 @@ NS_INLINE __kindof GKPhotoBrowser *_Nonnull jobsMakeGKPhotoBrowserByPhotosArray(
                                                         BOOL * _Nonnull stop) {
             data.add(jobsMakeGKPhoto(^(GKPhoto * _Nonnull photo) {
                 photo.url = obj.jobsUrl;
-                photo.placeholderImage = JobsIMG(@"plliza_empy_placehoder");
+                photo.placeholderImage = @"plliza_empy_placehoder".img;
             }));
         }];
     }),indexPath.row,^(GKPhotoBrowser *_Nonnull browser){
@@ -188,7 +188,7 @@ didDisappearAtIndex:(NSInteger)index{
 /// 自定义单个图片的加载失败图片，优先级高于failureImage
 -(UIImage *)photoBrowser:(GKPhotoBrowser *)browser
       failedImageAtIndex:(NSInteger)index{
-    return JobsIMG(JobsInternationalization(@""));
+    return JobsInternationalization(@"".img);
 }
 /// 视频播放状态回调
 -(void)photoBrowser:(GKPhotoBrowser *)browser

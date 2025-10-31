@@ -457,7 +457,7 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (!_viewModel) {
         _viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.bgCor = JobsWhiteColor;
-    //        data.bgImage = isiPhoneX_series() ? JobsIMG(@"底部导航栏背景(刘海屏)") : JobsIMG(@"底部导航栏背景(非刘海屏)");
+    //        data.bgImage = isiPhoneX_series() ? @"底部导航栏背景(刘海屏.img") : @"底部导航栏背景(非刘海屏.img");
             data.isTranslucent = NO;
             data.offsetHeight = JobsWidth(5);
         });
@@ -484,15 +484,15 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (!_pullListAutoSizeViewMutArr) {
         _pullListAutoSizeViewMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.image = JobsIMG(JobsInternationalization(@""));
+                viewModel.image = JobsInternationalization(@"".img);
                 viewModel.textModel.text = JobsInternationalization(@"111");
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.image = JobsIMG(JobsInternationalization(@""));
+                viewModel.image = JobsInternationalization(@"".img);
                 viewModel.textModel.text = JobsInternationalization(@"222");
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.image = JobsIMG(JobsInternationalization(@""));
+                viewModel.image = JobsInternationalization(@"".img);
                 viewModel.textModel.text = JobsInternationalization(@"333");
             }));
         });

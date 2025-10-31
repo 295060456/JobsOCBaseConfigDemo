@@ -85,7 +85,7 @@ Prop_assign()NSInteger colNumber;/// 列数
                             model.jobsEnabled = YES;
                             model.imagePlacement = NSDirectionalRectEdgeTrailing;
                             model.imagePadding = JobsWidth(8);
-                            model.normalImage = JobsIMG(@"复制图标");
+                            model.normalImage = @"复制图标".img;
                             model.clickEventBlock = ^id _Nullable(UIButton *_Nullable data) {
                                 data.titleForNormalState.pasteboard();
                                 return nil;
@@ -240,25 +240,25 @@ Prop_assign()NSInteger colNumber;/// 列数
 /// 第一行、第一列格子的背景图片
 -(UIImage *)image0{
     if(!_image0){
-        _image0 = JobsIMG(@"Excel表头的背景图");
+        _image0 = @"Excel表头的背景图".img;
     }return _image0;
 }
 /// 奇数行的背景图片
 -(UIImage *)image1{
     if(!_image1){
-        _image1 = JobsIMG(@"");
+        _image1 = @"".img;
     }return _image1;
 }
 /// 偶数行的背景图片
 -(UIImage *)image2{
     if(!_image2){
-        _image2 = JobsIMG(@"");
+        _image2 = @"".img;
     }return _image2;
 }
 /// 第一行的背景图片
 -(UIImage *)image3{
     if(!_image3){
-        _image3 = JobsIMG(@"Excel表头的背景图");
+        _image3 = @"Excel表头的背景图".img;
     }return _image3;
 }
 @synthesize topHeaderTitles = _topHeaderTitles;

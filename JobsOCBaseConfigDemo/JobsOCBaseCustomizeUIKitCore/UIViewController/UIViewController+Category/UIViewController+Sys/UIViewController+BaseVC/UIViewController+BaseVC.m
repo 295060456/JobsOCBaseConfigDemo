@@ -60,7 +60,7 @@
     @jobs_weakify(self)
     return ^(__kindof UIButton *_Nullable btn) {
         @jobs_strongify(self)
-        self.gk_backImage = JobsIMG(@"全局返回箭头");/// 设置返回按钮图片（优先级高于gk_backStyle）
+        self.gk_backImage = @"全局返回箭头".img;/// 设置返回按钮图片（优先级高于gk_backStyle）
         self.gk_backStyle = GKNavigationBarBackStyleBlack;
         self.gk_navLeftBarButtonItem = UIBarButtonItem.initBy(btn ? : self.backBtnCategory);
     };
@@ -194,7 +194,7 @@ JobsKey(_bgImage)
 -(UIImage *)bgImage{
     UIImage *BgImage = Jobs_getAssociatedObject(_bgImage);
     if (!BgImage) {
-        BgImage = JobsIMG(@"启动页SLOGAN");
+        BgImage = @"启动页SLOGAN".img;
         Jobs_setAssociatedRETAIN_NONATOMIC(_bgImage, BgImage)
     }return BgImage;
 }

@@ -39,14 +39,14 @@ NS_ASSUME_NONNULL_END
      config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
          viewModel.alpha = 1;
          viewModel.navBgCor = JobsClearColor;
-         viewModel.navBgImage = JobsIMG(@"");
-         viewModel.titleImage = JobsIMG(@"BLuckyRedLogo"); /// 配置中间的标题为图片
+         viewModel.navBgImage = @"".img;
+         viewModel.titleImage = @"BLuckyRedLogo".img; /// 配置中间的标题为图片
      });
      /// 配置返回键
      config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
 //            @jobs_strongify(self)
-         buttonModel.normalImage = JobsIMG(@"全局返回箭头");
-         buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
+         buttonModel.normalImage = @"全局返回箭头".img;
+         buttonModel.highlightImage = @"全局返回箭头".img;
          buttonModel.title = JobsInternationalization(@"");
          buttonModel.titleFont = bayonRegular(18);
          buttonModel.titleCor = JobsCor(@"#8A93A1");

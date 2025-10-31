@@ -125,88 +125,94 @@
 
 ## 三、📝 相关支持文档 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
+> [**JobsDocs**](https://github.com/295060456/JobsDocs)
+
 ### 1、配置相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* [**解决xcode出现：SDK does not contain 'libarclite' 错误**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E8%A7%A3%E5%86%B3Xcode%E5%87%BA%E7%8E%B0%EF%BC%9ASDK%20does%20not%20contain%20'libarclite'%20%E9%94%99%E8%AF%AF)
-* [**通过SSH连接到GitHub**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub/%E9%80%9A%E8%BF%87SSH%E8%BF%9E%E6%8E%A5%E5%88%B0GitHub.md)
-* [**JobsGenesis**](https://github.com/295060456/JobsGenesis)
-* [**unknown class viewcontroller in interface builder file**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/unknown%20class%20viewcontroller%20in%20interface%20builder%20file.md)
-* [**xcode资料下载**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/Xcode%E8%B5%84%E6%96%99%E4%B8%8B%E8%BD%BD.md)
-* [**配置`info.plist`文件**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/%E9%85%8D%E7%BD%AEinfo.plist/%E9%85%8D%E7%BD%AEinfo.plist.md)
-* [**Github.workflow（工作流）的使用**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/Github.workflow.md/Github.workflow.md)
-* [**Apple生成`*.p12`文件**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6.md)
-* [**移动端上架流程**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8A%E6%9E%B6%E6%B5%81%E7%A8%8B.md/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8A%E6%9E%B6%E6%B5%81%E7%A8%8B.md)
-* [**Git的使用**](https://github.com/295060456/JobsDocs/tree/main/Git%E7%9A%84%E4%BD%BF%E7%94%A8.md)
-* [**同一应用设置不同图标和名称**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E5%90%8C%E4%B8%80%E5%BA%94%E7%94%A8%E8%AE%BE%E7%BD%AE%E4%B8%8D%E5%90%8C%E5%9B%BE%E6%A0%87%E5%92%8C%E5%90%8D%E7%A7%B0/%E5%90%8C%E4%B8%80%E5%BA%94%E7%94%A8%E8%AE%BE%E7%BD%AE%E4%B8%8D%E5%90%8C%E5%9B%BE%E6%A0%87%E5%92%8C%E5%90%8D%E7%A7%B0.md)
+* [**解决xcode出现：SDK does not contain 'libarclite' 错误**](TODO)
+* [**通过SSH连接到GitHub**](TODO)
+* [**unknown class viewcontroller in interface builder file**](TODO)
+* [**xcode资料下载**](TODO)
+* [**配置`info.plist`文件**](TODO)
+* [**Github.workflow（工作流）的使用**](TODO)
+* [**Apple生成`*.p12`文件**](TODO)
+* [**iOS项目多环境配置**](https://github.com/295060456/JobsDocs/blob/main/iOS相关的文档和资料.md/iOS项目多环境配置.md/iOS项目多环境配置.md)
+* [**移动端上架流程**](TODO)
+* [**Git的使用**](TODO)
+* [**同一应用设置不同图标和名称**](TODO)
+* [**Mac配置个人热点**](TODO)
+* [**苹果开发者账户续费**](https://account.apple.com/account/manage/section/payment)
 
 ### 2、面试相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * [**yanmingLiu-Xminds**](https://github.com/yanmingLiu/Xminds)
 * [**yanmingLiu-iOSNotes**](https://github.com/yanmingLiu/iOSNotes)
-* [**OC相关经验**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/OCDoc.md/OCDoc.md)
-* [**Swift 相关经验**](https://github.com/295060456/JobsOCBaseConfig/blob/main/SwiftDoc/SwiftDoc.md)
+* [**OC相关经验**](TODO)
+* [**Swift 相关经验**](TODO)
 * [**谁说HTTP GET就不能通过Body来发送数据呢？**](https://juejin.cn/post/6844903685206573069)
-* [**iOS音视频**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/iOS%E9%9F%B3%E8%A7%86%E9%A2%91/iOS%E9%9F%B3%E8%A7%86%E9%A2%91.md)
+* [**iOS音视频**](TODO)
 
 ### 3、功能相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-  * [**UITableView 的使用指南**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/UITableView/UITableView.md)
-  * [**关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E5%85%B3%E4%BA%8EUITableViewCell%E5%92%8CUICollectionViewCell%E5%9C%86%E5%88%87%E8%A7%92%2BCell%E7%9A%84%E5%81%8F%E7%A7%BB%E9%87%8F.md)
-  * [**查找系统警告对应的编码**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%9F%A5%E6%89%BE%E7%B3%BB%E7%BB%9F%E8%AD%A6%E5%91%8A%E5%AF%B9%E5%BA%94%E7%9A%84%E7%BC%96%E7%A0%81/%E6%9F%A5%E6%89%BE%E7%B3%BB%E7%BB%9F%E8%AD%A6%E5%91%8A%E5%AF%B9%E5%BA%94%E7%9A%84%E7%BC%96%E7%A0%81.png)
+  * [**UITableView 的使用指南**]()
+  * [**关于UITableViewCell和UICollectionViewCell圆切角+Cell的偏移量**]()
+  * [**查找系统警告对应的编码**]()
   * [**iOS状态栏颜色的修改**](文档和资料/iOS状态栏颜色的修改.md)
   * [**UICollectionView点击事件**](文档和资料/UICollectionView点击事件.md)
-  * [**JXCategoryView框架的使用**](https://github.com/295060456/JobsDocs/tree/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/JXCategoryView)
-  * [**同一应用设置不同图标和名称**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%90%8C%E4%B8%80%E5%BA%94%E7%94%A8%E8%AE%BE%E7%BD%AE%E4%B8%8D%E5%90%8C%E5%9B%BE%E6%A0%87%E5%92%8C%E5%90%8D%E7%A7%B0/%E5%90%8C%E4%B8%80%E5%BA%94%E7%94%A8%E8%AE%BE%E7%BD%AE%E4%B8%8D%E5%90%8C%E5%9B%BE%E6%A0%87%E5%92%8C%E5%90%8D%E7%A7%B0.md)
-  * [**MJExtension用法**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/MJExtension%E7%94%A8%E6%B3%95/MJExtension%E7%94%A8%E6%B3%95.md)
-  * [**模型解析**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%A1%E5%9E%8B%E8%A7%A3%E6%9E%90/%E6%A8%A1%E5%9E%8B%E8%A7%A3%E6%9E%90.md)
-  * [**iOS 多语言环境设置**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/iOS%20%E5%A4%9A%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE/iOS%20%E5%A4%9A%E8%AF%AD%E8%A8%80%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE.md)
-  * [**<font color=red id=iOS功能：跳转其他App,如果本机不存在,则进行下载 >iOS功能：跳转其他App,如果本机不存在,则进行下载 （需要补充）</font>**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E8%B7%B3%E8%BD%AC%E5%85%B6%E4%BB%96App%E6%B2%A1%E6%9C%89%E5%88%99%E4%B8%8B%E8%BD%BD/%E8%B7%B3%E8%BD%AC%E5%85%B6%E4%BB%96App%E6%B2%A1%E6%9C%89%E5%88%99%E4%B8%8B%E8%BD%BD.md)
-  * [**iOS禁用返回手势**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/iOS%E7%A6%81%E7%94%A8%E8%BF%94%E5%9B%9E%E6%89%8B%E5%8A%BF.md)
-  * [**读取本地plist**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0plist.md)
-  * [**<font color=red id=时间按照【年-月份】分组>时间按照【年-月份】分组</font>**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E6%97%B6%E9%97%B4%E6%8C%89%E7%85%A7%E3%80%90%E5%B9%B4-%E6%9C%88%E4%BB%BD%E3%80%91%E5%88%86%E7%BB%84.md)
-  * [**精确度量 iOS App 的启动时间**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E7%B2%BE%E7%A1%AE%E5%BA%A6%E9%87%8F%20iOS-App%E7%9A%84%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4.md)
-  * [**本地通知**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E6%9C%AC%E5%9C%B0%E9%80%9A%E7%9F%A5.md/%E6%9C%AC%E5%9C%B0%E9%80%9A%E7%9F%A5.md)
-* [**横屏UI切换**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md)
-* [**自定义 UITabBarController**](https://github.com/295060456/JobsDocs/blob/main/iOS%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md/%E8%87%AA%E5%AE%9A%E4%B9%89%20UITabBarController.md)
+  * [**JXCategoryView框架的使用**](TODO)
+  * [**同一应用设置不同图标和名称**](TODO)
+  * [**MJExtension用法**](TODO)
+  * [**模型解析**](TODO)
+  * [**iOS 多语言环境设置**](TODO)
+  * [**<font color=red id=iOS功能：跳转其他App,如果本机不存在,则进行下载 >iOS功能：跳转其他App,如果本机不存在,则进行下载 （需要补充）</font>**](TODO)
+  * [**iOS禁用返回手势**](TODO)
+  * [**读取本地plist**](TODO)
+  * [**<font color=red id=时间按照【年-月份】分组>时间按照【年-月份】分组</font>**](TODO)
+  * [**精确度量 iOS App 的启动时间**](TODO)
+  * [**本地通知**](TODO)
+* [**横屏UI切换**](TODO)
+* [**自定义 UITabBarController**](TODO)
+* [**中国公民身份证校验规则**](https://github.com/295060456/JobsDocs/blob/main/中国公民身份证校验规则.md/中国公民身份证校验规则.md)
 
 ### 4、相关研究 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 4.1、架构问题 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* [**路由**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E8%B7%AF%E7%94%B1.md)
+* [**路由**](TODO)
 
 #### 4.2、语法糖问题 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* [**关于WMZBanner的怪异写法探究**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B3%E4%BA%8EWMZBanner%E7%9A%84%E6%80%AA%E5%BC%82%E5%86%99%E6%B3%95%E6%8E%A2%E7%A9%B6/%E5%85%B3%E4%BA%8EWMZBanner%E7%9A%84%E6%80%AA%E5%BC%82%E5%86%99%E6%B3%95%E6%8E%A2%E7%A9%B6.md)
-* [**关于RAC框架中的@符号进行宏定义唤起的探究**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E5%85%B3%E4%BA%8ERAC%E6%A1%86%E6%9E%B6%E4%B8%AD%E7%9A%84%40%E7%AC%A6%E5%8F%B7%E8%BF%9B%E8%A1%8C%E5%AE%8F%E5%AE%9A%E4%B9%89%E5%94%A4%E8%B5%B7%E7%9A%84%E6%8E%A2%E7%A9%B6.md)
+* [**关于WMZBanner的怪异写法探究**](TODO)
+* [**关于RAC框架中的@符号进行宏定义唤起的探究**](TODO)
   * 响应链
-    * [**关于响应链的一些研究成果**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E5%85%B3%E4%BA%8E%E5%93%8D%E5%BA%94%E9%93%BE%E7%9A%84%E4%B8%80%E4%BA%9B%E7%A0%94%E7%A9%B6%E6%88%90%E6%9E%9C.md)
-    * [**UICollectionView点击事件**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/UICollectionView%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6.md)
+    * [**关于响应链的一些研究成果**](TODO)
+    * [**UICollectionView点击事件**](TODO)
 
 #### 4.3、算法问题 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* [**N宫格问题**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/N%E5%AE%AB%E6%A0%BC%E9%97%AE%E9%A2%98.md)
-* [**定一行个数得出几行**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E5%AE%9A%E4%B8%80%E8%A1%8C%E4%B8%AA%E6%95%B0%E5%BE%97%E5%87%BA%E5%87%A0%E8%A1%8C.md)
+* [**N宫格问题**](TODO)
+* [**定一行个数得出几行**](TODO)
 
 #### 4.4、加密体系相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ##### 4.4.1、加密（编码）算法 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* **Base编码系列**：[**Base16**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/Base%E7%BC%96%E7%A0%81%E7%B3%BB%E5%88%97/Base16/Base16.md)、[**Base32**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/Base%E7%BC%96%E7%A0%81%E7%B3%BB%E5%88%97/Base32/Base32.md)、[**Base64**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/Base%E7%BC%96%E7%A0%81%E7%B3%BB%E5%88%97/Base64/Base64.md)、[**Base85**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/Base%E7%BC%96%E7%A0%81%E7%B3%BB%E5%88%97/Base85/Base85.md)
-* [**Unicode**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/Unicode/Unicode.md)
-* [**MIME**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/MIME/MIME.md)
-* [**HexadecimalData**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/HexadecimalData/HexadecimalData.md)
-* [**凯撒加密解密**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/%E5%87%AF%E6%92%92%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/%E5%87%AF%E6%92%92%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86.md)
+* **Base编码系列**：[**Base16**](TODO)、[**Base32**](TODO)、[**Base64**](TODO)、[**Base85**](TODO)
+* [**Unicode**](TODO)
+* [**MIME**](TODO)
+* [**HexadecimalData**](TODO)
+* [**凯撒加密解密**](TODO)
 * [**AESCipher**]()
-* [**DES**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/DES/DES.md)
-* [**SHA**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/SHA/SHA.md)：[**SHA1**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/SHA/SHA-1/SHA-1.md)、[**SHA-224**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/SHA/SHA-224/SHA-224.md)、[**SHA-256**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/SHA/SHA-256/SHA-256.md)、[**SHA-384**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/SHA/SHA-384/SHA-384.md)、[**SHA-512**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/SHA/SHA-512/SHA-512.md)
-* [**RSA**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/%E5%8A%A0%E5%AF%86%EF%BC%88%E7%BC%96%E7%A0%81%EF%BC%89%E7%AE%97%E6%B3%95/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86RSA/RSA.md)
+* [**DES**](TODO)
+* [**SHA**](TODO)：[**SHA1**](TODO)、[**SHA-224**](TODO)、[**SHA-256**](TODO)、[**SHA-384**](TODO)、[**SHA-512**](TODO)
+* [**RSA**](TODO)
 
 ##### 4.4.2、HASH 信息摘要：[**MD5**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/HASH%20%E4%BF%A1%E6%81%AF%E6%91%98%E8%A6%81/MD5/MD5.md)、[**HASH**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%F0%9F%94%A8Manual_Add_ThirdParty%EF%BC%88%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5%EF%BC%89/%E5%8A%A0%E5%AF%86%E4%BD%93%E7%B3%BB/HASH%20%E4%BF%A1%E6%81%AF%E6%91%98%E8%A6%81/HASH.md) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ### 5、其他研究 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* [**LYM的研究成果**](https://github.com/295060456/JobsOCBaseConfig/tree/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E2%9D%A4%EF%B8%8FLYM%E7%9A%84%E7%A0%94%E7%A9%B6%E6%88%90%E6%9E%9C%E2%9D%A4%EF%B8%8F)
+* [**LYM的研究成果**](TODO)
+* [**创建自定义模版**](https://juejin.cn/post/6974702344021737485)
 * [**iOS项目常用的第三方框架**](https://www.cnblogs.com/sundaysgarden/articles/14208764.html)
 * [**滚动数字显示**](https://github.com/lf19940514/LFScrollNumberDemo)
 * https://github.com/SeongBrave/Swift__OC/blob/master/README.md?plain=1
@@ -214,16 +220,57 @@
 
 ### 6、课外阅读 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-  * [**FFmpeg**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/FFmpeg/FFmpeg.md)
-  * [**优秀的关于音视频处理的文献资料**](https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E5%85%B6%E4%BB%96.md/%E4%BC%98%E7%A7%80%E7%9A%84%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86%E7%9A%84%E6%96%87%E7%8C%AE%E8%B5%84%E6%96%99.md)
+  * [**FFmpeg**](TODO)
+  * [**优秀的关于音视频处理的文献资料**](TODO)
   * [**Fastlane-iOS持续集成自动打包发布**](https://github.com/yanmingLiu/Xminds/blob/main/iOS/Fastlane-iOS%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83%E3%80%82.md)
   * [**Flutter-iOS-打包等采坑ing**](https://github.com/yanmingLiu/Xminds/blob/main/iOS/Flutter-iOS-%E6%89%93%E5%8C%85%E7%AD%89%E9%87%87%E5%9D%91ing---.md)
   * [**创建Framework**](https://github.com/yanmingLiu/Xminds/blob/main/iOS/%E5%88%9B%E5%BB%BAFramework.md)
-  * [**计算机底层的秘密**](https://github.com/295060456/JobsDocs/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82%E7%9A%84%E7%A7%98%E5%AF%86.pdf)
+  * [**计算机底层的秘密**](TODO)
 
-## 四、🧨代码周边 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## 四、🧨开发支持 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### 1、几点特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 1、周边相关支持 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* [**过期的模拟器配件**](https://github.com/295060456/Xcode_Sys_lib)
+
+* [**quicktype**](https://app.quicktype.io/)：从 **JSON** / **GraphQL** /其它数据格式 自动生成对应语言的类型定义
+
+* [**snipaste**](https://www.snipaste.com/)：截图工具
+
+* [**Sip**](https://sipapp.io/)：取色器
+
+* [**CocoaPods**](https://cocoapods.org/)
+
+* [**配置SourceTree脚本**](https://github.com/295060456/SourceTree.sh)
+
+* [**代码块**](https://github.com/295060456/JobsCodeSnippets)
+
+* [**图片占位符**](https://picsum.photos/)
+
+* [**帮小忙@腾讯QQ浏览器在线工具箱**](https://tool.browser.qq.com/)
+
+* [**Mac破解软件**](https://mac.macxz.com/)
+
+* [**波测**](https://www.boce.com/)
+
+* [**uuwallet@虚拟卡**](https://www.uuwallet.com/)
+
+* **注入调试工具**
+
+  * 同时支持 [**Swift**](https://developer.apple.com/swift/), **Objc**& **C++ **的代码热重载工具！
+
+    * [**InjectionIII**](https://github.com/johnno1962/InjectionIII)
+    * [**InjectionNext**](https://github.com/johnno1962/InjectionNext)
+
+  * [**UI界面调试工具**](https://lookin.work/)（必须是有线连接，并且**`Lookin.app`**要先于项目文件启动）
+
+    > ```ruby
+    > pod 'LookinServer', :configurations => ['Debug']
+    > ```
+
+### 2、几点特别说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* 个别地区（比如：柬埔寨），需要将浏览器语言改为英文状态，方可进入[**苹果开发者网站**](https://developer.apple.com/)
 
 * **xcode**对中文的兼容性非常好，所以可以中文命名路径（比如文件夹名称）
 
@@ -236,7 +283,7 @@
   ![image-20240706113246025](./assets/image-20240706113246025.png)
 
 
-### 2、在Apple芯片（目前是M系列）编译失败的解决方案 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 3、在Apple芯片（目前是M系列）编译失败的解决方案 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 * 禁用系统完整性保护 (<font color=red>**S**</font>ystem <font color=red>**I**</font>ntegrity <font color=red>**P**</font>rotection, <font color=red>**SIP**</font>)   <font color=red>**如果不禁用，会对某些文件夹有读写权限控制**</font>
   * 重启**MacOS**，长按开机键，直到🌏页面，进入恢复模式
   * 在恢复模式的**macOS**实用工具窗口中，选择“实用工具”菜单，然后选择“终端”以打开终端窗口
@@ -264,7 +311,7 @@
     ```shell
     pod install
     ```
-### 3、**iOS**模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 4、**iOS**模拟器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **iOS**存在假后台现象，有时需要主动手动关闭进程
 
@@ -346,7 +393,7 @@
 
 * 如果更新或者删除**xcode**，那么下载的**iOS**模拟器将会丢失
 
-### 4、`lldb`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 5、`lldb`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ```shell
 (lldb) target list
@@ -357,17 +404,56 @@ Current targets:
 * target #0: /Users/user/Library/Developer/CoreSimulator/Devices/E17E7DE8-7ADA-42FD-A743-A1A3A6CB7E42/data/Containers/Bundle/Application/C590303C-50A7-4BB2-826F-8598E5F3A66C/JobsOCBaseConfigDemo.app/JobsOCBaseConfigDemo ( arch=x86_64-apple-ios-simulator, platform=ios-simulator, pid=89318, state=stopped )
 ```
 
-### 5、`Command Line Tools` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 6、<font color=red>**C**</font>ommand <font color=red>**L**</font>ine <font color=red>**T**</font>ools <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 查看`Command Line Tools`版本
+* 安装
+
+  * （通过终端）下载安装`Command Line Tools`
+
+    ```
+    xcode-select --install
+    ```
+
+  * 通过 Xcode 安装
+
+    * 打开 Xcode
+    * 在菜单栏选择 **Xcode > Settings > Locations**
+    * 在 <font color=red>**C**</font>ommand <font color=red>**L**</font>ine <font color=red>**T**</font>ools 下拉菜单中选择对应的 Xcode 版本
+
+* 卸载
 
   ```shell
-  pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+  sudo rm -rf /Library/Developer/CommandLineTools
+  xcode-select --install
   ```
 
-### 6、xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+* 切换
 
-#### 6.1、新工程配置  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+  ```shell
+  sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+  ```
+
+* 验证命令
+
+  ```shell
+  ➜  ~ xcode-select -p
+  /Applications/Xcode.app/Contents/Developer
+  ```
+
+* 查看<font color=red>**C**</font>ommand <font color=red>**L**</font>ine <font color=red>**T**</font>ools版本
+
+  ```shell
+  ➜  ~ pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+  package-id: com.apple.pkg.CLTools_Executables
+  version: 26.0.0.0.1.1757719676
+  volume: /
+  location: /
+  install-time: 1758341956
+  ```
+
+### 7、⚙️ xcode 配置 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+#### 7.1、⚙️ 新工程配置  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font id =Unknown_class_in_Interface_Builder_file>处理编译器警告：**`Unknown class in Interface Builder file`**</font>
 
@@ -376,7 +462,7 @@ Current targets:
 
   <img src="./assets/image-20240715141329097.png" alt="image-20240715141329097" style="zoom:50%;" />
 
-#### 6.2、`Arguments Passed On Launch`标签设置  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 7.2、🏷️`Arguments Passed On Launch`标签设置  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 设置应用的语言环境
 
@@ -445,15 +531,15 @@ Current targets:
   -AppleTextDirection YES
   ```
 
-#### 6.3、`Environment Variables`标签  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 7.3、🏷️ `Environment Variables`标签  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 日志配置：添加一个新的环境变量。将 `Name` 设置为 `IDEPreferLogStreaming`，将 `Value` 设置为 `YES`
 
   <img src="./assets/image-20240629161626945.png" alt="image-20240629161626945" style="zoom:50%;" />
 
-### 7、🖨️ 调试打印 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 8、🖨️ 调试打印 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-#### 7.1、重写打印输出  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 8.1、🖨️ 重写打印输出  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注文件：[**MacroDef_Log.h**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Sys/MacroDef_Log.h)
 
@@ -525,7 +611,7 @@ Current targets:
     label.jobsLogSize(@"打印的时候额外添加的标识字符");
     ```
   
-#### 7.2、利用**Runtime**的机制打印类的内容  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 8.2、🖨️ 利用**Runtime**的机制打印类的内容  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 返回并打印成员变量列表
 
@@ -551,40 +637,102 @@ Current targets:
   -(NSMutableArray <NSString *>*)printProtocolList;
   ```
 
+### 9、Xcode@Objc  <font color=red>代码块</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-### 8、iOS xcode <font color=red>代码块</font>，提升编码效率必备之首选 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+> 提升编码效率必备之首选
 
 * 提升编码效率，快用[**快捷键调取代码块**](https://github.com/295060456/JobsCodeSnippets.git)
 * 脚本自动化：[**`【MacOS】安装JobsCodeSnippets.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E5%AE%89%E8%A3%85JobsCodeSnippets.command)
 
-### 9、**手动打包`*.ipa`流程 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
+### 10、**📦打包`*.ipa` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
 
-* 电脑桌面新建文件夹，并重命名为`payload`
+* 手动打包流程
 
-* 真机运行项目（不同设备，不同芯片组，底层指令集不一致）
+  * 电脑桌面新建文件夹，并重命名为`payload`
 
-* 打开项目工程目录下`Products`，里面有个`*.app`
+  * 真机运行项目（不同设备，不同芯片组，底层指令集不一致）
 
-  ![image-20240704113342353](./assets/image-20240704113342353.png)
+  * 打开项目工程目录下`Products`，里面有个`*.app`
 
-* 将这个`*.app`复制到刚才电脑桌面新建的`payload`文件夹
+    ![image-20240704113342353](./assets/image-20240704113342353.png)
 
-* 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包
+  * 将这个`*.app`复制到刚才电脑桌面新建的`payload`文件夹
 
-* 将这个`zip`格式的压缩包，强行改名`*.ipa`
+  * 压缩电脑桌面新建的`payload`文件夹为zip格式的压缩包
 
-* 脚本自动化：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
+  * 将这个`zip`格式的压缩包，强行改名`*.ipa`
 
-### 10、🐢<font color=red>**马甲包**</font>  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+* 脚本自动化打包工具：[**`【MacOS】放在iOS项目工程根目录下，自动打包并输出为ipa文件.command`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/%E3%80%90MacOS%E3%80%91%E6%94%BE%E5%9C%A8iOS%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E5%B9%B6%E8%BE%93%E5%87%BA%E4%B8%BAipa%E6%96%87%E4%BB%B6.command)
+
+### 11、应用程序图片 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+#### 11.1、iOS <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+> 1️⃣ **@3x 的引入点是 iPhone 6 Plus（iOS 8）**。
+>  6/7/8 的 **非 Plus** 机型始终是 **@2x**；6/7/8 **Plus** 是 **@3x**（而且渲染 1242×2208 后再下采样到 1080×1920 显示，这是当年的 downsampling 特性）。
+>
+> 2️⃣ **后来大量机型是 @3x**：iPhone X、XS/XS Max、11 Pro/Pro Max、12/12 mini/12 Pro/Pro Max、13/13 mini/13 Pro/Pro Max、14/14 Plus/14 Pro/Pro Max、15/15 Plus/15 Pro/Pro Max（以及后续大多数）。
+>  **仍是 @2x 的典型**：iPhone XR、iPhone 11、各代 iPhone SE。
+>
+> 3️⃣ **iPad 到现在都没有 @3x**，都是 **@2x**（含 iPad Pro）。
+
+* 启动图
+  * 历史标准
+    * **iPhone 3GS**：320×480 → `Default~iphone.png`
+    * **iPhone 4/4S**（Retina）：640×960 → `Default@2x~iphone.png`
+    * **iPhone 5/5s/SE(1st)**：640×1136 → `Default-568h@2x~iphone.png`
+    * **iPhone 6/7/8**：750×1334 → `Default-667h@2x.png`（或 LaunchImage 槽位 `375w-667h@2x`）
+    * **iPhone 6/7/8 Plus**：1242×2208（系统缩放到 1080×1920 显示）→ `Default-736h@3x.png` / 槽位 `414w-736h@3x`
+    * **iPad（非 Retina）**：768×1024（竖）/ 1024×768（横）。**iPad Retina**：1536×2048（竖）/ 2048×1536（横）
+    * **iPhone X / XS**：1125×2436（竖）等刘海机型在静态图时代也有人配，但官方当时已更**鼓励用 Launch Storyboard 适配安全区**。
+  * 👉 当前，苹果已彻底废弃静态 **LaunchImage**，上架App Store多尺寸位图会被拒。必须用 **LaunchScreen.storyboard** 自适应布局（Auto Layout／Safe Area／矢量或等比约束）。<font color=red>**如果非要放品牌图，用约束让它自适应 @2x/@3x，而不是提交一堆固定像素图**</font>
+* 应用程序图标
+  * App Store（营销图标）：**1024×1024 px**，**不允许透明**（无 alpha）
+  * 在设备上的必需尺寸（像素）
+    * iPhone 主屏：**180×180**（@3x），**120×120**（@2x）
+    * iPad 主屏：**167×167**（iPad Pro），**152×152**（iPad）
+    * Spotlight：**120×120**（iPhone @3x）、**80×80**（@2x，含 iPad）
+    * 设置（Settings）：**87×87**（@3x iPhone）、**58×58**（@2x，含 iPad）
+    * 通知（Notifications）：**60×60**（@3x iPhone）、**40×40**（@2x，含 iPad）
+
+#### 11.2、Android <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+> ldpi：（@0.75x）
+
+* 启动图
+  * 品牌横幅：**200×80 dp** →
+    * mdpi：200×80 （@1x）
+    * hdpi：300×120（@1.5x）
+    * xhdpi：400×160（@2x）
+    * xxhdpi：600×240（@3x）
+    * xxxhdpi：800×320（@4x）
+* 应用程序图标
+  * 带背景的应用图标：**240×240 dp**（内容需装进 **160 dp** 直径圆内）
+    * mdpi：240；360；480；720；960 px
+  * 无背景的应用图标：**288×288 dp**（内容需装进 **192 dp** 圆内）
+    * mdpi：288；432；576；864；1152 px
+  * **自适应图标（Adaptive Icon，API 26+）**：前景层 + 背景层 **各 108×108 dp** 画布；**前景可视安全区建议 ≤66×66 dp**，四周 **18 dp** 供蒙版/动效裁切。常见像素导出：
+    * mdpi：108 px
+    * hdpi：162 px
+    * xhdpi：216 px
+    * xxhdpi：324 px
+    * xxxhdpi：432 px
+  * **旧设备（Legacy Launcher 图标）**（如仍需兼容）：48、72、96、144、192 px（mdpi…xxxhdpi）
+  * **Google Play 上架图标（商店用）**：**512×512 px, 32-bit PNG, sRGB，≤1MB**（Play 会统一蒙版/投影）。这与启动器图标不同，单独上传。
+
+### 12、🐢<font color=red>**马甲包**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
   * 相关资料
     * https://github.com/520coding/confuse/blob/master/README_ZH.md
   * 相关工具
     * [**confuse**](https://github.com/520coding/confuse)
 
-### 11、 打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://)  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-  * ```html
-    feedbackassistant://
-    ```
+### 13、 打开苹果的[<font color=red>**反馈助理**</font>](applefeedback://) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+> ```url
+> feedbackassistant://
+> ```
+
 ## 五、💥代码讲解 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ### 1、[**<font color=red>`JobsBlock`</font>**](https://github.com/295060456/JobsBlock/blob/main/README.md) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
@@ -722,7 +870,7 @@ classDiagram
 
 ```
 
-### 3、**`UIViewModelFamily`（将持续更新） <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
+### 3、**`UIViewModelFamily`（将持续更新）<a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>**
 
 * 产生背景：页面之间传值，只需要瞄准1个<font color=red>**数据束**</font>。当需要增删数据的时候，可以有效减少操作，方便管理
 * `UIViewModel`即是页面之间传值的这个<font color=red>**数据束**</font>
@@ -1458,14 +1606,14 @@ classDiagram
                    .byRightViewByTextFieldOffset(JobsWidth(4))
                    .byRightViewByOutLineOffset(JobsWidth(14))
                    .byLeftView(BaseButton.jobsInit()
-                               .jobsResetBtnBgImage(JobsIMG(@"📅"))
+                               .jobsResetBtnBgImage(@"📅".img)
                                .onClickBy(^(UIButton *x){
                                    JobsLog(@"");
                                }).onLongPressGestureBy(^(id data){
                                    JobsLog(@"");
                                }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
                    .byRightView(BaseButton.jobsInit()
-                                .jobsResetBtnBgImage(JobsIMG(@"向下的箭头"))
+                                .jobsResetBtnBgImage(@"向下的箭头".img)
                                 .onClickBy(^(UIButton *x){
                                     @jobs_strongify(self)
                                     self.popupParameter = nil;
@@ -1511,7 +1659,7 @@ classDiagram
           @jobs_weakify(self)
           _textFieldLeftView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
               @jobs_strongify(self)
-              imageView.image = JobsIMG(@"UserLogoTextFieldLeftImage");
+              imageView.image = @"UserLogoTextFieldLeftImage".img;
               imageView.sizer = CGSizeMake(JobsWidth(15), JobsWidth(15));
           });
       }return _textFieldLeftView;
@@ -1522,7 +1670,7 @@ classDiagram
           @jobs_weakify(self)
           _textFieldRightView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
               @jobs_strongify(self)
-              imageView.image = JobsIMG(@"UserLogoTextFieldRightImage");
+              imageView.image = @"UserLogoTextFieldRightImage".img;
               imageView.sizer = CGSizeMake(JobsWidth(16), JobsWidth(16));
           });
       }return _textFieldRightView;
@@ -1754,10 +1902,10 @@ classDiagram
      }] subscribeNext:^(NSNumber *bothHaveText) {
          @jobs_strongify(self);
   //        if (bothHaveText.boolValue) {
-  //            self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT"));
+  //            self.submitBtn.jobsResetBtnBgImage(@"SUBMIT".img);
   //            self.submitBtn.enabled = YES;
   //        } else {
-  //            self.submitBtn.jobsResetBtnBgImage(JobsIMG(@"SUBMIT（不可点击）"));
+  //            self.submitBtn.jobsResetBtnBgImage(@"SUBMIT（不可点击）".img);
   //            self.submitBtn.enabled = NO;
   //        }
      }];
@@ -1895,7 +2043,7 @@ classDiagram
       return ^(){
       	  @jobs_strongify(self)
           self.saveUserInfo(jobsMakeUserModel(^(__kindof JobsUserModel<NSCoding> * _Nullable userModel) {
-              userModel.userHeaderIMG = JobsIMG(@"用户默认头像");
+              userModel.userHeaderIMG = @"用户默认头像".img;
               userModel.userName = @"张三丰";
               userModel.phone = @"13487878787".encryptedChineseTele;
           }));
@@ -2907,33 +3055,33 @@ classDiagram
              if([x isKindOfClass:UIButton.class]){
                  UIButton *btn = (UIButton *)x;
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TOP GAMES")]){
-                     self.bgImageView.image = JobsIMG(@"TOP GAMES");
-                     self.topImageView.image = JobsIMG(@"Top_Games");
+                     self.bgImageView.image = @"TOP GAMES".img;
+                     self.topImageView.image = @"Top_Games".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SLOT GAMES")]){
-                     self.bgImageView.image = JobsIMG(@"SLOT GAMES");
-                     self.topImageView.image = JobsIMG(@"Slot_Games");
+                     self.bgImageView.image = @"SLOT GAMES".img;
+                     self.topImageView.image = @"Slot_Games".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"LIVE CASINO")]){
-                     self.bgImageView.image = JobsIMG(@"LIVE CASINO");
-                     self.topImageView.image = JobsIMG(@"Live_Casino");
+                     self.bgImageView.image = @"LIVE CASINO".img;
+                     self.topImageView.image = @"Live_Casino".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"TABLE GAMES")]){
-                     self.bgImageView.image = JobsIMG(@"TABLE GAMES");
-                     self.topImageView.image = JobsIMG(@"Table_Games");
+                     self.bgImageView.image = @"TABLE GAMES".img;
+                     self.topImageView.image = @"Table_Games".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"SPORTS")]){
-                     self.bgImageView.image = JobsIMG(@"SPORTS");
-                     self.topImageView.image = JobsIMG(@"Sports");
+                     self.bgImageView.image = @"SPORTS".img;
+                     self.topImageView.image = @"Sports".img;
                  }
                  
                  if([btn.titleForConfigurationAttributed isEqualToString:JobsInternationalization(@"FINSHING")]){
-                     self.bgImageView.image = JobsIMG(@"FINSHING");
-                     self.topImageView.image = JobsIMG(@"Fishing");
+                     self.bgImageView.image = @"FINSHING".img;
+                     self.topImageView.image = @"Fishing".img;
                  }
              }
          }];
@@ -3010,9 +3158,9 @@ classDiagram
       
       // 使用原则：底图有 + 底色有 = 优先使用底图数据
       // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-      // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+      // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
       self.viewModel.navBgCor = JobsClearColor.colorWithAlphaComponentBy(0);
-  //    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+  //    self.viewModel.navBgImage = @"导航栏左侧底图".img;
   }
   
   - (void)viewDidLoad {
@@ -3142,7 +3290,7 @@ classDiagram
                       data.title = JobsInternationalization(@"NO MESSAGES FOUND");
                       data.titleCor = JobsWhiteColor;
                       data.titleFont = bayonRegular(JobsWidth(30));
-                      data.normalImage = JobsIMG(@"小狮子");
+                      data.normalImage = @"小狮子".img;
                   }))
                   /// 普通的MJRefreshHeader（触发事件）（二选一）
                   .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -3242,27 +3390,27 @@ classDiagram
               data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"ALL");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
-                  viewModel.image = JobsIMG(@"All_activity_小图标");
-                  viewModel.bgSelectedImage = JobsIMG(@"All_activity");
+                  viewModel.image = @"All_activity_小图标".img;
+                  viewModel.bgSelectedImage = @"All_activity".img;
                   viewModel.isMark = YES;
               }));
               data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"Daily");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
-                  viewModel.image = JobsIMG(@"Daily_activity_小图标");
-                  viewModel.bgSelectedImage = JobsIMG(@"Daily_activity");
+                  viewModel.image = @"Daily_activity_小图标".img;
+                  viewModel.bgSelectedImage = @"Daily_activity".img;
               }));
               data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"New Account");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
-                  viewModel.image = JobsIMG(@"NewAcc_activity_小图标");
-                  viewModel.bgSelectedImage = JobsIMG(@"NewAcc_activity");
+                  viewModel.image = @"NewAcc_activity_小图标".img;
+                  viewModel.bgSelectedImage = @"NewAcc_activity".img;
               }));
               data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                   viewModel.textModel.text = JobsInternationalization(@"Limited Time");
                   viewModel.textModel.textCor = HEXCOLOR(0xB0B0B0);
-                  viewModel.image = JobsIMG(@"LimitedTimeOffer_activity_小图标");
-                  viewModel.bgSelectedImage = JobsIMG(@"LimitedTimeOffer_activity");
+                  viewModel.image = @"LimitedTimeOffer_activity_小图标".img;
+                  viewModel.bgSelectedImage = @"LimitedTimeOffer_activity".img;
               }));
           });
       }return _titleMutArr;
@@ -4381,8 +4529,8 @@ static const uint32_t kSequenceBits = 12;
              .bgColor(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
              .jobsResetImagePadding(1)
-             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-             .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+             .jobsResetBtnImage(@"APPLY NOW".img)
+             .jobsResetBtnBgImage(@"APPLY NOW".img)
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .titleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -4405,7 +4553,7 @@ static const uint32_t kSequenceBits = 12;
   ```objective-c
   _headBtn = BaseButton.jobsInit()
      .imageURL(@"".jobsUrl)
-     .placeholderImage(JobsIMG(@"小狮子"))
+     .placeholderImage(@"小狮子".img)
      .options(SDWebImageRefreshCached)/// 强制刷新缓存
      .completed(^(UIImage * _Nullable image,
                   NSError * _Nullable error,
@@ -4455,8 +4603,8 @@ static const uint32_t kSequenceBits = 12;
           }))).bgColor(JobsWhiteColor)
               .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
               .jobsResetImagePadding(1)
-              .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-              .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+              .jobsResetBtnImage(@"APPLY NOW".img)
+              .jobsResetBtnBgImage(@"APPLY NOW".img)
               .jobsResetBtnTitleCor(JobsWhiteColor)
               .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
               .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -4635,7 +4783,7 @@ static const uint32_t kSequenceBits = 12;
               model.titleCor = JobsWhiteColor;
               model.title = JobsInternationalization(@"GET CODE");
               model.titleFont = bayonRegular(JobsWidth(12));
-              model.backgroundImage = JobsIMG(@"获取验证码背景图");
+              model.backgroundImage = @"获取验证码背景图".img;
           });
           /// 计时器进行中【动态值】
           data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
@@ -4645,7 +4793,7 @@ static const uint32_t kSequenceBits = 12;
               model.layerBorderCor = JobsClearColor;
               model.titleCor = JobsWhiteColor;
               model.titleFont = bayonRegular(JobsWidth(12));
-              model.backgroundImage = JobsIMG(@"获取验证码背景图");
+              model.backgroundImage = @"获取验证码背景图".img;
           });
           /// 计时器结束【静态值】
           data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
@@ -4654,7 +4802,7 @@ static const uint32_t kSequenceBits = 12;
               model.titleCor = JobsWhiteColor;
               model.title = JobsInternationalization(@"GET CODE");
               model.titleFont = bayonRegular(JobsWidth(12));
-              model.backgroundImage = JobsIMG(@"获取验证码背景图");
+              model.backgroundImage = @"获取验证码背景图".img;
           });
       })).onClickBy(^(__kindof UIButton *x){
           /// 回调到外层取值，以满足后续业务需要
@@ -5587,14 +5735,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
      config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
          viewModel.alpha = 1;
          viewModel.navBgCor = JobsClearColor;
-         viewModel.navBgImage = JobsIMG(@"");
-         viewModel.titleImage = JobsIMG(@"BSportRedLogo"); /// 配置中间的标题为图片
+         viewModel.navBgImage = @"".img;
+         viewModel.titleImage = @"BSportRedLogo".img; /// 配置中间的标题为图片
      });
      /// 配置返回键
      config.backBtn = BaseButton.initByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable buttonModel) {
 //            @jobs_strongify(self)
-         buttonModel.normalImage = JobsIMG(@"全局返回箭头");
-         buttonModel.highlightImage = JobsIMG(@"全局返回箭头");
+         buttonModel.normalImage = @"全局返回箭头".img;
+         buttonModel.highlightImage = @"全局返回箭头".img;
          buttonModel.title = JobsInternationalization(@"");
          buttonModel.titleFont = bayonRegular(14);
          buttonModel.titleCor = JobsCor(@"#8A93A1");
@@ -5696,10 +5844,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     -(UIButtonModel *)closeBtnModel{
         if(!_closeBtnModel){
             _closeBtnModel = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                data.backgroundImage = JobsIMG(@"联系我们");
-    //            data.highlightBackgroundImage = JobsIMG(@"联系我们");
-    //            data.jobsResetBtnImage = JobsIMG(@"联系我们");
-    //            data.highlightImage = JobsIMG(@"联系我们");
+                data.backgroundImage = @"联系我们".img;
+    //            data.highlightBackgroundImage = @"联系我们".img;
+    //            data.jobsResetBtnImage = @"联系我们".img;
+    //            data.highlightImage = @"联系我们".img;
     //            data.imagePadding = JobsWidth(5);
                 data.roundingCorners = UIRectCornerAllCorners;
                 data.baseBackgroundColor = JobsClearColor;
@@ -5711,10 +5859,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             @jobs_strongify(self)
-    //        data.backgroundImage = JobsIMG(@"返回");
-            data.selected_backgroundImage = JobsIMG(@"返回");
-            data.highlightImage = JobsIMG(@"返回");
-            data.normalImage = JobsIMG(@"返回");
+    //        data.backgroundImage = @"返回".img;
+            data.selected_backgroundImage = @"返回".img;
+            data.highlightImage = @"返回".img;
+            data.normalImage = @"返回".img;
             data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
             data.title = self.viewModel.backBtnTitleModel.text;
             data.font = self.viewModel.backBtnTitleModel.font;
@@ -5769,7 +5917,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-#### 37.3、推控制器  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 37.3、推控制器（已做防止多次Push误操作）<a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
   * 关注实现类：[**`@interface NSObject (Extras)`**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 
@@ -5885,7 +6033,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
           JobsSuspendBtn *SuspendBtn = Jobs_getAssociatedObject(_suspendBtn);
           if (!SuspendBtn) {
               @jobs_weakify(self)
-              SuspendBtn = self.view.addSubview(JobsSuspendBtn.initByNormalImage(JobsIMG(@"旋转"))
+              SuspendBtn = self.view.addSubview(JobsSuspendBtn.initByNormalImage(@"旋转".img)
                                                 .onClickBy(^(UIButton *x){
                                                     @jobs_strongify(self)
                                                     x.selected = !x.selected;
@@ -6857,7 +7005,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         if(!_frontPicBtn){
             @jobs_weakify(self)
             _frontPicBtn = BaseButton.jobsInit()
-                .jobsResetBtnBgImage(JobsIMG(@"上传ID正面照"))
+                .jobsResetBtnBgImage(@"上传ID正面照".img)
                 .onClickBy(^(UIButton *x){
                     JobsLog(@"上传ID正面照");
                     ShowView(jobsMakePopListBaseView(^(PopListBaseView * _Nullable data) {
@@ -6909,7 +7057,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         if(!_holdOnIDBtn){
             @jobs_weakify(self)
             _holdOnIDBtn = BaseButton.jobsInit()
-                .jobsResetBtnBgImage(JobsIMG(@"上传手持ID正面照"))
+                .jobsResetBtnBgImage(@"上传手持ID正面照".img)
                 .onClickBy(^(UIButton *x){
                     JobsLog(@"上传手持ID正面照");
                     [self.userHeaderDataView tf_showSlide:jobsGetMainWindow()
@@ -6958,88 +7106,201 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     ```
 
-### 51、完整的单例写法 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 51、<font id=Objc单例>**Objc单例**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 在 **OC**中，`static` 关键字用于声明静态变量。这些变量在整个应用程序的生命周期内只会被初始化一次，并且它们的作用域仅限于定义它们的文件
+> - 在 **OC** 中，`static` 关键字声明的静态变量具有**进程生命周期**，作用域受限于其声明位置（文件/函数/块）。
+> - 覆盖 `allocWithZone:` 的目的，是**防止外部 `alloc/init` 绕过单例**；**切记不要**在 `allocWithZone:` 里调用 `sharedInstance`，否则会形成递归（`alloc → allocWithZone: → sharedInstance → alloc → …`）。
+> - 单例宏收敛在 `MacroDef_Singleton.h`，可一键切换 `dispatch_once` 与 `@synchronized` 实现。
+>
 
-* 在单例实现中，如果覆盖了 `allocWithZone:`应该确保初始化方法也使用这个覆盖的方法进行实例化
+#### 51.1、实现目标 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 单例宏：关注文件 `MacroDef_Singleton.h`
+```objective-c
+MyManager *m1 = [MyManager sharedInstance];
+MyManager *m2 = MyManager.new;            // 同一个实例
+MyManager *m3 = MyManager.alloc.init;     // 同一个实例
+MyManager *m4 = m1.copy;                  // 同一个实例
+MyManager *m5 = m1.mutableCopy;           // 同一个实例
+NSLog(@"%p %p %p %p" %p", m1, m2, m3, m4, m5);
+```
 
-* 以`GCD`的方式实现
+#### 51.2、实现方式 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-  * `dispatch_once_t` 是 **GCD**（**G**rand **C**entral **D**ispatch）提供的一种机制，用于确保某段代码在应用程序的生命周期内只执行一次。它是线程安全的，适用于多线程环境
-  * `JobsCustomTabBarVCOnceToken`为0才会进`dispatch_once`
+| 项目                   | <font color=red>`@synchronized`</font> | `dispatch_once`                 |
+| ---------------------- | :------------------------------------- | ------------------------------- |
+| 线程安全               | ✅                                      | ✅                               |
+| 性能                   | ⚠️略慢（锁）                            | ✅更快                           |
+| 实现简洁               | 一般                                   | ✅简单                           |
+| ARC兼容                | ✅                                      | ✅                               |
+| **是否可以被手动销毁** | <font color=red>**可以**</font>        | <font color=red>**不行**</font> |
+| 推荐程度               | ⚠️旧项目可用                            | ✅现代标准                       |
+
+- **GCD 方式：`dispatch_once`（<font color=red>最推荐</font>，但是不能主动的手动被销毁）**
+
+  - `onceToken` 必须是**静态/全局且零初始化**；`dispatch_once` 在**并发条件下也只执行一次**指定的初始化代码，线程安全。
+  - 仍需覆盖 `allocWithZone:` 与 `copy/mutableCopy`，**封口**外部创建与拷贝路径。
+  - <font color=red>**用 `dispatch_once` 的单例无法“销毁并重建”**（once 不能重置），只“重置/失效”</font>
 
   ```objective-c
-  static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
-  static dispatch_once_t JobsCustomTabBarVCOnceToken;
-  
-  + (instancetype)sharedManager {
-      dispatch_once(&JobsCustomTabBarVCOnceToken, ^{
-  				if(!JobsCustomTabBarVCInstance){
-              JobsCustomTabBarVCInstance = [super allocWithZone:NULL].init;
-          }
-      });return JobsCustomTabBarVCInstance;
+  // 宏已封装：见 MacroDef_Singleton.h
+  // 最终效果（要点）：
+  + (instancetype)sharedInstance {
+      static dispatch_once_t onceToken;
+      dispatch_once(&onceToken, ^{
+          _instance = [[self alloc] init];
+      });return _instance;
   }
   
-  + (void)destroyInstance {
-      JobsCustomTabBarVCInstance = nil;
-      JobsCustomTabBarVCOnceToken = 0;
-  }
-  /// 防止外部使用 alloc/init 等创建新实例
   + (instancetype)allocWithZone:(struct _NSZone *)zone {
-      return [self sharedManager];
+      @synchronized(self) {                 // 防外部 alloc/init 绕过
+          if (!_instance) {
+              _instance = [super allocWithZone:zone];
+          }return _instance;
+      }
   }
-  /// 防止外部使用 alloc/init 等创建新实例
-  - (instancetype)copyWithZone:(NSZone *)zone {
-      return self;
+  
+  + (instancetype)new {
+      return [self sharedInstance];
   }
-  /// 防止外部调用copy
-  - (instancetype)mutableCopyWithZone:(NSZone *)zone {
-      return self;
+  
+  - (id)copyWithZone:(NSZone *)zone        { return self; }
+  - (id)mutableCopyWithZone:(NSZone *)zone { return self; }
+  ```
+
+- **<font color=red>`@synchronized`</font> 方式**
+
+  * 通过双重检查锁（DCL）降低锁开销；`allocWithZone:` 同样要封口
+
+  * 性能略逊于 **GCD**，但逻辑路径直观，便于理解。
+
+  * <font color=red>**可以“销毁并重建”**，但要自行保证：销毁时**外部没有线程在用**，否则有悬空指针风险。</font>
+
+  * 安全、不递归、支持 <font color=red>**alloc**</font>/<font color=red>**init**</font>
+  
+    ```objective-c
+    static id _instance = nil;// 单例指针。可以观察这个指针是否为nil来判断此单例是否被销毁
+    + (instancetype)sharedInstance {
+        if (!_instance) {// 提高性能，避免每次都进锁
+            @synchronized(self) {// 锁定当前类对象，保证多线程下只创建一次实例。
+                if (!_instance) {// // 防止多个线程同时通过第一次检查。
+                    _instance = [[self alloc] init];
+                }
+            }
+        }return _instance;
+    }
+    
+    + (instancetype)allocWithZone:(struct _NSZone *)zone {
+        @synchronized(self) {
+            if (!_instance) {
+                _instance = [super allocWithZone:zone];
+            }return _instance;
+        }
+    }
+    
+    + (instancetype)new {
+        return [self sharedInstance];
+    }
+    
+    - (id)copyWithZone:(NSZone *)zone        { return self; }
+    - (id)mutableCopyWithZone:(NSZone *)zone { return self; }
+    ```
+
+#### 51.3、单例的销毁 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* 当前单例的销毁：无强引用时触发 `- (void)dealloc`
+
+  ```objective-c
+  /// 真·销毁
+  + (void)destroySharedInstance {
+      @synchronized (self) {
+          _instance = nil;          // 若外部无其它强引用，会立即 dealloc
+      }
+  }
+  
+  - (void)dealloc {
+      /// TODO ⬇️ 安全地释放资源
   }
   ```
 
-* 以<font color=red>**`@synchronized`**</font>的方式实现
+* 多子类各自单例（支持销毁）
 
-  <font color=red>**`@synchronized`**</font>关键字用于实现线程安全,它确保一段代码在同一时间内只能被一个线程执行，从而防止多个线程同时访问和修改共享资源，避免数据竞争和不一致性问题
+  用于<u>每个子类一个单例</u>的体系
 
   ```objective-c
-  static JobsCustomTabBarVC *JobsCustomTabBarVCInstance = nil;
+  // BaseSingleton.h
+  @interface BaseSingleton : NSObject
+  + (instancetype)sharedInstance;
+  + (void)destroySharedInstance;   // 销毁当前类的单例
+  @end
   
-  + (instancetype)sharedManager {
-      @synchronized (self) {
-          if (JobsCustomTabBarVCInstance == nil) {
-              JobsCustomTabBarVCInstance = [[super allocWithZone:NULL] init];
+  // BaseSingleton.m
+  @implementation BaseSingleton
+  static NSMutableDictionary<Class, id> *g_instances;
+  static dispatch_once_t g_once;
+  
+  + (void)initialize {
+      if (self == [BaseSingleton class]) {
+          dispatch_once(&g_once, ^{ g_instances = [NSMutableDictionary dictionary]; });
+      }
+  }
+  
+  + (instancetype)sharedInstance {
+      @synchronized (g_instances) {
+          id obj = g_instances[self];
+          if (!obj) {
+              obj = [[self alloc] init];              // 触发 allocWithZone:
+              g_instances[(id<NSCopying>)self] = obj;
+          }return obj;
+      }
+  }
+  
+  + (instancetype)allocWithZone:(struct _NSZone *)zone {
+      @synchronized (g_instances) {
+          id obj = g_instances[self];
+          if (!obj) {
+              obj = [super allocWithZone:zone];
+              g_instances[(id<NSCopying>)self] = obj;
+          }return obj;
+      }
+  }
+  
+  + (void)destroySharedInstance {
+      @synchronized (g_instances) {
+          id obj = g_instances[self];
+          if (obj) {
+              // TODO（可选）：把对象标记为已失效并主动释放/关闭它持有的一切外部资源，让它从此“不可再用”
+              g_instances[(id<NSCopying>)self] = nil; // 移除强引用
           }
       }
-      return JobsCustomTabBarVCInstance;
   }
   
-  + (void)destroyInstance {
-      @synchronized (self) {
-          JobsCustomTabBarVCInstance = nil;
-      }
-  }
+  - (id)copyWithZone:(NSZone *)zone        { return self; }
+  - (id)mutableCopyWithZone:(NSZone *)zone { return self; }
   
-  /// 防止外部使用 alloc/init 等创建新实例
-  + (instancetype)allocWithZone:(struct _NSZone *)zone {
-      return [self sharedManager];
-  }
-  /// 防止外部使用 alloc/init 等创建新实例
-  - (instancetype)copyWithZone:(NSZone *)zone {
-      return self;
-  }
-  /// 防止外部调用copy
-  - (instancetype)mutableCopyWithZone:(NSZone *)zone {
-      return self;
-  }
-  // 初始化代码可以放在这里
-  - (instancetype)init {
-      if (self = [super init]) {
-          // Initialization code
-      }return self;
+  @end
+  ```
+
+#### 51.4、注意事项 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* **禁止**在 `allocWithZone:` 里调用 `sharedInstance`（递归崩）
+
+* 继承型单例要对共享映射结构**所有访问**加锁（或串行队列），否则并发下会出现重复实例或数据竞争
+
+* **ARC** 环境下，不需要重写 `retain/release`；只需覆盖 `copy/mutableCopy` 返回 `self`
+
+* `dispatch_once_t` 为 0 才会进 `dispatch_once`
+
+  > `onceToken` **必须是静态/全局且零初始化**
+  >
+  > `dispatch_once` **无论多少线程并发调用，只会执行一次 block**
+
+  ```objective-c
+  + (instancetype)sharedInstance {
+      static dispatch_once_t onceToken;
+      dispatch_once(&onceToken, ^{
+          _instance = [[self alloc] init];
+      });
+      return _instance;
   }
   ```
 
@@ -7066,9 +7327,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 ### 53、🗄️ 数据库 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* **FMDB**
+* [**FMDB**](https://github.com/ccgus/fmdb)
 
-  <font color=blue>**需要写SQL**</font>
+  > <font color=blue>**需要写SQL**</font>
 
   ```objective-c
   #if __has_include(<FMDB/FMDB.h>)
@@ -7147,8 +7408,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * **Realm**
 
-  * <font color=red>**不需要写SQL，pod一键集成**</font>
-  * **model**需要继承自**RLMObject**
+  > * <font color=red>**不需要写SQL，pod一键集成**</font>
+  > * **model**需要继承自**RLMObject**
 
   ```objective-c
   #if __has_include(<Realm/Realm.h>)
@@ -7724,7 +7985,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {//@@5
     NSLog(@"%s", __FUNCTION__);
     JobsBtnStyleCVCell *cell = (JobsBtnStyleCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if(cell && cell.button) cell.button.jobsResetBackgroundImage(JobsIMG(@"首页切换游戏种类按钮背景图（未选择）"));
+    if(cell && cell.button) cell.button.jobsResetBackgroundImage(@"首页切换游戏种类按钮背景图（未选择）".img);
 }
 /// 选中操作
 - (void)collectionView:(UICollectionView *)collectionView
@@ -7733,10 +7994,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     FMHomeMainBizSubView *subView = self.subViewMutArr[indexPath.item];
     self.bringSubviewToFront(subView);
     for (JobsBtnStyleCVCell *cell in collectionView.visibleCells) {
-        if(cell && cell.button) cell.button.jobsResetBackgroundImage(JobsIMG(@"首页切换游戏种类按钮背景图（未选择）"));
+        if(cell && cell.button) cell.button.jobsResetBackgroundImage(@"首页切换游戏种类按钮背景图（未选择）".img);
     }
     JobsBtnStyleCVCell *cell = (JobsBtnStyleCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if(cell && cell.button) cell.button.jobsResetBackgroundImage(JobsIMG(@"首页切换游戏种类按钮背景图（已选择）"));
+    if(cell && cell.button) cell.button.jobsResetBackgroundImage(@"首页切换游戏种类按钮背景图（已选择）".img);
     /**
      滚动到指定位置
      _collectionView.contentOffset = CGPointMake(0,-100);
@@ -7838,7 +8099,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    //+(CGFloat)cellHeightWithModel:(id _Nullable)model;
    //具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
    +(CGSize)cellSizeWithModel:(UIImage *_Nullable)model{
-       if ([model isEqual:JobsIMG(@"小数点")]) {
+       if ([model isEqual:@"小数点".img]) {
            return CGSizeMake(JobsWidth(15), JobsWidth(28));
        }return CGSizeMake(JobsWidth(19), JobsWidth(28));
    }
@@ -7903,7 +8164,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                                                  data.title = JobsInternationalization(@"NO BANK CARD FOUND");
                                                  data.titleCor = JobsWhiteColor;
                                                  data.titleFont = bayonRegular(JobsWidth(30));
-                                                 data.normalImage = JobsIMG(@"用户默认头像");
+                                                 data.normalImage = @"用户默认头像".img;
                                              }))
                                              /// 无数据占位：用自定义的视图表达（二选一）
                                              .showEmptyViewBy(FMMaintenanceView
@@ -8084,7 +8345,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                         .bgColorBy(JobsClearColor)
                         .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                         .jobsResetImagePadding(1)
-                        .jobsResetBtnImage(JobsIMG(@"Betslip"))
+                        .jobsResetBtnImage(@"Betslip".img)
                         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                         .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                         .jobsResetBtnTitle(JobsInternationalization(@"Betslip"))
@@ -8097,7 +8358,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Statement"))
+                    .jobsResetBtnImage(@"Statement".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Statement"))
@@ -8110,7 +8371,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Promo"))
+                    .jobsResetBtnImage(@"Promo".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Promo"))
@@ -8123,7 +8384,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Security"))
+                    .jobsResetBtnImage(@"Security".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Security"))
@@ -8136,7 +8397,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Help Center"))
+                    .jobsResetBtnImage(@"Help Center".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Help Center"))
@@ -8149,7 +8410,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                     .bgColorBy(JobsClearColor)
                     .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
                     .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(JobsIMG(@"Feedback"))
+                    .jobsResetBtnImage(@"Feedback".img)
                     .jobsResetBtnTitleCor(JobsCor(@"#666666"))
                     .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
                     .jobsResetBtnTitle(JobsInternationalization(@"Feedback"))
@@ -8181,7 +8442,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         [tableView hideSeparatorLineAtLast:indexPath
                                       cell:cell];
         /// 自定义 UITableViewCell 的箭头
-        cell.img = JobsIMG(@"向右的箭头（大）");
+        cell.img = @"向右的箭头（大）".img;
         @jobs_weakify(self)
         [cell customAccessoryView:^(id data) {
             @jobs_strongify(self)
@@ -8523,7 +8784,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                        data.title = JobsInternationalization(@"NO MESSAGES FOUND");
                        data.titleCor = JobsWhiteColor;
                        data.titleFont = bayonRegular(JobsWidth(30));
-                       data.normalImage = JobsIMG(@"小狮子");
+                       data.normalImage = @"小狮子".img;
                    }))
                    /// 普通的MJRefreshHeader（触发事件）（二选一）
                    .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -8857,7 +9118,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        /// 隐藏最后一个单元格的分界线
        [tableView hideSeparatorLineAtLast:indexPath cell:cell];
        /// 自定义 UITableViewCell 的箭头
-       cell.img = JobsIMG(@"向右的箭头（大）");
+       cell.img = @"向右的箭头（大）".img;
    //    @jobs_weakify(self)
        [cell customAccessoryView:^(id data) {
    //        @jobs_strongify(self)
@@ -9474,9 +9735,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                .byRightLabNormalBgCor(JobsGrayColor)
                .byStatus(VerificationStatusVerifying)
                .jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButtonModel *>* _Nullable data) {
-                   data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),JobsIMG(@"正在进行第一步"),JobsIMG(@"正在进行第一步")))
-                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),JobsIMG(@"还未进行第二步"),JobsIMG(@"正在进行第二步")))
-                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verified"),JobsIMG(@"还未进行第三步"),JobsIMG(@"正在进行第三步")));
+                   data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),@"正在进行第一步".img,@"正在进行第一步".img))
+                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),@"还未进行第二步".img,@"正在进行第二步".img))
+                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verified"),@"还未进行第三步".img,@"正在进行第三步".img));
                }));
            })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
                make.top.equalTo(self.gk_navigationBar.mas_bottom);
@@ -9911,7 +10172,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         // 设置普通状态的动画图片
         NSMutableArray <UIImage *>*idleImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             for (NSUInteger i = 1; i<=60; i++) {
-                data.add(JobsIMG([NSString stringWithFormat:@"dropdown_anim__000%zd", i]));
+                data.add([NSString stringWithFormat:@"dropdown_anim__000%zd", i].img);
             }
         });
     
@@ -9920,7 +10181,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         // 设置正在刷新状态的动画图片
         NSMutableArray <UIImage *>*refreshingImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             for (NSUInteger i = 1; i<=3; i++) {
-                data.add(JobsIMG([NSString stringWithFormat:@"dropdown_loading_0%zd", i]));
+                data.add([NSString stringWithFormat:@"dropdown_loading_0%zd", i].img);
             }
         });
     
@@ -9968,7 +10229,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         // 设置普通状态的动画图片
         NSMutableArray <UIImage *>*idleImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             for (NSUInteger i = 1; i<=60; i++) {
-                data.add(JobsIMG([NSString stringWithFormat:@"dropdown_anim__000%zd", i]));
+                data.add([NSString stringWithFormat:@"dropdown_anim__000%zd", i].img);
             }
         });
     
@@ -9977,7 +10238,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
         // 设置正在刷新状态的动画图片
         NSMutableArray <UIImage *>*refreshingImages = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             for (NSUInteger i = 1; i<=3; i++) {
-                data.add(JobsIMG([NSString stringWithFormat:@"dropdown_loading_0%zd", i]));
+                data.add([NSString stringWithFormat:@"dropdown_loading_0%zd", i].img);
             }
         });
     
@@ -11331,14 +11592,14 @@ FMHomeMenuVC *vc = [self viewController:FMHomeMenuVC.new transitionDirection:Job
                  .byRightViewByTextFieldOffset(JobsWidth(4))
                  .byRightViewByOutLineOffset(JobsWidth(14))
                  .byLeftView(BaseButton.jobsInit()
-                             .jobsResetBtnBgImage(JobsIMG(@"📅"))
+                             .jobsResetBtnBgImage(@"📅".img)
                              .onClickBy(^(UIButton *x){
                                  JobsLog(@"");
                              }).onLongPressGestureBy(^(id data){
                                  JobsLog(@"");
                              }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
                  .byRightView(BaseButton.jobsInit()
-                              .jobsResetBtnBgImage(JobsIMG(@"向下的箭头"))
+                              .jobsResetBtnBgImage(@"向下的箭头".img)
                               .onClickBy(^(UIButton *x){
                                   @jobs_strongify(self)
                                   self.popupParameter = nil;
@@ -11477,7 +11738,202 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 
 * [**Apple生成 `*.p12`文件**](https://github.com/295060456/JobsDocs/blob/main/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6/Apple%E7%94%9F%E6%88%90%20*.p12%E6%96%87%E4%BB%B6.md)
 
-### 75、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 75、🖼️ <font color=red>**使用`Color Set`**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* 选中图片以后，跳到第四个选项卡
+
+  ```swift
+  if #available(iOS 11.0, *) {
+      UIColor(named: "TextColor0")
+  }
+  ```
+
+  <p align="center">
+    <img src="./assets/image-20250924174836800.png" width="20%"/>
+    <img src="./assets/image-20250924175446796.png" width="60%"/>
+  </p>
+
+* 支持暗黑模式
+
+  > Dark优先级高一些，如果在Dark里面没有找到对应的图片，会去Any找
+
+![image-20251001161600357](./assets/image-20251001161600357.png)
+
+### 76、[📖](https://sdwebimage.github.io/documentation/sdwebimage/) [**`SDWebImage`**](https://github.com/SDWebImage/SDWebImage) <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+#### 76.1、`SDAnimatedImage` <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* **SDAnimatedImage 是 [`SDWebImage`](https://github.com/SDWebImage/SDWebImage) 提供的“可播放的动态图像对象”**（继承自 `UIImage`），搭配 **`SDAnimatedImageView`** 来播放。它解决了 `UIImage.animatedImage…` 一次性把所有帧解码进内存、容易内存暴涨/掉帧的问题
+
+  * **按需解码**：不是把 **GIF**/**APNG**/**WebP** 全部帧一次性放进内存，而是“边播边解码 + 帧缓存策略”，显著降低峰值内存
+  * **多格式动画**：不仅是 **GIF**，还支持 **APNG**、**WebP**、**HEIC**/**HEIF**、**AVIF** 等（通过对应 coder 插件）
+  * **可控缓存**：有最大缓冲区、帧复用等策略，平衡 **CPU 解码** 🆚 **内存占用**
+  * **即插即用**：API 形态跟 `UIImage` 相近；只要把 `SDAnimatedImage` 赋给 `SDAnimatedImageView.image` 就能平滑播放
+  * **更顺滑**：基于 `CADisplayLink` 的驱动，按每帧的真实 duration 播放，不容易掉帧或节奏不对
+
+* 和系统 `UIImage.animatedImage…` 的差异
+
+  | 点       | `UIImage.animatedImage` | `SDAnimatedImage`                                     |
+  | -------- | ----------------------- | ----------------------------------------------------- |
+  | 解码策略 | 预解所有帧              | 按需解码 + 帧缓存                                     |
+  | 内存峰值 | 高（帧数×分辨率×通道）  | 低很多                                                |
+  | 支持格式 | 主要 **GIF**            | **GIF**/**APNG**/**WebP**/**HEIC**/**AVIF**（配插件） |
+  | 播放视图 | `UIImageView`           | `SDAnimatedImageView`（更顺滑、控件化）               |
+
+* 使用方式
+
+  * 一次性注册（AppDelegate）
+
+    ```objective-c
+    // AppDelegate.m
+    @import SDWebImage;
+    @import SDWebImageWebPCoder;   // 需要 WebP 动图就加
+    //#import <SDWebImageAVIFCoder/SDImageAVIFCoder.h> // 需要 AVIF 的话
+    
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+        [[SDImageCodersManager sharedManager] addCoder:[SDImageWebPCoder sharedCoder]];
+        // [[SDImageCodersManager sharedManager] addCoder:[SDImageAVIFCoder sharedCoder]];
+        return YES;
+    }
+    ```
+
+  * 基础播放（本地 Data / Bundle 文件）
+
+    ```objective-c
+    @import SDWebImage;
+    
+    SDAnimatedImageView *imageView = [SDAnimatedImageView new];
+    imageView.frame = CGRectMake(20, 100, 200, 200);
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:imageView];
+    
+    // 从 data 构造
+    NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"demo" ofType:@"gif"]];
+    SDAnimatedImage *anim = [[SDAnimatedImage alloc] initWithData:data scale:[UIScreen mainScreen].scale];
+    imageView.image = anim;           // 关键：用 SDAnimatedImageView 播放 SDAnimatedImage
+    imageView.animationRepeatCount = 0; // 0 = 无限循环
+    // [imageView startAnimating];     // 通常设置 image 后会自动播放
+    ```
+
+  * 从 URL 加载（最常见）
+
+    ```objective-c
+    @import SDWebImage;
+    
+    SDAnimatedImageView *iv = [SDAnimatedImageView new];
+    iv.frame = CGRectMake(20, 320, 200, 200);
+    iv.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:iv];
+    
+    NSURL *url = [NSURL URLWithString:@"https://example.com/a.webp"];
+    SDWebImageOptions opts = SDWebImageRetryFailed | SDWebImageHighPriority; // 举例
+    [iv sd_setImageWithURL:url
+           placeholderImage:nil
+                    options:opts
+                   progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                       // 需要的话做进度 UI
+                   }
+                  completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                      if (error) {
+                          NSLog(@"load error: %@", error);
+                      }
+                  }];
+    ```
+
+  * **`UITableViewCell`** 场景（复用安全、停止/启动动画）
+
+    ```objective-c
+    // AnimatedImageCell.h
+    @import UIKit;
+    @class SDAnimatedImageView;
+    
+    @interface AnimatedImageCell : UITableViewCell
+    - (void)configWithURL:(NSURL *)url;
+    @end
+    ```
+
+    ```objective-c
+    // AnimatedImageCell.m
+    @import SDWebImage;
+    #import "AnimatedImageCell.h"
+    
+    @interface AnimatedImageCell ()
+    @property (nonatomic, strong) SDAnimatedImageView *gifView;
+    @end
+    
+    @implementation AnimatedImageCell
+    
+    - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+        if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+            _gifView = [SDAnimatedImageView new];
+            _gifView.contentMode = UIViewContentModeScaleAspectFill;
+            _gifView.clipsToBounds = YES;
+            [self.contentView addSubview:_gifView];
+        }
+        return self;
+    }
+    
+    - (void)layoutSubviews {
+        [super layoutSubviews];
+        _gifView.frame = self.contentView.bounds;
+    }
+    
+    - (void)prepareForReuse {
+        [super prepareForReuse];
+        // 复用前停止并清理旧图，避免错播 & CPU 浪费
+        [_gifView stopAnimating];
+        [_gifView sd_cancelCurrentImageLoad];
+        _gifView.image = nil;
+    }
+    
+    - (void)configWithURL:(NSURL *)url {
+        // 也可以设置占位图
+        [_gifView sd_setImageWithURL:url
+                    placeholderImage:nil
+                             options:(SDWebImageRetryFailed | SDWebImageLowPriority)
+                            progress:nil
+                           completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (error) {
+                NSLog(@"gif load failed: %@", error);
+            }
+            // 加载完成后会自动播；若需手控：[_gifView startAnimating];
+        }];
+    }
+    
+    @end
+    ```
+
+  * 常见控制 & 参数
+
+    ```objective-c
+    // 停止/开始
+    [imageView stopAnimating];
+    [imageView startAnimating];
+    
+    // 循环次数（0 = 无限）
+    imageView.animationRepeatCount = 0;
+    
+    // 仅第一帧占位（滚动列表省电）
+    imageView.shouldCustomLoopCount = NO; // 默认 NO
+    imageView.autoPlayAnimatedImage = YES; // 默认 YES
+    
+    // 全局/单图编码选项（比如禁用解码预拉伸）
+    SDWebImageContext *ctx = @{
+        SDWebImageContextImageScaleFactor : @(UIScreen.mainScreen.scale),
+        SDWebImageContextAnimatedImageClass : SDAnimatedImage.class, // 明确指定
+    };
+    [imageView sd_setImageWithURL:url placeholderImage:nil options:0 context:ctx];
+    
+    // 限制内存帧缓存（更细：SDAnimatedImageView 有 maxBufferSize；新版本已内部自适应）
+    ```
+
+* 特别注意
+
+  * **一定用 `SDAnimatedImageView`** 来播 `SDAnimatedImage`，不要用系统 `UIImageView`。
+  * 需要 **WebP**/**AVIF** 等，**别忘装对应 coder 插件并注册**。
+  * 超大、超长动图仍会吃 CPU，必要时**限制尺寸/帧率或懒加载**。
+
+### 77、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 
@@ -11589,11 +12045,34 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
     layer.frame = CGRectMake(0, 0, 628, self.frame.size.height);/// 不崩溃
     ```
 
-## 六、TODO <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+## 六、<font color=red>**F**</font><font color=green>**A**</font><font color=blue>**Q**</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* 在**Objc**里面，主类有一个**方法A**，分类里面也有一个**方法A**，它们都是同名的，那么在执行的时候，是执行分类的还是主类的**方法A** ❓
+
+  > **运行时调用时，会执行分类的方法，覆盖主类的实现**
+
+* 为什么在[**Masonry**](https://github.com/SnapKit/Masonry)/[**SnapKit**](https://github.com/SnapKit/SnapKit)里面可以不用**weak**化的`self`❓
+
+  * 因为 [**Masonry**](https://github.com/SnapKit/Masonry)/[**SnapKit**](https://github.com/SnapKit/SnapKit) 的约束闭包是**同步执行、不会被保存（non-escaping）**的
+  
+    > `mas_makeConstraints:` 的实现本质上就是：创建一个 `MASConstraintMaker`，**立刻**调用你传进来的 **block**，然后安装约束，整个过程当场结束，不会把 **block** 存到任何被 `self` 持有的地方，自然也就**不会形成 self ↔︎ block 的循环引用**。
+  
+  * 只有当**闭包会被保存/逃逸**时才需要 `weak self`，例如：
+  
+    - 把 **block** 存成 `self.someBlock = ^{ ... self ... };`（典型循环引用）
+    - 传给会把 **block** 保存在属性里的对象，而这个对象又被 `self` 强持有
+  
+* 那么如果在两个分类文件里面都写了同一个名方法，在实际调用的时候，执行谁 ❓
+
+  * 最终在运行时注册类方法表时，**后加载的分类会覆盖前面的**；（后编译进二进制的分类实现）
+  * 所以在大型项目中，如果多个模块都给同一个类写了相同方法名的分类，会导致：
+    - 调用结果 **不确定**；
+    - 甚至不同环境下结果会不一样。
+
+## 七、TODO <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ### 1、急需解决 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-  * 按照Flutter的写法，将比例尺分离成x和y轴的写法（用AI）
   * 研究[**ComponentKit**](https://componentkit.org/)（以前叫做 **Async Display Kit**） 
 
 ### 2、亟待解决 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>

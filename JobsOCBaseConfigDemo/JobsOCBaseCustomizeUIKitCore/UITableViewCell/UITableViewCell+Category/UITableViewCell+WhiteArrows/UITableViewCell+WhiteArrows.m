@@ -32,7 +32,7 @@ JobsKey(_img)
 -(UIImage *)img{
     UIImage *image = Jobs_getAssociatedObject(_img);
     if (!image) {
-        image = JobsIMG(@"WhiteRightArrow");
+        image = @"WhiteRightArrow".img;
         Jobs_setAssociatedRETAIN_NONATOMIC(_img, image)
     }return image;
 }

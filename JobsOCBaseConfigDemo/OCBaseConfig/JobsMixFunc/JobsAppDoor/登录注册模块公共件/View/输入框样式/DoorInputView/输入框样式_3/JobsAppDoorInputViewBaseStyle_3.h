@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_END
  -(JobsAppDoorInputViewBaseStyleModel *)配置用户名输入框{
      if (!_配置用户名输入框) {
          _配置用户名输入框 = JobsAppDoorInputViewBaseStyleModel.new;
-         _配置用户名输入框.leftViewIMG = JobsIMG(@"用户名");
+         _配置用户名输入框.leftViewIMG = @"用户名".img;
          _配置用户名输入框.placeHolderStr = JobsInternationalization(@"请输入您的用户名");
          _配置用户名输入框.placeholderFont = [UIFont systemFontOfSize:JobsWidth(16) weight:UIFontWeightRegular];
          _配置用户名输入框.placeholderColor = HEXCOLOR(0xC4C4C4);
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_END
          _配置用户名输入框.leftViewMode = UITextFieldViewModeAlways;
          _配置用户名输入框.moveDistance = JobsWidth(40);
          _配置用户名输入框.titleStrCor = _配置用户名输入框.placeholderColor = HEXCOLOR(0x524740);
-         _配置用户名输入框.background = JobsIMG(@"设置弹出框输入框背景图");
+         _配置用户名输入框.background = @"设置弹出框输入框背景图".img;
          _配置用户名输入框.animationColor = HEXCOLOR(0xF2CC78);
      }return _配置用户名输入框;
  }

@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_END
          }];
      }
      _titleLab.getLabel.text = JobsInternationalization(@" 真人           ");
-     _titleLab.getBgImageView.image = JobsIMG(@"优惠活动背景图_真人");
+     _titleLab.getBgImageView.image = @"优惠活动背景图_真人".img
      
      _titleLab.getLabel.makeLabelByShowingType(UILabelShowingType_03);
      [_titleLab.getLabel appointCornerCutToCircleByRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(JobsWidth(8), JobsWidth(8))];

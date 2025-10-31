@@ -17,8 +17,17 @@ willConnectToSession:(UISceneSession *)session
     [JobsAppTools.sharedManager appDelegateWindowBlock:nil
                               sceneDelegateWindowBlock:^(id _Nullable data) {
         @jobs_strongify(self);
-        self.window = data;
+        UIWindowScene *ws = (UIWindowScene *)scene;
+        // ① 窗口兜底
+        self.window = (UIWindow *)data ?: [[UIWindow alloc] initWithWindowScene:ws];
+        self.window.windowScene = ws;
+        self.window.frame = ws.coordinateSpace.bounds;
+        // ② 复用你原先的入口
+        self.window.rootViewController = RootViewController;      // 或 [AppDelegate tabBarNavCtrl]
+        [self.window makeKeyAndVisible];
+        // ③ 保留你原有的启动副作用（如需）
         AppDelegate.launchFunc1();
+        AppDelegate.tabBarVC.ppBadge(YES); // 需要在 root 就绪后设置的话，这里比 AppDelegate 更稳
     }];
 }
 
@@ -47,6 +56,17 @@ willConnectToSession:(UISceneSession *)session
     JobsLog(@"---applicationDidEnterBackground----"); //进入后台
     [(AppDelegate *)UIApplication.sharedApplication.delegate saveContext];
     JobsPostNotification(退到后台停止播放ZFPlayer, nil);
+}
+
+// ✅ 横竖切换 / 尺寸变化时，随场景更新窗口 Frame（防止再次出现半屏）
+- (void)windowScene:(UIWindowScene *)windowScene
+didUpdateCoordinateSpace:(id<UICoordinateSpace>)previousCoordinateSpace
+interfaceOrientation:(UIInterfaceOrientation)previousInterfaceOrientation
+   traitCollection:(UITraitCollection *)previousTraitCollection {
+    if (windowScene == self.window.windowScene) {
+        self.window.frame = windowScene.coordinateSpace.bounds;
+        self.window.rootViewController.view.frame = self.window.bounds;
+    }
 }
 
 @end

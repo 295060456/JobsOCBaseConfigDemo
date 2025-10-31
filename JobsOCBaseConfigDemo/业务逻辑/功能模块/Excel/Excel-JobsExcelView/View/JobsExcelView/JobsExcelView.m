@@ -79,7 +79,7 @@ Prop_strong()JobsExcelConfigureViewModel *excelConfigureDatas;
         @jobs_weakify(self)
         _bgImageView = jobsMakeImageView(^(__kindof UIImageView *_Nullable imageView) {
             @jobs_strongify(self)
-            imageView.image = JobsIMG(@"投注记录");
+            imageView.image = @"投注记录".img;
             [self addSubview:imageView];
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self);

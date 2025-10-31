@@ -16,12 +16,12 @@
 /// UI
 Prop_strong()JobsAppDoorLogoContentView *logoContentView;
 Prop_strong()JobsAppDoorContentView *jobsAppDoorContentView;/// 登录和注册
-@property(nonatomic,strong,nullable)JobsAppDoorForgotCodeContentView *forgotCodeContentView;/// 忘记密码
-Prop_strong()UIButton *customerServiceBtn;
-@property(nonatomic,strong,nullable)UIImageView *bgImgV;
-@property(nonatomic,strong,nullable)ZFPlayerController *player;
-@property(nonatomic,strong,nullable)ZFAVPlayerManager *playerManager;
-@property(nonatomic,strong,nullable)CustomZFPlayerControlView *customPlayerControlView;
+Prop_strong(nullable)JobsAppDoorForgotCodeContentView *forgotCodeContentView;/// 忘记密码
+Prop_strong(nullable)UIImageView *bgImgV;
+Prop_strong(nullable)UIButton *customerServiceBtn;
+Prop_strong(nullable)ZFPlayerController *player;
+Prop_strong(nullable)ZFAVPlayerManager *playerManager;
+Prop_strong(nullable)CustomZFPlayerControlView *customPlayerControlView;
 /// Data
 Prop_assign()BOOL registerDoorInputEditing;
 Prop_assign()CGFloat logoContentViewY;/// 初始高度
@@ -83,11 +83,11 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+//    self.viewModel.bgImage = @"启动页SLOGAN".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+    self.viewModel.navBgImage = @"导航栏左侧底图".img;
 }
 
 - (void)viewDidLoad {
@@ -218,7 +218,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     
     index = 0;
     
-    for (JobsAppDoorInputViewBaseStyle *inputView in currentPageDataMutArr(self.currentPage)) {
+    for (JobsAppDoorInputViewBaseStyle *inputView in currentPageDataMutArr(self.currentPage.intValue)) {
         UITextField *textField = inputView.textField;
         if (textField.isEditing) {
             JobsLog(@"当前被激活的输入框的index = %ld",index);
@@ -361,30 +361,57 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     }return _jobsAppDoorContentView;
 }
 
--(UIButton *)customerServiceBtn{
+- (UIButton *)customerServiceBtn {
     if (!_customerServiceBtn) {
         @jobs_weakify(self)
-        _customerServiceBtn = UIButton.new;
-        _customerServiceBtn.hidden = YES;//本版本需要进行屏蔽
-        _customerServiceBtn.jobsResetBtnTitle(Title8);
-        _customerServiceBtn.jobsResetBtnImage(JobsIMG(@"客服"));
-        [self.view addSubview:_customerServiceBtn];
-        _customerServiceBtn.sizer = CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsMainScreen_WIDTH() / 9);
-        _customerServiceBtn.centerX = JobsMainScreen_WIDTH() / 2;
-        _customerServiceBtn.top = self.jobsAppDoorContentView.top + self.jobsAppDoorContentView.height + 20;
-        self.customerServiceBtnY = _customerServiceBtn.y;
-        [_customerServiceBtn jobsBtnClickEventBlock:^id(id data) {
-            JobsLog(@"点击客服按钮");
-            return nil;
-        }];
-        _customerServiceBtn.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+        UIButton *btn = UIButton.jobsInit().bgColorBy(JobsWhiteColor);
+        if (@available(iOS 16.0, *)) {
+            btn = btn
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePadding(1);
+        } else {
+            // < iOS 16：用语义方向 + EdgeInsets 粗略模拟
+            btn.semanticContentAttribute = UISemanticContentAttributeForceLeftToRight;
+            btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 6);
+            btn.titleEdgeInsets = UIEdgeInsetsMake(0, 6, 0, 0);
+        }
+        btn.jobsResetBtnImage(@"客服".img)
+            .jobsResetBtnBgImage(@"APPLY NOW".img)
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(Title8)
+            .onClickBy(^ (UIButton *x) {
+                JobsLog(@"点击客服按钮");
+            })
+            .onLongPressGestureBy(^ (id data) {
+                JobsLog(@"");
+            })
+            // 圆角依赖最终尺寸：等约束生效后再设
+            .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                @jobs_strongify(self)
+                data.jobsWidth = 2;
+                data.layerCor = JobsWhiteColor;
+                // 先给个占位，真正的 cornerRadius 放到布局后再设置
+                data.cornerRadiusValue = 0;
+            }))
+            .byAdd(^ (MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                make.top.equalTo(@(self.jobsAppDoorContentView.top + self.jobsAppDoorContentView.height + 20));
+                make.centerX.equalTo(@(JobsMainScreen_WIDTH() / 2.0));
+                make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3.0,
+                                                 JobsMainScreen_WIDTH() / 9.0));
+            })
+            .byVisible(YES);
+        // 等约束计算完再设置真正的圆角（避免高度为 0）
+        dispatch_async(dispatch_get_main_queue(), ^{
             @jobs_strongify(self)
-            data.jobsWidth = 2;
-            data.layerCor = JobsWhiteColor;
-            data.cornerRadiusValue = self->_customerServiceBtn.height / 2;
-        }));
+            [self.view layoutIfNeeded];
+            self->_customerServiceBtn.layer.cornerRadius = self->_customerServiceBtn.bounds.size.height * 0.5;
+            self->_customerServiceBtn.layer.masksToBounds = YES;
+        });
     }return _customerServiceBtn;
 }
+
 
 -(ZFAVPlayerManager *)playerManager{
     if (!_playerManager) {
@@ -427,7 +454,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
 -(UIImageView *)bgImgV{
     if (!_bgImgV) {
         _bgImgV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-            imageView.image = JobsIMG(@"AppDoorBgImage");
+            imageView.image = @"AppDoorBgImage".img;
             imageView.userInteractionEnabled = YES;
         });
     }return _bgImgV;

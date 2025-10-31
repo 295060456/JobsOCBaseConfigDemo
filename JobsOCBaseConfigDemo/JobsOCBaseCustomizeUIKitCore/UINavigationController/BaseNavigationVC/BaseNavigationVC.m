@@ -25,9 +25,9 @@ Prop_strong()NSShadow *shadow;
         //如果用系统的navigationBar，而并非自定义👇
 //        {
 //            self.navigationBar.translucent = NO;
-//            [self.navigationBar setBackgroundImage:JobsIMG(@"启动页SLOGAN")
+//            [self.navigationBar setBackgroundImage:@"启动页SLOGAN".img
 //                                     forBarMetrics:UIBarMetricsDefault];//仅仅是 navigationBar 背景
-//        //    [self.navigationBar setShadowImage:JobsIMG(@"启动页SLOGAN")];// 图片大了会全屏
+//        //    [self.navigationBar setShadowImage:@"启动页SLOGAN".img];// 图片大了会全屏
 //        }
 //
 //        {

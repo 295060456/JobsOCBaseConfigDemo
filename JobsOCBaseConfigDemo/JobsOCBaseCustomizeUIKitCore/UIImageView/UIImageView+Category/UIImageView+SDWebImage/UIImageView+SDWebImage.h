@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_END
 /**
  self.bgImageView
          .imageURL(url.imageURLPlus.jobsUrl)
-         .placeholderImage(JobsIMG(self.param.wPlaceholderImage))
+         .placeholderImage(self.param.wPlaceholderImage.img))
          .options(self.makeSDWebImageOptions)
          .completed(^(UIImage * _Nullable image,
                       NSError * _Nullable error,

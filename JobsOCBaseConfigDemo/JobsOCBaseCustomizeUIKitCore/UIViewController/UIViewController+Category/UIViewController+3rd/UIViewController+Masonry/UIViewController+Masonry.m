@@ -67,7 +67,7 @@
     };
 }
 #pragma mark —— 添加约束并执行
--(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)masonryBy{
+-(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)byAdd{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView * _Nonnull subview,jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)
@@ -76,7 +76,7 @@
     };
 }
 
--(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)upgradeBy{
+-(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)byUpgrade{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView * _Nonnull subview,jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)
@@ -85,7 +85,7 @@
     };
 }
 
--(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)remakeBy{
+-(JobsReturnViewByViewAndMasonryConstraintsBlocks _Nonnull)byRemake{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView * _Nonnull subview,jobsByMASConstraintMakerBlock _Nullable block){
         @jobs_strongify(self)

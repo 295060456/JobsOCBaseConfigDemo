@@ -325,7 +325,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             .initByStyle2(Title8,
                           nil,
                           nil,
-                          JobsIMG(@"客服"),
+                          @"客服".img,
                           NSDirectionalRectEdgeTop,
                           JobsWidth(5))
             .bgColorBy(JobsWhiteColor)
@@ -390,7 +390,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
 -(UIImageView *)bgImgV{
     if (!_bgImgV) {
         _bgImgV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-            imageView.image = JobsIMG(@"AppDoorBgImage");
+            imageView.image = @"AppDoorBgImage".img;
             imageView.userInteractionEnabled = YES;
         });
     }return _bgImgV;

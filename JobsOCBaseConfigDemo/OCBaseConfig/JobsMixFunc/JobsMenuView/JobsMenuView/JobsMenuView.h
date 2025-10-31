@@ -123,12 +123,12 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeMenuView(jobsByMenuViewBlock _Nonnu
  -(NSMutableArray<UIImage *> *)normal_titleBgImageMutArr{
      if(!_normal_titleBgImageMutArr){
          _normal_titleBgImageMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-             arr.add(JobsIMG(@"Top_Games_menu_未点击"))
-             .add(JobsIMG(@"Slot_Games_menu_未点击"))
-             .add(JobsIMG(@"Live_Casino_menu_未点击"))
-             .add(JobsIMG(@"Table_Games_menu_未点击"))
-             .add(JobsIMG(@"Sport_Menu_未点击"))
-             .add(JobsIMG(@"Fishing_menu_未点击"));
+             arr.add(@"Top_Games_menu_未点击".img)
+             .add(@"Slot_Games_menu_未点击".img)
+             .add(@"Live_Casino_menu_未点击".img)
+             .add(@"Table_Games_menu_未点击".img)
+             .add(@"Sport_Menu_未点击".img)
+             .add(@"Fishing_menu_未点击".img);
          });
      }return _normal_titleBgImageMutArr;
  }
@@ -136,12 +136,12 @@ NS_INLINE __kindof UILabel *_Nonnull jobsMakeMenuView(jobsByMenuViewBlock _Nonnu
  -(NSMutableArray<UIImage *> *)select_titleBgImageMutArr{
      if(!_select_titleBgImageMutArr){
          _select_titleBgImageMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-             arr.add(JobsIMG(@"Top_Games_menu_已点击"))
-             .add(JobsIMG(@"Slot_Games_menu_已点击"))
-             .add(JobsIMG(@"Live_Casino_menu_已点击"))
-             .add(JobsIMG(@"Table_Games_menu_已点击"))
-             .add(JobsIMG(@"Sport_Menu_已点击"))
-             .add(JobsIMG(@"Fishing_menu_已点击"));
+             arr.add(@"Top_Games_menu_已点击".img)
+             .add(@"Slot_Games_menu_已点击".img)
+             .add(@"Live_Casino_menu_已点击".img)
+             .add(@"Table_Games_menu_已点击".img)
+             .add(@"Sport_Menu_已点击".img)
+             .add(@"Fishing_menu_已点击".img);
          });
      }return _select_titleBgImageMutArr;
  }

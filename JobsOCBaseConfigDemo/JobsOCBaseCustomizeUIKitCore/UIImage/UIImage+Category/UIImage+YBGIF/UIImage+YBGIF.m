@@ -82,13 +82,13 @@
             NSString *path = name.add(@".gif").pathForResourceWithFullName;
             data = [NSData dataWithContentsOfFile:path];
             if (data) return UIImage.animatedGIFWithData(data);
-            return JobsIMG(@"name");
+            return @"name".img;
         }else {
             NSString *path = name.add(@".gif").pathForResourceWithFullName;
             NSData *data = [NSData dataWithContentsOfFile:path];
             if (data) {
                 return UIImage.animatedGIFWithData(data);
-            }return JobsIMG(@"name");
+            }return @"name".img;
         }
     };
 }

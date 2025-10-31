@@ -51,7 +51,7 @@
                         data.title = JobsInternationalization(@"No Datas");
                         data.titleCor = JobsWhiteColor;
                         data.titleFont = bayonRegular(JobsWidth(30));
-                        data.normalImage = JobsIMG(@"暂无数据");
+                        data.normalImage = @"暂无数据".img;
                         data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                 })).setMasonryBy(^(MASConstraintMaker *make){
                     @jobs_strongify(self)

@@ -45,11 +45,11 @@ Prop_strong()BaseButton *sendBtn;
         if (isValue(string)) {
             self.sendBtn.userInteractionEnabled = YES;
             self.sendBtn.enabled = YES;
-            self.imgView.image = JobsIMG(@"输入框有值");
+            self.imgView.image = @"输入框有值".img;
         }else{
             self.sendBtn.userInteractionEnabled = NO;
             self.sendBtn.enabled = NO;
-            self.imgView.image = JobsIMG(@"输入框无值");
+            self.imgView.image = @"输入框无值".img;
         }
     };
 }
@@ -145,7 +145,7 @@ Prop_strong()BaseButton *sendBtn;
 -(UIImageView *)imgView{
     if (!_imgView) {
         _imgView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-            imageView.image = JobsIMG(@"输入框无值");
+            imageView.image = @"输入框无值".img;
         });
     }return _imgView;
 }

@@ -41,11 +41,11 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+//    self.viewModel.bgImage = @"启动页SLOGAN".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+    self.viewModel.navBgImage = @"导航栏左侧底图".img;
 }
 
 - (void)viewDidLoad {
@@ -166,11 +166,11 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
                     .initByStyle3(title,
                                   nil,
                                   JobsBlackColor,
-                                  JobsIMG(@"弹窗取消按钮背景图"))
+                                  @"弹窗取消按钮背景图".img)
                 .bgColorBy(JobsWhiteColor)
                 .onClickBy(^(UIButton *btn){
                     btn.selected = !btn.selected;
-                    btn.jobsResetBtnBgImage(btn.selected ? JobsIMG(@"弹窗取消按钮背景图") : JobsIMG(@"弹窗取消按钮背景图"));
+                    btn.jobsResetBtnBgImage(btn.selected ? @"弹窗取消按钮背景图".img : @"弹窗取消按钮背景图".img);
                     
                     btn.jobsResetBtnLayerBorderCor(HEXCOLOR(0xAE8330));/// 重设Btn的描边线段的颜色
                     btn.jobsResetBtnLayerBorderWidth(0.5f);/// 重设Btn的描边线段的宽度

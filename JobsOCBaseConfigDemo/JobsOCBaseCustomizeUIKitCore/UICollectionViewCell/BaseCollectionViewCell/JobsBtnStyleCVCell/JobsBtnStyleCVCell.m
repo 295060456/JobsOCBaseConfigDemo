@@ -249,7 +249,7 @@ AppToolsProtocol_synthesize
         _button.userInteractionEnabled = YES;
         self.contentView
             .addSubview(_button)
-            .masonryBy(self.masonryBlock);
+            .byAdd(self.masonryBlock);
     }return _button;
 }
 
@@ -266,7 +266,7 @@ AppToolsProtocol_synthesize
     _webView.opaque = NO; // 设置不透明为 NO，确保背景透明
     self.contentView
         .addSubview(_webView)
-        .masonryBy(self.masonryBlock);
+        .byAdd(self.masonryBlock);
     self.refresh();
     return _webView;
 }

@@ -269,19 +269,19 @@ insetForSectionAtIndex:(NSInteger)section {
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"钱包");
-                data1.image = JobsIMG(@"钱包");
+                data1.image = @"钱包".img;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"我的店铺");
-                data1.image = JobsIMG(@"我的店铺");
+                data1.image = @"我的店铺".img;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"我的团队");
-                data1.image = JobsIMG(@"我的团队");
+                data1.image = @"我的团队".img;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.textModel.text = JobsInternationalization(@"信用分数");
-                data1.image = JobsIMG(@"信用分数");
+                data1.image = @"信用分数".img;
             }));
         });
     }return _dataMutArr;

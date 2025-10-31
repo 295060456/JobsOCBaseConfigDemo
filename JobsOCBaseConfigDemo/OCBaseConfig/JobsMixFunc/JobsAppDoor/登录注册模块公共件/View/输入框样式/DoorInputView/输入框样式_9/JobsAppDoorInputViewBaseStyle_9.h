@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_END
  -(JobsAppDoorInputViewBaseStyleModel *)配置验证码输入{
      if (!_配置验证码输入) {
          _配置验证码输入 = JobsAppDoorInputViewBaseStyleModel.new;
-         _配置验证码输入.leftViewIMG = JobsIMG(@"安全");
+         _配置验证码输入.leftViewIMG = @"安全".img;
          _配置验证码输入.placeHolderStr = JobsInternationalization(@"請輸入驗證碼");
          _配置验证码输入.placeholderFont = UIFontWeightRegularSize(JobsWidth(16));
          _配置验证码输入.isShowDelBtn = YES;

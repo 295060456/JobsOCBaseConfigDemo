@@ -61,7 +61,7 @@ Prop_strong()UIImageView *detailsInfoImageView;
         _detailsInfoImageView = self.contentView
             .addSubview(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
                 imageView.backgroundColor = JobsClearColor;
-            })).masonryBy(^(MASConstraintMaker *_Nonnull make){
+            })).byAdd(^(MASConstraintMaker *_Nonnull make){
                 @jobs_strongify(self)
                 make.centerY.equalTo(self.contentView);
                 make.right.equalTo(self.contentView);

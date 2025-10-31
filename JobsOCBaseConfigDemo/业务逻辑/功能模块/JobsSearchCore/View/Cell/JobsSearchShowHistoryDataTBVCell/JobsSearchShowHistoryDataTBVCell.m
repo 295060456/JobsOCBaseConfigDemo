@@ -18,7 +18,7 @@
         JobsSearchShowHistoryDataTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsSearchShowHistoryDataTBVCell);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        cell.contentView.backgroundColor = JobsRandomColor;
-        cell.imageView.image = JobsIMG(@"时钟");
+        cell.imageView.image = @"时钟".img;
         return cell;
     };
 }

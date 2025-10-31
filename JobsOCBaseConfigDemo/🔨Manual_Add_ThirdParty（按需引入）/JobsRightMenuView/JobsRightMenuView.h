@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_END
                                                    viewModel.data = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButton *>* _Nullable arr) {
                                                        arr.add(BaseButton.jobsInit()
                                                                .imageURL(@"".jobsUrl)
-                                                               .placeholderImage(JobsIMG(@"首页右侧悬浮菜单人工客服"))
+                                                               .placeholderImage(@"首页右侧悬浮菜单人工客服".img)
                                                                .options(SDWebImageRefreshCached)/// 强制刷新缓存
                                                                .completed(^(UIImage * _Nullable image,
                                                                             NSError * _Nullable error,
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_END
                                                        }).normalLoad())
                                                       .add(BaseButton.jobsInit()
                                                            .imageURL(@"".jobsUrl)
-                                                           .placeholderImage(JobsIMG(@"首页右侧悬浮菜单Telegram"))
+                                                           .placeholderImage(@"首页右侧悬浮菜单Telegram".img)
                                                            .options(SDWebImageRefreshCached)/// 强制刷新缓存
                                                            .completed(^(UIImage * _Nullable image,
                                                                         NSError * _Nullable error,
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_END
                                                       }).normalLoad())
                                                       .add(BaseButton.jobsInit()
                                                            .imageURL(@"".jobsUrl)
-                                                           .placeholderImage(JobsIMG(@"首页右侧悬浮菜单FaceBook"))
+                                                           .placeholderImage(@"首页右侧悬浮菜单FaceBook".img)
                                                            .options(SDWebImageRefreshCached)/// 强制刷新缓存
                                                            .completed(^(UIImage * _Nullable image,
                                                                         NSError * _Nullable error,

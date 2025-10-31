@@ -123,7 +123,7 @@ static dispatch_once_t static_termsOfUseViewOnceToken;
             .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
-            .jobsResetBtnBgImage(JobsIMG(@"小弹窗确认按钮背景图"))
+            .jobsResetBtnBgImage(@"小弹窗确认按钮背景图".img)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(bayonRegular(JobsWidth(18)))
             .jobsResetBtnTitle(JobsInternationalization(@"Agree"))

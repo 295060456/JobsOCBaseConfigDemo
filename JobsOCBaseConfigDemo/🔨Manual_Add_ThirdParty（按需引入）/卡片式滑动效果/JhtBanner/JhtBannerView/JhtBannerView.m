@@ -122,7 +122,7 @@ didScrollToCardViewWithIndex:(NSInteger)index {
         if ([str containsString:HTTP]) {
             cardView.cardImageView
                 .imageURL(str.jobsUrl.imageURLPlus)
-                .placeholderImage(JobsIMG(self.placeholderImageName))
+                .placeholderImage(self.placeholderImageName.img)
                 .options(self.makeSDWebImageOptions)
                 .completed(^(UIImage * _Nullable image,
                              NSError * _Nullable error,

@@ -40,11 +40,11 @@ Prop_strong()UIButton *btn4;
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-//    self.viewModel.bgImage = JobsIMG(@"启动页SLOGAN");
+//    self.viewModel.bgImage = @"启动页SLOGAN".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+    self.viewModel.navBgImage = @"导航栏左侧底图".img;
 }
 
 - (void)viewDidLoad {
@@ -62,7 +62,7 @@ Prop_strong()UIButton *btn4;
     if (!_btn1) {
         _btn1 = UIButton.new;
         _btn1.jobsResetBtnTitle(JobsInternationalization(@"image左、label右【系统默认状态】"));
-        _btn1.jobsResetBtnImage(JobsIMG(@"Lock"));
+        _btn1.jobsResetBtnImage(@"Lock".img);
         _btn1.jobsResetBtnTitleCor(JobsWhiteColor);
         _btn1.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         _btn1.backgroundColor = JobsCyanColor;
@@ -88,7 +88,7 @@ Prop_strong()UIButton *btn4;
     if (!_btn2) {
         _btn2 = UIButton.new;
         _btn2.jobsResetBtnTitle(JobsInternationalization(@"image右、label左"));
-        _btn2.jobsResetBtnImage(JobsIMG(@"Lock"));
+        _btn2.jobsResetBtnImage(@"Lock".img);
         _btn2.jobsResetBtnTitleCor(JobsWhiteColor);
         _btn2.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         _btn2.backgroundColor = JobsCyanColor;
@@ -114,7 +114,7 @@ Prop_strong()UIButton *btn4;
     if (!_btn3) {
         _btn3 = UIButton.new;
         _btn3.jobsResetBtnTitle(JobsInternationalization(@"image上，label下"));
-        _btn3.jobsResetBtnImage(JobsIMG(@"Lock"));
+        _btn3.jobsResetBtnImage(@"Lock".img);
         _btn3.jobsResetBtnTitleCor(JobsWhiteColor);
         _btn3.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         _btn3.backgroundColor = JobsCyanColor;
@@ -140,7 +140,7 @@ Prop_strong()UIButton *btn4;
     if (!_btn4) {
         _btn4 = UIButton.new;
         _btn4.jobsResetBtnTitle(JobsInternationalization(@"image下，label上"));
-        _btn4.jobsResetBtnImage(JobsIMG(@"Lock"));
+        _btn4.jobsResetBtnImage(@"Lock".img);
         _btn4.jobsResetBtnTitleCor(JobsWhiteColor);
         _btn4.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         _btn4.backgroundColor = JobsCyanColor;

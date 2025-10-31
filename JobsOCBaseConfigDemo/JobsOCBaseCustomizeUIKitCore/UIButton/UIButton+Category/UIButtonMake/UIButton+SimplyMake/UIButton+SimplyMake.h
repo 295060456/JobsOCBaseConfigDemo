@@ -98,7 +98,7 @@ NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull blo
          @jobs_weakify(self)
          _mailBtn = BaseButton.jobsInit()
              .imageURL(@"".jobsUrl)
-             .placeholderImage(JobsIMG(@"用户默认头像"))
+             .placeholderImage(@"用户默认头像".img)
              .options(SDWebImageRefreshCached)/// 强制刷新缓存
              .completed(^(UIImage * _Nullable image,
                           NSError * _Nullable error,
@@ -125,8 +125,8 @@ NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull blo
                           .bgColorBy(JobsWhiteColor)
                           .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
                           .jobsResetImagePadding(1)
-                          .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-                          .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+                          .jobsResetBtnImage(@"APPLY NOW".img)
+                          .jobsResetBtnBgImage(@"APPLY NOW".img)
                           .jobsResetBtnTitleCor(JobsWhiteColor)
                           .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
                           .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -141,12 +141,12 @@ NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull blo
  -(UIButton *)usrNameBtn{
      if(!_usrNameBtn){
          @jobs_weakify(self)
-         _usrNameBtn = self.masonryBy(UIButton.jobsInit()
+         _usrNameBtn = self.byAdd(UIButton.jobsInit()
                                        .bgColorBy(JobsWhiteColor)
                                        .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
                                        .jobsResetImagePadding(1)
-                                       .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-                                       .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+                                       .jobsResetBtnImage(@"APPLY NOW".img)
+                                       .jobsResetBtnBgImage(@"APPLY NOW".img)
                                        .jobsResetBtnTitleCor(JobsWhiteColor)
                                        .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
                                        .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
@@ -192,8 +192,8 @@ NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull blo
          }))).bgColorBy(JobsWhiteColor)
              .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
              .jobsResetImagePadding(1)
-             .jobsResetBtnImage(JobsIMG(@"APPLY NOW"))
-             .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+             .jobsResetBtnImage(@"APPLY NOW".img)
+             .jobsResetBtnBgImage(@"APPLY NOW".img))
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
              .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))

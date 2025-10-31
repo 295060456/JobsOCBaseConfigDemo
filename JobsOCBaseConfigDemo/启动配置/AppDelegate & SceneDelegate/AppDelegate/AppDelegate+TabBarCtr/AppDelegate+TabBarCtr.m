@@ -134,7 +134,7 @@ static JobsCustomTabBarConfig *_jobsCustomTabBarConfig = nil;
     //    tabBarConfig.tabBarOrigin = CGPointMake(JobsWidth(0), JobsWidth(0));
     //    tabBarConfig.tabBarFrame = CGRectMake(JobsWidth(0), JobsWidth(0), JobsWidth(0), JobsWidth(0));
         tabBarConfig.tabBarBackgroundColor = JobsCyanColor;
-        tabBarConfig.tabBarBackgroundImage = nil;//JobsIMG(@"");
+        tabBarConfig.tabBarBackgroundImage = nil;//@"".img;
         tabBarConfig.tabBarItems = self.tabBarItemMutArr;
         tabBarConfig.viewControllers = self.viewCtrlByTabBarCtrlConfigMutArr;
         tabBarConfig.tabBarItemYOffsets = nil;
@@ -255,7 +255,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 buttonModel.subTextAlignment = NSTextAlignmentCenter;
                 buttonModel.imagePadding = JobsWidth(5);
                 buttonModel.baseBackgroundColor = JobsClearColor;
-                buttonModel.backgroundImage = DefaultIndex == 0 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.backgroundImage = DefaultIndex == 0 ? @"TabBarItem选中的背景色".img :@"TabBarItem选中的背景色（透明）".img;
             }))
                      .onClickBy(^(__kindof UIButton *x){
                          x.selected = !x.selected;
@@ -282,7 +282,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 buttonModel.subTextAlignment = NSTextAlignmentCenter;
                 buttonModel.imagePadding = JobsWidth(5);
                 buttonModel.baseBackgroundColor = JobsClearColor;
-                buttonModel.backgroundImage = DefaultIndex == 1 ? JobsIMG(@"TabBarItem选中的背景色")  :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.backgroundImage = DefaultIndex == 1 ? @"TabBarItem选中的背景色".img  :@"TabBarItem选中的背景色（透明）".img;
             }))
                      .onClickBy(^(__kindof UIButton *x){
                          x.selected = !x.selected;
@@ -309,8 +309,8 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 buttonModel.subTextAlignment = NSTextAlignmentCenter;
                 buttonModel.imagePadding = JobsWidth(5);
                 buttonModel.baseBackgroundColor = JobsClearColor;
-                buttonModel.backgroundImage = JobsIMG(@"TabBarItem选中的背景色（透明）");
-//                DefaultIndex == 2 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.backgroundImage = @"TabBarItem选中的背景色（透明）".img;
+//                DefaultIndex == 2 ? @"TabBarItem选中的背景色".img :@"TabBarItem选中的背景色（透明）".img;
             }))
                      .onClickBy(^(__kindof UIButton *x){
                          @jobs_strongify(self)
@@ -333,7 +333,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 buttonModel.subTextAlignment = NSTextAlignmentCenter;
                 buttonModel.imagePadding = JobsWidth(5);
                 buttonModel.baseBackgroundColor = JobsClearColor;
-                buttonModel.backgroundImage = DefaultIndex == 3 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.backgroundImage = DefaultIndex == 3 ? @"TabBarItem选中的背景色".img :@"TabBarItem选中的背景色（透明）".img;
             }))
                      .onClickBy(^(__kindof UIButton *x){
                          @jobs_strongify(self)
@@ -356,7 +356,7 @@ static NSMutableArray <__kindof UIButton *>*_tabBarItemMutArr = nil;
                 buttonModel.subTextAlignment = NSTextAlignmentCenter;
                 buttonModel.imagePadding = JobsWidth(5);
                 buttonModel.baseBackgroundColor = JobsClearColor;
-                buttonModel.backgroundImage = DefaultIndex == 4 ? JobsIMG(@"TabBarItem选中的背景色") :JobsIMG(@"TabBarItem选中的背景色（透明）");
+                buttonModel.backgroundImage = DefaultIndex == 4 ? @"TabBarItem选中的背景色".img :@"TabBarItem选中的背景色（透明）".img;
             }))
                      .onClickBy(^(__kindof UIButton *x){
                          @jobs_strongify(self)
@@ -432,7 +432,7 @@ static NSMutableArray <__kindof UIImage *>*_imageSelectedMutArr = nil;
         _imageSelectedMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UIImage *>*_Nullable data) {
             @jobs_strongify(self)
             for (NSString *imageSelectedName in self.imageSelectedNameMutArr) {
-                data.add(JobsIMG(imageSelectedName));
+                data.add(imageSelectedName.img);
             }
         });
     }return _imageSelectedMutArr;
@@ -449,7 +449,7 @@ static NSMutableArray <__kindof UIImage *>*_imageUnSelectedMutArr = nil;
         _imageUnSelectedMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UIImage *>*_Nullable data) {
             @jobs_strongify(self)
             for (NSString *imageUnSelectedName in self.imageUnselectedNameMutArr) {
-                data.add(JobsIMG(imageUnSelectedName));
+                data.add(imageUnSelectedName.img);
             }
         });
     }return _imageUnSelectedMutArr;

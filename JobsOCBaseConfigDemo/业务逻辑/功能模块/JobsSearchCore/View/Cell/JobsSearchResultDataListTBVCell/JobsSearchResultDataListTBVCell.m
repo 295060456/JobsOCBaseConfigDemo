@@ -16,7 +16,7 @@
 +(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsSearchResultDataListTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsSearchResultDataListTBVCell);
-        cell.imageView.image = JobsIMG(@"放大镜");
+        cell.imageView.image = @"放大镜".img;
         cell.tapGR.enabled = YES;
         return cell;
     };

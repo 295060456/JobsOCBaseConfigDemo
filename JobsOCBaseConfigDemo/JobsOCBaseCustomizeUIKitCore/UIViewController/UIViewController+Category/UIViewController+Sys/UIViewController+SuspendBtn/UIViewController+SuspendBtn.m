@@ -15,7 +15,7 @@ JobsKey(_suspendBtn)
     JobsSuspendBtn *SuspendBtn = Jobs_getAssociatedObject(_suspendBtn);
     if (!SuspendBtn) {
         @jobs_weakify(self)
-        SuspendBtn = self.view.addSubview(JobsSuspendBtn.initByNormalImage(JobsIMG(@"旋转"))
+        SuspendBtn = self.view.addSubview(JobsSuspendBtn.initByNormalImage(@"旋转".img)
                                           .onClickBy(^(UIButton *x){
                                               @jobs_strongify(self)
                                               x.selected = !x.selected;

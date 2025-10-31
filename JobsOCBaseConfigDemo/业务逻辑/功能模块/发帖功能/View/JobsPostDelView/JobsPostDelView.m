@@ -75,7 +75,7 @@ static dispatch_once_t static_postDelViewOnceToken;
         @jobs_strongify(self)
         self.backgroundColor = JobsRedColor;
         self.imageView.highlighted = model;
-        self.imageView.image = model.boolValue ? JobsIMG(@"hx_photo_edit_trash_open") : JobsIMG(@"hx_photo_edit_trash_close");
+        self.imageView.image = model.boolValue ? @"hx_photo_edit_trash_open".img : @"hx_photo_edit_trash_close".img;
         self.titleLab.text = model.boolValue ? JobsInternationalization(@"松手即可删除") : JobsInternationalization(@"拖动到此处删除");
     };
 }
@@ -101,7 +101,7 @@ static dispatch_once_t static_postDelViewOnceToken;
         @jobs_weakify(self)
         _imageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            imageView.image = JobsIMG(@"hx_photo_edit_trash_close");
+            imageView.image = @"hx_photo_edit_trash_close".img;
             [self.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(20), JobsWidth(20)));
                 make.centerX.equalTo(self);

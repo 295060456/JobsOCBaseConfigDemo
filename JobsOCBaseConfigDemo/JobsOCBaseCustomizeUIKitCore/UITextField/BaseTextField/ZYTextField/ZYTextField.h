@@ -183,7 +183,7 @@ NS_INLINE __kindof ZYTextField *_Nonnull jobsMakeZYTextField(jobsByZYTextFieldBl
          _textField.returnKeyType = UIReturnKeyDefault;
          _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
          _textField.keyboardType = UIKeyboardTypeDefault;
-         _textField.leftView = [UIImageView.alloc initWithImage:JobsIMG(@"新首页的搜索放大镜")];
+         _textField.leftView = [UIImageView.alloc initWithImage:@"新首页的搜索放大镜".img];
          _textField.leftViewMode = UITextFieldViewModeAlways;
          _textField.rightView = self.searchBtn;
          _textField.rightViewMode = UITextFieldViewModeAlways;

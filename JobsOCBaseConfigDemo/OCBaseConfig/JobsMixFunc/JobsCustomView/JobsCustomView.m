@@ -97,7 +97,7 @@ static dispatch_once_t static_customViewOnceToken;
         @jobs_weakify(self)
         _indicatorIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            imageView.image = JobsIMG(@"起止");
+            imageView.image = @"起止".img;
             [self.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(JobsWidth(56), JobsWidth(196)));
                 make.left.equalTo(self).offset(JobsWidth(16));

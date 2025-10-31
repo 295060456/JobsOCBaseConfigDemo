@@ -163,7 +163,7 @@ Prop_assign()CGSize chooseBtnSize;
             .jobsResetImagePlacement(NSDirectionalRectEdgeTrailing)
             .jobsResetImagePadding(JobsWidth(8))
             .jobsResetBtnImage(self.chooseBtnViewModel.image)
-            .jobsResetBtnBgImage(JobsIMG(@"APPLY NOW"))
+            .jobsResetBtnBgImage(@"APPLY NOW".img)
             .jobsResetBtnTitleCor(self.chooseBtnViewModel.textModel.textCor)
             .jobsResetBtnTitleFont(self.chooseBtnViewModel.textModel.font)
             .jobsResetBtnTitle(self.chooseBtnViewModel.textModel.text)
@@ -206,7 +206,7 @@ Prop_assign()CGSize chooseBtnSize;
             data.bgCor = JobsClearColor;
             data.jobsWidth = self.chooseBtnSize.width;
             data.subTextModel.text = JobsInternationalization(@"");
-            data.image = JobsIMG(@"向下的箭头");
+            data.image = @"向下的箭头".img;
         });
     }return _chooseBtnViewModel;
 }

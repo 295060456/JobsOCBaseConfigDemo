@@ -154,7 +154,7 @@
 /// 设置控件的 Width
 +(JobsReturnViewByFloatBlock _Nonnull)ByWidth{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat data){
+    return ^__kindof UIView *_Nullable(float data){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = UIView.build(self.class);
         if ([instance respondsToSelector:@selector(byWidth)]) {
@@ -165,7 +165,7 @@
 /// 设置控件的 Height
 +(JobsReturnViewByFloatBlock _Nonnull)ByHeight{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat data){
+    return ^__kindof UIView *_Nullable(float data){
         @jobs_strongify(self)
         UIView <BaseViewProtocol>*instance = UIView.build(self.class);
         if ([instance respondsToSelector:@selector(byHeight)]) {
@@ -215,7 +215,7 @@
 /// 设置控件的 Width
 -(JobsReturnViewByFloatBlock _Nonnull)byWidth{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat data){
+    return ^__kindof UIView *_Nullable(float data){
         @jobs_strongify(self)
         self.resetWidth(data);
         return self;
@@ -224,7 +224,7 @@
 /// 设置控件的 Height
 -(JobsReturnViewByFloatBlock _Nonnull)byHeight{
     @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(CGFloat data){
+    return ^__kindof UIView *_Nullable(float data){
         @jobs_strongify(self)
         self.resetHeight(data);
         return self;

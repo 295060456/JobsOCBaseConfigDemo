@@ -99,7 +99,7 @@ Prop_strong()BaseButton *btn2;
                           UIFontWeightRegularSize(14),
                           HEXCOLOR(0x502600),
                           self.viewModel.image,
-                          JobsIMG(@"弹窗取消按钮背景图"),
+                          @"弹窗取消按钮背景图".img,
                           NSDirectionalRectEdgeNone)
             .onClickBy(^(UIButton *x){
                 if(self.objBlock) self.objBlock(x);
@@ -123,7 +123,7 @@ Prop_strong()BaseButton *btn2;
                           UIFontWeightRegularSize(14),
                           HEXCOLOR(0x502600),
                           self.viewModel.image,
-                          JobsIMG(@"弹窗确定按钮背景图"),
+                          @"弹窗确定按钮背景图".img,
                           NSDirectionalRectEdgeNone)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)

@@ -121,7 +121,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputV
             .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
             .jobsResetImagePadding(JobsWidth(8))
-            .jobsResetBtnImage(JobsIMG(@"用户名称"))
+            .jobsResetBtnImage(@"用户名称".img)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightMediumSize(13))
             .jobsResetBtnTitle(Title1)
@@ -186,7 +186,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputV
     if (!_registerDoorInputViewBaseStyleModelMutArr) {
         _registerDoorInputViewBaseStyleModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
             arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 用户名) {
-                用户名.leftViewIMG = JobsIMG(@"用户名称");
+                用户名.leftViewIMG = @"用户名称".img;
                 用户名.placeholder = @"用户名";
                 用户名.isShowDelBtn = YES;
                 用户名.isShowSecurityBtn = NO;
@@ -195,29 +195,29 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputV
                 用户名.leftViewMode = UITextFieldViewModeAlways;
             }));
             arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 密码) {
-                密码.leftViewIMG = JobsIMG(@"Lock");
+                密码.leftViewIMG = @"Lock".img;
                 密码.placeholder = @"密码";
                 密码.isShowDelBtn = YES;
                 密码.isShowSecurityBtn = YES;
                 密码.returnKeyType = UIReturnKeyDone;
                 密码.keyboardAppearance = UIKeyboardAppearanceAlert;
-                密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
-                密码.unSelectedSecurityBtnIMG = JobsIMG(@"codeDecode");//开眼
+                密码.selectedSecurityBtnIMG = @"codeEncode".img;//闭眼
+                密码.unSelectedSecurityBtnIMG = @"codeDecode".img;//开眼
                 密码.leftViewMode = UITextFieldViewModeAlways;
             }));
             arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 确认密码) {
-                确认密码.leftViewIMG = JobsIMG(@"Lock");
+                确认密码.leftViewIMG = @"Lock".img;
                 确认密码.placeholder = @"确认密码";
                 确认密码.isShowDelBtn = YES;
                 确认密码.isShowSecurityBtn = YES;
                 确认密码.returnKeyType = UIReturnKeyDone;
                 确认密码.keyboardAppearance = UIKeyboardAppearanceAlert;
-                确认密码.selectedSecurityBtnIMG = JobsIMG(@"codeEncode");//闭眼
-                确认密码.unSelectedSecurityBtnIMG =JobsIMG(@"codeDecode");//开眼
+                确认密码.selectedSecurityBtnIMG = @"codeEncode".img;//闭眼
+                确认密码.unSelectedSecurityBtnIMG =@"codeDecode".img;//开眼
                 确认密码.leftViewMode = UITextFieldViewModeAlways;
             }));
             arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 推广码) {
-                推广码.leftViewIMG = JobsIMG(@"推广码");
+                推广码.leftViewIMG = @"推广码".img;
                 推广码.placeholder = @"手机验证码";
                 推广码.isShowDelBtn = YES;
                 推广码.isShowSecurityBtn = NO;
@@ -226,7 +226,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*registerDoorInputV
                 推广码.leftViewMode = UITextFieldViewModeAlways;
             }));
             arr.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 图形验证码) {
-                图形验证码.leftViewIMG = JobsIMG(@"验证ICON");
+                图形验证码.leftViewIMG = @"验证ICON".img;
                 图形验证码.placeholder = @"图形验证码";
                 图形验证码.isShowDelBtn = YES;
                 图形验证码.isShowSecurityBtn = NO;

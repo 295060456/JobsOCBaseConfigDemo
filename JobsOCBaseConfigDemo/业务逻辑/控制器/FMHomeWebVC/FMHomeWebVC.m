@@ -150,7 +150,7 @@ didFailProvisionalNavigation:(WKNavigation *)navigation
         _launchImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
             imageView.frame = self.view.bounds;
-            imageView.image = JobsIMG(@"1242x2688");
+            imageView.image = @"1242x2688".img;
             imageView.contentMode = UIViewContentModeScaleAspectFill;
             self.view.addSubview(imageView);
         });

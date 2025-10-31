@@ -8,7 +8,6 @@
 #import "BaseViewController.h"
 #import "JobsMakeLocalNotification.h"
 #import "AppDelegate.h"
-#import "NSNumber+Scale.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

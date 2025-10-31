@@ -60,7 +60,7 @@ Prop_strong()UIButton *cancelBtn;
     if(!_cancelBtn){
         @jobs_weakify(self)
         _cancelBtn = BaseButton
-            .initByBackgroundImage(JobsIMG(@"删除"))
+            .initByBackgroundImage(@"删除".img)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);

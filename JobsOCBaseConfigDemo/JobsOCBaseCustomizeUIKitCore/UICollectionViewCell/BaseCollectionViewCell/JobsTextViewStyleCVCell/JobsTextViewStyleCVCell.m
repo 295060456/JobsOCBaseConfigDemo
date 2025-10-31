@@ -91,7 +91,7 @@ BaseViewProtocol_synthesize
                 textView.textColor = self.viewModel.textCor;
                 textView.font = self.viewModel.font;
             }
-        })).masonryBy(self.masonryBlock);
+        })).byAdd(self.masonryBlock);
     }return _textView;
 }
 
@@ -117,7 +117,7 @@ BaseViewProtocol_synthesize
             } subscribeNextBlock:^(id _Nullable x) {
 //                @jobs_strongify(self)
             }];
-        })).masonryBy(self.masonryBlock);
+        })).byAdd(self.masonryBlock);
     }return _textView;
 }
 
@@ -143,7 +143,7 @@ BaseViewProtocol_synthesize
             } subscribeNextBlock:^(id _Nullable x) {
 //                @jobs_strongify(self)
             }];
-        })).masonryBy(self.masonryBlock);
+        })).byAdd(self.masonryBlock);
     }return _jobsTextView;
 }
 

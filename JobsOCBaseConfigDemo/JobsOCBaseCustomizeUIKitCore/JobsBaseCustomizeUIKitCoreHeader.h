@@ -94,6 +94,10 @@
 #import "JobsLabel.h"
 #pragma mark —— UIButton
 #import "JobsButton.h"
+#pragma mark —— UIButtonConfiguration
+#import "UIButtonConfiguration+Extra.h"
+#pragma mark —— UIBackgroundConfiguration
+#import "UIBackgroundConfiguration+Extra.h"
 #pragma mark —— UISwitch
 #import "JobsSwitch.h"
 #pragma mark —— JobsSlider

@@ -7,7 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import "UIImageView+SDWebImage.h"
-#import "NSString+Others.h"
+//#import "NSString+Others.h"
 #import "JobsBlock.h"
 
 #import "WMZBannerParam.h"
@@ -15,6 +15,8 @@
 #import "WMZBannerControl.h"
 #import "WMZBannerOverLayout.h"
 #import "WMZBannerFadeLayout.h"
+
+#import "NSObject+Image.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

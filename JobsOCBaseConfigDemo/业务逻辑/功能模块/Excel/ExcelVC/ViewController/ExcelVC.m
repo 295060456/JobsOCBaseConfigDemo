@@ -38,11 +38,11 @@ Prop_strong()NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutAr
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
-    // self.viewModel.bgImage = JobsIMG(@"内部招聘导航栏背景图");/// self.gk_navBackgroundImage 和 self.bgImageView
+    // self.viewModel.bgImage = @"内部招聘导航栏背景图".img;/// self.gk_navBackgroundImage 和 self.bgImageView
     self.viewModel.bgCor = RGBA_COLOR(255, 238, 221, 1);
-    self.viewModel.bgImage = JobsIMG(@"新首页的底图");
+    self.viewModel.bgImage = @"新首页的底图".img;
     self.viewModel.navBgCor = RGBA_COLOR(255, 238, 221, 1);/// self.gk_navBackgroundColor 和 self.view.backgroundColor
-//    self.viewModel.navBgImage = JobsIMG(@"导航栏左侧底图");
+//    self.viewModel.navBgImage = @"导航栏左侧底图".img;
 }
 
 - (void)viewDidLoad {
@@ -187,7 +187,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     /// 隐藏最后一个单元格的分界线
     [tableView hideSeparatorLineAtLast:indexPath cell:cell];
     /// 自定义 UITableViewCell 的箭头
-    cell.img = JobsIMG(@"向右的箭头（大）");
+    cell.img = @"向右的箭头（大）".img;
 //    @jobs_weakify(self)
     [cell customAccessoryView:^(id data) {
 //        @jobs_strongify(self)
