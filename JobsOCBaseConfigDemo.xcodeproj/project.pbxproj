@@ -1313,6 +1313,7 @@
 		046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButtonConfiguration+Extra.m"; sourceTree = "<group>"; };
 		047E48F72EB4537700881898 /* NSObject+image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+image.h"; sourceTree = "<group>"; };
 		047E48F82EB4537700881898 /* NSObject+image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+image.m"; sourceTree = "<group>"; };
+		04FD2AAB2EB5BEDB00CDB5D5 /* JobsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = JobsConfig.xcconfig; sourceTree = "<group>"; };
 		20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		40ED0B9FDF5152B123562CEA /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4001,6 +4002,7 @@
 				C55C7E6B2E167B6000B56985 /* 启动配置 */,
 				C55C7A152E167B5D00B56985 /* 业务逻辑 */,
 				C55C7E892E167B6000B56985 /* Info.plist */,
+				04FD2AAB2EB5BEDB00CDB5D5 /* JobsConfig.xcconfig */,
 				C55C88F32E167B6800B56985 /* JobsOCBaseConfigDemoPrefixHeader.pch */,
 				C55C79742E16749000B56985 /* JobsOCBaseConfigDemo.entitlements */,
 			);
@@ -18651,6 +18653,7 @@
 /* Begin XCBuildConfiguration section */
 		C55C798E2E16749000B56985 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04FD2AAB2EB5BEDB00CDB5D5 /* JobsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -18712,6 +18715,7 @@
 		};
 		C55C798F2E16749000B56985 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04FD2AAB2EB5BEDB00CDB5D5 /* JobsConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

@@ -537,6 +537,40 @@ Current targets:
 
   <img src="./assets/image-20240629161626945.png" alt="image-20240629161626945" style="zoom:50%;" />
 
+#### 7.4、利用`*.xcconfig`配置Xcode工程项目 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* 新建配置文件
+
+  <table style="width:100%; table-layout:fixed;">
+    <tr>
+      <td><img src="./assets/image-20251101105448424.png" alt="image-20251101105448424" style="width:100%; height:auto;"></td>
+      <td><img src="./assets/image-20251101105508441.png" alt="image-20251101105508441" style="width:100%; height:auto;"></td>
+    </tr>
+  </table>
+
+* 自动识别关联
+
+  ![image-20251101111554366](./assets/image-20251101111554366.png)
+
+* `*.xcconfig`里面的内容
+
+  ```objective-c
+  //
+  //  Config.xcconfig
+  //  JobsSwiftBaseConfigDemo
+  //
+  //  Created by Mac on 11/1/25.
+  //
+  
+  // Configuration settings file format documentation can be found at:
+  // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+  
+  PRODUCT_NAME = SwiftDemo
+  APP_DISPLAY_NAME = SwiftDemo
+  INFOPLIST_KEY_CFBundleDisplayName = $(APP_DISPLAY_NAME)
+  INFOPLIST_KEY_CFBundleName = $(PRODUCT_NAME)
+  ```
+
 ### 8、🖨️ 调试打印 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 8.1、🖨️ 重写打印输出  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
@@ -637,7 +671,7 @@ Current targets:
   -(NSMutableArray <NSString *>*)printProtocolList;
   ```
 
-### 9、Xcode@Objc  <font color=red>代码块</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 9、Xcode@Objc<font color=red>代码块</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 > 提升编码效率必备之首选
 
