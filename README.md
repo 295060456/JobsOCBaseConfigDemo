@@ -127,7 +127,16 @@
 
 > [**JobsDocs**](https://github.com/295060456/JobsDocs)
 
-### 1、配置相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 1、面试相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+* [**yanmingLiu-Xminds**](https://github.com/yanmingLiu/Xminds)
+* [**yanmingLiu-iOSNotes**](https://github.com/yanmingLiu/iOSNotes)
+* [**谁说HTTP GET就不能通过Body来发送数据呢？**](https://juejin.cn/post/6844903685206573069)
+* [**OC相关经验**](TODO)
+* [**Swift 相关经验**](TODO)
+* [**iOS音视频**](https://github.com/295060456/JobsDocs/blob/main/iOS相关的文档和资料.md/iOS音视频/iOS音视频.md)
+
+### 2、配置相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * [**解决xcode出现：SDK does not contain 'libarclite' 错误**](TODO)
 * [**通过SSH连接到GitHub**](TODO)
@@ -142,15 +151,6 @@
 * [**同一应用设置不同图标和名称**](TODO)
 * [**Mac配置个人热点**](TODO)
 * [**苹果开发者账户续费**](https://account.apple.com/account/manage/section/payment)
-
-### 2、面试相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
-
-* [**yanmingLiu-Xminds**](https://github.com/yanmingLiu/Xminds)
-* [**yanmingLiu-iOSNotes**](https://github.com/yanmingLiu/iOSNotes)
-* [**OC相关经验**](TODO)
-* [**Swift 相关经验**](TODO)
-* [**谁说HTTP GET就不能通过Body来发送数据呢？**](https://juejin.cn/post/6844903685206573069)
-* [**iOS音视频**](TODO)
 
 ### 3、功能相关 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
@@ -272,7 +272,7 @@
 
 * 个别地区（比如：柬埔寨），需要将浏览器语言改为英文状态，方可进入[**苹果开发者网站**](https://developer.apple.com/)
 
-* **xcode**对中文的兼容性非常好，所以可以中文命名路径（比如文件夹名称）
+* **xcode**对中文的兼容性非常友好，可以以中文命名路径（比如，文件夹名称）
 
 * <font color=blue>**xcode工程名不能有特殊字符（比如下划线）。否则会造成：虽然可以在iOS模拟器上面正常运行，但是却会在真机上编译失败**</font>
 
@@ -376,7 +376,7 @@
   done
   ```
 
-* 最新版本的XCode（目前是：16.4），在设备选择器里面点选了较低版本的iOS模拟器（比如说：iPhone 7），只能通过命令行进行实例化并打开
+* 最新版本的Xcode（目前是：16.4），在设备选择器里面点选了较低版本的iOS模拟器（比如说：iPhone 7），只能通过命令行进行实例化并打开
 
   ```shell
   xcrun simctl list devices | grep 'iPhone 7'
@@ -11544,7 +11544,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 ### 70、PDF的处理 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 ```objective-c
-#import <PDFKit/PDFKit.h> /// 处理PDF
+#import <PDFKit/PDFKit.h> /// 系统API，处理PDF
 
 @synthesize pdfView = _pdfView;
 -(__kindof PDFView *)pdfView{

@@ -186,8 +186,7 @@
 /// 按给定path剪裁图片
 /// @param path 路径，剪裁区域
 /// @param mode 填充模式
--(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path
-                            mode:(DWContentMode)mode{
+-(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path mode:(DWContentMode)mode{
     CGFloat originScale = self.size.width * 1.0 / self.size.height;
     CGRect boxBounds = path.bounds;
     CGFloat width = boxBounds.size.width;

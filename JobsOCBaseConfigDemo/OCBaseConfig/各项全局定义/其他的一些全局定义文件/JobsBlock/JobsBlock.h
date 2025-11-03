@@ -334,6 +334,11 @@ typedef void(^jobsByToggleNavViewBlock)(__kindof JobsToggleNavView *_Nullable ta
 typedef void(^jobsByCustomTabBarBlock)(__kindof JobsCustomTabBar *_Nullable customTabBar);
 typedef JobsCustomTabBar *_Nullable(^JobsReturnCustomTabBarByViewBlock)(__kindof UIView *_Nullable view);
 
+@class JobsDecorationModel;
+typedef __kindof JobsDecorationModel *_Nullable(^JobsReturnDecorationModelByClsBlock)(Class _Nullable cls);
+typedef __kindof JobsDecorationModel *_Nullable(^JobsReturnDecorationModelByStringBlock)(__kindof NSString *_Nullable data);
+typedef __kindof JobsDecorationModel *_Nullable(^JobsReturnDecorationModelByIDBlock)(id _Nullable data);
+
 @class JobsResponseModel;
 typedef void(^jobsByResponseModelBlock)(JobsResponseModel *_Nullable model);
 typedef id _Nullable(^JobsReturnIDByResponseModelBlock)(JobsResponseModel *_Nullable model);

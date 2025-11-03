@@ -91,7 +91,9 @@ typedef void(^jobsByCorBlock)(UIColor *_Nullable cor);
 typedef void(^jobsByFontBlock)(UIFont *_Nullable font);
 #pragma mark —— 关于UI配置
 /// 按钮配置
+API_AVAILABLE(ios(15.0))
 typedef void(^jobsByButtonConfigurationBlock)(__kindof UIButtonConfiguration * _Nullable config);
+API_AVAILABLE(ios(14.0))
 typedef void(^jobsByBackgroundConfigurationBlock)(__kindof UIBackgroundConfiguration * _Nullable config);
 /// UICollectionView配置
 typedef void(^jobsByCollectionViewFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable layout);

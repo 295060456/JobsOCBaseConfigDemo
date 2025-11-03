@@ -51,6 +51,15 @@ typedef id _Nullable(^JobsReturnIDByUnsignedLongLongBlock)(unsigned long long da
 typedef void *_Nullable(^JobsReturnPointerByNSUIntegerBlock)(NSUInteger index);
 typedef __kindof NSPointerArray *_Nullable(^JobsReturnPointerArrayByPointerBlock)(void *_Nullable pointer);
 typedef __kindof NSPointerArray *_Nullable(^JobsReturnPointerArrayByNSUIntegerBlock)(NSUInteger index);
+#pragma mark —— NSMutableParagraphStyle
+typedef __kindof NSMutableParagraphStyle *_Nullable(^JobsReturnMutableParagraphStyleByCGFloatBlock)(CGFloat data);
+typedef __kindof NSMutableParagraphStyle *_Nullable(^JobsReturnMutableParagraphStyleByFloatBlock)(float data);
+typedef __kindof NSMutableParagraphStyle *_Nullable(^JobsReturnMutableParagraphStyleByBOOLBlock)(BOOL data);
+typedef __kindof NSMutableParagraphStyle *_Nullable(^JobsReturnMutableParagraphStyleByNSIntegerBlock)(NSInteger data);
+typedef __kindof NSMutableParagraphStyle *_Nullable(^JobsReturnMutableParagraphStyleByNSUIntegerBlock)(NSUInteger data);
+typedef __kindof NSMutableParagraphStyle *_Nullable(^JobsReturnMutableParagraphStyleByArrBlock)(__kindof NSArray* _Nullable data);
+typedef __kindof NSMutableParagraphStyle *_Nullable(^JobsReturnMutableParagraphStyleByNSTextTabBlock)(NSTextTab* _Nullable data);
+typedef __kindof NSMutableParagraphStyle *_Nullable(^JobsReturnMutableParagraphStyleByNSParagraphStyleBlock)(__kindof NSParagraphStyle* _Nullable data);
 #pragma mark —— 关于 NSRunLoop
 typedef __kindof NSRunLoop *_Nullable(^JobsReturnRunLoopByTimerBlock)(NSTimer *_Nonnull timer);
 #pragma mark —— 关于数据容器
@@ -91,6 +100,7 @@ typedef NSValue *_Nullable(^JobsReturnValueByOffsetBlock)(UIOffset data);
 #pragma mark —— 关于贝塞尔曲线
 typedef UIBezierPath *_Nullable(^JobsReturnBezierPathByCGRectBlock)(CGRect frame);
 #pragma mark —— 关于UIBackgroundConfiguration
+API_AVAILABLE(ios(14.0))
 typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByColorBlock)(UIColor *_Nullable data);
 typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByCGFloatBlock)(CGFloat data);
 typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByInsetsBlock)(NSDirectionalEdgeInsets data);
@@ -160,14 +170,21 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByInteractionBlock)(id <UIInte
 typedef __kindof UIView *_Nullable(^JobsReturnViewByIDBlock)(id _Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByArrBlock)(NSArray *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByCorBlock)(UIColor *_Nullable data);
+API_AVAILABLE(ios(26.0))
+typedef __kindof UIView *_Nullable(^JobsReturnViewByCornerConfigurationBlock)(UICornerConfiguration *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByBOOLBlock)(BOOL data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByFloatBlock)(float data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByCGFloatBlock)(CGFloat data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByNSUIntegerBlock)(NSUInteger data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByUIUserInterfaceStyleBlock)(UIUserInterfaceStyle data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByNSIntegerBlock)(NSInteger data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByUIEdgeInsetBlock)(UIEdgeInsets data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByNSDirectionalEdgeInsetsBlock)(NSDirectionalEdgeInsets data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewBySizeBlock)(CGSize size);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByFrameBlock)(CGRect frame);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByPointBlock)(CGPoint data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByCGAffineTransformBlock)(CGAffineTransform data);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByCATransform3DBlock)(CATransform3D data);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByCenterBlock)(CGFloat x,CGFloat y);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByClassBlock)(Class _Nonnull cls);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByTableViewHeaderFooterViewBlock)(__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView);
@@ -207,8 +224,11 @@ typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByFontBlock)(__kindof 
 typedef __kindof UITextView *_Nullable(^JobsReturnTextViewByAttributedStringBlock)(__kindof NSAttributedString *_Nullable attributedString);
 #pragma mark —— 关于 UITableView
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByBOOLBlock)(BOOL data);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByNSIntegerBlock)(NSInteger data);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByCGFloatBlock)(CGFloat data);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByEdgeInsetsBlock)(UIEdgeInsets inset);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByCorBlock)(UIColor *_Nullable cor);
+typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByVisualEffectBlock)(UIVisualEffect *_Nullable effect);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByUIScrollViewContentInsetAdjustmentBehaviorBlock)(UIScrollViewContentInsetAdjustmentBehavior behavior);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByViewBlock)(__kindof UIView *_Nullable view);
 typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByCellSeparatorStyleBlock)(UITableViewCellSeparatorStyle style);
@@ -222,6 +242,9 @@ typedef __kindof UITableView *_Nullable(^JobsReturnTableViewByMJRefreshConfigMod
 #pragma mark —— 关于 UITextField
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByDelegateBlock)(id <UITextFieldDelegate>_Nullable delegate);
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByBOOLBlock)(BOOL data);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByNSIntegerBlock)(NSInteger data);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByCGFloatrBlock)(CGFloat data);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByNSDictionaryBlock)(NSDictionary<NSAttributedStringKey,id>* _Nonnull data);
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByModeBlock)(UITextFieldViewMode mode);
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByKeyboardAppearanceBlock)(UIKeyboardAppearance appearance);
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByKeyboardTypeBlock)(UIKeyboardType type);
@@ -231,6 +254,7 @@ typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByAttributedStringBl
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByFontBlock)(__kindof UIFont *_Nullable font);
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByCorBlock)(__kindof UIColor *_Nullable cor);
 typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByImageBlock)(__kindof UIImage *_Nullable image);
+typedef __kindof UITextField *_Nullable(^JobsReturnTextFieldByViewBlock)(__kindof UIView *_Nullable view);
 #pragma mark —— 关于 Label
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByImage)(__kindof UIImage *_Nullable image);
 typedef __kindof UILabel *_Nullable(^JobsReturnLabelByCor)(__kindof UIColor *_Nullable cor);
@@ -248,6 +272,7 @@ typedef __kindof UIButton *_Nullable(^JobsReturnButtonByCGFloatBlock)(CGFloat da
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByFloatBlock)(float data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSIntegerBlock)(NSInteger data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByNSUIntegerBlock)(NSUInteger data);
+API_AVAILABLE(ios(15.0))
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTitleAlignmentBlock)(UIButtonConfigurationTitleAlignment data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTextAlignmentBlock)(NSTextAlignment data);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByImagePlacementBlock)(NSDirectionalRectEdge data);

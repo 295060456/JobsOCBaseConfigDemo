@@ -50,8 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 按给定path剪裁图片
 /// @param path 路径，剪裁区域
 /// @param mode 填充模式
--(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path
-                            mode:(DWContentMode)mode;
+-(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path mode:(DWContentMode)mode;
 /// 对系统方法 initWithData 的二次封装
 +(JobsReturnImageByDataBlock _Nonnull)initByData;
 /// 对系统方法 imageWithData 的二次封装

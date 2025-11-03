@@ -44,6 +44,8 @@
 #import "NSNotificationCenter.h"
 #pragma mark —— NSAttributedString
 #import "JobsAttributedString.h"
+#pragma mark —— NSMutableParagraphStyle
+#import "NSMutableParagraphStyle+DSL.h"
 #pragma mark —— NSValue
 #import "JobsValue.h"
 #pragma mark —— NSData

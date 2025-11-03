@@ -33,23 +33,6 @@ Prop_strong()__kindof UIButton *customSysClearBtn;
 -(JobsReturnStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString;
 /// 自定义系统的清除按钮
 -(jobsByImageBlock _Nonnull)modifyClearButtonByImage;
-///
--(JobsReturnTextFieldByDelegateBlock _Nonnull)byDelegate;
--(JobsReturnTextFieldByBOOLBlock _Nonnull)bySecureTextEntry;
--(JobsReturnTextFieldByModeBlock _Nonnull)byClearButtonMode;
--(JobsReturnTextFieldByModeBlock _Nonnull)byLeftViewMode;
--(JobsReturnTextFieldByModeBlock _Nonnull)byRightViewMode;
--(JobsReturnTextFieldByStringBlock _Nonnull)byText;
--(JobsReturnTextFieldByFontBlock _Nonnull)byFont;
--(JobsReturnTextFieldByCorBlock _Nonnull)byTextCor;
--(JobsReturnTextFieldByStringBlock _Nonnull)byPlaceholder;
--(JobsReturnTextFieldByCorBlock _Nonnull)byPlaceholderColor;
--(JobsReturnTextFieldByFontBlock _Nonnull)byPlaceholderFont;
--(JobsReturnTextFieldByAttributedStringBlock _Nonnull)byAttributedText;
--(JobsReturnTextFieldByAttributedStringBlock _Nonnull)byAttributedPlaceholder;
--(JobsReturnTextFieldByKeyboardAppearanceBlock _Nonnull)byKeyboardAppearance;
--(JobsReturnTextFieldByKeyboardTypeBlock _Nonnull)byKeyboardType;
--(JobsReturnTextFieldByReturnKeyTypeBlock _Nonnull)byReturnKeyType;
 
 @end
 

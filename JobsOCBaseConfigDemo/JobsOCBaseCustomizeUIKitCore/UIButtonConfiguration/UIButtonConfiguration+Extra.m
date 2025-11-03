@@ -9,8 +9,10 @@
 
 @implementation UIButtonConfiguration (Extra)
 
-- (JobsReturnButtonConfigurationByButtonConfigurationBlock _Nonnull)byButtonConfiguration {
+- (JobsReturnButtonConfigurationByButtonConfigurationBlock _Nonnull)byButtonConfiguration API_AVAILABLE(ios(16.0)){
+    @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIButtonConfiguration *cfg) {
+        @jobs_strongify(self)
         if (!cfg) return self;
         // 基础与通用（iOS16 起你已做可用性标注，保持一致）
         self.byBackground(cfg.background)                                   // UIBackgroundConfiguration

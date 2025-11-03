@@ -15,6 +15,7 @@
 #import "ZYTextField.h"
 #import "JobsTextField.h"
 #pragma mark —— Category
+#import "UITextField+DSL.h"
 #import "UITextField+Extend.h"
 #import "UITextField+Animation.h"
 #import "UITextField+Placeholder.h"

@@ -25,6 +25,7 @@
 #import "UIView+UIBackgroundConfig.h"
 #import "UIView+Masonry.h"
 #import "UIView+Navigator.h"
+#import "UIView+DSL.h"
 
 #import "UIView+Gesture.h"
 #import "UIView+JHGestureBlock.h"

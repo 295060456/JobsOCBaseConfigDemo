@@ -7,15 +7,21 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsDecorationModel : NSObject
 
-@property(nonatomic,strong,nullable)Class cls;/// 绑定的class
-@property(nonatomic,copy,nullable)NSString *title;/// 主标题
-@property(nonatomic,copy,nullable)NSString *subTitle;/// 副标题
-@property(nonatomic,strong,nullable)id requestParams;/// 【强引用】绑定的数据源，数据类型id
+Prop_strong(nullable)Class cls;               /// 绑定的class
+Prop_copy(nullable)NSString *title;           /// 主标题
+Prop_copy(nullable)NSString *subTitle;        /// 副标题
+Prop_strong(nullable)id requestParams;        ///【强引用】绑定的数据源，数据类型id
+
+-(JobsReturnDecorationModelByClsBlock _Nonnull)byCls;
+-(JobsReturnDecorationModelByStringBlock _Nonnull)byTitle;
+-(JobsReturnDecorationModelByStringBlock _Nonnull)bySubTitle;
+-(JobsReturnDecorationModelByIDBlock _Nonnull)byRequestParams;
 
 @end
 

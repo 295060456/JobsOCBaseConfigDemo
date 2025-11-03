@@ -164,13 +164,14 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.font = UIFontWeightRegularSize(JobsWidth(11));
-            label.text = self.doorInputViewBaseStyleModel.textModel.text;
-            label.textColor = self.doorInputViewBaseStyleModel.textModel.textCor;
-            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.bottom.equalTo(self);
-                make.top.equalTo(self.textField.mas_bottom);
-            }];
+            label.byFont(UIFontWeightRegularSize(JobsWidth(11)))
+                .byText(self.doorInputViewBaseStyleModel.textModel.text)
+                .byTextCor(self.doorInputViewBaseStyleModel.textModel.textCor)
+                .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+                    @jobs_strongify(self)
+                    make.left.bottom.equalTo(self);
+                    make.top.equalTo(self.textField.mas_bottom);
+                }).on();
         });
     }return _titleLab;
 }

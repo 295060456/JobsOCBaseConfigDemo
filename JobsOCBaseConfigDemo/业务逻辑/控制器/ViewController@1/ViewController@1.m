@@ -180,9 +180,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
                 UIViewModel *viewModel = self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                    model.title = JobsInternationalization(@"用户信息展示(开发测试专用)");
-                    model.subTitle = @"";
-                    model.requestParams = self.readUserInfo;
+                    model.byTitle(JobsInternationalization(@"用户信息展示(开发测试专用)"))
+                        .bySubTitle(@"")
+                        .byRequestParams(self.readUserInfo);
                 }));
                 [self forceComingToPushVC:viewModel.cls.new
                             requestParams:viewModel];// 测试专用
