@@ -15,14 +15,13 @@ static inline UIColor * _Nullable TD_RandColor(void) {
 }
 
 NS_ASSUME_NONNULL_BEGIN
-
-#pragma mark - Horizontal Carousel (ASCollectionNode In Cell)
+/// Horizontal Carousel (ASCollectionNode In Cell)
 @interface TDHorizontalItemNode : ASCellNode
 
-@property (nonatomic, strong) ASDisplayNode *colorNode;
-@property (nonatomic, strong) ASTextNode *text;
+Prop_strong()ASDisplayNode *colorNode;
+Prop_strong()ASTextNode *text;
 
-- (instancetype)initWithIndex:(NSInteger)idx;
+-(instancetype)initWithIndex:(NSInteger)idx;
 
 @end
 

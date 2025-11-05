@@ -6,16 +6,16 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "NSObject+image.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-#pragma mark - Network Image Cell (ASNetworkImageNode) + Round
+/// Network Image Cell (ASNetworkImageNode) + Round
 @interface TDNetImageCellNode : ASCellNode
 
-@property (nonatomic, strong) ASNetworkImageNode *netImage;
-@property (nonatomic, strong) ASTextNode *title;
+Prop_strong() ASNetworkImageNode *netImage;
+Prop_strong() ASTextNode *title;
 
-- (instancetype)initWithURL:(NSURL *)url text:(NSString *)text ;
+-(instancetype)initWithURL:(NSURL *)url text:(NSString *)text ;
 
 @end
 

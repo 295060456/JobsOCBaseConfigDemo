@@ -9,12 +9,14 @@
 #import <AsyncDisplayKit/ASDisplayNode+Subclasses.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-#pragma mark - Video Cell (ASVideoNode)
+/// Video Cell (ASVideoNode)
 @interface TDVideoCellNode : ASCellNode
-@property (nonatomic, strong) ASVideoNode *video;
-@property (nonatomic, strong) ASTextNode  *title;
-- (instancetype)initWithURL:(NSURL *)url title:(NSString *)title;
+
+Prop_strong() ASVideoNode *video;
+Prop_strong() ASTextNode  *title;
+
+-(instancetype)initWithURL:(NSURL *)url title:(NSString *)title;
+
 @end
 
 NS_ASSUME_NONNULL_END

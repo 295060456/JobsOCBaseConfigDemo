@@ -8,13 +8,13 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-#pragma mark —— Text Cell (ASTextNode)
+/// Text Cell (ASTextNode)
 @interface TDTextCellNode : ASCellNode
 
-@property (nonatomic, strong) ASTextNode *title;
-@property (nonatomic, strong) ASTextNode *subtitle;
+Prop_strong() ASTextNode *title;
+Prop_strong() ASTextNode *subtitle;
 
-- (instancetype)initWithTitle:(NSString *)t subtitle:(NSString *)s ;
+-(instancetype)initWithTitle:(NSString *)t subtitle:(NSString *)s ;
 
 @end
 

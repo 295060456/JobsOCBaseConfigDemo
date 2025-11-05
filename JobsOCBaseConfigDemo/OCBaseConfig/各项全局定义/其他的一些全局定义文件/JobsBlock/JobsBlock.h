@@ -139,6 +139,9 @@ typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByVoidBlock)(void);
 typedef JobsCorModel *_Nonnull(^JobsReturnCorModelByCorBlock)(__kindof UIColor *_Nullable data);
 typedef void(^jobsByCorModelBlock)(JobsCorModel *_Nullable data);
 
+@class JobsControlTarget;
+typedef void(^jobsByControlTargeBlock)(JobsControlTarget *_Nullable data);
+
 @class JobsMenuView;
 typedef void(^jobsByMenuViewBlock)(__kindof JobsMenuView *_Nullable view);
 

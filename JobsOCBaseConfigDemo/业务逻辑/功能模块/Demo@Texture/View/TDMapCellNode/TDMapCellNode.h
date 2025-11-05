@@ -15,12 +15,11 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-
+///  Map Cell (ASMapNode) [Optional]
 @interface TDMapCellNode : ASCellNode
 
-@property (nonatomic, strong) ASMapNode *mapNode;
+Prop_strong() ASMapNode *mapNode;
 
 @end
-
 
 NS_ASSUME_NONNULL_END

@@ -8,11 +8,11 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-#pragma mark - Editable Text (ASEditableTextNode)
+/// Editable Text (ASEditableTextNode)
 @interface TDEditableTextCellNode : ASCellNode <ASEditableTextNodeDelegate>
 
-@property (nonatomic, strong) ASEditableTextNode *editable;
-@property (nonatomic, strong) ASTextNode *hint;
+Prop_strong()ASEditableTextNode *editable;
+Prop_strong()ASTextNode *hint;
 
 @end
 

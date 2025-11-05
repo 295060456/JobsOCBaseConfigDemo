@@ -6,13 +6,14 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
-#pragma mark - Button Cell (ASButtonNode)
+/// Button Cell (ASButtonNode)
 @interface TDButtonCellNode : ASCellNode
 
-@property (nonatomic, strong) ASButtonNode *button;
-@property (nonatomic, strong) ASTextNode *descNode;
+Prop_strong()ASButtonNode *button;
+Prop_strong()ASTextNode *descNode;
 
 @end
 

@@ -8,13 +8,13 @@
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-#pragma mark - Local Image Cell (ASImageNode) + Corner/Background/Overlay
+/// Local Image Cell (ASImageNode) + Corner/Background/Overlay
 @interface TDImageCellNode : ASCellNode
 
-@property (nonatomic, strong) ASImageNode *image;
-@property (nonatomic, strong) ASTextNode *badge;
+Prop_strong() ASImageNode *image;
+Prop_strong() ASTextNode *badge;
 
-- (instancetype)initWithImage:(UIImage *)img title:(NSString *)title ;
+-(instancetype)initWithImage:(UIImage *)img title:(NSString *)title ;
 
 @end
 

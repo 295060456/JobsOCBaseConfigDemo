@@ -11,6 +11,9 @@
 #import <AsyncDisplayKit/ASDisplayNode+Subclasses.h>
 #import <AVFoundation/AVFoundation.h>
 
+#import "NSString+Others.h"
+#import "NSObject+image.h"
+
 #import "TDTextCellNode.h"
 #import "TDImageCellNode.h"
 #import "TDNetImageCellNode.h"
@@ -40,9 +43,7 @@ typedef NS_ENUM(NSInteger, TDDemoRowType) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TextureDemoVC : ASDKViewController<ASTableNode *> <ASTableDataSource, ASTableDelegate>
-@property (nonatomic, strong) ASTableNode *tableNode;
-@property (nonatomic, strong) NSMutableArray<NSNumber *> *rows;
-@property (nonatomic, assign) BOOL hasMore;
+
 @end
 
 NS_ASSUME_NONNULL_END

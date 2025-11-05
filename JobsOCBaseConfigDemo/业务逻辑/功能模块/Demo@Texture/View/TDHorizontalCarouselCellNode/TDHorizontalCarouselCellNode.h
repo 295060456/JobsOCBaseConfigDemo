@@ -11,10 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TDHorizontalCarouselCellNode : ASCellNode <ASCollectionDataSource, ASCollectionDelegate>
-@property (nonatomic, strong) ASCollectionNode *collection;
-@property (nonatomic, strong) NSArray<NSNumber *> *items;
 
-- (instancetype)initWithCount:(NSInteger)count;
+Prop_strong()ASCollectionNode *collection;
+Prop_strong()NSArray<NSNumber *> *items;
+
+-(instancetype)initWithCount:(NSInteger)count;
 
 @end
 

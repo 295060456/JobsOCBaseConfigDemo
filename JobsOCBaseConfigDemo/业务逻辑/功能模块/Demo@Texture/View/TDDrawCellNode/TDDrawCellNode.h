@@ -9,10 +9,11 @@
 #import "TDDrawingNode.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-#pragma mark - Custom Drawing Node (Async displayWithParameters:)
+/// Custom Drawing Node (Async displayWithParameters:)
 @interface TDDrawCellNode : ASCellNode
-@property (nonatomic, strong) TDDrawingNode *canvas;
+
+Prop_strong()TDDrawingNode *canvas;
+
 @end
 
 NS_ASSUME_NONNULL_END

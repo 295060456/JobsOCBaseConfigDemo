@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (image)
 /// 获取本地GIF图像
 -(nullable UIImage *)gif_img;
+/// 获取系统内置图像
+-(nullable UIImage *)sys_img;
 /// 获取本地普通图像
 -(nullable UIImage *)img;
 /// 获取网络图像

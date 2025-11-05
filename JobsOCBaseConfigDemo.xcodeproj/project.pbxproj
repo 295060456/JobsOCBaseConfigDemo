@@ -21,6 +21,7 @@
 		045B59132EBB364E00CFBE3B /* TDTextCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B59002EBB364E00CFBE3B /* TDTextCellNode.m */; };
 		045B59142EBB364E00CFBE3B /* TDImageCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B58F72EBB364E00CFBE3B /* TDImageCellNode.m */; };
 		045B59182EBB387B00CFBE3B /* TDDrawingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B59172EBB387B00CFBE3B /* TDDrawingNode.m */; };
+		045FC5272EBB4F5B00C582C4 /* JobsControlTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FC5262EBB4F5B00C582C4 /* JobsControlTarget.m */; };
 		046CFA7A2E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */; };
 		046CFA7E2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */; };
 		047E48F92EB4537700881898 /* NSObject+image.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E48F82EB4537700881898 /* NSObject+image.m */; };
@@ -1346,6 +1347,8 @@
 		045B59072EBB364E00CFBE3B /* TextureDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextureDemoVC.m; sourceTree = "<group>"; };
 		045B59162EBB387B00CFBE3B /* TDDrawingNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDDrawingNode.h; sourceTree = "<group>"; };
 		045B59172EBB387B00CFBE3B /* TDDrawingNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDDrawingNode.m; sourceTree = "<group>"; };
+		045FC5252EBB4F5B00C582C4 /* JobsControlTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsControlTarget.h; sourceTree = "<group>"; };
+		045FC5262EBB4F5B00C582C4 /* JobsControlTarget.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsControlTarget.m; sourceTree = "<group>"; };
 		046CFA782E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBackgroundConfiguration+Extra.h"; sourceTree = "<group>"; };
 		046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBackgroundConfiguration+Extra.m"; sourceTree = "<group>"; };
 		046CFA7C2E978DF4005A88B4 /* UIButtonConfiguration+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButtonConfiguration+Extra.h"; sourceTree = "<group>"; };
@@ -4155,6 +4158,15 @@
 				04C442A32EB8AD82008E0F09 /* UITableView+DSL.m */,
 			);
 			path = "UITableView+DSL";
+			sourceTree = "<group>";
+		};
+		04D49C0C2EBB555400BCD6F1 /* JobsControlTarget */ = {
+			isa = PBXGroup;
+			children = (
+				045FC5252EBB4F5B00C582C4 /* JobsControlTarget.h */,
+				045FC5262EBB4F5B00C582C4 /* JobsControlTarget.m */,
+			);
+			path = JobsControlTarget;
 			sourceTree = "<group>";
 		};
 		064F8B1BE36F6BEECAF8233E /* Frameworks */ = {
@@ -9936,8 +9948,8 @@
 		C55C80202E167B6200B56985 /* NSURL+Category */ = {
 			isa = PBXGroup;
 			children = (
-				C55C80212E167B6200B56985 /* NSURL+Others.m */,
 				C55C80222E167B6200B56985 /* NSURL+Others.h */,
+				C55C80212E167B6200B56985 /* NSURL+Others.m */,
 			);
 			path = "NSURL+Category";
 			sourceTree = "<group>";
@@ -11027,8 +11039,8 @@
 		C55C81562E167B6300B56985 /* UIControl+Extra */ = {
 			isa = PBXGroup;
 			children = (
-				C55C81572E167B6300B56985 /* UIControl+Extra.m */,
 				C55C81582E167B6300B56985 /* UIControl+Extra.h */,
+				C55C81572E167B6300B56985 /* UIControl+Extra.m */,
 			);
 			path = "UIControl+Extra";
 			sourceTree = "<group>";
@@ -11581,6 +11593,7 @@
 			isa = PBXGroup;
 			children = (
 				C55C81F02E167B6300B56985 /* BaseObject.md */,
+				04D49C0C2EBB555400BCD6F1 /* JobsControlTarget */,
 				C55C82A82E167B6300B56985 /* 雪花算法 */,
 				C55C81F42E167B6300B56985 /* FileFolderHandleTool */,
 				C55C81F82E167B6300B56985 /* JobsAppTools */,
@@ -15596,11 +15609,11 @@
 		C55C86BA2E167B6500B56985 /* JobsBlock */ = {
 			isa = PBXGroup;
 			children = (
-				C55C86BC2E167B6500B56985 /* 不定参数的Block */,
+				C55C86BB2E167B6500B56985 /* JobsBlock.h */,
 				C55C86BF2E167B6500B56985 /* JobsBlockDef.h */,
 				C55C86C02E167B6500B56985 /* JobsBizBlock.h */,
 				C55C86C12E167B6500B56985 /* JobsBlock.md */,
-				C55C86BB2E167B6500B56985 /* JobsBlock.h */,
+				C55C86BC2E167B6500B56985 /* 不定参数的Block */,
 				C55C86C22E167B6500B56985 /* 确定参数的Block */,
 			);
 			path = JobsBlock;
@@ -18355,6 +18368,7 @@
 				C55C894B2E167B6900B56985 /* NSObject+DEV.m in Sources */,
 				C55C8C3E2E167B6C00B56985 /* NSObject+RunrtimeGet.m in Sources */,
 				C55C8C662E167B6C00B56985 /* UITextField+Animation.m in Sources */,
+				045FC5272EBB4F5B00C582C4 /* JobsControlTarget.m in Sources */,
 				C55C8B9E2E167B6B00B56985 /* UIViewController+SuspendBtn.m in Sources */,
 				C55C8BEA2E167B6B00B56985 /* JobsTuple.m in Sources */,
 				C55C8C332E167B6B00B56985 /* NSObject+UserNotifications.m in Sources */,

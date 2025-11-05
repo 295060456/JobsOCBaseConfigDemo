@@ -7,44 +7,26 @@
 
 #import "TextureDemoVC.h"
 
-static inline NSURL *TD_URL(NSString *s) { return [NSURL URLWithString:s]; }
-static NSArray<NSNumber *> *TD_AllRows(void) {
-    NSMutableArray *rows = [@[
-        @(TDDemoRowType_Text),
-        @(TDDemoRowType_LocalImage),
-        @(TDDemoRowType_NetImage),
-        @(TDDemoRowType_Button),
-        @(TDDemoRowType_EditableText),
-        @(TDDemoRowType_HCarousel),
-        @(TDDemoRowType_Video),
-        @(TDDemoRowType_Draw)
-    ] mutableCopy];
-#if HAS_MAPKIT
-    [rows insertObject:@(TDDemoRowType_Map) atIndex:7];
-#endif
-    return rows;
-}
-#pragma mark - ViewController
+@interface TextureDemoVC ()
+
+Prop_strong() ASTableNode *tableNode;
+Prop_strong() NSMutableArray<NSNumber *> *rows;
+Prop_assign() BOOL hasMore;
+
+@end
+
 @implementation TextureDemoVC
 
 - (instancetype)init {
-    _tableNode = [[ASTableNode alloc] initWithStyle:UITableViewStyleInsetGrouped];
-    if (self = [super initWithNode:_tableNode]) {
+    if (self = [super initWithNode:self.tableNode]) {
         self.title = @"Texture Demo (OC)";
-        self.node.backgroundColor = UIColor.systemBackgroundColor;
-
-        _tableNode.delegate = self;
-        _tableNode.dataSource = self;
-
-        // 范围/批量加载调优
-        _tableNode.leadingScreensForBatching = 2.0; // 提前两屏准备
-        _tableNode.view.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableNode.view.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-
-        _rows = TD_AllRows().mutableCopy;
         _hasMore = YES;
-    }
-    return self;
+    }return self;
+}
+
+-(void)loadView{
+    [super loadView];
+    self.node.backgroundColor = UIColor.systemBackgroundColor;
 }
 
 - (void)viewDidLoad {
@@ -54,26 +36,16 @@ static NSArray<NSNumber *> *TD_AllRows(void) {
         self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAutomatic;
         self.navigationController.navigationBar.prefersLargeTitles = YES;
     }
-    // 下拉刷新（系统 UIRefreshControl 也能配合 Texture）
-    UIRefreshControl *rc = [[UIRefreshControl alloc] init];
-    [rc addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
-    _tableNode.view.refreshControl = rc;
+    self.tableNode.inverted = NO;
 }
-
-- (void)onRefresh:(UIRefreshControl *)rc {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self->_rows = TD_AllRows().mutableCopy;
-        [self.tableNode reloadData];
-        [rc endRefreshing];
-    });
-}
-
 #pragma mark - ASTable DataSource (推荐使用 Block 创建以获得异步构建收益)
-- (NSInteger)tableNode:(ASTableNode *)tableNode numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableNode:(ASTableNode *)tableNode
+ numberOfRowsInSection:(NSInteger)section {
     return self.rows.count;
 }
 
-- (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (ASCellNodeBlock)tableNode:(ASTableNode *)tableNode
+  nodeBlockForRowAtIndexPath:(NSIndexPath *)indexPath {
     TDDemoRowType type = self.rows[indexPath.row].integerValue;
     return ^ASCellNode * _Nonnull{
         switch (type) {
@@ -81,10 +53,10 @@ static NSArray<NSNumber *> *TD_AllRows(void) {
                 return [[TDTextCellNode alloc] initWithTitle:@"ASTextNode：高性能异步文本"
                                                    subtitle:@"支持 Truncation/Highlight/Link/排版，多行异步绘制，避免主线程卡顿。"];
             case TDDemoRowType_LocalImage:
-                return [[TDImageCellNode alloc] initWithImage:[UIImage imageNamed:@"Sample"]
+                return [[TDImageCellNode alloc] initWithImage:@"Sample".img
                                                        title:@"Local Image + Ratio(16:9) + Overlay + Corner"];
             case TDDemoRowType_NetImage:
-                return [[TDNetImageCellNode alloc] initWithURL:TD_URL(@"https://picsum.photos/800/400")
+                return [[TDNetImageCellNode alloc] initWithURL:@"https://picsum.photos/800/400".jobsUrl
                                                           text:@"ASNetworkImageNode：支持默认图、占位渐隐、渐进式渲染、圆角裁切。"];
             case TDDemoRowType_Button:
                 return [[TDButtonCellNode alloc] init];
@@ -93,7 +65,7 @@ static NSArray<NSNumber *> *TD_AllRows(void) {
             case TDDemoRowType_HCarousel:
                 return [[TDHorizontalCarouselCellNode alloc] initWithCount:18];
             case TDDemoRowType_Video:
-                return [[TDVideoCellNode alloc] initWithURL:TD_URL(@"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+                return [[TDVideoCellNode alloc] initWithURL:@"https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4".jobsUrl
                                                       title:@"ASVideoNode：离屏解码、可见时准备，避免滚动卡顿。"];
 #if HAS_MAPKIT
             case TDDemoRowType_Map:
@@ -101,16 +73,16 @@ static NSArray<NSNumber *> *TD_AllRows(void) {
 #endif
             case TDDemoRowType_Draw:
                 return [[TDDrawCellNode alloc] init];
-        }
-        return [[ASCellNode alloc] init];
+        }return [[ASCellNode alloc] init];
     };
 }
-#pragma mark - ASTable Delegate (批量加载示例)
-- (BOOL)shouldBatchFetchForTableNode:(ASTableNode *)tableNode {
+#pragma mark —— ASTable Delegate (批量加载示例)
+-(BOOL)shouldBatchFetchForTableNode:(ASTableNode *)tableNode {
     return self.hasMore;
 }
 
-- (void)tableNode:(ASTableNode *)tableNode willBeginBatchFetchWithContext:(ASBatchContext *)context {
+-(void)tableNode:(ASTableNode *)tableNode
+willBeginBatchFetchWithContext:(ASBatchContext *)context {
     // 模拟分页拉取
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.9 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSInteger startCount = self.rows.count;
@@ -131,6 +103,49 @@ static NSArray<NSNumber *> *TD_AllRows(void) {
         [self.tableNode insertRowsAtIndexPaths:inserts withRowAnimation:UITableViewRowAnimationAutomatic];
         [context completeBatchFetching:YES];
     });
+}
+#pragma mark —— lazyLoad
+-(__kindof NSArray *)rows{
+    if(!_rows){
+        _rows = jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+            arr.add(@(TDDemoRowType_Text))
+            .add(@(TDDemoRowType_LocalImage))
+            .add(@(TDDemoRowType_NetImage))
+            .add(@(TDDemoRowType_Button))
+            .add(@(TDDemoRowType_EditableText))
+            .add(@(TDDemoRowType_HCarousel))
+            .add(@(TDDemoRowType_Video))
+            .add(@(TDDemoRowType_Draw));
+#if HAS_MAPKIT
+    [arr insertObject:@(TDDemoRowType_Map) atIndex:7];
+#endif
+        });
+    }return _rows;
+}
+
+-(ASTableNode *)tableNode{
+    if(!_tableNode){
+        _tableNode = [ASTableNode.alloc initWithStyle:UITableViewStyleInsetGrouped];
+        _tableNode.delegate = self;
+        _tableNode.dataSource = self;
+        // 范围/批量加载调优
+        _tableNode.leadingScreensForBatching = 2.0; // 提前两屏准备
+        _tableNode.view.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        _tableNode.view.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        // 下拉刷新（系统 UIRefreshControl 也能配合 Texture）
+        _tableNode.view.refreshControl = jobsMakeRefreshControl(^(__kindof UIRefreshControl * _Nullable refreshCtrl) {
+            [refreshCtrl jobs_onChange:^(UIRefreshControl *x) {
+                // 刷新逻辑…
+                @jobs_weakify(self)
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(0.8 * NSEC_PER_SEC)),
+                               dispatch_get_main_queue(), ^{
+                    @jobs_strongify(self)
+                    [self.tableNode reloadData];
+                    [x endRefreshing];
+                });
+            }];
+        });
+    }return _tableNode;
 }
 
 @end

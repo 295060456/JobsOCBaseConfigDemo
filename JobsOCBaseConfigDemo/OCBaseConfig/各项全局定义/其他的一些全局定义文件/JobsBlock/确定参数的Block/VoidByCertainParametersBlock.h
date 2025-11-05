@@ -22,7 +22,7 @@ typedef void(^jobsByClassBlock)(Class _Nonnull cls);
 #pragma mark —— 关于错误
 typedef void(^jobsByErrorBlock)(NSError *_Nullable error);
 #pragma mark —— 关于 UIControl
-typedef void(^jobsByControlBlock)(UIControl *_Nullable ctrl);
+typedef void(^jobsByControlBlock)(__kindof UIControl *_Nullable ctrl);
 #pragma mark —— 关于CALayer
 typedef void(^jobsByCAShapeLayerBlock)(__kindof CAShapeLayer *_Nullable layer);
 typedef void(^jobsByCALayerBlock)(__kindof CALayer *_Nullable layer);
@@ -46,6 +46,7 @@ typedef void(^jobsByScrollViewBlock)(__kindof UIScrollView *_Nullable scrollView
 typedef void(^jobsByBtnBlock)(__kindof UIButton *_Nullable btn);
 typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable window);
 typedef void(^jobsByLabelBlock)(__kindof UILabel *_Nullable label);
+typedef void(^jobsByUIRefreshControlBlock)(__kindof UIRefreshControl *_Nullable refreshCtrl);
 typedef void(^jobsByPDFViewBlock)(__kindof PDFView *_Nullable view);
 typedef void(^jobsByTabBarItemBlock)(__kindof UITabBarItem *_Nullable tabBarItem);
 typedef void(^jobsByNavigationItemBlock)(__kindof UINavigationItem *_Nullable navigationItem);
@@ -91,10 +92,8 @@ typedef void(^jobsByCorBlock)(UIColor *_Nullable cor);
 typedef void(^jobsByFontBlock)(UIFont *_Nullable font);
 #pragma mark —— 关于UI配置
 /// 按钮配置
-API_AVAILABLE(ios(15.0))
-typedef void(^jobsByButtonConfigurationBlock)(__kindof UIButtonConfiguration * _Nullable config);
-API_AVAILABLE(ios(14.0))
-typedef void(^jobsByBackgroundConfigurationBlock)(__kindof UIBackgroundConfiguration * _Nullable config);
+typedef void(^jobsByButtonConfigurationBlock)(__kindof UIButtonConfiguration * _Nullable config) API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos);
+typedef void(^jobsByBackgroundConfigurationBlock)(__kindof UIBackgroundConfiguration * _Nullable config) API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos);
 /// UICollectionView配置
 typedef void(^jobsByCollectionViewFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable layout);
 #pragma mark —— URL
@@ -147,6 +146,36 @@ typedef void(^jobsByDateComponentsBlock)(NSDateComponents *_Nullable dateCompone
 typedef void(^jobsByTimerBlock)(NSTimer *_Nullable timer);
 typedef void(^jobsByDateFormatterBlock)(__kindof NSDateFormatter *_Nullable dateFormatter);
 typedef void(^jobsByNotificationResponseBlock)(UNNotificationResponse *_Nullable response);
+#pragma mark —— 关于Texture
+@class ASButtonNode;
+typedef void(^jobsByButtonNodeBlock)(ASButtonNode *_Nullable node);
+@class TDDrawingNode;
+typedef void(^jobsByDrawingNodeBlock)(TDDrawingNode *_Nullable node);
+@class ASEditableTextNode;
+typedef void(^jobsByEditableTextNodeBlock)(ASEditableTextNode *_Nullable node);
+@class ASCollectionNode;
+typedef void(^jobsByCollectionNodeBlock)(ASCollectionNode *_Nullable node);
+@class ASDisplayNode;
+typedef void(^jobsByDisplayNodeBlock)(ASDisplayNode *_Nullable node);
+@class ASImageNode;
+typedef void(^jobsByImageNodeBlock)(ASImageNode *_Nullable node);
+@class ASMapNode;
+typedef void(^jobsByMapNodeBlock)(ASMapNode *_Nullable node);
+@class ASNetworkImageNode;
+typedef void(^jobsByNetworkImageNodeBlock)(ASNetworkImageNode *_Nullable node);
+@class ASTextNode;
+typedef void(^jobsByTextNodeBlock)(ASTextNode *_Nullable node);
+@class ASVideoNode;
+typedef void(^jobsByVideoNodeBlock)(ASVideoNode *_Nullable node);
+@class ASTableNode;
+typedef void(^jobsByTableNodeBlock)(ASTableNode *_Nullable node);
+@class ASScrollNode;
+typedef void(^jobsByScrollNodeBlock)(ASScrollNode *_Nullable node);
+@class ASCellNode;
+typedef void(^jobsByCellNodeBlock)(ASCellNode *_Nullable node);
+@class ASStackLayoutSpec;
+typedef void(^jobsByStackLayoutSpecBlock)(ASStackLayoutSpec *_Nullable layout);
+
 #pragma mark —— 其他
 typedef void(^jobsByShadowBlock)(__kindof NSShadow *_Nullable shadow);
 typedef void(^jobsByLockBlock)(NSLock *_Nullable lock);

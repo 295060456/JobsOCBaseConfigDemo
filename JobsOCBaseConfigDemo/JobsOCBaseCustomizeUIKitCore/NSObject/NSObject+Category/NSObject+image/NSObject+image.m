@@ -18,6 +18,21 @@
         }return image;
     }else return nil;
 }
+/// 获取系统内置图像
+-(nullable UIImage *)sys_img{
+    if([self isKindOfClass:NSString.class]){
+        NSString *SELF = (NSString *)self;
+        NSString *raw = [SELF stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+        if (!isValue(raw)) { return nil; }
+        /// 拒绝网络：同步接口不触网
+        if (SELF.isContainsUrl) { return nil; }
+        UIImage *named = [UIImage systemImageNamed:raw];
+        if (named) { return named; }
+        if (!named && isValue(self)) {
+            JobsLog(@"文件名为%@的图片获取失败，请检查", self);
+        }return nil;
+    }else return nil;
+}
 /// 获取本地普通图像
 -(nullable UIImage *)img{
     if([self isKindOfClass:NSString.class]){

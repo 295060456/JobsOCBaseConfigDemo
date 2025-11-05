@@ -17,13 +17,9 @@ BaseViewProtocol_synthesize
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = self.backgroundColor ? :JobsBlackColor;
-
-        [self addTarget:self
-    touchUpInsideAction:[self jobsSelectorBlock:^id _Nullable(id _Nullable weakSelf,
-                                                              id _Nullable arg) {
+        [self jobs_onChange:^(__kindof UIControl * _Nullable ctrl) {
             JobsLog(@"Hello Jobs");
-            return nil;
-        }]];
+        }];
         self.cornerCutToCircleWithCornerRadius(JobsWidth(8));
     }return self;
 }
