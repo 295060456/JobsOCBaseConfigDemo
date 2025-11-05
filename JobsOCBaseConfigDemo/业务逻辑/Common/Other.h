@@ -79,7 +79,7 @@
 #import "UITBVCellFoldVC.h"
 #import "PicToStrStoreVC.h"
 #import "CtrlClipboardCueVC.h"
-//#import "TextureDemoVC.h"
+#import "TextureDemoVC.h"
 #import "LocalNotificationsVC.h"
 #import "ExcelVC.h"
 #import "JobsViewNavigatorTestVC.h"
