@@ -3995,13 +3995,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C53BE3B62E265E1F004A72BE /* Flutter */ = {
+		C53BE3B62E265E1F004A72BE /* Demo@Flutter */ = {
 			isa = PBXGroup;
 			children = (
 				C53BE3BE2E265E9A004A72BE /* WebViewController */,
 				C53BE3B72E265E2D004A72BE /* NativeWebViewPlugin */,
 			);
-			path = Flutter;
+			path = "Demo@Flutter";
 			sourceTree = "<group>";
 		};
 		C53BE3B72E265E2D004A72BE /* NativeWebViewPlugin */ = {
@@ -4681,76 +4681,76 @@
 		C55C7AB92E167B5D00B56985 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
-				C53BE3B62E265E1F004A72BE /* Flutter */,
-				C55C7B6D2E167B5E00B56985 /* 本地通知 */,
-				C55C7B8F2E167B5E00B56985 /* 测试剪切板提示关闭 */,
-				C55C7D242E167B5F00B56985 /* 抽奖轮盘 */,
-				C55C7C902E167B5E00B56985 /* 当文本超出的时候，滚动展现文字的Label */,
-				C55C7CB62E167B5E00B56985 /* 多语言切换 */,
-				C55C7B752E167B5E00B56985 /* 发帖功能 */,
-				C55C7D492E167B5F00B56985 /* 横屏UI切换 */,
-				C55C7B872E167B5E00B56985 /* 热更新 */,
-				C55C7B382E167B5D00B56985 /* 日历功能模块 */,
-				C55C7C812E167B5E00B56985 /* 设置手势密码 */,
-				C55C7DC12E167B5F00B56985 /* 竖形菜单选择功能 */,
-				C55C7BD72E167B5E00B56985 /* 数据库 */,
-				C55C7D7E2E167B5F00B56985 /* 随机数测试模块 */,
-				C55C7CEB2E167B5F00B56985 /* 探究猿题库网络框架（YTKNetwork） */,
-				C55C7D722E167B5F00B56985 /* 图片字符串化（加盐）存取 */,
-				C55C7B642E167B5E00B56985 /* 文字前面小圆点 */,
-				C55C7D512E167B5F00B56985 /* 相册选取图片和视频 */,
-				C55C7B072E167B5D00B56985 /* 在 Objective-C 中实现协议扩展 */,
-				C55C7B5C2E167B5D00B56985 /* 字符串解压缩 */,
-				C55C7DF52E167B5F00B56985 /* 自定义UITableViewCell内置控件距离并添加复制按钮 */,
-				C55C7ABA2E167B5D00B56985 /* App图标切换 */,
-				C55C7E562E167B6000B56985 /* CoreTextLearning */,
-				C55C7B7F2E167B5E00B56985 /* CXB */,
-				C55C7CC52E167B5E00B56985 /* Douyin_ZFPlayer */,
-				C55C7B982E167B5E00B56985 /* DynamicView */,
-				C55C7BFD2E167B5E00B56985 /* Excel */,
-				C55C7B342E167B5D00B56985 /* GXCardViewDemo */,
-				C55C7C992E167B5E00B56985 /* JobsAppDoor-2 */,
-				C55C7D972E167B5F00B56985 /* JobsComment */,
-				C55C7CBE2E167B5E00B56985 /* JobsDropDownList */,
-				C55C7CE22E167B5F00B56985 /* JobsEmptyDataView */,
-				C55C7E0C2E167B5F00B56985 /* JobsIM */,
-				C55C7ADC2E167B5D00B56985 /* JobsSearchCore */,
-				C55C7BCC2E167B5E00B56985 /* JobsTestVC */,
-				C55C7BEB2E167B5E00B56985 /* JobsTimer */,
-				C55C7BF32E167B5E00B56985 /* JobsViewNavigator */,
-				C55C7C892E167B5E00B56985 /* JXCategoryPopup */,
-				C55C7BCF2E167B5E00B56985 /* JXCategoryView垂直表达 */,
-				C55C7BA02E167B5E00B56985 /* JXCategoryView下拉headerView变大 */,
-				C55C7AD42E167B5D00B56985 /* Masonry的应用与实践 */,
-				C55C7D592E167B5F00B56985 /* NSProxy功能探究（只有在OC里面OK） */,
-				C55C7CB32E167B5E00B56985 /* NSTimerManager模块测试 */,
-				C55C7D862E167B5F00B56985 /* OC动态添加类、方法列表、属性列表 */,
-				C55C7AC22E167B5D00B56985 /* PeekAndPop */,
-				C55C7B4F2E167B5D00B56985 /* Progress */,
-				C55C7B1E2E167B5D00B56985 /* PushTransformAnimation */,
-				C55C7D552E167B5F00B56985 /* TestBaseLabel */,
-				C55C7CC12E167B5E00B56985 /* TestIrregularView */,
-				C55C7E082E167B5F00B56985 /* TestLabel */,
-				C55C7D932E167B5F00B56985 /* TransparentRegion */,
-				C55C7B582E167B5D00B56985 /* UIButton子控件的排布 */,
-				C55C7E002E167B5F00B56985 /* UICollectionView实现重叠的卡包效果 */,
-				C55C7D8F2E167B5F00B56985 /* UILabel文字旋转 */,
-				C55C7B142E167B5D00B56985 /* UIPresentationController的使用 */,
-				C55C7D352E167B5F00B56985 /* UITableViewCell的折叠效果 */,
-				C55C7C6F2E167B5E00B56985 /* UITableViewCellEditorVC */,
-				C55C7B412E167B5D00B56985 /* Widget */,
+				C53BE3B62E265E1F004A72BE /* Demo@Flutter */,
+				C55C7B6D2E167B5E00B56985 /* Demo@本地通知 */,
+				C55C7B8F2E167B5E00B56985 /* Demo@测试剪切板提示关闭 */,
+				C55C7D242E167B5F00B56985 /* Demo@抽奖轮盘 */,
+				C55C7C902E167B5E00B56985 /* Demo@当文本超出的时候，滚动展现文字的Label */,
+				C55C7CB62E167B5E00B56985 /* Demo@多语言切换 */,
+				C55C7B752E167B5E00B56985 /* Demo@发帖功能 */,
+				C55C7D492E167B5F00B56985 /* Demo@横屏UI切换 */,
+				C55C7B872E167B5E00B56985 /* Demo@热更新 */,
+				C55C7B382E167B5D00B56985 /* Demo@日历功能模块 */,
+				C55C7C812E167B5E00B56985 /* Demo@设置手势密码 */,
+				C55C7DC12E167B5F00B56985 /* Demo@竖形菜单选择功能 */,
+				C55C7BD72E167B5E00B56985 /* Demo@数据库 */,
+				C55C7D7E2E167B5F00B56985 /* Demo@随机数测试模块 */,
+				C55C7CEB2E167B5F00B56985 /* Demo@探究猿题库网络框架（YTKNetwork） */,
+				C55C7D722E167B5F00B56985 /* Demo@图片字符串化（加盐）存取 */,
+				C55C7B642E167B5E00B56985 /* Demo@文字前面小圆点 */,
+				C55C7D512E167B5F00B56985 /* Demo@相册选取图片和视频 */,
+				C55C7B072E167B5D00B56985 /* Demo@在Objc中实现协议扩展 */,
+				C55C7B5C2E167B5D00B56985 /* Demo@字符串解压缩 */,
+				C55C7DF52E167B5F00B56985 /* Demo@自定义UITableViewCell内置控件距离并添加复制按钮 */,
+				C55C7ABA2E167B5D00B56985 /* Demo@App图标切换 */,
+				C55C7E562E167B6000B56985 /* Demo@CoreTextLearning */,
+				C55C7B7F2E167B5E00B56985 /* Demo@CXB */,
+				C55C7CC52E167B5E00B56985 /* Demo@Douyin_ZFPlayer */,
+				C55C7B982E167B5E00B56985 /* Demo@DynamicView */,
+				C55C7BFD2E167B5E00B56985 /* Demo@Excel */,
+				C55C7B342E167B5D00B56985 /* Demo@GXCardViewDemo */,
+				C55C7C992E167B5E00B56985 /* Demo@JobsAppDoor-2 */,
+				C55C7D972E167B5F00B56985 /* Demo@JobsComment */,
+				C55C7CBE2E167B5E00B56985 /* Demo@JobsDropDownList */,
+				C55C7CE22E167B5F00B56985 /* Demo@JobsEmptyDataView */,
+				C55C7E0C2E167B5F00B56985 /* Demo@JobsIM */,
+				C55C7ADC2E167B5D00B56985 /* Demo@JobsSearchCore */,
+				C55C7BCC2E167B5E00B56985 /* Demo@JobsTestVC */,
+				C55C7BEB2E167B5E00B56985 /* Demo@JobsTimer */,
+				C55C7BF32E167B5E00B56985 /* Demo@JobsViewNavigator */,
+				C55C7C892E167B5E00B56985 /* Demo@JXCategoryPopup */,
+				C55C7BCF2E167B5E00B56985 /* Demo@JXCategoryView垂直表达 */,
+				C55C7BA02E167B5E00B56985 /* Demo@JXCategoryView下拉headerView变大 */,
+				C55C7AD42E167B5D00B56985 /* Demo@Masonry的应用与实践 */,
+				C55C7D592E167B5F00B56985 /* Demo@NSProxy功能探究（只有在OC里面OK） */,
+				C55C7CB32E167B5E00B56985 /* Demo@NSTimerManager模块测试 */,
+				C55C7D862E167B5F00B56985 /* Demo@OC动态添加类、方法列表、属性列表 */,
+				C55C7AC22E167B5D00B56985 /* Demo@PeekAndPop */,
+				C55C7B4F2E167B5D00B56985 /* Demo@Progress */,
+				C55C7B1E2E167B5D00B56985 /* Demo@PushTransformAnimation */,
+				C55C7D552E167B5F00B56985 /* Demo@TestBaseLabel */,
+				C55C7CC12E167B5E00B56985 /* Demo@TestIrregularView */,
+				C55C7E082E167B5F00B56985 /* Demo@TestLabel */,
+				C55C7D932E167B5F00B56985 /* Demo@TransparentRegion */,
+				C55C7B582E167B5D00B56985 /* Demo@UIButton子控件的排布 */,
+				C55C7E002E167B5F00B56985 /* Demo@UICollectionView实现重叠的卡包效果 */,
+				C55C7D8F2E167B5F00B56985 /* Demo@UILabel文字旋转 */,
+				C55C7B142E167B5D00B56985 /* Demo@UIPresentationController的使用 */,
+				C55C7D352E167B5F00B56985 /* Demo@UITableViewCell的折叠效果 */,
+				C55C7C6F2E167B5E00B56985 /* Demo@UITableViewCellEditorVC */,
+				C55C7B412E167B5D00B56985 /* Demo@Widget */,
 			);
 			path = "功能模块";
 			sourceTree = "<group>";
 		};
-		C55C7ABA2E167B5D00B56985 /* App图标切换 */ = {
+		C55C7ABA2E167B5D00B56985 /* Demo@App图标切换 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7ABB2E167B5D00B56985 /* Model */,
 				C55C7ABD2E167B5D00B56985 /* View */,
 				C55C7ABF2E167B5D00B56985 /* ViewController */,
 			);
-			path = "App图标切换";
+			path = "Demo@App图标切换";
 			sourceTree = "<group>";
 		};
 		C55C7ABB2E167B5D00B56985 /* Model */ = {
@@ -4776,14 +4776,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7AC22E167B5D00B56985 /* PeekAndPop */ = {
+		C55C7AC22E167B5D00B56985 /* Demo@PeekAndPop */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7AC32E167B5D00B56985 /* Model */,
 				C55C7AC52E167B5D00B56985 /* View */,
 				C55C7AC72E167B5D00B56985 /* ViewController */,
 			);
-			path = PeekAndPop;
+			path = "Demo@PeekAndPop";
 			sourceTree = "<group>";
 		};
 		C55C7AC32E167B5D00B56985 /* Model */ = {
@@ -4847,13 +4847,13 @@
 			path = MyTableVC;
 			sourceTree = "<group>";
 		};
-		C55C7AD42E167B5D00B56985 /* Masonry的应用与实践 */ = {
+		C55C7AD42E167B5D00B56985 /* Demo@Masonry的应用与实践 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7AD52E167B5D00B56985 /* MasonryVC */,
 				C55C7AD82E167B5D00B56985 /* MSMineView2 */,
 			);
-			path = "Masonry的应用与实践";
+			path = "Demo@Masonry的应用与实践";
 			sourceTree = "<group>";
 		};
 		C55C7AD52E167B5D00B56985 /* MasonryVC */ = {
@@ -4875,7 +4875,7 @@
 			path = MSMineView2;
 			sourceTree = "<group>";
 		};
-		C55C7ADC2E167B5D00B56985 /* JobsSearchCore */ = {
+		C55C7ADC2E167B5D00B56985 /* Demo@JobsSearchCore */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7AE02E167B5D00B56985 /* JobsSearchConfig.h */,
@@ -4883,7 +4883,7 @@
 				C55C7AFF2E167B5D00B56985 /* Resource */,
 				C55C7AE12E167B5D00B56985 /* View */,
 			);
-			path = JobsSearchCore;
+			path = "Demo@JobsSearchCore";
 			sourceTree = "<group>";
 		};
 		C55C7ADD2E167B5D00B56985 /* JobsSearchVC */ = {
@@ -5010,12 +5010,12 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		C55C7B072E167B5D00B56985 /* 在 Objective-C 中实现协议扩展 */ = {
+		C55C7B072E167B5D00B56985 /* Demo@在Objc中实现协议扩展 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B082E167B5D00B56985 /* ProtocolKitVC */,
 			);
-			path = "在 Objective-C 中实现协议扩展";
+			path = "Demo@在Objc中实现协议扩展";
 			sourceTree = "<group>";
 		};
 		C55C7B082E167B5D00B56985 /* ProtocolKitVC */ = {
@@ -5057,14 +5057,14 @@
 			path = "作者原版";
 			sourceTree = "<group>";
 		};
-		C55C7B142E167B5D00B56985 /* UIPresentationController的使用 */ = {
+		C55C7B142E167B5D00B56985 /* Demo@UIPresentationController的使用 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B182E167B5D00B56985 /* JobsPresentationCtrl */,
 				C55C7B152E167B5D00B56985 /* JobsPresentedVC */,
 				C55C7B1B2E167B5D00B56985 /* JobsPresentingVC */,
 			);
-			path = "UIPresentationController的使用";
+			path = "Demo@UIPresentationController的使用";
 			sourceTree = "<group>";
 		};
 		C55C7B152E167B5D00B56985 /* JobsPresentedVC */ = {
@@ -5094,7 +5094,7 @@
 			path = JobsPresentingVC;
 			sourceTree = "<group>";
 		};
-		C55C7B1E2E167B5D00B56985 /* PushTransformAnimation */ = {
+		C55C7B1E2E167B5D00B56985 /* Demo@PushTransformAnimation */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B292E167B5D00B56985 /* A_VC */,
@@ -5103,7 +5103,7 @@
 				C55C7B1F2E167B5D00B56985 /* MyFansTBVCell */,
 				C55C7B2F2E167B5D00B56985 /* Resource */,
 			);
-			path = PushTransformAnimation;
+			path = "Demo@PushTransformAnimation";
 			sourceTree = "<group>";
 		};
 		C55C7B1F2E167B5D00B56985 /* MyFansTBVCell */ = {
@@ -5171,24 +5171,24 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		C55C7B342E167B5D00B56985 /* GXCardViewDemo */ = {
+		C55C7B342E167B5D00B56985 /* Demo@GXCardViewDemo */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B362E167B5D00B56985 /* 有问题.md */,
 				C55C7B372E167B5D00B56985 /* GXCardViewDemoVC.h */,
 				C55C7B352E167B5D00B56985 /* GXCardViewDemoVC.m */,
 			);
-			path = GXCardViewDemo;
+			path = "Demo@GXCardViewDemo";
 			sourceTree = "<group>";
 		};
-		C55C7B382E167B5D00B56985 /* 日历功能模块 */ = {
+		C55C7B382E167B5D00B56985 /* Demo@日历功能模块 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B392E167B5D00B56985 /* Model */,
 				C55C7B3B2E167B5D00B56985 /* View */,
 				C55C7B3D2E167B5D00B56985 /* ViewController */,
 			);
-			path = "日历功能模块";
+			path = "Demo@日历功能模块";
 			sourceTree = "<group>";
 		};
 		C55C7B392E167B5D00B56985 /* Model */ = {
@@ -5214,14 +5214,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7B412E167B5D00B56985 /* Widget */ = {
+		C55C7B412E167B5D00B56985 /* Demo@Widget */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B432E167B5D00B56985 /* Model */,
 				C55C7B452E167B5D00B56985 /* View */,
 				C55C7B472E167B5D00B56985 /* ViewController */,
 			);
-			path = Widget;
+			path = "Demo@Widget";
 			sourceTree = "<group>";
 		};
 		C55C7B432E167B5D00B56985 /* Model */ = {
@@ -5247,13 +5247,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7B4F2E167B5D00B56985 /* Progress */ = {
+		C55C7B4F2E167B5D00B56985 /* Demo@Progress */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B502E167B5D00B56985 /* PHCycleView */,
 				C55C7B532E167B5D00B56985 /* ProgressVC */,
 			);
-			path = Progress;
+			path = "Demo@Progress";
 			sourceTree = "<group>";
 		};
 		C55C7B502E167B5D00B56985 /* PHCycleView */ = {
@@ -5274,12 +5274,12 @@
 			path = ProgressVC;
 			sourceTree = "<group>";
 		};
-		C55C7B582E167B5D00B56985 /* UIButton子控件的排布 */ = {
+		C55C7B582E167B5D00B56985 /* Demo@UIButton子控件的排布 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B592E167B5D00B56985 /* ViewController */,
 			);
-			path = "UIButton子控件的排布";
+			path = "Demo@UIButton子控件的排布";
 			sourceTree = "<group>";
 		};
 		C55C7B592E167B5D00B56985 /* ViewController */ = {
@@ -5291,14 +5291,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7B5C2E167B5D00B56985 /* 字符串解压缩 */ = {
+		C55C7B5C2E167B5D00B56985 /* Demo@字符串解压缩 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B5D2E167B5D00B56985 /* Model */,
 				C55C7B5F2E167B5E00B56985 /* View */,
 				C55C7B612E167B5E00B56985 /* ViewController */,
 			);
-			path = "字符串解压缩";
+			path = "Demo@字符串解压缩";
 			sourceTree = "<group>";
 		};
 		C55C7B5D2E167B5D00B56985 /* Model */ = {
@@ -5324,14 +5324,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7B642E167B5E00B56985 /* 文字前面小圆点 */ = {
+		C55C7B642E167B5E00B56985 /* Demo@文字前面小圆点 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B652E167B5E00B56985 /* Model */,
 				C55C7B672E167B5E00B56985 /* View */,
 				C55C7B692E167B5E00B56985 /* ViewController */,
 			);
-			path = "文字前面小圆点";
+			path = "Demo@文字前面小圆点";
 			sourceTree = "<group>";
 		};
 		C55C7B652E167B5E00B56985 /* Model */ = {
@@ -5357,14 +5357,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7B6D2E167B5E00B56985 /* 本地通知 */ = {
+		C55C7B6D2E167B5E00B56985 /* Demo@本地通知 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B6E2E167B5E00B56985 /* Model */,
 				C55C7B702E167B5E00B56985 /* View */,
 				C55C7B722E167B5E00B56985 /* ViewController */,
 			);
-			path = "本地通知";
+			path = "Demo@本地通知";
 			sourceTree = "<group>";
 		};
 		C55C7B6E2E167B5E00B56985 /* Model */ = {
@@ -5390,14 +5390,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7B752E167B5E00B56985 /* 发帖功能 */ = {
+		C55C7B752E167B5E00B56985 /* Demo@发帖功能 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B7A2E167B5E00B56985 /* 发帖.png */,
 				C55C7B762E167B5E00B56985 /* View */,
 				C55C7B7B2E167B5E00B56985 /* ViewController */,
 			);
-			path = "发帖功能";
+			path = "Demo@发帖功能";
 			sourceTree = "<group>";
 		};
 		C55C7B762E167B5E00B56985 /* View */ = {
@@ -5434,14 +5434,14 @@
 			path = JobsPostVC;
 			sourceTree = "<group>";
 		};
-		C55C7B7F2E167B5E00B56985 /* CXB */ = {
+		C55C7B7F2E167B5E00B56985 /* Demo@CXB */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B802E167B5E00B56985 /* layout.h */,
 				C55C7B812E167B5E00B56985 /* View */,
 				C55C7B842E167B5E00B56985 /* ViewController */,
 			);
-			path = CXB;
+			path = "Demo@CXB";
 			sourceTree = "<group>";
 		};
 		C55C7B812E167B5E00B56985 /* View */ = {
@@ -5462,14 +5462,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7B872E167B5E00B56985 /* 热更新 */ = {
+		C55C7B872E167B5E00B56985 /* Demo@热更新 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B882E167B5E00B56985 /* Model */,
 				C55C7B8A2E167B5E00B56985 /* View */,
 				C55C7B8C2E167B5E00B56985 /* ViewController */,
 			);
-			path = "热更新";
+			path = "Demo@热更新";
 			sourceTree = "<group>";
 		};
 		C55C7B882E167B5E00B56985 /* Model */ = {
@@ -5495,14 +5495,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7B8F2E167B5E00B56985 /* 测试剪切板提示关闭 */ = {
+		C55C7B8F2E167B5E00B56985 /* Demo@测试剪切板提示关闭 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B902E167B5E00B56985 /* Model */,
 				C55C7B922E167B5E00B56985 /* View */,
 				C55C7B942E167B5E00B56985 /* ViewController */,
 			);
-			path = "测试剪切板提示关闭";
+			path = "Demo@测试剪切板提示关闭";
 			sourceTree = "<group>";
 		};
 		C55C7B902E167B5E00B56985 /* Model */ = {
@@ -5536,14 +5536,14 @@
 			path = CtrlClipboardCueVC;
 			sourceTree = "<group>";
 		};
-		C55C7B982E167B5E00B56985 /* DynamicView */ = {
+		C55C7B982E167B5E00B56985 /* Demo@DynamicView */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7B992E167B5E00B56985 /* Model */,
 				C55C7B9B2E167B5E00B56985 /* View */,
 				C55C7B9D2E167B5E00B56985 /* ViewController */,
 			);
-			path = DynamicView;
+			path = "Demo@DynamicView";
 			sourceTree = "<group>";
 		};
 		C55C7B992E167B5E00B56985 /* Model */ = {
@@ -5569,13 +5569,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7BA02E167B5E00B56985 /* JXCategoryView下拉headerView变大 */ = {
+		C55C7BA02E167B5E00B56985 /* Demo@JXCategoryView下拉headerView变大 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7BA12E167B5E00B56985 /* View */,
 				C55C7BC22E167B5E00B56985 /* ViewController */,
 			);
-			path = "JXCategoryView下拉headerView变大";
+			path = "Demo@JXCategoryView下拉headerView变大";
 			sourceTree = "<group>";
 		};
 		C55C7BA12E167B5E00B56985 /* View */ = {
@@ -5717,23 +5717,23 @@
 			path = BaiShaETProjMembersSubsBaseVC;
 			sourceTree = "<group>";
 		};
-		C55C7BCC2E167B5E00B56985 /* JobsTestVC */ = {
+		C55C7BCC2E167B5E00B56985 /* Demo@JobsTestVC */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7BCE2E167B5E00B56985 /* JobsTestVC.h */,
 				C55C7BCD2E167B5E00B56985 /* JobsTestVC.m */,
 			);
-			path = JobsTestVC;
+			path = "Demo@JobsTestVC";
 			sourceTree = "<group>";
 		};
-		C55C7BCF2E167B5E00B56985 /* JXCategoryView垂直表达 */ = {
+		C55C7BCF2E167B5E00B56985 /* Demo@JXCategoryView垂直表达 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7BD62E167B5E00B56985 /* JXCategoryView垂直表达.png */,
 				C55C7BD32E167B5E00B56985 /* JXCategoryViewVerticalShowSubBaseVC */,
 				C55C7BD02E167B5E00B56985 /* JXCategoryViewVerticalShowVC */,
 			);
-			path = "JXCategoryView垂直表达";
+			path = "Demo@JXCategoryView垂直表达";
 			sourceTree = "<group>";
 		};
 		C55C7BD02E167B5E00B56985 /* JXCategoryViewVerticalShowVC */ = {
@@ -5754,14 +5754,14 @@
 			path = JXCategoryViewVerticalShowSubBaseVC;
 			sourceTree = "<group>";
 		};
-		C55C7BD72E167B5E00B56985 /* 数据库 */ = {
+		C55C7BD72E167B5E00B56985 /* Demo@数据库 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7BD82E167B5E00B56985 /* Core Data */,
 				C55C7BDC2E167B5E00B56985 /* FMDB */,
 				C55C7BE32E167B5E00B56985 /* Realm */,
 			);
-			path = "数据库";
+			path = "Demo@数据库";
 			sourceTree = "<group>";
 		};
 		C55C7BD82E167B5E00B56985 /* Core Data */ = {
@@ -5843,13 +5843,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7BEB2E167B5E00B56985 /* JobsTimer */ = {
+		C55C7BEB2E167B5E00B56985 /* Demo@JobsTimer */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7BEC2E167B5E00B56985 /* View */,
 				C55C7BEF2E167B5E00B56985 /* ViewController */,
 			);
-			path = JobsTimer;
+			path = "Demo@JobsTimer";
 			sourceTree = "<group>";
 		};
 		C55C7BEC2E167B5E00B56985 /* View */ = {
@@ -5878,14 +5878,14 @@
 			path = JobsTimerVC;
 			sourceTree = "<group>";
 		};
-		C55C7BF32E167B5E00B56985 /* JobsViewNavigator */ = {
+		C55C7BF32E167B5E00B56985 /* Demo@JobsViewNavigator */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7BF42E167B5E00B56985 /* Model */,
 				C55C7BF62E167B5E00B56985 /* View */,
 				C55C7BFA2E167B5E00B56985 /* ViewController */,
 			);
-			path = JobsViewNavigator;
+			path = "Demo@JobsViewNavigator";
 			sourceTree = "<group>";
 		};
 		C55C7BF42E167B5E00B56985 /* Model */ = {
@@ -5921,14 +5921,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7BFD2E167B5E00B56985 /* Excel */ = {
+		C55C7BFD2E167B5E00B56985 /* Demo@Excel */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7C062E167B5E00B56985 /* Excel-JobsExcelView */,
 				C55C7C2C2E167B5E00B56985 /* Excel-SpreadsheetView */,
 				C55C7BFE2E167B5E00B56985 /* ExcelVC */,
 			);
-			path = Excel;
+			path = "Demo@Excel";
 			sourceTree = "<group>";
 		};
 		C55C7BFE2E167B5E00B56985 /* ExcelVC */ = {
@@ -6353,14 +6353,14 @@
 			path = ZMJClassDataVC;
 			sourceTree = "<group>";
 		};
-		C55C7C6F2E167B5E00B56985 /* UITableViewCellEditorVC */ = {
+		C55C7C6F2E167B5E00B56985 /* Demo@UITableViewCellEditorVC */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7C702E167B5E00B56985 /* Model */,
 				C55C7C742E167B5E00B56985 /* View */,
 				C55C7C792E167B5E00B56985 /* ViewController */,
 			);
-			path = UITableViewCellEditorVC;
+			path = "Demo@UITableViewCellEditorVC";
 			sourceTree = "<group>";
 		};
 		C55C7C702E167B5E00B56985 /* Model */ = {
@@ -6426,14 +6426,14 @@
 			path = "消息详情页";
 			sourceTree = "<group>";
 		};
-		C55C7C812E167B5E00B56985 /* 设置手势密码 */ = {
+		C55C7C812E167B5E00B56985 /* Demo@设置手势密码 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7C822E167B5E00B56985 /* 设置手势密码.png */,
 				C55C7C832E167B5E00B56985 /* JobsMembersSubsBaseVC */,
 				C55C7C862E167B5E00B56985 /* JobsSettingGestureVC */,
 			);
-			path = "设置手势密码";
+			path = "Demo@设置手势密码";
 			sourceTree = "<group>";
 		};
 		C55C7C832E167B5E00B56985 /* JobsMembersSubsBaseVC */ = {
@@ -6454,13 +6454,13 @@
 			path = JobsSettingGestureVC;
 			sourceTree = "<group>";
 		};
-		C55C7C892E167B5E00B56985 /* JXCategoryPopup */ = {
+		C55C7C892E167B5E00B56985 /* Demo@JXCategoryPopup */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7C8A2E167B5E00B56985 /* JXCategoryPopupSubVC */,
 				C55C7C8D2E167B5E00B56985 /* JXCategoryPopupVC */,
 			);
-			path = JXCategoryPopup;
+			path = "Demo@JXCategoryPopup";
 			sourceTree = "<group>";
 		};
 		C55C7C8A2E167B5E00B56985 /* JXCategoryPopupSubVC */ = {
@@ -6481,14 +6481,14 @@
 			path = JXCategoryPopupVC;
 			sourceTree = "<group>";
 		};
-		C55C7C902E167B5E00B56985 /* 当文本超出的时候，滚动展现文字的Label */ = {
+		C55C7C902E167B5E00B56985 /* Demo@当文本超出的时候，滚动展现文字的Label */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7C912E167B5E00B56985 /* Model */,
 				C55C7C932E167B5E00B56985 /* View */,
 				C55C7C952E167B5E00B56985 /* ViewController */,
 			);
-			path = "当文本超出的时候，滚动展现文字的Label";
+			path = "Demo@当文本超出的时候，滚动展现文字的Label";
 			sourceTree = "<group>";
 		};
 		C55C7C912E167B5E00B56985 /* Model */ = {
@@ -6514,13 +6514,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7C992E167B5E00B56985 /* JobsAppDoor-2 */ = {
+		C55C7C992E167B5E00B56985 /* Demo@JobsAppDoor-2 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7C9A2E167B5E00B56985 /* View */,
 				C55C7CAC2E167B5E00B56985 /* ViewController */,
 			);
-			path = "JobsAppDoor-2";
+			path = "Demo@JobsAppDoor-2";
 			sourceTree = "<group>";
 		};
 		C55C7C9A2E167B5E00B56985 /* View */ = {
@@ -6613,23 +6613,23 @@
 			path = JobsAppDoorVC_Style2;
 			sourceTree = "<group>";
 		};
-		C55C7CB32E167B5E00B56985 /* NSTimerManager模块测试 */ = {
+		C55C7CB32E167B5E00B56985 /* Demo@NSTimerManager模块测试 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7CB52E167B5E00B56985 /* NSTimerManagerTestVC.h */,
 				C55C7CB42E167B5E00B56985 /* NSTimerManagerTestVC.m */,
 			);
-			path = "NSTimerManager模块测试";
+			path = "Demo@NSTimerManager模块测试";
 			sourceTree = "<group>";
 		};
-		C55C7CB62E167B5E00B56985 /* 多语言切换 */ = {
+		C55C7CB62E167B5E00B56985 /* Demo@多语言切换 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7CB72E167B5E00B56985 /* Model */,
 				C55C7CB92E167B5E00B56985 /* View */,
 				C55C7CBB2E167B5E00B56985 /* ViewController */,
 			);
-			path = "多语言切换";
+			path = "Demo@多语言切换";
 			sourceTree = "<group>";
 		};
 		C55C7CB72E167B5E00B56985 /* Model */ = {
@@ -6655,21 +6655,21 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7CBE2E167B5E00B56985 /* JobsDropDownList */ = {
+		C55C7CBE2E167B5E00B56985 /* Demo@JobsDropDownList */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7CC02E167B5E00B56985 /* JobsDropDownListVC.h */,
 				C55C7CBF2E167B5E00B56985 /* JobsDropDownListVC.m */,
 			);
-			path = JobsDropDownList;
+			path = "Demo@JobsDropDownList";
 			sourceTree = "<group>";
 		};
-		C55C7CC12E167B5E00B56985 /* TestIrregularView */ = {
+		C55C7CC12E167B5E00B56985 /* Demo@TestIrregularView */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7CC22E167B5E00B56985 /* ViewController */,
 			);
-			path = TestIrregularView;
+			path = "Demo@TestIrregularView";
 			sourceTree = "<group>";
 		};
 		C55C7CC22E167B5E00B56985 /* ViewController */ = {
@@ -6681,14 +6681,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7CC52E167B5E00B56985 /* Douyin_ZFPlayer */ = {
+		C55C7CC52E167B5E00B56985 /* Demo@Douyin_ZFPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7CC62E167B5E00B56985 /* Model */,
 				C55C7CCA2E167B5E00B56985 /* View */,
 				C55C7CDB2E167B5F00B56985 /* ViewController */,
 			);
-			path = Douyin_ZFPlayer;
+			path = "Demo@Douyin_ZFPlayer";
 			sourceTree = "<group>";
 		};
 		C55C7CC62E167B5E00B56985 /* Model */ = {
@@ -6786,7 +6786,7 @@
 			path = "Douyin_ZFPlayerVC@1";
 			sourceTree = "<group>";
 		};
-		C55C7CE22E167B5F00B56985 /* JobsEmptyDataView */ = {
+		C55C7CE22E167B5F00B56985 /* Demo@JobsEmptyDataView */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7CE32E167B5F00B56985 /* JobsEmptyDataView.h */,
@@ -6794,7 +6794,7 @@
 				C55C7CE52E167B5F00B56985 /* UICollectionView+EmptyData */,
 				C55C7CE82E167B5F00B56985 /* UITableView+EmptyData */,
 			);
-			path = JobsEmptyDataView;
+			path = "Demo@JobsEmptyDataView";
 			sourceTree = "<group>";
 		};
 		C55C7CE52E167B5F00B56985 /* UICollectionView+EmptyData */ = {
@@ -6815,14 +6815,14 @@
 			path = "UITableView+EmptyData";
 			sourceTree = "<group>";
 		};
-		C55C7CEB2E167B5F00B56985 /* 探究猿题库网络框架（YTKNetwork） */ = {
+		C55C7CEB2E167B5F00B56985 /* Demo@探究猿题库网络框架（YTKNetwork） */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7CEF2E167B5F00B56985 /* Api */,
 				C55C7CEC2E167B5F00B56985 /* YTKNetworkDemo */,
 				C55C7CFF2E167B5F00B56985 /* YTKNetworkTools */,
 			);
-			path = "探究猿题库网络框架（YTKNetwork）";
+			path = "Demo@探究猿题库网络框架（YTKNetwork）";
 			sourceTree = "<group>";
 		};
 		C55C7CEC2E167B5F00B56985 /* YTKNetworkDemo */ = {
@@ -7025,14 +7025,14 @@
 			path = "YTKChainRequest+Extra";
 			sourceTree = "<group>";
 		};
-		C55C7D242E167B5F00B56985 /* 抽奖轮盘 */ = {
+		C55C7D242E167B5F00B56985 /* Demo@抽奖轮盘 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D252E167B5F00B56985 /* Model */,
 				C55C7D272E167B5F00B56985 /* View */,
 				C55C7D292E167B5F00B56985 /* ViewController */,
 			);
-			path = "抽奖轮盘";
+			path = "Demo@抽奖轮盘";
 			sourceTree = "<group>";
 		};
 		C55C7D252E167B5F00B56985 /* Model */ = {
@@ -7087,14 +7087,14 @@
 			path = LuckyDiskVC;
 			sourceTree = "<group>";
 		};
-		C55C7D352E167B5F00B56985 /* UITableViewCell的折叠效果 */ = {
+		C55C7D352E167B5F00B56985 /* Demo@UITableViewCell的折叠效果 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D362E167B5F00B56985 /* Model */,
 				C55C7D3A2E167B5F00B56985 /* View */,
 				C55C7D452E167B5F00B56985 /* ViewController */,
 			);
-			path = "UITableViewCell的折叠效果";
+			path = "Demo@UITableViewCell的折叠效果";
 			sourceTree = "<group>";
 		};
 		C55C7D362E167B5F00B56985 /* Model */ = {
@@ -7169,14 +7169,14 @@
 			path = UITBVCellFoldVC;
 			sourceTree = "<group>";
 		};
-		C55C7D492E167B5F00B56985 /* 横屏UI切换 */ = {
+		C55C7D492E167B5F00B56985 /* Demo@横屏UI切换 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D4A2E167B5F00B56985 /* Model */,
 				C55C7D4C2E167B5F00B56985 /* View */,
 				C55C7D4E2E167B5F00B56985 /* ViewController */,
 			);
-			path = "横屏UI切换";
+			path = "Demo@横屏UI切换";
 			sourceTree = "<group>";
 		};
 		C55C7D4A2E167B5F00B56985 /* Model */ = {
@@ -7203,12 +7203,12 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7D512E167B5F00B56985 /* 相册选取图片和视频 */ = {
+		C55C7D512E167B5F00B56985 /* Demo@相册选取图片和视频 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D522E167B5F00B56985 /* ViewController */,
 			);
-			path = "相册选取图片和视频";
+			path = "Demo@相册选取图片和视频";
 			sourceTree = "<group>";
 		};
 		C55C7D522E167B5F00B56985 /* ViewController */ = {
@@ -7220,12 +7220,12 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7D552E167B5F00B56985 /* TestBaseLabel */ = {
+		C55C7D552E167B5F00B56985 /* Demo@TestBaseLabel */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D562E167B5F00B56985 /* ViewController */,
 			);
-			path = TestBaseLabel;
+			path = "Demo@TestBaseLabel";
 			sourceTree = "<group>";
 		};
 		C55C7D562E167B5F00B56985 /* ViewController */ = {
@@ -7237,7 +7237,7 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7D592E167B5F00B56985 /* NSProxy功能探究（只有在OC里面OK） */ = {
+		C55C7D592E167B5F00B56985 /* Demo@NSProxy功能探究（只有在OC里面OK） */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D5A2E167B5F00B56985 /* MyService.h */,
@@ -7245,7 +7245,7 @@
 				C55C7D6C2E167B5F00B56985 /* View */,
 				C55C7D6E2E167B5F00B56985 /* ViewController */,
 			);
-			path = "NSProxy功能探究（只有在OC里面OK）";
+			path = "Demo@NSProxy功能探究（只有在OC里面OK）";
 			sourceTree = "<group>";
 		};
 		C55C7D5B2E167B5F00B56985 /* Model */ = {
@@ -7321,14 +7321,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7D722E167B5F00B56985 /* 图片字符串化（加盐）存取 */ = {
+		C55C7D722E167B5F00B56985 /* Demo@图片字符串化（加盐）存取 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D732E167B5F00B56985 /* Model */,
 				C55C7D752E167B5F00B56985 /* View */,
 				C55C7D772E167B5F00B56985 /* ViewController */,
 			);
-			path = "图片字符串化（加盐）存取";
+			path = "Demo@图片字符串化（加盐）存取";
 			sourceTree = "<group>";
 		};
 		C55C7D732E167B5F00B56985 /* Model */ = {
@@ -7372,14 +7372,14 @@
 			path = PicToStrStoreVC;
 			sourceTree = "<group>";
 		};
-		C55C7D7E2E167B5F00B56985 /* 随机数测试模块 */ = {
+		C55C7D7E2E167B5F00B56985 /* Demo@随机数测试模块 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D7F2E167B5F00B56985 /* Model */,
 				C55C7D812E167B5F00B56985 /* View */,
 				C55C7D832E167B5F00B56985 /* ViewController */,
 			);
-			path = "随机数测试模块";
+			path = "Demo@随机数测试模块";
 			sourceTree = "<group>";
 		};
 		C55C7D7F2E167B5F00B56985 /* Model */ = {
@@ -7405,7 +7405,7 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7D862E167B5F00B56985 /* OC动态添加类、方法列表、属性列表 */ = {
+		C55C7D862E167B5F00B56985 /* Demo@OC动态添加类、方法列表、属性列表 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D872E167B5F00B56985 /* objc_msgSend执行流程-消息发送.png */,
@@ -7413,7 +7413,7 @@
 				C55C7D8B2E167B5F00B56985 /* OCDynamic */,
 				C55C7D882E167B5F00B56985 /* OCDynamicRegisterVC */,
 			);
-			path = "OC动态添加类、方法列表、属性列表";
+			path = "Demo@OC动态添加类、方法列表、属性列表";
 			sourceTree = "<group>";
 		};
 		C55C7D882E167B5F00B56985 /* OCDynamicRegisterVC */ = {
@@ -7434,12 +7434,12 @@
 			path = OCDynamic;
 			sourceTree = "<group>";
 		};
-		C55C7D8F2E167B5F00B56985 /* UILabel文字旋转 */ = {
+		C55C7D8F2E167B5F00B56985 /* Demo@UILabel文字旋转 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D902E167B5F00B56985 /* ViewController */,
 			);
-			path = "UILabel文字旋转";
+			path = "Demo@UILabel文字旋转";
 			sourceTree = "<group>";
 		};
 		C55C7D902E167B5F00B56985 /* ViewController */ = {
@@ -7451,12 +7451,12 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7D932E167B5F00B56985 /* TransparentRegion */ = {
+		C55C7D932E167B5F00B56985 /* Demo@TransparentRegion */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D942E167B5F00B56985 /* TransparentRegionVC */,
 			);
-			path = TransparentRegion;
+			path = "Demo@TransparentRegion";
 			sourceTree = "<group>";
 		};
 		C55C7D942E167B5F00B56985 /* TransparentRegionVC */ = {
@@ -7468,7 +7468,7 @@
 			path = TransparentRegionVC;
 			sourceTree = "<group>";
 		};
-		C55C7D972E167B5F00B56985 /* JobsComment */ = {
+		C55C7D972E167B5F00B56985 /* Demo@JobsComment */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7DBA2E167B5F00B56985 /* JobsCommentCoreHeader.h */,
@@ -7476,7 +7476,7 @@
 				C55C7D9B2E167B5F00B56985 /* JobsCommentCore */,
 				C55C7D982E167B5F00B56985 /* JobsCommentVC */,
 			);
-			path = JobsComment;
+			path = "Demo@JobsComment";
 			sourceTree = "<group>";
 		};
 		C55C7D982E167B5F00B56985 /* JobsCommentVC */ = {
@@ -7608,7 +7608,7 @@
 			path = JobsCommentCoreVC;
 			sourceTree = "<group>";
 		};
-		C55C7DC12E167B5F00B56985 /* 竖形菜单选择功能 */ = {
+		C55C7DC12E167B5F00B56985 /* Demo@竖形菜单选择功能 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7DC22E167B5F00B56985 /* JobsVerticalMenuDefineHeader.h */,
@@ -7616,7 +7616,7 @@
 				C55C7DC72E167B5F00B56985 /* View */,
 				C55C7DE42E167B5F00B56985 /* ViewController */,
 			);
-			path = "竖形菜单选择功能";
+			path = "Demo@竖形菜单选择功能";
 			sourceTree = "<group>";
 		};
 		C55C7DC32E167B5F00B56985 /* Model */ = {
@@ -7799,13 +7799,13 @@
 			path = JobsVerticalMenuSubVC;
 			sourceTree = "<group>";
 		};
-		C55C7DF52E167B5F00B56985 /* 自定义UITableViewCell内置控件距离并添加复制按钮 */ = {
+		C55C7DF52E167B5F00B56985 /* Demo@自定义UITableViewCell内置控件距离并添加复制按钮 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7DF62E167B5F00B56985 /* View */,
 				C55C7DFC2E167B5F00B56985 /* ViewController */,
 			);
-			path = "自定义UITableViewCell内置控件距离并添加复制按钮";
+			path = "Demo@自定义UITableViewCell内置控件距离并添加复制按钮";
 			sourceTree = "<group>";
 		};
 		C55C7DF62E167B5F00B56985 /* View */ = {
@@ -7844,13 +7844,13 @@
 			path = CustomTableViewCellVC;
 			sourceTree = "<group>";
 		};
-		C55C7E002E167B5F00B56985 /* UICollectionView实现重叠的卡包效果 */ = {
+		C55C7E002E167B5F00B56985 /* Demo@UICollectionView实现重叠的卡包效果 */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7E012E167B5F00B56985 /* View */,
 				C55C7E052E167B5F00B56985 /* ViewController */,
 			);
-			path = "UICollectionView实现重叠的卡包效果";
+			path = "Demo@UICollectionView实现重叠的卡包效果";
 			sourceTree = "<group>";
 		};
 		C55C7E012E167B5F00B56985 /* View */ = {
@@ -7872,12 +7872,12 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7E082E167B5F00B56985 /* TestLabel */ = {
+		C55C7E082E167B5F00B56985 /* Demo@TestLabel */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7E092E167B5F00B56985 /* ViewController */,
 			);
-			path = TestLabel;
+			path = "Demo@TestLabel";
 			sourceTree = "<group>";
 		};
 		C55C7E092E167B5F00B56985 /* ViewController */ = {
@@ -7889,14 +7889,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		C55C7E0C2E167B5F00B56985 /* JobsIM */ = {
+		C55C7E0C2E167B5F00B56985 /* Demo@JobsIM */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7E0E2E167B5F00B56985 /* JobsIMComponent */,
 				C55C7E552E167B6000B56985 /* JobsIMShowVC.h */,
 				C55C7E0D2E167B5F00B56985 /* JobsIMShowVC.m */,
 			);
-			path = JobsIM;
+			path = "Demo@JobsIM";
 			sourceTree = "<group>";
 		};
 		C55C7E0E2E167B5F00B56985 /* JobsIMComponent */ = {
@@ -8082,14 +8082,14 @@
 			path = TableViewCell;
 			sourceTree = "<group>";
 		};
-		C55C7E562E167B6000B56985 /* CoreTextLearning */ = {
+		C55C7E562E167B6000B56985 /* Demo@CoreTextLearning */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7E572E167B6000B56985 /* CoreTextLearningCore */,
 				C55C7E612E167B6000B56985 /* View */,
 				C55C7E682E167B6000B56985 /* ViewController */,
 			);
-			path = CoreTextLearning;
+			path = "Demo@CoreTextLearning";
 			sourceTree = "<group>";
 		};
 		C55C7E572E167B6000B56985 /* CoreTextLearningCore */ = {

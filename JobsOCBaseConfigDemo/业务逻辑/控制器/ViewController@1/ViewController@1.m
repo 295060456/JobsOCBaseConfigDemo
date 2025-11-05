@@ -366,6 +366,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 model.subTitle = JobsInternationalization(@"全局设定");
                 model.cls = LandscapeSwitchVC.class;
             })));
+//            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+//                model.title = JobsInternationalization(@"Texture");
+//                model.subTitle = JobsInternationalization(@"byFaceBook");
+//                model.cls = TextureDemoVC.class;
+//            })));
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"本地推送通知");
                 model.subTitle = JobsInternationalization(@"本地推送通知");
