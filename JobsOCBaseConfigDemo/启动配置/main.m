@@ -8,10 +8,27 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "JobsSnowflake.h"
+#import <objc/runtime.h>
 
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
     @autoreleasepool {
+//        NSMutableArray *g = [@[@"1",@"2",@"3"] mutableCopy];
+//        id h = [g copy];          // 对可变数组 copy → 新的不可变 NSArray（浅拷贝：元素指针不变）
+//
+//        NSArray *d = @[@"1",@"2",@"3"];
+//        id f = [d copy];          // 对不可变数组 copy → 同一实例（指针相同）
+//
+//        // 再验证 mutableCopy 行为（对不可变数组）
+//        id m = [d mutableCopy];   // 新的可变数组
+//
+//
+//        NSLog(@"g = %p",g); // 0x142455050
+//        NSLog(@"h = %p",h); // 0x142455a10
+//        NSLog(@"d = %p",d); // 0x142455a40
+//        NSLog(@"f = %p",f); // 0x142455a40
+//        NSLog(@"m = %p",m); // 0x142455aa0
+
         JobsLog(@"在此设备上的比例尺换算标准是 1 = %f",JobsWidth(1));
         // 获取应用的主 bundle 路径
         NSString *path = @"zh-Hans.lproj".pathForResourceWithFullName;

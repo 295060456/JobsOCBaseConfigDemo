@@ -12096,6 +12096,10 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
     - 把 **block** 存成 `self.someBlock = ^{ ... self ... };`（典型循环引用）
     - 传给会把 **block** 保存在属性里的对象，而这个对象又被 `self` 强持有
   
+* 只有对不可变对象进⾏copy操作是指针复制（浅复制），其它情况都是内容复制（深复制）！
+
+  ![image-20251104111634703](./assets/image-20251104111634703.png)
+  
 * 那么如果在两个分类文件里面都写了同一个名方法，在实际调用的时候，执行谁 ❓
 
   * 最终在运行时注册类方法表时，**后加载的分类会覆盖前面的**；（后编译进二进制的分类实现）
