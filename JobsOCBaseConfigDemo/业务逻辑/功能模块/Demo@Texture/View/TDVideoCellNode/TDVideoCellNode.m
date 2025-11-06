@@ -46,8 +46,7 @@ Prop_strong() NSURL *pendingURL; // 仅在 didLoad 再喂给 video
     @jobs_weakify(self)
     return [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(8, 16, 8, 16) child:jobsMakeVerticalStackLayoutSpec(^(ASStackLayoutSpec * _Nullable v) {
         @jobs_strongify(self)
-        v.spacing  = 8;
-        v.children = @[self.video, self.title];
+        v.bySpacing(8).byChildren(@[self.video, self.title]);
     })];
 }
 #pragma mark —— lazyLoad

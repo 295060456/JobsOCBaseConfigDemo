@@ -6,6 +6,8 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "DefineProperty.h"
+#import "JobsBlock.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// Editable Text (ASEditableTextNode)

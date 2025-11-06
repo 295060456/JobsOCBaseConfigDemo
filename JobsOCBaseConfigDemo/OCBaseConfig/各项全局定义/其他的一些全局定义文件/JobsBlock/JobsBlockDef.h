@@ -384,4 +384,15 @@
     id _Nullable data
 #endif /* Jobs_ByViewAndDataBlock_Arguments */
 
+#ifndef API_IOS14_TVOS14_UNAVAILABLE_WATCHOS
+#define API_IOS14_TVOS14_UNAVAILABLE_WATCHOS \
+    API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
+#endif
+
+#ifndef API_IOS15_TVOS15_UNAVAILABLE_WATCHOS
+#define API_IOS15_TVOS15_UNAVAILABLE_WATCHOS \
+    API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
+#endif
+
+
 #endif /* JobsBlockDef_h */

@@ -39,7 +39,7 @@
 -(ASDisplayNode *)colorNode{
     if(!_colorNode){
         _colorNode = jobsMakeDisplayNode(^(ASDisplayNode * _Nullable node) {
-            node.backgroundColor = TD_RandColor();
+            node.backgroundColor = JobsRandomColor;
             node.cornerRadius = 8.0;
             node.style.preferredSize = CGSizeMake(120, 70);
         });

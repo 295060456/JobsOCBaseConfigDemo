@@ -6,6 +6,7 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// Text Cell (ASTextNode)

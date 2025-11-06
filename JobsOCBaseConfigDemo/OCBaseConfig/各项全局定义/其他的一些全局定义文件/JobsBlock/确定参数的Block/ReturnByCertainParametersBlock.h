@@ -100,20 +100,19 @@ typedef NSValue *_Nullable(^JobsReturnValueByOffsetBlock)(UIOffset data);
 #pragma mark —— 关于贝塞尔曲线
 typedef UIBezierPath *_Nullable(^JobsReturnBezierPathByCGRectBlock)(CGRect frame);
 #pragma mark —— 关于UIBackgroundConfiguration
-API_AVAILABLE(ios(14.0))
-typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByColorBlock)(UIColor *_Nullable data);
-typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByCGFloatBlock)(CGFloat data);
-typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByInsetsBlock)(NSDirectionalEdgeInsets data);
-typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByViewBlock)(UIView *_Nullable data);
-typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByImageBlock)(UIImage *_Nullable data);
-typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByContentModeBlock)(UIViewContentMode data);
-typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByVisualEffectBlock)(UIVisualEffect *_Nullable data);
-typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByRectEdgeBlock)(NSDirectionalRectEdge data);
-typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByColorTransformerBlock)(UIConfigurationColorTransformer _Nullable transformer);
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByColorBlock)(UIColor *_Nullable data) API_IOS14_TVOS14_UNAVAILABLE_WATCHOS;
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByCGFloatBlock)(CGFloat data) API_IOS14_TVOS14_UNAVAILABLE_WATCHOS;
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByInsetsBlock)(NSDirectionalEdgeInsets data) API_IOS14_TVOS14_UNAVAILABLE_WATCHOS;
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByViewBlock)(UIView *_Nullable data) API_IOS14_TVOS14_UNAVAILABLE_WATCHOS;
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByImageBlock)(UIImage *_Nullable data) API_IOS14_TVOS14_UNAVAILABLE_WATCHOS;
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByContentModeBlock)(UIViewContentMode data) API_IOS14_TVOS14_UNAVAILABLE_WATCHOS;
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByVisualEffectBlock)(UIVisualEffect *_Nullable data) API_IOS14_TVOS14_UNAVAILABLE_WATCHOS;
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByRectEdgeBlock)(NSDirectionalRectEdge data) API_IOS14_TVOS14_UNAVAILABLE_WATCHOS;
+typedef UIBackgroundConfiguration *_Nonnull(^JobsReturnBackgroundConfigurationByColorTransformerBlock)(UIConfigurationColorTransformer _Nullable transformer) API_IOS14_TVOS14_UNAVAILABLE_WATCHOS;
 #pragma mark —— 关于按钮配置信息
-typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByFontBlock)(UIFont *_Nullable data);
-typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByButtonConfigurationBlock)(UIButtonConfiguration *_Nullable config);
-typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByBackgroundBlock)(UIBackgroundConfiguration *_Nullable data) API_AVAILABLE(ios(16.0));
+typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByFontBlock)(UIFont *_Nullable data) API_IOS15_TVOS15_UNAVAILABLE_WATCHOS;
+typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByButtonConfigurationBlock)(UIButtonConfiguration *_Nullable config) API_IOS15_TVOS15_UNAVAILABLE_WATCHOS;
+typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByBackgroundBlock)(UIBackgroundConfiguration *_Nullable data) API_IOS15_TVOS15_UNAVAILABLE_WATCHOS;
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByCornerStyleBlock)(UIButtonConfigurationCornerStyle data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationBySizeBlock)(UIButtonConfigurationSize data) API_AVAILABLE(ios(16.0));
 typedef UIButtonConfiguration *_Nullable(^JobsReturnButtonConfigurationByMacIdiomStyleBlock)(UIButtonConfigurationMacIdiomStyle data) API_AVAILABLE(ios(16.0));
@@ -466,13 +465,13 @@ typedef __kindof NSData *_Nullable(^JobsReturnDataByStringBlock)(__kindof NSStri
 typedef __kindof NSData *_Nullable(^JobsReturnDataByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
 #pragma mark —— 关于字体
 typedef UIFont *_Nullable(^JobsReturnFontByVoidBlock)(void);
-typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
+typedef UIFont *_Nullable(^JobsReturnFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer) API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos);
 #pragma mark —— 关于颜色
 typedef UIColor *_Nullable(^JobsReturnColorByHexAlphaBlock)(Jobs_UIColorBlock_Arguments);
 typedef UIColor *_Nullable(^JobsReturnColorByHexBlock)(uint32_t hexValue);
 typedef UIColor *_Nonnull(^JobsReturnColorByCGFloatBlock)(CGFloat data);
 typedef UIColor *_Nullable(^JobsReturnColorByNSUIntegerBlock)(NSUInteger data);
-typedef UIColor *_Nullable(^JobsReturnColorByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer);
+typedef UIColor *_Nullable(^JobsReturnColorByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer) API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos);
 typedef UIColor *_Nullable(^JobsReturnColorByStringBlock)(NSString *_Nonnull cor);
 typedef UIColor *_Nullable(^JobsReturnColorByImageBlock)(UIImage *_Nonnull cor);
 #pragma mark —— 关于图片
@@ -675,9 +674,105 @@ typedef unsigned long(^JobsReturnUnsignedLongByIDBlock)(id _Nullable data);
 typedef unsigned long long(^JobsReturnUnsignedLongLongByIDBlock)(id _Nullable data);
 typedef unsigned long long(^JobsReturnUnsignedLongLongByVoidBlock)(void);
 typedef unsigned long long(^JobsReturnByUnsignedLongLongBlock)(unsigned long long data);
+#pragma mark —— 关于Texture
+@class ASButtonNode;
+typedef __kindof ASButtonNode *_Nonnull(^JobsRetButtonNodeImageByConfigBlock)(UIImage *_Nonnull image, UIControlState state);
+typedef __kindof ASButtonNode *_Nonnull(^JobsRetButtonNodeByContentEdgeInsetsBlock)(UIEdgeInsets insets);
+typedef __kindof ASButtonNode *_Nonnull(^JobsRetButtonNodeByBackgroundColorsBlock)(UIColor *_Nullable color);
+typedef __kindof ASButtonNode *_Nonnull(^JobsRetButtonNodeByCornerRadiusBlock)(CGFloat radius);
+typedef __kindof ASButtonNode *_Nonnull(^JobsRetButtonNodeByHitTestSlopBlock)(UIEdgeInsets slop);
+typedef __kindof ASButtonNode *_Nonnull(^JobsRetButtonNodeByTitleConfigBlock)(NSString *_Nonnull title,
+                                                                              UIFont *_Nullable font,
+                                                                              UIColor *_Nullable color,
+                                                                              UIControlState state);
+#import "VoidByCertainParametersBlock.h"
+typedef __kindof ASButtonNode *_Nonnull(^JobsRetButtonNodeByOnClickBlock)(jobsByButtonNodeBlock _Nullable handler);
+typedef __kindof ASButtonNode *_Nonnull(^JobsRetButtonNodeByOnLongPressBlock)(jobsByButtonNodeLongPressBlock _Nullable handler);
+typedef __kindof ASButtonNode *_Nonnull(^JobsRetButtonNodeByOnLongPressWithTimeBlock)(NSTimeInterval minDuration,
+                                                                                      CGFloat allowableMovement,
+                                                                                      jobsByButtonNodeLongPressBlock _Nullable handler);
+
+@class ASStackLayoutSpec;
+#import <AsyncDisplayKit/ASStackLayoutDefines.h>
+#import <AsyncDisplayKit/ASLayoutElement.h>
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByDirectionBlock)(ASStackLayoutDirection dir);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecBySpacingBlock)(CGFloat spacing);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByHorizontalAlignmentBlock)(ASHorizontalAlignment align);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByVerticalAlignmentBlock)(ASVerticalAlignment align);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByJustifyContentBlock)(ASStackLayoutJustifyContent jc);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByAlignItemsBlock)(ASStackLayoutAlignItems ai);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByFlexWrapBlock)(ASStackLayoutFlexWrap wrap);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByAlignContentBlock)(ASStackLayoutAlignContent ac);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByLineSpacingBlock)(CGFloat lineSpacing);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByConcurrentBlock)(BOOL concurrent);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByChildrenBlock)(NSArray<id<ASLayoutElement>> * _Nullable children);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByAppendChildrenBlock)(NSArray<id<ASLayoutElement>> * _Nullable children);
+typedef __kindof ASStackLayoutSpec *_Nonnull(^JobsRetStackLayoutSpecByAddChildBlock)(id<ASLayoutElement> _Nullable child);
+
+@class ASEditableTextNode;
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByBoolBlock)(BOOL flag);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByInsetsBlock)(UIEdgeInsets insets);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByRangeBlock)(NSRange range);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByAttrTextBlock)(NSAttributedString * _Nullable attrText);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByUIntBlock)(NSUInteger value);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByDictBlock)(NSDictionary<NSString*, id> * _Nullable dict);
+
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodByeAutocapBlock)(UITextAutocapitalizationType t);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByAutocorrBlock)(UITextAutocorrectionType t);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeBySpellBlock)(UITextSpellCheckingType t);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByKeyboardTypeBlock)(UIKeyboardType t);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByKeyboardAppearanceBlock)(UIKeyboardAppearance t);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByReturnKeyBlock)(UIReturnKeyType t);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByTextViewBlock)(jobsByTextViewBlock _Nullable cfg);
+#import "VoidByCertainParametersBlock.h"
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByOnChangeBlock)(JobsEditableTextEventBlock _Nullable handler);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByOnBeginBlock)(JobsEditableTextEventBlock _Nullable handler);
+typedef __kindof ASEditableTextNode *_Nonnull(^JobsRetEditableTextNodeByOnEndBlock)(JobsEditableTextEventBlock _Nullable handler);
+
+@class ASCollectionNode;
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByBoolBlock)(BOOL flag);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByCGFloatBlock)(CGFloat value);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByInsetsBlock)(UIEdgeInsets insets);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByPointBlock)(CGPoint point);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByPointAnimatedBlock)(CGPoint point, BOOL animated);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByLayoutBlock)(UICollectionViewLayout *_Nullable layout);
+#import <AsyncDisplayKit/ASCollectionViewLayoutInspector.h>
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByInspectorBlock)(id<ASCollectionViewLayoutInspecting> _Nullable inspector);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByDelegateBlock)(id<ASCollectionDelegate> _Nullable delegate);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByDataSourceBlock)(id<ASCollectionDataSource> _Nullable dataSource);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByStringBlock)(NSString *_Nullable str);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByDispatchBlock)(dispatch_block_t _Nullable updates);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByBatchAnimatedBlock) (BOOL animated,
+                                                                                           dispatch_block_t _Nullable updates,
+                                                                                           jobsByBOOLBlock _Nullable completion);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByBatchBlock)(dispatch_block_t _Nullable updates,
+                                                                                  jobsByBOOLBlock _Nullable completion);
+
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeBySelectBlock)(NSIndexPath *_Nullable indexPath,
+                                                                                   BOOL animated,
+                                                                                   UICollectionViewScrollPosition scrollPosition);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByDeselectBlock) (NSIndexPath *_Nullable indexPath, BOOL animated);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByScrollToItemBlock) (NSIndexPath *_Nullable indexPath,
+                                                                                          UICollectionViewScrollPosition scrollPosition,
+                                                                                          BOOL animated);
+
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByReloadWithCompletionBlock)(dispatch_block_t _Nullable completion);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeByVoidBlock)(void);
+
+#import <AsyncDisplayKit/ASNetworkImageNode.h>
+typedef __kindof ASNetworkImageNode * _Nonnull (^JobsRetNetworkImageNodeByDelegateBlock)(id<ASNetworkImageNodeDelegate> _Nullable delegate);
+typedef __kindof ASNetworkImageNode * _Nonnull (^JobsRetNetworkImageNodeByImageBlock)(UIImage *_Nullable image);
+typedef __kindof ASNetworkImageNode * _Nonnull (^JobsRetNetworkImageNodeByURLBlock)(NSURL *_Nullable URL);
+typedef __kindof ASNetworkImageNode * _Nonnull (^JobsRetNetworkImageNodeByBOOLBlock)(BOOL on);
+
+#import <AsyncDisplayKit/ASLayoutRangeType.h>
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeBySetTuningBlock) (ASRangeTuningParameters params, ASLayoutRangeType type);
+typedef __kindof ASCollectionNode * _Nonnull (^JobsRetCollectionNodeBySetTuningForModeBlock) (ASRangeTuningParameters params,
+                                                                                              ASLayoutRangeMode mode,
+                                                                                              ASLayoutRangeType type);
 #pragma mark —— 其他
-typedef UIEditMenuInteraction *_Nullable(^JobsReturnUIEditMenuInteractionByIDBlock)(id<UIEditMenuInteractionDelegate>_Nullable data);
-typedef UIContextMenuInteraction *_Nonnull(^JobsReturnContextMenuInteractionByIDBlock)(id <UIContextMenuInteractionDelegate>_Nullable delegate);
+typedef UIEditMenuInteraction *_Nullable(^JobsReturnUIEditMenuInteractionByIDBlock)(id<UIEditMenuInteractionDelegate>_Nullable data) API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos) API_UNAVAILABLE(watchos) ;
+typedef UIContextMenuInteraction *_Nonnull(^JobsReturnContextMenuInteractionByIDBlock)(id <UIContextMenuInteractionDelegate>_Nullable delegate) API_AVAILABLE(ios(13.0), tvos(17.0)) API_UNAVAILABLE(watchos);
 typedef __kindof NSXMLParser *_Nonnull(^JobsReturnNSXMLParserByNSDataBlock)(__kindof NSData *_Nullable data);
 typedef PHAssetChangeRequest *_Nonnull(^JobsReturnPHAssetChangeRequestByURLBlock)(NSURL *_Nullable url);
 typedef __kindof AVAssetImageGenerator *_Nonnull(^JobsReturnAVAssetImageGeneratorByAVURLAssetBlock)(__kindof AVURLAsset *_Nullable data);

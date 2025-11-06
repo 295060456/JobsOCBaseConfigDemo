@@ -6,6 +6,7 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
+#import "DefineProperty.h"
 
 #if __has_include(<MapKit/MapKit.h>)
 #import <MapKit/MapKit.h>

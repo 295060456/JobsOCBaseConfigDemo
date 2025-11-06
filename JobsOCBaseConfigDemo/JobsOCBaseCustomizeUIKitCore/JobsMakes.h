@@ -716,6 +716,13 @@ jobsMakeDrawingNode(jobsByDrawingNodeBlock _Nullable block) {
 }
 
 NS_INLINE __kindof ASStackLayoutSpec * _Nonnull
+jobsMakeStackLayoutSpec(jobsByStackLayoutSpecBlock _Nullable block) {
+    ASStackLayoutSpec *stackLayoutSpec = ASStackLayoutSpec.alloc.init;
+    if (block) block(stackLayoutSpec);
+    return stackLayoutSpec;
+}
+
+NS_INLINE __kindof ASStackLayoutSpec * _Nonnull
 jobsMakeVerticalStackLayoutSpec(jobsByStackLayoutSpecBlock _Nullable block) {
     ASStackLayoutSpec *stackLayoutSpec = ASStackLayoutSpec.alloc.init;
     stackLayoutSpec.direction = ASStackLayoutDirectionVertical;

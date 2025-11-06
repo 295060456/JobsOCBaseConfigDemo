@@ -30,6 +30,11 @@
 		04C4429C2EB899FE008E0F09 /* UITextField+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4429B2EB899FE008E0F09 /* UITextField+DSL.m */; };
 		04C442A02EB8A317008E0F09 /* NSMutableParagraphStyle+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4429F2EB8A317008E0F09 /* NSMutableParagraphStyle+DSL.m */; };
 		04C442A42EB8AD82008E0F09 /* UITableView+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C442A32EB8AD82008E0F09 /* UITableView+DSL.m */; };
+		04D49C102EBC3B7C00BCD6F1 /* ASButtonNode+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C0F2EBC3B7C00BCD6F1 /* ASButtonNode+DSL.m */; };
+		04D49C152EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C142EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.m */; };
+		04D49C192EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C182EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.m */; };
+		04D49C1D2EBC619B00BCD6F1 /* ASCollectionNode+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C1C2EBC619B00BCD6F1 /* ASCollectionNode+DSL.m */; };
+		04D49C212EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C202EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.m */; };
 		90E04F79B6CBEA72A6701F04 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC3D9D7A6E658C61AD6DC86 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		C53BE3BD2E265E54004A72BE /* NativeWebViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */; };
 		C53BE3C12E265EAC004A72BE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3C02E265EAC004A72BE /* WebViewController.m */; };
@@ -1364,6 +1369,16 @@
 		04C4429F2EB8A317008E0F09 /* NSMutableParagraphStyle+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableParagraphStyle+DSL.m"; sourceTree = "<group>"; };
 		04C442A22EB8AD82008E0F09 /* UITableView+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+DSL.h"; sourceTree = "<group>"; };
 		04C442A32EB8AD82008E0F09 /* UITableView+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+DSL.m"; sourceTree = "<group>"; };
+		04D49C0E2EBC3B7C00BCD6F1 /* ASButtonNode+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASButtonNode+DSL.h"; sourceTree = "<group>"; };
+		04D49C0F2EBC3B7C00BCD6F1 /* ASButtonNode+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASButtonNode+DSL.m"; sourceTree = "<group>"; };
+		04D49C132EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASStackLayoutSpec+DSL.h"; sourceTree = "<group>"; };
+		04D49C142EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASStackLayoutSpec+DSL.m"; sourceTree = "<group>"; };
+		04D49C172EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASEditableTextNode+DSL.h"; sourceTree = "<group>"; };
+		04D49C182EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASEditableTextNode+DSL.m"; sourceTree = "<group>"; };
+		04D49C1B2EBC619B00BCD6F1 /* ASCollectionNode+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASCollectionNode+DSL.h"; sourceTree = "<group>"; };
+		04D49C1C2EBC619B00BCD6F1 /* ASCollectionNode+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASCollectionNode+DSL.m"; sourceTree = "<group>"; };
+		04D49C1F2EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASNetworkImageNode+DSL.h"; sourceTree = "<group>"; };
+		04D49C202EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASNetworkImageNode+DSL.m"; sourceTree = "<group>"; };
 		04FD2AAB2EB5BEDB00CDB5D5 /* JobsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = JobsConfig.xcconfig; sourceTree = "<group>"; };
 		20D1937BD3CC85EAA774FEA4 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
 		40ED0B9FDF5152B123562CEA /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -4167,6 +4182,63 @@
 				045FC5262EBB4F5B00C582C4 /* JobsControlTarget.m */,
 			);
 			path = JobsControlTarget;
+			sourceTree = "<group>";
+		};
+		04D49C0D2EBC3B6E00BCD6F1 /* ASButtonNode */ = {
+			isa = PBXGroup;
+			children = (
+				04D49C0E2EBC3B7C00BCD6F1 /* ASButtonNode+DSL.h */,
+				04D49C0F2EBC3B7C00BCD6F1 /* ASButtonNode+DSL.m */,
+			);
+			path = ASButtonNode;
+			sourceTree = "<group>";
+		};
+		04D49C112EBC523F00BCD6F1 /* ASStackLayoutSpec */ = {
+			isa = PBXGroup;
+			children = (
+				04D49C132EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.h */,
+				04D49C142EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.m */,
+			);
+			path = ASStackLayoutSpec;
+			sourceTree = "<group>";
+		};
+		04D49C122EBC525300BCD6F1 /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				04D49C1E2EBC7E5B00BCD6F1 /* ASNetworkImageNode */,
+				04D49C1A2EBC618D00BCD6F1 /* ASCollectionNode */,
+				04D49C162EBC5CCB00BCD6F1 /* ASEditableTextNode */,
+				04D49C112EBC523F00BCD6F1 /* ASStackLayoutSpec */,
+				04D49C0D2EBC3B6E00BCD6F1 /* ASButtonNode */,
+			);
+			path = Texture;
+			sourceTree = "<group>";
+		};
+		04D49C162EBC5CCB00BCD6F1 /* ASEditableTextNode */ = {
+			isa = PBXGroup;
+			children = (
+				04D49C172EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.h */,
+				04D49C182EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.m */,
+			);
+			path = ASEditableTextNode;
+			sourceTree = "<group>";
+		};
+		04D49C1A2EBC618D00BCD6F1 /* ASCollectionNode */ = {
+			isa = PBXGroup;
+			children = (
+				04D49C1B2EBC619B00BCD6F1 /* ASCollectionNode+DSL.h */,
+				04D49C1C2EBC619B00BCD6F1 /* ASCollectionNode+DSL.m */,
+			);
+			path = ASCollectionNode;
+			sourceTree = "<group>";
+		};
+		04D49C1E2EBC7E5B00BCD6F1 /* ASNetworkImageNode */ = {
+			isa = PBXGroup;
+			children = (
+				04D49C1F2EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.h */,
+				04D49C202EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.m */,
+			);
+			path = ASNetworkImageNode;
 			sourceTree = "<group>";
 		};
 		064F8B1BE36F6BEECAF8233E /* Frameworks */ = {
@@ -16838,6 +16910,7 @@
 			isa = PBXGroup;
 			children = (
 				C55C89232E167B6800B56985 /* JobsOCBaseCustomize3rdCore.h */,
+				04D49C122EBC525300BCD6F1 /* Texture */,
 				C55C88F52E167B6800B56985 /* BRStringPickerView */,
 				C55C88F82E167B6800B56985 /* MGSwipeTableCell */,
 				C55C88FC2E167B6800B56985 /* MJRefresh */,
@@ -17977,6 +18050,7 @@
 				C55C8C712E167B6C00B56985 /* NSMutableSet+Extra.m in Sources */,
 				C55C8D802E167B6D00B56985 /* LZTabBarController.m in Sources */,
 				C55C8B2B2E167B6A00B56985 /* UIView+SuspendView.m in Sources */,
+				04D49C1D2EBC619B00BCD6F1 /* ASCollectionNode+DSL.m in Sources */,
 				C55C8C5B2E167B6C00B56985 /* This+URLManager_Base.m in Sources */,
 				C55C8B282E167B6A00B56985 /* BaseView.m in Sources */,
 				C55C8A372E167B6900B56985 /* UICollectionView+EmptyData.m in Sources */,
@@ -18102,6 +18176,7 @@
 				C55C8A8D2E167B6A00B56985 /* JobsVerticalMenuMainVC.m in Sources */,
 				C55C897A2E167B6900B56985 /* MyTableTableVC.m in Sources */,
 				C55C89662E167B6900B56985 /* CasinoGetiOSNewestVersionModel.m in Sources */,
+				04D49C212EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.m in Sources */,
 				C55C8E0B2E167B6E00B56985 /* TKPermissionCalendar.m in Sources */,
 				C55C8ED22E167B6F00B56985 /* BRStringPickerView+Extra.m in Sources */,
 				C55C8B822E167B6B00B56985 /* NSString+Notification.m in Sources */,
@@ -18181,6 +18256,7 @@
 				C55C8D052E167B6D00B56985 /* JobsAppDoorInputViewBaseStyle_4.m in Sources */,
 				C55C8ED62E167B6F00B56985 /* MJRefreshAutoStateFooter+Extra.m in Sources */,
 				C55C8BA52E167B6B00B56985 /* BaseViewController.m in Sources */,
+				04D49C152EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.m in Sources */,
 				C55C8CB92E167B6C00B56985 /* JhtBannerCardView.m in Sources */,
 				046CFA7E2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m in Sources */,
 				C55C8B322E167B6A00B56985 /* UIView+EmptyData.m in Sources */,
@@ -18274,6 +18350,7 @@
 				045B590A2EBB364E00CFBE3B /* TDHorizontalItemNode.m in Sources */,
 				045B590B2EBB364E00CFBE3B /* TDButtonCellNode.m in Sources */,
 				045B590C2EBB364E00CFBE3B /* TDNetImageCellNode.m in Sources */,
+				04D49C192EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.m in Sources */,
 				045B590D2EBB364E00CFBE3B /* TDVideoCellNode.m in Sources */,
 				045B590E2EBB364E00CFBE3B /* TextureDemoVC.m in Sources */,
 				045B590F2EBB364E00CFBE3B /* TDDrawCellNode.m in Sources */,
@@ -18635,6 +18712,7 @@
 				C55C8B362E167B6A00B56985 /* UIView+JHGestureBlock.m in Sources */,
 				C55C8B422E167B6A00B56985 /* PHAssetChangeRequest+Extra.m in Sources */,
 				C55C8BF52E167B6B00B56985 /* FileNameModel.m in Sources */,
+				04D49C102EBC3B7C00BCD6F1 /* ASButtonNode+DSL.m in Sources */,
 				C55C8CA12E167B6C00B56985 /* NSString+Base32.m in Sources */,
 				C55C8DF22E167B6E00B56985 /* FSCalendarDelegationFactory.m in Sources */,
 				C55C8B2E2E167B6A00B56985 /* UIView+Measure.m in Sources */,

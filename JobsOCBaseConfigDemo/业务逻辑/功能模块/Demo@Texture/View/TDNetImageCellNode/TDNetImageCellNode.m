@@ -37,7 +37,7 @@
 -(ASNetworkImageNode *)netImage{
     if(!_netImage){
         _netImage = jobsMakeNetworkImageNode(^(ASNetworkImageNode * _Nullable node) {
-            node.defaultImage = @"photo".sys_img;
+            node.byDefaultImage(@"photo".sys_img);
             node.placeholderFadeDuration = 0.25;
             node.contentMode = UIViewContentModeScaleAspectFill;
             node.cornerRadius = 8;

@@ -13,7 +13,7 @@
 
 @implementation TDButtonCellNode
 
-- (instancetype)init {
+-(instancetype)init {
     if (self = [super init]) {
         self.automaticallyManagesSubnodes = YES;
         self.button.enabled = YES;
@@ -21,32 +21,37 @@
     }return self;
 }
 
-- (void)onTap {
-    BOOL on = [self.button.backgroundColor isEqual:UIColor.systemBlueColor];
-    self.button.backgroundColor = on ? UIColor.systemGreenColor : UIColor.systemBlueColor;
-    [self setNeedsLayout];
-}
-
-- (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
+-(ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize{
     @jobs_weakify(self)
     return [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(12, 16, 12, 16) child:jobsMakeVerticalStackLayoutSpec(^(ASStackLayoutSpec * _Nullable v) {
         @jobs_strongify(self)
-        v.spacing = 10;
-        v.alignItems = ASStackLayoutAlignItemsStart;
-        v.children = @[self.button, self.descNode];
+        v.bySpacing(10).byAlignItems(ASStackLayoutAlignItemsStart).byChildren(@[self.button, self.descNode]);
     })];
 }
 #pragma mark —— lazyLoad
--(ASButtonNode *)button{
-    if(!_button){
-        _button = jobsMakeButtonNode(^(ASButtonNode * _Nullable node) {
-            [node setTitle:@"Tap to Toggle" withFont:[UIFont boldSystemFontOfSize:15] withColor:JobsWhiteColor forState:UIControlStateNormal];
-            [node setImage:@"bolt.fill".sys_img forState:UIControlStateNormal];
-            node.contentEdgeInsets = UIEdgeInsetsMake(10, 14, 10, 14);
-            node.backgroundColor = UIColor.systemBlueColor;
-            node.cornerRadius = 8;
-            node.hitTestSlop = UIEdgeInsetsMake(-10, -10, -10, -10);
-            [node addTarget:self action:@selector(onTap) forControlEvents:ASControlNodeEventTouchUpInside];
+- (ASButtonNode *)button {
+    if (!_button) {
+        @jobs_weakify(self)
+        _button = jobsMakeButtonNode(^(ASButtonNode *node) {
+            node.byTitle(@"Tap to Toggle",[UIFont boldSystemFontOfSize:15],JobsWhiteColor,UIControlStateNormal)
+                .byImage(@"bolt.fill".img,UIControlStateNormal)
+                .byContentEdgeInsets(UIEdgeInsetsMake(10, 14, 10, 14))
+                .byBackgroundColor(UIColor.systemBlueColor)
+                .byCornerRadius(8)
+                .byHitTestSlop(UIEdgeInsetsMake(-10, -10, -10, -10))
+                .onClickBy(^(__kindof ASButtonNode *btn) {
+                    @jobs_strongify(self)
+                    if (!self) return;
+                    BOOL on = [self.button.backgroundColor isEqual:UIColor.systemBlueColor];
+                    btn.backgroundColor = on ? UIColor.systemGreenColor : UIColor.systemBlueColor;
+                    btn.accessibilityLabel = @"Tap to Toggle";
+                    [self setNeedsLayout];
+                })
+                .onLongPressGestureBy(^(__kindof ASButtonNode *btn, UILongPressGestureRecognizer *gr) {
+                    @jobs_strongify(self)
+                    if (!self) return;
+                    JobsLog(@"长按触发 %@", gr);
+                });
         });
     }return _button;
 }
@@ -55,7 +60,7 @@
     if(!_descNode){
         _descNode = jobsMakeTextNode(^(ASTextNode * _Nullable node) {
             node.attributedText = [[NSAttributedString alloc] initWithString:@"ASButtonNode 支持高性能点击态、图片&标题、对齐和触控扩展区域。"
-                                                                       attributes:@{
+                                                                  attributes:@{
                 NSFontAttributeName: [UIFont systemFontOfSize:13],
                 NSForegroundColorAttributeName: UIColor.secondaryLabelColor
             }];

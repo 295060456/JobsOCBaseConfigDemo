@@ -7,6 +7,7 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 #import "TDHorizontalItemNode.h"
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

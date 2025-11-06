@@ -32,8 +32,8 @@
 
         self.subtitle = jobsMakeTextNode(^(ASTextNode * _Nullable node) {
             node.maximumNumberOfLines = 3;
-            node.attributedText = [[NSAttributedString alloc] initWithString:s
-                                                                       attributes:@{
+            node.attributedText = [NSAttributedString.alloc initWithString:s
+                                                                attributes:@{
                 NSFontAttributeName: [UIFont systemFontOfSize:13],
                 NSForegroundColorAttributeName: UIColor.secondaryLabelColor
             }];
@@ -42,10 +42,12 @@
 }
 
 - (ASLayoutSpec *)layoutSpecThatFits:(ASSizeRange)constrainedSize {
-    ASStackLayoutSpec *v = [ASStackLayoutSpec verticalStackLayoutSpec];
-    v.spacing = 6;
-    v.children = @[_title, _subtitle];
-    return [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(12, 16, 12, 16) child:v];
+    @jobs_weakify(self)
+    return [ASInsetLayoutSpec insetLayoutSpecWithInsets:UIEdgeInsetsMake(12, 16, 12, 16)
+                                                  child:jobsMakeVerticalStackLayoutSpec(^(__kindof ASStackLayoutSpec * _Nullable layout) {
+        @jobs_strongify(self)
+        layout.bySpacing(6).byChildren(@[self.title, self.subtitle]);
+    })];
 }
 
 @end

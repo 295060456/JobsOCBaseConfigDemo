@@ -14,7 +14,7 @@
 
 @implementation TDDrawingNode
 
-- (instancetype)init {
+-(instancetype)init {
     if (self = [super init]) {
         self.displaysAsynchronously = YES;                       // 开启异步绘制
         self.opaque = YES;                                       // 不透明更高效
@@ -23,14 +23,14 @@
     }return self;
 }
 /// 传递绘制所需的不可变参数（在主线程调用）
-- (id<NSObject>)drawParametersForAsyncLayer:(_ASDisplayLayer *)layer {
+-(id<NSObject>)drawParametersForAsyncLayer:(_ASDisplayLayer *)layer {
     // 这里不再传 w/h，直接使用 drawRect: 的 bounds 即可；保留行数参数示例
     return @{ @"lineCount": @(8) };
 }
 /// 真正的绘制（可能在后台线程调用，必须线程安全）
-+ (void)drawRect:(CGRect)bounds
++(void)drawRect:(CGRect)bounds
   withParameters:(id)parameters
-    isCancelled:(asdisplaynode_iscancelled_block_t)isCancelled
+    isCancelled:(NS_NOESCAPE asdisplaynode_iscancelled_block_t)isCancelled
   isRasterizing:(BOOL)isRasterizing{
     if (isCancelled()) return;
     // 背景块
