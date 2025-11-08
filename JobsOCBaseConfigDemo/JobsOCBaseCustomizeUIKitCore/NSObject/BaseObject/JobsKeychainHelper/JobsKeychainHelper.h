@@ -22,7 +22,7 @@
  */
 #pragma mark —— 🔑钥匙串存储：
 /// 读取数据
-+(JobsReturnIDByStringBlock _Nonnull)load;
++(JobsRetIDByStrBlock _Nonnull)load;
 
 +(jobsByStringBlock _Nonnull)remove;
 /// 保存数据，并检查是否保存成功
@@ -34,6 +34,6 @@
 /// service + account ==> password
 +(NSString *_Nullable)getPasswordByService:(NSString *_Nonnull)service account:(NSString *_Nonnull)account;
 /// 删除已有数据
-+(JobsReturnBOOLByStringBlock _Nonnull)deleteAccountInfoByService;
++(JobsRetBOOLByStringBlock _Nonnull)deleteAccountInfoByService;
 
 @end

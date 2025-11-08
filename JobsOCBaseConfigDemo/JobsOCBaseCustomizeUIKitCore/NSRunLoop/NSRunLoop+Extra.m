@@ -9,28 +9,28 @@
 
 @implementation NSRunLoop (Extra)
 
-+(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByCommonModes{
++(JobsRetTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByCommonModes{
     return ^__kindof NSTimer *_Nullable(NSTimer *_Nonnull timer){
         NSRunLoop.mainRunLoop.commonModesByTimer(timer);
         return timer;
     };
 }
 
-+(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByDefaultRunLoopMode{
++(JobsRetTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByDefaultRunLoopMode{
     return ^__kindof NSTimer *_Nullable(NSTimer *_Nonnull timer){
         NSRunLoop.mainRunLoop.defaultModeByTimer(timer);
         return timer;
     };
 }
 
-+(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByCommonModes{
++(JobsRetTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByCommonModes{
     return ^__kindof NSTimer *_Nullable(NSTimer *_Nonnull timer){
         NSRunLoop.currentRunLoop.commonModesByTimer(timer);
         return timer;
     };
 }
 
-+(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByDefaultRunLoopMode{
++(JobsRetTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByDefaultRunLoopMode{
     return ^__kindof NSTimer *_Nullable(NSTimer *_Nonnull timer){
         NSRunLoop.currentRunLoop.defaultModeByTimer(timer);
         return timer;

@@ -28,16 +28,16 @@ UIViewModelOthersProtocol /// UIViewModelOthersProtocol_synthesize、UIViewModel
                superview:(CGFloat)superview;
 #pragma mark —— 控件居中的时候，相对于全屏的X和Y值
 /// 当控件相对于整个设备屏幕居中的时候，控件的X值
-+(JobsReturnCGFloatByCGFloatBlock _Nonnull)xWhenViewInScreenCenter;
++(JobsRetCGFloatByCGFloatBlock _Nonnull)xWhenViewInScreenCenter;
 /// 当控件相对于整个设备屏幕居中的时候，控件的Y值
-+(JobsReturnCGFloatByCGFloatBlock _Nonnull)yWhenViewInScreenCenter;
++(JobsRetCGFloatByCGFloatBlock _Nonnull)yWhenViewInScreenCenter;
 #pragma mark —— 几何数据类型的比较
 /// 比较 size ？= CGSizeZero
--(JobsReturnBOOLBySizeBlock _Nonnull)isSizeZero;
+-(JobsRetBOOLBySizeBlock _Nonnull)isSizeZero;
 /// 比较 point ？= CGPointZero
--(JobsReturnBOOLByPointBlock _Nonnull)isPointZero;
+-(JobsRetBOOLByPointBlock _Nonnull)isPointZero;
 /// 比较 rect ？= CGRectZero
--(JobsReturnBOOLByFrameBlock _Nonnull)isRectZero;
+-(JobsRetBOOLByFrameBlock _Nonnull)isRectZero;
 /// 比较 rect1 ？= rect2
 -(BOOL)rect1:(CGRect)rect1
 isEqualToRect2:(CGRect)rect2;

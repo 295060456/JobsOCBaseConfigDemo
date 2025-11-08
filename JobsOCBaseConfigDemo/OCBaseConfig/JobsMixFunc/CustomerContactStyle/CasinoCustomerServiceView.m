@@ -68,7 +68,7 @@ static CasinoCustomerServiceView *static_customerServiceView = nil;
     };
 }
 
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(NSArray <UIViewModel *>*_Nullable data){
         CGFloat h = JobsWidth(162) + JobsHotLabelBySingleLine.viewSizeByModel(data).height + JobsWidth(70);
         return CGSizeMake(JobsWidth(345), h);

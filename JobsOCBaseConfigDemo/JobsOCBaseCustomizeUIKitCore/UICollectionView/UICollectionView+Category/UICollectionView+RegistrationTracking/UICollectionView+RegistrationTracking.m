@@ -76,7 +76,7 @@
                                                      forIndexPath:indexPath]; // 调用原方法
 }
 // 检查某个 reuseIdentifier 是否已注册
--(JobsReturnBOOLByStringBlock _Nonnull)isRegisteredForReuseIdentifier{
+-(JobsRetBOOLByStringBlock _Nonnull)isRegisteredForReuseIdentifier{
     @jobs_weakify(self)
     return ^(NSString * _Nullable reuseIdentifier) {
         @jobs_strongify(self)

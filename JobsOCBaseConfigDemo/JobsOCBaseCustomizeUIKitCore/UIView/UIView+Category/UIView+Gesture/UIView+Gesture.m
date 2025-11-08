@@ -18,7 +18,7 @@
     }
 }
 
--(JobsReturnGestureRecognizerByVoidStarBlock _Nonnull)deallocBy{
+-(JobsRetGestureByVoidStarBlock _Nonnull)deallocBy{
     @jobs_weakify(self)
     return ^__kindof UIGestureRecognizer *_Nullable(void *_Nullable key){
         @jobs_strongify(self)

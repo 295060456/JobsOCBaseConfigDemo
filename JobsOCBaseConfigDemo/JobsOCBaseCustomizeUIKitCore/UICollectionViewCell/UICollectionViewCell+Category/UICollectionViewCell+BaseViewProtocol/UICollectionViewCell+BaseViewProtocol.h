@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UICollectionViewCell (BaseViewProtocol)
 
--(JobsReturnCollectionViewCellByBOOLBlock _Nonnull)bySelected;
--(JobsReturnCollectionViewCellByBOOLBlock _Nonnull)byHighlighted;
+-(JobsRetCollectionViewCellByBOOLBlock _Nonnull)bySelected;
+-(JobsRetCollectionViewCellByBOOLBlock _Nonnull)byHighlighted;
 
 @end
 

@@ -9,7 +9,7 @@
 
 @implementation CAPropertyAnimation (Extra)
 
--(JobsReturnCAPropertyAnimationByStringBlock _Nonnull)keyPathBy{
+-(JobsRetCAPropertyAnimationByStringBlock _Nonnull)keyPathBy{
     @jobs_weakify(self)
     return ^__kindof CAPropertyAnimation *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -18,7 +18,7 @@
     };
 }
 
--(JobsReturnCAPropertyAnimationByBOOLBlock _Nonnull)additiveBy{
+-(JobsRetCAPropertyAnimationByBOOLBlock _Nonnull)additiveBy{
     @jobs_weakify(self)
     return ^__kindof CAPropertyAnimation *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -27,7 +27,7 @@
     };
 }
 
--(JobsReturnCAPropertyAnimationByBOOLBlock _Nonnull)cumulativeBy{
+-(JobsRetCAPropertyAnimationByBOOLBlock _Nonnull)cumulativeBy{
     @jobs_weakify(self)
     return ^__kindof CAPropertyAnimation *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -36,7 +36,7 @@
     };
 }
 
--(JobsReturnCAPropertyAnimationByCAValueFunctionBlock _Nonnull)valueFunctionBy{
+-(JobsRetCAPropertyAnimationByCAValueFunctionBlock _Nonnull)valueFunctionBy{
     @jobs_weakify(self)
     return ^__kindof CAPropertyAnimation *_Nullable(CAValueFunction *_Nullable data){
         @jobs_strongify(self)

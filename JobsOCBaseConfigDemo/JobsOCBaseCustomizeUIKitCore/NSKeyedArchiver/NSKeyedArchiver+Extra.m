@@ -9,13 +9,13 @@
 
 @implementation NSKeyedArchiver (Extra)
 
-+(JobsReturnDataByIDBlock _Nonnull)initByObject{
++(JobsRetDataByIDBlock _Nonnull)initByObject{
     return ^__kindof NSData *_Nullable(id _Nullable data){
         return [NSKeyedArchiver archivedDataWithRootObject:data];
     };
 }
 
-+(JobsReturnDataByIDBlock _Nonnull)archivedDataByRootObject_NO{
++(JobsRetDataByIDBlock _Nonnull)archivedDataByRootObject_NO{
     return ^NSData *_Nullable(id _Nullable data){
         NSError *err = nil;
         NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data
@@ -28,7 +28,7 @@
     };
 }
 
-+(JobsReturnDataByIDBlock _Nonnull)archivedDataByRootObject_YES{
++(JobsRetDataByIDBlock _Nonnull)archivedDataByRootObject_YES{
     return ^NSData *_Nullable(id _Nullable data){
         NSError *err = nil;
         NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:data

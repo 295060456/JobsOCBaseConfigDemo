@@ -9,7 +9,7 @@
 
 @implementation NSMutableSet (Extra)
 /// 阻止向可变集合添加空元素 JobsReturnIDByIDBlock
--(JobsReturnNSMutableSetByIDBlock _Nonnull)add{
+-(JobsRetMutableSetByIDBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^NSMutableSet *(id _Nullable data) {
         @jobs_strongify(self)
@@ -22,7 +22,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)containsObject{
+-(JobsRetBOOLByIDBlock _Nonnull)containsObject{
     @jobs_weakify(self)
     return ^BOOL(id _Nullable data) {
         @jobs_strongify(self)

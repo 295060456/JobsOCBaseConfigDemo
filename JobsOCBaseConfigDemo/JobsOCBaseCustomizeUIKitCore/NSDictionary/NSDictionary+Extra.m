@@ -9,7 +9,7 @@
 
 @implementation NSDictionary (Extra)
 /// 对系统方法 initWithContentsOfFile 的二次封装
-+(JobsReturnDicByStringBlock _Nonnull)initByContentsOfFile{
++(JobsRetDicByStringBlock _Nonnull)initByContentsOfFile{
     return ^__kindof NSDictionary *_Nullable(__kindof NSString *_Nullable filePath){
         return [NSDictionary.alloc initWithContentsOfFile:filePath];
     };
@@ -21,7 +21,7 @@
     };
 }
 /// 转成可变字典
--(JobsReturnMutableDicByVoidBlock _Nonnull)mutableDic{
+-(JobsRetMutableDicByVoidBlock _Nonnull)mutableDic{
     @jobs_weakify(self)
     return ^__kindof NSMutableDictionary *_Nonnull(){
         @jobs_strongify(self)
@@ -29,7 +29,7 @@
     };
 }
 /// 对系统方法 objectForKey 的二次封装
--(JobsReturnIDByIDBlock _Nonnull)objectForKey{
+-(JobsRetIDByIDBlock _Nonnull)objectForKey{
     @jobs_weakify(self)
     return ^(id key) {
         @jobs_strongify(self)

@@ -9,7 +9,7 @@
 
 @implementation NSString (ID)
 
--(JobsReturnCollectionViewLayoutAttributesByNSIndexPathBlock _Nonnull)initCollectionViewLayoutAttributesForSupplementaryViewBy{
+-(JobsRetCollectionViewLayoutAttributesByNSIndexPathBlock _Nonnull)initCollectionViewLayoutAttributesForSupplementaryViewBy{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewLayoutAttributes *_Nullable(__kindof NSIndexPath *_Nullable indexPath){
         @jobs_strongify(self)
@@ -17,7 +17,7 @@
     };
 }
 
--(JobsReturnCollectionViewLayoutAttributesByNSIndexPathBlock _Nonnull)initCollectionViewLayoutAttributesForDecorationViewBy{
+-(JobsRetCollectionViewLayoutAttributesByNSIndexPathBlock _Nonnull)initCollectionViewLayoutAttributesForDecorationViewBy{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewLayoutAttributes *_Nullable(__kindof NSIndexPath *_Nullable indexPath){
         @jobs_strongify(self)

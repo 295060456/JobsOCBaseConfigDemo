@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// moveToPoint
 -(jobsByPointBlock _Nonnull)moveTo;
 /// 对系统方法 bezierPathWithRect
-+(JobsReturnBezierPathByCGRectBlock _Nonnull)initByRect;
++(JobsRetBezierPathByFrameBlock _Nonnull)initByRect;
 
 @end
 

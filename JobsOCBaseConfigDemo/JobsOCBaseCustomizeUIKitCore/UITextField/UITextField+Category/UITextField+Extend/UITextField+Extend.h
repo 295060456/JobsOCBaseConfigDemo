@@ -27,10 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 Prop_strong()__kindof UIButton *customSysClearBtn;
 /// RAC 回调封装
--(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock _Nonnull)filterBlock
+-(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsRetBOOLByIDBlock _Nonnull)filterBlock
                              subscribeNextBlock:(jobsByIDBlock _Nonnull)subscribeNextBlock;
 /// 自定义系统的清除按钮
--(JobsReturnStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString;
+-(JobsRetStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString;
 /// 自定义系统的清除按钮
 -(jobsByImageBlock _Nonnull)modifyClearButtonByImage;
 

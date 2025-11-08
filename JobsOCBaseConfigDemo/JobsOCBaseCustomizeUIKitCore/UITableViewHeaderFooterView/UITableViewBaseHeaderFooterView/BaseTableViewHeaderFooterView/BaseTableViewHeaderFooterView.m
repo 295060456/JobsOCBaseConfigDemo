@@ -62,7 +62,7 @@ BaseViewProtocol_synthesize
  再在- (nullable __kindof UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section方法里面：
  self.makeViewOnTableViewHeaderFooterView(headerView).alpha = 1; /// 进行一句话进行调用
  */
--(JobsReturnViewByTableViewHeaderFooterViewBlock _Nonnull)makeViewOnTableViewHeaderFooterView{
+-(JobsRetViewByTableViewHeaderFooterViewBlock _Nonnull)makeViewOnTableViewHeaderFooterView{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable (__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView) {
         @jobs_strongify(self)
@@ -79,13 +79,13 @@ BaseViewProtocol_synthesize
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
++(JobsRetCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(140);
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(70);
     };

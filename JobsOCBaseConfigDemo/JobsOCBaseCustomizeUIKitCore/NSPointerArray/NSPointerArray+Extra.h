@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSPointerArray (Extra)
 
--(JobsReturnPointerByNSUIntegerBlock _Nonnull)pointerByIndex;
--(JobsReturnPointerArrayByPointerBlock _Nonnull)add;
--(JobsReturnPointerArrayByNSUIntegerBlock _Nonnull)removePointerBy;
+-(JobsRetPointerByNSUIntegerBlock _Nonnull)pointerByIndex;
+-(JobsRetPointerArrayByPointerBlock _Nonnull)add;
+-(JobsRetPointerArrayByNSUIntegerBlock _Nonnull)removePointerBy;
 
 @end
 

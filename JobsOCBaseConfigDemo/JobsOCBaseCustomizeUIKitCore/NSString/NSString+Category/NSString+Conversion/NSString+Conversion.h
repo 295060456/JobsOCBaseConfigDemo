@@ -72,9 +72,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSString (Conversion)
 #pragma mark —— 转化
 /// 对系统方法 initWithData.NSUTF8StringEncoding 的二次封装
-+(JobsReturnStringByDataBlock _Nonnull)initByUTF8Data;
++(JobsRetStringByDataBlock _Nonnull)initByUTF8Data;
 /// 对系统方法 initWithData.NSASCIIStringEncoding 的二次封装
-+(JobsReturnStringByDataBlock _Nonnull)initByASCIIData;
++(JobsRetStringByDataBlock _Nonnull)initByASCIIData;
 /// 转化为可变字符串
 -(NSMutableString *_Nullable)Mutable;
 -(NSData *_Nullable)UTF8Encoding;
@@ -86,28 +86,28 @@ NS_ASSUME_NONNULL_BEGIN
 /// JSON 转 NSDictionary
 -(nullable id)dictionaryWithJsonString;
 /// NSDictionary 转 json字符串方法//==[dic mj_JSONString]
--(JobsReturnStringByDictionaryBlock _Nonnull)convertToJsonData;
+-(JobsRetStringByDicBlock _Nonnull)convertToJsonData;
 /// NSDictionary 转 NSString
--(JobsReturnStringByDictionaryBlock _Nonnull)convertDictionaryToString;
+-(JobsRetStringByDicBlock _Nonnull)convertDictionaryToString;
 ///【实例方法】解压缩字符串
 -(NSData *)compress;
 ///【类方法】压缩字符串成NSData
--(JobsReturnDataByStringBlock _Nonnull)compressString;
+-(JobsRetDataByStringBlock _Nonnull)compressString;
 ///【类方法】解压缩字符串
-+(JobsReturnStringByDataBlock _Nonnull)decompressString;
++(JobsRetStringByDataBlock _Nonnull)decompressString;
 /// 对象转OC字符串
-+(JobsReturnStringByIDBlock _Nonnull)toString;
++(JobsRetStringByIDBlock _Nonnull)toString;
 /// OC字符串转NSDate
--(JobsReturnDateByDateFormatterBlock _Nonnull)dataByDateFormatter;
+-(JobsRetDateByDateFormatterBlock _Nonnull)dataByDateFormatter;
 /// OC字符串数组 转 OC字符串
 +(NSString *_Nonnull)toStrByStringArr:(NSArray <NSString *>*_Nonnull)arr;
 /// 纯字符串格式化为4位数字为一组的银行卡格式字符串
 -(__kindof NSString *_Nullable)bankCardStyle;
--(JobsReturnStringByIntegerBlock _Nonnull)bankCardStyleBy;
+-(JobsRetStringByIntegerBlock _Nonnull)bankCardStyleBy;
 /// 将字典转换成GET请求的URL（带参数）
--(JobsReturnStringByDictionaryBlock _Nonnull)GETRequestURLParaBy;
+-(JobsRetStringByDicBlock _Nonnull)GETRequestURLParaBy;
 /// 从指定的 URL 加载文本内容，并将其读取为一个可变字符串
--(JobsReturnStringByVoidBlock _Nonnull)stringByContentsOfURL;
+-(JobsRetStringByVoidBlock _Nonnull)stringByContentsOfURL;
 
 @end
 

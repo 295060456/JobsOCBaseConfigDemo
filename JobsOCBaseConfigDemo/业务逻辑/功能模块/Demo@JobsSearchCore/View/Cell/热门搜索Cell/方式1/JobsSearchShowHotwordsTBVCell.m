@@ -15,14 +15,14 @@ Prop_strong()JobsHotLabelByMultiLine *jobsHotLabel;
 
 @implementation JobsSearchShowHotwordsTBVCell
 #pragma mark —— BaseCellProtocol
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsSearchShowHotwordsTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsSearchShowHotwordsTBVCell);
         return cell;
     };
 }
 
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(NSMutableArray <UIViewModel *>*_Nullable data){
         CGFloat width = hotLabLeft + hotLabRight;
         CGFloat height = 0;
@@ -43,7 +43,7 @@ Prop_strong()JobsHotLabelByMultiLine *jobsHotLabel;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(NSMutableArray <UIViewModel *>* _Nullable model) {
         @jobs_strongify(self)

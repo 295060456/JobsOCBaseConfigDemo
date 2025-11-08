@@ -33,7 +33,7 @@ Prop_strong()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
+-(JobsRetCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(id _Nullable model) {
         @jobs_strongify(self)
@@ -43,13 +43,13 @@ Prop_strong()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)cellSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsMainScreen_WIDTH() - TableViewWidth, JobsWidth(1000));
     };
 }
 #pragma mark —— 一些公有方法
--(JobsReturnCGFloatByArrBlock _Nonnull)getCollectionHeight{
+-(JobsRetCGFloatByArrBlock _Nonnull)getCollectionHeight{
     @jobs_weakify(self)
     return ^CGFloat(NSMutableArray <GoodsClassModel *>*_Nullable data){
         @jobs_strongify(self)
@@ -62,7 +62,7 @@ Prop_strong()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个
     };
 }
 
--(JobsReturnViewByVoidBlock _Nonnull)reloadDatas{
+-(JobsRetViewByVoidBlock _Nonnull)reloadDatas{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(){
         @jobs_strongify(self)

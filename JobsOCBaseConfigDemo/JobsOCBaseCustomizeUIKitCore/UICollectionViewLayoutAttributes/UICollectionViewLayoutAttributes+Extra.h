@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UICollectionViewLayoutAttributes (Extra)
 
-+(JobsReturnCollectionViewLayoutAttributesByNSIndexPathBlock _Nonnull)initBy;
++(JobsRetCollectionViewLayoutAttributesByNSIndexPathBlock _Nonnull)initBy;
 
 @end
 

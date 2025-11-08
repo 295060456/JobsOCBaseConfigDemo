@@ -52,14 +52,14 @@ UITextFieldProtocol_synthesize_part2
     }return self;
 }
 #pragma mark —— BaseCellProtocol
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsIMChatInfoTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsIMChatInfoTBVCell);
         return cell;
     };
 }
 
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
         if ([data isKindOfClass:JobsIMChatInfoModel.class]){
 //            JobsIMChatInfoModel *chatInfoModel = (JobsIMChatInfoModel *)data;
@@ -77,7 +77,7 @@ UITextFieldProtocol_synthesize_part2
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -162,7 +162,7 @@ UITextFieldProtocol_synthesize_part2
     });;
 }
 
--(JobsReturnTableViewCellByBOOLBlock _Nonnull)byAllowsMultipleSwipe{
+-(JobsRetTableViewCellByBOOLBlock _Nonnull)byAllowsMultipleSwipe{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -171,7 +171,7 @@ UITextFieldProtocol_synthesize_part2
     };
 }
 
--(JobsReturnTableViewCellByBOOLBlock _Nonnull)byShowChatUserName{
+-(JobsRetTableViewCellByBOOLBlock _Nonnull)byShowChatUserName{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(BOOL data){
         @jobs_strongify(self)

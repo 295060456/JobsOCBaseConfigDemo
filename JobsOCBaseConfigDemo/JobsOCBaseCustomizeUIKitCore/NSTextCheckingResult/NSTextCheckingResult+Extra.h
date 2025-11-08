@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSTextCheckingResult (Extra)
 
--(JobsReturnRangeByIntegerBlock _Nonnull)rangeAtIndex;
+-(JobsRetRangeByIntegerBlock _Nonnull)rangeAtIndex;
 
 @end
 

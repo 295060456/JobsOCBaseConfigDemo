@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CAPropertyAnimation (Extra)
 
--(JobsReturnCAPropertyAnimationByStringBlock _Nonnull)keyPathBy;
--(JobsReturnCAPropertyAnimationByBOOLBlock _Nonnull)additiveBy;
--(JobsReturnCAPropertyAnimationByBOOLBlock _Nonnull)cumulativeBy;
--(JobsReturnCAPropertyAnimationByCAValueFunctionBlock _Nonnull)valueFunctionBy;
+-(JobsRetCAPropertyAnimationByStringBlock _Nonnull)keyPathBy;
+-(JobsRetCAPropertyAnimationByBOOLBlock _Nonnull)additiveBy;
+-(JobsRetCAPropertyAnimationByBOOLBlock _Nonnull)cumulativeBy;
+-(JobsRetCAPropertyAnimationByCAValueFunctionBlock _Nonnull)valueFunctionBy;
 
 @end
 

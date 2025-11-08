@@ -9,7 +9,7 @@
 
 @implementation NSXMLParser (Extra)
 
-+(JobsReturnNSXMLParserByNSDataBlock _Nonnull)initBy{
++(JobsRetNSXMLParserByNSDataBlock _Nonnull)initBy{
     return ^__kindof NSXMLParser *_Nonnull(__kindof NSData *_Nullable data){
         return [NSXMLParser.alloc initWithData:data];
     };

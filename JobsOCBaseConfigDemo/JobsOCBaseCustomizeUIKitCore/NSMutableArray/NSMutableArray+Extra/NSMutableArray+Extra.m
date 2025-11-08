@@ -9,7 +9,7 @@
 
 @implementation NSMutableArray (Extra)
 
-+(JobsReturnArrayByArrayBlock _Nonnull)initBy{
++(JobsRetArrByArrBlock _Nonnull)initBy{
     return ^__kindof NSArray *_Nullable(__kindof NSArray *_Nullable data){
         return [NSMutableArray arrayWithArray:data];
     };
@@ -23,7 +23,7 @@
     };
 }
 /// 阻止向可变数组添加空元素
--(JobsReturnMutableArrayByIDBlock _Nonnull)add{
+-(JobsRetMutableArrayByIDBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^NSMutableArray *_Nullable(id _Nullable data) {
         @jobs_strongify(self)
@@ -34,7 +34,7 @@
     };
 }
 /// 删除元素
--(JobsReturnIDByIDBlock _Nonnull)remove{
+-(JobsRetIDByIDBlock _Nonnull)remove{
     @jobs_weakify(self)
     return ^id (id _Nullable data) {
         @jobs_strongify(self)
@@ -45,7 +45,7 @@
     };
 }
 /// 阻止向可变数组添加空元素
--(JobsReturnIDByIDBlock _Nonnull)addBy{
+-(JobsRetIDByIDBlock _Nonnull)addBy{
     @jobs_weakify(self)
     return ^id (__kindof NSArray *data) {
         @jobs_strongify(self)
@@ -56,7 +56,7 @@
     };
 }
 /// 向数组加入一个从来没有没有过的元素，以保证数组元素的单一性
--(JobsReturnIDByIDBlock _Nonnull)jobsAddSoleObject{
+-(JobsRetIDByIDBlock _Nonnull)jobsAddSoleObject{
     @jobs_weakify(self)
     return ^id (id _Nullable data) {
         @jobs_strongify(self)
@@ -82,7 +82,7 @@
     }return nil;
 }
 /// 将数组里的元素复制times次
--(JobsReturnArrayByIntegerBlock _Nonnull)copyElementBytimes{
+-(JobsRetArrByIntegerBlock _Nonnull)copyElementBytimes{
     @jobs_weakify(self)
     return ^NSMutableArray *(NSInteger times) {
         __block NSInteger Times = times;

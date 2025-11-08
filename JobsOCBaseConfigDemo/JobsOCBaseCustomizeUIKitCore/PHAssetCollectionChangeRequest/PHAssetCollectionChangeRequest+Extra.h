@@ -12,11 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHAssetCollectionChangeRequest (Extra)
 /// 对系统方法 changeRequestForAssetCollection 的二次封装
-+(JobsReturnPHAssetCollectionChangeRequestByPHAssetCollectionBlock _Nonnull)initBy;
++(JobsRetPHAssetCollectionChangeRequestByPHAssetCollectionBlock _Nonnull)initBy;
 /// 对系统方法 creationRequestForAssetCollectionWithTitle 的二次封装
-+(JobsReturnPHAssetCollectionChangeRequestByStringBlock _Nonnull)initByTitle;
++(JobsRetPHAssetCollectionChangeRequestByStringBlock _Nonnull)initByTitle;
 /// 对系统方法 addAssets 的二次封装
--(JobsReturnPHAssetCollectionChangeRequestByIDBlock _Nonnull)add;
+-(JobsRetPHAssetCollectionChangeRequestByIDBlock _Nonnull)add;
 
 @end
 

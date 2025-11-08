@@ -9,7 +9,7 @@
 
 @implementation UICollectionViewLayoutAttributes (Extra)
 
-+(JobsReturnCollectionViewLayoutAttributesByNSIndexPathBlock _Nonnull)initBy{
++(JobsRetCollectionViewLayoutAttributesByNSIndexPathBlock _Nonnull)initBy{
     return ^__kindof UICollectionViewLayoutAttributes *_Nullable(__kindof NSIndexPath *_Nullable indexPath){
         return [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     };

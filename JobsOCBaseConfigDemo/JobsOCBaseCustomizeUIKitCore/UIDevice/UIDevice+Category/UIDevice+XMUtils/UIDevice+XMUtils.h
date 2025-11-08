@@ -30,7 +30,7 @@
  数据来源：https://www.theiphonewiki.com/wiki/Models 定位标识符 Identifier
  ⚠️标识处：在数据来源处并未罗列
  */
-+(JobsReturnStringByStringBlock _Nonnull)platformBy;
++(JobsRetStringByStringBlock _Nonnull)platformBy;
 ///  获取设备型号名称（可以区分iOS模拟器）
 +(NSString * _Nullable)platformNameStr;
 /// 获取当前设备标识符Identifier（不区分iOS模拟器：把IOS模拟器当真机对待）

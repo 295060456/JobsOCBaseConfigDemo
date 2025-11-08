@@ -12,46 +12,46 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UITextField (DSL)
 #pragma mark —— 基础文本
--(JobsReturnTextFieldByStringBlock _Nonnull)byText;
--(JobsReturnTextFieldByAttributedStringBlock _Nonnull)byAttributedText API_AVAILABLE(ios(6.0));
--(JobsReturnTextFieldByCorBlock _Nonnull)byTextCor;
--(JobsReturnTextFieldByFontBlock _Nonnull)byFont;
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byTextAlignment;
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byBorderStyle;
--(JobsReturnTextFieldByNSDictionaryBlock _Nonnull)byDefaultTextAttributes API_AVAILABLE(ios(7.0));
+-(JobsRetTextFieldByStringBlock _Nonnull)byText;
+-(JobsRetTextFieldByAttributedStringBlock _Nonnull)byAttributedText API_AVAILABLE(ios(6.0));
+-(JobsRetTextFieldByCorBlock _Nonnull)byTextCor;
+-(JobsRetTextFieldByFontBlock _Nonnull)byFont;
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byTextAlignment;
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byBorderStyle;
+-(JobsRetTextFieldByNSDictionaryBlock _Nonnull)byDefaultTextAttributes API_AVAILABLE(ios(7.0));
 #pragma mark —— 占位符
--(JobsReturnTextFieldByStringBlock _Nonnull)byPlaceholder;
--(JobsReturnTextFieldByCorBlock _Nonnull)byPlaceholderColor;
--(JobsReturnTextFieldByFontBlock _Nonnull)byPlaceholderFont;
--(JobsReturnTextFieldByAttributedStringBlock _Nonnull)byAttributedPlaceholder API_AVAILABLE(ios(6.0));
+-(JobsRetTextFieldByStringBlock _Nonnull)byPlaceholder;
+-(JobsRetTextFieldByCorBlock _Nonnull)byPlaceholderColor;
+-(JobsRetTextFieldByFontBlock _Nonnull)byPlaceholderFont;
+-(JobsRetTextFieldByAttributedStringBlock _Nonnull)byAttributedPlaceholder API_AVAILABLE(ios(6.0));
 #pragma mark —— 编辑行为
--(JobsReturnTextFieldByBOOLBlock _Nonnull)byClearsOnBeginEditing;
--(JobsReturnTextFieldByBOOLBlock _Nonnull)byAdjustsFontSizeToFitWidth;
--(JobsReturnTextFieldByCGFloatrBlock _Nonnull)byMinimumFontSize;
--(JobsReturnTextFieldByBOOLBlock _Nonnull)byAllowsEditingTextAttributes API_AVAILABLE(ios(6.0));
--(JobsReturnTextFieldByNSDictionaryBlock _Nonnull)byTypingAttributes API_AVAILABLE(ios(6.0));
--(JobsReturnTextFieldByBOOLBlock _Nonnull)byClearsOnInsertion API_AVAILABLE(ios(6.0));
+-(JobsRetTextFieldByBOOLBlock _Nonnull)byClearsOnBeginEditing;
+-(JobsRetTextFieldByBOOLBlock _Nonnull)byAdjustsFontSizeToFitWidth;
+-(JobsRetTextFieldByCGFloatrBlock _Nonnull)byMinimumFontSize;
+-(JobsRetTextFieldByBOOLBlock _Nonnull)byAllowsEditingTextAttributes API_AVAILABLE(ios(6.0));
+-(JobsRetTextFieldByNSDictionaryBlock _Nonnull)byTypingAttributes API_AVAILABLE(ios(6.0));
+-(JobsRetTextFieldByBOOLBlock _Nonnull)byClearsOnInsertion API_AVAILABLE(ios(6.0));
 #pragma mark —— 背景
--(JobsReturnTextFieldByImageBlock _Nonnull)byBackground;
--(JobsReturnTextFieldByImageBlock _Nonnull)byDisabledBackground;
+-(JobsRetTextFieldByImageBlock _Nonnull)byBackground;
+-(JobsRetTextFieldByImageBlock _Nonnull)byDisabledBackground;
 #pragma mark —— 清除按钮
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byClearButtonMode;
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byClearButtonMode;
 #pragma mark —— 左右视图
--(JobsReturnTextFieldByViewBlock _Nonnull)byLeftView;
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byLeftViewMode;
--(JobsReturnTextFieldByViewBlock _Nonnull)byRightView;
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byRightViewMode;
+-(JobsRetTextFieldByViewBlock _Nonnull)byLeftView;
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byLeftViewMode;
+-(JobsRetTextFieldByViewBlock _Nonnull)byRightView;
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byRightViewMode;
 #pragma mark —— 输入视图
--(JobsReturnTextFieldByViewBlock _Nonnull)byInputView;
--(JobsReturnTextFieldByViewBlock _Nonnull)byInputAccessoryView API_UNAVAILABLE(visionos);
+-(JobsRetTextFieldByViewBlock _Nonnull)byInputView;
+-(JobsRetTextFieldByViewBlock _Nonnull)byInputAccessoryView API_UNAVAILABLE(visionos);
 #pragma mark —— delegate
--(JobsReturnTextFieldByDelegateBlock _Nonnull)byDelegate;
+-(JobsRetTextFieldByDelegateBlock _Nonnull)byDelegate;
 #pragma mark —— 键盘
--(JobsReturnTextFieldByKeyboardAppearanceBlock _Nonnull)byKeyboardAppearance;
--(JobsReturnTextFieldByKeyboardTypeBlock _Nonnull)byKeyboardType;
--(JobsReturnTextFieldByReturnKeyTypeBlock _Nonnull)byReturnKeyType;
+-(JobsRetTextFieldByKeyboardAppearanceBlock _Nonnull)byKeyboardAppearance;
+-(JobsRetTextFieldByKeyboardTypeBlock _Nonnull)byKeyboardType;
+-(JobsRetTextFieldByReturnKeyTypeBlock _Nonnull)byReturnKeyType;
 #pragma mark —— 其他
--(JobsReturnTextFieldByBOOLBlock _Nonnull)bySecureTextEntry;
+-(JobsRetTextFieldByBOOLBlock _Nonnull)bySecureTextEntry;
 
 @end
 

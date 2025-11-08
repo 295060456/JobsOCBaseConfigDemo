@@ -18,22 +18,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableArray (Extra)
 
-+(JobsReturnArrayByArrayBlock _Nonnull)initBy;
++(JobsRetArrByArrBlock _Nonnull)initBy;
 /// 清除数组元素
 -(jobsByVoidBlock _Nonnull)clean;
 /// 阻止向可变数组添加空元素
--(JobsReturnMutableArrayByIDBlock _Nonnull)add;
+-(JobsRetMutableArrayByIDBlock _Nonnull)add;
 /// 删除元素
--(JobsReturnIDByIDBlock _Nonnull)remove;
+-(JobsRetIDByIDBlock _Nonnull)remove;
 /// 阻止向可变数组添加空元素
--(JobsReturnIDByIDBlock _Nonnull)addBy;
+-(JobsRetIDByIDBlock _Nonnull)addBy;
 /// 向数组加入一个从来没有没有过的元素，以保证数组元素的单一性
--(JobsReturnIDByIDBlock _Nonnull)jobsAddSoleObject;
+-(JobsRetIDByIDBlock _Nonnull)jobsAddSoleObject;
 /// 将数组里的某个元素移动到原数组的某个位
 -(__kindof NSArray *_Nullable)moveElementFromIndex:(NSInteger)fromIndex
                                            toIndex:(NSInteger)toIndex;
 /// 将数组里的元素复制times次
--(JobsReturnArrayByIntegerBlock _Nonnull)copyElementBytimes;
+-(JobsRetArrByIntegerBlock _Nonnull)copyElementBytimes;
 /// 改变输入的按钮状态
 -(jobsByBtnBlock _Nonnull)chooseBy;
 /// 监控选中状态

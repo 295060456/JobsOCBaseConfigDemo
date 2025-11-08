@@ -9,7 +9,7 @@
 
 @implementation NSString (Menu)
 
--(JobsReturnMenuItemBySELBlock _Nonnull)initMenuItemBy{
+-(JobsRetMenuItemBySELBlock _Nonnull)initMenuItemBy{
     @jobs_weakify(self)
     return ^__kindof UIMenuItem *_Nullable(SEL _Nullable data){
         @jobs_strongify(self)

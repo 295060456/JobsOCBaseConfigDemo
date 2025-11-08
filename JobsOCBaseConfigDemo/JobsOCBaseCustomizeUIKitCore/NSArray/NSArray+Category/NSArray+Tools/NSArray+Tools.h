@@ -18,19 +18,19 @@
 
 @interface NSArray (Tools)
 /// 数组取值（无法关联数组的泛型）
--(JobsReturnIDByUIntegerBlock _Nonnull)objectAt;
+-(JobsRetIDByUIntegerBlock _Nonnull)objectAt;
 /// 数组取下标
--(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy;
+-(JobsRetNSUIntegerByIDBlock _Nonnull)indexBy;
 /// 数组里面是否包含某个元素
--(JobsReturnBOOLByIDBlock _Nonnull)containsObject;
+-(JobsRetBOOLByIDBlock _Nonnull)containsObject;
 /// 数组转字符串
 -(NSString *_Nonnull)string;
 /// 数组比较
--(JobsReturnBOOLByArrBlock _Nonnull)compareEqualArrElement;
+-(JobsRetBOOLByArrBlock _Nonnull)compareEqualArrElement;
 /// 数组计算交集
--(JobsReturnArrayByArrayBlock _Nonnull)arrayForIntersectionWithOtherArray;
+-(JobsRetArrByArrBlock _Nonnull)arrayForIntersectionWithOtherArray;
 /// 数据计算差集
--(JobsReturnArrayByArrayBlock _Nonnull)arrayForMinusWithOtherArray;
+-(JobsRetArrByArrBlock _Nonnull)arrayForMinusWithOtherArray;
 -(jobsByBOOLBlock _Nonnull)jobsVisible;
 -(JobsReturnArrByMasonryBlocks _Nonnull)installByMasonryBlock;
 #pragma mark —— Masonry 均匀分布的布局方式封装
@@ -39,7 +39,7 @@
 /// 将一组视图沿某个方向（水平或垂直）等间距分布，视图的宽度（或高度）是固定的，且视图与容器的两端没有间隔。
 -(JobsReturnArrByMasonryModelBlock _Nonnull)installByMasonryModel2;
 /// 转成可变数组
--(JobsReturnMutableArrayByVoidBlock _Nonnull)mutableArr;
+-(JobsRetMutableArrayByVoidBlock _Nonnull)mutableArr;
 
 @end
 

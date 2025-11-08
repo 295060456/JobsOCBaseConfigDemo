@@ -11,7 +11,7 @@
 @implementation UITextField (Extend)
 #pragma mark —— 一些功能方法
 /// RAC 回调封装
--(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsReturnBOOLByIDBlock _Nonnull)filterBlock
+-(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsRetBOOLByIDBlock _Nonnull)filterBlock
                              subscribeNextBlock:(jobsByIDBlock _Nonnull)subscribeNextBlock{
     return [[self.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
         return filterBlock ? filterBlock(value) : YES;
@@ -20,7 +20,7 @@
     }];
 }
 
--(JobsReturnStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString{
+-(JobsRetStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *_Nullable replacementString){
         @jobs_strongify(self)

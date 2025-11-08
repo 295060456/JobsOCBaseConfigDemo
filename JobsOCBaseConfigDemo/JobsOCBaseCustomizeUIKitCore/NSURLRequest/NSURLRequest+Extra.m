@@ -9,13 +9,13 @@
 
 @implementation NSURLRequest (Extra)
 
-+(JobsReturnURLRequestByURLBlock _Nonnull)initBy{
++(JobsRetURLRequestByURLBlock _Nonnull)initBy{
     return ^__kindof NSURLRequest *_Nullable(NSURL *_Nullable url){
         return [NSURLRequest requestWithURL:url];
     };
 }
 /// 打印NSURLRequest有效内容，并转化为NSMutableURLRequest对外输出
--(JobsReturnMutableURLRequestByVoidBlock _Nonnull)print{
+-(JobsRetMutableURLRequestByVoidBlock _Nonnull)print{
     @jobs_weakify(self)
     return ^NSMutableURLRequest *_Nullable(){
         @jobs_strongify(self)

@@ -36,7 +36,7 @@ Prop_strong()UIColor *cor;
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsMainScreen_WIDTH(),JobsWidth(46));
     };
@@ -123,7 +123,7 @@ static dispatch_once_t static_choiceStadiumViewOnceToken;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(JobsMainScreen_WIDTH()), JobsWidth(46) * [BaiShaETProjChoiceStadiumView createDataMutArr].count + JobsWidth(44) + JobsBottomSafeAreaHeight());
     };

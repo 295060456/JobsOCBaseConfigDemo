@@ -12,15 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSValue (Extra)
 
-+(JobsReturnValueByCGSizeBlock _Nonnull)bySize;
-+(JobsReturnValueByPointerBlock _Nonnull)byPointer;
-+(JobsReturnValueByPointBlock _Nonnull)byPoint;
-+(JobsReturnValueByVectorBlock _Nonnull)byVector;
-+(JobsReturnValueByRectBlock _Nonnull)byRect;
-+(JobsReturnValueByAffineTransformBlock _Nonnull)byAffineTransform;
-+(JobsReturnValueByEdgeInsetsBlock _Nonnull)byEdgeInsets;
-+(JobsReturnValueByDirectionalEdgeInsetsBlock _Nonnull)byDirectionalEdgeInsets;
-+(JobsReturnValueByOffsetBlock _Nonnull)byOffset;
++(JobsRetValueByCGSizeBlock _Nonnull)bySize;
++(JobsRetValueByPointerBlock _Nonnull)byPointer;
++(JobsRetValueByPointBlock _Nonnull)byPoint;
++(JobsRetValueByVectorBlock _Nonnull)byVector;
++(JobsRetValueByFrameBlock _Nonnull)byRect;
++(JobsRetValueByAffineTransformBlock _Nonnull)byAffineTransform;
++(JobsRetValueByEdgeInsetsBlock _Nonnull)byEdgeInsets;
++(JobsRetValueByDirectionalEdgeInsetsBlock _Nonnull)byDirectionalEdgeInsets;
++(JobsRetValueByOffsetBlock _Nonnull)byOffset;
 
 @end
 

@@ -86,7 +86,7 @@ UITextFieldProtocol_dynamic
 }
 #pragma mark —— ViewController
 /// 从一个视图（UIView）出发，获取它所在的视图控制器（UIViewController）
--(JobsReturnVCByViewBlock _Nonnull)getViewControllerByView{
+-(JobsRetVCByViewBlock _Nonnull)getViewControllerByView{
     return ^(UIView *_Nonnull view) {
         UIResponder *responder = view;
         while (responder) {
@@ -109,7 +109,7 @@ UITextFieldProtocol_dynamic
     return self.getCurrentViewControllerByRootVC(MainWindow.rootViewController);
 }
 /// 获得当前控制器的根控制器
--(JobsReturnVCByVCBlock _Nonnull)getCurrentViewControllerByRootVC{
+-(JobsRetVCByVCBlock _Nonnull)getCurrentViewControllerByRootVC{
     @jobs_weakify(self)
     return ^(UIViewController *_Nonnull rootVC) {
         @jobs_strongify(self)
@@ -209,7 +209,7 @@ UITextFieldProtocol_dynamic
                     context:nil];
 }
 #pragma mark —— 单例相关
-+(JobsReturnIDByVoidBlock _Nonnull)SharedInstance{
++(JobsRetIDByVoidBlock _Nonnull)SharedInstance{
     @jobs_weakify(self)
     return ^JobsNavBarConfig *(){
         @jobs_strongify(self)
@@ -237,7 +237,7 @@ UITextFieldProtocol_dynamic
     });
 }
 
--(MJRefreshConfigModel *_Nonnull)refreshHeaderDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock{
+-(MJRefreshConfigModel *_Nonnull)refreshHeaderDataBy:(JobsRetIDByIDBlock _Nonnull)loadBlock{
     return self.mjHeaderDefaultConfig.byLoadBlock(loadBlock);
 }
 /// 刷新控件的尾部数据
@@ -252,7 +252,7 @@ UITextFieldProtocol_dynamic
     });
 }
 
--(MJRefreshConfigModel *_Nonnull)refreshFooterDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock{
+-(MJRefreshConfigModel *_Nonnull)refreshFooterDataBy:(JobsRetIDByIDBlock _Nonnull)loadBlock{
     return self.mjFooterDefaultConfig.byLoadBlock(loadBlock);
 }
 /// 切换到主VC
@@ -330,7 +330,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 将 NSDate  *转换输出成人类可读的（年\月\日）时间（字符串）
--(JobsReturnStringByDateBlock _Nonnull)toReadableDayTimeByDate{
+-(JobsRetStringByDateBlock _Nonnull)toReadableDayTimeByDate{
     return ^__kindof NSString *_Nullable(NSDate *_Nullable date){
         return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
             dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
@@ -339,7 +339,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 将 NSDate  *转换输出成人类可读的（年\月\日\时\分\秒）时间（字符串）
--(JobsReturnStringByDateBlock _Nonnull)toReadableTimeByDate{
+-(JobsRetStringByDateBlock _Nonnull)toReadableTimeByDate{
     return ^__kindof NSString *_Nullable(NSDate *_Nullable date){
         return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
             dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
@@ -360,7 +360,7 @@ UITextFieldProtocol_dynamic
 }
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
 /// data：包含 HTML 内容的字符串
--(JobsReturnWKWebViewByStringBlock _Nonnull)makeWebViewByString{
+-(JobsRetWKWebViewByStringBlock _Nonnull)makeWebViewByString{
     return ^__kindof WKWebView *_Nullable(NSString *_Nullable data){
         return jobsMakeWKWebView(^(__kindof WKWebView * _Nullable webView) {
             [webView loadHTMLString:data baseURL:nil];
@@ -368,7 +368,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 解析网络URL数据
--(JobsReturnWKWebViewByURLBlock _Nonnull)makeWebViewByURL{
+-(JobsRetWKWebViewByURLBlock _Nonnull)makeWebViewByURL{
     return ^__kindof WKWebView *_Nullable(NSURL *_Nullable URL){
         return jobsMakeWKWebView(^(__kindof WKWebView * _Nullable webView) {
             [webView loadRequest:URL.URLRequest];
@@ -376,7 +376,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 在导航栏堆栈里面，是否存在同样类型的控制器
--(JobsReturnBOOLByViewControllerBlock _Nonnull)isSameVCBy{
+-(JobsRetBOOLByVCBlock _Nonnull)isSameVCBy{
     @jobs_weakify(self)
     return ^BOOL(UIViewController *_Nullable viewController){
         @jobs_strongify(self)
@@ -387,7 +387,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 根控制器 => 导航控制器（普通控制器）
--(JobsReturnVCByVCBlock _Nonnull)rootViewControllerBy{
+-(JobsRetVCByVCBlock _Nonnull)rootViewControllerBy{
     return ^__kindof UIViewController *_Nullable(__kindof UIViewController *_Nonnull vc){
         if([vc isKindOfClass:UINavigationController.class]){
             return vc;
@@ -395,19 +395,19 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 依据传入的普通控制器，创建导航控制器
-+(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy{
++(JobsRetNavCtrByVCBlock _Nonnull)makeNavigationControllerBy{
     return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
         return UINavigationController.initByRootVC(vc);
     };
 }
 
--(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy{
+-(JobsRetNavCtrByVCBlock _Nonnull)makeNavigationControllerBy{
     return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
         return NSObject.makeNavigationControllerBy(vc);
     };
 }
 /// 依据传入的类名，创建导航控制器
-+(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls{
++(JobsRetNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls{
     return ^__kindof UINavigationController *_Nullable(Class _Nonnull cls){
         NSObject *instance = cls.new;
         if(instance.isKindOfClass(UIViewController.class)){
@@ -417,7 +417,7 @@ UITextFieldProtocol_dynamic
     };
 }
 
--(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls{
+-(JobsRetNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls{
     return ^__kindof UINavigationController *_Nullable(Class _Nonnull cls){
         return NSObject.makeNavigationControllerByCls(cls);
     };
@@ -451,7 +451,7 @@ UITextFieldProtocol_dynamic
     });
 }
 /// 获取m文件的属性
--(JobsReturnIDByStringBlock _Nonnull)getObjByName{
+-(JobsRetIDByStrBlock _Nonnull)getObjByName{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -462,7 +462,7 @@ UITextFieldProtocol_dynamic
     };
 }
 
--(JobsReturnDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted{
+-(JobsRetDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted{
     return ^NSData *_Nullable(__kindof NSDictionary *_Nullable data){
         if(data){
             NSError *error = nil;
@@ -475,7 +475,7 @@ UITextFieldProtocol_dynamic
     };
 }
 
--(JobsReturnIDByDataBlock _Nonnull)JSONReadingMutableContainers{
+-(JobsRetIDByDataBlock _Nonnull)JSONReadingMutableContainers{
     return ^id _Nullable(NSData *_Nullable data){
         if(data){
             NSError *error = nil;
@@ -488,7 +488,7 @@ UITextFieldProtocol_dynamic
     };
 }
 
--(JobsReturnIDByDataBlock _Nonnull)JSONkNilOptions{
+-(JobsRetIDByDataBlock _Nonnull)JSONkNilOptions{
     return ^id _Nullable(NSData *_Nullable data){
         if(data){
             NSError *error = nil;
@@ -500,13 +500,13 @@ UITextFieldProtocol_dynamic
         }else return nil;
     };
 }
--(JobsReturnDataByStringBlock _Nonnull)initByContentsOfFile{
+-(JobsRetDataByStringBlock _Nonnull)initByContentsOfFile{
     return ^NSData *_Nullable(__kindof NSString *_Nullable path){
         return NSData.dataByContentsOfFile(path);
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)isEqual{
+-(JobsRetBOOLByIDBlock _Nonnull)isEqual{
     @jobs_weakify(self)
     return ^BOOL(id _Nullable data){
         @jobs_strongify(self)
@@ -514,7 +514,7 @@ UITextFieldProtocol_dynamic
     };
 }
 
--(JobsReturnIDByStringBlock _Nonnull)dataByKey{
+-(JobsRetIDByStrBlock _Nonnull)dataByKey{
     return ^JobsKeyValueModel *_Nullable(NSString *_Nullable key){
         @jobs_weakify(self)
         return jobsMakeKeyValueModel(^(JobsKeyValueModel * _Nullable model) {
@@ -537,7 +537,7 @@ UITextFieldProtocol_dynamic
     });
 }
 /// JSON对象转NSData
--(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject{
+-(JobsRetDataByIDBlock _Nonnull)dataByJSONObject{
     return ^NSData *_Nullable(id _Nullable data){
         NSError *error = nil;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data
@@ -558,7 +558,7 @@ UITextFieldProtocol_dynamic
 
  总之，要处理多窗口应用程序中窗口的不同状态，您应该确保在访问窗口属性之前进行适当的检查，以确保窗口已经准备好并且具有所需的属性。这可以通过在适当的时机监听窗口的状态变化来实现。
  */
-+(JobsReturnWindowByVoidBlock _Nonnull)mainWindow{
++(JobsRetWindowByVoidBlock _Nonnull)mainWindow{
     return ^__kindof UIWindow *_Nullable(){
         UIWindow *mainWindowBefore13 = jobsGetMainWindowBefore13().landscape;
         UIWindow *mainWindowAfter13 = jobsGetMainWindowAfter13().landscape;
@@ -572,7 +572,7 @@ UITextFieldProtocol_dynamic
 }
 /// 使用指定的图像（UIImage）作为颜色的填充图案。
 /// 这个方法的作用是生成一个基于图像的颜色，这个颜色在视图或图层上会以平铺的方式重复显示指定的图像。
--(JobsReturnColorByImageBlock _Nonnull)byPatternImage{
+-(JobsRetCorByImageBlock _Nonnull)byPatternImage{
     return ^UIColor *_Nullable(UIImage *_Nonnull image){
         return [UIColor colorWithPatternImage:image];
     };
@@ -760,7 +760,7 @@ UITextFieldProtocol_dynamic
  // dataMutArr = self.createDataMutArr2; 这一段无效
  
  */
-- (JobsReturnIDByIDBlock _Nonnull)valueForKey{
+- (JobsRetIDByIDBlock _Nonnull)valueForKey{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *key) {
         @jobs_strongify(self)
@@ -794,7 +794,7 @@ UITextFieldProtocol_dynamic
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClass{
+-(JobsRetBOOLByIDBlock _Nonnull)isKindOfClass{
     @jobs_weakify(self)
     return ^BOOL(Class cls) {
         @jobs_strongify(self)
@@ -802,7 +802,7 @@ UITextFieldProtocol_dynamic
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClass{
+-(JobsRetBOOLByIDBlock _Nonnull)isMemberOfClass{
     @jobs_weakify(self)
     return ^(Class cls) {
         @jobs_strongify(self)
@@ -824,7 +824,7 @@ UITextFieldProtocol_dynamic
     }, MethodName(self), self) name:notificationName object:nil];
 }
 
-+(JobsReturnIDByStringBlock _Nonnull)initByReuseId{
++(JobsRetIDByStrBlock _Nonnull)initByReuseId{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -832,7 +832,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 不能用于UITableViewHeaderFooterView initByReuseIdentifier
-+(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier{
++(JobsRetIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier{
     @jobs_weakify(self)
     return ^id _Nonnull(NSString * _Nullable salt) {
         @jobs_strongify(self)
@@ -840,7 +840,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 不能用于UITableViewHeaderFooterView
--(JobsReturnIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass{
+-(JobsRetIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass{
     return ^id _Nonnull(Class _Nonnull cls,NSString * _Nullable salt) {
         return [cls.alloc initWithReuseIdentifier:NSStringFromClass(cls).add(salt)];
     };
@@ -875,7 +875,7 @@ UITextFieldProtocol_dynamic
     }
 }
 /// 给定一个数据源（数组）和 每行需要展示的元素个数，计算行数
--(JobsReturnByNSIntegerBlock _Nonnull)lineNumBy{
+-(JobsRetByNSIntegerBlock _Nonnull)lineNumBy{
     @jobs_weakify(self)
     /// @param num 每行需要展示的元素个数
     return ^NSInteger(NSInteger num){
@@ -899,7 +899,7 @@ UITextFieldProtocol_dynamic
  ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
  */
 /// X 轴方向的偏移量
--(JobsReturnByCGPointBlock _Nonnull)scrollOffsetByDirectionXPoint{
+-(JobsRetByCGPointBlock _Nonnull)scrollOffsetByDirectionXPoint{
     @jobs_weakify(self)
     return ^CGFloat(CGPoint point){
         @jobs_strongify(self)
@@ -909,7 +909,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// Y 轴方向的偏移量
--(JobsReturnByCGPointBlock _Nonnull)scrollOffsetByDirectionYPoint{
+-(JobsRetByCGPointBlock _Nonnull)scrollOffsetByDirectionYPoint{
     @jobs_weakify(self)
     return ^CGFloat(CGPoint point){
         @jobs_strongify(self)
@@ -919,7 +919,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 依据不断地传入的CGPoint *point，系统通过lastPoint来记录上一次的数据，两者进行比较，以此判断滑动的方向
--(JobsReturnNSIntegerByPointBlock _Nonnull)judgementScrollDirectionByPoint{
+-(JobsRetNSIntegerByPointBlock _Nonnull)judgementScrollDirectionByPoint{
     @jobs_weakify(self)
     /// @param point 最新的point
     return ^NSInteger(CGPoint point){
@@ -1034,7 +1034,7 @@ UITextFieldProtocol_dynamic
     return dropDownListView;
 }
 /// iOS 获取任意控件在屏幕中的坐标
--(JobsReturnRectByViewBlock _Nonnull)getWindowFrameByView{
+-(JobsRetFrameByViewBlock _Nonnull)getWindowFrameByView{
     return ^CGRect(__kindof UIView *_Nonnull view){
         // 将rect由rect所在视图转换到目标视图view中，返回在目标视图view中的rect
         return [view convertRect:view.bounds toView:MainWindow];
@@ -1135,7 +1135,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
--(JobsReturnBOOLByVoidBlock _Nonnull)didUserPressLockButton{
+-(JobsRetBOOLByVoidBlock _Nonnull)didUserPressLockButton{
     return ^BOOL() {
         /// 获取屏幕亮度
         CGFloat oldBrightness = UIScreen.mainScreen.brightness;
@@ -1225,7 +1225,7 @@ UITextFieldProtocol_dynamic
     });
 }
 /// 读取本地的plist文件到内存  【 plist ——> NSDictionary * 】
--(JobsReturnDicByStringBlock _Nonnull)readLocalPlistWithFileName{
+-(JobsRetDicByStringBlock _Nonnull)readLocalPlistWithFileName{
     /// fileName Plist文件名
     return ^__kindof NSDictionary *_Nullable(NSString * _Nullable fileName) {
         NSString *filePath = JobsPathForResource(nil,
@@ -1437,7 +1437,7 @@ UITextFieldProtocol_dynamic
 }
 #pragma mark —— 数字
 /// 获取任意数字最高位数字
--(JobsReturnByNSIntegerBlock _Nonnull)topDigit{
+-(JobsRetByNSIntegerBlock _Nonnull)topDigit{
     @jobs_weakify(self)
     return ^NSInteger(NSInteger number){
         @jobs_strongify(self)
@@ -1480,7 +1480,7 @@ UITextFieldProtocol_dynamic
     return nil;
 }
 /// UIInterfaceOrientationMask 检测屏幕方向
--(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsReturnSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock{
+-(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsRetSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock{
     if (interfaceOrientationMaskBlock){
         return interfaceOrientationMaskBlock( JobsAppTool.currentInterfaceOrientationMask);
     }else return CGSizeZero;
@@ -1501,7 +1501,7 @@ UITextFieldProtocol_dynamic
     }return currentOrientation;
 }
 /// UIInterfaceOrientation 检测屏幕方向
--(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsReturnSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock{
+-(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsRetSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock{
     if(self.getInterfaceOrientation == UIInterfaceOrientationUnknown) return CGSizeZero;
     if (interfaceOrientationBlock) return interfaceOrientationBlock(self.getInterfaceOrientation);
     return CGSizeZero;

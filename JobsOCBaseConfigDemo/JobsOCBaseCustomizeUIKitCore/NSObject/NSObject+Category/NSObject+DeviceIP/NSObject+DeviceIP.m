@@ -28,7 +28,7 @@
     return address;
 }
 /// 获取设备当前本地IP地址
--(JobsReturnStringByBOOLBlock _Nonnull)getLocalIPAddressBy{
+-(JobsRetStringByBOOLBlock _Nonnull)getLocalIPAddressBy{
     @jobs_weakify(self)
     __block NSString *address;
     return ^ __kindof NSString *_Nullable(BOOL preferIPv4){
@@ -57,7 +57,7 @@
     };
 }
 /// 是否是有效的IP
--(JobsReturnBOOLByStringBlock _Nonnull)isValidatIP{
+-(JobsRetBOOLByStringBlock _Nonnull)isValidatIP{
     return ^BOOL(NSString *_Nullable ipAddress){
         if (ipAddress.length == 0) return NO;
         NSString *urlRegEx = @"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."

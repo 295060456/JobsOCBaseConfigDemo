@@ -9,7 +9,7 @@
 
 @implementation CALayer (Extra)
 /// 适用于通过字符串来创建对象动画的场景
--(JobsReturnCALayerByCAPropertyAnimationBlock _Nonnull)addAnimationBy{
+-(JobsRetCALayerByCAPropertyAnimationBlock _Nonnull)addAnimationBy{
     @jobs_weakify(self)
     return ^ __kindof CALayer *_Nullable(__kindof CAPropertyAnimation *_Nullable animation){
         @jobs_strongify(self)
@@ -19,7 +19,7 @@
     };
 }
 
--(JobsReturnCALayerByCAPropertyAnimationBlock _Nonnull)removeAnimationBy{
+-(JobsRetCALayerByCAPropertyAnimationBlock _Nonnull)removeAnimationBy{
     @jobs_weakify(self)
     return ^ __kindof CALayer *_Nullable(__kindof CAPropertyAnimation *_Nullable animation){
         @jobs_strongify(self)
@@ -28,7 +28,7 @@
     };
 }
 
--(JobsReturnCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)addAnimation{
+-(JobsRetCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)addAnimation{
     @jobs_weakify(self)
     return ^ __kindof CAPropertyAnimation *_Nullable(__kindof CAPropertyAnimation *_Nullable animation){
         @jobs_strongify(self)
@@ -38,7 +38,7 @@
     };
 }
 
--(JobsReturnCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)removeAnimation{
+-(JobsRetCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)removeAnimation{
     @jobs_weakify(self)
     return ^ __kindof CAPropertyAnimation *_Nullable(__kindof CAPropertyAnimation *_Nullable animation){
         @jobs_strongify(self)
@@ -104,7 +104,7 @@
     return transition;
 }
 /// 返回动画曲线
--(JobsReturnStringByIntegerBlock _Nonnull)curve{
+-(JobsRetStringByIntegerBlock _Nonnull)curve{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(TransitionCurve curve){
         /// 曲线数组
@@ -119,7 +119,7 @@
     };
 }
 /// 返回动画方向
--(JobsReturnStringByIntegerBlock _Nonnull)animaSubtype{
+-(JobsRetStringByIntegerBlock _Nonnull)animaSubtype{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(TransitionCurve subType){
         /// 设置转场动画的方向
@@ -133,7 +133,7 @@
     };
 }
 /// 返回动画类型
--(JobsReturnStringByIntegerBlock _Nonnull)animaTypeWithTransitionType{
+-(JobsRetStringByIntegerBlock _Nonnull)animaTypeWithTransitionType{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(TransitionCurve type){
         /// 设置转场动画的类型
@@ -150,7 +150,7 @@
     };
 }
 /// 添加Layer
--(JobsReturnCALayerByCALayerBlock _Nonnull)addSublayer{
+-(JobsRetCALayerByCALayerBlock _Nonnull)addSublayer{
     @jobs_weakify(self)
     return ^__kindof CALayer *_Nullable(CALayer *_Nullable data){
         @jobs_strongify(self)
@@ -175,7 +175,7 @@
     return array[i];
 }
 #pragma mark —— 迎合链式语法而做的封装
--(JobsReturnCALayerByCGFloatBlock _Nonnull)cornerRadiusBy{
+-(JobsRetCALayerByCGFloatBlock _Nonnull)cornerRadiusBy{
     @jobs_weakify(self)
     return ^__kindof CALayer *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -184,7 +184,7 @@
     };
 }
 
--(JobsReturnCALayerByCGFloatBlock _Nonnull)borderWidthBy{
+-(JobsRetCALayerByCGFloatBlock _Nonnull)borderWidthBy{
     @jobs_weakify(self)
     return ^__kindof CALayer *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -193,7 +193,7 @@
     };
 }
 
--(JobsReturnCALayerByCorBlock _Nonnull)borderColorBy{
+-(JobsRetCALayerByCorBlock _Nonnull)borderColorBy{
     @jobs_weakify(self)
     return ^__kindof CALayer *_Nullable(UIColor *_Nullable data){
         @jobs_strongify(self)
@@ -202,7 +202,7 @@
     };
 }
 
--(JobsReturnCALayerByBOOLBlock _Nonnull)masksToBoundsBy{
+-(JobsRetCALayerByBOOLBlock _Nonnull)masksToBoundsBy{
     @jobs_weakify(self)
     return ^__kindof CALayer *_Nullable(BOOL data){
         @jobs_strongify(self)

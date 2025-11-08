@@ -13,7 +13,7 @@
 
 @implementation JobsSearchShowHistoryDataTBVCell
 #pragma mark —— BaseCellProtocol
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsSearchShowHistoryDataTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsSearchShowHistoryDataTBVCell);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -23,13 +23,13 @@
     };
 }
 
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(50);
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(id _Nullable model) {
         @jobs_strongify(self)

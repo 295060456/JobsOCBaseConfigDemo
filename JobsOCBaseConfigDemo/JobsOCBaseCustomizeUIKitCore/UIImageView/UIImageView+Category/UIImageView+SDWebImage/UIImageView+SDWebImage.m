@@ -9,7 +9,7 @@
 
 @implementation UIImageView (SDWebImage)
 
--(JobsReturnViewByVoidBlock _Nonnull)load {
+-(JobsRetViewByVoidBlock _Nonnull)load {
     @jobs_weakify(self)
     return ^__kindof UIImageView *_Nullable(){
         @jobs_strongify(self)
@@ -27,7 +27,7 @@
 #pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewByURLBlock imageURL;
 JobsKey(_imageURL)
 @dynamic imageURL;
--(JobsReturnImageViewByURLBlock _Nonnull)imageURL {
+-(JobsRetImageViewByURLBlock _Nonnull)imageURL {
     return ^__kindof UIImageView *_Nonnull(NSURL *imageURL) {
         Jobs_setAssociatedRETAIN_NONATOMIC(_imageURL, imageURL)
         return self;
@@ -36,7 +36,7 @@ JobsKey(_imageURL)
 #pragma mark —— Prop_copy(readonly,nonnull)JobsReturnImageViewByImageBlock placeholderImage;
 JobsKey(_placeholderImage)
 @dynamic placeholderImage;
--(JobsReturnImageViewByImageBlock _Nonnull)placeholderImage {
+-(JobsRetImageViewByImageBlock _Nonnull)placeholderImage {
     return ^__kindof UIImageView *_Nonnull(UIImage *placeholderImage) {
         Jobs_setAssociatedRETAIN_NONATOMIC(_placeholderImage, placeholderImage)
         return self;

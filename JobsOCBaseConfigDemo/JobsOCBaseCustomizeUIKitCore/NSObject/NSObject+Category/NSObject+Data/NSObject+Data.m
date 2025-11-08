@@ -13,7 +13,7 @@
 @implementation NSObject (Data)
 #pragma mark —— 关于数据（MJExtension）解析
 /// 对待输入参数是含字典的数组
-+(JobsReturnArrayByArrayBlock _Nonnull)byDataArr{
++(JobsRetArrByArrBlock _Nonnull)byDataArr{
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(__kindof NSArray <NSDictionary *>*_Nullable data){
         @jobs_strongify(self)
@@ -21,7 +21,7 @@
     };
 }
 /// 对待输入参数是字典
-+(JobsReturnIDByDicBlock _Nonnull)byDataDic{
++(JobsRetIDByDicBlock _Nonnull)byDataDic{
     @jobs_weakify(self)
     return ^id _Nullable(__kindof NSDictionary *_Nullable data){
         @jobs_strongify(self)
@@ -29,7 +29,7 @@
     };
 }
 /// 万能解析
-+(JobsReturnIDByIDBlock _Nonnull)byData{
++(JobsRetIDByIDBlock _Nonnull)byData{
     @jobs_weakify(self)
     return ^id _Nullable(id _Nullable data){
         @jobs_strongify(self)

@@ -120,7 +120,7 @@
     };
 }
 /// 字符串中划线
--(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation{
+-(JobsRetAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation{
     return ^__kindof NSAttributedString *_Nullable(NSString *data) {
         return JobsMutAttributedStringByAttributes(data,jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable dic) {
             [dic setValue:@(NSUnderlineStyleSingle) forKey:NSStrikethroughStyleAttributeName];
@@ -129,7 +129,7 @@
     };
 }
 /// 字符串下划线
--(JobsReturnAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation{
+-(JobsRetAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation{
     return ^__kindof NSAttributedString *_Nullable(NSString *data) {
         return JobsMutAttributedStringByAttributes(data,jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable dic) {
             [dic setValue:@(NSUnderlineStyleSingle) forKey:NSUnderlineStyleAttributeName];

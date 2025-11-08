@@ -10,7 +10,7 @@
 
 @implementation UIImage (Tailor)
 /// 以图片中心为中心，以最小边为边长，裁剪正方形图片
-+(JobsReturnImageByImageBlock _Nonnull)cropSquareImage{
++(JobsRetImageByImageBlock _Nonnull)cropSquareImage{
     return ^UIImage *_Nullable(UIImage *_Nullable image){
         /// 将UIImage转换成CGImageRef
         CGImageRef sourceImageRef = image.CGImage;
@@ -26,7 +26,7 @@
     };
 }
 ///生成一张圆形图片
-+(JobsReturnImageByImageBlock _Nonnull)imageWithClipImage{
++(JobsRetImageByImageBlock _Nonnull)imageWithClipImage{
     return ^UIImage *_Nullable(UIImage *_Nullable image){
         /// 开启跟原始图片一样大小的上下文
         UIGraphicsBeginImageContextWithOptions(image.size, NO, 0);

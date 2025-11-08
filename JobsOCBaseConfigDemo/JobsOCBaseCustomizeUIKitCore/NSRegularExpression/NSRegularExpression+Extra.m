@@ -9,7 +9,7 @@
 
 @implementation NSRegularExpression (Extra)
 
-+(JobsReturnRegularExpressionByStringBlock _Nonnull)byString{
++(JobsRetRegularExpressionByStringBlock _Nonnull)byString{
     return ^__kindof NSRegularExpression *_Nullable(NSString *_Nullable data){
         NSError *err = nil;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:data

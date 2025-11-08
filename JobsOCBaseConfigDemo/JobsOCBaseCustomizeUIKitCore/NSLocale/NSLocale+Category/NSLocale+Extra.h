@@ -16,9 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSLocale (Extra)
 
-+(JobsReturnLocaleByStringBlock _Nonnull)initByID;
++(JobsRetLocaleByStrBlock _Nonnull)initByID;
 /// 对系统方法 objectForKey 的二次封装
--(JobsReturnIDByStringBlock _Nonnull)objectForKey;
+-(JobsRetIDByStrBlock _Nonnull)objectForKey;
 /// 区域标识符。例如 @"en_US" 表示美国的英语。
 -(NSString *)areaID;
 /// 语言代码。例如 @"en" 表示英语，@"zh" 表示中文。

@@ -14,10 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CALayer (Extra)
 /// 适用于通过字符串来创建对象动画的场景
--(JobsReturnCALayerByCAPropertyAnimationBlock _Nonnull)addAnimationBy;
--(JobsReturnCALayerByCAPropertyAnimationBlock _Nonnull)removeAnimationBy;
--(JobsReturnCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)addAnimation;
--(JobsReturnCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)removeAnimation;
+-(JobsRetCALayerByCAPropertyAnimationBlock _Nonnull)addAnimationBy;
+-(JobsRetCALayerByCAPropertyAnimationBlock _Nonnull)removeAnimationBy;
+-(JobsRetCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)addAnimation;
+-(JobsRetCAPropertyAnimationByCAPropertyAnimationBlock _Nonnull)removeAnimation;
 
 -(CAAnimation *)anim_shake:(NSArray *)rotations
                   duration:(NSTimeInterval)duration
@@ -38,13 +38,13 @@ NS_ASSUME_NONNULL_BEGIN
                                            curve:(TransitionCurve)curve
                                         duration:(CGFloat)duration;
 /// 返回动画曲线
--(JobsReturnStringByIntegerBlock _Nonnull)curve;
+-(JobsRetStringByIntegerBlock _Nonnull)curve;
 /// 返回动画方向
--(JobsReturnStringByIntegerBlock _Nonnull)animaSubtype;
+-(JobsRetStringByIntegerBlock _Nonnull)animaSubtype;
 /// 返回动画类型
--(JobsReturnStringByIntegerBlock _Nonnull)animaTypeWithTransitionType;
+-(JobsRetStringByIntegerBlock _Nonnull)animaTypeWithTransitionType;
 /// 添加Layer
--(JobsReturnCALayerByCALayerBlock _Nonnull)addSublayer;
+-(JobsRetCALayerByCALayerBlock _Nonnull)addSublayer;
 /// 删除Layer
 -(jobsByVoidBlock _Nonnull)remove;
 /// 统一从数据返回对象
@@ -52,10 +52,10 @@ NS_ASSUME_NONNULL_BEGIN
                       index:(NSUInteger)index
                    isRamdom:(BOOL)isRamdom;
 #pragma mark —— 迎合链式语法而做的封装
--(JobsReturnCALayerByCGFloatBlock _Nonnull)cornerRadiusBy;
--(JobsReturnCALayerByCGFloatBlock _Nonnull)borderWidthBy;
--(JobsReturnCALayerByCorBlock _Nonnull)borderColorBy;
--(JobsReturnCALayerByBOOLBlock _Nonnull)masksToBoundsBy;
+-(JobsRetCALayerByCGFloatBlock _Nonnull)cornerRadiusBy;
+-(JobsRetCALayerByCGFloatBlock _Nonnull)borderWidthBy;
+-(JobsRetCALayerByCorBlock _Nonnull)borderColorBy;
+-(JobsRetCALayerByBOOLBlock _Nonnull)masksToBoundsBy;
 
 @end
 

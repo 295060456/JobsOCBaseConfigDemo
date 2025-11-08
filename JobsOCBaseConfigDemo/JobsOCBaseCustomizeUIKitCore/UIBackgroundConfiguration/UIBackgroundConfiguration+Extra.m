@@ -9,7 +9,7 @@
 
 @implementation UIBackgroundConfiguration (Extra)
 
-- (JobsReturnBackgroundConfigurationByColorBlock _Nonnull)byBackgroundColor {
+- (JobsRetBackgroundConfigByCorBlock _Nonnull)byBackgroundColor {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(UIColor *color) {
         @jobs_strongify(self)
@@ -18,7 +18,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByCGFloatBlock _Nonnull)byCornerRadius {
+- (JobsRetBackgroundConfigByCGFloatBlock _Nonnull)byCornerRadius {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(CGFloat radius) {
         @jobs_strongify(self)
@@ -27,7 +27,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByInsetsBlock _Nonnull)byBackgroundInsets {
+- (JobsRetBackgroundConfigByInsetsBlock _Nonnull)byBackgroundInsets {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(NSDirectionalEdgeInsets insets) {
         @jobs_strongify(self)
@@ -36,7 +36,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByViewBlock _Nonnull)byCustomView {
+- (JobsRetBackgroundConfigByViewBlock _Nonnull)byCustomView {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(UIView *view) {
         @jobs_strongify(self)
@@ -45,7 +45,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByColorBlock _Nonnull)byStrokeColor {
+- (JobsRetBackgroundConfigByCorBlock _Nonnull)byStrokeColor {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(UIColor *color) {
         @jobs_strongify(self)
@@ -54,7 +54,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByCGFloatBlock _Nonnull)byStrokeWidth {
+- (JobsRetBackgroundConfigByCGFloatBlock _Nonnull)byStrokeWidth {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(CGFloat width) {
         @jobs_strongify(self)
@@ -63,7 +63,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByImageBlock _Nonnull)byImage {
+- (JobsRetBackgroundConfigByImageBlock _Nonnull)byImage {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(UIImage *image) {
         @jobs_strongify(self)
@@ -73,7 +73,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByContentModeBlock _Nonnull)byImageContentMode {
+- (JobsRetBackgroundConfigByContentModeBlock _Nonnull)byImageContentMode {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(UIViewContentMode mode) {
         @jobs_strongify(self)
@@ -83,7 +83,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByVisualEffectBlock _Nonnull)byVisualEffect {
+- (JobsRetBackgroundConfigByVisualEffectBlock _Nonnull)byVisualEffect {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(UIVisualEffect *effect) {
         @jobs_strongify(self)
@@ -92,7 +92,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByCGFloatBlock _Nonnull)byShadowOpacity {
+- (JobsRetBackgroundConfigByCGFloatBlock _Nonnull)byShadowOpacity {
     @jobs_weakify(self)
     if (@available(iOS 18.0, *)) {
         return ^UIBackgroundConfiguration *(CGFloat opacity) {
@@ -108,7 +108,7 @@
     }
 }
 
-- (JobsReturnBackgroundConfigurationByRectEdgeBlock _Nonnull)byEdgesAddingLayoutMarginsToBackgroundInsets {
+- (JobsRetBackgroundConfigByRectEdgeBlock _Nonnull)byEdgesAddingLayoutMarginsToBackgroundInsets {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(NSDirectionalRectEdge edges) {
         @jobs_strongify(self)
@@ -117,7 +117,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByCGFloatBlock _Nonnull)byStrokeOutset {
+- (JobsRetBackgroundConfigByCGFloatBlock _Nonnull)byStrokeOutset {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(CGFloat outset) {
         @jobs_strongify(self)
@@ -126,7 +126,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByColorTransformerBlock _Nonnull)byBackgroundColorTransformer {
+- (JobsRetBackgroundConfigByCorTransformerBlock _Nonnull)byBackgroundColorTransformer {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(UIConfigurationColorTransformer transformer) {
         @jobs_strongify(self)
@@ -135,7 +135,7 @@
     };
 }
 
-- (JobsReturnBackgroundConfigurationByColorTransformerBlock _Nonnull)byStrokeColorTransformer {
+- (JobsRetBackgroundConfigByCorTransformerBlock _Nonnull)byStrokeColorTransformer {
     @jobs_weakify(self)
     return ^UIBackgroundConfiguration *(UIConfigurationColorTransformer transformer) {
         @jobs_strongify(self)

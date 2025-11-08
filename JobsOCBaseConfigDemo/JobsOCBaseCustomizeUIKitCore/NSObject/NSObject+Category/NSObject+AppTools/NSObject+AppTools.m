@@ -108,7 +108,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 /// 设置返回按钮的文字、返回按钮的行为（默认导航栏标题（图片）为 BLuckyRedLogo）
 -(JobsReturnNavBarConfigByStringAndActionBlock _Nullable)makeNavByTitleImageAndAction{
     return ^JobsNavBarConfig *_Nullable(NSString *_Nullable string,
-                                        JobsReturnIDByIDBlock _Nullable backActionBlock){
+                                        JobsRetIDByIDBlock _Nullable backActionBlock){
         return jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
             config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.Alpha = 1;
@@ -141,7 +141,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
 -(JobsReturnNavBarConfigByStringsAndActionBlock _Nullable)makeNavByTitlesAndAction{
     return ^JobsNavBarConfig *_Nullable(NSString *_Nullable title,
                                         NSString *_Nullable backTitle,
-                                        JobsReturnIDByIDBlock _Nullable backActionBlock){
+                                        JobsRetIDByIDBlock _Nullable backActionBlock){
         return jobsMakeNavBarConfig(^(__kindof JobsNavBarConfig * _Nullable config) {
             config.viewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.Alpha = 1;
@@ -668,7 +668,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 #pragma mark —— 关于图片编解码
 /// 图片base64编码，再固定50字符的位置加入固定盐。盐码（盐需大写、长度 16位）：RRU4JZTV5WZXPCVZ
 /// 编码
--(JobsReturnStringByStringBlock _Nonnull)encodePicStr{
+-(JobsRetStringByStringBlock _Nonnull)encodePicStr{
     return ^(NSString * _Nullable picStr) {
         /// 将NSString转换为NSMutableString，以便修改
         NSMutableString *modifiedString = picStr.mutableCopy;
@@ -678,7 +678,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     };
 }
 /// 解码
--(JobsReturnStringByStringBlock _Nonnull)decodePicStr{
+-(JobsRetStringByStringBlock _Nonnull)decodePicStr{
     return ^(NSString * _Nullable encodePicStr) {
         // 删除字符串
         return [encodePicStr stringByReplacingOccurrencesOfString:PicSalt withString:@""];
@@ -686,7 +686,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 }
 #pragma mark —— <AppToolsProtocol> 其他
 /// 根据 x 和 y 的绝对值判断主方向
--(JobsReturnStringByCGPointBlock _Nonnull)directionByTranslation{
+-(JobsRetStringByCGPointBlock _Nonnull)directionByTranslation{
     return ^__kindof NSString *_Nullable(CGPoint translation){
         if (fabs(translation.x) > fabs(translation.y)) {
             return translation.x > 0 ? @"右滑" : @"左滑";/// 水平方向
@@ -696,7 +696,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     };
 }
 
--(JobsReturnNSIntegerByPointBlock _Nonnull)directionByPoint{
+-(JobsRetNSIntegerByPointBlock _Nonnull)directionByPoint{
     return ^MoveDirection(CGPoint translation){
         if (fabs(translation.x) > fabs(translation.y)) {
             return translation.x > 0 ? MoveDirection_horizont_right : MoveDirection_horizont_left;/// 水平方向
@@ -970,19 +970,19 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscapeLeft;
 }
 #pragma mark —— 通过验证返回YES
--(JobsReturnBOOLByStringBlock _Nonnull)userAndPasswordNotUpTo{
+-(JobsRetBOOLByStringBlock _Nonnull)userAndPasswordNotUpTo{
     return ^BOOL(NSString *_Nullable data){
         return data.length < 6;
     };
 }
 
--(JobsReturnBOOLByStringBlock _Nonnull)telNotUpTo{
+-(JobsRetBOOLByStringBlock _Nonnull)telNotUpTo{
     return ^BOOL(NSString *_Nullable data){
         return data.length < 20;
     };
 }
 /// 用户账号由6-15个字符组成，只能输入字母大小写和数字
--(JobsReturnBOOLByStringBlock _Nonnull)checkUserName{
+-(JobsRetBOOLByStringBlock _Nonnull)checkUserName{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable userName){
         @jobs_strongify(self)
@@ -990,7 +990,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     };
 }
 /// 用户密码由6-15个字符组成，只能输入字母大小写和数字
--(JobsReturnBOOLByStringBlock _Nonnull)checkUserPassword{
+-(JobsRetBOOLByStringBlock _Nonnull)checkUserPassword{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable userPassword){
         @jobs_strongify(self)
@@ -1072,7 +1072,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     };
 }
 /// 电话号码可以最多20位数，超过后无法输入，且电话号码中无法包含特殊字符或者空格
--(JobsReturnBOOLByStringBlock _Nonnull)checkTelNum{
+-(JobsRetBOOLByStringBlock _Nonnull)checkTelNum{
     return ^BOOL(NSString *_Nullable telNum){
         return !telNum.isContainsSpecialSymbolsString(nil) &&/// 不包含特殊字符
         telNum.length <= 20 &&/// 长度小于20位

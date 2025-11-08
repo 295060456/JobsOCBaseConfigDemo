@@ -9,7 +9,7 @@
 
 @implementation UITableViewHeaderFooterView (BaseTableViewHeaderFooterViewProtocol)
 #pragma mark —— BaseViewProtocol
-+(JobsReturnTableViewHeaderFooterViewByTableViewAndSaltBlock _Nonnull)initByReuseIdentifier{
++(JobsRetTableViewHeaderFooterViewByTableViewAndSaltBlock _Nonnull)initByReuseIdentifier{
     @jobs_weakify(self)
     return ^__kindof UITableViewHeaderFooterView *_Nullable(__kindof UITableView *_Nullable tableView,
                                                             NSString * _Nullable salt) {
@@ -18,7 +18,7 @@
     };
 }
 
--(JobsReturnTableViewHeaderFooterViewByNSIntegerBlock _Nonnull)bySection{
+-(JobsRetTableViewHeaderFooterViewByNSIntegerBlock _Nonnull)bySection{
     @jobs_weakify(self)
     return ^__kindof UITableViewHeaderFooterView *_Nullable(NSInteger section){
         @jobs_strongify(self)
@@ -27,7 +27,7 @@
     };
 }
 /// 标记是HeaderView 还是 FooterView
--(JobsReturnTableViewHeaderFooterViewByNSIntegerBlock _Nonnull)byStyle{
+-(JobsRetTableViewHeaderFooterViewByNSIntegerBlock _Nonnull)byStyle{
     @jobs_weakify(self)
     return ^__kindof UITableViewHeaderFooterView *_Nullable(JobsHeaderFooterViewStyle style){
         @jobs_strongify(self)
@@ -36,7 +36,7 @@
     };
 }
 /// @implementation UITableViewHeaderFooterView (Attribute)
--(JobsReturnTableViewHeaderFooterViewByTableViewBlock _Nonnull)byTableView{
+-(JobsRetTableViewHeaderFooterViewByTableViewBlock _Nonnull)byTableView{
     @jobs_weakify(self)
     return ^__kindof UITableViewHeaderFooterView *_Nullable(__kindof UITableView *_Nullable tableView){
         @jobs_strongify(self)
@@ -56,13 +56,13 @@
     };
 }
 /// 具体由子类进行复写【数据定高】
-+(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)viewHeightByModel{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(5);
     };
 }
 /// 具体由子类进行复写【数据Frame】
-+(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
++(JobsRetFrameByIDBlock _Nonnull)viewFrameByModel{
     return ^CGRect(id _Nullable data){
         return CGRectMake(0,
                           0,

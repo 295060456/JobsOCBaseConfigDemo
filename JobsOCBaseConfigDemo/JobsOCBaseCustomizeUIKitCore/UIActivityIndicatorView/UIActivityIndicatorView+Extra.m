@@ -9,7 +9,7 @@
 
 @implementation UIActivityIndicatorView (Extra)
 
-+(JobsReturnActivityIndicatorViewByNSInteger _Nonnull)initBy{
++(JobsRetActivityIndicatorViewByNSInteger _Nonnull)initBy{
     return ^__kindof UIActivityIndicatorView *_Nullable(UIActivityIndicatorViewStyle data){
         return [UIActivityIndicatorView.alloc initWithActivityIndicatorStyle:data];
     };

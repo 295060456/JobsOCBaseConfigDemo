@@ -70,13 +70,13 @@ static dispatch_once_t static_termsOfUseViewOnceToken;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(325), JobsWidth(420));
     };
 }
 
--(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+-(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return self.class.viewSizeByModel(data);
     };

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取当前时间
 -(NSDate *)currentDate;
 /// 获取当前手机时区的当前时间，返回 NSString 格式
--(JobsReturnStringByStringBlock _Nonnull)currentTimeStringBy;
+-(JobsRetStringByStringBlock _Nonnull)currentTimeStringBy;
 /// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日 时:分:秒
 -(NSString *)currentTimeStringByStyle1;
 /// 获取当前手机时区的当前时间，返回 NSString 格式。时间格式 年-月-日 时:分
@@ -38,23 +38,23 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取当日零点的时间戳（秒级）
 -(NSTimeInterval)todayZeroTime;
 /// 获取某天前零点的时间戳（秒级）
--(JobsReturnDoubleByNSIntegerBlock _Nonnull)zeroTimeByDaysBefore;
+-(JobsRetDoubleByNSIntegerBlock _Nonnull)zeroTimeByDaysBefore;
 /// 返回的是（Double）时间戳
 -(NSTimeInterval)currentUnixTimeStamp;
 /// 返回的是（uint64_t）时间戳
 -(uint64_t)currentUnixTimeStampInMilliseconds;
 /// 返回带时间格式的当前时间字符串
--(JobsReturnStringByStringBlock _Nonnull)currentTimestampString;
+-(JobsRetStringByStringBlock _Nonnull)currentTimestampString;
 /// 获取某天前的时间。默认时间格式 yyyy-MM-dd HH:mm:ss
 -(NSString *)timeAgo:(NSInteger)timeAgo dateFormat:(NSString *_Nullable)dateFormat;
 /// 获取某天前的时间。时间格式 yyyy-MM-dd HH:mm:ss
--(JobsReturnStringByIntegersBlock _Nonnull)daysAgoBy;
+-(JobsRetStrByIntegersBlock _Nonnull)daysAgoBy;
 /// 将时间戳按照 yyyy-MM-dd HH:mm:ss 的格式转化为人类可读的时间
 /// 入参不能是毫秒级的时间戳
--(JobsReturnStringByTimeIntervalsBlock _Nonnull)readableTimeByStyle1;
+-(JobsRetStrByTimeIntervalsBlock _Nonnull)readableTimeByStyle1;
 #pragma mark —— 时间格式转换
 /// 字符串转时间格式
--(JobsReturnDateFormatterByStringBlock _Nonnull)dateFormatterBy;
+-(JobsRetDateFormatterByStringBlock _Nonnull)dateFormatterBy;
 /// 接受一个秒数，对这个秒数进行解析出：时、分、秒，存入JobsTimeModel，外层再对这个JobsTimeModel进行取值，对数据进行拼装
 -(JobsReturnTimeModelByIntegerBlock _Nonnull)HHMMSS;
 /// 将某个（NSDate *）时间 转换格式
@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSString *)dateConversionTimeStamp:(NSDate *_Nullable)date
                        intervalStyle:(IntervalStyle)intervalStyle;
 /// NSTimeInterval ---> NSString *
--(JobsReturnStringByTimeIntervalBlock _Nonnull)timeIntervalByInterval;
+-(JobsRetStringByTimeIntervalBlock _Nonnull)timeIntervalByInterval;
 /// NSString * ---> NSString *   格式转换为   小时：分钟：秒
 /// @param totalTime 传入 秒
 -(NSString *)getHHMMSSFromStr:(NSString *_Nonnull)totalTime
@@ -80,13 +80,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 由于时区信息和名称可能会根据地区变化和政策更新，因此在实际项目中应根据需求动态获取时区数据，或者使用系统 API 自动处理时区。
 -(JobsReturnTimeZoneByTypeBlock _Nonnull)timeZone;
 /// NSDate * ---> NSTimeInterval
--(JobsReturnTimeIntervalByDateBlock _Nonnull)timeIntervalByDate;
+-(JobsRetTimeIntervalByDateBlock _Nonnull)timeIntervalByDate;
 /// NSString * ---> NSTimeInterval
 -(NSTimeInterval)timeIntervalByDateStr:(NSString *_Nullable)dateStr
                          timeFormatter:(NSString *_Nullable)timeFormatter
                          intervalStyle:(IntervalStyle)intervalStyle;
 /// NSTimeInterval ---> NSDate *
--(JobsReturnDateByTimeIntervalBlock _Nonnull)dateByTimeInterval;
+-(JobsRetDateByTimeIntervalBlock _Nonnull)dateByTimeInterval;
 /// NSString * ---> NSDate *  (NSString *)时间 转 (NSDate *时间)
 -(NSDate *)strByDate:(NSString *_Nonnull)dateStr
        timeFormatter:(NSString *_Nullable)timeFormatter;
@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSDate *)getDate:(NSDate *_Nonnull)date
   afterIntegerTime:(NSInteger)afterIntegerTime;
 /// 以当前时间为基准，加上某个时间间隔（NSTimeInterval类型）以后的NSData值
--(JobsReturnDateByTimeIntervalBlock _Nonnull)getDateFromCurrentAfterTimeInterval;
+-(JobsRetDateByTimeIntervalBlock _Nonnull)getDateFromCurrentAfterTimeInterval;
 /// 计算两字符串时间的差值【方法一】
 -(NSTimeInterval)intervalDifferenceBetweenStarTime:(NSString *)starTime
                                          toEndTime:(NSString *)endTime
@@ -143,9 +143,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isFirstLaunchApp;
 /// 判断某个时间是否为  今天（系统时区）
 /// 对比格式：yyyy-MM-dd
--(JobsReturnBOOLByDateBlock _Nonnull)isToday;
+-(JobsRetBOOLByDateBlock _Nonnull)isToday;
 /// 将NSTimeInterval类型的时间戳翻译成人类能看懂的文字
--(JobsReturnStringByTimeIntervalBlock _Nonnull)toReadableTimeBy;
+-(JobsRetStringByTimeIntervalBlock _Nonnull)toReadableTimeBy;
 
 @end
 

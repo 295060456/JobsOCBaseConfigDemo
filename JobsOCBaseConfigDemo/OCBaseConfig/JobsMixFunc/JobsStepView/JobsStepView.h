@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsStepView : BaseView
 
-+(JobsReturnButtonModelByStringAndImagesBlock _Nonnull)makeButtonModelBy;
++(JobsRetBtnModelByStrAndImagesBlock _Nonnull)makeButtonModelBy;
 /// 值越大 = 按钮之间的距离越小
 -(JobsReturnStepViewByCGFloatBlock _Nonnull)byOffset;
 /// 设置左边线长度

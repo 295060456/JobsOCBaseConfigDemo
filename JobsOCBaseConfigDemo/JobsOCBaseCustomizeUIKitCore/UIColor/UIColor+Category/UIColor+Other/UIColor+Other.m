@@ -10,7 +10,7 @@
 @implementation UIColor (Other)
 #pragma mark —— 类方法
 /// 十六进制字符串 => UIColor *
-+(JobsReturnColorByStringBlock _Nonnull)jobsCor{
++(JobsRetCorByStringBlock _Nonnull)jobsCor{
     return ^UIColor * _Nullable(NSString *_Nonnull hexCorString) {
         if (!hexCorString) return (UIColor *)nil;
         /// 去除收尾可能含有的空格字符串
@@ -43,7 +43,7 @@
     };
 }
 /// uint32_t 颜色的RGB数值 + 透明度 => UIColor *
-+(JobsReturnColorByHexAlphaBlock _Nonnull)jobsColorByHexAlpha {
++(JobsRetCorByHexAlphaBlock _Nonnull)jobsColorByHexAlpha {
     return ^UIColor * _Nullable(uint32_t hexValue, CGFloat alpha) {
         return jobsMakeCor(^(JobsCorModel * _Nullable data) {
             data.red = ((float)((hexValue & 0xFF0000) >> 16)) / 255.0;
@@ -54,7 +54,7 @@
     };
 }
 /// uint32_t 颜色的RGB数值  => UIColor *
-+(JobsReturnColorByHexBlock _Nonnull)jobsColorByHex {
++(JobsRetCorByHexBlock _Nonnull)jobsColorByHex {
     return ^UIColor * _Nullable(uint32_t hexValue) {
         return UIColor.jobsColorByHexAlpha(hexValue,1);
     };
@@ -104,7 +104,7 @@
     });
 }
 /// 十六进制字符串 （默认透明度为1） => UIColor *
-+(JobsReturnColorByStringBlock _Nonnull)colorWithHexString{
++(JobsRetCorByStringBlock _Nonnull)colorWithHexString{
     @jobs_weakify(self)
     return ^UIColor * _Nullable(NSString *_Nonnull hexCorString) {
         @jobs_strongify(self)
@@ -112,7 +112,7 @@
     };
 }
 /// UIColor * => UIImage *
-+(JobsReturnImageByCorBlock)imageWithColor{
++(JobsRetImageByCorBlock)imageWithColor{
     return ^UIImage * _Nullable(UIColor * _Nullable cor) {
         CGRect rect = CGRectMake(0.0f,
                                  0.0f,
@@ -196,7 +196,7 @@
 #pragma mark —— 实例方法
 /// 将一个确定的UIColor子类，翻译成RGB格式的字符串值并对外输出【可能因为四舍五入的问题影响末位精度，误差在±1】
 /// 资料来源  https://blog.csdn.net/thanklife/article/details/25784879
--(JobsReturnStringByCorBlock)rgbCorStrBy{
+-(JobsRetStringByCorBlock)rgbCorStrBy{
     @jobs_weakify(self)
     return ^NSString *_Nullable(UIColor * _Nullable data) {
         @jobs_strongify(self)
@@ -258,7 +258,7 @@
 }
 /// iOS 父视图透明度影响到子视图
 /// https://blog.csdn.net/ios_xumin/article/details/114263960
--(JobsReturnColorByCGFloatBlock)colorWithAlphaComponentBy{
+-(JobsRetCorByCGFloatBlock)colorWithAlphaComponentBy{
     @jobs_weakify(self)
     return ^(CGFloat alpha) {
         @jobs_strongify(self)
@@ -273,7 +273,7 @@
                                        1.0f));
 }
 /// 根据颜色生成图片
--(JobsReturnImageByCGRectBlock)imageByRect{
+-(JobsRetImageByCGRectBlock)imageByRect{
     return ^UIImage *_Nonnull(CGRect rect){
         /// 开启位图上下文
         UIGraphicsBeginImageContext(rect.size);

@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(JobsReturnHTMLDocumentByStringBlock _Nonnull)initBy;
 /// 提取 HTML 里面的有效文字内容
-+(JobsReturnStringByStringBlock _Nonnull)formatHTML;
++(JobsRetStringByStringBlock _Nonnull)formatHTML;
 
 @end
 

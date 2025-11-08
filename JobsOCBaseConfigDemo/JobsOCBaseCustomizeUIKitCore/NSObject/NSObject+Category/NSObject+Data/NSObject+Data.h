@@ -40,11 +40,11 @@ UITableViewDelegate
 
 #pragma mark —— 关于数据（MJExtension）解析
 /// 对待输入参数是含字典的数组
-+(JobsReturnArrayByArrayBlock _Nonnull)byDataArr;
++(JobsRetArrByArrBlock _Nonnull)byDataArr;
 /// 对待输入参数是字典
-+(JobsReturnIDByDicBlock _Nonnull)byDataDic;
++(JobsRetIDByDicBlock _Nonnull)byDataDic;
 /// 万能解析
-+(JobsReturnIDByIDBlock _Nonnull)byData;
++(JobsRetIDByIDBlock _Nonnull)byData;
 #pragma mark —— 关于数据存储
 ///【对FileFolderHandleTool的二次封装】 存数据，储存成功返回地址
 /// @param data 被储存的数据

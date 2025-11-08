@@ -9,7 +9,7 @@
 
 @implementation UIView (DSL)
 #pragma mark —— Geometry
-- (JobsReturnViewByFrameBlock _Nonnull)byFrame {
+- (JobsRetViewByFrameBlock _Nonnull)byFrame {
     @jobs_weakify(self)
     return ^__kindof UIView * (CGRect frame) {
         @jobs_strongify(self)
@@ -19,7 +19,7 @@
     };
 }
 
-- (JobsReturnViewByFrameBlock _Nonnull)byBounds {
+- (JobsRetViewByFrameBlock _Nonnull)byBounds {
     @jobs_weakify(self)
     return ^__kindof UIView * (CGRect bounds) {
         @jobs_strongify(self)
@@ -29,7 +29,7 @@
     };
 }
 
-- (JobsReturnViewByPointBlock _Nonnull)byCenterPoint {
+- (JobsRetViewByCGPointBlock _Nonnull)byCenterPoint {
     @jobs_weakify(self)
     return ^__kindof UIView * (CGPoint pt) {
         @jobs_strongify(self)
@@ -39,7 +39,7 @@
     };
 }
 
-- (JobsReturnViewByCGAffineTransformBlock _Nonnull)byTransform {
+- (JobsRetViewByCGAffineTransformBlock _Nonnull)byTransform {
     @jobs_weakify(self)
     return ^__kindof UIView * (CGAffineTransform t) {
         @jobs_strongify(self)
@@ -49,7 +49,7 @@
     };
 }
 
-- (JobsReturnViewByCATransform3DBlock _Nonnull)byTransform3D {
+- (JobsRetViewByCATransform3DBlock _Nonnull)byTransform3D {
     @jobs_weakify(self)
     return ^__kindof UIView * (CATransform3D t3d) {
         @jobs_strongify(self)
@@ -59,7 +59,7 @@
     };
 }
 
-- (JobsReturnViewByCGFloatBlock _Nonnull)byContentScaleFactor {
+- (JobsRetViewByCGFloatBlock _Nonnull)byContentScaleFactor {
     @jobs_weakify(self)
     return ^__kindof UIView * (CGFloat scale) {
         @jobs_strongify(self)
@@ -69,7 +69,7 @@
     };
 }
 
-- (JobsReturnViewByPointBlock _Nonnull)byAnchorPoint {
+- (JobsRetViewByCGPointBlock _Nonnull)byAnchorPoint {
     @jobs_weakify(self)
     return ^__kindof UIView * (CGPoint pt) {
         @jobs_strongify(self)
@@ -81,7 +81,7 @@
     };
 }
 #pragma mark —— Identity
-- (JobsReturnViewByNSIntegerBlock _Nonnull)byTag {
+- (JobsRetViewByNSIntegerBlock _Nonnull)byTag {
     @jobs_weakify(self)
     return ^__kindof UIView * (NSInteger tag) {
         @jobs_strongify(self)
@@ -91,7 +91,7 @@
     };
 }
 
-- (JobsReturnViewByBOOLBlock _Nonnull)byUserInteractionEnabled {
+- (JobsRetViewByBOOLBlock _Nonnull)byUserInteractionEnabled {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL enabled) {
         @jobs_strongify(self)
@@ -101,7 +101,7 @@
     };
 }
 
-- (JobsReturnViewByBOOLBlock _Nonnull)byMultipleTouchEnabled {
+- (JobsRetViewByBOOLBlock _Nonnull)byMultipleTouchEnabled {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL on) {
         @jobs_strongify(self)
@@ -111,7 +111,7 @@
     };
 }
 
-- (JobsReturnViewByBOOLBlock _Nonnull)byExclusiveTouch {
+- (JobsRetViewByBOOLBlock _Nonnull)byExclusiveTouch {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL on) {
         @jobs_strongify(self)
@@ -121,7 +121,7 @@
     };
 }
 #pragma mark —— Rendering
-- (JobsReturnViewByBOOLBlock _Nonnull)byClipsToBounds {
+- (JobsRetViewByBOOLBlock _Nonnull)byClipsToBounds {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL on) {
         @jobs_strongify(self)
@@ -131,7 +131,7 @@
     };
 }
 
-- (JobsReturnViewByCorBlock _Nonnull)byBgColor {
+- (JobsRetViewByCorBlock _Nonnull)byBgColor {
     @jobs_weakify(self)
     return ^__kindof UIView * (UIColor * _Nullable color) {
         @jobs_strongify(self)
@@ -141,7 +141,7 @@
     };
 }
 
-- (JobsReturnViewByCGFloatBlock _Nonnull)byAlpha {
+- (JobsRetViewByCGFloatBlock _Nonnull)byAlpha {
     @jobs_weakify(self)
     return ^__kindof UIView * (CGFloat a) {
         @jobs_strongify(self)
@@ -151,7 +151,7 @@
     };
 }
 
-- (JobsReturnViewByBOOLBlock _Nonnull)byOpaque {
+- (JobsRetViewByBOOLBlock _Nonnull)byOpaque {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL opaque) {
         @jobs_strongify(self)
@@ -161,7 +161,7 @@
     };
 }
 
-- (JobsReturnViewByBOOLBlock _Nonnull)byClearsContextBeforeDrawing {
+- (JobsRetViewByBOOLBlock _Nonnull)byClearsContextBeforeDrawing {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL on) {
         @jobs_strongify(self)
@@ -171,7 +171,7 @@
     };
 }
 
-- (JobsReturnViewByBOOLBlock _Nonnull)byHidden {
+- (JobsRetViewByBOOLBlock _Nonnull)byHidden {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL hidden) {
         @jobs_strongify(self)
@@ -181,7 +181,7 @@
     };
 }
 
-- (JobsReturnViewByNSIntegerBlock _Nonnull)byContentMode {
+- (JobsRetViewByNSIntegerBlock _Nonnull)byContentMode {
     @jobs_weakify(self)
     return ^__kindof UIView * (UIViewContentMode mode) {
         @jobs_strongify(self)
@@ -191,7 +191,7 @@
     };
 }
 
-- (JobsReturnViewByViewBlock _Nonnull)byMaskView {
+- (JobsRetViewByViewBlock _Nonnull)byMaskView {
     @jobs_weakify(self)
     return ^__kindof UIView * (UIView * _Nullable maskView) {
         @jobs_strongify(self)
@@ -201,7 +201,7 @@
     };
 }
 
-- (JobsReturnViewByCorBlock _Nonnull)byTintColor {
+- (JobsRetViewByCorBlock _Nonnull)byTintColor {
     @jobs_weakify(self)
     return ^__kindof UIView * (UIColor * _Nullable color) {
         @jobs_strongify(self)
@@ -211,7 +211,7 @@
     };
 }
 
-- (JobsReturnViewByNSIntegerBlock _Nonnull)byTintAdjustmentMode {
+- (JobsRetViewByNSIntegerBlock _Nonnull)byTintAdjustmentMode {
     @jobs_weakify(self)
     return ^__kindof UIView * (UIViewTintAdjustmentMode mode) {
         @jobs_strongify(self)
@@ -221,7 +221,7 @@
     };
 }
 #pragma mark —— Semantics / RTL
-- (JobsReturnViewByNSIntegerBlock _Nonnull)bySemanticContentAttribute {
+- (JobsRetViewByNSIntegerBlock _Nonnull)bySemanticContentAttribute {
     @jobs_weakify(self)
     return ^__kindof UIView * (UISemanticContentAttribute attr) {
         @jobs_strongify(self)
@@ -231,7 +231,7 @@
     };
 }
 #pragma mark —— Layout behaviors
-- (JobsReturnViewByBOOLBlock _Nonnull)byAutoresizesSubviews {
+- (JobsRetViewByBOOLBlock _Nonnull)byAutoresizesSubviews {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL on) {
         @jobs_strongify(self)
@@ -241,7 +241,7 @@
     };
 }
 
-- (JobsReturnViewByNSUIntegerBlock _Nonnull)byAutoresizingMask {
+- (JobsRetViewByNSUIntegerBlock _Nonnull)byAutoresizingMask {
     @jobs_weakify(self)
     return ^__kindof UIView * (NSUInteger mask) {
         @jobs_strongify(self)
@@ -251,7 +251,7 @@
     };
 }
 
-- (JobsReturnViewByUIEdgeInsetBlock _Nonnull)byLayoutMargins {
+- (JobsRetViewByUIEdgeInsetBlock _Nonnull)byLayoutMargins {
     @jobs_weakify(self)
     return ^__kindof UIView * (UIEdgeInsets insets) {
         @jobs_strongify(self)
@@ -262,7 +262,7 @@
     };
 }
 
-- (JobsReturnViewByNSDirectionalEdgeInsetsBlock _Nonnull)byDirectionalLayoutMargins {
+- (JobsRetViewByNSDirectionalEdgeInsetsBlock _Nonnull)byDirectionalLayoutMargins {
     @jobs_weakify(self)
     return ^__kindof UIView * (NSDirectionalEdgeInsets insets) {
         @jobs_strongify(self)
@@ -273,7 +273,7 @@
     };
 }
 
-- (JobsReturnViewByBOOLBlock _Nonnull)byPreservesSuperviewLayoutMargins {
+- (JobsRetViewByBOOLBlock _Nonnull)byPreservesSuperviewLayoutMargins {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL on) {
         @jobs_strongify(self)
@@ -284,7 +284,7 @@
     };
 }
 
-- (JobsReturnViewByBOOLBlock _Nonnull)byInsetsLayoutMarginsFromSafeArea {
+- (JobsRetViewByBOOLBlock _Nonnull)byInsetsLayoutMarginsFromSafeArea {
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL on) {
         @jobs_strongify(self)
@@ -295,7 +295,7 @@
     };
 }
 #pragma mark —— UIUserInterfaceStyle
-- (JobsReturnViewByUIUserInterfaceStyleBlock _Nonnull)byOverrideUserInterfaceStyle {
+- (JobsRetViewByUIUserInterfaceStyleBlock _Nonnull)byOverrideUserInterfaceStyle {
     @jobs_weakify(self)
     return ^__kindof UIView * (UIUserInterfaceStyle style) {
         @jobs_strongify(self)
@@ -306,7 +306,7 @@
     };
 }
 #pragma mark —— Dynamic Type limits
-- (JobsReturnViewByStringBlock _Nonnull)byMinimumContentSizeCategory {
+- (JobsRetViewByStringBlock _Nonnull)byMinimumContentSizeCategory {
     @jobs_weakify(self)
     return ^__kindof UIView * (NSString * _Nullable category) {
         @jobs_strongify(self)
@@ -317,7 +317,7 @@
     };
 }
 
-- (JobsReturnViewByStringBlock _Nonnull)byMaximumContentSizeCategory {
+- (JobsRetViewByStringBlock _Nonnull)byMaximumContentSizeCategory {
     @jobs_weakify(self)
     return ^__kindof UIView * (NSString * _Nullable category) {
         @jobs_strongify(self)
@@ -328,7 +328,7 @@
     };
 }
 #pragma mark —— Focus
-- (JobsReturnViewByStringBlock _Nonnull)byFocusGroupIdentifier {
+- (JobsRetViewByStringBlock _Nonnull)byFocusGroupIdentifier {
     @jobs_weakify(self)
     return ^__kindof UIView * (NSString * _Nullable ident) {
         @jobs_strongify(self)
@@ -339,7 +339,7 @@
     };
 }
 
-- (JobsReturnViewByNSIntegerBlock _Nonnull)byFocusGroupPriority {
+- (JobsRetViewByNSIntegerBlock _Nonnull)byFocusGroupPriority {
     @jobs_weakify(self)
     return ^__kindof UIView * (UIFocusGroupPriority p) {
         @jobs_strongify(self)
@@ -350,7 +350,7 @@
     };
 }
 
-- (JobsReturnViewByIDBlock _Nonnull)byFocusEffect {
+- (JobsRetViewByIDBlock _Nonnull)byFocusEffect {
     @jobs_weakify(self)
     return ^__kindof UIView * (id _Nullable effect /* UIFocusEffect * */) {
         @jobs_strongify(self)
@@ -361,7 +361,7 @@
     };
 }
 #pragma mark —— iOS 26+ CornerConfiguration
-- (JobsReturnViewByCornerConfigurationBlock _Nonnull)byCornerConfiguration {
+- (JobsRetViewByCornerConfigBlock _Nonnull)byCornerConfiguration {
     @jobs_weakify(self)
     return ^__kindof UIView * (UICornerConfiguration * _Nonnull cfg) {
         @jobs_strongify(self)

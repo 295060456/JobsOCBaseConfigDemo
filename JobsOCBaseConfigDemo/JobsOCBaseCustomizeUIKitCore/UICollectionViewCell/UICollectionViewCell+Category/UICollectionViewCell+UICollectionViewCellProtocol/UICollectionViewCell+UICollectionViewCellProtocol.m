@@ -37,7 +37,7 @@
     return [self.jobsGetCurrentCollectionView numberOfItemsInSection:self.jobsGetCurrentIndexPath.section];
 }
 
--(JobsReturnCollectionViewCellByIndexPathBlock _Nonnull)byIndexPath{
+-(JobsRetCollectionViewCellByIndexPathBlock _Nonnull)byIndexPath{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(NSIndexPath *_Nonnull indexPath){
         @jobs_strongify(self)
@@ -46,7 +46,7 @@
     };
 }
 
--(JobsReturnCollectionViewCellByCorBlock _Nonnull)byContentViewBgCor{
+-(JobsRetCollectionViewCellByCorBlock _Nonnull)byContentViewBgCor{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(UIColor *_Nonnull cor){
         @jobs_strongify(self)

@@ -10,7 +10,7 @@
 
 @implementation NSArray (Tools)
 /// 数组取值（无法关联数组的泛型）
--(JobsReturnIDByUIntegerBlock _Nonnull)objectAt{
+-(JobsRetIDByUIntegerBlock _Nonnull)objectAt{
     @jobs_weakify(self)
     return ^id _Nullable(NSUInteger data){
         @jobs_strongify(self)
@@ -18,7 +18,7 @@
     };
 }
 /// 数组取下标
--(JobsReturnNSUIntegerByIDBlock _Nonnull)indexBy{
+-(JobsRetNSUIntegerByIDBlock _Nonnull)indexBy{
     @jobs_weakify(self)
     return ^NSUInteger(id _Nullable data){
         @jobs_strongify(self)
@@ -26,7 +26,7 @@
     };
 }
 /// 数组里面是否包含某个元素
--(JobsReturnBOOLByIDBlock _Nonnull)containsObject{
+-(JobsRetBOOLByIDBlock _Nonnull)containsObject{
     @jobs_weakify(self)
     return ^BOOL(id _Nullable data) {
         @jobs_strongify(self)
@@ -47,7 +47,7 @@
     return strForRight;
 }
 /// 数组比较
--(JobsReturnBOOLByArrBlock _Nonnull)compareEqualArrElement{
+-(JobsRetBOOLByArrBlock _Nonnull)compareEqualArrElement{
     @jobs_weakify(self)
     return ^BOOL(NSArray *_Nullable array){
         @jobs_strongify(self)
@@ -55,7 +55,7 @@
     };
 }
 /// 数组计算交集
--(JobsReturnArrayByArrayBlock _Nonnull)arrayForIntersectionWithOtherArray{
+-(JobsRetArrByArrBlock _Nonnull)arrayForIntersectionWithOtherArray{
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(__kindof NSArray *_Nullable otherArray){
         @jobs_strongify(self)
@@ -70,7 +70,7 @@
     };
 }
 /// 数据计算差集
--(JobsReturnArrayByArrayBlock _Nonnull)arrayForMinusWithOtherArray{
+-(JobsRetArrByArrBlock _Nonnull)arrayForMinusWithOtherArray{
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(__kindof NSArray *_Nullable otherArray){
         @jobs_strongify(self)
@@ -161,7 +161,7 @@
     };
 }
 /// 转成可变数组
--(JobsReturnMutableArrayByVoidBlock _Nonnull)mutableArr{
+-(JobsRetMutableArrayByVoidBlock _Nonnull)mutableArr{
     @jobs_weakify(self)
     return ^__kindof NSMutableArray *_Nullable(void){
         @jobs_strongify(self)

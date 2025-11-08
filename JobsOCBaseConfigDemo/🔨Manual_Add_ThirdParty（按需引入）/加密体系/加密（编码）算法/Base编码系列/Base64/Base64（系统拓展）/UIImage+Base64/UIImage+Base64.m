@@ -20,7 +20,7 @@
 @implementation UIImage (Base64)
 #pragma mark —— UIImage ==> Base64
 ///【类方法】UIImage对象 转换为 以Base64编码的字符串
-+(JobsReturnStringByImageBlock _Nonnull)base64StringByImage{
++(JobsRetStringByImageBlock _Nonnull)base64StringByImage{
     return ^__kindof NSString *_Nullable(UIImage *_Nullable image){
         NSData *imageData = UIImagePNGRepresentation(image); // 或者UIImageJPEGRepresentation(image, compressionQuality)
         return [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
@@ -32,13 +32,13 @@
 }
 #pragma mark —— Base64 ==> UIImage
 ///【类方法】将以Base64编码的字符串 转换为 UIImage对象
-+(JobsReturnImageByStringBlock _Nonnull)imageByBase64String{
++(JobsRetImageByStringBlock _Nonnull)imageByBase64String{
     return ^UIImage *_Nullable(NSString *_Nullable base64String){
         return UIImage.imageByData(NSData.initByBase64EncodedString(base64String));
     };
 }
 ///【实例方法】将以Base64编码的字符串 转换为 UIImage对象
--(JobsReturnImageByStringBlock _Nonnull)imageByBase64String{
+-(JobsRetImageByStringBlock _Nonnull)imageByBase64String{
     return ^UIImage *_Nullable(NSString *_Nullable base64String){
         return UIImage.imageByBase64String(base64String);
     };

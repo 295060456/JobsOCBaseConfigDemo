@@ -42,74 +42,74 @@ Prop_assign()CGFloat bottom;
 Prop_assign()CGSize sizer;/// 避免与size冲突
 Prop_assign()CGPoint Origin;
 #pragma mark —— 初始化方法封装
-+(JobsReturnViewByClassBlock _Nonnull)build;
++(JobsRetViewByClassBlock _Nonnull)build;
 #pragma mark —— 控件居中的时候，相对于全屏的X和Y值
 /// 当控件相对于view居中的时候，控件的X值
--(JobsReturnCGFloatByViewBlock _Nonnull)xWhenViewInViewCenter;
+-(JobsRetCGFloatByViewBlock _Nonnull)xWhenViewInViewCenter;
 /// 当控件相对于view居中的时候，控件的Y值
--(JobsReturnCGFloatByViewBlock _Nonnull)yWhenViewInViewCenter;
+-(JobsRetCGFloatByViewBlock _Nonnull)yWhenViewInViewCenter;
 /// 当控件相对于一个特定的值居中的时候，控件的X值
--(JobsReturnCGFloatByCGFloatBlock _Nonnull)xWhenViewInViewCenterBy;
+-(JobsRetCGFloatByCGFloatBlock _Nonnull)xWhenViewInViewCenterBy;
 /// 当控件相对于一个特定的值居中的时候，控件的Y值
--(JobsReturnCGFloatByCGFloatBlock _Nonnull)yWhenViewInViewCenterBy;
+-(JobsRetCGFloatByCGFloatBlock _Nonnull)yWhenViewInViewCenterBy;
 /// 当控件相对于整个设备屏幕居中的时候，控件的X值
--(JobsReturnCGFloatByVoidBlock _Nonnull)xWhenViewInScreenCenter;
+-(JobsRetCGFloatByVoidBlock _Nonnull)xWhenViewInScreenCenter;
 /// 当控件相对于整个设备屏幕居中的时候，控件的Y值
--(JobsReturnCGFloatByVoidBlock _Nonnull)yWhenViewInScreenCenter;
+-(JobsRetCGFloatByVoidBlock _Nonnull)yWhenViewInScreenCenter;
 #pragma mark —— 刷新UI
 -(jobsByVoidBlock _Nonnull)jobsRefreshUI;
 #pragma mark —— 交换宽高
 /// 仅在横屏情况下交换Size宽高的值
--(JobsReturnCGRectByVoidBlock _Nonnull)fitSize;
--(JobsReturnCGRectByVoidBlock _Nonnull)exchangeWidthAndHeight;
+-(JobsRetFrameByVoidBlock _Nonnull)fitSize;
+-(JobsRetFrameByVoidBlock _Nonnull)exchangeWidthAndHeight;
 #pragma mark —— 交换 X 和 Y
 /// 仅在横屏情况下交换坐标XY的值
--(JobsReturnCGRectByVoidBlock _Nonnull)fitOrigin;
--(JobsReturnCGRectByVoidBlock _Nonnull)exchangeXAndY;
+-(JobsRetFrameByVoidBlock _Nonnull)fitOrigin;
+-(JobsRetFrameByVoidBlock _Nonnull)exchangeXAndY;
 #pragma mark ——【类方法】设置控件的约束（返回控件自己本身）
-+(JobsReturnViewBySizeBlock _Nonnull)BySize;
++(JobsRetViewByCGSizeBlock _Nonnull)BySize;
 /// 设置控件的 Frame
-+(JobsReturnViewByFrameBlock _Nonnull)ByFrame;
++(JobsRetViewByFrameBlock _Nonnull)ByFrame;
 /// 设置控件的 Origin
-+(JobsReturnViewByPointBlock _Nonnull)ByOrigin;
++(JobsRetViewByCGPointBlock _Nonnull)ByOrigin;
 /// 设置控件的 Width
-+(JobsReturnViewByFloatBlock _Nonnull)ByWidth;
++(JobsRetViewByFloatBlock _Nonnull)ByWidth;
 /// 设置控件的 Height
-+(JobsReturnViewByFloatBlock _Nonnull)ByHeight;
++(JobsRetViewByFloatBlock _Nonnull)ByHeight;
 /// 设置控件的 Center
-+(JobsReturnViewByCenterBlock _Nonnull)ByCenter;
++(JobsRetViewByCenterBlock _Nonnull)ByCenter;
 #pragma mark ——【实例方法】设置控件的约束（返回控件自己本身）
 /// 设置控件的 Size
--(JobsReturnViewBySizeBlock _Nonnull)bySize;
+-(JobsRetViewByCGSizeBlock _Nonnull)bySize;
 /// 设置控件的 Frame
--(JobsReturnViewByFrameBlock _Nonnull)byFrame;
+-(JobsRetViewByFrameBlock _Nonnull)byFrame;
 /// 设置控件的 Origin
--(JobsReturnViewByPointBlock _Nonnull)byOrigin;
+-(JobsRetViewByCGPointBlock _Nonnull)byOrigin;
 /// 设置控件的 Width
--(JobsReturnViewByFloatBlock _Nonnull)byWidth;
+-(JobsRetViewByFloatBlock _Nonnull)byWidth;
 /// 设置控件的 Height
--(JobsReturnViewByFloatBlock _Nonnull)byHeight;
+-(JobsRetViewByFloatBlock _Nonnull)byHeight;
 /// 设置控件的 Center
--(JobsReturnViewByCenterBlock _Nonnull)byCenter;
+-(JobsRetViewByCenterBlock _Nonnull)byCenter;
 #pragma mark —— 重新设置控件的约束（返回控件的Frame）
 /// 重设Frame
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginX;
--(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetRightX;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginY;
--(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetBottomY;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidth;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeight;
--(JobsReturnCGRectByCGPointBlock _Nonnull)resetOrigin;
--(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSize;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetOriginX;
+-(JobsRetFrameByCGFloatAndUIViewBlock _Nonnull)resetRightX;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetOriginY;
+-(JobsRetFrameByCGFloatAndUIViewBlock _Nonnull)resetBottomY;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetWidth;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetHeight;
+-(JobsRetFrameByCGPointBlock _Nonnull)resetOrigin;
+-(JobsRetFrameByCGSizeBlock _Nonnull)resetSize;
 /// 依据偏移量重设Frame
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginXByOffset;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginYByOffset;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterX;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterY;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidthByOffset;
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeightByOffset;
--(JobsReturnCGRectByCGPointBlock _Nonnull)resetOriginByOffset;
--(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSizeByOffset;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetOriginXByOffset;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetOriginYByOffset;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetCenterX;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetCenterY;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetWidthByOffset;
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetHeightByOffset;
+-(JobsRetFrameByCGPointBlock _Nonnull)resetOriginByOffset;
+-(JobsRetFrameByCGSizeBlock _Nonnull)resetSizeByOffset;
 #pragma mark —— UIView对齐方法扩充 https://github.com/MisterZhouZhou/ZWUIViewExtension
 /// 设置水平方向对齐
 -(jobsByViewBlock _Nonnull)centerxEqualToView;

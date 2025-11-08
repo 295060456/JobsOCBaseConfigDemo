@@ -16,12 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 从路径中获得完整的文件名 （不带后缀）
 -(NSString *)getOnlyFileNameByFilePath;
 /// 从路径中获得文件完整的后缀名 （不带'.'）
-+(JobsReturnStringByStringBlock _Nonnull)getSuffixFileName;
++(JobsRetStringByStringBlock _Nonnull)getSuffixFileName;
 #pragma mark —— 目录获取
 -(NSString *)pathForResourceWithFullName;
 -(NSString *)pathForResourceWithName;
 /// OC字符串路径拼接
--(JobsReturnStringByStringBlock _Nonnull)addPathComponent;
+-(JobsRetStringByStringBlock _Nonnull)addPathComponent;
 /// 完整的文件名提取普通文件名和文件后缀名
 -(JobsReturnFileNameModelByFileFullNameStringBlock _Nonnull)byFileFullName;
 

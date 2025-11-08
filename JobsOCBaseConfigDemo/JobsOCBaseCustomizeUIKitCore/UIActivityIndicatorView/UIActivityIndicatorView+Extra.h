@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIActivityIndicatorView (Extra)
 
-+(JobsReturnActivityIndicatorViewByNSInteger _Nonnull)initBy;
++(JobsRetActivityIndicatorViewByNSInteger _Nonnull)initBy;
 
 @end
 

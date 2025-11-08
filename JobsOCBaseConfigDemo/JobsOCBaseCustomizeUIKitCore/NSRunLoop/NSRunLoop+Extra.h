@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSRunLoop (Extra)
 
-+(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByCommonModes;
-+(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByDefaultRunLoopMode;
-+(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByCommonModes;
-+(JobsReturnTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByDefaultRunLoopMode;
++(JobsRetTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByCommonModes;
++(JobsRetTimerByTimerBlock _Nonnull)addTimerAtMainRunLoopByDefaultRunLoopMode;
++(JobsRetTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByCommonModes;
++(JobsRetTimerByTimerBlock _Nonnull)addTimerAtCurrentRunLoopByDefaultRunLoopMode;
 
 -(jobsByTimerBlock _Nonnull)commonModesByTimer;
 -(jobsByTimerBlock _Nonnull)defaultModeByTimer;

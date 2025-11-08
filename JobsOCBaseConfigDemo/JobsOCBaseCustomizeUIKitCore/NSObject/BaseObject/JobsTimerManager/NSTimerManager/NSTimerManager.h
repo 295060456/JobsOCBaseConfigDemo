@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 定时器启动 手动添加定时器到RunLoop
 -(jobsByRunLoopBlock _Nonnull)nsTimeStartWithRunLoop;/// currentRunLoop可调用子线程；mainrunloop主线程
 /// 定时器启动：newTimer + 系统自动添加到RunLoop
--(JobsReturnTimerByVoidBlock _Nonnull)nsTimeStartSysAutoInRunLoop;
+-(JobsRetTimerByVoidBlock _Nonnull)nsTimeStartSysAutoInRunLoop;
 /// 定时器暂停
 -(jobsByVoidBlock _Nonnull)nsTimePause;
 /// 定时器继续

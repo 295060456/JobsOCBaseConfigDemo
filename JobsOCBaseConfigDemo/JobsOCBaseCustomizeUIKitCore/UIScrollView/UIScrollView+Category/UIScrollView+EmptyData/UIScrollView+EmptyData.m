@@ -9,7 +9,7 @@
 
 @implementation UIScrollView (EmptyData)
 
--(JobsReturnScrollViewByButtonModelBlock _Nonnull)emptyDataByButtonModel{
+-(JobsRetScrollViewByButtonModelBlock _Nonnull)emptyDataByButtonModel{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(__kindof UIButtonModel *_Nullable buttonModel){
         @jobs_strongify(self)

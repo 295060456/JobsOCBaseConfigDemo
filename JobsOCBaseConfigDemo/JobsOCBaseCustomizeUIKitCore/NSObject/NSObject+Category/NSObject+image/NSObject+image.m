@@ -107,7 +107,7 @@
     }else return;
 }
 
--(JobsReturnImageByStringBlock _Nonnull)imageByDataURL{
+-(JobsRetImageByStringBlock _Nonnull)imageByDataURL{
     @jobs_weakify(self)
     return ^UIImage *_Nullable(__kindof NSString *_Nullable dataURL){
         @jobs_strongify(self)

@@ -15,7 +15,7 @@
 /// UITableViewCellProtocol
 UITableViewCellProtocol_Synthesize
 #pragma mark —— UITableViewCellProtocol
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsDropDownListTBVCell *cell = (JobsDropDownListTBVCell *)tableView.tableViewCellClass(JobsDropDownListTBVCell.class,@"");
         if (!cell) {
@@ -36,7 +36,7 @@ UITableViewCellProtocol_Synthesize
     }return self;
 }
 
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -48,7 +48,7 @@ UITableViewCellProtocol_Synthesize
     };
 }
 
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(UIViewModel *_Nullable model){
         UIViewModel *vm = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.textModel.font = UIFontWeightRegularSize(14);

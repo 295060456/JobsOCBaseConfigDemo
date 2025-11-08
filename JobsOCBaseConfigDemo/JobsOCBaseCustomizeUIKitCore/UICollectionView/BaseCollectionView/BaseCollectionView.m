@@ -56,25 +56,25 @@ BaseViewProtocol_synthesize
     };
 }
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)viewWidthByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)viewWidthByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)viewHeightByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeZero;
     };
 }
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
++(JobsRetFrameByIDBlock _Nonnull)viewFrameByModel{
     return ^CGRect(id _Nullable data){
         return CGRectZero;
     };

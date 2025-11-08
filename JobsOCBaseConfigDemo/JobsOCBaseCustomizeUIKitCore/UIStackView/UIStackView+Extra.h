@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIStackView (Extra)
 
--(JobsReturnViewByViewBlock _Nonnull)add;
+-(JobsRetViewByViewBlock _Nonnull)add;
 
 @end
 

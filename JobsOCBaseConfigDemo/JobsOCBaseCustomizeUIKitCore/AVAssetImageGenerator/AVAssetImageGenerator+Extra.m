@@ -9,7 +9,7 @@
 
 @implementation AVAssetImageGenerator (Extra)
 
-+(JobsReturnAVAssetImageGeneratorByAVURLAssetBlock _Nonnull)initBy{
++(JobsRetAVAssetImageGeneratorByAVURLAssetBlock _Nonnull)initBy{
     @jobs_weakify(self)
     return ^__kindof AVAssetImageGenerator *_Nonnull(__kindof AVURLAsset *_Nullable data){
         @jobs_strongify(self)

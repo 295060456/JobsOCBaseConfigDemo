@@ -9,7 +9,7 @@
 
 @implementation UIStackView (Extra)
 
--(JobsReturnViewByViewBlock _Nonnull)add{
+-(JobsRetViewByViewBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
         @jobs_strongify(self)

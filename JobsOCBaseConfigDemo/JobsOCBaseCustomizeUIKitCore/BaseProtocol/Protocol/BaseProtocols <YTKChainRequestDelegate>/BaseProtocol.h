@@ -104,7 +104,7 @@ Prop_weak(nullable)id requestParams_weak;/// 【弱引用】绑定的数据源�
               withSelector:(SEL _Nonnull)selector;
 ///【监听所有通知】用 Block
 -(void)monitorNotification:(NSString * _Nonnull)notificationName
-                 withBlock:(JobsReturnIDByTwoIDBlock _Nonnull)actionBlock;
+                 withBlock:(JobsRetIDByTwoIDBlock _Nonnull)actionBlock;
 ///【通知监听】国际化语言修改UI
 /// @param target 需要铆定监听通知的对象
 /// @param aSelector 相关逻辑
@@ -118,7 +118,7 @@ Prop_weak(nullable)id requestParams_weak;/// 【弱引用】绑定的数据源�
 #pragma mark —— 单例化和销毁
 +(void)destroySingleton;
 +(instancetype)sharedManager;
-+(JobsReturnIDByVoidBlock _Nonnull)SharedInstance;
++(JobsRetIDByVoidBlock _Nonnull)SharedInstance;
 +(jobsByVoidBlock _Nonnull)DestroySingleton;
 
 @end

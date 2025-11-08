@@ -9,7 +9,7 @@
 
 @implementation UIViewController (Masonry)
 
--(JobsReturnBOOLByViewBlock _Nonnull)containBy{
+-(JobsRetBOOLByViewBlock _Nonnull)containBy{
     @jobs_weakify(self)
     return ^BOOL(__kindof UIView *_Nullable subView){
         @jobs_strongify(self)
@@ -29,7 +29,7 @@
 /// 含义：添加新的约束
 /// 适用场景：第一次为视图添加约束
 /// 行为：不会影响已有约束；不会自动删除或更新已存在的约束
--(JobsReturnViewByViewBlock _Nonnull)on{
+-(JobsRetViewByViewBlock _Nonnull)on{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIView *_Nullable subView){
         @jobs_strongify(self)
@@ -42,7 +42,7 @@
 /// 含义：更新已有的约束
 /// 适用场景：已经添加过约束，需要修改某些数值
 /// 行为：只会更新匹配的已有约束；不会新建或移除不相关的约束
--(JobsReturnViewByViewBlock _Nonnull)upgrade{
+-(JobsRetViewByViewBlock _Nonnull)upgrade{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIView *_Nullable subView){
         @jobs_strongify(self)
@@ -56,7 +56,7 @@
 /// 含义：先移除旧的所有约束，再添加新的
 /// 适用场景：布局逻辑发生了变化，原有约束不再适用
 /// 行为：会移除视图上所有 Masonry 创建的约束，再应用 block 中的新约束
--(JobsReturnViewByViewBlock _Nonnull)remake{
+-(JobsRetViewByViewBlock _Nonnull)remake{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIView *_Nullable subView){
         @jobs_strongify(self)

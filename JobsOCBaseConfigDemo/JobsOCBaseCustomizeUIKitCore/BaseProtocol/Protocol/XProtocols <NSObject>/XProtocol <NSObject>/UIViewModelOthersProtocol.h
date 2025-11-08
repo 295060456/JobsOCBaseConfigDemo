@@ -42,8 +42,8 @@ Prop_assign()BOOL jobsSelected;
 Prop_assign()BOOL jobsEnabled;
 Prop_strong(nullable)UIAction *primaryAction;/// 新Api的点击事件
 /// 一般用于 UIButtonModel
-Prop_copy(nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
-Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
+Prop_copy(nullable)JobsRetIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
+Prop_copy(nullable)JobsRetIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
 /// 一般用于 UIButton
 Prop_copy(nullable)jobsByBtnBlock onClickBlock;
 Prop_copy(nullable)jobsByBtnBlock onLongPressGestureEventBlock;
@@ -55,7 +55,7 @@ Prop_strong(nullable)UIViewController *VC; /// 慎用：挂载的对象除非主
 
 @end
 
-typedef JobsReturnIDByIDBlock _Nonnull (^JobsReturnIDBlockByIDBlock)(id <UIViewModelOthersProtocol>_Nullable data);
+typedef JobsRetIDByIDBlock _Nonnull (^JobsReturnIDBlockByIDBlock)(id <UIViewModelOthersProtocol>_Nullable data);
 
 NS_ASSUME_NONNULL_END
 

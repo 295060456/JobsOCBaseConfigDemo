@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
 @interface UIAlertController (Extra)
 
--(JobsReturnAlertControllerByActionBlock _Nonnull)add;
+-(JobsRetAlertCtrlByActionBlock _Nonnull)add;
 
 @end
 

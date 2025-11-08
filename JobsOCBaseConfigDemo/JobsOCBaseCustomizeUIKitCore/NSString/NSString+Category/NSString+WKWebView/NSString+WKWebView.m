@@ -10,7 +10,7 @@
 @implementation NSString (WKWebView)
 /// loadHTMLString：包含 HTML 内容的字符串
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
--(JobsReturnWKWebViewByStringBlock _Nonnull)webViewByloadHTMLString{
+-(JobsRetWKWebViewByStringBlock _Nonnull)webViewByloadHTMLString{
     return ^__kindof WKWebView *_Nullable(NSString *_Nullable data){
         @jobs_weakify(self)
         return jobsMakeWKWebView(^(__kindof WKWebView * _Nullable webView) {
@@ -28,7 +28,7 @@
     });
 }
 /// 解析URL数据
--(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebView{
+-(JobsRetWKWebViewByVoidBlock _Nonnull)makeWebView{
     return ^__kindof WKWebView *_Nullable(){
         @jobs_weakify(self)
         return jobsMakeWKWebView(^(__kindof WKWebView *_Nullable webView) {
@@ -38,7 +38,7 @@
     };
 }
 /// 解析JS
--(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebViewByJS{
+-(JobsRetWKWebViewByVoidBlock _Nonnull)makeWebViewByJS{
     return ^__kindof WKWebView *_Nullable(){
         @jobs_weakify(self)
         return jobsMakeWKWebViewByConfig(^(__kindof WKWebView *_Nullable webView) {

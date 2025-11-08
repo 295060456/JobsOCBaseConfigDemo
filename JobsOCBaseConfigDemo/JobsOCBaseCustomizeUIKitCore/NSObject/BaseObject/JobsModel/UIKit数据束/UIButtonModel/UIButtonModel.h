@@ -54,8 +54,8 @@ Prop_copy(nullable)NSArray <NSNumber *>*selected_imagePaddings;// imagePadding �
 #pragma mark —— 点击事件 <UIViewModelOthersProtocol>
 Prop_strong(nullable)UIAction *primaryAction;/// 新Api的点击事件
 /// 一般用于 UIButtonModel
-Prop_copy(nullable)JobsReturnIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
-Prop_copy(nullable)JobsReturnIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
+Prop_copy(nullable)JobsRetIDByIDBlock clickEventBlock;/// 老Api的点击事件，利用RAC实现
+Prop_copy(nullable)JobsRetIDByIDBlock longPressGestureEventBlock;/// 按钮的长按事件
 /// 一般用于 UIButton
 Prop_copy(nullable)jobsByBtnBlock onClickBlock;
 Prop_copy(nullable)jobsByBtnBlock onLongPressGestureEventBlock;

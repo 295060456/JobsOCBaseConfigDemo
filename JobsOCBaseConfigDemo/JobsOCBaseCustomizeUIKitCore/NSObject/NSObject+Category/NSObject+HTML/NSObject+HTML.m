@@ -70,7 +70,7 @@
     });
 }
 /// 一个常规的WebView
--(JobsReturnWKWebViewByViewModelBlock _Nonnull)makeNormaleWebViewByViewModel{
+-(JobsRetWKWebViewByViewModelBlock _Nonnull)makeNormaleWebViewByViewModel{
     @jobs_weakify(self)
     return ^__kindof WKWebView *_Nullable(__kindof UIViewModel *_Nullable viewModel){
         @jobs_strongify(self)

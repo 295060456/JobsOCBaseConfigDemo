@@ -11,7 +11,7 @@
 
 -(JobsReturnMJRefreshConfigModelByReturnIDByIDBlocks _Nonnull)byLoadBlock{
     @jobs_weakify(self)
-    return ^MJRefreshConfigModel *_Nullable(JobsReturnIDByIDBlock block){
+    return ^MJRefreshConfigModel *_Nullable(JobsRetIDByIDBlock block){
         @jobs_strongify(self)
         self.loadBlock = block;
         return self;

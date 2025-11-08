@@ -9,13 +9,13 @@
 
 @implementation UIImageView (Extra)
 
-+(JobsReturnImageViewByImageBlock _Nonnull)initBy{
++(JobsRetImageViewByImageBlock _Nonnull)initBy{
     return ^__kindof UIImageView *_Nonnull(UIImage *_Nullable data){
         return [UIImageView.alloc initWithImage:data];
     };
 }
 
--(JobsReturnImageViewByImageBlock _Nonnull)byImage{
+-(JobsRetImageViewByImageBlock _Nonnull)byImage{
     @jobs_weakify(self)
     return ^__kindof UIImageView *_Nonnull(UIImage *_Nullable data){
         @jobs_strongify(self)

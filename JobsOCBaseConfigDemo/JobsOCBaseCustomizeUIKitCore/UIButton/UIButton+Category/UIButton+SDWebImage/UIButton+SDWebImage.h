@@ -30,29 +30,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (SDWebImage)
 
-Prop_copy(readonly,nonnull)JobsReturnButtonByURLBlock imageURL;
-Prop_copy(readonly,nonnull)JobsReturnButtonByImageBlock placeholderImage;
+Prop_copy(readonly,nonnull)JobsRetBtnByURLBlock imageURL;
+Prop_copy(readonly,nonnull)JobsRetBtnByImageBlock placeholderImage;
 Prop_copy(readonly,nonnull)JobsReturnButtonBySDWebImageOptionsBlocks options;
 Prop_copy(readonly,nonnull)JobsReturnButtonBySDExternalCompletionBlocks completed;
 Prop_copy(readonly,nonnull)JobsReturnButtonBySDImageLoaderProgressBlocks progress;
 #pragma mark —— 设置普通图片的方法
 /// 如果用此方法进行图片赋值，则：jobsResetBtnImage失灵。必须还是用此方法，方可进行图片修改
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock normalLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock highlightedlLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock disabledLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock selectedLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock focusedLoad API_AVAILABLE(ios(9.0));
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock applicationLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock reservedLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock normalLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock highlightedlLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock disabledLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock selectedLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock focusedLoad API_AVAILABLE(ios(9.0));
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock applicationLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock reservedLoad;
 #pragma mark —— 设置背景图片的方法
 /// 如果用此方法进行图片赋值，则：jobsResetBtnBgImage失灵。必须还是用此方法，方可进行图片修改
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgNormalLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgHighlightedlLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgDisabledLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgSelectedLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgFocusedLoad API_AVAILABLE(ios(9.0));
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgApplicationLoad;
-Prop_copy(readonly,nonnull)JobsReturnButtonByVoidBlock bgReservedLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock bgNormalLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock bgHighlightedlLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock bgDisabledLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock bgSelectedLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock bgFocusedLoad API_AVAILABLE(ios(9.0));
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock bgApplicationLoad;
+Prop_copy(readonly,nonnull)JobsRetBtnByVoidBlock bgReservedLoad;
 
 @end
 

@@ -9,7 +9,7 @@
 
 @implementation NSFormatter (Extra)
 
--(JobsReturnStringByDateBlock _Nonnull)date{
+-(JobsRetStringByDateBlock _Nonnull)date{
     @jobs_weakify(self)
     return ^NSString *_Nullable(NSDate *_Nullable date){
         @jobs_strongify(self)
@@ -22,7 +22,7 @@
     };
 }
 
--(JobsReturnStringByTimeIntervalBlock _Nonnull)time{
+-(JobsRetStringByTimeIntervalBlock _Nonnull)time{
     @jobs_weakify(self)
     return ^NSString *_Nullable(NSTimeInterval timeInterval){
         @jobs_strongify(self)

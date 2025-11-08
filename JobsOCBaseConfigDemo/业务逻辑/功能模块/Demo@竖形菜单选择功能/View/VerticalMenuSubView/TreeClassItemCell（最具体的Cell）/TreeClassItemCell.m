@@ -36,7 +36,7 @@ UILocationProtocol_synthesize
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
+-(JobsRetCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(GoodsClassModel *_Nullable model) {
         @jobs_strongify(self)
@@ -48,7 +48,7 @@ UILocationProtocol_synthesize
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)cellSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(74), TreeClassItemCell_Height);
     };

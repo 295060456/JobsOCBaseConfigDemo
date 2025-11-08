@@ -9,7 +9,7 @@
 
 @implementation UIViewController (Extra)
 
--(JobsReturnVCByVCBlock _Nonnull)addChildViewController{
+-(JobsRetVCByVCBlock _Nonnull)addChildViewController{
     @jobs_weakify(self)
     return ^__kindof UIViewController *_Nullable(__kindof UIViewController *_Nonnull vc){
         @jobs_strongify(self)

@@ -11,7 +11,7 @@
 
 @interface UploadImageApi : JobsBaseApi
 
-+(JobsReturnIDByImageBlock)initByImage;
++(JobsRetIDByImageBlock)initByImage;
 -(instancetype)initWithImage:(UIImage *)image;
 -(NSString *)responseImageId;
 

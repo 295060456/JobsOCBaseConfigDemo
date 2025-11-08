@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSBundle (Extra)
 
-+(JobsReturnBundleByStringBlock _Nonnull)initByPath;
-+(JobsReturnBundleByURLBlock _Nonnull)initByURL;
-+(JobsReturnBundleByClsBlock _Nonnull)initByCls;
-+(JobsReturnBundleByStringBlock _Nonnull)initByID;
++(JobsRetBundleByStrBlock _Nonnull)initByPath;
++(JobsRetBundleByURLBlock _Nonnull)initByURL;
++(JobsRetBundleByClsBlock _Nonnull)initByCls;
++(JobsRetBundleByStrBlock _Nonnull)initByID;
 
--(JobsReturnIDByStringBlock _Nonnull)objectForInfoDictionaryKey;
+-(JobsRetIDByStrBlock _Nonnull)objectForInfoDictionaryKey;
 
 @end
 

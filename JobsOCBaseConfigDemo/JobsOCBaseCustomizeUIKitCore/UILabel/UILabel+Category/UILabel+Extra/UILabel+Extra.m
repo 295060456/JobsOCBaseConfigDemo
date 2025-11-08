@@ -19,7 +19,7 @@
     ]);
 }
 /// UILabel文字旋转
--(JobsReturnLabelByNSUIntegerBlock _Nonnull)transformLayer{
+-(JobsRetLabelByNSUIntegerBlock _Nonnull)transformLayer{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(TransformLayerDirectionType directionType){
         @jobs_strongify(self)
@@ -35,7 +35,7 @@
     };
 }
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
--(JobsReturnLabelByImage _Nonnull)bgImage{
+-(JobsRetLabelByImage _Nonnull)bgImage{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(UIImage *_Nullable data){
         @jobs_strongify(self)
@@ -44,7 +44,7 @@
     };
 }
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
--(JobsReturnLabelByNSUIntegerBlock _Nonnull)makeLabelByShowingType{
+-(JobsRetLabelByNSUIntegerBlock _Nonnull)makeLabelByShowingType{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(UILabelShowingType labelShowingType) {
         @jobs_strongify(self)
@@ -84,7 +84,7 @@
     };
 }
 #pragma mark —— 系统方法链式语法封装
--(JobsReturnLabelByAttributedString _Nonnull)byAttributedString{
+-(JobsRetLabelByAttributedString _Nonnull)byAttributedString{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
         @jobs_strongify(self)
@@ -93,7 +93,7 @@
     };
 }
 
--(JobsReturnLabelByCor _Nonnull)byBgCor{
+-(JobsRetLabelByCor _Nonnull)byBgCor{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIColor *_Nullable cor){
         @jobs_strongify(self)
@@ -102,7 +102,7 @@
     };
 }
 
--(JobsReturnLabelByText _Nonnull)byText{
+-(JobsRetLabelByText _Nonnull)byText{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSString *_Nullable str){
         @jobs_strongify(self)
@@ -111,7 +111,7 @@
     };
 }
 
--(JobsReturnLabelByText _Nonnull)byNextText{
+-(JobsRetLabelByText _Nonnull)byNextText{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSString *_Nullable str){
         @jobs_strongify(self)
@@ -120,7 +120,7 @@
     };
 }
 
--(JobsReturnLabelByAttributedString _Nonnull)byNextAttributedText{
+-(JobsRetLabelByAttributedString _Nonnull)byNextAttributedText{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
         @jobs_strongify(self)
@@ -129,7 +129,7 @@
     };
 }
 
--(JobsReturnLabelByAttributedString _Nonnull)byNextAttributedTextWithvalue{
+-(JobsRetLabelByAttributedString _Nonnull)byNextAttributedTextWithvalue{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
         @jobs_strongify(self)
@@ -138,7 +138,7 @@
     };
 }
 
--(JobsReturnLabelByCor _Nonnull)byTextCor{
+-(JobsRetLabelByCor _Nonnull)byTextCor{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIColor *_Nullable cor){
         @jobs_strongify(self)
@@ -147,7 +147,7 @@
     };
 }
 
--(JobsReturnLabelByFont _Nonnull)byFont{
+-(JobsRetLabelByFont _Nonnull)byFont{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIFont *_Nullable font){
         @jobs_strongify(self)
@@ -156,7 +156,7 @@
     };
 }
 
--(JobsReturnLabelByTextAlignment _Nonnull)byTextAlignment{
+-(JobsRetLabelByTextAlignment _Nonnull)byTextAlignment{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(NSTextAlignment textAlignment){
         @jobs_strongify(self)

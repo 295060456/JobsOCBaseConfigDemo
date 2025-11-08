@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// HTML 标签
 -(__kindof NSArray <__kindof NSString *>*)htmlTags;
 /// 一个常规的WebView
--(JobsReturnWKWebViewByViewModelBlock _Nonnull)makeNormaleWebViewByViewModel;
+-(JobsRetWKWebViewByViewModelBlock _Nonnull)makeNormaleWebViewByViewModel;
 
 @end
 

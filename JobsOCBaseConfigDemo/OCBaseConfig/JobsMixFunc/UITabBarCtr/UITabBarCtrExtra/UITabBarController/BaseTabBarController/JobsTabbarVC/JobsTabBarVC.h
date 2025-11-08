@@ -76,7 +76,7 @@ Prop_assign()BOOL isJumpToNextVC;/// 当需要跳开的item,是否是需要直�
 -(instancetype _Nonnull)initWithJobsTabBar:(JobsTabBar *_Nonnull)tabBar;
 #pragma mark —— 一些公有方法
 /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
--(JobsReturnBOOLByNSUIntegerBlock _Nullable)forcedLoginIndex;
+-(JobsRetBOOLByNSUIntegerBlock _Nullable)forcedLoginIndex;
 /// 关闭手势
 -(jobsByVoidBlock _Nullable)closePan;
 /// 打开手势

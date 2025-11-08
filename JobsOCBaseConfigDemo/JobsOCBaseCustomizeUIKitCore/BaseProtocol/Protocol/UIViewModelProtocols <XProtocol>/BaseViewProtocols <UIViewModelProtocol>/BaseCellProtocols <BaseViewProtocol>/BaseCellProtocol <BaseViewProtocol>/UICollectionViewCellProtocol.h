@@ -17,9 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 设置UICollectionViewCell
 +(instancetype)cellWithCollectionView:(UICollectionView *_Nonnull)collectionView
                          forIndexPath:(NSIndexPath *_Nonnull)indexPath;
--(JobsReturnCollectionViewCellByIndexPathBlock _Nonnull)byIndexPath;
--(JobsReturnCollectionViewCellByCorBlock _Nonnull)byContentViewBgCor;
--(JobsReturnCollectionViewCellByDelegateBlock _Nonnull)byDelegate;
+-(JobsRetCollectionViewCellByIndexPathBlock _Nonnull)byIndexPath;
+-(JobsRetCollectionViewCellByCorBlock _Nonnull)byContentViewBgCor;
+-(JobsRetCollectionViewCellByDelegateBlock _Nonnull)byDelegate;
 #pragma mark —— 获取
 /// 获取这个UICollectionViewCell所承载的UICollectionView
 -(__kindof UICollectionView *_Nullable)jobsGetCurrentCollectionView;

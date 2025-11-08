@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHAsset (Extra)
 /// 对系统方法 fetchAssetsWithOptions 的二次封装
-+(JobsReturnPHFetchResultWithPHAssetByPHFetchOptionsBlock _Nonnull)initByOptions;
++(JobsRetPHFetchResultWithPHAssetByPHFetchOptionsBlock _Nonnull)initByOptions;
 
 @end
 

@@ -25,14 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (Base16)
 #pragma mark —— UIImage ==> Base16
 ///【类方法】将UIImage对象 转换为 以Base16（也称为十六进制）编码的字符串
-+(JobsReturnStringByImageBlock _Nonnull)base16StringByImage;
++(JobsRetStringByImageBlock _Nonnull)base16StringByImage;
 ///【实例方法】将UIImage对象 转换为 以Base16（也称为十六进制）编码的字符串
 -(NSString *_Nullable)base16Str;
 #pragma mark —— Base16 ==> UIImage
 ///【类方法】将以Base16编码的字符串 转换为 UIImage对象
-+(JobsReturnImageByStringBlock _Nonnull)imageByBase16String;
++(JobsRetImageByStringBlock _Nonnull)imageByBase16String;
 ///【实例方法】将以Base16编码的字符串 转换为 UIImage对象
--(JobsReturnImageByStringBlock _Nonnull)imageByBase16String;
+-(JobsRetImageByStringBlock _Nonnull)imageByBase16String;
 
 @end
 

@@ -33,7 +33,7 @@
     }];
 }
 
--(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBOOLByIDBlock _Nullable)filterBlock
+-(RACDisposable *)jobsTextViewFilterBlock:(JobsRetBOOLByIDBlock _Nullable)filterBlock
                        subscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock{
     return [[self.rac_textSignal filter:^BOOL(NSString * _Nullable value) {
         return filterBlock ? filterBlock(value) : YES;
@@ -42,7 +42,7 @@
     }];
 }
 
--(JobsReturnTextViewByDelegateBlock _Nonnull)byDelegate{
+-(JobsRetTextViewByDelegateBlock _Nonnull)byDelegate{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(id <UITextViewDelegate>_Nullable delegate){
         @jobs_strongify(self)
@@ -51,7 +51,7 @@
     };
 }
 
--(JobsReturnTextViewByStringBlock _Nonnull)byText{
+-(JobsRetTextViewByStringBlock _Nonnull)byText{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -60,7 +60,7 @@
     };
 }
 
--(JobsReturnTextViewByCor _Nonnull)byTextCor{
+-(JobsRetTextViewByCor _Nonnull)byTextCor{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(__kindof UIColor *_Nullable cor){
         @jobs_strongify(self)
@@ -69,7 +69,7 @@
     };
 }
 
--(JobsReturnTextViewByFontBlock _Nonnull)byFont{
+-(JobsRetTextViewByFontBlock _Nonnull)byFont{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(__kindof UIFont *_Nullable font){
         @jobs_strongify(self)
@@ -78,7 +78,7 @@
     };
 }
 
--(JobsReturnTextViewByBOOLBlock _Nonnull)byUserInteractionEnabled{
+-(JobsRetTextViewByBOOLBlock _Nonnull)byUserInteractionEnabled{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -87,7 +87,7 @@
     };
 }
 
--(JobsReturnTextViewByBOOLBlock _Nonnull)byEditable{
+-(JobsRetTextViewByBOOLBlock _Nonnull)byEditable{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -96,7 +96,7 @@
     };
 }
 
--(JobsReturnTextViewByDicBlock _Nonnull)byLinkTextAttributes{
+-(JobsRetTextViewByDicBlock _Nonnull)byLinkTextAttributes{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(__kindof NSDictionary <NSAttributedStringKey,id>*dic){
         @jobs_strongify(self)
@@ -105,7 +105,7 @@
     };
 }
 
--(JobsReturnTextViewByAttributedTextBlock _Nonnull)byAttributedText{
+-(JobsRetTextViewByAttributedTextBlock _Nonnull)byAttributedText{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(__kindof NSAttributedString *attributedText){
         @jobs_strongify(self)
@@ -114,7 +114,7 @@
     };
 }
 
--(JobsReturnTextViewByTextAlignmentBlock _Nonnull)byTextAlignment{
+-(JobsRetTextViewByTextAlignmentBlock _Nonnull)byTextAlignment{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(NSTextAlignment data){
         @jobs_strongify(self)
@@ -123,7 +123,7 @@
     };
 }
 
--(JobsReturnTextViewByEdgeInsetsBlock _Nonnull)byTextContainerInset{
+-(JobsRetTextViewByEdgeInsetsBlock _Nonnull)byTextContainerInset{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(UIEdgeInsets insets){
         @jobs_strongify(self)
@@ -132,7 +132,7 @@
     };
 }
 
--(JobsReturnTextViewByEdgeInsetsBlock _Nonnull)byContentInset{
+-(JobsRetTextViewByEdgeInsetsBlock _Nonnull)byContentInset{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(UIEdgeInsets insets){
         @jobs_strongify(self)
@@ -141,7 +141,7 @@
     };
 }
 
--(JobsReturnTextViewByPointBlock _Nonnull)byContentOffset{
+-(JobsRetTextViewByPointBlock _Nonnull)byContentOffset{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(CGPoint point){
         @jobs_strongify(self)
@@ -150,7 +150,7 @@
     };
 }
 
--(JobsReturnTextViewByPointBlock _Nonnull)byContentOffsetWithAnimated{
+-(JobsRetTextViewByPointBlock _Nonnull)byContentOffsetWithAnimated{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(CGPoint point){
         @jobs_strongify(self)
@@ -199,7 +199,7 @@
  如果执行的是删除动作，那么textView.text 去掉最后一个字符向外输出
  否则textView.text + replacementString进行输出
  */
--(JobsReturnStringByStringBlock _Nonnull)getCurrentTextViewValueByReplacementText{
+-(JobsRetStringByStringBlock _Nonnull)getCurrentTextViewValueByReplacementText{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)

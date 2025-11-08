@@ -9,7 +9,7 @@
 
 @implementation NSJSONSerialization (Extra)
 
-+(JobsReturnDicByDataBlock _Nonnull)makeDicByData{
++(JobsRetDicByDataBlock _Nonnull)makeDicByData{
     return ^__kindof NSDictionary *_Nullable(NSData *_Nullable data){
         NSError *err = nil;
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data

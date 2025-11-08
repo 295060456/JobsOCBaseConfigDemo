@@ -15,12 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (YBGIF)
 /// 根据NSData* 创建gif图片
-+(JobsReturnImageByDataBlock _Nonnull)animatedGIFWithData;
++(JobsRetImageByDataBlock _Nonnull)animatedGIFWithData;
 /// 根据图片名字创建gif图片
-+(JobsReturnImageByStringBlock _Nonnull)animatedGIFByName;
++(JobsRetImageByStringBlock _Nonnull)animatedGIFByName;
 /// 貌似废弃了，不管用，再研究
 /// 根据大小裁剪图片
--(JobsReturnImageByCGSizeBlock _Nonnull)animatedImageByScalingAndCroppingBySize;
+-(JobsRetImageByCGSizeBlock _Nonnull)animatedImageByScalingAndCroppingBySize;
 
 @end
 

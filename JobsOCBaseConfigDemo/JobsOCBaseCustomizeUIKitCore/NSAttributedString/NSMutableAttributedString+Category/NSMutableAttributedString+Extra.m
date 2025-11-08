@@ -9,19 +9,19 @@
 
 @implementation NSMutableAttributedString (Extra)
 /// 对系统方法 initWithAttributedString 的二次封装
-+(JobsReturnMutableAttributedStringByAttributedStringBlock _Nonnull)initByAttributedString{
++(JobsRetMutableAttributedStringByAttributedStringBlock _Nonnull)initByAttributedString{
     return ^__kindof NSAttributedString *_Nullable(NSAttributedString *_Nonnull data){
         return [NSMutableAttributedString.alloc initWithAttributedString:data];
     };
 }
 /// 对系统方法 initWithString 的二次封装
-+(JobsReturnMutableAttributedStringByStringBlock _Nonnull)initByString{
++(JobsRetMutableAttributedStringByStringBlock _Nonnull)initByString{
     return ^__kindof NSAttributedString *_Nullable(NSString *_Nullable data){
         return [NSMutableAttributedString.alloc initWithString:data];
     };
 }
 /// OC富文本字符串拼接
--(JobsReturnAttributedStringByAttributedStringBlock _Nonnull)add{
+-(JobsRetAttributedStringByAttributedStringBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^NSMutableAttributedString * _Nullable(NSAttributedString * _Nonnull data) {
         @jobs_strongify(self)

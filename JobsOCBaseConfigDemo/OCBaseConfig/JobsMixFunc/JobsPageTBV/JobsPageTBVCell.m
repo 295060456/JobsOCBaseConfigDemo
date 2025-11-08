@@ -15,7 +15,7 @@ Prop_strong()UILabel *textLab;
 
 @implementation JobsPageTBVCell
 #pragma mark —— UITableViewCellProtocol
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsPageTBVCell *cell = (JobsPageTBVCell *)tableView.tableViewCellClass(JobsPageTBVCell.class,@"");
         if (!cell) {
@@ -27,7 +27,7 @@ Prop_strong()UILabel *textLab;
     };
 }
 #pragma mark —— BaseCellProtocol
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -41,7 +41,7 @@ Prop_strong()UILabel *textLab;
     };
 }
 
--(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
         return 0.f;
     };

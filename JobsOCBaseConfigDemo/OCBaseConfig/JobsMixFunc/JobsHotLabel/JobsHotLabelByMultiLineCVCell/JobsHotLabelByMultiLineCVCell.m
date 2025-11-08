@@ -44,7 +44,7 @@ Prop_strong()UILabel *textLab;
 }
 #pragma mark —— BaseCellProtocol
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
+-(JobsRetCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -56,7 +56,7 @@ Prop_strong()UILabel *textLab;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)cellSizeByModel{
     return ^CGSize(UIViewModel *_Nullable data){
         return jobsZeroSizeValue(data.jobsSize) ?
         [UILabel sizeWithText:data.textModel.text

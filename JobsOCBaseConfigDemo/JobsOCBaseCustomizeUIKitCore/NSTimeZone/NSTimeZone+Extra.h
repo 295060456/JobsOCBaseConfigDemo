@@ -12,13 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSTimeZone (Extra)
 /// 对系统方法 timeZoneWithName 的二次封装
-+(JobsReturnTimeZoneByStringBlock _Nonnull)initByName;
++(JobsRetTimeZoneByStringBlock _Nonnull)initByName;
 /// 对系统方法 timeZoneWithAbbreviation 的二次封装
-+(JobsReturnTimeZoneByStringBlock _Nonnull)initByAbbreviation;
++(JobsRetTimeZoneByStringBlock _Nonnull)initByAbbreviation;
 /// 对系统方法 timeZoneForSecondsFromGMT 的二次封装
-+(JobsReturnTimeZoneByIntegerBlock _Nonnull)initByGMTSecs;
++(JobsRetTimeZoneByIntegerBlock _Nonnull)initByGMTSecs;
 /// 对系统方法 secondsFromGMTForDate 的二次封装
--(JobsReturnIntegerByDateBlock _Nonnull)GMTDateSecs;
+-(JobsRetIntegerByDateBlock _Nonnull)GMTDateSecs;
 
 @end
 

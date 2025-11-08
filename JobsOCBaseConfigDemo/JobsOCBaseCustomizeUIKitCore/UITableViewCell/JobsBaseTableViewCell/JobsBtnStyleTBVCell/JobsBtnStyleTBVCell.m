@@ -43,14 +43,14 @@ BaseViewProtocol_synthesize
 }
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsBtnStyleTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsBtnStyleTBVCell);
         return cell;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(id _Nullable model) {
         @jobs_strongify(self)
@@ -61,7 +61,7 @@ BaseViewProtocol_synthesize
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(55);
     };
@@ -140,7 +140,7 @@ BaseViewProtocol_synthesize
     _button.jobsResetBtnCornerRadiusValue(buttonModel.cornerRadiusValue);
 }
 #pragma mark —— BaseButtonProtocol
--(JobsReturnTableViewCellByUIEdgeInsetsBlock _Nonnull)byContentEdgeInsets{
+-(JobsRetTableViewCellByUIEdgeInsetsBlock _Nonnull)byContentEdgeInsets{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIEdgeInsets insets){
         @jobs_strongify(self)

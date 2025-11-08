@@ -12,18 +12,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CABasicAnimation (Extra)
 
-+(JobsReturnCABasicAnimationByStringBlock _Nonnull)animationByKeyPath;
++(JobsRetCABasicAnimationByStringBlock _Nonnull)animationByKeyPath;
 
--(JobsReturnCABasicAnimationByIDBlock _Nonnull)fromValueBy;
--(JobsReturnCABasicAnimationByIDBlock _Nonnull)toValueBy;
--(JobsReturnCABasicAnimationByIDBlock _Nonnull)valueBy;
--(JobsReturnCABasicAnimationByCFTimeIntervalBlock _Nonnull)beginTimeBy;
--(JobsReturnCABasicAnimationByCFTimeIntervalBlock _Nonnull)durationBy;
--(JobsReturnCABasicAnimationByFloatBlock _Nonnull)speedBy;
--(JobsReturnCABasicAnimationByCFTimeIntervalBlock _Nonnull)timeOffsetBy;
--(JobsReturnCABasicAnimationByFloatBlock _Nonnull)repeatCountBy;
--(JobsReturnCABasicAnimationByBOOLBlock _Nonnull)autoreversesBy;
--(JobsReturnCABasicAnimationByCAMediaTimingFillModeBlock _Nonnull)fillModeBy;
+-(JobsRetCABasicAnimationByIDBlock _Nonnull)fromValueBy;
+-(JobsRetCABasicAnimationByIDBlock _Nonnull)toValueBy;
+-(JobsRetCABasicAnimationByIDBlock _Nonnull)valueBy;
+-(JobsRetCABasicAnimationByCFTimeIntervalBlock _Nonnull)beginTimeBy;
+-(JobsRetCABasicAnimationByCFTimeIntervalBlock _Nonnull)durationBy;
+-(JobsRetCABasicAnimationByFloatBlock _Nonnull)speedBy;
+-(JobsRetCABasicAnimationByCFTimeIntervalBlock _Nonnull)timeOffsetBy;
+-(JobsRetCABasicAnimationByFloatBlock _Nonnull)repeatCountBy;
+-(JobsRetCABasicAnimationByBOOLBlock _Nonnull)autoreversesBy;
+-(JobsRetCABasicAnimationByCAMediaTimingFillModeBlock _Nonnull)fillModeBy;
 
 @end
 

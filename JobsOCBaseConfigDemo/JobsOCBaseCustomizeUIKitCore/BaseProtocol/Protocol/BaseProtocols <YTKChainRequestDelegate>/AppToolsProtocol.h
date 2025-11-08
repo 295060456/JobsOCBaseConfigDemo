@@ -95,13 +95,13 @@ Prop_strong(nullable)UIViewModel *titleModel;
 #pragma mark —— 关于图片编解码
 /// 图片base64编码，再固定50字符的位置加入固定盐。盐码（盐需大写、长度 16位）：RRU4JZTV5WZXPCVZ
 /// 编码
--(JobsReturnStringByStringBlock _Nonnull)encodePicStr;
+-(JobsRetStringByStringBlock _Nonnull)encodePicStr;
 /// 解码
--(JobsReturnStringByStringBlock _Nonnull)decodePicStr;
+-(JobsRetStringByStringBlock _Nonnull)decodePicStr;
 #pragma mark —— <AppToolsProtocol> 其他
 /// 根据 x 和 y 的绝对值判断主方向
--(JobsReturnStringByCGPointBlock _Nonnull)directionByTranslation;
--(JobsReturnNSIntegerByPointBlock _Nonnull)directionByPoint;
+-(JobsRetStringByCGPointBlock _Nonnull)directionByTranslation;
+-(JobsRetNSIntegerByPointBlock _Nonnull)directionByPoint;
 /// 设置普通文本
 -(UIViewModel *)configViewModelWithTitle:(NSString *_Nullable)title
                                 subTitle:(NSString *_Nullable)subTitle;

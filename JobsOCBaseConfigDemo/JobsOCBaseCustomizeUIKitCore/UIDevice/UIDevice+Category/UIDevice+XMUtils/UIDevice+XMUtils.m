@@ -52,7 +52,7 @@
  数据来源：https://www.theiphonewiki.com/wiki/Models 定位标识符 Identifier
  ⚠️标识处：在数据来源处并未罗列
  */
-+(JobsReturnStringByStringBlock _Nonnull)platformBy {
++(JobsRetStringByStringBlock _Nonnull)platformBy {
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable string){
         {// iPhone
             if (string.isEqualToString(@"iPhone1,1"))    return @"iPhone 初代";

@@ -9,7 +9,7 @@
 
 @implementation UITableView (DSL)
 
--(JobsReturnTableViewByDataSourceBlock _Nonnull)byDataSource {
+-(JobsRetTableViewByDataSourceBlock _Nonnull)byDataSource {
     @jobs_weakify(self)
     return ^__kindof UITableView * (id<UITableViewDataSource> _Nullable ds) {
         @jobs_strongify(self) 
@@ -18,7 +18,7 @@
     };
 }
 
--(JobsReturnTableViewByDelegateBlock _Nonnull)byDelegate {
+-(JobsRetTableViewByDelegateBlock _Nonnull)byDelegate {
     @jobs_weakify(self)
     return ^__kindof UITableView * (id<UITableViewDelegate> _Nullable dg) {
         @jobs_strongify(self) 
@@ -27,7 +27,7 @@
     };
 }
 
--(JobsReturnTableViewByDataSourcePrefetchingBlock _Nonnull)byPrefetchDataSource {
+-(JobsRetTableViewByDataSourcePrefetchingBlock _Nonnull)byPrefetchDataSource {
     @jobs_weakify(self)
     return ^__kindof UITableView * (id<UITableViewDataSourcePrefetching> _Nullable pds) {
         @jobs_strongify(self) 
@@ -37,7 +37,7 @@
     };
 }
 
--(JobsReturnTableViewByBOOLBlock _Nonnull)byPrefetchingEnabled {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byPrefetchingEnabled {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL enabled) {
         @jobs_strongify(self) 
@@ -47,7 +47,7 @@
     };
 }
 
--(JobsReturnTableViewByDragDelegateBlock _Nonnull)byDragDelegate {
+-(JobsRetTableViewByDragDelegateBlock _Nonnull)byDragDelegate {
     @jobs_weakify(self)
     return ^__kindof UITableView * (id<UITableViewDragDelegate> _Nullable dd) {
         @jobs_strongify(self) 
@@ -57,7 +57,7 @@
     };
 }
 
--(JobsReturnTableViewByDropDelegateBlock _Nonnull)byDropDelegate {
+-(JobsRetTableViewByDropDelegateBlock _Nonnull)byDropDelegate {
     @jobs_weakify(self)
     return ^__kindof UITableView * (id<UITableViewDropDelegate> _Nullable dp) {
         @jobs_strongify(self) 
@@ -67,7 +67,7 @@
     };
 }
 #pragma mark - Heights & Estimations
--(JobsReturnTableViewByCGFloatBlock _Nonnull)byRowHeight {
+-(JobsRetTableViewByCGFloatBlock _Nonnull)byRowHeight {
     @jobs_weakify(self)
     return ^__kindof UITableView * (CGFloat v) {
         @jobs_strongify(self) 
@@ -76,7 +76,7 @@
     };
 }
 
--(JobsReturnTableViewByCGFloatBlock _Nonnull)bySectionHeaderHeight {
+-(JobsRetTableViewByCGFloatBlock _Nonnull)bySectionHeaderHeight {
     @jobs_weakify(self)
     return ^__kindof UITableView * (CGFloat v) {
         @jobs_strongify(self) 
@@ -85,7 +85,7 @@
     };
 }
 
--(JobsReturnTableViewByCGFloatBlock _Nonnull)bySectionFooterHeight {
+-(JobsRetTableViewByCGFloatBlock _Nonnull)bySectionFooterHeight {
     @jobs_weakify(self)
     return ^__kindof UITableView * (CGFloat v) {
         @jobs_strongify(self) 
@@ -94,7 +94,7 @@
     };
 }
 
--(JobsReturnTableViewByCGFloatBlock _Nonnull)byEstimatedRowHeight {
+-(JobsRetTableViewByCGFloatBlock _Nonnull)byEstimatedRowHeight {
     @jobs_weakify(self)
     return ^__kindof UITableView * (CGFloat v) {
         @jobs_strongify(self) 
@@ -104,7 +104,7 @@
     };
 }
 
--(JobsReturnTableViewByCGFloatBlock _Nonnull)byEstimatedSectionHeaderHeight {
+-(JobsRetTableViewByCGFloatBlock _Nonnull)byEstimatedSectionHeaderHeight {
     @jobs_weakify(self)
     return ^__kindof UITableView * (CGFloat v) {
         @jobs_strongify(self) 
@@ -114,7 +114,7 @@
     };
 }
 
--(JobsReturnTableViewByCGFloatBlock _Nonnull)byEstimatedSectionFooterHeight {
+-(JobsRetTableViewByCGFloatBlock _Nonnull)byEstimatedSectionFooterHeight {
     @jobs_weakify(self)
     return ^__kindof UITableView * (CGFloat v) {
         @jobs_strongify(self) 
@@ -124,7 +124,7 @@
     };
 }
 
--(JobsReturnTableViewByCGFloatBlock _Nonnull)byFillerRowHeight {
+-(JobsRetTableViewByCGFloatBlock _Nonnull)byFillerRowHeight {
     @jobs_weakify(self)
     return ^__kindof UITableView * (CGFloat v) {
         @jobs_strongify(self) 
@@ -134,7 +134,7 @@
     };
 }
 
--(JobsReturnTableViewByCGFloatBlock _Nonnull)bySectionHeaderTopPadding {
+-(JobsRetTableViewByCGFloatBlock _Nonnull)bySectionHeaderTopPadding {
     @jobs_weakify(self)
     return ^__kindof UITableView * (CGFloat v) {
         @jobs_strongify(self) 
@@ -144,7 +144,7 @@
     };
 }
 #pragma mark - Separators & Insets
--(JobsReturnTableViewByEdgeInsetsBlock _Nonnull)bySeparatorInset {
+-(JobsRetTableViewByEdgeInsetsBlock _Nonnull)bySeparatorInset {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UIEdgeInsets insets) {
         @jobs_strongify(self) 
@@ -154,7 +154,7 @@
     };
 }
 
--(JobsReturnTableViewByNSIntegerBlock _Nonnull)bySeparatorInsetReference {
+-(JobsRetTableViewByNSIntegerBlock _Nonnull)bySeparatorInsetReference {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UITableViewSeparatorInsetReference ref) {
         @jobs_strongify(self) 
@@ -164,7 +164,7 @@
     };
 }
 
--(JobsReturnTableViewByNSIntegerBlock _Nonnull)bySeparatorStyle {
+-(JobsRetTableViewByNSIntegerBlock _Nonnull)bySeparatorStyle {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UITableViewCellSeparatorStyle style) {
         @jobs_strongify(self) 
@@ -173,7 +173,7 @@
     };
 }
 
--(JobsReturnTableViewByCorBlock _Nonnull)bySeparatorColor {
+-(JobsRetTableViewByCorBlock _Nonnull)bySeparatorColor {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UIColor * _Nullable color) {
         @jobs_strongify(self) 
@@ -182,7 +182,7 @@
     };
 }
 
--(JobsReturnTableViewByVisualEffectBlock _Nonnull)bySeparatorEffect {
+-(JobsRetTableViewByVisualEffectBlock _Nonnull)bySeparatorEffect {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UIVisualEffect * _Nullable effect) {
         @jobs_strongify(self) 
@@ -192,7 +192,7 @@
     };
 }
 #pragma mark —— Self-Sizing invalidation
-- (JobsReturnTableViewByNSIntegerBlock _Nonnull)bySelfSizingInvalidation API_AVAILABLE(ios(16.0), tvos(16.0)) API_UNAVAILABLE(watchos){
+- (JobsRetTableViewByNSIntegerBlock _Nonnull)bySelfSizingInvalidation API_AVAILABLE(ios(16.0), tvos(16.0)) API_UNAVAILABLE(watchos){
     @jobs_weakify(self)
     return ^__kindof UITableView * (UITableViewSelfSizingInvalidation v) {
         @jobs_strongify(self)
@@ -201,7 +201,7 @@
     };
 }
 #pragma mark —— Background
--(JobsReturnTableViewByViewBlock _Nonnull)byBackgroundView {
+-(JobsRetTableViewByViewBlock _Nonnull)byBackgroundView {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UIView * _Nullable v) {
         @jobs_strongify(self) 
@@ -211,7 +211,7 @@
     };
 }
 #pragma mark —— Appearance / Index
--(JobsReturnTableViewByNSIntegerBlock _Nonnull)bySectionIndexMinimumDisplayRowCount {
+-(JobsRetTableViewByNSIntegerBlock _Nonnull)bySectionIndexMinimumDisplayRowCount {
     @jobs_weakify(self)
     return ^__kindof UITableView * (NSInteger v) {
         @jobs_strongify(self) 
@@ -220,7 +220,7 @@
     };
 }
 
--(JobsReturnTableViewByCorBlock _Nonnull)bySectionIndexColor {
+-(JobsRetTableViewByCorBlock _Nonnull)bySectionIndexColor {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UIColor * _Nullable color) {
         @jobs_strongify(self) 
@@ -230,7 +230,7 @@
     };
 }
 
--(JobsReturnTableViewByCorBlock _Nonnull)bySectionIndexBackgroundColor {
+-(JobsRetTableViewByCorBlock _Nonnull)bySectionIndexBackgroundColor {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UIColor * _Nullable color) {
         @jobs_strongify(self) 
@@ -240,7 +240,7 @@
     };
 }
 
--(JobsReturnTableViewByCorBlock _Nonnull)bySectionIndexTrackingBackgroundColor {
+-(JobsRetTableViewByCorBlock _Nonnull)bySectionIndexTrackingBackgroundColor {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UIColor * _Nullable color) {
         @jobs_strongify(self) 
@@ -250,7 +250,7 @@
     };
 }
 #pragma mark —— Layout behavior
--(JobsReturnTableViewByBOOLBlock _Nonnull)byCellLayoutMarginsFollowReadableWidth {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byCellLayoutMarginsFollowReadableWidth {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -260,7 +260,7 @@
     };
 }
 
--(JobsReturnTableViewByBOOLBlock _Nonnull)byInsetsContentViewsToSafeArea {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byInsetsContentViewsToSafeArea {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -270,7 +270,7 @@
     };
 }
 #pragma mark —— Header / Footer views
--(JobsReturnTableViewByViewBlock _Nonnull)byTableHeaderView {
+-(JobsRetTableViewByViewBlock _Nonnull)byTableHeaderView {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UIView * _Nullable v) {
         @jobs_strongify(self) 
@@ -279,7 +279,7 @@
     };
 }
 
--(JobsReturnTableViewByViewBlock _Nonnull)byTableFooterView {
+-(JobsRetTableViewByViewBlock _Nonnull)byTableFooterView {
     @jobs_weakify(self)
     return ^__kindof UITableView * (UIView * _Nullable v) {
         @jobs_strongify(self) 
@@ -288,7 +288,7 @@
     };
 }
 #pragma mark —— Editing / Selection
--(JobsReturnTableViewByBOOLBlock _Nonnull)byEditing {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byEditing {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL editing) {
         @jobs_strongify(self) 
@@ -297,7 +297,7 @@
     };
 }
 
--(JobsReturnTableViewByBOOLBlock _Nonnull)byAllowsSelection {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byAllowsSelection {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -307,7 +307,7 @@
     };
 }
 
--(JobsReturnTableViewByBOOLBlock _Nonnull)byAllowsSelectionDuringEditing {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byAllowsSelectionDuringEditing {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -316,7 +316,7 @@
     };
 }
 
--(JobsReturnTableViewByBOOLBlock _Nonnull)byAllowsMultipleSelection {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byAllowsMultipleSelection {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -326,7 +326,7 @@
     };
 }
 
--(JobsReturnTableViewByBOOLBlock _Nonnull)byAllowsMultipleSelectionDuringEditing {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byAllowsMultipleSelectionDuringEditing {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -336,7 +336,7 @@
     };
 }
 #pragma mark —— Focus
--(JobsReturnTableViewByBOOLBlock _Nonnull)byRemembersLastFocusedIndexPath {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byRemembersLastFocusedIndexPath {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -346,7 +346,7 @@
     };
 }
 
--(JobsReturnTableViewByBOOLBlock _Nonnull)bySelectionFollowsFocus {
+-(JobsRetTableViewByBOOLBlock _Nonnull)bySelectionFollowsFocus {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -356,7 +356,7 @@
     };
 }
 
--(JobsReturnTableViewByBOOLBlock _Nonnull)byAllowsFocus {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byAllowsFocus {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -366,7 +366,7 @@
     };
 }
 
--(JobsReturnTableViewByBOOLBlock _Nonnull)byAllowsFocusDuringEditing {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byAllowsFocusDuringEditing {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -376,7 +376,7 @@
     };
 }
 #pragma mark —— Drag & Drop
--(JobsReturnTableViewByBOOLBlock _Nonnull)byDragInteractionEnabled {
+-(JobsRetTableViewByBOOLBlock _Nonnull)byDragInteractionEnabled {
     @jobs_weakify(self)
     return ^__kindof UITableView * (BOOL on) {
         @jobs_strongify(self) 
@@ -386,7 +386,7 @@
     };
 }
 #pragma mark —— Content Hugging Elements (iOS 18+)
--(JobsReturnTableViewByNSIntegerBlock _Nonnull)byContentHuggingElements API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
+-(JobsRetTableViewByNSIntegerBlock _Nonnull)byContentHuggingElements API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos){
     @jobs_weakify(self)
     return ^__kindof UITableView * (UITableViewContentHuggingElements v) {
         @jobs_strongify(self)

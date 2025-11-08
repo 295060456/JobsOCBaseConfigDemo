@@ -38,27 +38,27 @@ NS_ASSUME_NONNULL_BEGIN
 +(UIImage *)createNonInterpolatedUIImageFormString:(NSString *)string
                                           withSize:(CGFloat)size;
 /// 对UIImage对象进行缩放，并返回一个指定尺寸的新图像
--(JobsReturnImageByCGSizeBlock _Nonnull)imageResize;
+-(JobsRetImageByCGSizeBlock _Nonnull)imageResize;
 /// 图像模糊化
--(JobsReturnImageByAlphaBlock _Nonnull)alpha;
+-(JobsRetImageByAlphaBlock _Nonnull)alpha;
 /// 截取当前image对象rect区域内的图像
--(JobsReturnImageByCGRectBlock _Nonnull)dw_SubImageWithRect;
+-(JobsRetImageByCGRectBlock _Nonnull)dw_SubImageWithRect;
 /// 压缩图片至指定尺寸
--(JobsReturnImageByCGSizeBlock _Nonnull)dw_RescaleImageToSize;
+-(JobsRetImageByCGSizeBlock _Nonnull)dw_RescaleImageToSize;
 /// 裁剪图片
--(JobsReturnImageByCGSizeBlock _Nonnull)imageScaleToSize;
+-(JobsRetImageByCGSizeBlock _Nonnull)imageScaleToSize;
 /// 按给定path剪裁图片
 /// @param path 路径，剪裁区域
 /// @param mode 填充模式
 -(UIImage *)dw_ClipImageWithPath:(UIBezierPath *)path mode:(DWContentMode)mode;
 /// 对系统方法 initWithData 的二次封装
-+(JobsReturnImageByDataBlock _Nonnull)initByData;
++(JobsRetImageByDataBlock _Nonnull)initByData;
 /// 对系统方法 imageWithData 的二次封装
-+(JobsReturnImageByDataBlock _Nonnull)imageWithData;
++(JobsRetImageByDataBlock _Nonnull)imageWithData;
 /// 对系统方法 imageWithCGImage 的二次封装
-+(JobsReturnImageByCGImageRefBlock _Nonnull)imageWithCGImage;
++(JobsRetImageByCGImageRefBlock _Nonnull)imageWithCGImage;
 /// 对系统方法 imageWithContentsOfFile 的二次封装
-+(JobsReturnImageByStringBlock _Nonnull)imageWithContentsOfFile;
++(JobsRetImageByStringBlock _Nonnull)imageWithContentsOfFile;
 
 @end
 

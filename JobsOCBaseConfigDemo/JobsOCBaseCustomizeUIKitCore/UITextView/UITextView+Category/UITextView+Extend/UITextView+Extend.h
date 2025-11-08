@@ -30,21 +30,21 @@ Prop_copy()NSString *resStr;
 /// 所以一下操作就是在关闭这个新特性
 -(void)switchs;
 -(RACDisposable *)jobsTextViewSubscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock;
--(RACDisposable *)jobsTextViewFilterBlock:(JobsReturnBOOLByIDBlock _Nullable)filterBlock
+-(RACDisposable *)jobsTextViewFilterBlock:(JobsRetBOOLByIDBlock _Nullable)filterBlock
                        subscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock;
--(JobsReturnTextViewByDelegateBlock _Nonnull)byDelegate;
--(JobsReturnTextViewByStringBlock _Nonnull)byText;
--(JobsReturnTextViewByCor _Nonnull)byTextCor;
--(JobsReturnTextViewByFontBlock _Nonnull)byFont;
--(JobsReturnTextViewByBOOLBlock _Nonnull)byUserInteractionEnabled;
--(JobsReturnTextViewByBOOLBlock _Nonnull)byEditable;
--(JobsReturnTextViewByDicBlock _Nonnull)byLinkTextAttributes;
--(JobsReturnTextViewByAttributedTextBlock _Nonnull)byAttributedText;
--(JobsReturnTextViewByTextAlignmentBlock _Nonnull)byTextAlignment;
--(JobsReturnTextViewByEdgeInsetsBlock _Nonnull)byTextContainerInset;
--(JobsReturnTextViewByEdgeInsetsBlock _Nonnull)byContentInset;
--(JobsReturnTextViewByPointBlock _Nonnull)byContentOffset;
--(JobsReturnTextViewByPointBlock _Nonnull)byContentOffsetWithAnimated;
+-(JobsRetTextViewByDelegateBlock _Nonnull)byDelegate;
+-(JobsRetTextViewByStringBlock _Nonnull)byText;
+-(JobsRetTextViewByCor _Nonnull)byTextCor;
+-(JobsRetTextViewByFontBlock _Nonnull)byFont;
+-(JobsRetTextViewByBOOLBlock _Nonnull)byUserInteractionEnabled;
+-(JobsRetTextViewByBOOLBlock _Nonnull)byEditable;
+-(JobsRetTextViewByDicBlock _Nonnull)byLinkTextAttributes;
+-(JobsRetTextViewByAttributedTextBlock _Nonnull)byAttributedText;
+-(JobsRetTextViewByTextAlignmentBlock _Nonnull)byTextAlignment;
+-(JobsRetTextViewByEdgeInsetsBlock _Nonnull)byTextContainerInset;
+-(JobsRetTextViewByEdgeInsetsBlock _Nonnull)byContentInset;
+-(JobsRetTextViewByPointBlock _Nonnull)byContentOffset;
+-(JobsRetTextViewByPointBlock _Nonnull)byContentOffsetWithAnimated;
 /**
  IOS UITextView内容垂直居中方法 https://www.jianshu.com/p/5e4cf8488bfd
  原理：由于textView是继承自UIScrollview，所以会有ContentSize属性。
@@ -55,7 +55,7 @@ Prop_copy()NSString *resStr;
  如果执行的是删除动作，那么textView.text 去掉最后一个字符向外输出
  否则textView.text + replacementString进行输出
  */
--(JobsReturnStringByStringBlock _Nonnull)getCurrentTextViewValueByReplacementText;
+-(JobsRetStringByStringBlock _Nonnull)getCurrentTextViewValueByReplacementText;
 /**
  一般用于终值部分，对应协议方法:textViewDidChange
  因为在- (void)textViewDidChange:(UITextView *)textView里面的textView.text = textView确定值 + 输入法拼音模式下的占位符值

@@ -12,17 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImpactFeedbackGenerator (Extra)
 
-+(JobsReturnImpactFeedbackGeneratorByNSIntegerBlock _Nonnull)initByStyle;
++(JobsRetImpactFeedbackGeneratorByNSIntegerBlock _Nonnull)initByStyle;
 +(UIImpactFeedbackGenerator *_Nonnull)initByLightStyle;
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initLightStyleBy;
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initLightStyleBy;
 +(UIImpactFeedbackGenerator *_Nonnull)initByMediumStyle;
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initMediumStyleBy;
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initMediumStyleBy;
 +(UIImpactFeedbackGenerator *_Nonnull)initByHeavyStyle;
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initHeavyStyleBy;
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initHeavyStyleBy;
 +(UIImpactFeedbackGenerator *_Nonnull)initBySoftStyle API_AVAILABLE(ios(13.0));
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initSoftStyleBy;
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initSoftStyleBy;
 +(UIImpactFeedbackGenerator *_Nonnull)initByRigidStyle;
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initRigidStyleBy;
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initRigidStyleBy;
 
 @end
 

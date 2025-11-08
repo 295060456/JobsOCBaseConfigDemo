@@ -50,9 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
                                  controlHeight:(CGFloat)controlHeight;
 /// 获取一行字符串的高度
 /// 这个方法仅计算文本本身的高度，不包括行间距等因素
--(JobsReturnCGFloatByFontBlock _Nonnull)widthBy;
+-(JobsRetCGFloatByFontBlock _Nonnull)widthBy;
 /// 求一个字符串的长度
--(JobsReturnCGFloatByFontBlock _Nonnull)lenthByFont;
+-(JobsRetCGFloatByFontBlock _Nonnull)lenthByFont;
 /**
  系统的length是不区分中文和英文的,中文一个字length也是1
  通过计算ASCII码来实现:
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(NSUInteger)textLength;
 /// 统计字符串中中英文的字数
--(JobsReturnByNSIntegerBlock _Nonnull)statisticsAlphabetNumberByType;
+-(JobsRetByNSIntegerBlock _Nonnull)statisticsAlphabetNumberByType;
 
 @end
 

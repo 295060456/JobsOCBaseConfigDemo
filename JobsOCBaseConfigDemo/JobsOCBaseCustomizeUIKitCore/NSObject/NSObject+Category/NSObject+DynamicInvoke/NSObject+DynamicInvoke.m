@@ -150,7 +150,7 @@ callingMethodWithName:(NSString *_Nullable)methodName{
     }return returnValue;
 }
 /// 判断本程序是否存在某个类
-+(JobsReturnBOOLByStringBlock _Nonnull)judgementAppExistClassWithName{
++(JobsRetBOOLByStringBlock _Nonnull)judgementAppExistClassWithName{
     return ^BOOL(NSString *_Nullable data){
         return NSClassFromString(data);
     };
@@ -166,7 +166,7 @@ existMethodWithName:(NSString *_Nullable)methodName{
     }
 }
 /// 用block来代替selector
--(SEL _Nullable)jobsSelectorBlock:(JobsReturnIDByTwoIDBlock _Nullable)selectorBlock{
+-(SEL _Nullable)jobsSelectorBlock:(JobsRetIDByTwoIDBlock _Nullable)selectorBlock{
     return selectorBlocks(selectorBlock, nil, self);
 }
 /// 替代系统 @selector(selector) ,用Block的方式调用代码，使得代码逻辑和形式上不割裂
@@ -175,7 +175,7 @@ existMethodWithName:(NSString *_Nullable)methodName{
 ///   - block: 最终的执行体
 ///   - selectorName: 实际调用的方法名（可不填），用于对外输出和定位调用实际使用的方法
 ///   - target: 执行目标
-SEL _Nullable selectorBlocks(JobsReturnIDByTwoIDBlock _Nullable block,
+SEL _Nullable selectorBlocks(JobsRetIDByTwoIDBlock _Nullable block,
                              NSString *_Nullable selectorName,// MethodName(self)
                              NSObject *_Nonnull target) {
     if (!block) {
@@ -225,7 +225,7 @@ SEL _Nullable selectorBlocks(JobsReturnIDByTwoIDBlock _Nullable block,
 }
 /// 内部调用无需暴露
 static void selectorImp(id target, SEL _cmd, id arg) {
-    JobsReturnIDByTwoIDBlock block = objc_getAssociatedObject(target, _cmd);
+    JobsRetIDByTwoIDBlock block = objc_getAssociatedObject(target, _cmd);
     if (block) block(target, arg);
 }
 /// 对 SEL和IMP的统一管理
@@ -258,7 +258,7 @@ JobsKey(_methodCache)
     Jobs_setAssociatedCOPY_NONATOMIC(_methodCache, methodCache)
 }
 /// 是否存在这样的属性，有则返回
--(JobsReturnIDByStringBlock _Nonnull)property {
+-(JobsRetIDByStrBlock _Nonnull)property {
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data) {
         @jobs_strongify(self)
@@ -281,7 +281,7 @@ JobsKey(_methodCache)
     };
 }
 /// 是否遵从这样的协议？
--(JobsReturnBOOLByStringBlock _Nonnull)protocol{
+-(JobsRetBOOLByStringBlock _Nonnull)protocol{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable data){
         @jobs_strongify(self)

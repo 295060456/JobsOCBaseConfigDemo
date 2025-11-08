@@ -9,7 +9,7 @@
 
 @implementation NSObject (Class)
 #pragma mark —— 返回并打印成员变量列表
--(JobsReturnArrayByVoidBlock _Nonnull)printIvarList{
+-(JobsRetArrByVoidBlock _Nonnull)printIvarList{
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(){
         @jobs_strongify(self)
@@ -21,7 +21,7 @@
     return printIvarListByObj(self);
 }
 #pragma mark —— 返回并打印属性列表
--(JobsReturnArrayByVoidBlock _Nonnull)printPropertyList{
+-(JobsRetArrByVoidBlock _Nonnull)printPropertyList{
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(){
         @jobs_strongify(self)
@@ -32,7 +32,7 @@
     return printPropertyListByObj(self);
 }
 #pragma mark —— 返回并打印方法列表
--(JobsReturnArrayByVoidBlock _Nonnull)printMethodList{
+-(JobsRetArrByVoidBlock _Nonnull)printMethodList{
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(){
         @jobs_strongify(self)
@@ -43,7 +43,7 @@
     return printMethodListByObj(self);
 }
 #pragma mark —— 返回并打印协议列表
--(JobsReturnArrayByVoidBlock _Nonnull)printProtocolList{
+-(JobsRetArrByVoidBlock _Nonnull)printProtocolList{
     @jobs_weakify(self)
     return ^__kindof NSArray *_Nullable(){
         @jobs_strongify(self)
@@ -58,7 +58,7 @@
 /// 2、字典和模型的差距在于序列化
 /// 3、字典化的模型里面，依据有序的（从上至下）属性名字排列，去取值，映射到数组里面
 /// 4、要成为字典的Key，只需要遵循NSCopying协议
--(JobsReturnArrayByVoidBlock _Nonnull)readModelPropertyValueByOrder{
+-(JobsRetArrByVoidBlock _Nonnull)readModelPropertyValueByOrder{
     @jobs_weakify(self)
     return ^__kindof NSMutableArray <__kindof NSDictionary *>*_Nullable(){
         @jobs_strongify(self)

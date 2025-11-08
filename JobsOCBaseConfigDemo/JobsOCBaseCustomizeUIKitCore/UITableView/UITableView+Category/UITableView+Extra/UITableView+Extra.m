@@ -9,7 +9,7 @@
 
 @implementation UITableView (Extra)
 #pragma mark —— 数据源
--(JobsReturnScrollViewByIDBlock _Nonnull)dataLink{
+-(JobsRetScrollViewByIDBlock _Nonnull)dataLink{
     @jobs_weakify(self)
     return ^__kindof UITableView *(id _Nonnull target) {
         @jobs_strongify(self)
@@ -31,7 +31,7 @@
     return [UITableView.alloc initWithFrame:CGRectZero style:UITableViewStyleInsetGrouped];
 }
 #pragma mark —— BaseTableViewProtocol
--(JobsReturnTableViewByDelegateBlock _Nonnull)byDelegate{
+-(JobsRetTableViewByDelegateBlock _Nonnull)byDelegate{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(id <UITableViewDelegate>_Nullable delegate){
         @jobs_strongify(self)
@@ -40,7 +40,7 @@
     };
 }
 
--(JobsReturnTableViewByDataSourceBlock _Nonnull)byDataSource{
+-(JobsRetTableViewByDataSourceBlock _Nonnull)byDataSource{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(id <UITableViewDataSource>_Nullable dataSource){
         @jobs_strongify(self)
@@ -49,7 +49,7 @@
     };
 }
 
--(JobsReturnTableViewByDataSourcePrefetchingBlock _Nonnull)byDataSourcePrefetching API_AVAILABLE(ios(10.0)){
+-(JobsRetTableViewByDataSourcePrefetchingBlock _Nonnull)byDataSourcePrefetching API_AVAILABLE(ios(10.0)){
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(id <UITableViewDataSourcePrefetching>_Nullable dataSourcePrefetching){
         @jobs_strongify(self)
@@ -58,7 +58,7 @@
     };
 }
 
--(JobsReturnTableViewByDragDelegateBlock _Nonnull)byDragDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos){
+-(JobsRetTableViewByDragDelegateBlock _Nonnull)byDragDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos){
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(id <UITableViewDragDelegate>_Nullable delegate){
         @jobs_strongify(self)
@@ -67,7 +67,7 @@
     };
 }
 
--(JobsReturnTableViewByDropDelegateBlock _Nonnull)byDropDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos){
+-(JobsRetTableViewByDropDelegateBlock _Nonnull)byDropDelegate API_AVAILABLE(ios(11.0)) API_UNAVAILABLE(tvos, watchos){
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(id <UITableViewDropDelegate>_Nullable delegate){
         @jobs_strongify(self)
@@ -76,7 +76,7 @@
     };
 }
 
--(JobsReturnTableViewByCellSeparatorStyleBlock _Nonnull)bySeparatorStyle{
+-(JobsRetTableViewByCellSeparatorStyleBlock _Nonnull)bySeparatorStyle{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(UITableViewCellSeparatorStyle style){
         @jobs_strongify(self)
@@ -85,7 +85,7 @@
     };
 }
 
--(JobsReturnTableViewByUIScrollViewContentInsetAdjustmentBehaviorBlock _Nonnull)byContentInsetAdjustmentBehavior API_AVAILABLE(ios(11.0), tvos(11.0)) API_UNAVAILABLE(watchos){
+-(JobsRetTableViewByUIScrollViewContentInsetAdjustmentBehaviorBlock _Nonnull)byContentInsetAdjustmentBehavior API_AVAILABLE(ios(11.0), tvos(11.0)) API_UNAVAILABLE(watchos){
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(UIScrollViewContentInsetAdjustmentBehavior behavior){
         @jobs_strongify(self)
@@ -94,7 +94,7 @@
     };
 }
 
--(JobsReturnTableViewByCorBlock _Nonnull)bySeparatorColor{
+-(JobsRetTableViewByCorBlock _Nonnull)bySeparatorColor{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(UIColor *_Nullable cor){
         @jobs_strongify(self)
@@ -103,7 +103,7 @@
     };
 }
 
--(JobsReturnTableViewByViewBlock _Nonnull)byTableHeaderView{
+-(JobsRetTableViewByViewBlock _Nonnull)byTableHeaderView{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(__kindof UIView *_Nullable view){
         @jobs_strongify(self)
@@ -112,7 +112,7 @@
     };
 }
 
--(JobsReturnTableViewByViewBlock _Nonnull)byTableFooterView{
+-(JobsRetTableViewByViewBlock _Nonnull)byTableFooterView{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(__kindof UIView *_Nullable view){
         @jobs_strongify(self)
@@ -121,7 +121,7 @@
     };
 }
 
--(JobsReturnTableViewByEdgeInsetsBlock _Nonnull)byContentInset{
+-(JobsRetTableViewByEdgeInsetsBlock _Nonnull)byContentInset{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(UIEdgeInsets inset){
         @jobs_strongify(self)
@@ -130,7 +130,7 @@
     };
 }
 
--(JobsReturnTableViewByMJRefreshConfigModelBlock _Nonnull)byMJRefreshConfigModel{
+-(JobsRetTableViewByMJRefreshConfigModelBlock _Nonnull)byMJRefreshConfigModel{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(MJRefreshConfigModel *_Nullable refreshConfigModel){
         @jobs_strongify(self)
@@ -159,7 +159,7 @@
     };
 }
 #pragma mark —— UITableViewHeaderFooterView
--(JobsReturnRectByNSIntegerBlock _Nonnull)rectForHeaderInSection{
+-(JobsRetFrameByNSIntegerBlock _Nonnull)rectForHeaderInSection{
     @jobs_weakify(self)
     return ^CGRect(NSInteger section){
         @jobs_strongify(self)
@@ -167,7 +167,7 @@
     };
 }
 
--(JobsReturnRectByNSIntegerBlock _Nonnull)rectForFooterInSection{
+-(JobsRetFrameByNSIntegerBlock _Nonnull)rectForFooterInSection{
     @jobs_weakify(self)
     return ^CGRect(NSInteger section){
         @jobs_strongify(self)
@@ -176,7 +176,7 @@
 }
 #pragma mark —— UITableViewCell
 /// 对系统方法 cellForRowAtIndexPath 的二次封装
--(JobsReturnTableViewCellByIndexPathBlock _Nonnull)cellBy{
+-(JobsRetTableViewCellByIndexPathBlock _Nonnull)cellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(NSIndexPath *_Nonnull indexPath){
         @jobs_strongify(self)
@@ -184,7 +184,7 @@
     };
 }
 /// 对系统方法 numberOfRowsInSection 的二次封装
--(JobsReturnByNSIntegerBlock _Nonnull)rowsInSection{
+-(JobsRetByNSIntegerBlock _Nonnull)rowsInSection{
     @jobs_weakify(self)
     return ^NSInteger(NSInteger Section){
         @jobs_strongify(self)

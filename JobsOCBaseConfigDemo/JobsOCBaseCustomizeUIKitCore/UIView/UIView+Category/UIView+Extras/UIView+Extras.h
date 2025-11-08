@@ -41,9 +41,9 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 
 @interface UIView (Extras) <BaseViewProtocol,BaseCellProtocol>
 #pragma mark —— init
-+(JobsReturnViewByFrameBlock _Nonnull)initByFrame;
++(JobsRetViewByFrameBlock _Nonnull)initByFrame;
 Prop_assign()CGFloat jobsVisible;
--(JobsReturnViewByCGFloatBlock _Nonnull)byVisible;
+-(JobsRetViewByCGFloatBlock _Nonnull)byVisible;
 #pragma mark —— 打印
 -(jobsByStringBlock _Nonnull)jobsLogFrame;
 -(jobsByStringBlock _Nonnull)jobsLogPoint;
@@ -67,26 +67,26 @@ Prop_assign()CGFloat jobsVisible;
 /// 获取某个scrollview 上的截图
 -(UIImage *_Nullable)scrollViewShot;
 /// 截图
--(JobsReturnImageByViewBlock _Nonnull)rendImage;
+-(JobsRetImageByViewBlock _Nonnull)rendImage;
 /// 获取某个 范围内的 截图
--(JobsReturnImageByCGRectBlock _Nonnull)innerViewShotAtFrame;
+-(JobsRetImageByCGRectBlock _Nonnull)innerViewShotAtFrame;
 #pragma mark —— 描边
 /// 调用方式：view.leftBorderColor(color).leftBorderWidth(borderType);
--(JobsReturnViewByCorBlock _Nonnull)leftBorderColor;
+-(JobsRetViewByCorBlock _Nonnull)leftBorderColor;
 /// 调用方式：view.rightBorderColor(color).rightBorderWidth(borderType);
--(JobsReturnViewByCorBlock _Nonnull)rightBorderColor;
+-(JobsRetViewByCorBlock _Nonnull)rightBorderColor;
 /// 调用方式：view.topBorderColor(color).topBorderWidth(borderType);
--(JobsReturnViewByCorBlock _Nonnull)topBorderColor;
+-(JobsRetViewByCorBlock _Nonnull)topBorderColor;
 /// 调用方式：view.bottomBorderColor(color).bottomBorderWidth(borderType);
--(JobsReturnViewByCorBlock _Nonnull)bottomBorderColor;
+-(JobsRetViewByCorBlock _Nonnull)bottomBorderColor;
 /// 调用方式：view.leftBorderColor(color).leftBorderWidth(borderType);
--(JobsReturnViewByFloatBlock _Nonnull)leftBorderWidth;
+-(JobsRetViewByFloatBlock _Nonnull)leftBorderWidth;
 /// 调用方式：view.rightBorderColor(color).rightBorderWidth(borderType);
--(JobsReturnViewByFloatBlock _Nonnull)rightBorderWidth;
+-(JobsRetViewByFloatBlock _Nonnull)rightBorderWidth;
 /// 调用方式：view.topBorderColor(color).topBorderWidth(borderType);
--(JobsReturnViewByFloatBlock _Nonnull)topBorderWidth;
+-(JobsRetViewByFloatBlock _Nonnull)topBorderWidth;
 /// 调用方式：view.bottomBorderColor(color).bottomBorderWidth(borderType);
--(JobsReturnViewByFloatBlock _Nonnull)bottomBorderWidth;
+-(JobsRetViewByFloatBlock _Nonnull)bottomBorderWidth;
 /// 描边：统一设置Layer的线宽+颜色+圆切角（一定切角）
 -(JobsReturnViewByLocationModelBlock _Nonnull)setLayerBy;
 /// 描边：统一设置Layer的线宽+颜色+圆切角（不一定切角）
@@ -99,33 +99,33 @@ Prop_assign()CGFloat jobsVisible;
               borderWidth:(CGFloat)borderWidth
                borderType:(UIBorderSideType)borderType;
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
--(JobsReturnViewByCorBlock _Nonnull)layerByBorderCor;
+-(JobsRetViewByCorBlock _Nonnull)layerByBorderCor;
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
--(JobsReturnViewByFloatBlock _Nonnull)layerByBorderWidth;
+-(JobsRetViewByFloatBlock _Nonnull)layerByBorderWidth;
 #pragma mark —— 切角
 /// 切整个View的4个角为统一的切角参数
--(JobsReturnViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius;
+-(JobsRetViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius;
 /// 调用方式：view.appointCorners(UIRectCornerTopLeft | UIRectCornerBottomRight).cornerRadii(CGSizeMake(10, 10));
--(JobsReturnViewByNSUIntegerBlock _Nonnull)appointCorners;
+-(JobsRetViewByNSUIntegerBlock _Nonnull)appointCorners;
 /// 调用方式：view.appointCorners(UIRectCornerTopLeft | UIRectCornerBottomRight).cornerRadii(CGSizeMake(10, 10));
--(JobsReturnViewBySizeBlock _Nonnull)cornerRadii;
+-(JobsRetViewByCGSizeBlock _Nonnull)cornerRadii;
 /// 指定圆切角
 /// ⚠️这种写法存在一定的弊端：如果在某个View上添加子View，并对这个View使用如下方法的圆切角，则这个View上的子视图不可见⚠️
 -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners
                                      cornerRadii:(CGSize)cornerRadii;
 #pragma mark —— 其他
--(JobsReturnViewByCorBlock _Nonnull)byBgCor;
--(JobsReturnViewByNSIntegerBlock _Nonnull)viewByID;
--(JobsReturnViewByGestureRecognizer _Nonnull)addGesture;
--(JobsReturnGestureRecognizerByGestureRecognizer _Nonnull)addGestureRecognizer;
--(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem;
--(JobsReturnViewByNSIntegerBlock _Nonnull)viewWithTag;
--(JobsReturnViewByInteractionBlock _Nonnull)addInteraction;
--(JobsReturnViewByInteractionBlock _Nonnull)removeInteraction;
--(JobsReturnViewByViewBlock _Nonnull)addSubview;
--(JobsReturnViewByViewBlock _Nonnull)bringSubviewToFront;
--(JobsReturnViewByViewBlock _Nonnull)sendSubviewToBack;
--(JobsReturnViewByVoidBlock _Nonnull)remove;
+-(JobsRetViewByCorBlock _Nonnull)byBgCor;
+-(JobsRetViewByNSIntegerBlock _Nonnull)viewByID;
+-(JobsRetViewByGestureRecognizer _Nonnull)addGesture;
+-(JobsReturnGestureByGesture _Nonnull)addGestureRecognizer;
+-(JobsRetBarButtonItemByVoidBlock _Nonnull)barButtonItem;
+-(JobsRetViewByNSIntegerBlock _Nonnull)viewWithTag;
+-(JobsRetViewByInteractionBlock _Nonnull)addInteraction;
+-(JobsRetViewByInteractionBlock _Nonnull)removeInteraction;
+-(JobsRetViewByViewBlock _Nonnull)addSubview;
+-(JobsRetViewByViewBlock _Nonnull)bringSubviewToFront;
+-(JobsRetViewByViewBlock _Nonnull)sendSubviewToBack;
+-(JobsRetViewByVoidBlock _Nonnull)remove;
 /// 针对数据源是UIImage  *的GKPhotoBrowser
 -(void)viewTapGRSavePicsWithImageDataMutArr:(NSMutableArray <UIImage *>*_Nonnull)imageDataMutArr
                                 atIndexPath:(NSIndexPath *_Nonnull)indexPath

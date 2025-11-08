@@ -234,7 +234,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
 //
 // Standard Base64 (RFC) handling
 //
-+(JobsReturnDataByDataBlock _Nonnull)encodeData{
++(JobsRetDataByDataBlock _Nonnull)encodeData{
     @jobs_weakify(self)
     return ^__kindof NSData *_Nullable(__kindof NSData *_Nullable data){
         @jobs_strongify(self)
@@ -245,7 +245,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     };
 }
 
-+(JobsReturnDataByDataBlock _Nonnull)decodeData{
++(JobsRetDataByDataBlock _Nonnull)decodeData{
     @jobs_weakify(self)
     return ^__kindof NSData *_Nullable(__kindof NSData *_Nullable data){
         @jobs_strongify(self)
@@ -271,7 +271,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
 }
 
 
-+(JobsReturnStringByDataBlock _Nonnull)stringByEncodingData{
++(JobsRetStringByDataBlock _Nonnull)stringByEncodingData{
     return ^ __kindof NSString *_Nullable(__kindof NSData *_Nullable data){
         NSString *result = nil;
         NSData *converted = [self baseEncode:data.bytes
@@ -365,7 +365,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     return result;
 }
 
-+(JobsReturnDataByStringBlock _Nonnull)webSafeDecodeString{
++(JobsRetDataByStringBlock _Nonnull)webSafeDecodeString{
     return ^__kindof NSData *_Nullable(__kindof NSString *_Nullable string){
         NSData *result = nil;
         NSData *data = string.ASCIIEncoding;
@@ -378,7 +378,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     };
 }
 #pragma mark —— base64
-+(JobsReturnStringByStringBlock _Nonnull)md5_base64{
++(JobsRetStringByStringBlock _Nonnull)md5_base64{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable inPutText){
         const char *cStr = inPutText.UTF8String;
         unsigned char digest[16];
@@ -389,7 +389,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     };
 }
 
-+(JobsReturnStringByStringBlock _Nonnull)encodeBase64String{
++(JobsRetStringByStringBlock _Nonnull)encodeBase64String{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable input){
         NSData *data = [input dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
         data = GTMBase64.encodeData(data);
@@ -397,7 +397,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     };
 }
 
-+(JobsReturnStringByStringBlock _Nonnull)decodeBase64String{
++(JobsRetStringByStringBlock _Nonnull)decodeBase64String{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable input){
         NSData *data = [input dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
         data = GTMBase64.decodeData(data);
@@ -406,13 +406,13 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     };
 }
 
-+(JobsReturnStringByDataBlock _Nonnull)encodeBase64Data{
++(JobsRetStringByDataBlock _Nonnull)encodeBase64Data{
     return ^__kindof NSString *_Nullable(__kindof NSData *_Nullable data){
         return NSString.initByUTF8Data(GTMBase64.encodeData(data));;
     };
 }
 
-+(JobsReturnStringByDataBlock _Nonnull)decodeBase64Data{
++(JobsRetStringByDataBlock _Nonnull)decodeBase64Data{
     return ^__kindof NSString *_Nullable(__kindof NSData *_Nullable data){
         return NSString.initByUTF8Data(GTMBase64.decodeData(data));
     };

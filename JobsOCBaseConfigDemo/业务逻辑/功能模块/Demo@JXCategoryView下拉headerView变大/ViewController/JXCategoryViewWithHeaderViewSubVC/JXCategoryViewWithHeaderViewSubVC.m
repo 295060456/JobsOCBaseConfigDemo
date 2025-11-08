@@ -97,11 +97,11 @@ Prop_strong()NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*
 }
 /// 部署策略
 -(UICollectionViewCell *)planAtIndexPath:(nonnull NSIndexPath *)indexPath
-                                  block1:(JobsReturnIDByVoidBlock)block1
-                                  block2:(JobsReturnIDByVoidBlock)block2
-                                  block3:(JobsReturnIDByVoidBlock)block3
-                                  block4:(JobsReturnIDByVoidBlock)block4
-                                  block5:(JobsReturnIDByVoidBlock)block5{
+                                  block1:(JobsRetIDByVoidBlock)block1
+                                  block2:(JobsRetIDByVoidBlock)block2
+                                  block3:(JobsRetIDByVoidBlock)block3
+                                  block4:(JobsRetIDByVoidBlock)block4
+                                  block5:(JobsRetIDByVoidBlock)block5{
     if (indexPath.section == 0) {
         if (block1) return block1();
     }else if (indexPath.section == 1){
@@ -116,11 +116,11 @@ Prop_strong()NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*
 }
 
 -(CGSize)planSizeAtIndexPath:(nonnull NSIndexPath *)indexPath
-                      block1:(JobsReturnCGSizeByVoidBlock)block1
-                      block2:(JobsReturnCGSizeByVoidBlock)block2
-                      block3:(JobsReturnCGSizeByVoidBlock)block3
-                      block4:(JobsReturnCGSizeByVoidBlock)block4
-                      block5:(JobsReturnCGSizeByVoidBlock)block5{
+                      block1:(JobsRetCGSizeByVoidBlock)block1
+                      block2:(JobsRetCGSizeByVoidBlock)block2
+                      block3:(JobsRetCGSizeByVoidBlock)block3
+                      block4:(JobsRetCGSizeByVoidBlock)block4
+                      block5:(JobsRetCGSizeByVoidBlock)block5{
     if (indexPath.section == 0) {
         if (block1) return block1();
     }else if(indexPath.section == 1){

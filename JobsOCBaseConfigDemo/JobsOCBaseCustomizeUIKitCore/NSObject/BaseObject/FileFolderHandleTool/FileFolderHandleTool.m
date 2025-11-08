@@ -419,20 +419,20 @@
     return fileName;
 }
 /// 获取文件所在的文件夹路径：删除最后一个路径节点
-+(JobsReturnStringByStringBlock _Nonnull)directoryAtPath{
++(JobsRetStringByStringBlock _Nonnull)directoryAtPath{
     return ^NSString *_Nullable(NSString *_Nullable path){
         return path.stringByDeletingLastPathComponent;
     };
 }
 /// 根据文件路径获取文件扩展类型:
-+(JobsReturnStringByStringBlock _Nonnull)suffixAtPath{
++(JobsRetStringByStringBlock _Nonnull)suffixAtPath{
     return ^NSString *_Nullable(NSString *_Nullable path){
         return path.pathExtension;
     };
 }
 #pragma mark —— 判断文件（夹）是否存在
 /// 判断文件路径是否存在:
-+(JobsReturnBOOLByStringBlock _Nonnull)isExistsAtPath{
++(JobsRetBOOLByStringBlock _Nonnull)isExistsAtPath{
     return ^BOOL((NSString * _Nullable path)){
         return [NSFileManager.defaultManager fileExistsAtPath:path];
     };
@@ -459,19 +459,19 @@
                                                   error:error] == NSFileTypeRegular);
 }
 /// 判断目录是否可以执行
-+(JobsReturnBOOLByStringBlock _Nonnull)isExecutableItemAtPath{
++(JobsRetBOOLByStringBlock _Nonnull)isExecutableItemAtPath{
     return ^BOOL((NSString * _Nullable path)){
         return [NSFileManager.defaultManager isExecutableFileAtPath:path];
     };
 }
 /// 判断目录是否可读
-+(JobsReturnBOOLByStringBlock _Nonnull)isReadableItemAtPath{
++(JobsRetBOOLByStringBlock _Nonnull)isReadableItemAtPath{
     return ^BOOL((NSString * _Nullable path)){
         return [NSFileManager.defaultManager isReadableFileAtPath:path];
     };
 }
 /// 判断目录是否可写
-+(JobsReturnBOOLByStringBlock _Nonnull)isWritableItemAtPath{
++(JobsRetBOOLByStringBlock _Nonnull)isWritableItemAtPath{
     return ^BOOL((NSString * _Nullable path)){
         return [NSFileManager.defaultManager isWritableFileAtPath:path];
     };
@@ -506,7 +506,7 @@
     return nil;
 }
 /// 将文件大小格式化为字节
-+(JobsReturnStringByNumberBlock _Nonnull)sizeFormatted{
++(JobsRetStringByNumberBlock _Nonnull)sizeFormatted{
     return ^__kindof NSString *_Nullable(NSNumber *_Nullable size){
         /*NSByteCountFormatterCountStyle枚举
          *NSByteCountFormatterCountStyleFile 字节为单位，采用十进制的1000bytes = 1KB
@@ -551,7 +551,7 @@
 }
 #pragma mark —— 系统相册相关
 /// 获取相册最新加载（录制、拍摄）的资源
-+(JobsReturnAssetByStrBlock _Nonnull)gettingLastResource{
++(JobsRetAssetByStrBlock _Nonnull)gettingLastResource{
     return ^PHAsset *_Nullable(NSString *_Nullable Key){
         /// 获取所有资源的集合，并按资源的创建时间排序
         /// 这里取得的结果 assetsFetchResults 其实可以当做一个数组。
@@ -621,7 +621,7 @@
     };
 }
 /// 是否存在此相册判断逻辑依据 注意和 isExistsAtPath进行区分
-+(JobsReturnBOOLByStringBlock _Nonnull)isExistFolder{
++(JobsRetBOOLByStringBlock _Nonnull)isExistFolder{
     return ^BOOL(NSString * _Nullable folderName){
         __block BOOL isExisted = NO;
         /// 首先获取用户手动创建相册的集合
@@ -751,7 +751,7 @@ didFinishSavingWithError:(NSError *)error
     }
 }
 /// AVAsset 转 NSData
-+(JobsReturnDataByAssetBlock _Nonnull)AVAssetToData{
++(JobsRetDataByAssetBlock _Nonnull)AVAssetToData{
     return ^NSData *_Nullable(AVAsset *_Nullable asset){
         AVURLAsset *urlAsset = (AVURLAsset *)asset;
         return NSData.initByURL(urlAsset.URL);

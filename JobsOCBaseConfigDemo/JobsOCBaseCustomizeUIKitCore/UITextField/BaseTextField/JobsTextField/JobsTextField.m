@@ -14,7 +14,7 @@ Prop_assign()CGFloat leftViewByTextFieldOffset;
 Prop_assign()CGFloat rightViewByOutLineOffset; /// 这个值需要在rightView之前设置才有效
 Prop_assign()CGFloat rightViewByTextFieldOffset;
 
-Prop_copy(nullable)JobsReturnIDByIDBlock otherActionBlock;
+Prop_copy(nullable)JobsRetIDByIDBlock otherActionBlock;
 
 @end
 
@@ -51,7 +51,7 @@ RACProtocol_synthesize
                                         cornerRadii:self.layoutSubviewsRectCornerSize];
 }
 #pragma mark —— 一些公有方法
--(void)otherActionBlock:(JobsReturnIDByIDBlock _Nullable)otherActionBlock{
+-(void)otherActionBlock:(JobsRetIDByIDBlock _Nullable)otherActionBlock{
     self.otherActionBlock = otherActionBlock;
 }
 /// 这个值需要在leftView之前设置才有效

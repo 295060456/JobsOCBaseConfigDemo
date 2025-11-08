@@ -16,13 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSString (WKWebView)
 /// loadHTMLString：包含 HTML 内容的字符串
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
--(JobsReturnWKWebViewByStringBlock _Nonnull)webViewByloadHTMLString;
+-(JobsRetWKWebViewByStringBlock _Nonnull)webViewByloadHTMLString;
 /// 解析纯的HTML字符串
 -(__kindof WKWebView *_Nullable)webViewByloadHTMLStr;
 /// 解析URL数据
--(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebView;
+-(JobsRetWKWebViewByVoidBlock _Nonnull)makeWebView;
 /// 解析JS
--(JobsReturnWKWebViewByVoidBlock _Nonnull)makeWebViewByJS;
+-(JobsRetWKWebViewByVoidBlock _Nonnull)makeWebViewByJS;
 /// 鉴别一个字符串里面是否包含HTML的标签。如果有则这个字符串考虑用WebView来进行承接
 -(BOOL)isHTMLString;
 /// 某个字符串是否包含这些HTML必要的成像标签。如果没有就要做特殊处理

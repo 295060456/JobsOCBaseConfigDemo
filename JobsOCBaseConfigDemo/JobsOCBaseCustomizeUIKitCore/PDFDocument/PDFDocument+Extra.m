@@ -9,7 +9,7 @@
 
 @implementation PDFDocument (Extra)
 
-+(JobsReturnPDFDocumentByURLBlock _Nonnull)byURL{
++(JobsRetPDFDocumentByURLBlock _Nonnull)byURL{
     return ^ __kindof PDFDocument *_Nullable(NSURL *_Nullable pdfURL){
         return [PDFDocument.alloc initWithURL:pdfURL];
     };

@@ -21,7 +21,7 @@ Prop_assign()CGSize size;
 
 @implementation TableViewOneCell
 
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     @jobs_weakify(self)
     return ^(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
@@ -34,7 +34,7 @@ Prop_assign()CGSize size;
     };
 }
 #pragma mark —— BaseCellProtocol
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable viewModel) {
         @jobs_strongify(self)

@@ -9,7 +9,7 @@
 
 @implementation UIContextMenuInteraction (Extra)
 
-+(JobsReturnContextMenuInteractionByIDBlock _Nonnull)initByDelegate{
++(JobsRetContextMenuInteractionByIDBlock _Nonnull)initByDelegate{
     return ^UIContextMenuInteraction *_Nonnull(id <UIContextMenuInteractionDelegate>_Nullable data){
         return [UIContextMenuInteraction.alloc initWithDelegate:data];
     };

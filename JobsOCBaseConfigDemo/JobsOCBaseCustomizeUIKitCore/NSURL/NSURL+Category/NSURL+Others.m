@@ -9,7 +9,7 @@
 
 @implementation NSURL (Others)
 /// 对系统方法 fileURLWithPath 的二次封装
-+(JobsReturnURLByStringBlock _Nonnull)fileURLWithPath{
++(JobsRetURLByStringBlock _Nonnull)fileURLWithPath{
     return ^NSURL *_Nullable(__kindof NSString *_Nullable data){
         return [NSURL fileURLWithPath:data];
     };
@@ -33,7 +33,7 @@
     }else return self;
 }
 /// NSString + NSURL => NSURL
--(JobsReturnURLByStringBlock _Nonnull)add{
+-(JobsRetURLByStringBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^NSURL *_Nullable(NSString *_Nullable data) {
         @jobs_strongify(self)
@@ -43,7 +43,7 @@
     };
 }
 /// NSURL + NSURL => NSURL
--(JobsReturnURLByURLBlock _Nonnull)Add{
+-(JobsRetURLByURLBlock _Nonnull)Add{
     @jobs_weakify(self)
     return ^NSURL *_Nullable(NSURL *_Nullable data) {
         @jobs_strongify(self)

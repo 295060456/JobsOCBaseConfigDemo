@@ -9,13 +9,13 @@
 
 @implementation UIWindow (Extra)
 
-+(JobsReturnWindowByWindowSceneBlock _Nonnull)initByScene{
++(JobsRetWindowByWindowSceneBlock _Nonnull)initByScene{
     return ^__kindof UIWindow *_Nullable(UIWindowScene *_Nullable data){
         return [UIWindow.alloc initWithWindowScene:data];
     };
 }
 
-+(JobsReturnWindowByFrameBlock _Nonnull)initByFrame{
++(JobsRetWindowByFrameBlock _Nonnull)initByFrame{
     return ^__kindof UIWindow *_Nullable(CGRect frame){
         return [UIWindow.alloc initWithFrame:UIScreen.mainScreen.bounds];
     };
@@ -32,7 +32,7 @@
     }return self;
 }
 /// 横屏模式下Window的宽高互换
--(JobsReturnCGRectByVoidBlock _Nonnull)landscapeWindowFrame{
+-(JobsRetFrameByVoidBlock _Nonnull)landscapeWindowFrame{
     return ^CGRect(){
         @jobs_weakify(self)
         return jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {

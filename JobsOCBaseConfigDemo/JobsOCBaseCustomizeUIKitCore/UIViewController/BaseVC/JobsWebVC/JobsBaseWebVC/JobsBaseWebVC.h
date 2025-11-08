@@ -18,7 +18,7 @@ WKNavigationDelegate
 >
 /// makeNormaleWebView
 /// self.webView.loadRequest(self.urlString.URLRequest);
-+(JobsReturnVCByWebViewBlock _Nonnull)initByWebView;
++(JobsRetVCByWebViewBlock _Nonnull)initByWebView;
 
 @end
 

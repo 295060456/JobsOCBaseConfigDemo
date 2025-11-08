@@ -9,7 +9,7 @@
 
 @implementation UICollectionViewCell (BaseViewProtocol)
 /// 用于实例
--(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
+-(JobsRetCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(id _Nullable data){
         @jobs_strongify(self)
@@ -18,7 +18,7 @@
     };
 }
 
--(JobsReturnCollectionViewCellByBOOLBlock _Nonnull)bySelected{
+-(JobsRetCollectionViewCellByBOOLBlock _Nonnull)bySelected{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -27,7 +27,7 @@
     };
 }
 
--(JobsReturnCollectionViewCellByBOOLBlock _Nonnull)byHighlighted{
+-(JobsRetCollectionViewCellByBOOLBlock _Nonnull)byHighlighted{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(BOOL data){
         @jobs_strongify(self)

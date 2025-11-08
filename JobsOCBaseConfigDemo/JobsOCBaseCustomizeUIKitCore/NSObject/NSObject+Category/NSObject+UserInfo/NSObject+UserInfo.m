@@ -40,7 +40,7 @@
 }
 /// 判定是否登录的标准2
 /// 登录是否过期：没有过期时间 ===  已经过期
--(JobsReturnBOOLByStringBlock _Nonnull)isLoginByExpiredTime{
+-(JobsRetBOOLByStringBlock _Nonnull)isLoginByExpiredTime{
     return ^BOOL(NSString *_Nullable data){
         if(isValue(data)){
             return !data.isExpired();
@@ -107,7 +107,7 @@
     };
 }
 /// 读取用户信息
--(JobsReturnIDByStringBlock _Nonnull)jobsReadUserInfo{
+-(JobsRetIDByStrBlock _Nonnull)jobsReadUserInfo{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data) {
         @jobs_strongify(self)
@@ -125,7 +125,7 @@
     };
 }
 ///【通过特定的用户名】 读取用户的本地资料
--(JobsReturnIDByClsAndSaltStrBlock _Nonnull)readUserInfoByUserName{
+-(JobsRetIDByClsAndSaltStrBlock _Nonnull)readUserInfoByUserName{
     return ^id _Nullable(Class _Nonnull cls,NSString *_Nullable userName){
         NSData *archivedData = NSUserDefaults.readWithKey(userName);
         if(archivedData){

@@ -10,7 +10,7 @@
 
 @implementation UIView (Animation)
 #pragma mark —— 一些功能方法
--(JobsReturnViewByBOOLBlock _Nonnull)抖动动画{
+-(JobsRetViewByBOOLBlock _Nonnull)抖动动画{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(BOOL open) {
         @jobs_strongify(self)
@@ -19,7 +19,7 @@
     };
 }
 /// 一直不停地旋转
--(JobsReturnViewByBOOLBlock _Nonnull)旋转动画{
+-(JobsRetViewByBOOLBlock _Nonnull)旋转动画{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(BOOL start) {
         @jobs_strongify(self)
@@ -50,7 +50,7 @@
     };
 }
 /// 旋转一定时间之后停止下来
--(JobsReturnViewByFloatBlock _Nonnull)旋转动画By{
+-(JobsRetViewByFloatBlock _Nonnull)旋转动画By{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float data) {
         @jobs_strongify(self)
@@ -69,7 +69,7 @@
     };
 }
 
--(JobsReturnViewByVoidBlock _Nonnull)图片从小放大{
+-(JobsRetViewByVoidBlock _Nonnull)图片从小放大{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable() {
         @jobs_strongify(self)
@@ -100,7 +100,7 @@
     };
 }
 
--(JobsReturnViewByVoidBlock _Nonnull)视图上下一直来回跳动的动画{
+-(JobsRetViewByVoidBlock _Nonnull)视图上下一直来回跳动的动画{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable() {
         @jobs_strongify(self)

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHCollectionList (Extra)
 /// 对系统方法 fetchTopLevelUserCollectionsWithOptions 的二次封装
-+(JobsReturnPHFetchResultWithPHCollectionByPHFetchOptionsBlock _Nonnull)initByOptions;
++(JobsRetPHFetchResultWithPHCollectionByPHFetchOptionsBlock _Nonnull)initByOptions;
 
 @end
 

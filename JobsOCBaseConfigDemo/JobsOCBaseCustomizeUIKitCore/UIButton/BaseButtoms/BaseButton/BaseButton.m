@@ -266,25 +266,25 @@ BaseButtonProtocol_synthesize
     };
 }
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)buttonWidthByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)buttonHeightByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)buttonSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeZero;
     };
 }
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel{
++(JobsRetFrameByIDBlock _Nonnull)buttonFrameByModel{
     return ^CGRect(id _Nullable data){
         return CGRectZero;
     };

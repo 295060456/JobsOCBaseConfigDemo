@@ -65,7 +65,7 @@
 }
 #pragma mark —— 取值
 /// 读取 BOOL 值
--(JobsReturnBOOLByVoidBlock _Nonnull)boolBy{
+-(JobsRetBOOLByVoidBlock _Nonnull)boolBy{
     @jobs_weakify(self)
     return ^BOOL(){
         @jobs_strongify(self)
@@ -73,7 +73,7 @@
     };
 }
 /// 读取 NSInteger 值
--(JobsReturnNSIntegerByVoidBlock _Nonnull)integerBy{
+-(JobsRetNSIntegerByVoidBlock _Nonnull)integerBy{
     @jobs_weakify(self)
     return ^NSInteger(){
         @jobs_strongify(self)
@@ -81,7 +81,7 @@
     };
 }
 /// 读取 float 值
--(JobsReturnFloatByVoidBlock _Nonnull)floatBy{
+-(JobsRetFloatByVoidBlock _Nonnull)floatBy{
     @jobs_weakify(self)
     return ^float(){
         @jobs_strongify(self)
@@ -89,7 +89,7 @@
     };
 }
 /// 读取 double 值
--(JobsReturnDoubleByVoidBlock _Nonnull)doubleBy{
+-(JobsRetDoubleByVoidBlock _Nonnull)doubleBy{
     @jobs_weakify(self)
     return ^double(){
         @jobs_strongify(self)
@@ -97,7 +97,7 @@
     };
 }
 /// 读取 double 值
--(JobsReturnURLByVoidBlock _Nonnull)urlBy{
+-(JobsRetURLByVoidBlock _Nonnull)urlBy{
     @jobs_weakify(self)
     return ^NSURL *_Nullable(){
         @jobs_strongify(self)

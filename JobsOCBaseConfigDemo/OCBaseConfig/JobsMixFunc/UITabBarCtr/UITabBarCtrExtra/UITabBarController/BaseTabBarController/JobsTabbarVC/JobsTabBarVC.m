@@ -213,7 +213,7 @@ static dispatch_once_t onceToken;
 }
 #pragma mark —— 一些私有方法
 /// 需要强制跳转登录的index。点击和手势滑动都需要共同调用
--(JobsReturnBOOLByNSUIntegerBlock _Nullable)forcedLoginIndex{
+-(JobsRetBOOLByNSUIntegerBlock _Nullable)forcedLoginIndex{
     @jobs_weakify(self)
     return ^(NSUInteger data) {
         @jobs_strongify(self)
@@ -226,7 +226,7 @@ static dispatch_once_t onceToken;
     };
 }
 /// 判别是否有Lottie
--(JobsReturnBOOLByNSIntegerBlock)judgeLottieWithIndex{
+-(JobsRetBOOLByNSIntegerBlock)judgeLottieWithIndex{
     return ^BOOL(NSInteger index) {
         JobsTabBarItemConfig *config = nil;
         if(AppDelegate.tabBarItemConfigMutArr.count){

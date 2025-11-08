@@ -10,7 +10,7 @@
 /* ❤️【优先级】 @implementation UIView (Measure) > Masonry,因为Masonry刷新后才有frame ❤️*/
 @implementation UIView (Measure)
 #pragma mark —— 初始化方法封装
-+(JobsReturnViewByClassBlock _Nonnull)build{
++(JobsRetViewByClassBlock _Nonnull)build{
     return ^__kindof UIView *_Nullable(Class _Nonnull cls){
         UIView <BaseViewProtocol>*instance = cls.new;
         return instance;
@@ -18,7 +18,7 @@
 }
 #pragma mark —— 控件居中的时候，相对于全屏的X和Y值
 /// 当控件相对于view居中的时候，控件的X值
--(JobsReturnCGFloatByViewBlock _Nonnull)xWhenViewInViewCenter{
+-(JobsRetCGFloatByViewBlock _Nonnull)xWhenViewInViewCenter{
     @jobs_weakify(self)
     return ^CGFloat(UIView *_Nullable view){
         @jobs_strongify(self)
@@ -26,7 +26,7 @@
     };
 }
 /// 当控件相对于view居中的时候，控件的Y值
--(JobsReturnCGFloatByViewBlock _Nonnull)yWhenViewInViewCenter{
+-(JobsRetCGFloatByViewBlock _Nonnull)yWhenViewInViewCenter{
     @jobs_weakify(self)
     return ^CGFloat(UIView *_Nullable view){
         @jobs_strongify(self)
@@ -34,7 +34,7 @@
     };
 }
 /// 当控件相对于一个特定的值居中的时候，控件的X值
--(JobsReturnCGFloatByCGFloatBlock _Nonnull)xWhenViewInViewCenterBy{
+-(JobsRetCGFloatByCGFloatBlock _Nonnull)xWhenViewInViewCenterBy{
     @jobs_weakify(self)
     return ^CGFloat(CGFloat data){
         @jobs_strongify(self)
@@ -42,7 +42,7 @@
     };
 }
 /// 当控件相对于一个特定的值居中的时候，控件的Y值
--(JobsReturnCGFloatByCGFloatBlock _Nonnull)yWhenViewInViewCenterBy{
+-(JobsRetCGFloatByCGFloatBlock _Nonnull)yWhenViewInViewCenterBy{
     @jobs_weakify(self)
     return ^CGFloat(CGFloat data){
         @jobs_strongify(self)
@@ -50,7 +50,7 @@
     };
 }
 /// 当控件相对于整个设备屏幕居中的时候，控件的X值
--(JobsReturnCGFloatByVoidBlock _Nonnull)xWhenViewInScreenCenter{
+-(JobsRetCGFloatByVoidBlock _Nonnull)xWhenViewInScreenCenter{
     @jobs_weakify(self)
     return ^CGFloat(){
         @jobs_strongify(self)
@@ -58,7 +58,7 @@
     };
 }
 /// 当控件相对于整个设备屏幕居中的时候，控件的Y值
--(JobsReturnCGFloatByVoidBlock _Nonnull)yWhenViewInScreenCenter{
+-(JobsRetCGFloatByVoidBlock _Nonnull)yWhenViewInScreenCenter{
     @jobs_weakify(self)
     return ^CGFloat(){
         @jobs_strongify(self)
@@ -76,7 +76,7 @@
 }
 #pragma mark —— 交换宽高
 /// 仅在横屏情况下交换Size宽高的值
--(JobsReturnCGRectByVoidBlock _Nonnull)fitSize{
+-(JobsRetFrameByVoidBlock _Nonnull)fitSize{
     @jobs_weakify(self)
     return ^CGRect(){
         @jobs_strongify(self)
@@ -86,7 +86,7 @@
     };
 }
 
--(JobsReturnCGRectByVoidBlock _Nonnull)exchangeWidthAndHeight{
+-(JobsRetFrameByVoidBlock _Nonnull)exchangeWidthAndHeight{
     @jobs_weakify(self)
     return ^CGRect(){
         @jobs_strongify(self)
@@ -98,7 +98,7 @@
 }
 #pragma mark —— 交换 X 和 Y
 /// 仅在横屏情况下交换坐标XY的值
--(JobsReturnCGRectByVoidBlock _Nonnull)fitOrigin{
+-(JobsRetFrameByVoidBlock _Nonnull)fitOrigin{
     @jobs_weakify(self)
     return ^CGRect(){
         @jobs_strongify(self)
@@ -108,7 +108,7 @@
     };
 }
 
--(JobsReturnCGRectByVoidBlock _Nonnull)exchangeXAndY{
+-(JobsRetFrameByVoidBlock _Nonnull)exchangeXAndY{
     @jobs_weakify(self)
     return ^CGRect(){
         @jobs_strongify(self)
@@ -119,7 +119,7 @@
     };
 }
 #pragma mark ——【类方法】设置控件的约束（返回控件自己本身）
-+(JobsReturnViewBySizeBlock _Nonnull)BySize{
++(JobsRetViewByCGSizeBlock _Nonnull)BySize{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGSize data){
         @jobs_strongify(self)
@@ -130,7 +130,7 @@
     };
 }
 /// 设置控件的 Frame
-+(JobsReturnViewByFrameBlock _Nonnull)ByFrame{
++(JobsRetViewByFrameBlock _Nonnull)ByFrame{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGRect data){
         @jobs_strongify(self)
@@ -141,7 +141,7 @@
     };
 }
 /// 设置控件的 Origin
-+(JobsReturnViewByPointBlock _Nonnull)ByOrigin{
++(JobsRetViewByCGPointBlock _Nonnull)ByOrigin{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGPoint data){
         @jobs_strongify(self)
@@ -152,7 +152,7 @@
     };
 }
 /// 设置控件的 Width
-+(JobsReturnViewByFloatBlock _Nonnull)ByWidth{
++(JobsRetViewByFloatBlock _Nonnull)ByWidth{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float data){
         @jobs_strongify(self)
@@ -163,7 +163,7 @@
     };
 }
 /// 设置控件的 Height
-+(JobsReturnViewByFloatBlock _Nonnull)ByHeight{
++(JobsRetViewByFloatBlock _Nonnull)ByHeight{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float data){
         @jobs_strongify(self)
@@ -174,7 +174,7 @@
     };
 }
 /// 设置控件的 Center
-+(JobsReturnViewByCenterBlock _Nonnull)ByCenter{
++(JobsRetViewByCenterBlock _Nonnull)ByCenter{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGFloat x,CGFloat y){
         @jobs_strongify(self)
@@ -186,7 +186,7 @@
 }
 #pragma mark ——【实例方法】设置控件的约束（返回控件自己本身）
 /// 设置控件的 Size
--(JobsReturnViewBySizeBlock _Nonnull)bySize{
+-(JobsRetViewByCGSizeBlock _Nonnull)bySize{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGSize data){
         @jobs_strongify(self)
@@ -195,7 +195,7 @@
     };
 }
 /// 设置控件的 Frame
--(JobsReturnViewByFrameBlock _Nonnull)byFrame{
+-(JobsRetViewByFrameBlock _Nonnull)byFrame{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGRect data){
         @jobs_strongify(self)
@@ -204,7 +204,7 @@
     };
 }
 /// 设置控件的 Origin
--(JobsReturnViewByPointBlock _Nonnull)byOrigin{
+-(JobsRetViewByCGPointBlock _Nonnull)byOrigin{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGPoint data){
         @jobs_strongify(self)
@@ -213,7 +213,7 @@
     };
 }
 /// 设置控件的 Width
--(JobsReturnViewByFloatBlock _Nonnull)byWidth{
+-(JobsRetViewByFloatBlock _Nonnull)byWidth{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float data){
         @jobs_strongify(self)
@@ -222,7 +222,7 @@
     };
 }
 /// 设置控件的 Height
--(JobsReturnViewByFloatBlock _Nonnull)byHeight{
+-(JobsRetViewByFloatBlock _Nonnull)byHeight{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float data){
         @jobs_strongify(self)
@@ -231,7 +231,7 @@
     };
 }
 /// 设置控件的 Center
--(JobsReturnViewByCenterBlock _Nonnull)byCenter{
+-(JobsRetViewByCenterBlock _Nonnull)byCenter{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGFloat x,CGFloat y){
         @jobs_strongify(self)
@@ -243,7 +243,7 @@
     };
 }
 #pragma mark —— 重新设置控件的约束（返回控件的Frame）
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginX{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetOriginX{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -254,7 +254,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetRightX{
+-(JobsRetFrameByCGFloatAndUIViewBlock _Nonnull)resetRightX{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data,UIView *superView) {
         @jobs_strongify(self)
@@ -265,7 +265,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginY{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetOriginY{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -276,7 +276,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatAndUIViewBlock _Nonnull)resetBottomY{
+-(JobsRetFrameByCGFloatAndUIViewBlock _Nonnull)resetBottomY{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data,UIView *superView) {
         @jobs_strongify(self)
@@ -287,7 +287,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidth{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetWidth{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -298,7 +298,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeight{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetHeight{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -309,7 +309,7 @@
     };
 }
 
--(JobsReturnCGRectByCGPointBlock _Nonnull)resetOrigin{
+-(JobsRetFrameByCGPointBlock _Nonnull)resetOrigin{
     @jobs_weakify(self)
     return ^CGRect(CGPoint data) {
         @jobs_strongify(self)
@@ -321,7 +321,7 @@
     };
 }
 
--(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSize{
+-(JobsRetFrameByCGSizeBlock _Nonnull)resetSize{
     @jobs_weakify(self)
     return ^CGRect(CGSize data) {
         @jobs_strongify(self)
@@ -332,7 +332,7 @@
     };
 }
 /// 依据偏移量重设Frame
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginXByOffset{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetOriginXByOffset{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -343,7 +343,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetOriginYByOffset{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetOriginYByOffset{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -354,7 +354,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterX{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetCenterX{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -365,7 +365,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetCenterY{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetCenterY{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -376,7 +376,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetWidthByOffset{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetWidthByOffset{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -387,7 +387,7 @@
     };
 }
 
--(JobsReturnCGRectByCGFloatBlock _Nonnull)resetHeightByOffset{
+-(JobsRetFrameByCGFloatBlock _Nonnull)resetHeightByOffset{
     @jobs_weakify(self)
     return ^CGRect(CGFloat data) {
         @jobs_strongify(self)
@@ -398,7 +398,7 @@
     };
 }
 
--(JobsReturnCGRectByCGPointBlock _Nonnull)resetOriginByOffset{
+-(JobsRetFrameByCGPointBlock _Nonnull)resetOriginByOffset{
     @jobs_weakify(self)
     return ^CGRect(CGPoint data) {
         @jobs_strongify(self)
@@ -410,7 +410,7 @@
     };
 }
 
--(JobsReturnCGRectByCGSizeBlock _Nonnull)resetSizeByOffset{
+-(JobsRetFrameByCGSizeBlock _Nonnull)resetSizeByOffset{
     @jobs_weakify(self)
     return ^CGRect(CGSize data) {
         @jobs_strongify(self)

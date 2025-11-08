@@ -16,19 +16,19 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— RegistrationTracking
 Prop_strong()__kindof NSMutableSet <__kindof NSString *>*registeredIdentifiers;/// 自定义标志位
 // 检查某个 reuseIdentifier 是否已注册
--(JobsReturnBOOLByStringBlock _Nonnull)isRegisteredForReuseIdentifier;
+-(JobsRetBOOLByStringBlock _Nonnull)isRegisteredForReuseIdentifier;
 #pragma mark —— Func
-+(JobsReturnCollectionViewByLayoutBlock _Nonnull)initByLayout;
++(JobsRetCollectionViewByLayoutBlock _Nonnull)initByLayout;
 /// 对系统方法 cellForItemAtIndexPath 的二次封装
--(JobsReturnCollectionViewCellByIndexPathBlock _Nonnull)cellBy;
+-(JobsRetCollectionViewCellByIndexPathBlock _Nonnull)cellBy;
 -(JobsReturnCollectionViewByMJRefreshHeaderBlock _Nonnull)byMJRefreshHeader;
 -(JobsReturnCollectionViewByMJRefreshFooterBlock _Nonnull)byMJRefreshFooter;
--(JobsReturnScrollViewByIDBlock _Nonnull)dataLink;
--(JobsReturnCollectionViewByDelegateBlock _Nonnull)byDelegate;
--(JobsReturnCollectionViewByDataSourceBlock _Nonnull)byDataSource;
--(JobsReturnCollectionViewByDragDelegateBlock _Nonnull)byDragDelegate;
--(JobsReturnCollectionViewByDropDelegateBlock _Nonnull)byDropDelegate;
--(JobsReturnCollectionViewByDataSourcePrefetchingBlock _Nonnull)byPrefetchDataSource;
+-(JobsRetScrollViewByIDBlock _Nonnull)dataLink;
+-(JobsRetCollectionViewByDelegateBlock _Nonnull)byDelegate;
+-(JobsRetCollectionViewByDataSourceBlock _Nonnull)byDataSource;
+-(JobsRetCollectionViewByDragDelegateBlock _Nonnull)byDragDelegate;
+-(JobsRetCollectionViewByDropDelegateBlock _Nonnull)byDropDelegate;
+-(JobsRetCollectionViewByDataSourcePrefetchingBlock _Nonnull)byPrefetchDataSource;
 -(__kindof UICollectionViewCell *)didSelectItemAtIndexPath:(NSIndexPath *)indexPath
                                    collectionViewCellClass:(Class _Nullable)collectionViewCellClass;
 -(__kindof UICollectionViewCell *)didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -37,16 +37,16 @@ Prop_strong()__kindof NSMutableSet <__kindof NSString *>*registeredIdentifiers;/
 /// 注册的时候不开辟内存，只有当用字符串进行取值的时候才开辟内存
 /// UICollectionView 本身并没有直接提供公开的 API 来检查某个 reuseIdentifier 是否已经注册
 /// 可以用方法交换去插入一个自定义标志位（NSMutableSet）
--(JobsReturnCollectionViewByVoidBlock _Nonnull)registerCollectionViewClass;
+-(JobsRetCollectionViewByVoidBlock _Nonnull)registerCollectionViewClass;
 /// 注册 UICollectionViewCell 及其子类
--(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass;
--(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass_;
+-(JobsRetCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass;
+-(JobsRetCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionViewCellClass_;
 /// 注册 UICollectionElementKindSectionHeader 及其子类
--(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass;
--(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass_;
+-(JobsRetCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass;
+-(JobsRetCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionHeaderClass_;
 /// 注册 UICollectionElementKindSectionFooter 及其子类
--(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass;
--(JobsReturnCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass_;
+-(JobsRetCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass;
+-(JobsRetCollectionViewByClassAndSaltStrBlock _Nonnull)registerCollectionElementKindSectionFooterClass_;
 /// 依据字符串取值
 /// 依据字符串取UICollectionElementKindSectionHeader
 -(__kindof UICollectionReusableView *)UICollectionElementKindSectionHeaderClass:(Class)cls

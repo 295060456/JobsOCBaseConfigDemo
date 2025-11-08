@@ -10,7 +10,7 @@
 
 @implementation UIImage (YBGIF)
 /// 根据NSData* 创建gif图片
-+(JobsReturnImageByDataBlock _Nonnull)animatedGIFWithData{
++(JobsRetImageByDataBlock _Nonnull)animatedGIFWithData{
     @jobs_weakify(self)
     return ^UIImage *(NSData * _Nullable data) {
         @jobs_strongify(self)
@@ -72,7 +72,7 @@
     return frameDuration;
 }
 /// 根据图片名字创建gif图片
-+(JobsReturnImageByStringBlock _Nonnull)animatedGIFByName{
++(JobsRetImageByStringBlock _Nonnull)animatedGIFByName{
     return ^UIImage *_Nullable(__kindof NSString *_Nullable name){
         CGFloat scale = UIScreen.mainScreen.scale;
         if (scale > 1.0f) {
@@ -93,7 +93,7 @@
     };
 }
 /// 根据大小裁剪图片
--(JobsReturnImageByCGSizeBlock _Nonnull)animatedImageByScalingAndCroppingBySize{
+-(JobsRetImageByCGSizeBlock _Nonnull)animatedImageByScalingAndCroppingBySize{
     @jobs_weakify(self)
     return ^UIImage *_Nonnull(CGSize size){
         @jobs_strongify(self)

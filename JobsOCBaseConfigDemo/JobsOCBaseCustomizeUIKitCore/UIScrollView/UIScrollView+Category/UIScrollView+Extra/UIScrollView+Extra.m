@@ -22,7 +22,7 @@
 }
 #pragma mark —— 一些公共方法
 /// 如果使用：dispatch_async + dispatch_get_main_queue()进行主线程上的调用，会执行2次刷新的协议方法
--(JobsReturnViewByVoidBlock _Nonnull)reloadDatas{
+-(JobsRetViewByVoidBlock _Nonnull)reloadDatas{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(){
         @jobs_strongify(self)
@@ -51,7 +51,7 @@
     }return cells;
 }
 /// 依据index得到cell
--(JobsReturnViewByNSUIntegerBlock _Nonnull)scrollViewCellsByIndex{
+-(JobsRetViewByNSUIntegerBlock _Nonnull)scrollViewCellsByIndex{
     return ^__kindof UIView *_Nullable(NSUInteger index){
         UIView *cell = nil;
         if(self){
@@ -66,7 +66,7 @@
     };
 }
 /// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
--(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByYES{
+-(JobsRetScrollViewByPointBlock _Nonnull)setContentOffsetByYES{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(CGPoint data){
         @jobs_strongify(self)
@@ -75,7 +75,7 @@
     };
 }
 /// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
--(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByNO{
+-(JobsRetScrollViewByPointBlock _Nonnull)setContentOffsetByNO{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(CGPoint data){
         @jobs_strongify(self)
@@ -84,7 +84,7 @@
     };
 }
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;   的二次封装
--(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES{
+-(JobsRetScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(CGRect data){
         @jobs_strongify(self)
@@ -93,7 +93,7 @@
     };
 }
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;  的二次封装
--(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO{
+-(JobsRetScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(CGRect data){
         @jobs_strongify(self)
@@ -102,7 +102,7 @@
     };
 }
 #pragma mark —— UIScrollViewProtocol
--(JobsReturnScrollViewByDelegateBlock _Nonnull)byDelegate{
+-(JobsRetScrollViewByDelegateBlock _Nonnull)byDelegate{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(id <UIScrollViewDelegate>_Nullable delegate){
         @jobs_strongify(self)
@@ -111,7 +111,7 @@
     };
 }
 
--(JobsReturnScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy{
+-(JobsRetScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -120,7 +120,7 @@
     };
 }
 
--(JobsReturnScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy{
+-(JobsRetScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -129,7 +129,7 @@
     };
 }
 
--(JobsReturnScrollViewBySizeBlock _Nonnull)byContentSize{
+-(JobsRetScrollViewBySizeBlock _Nonnull)byContentSize{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(CGSize size){
         @jobs_strongify(self)
@@ -138,7 +138,7 @@
     };
 }
 
--(JobsReturnScrollViewByCGFloatBlock _Nonnull)byContentWidth{
+-(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentWidth{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -147,7 +147,7 @@
     };
 }
 
--(JobsReturnScrollViewByCGFloatBlock _Nonnull)byContentHeight{
+-(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentHeight{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -156,7 +156,7 @@
     };
 }
 
--(JobsReturnScrollViewByBOOLBlock _Nonnull)byScrollEnabled{
+-(JobsRetScrollViewByBOOLBlock _Nonnull)byScrollEnabled{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -165,7 +165,7 @@
     };
 }
 
--(JobsReturnScrollViewByBOOLBlock _Nonnull)byBounces{
+-(JobsRetScrollViewByBOOLBlock _Nonnull)byBounces{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -174,7 +174,7 @@
     };
 }
 
--(JobsReturnScrollViewByUIEdgeInsetsBlock _Nonnull)byEdgeInsets{
+-(JobsRetScrollViewByUIEdgeInsetsBlock _Nonnull)byEdgeInsets{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(UIEdgeInsets insets){
         @jobs_strongify(self)

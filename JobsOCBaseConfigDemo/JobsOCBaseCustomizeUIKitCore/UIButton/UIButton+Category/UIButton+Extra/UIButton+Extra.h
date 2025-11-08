@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 Prop_assign()CGFloat imageTitleSpace;
 
--(JobsReturnButtonByNSUIntegerBlock _Nonnull)makeBtnTitleByShowingType;
--(JobsReturnButtonByNSUIntegerBlock _Nonnull)makeBtnSubTitleByShowingType;
+-(JobsRetBtnByNSUIntegerBlock _Nonnull)makeBtnTitleByShowingType;
+-(JobsRetBtnByNSUIntegerBlock _Nonnull)makeBtnSubTitleByShowingType;
 
 @end
 

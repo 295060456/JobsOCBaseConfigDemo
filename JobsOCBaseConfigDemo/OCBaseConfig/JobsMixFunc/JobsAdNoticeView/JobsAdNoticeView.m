@@ -34,7 +34,7 @@ Prop_strong()UILabel *adNoticeLab;
     };
 }
 
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsMainScreen_WIDTH(), 30);
     };

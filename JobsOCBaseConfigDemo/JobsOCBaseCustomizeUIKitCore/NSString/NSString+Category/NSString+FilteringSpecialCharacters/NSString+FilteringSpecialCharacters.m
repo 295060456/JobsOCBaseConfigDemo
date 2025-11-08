@@ -9,7 +9,7 @@
 
 @implementation NSString (FilteringSpecialCharacters)
 /// 外界灵活选择的特殊符号拼接成一个包含所有被选中特殊符号的字符串
--(JobsReturnStringByArrBlock _Nonnull)specialSymbolsActionBy{
+-(JobsRetStringByArrBlock _Nonnull)specialSymbolsActionBy{
     return ^NSString *(NSMutableArray <NSString *>*_Nullable arr){
         NSString *tempStr = @"";
         for (NSString *specialSymbolsString in arr) {
@@ -18,7 +18,7 @@
     };
 }
 /// 给定一个字符串，通过给定的过滤策略，过滤以后的字符串
--(JobsReturnStringByArrBlock _Nonnull)filteredBy{
+-(JobsRetStringByArrBlock _Nonnull)filteredBy{
     @jobs_weakify(self)
     return ^NSString *(NSMutableArray <NSString *>*_Nullable arr){
         @jobs_strongify(self)
@@ -35,7 +35,7 @@
     };
 }
 /// 是否包含特殊字符【包含返回YES、不包含返回NO】
--(JobsReturnBOOLByArrBlock _Nonnull)isContainsSpecialSymbolsString{
+-(JobsRetBOOLByArrBlock _Nonnull)isContainsSpecialSymbolsString{
     @jobs_weakify(self)
     return ^BOOL(__kindof NSArray *_Nullable arr){
         @jobs_strongify(self)

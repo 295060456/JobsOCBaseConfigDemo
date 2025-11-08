@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableDictionary (Extra)
 
--(JobsReturnMutableDicByKeyValueBlock _Nonnull)add;
--(JobsReturnMutableDicByDicBlock _Nonnull)addByDic;
+-(JobsRetMutableDicByKeyValueBlock _Nonnull)add;
+-(JobsRetMutableDicByDicBlock _Nonnull)addByDic;
 -(JobsReturnMutableDicByKeyValueModelBlock _Nonnull)saveDataBy;
 /// 打印的结果可以直接用于Postman
 -(NSString *)jsonString;

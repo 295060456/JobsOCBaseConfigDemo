@@ -213,7 +213,7 @@ Prop_assign()NSUInteger thisIndex;
     };
 }
 /// 预算高度
--(JobsReturnCGFloatByArrBlock _Nonnull)getCellHeight{
+-(JobsRetCGFloatByArrBlock _Nonnull)getCellHeight{
     @jobs_weakify(self)
     return ^(NSMutableArray *_Nullable data){
         @jobs_strongify(self)

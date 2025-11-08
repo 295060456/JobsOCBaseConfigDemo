@@ -12,13 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CAShapeLayer (Extra)
 /// 迎合链式语法而做的封装
--(JobsReturnCAShapeLayerByCGFloatBlock _Nonnull)lineWidthBy;
--(JobsReturnCAShapeLayerByCorBlock _Nonnull)strokeColorBy;
--(JobsReturnCAShapeLayerByCGColorRefBlock _Nonnull)strokeColorByCGColorRef;
--(JobsReturnCAShapeLayerByBezierPathBlock _Nonnull)pathByBezierPath;
--(JobsReturnCAShapeLayerByCGPathRefBlock _Nonnull)pathByPathRef;
--(JobsReturnCAShapeLayerByCorBlock _Nonnull)fillColorBy;
--(JobsReturnCAShapeLayerByCGColorRefBlock _Nonnull)fillColorByGColorRef;
+-(JobsRetCAShapeLayerByCGFloatBlock _Nonnull)lineWidthBy;
+-(JobsRetCAShapeLayerByCorBlock _Nonnull)strokeColorBy;
+-(JobsRetCAShapeLayerByCGCorRefBlock _Nonnull)strokeColorByCGColorRef;
+-(JobsRetCAShapeLayerByBezierPathBlock _Nonnull)pathByBezierPath;
+-(JobsRetCAShapeLayerByCGPathRefBlock _Nonnull)pathByPathRef;
+-(JobsRetCAShapeLayerByCorBlock _Nonnull)fillColorBy;
+-(JobsRetCAShapeLayerByCGCorRefBlock _Nonnull)fillColorByGColorRef;
 
 @end
 

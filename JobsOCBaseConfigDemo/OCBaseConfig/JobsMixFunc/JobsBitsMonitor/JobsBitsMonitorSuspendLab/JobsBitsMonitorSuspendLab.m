@@ -81,7 +81,7 @@ Prop_strong()NSMutableArray <NSString *>*operationEnvironMutArr;
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
++(JobsRetFrameByIDBlock _Nonnull)viewFrameByModel{
     return ^CGRect(id _Nullable data){
         return CGRectMake(JobsWidth(20),
                           JobsMainScreen_HEIGHT() - JobsWidth(200),

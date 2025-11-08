@@ -64,7 +64,7 @@ Prop_copy()NSString *path;
     [super viewWillDisappear:animated];
 }
 #pragma mark —— 一些私有方法
--(JobsReturnDataByVoidBlock _Nonnull)getData{
+-(JobsRetDataByVoidBlock _Nonnull)getData{
     @jobs_weakify(self)
     return ^NSData *(){
         @jobs_strongify(self)
@@ -72,7 +72,7 @@ Prop_copy()NSString *path;
     };
 }
 
--(JobsReturnImageByDataBlock _Nonnull)getImage{
+-(JobsRetImageByDataBlock _Nonnull)getImage{
     @jobs_weakify(self)
     return ^UIImage *(NSData *_Nullable data){
         @jobs_strongify(self)

@@ -9,7 +9,7 @@
 
 @implementation UIButton (Extra)
 
--(JobsReturnButtonByNSUIntegerBlock _Nonnull)makeBtnTitleByShowingType{
+-(JobsRetBtnByNSUIntegerBlock _Nonnull)makeBtnTitleByShowingType{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UILabelShowingType labelShowingType) {
         @jobs_strongify(self)
@@ -49,7 +49,7 @@
     };
 }
 
--(JobsReturnButtonByNSUIntegerBlock _Nonnull)makeBtnSubTitleByShowingType{
+-(JobsRetBtnByNSUIntegerBlock _Nonnull)makeBtnSubTitleByShowingType{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UILabelShowingType labelShowingType) {
         @jobs_strongify(self)
@@ -90,7 +90,7 @@
 }
 #pragma mark —— BaseButtonProtocol
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)buttonWidthByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)buttonWidthByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -98,7 +98,7 @@
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)buttonHeightByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)buttonHeightByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -106,7 +106,7 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGSizeByIDBlock _Nonnull)buttonSizeByModel{
+-(JobsRetCGSizeByIDBlock _Nonnull)buttonSizeByModel{
     @jobs_weakify(self)
     return ^CGSize(id _Nullable data){
         @jobs_strongify(self)
@@ -114,7 +114,7 @@
     };
 }
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGRectByIDBlock _Nonnull)buttonFrameByModel{
+-(JobsRetFrameByIDBlock _Nonnull)buttonFrameByModel{
     @jobs_weakify(self)
     return ^CGRect(id _Nullable data){
         @jobs_strongify(self)

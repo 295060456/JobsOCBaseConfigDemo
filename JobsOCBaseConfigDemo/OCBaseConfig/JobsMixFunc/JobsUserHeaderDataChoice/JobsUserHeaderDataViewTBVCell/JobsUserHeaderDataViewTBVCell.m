@@ -18,7 +18,7 @@ Prop_strong()UILabel *titleLab;
 @synthesize viewModel = _viewModel;
 #pragma mark —— UITableViewCellProtocol
 /// UITableViewCell
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsUserHeaderDataViewTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsUserHeaderDataViewTBVCell);
         cell.backgroundColor = HEXCOLOR(0xFFFFFF);
@@ -26,7 +26,7 @@ Prop_strong()UILabel *titleLab;
     };
 }
 /// 左边：imageView＋textLabel；右边：detailTextLabel。
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)tableView.tableViewCellClass(JobsUserHeaderDataViewTBVCell.class,@"");
         if (!cell) {
@@ -35,7 +35,7 @@ Prop_strong()UILabel *titleLab;
     };
 }
 /// 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)tableView.tableViewCellClass(JobsUserHeaderDataViewTBVCell.class,@"");
         if (!cell) {
@@ -44,7 +44,7 @@ Prop_strong()UILabel *titleLab;
     };
 }
 /// 左边：imageView；左上：textLabel；左下：detailTextLabel。主标题字体大且加黑，副标题字体小在主标题下边。
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsUserHeaderDataViewTBVCell *cell = (JobsUserHeaderDataViewTBVCell *)tableView.tableViewCellClass(JobsUserHeaderDataViewTBVCell.class,@"");
         if (!cell) {
@@ -53,7 +53,7 @@ Prop_strong()UILabel *titleLab;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -63,7 +63,7 @@ Prop_strong()UILabel *titleLab;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(46);
     };

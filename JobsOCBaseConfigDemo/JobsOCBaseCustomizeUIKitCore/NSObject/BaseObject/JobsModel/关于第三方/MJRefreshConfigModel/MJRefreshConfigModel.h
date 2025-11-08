@@ -57,7 +57,7 @@ Prop_strong()NSMutableArray <UIImage *>*willRefreshPicsMutArr;
 Prop_strong()NSMutableArray <UIImage *>*noMoreDataPicsMutArr;
 #pragma mark —— Lottie配置
 Prop_copy()NSString *jsonLottiefilePaths;
-Prop_copy()JobsReturnIDByIDBlock loadBlock;
+Prop_copy()JobsRetIDByIDBlock loadBlock;
 #pragma mark —— 其他
 Prop_assign(getter=isAutomaticallyChangeAlpha)BOOL automaticallyChangeAlpha;/// 根据拖拽比例自动切换透明度
 Prop_assign()BOOL isShake;/// 是否需要震动反馈？默认不需要

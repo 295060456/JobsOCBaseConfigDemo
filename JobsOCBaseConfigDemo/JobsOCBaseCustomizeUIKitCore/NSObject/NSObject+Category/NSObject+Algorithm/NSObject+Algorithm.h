@@ -12,13 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 算法相关
 @interface NSObject (Algorithm)
 /// 将数据做成3列，第一个元素的下标是1，判断任意一个下标数，处于哪一列
--(JobsReturnIntByIntBlock _Nonnull)column3By;
+-(JobsRetIntByIntBlock _Nonnull)column3By;
 /// 给定一个数据源（数组）和 每行需要展示的元素个数，计算行数
 -(NSInteger)count:(NSUInteger)count num:(NSInteger)num;
 /// 判断任意给定的一个整型是多少位数
--(JobsReturnByNSIntegerBlock _Nonnull)bitNum;
+-(JobsRetByNSIntegerBlock _Nonnull)bitNum;
 /// 判断任意数字是否为小数
--(JobsReturnBOOLByCGFloatBlock _Nonnull)isFloat;
+-(JobsRetBOOLByCGFloatBlock _Nonnull)isFloat;
 /**
     判断 num1 是否能被 num2 整除
     也就是判断 num2 是否是 num1 的整数倍
@@ -39,27 +39,27 @@ NS_ASSUME_NONNULL_BEGIN
                              searchStrategy:(JobsSearchStrategy)searchStrategy
                                    keywords:(NSString *_Nonnull)keywords;
 /// 以当前手机系统时间（包含了时区）为基准，给定一个日期偏移值（正值代表未来，负值代表过去，0代表现在），返回字符串特定格式的“星期几”
--(JobsReturnStringByIntegerBlock _Nonnull)whatDayOfWeekDistanceNow;
+-(JobsRetStringByIntegerBlock _Nonnull)whatDayOfWeekDistanceNow;
 /// 随机生成验证码字符串
--(JobsReturnStringByArrAndNSIntegerBlock _Nonnull)randomCodeBy;
+-(JobsRetStrByArrAndNSIntegerBlock _Nonnull)randomCodeBy;
 /// 通用格式化方法：整数或浮点数，每三位加逗号，小数保留2位
--(JobsReturnStringByCGFloatBlock _Nonnull)manualFormatNumber;
+-(JobsRetStringByCGFloatBlock _Nonnull)manualFormatNumber;
 ///（Rects）获取最大高度
--(JobsReturnCGFloatByArrBlock _Nonnull)maxHeightInRectArray;
+-(JobsRetCGFloatByArrBlock _Nonnull)maxHeightInRectArray;
 ///（Rects）获取最小高度
--(JobsReturnCGFloatByArrBlock _Nonnull)minHeightInRectArray;
+-(JobsRetCGFloatByArrBlock _Nonnull)minHeightInRectArray;
 ///（Rects）获取最大宽度
--(JobsReturnCGFloatByArrBlock _Nonnull)maxWidthInRectArray;
+-(JobsRetCGFloatByArrBlock _Nonnull)maxWidthInRectArray;
 ///（Rects）获取最小宽度
--(JobsReturnCGFloatByArrBlock _Nonnull)minWidthInRectArray;
+-(JobsRetCGFloatByArrBlock _Nonnull)minWidthInRectArray;
 ///（Sizes）获取最大高度
--(JobsReturnCGFloatByArrBlock _Nonnull)maxHeightInSizeArray;
+-(JobsRetCGFloatByArrBlock _Nonnull)maxHeightInSizeArray;
 ///（Sizes）获取最小高度
--(JobsReturnCGFloatByArrBlock _Nonnull)minHeightInSizeArray;
+-(JobsRetCGFloatByArrBlock _Nonnull)minHeightInSizeArray;
 ///（Sizes）获取最大宽度
--(JobsReturnCGFloatByArrBlock _Nonnull)maxWidthInSizeArray;
+-(JobsRetCGFloatByArrBlock _Nonnull)maxWidthInSizeArray;
 ///（Sizes）获取最小宽度
--(JobsReturnCGFloatByArrBlock _Nonnull)minWidthInSizeArray;
+-(JobsRetCGFloatByArrBlock _Nonnull)minWidthInSizeArray;
 
 @end
 

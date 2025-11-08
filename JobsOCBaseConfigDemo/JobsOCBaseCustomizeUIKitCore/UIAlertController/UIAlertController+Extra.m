@@ -9,7 +9,7 @@
 
 @implementation UIAlertController (Extra)
 
--(JobsReturnAlertControllerByActionBlock _Nonnull)add{
+-(JobsRetAlertCtrlByActionBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^UIAlertController *_Nullable(UIAlertAction *_Nonnull action) {
         @jobs_strongify(self)

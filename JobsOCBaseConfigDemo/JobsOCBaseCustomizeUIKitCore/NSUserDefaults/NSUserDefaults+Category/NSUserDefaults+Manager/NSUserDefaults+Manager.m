@@ -40,7 +40,7 @@
     };
 }
 /// 读取数据
-+(JobsReturnIDByStringBlock _Nonnull)readWithKey{
++(JobsRetIDByStrBlock _Nonnull)readWithKey{
     return ^(NSString * _Nullable key) {
         id data = nil;
         if (isValue(key)){

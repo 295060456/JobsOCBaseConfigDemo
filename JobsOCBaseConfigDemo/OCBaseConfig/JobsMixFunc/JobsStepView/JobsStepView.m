@@ -64,7 +64,7 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(400), JobsWidth(62));
     };
@@ -161,7 +161,7 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
     };
 }
 
-+(JobsReturnButtonModelByStringAndImagesBlock _Nonnull)makeButtonModelBy{
++(JobsRetBtnModelByStrAndImagesBlock _Nonnull)makeButtonModelBy{
     return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable title,
                                               UIImage *_Nullable image,
                                               UIImage *_Nullable highlightImage){
@@ -228,7 +228,7 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
     };
 }
 
--(JobsReturnLabelByBtn _Nonnull)makeRightLabBy{
+-(JobsRetLabelByBtn _Nonnull)makeRightLabBy{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIButton *_Nullable btn){
         return jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
@@ -244,7 +244,7 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
     };
 }
 
--(JobsReturnLabelByBtn _Nonnull)makeLeftLabBy{
+-(JobsRetLabelByBtn _Nonnull)makeLeftLabBy{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIButton *_Nullable btn){
         return jobsMakeLabel(^(__kindof UILabel * _Nullable label) {

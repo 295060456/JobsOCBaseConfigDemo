@@ -11,7 +11,7 @@
 @implementation JobsKeychainHelper
 #pragma mark —— 🔑钥匙串存储：
 /// 读取数据
-+(JobsReturnIDByStringBlock _Nonnull)load{
++(JobsRetIDByStrBlock _Nonnull)load{
     return ^id _Nullable(__kindof NSString *_Nullable service){
         id ret = nil;
         // 创建一个数据对象
@@ -97,7 +97,7 @@
     }return nil;
 }
 /// 删除已有数据
-+(JobsReturnBOOLByStringBlock _Nonnull)deleteAccountInfoByService{
++(JobsRetBOOLByStringBlock _Nonnull)deleteAccountInfoByService{
     return ^BOOL(__kindof NSString *_Nullable service){
         if (isNull(service)) return NO;
         /// 删除字典
@@ -112,7 +112,7 @@
  * 在设备锁定状态下（如用户按下电源按钮锁屏），数据仍然可访问。
  */
 /// 创建生成保存数据查询条件
-+(JobsReturnDicByStringBlock _Nonnull)getKeychainBaseQuery1{
++(JobsRetDicByStringBlock _Nonnull)getKeychainBaseQuery1{
     return ^NSMutableDictionary *_Nullable(__kindof NSString *_Nullable service){
         return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
             [data setObject:(__bridge id)(kSecClassGenericPassword) forKey:(__bridge NSString *)kSecClass];
@@ -121,7 +121,7 @@
     };
 }
 
-+(JobsReturnDicByStringBlock _Nonnull)getKeychainBaseQuery2{
++(JobsRetDicByStringBlock _Nonnull)getKeychainBaseQuery2{
     return ^NSMutableDictionary *_Nullable(__kindof NSString *_Nullable service){
         return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
             [data setObject:@YES forKey:(__bridge id)kSecReturnData];/// 查询结果返回到 kSecValueData
@@ -130,7 +130,7 @@
     };
 }
 
-+(JobsReturnDicByStringBlock _Nonnull)getKeychainBaseQuery{
++(JobsRetDicByStringBlock _Nonnull)getKeychainBaseQuery{
     return ^NSMutableDictionary *_Nullable(__kindof NSString *_Nullable service){
         return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
             data.addByDic(JobsKeychainHelper.getKeychainBaseQuery1(service));
@@ -139,7 +139,7 @@
     };
 }
 
-+(JobsReturnDicByStringBlock _Nonnull)getKeychainQuery{
++(JobsRetDicByStringBlock _Nonnull)getKeychainQuery{
     return ^NSMutableDictionary *_Nullable(__kindof NSString *_Nullable service){
         return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
             data.addByDic(JobsKeychainHelper.getKeychainBaseQuery(service));
@@ -148,7 +148,7 @@
     };
 }
 
-+(JobsReturnDicByStringBlock _Nonnull)getKeychainQuery2{
++(JobsRetDicByStringBlock _Nonnull)getKeychainQuery2{
     return ^NSMutableDictionary *_Nullable(__kindof NSString *_Nullable service){
         return jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
             data.addByDic(JobsKeychainHelper.getKeychainQuery(service))

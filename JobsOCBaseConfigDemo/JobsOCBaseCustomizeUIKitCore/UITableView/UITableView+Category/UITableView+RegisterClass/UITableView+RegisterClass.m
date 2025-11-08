@@ -30,7 +30,7 @@
     };
 }
 /// 注册 HeaderFooterView 及其子类 jobsByClassBlock
--(JobsReturnTableViewByClassAndSaltStrBlock _Nonnull)registerHeaderFooterViewClass{
+-(JobsRetTableViewByClsAndSaltStrBlock _Nonnull)registerHeaderFooterViewClass{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
@@ -40,7 +40,7 @@
     };
 }
 /// 注册 UITableViewCell 及其子类
--(JobsReturnTableViewByClassAndSaltStrBlock _Nonnull)registerTableViewCellClass{
+-(JobsRetTableViewByClsAndSaltStrBlock _Nonnull)registerTableViewCellClass{
     @jobs_weakify(self)
     return ^__kindof UITableView *_Nullable(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
@@ -51,7 +51,7 @@
 }
 #pragma mark —— 取值
 /// 不使用 registerClass 直接创建 UITableViewCell ❤️复用字符串是目标类的类名❤️
--(JobsReturnTableViewCellByClsAndSaltStrBlock _Nonnull)tableViewCellClass{
+-(JobsRetTableViewCellByClsAndSaltStrBlock _Nonnull)tableViewCellClass{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(Class _Nonnull cls,NSString * _Nullable salt) {
         @jobs_strongify(self)
@@ -60,7 +60,7 @@
     };
 }
 /// 使用 registerClass 注册 UITableViewCell ❤️复用字符串是目标类的类名❤️
--(JobsReturnTableViewCellByCls_SaltStr_IndexPath_Block _Nonnull)tableViewCellClassForIndexPath{
+-(JobsRetTableViewCellByCls_SaltStr_IndexPath_Block _Nonnull)tableViewCellClassForIndexPath{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(Class _Nonnull cls,
                                                 NSString * _Nullable salt,
@@ -75,7 +75,7 @@
     };
 }
 /// 一种用字符串取UITableViewHeaderFooterView及其子类的方法❤️复用字符串是目标类的类名❤️
--(JobsReturnTableViewHeaderFooterViewByClsAndSaltStrBlock _Nonnull)tableViewHeaderFooterView{
+-(JobsRetTableViewHeaderFooterViewByClsAndSaltStrBlock _Nonnull)tableViewHeaderFooterView{
     @jobs_weakify(self)
     return ^__kindof UITableViewHeaderFooterView *_Nullable(Class _Nonnull cls, NSString * _Nullable salt) {
         @jobs_strongify(self)

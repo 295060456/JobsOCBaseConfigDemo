@@ -250,9 +250,9 @@ AppToolsProtocol_synthesize
     }return _selectedTitleAttributedDataMutArr;
 }
 
--(NSMutableArray<JobsReturnIDByIDBlock>*)jobsBlockMutArr{
+-(NSMutableArray<JobsRetIDByIDBlock>*)jobsBlockMutArr{
     if(!_jobsBlockMutArr){
-        _jobsBlockMutArr = jobsMakeMutArr(^(NSMutableArray <JobsReturnIDByIDBlock>*_Nullable data) {
+        _jobsBlockMutArr = jobsMakeMutArr(^(NSMutableArray <JobsRetIDByIDBlock>*_Nullable data) {
             
         });
     }return _jobsBlockMutArr;

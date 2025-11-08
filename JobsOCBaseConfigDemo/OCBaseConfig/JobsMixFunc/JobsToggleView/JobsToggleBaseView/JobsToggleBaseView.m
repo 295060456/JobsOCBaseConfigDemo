@@ -68,13 +68,13 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsWidth(454),JobsWidth(155)); /// 默认的尺寸
     };
 }
 
--(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+-(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     @jobs_weakify(self)
     return ^CGSize(id _Nullable data){
         @jobs_strongify(self)
@@ -94,7 +94,7 @@ JobsToggleNavViewProtocolSynthesize
 }
 #pragma mark —— 一些私有方法
 /// 通过传入的数据源来决定导航栏的尺寸（size）
--(JobsReturnCGSizeByArrBlock _Nonnull)makeTaggedNavViewSizeBy{
+-(JobsRetCGSizeByArrBlock _Nonnull)makeTaggedNavViewSizeBy{
     return ^CGSize(NSArray <__kindof UIView<BaseViewProtocol> *>*_Nullable arr){
         @jobs_weakify(self)
         return jobsMakeCGSizeByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
@@ -107,7 +107,7 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 /// 刷新数据源【滑动的子View】
--(JobsReturnArrayByArrayBlock _Nonnull)refreshScrollContentViews{
+-(JobsRetArrByArrBlock _Nonnull)refreshScrollContentViews{
     @jobs_weakify(self)
     return ^__kindof NSArray <__kindof UIView<BaseViewProtocol> *>*_Nullable(__kindof NSArray <UIButtonModel *>*_Nullable data){
         @jobs_strongify(self)
@@ -122,7 +122,7 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 /// 配置显示的Scroll
--(JobsReturnScrollViewByMutArrBlock _Nonnull)configBgScroll{
+-(JobsRetScrollViewByMutArrBlock _Nonnull)configBgScroll{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(NSMutableArray <__kindof UIView *>*data){
         @jobs_strongify(self)
@@ -154,7 +154,7 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 /// 数据源创建整个导航栏
--(JobsReturnIDByArrBlock _Nonnull)makeTaggedNavViewBy{
+-(JobsRetIDByArrBlock _Nonnull)makeTaggedNavViewBy{
     @jobs_weakify(self)
     return ^JobsToggleNavView *_Nullable(NSArray <__kindof UIView<BaseViewProtocol>*>*_Nullable data){
         return jobsMakeToggleNavView(^(__kindof JobsToggleNavView * _Nullable taggedNavView) {

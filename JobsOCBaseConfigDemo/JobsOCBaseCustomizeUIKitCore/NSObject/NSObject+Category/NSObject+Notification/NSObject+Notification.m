@@ -64,7 +64,7 @@
 }
 ///【监听所有通知】用 Block
 -(void)monitorNotification:(NSString *_Nonnull)notificationName
-                 withBlock:(JobsReturnIDByTwoIDBlock _Nonnull)actionBlock{
+                 withBlock:(JobsRetIDByTwoIDBlock _Nonnull)actionBlock{
     if (isNull(notificationName)) return;
     [self addNotificationName:notificationName
                         block:^(id _Nullable weakSelf,

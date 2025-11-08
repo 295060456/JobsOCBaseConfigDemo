@@ -18,16 +18,16 @@
     imageNamed中没有代用MKImageNamed,
     这样就不会出现死循环;
 */
-+(JobsReturnImageByStringBlock _Nonnull)imageByName{
++(JobsRetImageByStringBlock _Nonnull)imageByName{
     return ^UIImage *_Nullable(NSString *_Nullable name){
         __block UIImage *image = nil;
-        JobsReturnIDByVoidBlock UIImageBlock_2 = ^UIImage *{
+        JobsRetIDByVoidBlock UIImageBlock_2 = ^UIImage *{
             image = [UIImage imageNamed:@"nodata"];//替换图片 保证一定要有
             if (!image) {
                 image = nil;
             }return image;
         };
-        JobsReturnIDByIDBlock UIImageBlock_1 = ^UIImage *(NSString *name){//name 在这里一定不为空 过滤条件在上一层
+        JobsRetIDByIDBlock UIImageBlock_1 = ^UIImage *(NSString *name){//name 在这里一定不为空 过滤条件在上一层
             image = [UIImage imageNamed:name];
             if (!image) {
                 JobsLog(@"缺失的图片资源名:%@",name);
@@ -42,7 +42,7 @@
     };
 }
 /// 替换系统的 imageWithData 方法
-+(JobsReturnImageByDataBlock _Nonnull)imageByData{
++(JobsRetImageByDataBlock _Nonnull)imageByData{
     return ^UIImage *_Nonnull(NSData *_Nullable data){
         return [UIImage imageWithData:data];
     };

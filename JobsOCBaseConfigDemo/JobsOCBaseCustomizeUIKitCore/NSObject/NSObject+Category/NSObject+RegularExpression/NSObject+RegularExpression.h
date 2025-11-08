@@ -20,26 +20,26 @@ NS_ASSUME_NONNULL_BEGIN
                                longest:(NSInteger)longest
                               password:(NSString *)pwd;
 #pragma mark —— 邮箱校验
-+(JobsReturnBOOLByStringBlock _Nonnull)checkingEmail;
++(JobsRetBOOLByStringBlock _Nonnull)checkingEmail;
 #pragma mark —— 验证(中国大陆)手机号
--(JobsReturnBOOLByStringBlock _Nonnull)checkingMobile;
+-(JobsRetBOOLByStringBlock _Nonnull)checkingMobile;
 #pragma mark —— 验证电话号
--(JobsReturnBOOLByStringBlock _Nonnull)checkingPhoneNum;
+-(JobsRetBOOLByStringBlock _Nonnull)checkingPhoneNum;
 #pragma mark —— 身份证号验证
--(JobsReturnBOOLByStringBlock _Nonnull)checkingIdCard;
+-(JobsRetBOOLByStringBlock _Nonnull)checkingIdCard;
 
 #pragma mark —— 由数字和26个英文字母组成的字符串
--(JobsReturnBOOLByStringBlock _Nonnull)checkingStrFormNumberAndLetter;
+-(JobsRetBOOLByStringBlock _Nonnull)checkingStrFormNumberAndLetter;
 #pragma mark —— 26位英文大小写字母组成的字符
--(JobsReturnBOOLByStringBlock _Nonnull)checkingStrFormLowerAndUpperLetter;
+-(JobsRetBOOLByStringBlock _Nonnull)checkingStrFormLowerAndUpperLetter;
 #pragma mark —— 小写字母
--(JobsReturnBOOLByStringBlock _Nonnull)checkingLowerLetter;
+-(JobsRetBOOLByStringBlock _Nonnull)checkingLowerLetter;
 #pragma mark —— 大写字母
--(JobsReturnBOOLByStringBlock _Nonnull)checkingUpperLetter;
+-(JobsRetBOOLByStringBlock _Nonnull)checkingUpperLetter;
 #pragma mark —— 特殊字符
--(JobsReturnBOOLByStringBlock _Nonnull)checkingSpecialChar;
+-(JobsRetBOOLByStringBlock _Nonnull)checkingSpecialChar;
 #pragma mark —— 只能输入数字
--(JobsReturnBOOLByStringBlock _Nonnull)checkingNumber;
+-(JobsRetBOOLByStringBlock _Nonnull)checkingNumber;
 
 @end
 

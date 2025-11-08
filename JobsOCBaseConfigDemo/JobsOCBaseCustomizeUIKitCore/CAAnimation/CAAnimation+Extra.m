@@ -9,7 +9,7 @@
 
 @implementation CAAnimation (Extra)
 
--(JobsReturnCAAnimationByCAMediaTimingFunctionBlock _Nonnull)timingFunctionBy{
+-(JobsRetCAAnimationByCAMediaTimingFunctionBlock _Nonnull)timingFunctionBy{
     @jobs_weakify(self)
     return ^__kindof CAAnimation *_Nullable(CAMediaTimingFunction *_Nullable data){
         @jobs_strongify(self)
@@ -18,7 +18,7 @@
     };
 }
 
--(JobsReturnCAAnimationByDelegateBlock _Nonnull)delegateBy{
+-(JobsRetCAAnimationByDelegateBlock _Nonnull)delegateBy{
     @jobs_weakify(self)
     return ^__kindof CAAnimation *_Nullable(id<CAAnimationDelegate> _Nullable delegate){
         @jobs_strongify(self)
@@ -27,7 +27,7 @@
     };
 }
 
--(JobsReturnCAAnimationByBOOLBlock _Nonnull)removedOnCompletionBy{
+-(JobsRetCAAnimationByBOOLBlock _Nonnull)removedOnCompletionBy{
     @jobs_weakify(self)
     return ^__kindof CAAnimation *_Nullable(BOOL data){
         @jobs_strongify(self)

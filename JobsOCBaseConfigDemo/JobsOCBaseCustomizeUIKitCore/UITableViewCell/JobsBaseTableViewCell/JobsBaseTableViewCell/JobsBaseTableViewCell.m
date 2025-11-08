@@ -27,7 +27,7 @@ AppToolsProtocol_synthesize
 #pragma mark —— UITableViewCellProtocol
 /// 4种UITableViewCell系统样式类型
 /// UITableViewCellStyleDefault ：左边有一个显示图片的imageView和一个标题textLabel。
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
@@ -39,7 +39,7 @@ AppToolsProtocol_synthesize
     };
 }
 /// UITableViewCellStyleValue1 ：左边显示图片的imageView和一个主标题textLabel，右边一个副标题detailTextLabel。
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
@@ -51,7 +51,7 @@ AppToolsProtocol_synthesize
     };
 }
 /// UITableViewCellStyleValue2 ：左边一个主标题textLabel字体偏小，右边一个副标题detailTextLabel。
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
@@ -63,7 +63,7 @@ AppToolsProtocol_synthesize
     };
 }
 /// UITableViewCellStyleSubtitle ：左边还是一个显示图片的imageView，不同的是上边有一个主标题textLabel和一个副标题detailTextLabel。主标题字体大且加黑，副标题字体小在主标题下边。
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
@@ -156,13 +156,13 @@ AppToolsProtocol_synthesize
 }
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(10);
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
++(JobsRetCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
     return ^CGFloat(id _Nullable data){
         return 10.0f;
     };
@@ -172,7 +172,7 @@ AppToolsProtocol_synthesize
     return self.viewModel;
 }
 #pragma mark —— BaseCellProtocol
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(id model) {
         @jobs_strongify(self)
@@ -236,7 +236,7 @@ AppToolsProtocol_synthesize
     };
 }
 
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(__kindof UIViewModel *_Nullable model){
         __block NSString *title = @"";
         __block NSString *subtitle = @"";

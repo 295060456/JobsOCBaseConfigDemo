@@ -122,7 +122,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
  **/
 #pragma mark —— 一些私有方法
 /// 输出文字修饰为可对外显示。但是对外还是输出入参字符串
--(JobsReturnStringByStringBlock _Nonnull)dataForTextView{
+-(JobsRetStringByStringBlock _Nonnull)dataForTextView{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -148,7 +148,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
     };
 }
 /// 输出图片到Btn_2
--(JobsReturnImageByImageBlock _Nonnull)dataForBtn2ImageView{
+-(JobsRetImageByImageBlock _Nonnull)dataForBtn2ImageView{
     @jobs_weakify(self)
     return ^__kindof UIImage *_Nonnull(UIImage *_Nullable image){
         @jobs_strongify(self)
@@ -160,7 +160,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
     };
 }
 #pragma mark —— 图片（图片数据Data）=编码=> 字符串(加盐)
--(JobsReturnStringByImageBlock _Nonnull)strForPic{
+-(JobsRetStringByImageBlock _Nonnull)strForPic{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(UIImage *_Nullable data){
         @jobs_strongify(self )
@@ -190,7 +190,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
     };
 }
 #pragma mark —— 字符串（加盐）=解码=> 图片
--(JobsReturnImageByStringBlock _Nonnull)picForStr{
+-(JobsRetImageByStringBlock _Nonnull)picForStr{
     @jobs_weakify(self)
     return ^UIImage *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)

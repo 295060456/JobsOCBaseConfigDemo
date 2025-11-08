@@ -16,7 +16,7 @@
     }else return stringA.isEqualToString(stringB);
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)isEqualToString{
+-(JobsRetBOOLByIDBlock _Nonnull)isEqualToString{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -26,7 +26,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)containsString{
+-(JobsRetBOOLByIDBlock _Nonnull)containsString{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -36,7 +36,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)hasPrefix{
+-(JobsRetBOOLByIDBlock _Nonnull)hasPrefix{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -46,7 +46,7 @@
     };
 }
 
--(JobsReturnBOOLByIDBlock _Nonnull)hasSuffix{
+-(JobsRetBOOLByIDBlock _Nonnull)hasSuffix{
     @jobs_weakify(self)
     return ^BOOL(NSString *data){
         @jobs_strongify(self)
@@ -220,7 +220,7 @@
     }else return NO;
 }
 /// 本字符串是否包含入参字符串的任何字符
--(JobsReturnBOOLByStringBlock _Nonnull)isContainBy{
+-(JobsRetBOOLByStringBlock _Nonnull)isContainBy{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -228,7 +228,7 @@
     };
 }
 /// 本字符串是否不包含入参字符串的任何字符
--(JobsReturnBOOLByStringBlock _Nonnull)isNotContainBy{
+-(JobsRetBOOLByStringBlock _Nonnull)isNotContainBy{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable data){
         @jobs_strongify(self)

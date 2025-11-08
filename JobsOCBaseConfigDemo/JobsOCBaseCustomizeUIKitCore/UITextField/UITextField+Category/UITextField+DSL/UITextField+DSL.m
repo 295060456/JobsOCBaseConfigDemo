@@ -9,7 +9,7 @@
 
 @implementation UITextField (DSL)
 #pragma mark —— 基础文本
--(JobsReturnTextFieldByStringBlock _Nonnull)byText {
+-(JobsRetTextFieldByStringBlock _Nonnull)byText {
     @jobs_weakify(self)
     return ^__kindof UITextField * (NSString * _Nullable text) {
         @jobs_strongify(self)
@@ -18,7 +18,7 @@
     };
 }
 
--(JobsReturnTextFieldByAttributedStringBlock _Nonnull)byAttributedText {
+-(JobsRetTextFieldByAttributedStringBlock _Nonnull)byAttributedText {
     @jobs_weakify(self)
     return ^__kindof UITextField * (NSAttributedString * _Nullable attrText) {
         @jobs_strongify(self)
@@ -28,7 +28,7 @@
     };
 }
 
--(JobsReturnTextFieldByCorBlock _Nonnull)byTextCor {
+-(JobsRetTextFieldByCorBlock _Nonnull)byTextCor {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UIColor * _Nullable color) {
         @jobs_strongify(self)
@@ -37,7 +37,7 @@
     };
 }
 
--(JobsReturnTextFieldByFontBlock _Nonnull)byFont {
+-(JobsRetTextFieldByFontBlock _Nonnull)byFont {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UIFont * _Nullable font) {
         @jobs_strongify(self)
@@ -46,7 +46,7 @@
     };
 }
 
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byTextAlignment {
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byTextAlignment {
     @jobs_weakify(self)
     return ^__kindof UITextField * (NSTextAlignment alignment) {
         @jobs_strongify(self)
@@ -55,7 +55,7 @@
     };
 }
 
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byBorderStyle {
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byBorderStyle {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UITextBorderStyle style) {
         @jobs_strongify(self)
@@ -64,7 +64,7 @@
     };
 }
 
--(JobsReturnTextFieldByNSDictionaryBlock _Nonnull)byDefaultTextAttributes {
+-(JobsRetTextFieldByNSDictionaryBlock _Nonnull)byDefaultTextAttributes {
     @jobs_weakify(self)
     return ^__kindof UITextField * (NSDictionary<NSAttributedStringKey,id> * _Nullable attrs) {
         @jobs_strongify(self)
@@ -74,7 +74,7 @@
     };
 }
 #pragma mark —— 占位符
--(JobsReturnTextFieldByStringBlock _Nonnull)byPlaceholder {
+-(JobsRetTextFieldByStringBlock _Nonnull)byPlaceholder {
     @jobs_weakify(self)
     return ^__kindof UITextField * (NSString * _Nullable ph) {
         @jobs_strongify(self)
@@ -83,7 +83,7 @@
     };
 }
 
--(JobsReturnTextFieldByCorBlock _Nonnull)byPlaceholderColor{
+-(JobsRetTextFieldByCorBlock _Nonnull)byPlaceholderColor{
     @jobs_weakify(self)
     return ^__kindof UITextField *_Nullable(__kindof UIColor *_Nullable cor){
         @jobs_strongify(self)
@@ -92,7 +92,7 @@
     };
 }
 
--(JobsReturnTextFieldByFontBlock _Nonnull)byPlaceholderFont{
+-(JobsRetTextFieldByFontBlock _Nonnull)byPlaceholderFont{
     @jobs_weakify(self)
     return ^__kindof UITextField *_Nullable(__kindof UIFont *_Nullable font){
         @jobs_strongify(self)
@@ -101,7 +101,7 @@
     };
 }
 
--(JobsReturnTextFieldByAttributedStringBlock _Nonnull)byAttributedPlaceholder {
+-(JobsRetTextFieldByAttributedStringBlock _Nonnull)byAttributedPlaceholder {
     @jobs_weakify(self)
     return ^__kindof UITextField * (NSAttributedString * _Nullable ph) {
         @jobs_strongify(self)
@@ -111,7 +111,7 @@
     };
 }
 #pragma mark —— 编辑行为
--(JobsReturnTextFieldByBOOLBlock _Nonnull)byClearsOnBeginEditing {
+-(JobsRetTextFieldByBOOLBlock _Nonnull)byClearsOnBeginEditing {
     @jobs_weakify(self)
     return ^__kindof UITextField * (BOOL on) {
         @jobs_strongify(self)
@@ -120,7 +120,7 @@
     };
 }
 
--(JobsReturnTextFieldByBOOLBlock _Nonnull)byAdjustsFontSizeToFitWidth {
+-(JobsRetTextFieldByBOOLBlock _Nonnull)byAdjustsFontSizeToFitWidth {
     @jobs_weakify(self)
     return ^__kindof UITextField * (BOOL on) {
         @jobs_strongify(self)
@@ -129,7 +129,7 @@
     };
 }
 
--(JobsReturnTextFieldByCGFloatrBlock _Nonnull)byMinimumFontSize {
+-(JobsRetTextFieldByCGFloatrBlock _Nonnull)byMinimumFontSize {
     @jobs_weakify(self)
     return ^__kindof UITextField * (CGFloat size) {
         @jobs_strongify(self)
@@ -138,7 +138,7 @@
     };
 }
 
--(JobsReturnTextFieldByBOOLBlock _Nonnull)byAllowsEditingTextAttributes {
+-(JobsRetTextFieldByBOOLBlock _Nonnull)byAllowsEditingTextAttributes {
     @jobs_weakify(self)
     return ^__kindof UITextField * (BOOL on) {
         @jobs_strongify(self)
@@ -148,7 +148,7 @@
     };
 }
 
--(JobsReturnTextFieldByNSDictionaryBlock _Nonnull)byTypingAttributes {
+-(JobsRetTextFieldByNSDictionaryBlock _Nonnull)byTypingAttributes {
     @jobs_weakify(self)
     return ^__kindof UITextField * (NSDictionary<NSAttributedStringKey,id> * _Nullable attrs) {
         @jobs_strongify(self)
@@ -158,7 +158,7 @@
     };
 }
 
--(JobsReturnTextFieldByBOOLBlock _Nonnull)byClearsOnInsertion {
+-(JobsRetTextFieldByBOOLBlock _Nonnull)byClearsOnInsertion {
     @jobs_weakify(self)
     return ^__kindof UITextField * (BOOL on) {
         @jobs_strongify(self)
@@ -168,7 +168,7 @@
     };
 }
 #pragma mark —— 背景
--(JobsReturnTextFieldByImageBlock _Nonnull)byBackground {
+-(JobsRetTextFieldByImageBlock _Nonnull)byBackground {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UIImage * _Nullable img) {
         @jobs_strongify(self)
@@ -177,7 +177,7 @@
     };
 }
 
--(JobsReturnTextFieldByImageBlock _Nonnull)byDisabledBackground {
+-(JobsRetTextFieldByImageBlock _Nonnull)byDisabledBackground {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UIImage * _Nullable img) {
         @jobs_strongify(self)
@@ -186,7 +186,7 @@
     };
 }
 #pragma mark —— 清除按钮
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byClearButtonMode {
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byClearButtonMode {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UITextFieldViewMode mode) {
         @jobs_strongify(self)
@@ -195,7 +195,7 @@
     };
 }
 #pragma mark —— 左右视图
--(JobsReturnTextFieldByViewBlock _Nonnull)byLeftView {
+-(JobsRetTextFieldByViewBlock _Nonnull)byLeftView {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UIView * _Nullable v) {
         @jobs_strongify(self)
@@ -204,7 +204,7 @@
     };
 }
 
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byLeftViewMode {
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byLeftViewMode {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UITextFieldViewMode mode) {
         @jobs_strongify(self)
@@ -213,7 +213,7 @@
     };
 }
 
--(JobsReturnTextFieldByViewBlock _Nonnull)byRightView {
+-(JobsRetTextFieldByViewBlock _Nonnull)byRightView {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UIView * _Nullable v) {
         @jobs_strongify(self)
@@ -222,7 +222,7 @@
     };
 }
 
--(JobsReturnTextFieldByNSIntegerBlock _Nonnull)byRightViewMode {
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byRightViewMode {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UITextFieldViewMode mode) {
         @jobs_strongify(self)
@@ -231,7 +231,7 @@
     };
 }
 #pragma mark —— 输入视图
--(JobsReturnTextFieldByViewBlock _Nonnull)byInputView {
+-(JobsRetTextFieldByViewBlock _Nonnull)byInputView {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UIView * _Nullable v) {
         @jobs_strongify(self)
@@ -240,7 +240,7 @@
     };
 }
 
--(JobsReturnTextFieldByViewBlock _Nonnull)byInputAccessoryView {
+-(JobsRetTextFieldByViewBlock _Nonnull)byInputAccessoryView {
     @jobs_weakify(self)
     return ^__kindof UITextField * (UIView * _Nullable v) {
         @jobs_strongify(self)
@@ -249,7 +249,7 @@
     };
 }
 #pragma mark —— delegate
--(JobsReturnTextFieldByDelegateBlock _Nonnull)byDelegate {
+-(JobsRetTextFieldByDelegateBlock _Nonnull)byDelegate {
     @jobs_weakify(self)
     return ^__kindof UITextField * (id<UITextFieldDelegate> _Nullable dg) {
         @jobs_strongify(self)
@@ -258,7 +258,7 @@
     };
 }
 #pragma mark —— 键盘
--(JobsReturnTextFieldByKeyboardAppearanceBlock _Nonnull)byKeyboardAppearance{
+-(JobsRetTextFieldByKeyboardAppearanceBlock _Nonnull)byKeyboardAppearance{
     @jobs_weakify(self)
     return ^__kindof UITextField *_Nullable(UIKeyboardAppearance appearance){
         @jobs_strongify(self)
@@ -267,7 +267,7 @@
     };
 }
 
--(JobsReturnTextFieldByKeyboardTypeBlock _Nonnull)byKeyboardType{
+-(JobsRetTextFieldByKeyboardTypeBlock _Nonnull)byKeyboardType{
     @jobs_weakify(self)
     return ^__kindof UITextField *_Nullable(UIKeyboardType type){
         @jobs_strongify(self)
@@ -276,7 +276,7 @@
     };
 }
 
--(JobsReturnTextFieldByReturnKeyTypeBlock _Nonnull)byReturnKeyType{
+-(JobsRetTextFieldByReturnKeyTypeBlock _Nonnull)byReturnKeyType{
     @jobs_weakify(self)
     return ^__kindof UITextField *_Nullable(UIReturnKeyType type){
         @jobs_strongify(self)
@@ -285,7 +285,7 @@
     };
 }
 #pragma mark —— 其他
--(JobsReturnTextFieldByBOOLBlock _Nonnull)bySecureTextEntry{
+-(JobsRetTextFieldByBOOLBlock _Nonnull)bySecureTextEntry{
     @jobs_weakify(self)
     return ^__kindof UITextField *_Nullable(BOOL data){
         @jobs_strongify(self)

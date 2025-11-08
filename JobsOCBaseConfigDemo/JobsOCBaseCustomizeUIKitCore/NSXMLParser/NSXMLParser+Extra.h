@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSXMLParser (Extra)
 
-+(JobsReturnNSXMLParserByNSDataBlock _Nonnull)initBy;
++(JobsRetNSXMLParserByNSDataBlock _Nonnull)initBy;
 
 @end
 

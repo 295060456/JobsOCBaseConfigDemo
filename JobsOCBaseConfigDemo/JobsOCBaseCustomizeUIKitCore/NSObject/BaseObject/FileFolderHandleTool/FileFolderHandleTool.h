@@ -142,12 +142,12 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - suffix: 是否需要后缀
 +(NSString *)fileNameAtPath:(NSString *)path suffix:(BOOL)suffix;
 /// 获取文件所在的文件夹路径：删除最后一个路径节点
-+(JobsReturnStringByStringBlock _Nonnull)directoryAtPath;
++(JobsRetStringByStringBlock _Nonnull)directoryAtPath;
 /// 根据文件路径获取文件扩展类型:
-+(JobsReturnStringByStringBlock _Nonnull)suffixAtPath;
++(JobsRetStringByStringBlock _Nonnull)suffixAtPath;
 #pragma mark —— 判断文件（夹）是否存在
 /// 判断文件路径是否存在:
-+(JobsReturnBOOLByStringBlock _Nonnull)isExistsAtPath;
++(JobsRetBOOLByStringBlock _Nonnull)isExistsAtPath;
 /// 判断路径是否为空（判空条件是文件大小为0，或者是文件夹下没有子文件）:
 +(BOOL)isEmptyItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 /// 判断目录是否是文件夹：
@@ -155,11 +155,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 判断目录是否是文件:
 +(BOOL)isFileAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 /// 判断目录是否可以执行
-+(JobsReturnBOOLByStringBlock _Nonnull)isExecutableItemAtPath;
++(JobsRetBOOLByStringBlock _Nonnull)isExecutableItemAtPath;
 /// 判断目录是否可读
-+(JobsReturnBOOLByStringBlock _Nonnull)isReadableItemAtPath;
++(JobsRetBOOLByStringBlock _Nonnull)isReadableItemAtPath;
 /// 判断目录是否可写
-+(JobsReturnBOOLByStringBlock _Nonnull)isWritableItemAtPath;
++(JobsRetBOOLByStringBlock _Nonnull)isWritableItemAtPath;
 #pragma mark —— 获取文件（夹）大小
 /// 获取文件大小（NSNumber）:
 +(NSNumber *)sizeOfItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
@@ -168,7 +168,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///获取文件大小（单位为字节）:
 +(NSString *)sizeFormattedOfItemAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 ///将文件大小格式化为字节
-+(JobsReturnStringByNumberBlock _Nonnull)sizeFormatted;
++(JobsRetStringByNumberBlock _Nonnull)sizeFormatted;
 ///获取文件夹大小（单位为字节）:
 +(NSString *)sizeFormattedOfDirectoryAtPath:(NSString *)path error:(NSError *__autoreleasing *)error;
 /// 遍历文件夹（分为深遍历和浅遍历）
@@ -180,7 +180,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSArray *)listFilesInDirectoryAtPath:(NSString *)path deep:(BOOL)deep;
 #pragma mark —— 系统相册相关
 /// 获取相册最新加载（录制、拍摄）的资源
-+(JobsReturnAssetByStrBlock _Nonnull)gettingLastResource;
++(JobsRetAssetByStrBlock _Nonnull)gettingLastResource;
 /// 相册
 +(void)createAlbumFolder:(NSString *)folderName
        ifExitFolderBlock:(jobsByIDBlock _Nonnull)ifExitFolderBlock
@@ -190,7 +190,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 保存视频资源文件到指定的相册路径，这里是整个App名字的相册
 +(jobsByURLBlock _Nonnull)saveRes;
 /// 是否存在此相册判断逻辑依据 注意和 isExistsAtPath进行区分
-+(JobsReturnBOOLByStringBlock _Nonnull)isExistFolder;
++(JobsRetBOOLByStringBlock _Nonnull)isExistFolder;
 /// 保存文件到系统默认的相册，image是要保存的图片
 +(jobsByImageBlock _Nonnull)saveImage;
 /// 保存完成后调用的方法
@@ -213,7 +213,7 @@ didFinishSavingWithError:(NSError *)error
 +(void)getAudioFromPHAsset:(PHAsset *)phAsset
                   complete:(jobsByIDBlock _Nonnull)completeBlock;
 /// AVAsset 转 NSData
-+(JobsReturnDataByAssetBlock _Nonnull)AVAssetToData;
++(JobsRetDataByAssetBlock _Nonnull)AVAssetToData;
 #pragma mark —— 获取文件属性
 +(id)attributeOfItemAtPath:(NSString *)path
                     forKey:(NSString *)key

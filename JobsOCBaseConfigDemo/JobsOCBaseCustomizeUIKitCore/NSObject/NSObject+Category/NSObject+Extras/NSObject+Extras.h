@@ -133,7 +133,7 @@ AppToolsProtocol
                          defaultValue:(nullable NSString *)defaultValue;
 #pragma mark —— ViewController
 /// 从一个视图（UIView）出发，获取它所在的视图控制器（UIViewController）
--(JobsReturnVCByViewBlock _Nonnull)getViewControllerByView;
+-(JobsRetVCByViewBlock _Nonnull)getViewControllerByView;
 /// 获得当前的控制器。对getCurrentViewController的再次封装
 -(__kindof UIViewController *_Nullable)jobsGetCurrentViewControllerWithNavCtrl;
 /// 获得当前的控制器。对getCurrentViewController的再次封装
@@ -141,7 +141,7 @@ AppToolsProtocol
 /// 获得当前的控制器
 -(__kindof UIViewController *_Nullable)getCurrentViewController;
 /// 获得当前控制器的根控制器
--(JobsReturnVCByVCBlock _Nonnull)getCurrentViewControllerByRootVC;
+-(JobsRetVCByVCBlock _Nonnull)getCurrentViewControllerByRootVC;
 /// 自定义 push/pop 控制器的方向
 -(jobsByNSUIntegerBlock _Nonnull)jobsNavDirectionBy;
 /// 设置控制器的转场方向（及对应手势）
@@ -186,10 +186,10 @@ AppToolsProtocol
 #pragma mark —— 功能性的
 /// 刷新控件的头部数据
 -(MJRefreshConfigModel *_Nullable)mjHeaderDefaultConfig;
--(MJRefreshConfigModel *_Nonnull)refreshHeaderDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock;
+-(MJRefreshConfigModel *_Nonnull)refreshHeaderDataBy:(JobsRetIDByIDBlock _Nonnull)loadBlock;
 /// 刷新控件的尾部数据
 -(MJRefreshConfigModel *_Nullable)mjFooterDefaultConfig;
--(MJRefreshConfigModel *_Nonnull)refreshFooterDataBy:(JobsReturnIDByIDBlock _Nonnull)loadBlock;
+-(MJRefreshConfigModel *_Nonnull)refreshFooterDataBy:(JobsRetIDByIDBlock _Nonnull)loadBlock;
 /// 切换到主VC
 -(jobsByVCBlock _Nonnull)switchToMainVC;
 /// 销毁视图
@@ -204,42 +204,42 @@ AppToolsProtocol
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
 -(JobsReturnAlertControllerByAlertModelBlock _Nonnull)makeAlertControllerByAlertModel;
 /// 将 NSDate  *转换输出成人类可读的（年\月\日）时间（字符串）
--(JobsReturnStringByDateBlock _Nonnull)toReadableDayTimeByDate;
+-(JobsRetStringByDateBlock _Nonnull)toReadableDayTimeByDate;
 /// 将 NSDate  *转换输出成人类可读的（年\月\日\时\分\秒）时间（字符串）
--(JobsReturnStringByDateBlock _Nonnull)toReadableTimeByDate;
+-(JobsRetStringByDateBlock _Nonnull)toReadableTimeByDate;
 /// 将 NSTimeInterval 按照 NSDateFormatter 转换输出成人类可读的时间
 -(JobsReturnStringByTimeModelBlock _Nonnull)toReadableTimeBy;
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
 /// data：包含 HTML 内容的字符串
--(JobsReturnWKWebViewByStringBlock _Nonnull)makeWebViewByString;
+-(JobsRetWKWebViewByStringBlock _Nonnull)makeWebViewByString;
 /// 解析网络URL数据
--(JobsReturnWKWebViewByURLBlock _Nonnull)makeWebViewByURL;
+-(JobsRetWKWebViewByURLBlock _Nonnull)makeWebViewByURL;
 /// 在导航栏堆栈里面，是否存在同样类型的控制器
--(JobsReturnBOOLByViewControllerBlock _Nonnull)isSameVCBy;
+-(JobsRetBOOLByVCBlock _Nonnull)isSameVCBy;
 /// 根控制器 => 导航控制器（普通控制器）
--(JobsReturnVCByVCBlock _Nonnull)rootViewControllerBy;
+-(JobsRetVCByVCBlock _Nonnull)rootViewControllerBy;
 /// 依据传入的普通控制器，创建导航控制器
-+(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
--(JobsReturnNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
++(JobsRetNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
+-(JobsRetNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
 /// 依据传入的类名，创建导航控制器
-+(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls;
--(JobsReturnNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls;
++(JobsRetNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls;
+-(JobsRetNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls;
 /// 可以组合使用
 -(SDWebImageOptions)makeSDWebImageOptions;
 -(URLManagerModel *_Nonnull)url:(NSString *_Nonnull)url funcName:(NSString *_Nonnull)funcName;
 /// 获取m文件的属性
--(JobsReturnIDByStringBlock _Nonnull)getObjByName;
--(JobsReturnDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted;
--(JobsReturnIDByDataBlock _Nonnull)JSONReadingMutableContainers;
--(JobsReturnIDByDataBlock _Nonnull)JSONkNilOptions;
--(JobsReturnDataByStringBlock _Nonnull)initByContentsOfFile;
--(JobsReturnBOOLByIDBlock _Nonnull)isEqual;
--(JobsReturnIDByStringBlock _Nonnull)dataByKey;
+-(JobsRetIDByStrBlock _Nonnull)getObjByName;
+-(JobsRetDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted;
+-(JobsRetIDByDataBlock _Nonnull)JSONReadingMutableContainers;
+-(JobsRetIDByDataBlock _Nonnull)JSONkNilOptions;
+-(JobsRetDataByStringBlock _Nonnull)initByContentsOfFile;
+-(JobsRetBOOLByIDBlock _Nonnull)isEqual;
+-(JobsRetIDByStrBlock _Nonnull)dataByKey;
 /// UICollectionViewFlowLayout
 -(__kindof UICollectionViewFlowLayout *_Nonnull)verticalLayout;
 -(__kindof UICollectionViewFlowLayout *_Nonnull)horizontalLayout;
 /// JSON对象转NSData
--(JobsReturnDataByIDBlock _Nonnull)dataByJSONObject;
+-(JobsRetDataByIDBlock _Nonnull)dataByJSONObject;
 /**
  注意：有些时候UIApplication.sharedApplication.keyWindow获取到的window有frame，而windowScene.windows.firstObject获取到的window没有frame
  
@@ -251,10 +251,10 @@ AppToolsProtocol
 
  总之，要处理多窗口应用程序中窗口的不同状态，您应该确保在访问窗口属性之前进行适当的检查，以确保窗口已经准备好并且具有所需的属性。这可以通过在适当的时机监听窗口的状态变化来实现。
  */
-+(JobsReturnWindowByVoidBlock _Nonnull)mainWindow;
++(JobsRetWindowByVoidBlock _Nonnull)mainWindow;
 /// 使用指定的图像（UIImage）作为颜色的填充图案。
 /// 这个方法的作用是生成一个基于图像的颜色，这个颜色在视图或图层上会以平铺的方式重复显示指定的图像。
--(JobsReturnColorByImageBlock _Nonnull)byPatternImage;
+-(JobsRetCorByImageBlock _Nonnull)byPatternImage;
 /// present
 /// 简洁版强制present展现一个控制器页面【不需要正向传参】
 -(jobsByVCBlock _Nonnull)comingToPresentVC;
@@ -291,17 +291,17 @@ AppToolsProtocol
  // dataMutArr = self.createDataMutArr2; 这一段无效
  
  */
--(JobsReturnIDByIDBlock _Nonnull)valueForKey;
+-(JobsRetIDByIDBlock _Nonnull)valueForKey;
 /// KVC 的二次封装
 -(jobsByKey_ValueBlock _Nonnull)jobsKVC;
 -(jobsByKeyValueModelBlock _Nonnull)jobsKVCBy;
--(JobsReturnBOOLByIDBlock _Nonnull)isKindOfClass;
--(JobsReturnBOOLByIDBlock _Nonnull)isMemberOfClass;
+-(JobsRetBOOLByIDBlock _Nonnull)isKindOfClass;
+-(JobsRetBOOLByIDBlock _Nonnull)isMemberOfClass;
 -(void)addCheckerByName:(NSString *_Nonnull)notificationName
           selectorBlock:(jobsByTwoIDBlock _Nullable)selectorBlock;
-+(JobsReturnIDByStringBlock _Nonnull)initByReuseId;
-+(JobsReturnIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier;/// 不能用于UITableViewHeaderFooterView
--(JobsReturnIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass;/// 不能用于UITableViewHeaderFooterView
++(JobsRetIDByStrBlock _Nonnull)initByReuseId;
++(JobsRetIDBySaltStrBlock _Nonnull)jobsInitWithReuseIdentifier;/// 不能用于UITableViewHeaderFooterView
+-(JobsRetIDByClsAndSaltStrBlock _Nonnull)jobsInitWithReuseIdentifierClass;/// 不能用于UITableViewHeaderFooterView
 /// 索取对象obj里面属性名为propertyName的值，如果没有这个属性则查找返回nil
 /// @param obj 索取对象
 /// @param propertyName 需要查找的属性值
@@ -313,7 +313,7 @@ AppToolsProtocol
 -(CompareRes)versionNumber1:(NSString *_Nonnull)versionNumber1
              versionNumber2:(NSString *_Nonnull)versionNumber2;
 /// 给定一个数据源（数组）和 每行需要展示的元素个数，计算行数
--(JobsReturnByNSIntegerBlock _Nonnull)lineNumBy;
+-(JobsRetByNSIntegerBlock _Nonnull)lineNumBy;
 /**
  ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
  -(ScrollDirection)judgementScrollDirectionByPoint:(CGPoint)point;
@@ -327,11 +327,11 @@ AppToolsProtocol
  ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
  */
 /// X 轴方向的偏移量
--(JobsReturnByCGPointBlock _Nonnull)scrollOffsetByDirectionXPoint;
+-(JobsRetByCGPointBlock _Nonnull)scrollOffsetByDirectionXPoint;
 /// Y 轴方向的偏移量
--(JobsReturnByCGPointBlock _Nonnull)scrollOffsetByDirectionYPoint;
+-(JobsRetByCGPointBlock _Nonnull)scrollOffsetByDirectionYPoint;
 /// 依据不断地传入的CGPoint *point，系统通过lastPoint来记录上一次的数据，两者进行比较，以此判断滑动的方向
--(JobsReturnNSIntegerByPointBlock _Nonnull)judgementScrollDirectionByPoint;
+-(JobsRetNSIntegerByPointBlock _Nonnull)judgementScrollDirectionByPoint;
 /// 创建IndexPath坐标
 -(JobsReturnIndexPathByXYBlock _Nonnull)indexPathBy;
 -(NSIndexPath *_Nonnull)myIndexPath:(JobsIndexPath)indexPath;
@@ -347,7 +347,7 @@ AppToolsProtocol
                                 motivateViewOffset:(CGFloat)motivateViewOffset
                                        finishBlock:(jobsByIDBlock _Nullable)finishBlock;
 /// iOS 获取任意控件在屏幕中的坐标
--(JobsReturnRectByViewBlock _Nonnull)getWindowFrameByView;
+-(JobsRetFrameByViewBlock _Nonnull)getWindowFrameByView;
 /// 依据View上铆定的internationalizationKEY来全局更改文字以适配国际化
 -(void)languageSwitch;
 /// 打印请求体
@@ -361,7 +361,7 @@ AppToolsProtocol
 /// 震动特效反馈
 +(jobsByViewBlock _Nonnull)feedbackGenerator;
 /// 检测用户是否锁屏：根据屏幕光线来进行判定，而不是系统通知
--(JobsReturnBOOLByVoidBlock _Nonnull)didUserPressLockButton;
+-(JobsRetBOOLByVoidBlock _Nonnull)didUserPressLockButton;
 /// iOS 限制自动锁屏 lockSwitch:YES(关闭自动锁屏)
 -(jobsByBOOLBlock _Nonnull)autoLockedScreen;
 
@@ -374,7 +374,7 @@ AppToolsProtocol
 -(nonnull NSMutableArray <UIImage *>*)translateToArr:(CGFloat)inputData
                                    saveBitAfterPoint:(NSInteger)bitNum;
 /// 读取本地的plist文件到内存  【 plist ——> NSDictionary * 】
--(JobsReturnDicByStringBlock _Nonnull)readLocalPlistWithFileName;
+-(JobsRetDicByStringBlock _Nonnull)readLocalPlistWithFileName;
 /// 监听程序被杀死前的时刻，进行一些需要异步的操作：磁盘读写、网络请求...
 -(void)terminalCheck:(jobsByIDBlock _Nullable)checkBlock;
 /// Object转换为NSData
@@ -468,7 +468,7 @@ AppToolsProtocol
 -(UIOffset)jobsGetValueWithUIOffset:(NSValue *_Nullable)value;
 #pragma mark —— 数字
 /// 获取任意数字最高位数字
--(JobsReturnByNSIntegerBlock _Nonnull)topDigit;
+-(JobsRetByNSIntegerBlock _Nonnull)topDigit;
 #pragma mark —— 检测当前设备屏幕方向
 /// https://github.com/295060456/JobsOCBaseConfig/blob/main/%E6%96%87%E6%A1%A3%E5%92%8C%E8%B5%84%E6%96%99/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md/%E6%A8%AA%E5%B1%8FUI%E5%88%87%E6%8D%A2.md
 -(CGFloat)jobsMainScreen_HEIGHT;
@@ -476,11 +476,11 @@ AppToolsProtocol
 -(__kindof UIView *_Nullable)getView;
 -(id _Nullable)getViewByBlock:(JobsReturnIDByComponentTypeAndUIViewBlock _Nullable)block;
 /// UIInterfaceOrientationMask 检测屏幕方向
--(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsReturnSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock;
+-(CGSize)checkScreenOrientation_UIInterfaceOrientationMask:(JobsRetSizeByUIntegerBlock _Nullable)interfaceOrientationMaskBlock;
 /// UIInterfaceOrientation 检测屏幕方向
 -(UIInterfaceOrientation)getInterfaceOrientation;
 /// UIInterfaceOrientation 检测屏幕方向
--(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsReturnSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock;
+-(CGSize)checkScreenOrientation_UIInterfaceOrientation:(JobsRetSizeByNSIntegerBlock _Nullable)interfaceOrientationBlock;
 /// DeviceOrientation 检测屏幕方向
 -(DeviceOrientation)getDeviceOrientation;
 /// 横屏通知的监听

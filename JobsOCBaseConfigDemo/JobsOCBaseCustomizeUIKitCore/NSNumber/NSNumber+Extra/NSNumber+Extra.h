@@ -14,27 +14,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,readonly)NSString *stringValueOrEmpty;
 
-+(JobsReturnNumberByCharBlock _Nonnull)initByChar;
-+(JobsReturnNumberByUnsignedCharBlock _Nonnull)initByUnsignedChar;
-+(JobsReturnNumberByShortBlock _Nonnull)initByShort;
-+(JobsReturnNumberByUnsignedShortBlock _Nonnull)initByUnsignedShort;
-+(JobsReturnNumberByIntBlock _Nonnull)initByInt;
-+(JobsReturnNumberByUnsignedIntBlock _Nonnull)initByUnsignedInt;
-+(JobsReturnNumberByLongBlock _Nonnull)initByLong;
-+(JobsReturnNumberByUnsignedLongBlock _Nonnull)initByUnsignedLong;
-+(JobsReturnNumberByLongLongBlock _Nonnull)initByLongLong;
-+(JobsReturnNumberByUnsignedLongLongBlock _Nonnull)initByUnsignedLongLong;
-+(JobsReturnNumberByFloatBlock _Nonnull)initByFloat;
-+(JobsReturnNumberByDoubleBlock _Nonnull)initByDouble;
-+(JobsReturnNumberByBOOLBlock _Nonnull)initByBOOL;
-+(JobsReturnNumberByNSIntegerBlock _Nonnull)initByNSInteger;
-+(JobsReturnNumberByNSUIntegerBlock _Nonnull)initByNSUInteger;
-+(JobsReturnNumberByCGFloatBlock _Nonnull)initByCGFloat; /// 特殊处理 CGFloat 类型
++(JobsRetNumberByCharBlock _Nonnull)initByChar;
++(JobsRetNumberByUnsignedCharBlock _Nonnull)initByUnsignedChar;
++(JobsRetNumberByShortBlock _Nonnull)initByShort;
++(JobsRetNumberByUnsignedShortBlock _Nonnull)initByUnsignedShort;
++(JobsRetNumberByIntBlock _Nonnull)initByInt;
++(JobsRetNumberByUnsignedIntBlock _Nonnull)initByUnsignedInt;
++(JobsRetNumberByLongBlock _Nonnull)initByLong;
++(JobsRetNumberByUnsignedLongBlock _Nonnull)initByUnsignedLong;
++(JobsRetNumberByLongLongBlock _Nonnull)initByLongLong;
++(JobsRetNumberByUnsignedLongLongBlock _Nonnull)initByUnsignedLongLong;
++(JobsRetNumberByFloatBlock _Nonnull)initByFloat;
++(JobsRetNumberByDoubleBlock _Nonnull)initByDouble;
++(JobsRetNumberByBOOLBlock _Nonnull)initByBOOL;
++(JobsRetNumberByNSIntegerBlock _Nonnull)initByNSInteger;
++(JobsRetNumberByNSUIntegerBlock _Nonnull)initByNSUInteger;
++(JobsRetNumberByCGFloatBlock _Nonnull)initByCGFloat; /// 特殊处理 CGFloat 类型
 
 -(CGFloat)byFloat;
--(JobsReturnStringByNumberBlock _Nonnull)toString;
--(JobsReturnNumberByNSIntegerBlock _Nonnull)updateByStepInt;
--(JobsReturnNumberByCGFloatBlock _Nonnull)updateByStepFloat;
+-(JobsRetStringByNumberBlock _Nonnull)toString;
+-(JobsRetNumberByNSIntegerBlock _Nonnull)updateByStepInt;
+-(JobsRetNumberByCGFloatBlock _Nonnull)updateByStepFloat;
 
 @end
 

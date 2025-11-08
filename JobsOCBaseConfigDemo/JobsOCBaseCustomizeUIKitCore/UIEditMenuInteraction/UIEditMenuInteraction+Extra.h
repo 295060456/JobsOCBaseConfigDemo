@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIEditMenuInteraction (Extra)
 
-+(JobsReturnUIEditMenuInteractionByIDBlock _Nonnull)initBy;
++(JobsRetUIEditMenuInteractionByIDBlock _Nonnull)initBy;
 
 @end
 

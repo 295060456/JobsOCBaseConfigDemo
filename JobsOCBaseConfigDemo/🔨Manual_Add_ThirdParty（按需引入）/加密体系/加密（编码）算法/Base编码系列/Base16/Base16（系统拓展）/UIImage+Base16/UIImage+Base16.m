@@ -20,7 +20,7 @@
 @implementation UIImage (Base16)
 #pragma mark —— UIImage ==> Base16
 ///【类方法】将UIImage对象 转换为 以Base16（也称为十六进制）编码的字符串
-+(JobsReturnStringByImageBlock _Nonnull)base16StringByImage{
++(JobsRetStringByImageBlock _Nonnull)base16StringByImage{
     return ^__kindof NSString *_Nullable(UIImage *_Nullable image){
         /**
          首先通过UIImagePNGRepresentation（或者UIImageJPEGRepresentation）将UIImage对象转换为NSData对象
@@ -45,7 +45,7 @@
 }
 #pragma mark —— Base16 ==> UIImage
 ///【类方法】将以Base16编码的字符串 转换为 UIImage对象
-+(JobsReturnImageByStringBlock _Nonnull)imageByBase16String{
++(JobsRetImageByStringBlock _Nonnull)imageByBase16String{
     return ^UIImage *_Nullable(__kindof NSString *_Nullable base16StringByImage){
         /**
          首先创建了一个NSMutableData对象，然后对Base16字符串进行遍历，每两个字符为一组，表示一个字节的十六进制值
@@ -67,7 +67,7 @@
     };
 }
 ///【实例方法】将以Base16编码的字符串 转换为 UIImage对象
--(JobsReturnImageByStringBlock _Nonnull)imageByBase16String{
+-(JobsRetImageByStringBlock _Nonnull)imageByBase16String{
     return ^UIImage *_Nullable(__kindof NSString *_Nullable data){
         return UIImage.imageByBase16String(data);
     };

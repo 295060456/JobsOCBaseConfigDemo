@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AVAssetImageGenerator (Extra)
 
-+(JobsReturnAVAssetImageGeneratorByAVURLAssetBlock _Nonnull)initBy;
++(JobsRetAVAssetImageGeneratorByAVURLAssetBlock _Nonnull)initBy;
 
 @end
 

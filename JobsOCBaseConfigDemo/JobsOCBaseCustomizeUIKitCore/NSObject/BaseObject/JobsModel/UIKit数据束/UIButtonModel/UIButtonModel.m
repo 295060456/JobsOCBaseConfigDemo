@@ -59,7 +59,7 @@ RACProtocol_synthesize
 
 -(JobsReturnRACDisposableByReturnIDByIDBlocks _Nullable)jobsReturnedTestBlock{
     if(!_jobsReturnedTestBlock){
-        _jobsReturnedTestBlock = ^RACDisposable *_Nonnull(JobsReturnIDByIDBlock _Nullable data) {
+        _jobsReturnedTestBlock = ^RACDisposable *_Nonnull(JobsRetIDByIDBlock _Nullable data) {
             JobsLog(@"JobsTestBlock");
             return nil;
         };

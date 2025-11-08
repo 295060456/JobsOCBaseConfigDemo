@@ -9,13 +9,13 @@
 
 @implementation NSLocale (Extra)
 
-+(JobsReturnLocaleByStringBlock _Nonnull)initByID{
++(JobsRetLocaleByStrBlock _Nonnull)initByID{
     return ^NSLocale *_Nullable(__kindof NSString *_Nullable ID){
         return [NSLocale localeWithLocaleIdentifier:ID];
     };
 }
 /// 对系统方法 objectForKey 的二次封装
--(JobsReturnIDByStringBlock _Nonnull)objectForKey{
+-(JobsRetIDByStrBlock _Nonnull)objectForKey{
     @jobs_weakify(self)
     return ^id _Nullable(NSLocaleKey _Nullable key){
         @jobs_strongify(self)

@@ -9,7 +9,7 @@
 
 @implementation PHAsset (Extra)
 /// 对系统方法 fetchAssetsWithOptions 的二次封装
-+(JobsReturnPHFetchResultWithPHAssetByPHFetchOptionsBlock _Nonnull)initByOptions{
++(JobsRetPHFetchResultWithPHAssetByPHFetchOptionsBlock _Nonnull)initByOptions{
     return ^__kindof PHFetchResult<PHAsset *> *_Nonnull(__kindof PHFetchOptions *_Nullable options){
         return [PHAsset fetchAssetsWithOptions:options];
     };

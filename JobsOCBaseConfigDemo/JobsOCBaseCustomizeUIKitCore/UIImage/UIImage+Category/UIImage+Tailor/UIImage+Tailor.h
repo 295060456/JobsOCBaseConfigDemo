@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (Tailor)
 /// 以图片中心为中心，以最小边为边长，裁剪正方形图片
-+(JobsReturnImageByImageBlock _Nonnull)cropSquareImage;
++(JobsRetImageByImageBlock _Nonnull)cropSquareImage;
 ///生成一张圆形图片
-+(JobsReturnImageByImageBlock _Nonnull)imageWithClipImage;
++(JobsRetImageByImageBlock _Nonnull)imageWithClipImage;
 /**
  *  生成一张带有边框的圆形图片
  *

@@ -9,7 +9,7 @@
 
 @implementation NSMutableParagraphStyle (DSL)
 #pragma mark —— CGFloat
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byLineSpacing {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byLineSpacing {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -18,7 +18,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byParagraphSpacing {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byParagraphSpacing {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -27,7 +27,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byFirstLineHeadIndent {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byFirstLineHeadIndent {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -36,7 +36,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byHeadIndent {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byHeadIndent {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -45,7 +45,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byTailIndent {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byTailIndent {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -54,7 +54,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byMinimumLineHeight {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byMinimumLineHeight {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -63,7 +63,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byMaximumLineHeight {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byMaximumLineHeight {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -72,7 +72,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byLineHeightMultiple {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byLineHeightMultiple {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -81,7 +81,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byParagraphSpacingBefore {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byParagraphSpacingBefore {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -90,7 +90,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byDefaultTabInterval {
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byDefaultTabInterval {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (CGFloat v) {
         @jobs_strongify(self) 
@@ -101,7 +101,7 @@
     };
 }
 #pragma mark —— float
--(JobsReturnMutableParagraphStyleByFloatBlock _Nonnull)byHyphenationFactor {
+-(JobsRetMutableParagraphStyleByFloatBlock _Nonnull)byHyphenationFactor {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (float v) {
         @jobs_strongify(self) 
@@ -110,7 +110,7 @@
     };
 }
 #pragma mark —— BOOL
--(JobsReturnMutableParagraphStyleByBOOLBlock _Nonnull)byAllowsDefaultTighteningForTruncation {
+-(JobsRetMutableParagraphStyleByBOOLBlock _Nonnull)byAllowsDefaultTighteningForTruncation {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (BOOL on) {
         @jobs_strongify(self) 
@@ -121,7 +121,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByBOOLBlock _Nonnull)byUsesDefaultHyphenation {
+-(JobsRetMutableParagraphStyleByBOOLBlock _Nonnull)byUsesDefaultHyphenation {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (BOOL on) {
         @jobs_strongify(self) 
@@ -132,7 +132,7 @@
     };
 }
 #pragma mark —— Enums
--(JobsReturnMutableParagraphStyleByNSIntegerBlock _Nonnull)byLineBreakMode {
+-(JobsRetMutableParagraphStyleByNSIntegerBlock _Nonnull)byLineBreakMode {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (NSLineBreakMode mode) {
         @jobs_strongify(self) 
@@ -141,7 +141,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByNSIntegerBlock _Nonnull)byBaseWritingDirection {
+-(JobsRetMutableParagraphStyleByNSIntegerBlock _Nonnull)byBaseWritingDirection {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (NSWritingDirection dir) {
         @jobs_strongify(self) 
@@ -150,7 +150,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByNSUIntegerBlock _Nonnull)byLineBreakStrategy {
+-(JobsRetMutableParagraphStyleByNSUIntegerBlock _Nonnull)byLineBreakStrategy {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (NSLineBreakStrategy strategy) {
         @jobs_strongify(self) 
@@ -161,7 +161,7 @@
     };
 }
 #pragma mark —— Arrays
--(JobsReturnMutableParagraphStyleByArrBlock _Nonnull)byTabStops {
+-(JobsRetMutableParagraphStyleByArrBlock _Nonnull)byTabStops {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (NSArray<NSTextTab *> * _Nullable stops) {
         @jobs_strongify(self) 
@@ -171,7 +171,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByArrBlock _Nonnull)byTextLists {
+-(JobsRetMutableParagraphStyleByArrBlock _Nonnull)byTextLists {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (NSArray<NSTextList *> * _Nullable lists) {
         @jobs_strongify(self) 
@@ -181,7 +181,7 @@
     };
 }
 #pragma mark —— Single object operations
--(JobsReturnMutableParagraphStyleByNSTextTabBlock _Nonnull)byAddTabStop {
+-(JobsRetMutableParagraphStyleByNSTextTabBlock _Nonnull)byAddTabStop {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (NSTextTab * _Nullable tab) {
         @jobs_strongify(self) 
@@ -192,7 +192,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByNSTextTabBlock _Nonnull)byRemoveTabStop {
+-(JobsRetMutableParagraphStyleByNSTextTabBlock _Nonnull)byRemoveTabStop {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (NSTextTab * _Nullable tab) {
         @jobs_strongify(self) 
@@ -203,7 +203,7 @@
     };
 }
 
--(JobsReturnMutableParagraphStyleByNSParagraphStyleBlock _Nonnull)bySetParagraphStyle {
+-(JobsRetMutableParagraphStyleByNSParagraphStyleBlock _Nonnull)bySetParagraphStyle {
     @jobs_weakify(self)
     return ^__kindof NSMutableParagraphStyle * (NSParagraphStyle * _Nullable style) {
         @jobs_strongify(self) 

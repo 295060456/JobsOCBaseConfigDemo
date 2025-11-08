@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSKeyedArchiver (Extra)
 
-+(JobsReturnDataByIDBlock _Nonnull)initByObject;
-+(JobsReturnDataByIDBlock _Nonnull)archivedDataByRootObject_NO;
-+(JobsReturnDataByIDBlock _Nonnull)archivedDataByRootObject_YES;
++(JobsRetDataByIDBlock _Nonnull)initByObject;
++(JobsRetDataByIDBlock _Nonnull)archivedDataByRootObject_NO;
++(JobsRetDataByIDBlock _Nonnull)archivedDataByRootObject_YES;
 
 @end
 

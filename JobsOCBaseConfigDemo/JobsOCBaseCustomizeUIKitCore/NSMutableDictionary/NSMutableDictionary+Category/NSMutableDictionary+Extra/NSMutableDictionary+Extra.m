@@ -9,7 +9,7 @@
 
 @implementation NSMutableDictionary (Extra)
 
--(JobsReturnMutableDicByKeyValueBlock _Nonnull)add{
+-(JobsRetMutableDicByKeyValueBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^NSMutableDictionary *_Nonnull(id <NSCopying>_Nonnull key,id _Nonnull value) {
         @jobs_strongify(self)
@@ -18,7 +18,7 @@
     };
 }
 
--(JobsReturnMutableDicByDicBlock _Nonnull)addByDic{
+-(JobsRetMutableDicByDicBlock _Nonnull)addByDic{
     @jobs_weakify(self)
     return ^NSMutableDictionary *_Nonnull(__kindof NSDictionary *_Nullable dic){
         @jobs_strongify(self)

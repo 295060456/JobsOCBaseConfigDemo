@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CAAnimation (Extra)
 
--(JobsReturnCAAnimationByCAMediaTimingFunctionBlock _Nonnull)timingFunctionBy;
--(JobsReturnCAAnimationByDelegateBlock _Nonnull)delegateBy;
--(JobsReturnCAAnimationByBOOLBlock _Nonnull)removedOnCompletionBy;
+-(JobsRetCAAnimationByCAMediaTimingFunctionBlock _Nonnull)timingFunctionBy;
+-(JobsRetCAAnimationByDelegateBlock _Nonnull)delegateBy;
+-(JobsRetCAAnimationByBOOLBlock _Nonnull)removedOnCompletionBy;
 
 @end
 

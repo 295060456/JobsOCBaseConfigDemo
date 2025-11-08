@@ -121,22 +121,22 @@ NS_INLINE BOOL jobsClassisContainsSuperMethod(Class cls,NSString *methodName){
 }
 @interface NSObject (Class)
 #pragma mark —— 返回并打印成员变量列表
--(JobsReturnArrayByVoidBlock _Nonnull)printIvarList;
+-(JobsRetArrByVoidBlock _Nonnull)printIvarList;
 -(__kindof NSArray *)ivarList;
 #pragma mark —— 返回并打印属性列表
--(JobsReturnArrayByVoidBlock _Nonnull)printPropertyList;
+-(JobsRetArrByVoidBlock _Nonnull)printPropertyList;
 -(__kindof NSArray *)propertyList;
 #pragma mark —— 返回并打印方法列表
--(JobsReturnArrayByVoidBlock _Nonnull)printMethodList;
+-(JobsRetArrByVoidBlock _Nonnull)printMethodList;
 -(__kindof NSArray *)methodList;
 #pragma mark —— 返回并打印协议列表
--(JobsReturnArrayByVoidBlock _Nonnull)printProtocolList;
+-(JobsRetArrByVoidBlock _Nonnull)printProtocolList;
 -(__kindof NSArray *)protocolList;
 /// 1、字典是hash映射，是无序的，如果需要有序则需要避开字典，所以对模型进行操作是大前提
 /// 2、字典和模型的差距在于序列化
 /// 3、字典化的模型里面，依据有序的（从上至下）属性名字排列，去取值，映射到数组里面
 /// 4、要成为字典的Key，只需要遵循NSCopying协议
--(JobsReturnArrayByVoidBlock _Nonnull)readModelPropertyValueByOrder;
+-(JobsRetArrByVoidBlock _Nonnull)readModelPropertyValueByOrder;
 
 @end
 

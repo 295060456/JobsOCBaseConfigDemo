@@ -9,7 +9,7 @@
 
 @implementation NSObject (Algorithm)
 /// 将数据做成3列，第一个元素的下标是1，判断任意一个下标数，处于哪一列
--(JobsReturnIntByIntBlock _Nonnull)column3By{
+-(JobsRetIntByIntBlock _Nonnull)column3By{
     return ^int(int n){
         return ((n - 1) % 3) + 1;
     };
@@ -19,7 +19,7 @@
     return (count + (num - 1)) / num;
 }
 /// 判断任意给定的一个整型是多少位数
--(JobsReturnByNSIntegerBlock _Nonnull)bitNum{
+-(JobsRetByNSIntegerBlock _Nonnull)bitNum{
     return ^NSInteger(NSInteger number){
         NSInteger count = 0;
         while(number != 0){
@@ -30,7 +30,7 @@
     };
 }
 /// 判断任意数字是否为小数
--(JobsReturnBOOLByCGFloatBlock _Nonnull)isFloat{
+-(JobsRetBOOLByCGFloatBlock _Nonnull)isFloat{
     return ^BOOL(CGFloat num){
         return num - (int)num;
     };
@@ -76,7 +76,7 @@
                              searchStrategy:(JobsSearchStrategy)searchStrategy
                                    keywords:(NSString *_Nonnull)keywords{
     NSMutableSet *__block resMutSet = NSMutableSet.set;
-    JobsReturnIDByIDBlock dimSearchBlock = ^(id data){
+    JobsRetIDByIDBlock dimSearchBlock = ^(id data){
         for (id obj in data) {// 系统Api提供的基础对象元素
             if ([obj isKindOfClass:NSNumber.class] ||
                 [obj isKindOfClass:NSString.class]) {
@@ -125,7 +125,7 @@
     }else{}return resMutSet;
 }
 /// 以当前手机系统时间（包含了时区）为基准，给定一个日期偏移值（正值代表未来，负值代表过去，0代表现在），返回字符串特定格式的“星期几”
--(JobsReturnStringByIntegerBlock _Nonnull)whatDayOfWeekDistanceNow{
+-(JobsRetStringByIntegerBlock _Nonnull)whatDayOfWeekDistanceNow{
     return ^NSString *_Nullable(NSInteger offsetDay){
         JobsTimeModel *timeModel = JobsTimeModel.makeSpecificTime;
         NSInteger currentWeekday = timeModel.currentWeekday;//当前时间是周几？1代表周日 2代表周一 7代表周六
@@ -176,7 +176,7 @@
     };
 }
 /// 随机生成验证码字符串
--(JobsReturnStringByArrAndNSIntegerBlock _Nonnull)randomCodeBy{
+-(JobsRetStrByArrAndNSIntegerBlock _Nonnull)randomCodeBy{
     return ^ __kindof NSString *_Nullable(__kindof NSArray <NSString *>*_Nullable data,NSInteger index){
         return jobsMakeMutString(^(__kindof NSMutableString * _Nullable tmpStr) {
             NSInteger d = data.count >= (index + 1) ? index : data.count;
@@ -188,7 +188,7 @@
     };
 }
 /// 通用格式化方法：整数或浮点数，每三位加逗号，小数保留2位
--(JobsReturnStringByCGFloatBlock _Nonnull)manualFormatNumber{
+-(JobsRetStringByCGFloatBlock _Nonnull)manualFormatNumber{
     return ^__kindof NSString *_Nullable(CGFloat num){
         return jobsMakeMutString(^(__kindof NSMutableString *_Nullable result) {
             // 取整和小数部分
@@ -219,7 +219,7 @@
     };
 }
 ///（Rects）获取最大高度
--(JobsReturnCGFloatByArrBlock _Nonnull)maxHeightInRectArray{
+-(JobsRetCGFloatByArrBlock _Nonnull)maxHeightInRectArray{
     return ^CGFloat(__kindof NSArray <NSValue *>*_Nullable data){
         if (data.count){
             CGFloat maxHeight = 0;
@@ -231,7 +231,7 @@
     };
 }
 ///（Rects）获取最小高度
--(JobsReturnCGFloatByArrBlock _Nonnull)minHeightInRectArray{
+-(JobsRetCGFloatByArrBlock _Nonnull)minHeightInRectArray{
     return ^CGFloat(__kindof NSArray <NSValue *>*_Nullable data){
         if(data.count){
             CGFloat minHeight = CGFLOAT_MAX;
@@ -243,7 +243,7 @@
     };
 }
 ///（Rects）获取最大宽度
--(JobsReturnCGFloatByArrBlock _Nonnull)maxWidthInRectArray{
+-(JobsRetCGFloatByArrBlock _Nonnull)maxWidthInRectArray{
     return ^CGFloat(__kindof NSArray <NSValue *>*_Nullable data){
         if(data.count){
             CGFloat maxWidth = 0;
@@ -255,7 +255,7 @@
     };
 }
 ///（Rects）获取最小宽度
--(JobsReturnCGFloatByArrBlock _Nonnull)minWidthInRectArray{
+-(JobsRetCGFloatByArrBlock _Nonnull)minWidthInRectArray{
     return ^CGFloat(__kindof NSArray <NSValue *>*_Nullable data){
         if(data.count){
             CGFloat minWidth = CGFLOAT_MAX;
@@ -267,7 +267,7 @@
     };
 }
 ///（Sizes）获取最大高度
--(JobsReturnCGFloatByArrBlock _Nonnull)maxHeightInSizeArray{
+-(JobsRetCGFloatByArrBlock _Nonnull)maxHeightInSizeArray{
     return ^CGFloat(__kindof NSArray<NSValue *> *_Nullable data) {
         if (data.count) {
             CGFloat maxHeight = 0;
@@ -279,7 +279,7 @@
     };
 }
 ///（Sizes）获取最小高度
--(JobsReturnCGFloatByArrBlock _Nonnull)minHeightInSizeArray{
+-(JobsRetCGFloatByArrBlock _Nonnull)minHeightInSizeArray{
     return ^CGFloat(__kindof NSArray<NSValue *> *_Nullable data) {
         if (data.count) {
             CGFloat minHeight = CGFLOAT_MAX;
@@ -291,7 +291,7 @@
     };
 }
 ///（Sizes）获取最大宽度
--(JobsReturnCGFloatByArrBlock _Nonnull)maxWidthInSizeArray{
+-(JobsRetCGFloatByArrBlock _Nonnull)maxWidthInSizeArray{
     return ^CGFloat(__kindof NSArray<NSValue *> *_Nullable data) {
         if (data.count) {
             CGFloat maxWidth = 0;
@@ -303,7 +303,7 @@
     };
 }
 ///（Sizes）获取最小宽度
--(JobsReturnCGFloatByArrBlock _Nonnull)minWidthInSizeArray{
+-(JobsRetCGFloatByArrBlock _Nonnull)minWidthInSizeArray{
     return ^CGFloat(__kindof NSArray<NSValue *> *_Nullable data) {
         if (data.count) {
             CGFloat minWidth = CGFLOAT_MAX;

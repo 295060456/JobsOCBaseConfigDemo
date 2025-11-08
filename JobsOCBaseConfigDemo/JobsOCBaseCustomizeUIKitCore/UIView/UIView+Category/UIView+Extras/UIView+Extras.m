@@ -10,14 +10,14 @@
 
 @implementation UIView (Extras)
 #pragma mark —— init
-+(JobsReturnViewByFrameBlock _Nonnull)initByFrame{
++(JobsRetViewByFrameBlock _Nonnull)initByFrame{
     return ^__kindof UIView *_Nullable(CGRect data){
         return [UIView.alloc initWithFrame:data];
     };
 }
 #pragma mark —— BaseViewProtocol
 /// 用于类
-+(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel{
++(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(id _Nullable data){
         @jobs_strongify(self)
@@ -28,7 +28,7 @@
     };
 }
 /// 用于实例
--(JobsReturnViewByIDBlock _Nonnull)JobsRichViewByModel2{
+-(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel2{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(id _Nullable data){
         @jobs_strongify(self)
@@ -42,7 +42,7 @@
     };
 }
 
--(JobsReturnScrollViewByIDBlock _Nonnull)dataLink{
+-(JobsRetScrollViewByIDBlock _Nonnull)dataLink{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *(id _Nonnull target) {
         @jobs_strongify(self)
@@ -68,87 +68,87 @@
 }
 #pragma mark —— 用类方法定义
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)viewWidthByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)viewWidthByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)viewHeightByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(0);
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
++(JobsRetCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeZero;
     };
 }
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
++(JobsRetFrameByIDBlock _Nonnull)viewFrameByModel{
     return ^CGRect(id _Nullable data){
         return CGRectZero;
     };
 }
 /// 具体由子类进行复写【FrameX的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeXByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)viewChangeXByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【FrameY的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeYByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)viewChangeYByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【FrameWidth的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeWidthByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)viewChangeWidthByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【FrameHeight的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)viewChangeHeightByModel{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 /// UICollectionViewDelegateFlowLayout
-+(JobsReturnCGSizeByIDBlock _Nonnull)collectionReusableViewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)collectionReusableViewSizeByModel{
     return ^(id _Nullable data){
         return CGSizeZero;
     };
 }
 /// 数据（字符串）定宽
-+(JobsReturnCGFloatByIDBlock _Nonnull)widthByData{
++(JobsRetCGFloatByIDBlock _Nonnull)widthByData{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 /// 数据（字符串）定高
-+(JobsReturnCGFloatByIDBlock _Nonnull)heightByData{
++(JobsRetCGFloatByIDBlock _Nonnull)heightByData{
     return ^CGFloat(id _Nullable data){
         return 0.0f;
     };
 }
 #pragma mark —— 用实例方法定义
 /// 具体由子类进行复写【数据定宽】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)viewWidthByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)viewWidthByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -156,7 +156,7 @@
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)viewHeightByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)viewHeightByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -164,7 +164,7 @@
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)heightForFooterInSectionByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -172,7 +172,7 @@
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
+-(JobsRetCGFloatByIDBlock _Nonnull)heightForHeaderInSection{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -180,7 +180,7 @@
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
+-(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     @jobs_weakify(self)
     return ^CGSize(id _Nullable data){
         @jobs_strongify(self)
@@ -188,7 +188,7 @@
     };
 }
 /// 具体由子类进行复写【数据Frame】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGRectByIDBlock _Nonnull)viewFrameByModel{
+-(JobsRetFrameByIDBlock _Nonnull)viewFrameByModel{
     @jobs_weakify(self)
     return ^CGRect(id _Nullable data){
         @jobs_strongify(self)
@@ -196,7 +196,7 @@
     };
 }
 /// 具体由子类进行复写【FrameX的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeXByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)viewChangeXByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -204,7 +204,7 @@
     };
 }
 /// 具体由子类进行复写【FrameY的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeYByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)viewChangeYByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -212,7 +212,7 @@
     };
 }
 /// 具体由子类进行复写【FrameWidth的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeWidthByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)viewChangeWidthByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -220,7 +220,7 @@
     };
 }
 /// 具体由子类进行复写【FrameHeight的变化量】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnCGFloatByIDBlock _Nonnull)viewChangeHeightByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)viewChangeHeightByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -229,7 +229,7 @@
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 /// UICollectionViewDelegateFlowLayout
--(JobsReturnCGSizeByIDBlock _Nonnull)collectionReusableViewSizeByModel{
+-(JobsRetCGSizeByIDBlock _Nonnull)collectionReusableViewSizeByModel{
     @jobs_weakify(self)
     return ^(id _Nullable data){
         @jobs_strongify(self)
@@ -237,7 +237,7 @@
     };
 }
 /// 数据（字符串）定宽
--(JobsReturnCGFloatByIDBlock _Nonnull)widthByData{
+-(JobsRetCGFloatByIDBlock _Nonnull)widthByData{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -245,7 +245,7 @@
     };
 }
 /// 数据（字符串）定高
--(JobsReturnCGFloatByIDBlock _Nonnull)heightByData{
+-(JobsRetCGFloatByIDBlock _Nonnull)heightByData{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -384,7 +384,7 @@
     }return nil;
 }
 /// 截图
--(JobsReturnImageByViewBlock _Nonnull)rendImage{
+-(JobsRetImageByViewBlock _Nonnull)rendImage{
     @jobs_weakify(self)
     return ^UIImage *_Nonnull(__kindof UIView *_Nonnull data){
         @jobs_strongify(self)
@@ -402,7 +402,7 @@
     };
 }
 /// 获取某个 范围内的 截图
--(JobsReturnImageByCGRectBlock _Nonnull)innerViewShotAtFrame{
+-(JobsRetImageByCGRectBlock _Nonnull)innerViewShotAtFrame{
     @jobs_weakify(self)
     return ^UIImage *_Nonnull(CGRect rect){
         @jobs_strongify(self)
@@ -454,7 +454,7 @@ JobsKey(_bottomBorderLayer)
     }return layer;
 }
 /// 调用方式：view.leftBorderColor(color).leftBorderWidth(borderType);
--(JobsReturnViewByCorBlock _Nonnull)leftBorderColor{
+-(JobsRetViewByCorBlock _Nonnull)leftBorderColor{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIColor *_Nullable color){
         @jobs_strongify(self)
@@ -464,7 +464,7 @@ JobsKey(_bottomBorderLayer)
     };
 }
 /// 调用方式：view.rightBorderColor(color).rightBorderWidth(borderType);
--(JobsReturnViewByCorBlock _Nonnull)rightBorderColor{
+-(JobsRetViewByCorBlock _Nonnull)rightBorderColor{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIColor *_Nullable color){
         @jobs_strongify(self)
@@ -474,7 +474,7 @@ JobsKey(_bottomBorderLayer)
     };
 }
 /// 调用方式：view.topBorderColor(color).topBorderWidth(borderType);
--(JobsReturnViewByCorBlock _Nonnull)topBorderColor{
+-(JobsRetViewByCorBlock _Nonnull)topBorderColor{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIColor *_Nullable color){
         @jobs_strongify(self)
@@ -484,7 +484,7 @@ JobsKey(_bottomBorderLayer)
     };
 }
 /// 调用方式：view.bottomBorderColor(color).bottomBorderWidth(borderType);
--(JobsReturnViewByCorBlock _Nonnull)bottomBorderColor{
+-(JobsRetViewByCorBlock _Nonnull)bottomBorderColor{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIColor *_Nullable color){
         @jobs_strongify(self)
@@ -494,7 +494,7 @@ JobsKey(_bottomBorderLayer)
     };
 }
 /// 调用方式：view.leftBorderColor(color).leftBorderWidth(borderType);
--(JobsReturnViewByFloatBlock _Nonnull)leftBorderWidth{
+-(JobsRetViewByFloatBlock _Nonnull)leftBorderWidth{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float borderWidth){
         @jobs_strongify(self)
@@ -507,7 +507,7 @@ JobsKey(_bottomBorderLayer)
     };
 }
 /// 调用方式：view.rightBorderColor(color).rightBorderWidth(borderType);
--(JobsReturnViewByFloatBlock _Nonnull)rightBorderWidth{
+-(JobsRetViewByFloatBlock _Nonnull)rightBorderWidth{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float borderWidth){
         @jobs_strongify(self)
@@ -520,7 +520,7 @@ JobsKey(_bottomBorderLayer)
     };
 }
 /// 调用方式：view.topBorderColor(color).topBorderWidth(borderType);
--(JobsReturnViewByFloatBlock _Nonnull)topBorderWidth{
+-(JobsRetViewByFloatBlock _Nonnull)topBorderWidth{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float borderWidth){
         @jobs_strongify(self)
@@ -533,7 +533,7 @@ JobsKey(_bottomBorderLayer)
     };
 }
 /// 调用方式：view.bottomBorderColor(color).bottomBorderWidth(borderType);
--(JobsReturnViewByFloatBlock _Nonnull)bottomBorderWidth{
+-(JobsRetViewByFloatBlock _Nonnull)bottomBorderWidth{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float borderWidth){
         @jobs_strongify(self)
@@ -585,7 +585,7 @@ JobsKey(_bottomBorderLayer)
     if (borderType & UIBorderSideTypeBottom) self.bottomBorderColor(color).bottomBorderWidth(borderType);
 }
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
--(JobsReturnViewByCorBlock _Nonnull)layerByBorderCor{
+-(JobsRetViewByCorBlock _Nonnull)layerByBorderCor{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIColor *_Nullable layerBorderCor) {
         @jobs_strongify(self)
@@ -594,7 +594,7 @@ JobsKey(_bottomBorderLayer)
     };
 }
 /// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
--(JobsReturnViewByFloatBlock _Nonnull)layerByBorderWidth{
+-(JobsRetViewByFloatBlock _Nonnull)layerByBorderWidth{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float borderWidth) {
         @jobs_strongify(self)
@@ -604,7 +604,7 @@ JobsKey(_bottomBorderLayer)
 }
 #pragma mark —— 切角
 /// 切整个View的4个角为统一的切角参数
--(JobsReturnViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
+-(JobsRetViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(float cornerRadiusValue) {
         @jobs_strongify(self)
@@ -615,7 +615,7 @@ JobsKey(_bottomBorderLayer)
 }
 /// 调用方式：view.appointCorners(UIRectCornerTopLeft | UIRectCornerBottomRight).cornerRadii(CGSizeMake(10, 10));
 JobsKey(_appointCorners)
-- (JobsReturnViewByNSUIntegerBlock _Nonnull)appointCorners {
+- (JobsRetViewByNSUIntegerBlock _Nonnull)appointCorners {
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIRectCorner corners) {
         @jobs_strongify(self)
@@ -625,7 +625,7 @@ JobsKey(_appointCorners)
 }
 /// 调用方式：view.appointCorners(UIRectCornerTopLeft | UIRectCornerBottomRight).cornerRadii(CGSizeMake(10, 10));
 JobsKey(_cornerRadii)
-- (JobsReturnViewBySizeBlock _Nonnull)cornerRadii {
+- (JobsRetViewByCGSizeBlock _Nonnull)cornerRadii {
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGSize cornerRadii) {
         @jobs_strongify(self)
@@ -669,7 +669,7 @@ JobsKey(_cornerRadii)
     });
 }
 #pragma mark —— 其他
--(JobsReturnViewByCorBlock _Nonnull)byBgCor{
+-(JobsRetViewByCorBlock _Nonnull)byBgCor{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIColor *_Nullable cor){
         @jobs_strongify(self)
@@ -678,7 +678,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnViewByNSIntegerBlock _Nonnull)viewByID{
+-(JobsRetViewByNSIntegerBlock _Nonnull)viewByID{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(NSInteger data){
         @jobs_strongify(self)
@@ -686,7 +686,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnViewByGestureRecognizer _Nonnull)addGesture{
+-(JobsRetViewByGestureRecognizer _Nonnull)addGesture{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIGestureRecognizer *_Nonnull gesture) {
         @jobs_strongify(self)
@@ -695,7 +695,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnGestureRecognizerByGestureRecognizer _Nonnull)addGestureRecognizer{
+-(JobsReturnGestureByGesture _Nonnull)addGestureRecognizer{
     @jobs_weakify(self)
     return ^__kindof UIGestureRecognizer *_Nullable(__kindof UIGestureRecognizer *_Nullable gesture) {
         @jobs_strongify(self)
@@ -704,7 +704,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnBarButtonItemByVoidBlock _Nonnull)barButtonItem{
+-(JobsRetBarButtonItemByVoidBlock _Nonnull)barButtonItem{
     @jobs_weakify(self)
     return ^__kindof UIBarButtonItem *_Nullable(){
         @jobs_strongify(self)
@@ -712,7 +712,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnViewByNSIntegerBlock _Nonnull)viewWithTag{
+-(JobsRetViewByNSIntegerBlock _Nonnull)viewWithTag{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(NSInteger data) {
         @jobs_strongify(self)
@@ -720,7 +720,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnViewByInteractionBlock _Nonnull)addInteraction{
+-(JobsRetViewByInteractionBlock _Nonnull)addInteraction{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(id <UIInteraction>_Nullable data){
         @jobs_strongify(self)
@@ -729,7 +729,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnViewByInteractionBlock _Nonnull)removeInteraction{
+-(JobsRetViewByInteractionBlock _Nonnull)removeInteraction{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(id <UIInteraction>_Nullable data){
         @jobs_strongify(self)
@@ -738,7 +738,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnViewByViewBlock _Nonnull)addSubview{
+-(JobsRetViewByViewBlock _Nonnull)addSubview{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
         @jobs_strongify(self)
@@ -751,7 +751,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnViewByViewBlock _Nonnull)bringSubviewToFront{
+-(JobsRetViewByViewBlock _Nonnull)bringSubviewToFront{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
         @jobs_strongify(self)
@@ -760,7 +760,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnViewByViewBlock _Nonnull)sendSubviewToBack{
+-(JobsRetViewByViewBlock _Nonnull)sendSubviewToBack{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
         @jobs_strongify(self)
@@ -769,7 +769,7 @@ JobsKey(_cornerRadii)
     };
 }
 
--(JobsReturnViewByVoidBlock _Nonnull)remove{
+-(JobsRetViewByVoidBlock _Nonnull)remove{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable() {
         @jobs_strongify(self)
@@ -977,7 +977,7 @@ JobsKey(_cornerRadii)
     }).CGPath;
 }
 
--(JobsReturnViewByCGFloatBlock _Nonnull)byVisible{
+-(JobsRetViewByCGFloatBlock _Nonnull)byVisible{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(CGFloat alpha){
         @jobs_strongify(self)

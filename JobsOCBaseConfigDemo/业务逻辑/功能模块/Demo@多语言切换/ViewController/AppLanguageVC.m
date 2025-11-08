@@ -91,7 +91,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
     [super viewWillDisappear:animated];
 }
 #pragma mark —— BaseViewProtocol
--(JobsReturnViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView{
+-(JobsRetViewByTableViewHeaderFooterViewBlock)makeViewOnTableViewHeaderFooterView{
     return ^__kindof UIView *_Nullable (__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView) {
         /// 清除缓存以确保新图片被加载
         [SDImageCache.sharedImageCache clearMemory];

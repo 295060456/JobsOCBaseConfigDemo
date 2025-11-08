@@ -70,7 +70,7 @@ Prop_assign()NSUInteger thisIndex;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeMake(JobsMainScreen_WIDTH() - JobsWidth(30),
                           JobsWidth(400));
@@ -145,7 +145,7 @@ Prop_assign()NSUInteger thisIndex;
     };
 }
 /// 预算高度
--(JobsReturnCGFloatByArrBlock _Nonnull)getCellHeight{
+-(JobsRetCGFloatByArrBlock _Nonnull)getCellHeight{
     @jobs_weakify(self)
     return ^(NSMutableArray *_Nullable data){
         @jobs_strongify(self)

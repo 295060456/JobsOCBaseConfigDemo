@@ -9,13 +9,13 @@
 
 @implementation WKWebView (Extra)
 
-+(JobsReturnWKWebViewByConfigurationBlock _Nonnull)initBy{
++(JobsRetWKWebViewByConfigurationBlock _Nonnull)initBy{
     return ^__kindof WKWebView *_Nullable(WKWebViewConfiguration *_Nullable config){
         return [WKWebView.alloc initWithFrame:CGRectZero configuration:config];
     };
 }
 
--(JobsReturnWKWebViewByURLRequestBlock _Nonnull)loadRequest{
+-(JobsRetWKWebViewByURLRequestBlock _Nonnull)loadRequest{
     @jobs_weakify(self)
     return ^__kindof WKWebView *_Nullable(__kindof NSURLRequest *_Nullable request){
         @jobs_strongify(self)
@@ -24,7 +24,7 @@
     };
 }
 
--(JobsReturnWKWebViewByURLBlock _Nonnull)loadFileURL{
+-(JobsRetWKWebViewByURLBlock _Nonnull)loadFileURL{
     @jobs_weakify(self)
     return ^__kindof WKWebView *_Nullable(__kindof NSURL *_Nullable url){
         @jobs_strongify(self)
@@ -33,7 +33,7 @@
     };
 }
 
--(JobsReturnCollectionViewByNavDelegateBlock _Nonnull)byNavDelegate{
+-(JobsRetCollectionViewByNavDelegateBlock _Nonnull)byNavDelegate{
     @jobs_weakify(self)
     return ^__kindof WKWebView *_Nullable(id <WKNavigationDelegate>_Nullable delegate){
         @jobs_strongify(self)
@@ -42,7 +42,7 @@
     };
 }
 
--(JobsReturnCollectionViewByUIDelegateBlock _Nonnull)byUIDelegate{
+-(JobsRetCollectionViewByUIDelegateBlock _Nonnull)byUIDelegate{
     @jobs_weakify(self)
     return ^__kindof WKWebView *_Nullable(id <WKUIDelegate>_Nullable delegate){
         @jobs_strongify(self)

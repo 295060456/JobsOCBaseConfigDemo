@@ -9,7 +9,7 @@
 
 @implementation UIButtonConfiguration (Extra)
 
-- (JobsReturnButtonConfigurationByButtonConfigurationBlock _Nonnull)byButtonConfiguration API_AVAILABLE(ios(16.0)){
+- (JobsRetBtnConfigByBtnConfigBlock _Nonnull)byButtonConfiguration API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIButtonConfiguration *cfg) {
         @jobs_strongify(self)
@@ -56,7 +56,7 @@
     };
 }
 #pragma mark - Background
-- (JobsReturnButtonConfigurationByBackgroundBlock _Nonnull)byBackground {
+- (JobsRetBtnConfigByBackgroundBlock _Nonnull)byBackground {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIBackgroundConfiguration *bg) {
         @jobs_strongify(self)
@@ -65,7 +65,7 @@
     };
 }
 #pragma mark - Style / Size / Idiom
-- (JobsReturnButtonConfigurationByCornerStyleBlock _Nonnull)byCornerStyle {
+- (JobsRetBtnConfigByCornerStyleBlock _Nonnull)byCornerStyle {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIButtonConfigurationCornerStyle style) {
         @jobs_strongify(self)
@@ -74,7 +74,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationBySizeBlock _Nonnull)byButtonSize {
+- (JobsRetBtnConfigBySizeBlock _Nonnull)byButtonSize {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIButtonConfigurationSize size) {
         self.buttonSize = size;
@@ -82,7 +82,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByMacIdiomStyleBlock _Nonnull)byMacIdiomStyle {
+- (JobsRetBtnConfigByMacIdiomStyleBlock _Nonnull)byMacIdiomStyle {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIButtonConfigurationMacIdiomStyle style) {
         self.macIdiomStyle = style;
@@ -90,7 +90,7 @@
     };
 }
 #pragma mark - Base colors
-- (JobsReturnButtonConfigurationByBaseForegroundColorBlock _Nonnull)byBaseForegroundColor {
+- (JobsReBtnConfigByBaseForegroundCorBlock _Nonnull)byBaseForegroundColor {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIColor *color) {
         @jobs_strongify(self)
@@ -99,7 +99,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByBaseBackgroundColorBlock _Nonnull)byBaseBackgroundColor {
+- (JobsRetBtnConfigByBaseBackgroundCorBlock _Nonnull)byBaseBackgroundColor {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIColor *color) {
         self.baseBackgroundColor = color;
@@ -107,7 +107,7 @@
     };
 }
 #pragma mark - Image & transformers
-- (JobsReturnButtonConfigurationByImageBlock _Nonnull)byImage {
+- (JobsRetBtnConfigByImageBlock _Nonnull)byImage {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIImage *img) {
         self.image = img;
@@ -115,7 +115,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByImageColorTransformerBlock _Nonnull)byImageColorTransformer {
+- (JobsRetBtnConfigByImageCorTransformerBlock _Nonnull)byImageColorTransformer {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIConfigurationColorTransformer transformer) {
         self.imageColorTransformer = transformer;
@@ -123,7 +123,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByPreferredSymbolConfigurationForImageBlock _Nonnull)byPreferredSymbolConfigurationForImage {
+- (JobsRetBtnConfigByPreferredSymbolConfigForImageBlock _Nonnull)byPreferredSymbolConfigurationForImage {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIImageSymbolConfiguration *sym) {
         self.preferredSymbolConfigurationForImage = sym;
@@ -131,7 +131,7 @@
     };
 }
 #pragma mark - Activity indicator
-- (JobsReturnButtonConfigurationByShowsActivityIndicatorBlock _Nonnull)byShowsActivityIndicator {
+- (JobsRetBtnConfigByShowsActivityIndicatorBlock _Nonnull)byShowsActivityIndicator {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(BOOL on) {
         self.showsActivityIndicator = on;
@@ -139,7 +139,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByActivityIndicatorColorTransformerBlock _Nonnull)byActivityIndicatorColorTransformer {
+- (JobsRetBtnConfigByActivityIndicatorCorTransformerBlock _Nonnull)byActivityIndicatorColorTransformer {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIConfigurationColorTransformer transformer) {
         self.activityIndicatorColorTransformer = transformer;
@@ -147,7 +147,7 @@
     };
 }
 #pragma mark - Title / Subtitle
-- (JobsReturnButtonConfigurationByTitleBlock _Nonnull)byTitle {
+- (JobsRetBtnConfigByStrBlock _Nonnull)byTitle {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(NSString *text) {
         self.title = text;
@@ -155,7 +155,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByAttributedTitleBlock _Nonnull)byAttributedTitle {
+- (JobsRetBtnConfigByAttributedStrBlock _Nonnull)byAttributedTitle {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(NSAttributedString *attr) {
         self.attributedTitle = attr;
@@ -163,7 +163,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByTitleTextAttributesTransformerBlock _Nonnull)byTitleTextAttributesTransformer {
+- (JobsRetBtnConfigByTitleTextAttributesTransformerBlock _Nonnull)byTitleTextAttributesTransformer {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIConfigurationTextAttributesTransformer transformer) {
         self.titleTextAttributesTransformer = transformer;
@@ -171,7 +171,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByTitleLineBreakModeBlock _Nonnull)byTitleLineBreakMode {
+- (JobsRetBtnConfigByTitleLineBreakModeBlock _Nonnull)byTitleLineBreakMode {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(NSLineBreakMode mode) {
         self.titleLineBreakMode = mode;
@@ -179,7 +179,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationBySubtitleBlock _Nonnull)bySubtitle {
+- (JobsRetBtnConfigBySubtitleBlock _Nonnull)bySubtitle {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(NSString *text) {
         self.subtitle = text;
@@ -187,7 +187,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByAttributedSubtitleBlock _Nonnull)byAttributedSubtitle {
+- (JobsRetBtnConfigByAttributedSubtitleBlock _Nonnull)byAttributedSubtitle {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(NSAttributedString *attr) {
         self.attributedSubtitle = attr;
@@ -195,7 +195,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationBySubtitleTextAttributesTransformerBlock _Nonnull)bySubtitleTextAttributesTransformer {
+- (JobsRetBtnConfigBySubtitleTextAttributesTransformerBlock _Nonnull)bySubtitleTextAttributesTransformer {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIConfigurationTextAttributesTransformer transformer) {
         self.subtitleTextAttributesTransformer = transformer;
@@ -203,7 +203,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationBySubtitleLineBreakModeBlock _Nonnull)bySubtitleLineBreakMode {
+- (JobsRetBtnConfigBySubtitleLineBreakModeBlock _Nonnull)bySubtitleLineBreakMode {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(NSLineBreakMode mode) {
         self.subtitleLineBreakMode = mode;
@@ -211,7 +211,7 @@
     };
 }
 #pragma mark - Indicator (iOS 16+)
-- (JobsReturnButtonConfigurationByIndicatorBlock _Nonnull)byIndicator {
+- (JobsRetBtnConfigByIndicatorBlock _Nonnull)byIndicator {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIButtonConfigurationIndicator ind) {
         self.indicator = ind;
@@ -219,7 +219,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByIndicatorColorTransformerBlock _Nonnull)byIndicatorColorTransformer {
+- (JobsRetBtnConfigByIndicatorColorTransformerBlock _Nonnull)byIndicatorColorTransformer {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(UIConfigurationColorTransformer transformer) {
         self.indicatorColorTransformer = transformer;
@@ -227,7 +227,7 @@
     };
 }
 #pragma mark - Layout
-- (JobsReturnButtonConfigurationByContentInsetsBlock _Nonnull)byContentInsets {
+- (JobsRetBtnConfigByContentInsetsBlock _Nonnull)byContentInsets {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(NSDirectionalEdgeInsets insets) {
         self.contentInsets = insets;
@@ -235,7 +235,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByImagePlacementBlock _Nonnull)byImagePlacement {
+- (JobsRetBtnConfigByImagePlacementBlock _Nonnull)byImagePlacement {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(NSDirectionalRectEdge edge) {
         self.imagePlacement = edge;
@@ -243,7 +243,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByImagePaddingBlock _Nonnull)byImagePadding {
+- (JobsRetBtnConfigByImagePaddingBlock _Nonnull)byImagePadding {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(CGFloat v) {
         self.imagePadding = v;
@@ -251,7 +251,7 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByTitlePaddingBlock _Nonnull)byTitlePadding {
+- (JobsRetBtnConfigByTitlePaddingBlock _Nonnull)byTitlePadding {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(CGFloat v) {
         self.titlePadding = v;
@@ -259,14 +259,14 @@
     };
 }
 
-- (JobsReturnButtonConfigurationByTitleAlignmentBlock _Nonnull)byTitleAlignment {
+- (JobsRetBtnConfigByTitleAlignmentBlock _Nonnull)byTitleAlignment {
     return ^UIButtonConfiguration *(UIButtonConfigurationTitleAlignment a) {
         self.titleAlignment = a;
         return self;
     };
 }
 #pragma mark - Auto update for selection
-- (JobsReturnButtonConfigurationByAutomaticallyUpdateForSelectionBlock _Nonnull)byAutomaticallyUpdateForSelection {
+- (JobsRetBtnConfigByAutomaticallyUpdateForSelectionBlock _Nonnull)byAutomaticallyUpdateForSelection {
     @jobs_weakify(self)
     return ^UIButtonConfiguration *(BOOL on) {
         self.automaticallyUpdateForSelection = on;

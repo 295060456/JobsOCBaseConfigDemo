@@ -9,7 +9,7 @@
 
 @implementation NSTextCheckingResult (Extra)
 
--(JobsReturnRangeByIntegerBlock _Nonnull)rangeAtIndex{
+-(JobsRetRangeByIntegerBlock _Nonnull)rangeAtIndex{
     @jobs_weakify(self)
     return ^NSRange (NSInteger data){
         @jobs_strongify(self)

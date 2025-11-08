@@ -44,7 +44,7 @@ Prop_assign()CGSize size;
                                         cornerRadii:CGSizeMake(JobsWidth(0), JobsWidth(0))];
 }
 #pragma mark —— BaseCellProtocol
--(JobsReturnCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
+-(JobsRetCollectionViewCellByIDBlock _Nonnull)jobsRichElementsCollectionViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(JobsExcelConfigureViewModel *_Nullable viewModel) {
         @jobs_strongify(self)

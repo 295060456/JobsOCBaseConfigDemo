@@ -35,11 +35,11 @@
 //
 // Standard Base64 (RFC) handling
 //
-+(JobsReturnDataByDataBlock _Nonnull)encodeData;
-+(JobsReturnDataByDataBlock _Nonnull)decodeData;
++(JobsRetDataByDataBlock _Nonnull)encodeData;
++(JobsRetDataByDataBlock _Nonnull)decodeData;
 +(NSData *)encodeBytes:(const void *)bytes length:(NSUInteger)length;
 +(NSData *)decodeBytes:(const void *)bytes length:(NSUInteger)length;
-+(JobsReturnStringByDataBlock _Nonnull)stringByEncodingData;
++(JobsRetStringByDataBlock _Nonnull)stringByEncodingData;
 +(NSString *)stringByEncodingBytes:(const void *)bytes length:(NSUInteger)length;
 +(NSData *)decodeString:(NSString *)string;
 //
@@ -60,12 +60,12 @@
 +(NSString *)stringByWebSafeEncodingBytes:(const void *)bytes
                                    length:(NSUInteger)length
                                    padded:(BOOL)padded;
-+(JobsReturnDataByStringBlock _Nonnull)webSafeDecodeString;
++(JobsRetDataByStringBlock _Nonnull)webSafeDecodeString;
 #pragma mark —— base64
-+(JobsReturnStringByStringBlock _Nonnull)md5_base64;
-+(JobsReturnStringByStringBlock _Nonnull)encodeBase64String;
-+(JobsReturnStringByStringBlock _Nonnull)decodeBase64String;
-+(JobsReturnStringByDataBlock _Nonnull)encodeBase64Data;
-+(JobsReturnStringByDataBlock _Nonnull)decodeBase64Data;
++(JobsRetStringByStringBlock _Nonnull)md5_base64;
++(JobsRetStringByStringBlock _Nonnull)encodeBase64String;
++(JobsRetStringByStringBlock _Nonnull)decodeBase64String;
++(JobsRetStringByDataBlock _Nonnull)encodeBase64Data;
++(JobsRetStringByDataBlock _Nonnull)decodeBase64Data;
 
 @end

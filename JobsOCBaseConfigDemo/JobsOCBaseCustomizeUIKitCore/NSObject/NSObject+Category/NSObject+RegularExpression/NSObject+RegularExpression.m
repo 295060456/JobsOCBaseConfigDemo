@@ -35,7 +35,7 @@
     return [NSObject baseCheckForRegEx:regEx data:pwd];
 }
 #pragma mark —— 邮箱校验
-+(JobsReturnBOOLByStringBlock _Nonnull)checkingEmail{
++(JobsRetBOOLByStringBlock _Nonnull)checkingEmail{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable email){
         @jobs_strongify(self)
@@ -44,7 +44,7 @@
     };
 }
 #pragma mark —— 验证(中国大陆)手机号
--(JobsReturnBOOLByStringBlock _Nonnull)checkingMobile{
+-(JobsRetBOOLByStringBlock _Nonnull)checkingMobile{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable mobile){
         @jobs_strongify(self)
@@ -53,7 +53,7 @@
     };
 }
 #pragma mark —— 验证电话号
--(JobsReturnBOOLByStringBlock _Nonnull)checkingPhoneNum{
+-(JobsRetBOOLByStringBlock _Nonnull)checkingPhoneNum{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable phone){
         @jobs_strongify(self)
@@ -62,7 +62,7 @@
     };
 }
 #pragma mark —— 身份证号验证
--(JobsReturnBOOLByStringBlock _Nonnull)checkingIdCard{
+-(JobsRetBOOLByStringBlock _Nonnull)checkingIdCard{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable idCard){
         @jobs_strongify(self)
@@ -71,42 +71,42 @@
     };
 }
 #pragma mark —— 由数字和26个英文字母组成的字符串
--(JobsReturnBOOLByStringBlock _Nonnull)checkingStrFormNumberAndLetter{
+-(JobsRetBOOLByStringBlock _Nonnull)checkingStrFormNumberAndLetter{
     return ^BOOL(NSString *_Nullable data){
         NSString *regEx = @"^[A-Za-z0-9]+$";
         return [NSObject baseCheckForRegEx:regEx data:data];
     };
 }
 #pragma mark —— 26位英文大小写字母组成的字符
--(JobsReturnBOOLByStringBlock _Nonnull)checkingStrFormLowerAndUpperLetter{
+-(JobsRetBOOLByStringBlock _Nonnull)checkingStrFormLowerAndUpperLetter{
     return ^BOOL(NSString *_Nullable data){
         NSString *regEx = @"^[A-Za-z]+$";
         return [NSObject baseCheckForRegEx:regEx data:data];
     };
 }
 #pragma mark —— 小写字母
--(JobsReturnBOOLByStringBlock _Nonnull)checkingLowerLetter{
+-(JobsRetBOOLByStringBlock _Nonnull)checkingLowerLetter{
     return ^BOOL(NSString *_Nullable lowerCase){
         NSString *regEx = @"^[a-z]+$";
         return [NSObject baseCheckForRegEx:regEx data:lowerCase];
     };
 }
 #pragma mark —— 大写字母
--(JobsReturnBOOLByStringBlock _Nonnull)checkingUpperLetter{
+-(JobsRetBOOLByStringBlock _Nonnull)checkingUpperLetter{
     return ^BOOL(NSString *_Nullable upperCase){
         NSString *regEx = @"^[A-Z]+$";
         return [NSObject baseCheckForRegEx:regEx data:upperCase];
     };
 }
 #pragma mark —— 特殊字符
--(JobsReturnBOOLByStringBlock _Nonnull)checkingSpecialChar{
+-(JobsRetBOOLByStringBlock _Nonnull)checkingSpecialChar{
     return ^BOOL(NSString *_Nullable data){
         NSString *regEx = @"[^%&',;=?$\x22]+";
         return [NSObject baseCheckForRegEx:regEx data:data];
     };
 }
 #pragma mark —— 只能输入数字
--(JobsReturnBOOLByStringBlock _Nonnull)checkingNumber{
+-(JobsRetBOOLByStringBlock _Nonnull)checkingNumber{
     return ^BOOL(NSString *_Nullable number){
         NSString *regEx = @"^[0-9]*$";
         return [NSObject baseCheckForRegEx:regEx data:number];

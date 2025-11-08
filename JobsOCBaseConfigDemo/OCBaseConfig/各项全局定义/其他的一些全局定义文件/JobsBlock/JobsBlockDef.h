@@ -167,14 +167,14 @@
 #ifndef Jobs_NavBarConfig_Title_Action_Arguments
 #define Jobs_NavBarConfig_Title_Action_Arguments \
     NSString *_Nullable string, \
-    JobsReturnIDByIDBlock _Nullable backActionBlock
+    JobsRetIDByIDBlock _Nullable backActionBlock
 #endif /* Jobs_NavBarConfig_Title_Action_Arguments */
 
 #ifndef Jobs_NavBarConfig_Titles_Action_Arguments
 #define Jobs_NavBarConfig_Titles_Action_Arguments \
     NSString *_Nullable title, \
     NSString *_Nullable backTitle, \
-    JobsReturnIDByIDBlock _Nullable backActionBlock
+    JobsRetIDByIDBlock _Nullable backActionBlock
 #endif /* Jobs_NavBarConfig_Titles_Action_Arguments */
 
 #ifndef Jobs_NavBarConfig_BackBtnModel_CloseBtnModel_Arguments
@@ -393,6 +393,5 @@
 #define API_IOS15_TVOS15_UNAVAILABLE_WATCHOS \
     API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 #endif
-
 
 #endif /* JobsBlockDef_h */

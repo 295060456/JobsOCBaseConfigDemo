@@ -10,7 +10,7 @@
 @implementation UITableViewCell (UITableViewCellProtocol)
 #pragma mark —— UITableViewCellProtocol
 UITableViewCellProtocol_dynamic
-+(JobsReturnTableViewCellByCellStyleBlock _Nonnull)initTableViewCellWithStyle{
++(JobsRetTableViewCellByCellStyleBlock _Nonnull)initTableViewCellWithStyle{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableViewCellStyle tableViewCellStyle) {
         @jobs_strongify(self)
@@ -26,7 +26,7 @@ UITableViewCellProtocol_dynamic
 }
 /// 4种UITableViewCell系统样式类型
 /// UITableViewCellStyleDefault = 左边：imageView＋textLabel
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
@@ -38,7 +38,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 /// UITableViewCellStyleValue1 = 左边：imageView＋textLabel；右边：detailTextLabel
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
@@ -50,7 +50,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 /// UITableViewCellStyleValue2 = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue2WithTableView{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
@@ -62,7 +62,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 /// UITableViewCellStyleSubtitle = 左边：textLabel字体偏小；右边：detailTextLabel。imageView可选（显示在最左边）
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleSubtitleWithTableView{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
         @jobs_strongify(self)
@@ -103,7 +103,7 @@ UITableViewCellProtocol_dynamic
     return [self.jobsGetCurrentTableView numberOfRowsInSection:self.jobsGetCurrentIndexPath.section];
 }
 #pragma mark —— BaseCellProtocol
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
@@ -125,13 +125,13 @@ UITableViewCellProtocol_dynamic
     };
 }
 
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(44);
     };
 }
 
--(JobsReturnTableViewCellByImageBlock _Nonnull)byImageViewData{
+-(JobsRetTableViewCellByImageBlock _Nonnull)byImageViewData{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIImage *_Nonnull image){
         @jobs_strongify(self)
@@ -140,7 +140,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCorBlock _Nonnull)byTextLabelTextCor{
+-(JobsRetTableViewCellByCorBlock _Nonnull)byTextLabelTextCor{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIColor *_Nonnull cor){
         @jobs_strongify(self)
@@ -149,7 +149,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCorBlock _Nonnull)byDetailTextLabelCor{
+-(JobsRetTableViewCellByCorBlock _Nonnull)byDetailTextLabelCor{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIColor *_Nonnull cor){
         @jobs_strongify(self)
@@ -158,7 +158,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByFontBlock _Nonnull)byTextLabelFont{
+-(JobsRetTableViewCellByFontBlock _Nonnull)byTextLabelFont{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIFont *_Nonnull font){
         @jobs_strongify(self)
@@ -167,7 +167,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByFontBlock _Nonnull)byDetailTextLabellFont{
+-(JobsRetTableViewCellByFontBlock _Nonnull)byDetailTextLabellFont{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIFont *_Nonnull font){
         @jobs_strongify(self)
@@ -176,7 +176,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByAccessoryTypeBlock _Nonnull)byAccessoryType{
+-(JobsRetTableViewCellByAccessoryTypeBlock _Nonnull)byAccessoryType{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UITableViewCellAccessoryType type){
         @jobs_strongify(self)
@@ -185,7 +185,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByIndexPathBlock _Nonnull)byIndexPath{
+-(JobsRetTableViewCellByIndexPathBlock _Nonnull)byIndexPath{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(NSIndexPath *_Nonnull indexPath){
         @jobs_strongify(self)
@@ -194,7 +194,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByIndexBlock _Nonnull)byIndex{
+-(JobsRetTableViewCellByIndexBlock _Nonnull)byIndex{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(NSInteger index){
         @jobs_strongify(self)
@@ -203,7 +203,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCorBlock _Nonnull)byContentViewBgCor{
+-(JobsRetTableViewCellByCorBlock _Nonnull)byContentViewBgCor{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIColor *_Nonnull cor){
         @jobs_strongify(self)
@@ -212,7 +212,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 #pragma mark —— UITableViewCellProtocol
--(JobsReturnTableViewCellByFrameBlock _Nonnull)byTextLabelFrame{
+-(JobsRetTableViewCellByFrameBlock _Nonnull)byTextLabelFrame{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGRect frame){
         @jobs_strongify(self)
@@ -221,7 +221,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByFrameBlock _Nonnull)byDetailTextLabelFrame{
+-(JobsRetTableViewCellByFrameBlock _Nonnull)byDetailTextLabelFrame{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGRect frame){
         @jobs_strongify(self)
@@ -230,7 +230,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByFrameBlock _Nonnull)byTbvCellImageViewFrame{
+-(JobsRetTableViewCellByFrameBlock _Nonnull)byTbvCellImageViewFrame{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGRect frame){
         @jobs_strongify(self)
@@ -239,7 +239,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellBySizeBlock _Nonnull)byTextLabelSize{
+-(JobsRetTableViewCellBySizeBlock _Nonnull)byTextLabelSize{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGSize size){
         @jobs_strongify(self)
@@ -248,7 +248,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellBySizeBlock _Nonnull)byDetailTextLabelSize{
+-(JobsRetTableViewCellBySizeBlock _Nonnull)byDetailTextLabelSize{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGSize size){
         @jobs_strongify(self)
@@ -257,7 +257,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellBySizeBlock _Nonnull)byImageViewSize{
+-(JobsRetTableViewCellBySizeBlock _Nonnull)byImageViewSize{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGSize size){
         @jobs_strongify(self)
@@ -266,7 +266,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelWidth{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byTextLabelWidth{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -275,7 +275,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelHeight{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byTextLabelHeight{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -284,7 +284,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelWidth{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelWidth{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -293,7 +293,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelHeight{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelHeight{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -302,7 +302,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewWidth{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byImageViewWidth{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -311,7 +311,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewHeight{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byImageViewHeight{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -320,7 +320,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetX{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetX{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -329,7 +329,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetY{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetY{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -338,7 +338,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetWidth{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetWidth{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -347,7 +347,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetHeight{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byTextLabelFrameOffsetHeight{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -356,7 +356,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetX{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetX{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -365,7 +365,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetY{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetY{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -374,7 +374,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetWidth{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetWidth{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -383,7 +383,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetHeight{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byDetailTextLabelOffsetHeight{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -392,7 +392,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetX{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetX{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -401,7 +401,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetY{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetY{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -410,7 +410,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetWidth{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetWidth{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -419,7 +419,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetHeight{
+-(JobsRetTableViewCellByCGFloatBlock _Nonnull)byImageViewFrameOffsetHeight{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(CGFloat data){
         @jobs_strongify(self)
@@ -737,7 +737,7 @@ UITableViewCellProtocol_dynamic
     return CGRectInset(self.bounds,dx,dy);/// 获取显示区域大小
 }
 
--(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
+-(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     @jobs_weakify(self)
     return ^CGFloat(id _Nullable data){
         @jobs_strongify(self)
@@ -745,7 +745,7 @@ UITableViewCellProtocol_dynamic
     };
 }
 
--(JobsReturnCGSizeByIDBlock _Nonnull)cellSizeByModel{
+-(JobsRetCGSizeByIDBlock _Nonnull)cellSizeByModel{
     @jobs_weakify(self)
     return ^CGSize(id _Nullable data){
         @jobs_strongify(self)

@@ -72,9 +72,9 @@ NS_INLINE NSString * _Nullable httpMethod(YTKRequestMethod method){
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NSURLRequest (Extra)
-+(JobsReturnURLRequestByURLBlock _Nonnull)initBy;
++(JobsRetURLRequestByURLBlock _Nonnull)initBy;
 /// 打印NSURLRequest有效内容，并转化为NSMutableURLRequest对外输出
--(JobsReturnMutableURLRequestByVoidBlock _Nonnull)print;
+-(JobsRetMutableURLRequestByVoidBlock _Nonnull)print;
 
 @end
 

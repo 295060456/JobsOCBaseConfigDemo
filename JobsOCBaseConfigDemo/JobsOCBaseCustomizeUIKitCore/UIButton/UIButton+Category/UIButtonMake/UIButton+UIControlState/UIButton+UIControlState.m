@@ -9,7 +9,7 @@
 
 @implementation UIButton (UIControlState)
 #pragma mark —— UIButton.image
--(JobsReturnImageByNSUIntegerBlock _Nonnull)imageByState{
+-(JobsRetImageByNSUIntegerBlock _Nonnull)imageByState{
     @jobs_weakify(self)
     return ^UIImage *_Nullable(UIControlState data){
         @jobs_strongify(self)
@@ -45,7 +45,7 @@
     return self.imageByState(UIControlStateReserved);
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)normalStateImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)normalStateImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull image) {
         @jobs_strongify(self)
@@ -54,7 +54,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)highlightedStateImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)highlightedStateImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull image) {
         @jobs_strongify(self)
@@ -63,7 +63,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)disabledStateImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)disabledStateImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull image) {
         @jobs_strongify(self)
@@ -72,7 +72,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)selectedStateImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)selectedStateImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull image) {
         @jobs_strongify(self)
@@ -81,7 +81,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)focusedStateImageBy API_AVAILABLE(ios(9.0)){
+-(JobsRetBtnByImageBlock _Nonnull)focusedStateImageBy API_AVAILABLE(ios(9.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull image) {
         @jobs_strongify(self)
@@ -90,7 +90,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)applicationStateImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)applicationStateImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull image) {
         @jobs_strongify(self)
@@ -99,7 +99,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)reservedStateImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)reservedStateImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull image) {
         @jobs_strongify(self)
@@ -108,7 +108,7 @@
     };
 }
 #pragma mark —— UIButton.backgroundImage
--(JobsReturnImageByNSUIntegerBlock _Nonnull)backgroundImageByState{
+-(JobsRetImageByNSUIntegerBlock _Nonnull)backgroundImageByState{
     @jobs_weakify(self)
     return ^UIImage *_Nullable(UIControlState data){
         @jobs_strongify(self)
@@ -144,7 +144,7 @@
     return self.backgroundImageByState(UIControlStateReserved);
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)normalStateBackgroundImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)normalStateBackgroundImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
@@ -153,7 +153,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)highlightedStateBackgroundImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)highlightedStateBackgroundImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
@@ -162,7 +162,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)disabledStateBackgroundImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)disabledStateBackgroundImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
@@ -171,7 +171,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)selectedStateBackgroundImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)selectedStateBackgroundImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
@@ -180,7 +180,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)focusedStateBackgroundImageBy API_AVAILABLE(ios(9.0)){
+-(JobsRetBtnByImageBlock _Nonnull)focusedStateBackgroundImageBy API_AVAILABLE(ios(9.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
@@ -189,7 +189,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)applicationStateBackgroundImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)applicationStateBackgroundImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
@@ -198,7 +198,7 @@
     };
 }
 
--(JobsReturnButtonByImageBlock _Nonnull)reservedStateBackgroundImageBy{
+-(JobsRetBtnByImageBlock _Nonnull)reservedStateBackgroundImageBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIImage *_Nonnull backgroundImage) {
         @jobs_strongify(self)
@@ -207,7 +207,7 @@
     };
 }
 #pragma mark —— UIButton.titleColor
--(JobsReturnColorByNSUIntegerBlock _Nonnull)titleColorByState{
+-(JobsRetCorByNSUIntegerBlock _Nonnull)titleColorByState{
     @jobs_weakify(self)
     return ^UIColor *_Nullable(UIControlState data){
         @jobs_strongify(self)
@@ -243,7 +243,7 @@
     return self.titleColorByState(UIControlStateReserved);
 }
 
--(JobsReturnButtonByColorBlock _Nonnull)normalStateTitleColorBy{
+-(JobsRetBtnByCorBlock _Nonnull)normalStateTitleColorBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
@@ -252,7 +252,7 @@
     };
 }
 
--(JobsReturnButtonByColorBlock _Nonnull)highlightedStateTitleColorBy{
+-(JobsRetBtnByCorBlock _Nonnull)highlightedStateTitleColorBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
@@ -261,7 +261,7 @@
     };
 }
 
--(JobsReturnButtonByColorBlock _Nonnull)disabledStateTitleColorBy{
+-(JobsRetBtnByCorBlock _Nonnull)disabledStateTitleColorBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
@@ -270,7 +270,7 @@
     };
 }
 
--(JobsReturnButtonByColorBlock _Nonnull)selectedStateTitleColorBy{
+-(JobsRetBtnByCorBlock _Nonnull)selectedStateTitleColorBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
@@ -279,7 +279,7 @@
     };
 }
 
--(JobsReturnButtonByColorBlock _Nonnull)focusedStateTitleColorBy API_AVAILABLE(ios(9.0)){
+-(JobsRetBtnByCorBlock _Nonnull)focusedStateTitleColorBy API_AVAILABLE(ios(9.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
@@ -288,7 +288,7 @@
     };
 }
 
--(JobsReturnButtonByColorBlock _Nonnull)ApplicationStateTitleColorBy{
+-(JobsRetBtnByCorBlock _Nonnull)ApplicationStateTitleColorBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
@@ -297,7 +297,7 @@
     };
 }
 
--(JobsReturnButtonByColorBlock _Nonnull)reservedStateTitleColorBy{
+-(JobsRetBtnByCorBlock _Nonnull)reservedStateTitleColorBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(UIColor *_Nonnull titleColor) {
         @jobs_strongify(self)
@@ -308,7 +308,7 @@
 #pragma mark —— UIButton.subtitleColor
 /// TODO
 #pragma mark —— UIButton.title
--(JobsReturnStringByUIntegerBlock _Nonnull)titleByState{
+-(JobsRetStringByUIntegerBlock _Nonnull)titleByState{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(UIControlState data){
         @jobs_strongify(self)
@@ -344,7 +344,7 @@
     return self.titleByState(UIControlStateReserved);
 }
 
--(JobsReturnButtonByStringBlock _Nonnull)normalStateTitleBy{
+-(JobsRetBtnByStringBlock _Nonnull)normalStateTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)
@@ -353,7 +353,7 @@
     };
 }
 
--(JobsReturnButtonByStringBlock _Nonnull)highlightedStateTitleBy{
+-(JobsRetBtnByStringBlock _Nonnull)highlightedStateTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)
@@ -362,7 +362,7 @@
     };
 }
 
--(JobsReturnButtonByStringBlock _Nonnull)disabledStateTitleBy{
+-(JobsRetBtnByStringBlock _Nonnull)disabledStateTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)
@@ -371,7 +371,7 @@
     };
 }
 
--(JobsReturnButtonByStringBlock _Nonnull)selectedStateTitleBy{
+-(JobsRetBtnByStringBlock _Nonnull)selectedStateTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)
@@ -380,7 +380,7 @@
     };
 }
 
--(JobsReturnButtonByStringBlock _Nonnull)focusedStateTitleBy API_AVAILABLE(ios(9.0)){
+-(JobsRetBtnByStringBlock _Nonnull)focusedStateTitleBy API_AVAILABLE(ios(9.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)
@@ -389,7 +389,7 @@
     };
 }
 
--(JobsReturnButtonByStringBlock _Nonnull)applicationStateTitleBy{
+-(JobsRetBtnByStringBlock _Nonnull)applicationStateTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)
@@ -398,7 +398,7 @@
     };
 }
 
--(JobsReturnButtonByStringBlock _Nonnull)reservedStateTitleBy{
+-(JobsRetBtnByStringBlock _Nonnull)reservedStateTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nonnull title) {
         @jobs_strongify(self)
@@ -415,7 +415,7 @@
     return self.titleLabel.attributedText;
 }
 
--(JobsReturnAttributedStringByNSUIntegerBlock _Nonnull)attributedTitleByState{
+-(JobsRetAttributedStringByNSUIntegerBlock _Nonnull)attributedTitleByState{
     @jobs_weakify(self)
     return ^__kindof NSAttributedString *_Nullable(UIControlState data){
         @jobs_strongify(self)
@@ -451,7 +451,7 @@
     return self.attributedTitleByState(UIControlStateReserved);
 }
 
--(JobsReturnButtonByAttributedStringBlock _Nonnull)selectedAttributedTitleBy{
+-(JobsRetBtnByAttributedStringBlock _Nonnull)selectedAttributedTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
@@ -460,7 +460,7 @@
     };
 }
 
--(JobsReturnButtonByAttributedStringBlock _Nonnull)normalStateAttributedTitleBy{
+-(JobsRetBtnByAttributedStringBlock _Nonnull)normalStateAttributedTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
@@ -469,7 +469,7 @@
     };
 }
 
--(JobsReturnButtonByAttributedStringBlock _Nonnull)highlightedStateAttributedTitleBy{
+-(JobsRetBtnByAttributedStringBlock _Nonnull)highlightedStateAttributedTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
@@ -478,7 +478,7 @@
     };
 }
 
--(JobsReturnButtonByAttributedStringBlock _Nonnull)disabledStateAttributedTitleBy{
+-(JobsRetBtnByAttributedStringBlock _Nonnull)disabledStateAttributedTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
@@ -487,7 +487,7 @@
     };
 }
 
--(JobsReturnButtonByAttributedStringBlock _Nonnull)selectedStateAttributedTitleBy{
+-(JobsRetBtnByAttributedStringBlock _Nonnull)selectedStateAttributedTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
@@ -496,7 +496,7 @@
     };
 }
 
--(JobsReturnButtonByAttributedStringBlock _Nonnull)focusedStateAttributedTitleBy API_AVAILABLE(ios(9.0)){
+-(JobsRetBtnByAttributedStringBlock _Nonnull)focusedStateAttributedTitleBy API_AVAILABLE(ios(9.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
@@ -505,7 +505,7 @@
     };
 }
 
--(JobsReturnButtonByAttributedStringBlock _Nonnull)applicationStateAttributedTitleBy{
+-(JobsRetBtnByAttributedStringBlock _Nonnull)applicationStateAttributedTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)
@@ -514,7 +514,7 @@
     };
 }
 
--(JobsReturnButtonByAttributedStringBlock _Nonnull)reservedStateAttributedTitleBy{
+-(JobsRetBtnByAttributedStringBlock _Nonnull)reservedStateAttributedTitleBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSAttributedString *_Nonnull title) {
         @jobs_strongify(self)

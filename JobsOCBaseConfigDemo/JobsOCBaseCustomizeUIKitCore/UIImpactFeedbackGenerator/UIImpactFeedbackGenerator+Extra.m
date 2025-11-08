@@ -9,7 +9,7 @@
 
 @implementation UIImpactFeedbackGenerator (Extra)
 
-+(JobsReturnImpactFeedbackGeneratorByNSIntegerBlock _Nonnull)initByStyle{
++(JobsRetImpactFeedbackGeneratorByNSIntegerBlock _Nonnull)initByStyle{
     return ^UIImpactFeedbackGenerator *_Nonnull(UIImpactFeedbackStyle style){
         return [UIImpactFeedbackGenerator.alloc initWithStyle:style];
     };
@@ -19,7 +19,7 @@
     return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleLight);
 }
 
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initLightStyleBy{
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initLightStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {
@@ -34,7 +34,7 @@
     return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleMedium);
 }
 
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initMediumStyleBy{
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initMediumStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {
@@ -49,7 +49,7 @@
     return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleHeavy);
 }
 
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initHeavyStyleBy{
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initHeavyStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {
@@ -64,7 +64,7 @@
     return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleSoft);
 }
 
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initSoftStyleBy{
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initSoftStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {
@@ -79,7 +79,7 @@
     return UIImpactFeedbackGenerator.initByStyle(UIImpactFeedbackStyleRigid);
 }
 
-+(JobsReturnImpactFeedbackGeneratorByViewBlock _Nonnull)initRigidStyleBy{
++(JobsRetImpactFeedbackGeneratorByViewBlock _Nonnull)initRigidStyleBy{
     return ^UIImpactFeedbackGenerator *_Nonnull(__kindof UIView *_Nullable view){
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 170500
         if (@available(iOS 17.5, *)) {

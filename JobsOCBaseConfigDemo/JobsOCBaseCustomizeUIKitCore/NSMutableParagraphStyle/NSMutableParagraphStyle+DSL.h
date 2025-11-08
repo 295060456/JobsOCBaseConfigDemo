@@ -12,32 +12,32 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableParagraphStyle (DSL)
 #pragma mark —— CGFloat
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byLineSpacing;
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byParagraphSpacing;
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byFirstLineHeadIndent;
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byHeadIndent;
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byTailIndent;
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byMinimumLineHeight;
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byMaximumLineHeight;
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byLineHeightMultiple;
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byParagraphSpacingBefore;
--(JobsReturnMutableParagraphStyleByCGFloatBlock _Nonnull)byDefaultTabInterval;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byLineSpacing;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byParagraphSpacing;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byFirstLineHeadIndent;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byHeadIndent;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byTailIndent;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byMinimumLineHeight;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byMaximumLineHeight;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byLineHeightMultiple;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byParagraphSpacingBefore;
+-(JobsRetMutableParagraphStyleByCGFloatBlock _Nonnull)byDefaultTabInterval;
 #pragma mark —— float
--(JobsReturnMutableParagraphStyleByFloatBlock _Nonnull)byHyphenationFactor;
+-(JobsRetMutableParagraphStyleByFloatBlock _Nonnull)byHyphenationFactor;
 #pragma mark —— BOOL
--(JobsReturnMutableParagraphStyleByBOOLBlock _Nonnull)byAllowsDefaultTighteningForTruncation;
--(JobsReturnMutableParagraphStyleByBOOLBlock _Nonnull)byUsesDefaultHyphenation;
+-(JobsRetMutableParagraphStyleByBOOLBlock _Nonnull)byAllowsDefaultTighteningForTruncation;
+-(JobsRetMutableParagraphStyleByBOOLBlock _Nonnull)byUsesDefaultHyphenation;
 #pragma mark —— Enums
--(JobsReturnMutableParagraphStyleByNSIntegerBlock _Nonnull)byLineBreakMode;
--(JobsReturnMutableParagraphStyleByNSIntegerBlock _Nonnull)byBaseWritingDirection;
--(JobsReturnMutableParagraphStyleByNSUIntegerBlock _Nonnull)byLineBreakStrategy;
+-(JobsRetMutableParagraphStyleByNSIntegerBlock _Nonnull)byLineBreakMode;
+-(JobsRetMutableParagraphStyleByNSIntegerBlock _Nonnull)byBaseWritingDirection;
+-(JobsRetMutableParagraphStyleByNSUIntegerBlock _Nonnull)byLineBreakStrategy;
 #pragma mark —— Arrays
--(JobsReturnMutableParagraphStyleByArrBlock _Nonnull)byTabStops;
--(JobsReturnMutableParagraphStyleByArrBlock _Nonnull)byTextLists;
+-(JobsRetMutableParagraphStyleByArrBlock _Nonnull)byTabStops;
+-(JobsRetMutableParagraphStyleByArrBlock _Nonnull)byTextLists;
 #pragma mark —— Single object operations
--(JobsReturnMutableParagraphStyleByNSTextTabBlock _Nonnull)byAddTabStop;
--(JobsReturnMutableParagraphStyleByNSTextTabBlock _Nonnull)byRemoveTabStop;
--(JobsReturnMutableParagraphStyleByNSParagraphStyleBlock _Nonnull)bySetParagraphStyle;
+-(JobsRetMutableParagraphStyleByNSTextTabBlock _Nonnull)byAddTabStop;
+-(JobsRetMutableParagraphStyleByNSTextTabBlock _Nonnull)byRemoveTabStop;
+-(JobsRetMutableParagraphStyleByNSParagraphStyleBlock _Nonnull)bySetParagraphStyle;
 
 @end
 

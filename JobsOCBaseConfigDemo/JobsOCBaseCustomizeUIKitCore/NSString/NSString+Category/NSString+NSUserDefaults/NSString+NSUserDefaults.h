@@ -27,15 +27,15 @@ NS_ASSUME_NONNULL_BEGIN
 -(jobsByURLBlock _Nonnull)userDefaultsByURL;
 #pragma mark —— 取值
 /// 读取 BOOL 值
--(JobsReturnBOOLByVoidBlock _Nonnull)boolBy;
+-(JobsRetBOOLByVoidBlock _Nonnull)boolBy;
 /// 读取 NSInteger 值
--(JobsReturnNSIntegerByVoidBlock _Nonnull)integerBy;
+-(JobsRetNSIntegerByVoidBlock _Nonnull)integerBy;
 /// 读取 float 值
--(JobsReturnFloatByVoidBlock _Nonnull)floatBy;
+-(JobsRetFloatByVoidBlock _Nonnull)floatBy;
 /// 读取 double 值
--(JobsReturnDoubleByVoidBlock _Nonnull)doubleBy;
+-(JobsRetDoubleByVoidBlock _Nonnull)doubleBy;
 /// 读取 double 值
--(JobsReturnURLByVoidBlock _Nonnull)urlBy;
+-(JobsRetURLByVoidBlock _Nonnull)urlBy;
 
 @end
 

@@ -9,13 +9,13 @@
 
 @implementation NSAttributedString (Extra)
 /// 对系统方法 initWithString 的二次封装
-+(JobsReturnAttributedStringByStringBlock _Nonnull)initByString{
++(JobsRetAttributedStringByStringBlock _Nonnull)initByString{
     return ^__kindof NSAttributedString *_Nullable(NSString *_Nullable data){
         return [NSAttributedString.alloc initWithString:data];
     };
 }
 /// 获取 NSAttributedString.文本字体
--(JobsReturnFontByVoidBlock _Nonnull)attributedStringFont{
+-(JobsRetFontByVoidBlock _Nonnull)attributedStringFont{
     @jobs_weakify(self)
     return ^UIFont * _Nullable() {
         @jobs_strongify(self)
@@ -23,7 +23,7 @@
     };
 }
 /// 获取 NSAttributedString.文本颜色
--(JobsReturnFontByVoidBlock _Nonnull)attributedStringTextCor{
+-(JobsRetFontByVoidBlock _Nonnull)attributedStringTextCor{
     @jobs_weakify(self)
     return ^UIFont * _Nullable() {
         @jobs_strongify(self)
@@ -31,7 +31,7 @@
     };
 }
 /// 获取 NSAttributedString.段落信息
--(JobsReturnParagraphStyleByVoidBlock _Nonnull)attributedStringParagraphStyle{
+-(JobsRetParagraphStyleByVoidBlock _Nonnull)attributedStringParagraphStyle{
     @jobs_weakify(self)
     return ^NSParagraphStyle * _Nullable() {
         @jobs_strongify(self)
@@ -42,7 +42,7 @@
     };
 }
 /// 将富文本的颜色统一进行设置
--(JobsReturnAttributedStringByColorBlock _Nonnull)changeTextColorBy{
+-(JobsRetAttributedStringByCorBlock _Nonnull)changeTextColorBy{
     return ^__kindof NSAttributedString *_Nullable(UIColor *_Nonnull data){
         if (!data) data = JobsWhiteColor;
         NSMutableAttributedString *mutableAttributedText = NSMutableAttributedString.initByAttributedString(self);

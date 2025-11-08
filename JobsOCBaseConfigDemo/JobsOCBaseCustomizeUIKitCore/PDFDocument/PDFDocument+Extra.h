@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PDFDocument (Extra)
 
-+(JobsReturnPDFDocumentByURLBlock _Nonnull)byURL;
++(JobsRetPDFDocumentByURLBlock _Nonnull)byURL;
 
 @end
 

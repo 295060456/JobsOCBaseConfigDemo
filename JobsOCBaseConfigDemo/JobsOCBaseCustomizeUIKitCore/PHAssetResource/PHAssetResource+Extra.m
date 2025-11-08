@@ -9,7 +9,7 @@
 
 @implementation PHAssetResource (Extra)
 
-+(JobsReturnArrayByPHAssetBlock _Nonnull)initBy{
++(JobsRetArrayByPHAssetBlock _Nonnull)initBy{
     return ^__kindof NSArray <PHAssetResource *>*_Nonnull(__kindof PHAsset *_Nullable data){
         return [PHAssetResource assetResourcesForAsset:data];
     };

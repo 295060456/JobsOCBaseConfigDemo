@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsWebViewController : BaseViewController
 
-+(JobsReturnVCByWebViewBlock _Nonnull)initByWebView;
++(JobsRetVCByWebViewBlock _Nonnull)initByWebView;
 
 @end
 

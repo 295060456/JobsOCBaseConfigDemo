@@ -46,7 +46,7 @@ BaseProtocol_synthesize_timer
     };
 }
 /// 定时器启动：newTimer + 系统自动添加到RunLoop
--(JobsReturnTimerByVoidBlock _Nonnull)nsTimeStartSysAutoInRunLoop{
+-(JobsRetTimerByVoidBlock _Nonnull)nsTimeStartSysAutoInRunLoop{
     @jobs_weakify(self)
     return ^NSTimer *_Nullable() {
         @jobs_strongify(self)

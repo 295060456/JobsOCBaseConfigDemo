@@ -9,7 +9,7 @@
 
 @implementation NSURLSessionDataTask (Extra)
 /// 打印请求体
--(JobsReturnMutableURLRequestByVoidBlock _Nonnull)print{
+-(JobsRetMutableURLRequestByVoidBlock _Nonnull)print{
     @jobs_weakify(self)
     return ^NSMutableURLRequest *_Nullable(){
         @jobs_strongify(self)

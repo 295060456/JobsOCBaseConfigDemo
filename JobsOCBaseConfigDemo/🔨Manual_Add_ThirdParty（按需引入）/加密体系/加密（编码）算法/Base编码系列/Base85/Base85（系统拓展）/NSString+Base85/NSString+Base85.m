@@ -10,7 +10,7 @@
 @implementation NSString (Base85)
 #pragma mark —— Base85 <==> NSString
 ///【类方法】普通的NSString对象 转换成 以Base85编码的字符串
-+(JobsReturnStringByStringBlock _Nonnull)base85String{
++(JobsRetStringByStringBlock _Nonnull)base85String{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable string){
         return NSData.dataToBase85String(string.UTF8Encoding);
     };
@@ -20,7 +20,7 @@
     return NSString.base85String(self);
 }
 ///【类方法】以Base85编码的字符串 转换成 普通的NSString对象
-+(JobsReturnStringByStringBlock _Nonnull)stringByBase85String{
++(JobsRetStringByStringBlock _Nonnull)stringByBase85String{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable base85String){
         return NSString.initByUTF8Data(NSString.dataByBase85String(base85String));
     };
@@ -31,7 +31,7 @@
 }
 #pragma mark —— Base85 ==> NSData
 ///【类方法】接受一个包含Base85编码数据的NSString对象作为输入，并将其解码为对应的原始字节序列
-+(JobsReturnDataByStringBlock _Nonnull)dataByBase85String{
++(JobsRetDataByStringBlock _Nonnull)dataByBase85String{
     return ^__kindof NSData *_Nullable(__kindof NSString *_Nullable base85String){
         /**
          首先遍历Base85字符串的每5个字符一组
@@ -61,7 +61,7 @@
 }
 #pragma mark —— Base85 ==> UIImage
 ///【类方法】从给定的以Base85编码的字符串中解码并转换为UIImage对象
-+(JobsReturnImageByStringBlock _Nonnull)imageByBase85String{
++(JobsRetImageByStringBlock _Nonnull)imageByBase85String{
     return ^UIImage *_Nullable(__kindof NSString *_Nullable base85String){
         /**
          首先将Base85字符串解析为对应的字节序列

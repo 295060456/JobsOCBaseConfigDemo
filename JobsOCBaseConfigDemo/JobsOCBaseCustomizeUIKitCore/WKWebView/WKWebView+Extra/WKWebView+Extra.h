@@ -14,11 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WKWebView (Extra)<BaseProtocol>
 
-+(JobsReturnWKWebViewByConfigurationBlock _Nonnull)initBy;
--(JobsReturnWKWebViewByURLRequestBlock _Nonnull)loadRequest;
--(JobsReturnWKWebViewByURLBlock _Nonnull)loadFileURL;
--(JobsReturnCollectionViewByNavDelegateBlock _Nonnull)byNavDelegate;
--(JobsReturnCollectionViewByUIDelegateBlock _Nonnull)byUIDelegate;
++(JobsRetWKWebViewByConfigurationBlock _Nonnull)initBy;
+-(JobsRetWKWebViewByURLRequestBlock _Nonnull)loadRequest;
+-(JobsRetWKWebViewByURLBlock _Nonnull)loadFileURL;
+-(JobsRetCollectionViewByNavDelegateBlock _Nonnull)byNavDelegate;
+-(JobsRetCollectionViewByUIDelegateBlock _Nonnull)byUIDelegate;
 
 @end
 

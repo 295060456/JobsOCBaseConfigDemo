@@ -13,13 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDictionary (Extra)
 /// 对系统方法 initWithContentsOfFile 的二次封装
-+(JobsReturnDicByStringBlock _Nonnull)initByContentsOfFile;
++(JobsRetDicByStringBlock _Nonnull)initByContentsOfFile;
 /// 对系统方法 initWithContentsOfURL 的二次封装
 +(JobsReturnDicByURLBlock _Nonnull)initByContentsOfURL;
 /// 转成可变字典
--(JobsReturnMutableDicByVoidBlock _Nonnull)mutableDic;
+-(JobsRetMutableDicByVoidBlock _Nonnull)mutableDic;
 /// 对系统方法 objectForKey 的二次封装
--(JobsReturnIDByIDBlock _Nonnull)objectForKey;
+-(JobsRetIDByIDBlock _Nonnull)objectForKey;
 
 @end
 

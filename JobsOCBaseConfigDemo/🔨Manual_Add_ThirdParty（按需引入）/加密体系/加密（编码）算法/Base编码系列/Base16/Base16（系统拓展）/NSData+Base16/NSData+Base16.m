@@ -10,7 +10,7 @@
 @implementation NSData (Base16)
 #pragma mark —— NSData ==> Base16
 ///【类方法】将NSData对象 转换为 以Base16（也称为十六进制）编码的字符串
-+(JobsReturnStringByDataBlock _Nonnull)base16StringByData{
++(JobsRetStringByDataBlock _Nonnull)base16StringByData{
     /**
      NSData对象的字节序列被遍历，并将每个字节转换为两个十六进制字符
      然后将这些字符拼接到一个NSMutableString中
@@ -33,7 +33,7 @@
 }
 #pragma mark —— Base16 ==> NSData
 ///【类方法】将以Base16编码的字符串 转换为 NSData对象
-+(JobsReturnDataByStringBlock _Nonnull)dataByBase16String{
++(JobsRetDataByStringBlock _Nonnull)dataByBase16String{
     return ^__kindof NSData *_Nullable(__kindof NSString *_Nullable base16StringByImage){
         /**
          首先创建了一个NSMutableData对象，然后对Base16字符串进行遍历，每两个字符为一组，表示一个字节的十六进制值
@@ -56,7 +56,7 @@
     };
 }
 ///【实例方法】将以Base16编码的字符串 转换为 NSData对象
--(JobsReturnDataByStringBlock _Nonnull)dataByBase16String{
+-(JobsRetDataByStringBlock _Nonnull)dataByBase16String{
     return ^__kindof NSData *_Nullable(__kindof NSString *_Nullable base16StringByImage){
         return NSData.dataByBase16String(base16StringByImage);
     };

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIContextMenuInteraction (Extra)
 
-+(JobsReturnContextMenuInteractionByIDBlock _Nonnull)initByDelegate;
++(JobsRetContextMenuInteractionByIDBlock _Nonnull)initByDelegate;
 
 @end
 

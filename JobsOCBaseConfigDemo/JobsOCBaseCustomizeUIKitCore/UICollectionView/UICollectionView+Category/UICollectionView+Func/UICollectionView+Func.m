@@ -9,7 +9,7 @@
 
 @implementation UICollectionView (Func)
 
-+(JobsReturnCollectionViewByLayoutBlock _Nonnull)initByLayout{
++(JobsRetCollectionViewByLayoutBlock _Nonnull)initByLayout{
     @jobs_weakify(self)
     return ^__kindof UICollectionView *_Nullable(__kindof UICollectionViewLayout *_Nullable data){
         @jobs_strongify(self)
@@ -17,7 +17,7 @@
     };
 }
 /// 对系统方法 cellForItemAtIndexPath 的二次封装
--(JobsReturnCollectionViewCellByIndexPathBlock _Nonnull)cellBy{
+-(JobsRetCollectionViewCellByIndexPathBlock _Nonnull)cellBy{
     @jobs_weakify(self)
     return ^__kindof UICollectionViewCell *_Nullable(NSIndexPath *_Nullable indexPath){
         @jobs_strongify(self)
@@ -45,7 +45,7 @@
     };
 }
 
--(JobsReturnScrollViewByIDBlock _Nonnull)dataLink{
+-(JobsRetScrollViewByIDBlock _Nonnull)dataLink{
     @jobs_weakify(self)
     return ^__kindof UICollectionView *_Nullable(id _Nonnull target) {
         @jobs_strongify(self)
@@ -55,7 +55,7 @@
     };
 }
 
--(JobsReturnCollectionViewByDelegateBlock _Nonnull)byDelegate{
+-(JobsRetCollectionViewByDelegateBlock _Nonnull)byDelegate{
     @jobs_weakify(self)
     return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDelegate>_Nullable delegate){
         @jobs_strongify(self)
@@ -64,7 +64,7 @@
     };
 }
 
--(JobsReturnCollectionViewByDataSourceBlock _Nonnull)byDataSource{
+-(JobsRetCollectionViewByDataSourceBlock _Nonnull)byDataSource{
     @jobs_weakify(self)
     return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDataSource>_Nullable dataSource){
         @jobs_strongify(self)
@@ -73,7 +73,7 @@
     };
 }
 
--(JobsReturnCollectionViewByDragDelegateBlock _Nonnull)byDragDelegate{
+-(JobsRetCollectionViewByDragDelegateBlock _Nonnull)byDragDelegate{
     @jobs_weakify(self)
     return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDragDelegate>_Nullable delegate){
         @jobs_strongify(self)
@@ -82,7 +82,7 @@
     };
 }
 
--(JobsReturnCollectionViewByDropDelegateBlock _Nonnull)byDropDelegate{
+-(JobsRetCollectionViewByDropDelegateBlock _Nonnull)byDropDelegate{
     @jobs_weakify(self)
     return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDropDelegate>_Nullable delegate){
         @jobs_strongify(self)
@@ -91,7 +91,7 @@
     };
 }
 
--(JobsReturnCollectionViewByDataSourcePrefetchingBlock _Nonnull)byPrefetchDataSource{
+-(JobsRetCollectionViewByDataSourcePrefetchingBlock _Nonnull)byPrefetchDataSource{
     @jobs_weakify(self)
     return ^__kindof UICollectionView *_Nullable(id <UICollectionViewDataSourcePrefetching>_Nullable dataSourcePrefetching){
         @jobs_strongify(self)

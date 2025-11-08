@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Menu)
 
--(JobsReturnMenuItemBySELBlock _Nonnull)initMenuItemBy;
+-(JobsRetMenuItemBySELBlock _Nonnull)initMenuItemBy;
 
 @end
 

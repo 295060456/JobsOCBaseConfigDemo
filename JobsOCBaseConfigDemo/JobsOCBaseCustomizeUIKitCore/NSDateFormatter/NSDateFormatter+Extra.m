@@ -9,7 +9,7 @@
 
 @implementation NSDateFormatter (Extra)
 /// 对系统方法 stringFromDate 的二次封装
--(JobsReturnStringByDateBlock _Nonnull)stringByDate{
+-(JobsRetStringByDateBlock _Nonnull)stringByDate{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSDate *_Nullable date){
         @jobs_strongify(self)
@@ -17,7 +17,7 @@
     };
 }
 /// 对系统方法 dateFromString 的二次封装
--(JobsReturnDateByStringBlock _Nonnull)dateByString{
+-(JobsRetDateByStringBlock _Nonnull)dateByString{
     @jobs_weakify(self)
     return ^NSDate *_Nullable(__kindof NSString *_Nullable date){
         @jobs_strongify(self)

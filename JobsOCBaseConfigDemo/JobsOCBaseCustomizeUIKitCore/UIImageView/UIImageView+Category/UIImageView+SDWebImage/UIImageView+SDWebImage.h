@@ -26,9 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImageView (SDWebImage)
 
-Prop_copy(readonly,nonnull)JobsReturnViewByVoidBlock load;
-Prop_copy(readonly,nonnull)JobsReturnImageViewByURLBlock imageURL;
-Prop_copy(readonly,nonnull)JobsReturnImageViewByImageBlock placeholderImage;
+Prop_copy(readonly,nonnull)JobsRetViewByVoidBlock load;
+Prop_copy(readonly,nonnull)JobsRetImageViewByURLBlock imageURL;
+Prop_copy(readonly,nonnull)JobsRetImageViewByImageBlock placeholderImage;
 Prop_copy(readonly,nonnull)JobsReturnImageViewBySDWebImageOptionsBlocks options;
 Prop_copy(readonly,nonnull)JobsReturnImageViewBySDExternalCompletionBlocks completed;
 

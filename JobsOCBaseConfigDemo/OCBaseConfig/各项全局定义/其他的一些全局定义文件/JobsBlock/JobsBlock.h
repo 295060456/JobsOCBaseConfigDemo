@@ -594,24 +594,24 @@ typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewByCorBlo
 typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewByNumbersBlock)(__kindof NSArray <__kindof NSNumber *>* _Nullable numbers);
 typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByNumbersBlock)(__kindof NSArray <__kindof NSNumber *>* _Nullable numbers);
 typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByCGPointBlock)(CGPoint point);
-typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByReturnStringByIntegerBlocks)(JobsReturnStringByIntegerBlock _Nullable block);
+typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByReturnStringByIntegerBlocks)(JobsRetStringByIntegerBlock _Nullable block);
 
 #pragma mark —— 复合型Block
 typedef void(^jobsByErrBlocks)(jobsByErrorBlock _Nullable block);
-typedef void(^jobsByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
+typedef void(^jobsByRetIDByIDBlocks)(JobsRetIDByIDBlock _Nullable block);
 typedef void(^jobsDelegateBlocks)(Jobs_DelegateBlocks_Arguments);
 
 typedef id _Nullable(^JobsReturnIDByVoidBlocks)(jobsByVoidBlock _Nullable block);
 typedef id _Nullable(^JobsReturnIDByVoidIDBlocks)(jobsByIDBlock _Nullable block);
-typedef id _Nullable(^JobsReturnIDByRetIDVoidBlocks)(JobsReturnIDByVoidBlock _Nullable block);
-typedef id _Nullable(^JobsReturnIDByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
+typedef id _Nullable(^JobsReturnIDByRetIDVoidBlocks)(JobsRetIDByVoidBlock _Nullable block);
+typedef id _Nullable(^JobsReturnIDByRetIDByIDBlocks)(JobsRetIDByIDBlock _Nullable block);
 #import "UIViewModelOthersProtocol.h"
-typedef JobsReturnIDByIDBlock _Nullable(^JobsRetIDByIDBlockByViewModelOthersProtocolID)(id<UIViewModelOthersProtocol> _Nullable data);
+typedef JobsRetIDByIDBlock _Nullable(^JobsRetIDByIDBlockByViewModelOthersProtocolID)(id<UIViewModelOthersProtocol> _Nullable data);
 
 typedef __kindof UIView *_Nullable(^JobsReturnViewByVoidBlocks)(jobsByVoidBlock _Nullable block);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByIDBlocks)(jobsByIDBlock _Nullable block);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDBlocks)(JobsReturnIDByVoidBlock _Nullable block);
-typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDBlocks)(JobsRetIDByVoidBlock _Nullable block);
+typedef __kindof UIView *_Nullable(^JobsReturnViewByRetIDByIDBlocks)(JobsRetIDByIDBlock _Nullable block);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlocks)(jobsByMASConstraintMakerBlock _Nullable block);
 typedef __kindof UIView *_Nullable(^JobsReturnViewByViewAndMasonryConstraintsBlocks)(Jobs_ReturnViewByViewAndMasonryConstraintsBlocks_Arguments);
 
@@ -626,17 +626,17 @@ typedef __kindof JobsNavBar *_Nullable(^JobsReturnNavBarByVoidBtnBlocks)(jobsByB
 
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByVoidBlocks)(jobsByVoidBlock _Nullable block);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByIDBlocks)(jobsByIDBlock _Nullable data);
-typedef __kindof UIViewController *_Nullable(^JobsReturnVCByRetIDByVoidBlocks)(JobsReturnIDByVoidBlock _Nullable block);
-typedef __kindof UIViewController *_Nullable(^JobsReturnVCByRetIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
+typedef __kindof UIViewController *_Nullable(^JobsReturnVCByRetIDByVoidBlocks)(JobsRetIDByVoidBlock _Nullable block);
+typedef __kindof UIViewController *_Nullable(^JobsReturnVCByRetIDByIDBlocks)(JobsRetIDByIDBlock _Nullable block);
 typedef __kindof UIViewController *_Nullable(^JobsReturnVCByMasonryConstraintsBlocks)(jobsByMASConstraintMakerBlock _Nullable block);
 
-typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
+typedef RACDisposable *_Nonnull(^JobsReturnRACDisposableByReturnIDByIDBlocks)(JobsRetIDByIDBlock _Nullable block);
 
 typedef __kindof NSArray *_Nullable(^JobsReturnArrByMasonryBlocks)(jobsByMASConstraintMakerBlock _Nonnull block);
 typedef void(^jobsByMasonryBlock)(jobsByMASConstraintMakerBlock _Nonnull block);
 typedef jobsByMASConstraintMakerBlock _Nonnull(^JobsReturnMASConstraintMakerByBOOLBlock)(BOOL data);
 
-typedef MJRefreshConfigModel *_Nullable(^JobsReturnMJRefreshConfigModelByReturnIDByIDBlocks)(JobsReturnIDByIDBlock _Nullable block);
+typedef MJRefreshConfigModel *_Nullable(^JobsReturnMJRefreshConfigModelByReturnIDByIDBlocks)(JobsRetIDByIDBlock _Nullable block);
 
 #if __has_include(<SDWebImage/SDWebImage.h>)
 #import <SDWebImage/SDWebImage.h>

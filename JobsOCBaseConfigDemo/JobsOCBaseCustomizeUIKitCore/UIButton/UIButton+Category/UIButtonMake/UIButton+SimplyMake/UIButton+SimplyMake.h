@@ -20,7 +20,7 @@ Prop_copy(nullable)jobsByTimerManagerBlock heartBeatBlock;/// 用于计时器
 Prop_copy(nullable)jobsByBtnBlock clickBlock;
 Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 #pragma mark —— 对老Api进行二次封装
-+(JobsReturnButtonByNSIntegerBlock _Nonnull)initByType;
++(JobsRetBtnByNSIntegerBlock _Nonnull)initByType;
 +(__kindof UIButton *)initByCustomType;
 +(__kindof UIButton *)initBySysType API_AVAILABLE(ios(7.0));
 +(__kindof UIButton *)initByDetailDisclosureType;
@@ -31,41 +31,41 @@ Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 +(__kindof UIButton *)initByCloseType API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos, watchos);
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠主标题内容（普通文本）进行创建
-+(JobsReturnButtonByStringBlock _Nonnull)initByTitle;
++(JobsRetBtnByStringBlock _Nonnull)initByTitle;
 /// 仅仅依靠主标题富文本内容进行创建
-+(JobsReturnButtonByAttributedStringBlock _Nonnull)initByAttributedString;
++(JobsRetBtnByAttributedStringBlock _Nonnull)initByAttributedString;
 /// 仅仅靠按钮图片进行创建
-+(JobsReturnButtonByImageBlock _Nonnull)initByNormalImage;
++(JobsRetBtnByImageBlock _Nonnull)initByNormalImage;
 /// 仅仅依靠按钮背景图进行创建
-+(JobsReturnButtonByImageBlock _Nonnull)initByBackgroundImage;
++(JobsRetBtnByImageBlock _Nonnull)initByBackgroundImage;
 #pragma mark —— 对副标题进行创建
 /// 仅仅依靠（主/副）标题内容（普通文本）进行创建
-+(JobsReturnButtonByTitlesBlock _Nonnull)initByTitles;
++(JobsRetBtnByTitlesBlock _Nonnull)initByTitles;
 /// 仅仅依靠（主标题+副标题）富文本内容进行创建
-+(JobsReturnButtonByAttributedStringsBlock _Nonnull)initByAttributedStrings;
++(JobsRetBtnByAttributedStringsBlock _Nonnull)initByAttributedStrings;
 #pragma mark —— 依靠多数据进行较为复杂的创建
 /// 依靠标题内容和字体大小进行创建
-+(JobsReturnButtonByStyle1Block _Nonnull)initByTitle_font;
++(JobsRetBtnByStyle1Block _Nonnull)initByTitle_font;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
-+(JobsReturnButtonByStyle2Block _Nonnull)initByStyle1;
++(JobsRetBtnByStyle2Block _Nonnull)initByStyle1;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyle2;
++(JobsRetBtnByStyle3Block _Nonnull)initByStyle2;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
-+(JobsReturnButtonByStyle4Block _Nonnull)initByStyle3;
++(JobsRetBtnByStyle4Block _Nonnull)initByStyle3;
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
-+(JobsReturnButtonByStyle5Block _Nonnull)initByStyle4;
++(JobsRetBtnByStyle5Block _Nonnull)initByStyle4;
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
-+(JobsReturnButtonByStyle3Block _Nonnull)initByStyle5;
++(JobsRetBtnByStyle3Block _Nonnull)initByStyle5;
 /// 图文混排（图片在上边 ）
-+(JobsReturnButtonByStyle7Block _Nonnull)initByStyleTop;
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleTop;
 /// 图文混排（图片在左边 ）
-+(JobsReturnButtonByStyle7Block _Nonnull)initByStyleLeft;
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleLeft;
 /// 图文混排（图片在下边 ）
-+(JobsReturnButtonByStyle7Block _Nonnull)initByStyleBottom;
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleBottom;
 /// 图文混排（图片在右边 ）
-+(JobsReturnButtonByStyle7Block _Nonnull)initByStyleRight;
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleRight;
 #pragma mark —— 依靠数据束进行创建
-+(JobsReturnButtonByVoidBlock _Nonnull)jobsInit;
++(JobsRetBtnByVoidBlock _Nonnull)jobsInit;
 /// 依靠UIViewModel进行创建
 +(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel;
 /// 依靠UIButtonModel进行创建
@@ -76,8 +76,8 @@ Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 -(JobsReturnButtonByClickBlocks _Nonnull)onClickBy;
 -(JobsReturnButtonByClickBlocks _Nonnull)onLongPressGestureBy;
 -(JobsReturnButtonByTimerManagerBlocks _Nonnull)heartBeatBy;
--(JobsReturnButtonByColorBlock _Nonnull)bgColorBy;
--(JobsReturnButtonByCGFloatBlock _Nonnull)cornerRadiusValueBy;
+-(JobsRetBtnByCorBlock _Nonnull)bgColorBy;
+-(JobsRetBtnByCGFloatBlock _Nonnull)cornerRadiusValueBy;
 #pragma mark —— 依据数据源进行按钮的统一重设
 -(JobsReturnButtonByViewModelAndBOOLBlock _Nonnull)resetByViewModel;
 -(JobsReturnButtonByButtonModelAndBOOLBlock _Nonnull)resetByButtonModel;

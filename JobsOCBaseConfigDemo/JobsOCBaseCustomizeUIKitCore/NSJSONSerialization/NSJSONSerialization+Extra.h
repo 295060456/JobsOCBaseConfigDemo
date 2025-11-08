@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSJSONSerialization (Extra)
 
-+(JobsReturnDicByDataBlock _Nonnull)makeDicByData;
++(JobsRetDicByDataBlock _Nonnull)makeDicByData;
 
 @end
 

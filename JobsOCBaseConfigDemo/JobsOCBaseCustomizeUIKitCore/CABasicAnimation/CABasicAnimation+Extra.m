@@ -9,13 +9,13 @@
 
 @implementation CABasicAnimation (Extra)
 
-+(JobsReturnCABasicAnimationByStringBlock _Nonnull)animationByKeyPath{
++(JobsRetCABasicAnimationByStringBlock _Nonnull)animationByKeyPath{
     return ^CABasicAnimation *_Nullable(NSString *_Nullable data){
         return [CABasicAnimation animationWithKeyPath:data];;
     };
 }
 
--(JobsReturnCABasicAnimationByIDBlock _Nonnull)fromValueBy{
+-(JobsRetCABasicAnimationByIDBlock _Nonnull)fromValueBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(id _Nullable data){
         @jobs_strongify(self)
@@ -24,7 +24,7 @@
     };
 }
 
--(JobsReturnCABasicAnimationByIDBlock _Nonnull)toValueBy{
+-(JobsRetCABasicAnimationByIDBlock _Nonnull)toValueBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(id _Nullable data){
         @jobs_strongify(self)
@@ -33,7 +33,7 @@
     };
 }
 
--(JobsReturnCABasicAnimationByIDBlock _Nonnull)valueBy{
+-(JobsRetCABasicAnimationByIDBlock _Nonnull)valueBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(id _Nullable data){
         @jobs_strongify(self)
@@ -42,7 +42,7 @@
     };
 }
 
--(JobsReturnCABasicAnimationByCFTimeIntervalBlock _Nonnull)beginTimeBy{
+-(JobsRetCABasicAnimationByCFTimeIntervalBlock _Nonnull)beginTimeBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(CFTimeInterval data){
         @jobs_strongify(self)
@@ -51,7 +51,7 @@
     };
 }
 
--(JobsReturnCABasicAnimationByCFTimeIntervalBlock _Nonnull)durationBy{
+-(JobsRetCABasicAnimationByCFTimeIntervalBlock _Nonnull)durationBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(CFTimeInterval data){
         @jobs_strongify(self)
@@ -60,7 +60,7 @@
     };
 }
 
--(JobsReturnCABasicAnimationByFloatBlock _Nonnull)speedBy{
+-(JobsRetCABasicAnimationByFloatBlock _Nonnull)speedBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(float data){
         @jobs_strongify(self)
@@ -69,7 +69,7 @@
     };
 }
 
--(JobsReturnCABasicAnimationByCFTimeIntervalBlock _Nonnull)timeOffsetBy{
+-(JobsRetCABasicAnimationByCFTimeIntervalBlock _Nonnull)timeOffsetBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(CFTimeInterval data){
         @jobs_strongify(self)
@@ -78,7 +78,7 @@
     };
 }
 
--(JobsReturnCABasicAnimationByFloatBlock _Nonnull)repeatCountBy{
+-(JobsRetCABasicAnimationByFloatBlock _Nonnull)repeatCountBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(float data){
         @jobs_strongify(self)
@@ -87,7 +87,7 @@
     };
 }
 
--(JobsReturnCABasicAnimationByBOOLBlock _Nonnull)autoreversesBy{
+-(JobsRetCABasicAnimationByBOOLBlock _Nonnull)autoreversesBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -96,7 +96,7 @@
     };
 }
 
--(JobsReturnCABasicAnimationByCAMediaTimingFillModeBlock _Nonnull)fillModeBy{
+-(JobsRetCABasicAnimationByCAMediaTimingFillModeBlock _Nonnull)fillModeBy{
     @jobs_weakify(self)
     return ^__kindof CABasicAnimation *_Nullable(CAMediaTimingFillMode _Nullable data){
         @jobs_strongify(self)

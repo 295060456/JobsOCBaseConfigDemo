@@ -63,7 +63,7 @@ Prop_strong()CAGradientLayer *cagradientLayer;
     };
 }
 
--(JobsReturnViewByTimeIntervalBlock _Nonnull)iPhoneFadeWithDuration{
+-(JobsRetViewByTimeIntervalBlock _Nonnull)iPhoneFadeWithDuration{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(NSTimeInterval duration){
         @jobs_strongify(self)

@@ -10,7 +10,7 @@
 @implementation NSString (HexadecimalData)
 #pragma mark —— HexadecimalData <==> NSString
 ///【类方法】16进制字符串 转换成 普通的NSString对象
-+(JobsReturnStringByStringBlock _Nonnull)stringByHexString{
++(JobsRetStringByStringBlock _Nonnull)stringByHexString{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable hexString){
         return jobsMakeMutString(^(__kindof NSMutableString * _Nullable string) {
             for (int i = 0; i < hexString.length; i += 2) {
@@ -28,7 +28,7 @@
     return NSString.stringByHexString(self);
 }
 ///【类方法】普通的NSString对象 转换成 16进制字符串
-+(JobsReturnStringByStringBlock _Nonnull)hexStringByString{
++(JobsRetStringByStringBlock _Nonnull)hexStringByString{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable string){
         NSData *data = string.UTF8Encoding;
         NSMutableString *hexString = NSMutableString.initByCapacity(data.length * 2);
@@ -44,7 +44,7 @@
 }
 #pragma mark —— HexadecimalData ==> UIImage
 ///【类方法】16进制字符串 转换为 UIImage对象
-+(JobsReturnImageByStringBlock _Nonnull)imageByHexString{
++(JobsRetImageByStringBlock _Nonnull)imageByHexString{
     return ^UIImage *_Nullable(__kindof NSString *_Nullable hexString){
         return UIImage.initByData(jobsMakeMutData(^(__kindof NSMutableData * _Nullable imageData) {
             for (int i = 0; i + 1 < hexString.length; i += 2) {
@@ -64,7 +64,7 @@
 }
 #pragma mark —— HexadecimalData ==> NSData
 ///【类方法】16进制字符串 转换为 NSData对象
-+(JobsReturnDataByStringBlock _Nonnull)dataByHexString{
++(JobsRetDataByStringBlock _Nonnull)dataByHexString{
     return ^__kindof NSData *_Nullable(__kindof NSString *_Nullable hexString){
         return jobsMakeMutData(^(__kindof NSMutableData * _Nullable data) {
             for (int i = 0; i + 1 < hexString.length; i += 2) {

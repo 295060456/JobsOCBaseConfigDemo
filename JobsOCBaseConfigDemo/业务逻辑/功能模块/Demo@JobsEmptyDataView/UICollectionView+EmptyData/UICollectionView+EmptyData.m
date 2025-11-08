@@ -45,7 +45,7 @@
     }return hasData;
 }
 
--(JobsReturnViewByViewBlock _Nonnull)showEmptyViewBy{
+-(JobsRetViewByViewBlock _Nonnull)showEmptyViewBy{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof UIView *view){
         @jobs_strongify(self)

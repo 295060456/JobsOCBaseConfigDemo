@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PHAssetResource (Extra)
 
-+(JobsReturnArrayByPHAssetBlock _Nonnull)initBy;
++(JobsRetArrayByPHAssetBlock _Nonnull)initBy;
 
 @end
 

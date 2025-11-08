@@ -17,7 +17,7 @@ Prop_assign()NSTextAlignment alignment;
 @property(nonatomic,strong,nullable)UIColor *foreColor;
 @property(nonatomic,strong,nullable)UIFont *font;
 
--(JobsReturnViewByTimeIntervalBlock _Nonnull)iPhoneFadeWithDuration;
+-(JobsRetViewByTimeIntervalBlock _Nonnull)iPhoneFadeWithDuration;
 
 @end
 

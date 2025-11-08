@@ -13,7 +13,7 @@
 
 @implementation JobsWebViewController
 
-+(JobsReturnVCByWebViewBlock _Nonnull)initByWebView{
++(JobsRetVCByWebViewBlock _Nonnull)initByWebView{
     @jobs_weakify(self)
     return ^__kindof UIViewController <BaseViewControllerProtocol>*_Nullable(__kindof WKWebView *_Nonnull webView){
         @jobs_strongify(self)

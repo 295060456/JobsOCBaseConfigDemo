@@ -46,10 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 如果字符串为null 那么不走isEqualToString，无法比较都是空的情况
 +(BOOL)isEqualStrA:(NSString *)stringA strB:(NSString *)stringB;
 
--(JobsReturnBOOLByIDBlock _Nonnull)isEqualToString;
--(JobsReturnBOOLByIDBlock _Nonnull)containsString;
--(JobsReturnBOOLByIDBlock _Nonnull)hasPrefix;
--(JobsReturnBOOLByIDBlock _Nonnull)hasSuffix;
+-(JobsRetBOOLByIDBlock _Nonnull)isEqualToString;
+-(JobsRetBOOLByIDBlock _Nonnull)containsString;
+-(JobsRetBOOLByIDBlock _Nonnull)hasPrefix;
+-(JobsRetBOOLByIDBlock _Nonnull)hasSuffix;
 /// 判断字符串对象是否为狭义范围内的空格
 -(BOOL)isNotBlank;
 /// 判断是否是广义范围内的空格(space、\t、\r、\n)
@@ -97,9 +97,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 检查是否是纯数字
 -(BOOL)isPureDigit;
 /// 本字符串是否包含入参字符串的任何字符
--(JobsReturnBOOLByStringBlock _Nonnull)isContainBy;
+-(JobsRetBOOLByStringBlock _Nonnull)isContainBy;
 /// 本字符串是否不包含入参字符串的任何字符
--(JobsReturnBOOLByStringBlock _Nonnull)isNotContainBy;
+-(JobsRetBOOLByStringBlock _Nonnull)isNotContainBy;
 
 @end
 

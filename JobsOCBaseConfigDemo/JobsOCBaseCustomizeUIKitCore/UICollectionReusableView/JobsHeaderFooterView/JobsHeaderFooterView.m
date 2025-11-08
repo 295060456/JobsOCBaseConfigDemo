@@ -25,7 +25,7 @@ Prop_strong()UIViewModel *subTitleModel;
 }
 #pragma mark —— BaseViewProtocol
 /// 由具体的子类进行覆写
-+(JobsReturnCGSizeByIDBlock _Nonnull)viewSizeByModel{
++(JobsRetCGSizeByIDBlock _Nonnull)viewSizeByModel{
     return ^CGSize(id _Nullable data){
         return CGSizeZero;
     };

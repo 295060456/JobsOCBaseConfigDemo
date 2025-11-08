@@ -16,21 +16,21 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSString (Base32)
 #pragma mark —— Base32 <==> NSString
 ///【类方法】以Base32编码的字符串 转换为 普通的字符串
-+(JobsReturnStringByStringBlock _Nonnull)stringByBase32String;
++(JobsRetStringByStringBlock _Nonnull)stringByBase32String;
 ///【实例方法】以Base32编码的字符串 转换为 普通的字符串
 -(NSString *_Nullable)stringByBase32String;
 ///【类方法】普通的字符串 转换为 以Base32编码的字符串
-+(JobsReturnStringByStringBlock _Nonnull)base32String;
++(JobsRetStringByStringBlock _Nonnull)base32String;
 ///【实例方法】普通的字符串 转换为 以Base32编码的字符串
 -(NSString *_Nullable)base32String;
 #pragma mark —— Base32 <==> UIImage
 ///【类方法】将以Base32编码的字符串 转换为 NSData对象，然后再转成UIImage
-+(JobsReturnImageByStringBlock _Nonnull)imageByBase32String;
++(JobsRetImageByStringBlock _Nonnull)imageByBase32String;
 ///【实例方法】将以Base32编码的字符串 转换为 NSData对象，然后再转成UIImage
 -(UIImage *_Nullable)imageByBase32String;
 #pragma mark —— Base32 <==> NSData
 /// 将Base32编码的字符串 转换为 NSData对象
-+(JobsReturnDataByStringBlock _Nonnull)dataWithBase32String;
++(JobsRetDataByStringBlock _Nonnull)dataWithBase32String;
 ///【实例方法】将Base32编码的字符串 转换为 NSData对象
 -(NSData *_Nullable)dataWithBase32String;
 

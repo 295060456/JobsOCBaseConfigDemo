@@ -9,7 +9,7 @@
 
 @implementation NSCoder (Extra)
 /// 解档：字符串类型数据
--(JobsReturnIDByStringBlock _Nonnull)decodeStringBy{
+-(JobsRetIDByStrBlock _Nonnull)decodeStringBy{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -17,7 +17,7 @@
     };
 }
 /// 解档：UIImage类型数据
--(JobsReturnIDByStringBlock _Nonnull)decodeImageBy{
+-(JobsRetIDByStrBlock _Nonnull)decodeImageBy{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -25,7 +25,7 @@
     };
 }
 /// 解档：NSNumber类型数据
--(JobsReturnIDByStringBlock _Nonnull)decodeNumberBy{
+-(JobsRetIDByStrBlock _Nonnull)decodeNumberBy{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -33,7 +33,7 @@
     };
 }
 /// 解档：BOOL值
--(JobsReturnBOOLByStringBlock _Nonnull)decodeBOOLBy{
+-(JobsRetBOOLByStringBlock _Nonnull)decodeBOOLBy{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -41,7 +41,7 @@
     };
 }
 /// 解档：NSInteger值
--(JobsReturnNSIntegerByStringBlock _Nonnull)decodeIntegerBy{
+-(JobsRetNSIntegerByStringBlock _Nonnull)decodeIntegerBy{
     @jobs_weakify(self)
     return ^NSInteger(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -49,7 +49,7 @@
     };
 }
 /// 解档：浮点数 (double) 数据
--(JobsReturnDoubleByStringBlock _Nonnull)decodeDoubleBy{
+-(JobsRetDoubleByStringBlock _Nonnull)decodeDoubleBy{
     @jobs_weakify(self)
     return ^double(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -57,7 +57,7 @@
     };
 }
 /// 解档：字典类型数据
--(JobsReturnIDByStringBlock _Nonnull)decodeDictionaryBy{
+-(JobsRetIDByStrBlock _Nonnull)decodeDictionaryBy{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -65,7 +65,7 @@
     };
 }
 /// 解档：数组类型数据
--(JobsReturnIDByStringBlock _Nonnull)decodeArrayBy{
+-(JobsRetIDByStrBlock _Nonnull)decodeArrayBy{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -73,7 +73,7 @@
     };
 }
 /// 解档：NSData类型数据
--(JobsReturnIDByStringBlock _Nonnull)decodeDataBy{
+-(JobsRetIDByStrBlock _Nonnull)decodeDataBy{
     @jobs_weakify(self)
     return ^id _Nullable(NSString *_Nullable data){
         @jobs_strongify(self)

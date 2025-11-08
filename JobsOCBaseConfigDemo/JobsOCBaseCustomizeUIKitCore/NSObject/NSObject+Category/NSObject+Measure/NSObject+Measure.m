@@ -21,32 +21,32 @@ UIMarkProtocol_dynamic_part2 /// 标记📌
 }
 #pragma mark —— 控件居中的时候，相对于全屏的X和Y值
 /// 当控件相对于整个设备屏幕居中的时候，控件的X值
-+(JobsReturnCGFloatByCGFloatBlock _Nonnull)xWhenViewInScreenCenter{
++(JobsRetCGFloatByCGFloatBlock _Nonnull)xWhenViewInScreenCenter{
     return ^CGFloat(CGFloat width){
         return (JobsMainScreen_WIDTH() - width) / 2;
     };
 }
 /// 当控件相对于整个设备屏幕居中的时候，控件的Y值
-+(JobsReturnCGFloatByCGFloatBlock _Nonnull)yWhenViewInScreenCenter{
++(JobsRetCGFloatByCGFloatBlock _Nonnull)yWhenViewInScreenCenter{
     return ^CGFloat(CGFloat height){
         return (JobsMainScreen_HEIGHT() - height) / 2;
     };
 }
 #pragma mark —— 几何数据类型的比较
 /// 比较 size ？= CGSizeZero
--(JobsReturnBOOLBySizeBlock _Nonnull)isSizeZero{
+-(JobsRetBOOLBySizeBlock _Nonnull)isSizeZero{
     return ^BOOL(CGSize size){
         return jobsZeroSizeValue(size);
     };
 }
 /// 比较 point ？= CGPointZero
--(JobsReturnBOOLByPointBlock _Nonnull)isPointZero{
+-(JobsRetBOOLByPointBlock _Nonnull)isPointZero{
     return ^BOOL(CGPoint point){
         return jobsZeroPointValue(point);
     };
 }
 /// 比较 rect ？= CGRectZero
--(JobsReturnBOOLByFrameBlock _Nonnull)isRectZero{
+-(JobsRetBOOLByFrameBlock _Nonnull)isRectZero{
     return ^(CGRect frame){
         return jobsEqualToZeroRect(frame);
     };

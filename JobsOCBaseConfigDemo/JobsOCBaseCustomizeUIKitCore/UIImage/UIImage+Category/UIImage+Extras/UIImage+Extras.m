@@ -102,7 +102,7 @@
     return [UIImage imageWithCGImage:scaledImage];
 }
 /// 对UIImage对象进行缩放，并返回一个指定尺寸的新图像
--(JobsReturnImageByCGSizeBlock _Nonnull)imageResize{
+-(JobsRetImageByCGSizeBlock _Nonnull)imageResize{
     return ^UIImage *_Nonnull(CGSize newSize){
         CGFloat scale = UIScreen.mainScreen.scale;
         //UIGraphicsBeginImageContext(newSize);
@@ -117,7 +117,7 @@
     };
 }
 /// 图像模糊化
--(JobsReturnImageByAlphaBlock _Nonnull)alpha{
+-(JobsRetImageByAlphaBlock _Nonnull)alpha{
     @jobs_weakify(self)
     return ^UIImage *_Nonnull(CGFloat alpha){
         @jobs_strongify(self)
@@ -140,7 +140,7 @@
     };
 }
 /// 截取当前image对象rect区域内的图像
--(JobsReturnImageByCGRectBlock _Nonnull)dw_SubImageWithRect{
+-(JobsRetImageByCGRectBlock _Nonnull)dw_SubImageWithRect{
     @jobs_weakify(self)
     return ^UIImage *_Nonnull(CGRect rect){
         @jobs_strongify(self)
@@ -156,7 +156,7 @@
     };
 }
 /// 压缩图片至指定尺寸
--(JobsReturnImageByCGSizeBlock _Nonnull)dw_RescaleImageToSize{
+-(JobsRetImageByCGSizeBlock _Nonnull)dw_RescaleImageToSize{
     @jobs_weakify(self)
     return ^UIImage *_Nonnull(CGSize size){
         @jobs_strongify(self)
@@ -169,7 +169,7 @@
     };
 }
 /// 裁剪图片
--(JobsReturnImageByCGSizeBlock _Nonnull)imageScaleToSize{
+-(JobsRetImageByCGSizeBlock _Nonnull)imageScaleToSize{
     @jobs_weakify(self)
     return ^UIImage *_Nonnull(CGSize size){
         @jobs_strongify(self)
@@ -229,25 +229,25 @@
     return newImage;
 }
 /// 对系统方法 initWithData 的二次封装
-+(JobsReturnImageByDataBlock _Nonnull)initByData{
++(JobsRetImageByDataBlock _Nonnull)initByData{
     return ^UIImage *_Nonnull(__kindof NSData *_Nullable data){
         return [UIImage.alloc initWithData:data];
     };
 }
 /// 对系统方法 imageWithData 的二次封装
-+(JobsReturnImageByDataBlock _Nonnull)imageWithData{
++(JobsRetImageByDataBlock _Nonnull)imageWithData{
     return ^UIImage *_Nonnull(__kindof NSData *_Nullable data){
         return [UIImage imageWithData:data];
     };
 }
 /// 对系统方法 imageWithCGImage 的二次封装
-+(JobsReturnImageByCGImageRefBlock _Nonnull)imageWithCGImage{
++(JobsRetImageByCGImageRefBlock _Nonnull)imageWithCGImage{
     return ^UIImage *_Nonnull(CGImageRef _Nullable data){
         return [UIImage imageWithCGImage:data];
     };
 }
 /// 对系统方法 imageWithContentsOfFile 的二次封装
-+(JobsReturnImageByStringBlock _Nonnull)imageWithContentsOfFile{
++(JobsRetImageByStringBlock _Nonnull)imageWithContentsOfFile{
     return ^UIImage *_Nonnull(__kindof NSString *_Nullable data){
         return [UIImage imageWithContentsOfFile:data];
     };

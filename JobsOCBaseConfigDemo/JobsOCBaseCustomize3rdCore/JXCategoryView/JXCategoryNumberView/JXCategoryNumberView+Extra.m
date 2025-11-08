@@ -29,7 +29,7 @@
 
 -(JobsReturnCategoryNumberViewByReturnStringByIntegerBlocks _Nonnull)byNumberStringFormatterBlock{
     @jobs_weakify(self)
-    return ^__kindof JXCategoryNumberView *_Nullable(JobsReturnStringByIntegerBlock _Nullable block){
+    return ^__kindof JXCategoryNumberView *_Nullable(JobsRetStringByIntegerBlock _Nullable block){
         @jobs_strongify(self)
         self.numberStringFormatterBlock = block;
         return self;

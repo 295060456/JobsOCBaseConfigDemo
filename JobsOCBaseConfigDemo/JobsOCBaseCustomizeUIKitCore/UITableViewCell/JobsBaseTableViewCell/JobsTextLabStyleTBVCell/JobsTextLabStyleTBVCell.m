@@ -22,14 +22,14 @@ BaseLayerProtocol_synthesize_part3
 }
 #pragma mark —— BaseCellProtocol
 /// UITableViewCell
-+(JobsReturnTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
++(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleDefaultWithTableView{
     return ^(UITableView * _Nonnull tableView) {
         JobsTextLabStyleTBVCell *cell = JobsRegisterDequeueTableViewDefaultCell(JobsTextLabStyleTBVCell);
         return cell;
     };
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
--(JobsReturnTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
+-(JobsRetTableViewCellByIDBlock _Nonnull)jobsRichElementsTableViewCellBy{
     @jobs_weakify(self)
     return ^__kindof UITableViewCell *_Nullable(UIViewModel __kindof *_Nullable model) {
         @jobs_strongify(self)
@@ -39,7 +39,7 @@ BaseLayerProtocol_synthesize_part3
     };
 }
 /// 具体由子类进行复写【数据定高】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
-+(JobsReturnCGFloatByIDBlock _Nonnull)cellHeightByModel{
++(JobsRetCGFloatByIDBlock _Nonnull)cellHeightByModel{
     return ^CGFloat(id _Nullable data){
         return JobsWidth(55);
     };

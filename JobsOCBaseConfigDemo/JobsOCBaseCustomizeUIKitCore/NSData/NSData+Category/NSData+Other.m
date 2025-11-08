@@ -9,7 +9,7 @@
 
 @implementation NSData (Other)
 #pragma mark —— 对系统初始化方法的封装
--(JobsReturnDataByDataBlock _Nonnull)initWithData{
+-(JobsRetDataByDataBlock _Nonnull)initWithData{
     @jobs_weakify(self)
     return ^NSData *_Nullable(NSData *_Nullable data){
         @jobs_strongify(self)
@@ -17,43 +17,43 @@
     };
 }
 
-+(JobsReturnDataByNSUIntegerBlock _Nonnull)initByCapacity{
++(JobsRetDataByNSUIntegerBlock _Nonnull)initByCapacity{
     return ^NSMutableData *_Nullable(NSUInteger data){
         return [NSMutableData dataWithCapacity:data];
     };
 }
 
-+(JobsReturnDataByDataBlock _Nonnull)initByData{
++(JobsRetDataByDataBlock _Nonnull)initByData{
     return ^NSData *_Nullable(NSData *_Nullable data){
         return [NSData dataWithData:data];
     };
 }
 
-+(JobsReturnDataByURLBlock _Nonnull)initByURL{
++(JobsRetDataByURLBlock _Nonnull)initByURL{
     return ^NSData *_Nullable(NSURL *_Nullable data){
         return [NSData dataWithContentsOfURL:data];
     };
 }
 
-+(JobsReturnDataByStringBlock _Nonnull)dataByContentsOfFile{
++(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile{
     return ^NSData *_Nullable(__kindof NSString *_Nullable data){
         return [NSData dataWithContentsOfFile:data];
     };
 }
 
-+(JobsReturnDataByStringBlock _Nonnull)initByBase64EncodedString{
++(JobsRetDataByStringBlock _Nonnull)initByBase64EncodedString{
     return ^NSData *_Nullable(__kindof NSString *_Nullable data){
         return [NSData.alloc initWithBase64EncodedString:data options:NSDataBase64DecodingIgnoreUnknownCharacters];
     };
 }
 
-+(JobsReturnDataByDataBlock _Nonnull)initByBase64EncodedData{
++(JobsRetDataByDataBlock _Nonnull)initByBase64EncodedData{
     return ^NSData *_Nullable(NSData *_Nullable data){
         return [NSData.alloc initWithBase64EncodedData:data options:NSDataBase64DecodingIgnoreUnknownCharacters];
     };
 }
 
-+(JobsReturnDataByStringBlock _Nonnull)dataByContentsOfFile_ReadingMappedIfSafe{
++(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile_ReadingMappedIfSafe{
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfFile:string
@@ -64,7 +64,7 @@
     };
 }
 
-+(JobsReturnDataByStringBlock _Nonnull)dataByContentsOfFile_NSDataReadingUncached{
++(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile_NSDataReadingUncached{
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfFile:string
@@ -75,7 +75,7 @@
     };
 }
 
-+(JobsReturnDataByStringBlock _Nonnull)dataByContentsOfFile_NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)){
++(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile_NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)){
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfFile:string
@@ -86,7 +86,7 @@
     };
 }
 
-+(JobsReturnDataByURLBlock _Nonnull)dataByContentsOfURL_NSDataReadingMappedIfSafe{
++(JobsRetDataByURLBlock _Nonnull)dataByContentsOfURL_NSDataReadingMappedIfSafe{
     return ^NSData *_Nullable(NSURL *_Nullable url){
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfURL:url
@@ -97,7 +97,7 @@
     };
 }
 
-+(JobsReturnDataByURLBlock _Nonnull)dataByContentsOfURL_NSDataReadingUncached{
++(JobsRetDataByURLBlock _Nonnull)dataByContentsOfURL_NSDataReadingUncached{
     return ^NSData *_Nullable(NSURL *_Nullable url){
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfURL:url
@@ -108,7 +108,7 @@
     };
 }
 
-+(JobsReturnDataByURLBlock _Nonnull)dataByContentsOfURL_NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)){
++(JobsRetDataByURLBlock _Nonnull)dataByContentsOfURL_NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)){
     return ^NSData *_Nullable(NSURL *_Nullable url){
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfURL:url

@@ -16,17 +16,17 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIColor (Other)
 #pragma mark —— 类方法
 /// 十六进制字符串 => UIColor *
-+(JobsReturnColorByStringBlock _Nonnull)jobsCor;
++(JobsRetCorByStringBlock _Nonnull)jobsCor;
 /// uint32_t 颜色的RGB数值 + 透明度 => UIColor *
-+(JobsReturnColorByHexAlphaBlock _Nonnull)jobsColorByHexAlpha;
++(JobsRetCorByHexAlphaBlock _Nonnull)jobsColorByHexAlpha;
 /// uint32_t 颜色的RGB数值  => UIColor *
-+(JobsReturnColorByHexBlock _Nonnull)jobsColorByHex;
++(JobsRetCorByHexBlock _Nonnull)jobsColorByHex;
 /// 十六进制字符串 + 透明度 => UIColor *
 +(UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha;
 /// 十六进制字符串 （默认透明度为1） => UIColor *
-+(JobsReturnColorByStringBlock _Nonnull)colorWithHexString;
++(JobsRetCorByStringBlock _Nonnull)colorWithHexString;
 /// UIColor * => UIImage *
-+(JobsReturnImageByCorBlock)imageWithColor;
++(JobsRetImageByCorBlock)imageWithColor;
 /// 生成的渐变图像
 /// - Parameters:
 ///   - CorDataMutArr: 一个可选的NSMutableArray，其中包含用于渐变的颜色数组。如果未提供或为nil，方法将默认使用红色和绿色作为渐变颜色。
@@ -42,12 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— 实例方法
 /// 将一个确定的UIColor子类，翻译成RGB格式的字符串值并对外输出【可能因为四舍五入的问题影响末位精度，误差在±1】
 /// 资料来源  https://blog.csdn.net/thanklife/article/details/25784879
--(JobsReturnStringByCorBlock)rgbCorStrBy;
+-(JobsRetStringByCorBlock)rgbCorStrBy;
 /// 将一个确定的UIColor子类，翻译成十六进制格式的字符串值并对外输出
 -(JobsReturnCorModelByVoidBlock)hexadecimalCorStrBy;
 /// iOS 父视图透明度影响到子视图
 /// https://blog.csdn.net/ios_xumin/article/details/114263960
--(JobsReturnColorByCGFloatBlock)colorWithAlphaComponentBy;
+-(JobsRetCorByCGFloatBlock)colorWithAlphaComponentBy;
 /// 根据颜色生成图片
 -(UIImage *)image;
 

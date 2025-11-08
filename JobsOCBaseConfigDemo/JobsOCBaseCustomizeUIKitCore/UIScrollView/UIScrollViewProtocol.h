@@ -30,29 +30,29 @@ Prop_assign()ScrollDirection direction;
 /// 在 UIScrollViewDelegate协议方法 -(void)scrollViewDidScroll:(UIScrollView *)scrollView里进行调用
 -(ScrollDirection)scrolldirectionWhenScrollViewDidScroll;
 /// 刷新UI
--(JobsReturnViewByVoidBlock _Nonnull)reloadDatas;
+-(JobsRetViewByVoidBlock _Nonnull)reloadDatas;
 /// 得到visibleCells
 -(NSArray <UIView *>*_Nullable)scrollViewCells;
 /// 依据index得到cell
--(JobsReturnViewByNSUIntegerBlock _Nonnull)scrollViewCellsByIndex;
+-(JobsRetViewByNSUIntegerBlock _Nonnull)scrollViewCellsByIndex;
 /// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
--(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByYES;
+-(JobsRetScrollViewByPointBlock _Nonnull)setContentOffsetByYES;
 /// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
--(JobsReturnScrollViewByPointBlock _Nonnull)setContentOffsetByNO;
+-(JobsRetScrollViewByPointBlock _Nonnull)setContentOffsetByNO;
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;   的二次封装
--(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES;
+-(JobsRetScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES;
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;  的二次封装
--(JobsReturnScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO;
+-(JobsRetScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO;
 ///
--(JobsReturnScrollViewByDelegateBlock _Nonnull)byDelegate;
--(JobsReturnScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy;
--(JobsReturnScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy;
--(JobsReturnScrollViewBySizeBlock _Nonnull)byContentSize;
--(JobsReturnScrollViewByCGFloatBlock _Nonnull)byContentWidth;
--(JobsReturnScrollViewByCGFloatBlock _Nonnull)byContentHeight;
--(JobsReturnScrollViewByBOOLBlock _Nonnull)byScrollEnabled;
--(JobsReturnScrollViewByBOOLBlock _Nonnull)byBounces;
--(JobsReturnScrollViewByUIEdgeInsetsBlock _Nonnull)byEdgeInsets;
+-(JobsRetScrollViewByDelegateBlock _Nonnull)byDelegate;
+-(JobsRetScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy;
+-(JobsRetScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy;
+-(JobsRetScrollViewBySizeBlock _Nonnull)byContentSize;
+-(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentWidth;
+-(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentHeight;
+-(JobsRetScrollViewByBOOLBlock _Nonnull)byScrollEnabled;
+-(JobsRetScrollViewByBOOLBlock _Nonnull)byBounces;
+-(JobsRetScrollViewByUIEdgeInsetsBlock _Nonnull)byEdgeInsets;
 -(JobsReturnScrollViewByMJRefreshHeaderBlock _Nonnull)byMJRefreshHeader;
 -(JobsReturnScrollViewByMJRefreshFooterBlock _Nonnull)byMJRefreshFooter;
 #pragma mark —— AnimationKit
@@ -103,10 +103,10 @@ Prop_assign()JobsEmptyViewType jobsEmptyViewType;
 Prop_strong()UITextModel *textModelEmptyData;
 Prop_strong()UIButtonModel *buttonModelEmptyData;
 Prop_strong()__kindof UIView *emptyDataView;
--(JobsReturnViewByViewBlock _Nonnull)showEmptyViewBy;
+-(JobsRetViewByViewBlock _Nonnull)showEmptyViewBy;
 -(JobsReturnViewByButtonModelBlock _Nonnull)showEmptyButtonBy;
 -(JobsReturnViewByTextModelBlock _Nonnull)showEmptyLabelBy;
--(JobsReturnScrollViewByButtonModelBlock _Nonnull)emptyDataByButtonModel;
+-(JobsRetScrollViewByButtonModelBlock _Nonnull)emptyDataByButtonModel;
 
 @end
 

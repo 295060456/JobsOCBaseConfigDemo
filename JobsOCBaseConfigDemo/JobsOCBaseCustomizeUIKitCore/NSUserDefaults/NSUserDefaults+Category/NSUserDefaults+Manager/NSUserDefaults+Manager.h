@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 存数据（包括父类直到NSObject的所有属性）
 +(jobsByUserDefaultModelBlock _Nonnull)updateWithModel;
 /// 读取数据
-+(JobsReturnIDByStringBlock _Nonnull)readWithKey;
++(JobsRetIDByStrBlock _Nonnull)readWithKey;
 /// 删除数据
 +(jobsByStringBlock _Nonnull)deleteWithKey;
 

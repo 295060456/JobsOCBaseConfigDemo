@@ -9,7 +9,7 @@
 
 @implementation UINavigationController (Extra)
 
-+(JobsReturnNavCtrByVCBlock _Nonnull)initByRootVC{
++(JobsRetNavCtrByVCBlock _Nonnull)initByRootVC{
     return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
         return [UINavigationController.alloc initWithRootViewController:vc];
     };
@@ -27,7 +27,7 @@
     };
 }
 
--(JobsReturnNavCtrByDelegateBlock _Nonnull)byDelegate{
+-(JobsRetNavCtrByDelegateBlock _Nonnull)byDelegate{
     @jobs_weakify(self)
     return ^__kindof UINavigationController *_Nullable(id <UINavigationControllerDelegate>_Nullable delegate){
         @jobs_strongify(self)

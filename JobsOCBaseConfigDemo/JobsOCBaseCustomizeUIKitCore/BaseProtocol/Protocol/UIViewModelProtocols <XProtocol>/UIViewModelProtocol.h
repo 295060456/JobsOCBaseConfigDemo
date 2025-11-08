@@ -21,8 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UIViewModelProtocol <XProtocol>
 @optional
 #pragma mark —— 文字配置
-Prop_copy(nullable)JobsReturnIDByIDBlock jobsBlock;
-Prop_strong(nullable)NSMutableArray <JobsReturnIDByIDBlock>*jobsBlockMutArr;
+Prop_copy(nullable)JobsRetIDByIDBlock jobsBlock;
+Prop_strong(nullable)NSMutableArray <JobsRetIDByIDBlock>*jobsBlockMutArr;
 #pragma mark —— 图片配置
 /// 普通图
 Prop_copy(nullable)NSString *normalImageURLString;
