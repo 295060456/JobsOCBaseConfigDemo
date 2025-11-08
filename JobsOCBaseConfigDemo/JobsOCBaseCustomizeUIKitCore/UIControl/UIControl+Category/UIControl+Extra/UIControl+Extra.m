@@ -31,7 +31,7 @@ static inline NSArray<NSNumber *> *jobs_splitEvents(UIControlEvents events) {
 /// 绑定（先移除旧 target，再绑定新 target）
 static inline JobsControlTarget *
 _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
-           _JobsInvokePolicy policy, NSTimeInterval interval, jobsByControlBlock block) {
+           _JobsInvokePolicy policy, NSTimeInterval interval, jobsByCtrlBlock block) {
     NSMutableDictionary *map = _jobs_targetsMap(ctl, YES);
     JobsControlTarget *old = map[@(singleEvent)];
     if (old) {
@@ -57,7 +57,7 @@ _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
 @implementation UIControl (Extra)
 /// 基础：为一个或多个事件绑定回调（同一事件再次绑定会覆盖旧回调）
 -(instancetype)jobs_on:(UIControlEvents)events
-                 block:(jobsByControlBlock _Nonnull)block{
+                 block:(jobsByCtrlBlock _Nonnull)block{
     for (NSNumber *n in jobs_splitEvents(events)) {
         _jobs_bind(self, n.unsignedIntegerValue, _JobsInvokePolicyNone, 0, block);
     }
@@ -66,7 +66,7 @@ _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
 /// 节流：间隔 seconds 内只执行一次（适合重复点击/拖动频繁场景）
 -(instancetype)jobs_on:(UIControlEvents)events
               throttle:(NSTimeInterval)seconds
-                 block:(jobsByControlBlock _Nonnull)block{
+                 block:(jobsByCtrlBlock _Nonnull)block{
     for (NSNumber *n in jobs_splitEvents(events)) {
         _jobs_bind(self, n.unsignedIntegerValue, _JobsInvokePolicyThrottle, seconds, block);
     }
@@ -75,7 +75,7 @@ _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
 /// 防抖：停止触发后等待 seconds 再执行（适合搜索框等输入联想）
 -(instancetype)jobs_on:(UIControlEvents)events
               debounce:(NSTimeInterval)seconds
-                 block:(jobsByControlBlock _Nonnull)block{
+                 block:(jobsByCtrlBlock _Nonnull)block{
     for (NSNumber *n in jobs_splitEvents(events)) {
         _jobs_bind(self, n.unsignedIntegerValue, _JobsInvokePolicyDebounce, seconds, block);
     }
@@ -83,18 +83,18 @@ _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
 }
 /// 只执行一次：触发后即自动解绑
 -(instancetype)jobs_once:(UIControlEvents)events
-                   block:(jobsByControlBlock _Nonnull)block{
+                   block:(jobsByCtrlBlock _Nonnull)block{
     for (NSNumber *n in jobs_splitEvents(events)) {
         _jobs_bind(self, n.unsignedIntegerValue, _JobsInvokePolicyOnce, 0, block);
     }
     return self;
 }
 /// 便捷：点击（.touchUpInside）
--(instancetype)jobs_onTap:(jobsByControlBlock _Nonnull)block{
+-(instancetype)jobs_onTap:(jobsByCtrlBlock _Nonnull)block{
     return [self jobs_on:UIControlEventTouchUpInside block:block];
 }
 /// 便捷：值变化（.valueChanged）
--(instancetype)jobs_onChange:(jobsByControlBlock _Nonnull)block{
+-(instancetype)jobs_onChange:(jobsByCtrlBlock _Nonnull)block{
     return [self jobs_on:UIControlEventValueChanged block:block];
 }
 /// 触发事件（等价于 sendActionsForControlEvents:）

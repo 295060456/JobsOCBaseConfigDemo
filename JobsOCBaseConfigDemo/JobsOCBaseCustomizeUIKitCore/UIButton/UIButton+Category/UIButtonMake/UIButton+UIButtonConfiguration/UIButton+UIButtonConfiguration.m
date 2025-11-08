@@ -31,7 +31,7 @@
                                                                                                 btnTitleCor:subTitleCor]);
 }
 /// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
--(__kindof UIButton *)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock {
+-(__kindof UIButton *)jobsUpdateButtonConfiguration:(jobsByBtnConfigBlock _Nullable)configurationBlock {
     if (@available(iOS 16.0, *)) {
         UIButtonConfiguration *config = self.configuration.copy;
         if (configurationBlock) configurationBlock(config);
@@ -40,7 +40,7 @@
     } return self;
 }
 
--(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock{
+-(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByBtnConfigBlock _Nullable)configurationBlock{
     [self jobsUpdateButtonConfiguration:configurationBlock];
     self.updateConfigBy();
     return self.configuration;

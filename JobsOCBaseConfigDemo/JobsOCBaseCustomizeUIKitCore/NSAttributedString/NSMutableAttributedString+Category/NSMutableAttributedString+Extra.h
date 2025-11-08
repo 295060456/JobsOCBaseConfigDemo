@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 对系统方法 initWithAttributedString 的二次封装
 +(JobsRetMutableAttributedStringByAttributedStringBlock _Nonnull)initByAttributedString;
 /// 对系统方法 initWithString 的二次封装
-+(JobsRetMutableAttributedStringByStringBlock _Nonnull)initByString;
++(JobsRetMutableAttributedStringByStrBlock _Nonnull)initByString;
 /// OC富文本字符串拼接
 -(JobsRetAttributedStringByAttributedStringBlock _Nonnull)add;
 /// 段落

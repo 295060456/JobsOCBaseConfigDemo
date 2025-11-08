@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图像模糊化
 -(JobsRetImageByAlphaBlock _Nonnull)alpha;
 /// 截取当前image对象rect区域内的图像
--(JobsRetImageByCGRectBlock _Nonnull)dw_SubImageWithRect;
+-(JobsRetImageByFrameBlock _Nonnull)dw_SubImageWithRect;
 /// 压缩图片至指定尺寸
 -(JobsRetImageByCGSizeBlock _Nonnull)dw_RescaleImageToSize;
 /// 裁剪图片
@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 对系统方法 imageWithCGImage 的二次封装
 +(JobsRetImageByCGImageRefBlock _Nonnull)imageWithCGImage;
 /// 对系统方法 imageWithContentsOfFile 的二次封装
-+(JobsRetImageByStringBlock _Nonnull)imageWithContentsOfFile;
++(JobsRetImageByStrBlock _Nonnull)imageWithContentsOfFile;
 
 @end
 

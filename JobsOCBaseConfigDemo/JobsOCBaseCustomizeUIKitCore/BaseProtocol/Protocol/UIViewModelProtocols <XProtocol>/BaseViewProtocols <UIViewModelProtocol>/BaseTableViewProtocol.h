@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— RegisterClass
 -(void)registerTableViewClass;
 /// 不加盐注册
--(jobsByClassBlock _Nonnull)registerTableViewClassBy;
+-(jobsByClsBlock _Nonnull)registerTableViewClassBy;
 /// 加盐注册
 -(jobsByClassAndSaltBlock _Nonnull)registerTableViewClassBySalt;
 /// 注册 HeaderFooterView 及其子类 jobsByClassBlock

@@ -125,7 +125,7 @@
     }else{}return resMutSet;
 }
 /// 以当前手机系统时间（包含了时区）为基准，给定一个日期偏移值（正值代表未来，负值代表过去，0代表现在），返回字符串特定格式的“星期几”
--(JobsRetStringByIntegerBlock _Nonnull)whatDayOfWeekDistanceNow{
+-(JobsRetStrByIntegerBlock _Nonnull)whatDayOfWeekDistanceNow{
     return ^NSString *_Nullable(NSInteger offsetDay){
         JobsTimeModel *timeModel = JobsTimeModel.makeSpecificTime;
         NSInteger currentWeekday = timeModel.currentWeekday;//当前时间是周几？1代表周日 2代表周一 7代表周六
@@ -188,7 +188,7 @@
     };
 }
 /// 通用格式化方法：整数或浮点数，每三位加逗号，小数保留2位
--(JobsRetStringByCGFloatBlock _Nonnull)manualFormatNumber{
+-(JobsRetStrByCGFloatBlock _Nonnull)manualFormatNumber{
     return ^__kindof NSString *_Nullable(CGFloat num){
         return jobsMakeMutString(^(__kindof NSMutableString *_Nullable result) {
             // 取整和小数部分

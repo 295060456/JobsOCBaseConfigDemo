@@ -58,7 +58,7 @@ Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
                              completionBlock:nil];
 }
 
--(jobsByControlBlock _Nonnull)dropDownListViewDisappear{
+-(jobsByCtrlBlock _Nonnull)dropDownListViewDisappear{
     @jobs_weakify(self)
     return ^(UIControl *_Nullable ctrl){
         @jobs_strongify(self)

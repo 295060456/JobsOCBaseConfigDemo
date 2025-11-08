@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// NSAttributedString 用于设置段落样式，包括行间距、段间距、对齐方式等
 @interface NSAttributedString (Extra)
 /// 对系统方法 initWithString 的二次封装
-+(JobsRetAttributedStringByStringBlock _Nonnull)initByString;
++(JobsRetAttributedStringByStrBlock _Nonnull)initByString;
 /// 获取 NSAttributedString.文本字体
 -(JobsRetFontByVoidBlock _Nonnull)attributedStringFont;
 /// 获取 NSAttributedString.文本颜色

@@ -119,7 +119,7 @@
     #endif
 }
 
--(JobsRetStringByNumberBlock _Nonnull)toString{
+-(JobsRetStrByNumberBlock _Nonnull)toString{
     @jobs_weakify(self)
     return ^NSString *_Nullable(NSNumber *_Nullable data) {
         @jobs_strongify(self)

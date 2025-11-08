@@ -9,7 +9,7 @@
 
 @implementation JobsVPN
 #pragma mark —— 一些私有方法
--(JobsRetDataByStringBlock _Nonnull)getKeychainPassword{
+-(JobsRetDataByStrBlock _Nonnull)getKeychainPassword{
     // 从 Keychain 获取密码
     return ^__kindof NSData *_Nullable(__kindof NSString *_Nullable data){
         /// TODO

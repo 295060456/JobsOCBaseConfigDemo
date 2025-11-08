@@ -21,7 +21,7 @@ UITextFieldDelegate
 
 Prop_strong()ZYTextField *inputTextField;
 
--(jobsByStringBlock _Nonnull)someChangeUIBy;
+-(jobsByStrBlock _Nonnull)someChangeUIBy;
 
 @end
 

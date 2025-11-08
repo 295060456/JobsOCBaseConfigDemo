@@ -77,7 +77,7 @@ Prop_assign()NSUInteger thisIndex;
     };
 }
 #pragma mark —— 一些私有方法
--(jobsByMutArrayBlock _Nonnull)makeCellData{
+-(jobsByMutArrBlock _Nonnull)makeCellData{
     @jobs_weakify(self)
     return ^(__kindof NSMutableArray *_Nullable arr){
         @jobs_strongify(self)

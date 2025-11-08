@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(BOOL)isLoginByToken;
 /// 判定是否登录的标准2
 /// 登录是否过期：没有过期时间 ===  已经过期
--(JobsRetBOOLByStringBlock _Nonnull)isLoginByExpiredTime;
+-(JobsRetBOOLByStrBlock _Nonnull)isLoginByExpiredTime;
 /// 检查是否登录并执行传入的代码块
 -(void)isLogin:(jobsByVoidBlock _Nullable)loginedinBlock;
 /// 刷新用户Token
@@ -51,13 +51,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///【通过特定的用户名】 读取用户的本地资料
 -(JobsRetIDByClsAndSaltStrBlock _Nonnull)readUserInfoByUserName;
 ///【通过特定的用户名】 删除该用户的本地资料
--(jobsByStringBlock _Nonnull)deleteUserInfoByUserName;
+-(jobsByStrBlock _Nonnull)deleteUserInfoByUserName;
 #pragma mark —— 全局保存和删除已经登录成功的用户名
 /// 全局保存已经登录成功 且 并未删除的用户名
--(jobsByStringBlock _Nonnull)saveUserName;
+-(jobsByStrBlock _Nonnull)saveUserName;
 -(NSArray *_Nullable)readUserNameMutArr;
 /// 全局删除已经登录成功的用户名
--(jobsByStringBlock _Nonnull)deleteUserName;
+-(jobsByStrBlock _Nonnull)deleteUserName;
 
 @end
 

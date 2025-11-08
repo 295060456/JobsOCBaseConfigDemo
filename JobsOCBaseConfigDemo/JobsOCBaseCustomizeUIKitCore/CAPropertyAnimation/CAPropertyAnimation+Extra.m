@@ -9,7 +9,7 @@
 
 @implementation CAPropertyAnimation (Extra)
 
--(JobsRetCAPropertyAnimationByStringBlock _Nonnull)keyPathBy{
+-(JobsRetCAPropertyAnimationByStrBlock _Nonnull)keyPathBy{
     @jobs_weakify(self)
     return ^__kindof CAPropertyAnimation *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)

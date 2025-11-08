@@ -34,7 +34,7 @@ static inline NSTimeInterval _jobs_now(void) {
 
         case _JobsInvokePolicyOnce: {
             if (!self.block) return;
-            jobsByControlBlock blk = [self.block copy];
+            jobsByCtrlBlock blk = [self.block copy];
             // 触发后解绑自身
             [sender removeTarget:self action:@selector(invoke:) forControlEvents:self.event];
             self.block = nil;

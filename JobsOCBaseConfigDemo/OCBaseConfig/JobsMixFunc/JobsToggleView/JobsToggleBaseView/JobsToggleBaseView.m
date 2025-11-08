@@ -139,7 +139,7 @@ JobsToggleNavViewProtocolSynthesize
     };
 }
 /// 可滑动子View的Frame
--(jobsByArrayBlock _Nonnull)makeScrollContentViewsFrameBy{
+-(jobsByArrBlock _Nonnull)makeScrollContentViewsFrameBy{
     @jobs_weakify(self)
     return ^(__kindof NSArray <__kindof UIView *>*_Nullable data){
         @jobs_strongify(self)

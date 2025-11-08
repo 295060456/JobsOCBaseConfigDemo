@@ -11,7 +11,7 @@
 @implementation NSData (Base64)
 #pragma mark —— NSData ==> Base64
 ///【类方法】NSData 转换成 以Base64编码的字符串
-+(JobsRetStringByDataBlock _Nonnull)base64StringFromData{
++(JobsRetStrByDataBlock _Nonnull)base64StringFromData{
     return ^__kindof NSString *_Nullable(NSData *_Nullable data){
         return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     };
@@ -22,7 +22,7 @@
 }
 #pragma mark —— Base64 ==> NSData
 ///【类方法】将给定的以Base64编码的字符串 转换为 NSData对象。实现了将Base64字符串解码为原始二进制数据的过程。
-+(JobsRetDataByStringBlock _Nonnull)dataByBase64String{
++(JobsRetDataByStrBlock _Nonnull)dataByBase64String{
     /**
      具体来说，该方法遍历输入的Base64字符串中的字符，并根据Base64编码规则将其转换为相应的二进制数据。
      在遍历过程中，将每4个Base64字符（24比特）转换为3个字节的二进制数据，然后将这些二进制数据追加到NSMutableData对象中。
@@ -93,7 +93,7 @@
     };
 }
 ///【实例方法】将给定的以Base64编码的字符串 转换为 NSData对象。实现了将Base64字符串解码为原始二进制数据的过程。
--(JobsRetDataByStringBlock _Nonnull)dataByBase64String{
+-(JobsRetDataByStrBlock _Nonnull)dataByBase64String{
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
         return NSData.dataByBase64String(string);
     };

@@ -19,7 +19,7 @@
 
 -(jobsByErrBlocks _Nonnull)notificationRequestCompletionHandlerBy{
     @jobs_weakify(self)
-    return ^(jobsByErrorBlock _Nullable block){
+    return ^(jobsByErrBlock _Nullable block){
         @jobs_strongify(self)
         [UNUserNotificationCenter.currentNotificationCenter addNotificationRequest:self
                                                              withCompletionHandler:block];

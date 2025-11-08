@@ -19,7 +19,7 @@
     };
 }
 
--(jobsByClassBlock _Nonnull)cleanSubviewBy{
+-(jobsByClsBlock _Nonnull)cleanSubviewBy{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls){
         @jobs_strongify(self)

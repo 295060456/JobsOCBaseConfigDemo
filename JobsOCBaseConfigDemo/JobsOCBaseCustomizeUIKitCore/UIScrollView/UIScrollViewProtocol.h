@@ -40,9 +40,9 @@ Prop_assign()ScrollDirection direction;
 /// 对系统方法 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;  的二次封装
 -(JobsRetScrollViewByPointBlock _Nonnull)setContentOffsetByNO;
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;   的二次封装
--(JobsRetScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES;
+-(JobsRetScrollViewByFrameBlock _Nonnull)scrollRectToVisibleByYES;
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;  的二次封装
--(JobsRetScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO;
+-(JobsRetScrollViewByFrameBlock _Nonnull)scrollRectToVisibleByNO;
 ///
 -(JobsRetScrollViewByDelegateBlock _Nonnull)byDelegate;
 -(JobsRetScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy;

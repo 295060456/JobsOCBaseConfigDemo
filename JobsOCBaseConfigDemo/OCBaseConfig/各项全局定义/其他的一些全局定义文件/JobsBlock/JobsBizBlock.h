@@ -130,8 +130,8 @@ typedef __kindof KYCBaseView *_Nullable(^JobsReturnKYCBaseViewByStatusBlock)(Ver
 typedef __kindof UIScrollView *_Nullable(^JobsReturnScrollViewByStatusBlock)(VerificationStatus status);
 
 @class PhilippinesModel;
-typedef void(^jobsByArrBlock)(__kindof NSMutableArray<__kindof UIViewModel *> * _Nullable models);
-typedef void(^jobsByPhilippinesModelsBlocks)(jobsByArrBlock _Nullable completionBlock);
+typedef void(^jobsByVMArrBlock)(__kindof NSMutableArray<__kindof UIViewModel *> * _Nullable models);
+typedef void(^jobsByPhilippinesModelsBlocks)(jobsByVMArrBlock _Nullable completionBlock);
 
 
 #endif /* JobsBizBlock_h */

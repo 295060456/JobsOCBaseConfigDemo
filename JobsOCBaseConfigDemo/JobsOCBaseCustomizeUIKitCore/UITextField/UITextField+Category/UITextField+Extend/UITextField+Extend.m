@@ -20,7 +20,7 @@
     }];
 }
 
--(JobsRetStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString{
+-(JobsRetStrByStrBlock _Nonnull)getCurrentTextFieldValueByReplacementString{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *_Nullable replacementString){
         @jobs_strongify(self)

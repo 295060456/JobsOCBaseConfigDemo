@@ -104,7 +104,7 @@
     return transition;
 }
 /// 返回动画曲线
--(JobsRetStringByIntegerBlock _Nonnull)curve{
+-(JobsRetStrByIntegerBlock _Nonnull)curve{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(TransitionCurve curve){
         /// 曲线数组
@@ -119,7 +119,7 @@
     };
 }
 /// 返回动画方向
--(JobsRetStringByIntegerBlock _Nonnull)animaSubtype{
+-(JobsRetStrByIntegerBlock _Nonnull)animaSubtype{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(TransitionCurve subType){
         /// 设置转场动画的方向
@@ -133,7 +133,7 @@
     };
 }
 /// 返回动画类型
--(JobsRetStringByIntegerBlock _Nonnull)animaTypeWithTransitionType{
+-(JobsRetStrByIntegerBlock _Nonnull)animaTypeWithTransitionType{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(TransitionCurve type){
         /// 设置转场动画的类型

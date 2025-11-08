@@ -9,7 +9,7 @@
 
 @implementation CABasicAnimation (Extra)
 
-+(JobsRetCABasicAnimationByStringBlock _Nonnull)animationByKeyPath{
++(JobsRetCABasicAnimationByStrBlock _Nonnull)animationByKeyPath{
     return ^CABasicAnimation *_Nullable(NSString *_Nullable data){
         return [CABasicAnimation animationWithKeyPath:data];;
     };

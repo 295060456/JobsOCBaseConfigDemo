@@ -29,10 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— Date 对象的转化
 /// 将NSDate *转化为可视化的时间字符串
 /// 入参：日期格式化标准（NSDateFormatter *）缺省标准：年/月/日
--(JobsRetStringByDateFormatterBlock _Nonnull)toReadableTime;
+-(JobsRetStrByDateFormatterBlock _Nonnull)toReadableTime;
 /// 将NSDate *转化为可视化的时间字符串
 /// 入参：日期格式化标准（NSString *）缺省标准：年/月/日
--(JobsRetStringByStringBlock _Nonnull)toReadableTimeBy;
+-(JobsRetStrByStrBlock _Nonnull)toReadableTimeBy;
 /// 将 NSDate  *转换输出成人类可读的（年\月\日）时间（字符串）
 -(NSString *_Nullable)readableDayTime;
 /// 将 NSDate  *转换输出成人类可读的（年\月\日\时\分\秒）时间（字符串）

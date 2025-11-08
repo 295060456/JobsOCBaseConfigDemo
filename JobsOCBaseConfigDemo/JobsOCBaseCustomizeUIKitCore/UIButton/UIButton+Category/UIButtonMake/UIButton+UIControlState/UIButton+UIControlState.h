@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— UIButton.subtitleColor
 /// TODO
 #pragma mark —— UIButton.title
--(JobsRetStringByUIntegerBlock _Nonnull)titleByState;
+-(JobsRetStrByUIntegerBlock _Nonnull)titleByState;
 -(NSString *_Nullable)titleByNormalState;
 -(NSString *_Nullable)titleByHighlightedState;
 -(NSString *_Nullable)titleByDisabledState;

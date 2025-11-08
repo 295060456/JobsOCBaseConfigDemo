@@ -95,12 +95,12 @@ Prop_strong(nullable)UIViewModel *titleModel;
 #pragma mark —— 关于图片编解码
 /// 图片base64编码，再固定50字符的位置加入固定盐。盐码（盐需大写、长度 16位）：RRU4JZTV5WZXPCVZ
 /// 编码
--(JobsRetStringByStringBlock _Nonnull)encodePicStr;
+-(JobsRetStrByStrBlock _Nonnull)encodePicStr;
 /// 解码
--(JobsRetStringByStringBlock _Nonnull)decodePicStr;
+-(JobsRetStrByStrBlock _Nonnull)decodePicStr;
 #pragma mark —— <AppToolsProtocol> 其他
 /// 根据 x 和 y 的绝对值判断主方向
--(JobsRetStringByCGPointBlock _Nonnull)directionByTranslation;
+-(JobsRetStrByCGPointBlock _Nonnull)directionByTranslation;
 -(JobsRetNSIntegerByPointBlock _Nonnull)directionByPoint;
 /// 设置普通文本
 -(UIViewModel *)configViewModelWithTitle:(NSString *_Nullable)title
@@ -109,7 +109,7 @@ Prop_strong(nullable)UIViewModel *titleModel;
 -(UIViewModel *)configViewModelWithAttributeTitle:(NSString *_Nullable)title
                                 attributeSubTitle:(NSString *_Nullable)subTitle;
 /// 打开游戏
--(jobsByStringBlock _Nonnull)openGameWithUrl;
+-(jobsByStrBlock _Nonnull)openGameWithUrl;
 /// 默认头像👤
 -(UIImage *)defaultHeaderImage;
 /// 当前语言【字符串形式】

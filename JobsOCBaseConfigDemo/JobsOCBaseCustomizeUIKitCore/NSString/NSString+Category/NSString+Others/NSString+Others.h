@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// ⚠️ 这个方法一旦使用，亦会清除掉placeholderImage
 -(void)cleanSDImageCache:(SDWebImageNoParamsBlock _Nullable)block;
 /// 复制到系统剪切板
--(JobsRetStringByVoidBlock _Nonnull)pasteboard;
+-(JobsRetStrByVoidBlock _Nonnull)pasteboard;
 /// OC字符串的文本改变方向
 /// @param aView 文本的控件
 /// @param aRect 控件的尺寸
@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 截取并返回一个字符串里面冒号前的值，并返回。如果没有冒号，则返回自身
 -(NSString *)substringBeforeColon;
 /// OC字符串拼接
--(JobsRetStringByStringBlock _Nonnull)add;
+-(JobsRetStrByStrBlock _Nonnull)add;
 /// OC 普通字符串+富文本
 -(JobsRetAttributedStringByAttributedStringBlock _Nonnull)addByAttributedString;
 /// 获取到最后一个字符
@@ -110,33 +110,33 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用入参进行分隔字符串对外输出数组
 -(JobsRetArrByStrBlock _Nonnull)makeArrBy;
 /// 截取字符串方法封装：从本字符串到endString
--(JobsRetStringByStringBlock _Nonnull)subStringTo;
+-(JobsRetStrByStrBlock _Nonnull)subStringTo;
 /// 组装set方法名：set+首字母大写+：
--(JobsRetStringByVoidBlock _Nonnull)capitalizeFirstLetterAndPrefixSet;
+-(JobsRetStrByVoidBlock _Nonnull)capitalizeFirstLetterAndPrefixSet;
 #pragma mark —— 其他
 /// 该文字是否是Debug定义的文字
 -(BOOL)isDebugText;
 #pragma mark —— 对系统方法的二次封装
 /// 对系统方法 substringFromIndex 的二次封装
--(JobsRetStringByUIntegerBlock _Nonnull)substringFromIndex;
+-(JobsRetStrByUIntegerBlock _Nonnull)substringFromIndex;
 /// 对系统方法 substringToIndex 的二次封装
--(JobsRetStringByUIntegerBlock _Nonnull)substringToIndex;
+-(JobsRetStrByUIntegerBlock _Nonnull)substringToIndex;
 /// 对系统方法 substringWithRange 的二次封装
--(JobsRetStringByRangeBlock _Nonnull)substringByRange;
+-(JobsRetStrByRangeBlock _Nonnull)substringByRange;
 /// 对系统方法 rangeOfString 的二次封装
--(JobsRetRangeByStringBlock _Nonnull)rangeOfString;
+-(JobsRetRangeByStrBlock _Nonnull)rangeOfString;
 /// 对系统方法 rangeOfString 的二次封装（当执行参数是本字符串时）
 -(NSRange)range;
 /// 对系统方法 stringByTrimmingCharactersInSet 的二次封装
--(JobsRetStringByCharacterSetBlock _Nonnull)byTrimmingCharactersInSet;
+-(JobsRetStrByCharacterSetBlock _Nonnull)byTrimmingCharactersInSet;
 /// 对系统方法 characterAtIndex 的二次封装
 -(JobsRetUnsignedShortByNSUIntegerBlock _Nonnull)characterAtIndex;
 /// 对系统方法 stringWithCapacity 的二次封装
-+(JobsRetStringByUIntegerBlock _Nonnull)initByCapacity;
++(JobsRetStrByUIntegerBlock _Nonnull)initByCapacity;
 /// 对系统方法 - (nullable instancetype)initWithContentsOfFile:(NSString *)path encoding:(NSStringEncoding)enc error:(NSError **)error; 的二次封装
-+(JobsRetStringByStringBlock _Nonnull)initByContentsOfFile;
++(JobsRetStrByStrBlock _Nonnull)initByContentsOfFile;
 /// 对系统方法 - (nullable instancetype)initWithContentsOfURL:(NSURL *)url encoding:(NSStringEncoding)enc error:(NSError **)error; 的二次封装
-+(JobsRetStringByURLBlock _Nonnull)initByContentsOfURL;
++(JobsRetStrByURLBlock _Nonnull)initByContentsOfURL;
 
 @end
 

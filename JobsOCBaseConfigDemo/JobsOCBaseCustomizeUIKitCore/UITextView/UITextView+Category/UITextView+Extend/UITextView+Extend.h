@@ -55,7 +55,7 @@ Prop_copy()NSString *resStr;
  如果执行的是删除动作，那么textView.text 去掉最后一个字符向外输出
  否则textView.text + replacementString进行输出
  */
--(JobsRetStringByStringBlock _Nonnull)getCurrentTextViewValueByReplacementText;
+-(JobsRetStrByStrBlock _Nonnull)getCurrentTextViewValueByReplacementText;
 /**
  一般用于终值部分，对应协议方法:textViewDidChange
  因为在- (void)textViewDidChange:(UITextView *)textView里面的textView.text = textView确定值 + 输入法拼音模式下的占位符值

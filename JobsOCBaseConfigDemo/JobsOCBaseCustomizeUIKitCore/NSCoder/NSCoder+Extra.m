@@ -33,7 +33,7 @@
     };
 }
 /// 解档：BOOL值
--(JobsRetBOOLByStringBlock _Nonnull)decodeBOOLBy{
+-(JobsRetBOOLByStrBlock _Nonnull)decodeBOOLBy{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -41,7 +41,7 @@
     };
 }
 /// 解档：NSInteger值
--(JobsRetNSIntegerByStringBlock _Nonnull)decodeIntegerBy{
+-(JobsRetNSIntegerByStrBlock _Nonnull)decodeIntegerBy{
     @jobs_weakify(self)
     return ^NSInteger(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -49,7 +49,7 @@
     };
 }
 /// 解档：浮点数 (double) 数据
--(JobsRetDoubleByStringBlock _Nonnull)decodeDoubleBy{
+-(JobsRetDoubleByStrBlock _Nonnull)decodeDoubleBy{
     @jobs_weakify(self)
     return ^double(NSString *_Nullable data){
         @jobs_strongify(self)

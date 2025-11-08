@@ -24,14 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (Base85)
 #pragma mark —— UIImage ==> Base85
 ///【类方法】将给定的UIImage对象 转换为 以Base85编码的字符串
-+(JobsRetStringByImageBlock _Nonnull)base85StringByImage;
++(JobsRetStrByImageBlock _Nonnull)base85StringByImage;
 ///【实例方法】将给定的UIImage对象 转换为 以Base85编码的字符串
 -(NSString *_Nullable)base85Str;
 #pragma mark —— Base85 ==> UIImage
 ///【类方法】从给定的以Base85编码的字符串中解码并转换为UIImage对象
-+(JobsRetImageByStringBlock _Nonnull)imageByBase85String;
++(JobsRetImageByStrBlock _Nonnull)imageByBase85String;
 ///【实例方法】从给定的以Base85编码的字符串中解码并转换为UIImage对象
--(JobsRetImageByStringBlock _Nonnull)imageByBase85String;
+-(JobsRetImageByStrBlock _Nonnull)imageByBase85String;
 
 @end
 

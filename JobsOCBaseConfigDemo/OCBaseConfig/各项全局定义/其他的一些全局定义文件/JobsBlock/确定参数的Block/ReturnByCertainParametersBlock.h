@@ -340,7 +340,7 @@ typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByIDBlock)(id _Nullab
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByBOOLBlock)(BOOL data);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByDelegateBlock)(id <UIScrollViewDelegate>_Nullable delegate);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByPointBlock)(CGPoint data);
-typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByRectBlock)(CGRect frame);
+typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByFrameBlock)(CGRect frame);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewBySizeBlock)(CGSize size);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByCGFloatBlock)(CGFloat data);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByUIEdgeInsetsBlock)(UIEdgeInsets insets);
@@ -359,7 +359,7 @@ typedef __kindof WKWebView *_Nullable(^JobsRetCollectionViewByNavDelegateBlock)(
 typedef __kindof WKWebView *_Nullable(^JobsRetCollectionViewByUIDelegateBlock)(id <WKUIDelegate>_Nullable delegate);
 typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByConfigurationBlock)(WKWebViewConfiguration *_Nullable config);
 typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByURLRequestBlock)(__kindof NSURLRequest *_Nullable request);
-typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByStringBlock)(NSString *_Nullable data);
+typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByStrBlock)(NSString *_Nullable data);
 typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByURLBlock)(NSURL *_Nullable URL);
 typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByViewModelBlock)(__kindof UIViewModel *_Nullable viewModel);
 #pragma mark —— 关于 控制器
@@ -377,10 +377,10 @@ typedef __kindof UIAlertController *_Nullable(^JobsRetAlertCrtlByStringBlock)(__
 #pragma mark —— 关于 富文本
 typedef __kindof NSAttributedString *_Nullable(^JobsRetAttributedStringByVoidBlock)(void);
 typedef __kindof NSAttributedString *_Nullable(^JobsRetAttributedStringByNSUIntegerBlock)(NSUInteger data);
-typedef __kindof NSAttributedString *_Nullable(^JobsRetAttributedStringByStringBlock)(__kindof NSString *_Nullable string);
+typedef __kindof NSAttributedString *_Nullable(^JobsRetAttributedStringByStrBlock)(__kindof NSString *_Nullable string);
 typedef __kindof NSAttributedString *_Nullable(^JobsRetAttributedStringByAttributedStringBlock)(__kindof NSAttributedString *_Nonnull aString);
 typedef __kindof NSAttributedString *_Nullable(^JobsRetAttributedStringByCorBlock)(UIColor *_Nonnull data);
-typedef __kindof NSMutableAttributedString *_Nullable(^JobsRetMutableAttributedStringByStringBlock)(__kindof NSString *_Nullable string);
+typedef __kindof NSMutableAttributedString *_Nullable(^JobsRetMutableAttributedStringByStrBlock)(__kindof NSString *_Nullable string);
 typedef __kindof NSMutableAttributedString *_Nullable(^JobsRetMutableAttributedStringByAttributedStringBlock)(__kindof NSAttributedString *_Nonnull aString);
 #pragma mark —— NSNumber
 typedef __kindof NSNumber *_Nullable(^JobsRetNumberByCharBlock)(char data);
@@ -402,51 +402,51 @@ typedef __kindof NSNumber *_Nullable(^JobsRetNumberByNSUIntegerBlock)(NSUInteger
 /// 因此，直接将 CGFloat 封装为 NSNumber 时，需要根据平台的不同选择正确的 NSNumber 方法。
 typedef __kindof NSNumber *_Nullable(^JobsRetNumberByCGFloatBlock)(CGFloat data);
 #pragma mark —— 关于字符串
-typedef __kindof NSString *_Nullable(^JobsRetStringByVoidBlock)(void);
-typedef __kindof NSString *_Nullable(^JobsRetStringByBOOLBlock)(BOOL data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByTimeIntervalBlock)(NSTimeInterval data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByCGFloatBlock)(CGFloat data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByIntegerBlock)(NSInteger data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByUIntegerBlock)(NSUInteger data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByRangeBlock)(NSRange data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByCGPointBlock)(CGPoint data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByCharBlock)(char *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByIDBlock)(id _Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByURLBlock)(NSURL *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByDateBlock)(NSDate *_Nullable date);
-typedef __kindof NSString *_Nullable(^JobsRetStringByDataBlock)(__kindof NSData *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByImageBlock)(UIImage *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByNumberBlock)(NSNumber *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByStringBlock)(__kindof NSString *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByDicBlock)(__kindof NSDictionary *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByCorBlock)(UIColor *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByArrBlock)(__kindof NSArray *_Nullable data);
-typedef __kindof NSString *_Nullable(^JobsRetStringByCharacterSetBlock)(NSCharacterSet *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByVoidBlock)(void);
+typedef __kindof NSString *_Nullable(^JobsRetStrByBOOLBlock)(BOOL data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByTimeIntervalBlock)(NSTimeInterval data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByCGFloatBlock)(CGFloat data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByIntegerBlock)(NSInteger data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByUIntegerBlock)(NSUInteger data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByRangeBlock)(NSRange data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByCGPointBlock)(CGPoint data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByCharBlock)(char *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByIDBlock)(id _Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByURLBlock)(NSURL *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByDateBlock)(NSDate *_Nullable date);
+typedef __kindof NSString *_Nullable(^JobsRetStrByDataBlock)(__kindof NSData *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByImageBlock)(UIImage *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByNumberBlock)(NSNumber *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByStrBlock)(__kindof NSString *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByDicBlock)(__kindof NSDictionary *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByCorBlock)(UIColor *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByArrBlock)(__kindof NSArray *_Nullable data);
+typedef __kindof NSString *_Nullable(^JobsRetStrByCharacterSetBlock)(NSCharacterSet *_Nullable data);
 #pragma mark —— 关于 NSRegularExpression
-typedef __kindof NSRegularExpression *_Nullable(^JobsRetRegularExpressionByStringBlock)(NSString *_Nullable data);
+typedef __kindof NSRegularExpression *_Nullable(^JobsRetRegularExpressionByStrBlock)(NSString *_Nullable data);
 #pragma mark —— 关于时间（格式）/日历/计时器/间隔时间
+typedef __kindof NSString *_Nullable(^JobsRetStrByDateFormatterBlock)(NSDateFormatter *_Nullable data);
 typedef __kindof NSTimer *_Nullable(^JobsRetTimerByVoidBlock)(void);
 typedef __kindof NSTimer *_Nullable(^JobsRetTimerByTimerBlock)(NSTimer *_Nullable timer);
-typedef __kindof NSString *_Nullable(^JobsRetStringByDateFormatterBlock)(NSDateFormatter *_Nullable data);
-typedef __kindof NSDate *_Nullable(^JobsRetDateByStringBlock)(NSString *_Nullable data);
-typedef __kindof NSDateFormatter *_Nullable(^JobsRetDateFormatterByStringBlock)(NSString *_Nullable);
+typedef __kindof NSDate *_Nullable(^JobsRetDateByStrBlock)(NSString *_Nullable data);
 typedef __kindof NSDate *_Nullable(^JobsRetDateByVoidBlock)(void);
 typedef __kindof NSDate *_Nullable(^JobsRetDateByTimeIntervalBlock)(NSTimeInterval data);
 typedef __kindof NSDate *_Nullable(^JobsRetDateByDateFormatterBlock)(NSDateFormatter *_Nullable data);
 typedef __kindof NSDate *_Nullable(^JobsRetDateByDateComponentsBlock)(NSDateComponents *_Nullable data);
+typedef __kindof NSDateFormatter *_Nullable(^JobsRetDateFormatterByStrBlock)(NSString *_Nullable);
 typedef __kindof NSCalendar *_Nullable(^JobsRetCalendarByCalendarIdentifierBlock)(NSCalendarIdentifier _Nullable data);
 typedef __kindof UNCalendarNotificationTrigger *_Nullable(^JobsRetCalendarNotificationTriggerByComponentsBlock)(NSDateComponents *_Nullable data);
-typedef NSTimeZone *_Nullable(^JobsRetTimeZoneByStringBlock)(__kindof NSString *_Nullable data);
+typedef NSTimeZone *_Nullable(^JobsRetTimeZoneByStrBlock)(__kindof NSString *_Nullable data);
 typedef NSTimeZone *_Nullable(^JobsRetTimeZoneByIntegerBlock)(NSInteger data);
 typedef NSTimeInterval(^JobsRetTimeIntervalByDateBlock)(NSDate *_Nullable data);
 #pragma mark —— 关于URL
-typedef NSURL *_Nullable(^JobsRetURLByStringBlock)(__kindof NSString *_Nullable data);
+typedef NSURL *_Nullable(^JobsRetURLByStrBlock)(__kindof NSString *_Nullable data);
 typedef NSURL *_Nullable(^JobsRetURLByURLBlock)(NSURL *_Nullable data);
 typedef NSURL *_Nullable(^JobsRetURLByVoidBlock)(void);
 typedef __kindof NSURLRequest *_Nullable(^JobsRetURLRequestByVoidBlock)(void);
-typedef NSMutableURLRequest *_Nullable(^JobsRetMutableURLRequestByVoidBlock)(void);
 typedef __kindof NSURLRequest *_Nullable(^JobsRetURLRequestByURLBlock)(NSURL *_Nullable url);
 typedef NSMutableURLRequest *_Nullable(^JobsRetMutableURLRequestByURLBlock)(NSURL *_Nullable url);
+typedef NSMutableURLRequest *_Nullable(^JobsRetMutableURLRequestByVoidBlock)(void);
 #pragma mark —— 关于相册
 typedef PHAsset *_Nullable(^JobsRetAssetByStrBlock)(NSString *_Nullable Key);
 #pragma mark —— 关于数据
@@ -458,8 +458,8 @@ typedef __kindof NSData *_Nullable(^JobsRetDataByImageBlock)(UIImage *_Nullable 
 typedef __kindof NSData *_Nullable(^JobsRetDataByFloatBlock)(CGFloat data);
 typedef __kindof NSData *_Nullable(^JobsRetDataByURLBlock)(NSURL *_Nullable data);
 typedef __kindof NSData *_Nullable(^JobsRetDataByAssetBlock)(AVAsset *_Nullable asset);
-typedef __kindof NSData *_Nullable(^JobsRetDataByStringBlock)(__kindof NSString *_Nullable data);
-typedef __kindof NSData *_Nullable(^JobsRetDataByDictionaryBlock)(__kindof NSDictionary *_Nullable data);
+typedef __kindof NSData *_Nullable(^JobsRetDataByStrBlock)(__kindof NSString *_Nullable data);
+typedef __kindof NSData *_Nullable(^JobsRetDataByDicBlock)(__kindof NSDictionary *_Nullable data);
 #pragma mark —— 关于字体
 typedef UIFont *_Nullable(^JobsRetFontByVoidBlock)(void);
 typedef UIFont *_Nullable(^JobsRetFontByConfigurationTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer) API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos);
@@ -469,14 +469,14 @@ typedef UIColor *_Nullable(^JobsRetCorByHexBlock)(uint32_t hexValue);
 typedef UIColor *_Nonnull(^JobsRetCorByCGFloatBlock)(CGFloat data);
 typedef UIColor *_Nullable(^JobsRetCorByNSUIntegerBlock)(NSUInteger data);
 typedef UIColor *_Nullable(^JobsRetCorByConfigTextAttributesTransformerBlock)(UIConfigurationTextAttributesTransformer _Nullable transformer) API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos);
-typedef UIColor *_Nullable(^JobsRetCorByStringBlock)(NSString *_Nonnull cor);
+typedef UIColor *_Nullable(^JobsRetCorByStrBlock)(NSString *_Nonnull cor);
 typedef UIColor *_Nullable(^JobsRetCorByImageBlock)(UIImage *_Nonnull cor);
 #pragma mark —— 关于图片
 typedef UIImage *_Nonnull(^JobsRetImageByVoidBlock)(void);
 typedef UIImage *_Nonnull(^JobsRetImageByAlphaBlock)(CGFloat alpha);
 typedef UIImage *_Nullable(^JobsRetImageByNSUIntegerBlock)(NSUInteger data);
 typedef UIImage *_Nullable(^JobsRetImageByNSIntegerBlock)(NSInteger data);
-typedef UIImage *_Nonnull(^JobsRetImageByCGRectBlock)(CGRect frame);
+typedef UIImage *_Nonnull(^JobsRetImageByFrameBlock)(CGRect frame);
 typedef UIImage *_Nonnull(^JobsRetImageByCGSizeBlock)(CGSize size);
 typedef UIImage *_Nonnull(^JobsRetImageByAVURLAssetBlock)(AVURLAsset *_Nonnull data);
 typedef UIImage *_Nonnull(^JobsRetImageByViewBlock)(__kindof UIView *_Nonnull data);
@@ -485,14 +485,14 @@ typedef UIImage *_Nullable(^JobsRetImageByCorBlock)(UIColor *_Nullable data);
 typedef UIImage *_Nullable(^JobsRetImageByDataBlock)(__kindof NSData *_Nullable data);
 typedef UIImage *_Nonnull(^JobsRetImageByDataBlock)(__kindof NSData *_Nullable data);
 typedef UIImage *_Nonnull(^JobsRetImageByCGImageRefBlock)(CGImageRef _Nullable data);
-typedef UIImage *_Nullable(^JobsRetImageByStringBlock)(__kindof NSString *_Nullable data);
+typedef UIImage *_Nullable(^JobsRetImageByStrBlock)(__kindof NSString *_Nullable data);
 #pragma mark —— 关于段落配置
 typedef __kindof NSParagraphStyle *_Nullable(^JobsRetParagraphStyleByVoidBlock)(void);
 typedef __kindof NSParagraphStyle *_Nullable(^JobsRetParagraphStyleByTextAlignmentBlock)(NSTextAlignment data);
 #pragma mark —— 关于 动画
 #import <QuartzCore/QuartzCore.h>
-typedef CAKeyframeAnimation *_Nullable(^JobsRetCAKeyframeAnimationByStringBlock)(__kindof NSString *_Nullable data);
-typedef __kindof CABasicAnimation *_Nullable(^JobsRetCABasicAnimationByStringBlock)(__kindof NSString *_Nullable data);
+typedef CAKeyframeAnimation *_Nullable(^JobsRetCAKeyframeAnimationByStrBlock)(__kindof NSString *_Nullable data);
+typedef __kindof CABasicAnimation *_Nullable(^JobsRetCABasicAnimationByStrBlock)(__kindof NSString *_Nullable data);
 typedef __kindof CABasicAnimation *_Nullable(^JobsRetCABasicAnimationByIDBlock)(id _Nullable data);
 typedef __kindof CABasicAnimation *_Nullable(^JobsRetCABasicAnimationByCFTimeIntervalBlock)(CFTimeInterval data);
 typedef __kindof CABasicAnimation *_Nullable(^JobsRetCABasicAnimationByFloatBlock)(float data);
@@ -500,7 +500,7 @@ typedef __kindof CABasicAnimation *_Nullable(^JobsRetCABasicAnimationByBOOLBlock
 typedef __kindof CABasicAnimation *_Nullable(^JobsRetCABasicAnimationByCAMediaTimingFillModeBlock)(CAMediaTimingFillMode _Nullable data);
 
 typedef __kindof CAPropertyAnimation *_Nullable(^JobsRetCAPropertyAnimationByBOOLBlock)(BOOL data);
-typedef __kindof CAPropertyAnimation *_Nullable(^JobsRetCAPropertyAnimationByStringBlock)(NSString *_Nullable data);
+typedef __kindof CAPropertyAnimation *_Nullable(^JobsRetCAPropertyAnimationByStrBlock)(NSString *_Nullable data);
 typedef __kindof CAPropertyAnimation *_Nullable(^JobsRetCAPropertyAnimationByCAValueFunctionBlock)(CAValueFunction *_Nullable data);
 typedef __kindof CAPropertyAnimation *_Nullable(^JobsRetCAPropertyAnimationByCAPropertyAnimationBlock)(__kindof CAPropertyAnimation *_Nullable animation);
 
@@ -523,7 +523,7 @@ typedef __kindof PHFetchResult <PHAsset *>*_Nonnull(^JobsRetPHFetchResultWithPHA
 #pragma mark —— 关于位置
 typedef NSRange (^JobsRetRangeByTextCheckingResultBlock)(NSTextCheckingResult *_Nullable data);
 typedef NSRange (^JobsRetRangeByIntegerBlock)(NSInteger data);
-typedef NSRange (^JobsRetRangeByStringBlock)(NSString *_Nullable data);
+typedef NSRange (^JobsRetRangeByStrBlock)(NSString *_Nullable data);
 typedef NSRange (^JobsRetRangeByVoidBlock)(void);
 
 typedef UIEdgeInsets(^JobsRetUIEdgeInsetsByVoidBlock)(void);
@@ -592,7 +592,7 @@ typedef CGPoint(^JobsRetCGPointByIDBlock)(id _Nullable data);
 typedef NSInteger(^JobsRetNSIntegerByVoidBlock)(void);
 typedef NSInteger(^JobsRetByNSIntegerBlock)(NSInteger data);
 typedef NSInteger(^JobsRetNSIntegerByIDBlock)(id _Nullable data);
-typedef NSInteger(^JobsRetNSIntegerByStringBlock)(NSString *_Nullable data);
+typedef NSInteger(^JobsRetNSIntegerByStrBlock)(NSString *_Nullable data);
 typedef NSInteger(^JobsRetNSIntegerByPointBlock)(CGPoint data);
 
 typedef NSUInteger(^JobsRetNSUIntegerByVoidBlock)(void);
@@ -619,7 +619,7 @@ typedef BOOL(^JobsRetBOOLByNSIntegerBlock)(NSInteger data);
 typedef BOOL(^JobsRetBOOLByIDBlock)(id _Nullable data);
 typedef BOOL(^JobsRetBOOLByViewBlock)(__kindof UIView *_Nullable view);
 typedef BOOL(^JobsRetBOOLByVCBlock)(__kindof UIViewController *_Nullable viewController);
-typedef BOOL(^JobsRetBOOLByStringBlock)(__kindof NSString *_Nullable data);
+typedef BOOL(^JobsRetBOOLByStrBlock)(__kindof NSString *_Nullable data);
 typedef BOOL(^JobsRetBOOLByDateBlock)(NSDate *_Nullable date);
 typedef BOOL(^JobsRetBOOLByArrBlock)(__kindof NSArray *_Nullable arr);
 
@@ -635,13 +635,13 @@ typedef unsigned int(^JobsRetUnsignedIntByIDBlock)(id _Nullable data);
 typedef float(^JobsRetFloatByVoidBlock)(void);
 typedef float(^JobsRetByFloatBlock)(float data);
 typedef float(^JobsRetFloatByIDBlock)(id _Nullable data);
-typedef float(^JobsRetFloatByStringBlock)(NSString *_Nullable data);
+typedef float(^JobsRetFloatByStrBlock)(NSString *_Nullable data);
 
 typedef double(^JobsRetDoubleByVoidBlock)(void);
 typedef double(^JobsRetDoubleByNSIntegerBlock)(NSInteger data);
 typedef double(^JobsRetByDoubleBlock)(double data);
 typedef double(^JobsRetDoubleByIDBlock)(id _Nullable data);
-typedef double(^JobsRetDoubleByStringBlock)(NSString *_Nullable data);
+typedef double(^JobsRetDoubleByStrBlock)(NSString *_Nullable data);
 
 typedef char(^JobsRetByCharBlock)(char data);
 typedef char(^JobsRetCharByIDBlock)(id _Nullable data);

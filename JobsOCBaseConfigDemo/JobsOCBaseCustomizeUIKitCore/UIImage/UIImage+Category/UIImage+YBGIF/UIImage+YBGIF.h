@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 根据NSData* 创建gif图片
 +(JobsRetImageByDataBlock _Nonnull)animatedGIFWithData;
 /// 根据图片名字创建gif图片
-+(JobsRetImageByStringBlock _Nonnull)animatedGIFByName;
++(JobsRetImageByStrBlock _Nonnull)animatedGIFByName;
 /// 貌似废弃了，不管用，再研究
 /// 根据大小裁剪图片
 -(JobsRetImageByCGSizeBlock _Nonnull)animatedImageByScalingAndCroppingBySize;

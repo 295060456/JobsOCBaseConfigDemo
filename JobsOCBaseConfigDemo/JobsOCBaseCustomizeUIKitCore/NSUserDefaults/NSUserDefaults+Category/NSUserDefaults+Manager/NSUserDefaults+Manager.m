@@ -49,7 +49,7 @@
     };
 }
 /// 删除数据
-+(jobsByStringBlock _Nonnull)deleteWithKey{
++(jobsByStrBlock _Nonnull)deleteWithKey{
     return ^(NSString * _Nullable key) {
         if (isValue(key)){
             JobsDeleUserDefaultWithKey(key);

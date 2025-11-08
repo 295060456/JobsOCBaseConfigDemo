@@ -17,12 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsRetDataByNSUIntegerBlock _Nonnull)initByCapacity;
 +(JobsRetDataByDataBlock _Nonnull)initByData;
 +(JobsRetDataByURLBlock _Nonnull)initByURL;
-+(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile;
-+(JobsRetDataByStringBlock _Nonnull)initByBase64EncodedString;
++(JobsRetDataByStrBlock _Nonnull)dataByContentsOfFile;
++(JobsRetDataByStrBlock _Nonnull)initByBase64EncodedString;
 +(JobsRetDataByDataBlock _Nonnull)initByBase64EncodedData;
-+(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile_ReadingMappedIfSafe;
-+(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile_NSDataReadingUncached;
-+(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile_NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0));
++(JobsRetDataByStrBlock _Nonnull)dataByContentsOfFile_ReadingMappedIfSafe;
++(JobsRetDataByStrBlock _Nonnull)dataByContentsOfFile_NSDataReadingUncached;
++(JobsRetDataByStrBlock _Nonnull)dataByContentsOfFile_NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0));
 +(JobsRetDataByURLBlock _Nonnull)dataByContentsOfURL_NSDataReadingMappedIfSafe;
 +(JobsRetDataByURLBlock _Nonnull)dataByContentsOfURL_NSDataReadingUncached;
 +(JobsRetDataByURLBlock _Nonnull)dataByContentsOfURL_NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0));

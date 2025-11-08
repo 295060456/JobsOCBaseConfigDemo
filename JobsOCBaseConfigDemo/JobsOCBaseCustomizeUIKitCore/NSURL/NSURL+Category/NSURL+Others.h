@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSURL (Others)
 /// 对系统方法 fileURLWithPath 的二次封装
-+(JobsRetURLByStringBlock _Nonnull)fileURLWithPath;
++(JobsRetURLByStrBlock _Nonnull)fileURLWithPath;
 ///  能否正常打开Url
 -(BOOL)jobsCanOpenUrl;
 /// 图片URL路径补齐
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 一般的URL路径补齐
 -(NSURL *_Nullable)normalURLPlus;
 /// NSString + NSURL => NSURL
--(JobsRetURLByStringBlock _Nonnull)add;
+-(JobsRetURLByStrBlock _Nonnull)add;
 /// NSURL + NSURL => NSURL
 -(JobsRetURLByURLBlock _Nonnull)Add;
 /// NSURL => NSMutableURLRequest

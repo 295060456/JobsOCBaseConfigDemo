@@ -20,10 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 语言包路径
 +(NSBundle *_Nullable)bundle;
 /// 通过key取值对应的语言
-+(JobsRetStringByStringBlock _Nonnull)localStringByKey;
++(JobsRetStrByStrBlock _Nonnull)localStringByKey;
 /// 枚举和语言字符串的转换
-+(JobsRetStringByIntegerBlock _Nonnull)languageCodeByAppLanguage;
--(JobsRetStringByIntegerBlock _Nonnull)languageCodeByAppLanguage;
++(JobsRetStrByIntegerBlock _Nonnull)languageCodeByAppLanguage;
+-(JobsRetStrByIntegerBlock _Nonnull)languageCodeByAppLanguage;
 
 @end
 

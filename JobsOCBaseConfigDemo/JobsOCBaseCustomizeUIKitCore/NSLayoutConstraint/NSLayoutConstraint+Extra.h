@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSLayoutConstraint (Extra)
 
-+(jobsByArrayBlock _Nonnull)initBy;
-+(jobsByArrayBlock _Nonnull)deactivateBy;
++(jobsByArrBlock _Nonnull)initBy;
++(jobsByArrBlock _Nonnull)deactivateBy;
 
 @end
 

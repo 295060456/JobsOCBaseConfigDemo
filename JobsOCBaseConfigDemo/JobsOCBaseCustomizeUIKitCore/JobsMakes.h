@@ -144,7 +144,7 @@ jobsMakeScreenEdgePanGestureRecognizer(jobsByScreenEdgePanGestureRecognizerBlock
 }
 #pragma mark —— 关于 UIButtonConfiguration 的创建
 NS_INLINE __kindof UIButtonConfiguration *_Nonnull
-jobsMakePlainBtnConfig(jobsByButtonConfigurationBlock _Nullable block)
+jobsMakePlainBtnConfig(jobsByBtnConfigBlock _Nullable block)
 API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 {
     UIButtonConfiguration *config = UIButtonConfiguration.plainButtonConfiguration;
@@ -153,7 +153,7 @@ API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIButtonConfiguration *_Nonnull
-jobsMakeTintedBtnConfig(jobsByButtonConfigurationBlock _Nullable block)
+jobsMakeTintedBtnConfig(jobsByBtnConfigBlock _Nullable block)
 API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 {
     UIButtonConfiguration *config = UIButtonConfiguration.tintedButtonConfiguration;
@@ -162,7 +162,7 @@ API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIButtonConfiguration *_Nonnull
-jobsMakeGrayBtnConfig(jobsByButtonConfigurationBlock _Nullable block)
+jobsMakeGrayBtnConfig(jobsByBtnConfigBlock _Nullable block)
 API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 {
     UIButtonConfiguration *config = UIButtonConfiguration.grayButtonConfiguration;
@@ -171,7 +171,7 @@ API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIButtonConfiguration *_Nonnull
-jobsMakeFilledBtnConfig(jobsByButtonConfigurationBlock _Nullable block)
+jobsMakeFilledBtnConfig(jobsByBtnConfigBlock _Nullable block)
 API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 {
     UIButtonConfiguration *config = UIButtonConfiguration.filledButtonConfiguration;
@@ -180,7 +180,7 @@ API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIButtonConfiguration *_Nonnull
-jobsMakeBorderlessBtnConfig(jobsByButtonConfigurationBlock _Nullable block)
+jobsMakeBorderlessBtnConfig(jobsByBtnConfigBlock _Nullable block)
 API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 {
     UIButtonConfiguration *config = UIButtonConfiguration.borderlessButtonConfiguration;
@@ -189,7 +189,7 @@ API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIButtonConfiguration *_Nonnull
-jobsMakeBorderedBtnConfig(jobsByButtonConfigurationBlock _Nullable block)
+jobsMakeBorderedBtnConfig(jobsByBtnConfigBlock _Nullable block)
 API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 {
     UIButtonConfiguration *config = UIButtonConfiguration.borderedButtonConfiguration;
@@ -198,7 +198,7 @@ API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIButtonConfiguration *_Nonnull
-jobsMakeBorderedTintedBtnConfig(jobsByButtonConfigurationBlock _Nullable block)
+jobsMakeBorderedTintedBtnConfig(jobsByBtnConfigBlock _Nullable block)
 API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 {
     UIButtonConfiguration *config = UIButtonConfiguration.borderedTintedButtonConfiguration;
@@ -207,7 +207,7 @@ API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIButtonConfiguration *_Nonnull
-jobsMakeBorderedProminentBtnConfig(jobsByButtonConfigurationBlock _Nullable block)
+jobsMakeBorderedProminentBtnConfig(jobsByBtnConfigBlock _Nullable block)
 API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 {
     UIButtonConfiguration *config = UIButtonConfiguration.borderedProminentButtonConfiguration;
@@ -216,7 +216,7 @@ API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos)
 }
 #pragma mark —— 关于 UIBackgroundConfiguration 的创建
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeClearConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeClearConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.clearConfiguration;
@@ -225,7 +225,7 @@ API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeListPlainCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListPlainCellConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.listPlainCellConfiguration;
@@ -234,7 +234,7 @@ API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration * _Nonnull
-jobsMakeListPlainHeaderFooterConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListPlainHeaderFooterConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_DEPRECATED("Use +listHeaderConfiguration or +listFooterConfiguration", ios(14.0, 18.0)) API_UNAVAILABLE(watchos)
 {
     // ✅ 用消息语法，别用点号访问类方法
@@ -244,7 +244,7 @@ API_DEPRECATED("Use +listHeaderConfiguration or +listFooterConfiguration", ios(1
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeListGroupedCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListGroupedCellConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_DEPRECATED_WITH_REPLACEMENT("listCellConfiguration", ios(14.0, 18.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.listGroupedCellConfiguration;
@@ -253,7 +253,7 @@ API_DEPRECATED_WITH_REPLACEMENT("listCellConfiguration", ios(14.0, 18.0)) API_UN
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeListCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListCellConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.listCellConfiguration;
@@ -262,7 +262,7 @@ API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeListHeaderConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListHeaderConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.listHeaderConfiguration;
@@ -271,7 +271,7 @@ API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeListFooterConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListFooterConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.listFooterConfiguration;
@@ -280,7 +280,7 @@ API_AVAILABLE(ios(18.0), tvos(18.0), visionos(2.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeListGroupedHeaderFooterConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListGroupedHeaderFooterConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.listGroupedHeaderFooterConfiguration;
@@ -289,7 +289,7 @@ API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeListSidebarHeaderConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListSidebarHeaderConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.listSidebarHeaderConfiguration;
@@ -298,7 +298,7 @@ API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeListSidebarCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListSidebarCellConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.listSidebarCellConfiguration;
@@ -307,7 +307,7 @@ API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 }
 
 NS_INLINE __kindof UIBackgroundConfiguration *_Nonnull
-jobsMakeListAccompaniedSidebarCellConfiguration(jobsByBackgroundConfigurationBlock _Nullable block)
+jobsMakeListAccompaniedSidebarCellConfiguration(jobsByBackgroundConfigBlock _Nullable block)
 API_AVAILABLE(ios(14.0), tvos(14.0)) API_UNAVAILABLE(watchos)
 {
     UIBackgroundConfiguration *config = UIBackgroundConfiguration.listAccompaniedSidebarCellConfiguration;
@@ -374,7 +374,7 @@ jobsMakeLabel(jobsByLabelBlock _Nonnull block){
 }
 
 NS_INLINE __kindof UIRefreshControl *_Nonnull
-jobsMakeRefreshControl(jobsByUIRefreshControlBlock _Nonnull block){
+jobsMakeRefreshControl(jobsByRefreshCtrlBlock _Nonnull block){
     UIRefreshControl *data = UIRefreshControl.alloc.init;
     if (block) block(data);
     return data;
@@ -437,7 +437,7 @@ jobsMakeScrollView(jobsByScrollViewBlock _Nonnull block){
 }
 #pragma mark —— 关于控制器的创建
 NS_INLINE __kindof UIImagePickerController *_Nonnull
-jobsMakeImagePickerController(jobsByImagePickerControllerBlock _Nonnull block){
+jobsMakeImagePickerController(jobsByImagePickerCtrlBlock _Nonnull block){
     UIImagePickerController *data = UIImagePickerController.alloc.init;
     if (block) block(data);
     return data;
@@ -451,7 +451,7 @@ jobsMakeUserContentController(jobsByUserContentControllerBlock _Nonnull block){
 }
 
 NS_INLINE __kindof WKWebViewConfiguration *_Nonnull
-jobsMakeWebViewConfiguration(jobsByWKWebViewConfigurationBlock _Nonnull block){
+jobsMakeWebViewConfiguration(jobsByWKWebViewConfigBlock _Nonnull block){
     WKWebViewConfiguration *data = WKWebViewConfiguration.alloc.init;
     if (block) block(data);
     return data;
@@ -521,7 +521,7 @@ jobsMakeShadow(jobsByShadowBlock _Nonnull block){
 }
 
 NS_INLINE __kindof UIMenuController *_Nonnull
-jobsMakeMenuController(jobsByMenuControllerBlock _Nonnull block){
+jobsMakeMenuController(jobsByMenuCtrlBlock _Nonnull block){
     UIMenuController *data = UIMenuController.sharedMenuController;
     if (block) block(data);
     return data;
@@ -556,14 +556,14 @@ jobsMakeMutSet(jobsByMutableSetBlock _Nonnull block){
 }
 
 NS_INLINE __kindof NSArray *_Nonnull
-jobsMakeMutArr(jobsByMutArrayBlock _Nonnull block){
+jobsMakeMutArr(jobsByMutArrBlock _Nonnull block){
     NSMutableArray *data = NSMutableArray.array;
     if (block) block(data);
     return data;
 }
 
 NS_INLINE __kindof NSMutableDictionary *_Nonnull
-jobsMakeMutDic(jobsByMutableDictionarycBlock _Nonnull block){
+jobsMakeMutDic(jobsByMutableDictBlock _Nonnull block){
     NSMutableDictionary *data = NSMutableDictionary.dictionary;
     if (block) block(data);
     return data;

@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDateFormatter (Extra)
 /// 对系统方法 stringFromDate 的二次封装
--(JobsRetStringByDateBlock _Nonnull)stringByDate;
+-(JobsRetStrByDateBlock _Nonnull)stringByDate;
 /// 对系统方法 dateFromString 的二次封装
--(JobsRetDateByStringBlock _Nonnull)dateByString;
+-(JobsRetDateByStrBlock _Nonnull)dateByString;
 
 @end
 

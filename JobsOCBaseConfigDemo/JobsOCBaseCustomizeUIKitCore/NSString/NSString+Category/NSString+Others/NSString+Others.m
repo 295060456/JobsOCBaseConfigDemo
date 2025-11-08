@@ -106,7 +106,7 @@
     [SDImageCache.sharedImageCache removeImageForKey:self withCompletion:block];
 }
 /// 复制到系统剪切板
--(JobsRetStringByVoidBlock _Nonnull)pasteboard{
+-(JobsRetStrByVoidBlock _Nonnull)pasteboard{
     return ^__kindof NSString *_Nullable() {
         @jobs_weakify(self)
         return jobsMakePasteboard(^(__kindof UIPasteboard * _Nullable pasteboard) {
@@ -153,7 +153,7 @@
     } else return self; // 如果没有找到冒号，则返回原始字符串
 }
 /// OC字符串拼接
--(JobsRetStringByStringBlock _Nonnull)add{
+-(JobsRetStrByStrBlock _Nonnull)add{
     @jobs_weakify(self)
     return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
         @jobs_strongify(self)
@@ -187,7 +187,7 @@
     };
 }
 /// 截取字符串方法封装：从本字符串到endString
--(JobsRetStringByStringBlock _Nonnull)subStringTo{
+-(JobsRetStrByStrBlock _Nonnull)subStringTo{
     return ^__kindof NSString *_Nullable(NSString *_Nullable endString){
         NSRange startRange = self.range;
         NSRange endRange = self.rangeOfString(endString);
@@ -198,7 +198,7 @@
     };
 }
 /// 组装set方法名：set+首字母大写+：
--(JobsRetStringByVoidBlock _Nonnull)capitalizeFirstLetterAndPrefixSet{
+-(JobsRetStrByVoidBlock _Nonnull)capitalizeFirstLetterAndPrefixSet{
     return ^__kindof NSString *_Nullable(){
         if (!self.length) return self; /// 如果字符串为空，直接返回
         /// 获取字符串的首字母并大写
@@ -217,7 +217,7 @@
 }
 #pragma mark —— 对系统方法的二次封装
 /// 对系统方法 substringFromIndex 的二次封装
--(JobsRetStringByUIntegerBlock _Nonnull)substringFromIndex{
+-(JobsRetStrByUIntegerBlock _Nonnull)substringFromIndex{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSUInteger data){
         @jobs_strongify(self)
@@ -225,7 +225,7 @@
     };
 }
 /// 对系统方法 substringToIndex 的二次封装
--(JobsRetStringByUIntegerBlock _Nonnull)substringToIndex{
+-(JobsRetStrByUIntegerBlock _Nonnull)substringToIndex{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSUInteger data){
         @jobs_strongify(self)
@@ -233,7 +233,7 @@
     };
 }
 /// 对系统方法 substringWithRange 的二次封装
--(JobsRetStringByRangeBlock _Nonnull)substringByRange{
+-(JobsRetStrByRangeBlock _Nonnull)substringByRange{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSRange data){
         @jobs_strongify(self)
@@ -241,7 +241,7 @@
     };
 }
 /// 对系统方法 rangeOfString 的二次封装
--(JobsRetRangeByStringBlock _Nonnull)rangeOfString{
+-(JobsRetRangeByStrBlock _Nonnull)rangeOfString{
     @jobs_weakify(self)
     return ^NSRange(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -253,7 +253,7 @@
     return [self rangeOfString:self];
 }
 /// 对系统方法 stringByTrimmingCharactersInSet 的二次封装
--(JobsRetStringByCharacterSetBlock _Nonnull)byTrimmingCharactersInSet{
+-(JobsRetStrByCharacterSetBlock _Nonnull)byTrimmingCharactersInSet{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSCharacterSet *_Nullable data){
         @jobs_strongify(self)
@@ -269,13 +269,13 @@
     };
 }
 /// 对系统方法 stringWithCapacity 的二次封装
-+(JobsRetStringByUIntegerBlock _Nonnull)initByCapacity{
++(JobsRetStrByUIntegerBlock _Nonnull)initByCapacity{
     return ^NSMutableString *_Nullable(NSUInteger data){
         return [NSMutableString stringWithCapacity:data];
     };
 }
 /// 对系统方法 - (nullable instancetype)initWithContentsOfFile:(NSString *)path encoding:(NSStringEncoding)enc error:(NSError **)error; 的二次封装
-+(JobsRetStringByStringBlock _Nonnull)initByContentsOfFile{
++(JobsRetStrByStrBlock _Nonnull)initByContentsOfFile{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable filePath){
         NSError *error = nil;
         NSString *string = [NSString.alloc initWithContentsOfFile:filePath
@@ -288,7 +288,7 @@
     };
 }
 /// 对系统方法 - (nullable instancetype)initWithContentsOfURL:(NSURL *)url encoding:(NSStringEncoding)enc error:(NSError **)error; 的二次封装
-+(JobsRetStringByURLBlock _Nonnull)initByContentsOfURL{
++(JobsRetStrByURLBlock _Nonnull)initByContentsOfURL{
     return ^__kindof NSString *_Nullable(NSURL *_Nullable url){
         NSError *error = nil;
         NSString *string = [NSString.alloc initWithContentsOfURL:url

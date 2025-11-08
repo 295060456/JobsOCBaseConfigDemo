@@ -24,7 +24,7 @@
 /// 读取数据
 +(JobsRetIDByStrBlock _Nonnull)load;
 
-+(jobsByStringBlock _Nonnull)remove;
++(jobsByStrBlock _Nonnull)remove;
 /// 保存数据，并检查是否保存成功
 +(BOOL)save:(NSString *_Nonnull)service data:(id _Nonnull)data;
 #pragma mark —— 🔑钥匙串存储：账户 + 密码
@@ -34,6 +34,6 @@
 /// service + account ==> password
 +(NSString *_Nullable)getPasswordByService:(NSString *_Nonnull)service account:(NSString *_Nonnull)account;
 /// 删除已有数据
-+(JobsRetBOOLByStringBlock _Nonnull)deleteAccountInfoByService;
++(JobsRetBOOLByStrBlock _Nonnull)deleteAccountInfoByService;
 
 @end

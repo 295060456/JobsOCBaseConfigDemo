@@ -35,7 +35,7 @@
     };
 }
 
-+(jobsByStringBlock _Nonnull)remove{
++(jobsByStrBlock _Nonnull)remove{
     @jobs_weakify(self)
     return ^(__kindof NSString *_Nullable service){
         @jobs_strongify(self)
@@ -97,7 +97,7 @@
     }return nil;
 }
 /// 删除已有数据
-+(JobsRetBOOLByStringBlock _Nonnull)deleteAccountInfoByService{
++(JobsRetBOOLByStrBlock _Nonnull)deleteAccountInfoByService{
     return ^BOOL(__kindof NSString *_Nullable service){
         if (isNull(service)) return NO;
         /// 删除字典

@@ -220,7 +220,7 @@
     }else return NO;
 }
 /// 本字符串是否包含入参字符串的任何字符
--(JobsRetBOOLByStringBlock _Nonnull)isContainBy{
+-(JobsRetBOOLByStrBlock _Nonnull)isContainBy{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -228,7 +228,7 @@
     };
 }
 /// 本字符串是否不包含入参字符串的任何字符
--(JobsRetBOOLByStringBlock _Nonnull)isNotContainBy{
+-(JobsRetBOOLByStrBlock _Nonnull)isNotContainBy{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable data){
         @jobs_strongify(self)

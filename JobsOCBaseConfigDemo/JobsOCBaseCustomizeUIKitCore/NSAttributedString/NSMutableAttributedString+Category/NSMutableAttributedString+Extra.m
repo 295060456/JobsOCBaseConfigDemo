@@ -15,7 +15,7 @@
     };
 }
 /// 对系统方法 initWithString 的二次封装
-+(JobsRetMutableAttributedStringByStringBlock _Nonnull)initByString{
++(JobsRetMutableAttributedStringByStrBlock _Nonnull)initByString{
     return ^__kindof NSAttributedString *_Nullable(NSString *_Nullable data){
         return [NSMutableAttributedString.alloc initWithString:data];
     };

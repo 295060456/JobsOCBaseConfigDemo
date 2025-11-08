@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 过滤特殊字符
 @interface NSString (FilteringSpecialCharacters)
 /// 外界灵活选择的特殊符号拼接成一个包含所有被选中特殊符号的字符串
--(JobsRetStringByArrBlock _Nonnull)specialSymbolsActionBy;
+-(JobsRetStrByArrBlock _Nonnull)specialSymbolsActionBy;
 /// 给定一个字符串，通过给定的过滤策略，过滤以后的字符串
--(JobsRetStringByArrBlock _Nonnull)filteredBy;
+-(JobsRetStrByArrBlock _Nonnull)filteredBy;
 /// 是否包含特殊字符【包含返回YES、不包含返回NO】
 -(JobsRetBOOLByArrBlock _Nonnull)isContainsSpecialSymbolsString;
 

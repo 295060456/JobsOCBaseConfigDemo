@@ -10,7 +10,7 @@
 @implementation NSString (MIME)
 #pragma mark —— MIME编码的数据 <==> NSString对象
 ///【类方法】以MIME编码的字符串数据 转换成 普通NSString对象
-+(JobsRetStringByStringBlock _Nonnull)stringByMIMEData{
++(JobsRetStrByStrBlock _Nonnull)stringByMIMEData{
     return ^__kindof NSString *_Nullable(NSString *_Nullable MIMEString){
         return NSString.initByUTF8Data([NSData.alloc initWithBase64EncodedString:MIMEString options:NSDataBase64DecodingIgnoreUnknownCharacters]);
     };
@@ -21,7 +21,7 @@
 }
 #pragma mark —— MIME编码的数据 ==> NSData对象
 ///【类方法】以MIME编码的数据 转换成 NSData对象
-+(JobsRetDataByStringBlock _Nonnull)dataByMIMEString{
++(JobsRetDataByStrBlock _Nonnull)dataByMIMEString{
     return ^NSData *_Nullable(__kindof NSString *_Nullable MIMEString){
         return [NSData.alloc initWithBase64EncodedString:MIMEString
                                                  options:NSDataBase64DecodingIgnoreUnknownCharacters];
@@ -33,7 +33,7 @@
 }
 #pragma mark —— MIME编码的数据 ==> UIImage对象
 ///【类方法】以MIME编码的数据 转换成 UIImage对象
-+(JobsRetImageByStringBlock _Nonnull)imageByMIMEString{
++(JobsRetImageByStrBlock _Nonnull)imageByMIMEString{
     return ^UIImage *_Nullable(NSString *_Nullable MIMEString){
         return UIImage.imageByData(NSData.dataByMIMEString(MIMEString));
     };

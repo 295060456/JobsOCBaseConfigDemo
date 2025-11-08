@@ -18,7 +18,7 @@
     return self.getFullFileNameByFilePath.stringByDeletingPathExtension;
 }
 /// 从路径中获得文件完整的后缀名 （不带'.'）
-+(JobsRetStringByStringBlock _Nonnull)getSuffixFileName{
++(JobsRetStrByStrBlock _Nonnull)getSuffixFileName{
     return ^__kindof NSString *_Nullable(NSString *_Nullable data){
         return data.getFullFileNameByFilePath.pathExtension;
     };
@@ -42,7 +42,7 @@
     return filePath;
 }
 /// OC字符串路径拼接
--(JobsRetStringByStringBlock _Nonnull)addPathComponent{
+-(JobsRetStrByStrBlock _Nonnull)addPathComponent{
     @jobs_weakify(self)
     return ^NSMutableString *_Nullable(NSString *_Nonnull str) {
         @jobs_strongify(self)

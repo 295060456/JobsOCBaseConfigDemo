@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (Replace)
 #pragma mark —— 字符串替换
--(JobsRetStringByStringBlock _Nullable)replace;
+-(JobsRetStrByStrBlock _Nullable)replace;
 ///  有时候我们加载的URL中可能会出现中文,需要我们手动进行转码,但是同时又要保证URL中的特殊字符保持不变,那么我们就可以使用下面的方法
 -(NSURL *)Url_Chinese;
 /// 替换某个字符串中间的字符为replacement
@@ -32,11 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 在字符串前面和后面拼接一个字符串
 -(JobsRetStrByStrsBlock _Nonnull)resetStringByFontAndTailStrings;
 /// 在字符串前面和后面拼接一个相同的字符串
--(JobsRetStringByStringBlock _Nonnull)resetStringByFontAndTailString;
+-(JobsRetStrByStrBlock _Nonnull)resetStringByFontAndTailString;
 /// 在字符串前面拼接一个字符串
--(JobsRetStringByStringBlock _Nonnull)resetStringByFontString;
+-(JobsRetStrByStrBlock _Nonnull)resetStringByFontString;
 /// 在字符串后面拼接一个字符串
--(JobsRetStringByStringBlock _Nonnull)resetStringByTailString;
+-(JobsRetStrByStrBlock _Nonnull)resetStringByTailString;
 /// 单词首字母转换为大写
 -(NSString *)jobsCapitalCaseString;
 /// 服务器请求的数据为空值的时候进行替换本地默认值
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 零宽空格在视觉上不会显示出来，但它可以在字符串中用于各种控制和格式化的目的。
 -(__kindof NSString *_Nullable)remove200BMark;
 /// 从字符串中提取指定范围内的子字符串
--(JobsRetStringByRangeBlock _Nonnull)substringWithRange;
+-(JobsRetStrByRangeBlock _Nonnull)substringWithRange;
 /// 将字符串的每一个字后面加换行符，使其竖向排列
 -(__kindof NSString *_Nullable)addNewlines;
 

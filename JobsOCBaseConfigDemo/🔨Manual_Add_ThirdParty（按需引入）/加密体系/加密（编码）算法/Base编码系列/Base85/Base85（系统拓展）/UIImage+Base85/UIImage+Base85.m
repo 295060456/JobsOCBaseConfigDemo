@@ -20,7 +20,7 @@
 @implementation UIImage (Base85)
 #pragma mark —— UIImage ==> Base85
 ///【类方法】将给定的UIImage对象 转换为 以Base85编码的字符串
-+(JobsRetStringByImageBlock _Nonnull)base85StringByImage{
++(JobsRetStrByImageBlock _Nonnull)base85StringByImage{
     return ^ __kindof NSString *_Nullable(UIImage *_Nullable image){
         /**
          首先将UIImage转换为NSData，然后遍历NSData的字节序列，并将每个连续的四个字节转换为Base85编码的字符序列。 Base85编码是一种用于将二进制数据编码为可打印字符的编码方式，比Base64编码更有效率。
@@ -58,7 +58,7 @@
 }
 #pragma mark —— Base85 ==> UIImage
 ///【类方法】从给定的以Base85编码的字符串中解码并转换为UIImage对象
-+(JobsRetImageByStringBlock _Nonnull)imageByBase85String{
++(JobsRetImageByStrBlock _Nonnull)imageByBase85String{
     return ^UIImage *_Nullable(__kindof NSString *_Nullable base85String){
         /**
          首先将Base85字符串解析为对应的字节序列
@@ -81,7 +81,7 @@
     };
 }
 ///【实例方法】从给定的以Base85编码的字符串中解码并转换为UIImage对象
--(JobsRetImageByStringBlock _Nonnull)imageByBase85String{
+-(JobsRetImageByStrBlock _Nonnull)imageByBase85String{
     return ^UIImage *_Nullable(__kindof NSString *_Nullable base85String){
         return UIImage.imageByBase85String(base85String);
     };

@@ -10,7 +10,7 @@
 @implementation NSString (Base32)
 #pragma mark —— Base32 <==> NSString
 ///【类方法】以Base32编码的字符串 转换为 普通的字符串
-+(JobsRetStringByStringBlock _Nonnull)stringByBase32String{
++(JobsRetStrByStrBlock _Nonnull)stringByBase32String{
     return ^__kindof NSString *_Nullable(NSString *_Nullable base32String){
         NSData *utf8encoding = MF_Base32Codec.dataFromBase32String(base32String);
         return NSString.initByUTF8Data(utf8encoding);
@@ -22,7 +22,7 @@
     return NSString.initByUTF8Data(utf8encoding);
 }
 ///【类方法】普通的字符串 转换为 以Base32编码的字符串
-+(JobsRetStringByStringBlock _Nonnull)base32String{
++(JobsRetStrByStrBlock _Nonnull)base32String{
     return ^__kindof NSString *_Nullable(NSString *_Nullable string){
         return MF_Base32Codec.base32StringFromData(string.UTF8Encoding);
     };
@@ -33,7 +33,7 @@
 }
 #pragma mark —— Base32 <==> UIImage
 ///【类方法】将以Base32编码的字符串 转换为 NSData对象，然后再转成UIImage
-+(JobsRetImageByStringBlock _Nonnull)imageByBase32String{
++(JobsRetImageByStrBlock _Nonnull)imageByBase32String{
     return ^UIImage *_Nullable(NSString *_Nullable base32String){
         return UIImage.imageByData(NSData.dataWithBase32String(base32String));
     };
@@ -44,7 +44,7 @@
 }
 #pragma mark —— Base32 <==> NSData
 /// 将Base32编码的字符串 转换为 NSData对象
-+(JobsRetDataByStringBlock _Nonnull)dataWithBase32String{
++(JobsRetDataByStrBlock _Nonnull)dataWithBase32String{
     return ^NSData *_Nullable(__kindof NSString *_Nullable base32String){
        return MF_Base32Codec.dataFromBase32String(base32String);
     };

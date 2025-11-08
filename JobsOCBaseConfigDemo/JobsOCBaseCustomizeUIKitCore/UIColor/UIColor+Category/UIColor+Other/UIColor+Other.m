@@ -10,7 +10,7 @@
 @implementation UIColor (Other)
 #pragma mark —— 类方法
 /// 十六进制字符串 => UIColor *
-+(JobsRetCorByStringBlock _Nonnull)jobsCor{
++(JobsRetCorByStrBlock _Nonnull)jobsCor{
     return ^UIColor * _Nullable(NSString *_Nonnull hexCorString) {
         if (!hexCorString) return (UIColor *)nil;
         /// 去除收尾可能含有的空格字符串
@@ -104,7 +104,7 @@
     });
 }
 /// 十六进制字符串 （默认透明度为1） => UIColor *
-+(JobsRetCorByStringBlock _Nonnull)colorWithHexString{
++(JobsRetCorByStrBlock _Nonnull)colorWithHexString{
     @jobs_weakify(self)
     return ^UIColor * _Nullable(NSString *_Nonnull hexCorString) {
         @jobs_strongify(self)
@@ -196,7 +196,7 @@
 #pragma mark —— 实例方法
 /// 将一个确定的UIColor子类，翻译成RGB格式的字符串值并对外输出【可能因为四舍五入的问题影响末位精度，误差在±1】
 /// 资料来源  https://blog.csdn.net/thanklife/article/details/25784879
--(JobsRetStringByCorBlock)rgbCorStrBy{
+-(JobsRetStrByCorBlock)rgbCorStrBy{
     @jobs_weakify(self)
     return ^NSString *_Nullable(UIColor * _Nullable data) {
         @jobs_strongify(self)
@@ -273,7 +273,7 @@
                                        1.0f));
 }
 /// 根据颜色生成图片
--(JobsRetImageByCGRectBlock)imageByRect{
+-(JobsRetImageByFrameBlock)imageByRect{
     return ^UIImage *_Nonnull(CGRect rect){
         /// 开启位图上下文
         UIGraphicsBeginImageContext(rect.size);

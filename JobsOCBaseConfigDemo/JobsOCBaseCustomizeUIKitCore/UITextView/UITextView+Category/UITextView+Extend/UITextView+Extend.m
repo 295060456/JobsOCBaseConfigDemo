@@ -199,7 +199,7 @@
  如果执行的是删除动作，那么textView.text 去掉最后一个字符向外输出
  否则textView.text + replacementString进行输出
  */
--(JobsRetStringByStringBlock _Nonnull)getCurrentTextViewValueByReplacementText{
+-(JobsRetStrByStrBlock _Nonnull)getCurrentTextViewValueByReplacementText{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)

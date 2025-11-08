@@ -9,7 +9,7 @@
 
 @implementation MJRefreshGifHeader (Extra)
 /// 普通闲置状态
--(jobsByArrayBlock _Nonnull)refreshStateIdleByImages{
+-(jobsByArrBlock _Nonnull)refreshStateIdleByImages{
     @jobs_weakify(self)
     return ^(__kindof NSArray <UIImage *>*_Nullable data){
         @jobs_strongify(self)
@@ -17,7 +17,7 @@
     };
 }
 /// 松开就可以进行刷新的状态【图】
--(jobsByArrayBlock _Nonnull)refreshStatePullingByImages{
+-(jobsByArrBlock _Nonnull)refreshStatePullingByImages{
     @jobs_weakify(self)
     return ^(__kindof NSArray <UIImage *>*_Nullable data){
         @jobs_strongify(self)
@@ -25,7 +25,7 @@
     };
 }
 /// 正在刷新中的状态【图】
--(jobsByArrayBlock _Nonnull)refreshStateRefreshingByImages{
+-(jobsByArrBlock _Nonnull)refreshStateRefreshingByImages{
     @jobs_weakify(self)
     return ^(__kindof NSArray <UIImage *>*_Nullable data){
         @jobs_strongify(self)
@@ -33,7 +33,7 @@
     };
 }
 /// 即将刷新的状态【图】
--(jobsByArrayBlock _Nonnull)refreshStateWillRefreshByImages{
+-(jobsByArrBlock _Nonnull)refreshStateWillRefreshByImages{
     @jobs_weakify(self)
     return ^(__kindof NSArray <UIImage *>*_Nullable data){
         @jobs_strongify(self)
@@ -41,7 +41,7 @@
     };
 }
 /// 所有数据加载完毕，没有更多的数据了【图】
--(jobsByArrayBlock _Nonnull)refreshStateNoMoreDataByImages{
+-(jobsByArrBlock _Nonnull)refreshStateNoMoreDataByImages{
     @jobs_weakify(self)
     return ^(__kindof NSArray <UIImage *>*_Nullable data){
         @jobs_strongify(self)

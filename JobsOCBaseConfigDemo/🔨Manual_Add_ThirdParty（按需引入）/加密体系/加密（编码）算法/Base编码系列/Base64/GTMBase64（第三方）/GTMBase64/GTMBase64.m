@@ -271,7 +271,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
 }
 
 
-+(JobsRetStringByDataBlock _Nonnull)stringByEncodingData{
++(JobsRetStrByDataBlock _Nonnull)stringByEncodingData{
     return ^ __kindof NSString *_Nullable(__kindof NSData *_Nullable data){
         NSString *result = nil;
         NSData *converted = [self baseEncode:data.bytes
@@ -365,7 +365,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     return result;
 }
 
-+(JobsRetDataByStringBlock _Nonnull)webSafeDecodeString{
++(JobsRetDataByStrBlock _Nonnull)webSafeDecodeString{
     return ^__kindof NSData *_Nullable(__kindof NSString *_Nullable string){
         NSData *result = nil;
         NSData *data = string.ASCIIEncoding;
@@ -378,7 +378,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     };
 }
 #pragma mark —— base64
-+(JobsRetStringByStringBlock _Nonnull)md5_base64{
++(JobsRetStrByStrBlock _Nonnull)md5_base64{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable inPutText){
         const char *cStr = inPutText.UTF8String;
         unsigned char digest[16];
@@ -389,7 +389,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     };
 }
 
-+(JobsRetStringByStringBlock _Nonnull)encodeBase64String{
++(JobsRetStrByStrBlock _Nonnull)encodeBase64String{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable input){
         NSData *data = [input dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
         data = GTMBase64.encodeData(data);
@@ -397,7 +397,7 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     };
 }
 
-+(JobsRetStringByStringBlock _Nonnull)decodeBase64String{
++(JobsRetStrByStrBlock _Nonnull)decodeBase64String{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable input){
         NSData *data = [input dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
         data = GTMBase64.decodeData(data);
@@ -406,13 +406,13 @@ GTM_INLINE NSUInteger GuessDecodedLength(NSUInteger srcLen) {
     };
 }
 
-+(JobsRetStringByDataBlock _Nonnull)encodeBase64Data{
++(JobsRetStrByDataBlock _Nonnull)encodeBase64Data{
     return ^__kindof NSString *_Nullable(__kindof NSData *_Nullable data){
         return NSString.initByUTF8Data(GTMBase64.encodeData(data));;
     };
 }
 
-+(JobsRetStringByDataBlock _Nonnull)decodeBase64Data{
++(JobsRetStrByDataBlock _Nonnull)decodeBase64Data{
     return ^__kindof NSString *_Nullable(__kindof NSData *_Nullable data){
         return NSString.initByUTF8Data(GTMBase64.decodeData(data));
     };

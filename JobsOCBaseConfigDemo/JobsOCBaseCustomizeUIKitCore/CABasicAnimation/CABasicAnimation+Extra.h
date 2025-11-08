@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CABasicAnimation (Extra)
 
-+(JobsRetCABasicAnimationByStringBlock _Nonnull)animationByKeyPath;
++(JobsRetCABasicAnimationByStrBlock _Nonnull)animationByKeyPath;
 
 -(JobsRetCABasicAnimationByIDBlock _Nonnull)fromValueBy;
 -(JobsRetCABasicAnimationByIDBlock _Nonnull)toValueBy;

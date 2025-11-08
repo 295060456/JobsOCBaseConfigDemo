@@ -43,13 +43,13 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark ——【Custom】
 #pragma mark —— Base32 <==> UIImage
 ///【类方法】将UIimage对象转成用Base32编码的字符串
-+(JobsRetStringByImageBlock _Nonnull)base32StringByImage;
++(JobsRetStrByImageBlock _Nonnull)base32StringByImage;
 ///【实例方法】将UIimage对象转成用Base32编码的字符串
 -(NSString *_Nullable)base32Str;
 ///【类方法】将以Base32编码的字符串 转换为 NSData对象，然后再转成UIImage
-+(JobsRetImageByStringBlock _Nonnull)imageByBase32String;
++(JobsRetImageByStrBlock _Nonnull)imageByBase32String;
 ///【实例方法】将以Base32编码的字符串 转换为 NSData对象，然后再转成UIImage
--(JobsRetImageByStringBlock _Nonnull)imageByBase32String;
+-(JobsRetImageByStrBlock _Nonnull)imageByBase32String;
 
 @end
 

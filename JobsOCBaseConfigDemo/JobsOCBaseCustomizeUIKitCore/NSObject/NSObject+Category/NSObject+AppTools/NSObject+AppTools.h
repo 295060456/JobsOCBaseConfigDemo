@@ -163,9 +163,9 @@ Prop_strong()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 #pragma mark —— 关于图片编解码
 /// 图片base64编码，再固定50字符的位置加入固定盐。盐码（盐需大写、长度 16位）：RRU4JZTV5WZXPCVZ
 /// 编码
--(JobsRetStringByStringBlock _Nonnull)encodePicStr;
+-(JobsRetStrByStrBlock _Nonnull)encodePicStr;
 /// 解码
--(JobsRetStringByStringBlock _Nonnull)decodePicStr;
+-(JobsRetStrByStrBlock _Nonnull)decodePicStr;
 #pragma mark —— <AppToolsProtocol> 其他
 /// 设置普通文本
 -(UIViewModel *)configViewModelWithTitle:(NSString *_Nullable)title
@@ -201,19 +201,19 @@ Prop_strong()NSMutableArray <JobsRichTextConfig *>*richTextConfigMutArr;
 -(BOOL)isLandscapeRight;
 -(BOOL)isLandscapeLeft;
 #pragma mark —— 通过验证返回YES
--(JobsRetBOOLByStringBlock _Nonnull)userAndPasswordNotUpTo;
+-(JobsRetBOOLByStrBlock _Nonnull)userAndPasswordNotUpTo;
 
--(JobsRetBOOLByStringBlock _Nonnull)telNotUpTo;
+-(JobsRetBOOLByStrBlock _Nonnull)telNotUpTo;
 /// 用户账号由6-15个字符组成，只能输入字母大小写和数字
--(JobsRetBOOLByStringBlock _Nonnull)checkUserName;
+-(JobsRetBOOLByStrBlock _Nonnull)checkUserName;
 /// 用户密码由6-15个字符组成，只能输入字母大小写和数字
--(JobsRetBOOLByStringBlock _Nonnull)checkUserPassword;
+-(JobsRetBOOLByStrBlock _Nonnull)checkUserPassword;
 /// 登录的数据检验
 -(JobsReturnBOOLByAppDoorModelBlock _Nonnull)checkLoginDataBy;
 /// 注册的数据检验
 -(JobsReturnBOOLByAppDoorModelBlock _Nonnull)checkRegisterData;
 /// 电话号码可以最多20位数，超过后无法输入，且电话号码中无法包含特殊字符或者空格
--(JobsRetBOOLByStringBlock _Nonnull)checkTelNum;
+-(JobsRetBOOLByStrBlock _Nonnull)checkTelNum;
 
 @end
 

@@ -14,11 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (MIME)
 #pragma mark —— MIME编码的数据 <==> UIImage对象
 ///【类方法】以MIME编码的数据 转换成 UIImage对象
-+(JobsRetImageByStringBlock _Nonnull)imageByMIMEString;
++(JobsRetImageByStrBlock _Nonnull)imageByMIMEString;
 ///【实例方法】以MIME编码的数据 转换成 UIImage对象
--(JobsRetImageByStringBlock _Nonnull)imageByMIMEString;
+-(JobsRetImageByStrBlock _Nonnull)imageByMIMEString;
 ///【类方法】UIImage对象 转换成 以MIME编码的数据
-+(JobsRetStringByImageBlock _Nonnull)MIMEStringByImage;
++(JobsRetStrByImageBlock _Nonnull)MIMEStringByImage;
 ///【实例方法】UIImage对象 转换成 以MIME编码的数据
 -(NSString *_Nullable)MIMEStr;
 

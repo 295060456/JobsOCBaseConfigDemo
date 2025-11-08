@@ -9,7 +9,7 @@
 
 @implementation MJRefreshAutoStateFooter (Extra)
 /// 松开就可以进行刷新的状态【字】
--(jobsByStringBlock _Nonnull)refreshStateIdleByString{
+-(jobsByStrBlock _Nonnull)refreshStateIdleByString{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -17,7 +17,7 @@
     };
 }
 /// 松开就可以进行刷新的状态【字】
--(jobsByStringBlock _Nonnull)refreshStatePullingByString{
+-(jobsByStrBlock _Nonnull)refreshStatePullingByString{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -25,7 +25,7 @@
     };
 }
 /// 松开就可以进行刷新的状态【字】
--(jobsByStringBlock _Nonnull)refreshStateRefreshingByString{
+-(jobsByStrBlock _Nonnull)refreshStateRefreshingByString{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -33,7 +33,7 @@
     };
 }
 /// 松开就可以进行刷新的状态【字】
--(jobsByStringBlock _Nonnull)refreshStateWillRefreshByString{
+-(jobsByStrBlock _Nonnull)refreshStateWillRefreshByString{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -41,7 +41,7 @@
     };
 }
 /// 松开就可以进行刷新的状态【字】
--(jobsByStringBlock _Nonnull)refreshStateNoMoreDataByString{
+-(jobsByStrBlock _Nonnull)refreshStateNoMoreDataByString{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data){
         @jobs_strongify(self)

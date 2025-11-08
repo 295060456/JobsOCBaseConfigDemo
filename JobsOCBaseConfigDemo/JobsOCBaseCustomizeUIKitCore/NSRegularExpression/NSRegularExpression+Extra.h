@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSRegularExpression (Extra)
 
-+(JobsRetRegularExpressionByStringBlock _Nonnull)byString;
++(JobsRetRegularExpressionByStrBlock _Nonnull)byString;
 
 @end
 

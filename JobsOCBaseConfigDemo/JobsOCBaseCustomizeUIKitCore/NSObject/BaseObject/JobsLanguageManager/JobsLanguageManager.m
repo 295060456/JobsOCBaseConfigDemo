@@ -38,7 +38,7 @@ static AppLanguage _language = AppLanguageBySys;
     return bundle;
 }
 /// 通过key取值对应的语言
-+(JobsRetStringByStringBlock _Nonnull)localStringByKey{
++(JobsRetStrByStrBlock _Nonnull)localStringByKey{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable key){
         @jobs_strongify(self)
@@ -48,7 +48,7 @@ static AppLanguage _language = AppLanguageBySys;
     };
 }
 /// 枚举和语言字符串的转换
-+(JobsRetStringByIntegerBlock _Nonnull)languageCodeByAppLanguage{
++(JobsRetStrByIntegerBlock _Nonnull)languageCodeByAppLanguage{
     return ^__kindof NSString *_Nullable(AppLanguage language){
         switch (language) {
             case AppLanguageChineseSimplified:
@@ -68,7 +68,7 @@ static AppLanguage _language = AppLanguageBySys;
     };
 }
 
--(JobsRetStringByIntegerBlock _Nonnull)languageCodeByAppLanguage{
+-(JobsRetStrByIntegerBlock _Nonnull)languageCodeByAppLanguage{
     return ^__kindof NSString *_Nullable(AppLanguage language){
         return JobsLanguageManager.languageCodeByAppLanguage(language);
     };

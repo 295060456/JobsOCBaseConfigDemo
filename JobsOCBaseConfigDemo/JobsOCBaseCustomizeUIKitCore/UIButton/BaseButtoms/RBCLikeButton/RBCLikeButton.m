@@ -171,7 +171,7 @@ BaseButtonProtocol_synthesize
     };
 }
 
--(JobsRetStringByStringBlock _Nonnull)sentenceListStandard{
+-(JobsRetStrByStrBlock _Nonnull)sentenceListStandard{
     return ^__kindof NSString *_Nullable(NSString *_Nullable orginStr){
         NSInteger orginInt = orginStr.integerValue;
         if (orginInt >= 10000) {

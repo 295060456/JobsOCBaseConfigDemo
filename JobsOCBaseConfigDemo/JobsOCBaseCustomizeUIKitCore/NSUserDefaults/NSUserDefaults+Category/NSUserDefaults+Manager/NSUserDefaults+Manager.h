@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 读取数据
 +(JobsRetIDByStrBlock _Nonnull)readWithKey;
 /// 删除数据
-+(jobsByStringBlock _Nonnull)deleteWithKey;
++(jobsByStrBlock _Nonnull)deleteWithKey;
 
 @end
 

@@ -297,7 +297,7 @@
                                                     error:error];
 }
 /// 给定一个路径，删除旗下所有东西
-+(jobsByStringBlock)cleanFilesWithPath{
++(jobsByStrBlock)cleanFilesWithPath{
     return ^(NSString *_Nullable PathStr){
         /**
          函数说明：unlink()会删除参数pathname 指定的文件. 如果该文件名为最后连接点, 但有其他进程打开了此文件, 则在所有关于此文件的文件描述词皆关闭后才会删除. 如果参数pathname 为一符号连接, 则此连接会被删除。
@@ -419,20 +419,20 @@
     return fileName;
 }
 /// 获取文件所在的文件夹路径：删除最后一个路径节点
-+(JobsRetStringByStringBlock _Nonnull)directoryAtPath{
++(JobsRetStrByStrBlock _Nonnull)directoryAtPath{
     return ^NSString *_Nullable(NSString *_Nullable path){
         return path.stringByDeletingLastPathComponent;
     };
 }
 /// 根据文件路径获取文件扩展类型:
-+(JobsRetStringByStringBlock _Nonnull)suffixAtPath{
++(JobsRetStrByStrBlock _Nonnull)suffixAtPath{
     return ^NSString *_Nullable(NSString *_Nullable path){
         return path.pathExtension;
     };
 }
 #pragma mark —— 判断文件（夹）是否存在
 /// 判断文件路径是否存在:
-+(JobsRetBOOLByStringBlock _Nonnull)isExistsAtPath{
++(JobsRetBOOLByStrBlock _Nonnull)isExistsAtPath{
     return ^BOOL((NSString * _Nullable path)){
         return [NSFileManager.defaultManager fileExistsAtPath:path];
     };
@@ -459,19 +459,19 @@
                                                   error:error] == NSFileTypeRegular);
 }
 /// 判断目录是否可以执行
-+(JobsRetBOOLByStringBlock _Nonnull)isExecutableItemAtPath{
++(JobsRetBOOLByStrBlock _Nonnull)isExecutableItemAtPath{
     return ^BOOL((NSString * _Nullable path)){
         return [NSFileManager.defaultManager isExecutableFileAtPath:path];
     };
 }
 /// 判断目录是否可读
-+(JobsRetBOOLByStringBlock _Nonnull)isReadableItemAtPath{
++(JobsRetBOOLByStrBlock _Nonnull)isReadableItemAtPath{
     return ^BOOL((NSString * _Nullable path)){
         return [NSFileManager.defaultManager isReadableFileAtPath:path];
     };
 }
 /// 判断目录是否可写
-+(JobsRetBOOLByStringBlock _Nonnull)isWritableItemAtPath{
++(JobsRetBOOLByStrBlock _Nonnull)isWritableItemAtPath{
     return ^BOOL((NSString * _Nullable path)){
         return [NSFileManager.defaultManager isWritableFileAtPath:path];
     };
@@ -506,7 +506,7 @@
     return nil;
 }
 /// 将文件大小格式化为字节
-+(JobsRetStringByNumberBlock _Nonnull)sizeFormatted{
++(JobsRetStrByNumberBlock _Nonnull)sizeFormatted{
     return ^__kindof NSString *_Nullable(NSNumber *_Nullable size){
         /*NSByteCountFormatterCountStyle枚举
          *NSByteCountFormatterCountStyleFile 字节为单位，采用十进制的1000bytes = 1KB
@@ -621,7 +621,7 @@
     };
 }
 /// 是否存在此相册判断逻辑依据 注意和 isExistsAtPath进行区分
-+(JobsRetBOOLByStringBlock _Nonnull)isExistFolder{
++(JobsRetBOOLByStrBlock _Nonnull)isExistFolder{
     return ^BOOL(NSString * _Nullable folderName){
         __block BOOL isExisted = NO;
         /// 首先获取用户手动创建相册的集合

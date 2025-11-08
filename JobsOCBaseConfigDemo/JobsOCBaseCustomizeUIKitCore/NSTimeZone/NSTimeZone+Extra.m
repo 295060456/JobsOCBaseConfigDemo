@@ -9,13 +9,13 @@
 
 @implementation NSTimeZone (Extra)
 /// 对系统方法 timeZoneWithName 的二次封装
-+(JobsRetTimeZoneByStringBlock _Nonnull)initByName{
++(JobsRetTimeZoneByStrBlock _Nonnull)initByName{
     return ^NSTimeZone *_Nullable(__kindof NSString *_Nullable data){
         return [NSTimeZone timeZoneWithName:data];
     };
 }
 /// 对系统方法 timeZoneWithAbbreviation 的二次封装
-+(JobsRetTimeZoneByStringBlock _Nonnull)initByAbbreviation{
++(JobsRetTimeZoneByStrBlock _Nonnull)initByAbbreviation{
     return ^NSTimeZone *_Nullable(__kindof NSString *_Nullable data){
         return [NSTimeZone timeZoneWithAbbreviation:data];
     };

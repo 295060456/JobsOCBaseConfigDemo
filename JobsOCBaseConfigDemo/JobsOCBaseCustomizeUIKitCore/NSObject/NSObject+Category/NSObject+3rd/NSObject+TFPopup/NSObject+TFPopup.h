@@ -73,7 +73,7 @@ Prop_strong(nullable)TFPopupParam *tipsParameter;
 #pragma mark —— 关闭所有的弹出提示框
 -(jobsByViewBlock _Nonnull)tfHideAllPopupView;
 #pragma mark —— 弹出提示框
--(jobsByStringBlock _Nonnull)toastMsg;
+-(jobsByStrBlock _Nonnull)toastMsg;
 #pragma mark —— 创建缩放模式下的View
 /// 没有自定义 popupParam（缩放模式）
 -(jobsByViewBlock _Nonnull)popupShowScaleWithView;

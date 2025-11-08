@@ -45,9 +45,9 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 Prop_assign()CGFloat jobsVisible;
 -(JobsRetViewByCGFloatBlock _Nonnull)byVisible;
 #pragma mark —— 打印
--(jobsByStringBlock _Nonnull)jobsLogFrame;
--(jobsByStringBlock _Nonnull)jobsLogPoint;
--(jobsByStringBlock _Nonnull)jobsLogSize;
+-(jobsByStrBlock _Nonnull)jobsLogFrame;
+-(jobsByStrBlock _Nonnull)jobsLogPoint;
+-(jobsByStrBlock _Nonnull)jobsLogSize;
 #pragma mark —— 键盘事件
 /// 监听键盘事件
 -(void)monitorKeyboardAction;
@@ -69,7 +69,7 @@ Prop_assign()CGFloat jobsVisible;
 /// 截图
 -(JobsRetImageByViewBlock _Nonnull)rendImage;
 /// 获取某个 范围内的 截图
--(JobsRetImageByCGRectBlock _Nonnull)innerViewShotAtFrame;
+-(JobsRetImageByFrameBlock _Nonnull)innerViewShotAtFrame;
 #pragma mark —— 描边
 /// 调用方式：view.leftBorderColor(color).leftBorderWidth(borderType);
 -(JobsRetViewByCorBlock _Nonnull)leftBorderColor;

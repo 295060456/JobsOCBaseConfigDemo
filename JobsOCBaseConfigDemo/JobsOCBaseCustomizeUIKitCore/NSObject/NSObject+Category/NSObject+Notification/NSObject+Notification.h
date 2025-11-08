@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 在主线程上带参发通知
 -(jobsByKeyValueModelBlock _Nonnull)JobsPostBy;
 /// 在主线程上不带参发通知
--(jobsByStringBlock _Nonnull)jobsPost;
+-(jobsByStrBlock _Nonnull)jobsPost;
 /// 接收通知
 -(void)addNotificationName:(NSString *_Nonnull)notificationName
                      block:(jobsByTwoIDBlock _Nullable)block;

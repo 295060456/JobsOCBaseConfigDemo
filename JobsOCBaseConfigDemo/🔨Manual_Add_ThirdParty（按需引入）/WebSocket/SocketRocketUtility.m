@@ -33,7 +33,7 @@ RACProtocol_synthesize
 }
 #pragma mark —— 一些公共方法
 /// 开始连接
--(jobsByStringBlock _Nonnull)SRWebSocketOpenWithURLString{
+-(jobsByStrBlock _Nonnull)SRWebSocketOpenWithURLString{
     @jobs_weakify(self)
     return ^(__kindof NSString *_Nullable urlString){
         @jobs_strongify(self)

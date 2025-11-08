@@ -308,7 +308,7 @@
 #pragma mark —— UIButton.subtitleColor
 /// TODO
 #pragma mark —— UIButton.title
--(JobsRetStringByUIntegerBlock _Nonnull)titleByState{
+-(JobsRetStrByUIntegerBlock _Nonnull)titleByState{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(UIControlState data){
         @jobs_strongify(self)

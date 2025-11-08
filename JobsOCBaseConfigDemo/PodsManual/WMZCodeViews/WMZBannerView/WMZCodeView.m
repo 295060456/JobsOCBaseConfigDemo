@@ -516,7 +516,7 @@ NS_INLINE UIBezierPath *getCodePath(void){
     return (int)(from + (arc4random() % (to - from + 1)));
 }
 /// 获取随机数量中文
--(JobsRetStringByIntegerBlock _Nonnull)getRandomChineseWithCount{
+-(JobsRetStrByIntegerBlock _Nonnull)getRandomChineseWithCount{
     return ^__kindof NSString *_Nullable(NSInteger count){
         NSMutableString *mString = JobsMutableString(@"");
         NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);

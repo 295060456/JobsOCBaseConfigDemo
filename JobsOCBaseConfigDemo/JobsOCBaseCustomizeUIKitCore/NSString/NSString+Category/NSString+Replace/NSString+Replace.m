@@ -9,7 +9,7 @@
 
 @implementation NSString (Replace)
 #pragma mark —— 字符串替换
--(JobsRetStringByStringBlock _Nullable)replace{
+-(JobsRetStrByStrBlock _Nullable)replace{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -69,7 +69,7 @@
     };
 }
 /// 在字符串前面和后面拼接一个相同的字符串
--(JobsRetStringByStringBlock _Nonnull)resetStringByFontAndTailString{
+-(JobsRetStrByStrBlock _Nonnull)resetStringByFontAndTailString{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *data) {
         @jobs_strongify(self)
@@ -77,7 +77,7 @@
     };
 }
 /// 在字符串前面拼接一个字符串
--(JobsRetStringByStringBlock _Nonnull)resetStringByFontString{
+-(JobsRetStrByStrBlock _Nonnull)resetStringByFontString{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *data) {
         @jobs_strongify(self)
@@ -85,7 +85,7 @@
     };
 }
 /// 在字符串后面拼接一个字符串
--(JobsRetStringByStringBlock _Nonnull)resetStringByTailString{
+-(JobsRetStrByStrBlock _Nonnull)resetStringByTailString{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *data) {
         @jobs_strongify(self)
@@ -238,7 +238,7 @@
     return [self stringByReplacingOccurrencesOfString:零宽转义字符 withString:JobsEmpty];
 }
 /// 从字符串中提取指定范围内的子字符串
--(JobsRetStringByRangeBlock _Nonnull)substringWithRange{
+-(JobsRetStrByRangeBlock _Nonnull)substringWithRange{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSRange data){
         @jobs_strongify(self)

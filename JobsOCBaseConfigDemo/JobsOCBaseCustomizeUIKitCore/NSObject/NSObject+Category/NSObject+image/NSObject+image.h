@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)fetchImageByPlaceholder:(UIImage *)placeholder
                     completion:(jobsByImageBlock _Nullable)completion;
 
--(JobsRetImageByStringBlock _Nonnull)imageByDataURL;
+-(JobsRetImageByStrBlock _Nonnull)imageByDataURL;
 
 @end
 

@@ -9,7 +9,7 @@
 
 @implementation NSAttributedString (Extra)
 /// 对系统方法 initWithString 的二次封装
-+(JobsRetAttributedStringByStringBlock _Nonnull)initByString{
++(JobsRetAttributedStringByStrBlock _Nonnull)initByString{
     return ^__kindof NSAttributedString *_Nullable(NSString *_Nullable data){
         return [NSAttributedString.alloc initWithString:data];
     };

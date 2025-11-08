@@ -97,9 +97,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 检查是否是纯数字
 -(BOOL)isPureDigit;
 /// 本字符串是否包含入参字符串的任何字符
--(JobsRetBOOLByStringBlock _Nonnull)isContainBy;
+-(JobsRetBOOLByStrBlock _Nonnull)isContainBy;
 /// 本字符串是否不包含入参字符串的任何字符
--(JobsRetBOOLByStringBlock _Nonnull)isNotContainBy;
+-(JobsRetBOOLByStrBlock _Nonnull)isNotContainBy;
 
 @end
 

@@ -47,14 +47,14 @@ UILocationProtocol_synthesize
 }
 #pragma mark —— 一些公有方法
 /// UILabel文字的复制
--(jobsByStringBlock _Nonnull)copyText{
+-(jobsByStrBlock _Nonnull)copyText{
     return ^(NSString *_Nullable text){
         text.pasteboard();
         JobsLog(@"%@%@",JobsInternationalization(@"复制的文字："),text);
     };
 }
 /// 弹出系统菜单控件
--(jobsByStringBlock _Nonnull)makeMenuCtrl{
+-(jobsByStrBlock _Nonnull)makeMenuCtrl{
     @jobs_weakify(self)
     return ^(NSString *_Nullable text) {
         @jobs_strongify(self)

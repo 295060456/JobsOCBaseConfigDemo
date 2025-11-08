@@ -28,9 +28,9 @@ Prop_copy()NSMutableDictionary <NSString *, NSValue *>*methodCache;/// 定义一
 /// @param methodName 不带参数的方法名
 +(void)targetObj:(NSObject *_Nonnull)targetObj callingMethodWithName:(NSString *_Nullable)methodName;
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
--(jobsByStringBlock _Nonnull)callingMethodWithName;
+-(jobsByStrBlock _Nonnull)callingMethodWithName;
 /// 使用 dispatch_once 来执行只需运行一次的线程安全代码
--(jobsByStringBlock _Nonnull)dispatchOnceInvokingWithMethodName;
+-(jobsByStrBlock _Nonnull)dispatchOnceInvokingWithMethodName;
 /// NSInvocation的使用，方法多参数传递
 /// @param methodName 方法名
 /// @param targetObj 靶点，方法在哪里
@@ -43,7 +43,7 @@ Prop_copy()NSMutableDictionary <NSString *, NSValue *>*methodCache;/// 定义一
 /// @param sig 方法签名
 +(id)getMethodReturnValueWithInv:(NSInvocation *)inv sig:(NSMethodSignature *)sig;
 /// 判断本程序是否存在某个类
-+(JobsRetBOOLByStringBlock _Nonnull)judgementAppExistClassWithName;
++(JobsRetBOOLByStrBlock _Nonnull)judgementAppExistClassWithName;
 /// 判断某个实例对象是否存在某个【不带参数的方法】
 +(BOOL)judgementObj:(NSObject *_Nonnull)obj existMethodWithName:(NSString *_Nullable)methodName;
 /// 用block来代替selector。
@@ -59,7 +59,7 @@ SEL _Nullable selectorBlocks(JobsRetIDByTwoIDBlock _Nullable block,
 /// 是否存在这样的属性，有则返回
 -(JobsRetIDByStrBlock _Nonnull)property;
 /// 是否遵从这样的协议？
--(JobsRetBOOLByStringBlock _Nonnull)protocol;
+-(JobsRetBOOLByStrBlock _Nonnull)protocol;
 
 @end
 

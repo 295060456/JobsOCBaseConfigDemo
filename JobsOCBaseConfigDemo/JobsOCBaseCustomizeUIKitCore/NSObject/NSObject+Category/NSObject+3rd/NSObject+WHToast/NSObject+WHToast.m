@@ -9,7 +9,7 @@
 
 @implementation NSObject (WHToast)
 #pragma mark —— 仅文字，展示在屏幕中间
-+(jobsByStringBlock _Nonnull)jobsToastMsg{
++(jobsByStrBlock _Nonnull)jobsToastMsg{
     return ^(NSString *_Nullable msg) {
         [WHToast showMessage:msg
                     duration:1.5
@@ -17,13 +17,13 @@
     };
 }
 
--(jobsByStringBlock _Nonnull)jobsToastMsg{
+-(jobsByStrBlock _Nonnull)jobsToastMsg{
     return ^(NSString *_Nullable msg) {
         NSObject.jobsToastMsg(msg);
     };
 }
 #pragma mark —— 成功图标和文字，展示在屏幕中间
-+(jobsByStringBlock _Nonnull)jobsToastSuccessMsg{
++(jobsByStrBlock _Nonnull)jobsToastSuccessMsg{
     return ^(NSString *_Nullable successMsg) {
         [WHToast showImage:@"成功".img
                    message:successMsg
@@ -32,13 +32,13 @@
     };
 }
 
--(jobsByStringBlock _Nonnull)jobsToastSuccessMsg{
+-(jobsByStrBlock _Nonnull)jobsToastSuccessMsg{
     return ^(NSString *_Nullable successMsg) {
         NSObject.jobsToastSuccessMsg(successMsg);
     };
 }
 #pragma mark —— 失败图标和文字，展示在屏幕中间
-+(jobsByStringBlock _Nonnull)jobsToastErrMsg{
++(jobsByStrBlock _Nonnull)jobsToastErrMsg{
     return ^(NSString *_Nullable errMsg) {
         [WHToast showImage:@"失败".img
                    message:errMsg
@@ -47,13 +47,13 @@
     };
 }
 
--(jobsByStringBlock _Nonnull)jobsToastErrMsg{
+-(jobsByStrBlock _Nonnull)jobsToastErrMsg{
     return ^(NSString *_Nullable errMsg) {
         NSObject.jobsToastErrMsg(errMsg);
     };
 }
 #pragma mark —— 延时操作
-+(jobsByStringBlock _Nonnull)jobsToastLoadingMsg{
++(jobsByStrBlock _Nonnull)jobsToastLoadingMsg{
     return ^(NSString *_Nullable errMsg) {
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *path = @"toastLoading.gif".pathForResourceWithFullName;
@@ -67,7 +67,7 @@
     };
 }
 
--(jobsByStringBlock _Nonnull)jobsToastLoadingMsg{
+-(jobsByStrBlock _Nonnull)jobsToastLoadingMsg{
     return ^(NSString *_Nullable errMsg) {
         NSObject.jobsToastLoadingMsg(errMsg);
     };

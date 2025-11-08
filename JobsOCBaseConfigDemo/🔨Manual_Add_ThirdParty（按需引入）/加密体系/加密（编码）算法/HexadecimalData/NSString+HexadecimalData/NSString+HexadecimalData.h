@@ -17,21 +17,21 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSString (HexadecimalData)
 #pragma mark —— HexadecimalData <==> NSString
 ///【类方法】16进制字符串 转换成 普通的NSString对象
-+(JobsRetStringByStringBlock _Nonnull)stringByHexString;
++(JobsRetStrByStrBlock _Nonnull)stringByHexString;
 ///【实例方法】16进制字符串 转换成 普通的NSString对象
 -(NSString *_Nullable)stringByHexString;
 ///【类方法】普通的NSString对象 转换成 16进制字符串
-+(JobsRetStringByStringBlock _Nonnull)hexStringByString;
++(JobsRetStrByStrBlock _Nonnull)hexStringByString;
 ///【实例方法】普通的NSString对象 转换成 16进制字符串
 -(NSString *_Nullable)hexStringByString;
 #pragma mark —— HexadecimalData ==> UIImage
 ///【类方法】16进制字符串 转换为 UIImage对象
-+(JobsRetImageByStringBlock _Nonnull)imageByHexString;
++(JobsRetImageByStrBlock _Nonnull)imageByHexString;
 ///【实例方法】16进制字符串 转换为 UIImage对象
 -(UIImage *_Nullable)imageByHexString;
 #pragma mark —— HexadecimalData ==> NSData
 ///【类方法】16进制字符串 转换为 NSData对象
-+(JobsRetDataByStringBlock _Nonnull)dataByHexString;
++(JobsRetDataByStrBlock _Nonnull)dataByHexString;
 ///【实例方法】16进制字符串 转换为 NSData对象
 -(NSData *_Nullable)dataByHexString;
 

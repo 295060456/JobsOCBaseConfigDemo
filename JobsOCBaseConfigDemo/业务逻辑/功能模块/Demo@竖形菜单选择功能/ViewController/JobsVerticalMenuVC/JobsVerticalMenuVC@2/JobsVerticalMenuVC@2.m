@@ -115,7 +115,7 @@ Prop_assign()NSUInteger thisIndex;
     [super viewWillDisappear:animated];
 }
 #pragma mark —— 一些私有方法
--(jobsByMutArrayBlock _Nonnull)makeCellData{
+-(jobsByMutArrBlock _Nonnull)makeCellData{
     @jobs_weakify(self)
     return ^(__kindof NSMutableArray <__kindof UIButtonModel *>*_Nullable arr){
         @jobs_strongify(self)

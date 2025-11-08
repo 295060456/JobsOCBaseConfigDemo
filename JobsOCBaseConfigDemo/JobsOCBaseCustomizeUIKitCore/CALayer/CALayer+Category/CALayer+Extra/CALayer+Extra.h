@@ -38,11 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
                                            curve:(TransitionCurve)curve
                                         duration:(CGFloat)duration;
 /// 返回动画曲线
--(JobsRetStringByIntegerBlock _Nonnull)curve;
+-(JobsRetStrByIntegerBlock _Nonnull)curve;
 /// 返回动画方向
--(JobsRetStringByIntegerBlock _Nonnull)animaSubtype;
+-(JobsRetStrByIntegerBlock _Nonnull)animaSubtype;
 /// 返回动画类型
--(JobsRetStringByIntegerBlock _Nonnull)animaTypeWithTransitionType;
+-(JobsRetStrByIntegerBlock _Nonnull)animaTypeWithTransitionType;
 /// 添加Layer
 -(JobsRetCALayerByCALayerBlock _Nonnull)addSublayer;
 /// 删除Layer

@@ -9,13 +9,13 @@
 
 @implementation NSLayoutConstraint (Extra)
 
-+(jobsByArrayBlock _Nonnull)initBy{
++(jobsByArrBlock _Nonnull)initBy{
     return ^(NSArray *_Nullable data){
         return [NSLayoutConstraint activateConstraints:data];
     };
 }
 
-+(jobsByArrayBlock _Nonnull)deactivateBy{
++(jobsByArrBlock _Nonnull)deactivateBy{
     return ^(NSArray *_Nullable data){
         return [NSLayoutConstraint deactivateConstraints:data];
     };

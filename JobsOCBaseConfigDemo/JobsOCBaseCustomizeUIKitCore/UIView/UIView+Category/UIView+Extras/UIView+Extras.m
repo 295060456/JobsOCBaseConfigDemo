@@ -253,7 +253,7 @@
     };
 }
 #pragma mark —— 打印
--(jobsByStringBlock _Nonnull)jobsLogFrame{
+-(jobsByStrBlock _Nonnull)jobsLogFrame{
     @jobs_weakify(self)
     return ^(NSString *_Nonnull str) {
         @jobs_strongify(self)
@@ -261,7 +261,7 @@
     };
 }
 
--(jobsByStringBlock _Nonnull)jobsLogPoint{
+-(jobsByStrBlock _Nonnull)jobsLogPoint{
     @jobs_weakify(self)
     return ^(NSString *_Nonnull str) {
         @jobs_strongify(self)
@@ -269,7 +269,7 @@
     };
 }
 
--(jobsByStringBlock _Nonnull)jobsLogSize{
+-(jobsByStrBlock _Nonnull)jobsLogSize{
     @jobs_weakify(self)
     return ^(NSString *_Nonnull str) {
         @jobs_strongify(self)
@@ -402,7 +402,7 @@
     };
 }
 /// 获取某个 范围内的 截图
--(JobsRetImageByCGRectBlock _Nonnull)innerViewShotAtFrame{
+-(JobsRetImageByFrameBlock _Nonnull)innerViewShotAtFrame{
     @jobs_weakify(self)
     return ^UIImage *_Nonnull(CGRect rect){
         @jobs_strongify(self)

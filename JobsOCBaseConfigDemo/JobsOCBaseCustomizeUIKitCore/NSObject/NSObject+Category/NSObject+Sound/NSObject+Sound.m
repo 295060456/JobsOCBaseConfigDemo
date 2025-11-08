@@ -10,7 +10,7 @@
 @implementation NSObject (Sound)
 /// 播放自定义本地声音
 /// fileName 文件名 包含后缀
--(jobsByStringBlock)playSoundWithFileName{
+-(jobsByStrBlock)playSoundWithFileName{
     return ^(NSString *_Nullable fileName){
         SystemSoundID soundID;
         /// 得到音效文件的地址
@@ -27,7 +27,7 @@
 }
 /// 播放自定义本地声音
 /// fileName 全文件名 包含后缀
--(jobsByStringBlock)playSoundEffect{
+-(jobsByStrBlock)playSoundEffect{
     return ^(NSString *_Nullable fileFullName){
         FileNameModel *fileNameModel = fileFullName.byFileFullName(fileFullName);
         SystemSoundID soundID;

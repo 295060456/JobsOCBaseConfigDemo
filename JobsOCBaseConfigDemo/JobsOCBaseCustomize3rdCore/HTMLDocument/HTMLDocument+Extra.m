@@ -15,7 +15,7 @@
     };
 }
 /// 提取 HTML 里面的有效文字内容
-+(JobsRetStringByStringBlock _Nonnull)formatHTML{
++(JobsRetStrByStrBlock _Nonnull)formatHTML{
     return ^ __kindof NSString *_Nullable(__kindof NSString *_Nullable htmlString){
         NSError *error = nil;
         // 使用 NSAttributedString 从 HTML 中创建富文本

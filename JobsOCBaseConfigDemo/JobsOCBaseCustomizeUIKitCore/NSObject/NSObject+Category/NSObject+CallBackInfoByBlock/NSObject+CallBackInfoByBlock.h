@@ -28,11 +28,11 @@ Prop_copy(nullable)jobsByVoidBlock voidBlock;/// 无入参，无返回值的回�
 Prop_copy(nullable)jobsByIDBlock objBlock;/// 入参为ID类型，无返回值的回调
 Prop_copy(nullable)jobsByGestureRecognizerBlock gestureRecognizerBlock;/// 入参为UIGestureRecognizer，无返回值的回调
 Prop_copy(nullable)jobsBySELBlock selBlock;/// 入参为SEL，无返回值的回调
-Prop_copy(nullable)jobsByStringBlock stringBlock;/// 入参为NSString，无返回值的回调
+Prop_copy(nullable)jobsByStrBlock stringBlock;/// 入参为NSString，无返回值的回调
 -(void)actionObjBlock:(jobsByIDBlock _Nullable)objBlock;
 -(void)actionGestureRecognizerBlock:(jobsByGestureRecognizerBlock _Nullable)gestureRecognizerBlock;
 -(void)actionSelBlock:(jobsBySELBlock _Nullable)selBlock;
--(void)actionStringBlock:(jobsByStringBlock _Nullable)stringBlock;
+-(void)actionStringBlock:(jobsByStrBlock _Nullable)stringBlock;
 
 Prop_copy(nullable)jobsByNSIntegerBlock integerBlock;/// 入参为NSInteger，无返回值的回调
 Prop_copy(nullable)jobsByNSUIntegerBlock uIntegerBlock;/// 入参为NSUInteger，无返回值的回调

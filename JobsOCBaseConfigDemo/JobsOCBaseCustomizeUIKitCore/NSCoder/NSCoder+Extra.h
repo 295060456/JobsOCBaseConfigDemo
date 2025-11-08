@@ -17,11 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 解档：NSNumber类型数据
 -(JobsRetIDByStrBlock _Nonnull)decodeNumberBy;
 /// 解档：BOOL值
--(JobsRetBOOLByStringBlock _Nonnull)decodeBOOLBy;
+-(JobsRetBOOLByStrBlock _Nonnull)decodeBOOLBy;
 /// 解档：NSInteger值
--(JobsRetNSIntegerByStringBlock _Nonnull)decodeIntegerBy;
+-(JobsRetNSIntegerByStrBlock _Nonnull)decodeIntegerBy;
 /// 解档：浮点数 (double) 数据
--(JobsRetDoubleByStringBlock _Nonnull)decodeDoubleBy;
+-(JobsRetDoubleByStrBlock _Nonnull)decodeDoubleBy;
 /// 解档：字典类型数据
 -(JobsRetIDByStrBlock _Nonnull)decodeDictionaryBy;
 /// 解档：数组类型数据

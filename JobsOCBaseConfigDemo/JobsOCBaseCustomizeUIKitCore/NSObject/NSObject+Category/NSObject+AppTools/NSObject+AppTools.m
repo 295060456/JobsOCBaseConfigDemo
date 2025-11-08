@@ -668,7 +668,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 #pragma mark —— 关于图片编解码
 /// 图片base64编码，再固定50字符的位置加入固定盐。盐码（盐需大写、长度 16位）：RRU4JZTV5WZXPCVZ
 /// 编码
--(JobsRetStringByStringBlock _Nonnull)encodePicStr{
+-(JobsRetStrByStrBlock _Nonnull)encodePicStr{
     return ^(NSString * _Nullable picStr) {
         /// 将NSString转换为NSMutableString，以便修改
         NSMutableString *modifiedString = picStr.mutableCopy;
@@ -678,7 +678,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     };
 }
 /// 解码
--(JobsRetStringByStringBlock _Nonnull)decodePicStr{
+-(JobsRetStrByStrBlock _Nonnull)decodePicStr{
     return ^(NSString * _Nullable encodePicStr) {
         // 删除字符串
         return [encodePicStr stringByReplacingOccurrencesOfString:PicSalt withString:@""];
@@ -686,7 +686,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 }
 #pragma mark —— <AppToolsProtocol> 其他
 /// 根据 x 和 y 的绝对值判断主方向
--(JobsRetStringByCGPointBlock _Nonnull)directionByTranslation{
+-(JobsRetStrByCGPointBlock _Nonnull)directionByTranslation{
     return ^__kindof NSString *_Nullable(CGPoint translation){
         if (fabs(translation.x) > fabs(translation.y)) {
             return translation.x > 0 ? @"右滑" : @"左滑";/// 水平方向
@@ -970,19 +970,19 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     return JobsAppTool.currentInterfaceOrientationMask == UIInterfaceOrientationMaskLandscapeLeft;
 }
 #pragma mark —— 通过验证返回YES
--(JobsRetBOOLByStringBlock _Nonnull)userAndPasswordNotUpTo{
+-(JobsRetBOOLByStrBlock _Nonnull)userAndPasswordNotUpTo{
     return ^BOOL(NSString *_Nullable data){
         return data.length < 6;
     };
 }
 
--(JobsRetBOOLByStringBlock _Nonnull)telNotUpTo{
+-(JobsRetBOOLByStrBlock _Nonnull)telNotUpTo{
     return ^BOOL(NSString *_Nullable data){
         return data.length < 20;
     };
 }
 /// 用户账号由6-15个字符组成，只能输入字母大小写和数字
--(JobsRetBOOLByStringBlock _Nonnull)checkUserName{
+-(JobsRetBOOLByStrBlock _Nonnull)checkUserName{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable userName){
         @jobs_strongify(self)
@@ -990,7 +990,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     };
 }
 /// 用户密码由6-15个字符组成，只能输入字母大小写和数字
--(JobsRetBOOLByStringBlock _Nonnull)checkUserPassword{
+-(JobsRetBOOLByStrBlock _Nonnull)checkUserPassword{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable userPassword){
         @jobs_strongify(self)
@@ -1072,7 +1072,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     };
 }
 /// 电话号码可以最多20位数，超过后无法输入，且电话号码中无法包含特殊字符或者空格
--(JobsRetBOOLByStringBlock _Nonnull)checkTelNum{
+-(JobsRetBOOLByStrBlock _Nonnull)checkTelNum{
     return ^BOOL(NSString *_Nullable telNum){
         return !telNum.isContainsSpecialSymbolsString(nil) &&/// 不包含特殊字符
         telNum.length <= 20 &&/// 长度小于20位

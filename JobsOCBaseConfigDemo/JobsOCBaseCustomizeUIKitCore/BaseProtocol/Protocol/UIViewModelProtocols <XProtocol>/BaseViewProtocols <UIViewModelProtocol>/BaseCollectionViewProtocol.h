@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark —— RegistrationTracking
 Prop_strong()__kindof NSMutableSet <__kindof NSString *>*registeredIdentifiers;/// 自定义标志位
 // 检查某个 reuseIdentifier 是否已注册
--(JobsRetBOOLByStringBlock _Nonnull)isRegisteredForReuseIdentifier;
+-(JobsRetBOOLByStrBlock _Nonnull)isRegisteredForReuseIdentifier;
 #pragma mark —— Func
 +(JobsRetCollectionViewByLayoutBlock _Nonnull)initByLayout;
 /// 对系统方法 cellForItemAtIndexPath 的二次封装

@@ -11,7 +11,7 @@
 #import "JobsBlock.h"
 #import "NSString+Others.h"
 
-NS_INLINE NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStringBlock _Nonnull block){
+NS_INLINE NSMutableAttributedString *_Nonnull jobsMakeMutableAttributedString(jobsByAttributedStrBlock _Nonnull block){
     NSMutableAttributedString *data = NSMutableAttributedString.alloc.init;
     if (block) block(data);
     return data;
@@ -58,9 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 利用 NSArray <JobsRichTextConfig *>* 形成富文本
 -(JobsReturnAttributedStringByRichTextConfigArrayBlock _Nonnull)richTextWithDataConfigMutArr;
 /// 字符串中划线
--(JobsRetAttributedStringByStringBlock _Nonnull)jobsHorizontalCentralLineation;
+-(JobsRetAttributedStringByStrBlock _Nonnull)jobsHorizontalCentralLineation;
 /// 字符串下划线
--(JobsRetAttributedStringByStringBlock _Nonnull)jobsHorizontalBottomLineation;
+-(JobsRetAttributedStringByStrBlock _Nonnull)jobsHorizontalBottomLineation;
 
 @end
 

@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 内部 Target 容器
 @interface JobsControlTarget : NSObject
 
-Prop_copy(nullable)jobsByControlBlock block;
+Prop_copy(nullable)jobsByCtrlBlock block;
 Prop_assign()_JobsInvokePolicy policy;
 Prop_assign()NSTimeInterval interval;   // for throttle/debounce
 Prop_assign()NSTimeInterval lastFire;   // for throttle

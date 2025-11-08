@@ -18,7 +18,7 @@
     imageNamed中没有代用MKImageNamed,
     这样就不会出现死循环;
 */
-+(JobsRetImageByStringBlock _Nonnull)imageByName{
++(JobsRetImageByStrBlock _Nonnull)imageByName{
     return ^UIImage *_Nullable(NSString *_Nullable name){
         __block UIImage *image = nil;
         JobsRetIDByVoidBlock UIImageBlock_2 = ^UIImage *{

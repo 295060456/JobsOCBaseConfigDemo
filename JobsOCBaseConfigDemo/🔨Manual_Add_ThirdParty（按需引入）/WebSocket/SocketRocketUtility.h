@@ -32,7 +32,7 @@
 
 +(SocketRocketUtility *)instance;
 /// 开始连接
--(jobsByStringBlock _Nonnull)SRWebSocketOpenWithURLString;
+-(jobsByStrBlock _Nonnull)SRWebSocketOpenWithURLString;
 /// 关闭连接
 -(void)SRWebSocketClose;
 /// 发送数据

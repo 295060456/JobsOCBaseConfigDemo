@@ -25,7 +25,7 @@
     };
 }
 #pragma mark —— 弹出提示框
--(jobsByStringBlock _Nonnull)toastMsg{
+-(jobsByStrBlock _Nonnull)toastMsg{
     return ^(NSString *_Nullable msg) {
         [TFPopupToast tf_show:MainWindow
                           msg:msg

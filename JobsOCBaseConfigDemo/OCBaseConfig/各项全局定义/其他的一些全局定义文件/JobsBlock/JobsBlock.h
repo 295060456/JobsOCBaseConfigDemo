@@ -594,10 +594,10 @@ typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewByCorBlo
 typedef __kindof JXCategoryDotView *_Nullable(^JobsReturnCategoryDotViewByNumbersBlock)(__kindof NSArray <__kindof NSNumber *>* _Nullable numbers);
 typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByNumbersBlock)(__kindof NSArray <__kindof NSNumber *>* _Nullable numbers);
 typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByCGPointBlock)(CGPoint point);
-typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByReturnStringByIntegerBlocks)(JobsRetStringByIntegerBlock _Nullable block);
+typedef __kindof JXCategoryNumberView *_Nullable(^JobsReturnCategoryNumberViewByReturnStringByIntegerBlocks)(JobsRetStrByIntegerBlock _Nullable block);
 
 #pragma mark —— 复合型Block
-typedef void(^jobsByErrBlocks)(jobsByErrorBlock _Nullable block);
+typedef void(^jobsByErrBlocks)(jobsByErrBlock _Nullable block);
 typedef void(^jobsByRetIDByIDBlocks)(JobsRetIDByIDBlock _Nullable block);
 typedef void(^jobsDelegateBlocks)(Jobs_DelegateBlocks_Arguments);
 

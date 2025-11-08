@@ -39,7 +39,7 @@
 +(JobsRetDataByDataBlock _Nonnull)decodeData;
 +(NSData *)encodeBytes:(const void *)bytes length:(NSUInteger)length;
 +(NSData *)decodeBytes:(const void *)bytes length:(NSUInteger)length;
-+(JobsRetStringByDataBlock _Nonnull)stringByEncodingData;
++(JobsRetStrByDataBlock _Nonnull)stringByEncodingData;
 +(NSString *)stringByEncodingBytes:(const void *)bytes length:(NSUInteger)length;
 +(NSData *)decodeString:(NSString *)string;
 //
@@ -60,12 +60,12 @@
 +(NSString *)stringByWebSafeEncodingBytes:(const void *)bytes
                                    length:(NSUInteger)length
                                    padded:(BOOL)padded;
-+(JobsRetDataByStringBlock _Nonnull)webSafeDecodeString;
++(JobsRetDataByStrBlock _Nonnull)webSafeDecodeString;
 #pragma mark —— base64
-+(JobsRetStringByStringBlock _Nonnull)md5_base64;
-+(JobsRetStringByStringBlock _Nonnull)encodeBase64String;
-+(JobsRetStringByStringBlock _Nonnull)decodeBase64String;
-+(JobsRetStringByDataBlock _Nonnull)encodeBase64Data;
-+(JobsRetStringByDataBlock _Nonnull)decodeBase64Data;
++(JobsRetStrByStrBlock _Nonnull)md5_base64;
++(JobsRetStrByStrBlock _Nonnull)encodeBase64String;
++(JobsRetStrByStrBlock _Nonnull)decodeBase64String;
++(JobsRetStrByDataBlock _Nonnull)encodeBase64Data;
++(JobsRetStrByDataBlock _Nonnull)decodeBase64Data;
 
 @end

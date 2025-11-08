@@ -26,7 +26,7 @@
     };
 }
 /// 在主线程上不带参发通知
--(jobsByStringBlock _Nonnull)jobsPost{
+-(jobsByStrBlock _Nonnull)jobsPost{
     return ^(NSString *_Nonnull key){
         dispatch_async(dispatch_get_main_queue(), ^{
             key.postNotificationBy(nil);

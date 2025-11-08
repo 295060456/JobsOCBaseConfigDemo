@@ -204,14 +204,14 @@ AppToolsProtocol
 /// UIAlertController 的标题和消息属性仅支持简单的字符串 (NSString) 类型，而不直接支持富文本 (NSAttributedString)
 -(JobsReturnAlertControllerByAlertModelBlock _Nonnull)makeAlertControllerByAlertModel;
 /// 将 NSDate  *转换输出成人类可读的（年\月\日）时间（字符串）
--(JobsRetStringByDateBlock _Nonnull)toReadableDayTimeByDate;
+-(JobsRetStrByDateBlock _Nonnull)toReadableDayTimeByDate;
 /// 将 NSDate  *转换输出成人类可读的（年\月\日\时\分\秒）时间（字符串）
--(JobsRetStringByDateBlock _Nonnull)toReadableTimeByDate;
+-(JobsRetStrByDateBlock _Nonnull)toReadableTimeByDate;
 /// 将 NSTimeInterval 按照 NSDateFormatter 转换输出成人类可读的时间
 -(JobsReturnStringByTimeModelBlock _Nonnull)toReadableTimeBy;
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
 /// data：包含 HTML 内容的字符串
--(JobsRetWKWebViewByStringBlock _Nonnull)makeWebViewByString;
+-(JobsRetWKWebViewByStrBlock _Nonnull)makeWebViewByString;
 /// 解析网络URL数据
 -(JobsRetWKWebViewByURLBlock _Nonnull)makeWebViewByURL;
 /// 在导航栏堆栈里面，是否存在同样类型的控制器
@@ -229,10 +229,10 @@ AppToolsProtocol
 -(URLManagerModel *_Nonnull)url:(NSString *_Nonnull)url funcName:(NSString *_Nonnull)funcName;
 /// 获取m文件的属性
 -(JobsRetIDByStrBlock _Nonnull)getObjByName;
--(JobsRetDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted;
+-(JobsRetDataByDicBlock _Nonnull)JSONWritingPrettyPrinted;
 -(JobsRetIDByDataBlock _Nonnull)JSONReadingMutableContainers;
 -(JobsRetIDByDataBlock _Nonnull)JSONkNilOptions;
--(JobsRetDataByStringBlock _Nonnull)initByContentsOfFile;
+-(JobsRetDataByStrBlock _Nonnull)initByContentsOfFile;
 -(JobsRetBOOLByIDBlock _Nonnull)isEqual;
 -(JobsRetIDByStrBlock _Nonnull)dataByKey;
 /// UICollectionViewFlowLayout
@@ -276,7 +276,7 @@ AppToolsProtocol
 ///【子类需要覆写 】创建返回键的点击事件
 -(jobsByBtnBlock _Nonnull)jobsBackBtnClickEvent;
 /// 返回控制器的核心逻辑
--(jobsByViewControllerBlock _Nonnull)backViewControllerCore;
+-(jobsByVCBlock _Nonnull)backViewControllerCore;
 /// 打印YTKBaseRequest
 -(jobsByYTKBaseRequestBlock _Nonnull)checkRequest;
 /// 此功能的必要性：如果外界传入的数组是空，那么拿到的count是0，做-1操作就是-1，直接用for循环就会进入死循环

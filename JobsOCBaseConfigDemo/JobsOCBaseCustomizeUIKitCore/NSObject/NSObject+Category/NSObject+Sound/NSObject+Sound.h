@@ -18,10 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (Sound)
 /// 播放自定义本地声音
 /// fileName 文件名 包含后缀
--(jobsByStringBlock)playSoundWithFileName;
+-(jobsByStrBlock)playSoundWithFileName;
 /// 播放自定义本地声音
 /// fileName 全文件名 包含后缀
--(jobsByStringBlock)playSoundEffect;
+-(jobsByStrBlock)playSoundEffect;
 
 @end
 

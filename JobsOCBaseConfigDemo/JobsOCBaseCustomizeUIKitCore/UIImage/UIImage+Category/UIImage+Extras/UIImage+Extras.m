@@ -140,7 +140,7 @@
     };
 }
 /// 截取当前image对象rect区域内的图像
--(JobsRetImageByCGRectBlock _Nonnull)dw_SubImageWithRect{
+-(JobsRetImageByFrameBlock _Nonnull)dw_SubImageWithRect{
     @jobs_weakify(self)
     return ^UIImage *_Nonnull(CGRect rect){
         @jobs_strongify(self)
@@ -247,7 +247,7 @@
     };
 }
 /// 对系统方法 imageWithContentsOfFile 的二次封装
-+(JobsRetImageByStringBlock _Nonnull)imageWithContentsOfFile{
++(JobsRetImageByStrBlock _Nonnull)imageWithContentsOfFile{
     return ^UIImage *_Nonnull(__kindof NSString *_Nullable data){
         return [UIImage imageWithContentsOfFile:data];
     };

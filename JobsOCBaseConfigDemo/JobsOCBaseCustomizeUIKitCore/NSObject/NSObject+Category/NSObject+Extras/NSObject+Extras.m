@@ -330,7 +330,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 将 NSDate  *转换输出成人类可读的（年\月\日）时间（字符串）
--(JobsRetStringByDateBlock _Nonnull)toReadableDayTimeByDate{
+-(JobsRetStrByDateBlock _Nonnull)toReadableDayTimeByDate{
     return ^__kindof NSString *_Nullable(NSDate *_Nullable date){
         return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
             dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
@@ -339,7 +339,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 将 NSDate  *转换输出成人类可读的（年\月\日\时\分\秒）时间（字符串）
--(JobsRetStringByDateBlock _Nonnull)toReadableTimeByDate{
+-(JobsRetStrByDateBlock _Nonnull)toReadableTimeByDate{
     return ^__kindof NSString *_Nullable(NSDate *_Nullable date){
         return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable dateFormatter) {
             dateFormatter.timeZone = self.timeZone(TimeZoneTypeCSTChina);
@@ -360,7 +360,7 @@ UITextFieldProtocol_dynamic
 }
 /// baseURL：指定 HTML 内容的基本 URL，可以用于解析相对路径
 /// data：包含 HTML 内容的字符串
--(JobsRetWKWebViewByStringBlock _Nonnull)makeWebViewByString{
+-(JobsRetWKWebViewByStrBlock _Nonnull)makeWebViewByString{
     return ^__kindof WKWebView *_Nullable(NSString *_Nullable data){
         return jobsMakeWKWebView(^(__kindof WKWebView * _Nullable webView) {
             [webView loadHTMLString:data baseURL:nil];
@@ -462,7 +462,7 @@ UITextFieldProtocol_dynamic
     };
 }
 
--(JobsRetDataByDictionaryBlock _Nonnull)JSONWritingPrettyPrinted{
+-(JobsRetDataByDicBlock _Nonnull)JSONWritingPrettyPrinted{
     return ^NSData *_Nullable(__kindof NSDictionary *_Nullable data){
         if(data){
             NSError *error = nil;
@@ -500,7 +500,7 @@ UITextFieldProtocol_dynamic
         }else return nil;
     };
 }
--(JobsRetDataByStringBlock _Nonnull)initByContentsOfFile{
+-(JobsRetDataByStrBlock _Nonnull)initByContentsOfFile{
     return ^NSData *_Nullable(__kindof NSString *_Nullable path){
         return NSData.dataByContentsOfFile(path);
     };
@@ -695,7 +695,7 @@ UITextFieldProtocol_dynamic
     };
 }
 /// 返回控制器的核心逻辑
--(jobsByViewControllerBlock _Nonnull)backViewControllerCore{
+-(jobsByVCBlock _Nonnull)backViewControllerCore{
     @jobs_weakify(self)
     return ^(__kindof UIViewController *_Nullable vc){
         @jobs_strongify(self)

@@ -67,7 +67,7 @@
 }
 #pragma mark —— 一些私有方法
 /// 用于检测UIViewController的生命周期
--(jobsByStringBlock)UIViewControllerLifeCycle{
+-(jobsByStrBlock)UIViewControllerLifeCycle{
     @jobs_weakify(self)
     return ^(NSString *_Nullable lifeCycle) {
         @jobs_strongify(self)

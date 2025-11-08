@@ -30,7 +30,7 @@ Prop_strong()__kindof UIButton *customSysClearBtn;
 -(RACDisposable *)jobsTextFieldEventFilterBlock:(JobsRetBOOLByIDBlock _Nonnull)filterBlock
                              subscribeNextBlock:(jobsByIDBlock _Nonnull)subscribeNextBlock;
 /// 自定义系统的清除按钮
--(JobsRetStringByStringBlock _Nonnull)getCurrentTextFieldValueByReplacementString;
+-(JobsRetStrByStrBlock _Nonnull)getCurrentTextFieldValueByReplacementString;
 /// 自定义系统的清除按钮
 -(jobsByImageBlock _Nonnull)modifyClearButtonByImage;
 

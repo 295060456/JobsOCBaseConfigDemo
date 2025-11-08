@@ -38,7 +38,7 @@ Prop_strong()BaseButton *sendBtn;
     };
 }
 /// 一些变化的UI
--(jobsByStringBlock _Nonnull)someChangeUIBy{
+-(jobsByStrBlock _Nonnull)someChangeUIBy{
     @jobs_weakify(self)
     return ^(NSString *_Nullable string){
         @jobs_strongify(self)

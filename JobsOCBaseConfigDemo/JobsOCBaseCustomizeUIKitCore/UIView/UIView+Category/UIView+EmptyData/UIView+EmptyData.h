@@ -24,7 +24,7 @@ Prop_strong()UILabel *tipsLab;
 Prop_copy()NSString *tipsTitle;
 
 -(jobsByVoidBlock _Nonnull)cleanSubview;
--(jobsByClassBlock _Nonnull)cleanSubviewBy;
+-(jobsByClsBlock _Nonnull)cleanSubviewBy;
 -(void)ifEmptyData;
 
 @end

@@ -14,7 +14,7 @@
     /// 以此类推
 }
 /// 不加盐注册
--(jobsByClassBlock _Nonnull)registerTableViewClassBy{
+-(jobsByClsBlock _Nonnull)registerTableViewClassBy{
     @jobs_weakify(self)
     return ^(Class _Nonnull cls){
         @jobs_strongify(self)

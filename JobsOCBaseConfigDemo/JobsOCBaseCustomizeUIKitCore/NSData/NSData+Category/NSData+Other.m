@@ -35,13 +35,13 @@
     };
 }
 
-+(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile{
++(JobsRetDataByStrBlock _Nonnull)dataByContentsOfFile{
     return ^NSData *_Nullable(__kindof NSString *_Nullable data){
         return [NSData dataWithContentsOfFile:data];
     };
 }
 
-+(JobsRetDataByStringBlock _Nonnull)initByBase64EncodedString{
++(JobsRetDataByStrBlock _Nonnull)initByBase64EncodedString{
     return ^NSData *_Nullable(__kindof NSString *_Nullable data){
         return [NSData.alloc initWithBase64EncodedString:data options:NSDataBase64DecodingIgnoreUnknownCharacters];
     };
@@ -53,7 +53,7 @@
     };
 }
 
-+(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile_ReadingMappedIfSafe{
++(JobsRetDataByStrBlock _Nonnull)dataByContentsOfFile_ReadingMappedIfSafe{
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfFile:string
@@ -64,7 +64,7 @@
     };
 }
 
-+(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile_NSDataReadingUncached{
++(JobsRetDataByStrBlock _Nonnull)dataByContentsOfFile_NSDataReadingUncached{
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfFile:string
@@ -75,7 +75,7 @@
     };
 }
 
-+(JobsRetDataByStringBlock _Nonnull)dataByContentsOfFile_NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)){
++(JobsRetDataByStrBlock _Nonnull)dataByContentsOfFile_NSDataReadingMappedAlways API_AVAILABLE(macos(10.7), ios(5.0), watchos(2.0), tvos(9.0)){
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
         NSError *error = nil;
         NSData *data = [NSData dataWithContentsOfFile:string

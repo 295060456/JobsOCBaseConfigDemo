@@ -10,13 +10,13 @@
 @implementation NSString (Conversion)
 #pragma mark —— 转化
 /// 对系统方法 initWithData.NSUTF8StringEncoding 的二次封装
-+(JobsRetStringByDataBlock _Nonnull)initByUTF8Data{
++(JobsRetStrByDataBlock _Nonnull)initByUTF8Data{
     return ^__kindof NSString *_Nullable(NSData *_Nullable data){
         return [NSString.alloc initWithData:data encoding:NSUTF8StringEncoding];
     };
 }
 /// 对系统方法 initWithData.NSASCIIStringEncoding 的二次封装
-+(JobsRetStringByDataBlock _Nonnull)initByASCIIData{
++(JobsRetStrByDataBlock _Nonnull)initByASCIIData{
     return ^__kindof NSString *_Nullable(NSData *_Nullable data){
         return [NSString.alloc initWithData:data encoding:NSASCIIStringEncoding];
     };
@@ -60,7 +60,7 @@
     return self.JSONReadingMutableContainers(self.UTF8Encoding);
 }
 /// NSDictionary 转 json字符串方法//==[dic mj_JSONString]
--(JobsRetStringByDicBlock _Nonnull)convertToJsonData{
+-(JobsRetStrByDicBlock _Nonnull)convertToJsonData{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(__kindof NSDictionary *_Nullable dict){
         @jobs_strongify(self)
@@ -82,7 +82,7 @@
     };
 }
 /// NSDictionary 转 NSString
--(JobsRetStringByDicBlock _Nonnull)convertDictionaryToString{
+-(JobsRetStrByDicBlock _Nonnull)convertDictionaryToString{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(__kindof NSDictionary *_Nullable dict){
         @jobs_strongify(self)
@@ -94,19 +94,19 @@
     return NSKeyedArchiver.archivedDataByRootObject_NO(self.UTF8Encoding);
 }
 ///【类方法】压缩字符串成NSData
--(JobsRetDataByStringBlock _Nonnull)compressString{
+-(JobsRetDataByStrBlock _Nonnull)compressString{
     return ^NSData *_Nullable(__kindof NSString *_Nullable string){
         return NSKeyedArchiver.archivedDataByRootObject_NO(string.UTF8Encoding);
     };
 }
 ///【类方法】解压缩字符串
-+(JobsRetStringByDataBlock _Nonnull)decompressString{
++(JobsRetStrByDataBlock _Nonnull)decompressString{
     return ^__kindof NSString *_Nullable(NSData *_Nullable data){
         return data.decompressToStr;
     };
 }
 /// 对象转OC字符串
-+(JobsRetStringByIDBlock _Nonnull)toString{
++(JobsRetStrByIDBlock _Nonnull)toString{
     return ^NSString *_Nullable (id _Nullable data) {
         return toStringByID(data);
     };
@@ -133,7 +133,7 @@
     return self.bankCardStyleBy(4);
 }
 
--(JobsRetStringByIntegerBlock _Nonnull)bankCardStyleBy{
+-(JobsRetStrByIntegerBlock _Nonnull)bankCardStyleBy{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSInteger data){
         @jobs_strongify(self)
@@ -149,7 +149,7 @@
     };
 }
 /// 将字典转换成GET请求的URL（带参数）
--(JobsRetStringByDicBlock _Nonnull)GETRequestURLParaBy{
+-(JobsRetStrByDicBlock _Nonnull)GETRequestURLParaBy{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(__kindof NSDictionary *_Nullable params){
         @jobs_strongify(self)
@@ -169,7 +169,7 @@
     };
 }
 /// 从指定的 URL 加载文本内容，并将其读取为一个可变字符串
--(JobsRetStringByVoidBlock _Nonnull)stringByContentsOfURL{
+-(JobsRetStrByVoidBlock _Nonnull)stringByContentsOfURL{
     return ^ __kindof NSString *_Nullable(){
         NSError *err = nil;
         NSMutableString *string = [NSMutableString stringWithContentsOfURL:self.jobsUrl

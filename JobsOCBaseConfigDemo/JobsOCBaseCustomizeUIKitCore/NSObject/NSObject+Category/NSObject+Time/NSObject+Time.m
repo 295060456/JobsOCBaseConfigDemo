@@ -14,7 +14,7 @@
     return NSDate.date;
 }
 /// 获取当前手机时区的当前时间，返回 NSString 格式
--(JobsRetStringByStringBlock _Nonnull)currentTimeStringBy{
+-(JobsRetStrByStrBlock _Nonnull)currentTimeStringBy{
     return ^__kindof NSString *_Nullable(__kindof NSString *_Nullable data){
         return [self.dateFormatterBy(data) stringFromDate:self.currentDate];
     };
@@ -74,7 +74,7 @@
     return self.currentUnixTimeStamp * 1000;/// 获取 Unix 时间戳 ：1970 到 当前日期和时间。将秒数转换为毫秒数
 }
 /// 返回带时间格式的当前时间字符串
--(JobsRetStringByStringBlock _Nonnull)currentTimestampString{
+-(JobsRetStrByStrBlock _Nonnull)currentTimestampString{
     @jobs_weakify(self)
     return ^ __kindof NSString *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -127,7 +127,7 @@
 }
 #pragma mark —— 时间格式转换
 /// 字符串转时间格式
--(JobsRetDateFormatterByStringBlock _Nonnull)dateFormatterBy{
+-(JobsRetDateFormatterByStrBlock _Nonnull)dateFormatterBy{
     return ^NSDateFormatter *_Nullable(NSString *_Nullable dateFormat){
         if(isNull(dateFormat)) dateFormat = @"yyyy-MM-dd HH:mm:ss";
         return jobsMakeDateFormatter(^(__kindof NSDateFormatter * _Nullable data) {
@@ -173,7 +173,7 @@
     }return timeSp;
 }
 /// NSTimeInterval ---> NSString *
--(JobsRetStringByTimeIntervalBlock _Nonnull)timeIntervalByInterval{
+-(JobsRetStrByTimeIntervalBlock _Nonnull)timeIntervalByInterval{
     @jobs_weakify(self)
     return ^NSString *_Nullable(NSTimeInterval interval){
         @jobs_strongify(self)
@@ -568,7 +568,7 @@
     };
 }
 /// 将NSTimeInterval类型的时间戳翻译成人类能看懂的文字
--(JobsRetStringByTimeIntervalBlock _Nonnull)toReadableTimeBy{
+-(JobsRetStrByTimeIntervalBlock _Nonnull)toReadableTimeBy{
     return ^__kindof NSString *_Nullable(NSTimeInterval timeInterval){
         /// 获取年、月、日、时、分、秒等信息
         NSDateComponents *components = [NSCalendar.currentCalendar components:(NSCalendarUnitYear |

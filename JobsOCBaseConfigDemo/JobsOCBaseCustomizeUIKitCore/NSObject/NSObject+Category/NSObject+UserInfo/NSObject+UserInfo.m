@@ -40,7 +40,7 @@
 }
 /// 判定是否登录的标准2
 /// 登录是否过期：没有过期时间 ===  已经过期
--(JobsRetBOOLByStringBlock _Nonnull)isLoginByExpiredTime{
+-(JobsRetBOOLByStrBlock _Nonnull)isLoginByExpiredTime{
     return ^BOOL(NSString *_Nullable data){
         if(isValue(data)){
             return !data.isExpired();
@@ -161,14 +161,14 @@
     };
 }
 ///【通过特定的用户名】 删除该用户的本地资料
--(jobsByStringBlock _Nonnull)deleteUserInfoByUserName{
+-(jobsByStrBlock _Nonnull)deleteUserInfoByUserName{
     return ^(NSString *_Nullable userName) {
         NSUserDefaults.deleteWithKey(userName);
     };
 }
 #pragma mark —— 全局保存和删除已经登录成功的用户名
 /// 全局保存已经登录成功 且 并未删除的用户名组
--(jobsByStringBlock _Nonnull)saveUserName{
+-(jobsByStrBlock _Nonnull)saveUserName{
     return ^(NSString *_Nullable userName){
         if (isNull(userName)) return;
         JobsSetUserDefaultKeyWithObject(用户名数组, jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
@@ -182,7 +182,7 @@
     return JobsUserDefaults.valueForKey(用户名数组);
 }
 /// 全局删除已经登录成功的用户名
--(jobsByStringBlock _Nonnull)deleteUserName{
+-(jobsByStrBlock _Nonnull)deleteUserName{
     return ^(NSString *_Nullable userName){
         JobsSetUserDefaultKeyWithObject(用户名数组, jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.addBy(JobsUserDefaults.valueForKey(用户名数组));

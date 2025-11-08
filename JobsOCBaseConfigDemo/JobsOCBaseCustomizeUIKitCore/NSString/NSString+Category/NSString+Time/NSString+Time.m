@@ -9,7 +9,7 @@
 
 @implementation NSString (Time)
 /// 格式化为中国时间
--(JobsRetStringByStringBlock _Nonnull)chinaTime{
+-(JobsRetStrByStrBlock _Nonnull)chinaTime{
     @jobs_weakify(self)
     return ^NSString *_Nullable(NSString *_Nullable timeFormatter){
         @jobs_strongify(self)
@@ -19,7 +19,7 @@
     };
 }
 /// （字符串）时间戳 转换为可读时间（系统默认时区）
--(JobsRetStringByStringBlock _Nonnull)readableTimeByFormatter{
+-(JobsRetStrByStrBlock _Nonnull)readableTimeByFormatter{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *_Nullable timeFormat){
         @jobs_strongify(self)

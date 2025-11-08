@@ -30,9 +30,9 @@ Prop_assign()UIEdgeInsets edgeInsets;
 
 #pragma mark —— 一些公有方法
 /// UILabel文字的复制
--(jobsByStringBlock _Nonnull)copyText;
+-(jobsByStrBlock _Nonnull)copyText;
 /// 弹出系统菜单控件
--(jobsByStringBlock _Nonnull)makeMenuCtrl;
+-(jobsByStrBlock _Nonnull)makeMenuCtrl;
 
 @end
 

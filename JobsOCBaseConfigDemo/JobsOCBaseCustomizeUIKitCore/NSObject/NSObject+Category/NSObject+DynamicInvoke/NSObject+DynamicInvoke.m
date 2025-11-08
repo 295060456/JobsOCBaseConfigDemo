@@ -21,7 +21,7 @@ callingMethodWithName:(NSString *_Nullable)methodName{
     }
 }
 /// 如果某个实例对象存在某个【不带参数的方法】，则对其调用执行
--(jobsByStringBlock _Nonnull)callingMethodWithName{
+-(jobsByStrBlock _Nonnull)callingMethodWithName{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data){
         @jobs_strongify(self)
@@ -33,7 +33,7 @@ callingMethodWithName:(NSString *_Nullable)methodName{
     };
 }
 /// 使用 dispatch_once 来执行只需运行一次的线程安全代码
--(jobsByStringBlock _Nonnull)dispatchOnceInvokingWithMethodName{
+-(jobsByStrBlock _Nonnull)dispatchOnceInvokingWithMethodName{
     @jobs_weakify(self)
     return ^(NSString *_Nullable data){
         static dispatch_once_t NSObjectDispatchOnce;
@@ -150,7 +150,7 @@ callingMethodWithName:(NSString *_Nullable)methodName{
     }return returnValue;
 }
 /// 判断本程序是否存在某个类
-+(JobsRetBOOLByStringBlock _Nonnull)judgementAppExistClassWithName{
++(JobsRetBOOLByStrBlock _Nonnull)judgementAppExistClassWithName{
     return ^BOOL(NSString *_Nullable data){
         return NSClassFromString(data);
     };
@@ -281,7 +281,7 @@ JobsKey(_methodCache)
     };
 }
 /// 是否遵从这样的协议？
--(JobsRetBOOLByStringBlock _Nonnull)protocol{
+-(JobsRetBOOLByStrBlock _Nonnull)protocol{
     @jobs_weakify(self)
     return ^BOOL(NSString *_Nullable data){
         @jobs_strongify(self)

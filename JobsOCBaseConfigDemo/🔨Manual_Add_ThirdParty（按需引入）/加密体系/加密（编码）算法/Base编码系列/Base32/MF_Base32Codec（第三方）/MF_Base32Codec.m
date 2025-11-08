@@ -13,7 +13,7 @@
 
 @implementation MF_Base32Codec
 /// 将Base32编码的字符串转换为NSData对象
-+(JobsRetDataByStringBlock _Nonnull)dataFromBase32String{
++(JobsRetDataByStrBlock _Nonnull)dataFromBase32String{
     return ^NSData *_Nullable(__kindof NSString *_Nullable encoding){
         /**
          首先对Base32字符串进行解码，将每个字符映射到其对应的字节值
@@ -132,7 +132,7 @@
     };
 }
 /// 将NSData对象转换为Base32编码的字符串
-+(JobsRetStringByDataBlock _Nonnull)base32StringFromData{
++(JobsRetStrByDataBlock _Nonnull)base32StringFromData{
     return ^__kindof NSString *_Nullable(NSData *_Nullable data){
         /**
          首先对NSData对象的字节序列进行Base32编码，将每5个字节的数据编码为8个Base32字符

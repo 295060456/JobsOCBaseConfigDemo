@@ -27,17 +27,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (WHToast)
 #pragma mark —— 仅文字，展示在屏幕中间
-+(jobsByStringBlock _Nonnull)jobsToastMsg;
--(jobsByStringBlock _Nonnull)jobsToastMsg;
++(jobsByStrBlock _Nonnull)jobsToastMsg;
+-(jobsByStrBlock _Nonnull)jobsToastMsg;
 #pragma mark —— 成功图标和文字，展示在屏幕中间
-+(jobsByStringBlock _Nonnull)jobsToastSuccessMsg;
--(jobsByStringBlock _Nonnull)jobsToastSuccessMsg;
++(jobsByStrBlock _Nonnull)jobsToastSuccessMsg;
+-(jobsByStrBlock _Nonnull)jobsToastSuccessMsg;
 #pragma mark —— 失败图标和文字，展示在屏幕中间
-+(jobsByStringBlock _Nonnull)jobsToastErrMsg;
--(jobsByStringBlock _Nonnull)jobsToastErrMsg;
++(jobsByStrBlock _Nonnull)jobsToastErrMsg;
+-(jobsByStrBlock _Nonnull)jobsToastErrMsg;
 #pragma mark —— 延时操作
-+(jobsByStringBlock _Nonnull)jobsToastLoadingMsg;
--(jobsByStringBlock _Nonnull)jobsToastLoadingMsg;
++(jobsByStrBlock _Nonnull)jobsToastLoadingMsg;
+-(jobsByStrBlock _Nonnull)jobsToastLoadingMsg;
 #pragma mark —— 手动关闭WHToast，在主线程
 +(jobsByVoidBlock _Nonnull)jobsToastHide;
 -(jobsByVoidBlock _Nonnull)jobsToastHide;

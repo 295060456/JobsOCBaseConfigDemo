@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(JobsRetNumberByCGFloatBlock _Nonnull)initByCGFloat; /// 特殊处理 CGFloat 类型
 
 -(CGFloat)byFloat;
--(JobsRetStringByNumberBlock _Nonnull)toString;
+-(JobsRetStrByNumberBlock _Nonnull)toString;
 -(JobsRetNumberByNSIntegerBlock _Nonnull)updateByStepInt;
 -(JobsRetNumberByCGFloatBlock _Nonnull)updateByStepFloat;
 

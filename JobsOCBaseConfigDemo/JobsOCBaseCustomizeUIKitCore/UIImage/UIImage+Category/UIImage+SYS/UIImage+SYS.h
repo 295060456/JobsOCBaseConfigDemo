@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
     imageNamed中没有代用MKImageNamed,
     这样就不会出现死循环;
 */
-+(JobsRetImageByStringBlock _Nonnull)imageByName;
++(JobsRetImageByStrBlock _Nonnull)imageByName;
 /// 替换系统的 imageWithData 方法
 +(JobsRetImageByDataBlock _Nonnull)imageByData;
 

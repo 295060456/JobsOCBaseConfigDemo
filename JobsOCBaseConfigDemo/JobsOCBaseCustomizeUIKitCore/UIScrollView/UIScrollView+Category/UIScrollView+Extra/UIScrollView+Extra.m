@@ -84,7 +84,7 @@
     };
 }
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;   的二次封装
--(JobsRetScrollViewByRectBlock _Nonnull)scrollRectToVisibleByYES{
+-(JobsRetScrollViewByFrameBlock _Nonnull)scrollRectToVisibleByYES{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(CGRect data){
         @jobs_strongify(self)
@@ -93,7 +93,7 @@
     };
 }
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;  的二次封装
--(JobsRetScrollViewByRectBlock _Nonnull)scrollRectToVisibleByNO{
+-(JobsRetScrollViewByFrameBlock _Nonnull)scrollRectToVisibleByNO{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(CGRect data){
         @jobs_strongify(self)

@@ -72,7 +72,7 @@
     return frameDuration;
 }
 /// 根据图片名字创建gif图片
-+(JobsRetImageByStringBlock _Nonnull)animatedGIFByName{
++(JobsRetImageByStrBlock _Nonnull)animatedGIFByName{
     return ^UIImage *_Nullable(__kindof NSString *_Nullable name){
         CGFloat scale = UIScreen.mainScreen.scale;
         if (scale > 1.0f) {

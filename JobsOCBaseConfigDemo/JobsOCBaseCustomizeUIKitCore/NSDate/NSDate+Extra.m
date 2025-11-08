@@ -45,7 +45,7 @@
 #pragma mark —— Date 对象的转化
 /// 将NSDate *转化为可视化的时间字符串
 /// 入参：日期格式化标准（NSDateFormatter *）缺省标准：年/月/日
--(JobsRetStringByDateFormatterBlock _Nonnull)toReadableTime{
+-(JobsRetStrByDateFormatterBlock _Nonnull)toReadableTime{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSDateFormatter *_Nullable data){
         @jobs_strongify(self)
@@ -58,7 +58,7 @@
 }
 /// 将NSDate *转化为可视化的时间字符串
 /// 入参：日期格式化标准（NSString *）缺省标准：年/月/日
--(JobsRetStringByStringBlock _Nonnull)toReadableTimeBy{
+-(JobsRetStrByStrBlock _Nonnull)toReadableTimeBy{
     @jobs_weakify(self)
     return ^__kindof NSString *_Nullable(NSString *_Nullable data){
         @jobs_strongify(self)

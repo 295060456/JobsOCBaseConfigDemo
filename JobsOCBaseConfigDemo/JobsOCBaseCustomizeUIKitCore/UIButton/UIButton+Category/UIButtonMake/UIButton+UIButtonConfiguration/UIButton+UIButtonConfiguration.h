@@ -19,9 +19,9 @@ UIKIT_EXTERN API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos) NS_SW
 -(void)jobsSetBtnSubTitleFont:(UIFont *_Nullable)subTitleFont
                btnSubTitleCor:(UIColor *_Nullable)subTitleCor;
 /// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
--(__kindof UIButton *)jobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock;
+-(__kindof UIButton *)jobsUpdateButtonConfiguration:(jobsByBtnConfigBlock _Nullable)configurationBlock;
 
--(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByButtonConfigurationBlock _Nullable)configurationBlock;
+-(UIButtonConfiguration *)JobsUpdateButtonConfiguration:(jobsByBtnConfigBlock _Nullable)configurationBlock;
 ///【最新的Api】修改主标题的对齐方式
 -(JobsRetBtnByTextAlignmentBlock _Nonnull)_jobsResetTitleTextAlignment API_AVAILABLE(ios(16.0));
 ///【最新的Api】修改副标题的对齐方式

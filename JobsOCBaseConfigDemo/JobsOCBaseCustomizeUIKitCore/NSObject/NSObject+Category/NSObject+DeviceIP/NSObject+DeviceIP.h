@@ -48,9 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取ip地址
 -(NSString *)getIPaddress;
 /// 获取设备当前本地IP地址
--(JobsRetStringByBOOLBlock _Nonnull)getLocalIPAddressBy;
+-(JobsRetStrByBOOLBlock _Nonnull)getLocalIPAddressBy;
 /// 是否是有效的IP
--(JobsRetBOOLByStringBlock _Nonnull)isValidatIP;
+-(JobsRetBOOLByStrBlock _Nonnull)isValidatIP;
 /// 用于获取设备的所有 IP 地址（包括 IPv4 和 IPv6 地址），并以字典形式返回。通过查询网络接口获取这些信息。
 -(NSDictionary *)getIPAddresses;
 /// 简单可靠，只返回设备的公网 IP 地址【GET】
