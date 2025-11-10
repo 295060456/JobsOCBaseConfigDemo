@@ -251,6 +251,8 @@
 
 * [**Mac破解软件**](https://mac.macxz.com/)
 
+* [**向附近设备分享文件**](https://localsend.org/download)
+
 * [**波测**](https://www.boce.com/)
 
 * [**uuwallet@虚拟卡**](https://www.uuwallet.com/)
