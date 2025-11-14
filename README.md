@@ -242,6 +242,8 @@
 
 * [**CocoaPods**](https://cocoapods.org/)
 
+* [**MacOS配置个人热点🛜**](https://github.com/295060456/JobsDocs/blob/main/MacOS配置个人热点🛜.md/MacOS配置个人热点🛜.md)
+
 * [**配置SourceTree脚本**](https://github.com/295060456/SourceTree.sh)
 
 * [**代码块**](https://github.com/295060456/JobsCodeSnippets)
