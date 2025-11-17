@@ -164,6 +164,7 @@
   * [**同一应用设置不同图标和名称**](TODO)
   * [**MJExtension用法**](TODO)
   * [**模型解析**](TODO)
+  * [**Xcode文件模版的配置和使用**](https://github.com/295060456/xctemplate)https://github.com/295060456/xctemplate
   * [**iOS 多语言环境设置**](TODO)
   * [**<font color=red id=iOS功能：跳转其他App,如果本机不存在,则进行下载 >iOS功能：跳转其他App,如果本机不存在,则进行下载 （需要补充）</font>**](TODO)
   * [**iOS禁用返回手势**](TODO)
@@ -213,7 +214,6 @@
 ### 5、其他研究 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * [**LYM的研究成果**](TODO)
-* [**创建自定义模版**](https://juejin.cn/post/6974702344021737485)
 * [**iOS项目常用的第三方框架**](https://www.cnblogs.com/sundaysgarden/articles/14208764.html)
 * [**滚动数字显示**](https://github.com/lf19940514/LFScrollNumberDemo)
 * https://github.com/SeongBrave/Swift__OC/blob/master/README.md?plain=1
