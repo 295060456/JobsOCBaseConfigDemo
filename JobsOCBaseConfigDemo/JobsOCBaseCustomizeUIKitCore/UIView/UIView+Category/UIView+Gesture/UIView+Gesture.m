@@ -72,6 +72,7 @@ JobsKey(_longPressGR)
         LongPressGR = jobsMakeLongPressGesture(^(__kindof UILongPressGestureRecognizer * _Nullable gesture) {
             @jobs_strongify(self)
             gesture.delegate = self.weak_target;
+            gesture.target = self.weak_target;
             if (self.minimumPressDuration)  gesture.minimumPressDuration = self.minimumPressDuration;// longPressGR最小长按时间,默认0.5
             if (self.numberOfTouchesRequired) gesture.numberOfTouchesRequired = self.numberOfTouchesRequired;// 设置手指字数,默认1
             if (self.allowableMovement) gesture.allowableMovement = self.allowableMovement;// 手势失败前允许的最大像素移动,默认10
@@ -97,6 +98,7 @@ JobsKey(_tapGR)
         TapGR = jobsMakeTapGesture(^(__kindof UITapGestureRecognizer * _Nullable gesture) {
             @jobs_strongify(self)
             gesture.delegate = self.weak_target;
+            gesture.target = self.weak_target;
             if (self.numberOfTapsRequired) gesture.numberOfTapsRequired = self.numberOfTapsRequired;// 设置轻拍次数,默认0
             if (self.numberOfTouchesRequired) gesture.numberOfTouchesRequired = self.numberOfTouchesRequired;// 设置手指字数,默认1
             if (self.tapGR_SelImp.selector) gesture.addAction(self.tapGR_SelImp.selector);
@@ -120,6 +122,7 @@ JobsKey(_doubleTapGR)
         DoubleTapGR = jobsMakeTapGesture(^(__kindof UITapGestureRecognizer * _Nullable gesture) {
             @jobs_strongify(self)
             gesture.delegate = self.weak_target;
+            gesture.target = self.weak_target;
             gesture.numberOfTapsRequired = 2; // 设置为双击
             gesture.numberOfTouchesRequired = self.numberOfTouchesRequired ? self.numberOfTouchesRequired : 1; // 设置手指字数, 默认1
             if (self.doubleTapGR_SelImp.selector) gesture.addAction(self.doubleTapGR_SelImp.selector);
@@ -143,6 +146,7 @@ JobsKey(_swipeGR)
         SwipeGR = jobsMakeSwipeGesture(^(__kindof UISwipeGestureRecognizer * _Nullable gesture) {
             @jobs_strongify(self)
             gesture.delegate = self.weak_target;
+            gesture.target = self.weak_target;
             gesture.direction = self.swipeGRDirection;// 清扫方向。如果多组可以用|来进行,默认UISwipeGestureRecognizerDirectionRight
             gesture.numberOfTouchesRequired = self.numberOfTouchesRequired;// 设置手指字数,默认1
             if (self.swipeGR_SelImp.selector) gesture.addAction(self.swipeGR_SelImp.selector);
@@ -166,6 +170,7 @@ JobsKey(_panGR)
         PanGR = jobsMakePanGesture(^(__kindof UIPanGestureRecognizer * _Nullable gesture) {
             @jobs_strongify(self)
             gesture.delegate = self.weak_target;
+            gesture.target = self.weak_target;
             gesture.minimumNumberOfTouches = self.minimumNumberOfTouches;
             if (@available(iOS 13.4, *)) gesture.allowedScrollTypesMask = self.allowedScrollTypesMask;
             if (self.panGR_SelImp.selector) gesture.addAction(self.panGR_SelImp.selector);
@@ -189,6 +194,7 @@ JobsKey(_pinchGR)
         PinchGR = jobsMakePinchGesture(^(__kindof UIPinchGestureRecognizer * _Nullable gesture) {
             @jobs_strongify(self)
             gesture.delegate = self.weak_target;
+            gesture.target = self.weak_target;
             gesture.scale = self.scale;
             if (self.pinchGR_SelImp.selector) gesture.addAction(self.pinchGR_SelImp.selector);
             self.addGesture(gesture);
@@ -211,6 +217,7 @@ JobsKey(_rotationGR)
         RotationGR = jobsMakeRotationGesture(^(__kindof UIRotationGestureRecognizer * _Nullable gesture) {
             @jobs_strongify(self)
             gesture.delegate = self.weak_target;
+            gesture.target = self.weak_target;
             gesture.rotation = self.rotate;
             if (self.rotationGR_SelImp.selector) gesture.addAction(self.rotationGR_SelImp.selector);
             self.addGesture(gesture);
@@ -233,6 +240,7 @@ JobsKey(_screenEdgePanGR)
         ScreenEdgePanGR = jobsMakeScreenEdgePanGestureRecognizer(^(__kindof UIScreenEdgePanGestureRecognizer * _Nullable gesture) {
             @jobs_strongify(self)
             gesture.delegate = self.weak_target;
+            gesture.target = self.weak_target;
             if (self.screenEdgePanGR_SelImp.selector) gesture.addAction(self.screenEdgePanGR_SelImp.selector);
             self.addGesture(gesture);
             [self setScreenEdgePanGR:gesture];

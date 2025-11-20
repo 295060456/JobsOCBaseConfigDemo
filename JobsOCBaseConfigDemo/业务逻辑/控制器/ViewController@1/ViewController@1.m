@@ -140,7 +140,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return JobsBaseTableViewCell.cellHeightByModel(self.dataMutArr[indexPath.row]) * 2;
+    return JobsBaseTableViewCell.cellHeightByModel(self.dataMutArr[indexPath.row]) * 3;
 }
 
 - (void)tableView:(UITableView *)tableView

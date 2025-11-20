@@ -66,9 +66,9 @@ NSString *const APP的名字 = @"CFBundleExecutable";
 NSString *const APP安装以后首次启动 = @"APP安装以后首次启动";
 NSString *const APP今日首次启动 = @"APP今日首次启动";
 /// 网速监控
-NSString *const GSDownloadNetworkSpeedNotificationKey = @"GSDownloadNetworkSpeedNotificationKey";
-NSString *const GSUploadNetworkSpeedNotificationKey = @"GSUploadNetworkSpeedNotificationKey";
-NSString *const GSUploadAndDownloadNetworkSpeedNotificationKey = @"GSUploadAndDownloadNetworkSpeedNotificationKey";
+//NSString *const GSDownloadNetworkSpeedNotificationKey = @"GSDownloadNetworkSpeedNotificationKey";
+//NSString *const GSUploadNetworkSpeedNotificationKey = @"GSUploadNetworkSpeedNotificationKey";
+//NSString *const GSUploadAndDownloadNetworkSpeedNotificationKey = @"GSUploadAndDownloadNetworkSpeedNotificationKey";
 /// 🔑钥匙串记录
 NSString *const 设备ID = @"设备ID";
 /// 多语言

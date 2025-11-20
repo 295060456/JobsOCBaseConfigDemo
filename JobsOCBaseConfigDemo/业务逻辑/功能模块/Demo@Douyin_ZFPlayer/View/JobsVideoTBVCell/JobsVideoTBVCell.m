@@ -19,6 +19,7 @@ Prop_strong()VideoModel_Core *core_data;
 
 @implementation JobsVideoTBVCell
 @synthesize index = _index;
+@synthesize label = _label;
 #pragma mark —— UITableViewCellProtocol
 +(JobsRetTableViewCellByTableViewBlock _Nonnull)cellStyleValue1WithTableView{
     return ^__kindof UITableViewCell *_Nullable(UITableView * _Nonnull tableView) {
@@ -79,6 +80,16 @@ Prop_strong()VideoModel_Core *core_data;
     };
 }
 #pragma mark —— lazyLoad
+-(__kindof UILabel *)label{
+    if(!_label){
+        _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
+            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.top.equalTo(self.contentView);
+            }];
+        });
+    }return _label;
+}
+
 -(UIImageView *)coverImageView{
     if (!_coverImageView) {
         @jobs_weakify(self)

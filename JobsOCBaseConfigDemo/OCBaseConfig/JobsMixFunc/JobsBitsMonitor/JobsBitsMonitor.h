@@ -8,7 +8,7 @@
 #ifndef JobsBitsMonitor_h
 #define JobsBitsMonitor_h
 
-#import "JobsBitsMonitorCore.h"
+//#import "JobsBitsMonitorCore.h"
 #import "JobsBitsMonitorSuspendLab.h"
 
 #endif /* JobsBitsMonitor_h */

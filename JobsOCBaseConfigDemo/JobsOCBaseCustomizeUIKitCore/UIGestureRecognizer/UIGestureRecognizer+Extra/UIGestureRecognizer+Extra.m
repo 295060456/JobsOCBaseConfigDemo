@@ -36,5 +36,15 @@
         if(data) [self addTarget:self.target action:data];
     };
 }
+#pragma mark —— Prop_strong(nullable)id target;
+JobsKey(_target)
+@dynamic target;
+-(id)target{
+    return Jobs_getAssociatedObject(_target);
+}
+
+-(void)setTarget:(id)target{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_target, target);
+}
 
 @end

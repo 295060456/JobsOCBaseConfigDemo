@@ -15,7 +15,7 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-
+/// Use 'BRTextPickerView' instead.
 @interface BRStringPickerView (Extra)
 
 +(JobsReturnBRStringPickerViewByPickerModeBlock _Nonnull)initBy;

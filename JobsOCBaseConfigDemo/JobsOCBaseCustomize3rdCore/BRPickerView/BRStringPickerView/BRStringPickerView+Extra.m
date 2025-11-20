@@ -6,7 +6,7 @@
 //
 
 #import "BRStringPickerView+Extra.h"
-
+/// Use 'BRTextPickerView' instead. 
 @implementation BRStringPickerView (Extra)
 
 +(JobsReturnBRStringPickerViewByPickerModeBlock _Nonnull)initBy{

@@ -94,6 +94,7 @@
 #import "IQKeyboardManager+Extra.h"
 #import "Reachability+Extra.h"
 #import "BRStringPickerView+Extra.h"
+#import "BRTextPickerView+Extra.h"
 #import "HXPhotoManager+Extra.h"
 #import "HXPhotoView+Extra.h"
 #import "SZTextView+Extra.h"

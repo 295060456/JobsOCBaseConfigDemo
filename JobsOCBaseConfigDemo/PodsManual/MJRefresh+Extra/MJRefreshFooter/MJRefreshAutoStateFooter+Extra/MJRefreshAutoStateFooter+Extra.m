@@ -9,43 +9,48 @@
 
 @implementation MJRefreshAutoStateFooter (Extra)
 /// 松开就可以进行刷新的状态【字】
--(jobsByStrBlock _Nonnull)refreshStateIdleByString{
+-(JobsReturnMJRefreshViewByStringBlock _Nonnull)refreshStateIdleByString{
     @jobs_weakify(self)
-    return ^(NSString *_Nullable data){
+    return ^__kindof UIView <MJRefreshProtocol>*_Nullable(__kindof NSString *_Nullable string){
         @jobs_strongify(self)
-        [self setTitle:data forState:MJRefreshStateIdle];
+        [self setTitle:string forState:MJRefreshStateIdle];
+        return self;
     };
 }
 /// 松开就可以进行刷新的状态【字】
--(jobsByStrBlock _Nonnull)refreshStatePullingByString{
+-(JobsReturnMJRefreshViewByStringBlock _Nonnull)refreshStatePullingByString{
     @jobs_weakify(self)
-    return ^(NSString *_Nullable data){
+    return ^__kindof UIView <MJRefreshProtocol>*_Nullable(__kindof NSString *_Nullable string){
         @jobs_strongify(self)
-        [self setTitle:data forState:MJRefreshStatePulling];
+        [self setTitle:string forState:MJRefreshStatePulling];
+        return self;
     };
 }
 /// 松开就可以进行刷新的状态【字】
--(jobsByStrBlock _Nonnull)refreshStateRefreshingByString{
+-(JobsReturnMJRefreshViewByStringBlock _Nonnull)refreshStateRefreshingByString{
     @jobs_weakify(self)
-    return ^(NSString *_Nullable data){
+    return ^__kindof UIView <MJRefreshProtocol>*_Nullable(__kindof NSString *_Nullable string){
         @jobs_strongify(self)
-        [self setTitle:data forState:MJRefreshStateRefreshing];
+        [self setTitle:string forState:MJRefreshStateRefreshing];
+        return self;
     };
 }
 /// 松开就可以进行刷新的状态【字】
--(jobsByStrBlock _Nonnull)refreshStateWillRefreshByString{
+-(JobsReturnMJRefreshViewByStringBlock _Nonnull)refreshStateWillRefreshByString{
     @jobs_weakify(self)
-    return ^(NSString *_Nullable data){
+    return ^__kindof UIView <MJRefreshProtocol>*_Nullable(__kindof NSString *_Nullable string){
         @jobs_strongify(self)
-        [self setTitle:data forState:MJRefreshStateWillRefresh];
+        [self setTitle:string forState:MJRefreshStateWillRefresh];
+        return self;
     };
 }
 /// 松开就可以进行刷新的状态【字】
--(jobsByStrBlock _Nonnull)refreshStateNoMoreDataByString{
+-(JobsReturnMJRefreshViewByStringBlock _Nonnull)refreshStateNoMoreDataByString{
     @jobs_weakify(self)
-    return ^(NSString *_Nullable data){
+    return ^__kindof UIView <MJRefreshProtocol>*_Nullable(__kindof NSString *_Nullable string){
         @jobs_strongify(self)
-        [self setTitle:data forState:MJRefreshStateNoMoreData];
+        [self setTitle:string forState:MJRefreshStateNoMoreData];
+        return self;
     };
 }
 

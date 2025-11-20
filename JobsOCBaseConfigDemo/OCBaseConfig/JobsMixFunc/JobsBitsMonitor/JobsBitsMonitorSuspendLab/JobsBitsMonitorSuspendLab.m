@@ -21,32 +21,32 @@ Prop_strong()NSMutableArray <NSString *>*operationEnvironMutArr;
 
 -(instancetype)init{
     if (self = [super init]) {
-        /// download
-        [JobsNotificationCenter addObserverForName:GSDownloadNetworkSpeedNotificationKey
-                                            object:nil
-                                             queue:nil
-                                        usingBlock:^(NSNotification * _Nonnull notification) {
-            
-            JobsLog(@"%@",notification.object);
-        }];
-        /// upload
-        [JobsNotificationCenter addObserverForName:GSUploadNetworkSpeedNotificationKey
-                                            object:nil
-                                             queue:nil
-                                        usingBlock:^(NSNotification * _Nonnull notification) {
-            
-            JobsLog(@"%@",notification.object);
-        }];
-        /// UploadAndDownload
-        [JobsNotificationCenter addObserverForName:GSUploadAndDownloadNetworkSpeedNotificationKey
-                                            object:nil
-                                             queue:nil
-                                        usingBlock:^(NSNotification * _Nonnull notification) {
-            JobsLog(@"%@",notification.object);
-            self.text = notification.object;
-            self.makeLabelByShowingType(UILabelShowingType_03);
-        }];
-        
+//        /// download
+//        [JobsNotificationCenter addObserverForName:GSDownloadNetworkSpeedNotificationKey
+//                                            object:nil
+//                                             queue:nil
+//                                        usingBlock:^(NSNotification * _Nonnull notification) {
+//
+//            JobsLog(@"%@",notification.object);
+//        }];
+//        /// upload
+//        [JobsNotificationCenter addObserverForName:GSUploadNetworkSpeedNotificationKey
+//                                            object:nil
+//                                             queue:nil
+//                                        usingBlock:^(NSNotification * _Nonnull notification) {
+//
+//            JobsLog(@"%@",notification.object);
+//        }];
+//        /// UploadAndDownload
+//        [JobsNotificationCenter addObserverForName:GSUploadAndDownloadNetworkSpeedNotificationKey
+//                                            object:nil
+//                                             queue:nil
+//                                        usingBlock:^(NSNotification * _Nonnull notification) {
+//            JobsLog(@"%@",notification.object);
+//            self.text = notification.object;
+//            self.makeLabelByShowingType(UILabelShowingType_03);
+//        }];
+
         {
             self.numberOfTouchesRequired = 1;
             self.numberOfTapsRequired = 1;/// ⚠️注意：如果要设置长按手势，此属性必须设置为0⚠️
@@ -59,26 +59,63 @@ Prop_strong()NSMutableArray <NSString *>*operationEnvironMutArr;
             self.tapGR_SelImp.selector = [self jobsSelectorBlock:^id _Nullable(id _Nullable target,
                                                                                UITapGestureRecognizer *_Nullable arg) {
                 @jobs_strongify(self)
-                [self showMenu];
-                return nil;
+                ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:self
+                                                                   titleArray:self.operationEnvironMutArr];
+                @jobs_weakify(self)
+                menuView.blockSelectedMenu = ^(NSInteger menuRow) {
+                    @jobs_strongify(self)
+                    JobsLog(@"action----->%ld",(long)menuRow);
+                    networkingEnvir(menuRow);
+                    if (menuRow + 1 <= self.operationEnvironMutArr.count) {
+                        self.jobsToastMsg(JobsInternationalization(@"当前环境").add(self.operationEnvironMutArr[menuRow]));
+                    }else self.jobsToastErrMsg(JobsInternationalization(@"切换环境出现错误"));
+                };return nil;
             }];self.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
         }
+
+        [self commonInit_JobsBitsMonitorSuspendLab];
     }return self;
 }
-#pragma mark —— 一些私有方法
--(void)showMenu{
-    ZWPullMenuView *menuView = [ZWPullMenuView pullMenuAnchorView:self
-                                                       titleArray:self.operationEnvironMutArr];
+
+- (void)commonInit_JobsBitsMonitorSuspendLab {
+    // 👉 基础外观，尽量跟你 Swift 悬浮 Lab 的感觉一致
+    self.numberOfLines   = 0;
+    self.textAlignment   = NSTextAlignmentCenter;
+    self.layer.cornerRadius  = 8.0;
+    self.layer.masksToBounds = YES;
+    self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+    // 默认字体 & 颜色
+    self.textColor = [UIColor whiteColor];
+    self.font      = [UIFont monospacedDigitSystemFontOfSize:11 weight:UIFontWeightMedium];
+    self.displayStyle = JobsBitsMonitorDisplayStylePlainText;
+}
+
+-(JobsRetLabelByText _Nonnull)byText{
     @jobs_weakify(self)
-    menuView.blockSelectedMenu = ^(NSInteger menuRow) {
+    return ^__kindof JobsBitsMonitorSuspendLab *_Nullable(__kindof NSString *_Nullable text){
         @jobs_strongify(self)
-        JobsLog(@"action----->%ld",(long)menuRow);
-        networkingEnvir(menuRow);
-        if (menuRow + 1 <= self.operationEnvironMutArr.count) {
-            self.jobsToastMsg(JobsInternationalization(@"当前环境").add(self.operationEnvironMutArr[menuRow]));
-        }else self.jobsToastErrMsg(JobsInternationalization(@"切换环境出现错误"));
+        self.displayStyle   = JobsBitsMonitorDisplayStylePlainText;
+        self.attributedText = nil;
+        self.text           = text;
+        // 普通文本可以稍微简单一点
+        self.font      = [UIFont systemFontOfSize:11 weight:UIFontWeightRegular];
+        self.textColor = [UIColor whiteColor];
+        return self;
     };
 }
+
+-(JobsRetLabelByAttributedString _Nonnull)byAttributedString{
+    @jobs_weakify(self)
+    return ^__kindof JobsBitsMonitorSuspendLab *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
+        @jobs_strongify(self)
+        self.displayStyle = JobsBitsMonitorDisplayStyleRichText;
+        self.text         = nil;
+        self.attributedText = attributedString;
+        // 字体、颜色都由外部富文本控制，这里不再动它
+        return self;
+    };
+}
+#pragma mark —— 一些私有方法
 #pragma mark —— BaseViewProtocol
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 +(JobsRetFrameByIDBlock _Nonnull)viewFrameByModel{

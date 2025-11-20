@@ -232,6 +232,10 @@ typedef __kindof JobsStepView *_Nullable(^JobsReturnStepViewByCGFloatBlock)(CGFl
 typedef __kindof JobsStepView *_Nullable(^JobsReturnStepViewByNSIntegerBlock)(NSInteger data);
 typedef __kindof JobsStepView *_Nullable(^JobsReturnStepViewByColorBlock)(UIColor *_Nullable cor);
 
+@class JobsTimer;
+typedef void(^JobsTimerTickBlock)(JobsTimer *_Nullable timer);
+typedef void(^JobsTimerCompletionBlock)(JobsTimer *_Nullable timer);
+
 @class BaseLabel;
 typedef void(^jobsByBaseLabelBlock)(__kindof BaseLabel *_Nullable label);
 
@@ -418,6 +422,7 @@ typedef void(^jobsByHXPhotoConfigurationBlock)(__kindof HXPhotoConfiguration *_N
 @class BRDatePickerView;
 @class BRAddressPickerView;
 @class BRStringPickerView;
+@class BRTextPickerView;
 @class BRPickerStyle;
 typedef void(^jobsByBRPickerStyleBlock)(__kindof BRPickerStyle *_Nullable pickerStyle);
 typedef void(^jobsByBRDatePickerViewBlock)(__kindof BRDatePickerView *_Nullable datePickerView);
@@ -425,6 +430,7 @@ typedef void(^jobsByBRAddressPickerViewBlock)(__kindof BRAddressPickerView *_Nul
 typedef BRDatePickerView *_Nonnull(^JobsReturnBRDatePickerViewByPickerStyleBlock)(__kindof BRPickerStyle *_Nullable style);
 typedef BRAddressPickerView *_Nonnull(^JobsReturnBRAddressPickerViewByPickerStyleBlock)(__kindof BRPickerStyle *_Nullable style);
 typedef BRStringPickerView *_Nonnull(^JobsReturnBRStringPickerViewByPickerModeBlock)(NSInteger mode);
+typedef BRTextPickerView *_Nonnull(^JobsReturnBRTextPickerViewByPickerModeBlock)(NSInteger mode);
 
 @class AFSecurityPolicy;
 typedef AFSecurityPolicy *_Nonnull(^JobsReturnAFSecurityPolicyByAFSSLPinningModeBlock)(NSUInteger data);

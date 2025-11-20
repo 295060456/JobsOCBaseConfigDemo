@@ -135,5 +135,9 @@
 #import "NSObject+AttributedStr.h"
 /// 获取图片
 #import "NSObject+image.h"
+/// 定时器
+#import "JobsTimer.h"
+/// 网络监控
+#import "JobsNetWorkTools.h"
 
 #endif /* JobsObject_h */

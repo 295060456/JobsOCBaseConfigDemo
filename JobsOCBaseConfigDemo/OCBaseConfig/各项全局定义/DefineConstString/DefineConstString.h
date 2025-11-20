@@ -66,9 +66,9 @@ FOUNDATION_EXTERN NSString *_Nonnull const APP的名字;
 FOUNDATION_EXTERN NSString *_Nonnull const APP安装以后首次启动;
 FOUNDATION_EXTERN NSString *_Nonnull const APP今日首次启动;
 /// 网速监控
-FOUNDATION_EXTERN NSString *_Nonnull const GSDownloadNetworkSpeedNotificationKey;/// 下载通知的key
-FOUNDATION_EXTERN NSString *_Nonnull const GSUploadNetworkSpeedNotificationKey;/// 上传通知的key
-FOUNDATION_EXTERN NSString *_Nonnull const GSUploadAndDownloadNetworkSpeedNotificationKey;/// 上传和下载 通知的key
+//FOUNDATION_EXTERN NSString *_Nonnull const GSDownloadNetworkSpeedNotificationKey;/// 下载通知的key
+//FOUNDATION_EXTERN NSString *_Nonnull const GSUploadNetworkSpeedNotificationKey;/// 上传通知的key
+//FOUNDATION_EXTERN NSString *_Nonnull const GSUploadAndDownloadNetworkSpeedNotificationKey;/// 上传和下载 通知的key
 /// 🔑钥匙串记录
 FOUNDATION_EXTERN NSString *_Nonnull const 设备ID;
 /// 多语言

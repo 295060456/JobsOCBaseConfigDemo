@@ -140,7 +140,7 @@ static JobsBitsMonitorCore *static_bitsMonitorCore = nil;
     
     _oBytes = oBytes;
 }
-//格式化数据输出
+/// 格式化数据输出
 -(NSString*)stringWithbytes:(int)bytes{
     if (bytes < 1024){// B
 //        return [NSString stringWithFormat:@"%dB", bytes];

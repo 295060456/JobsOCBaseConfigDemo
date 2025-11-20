@@ -43,7 +43,7 @@
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {//图片
-            refreshHeader.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr)/// 普通闲置状态
+            refreshHeader.refreshStateIdleByImages(refreshConfigModel.stateIdlePicsMutArr)/// 普通闲置状态
             .refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr)/// 松开就可以进行刷新的状态
             .refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr)/// 即将刷新的状态
             .refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);/// 所有数据加载完毕，没有更多的数据了
@@ -133,7 +133,7 @@
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {//图片
-            refreshHeader.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr)/// 普通闲置状态
+            refreshHeader.refreshStateIdleByImages(refreshConfigModel.stateIdlePicsMutArr)/// 普通闲置状态
             .refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr)/// 松开就可以进行刷新的状态
             .refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr)/// 即将刷新的状态
             .refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);/// 所有数据加载完毕，没有更多的数据了
@@ -163,7 +163,7 @@
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {// 图片
-            refreshFooter.refreshStatePullingByImages (refreshConfigModel.stateIdlePicsMutArr)/// 普通闲置状态
+            refreshFooter.refreshStateIdleByImages(refreshConfigModel.stateIdlePicsMutArr)/// 普通闲置状态
                 .refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr)/// 松开就可以进行刷新的状态
                 .refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr)/// 即将刷新的状态
                 .refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);/// 所有数据加载完毕，没有更多的数据了
@@ -256,7 +256,7 @@
             if(refreshConfigModel.loadBlock) refreshConfigModel.loadBlock(nil);
         }];
         {// 图片
-            refreshFooter.refreshStatePullingByImages(refreshConfigModel.stateIdlePicsMutArr)// 普通闲置状态
+            refreshFooter.refreshStateIdleByImages(refreshConfigModel.stateIdlePicsMutArr)// 普通闲置状态
                 .refreshStatePullingByImages(refreshConfigModel.pullingPicsMutArr)// 松开就可以进行刷新的状态
                 .refreshStateWillRefreshByImages(refreshConfigModel.willRefreshPicsMutArr)// 即将刷新的状态
                 .refreshStateNoMoreDataByImages(refreshConfigModel.noMoreDataPicsMutArr);// 所有数据加载完毕，没有更多的数据了
