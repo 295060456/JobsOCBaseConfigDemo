@@ -11,7 +11,9 @@
 #import "JobsBlock.h"
 #import "NSString+Others.h"
 #import "DefineConstString.h" /// 常量字符串的定义
-#import "NSObject+RACTimer.h"
+#import "JobsTimer.h"
+#import "BaseProtocol.h"
+#import "DefineProperty.h"
 #import "NSString+Conversion.h"
 
 #if __has_include(<SocketRocket/SocketRocket.h>)
@@ -26,11 +28,11 @@
 #import "ReactiveObjC.h"
 #endif
 
-@interface SocketRocketUtility : NSObject<SRWebSocketDelegate>
+@interface SocketRocketUtility : NSObject<SRWebSocketDelegate,BaseProtocol>
 /// 获取连接状态
-@property(nonatomic,assign,readonly)SRReadyState socketReadyState;
+Prop_assign(readonly)SRReadyState socketReadyState;
 
-+(SocketRocketUtility *)instance;
++(SocketRocketUtility *_Nullable)instance;
 /// 开始连接
 -(jobsByStrBlock _Nonnull)SRWebSocketOpenWithURLString;
 /// 关闭连接

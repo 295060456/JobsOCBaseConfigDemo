@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "JobsBlock.h"
+#import "TimerProtocol.h"
 #import "MacroDef_String.h"
 #import "MacroDef_Func.h"
 #import "MacroDef_Cor.h"

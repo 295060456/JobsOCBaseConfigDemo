@@ -18,7 +18,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 /// 全局的共用的属性。所有属性的大集合
-@protocol UIViewModelProtocol <XProtocol>
+@protocol UIViewModelProtocol<XProtocol>
+//<
+//NSObject,
+//BaseLayerProtocol, /// <NSObject>：BaseLayerProtocol_synthesize、BaseLayerProtocol_dynamic
+//UILocationProtocol, /// <NSObject>：UILocationProtocol_synthesize、UILocationProtocol_dynamic
+//UIMarkProtocol, /// <NSObject>：UIMarkProtocol_synthesize、UIMarkProtocol_dynamic
+//UIPictureAndBackGroundCorProtocol, /// <NSObject>： UIPictureAndBackGroundCorProtocol_synthesize、UIPictureAndBackGroundCorProtocol_dynamic
+//UITextModelProtocol, /// <NSObject>：UITextModelProtocol_synthesize、UITextModelProtocol_dynamic
+//UIViewModelOthersProtocol, /// <NSObject>：UIViewModelOthersProtocol_synthesize、UIViewModelOthersProtocol_dynamic
+////BaseButtonProtocol, /// <NSObject>：
+////UITextFieldProtocol, /// <NSObject>：
+//RACProtocol /// <NSObject>：
+//>
 @optional
 #pragma mark —— 文字配置
 Prop_copy(nullable)JobsRetIDByIDBlock jobsBlock;

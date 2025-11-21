@@ -46,9 +46,6 @@ typedef void(^jobsByCustomZFPlayerControlViewBlock)(__kindof CustomZFPlayerContr
 @class JobsRightBtnsView;
 typedef void(^jobsByRightBtnsViewBlock)(__kindof JobsRightBtnsView *_Nullable view);
 
-@class JobsBitsMonitorSuspendLab;
-typedef void(^jobsByBitsMonitorSuspendLabBlock)(__kindof JobsBitsMonitorSuspendLab *_Nullable label);
-
 @class BaseView;
 typedef void(^jobsByBaseViewBlock)(__kindof BaseView *_Nullable view);
 
@@ -123,12 +120,6 @@ typedef void(^jobsByGestureModelBlock)(JobsGestureModel *_Nullable model);
 @class JobsIMChatInfoModel;
 typedef void(^jobsByIMChatInfoModelBlock)(JobsIMChatInfoModel *_Nullable model);
 
-@class NSTimerManager;
-typedef void(^jobsByTimerManagerBlock)(NSTimerManager *_Nullable manager);
-
-@class ButtonTimerConfigModel;
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerConfigModelBlock)(ButtonTimerConfigModel *_Nonnull model);
-
 @class JobsAppDoorInputViewBaseStyleModel;
 typedef void(^jobsByAppDoorInputViewBaseStyleModelBlock)(JobsAppDoorInputViewBaseStyleModel *_Nullable model);
 @class JobsAppDoorInputViewBaseStyle;
@@ -149,9 +140,6 @@ typedef void(^jobsByMenuViewBlock)(__kindof JobsMenuView *_Nullable view);
 typedef void(^jobsByViewNavigatorBlock)(__kindof JobsViewNavigator *_Nullable navigator);
 typedef JobsViewNavigator *_Nonnull(^JobsReturnViewNavigatorByViewAndAnimatedBlock)(Jobs_ReturnViewNavigatorByViewAndAnimatedBlock_Arguments);
 typedef JobsViewNavigator *_Nonnull(^JobsReturnViewNavigatorByBOOLBlock)(BOOL data);
-
-@class ButtonTimerConfigModel;
-typedef void(^jobsByButtonTimerConfigModelBlock)(__kindof ButtonTimerConfigModel *_Nullable model);
 
 @class BaseNavigationBar;
 typedef void(^jobsByBaseNavigationBarBlock)(__kindof BaseNavigationBar *_Nullable navBar);
@@ -231,10 +219,6 @@ typedef void(^jobsByStepViewBlock)(__kindof JobsStepView *_Nullable stepView);
 typedef __kindof JobsStepView *_Nullable(^JobsReturnStepViewByCGFloatBlock)(CGFloat data);
 typedef __kindof JobsStepView *_Nullable(^JobsReturnStepViewByNSIntegerBlock)(NSInteger data);
 typedef __kindof JobsStepView *_Nullable(^JobsReturnStepViewByColorBlock)(UIColor *_Nullable cor);
-
-@class JobsTimer;
-typedef void(^JobsTimerTickBlock)(JobsTimer *_Nullable timer);
-typedef void(^JobsTimerCompletionBlock)(JobsTimer *_Nullable timer);
 
 @class BaseLabel;
 typedef void(^jobsByBaseLabelBlock)(__kindof BaseLabel *_Nullable label);
@@ -447,6 +431,24 @@ typedef __kindof JobsTransitionAnimator *_Nullable(^JobsReturnAnimatorByTransDir
 @class JobsNavigationTransitionMgr;
 typedef void(^jobsByNavigationTransitionManagerBlock)(__kindof JobsNavigationTransitionMgr *_Nullable manager);
 
+@class JobsTimer;
+@protocol TimerProtocol;
+typedef void(^JobsTimerBlock)(JobsTimer *_Nullable timer);
+typedef id<TimerProtocol> _Nonnull(^JobsRetTimerProtocolIDByTimerBlocks)(JobsTimerBlock _Nullable block);
+
+@class JobsNetworkSource;
+typedef void(^JobsNetworkUpdateBlock)(JobsNetworkSource * _Nullable source,
+                                      uint64_t uploadBytesPerSec,
+                                      uint64_t downloadBytesPerSec);
+
+@class JobsNetworkTrafficMonitor;
+typedef __kindof JobsNetworkTrafficMonitor *_Nullable(^JobsRetTNetworkTrafficMonitorByUpdateBlock)(JobsNetworkUpdateBlock _Nullable block);
+
+@protocol TimerProtocol;
+/// 返回 self 的 DSL block：传入一个 void 回调，返回实现该协议的对象（方便链式）
+typedef id<TimerProtocol> _Nonnull (^JobsRetTimerProtocolIDByVoidBlocks)(jobsByVoidBlock _Nullable block);
+typedef id<TimerProtocol> _Nonnull (^JobsRetTimerProtocolIDByTimerBlocks)(JobsTimerBlock _Nullable block);
+
 @class WMZBannerView;
 @class WMZBannerParam;
 typedef WMZBannerView *_Nonnull(^JobsReturnWMZBannerViewByBannerParamBlock)(WMZBannerParam *_Nonnull bannerParam);
@@ -556,8 +558,6 @@ typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByVoidBlock)(void
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByIDBlock)(id _Nullable data);
 typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByDictionaryBlock)(NSDictionary *_Nullable dic);
 
-
-
 #if __has_include(<JXCategoryView/JXCategoryView.h>)
 #import <JXCategoryView/JXCategoryView.h>
 #else
@@ -622,7 +622,6 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByMasonryConstraintsBlocks)(jo
 typedef __kindof UIView *_Nullable(^JobsReturnViewByViewAndMasonryConstraintsBlocks)(Jobs_ReturnViewByViewAndMasonryConstraintsBlocks_Arguments);
 
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Blocks)(jobsByButtonModelBlock _Nullable block);
-typedef __kindof UIButton *_Nullable(^JobsReturnButtonByTimerManagerBlocks)(jobsByTimerManagerBlock _Nullable block);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlocks)(jobsByBtnBlock _Nullable block);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByIDBlocks)(jobsByIDBlock _Nullable block);
 

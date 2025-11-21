@@ -7,6 +7,7 @@
 
 #import "BaseViewController.h"
 #import "JobsCountdownView.h"
+#import "TimerProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -7,6 +7,9 @@
 
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
+#import "BaseProtocol.h"
+#import "BaseButtonProtocol.h"
+#import "TimerProtocol.h"
 #import "MacroDef_Func.h"
 #import "JobsAttributedString.h"
 
@@ -17,9 +20,7 @@
 #import "NSString+Others.h"
 #import "NSMutableArray+Extra.h"
 
-#import "JobsTimerManager.h"/// 时间管理
-#import "ButtonTimerDefStructure.h"
-#import "ButtonTimerConfigModel.h"
+#import "JobsTimer.h"/// 时间管理
 #import "UIButton+UI.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
@@ -35,75 +36,32 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
+/// 文本显示类型
+typedef enum : NSUInteger {
+    CequenceForShowTitleRuningStrType_front = 0,// TitleRuningStr（固定值） 相对于 currentTime（浮动值）在前面 | 首在前
+    CequenceForShowTitleRuningStrType_tail      // TitleRuningStr（固定值） 相对于 currentTime（浮动值）在后面 | 首在后
+} CequenceForShowTitleRuningStrType;
 
-@interface UIButton (Timer)
-/// 计时器专用数据源
-Prop_strong()ButtonTimerConfigModel *btnTimerConfig;
+@interface UIButton (Timer)<BaseProtocol,BaseButtonProtocol,TimerProtocol>
+
 -(UIButtonModel *_Nonnull)readyPlayValue;
 -(UIButtonModel *_Nonnull)runningValue;
 -(UIButtonModel *_Nonnull)endValue;
--(NSTimerManager *_Nonnull)timerManager;
-#pragma mark —— 时间相关方法【开启定时器】
--(jobsByVoidBlock _Nonnull)startTimer;/// 开启计时【用初始化时间】
--(jobsByNSIntegerBlock _Nonnull)startTimerBy;/// 开启计时【从某个时间】
-#pragma mark —— 时间相关方法【定时器暂停】
--(jobsByVoidBlock _Nonnull)timerSuspend;
-#pragma mark —— 时间相关方法【定时器继续】
--(jobsByVoidBlock _Nonnull)timerContinue;
-#pragma mark —— 时间相关方法【定时器销毁】
--(jobsByVoidBlock _Nonnull)timerDestroy;/// 可以不结束直接掐死
-+(JobsReturnButtonByTimerConfigModelBlock _Nullable)initByConfig;
--(instancetype)initByConfig:(ButtonTimerConfigModel *_Nullable)config;
+/// ❤️如果配置了富文本，则优先显示富文本属性
+#pragma mark —— 一些通用的设置
+Prop_assign()CequenceForShowTitleRuningStrType cequenceForShowTitleRuningStrType;// 文本显示类型
+Prop_assign()UILabelShowingType labelShowingType;
+Prop_assign()CGFloat widthCompensationValue;      // 因为有圆角的时候需要有补偿值否则UI很难看
+#pragma mark —— 计时器未开始【静态值】Ready
+Prop_strong()UIButtonModel *readyPlayValue;
+#pragma mark —— 计时器进行中【动态值】Running
+Prop_strong()UIButtonModel *runningValue;
+#pragma mark —— 计时器结束【静态值】End
+Prop_strong()UIButtonModel *endValue;
+#pragma mark —— 其他
+Prop_copy()NSString *formatTimeStr;               // 根据ShowTimeType格式化以后的时间【内部使用】
+Prop_copy()NSString *secondStr;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-/** 调用示例
- 
- -(__kindof UIButton *)makeSendSMSCodeBtnByClickBlock:(jobsByBtnBlock _Nullable)clickBlock{
-     return UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
-         /// 一些通用的设置
-         data.count = 10;
-         data.showTimeType = ShowTimeType_SS;// 时间显示风格
-         data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
-         data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
-         data.labelShowingType = UILabelShowingType_01;//【换行模式】
-         data.secondStr = JobsSpace.add(JobsInternationalization(@"S"));
-         /// 计时器未开始【静态值】
-         data.readyPlayValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-             model.jobsSize = CGSizeMake(JobsWidth(70), JobsWidth(30));
-             model.bgCor = JobsClearColor;
-             model.layerBorderCor = JobsClearColor;
-             model.titleCor = JobsCor(@"#DE3A3A");
-             model.title = JobsInternationalization(@"GET CODE");
-             model.titleFont = bayonRegular(JobsWidth(16));
-         });
-         /// 计时器进行中【动态值】
-         data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-             model.jobsSize = CGSizeMake(JobsWidth(70), JobsWidth(30));
-             model.bgCor = JobsClearColor;
-             model.title = JobsSpace;
-             model.layerBorderCor = JobsClearColor;
-             model.titleCor = JobsCor(@"#DE3A3A");
-             model.titleFont = bayonRegular(JobsWidth(16));
-         });
-         /// 计时器结束【静态值】
-         data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-             model.jobsSize = CGSizeMake(JobsWidth(70), JobsWidth(30));
-             model.bgCor = JobsClearColor;
-             model.titleCor = JobsCor(@"#DE3A3A");
-             model.title = JobsInternationalization(@"GET CODE");
-             model.titleFont = bayonRegular(JobsWidth(16));
-         });
-     })).onClickBy(^(__kindof UIButton *x){
-         /// 回调到外层取值，以满足后续业务需要
-         if(clickBlock) clickBlock(x);
-     }).onLongPressGestureBy(^(id data){
-         JobsLog(@"");
-     }).heartBeatBy(^(NSTimerManager *_Nullable data){
-         JobsLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
-     });
- }
-
- */

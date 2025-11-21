@@ -268,6 +268,7 @@ typedef __kindof UIButton *_Nullable(^JobsRetBtnByControlStateBlock)(UIControlSt
 typedef __kindof UIButton *_Nonnull(^JobsRetBtnByBOOLBlock)(BOOL data);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByCGFloatBlock)(CGFloat data);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByFloatBlock)(float data);
+typedef __kindof UIButton *_Nullable(^JobsRetBtnByLongBlock)(long data);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByNSIntegerBlock)(NSInteger data);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByNSUIntegerBlock)(NSUInteger data);
 API_AVAILABLE(ios(15.0))

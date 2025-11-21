@@ -46,15 +46,6 @@ typedef NS_ENUM(NSUInteger, BitsMonitorRunMode) {
     BitsMonitorManualRun = 1 /// 手动启动模式
 };
 #endif /* BitsMonitorRunMode_h */
-///
-#ifndef DISPATCH_TIMER_STATE_ENUM_DEFINED
-#define DISPATCH_TIMER_STATE_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, DispatchTimerState) {
-    DispatchTimerState_init = 0,
-    DispatchTimerState_resume,
-    DispatchTimerState_suspend
-};
-#endif /* DISPATCH_TIMER_STATE_ENUM_DEFINED */
 /// 屏幕分辨率
 #ifndef iPhScrPxType_h
 #define iPhScrPxType_h
@@ -147,14 +138,6 @@ typedef enum : NSUInteger {
     WGradientProgressType_colorRoll        /// 色彩在不断的翻滚
 } WGradientProgressType;
 #endif /* WGradientProgressType_h */
-/// 倒计时模式
-#ifndef TimerStyle_h
-#define TimerStyle_h
-typedef NS_ENUM(NSUInteger, TimerStyle) {
-    TimerStyle_clockwise = 0,/// 顺时针模式
-    TimerStyle_anticlockwise/// 逆时针模式（倒计时模式）
-};
-#endif /* TimerStyle_h */
 /// 排序方向
 #ifndef SortingTypeDefinition
 #define SortingTypeDefinition
@@ -172,17 +155,6 @@ typedef NS_ENUM(NSUInteger, ScheduledTimerType) {
     ScheduledTimerType_2/// scheduledTimerWithTimeInterval/target/selector/userInfo/repeats
 };
 #endif /* ScheduledTimerType_h */
-/// NSTimer定时器当前状态
-#ifndef NSTimerCurrentStatus_h
-#define NSTimerCurrentStatus_h
-typedef NS_ENUM(NSUInteger, NSTimerCurrentStatus) {
-    NSTimerCurrentStatusUnknow = 0, /// 定时器未知状态
-    NSTimerCurrentStatusRun, /// 定时器正在运行
-    NSTimerCurrentStatusStop, /// 定时器停止
-    NSTimerCurrentStatusPause, /// 定时器暂停
-    NSTimerCurrentStatusDestroy/// 定时器销毁
-};
-#endif /* NSTimerCurrentStatus_h */
 /// 登录方式
 #ifndef LOGINMODE
 #define LOGINMODE
@@ -254,17 +226,6 @@ typedef enum : NSUInteger {
     NSObject_SPAlertControllerInitType_5,
 } NSObject_SPAlertControllerInitType;
 #endif /* SPAlertControllerInitType_h */
-/// 计时器运行状态
-#ifndef TIMER_PROCESS_TYPE_ENUM_DEFINED
-#define TIMER_PROCESS_TYPE_ENUM_DEFINED
-typedef NS_ENUM(NSInteger, TimerProcessType) {
-    TimerProcessType_Ready = 0,  /// 准备状态
-    TimerProcessType_Running,    /// 运行状态
-    TimerProcessType_Pause,      /// 暂停运行状态
-    TimerProcessType_Resume,     /// 恢复运行状态
-    TimerProcessType_Stop        /// 结束状态
-};
-#endif /* TIMER_PROCESS_TYPE_ENUM_DEFINED */
 /// Label 的表现方式
 #ifndef JobsLabelDef_h
 #define JobsLabelDef_h
@@ -901,17 +862,17 @@ typedef NS_ENUM(NSInteger, ElectronicLabelTypeSetting) {
 #ifndef USERTYPESETTING
 #define USERTYPESETTING
 typedef NS_ENUM(NSInteger, UserTypeSetting) {
-    USERTYPE_REGISTER = 1,           /// 注册
-    USERTYPE_LOGIN = 2,              /// 登录
-    USERTYPE_FORGET_PWD = 3,         /// 忘记密码
-    USERTYPE_BIND_PHONE = 4,         /// 绑定手机号
-    USERTYPE_BIND_BANKCARD = 5,      /// 绑定银行卡
-    USERTYPE_BIND_CRYPTO_CURRENCY = 6, /// 绑定加密货币地址
-    USERTYPE_AGENT_PAY_PWD_SET = 7,  /// 支付密码设置
-    USERTYPE_AGENT_PAY_PWD_RESET = 8, /// 支付密码修改
-    USERTYPE_AGENT_WITHDRAWAL_REQ = 9, /// 代理提款申请
-    USERTYPE_AGENT_DEPOSIT = 10,     /// 代理代存
-    USERTYPE_BIND_E_WALLET = 11      /// 绑定电子钱包
+    USERTYPE_REGISTER = 1,                /// 注册
+    USERTYPE_LOGIN = 2,                   /// 登录
+    USERTYPE_FORGET_PWD = 3,              /// 忘记密码
+    USERTYPE_BIND_PHONE = 4,              /// 绑定手机号
+    USERTYPE_BIND_BANKCARD = 5,           /// 绑定银行卡
+    USERTYPE_BIND_CRYPTO_CURRENCY = 6,    /// 绑定加密货币地址
+    USERTYPE_AGENT_PAY_PWD_SET = 7,       /// 支付密码设置
+    USERTYPE_AGENT_PAY_PWD_RESET = 8,     /// 支付密码修改
+    USERTYPE_AGENT_WITHDRAWAL_REQ = 9,    /// 代理提款申请
+    USERTYPE_AGENT_DEPOSIT = 10,          /// 代理代存
+    USERTYPE_BIND_E_WALLET = 11           /// 绑定电子钱包
 };
 #endif /* USERTYPESETTING */
 /// 业务来源
@@ -965,11 +926,11 @@ typedef NS_ENUM(NSInteger, JobsQueryTimeType) {
 #ifndef JOBS_TRANSACTION_STATUS_DEFINED
 #define JOBS_TRANSACTION_STATUS_DEFINED
 typedef NS_ENUM(NSInteger, JobsTransactionStatus) {
-    JobsTransactionStatus_All = -1,      /// 查询全部
+    JobsTransactionStatus_All = -1,       /// 查询全部
     JobsTransactionStatus_Processing = 0, /// 处理中
-    JobsTransactionStatus_Success,       /// 成功
-    JobsTransactionStatus_Failure,       /// 失败
-    JobsTransactionStatus_Review    /// 审核中
+    JobsTransactionStatus_Success,        /// 成功
+    JobsTransactionStatus_Failure,        /// 失败
+    JobsTransactionStatus_Review          /// 审核中
 };
 #endif /* JOBS_TRANSACTION_STATUS_DEFINED */
 /// 交易订单类型
@@ -977,10 +938,10 @@ typedef NS_ENUM(NSInteger, JobsTransactionStatus) {
 #define JOBS_TRANSACTION_TYPE_DEFINED
 typedef NS_ENUM(NSInteger, JobsTransactionType) {
     JobsTransactionType_All = -1,             /// 查询全部
-    JobsTransactionType_Deposit = 1,         /// 充值（存款）
+    JobsTransactionType_Deposit = 1,          /// 充值（存款）
     JobsTransactionType_Withdraw = 2,         /// 提现
     JobsTransactionType_Transfer = 3,         /// 转账
-    JobsTransactionType_Rebate = 5,         /// 返水
+    JobsTransactionType_Rebate = 5,           /// 返水
     JobsTransactionType_Bonus = 6,            /// 红利
     JobsTransactionType_SystemAdjustment = 7, /// 系统调整
     JobsTransactionType_Live = 8              /// 直播

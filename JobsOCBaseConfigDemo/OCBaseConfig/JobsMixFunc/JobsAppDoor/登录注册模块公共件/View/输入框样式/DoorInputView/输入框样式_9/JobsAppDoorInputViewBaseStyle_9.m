@@ -9,7 +9,7 @@
 
 @interface JobsAppDoorInputViewBaseStyle_9 ()
 /// UI
-Prop_strong()UIButton *countDownBtn;
+Prop_strong()UIButton <TimerProtocol>*countDownBtn;
 /// Data
 Prop_copy()NSString *titleStr_1;
 Prop_copy()NSString *titleStr_2;
@@ -103,42 +103,22 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
     return self.zyTextField.text;
 }
 #pragma mark —— lazyLoad
--(UIButton *)countDownBtn{
+-(UIButton<TimerProtocol> *)countDownBtn{
     if (!_countDownBtn) {
         @jobs_weakify(self)
-        _countDownBtn = UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
-            /// 一些通用的设置
-            data.count = 50;
-            data.showTimeType = ShowTimeType_SS;// 时间显示风格
-            data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
-            data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
-            data.labelShowingType = UILabelShowingType_01;//【换行模式】
-            /// 计时器未开始【静态值】
-            data.readyPlayValue.layerBorderWidth = 1;
-            data.readyPlayValue.layerCornerRadius = JobsWidth(18);
-            data.readyPlayValue.bgCor = JobsClearColor;
-            data.readyPlayValue.layerBorderCor = JobsClearColor;
-            data.readyPlayValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-            data.readyPlayValue.text = Title9;
-            data.readyPlayValue.font = UIFontWeightMediumSize(JobsWidth(14));
-            /// 计时器进行中【动态值】
-            data.runningValue.bgCor = JobsClearColor;
-            data.runningValue.text = JobsInternationalization(Title12);
-            data.runningValue.layerBorderCor = JobsClearColor;
-            data.runningValue.textCor = HEXCOLOR_ALPHA(0xAE8330, 1);
-            data.runningValue.font = UIFontWeightMediumSize(JobsWidth(14));
-            /// 计时器结束【静态值】
-            data.endValue.bgCor = JobsClearColor;
-        })).onClickBy(^(__kindof UIButton *x){
+        _countDownBtn = (UIButton<TimerProtocol> *)UIButton.jobsInit()
+            .onClickBy(^(__kindof UIButton *x){
             @jobs_strongify(self)
-            x.startTimer();//选择时机、触发启动
-//            JobsLog(@"SSSSS = 获取验证码");
             if (self.objBlock) self.objBlock(x);
-        }).heartBeatBy(^(id _Nullable data){
-            if ([data isKindOfClass:UIButtonModel.class]) {
-                UIButtonModel *model = (UIButtonModel *)data;
-                JobsLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
-            }
+        }).onLongPressGestureBy(^(id data){
+            JobsLog(@"");
+        }).onTick(^(JobsTimer * _Nullable timer) {
+            // 每 tick 一次
+            NSLog(@"剩余: %.0f", timer.time);
+        })
+        .onFinish(^ (JobsTimer * _Nullable timer) {
+            // 倒计时完成
+            NSLog(@"倒计时结束");
         });
         [self.addSubview(_countDownBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self).offset(-JobsWidth(120));

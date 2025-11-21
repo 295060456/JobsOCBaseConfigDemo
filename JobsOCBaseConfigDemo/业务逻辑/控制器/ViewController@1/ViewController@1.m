@@ -464,8 +464,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 model.cls = JobsTimerVC.class;
             })));
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"NSTimerManagerTestVC");
-                model.subTitle = JobsInternationalization(@"🌛NSTimerManager模块测试");
+                model.title = JobsInternationalization(@"JobsTimerTestVC");
+                model.subTitle = JobsInternationalization(@"🌛JobsTimer模块测试");
                 model.cls = NSTimerManagerTestVC.class;
             })));
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {

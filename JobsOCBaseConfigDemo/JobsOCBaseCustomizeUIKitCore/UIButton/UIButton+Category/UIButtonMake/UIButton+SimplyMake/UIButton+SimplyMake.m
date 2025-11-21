@@ -462,15 +462,6 @@
     };
 }
 
--(JobsReturnButtonByTimerManagerBlocks _Nonnull)heartBeatBy{
-    @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(jobsByTimerManagerBlock block) {
-        @jobs_strongify(self)
-        self.heartBeatBlock = block;
-        return self;
-    };
-}
-
 -(JobsRetBtnByCorBlock _Nonnull)bgColorBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIColor *color) {
@@ -561,16 +552,6 @@ JobsKey(_longPressGestureBlock)
 
 -(void)setLongPressGestureBlock:(jobsByBtnBlock _Nullable)longPressGestureBlock{
     Jobs_setAssociatedRETAIN_NONATOMIC(_longPressGestureBlock, longPressGestureBlock);
-}
-#pragma mark —— Prop_copy()jobsByTimerManagerBlock heartBeatBlock;
-JobsKey(_heartBeatBlock)
-@dynamic heartBeatBlock;
--(jobsByTimerManagerBlock _Nullable)heartBeatBlock{
-    return Jobs_getAssociatedObject(_heartBeatBlock);
-}
-
--(void)setHeartBeatBlock:(jobsByTimerManagerBlock _Nullable)heartBeatBlock{
-    Jobs_setAssociatedRETAIN_NONATOMIC(_heartBeatBlock, heartBeatBlock);
 }
 #pragma mark —— Prop_strong()UIViewModel *viewModel;
 JobsKey(_modelData)

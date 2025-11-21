@@ -10,12 +10,12 @@
 
 @interface WGradientProgress ()
 /// UI
-Prop_strong()CALayer *roadLayer;/// 跑道 即将运行的轨迹
-Prop_strong()CALayer *fenceLayer;/// 栅栏
-Prop_strong()CAGradientLayer *gradLayer;/// 通过改变layer的宽度来实现进度 运动员
+Prop_strong()CALayer *roadLayer;                 // 跑道 即将运行的轨迹
+Prop_strong()CALayer *fenceLayer;                // 栅栏
+Prop_strong()CAGradientLayer *gradLayer;         // 通过改变layer的宽度来实现进度 运动员
 /// Data
-Prop_strong()NSTimerManager *nsTimerManager_color;/// 主管线条颜色的翻滚
-Prop_strong()NSTimerManager *nsTimerManager_length;/// 主管线条长度的递增
+Prop_strong()JobsTimer *timer_color;             // 主管线条颜色的翻滚
+Prop_strong()JobsTimer *timer_length;            // 主管线条长度的递增
 Prop_strong()NSMutableArray *colors;
 
 @end
@@ -25,22 +25,16 @@ Prop_strong()NSMutableArray *colors;
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = JobsBrownColor;
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth;/// 自动调整view的宽度，保证左边距和右边距不变
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth; // 自动调整view的宽度，保证左边距和右边距不变
     }return self;
 }
 
 -(void)makeTimer_color{
-    /// 启动方式——1
-    self.nsTimerManager_color.nsTimeStartWithRunLoop(nil);
-    /// 启动方式——2
-//    self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
+    [self.timer_color start];
 }
 
 -(void)makeTimer_length{
-    /// 启动方式——1
-    self.nsTimerManager_length.nsTimeStartWithRunLoop(nil);
-    /// 启动方式——2
-//    self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
+    [self.timer_length start];
 }
 
 -(void)showOnParent{
@@ -55,23 +49,23 @@ Prop_strong()NSMutableArray *colors;
 }
 /// 暂停
 -(void)pause{
-    [self.nsTimerManager_length nsTimePause];
+    [self.timer_length pause];
 }
 /// 重新开始
 -(void)resume{
-    [self.nsTimerManager_length nsTimecontinue];
+    [self.timer_length resume];
 }
 /// 归位
 -(void)reset{
     /// 定时器归位
-    [self.nsTimerManager_color nsTimeDestroy];
-    [self.nsTimerManager_length nsTimeDestroy];
+    [self.timer_color stop];
+    [self.timer_length stop];
     /// UI归位
     self.gradLayer.frame = CGRectZero;
 }
 
 -(void)hide{
-    [self.nsTimerManager_color nsTimePause];
+    [self.timer_color pause];
     if ([self superview]) [self removeFromSuperview];
 }
 
@@ -121,71 +115,82 @@ Prop_strong()NSMutableArray *colors;
     }return _length_timeSecIntervalSinceDate;
 }
 
--(NSTimerManager *)nsTimerManager_color{
-    if (!_nsTimerManager_color) {
+-(JobsTimer *)timer_color{
+    if (!_timer_color) {
         @jobs_weakify(self)
-        _nsTimerManager_color = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
-            @jobs_strongify(self)
-            data.timeInterval = self.color_timeInterval;
-            data.timerStyle = TimerStyle_clockwise;
-            @jobs_weakify(self)
-            [data actionObjBlock:^(UIButtonModel *data) {
+        _timer_color = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
+            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
+            timer.timeInterval             = self.color_timeInterval;                        // 语义字段
+            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
+            timer.repeats                  = NO;
+            timer.queue                    = dispatch_get_main_queue();
+            timer.timerState               = JobsTimerStateIdle;
+
+            timer.startTime                = 0;                          // ✅ 总时长
+            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
+
+            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
                 @jobs_strongify(self)
-                switch (data.timerProcessType) {
-                    case TimerProcessType_Ready:{
-                        
-                    }break;
-                    case TimerProcessType_Running:{
-                        [self timerFunc];
-                    }break;
-                    case TimerProcessType_Stop:{
-                        JobsLog(@"我死球了");
-                    }break;
-                        
-                    default:
-                        break;
-                }
-            }];
+                if (self.progress < 1) {
+                    [self start];
+                    if (self.objBlock) self.objBlock(jobsMakeWGradientProgressModel(^(__kindof WGradientProgressModel * _Nullable model) {
+                        @jobs_strongify(self)
+                        model.progress = self.progress;
+                        model.gradLayer = self.gradLayer;
+                    }));
+
+                    self.progress += self.increment;
+                }else [self->_timer_length stop];/// 销毁
+            };
+            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"我死球了");
+            };
+
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
         });
-    }return _nsTimerManager_color;
+    }return _timer_color;
 }
 
--(NSTimerManager *)nsTimerManager_length{
-    if (!_nsTimerManager_length) {
+-(JobsTimer *)timer_length{
+    if (!_timer_length) {
         @jobs_weakify(self)
-        _nsTimerManager_length = jobsMakeTimerManager(^(NSTimerManager *_Nullable data) {
-            @jobs_strongify(self)
-            data.timeInterval = self.length_timeInterval;
-            data.timeSecIntervalSinceDate = self.length_timeSecIntervalSinceDate;
-            data.timerStyle = TimerStyle_clockwise;
-            [data actionObjBlock:^(UIButtonModel *data) {
+        _timer_length = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
+            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
+            timer.timeInterval             = self.length_timeInterval;                        // 语义字段
+            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
+            timer.repeats                  = NO;
+            timer.queue                    = dispatch_get_main_queue();
+            timer.timerState               = JobsTimerStateIdle;
+
+            timer.startTime                = 0;                          // ✅ 总时长
+            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
+
+            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
                 @jobs_strongify(self)
-                switch (data.timerProcessType) {
-                    case TimerProcessType_Ready:{
-                        
-                    }break;
-                    case TimerProcessType_Running:{
-                        if (self.progress < 1) {
-                            [self start];
-                            if (self.objBlock) self.objBlock(jobsMakeWGradientProgressModel(^(__kindof WGradientProgressModel * _Nullable model) {
-                                @jobs_strongify(self)
-                                model.progress = self.progress;
-                                model.gradLayer = self.gradLayer;
-                            }));
-                            
-                            self.progress += self.increment;
-                        }else [self.nsTimerManager_length nsTimeDestroy];/// 销毁
-                    }break;
-                    case TimerProcessType_Stop:{
-                        JobsLog(@"我死球了");
-                    }break;
-                        
-                    default:
-                        break;
-                }
-            }];
+                if (self.progress < 1) {
+                    [self start];
+                    if (self.objBlock) self.objBlock(jobsMakeWGradientProgressModel(^(__kindof WGradientProgressModel * _Nullable model) {
+                        @jobs_strongify(self)
+                        model.progress = self.progress;
+                        model.gradLayer = self.gradLayer;
+                    }));
+
+                    self.progress += self.increment;
+                }else [self->_timer_length stop];/// 销毁
+            };
+            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"我死球了");
+            };
+
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
         });
-    }return _nsTimerManager_length;
+    }return _timer_length;
 }
 
 -(NSMutableArray *)colors{

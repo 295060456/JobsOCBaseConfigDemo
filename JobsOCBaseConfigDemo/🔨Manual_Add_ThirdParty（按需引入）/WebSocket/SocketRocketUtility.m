@@ -24,7 +24,7 @@ RACProtocol_synthesize
     JobsRemoveNotification(self);
 }
 
-+(SocketRocketUtility *)instance {
++(SocketRocketUtility *_Nullable)instance {
     static SocketRocketUtility *Instance = nil;
     static dispatch_once_t predicate;
     dispatch_once(&predicate, ^{
@@ -51,8 +51,7 @@ RACProtocol_synthesize
     if (self.socket){
         [self.socket close];
         self.socket = nil;
-        //断开连接时销毁心跳
-        [self destoryHeartBeat];
+        [self destoryHeartBeat];// 断开连接时销毁心跳
     }
 }
 /// 发送数据
@@ -111,7 +110,7 @@ RACProtocol_synthesize
     @jobs_weakify(self)
     dispatch_main_async_safe(^{
         @jobs_strongify(self)
-        self.stopRACTimer(self.racDisposable);
+        [self.timer stop];
     })
 }
 /// 初始化心跳
@@ -122,11 +121,7 @@ RACProtocol_synthesize
         [self destoryHeartBeat];
         /// 发送心跳 和后台可以约定发送什么内容  一般可以调用ping  我这里根据后台的要求 发送了data给他
         /// 心跳设置为3分钟，NAT超时一般为5分钟
-        self.racDisposable = [self startRACTimer:3 byBlock:^{
-            @jobs_strongify(self)
-            /// 和服务端约定好发送什么作为心跳标识，尽可能的减小心跳包大小
-            self.sendData(@"heart");
-        }].racDisposable;
+        [self.timer start];
     })
 }
 /// pingPong
@@ -143,7 +138,7 @@ RACProtocol_synthesize
     }
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
+-(void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
     if (webSocket == self.socket) {
         JobsLog(@"************************** socket 连接失败************************** ");
         _socket = nil;
@@ -184,6 +179,33 @@ RACProtocol_synthesize
 #pragma mark —— setter getter
 - (SRReadyState)socketReadyState {
     return self.socket.readyState;
+}
+
+-(JobsTimer *)timer{
+    if(!_timer){
+        @jobs_weakify(self)
+        _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
+            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerStyle               = TimerStyle_clockwise;     // 顺时针计时模式
+            timer.timeInterval             = 1;                        // 语义字段
+            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
+            timer.repeats                  = NO;
+            timer.queue                    = dispatch_get_main_queue();
+            timer.timerState               = JobsTimerStateIdle;
+
+            timer.startTime                = 3;                        // ✅ 总时长
+            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
+
+            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                self.sendData(@"heart");
+                if (self.objBlock) self.objBlock(timer);
+            };
+
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
+        });
+    }return _timer;
 }
 
 @end

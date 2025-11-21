@@ -10,12 +10,11 @@
 @interface JobsLaunchAdMgr ()
 /// UI
 @property(nonatomic,strong)UIView *adView;
-@property(nonatomic,strong)UIButton *countDownBtn;
+@property(nonatomic,strong)UIButton <TimerProtocol>*countDownBtn;
 @property(nonatomic,strong)AVPlayer *videoPlayer;
 @property(nonatomic,strong)AVPlayerLayer *playerLayer;
 @property(nonatomic,strong)UIImageView *imageView;
 /// Data
-@property(nonatomic,strong)ButtonTimerConfigModel *btnTimerConfigModel;
 @property(nonatomic,strong)NSURL *url;
 @property(nonatomic,strong)UIImage *image;
 @property(nonatomic,strong)NSString *path;
@@ -299,96 +298,30 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
     }return _countDownBtn;
 }
 
--(ButtonTimerConfigModel *)btnTimerConfigModel{
-    if (!_btnTimerConfigModel) {
-        _btnTimerConfigModel = ButtonTimerConfigModel.new;
-        
-        /// 一些通用的设置
-        _btnTimerConfigModel.jobsSize = CGSizeMake(JobsWidth(100), JobsWidth(25));
-        _btnTimerConfigModel.count = 5;
-        _btnTimerConfigModel.showTimeType = ShowTimeType_SS;//时间显示风格
-        _btnTimerConfigModel.countDownBtnType = TimerStyle_anticlockwise;/// 逆时针模式（倒计时模式）
-        _btnTimerConfigModel.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;
-        _btnTimerConfigModel.labelShowingType = UILabelShowingType_03;/// 一行显示。不定宽、定高、定字体。宽度自适应 【单行：ByFont】
-        /// 计时器未开始【静态值】
-        _btnTimerConfigModel.readyPlayValue.layerBorderWidth = 0.1;
-        _btnTimerConfigModel.readyPlayValue.layerCornerRadius = JobsWidth(8);
-        _btnTimerConfigModel.readyPlayValue.bgCor = JobsYellowColor;
-        _btnTimerConfigModel.readyPlayValue.layerBorderCor = JobsBrownColor;
-        _btnTimerConfigModel.readyPlayValue.textCor = JobsBlueColor;
-        _btnTimerConfigModel.readyPlayValue.text = JobsInternationalization(@"跳过");
-        _btnTimerConfigModel.readyPlayValue.font = UIFontWeightMediumSize(13);
-        /// 计时器进行中【动态值】
-        _btnTimerConfigModel.runningValue.bgCor = JobsCyanColor;
-        _btnTimerConfigModel.runningValue.text = JobsInternationalization(Title12);
-        _btnTimerConfigModel.runningValue.layerBorderCor = JobsRedColor;
-        _btnTimerConfigModel.runningValue.textCor = JobsBlackColor;
-        /// 计时器结束【静态值】
-        _btnTimerConfigModel.endValue.bgCor = JobsYellowColor;
-        _btnTimerConfigModel.endValue.text = JobsInternationalization(@"跳过");
-        _btnTimerConfigModel.endValue.layerBorderCor = JobsPurpleColor;
-        _btnTimerConfigModel.endValue.textCor = JobsBlackColor;
-        
-    }return _btnTimerConfigModel;
+-(UIButton<TimerProtocol> *)countDownBtn{
+    if (!_countDownBtn) {
+        @jobs_weakify(self)
+        _countDownBtn = (UIButton<TimerProtocol> *)UIButton.jobsInit()
+            .onClickBy(^(__kindof UIButton *x){
+            @jobs_strongify(self)
+            if (self.objBlock) self.objBlock(x);
+        }).onLongPressGestureBy(^(id data){
+            JobsLog(@"");
+        }).onTick(^(JobsTimer * _Nullable timer) {
+            // 每 tick 一次
+            NSLog(@"剩余: %.0f", timer.time);
+        })
+        .onFinish(^ (JobsTimer * _Nullable timer) {
+            // 倒计时完成
+            NSLog(@"倒计时结束");
+        });
+        [self.addSubview(_countDownBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(JobsWidth(72));
+            make.top.equalTo(self).offset(JobsWidth(20));
+            make.centerX.equalTo(self);
+        }];
+    }return _countDownBtn;
 }
-
-//-(BaseButton *)countDownBtn{
-//    if(!_countDownBtn){
-//        @jobs_weakify(self)
-//        _countDownBtn = [BaseButton.alloc jobsInitBtnByConfiguration:nil
-//                                                          background:nil
-//                                                      titleAlignment:UIButtonConfigurationTitleAlignmentCenter
-//                                                       textAlignment:NSTextAlignmentCenter
-//                                                    subTextAlignment:NSTextAlignmentCenter
-//                                                         normalImage:nil
-//                                                      highlightImage:nil
-//                                                     attributedTitle:nil
-//                                             selectedAttributedTitle:nil
-//                                                  attributedSubtitle:[self richTextWithDataConfigMutArr:self.richTextConfigMutArr]
-//                                                               title:JobsInternationalization(_buttonTitle)
-//                                                            subTitle:nil
-//                                                           titleFont:UIFontWeightBoldSize(18)
-//                                                        subTitleFont:nil
-//                                                            titleCor:JobsCor(@"#333333")
-//                                                         subTitleCor:nil
-//                                                  titleLineBreakMode:NSLineBreakByWordWrapping
-//                                               subtitleLineBreakMode:NSLineBreakByWordWrapping
-//                                                 baseBackgroundColor:UIColor.whiteColor
-//                                                        imagePadding:JobsWidth(0)
-//                                                        titlePadding:JobsWidth(10)
-//                                                      imagePlacement:NSDirectionalRectEdgeNone
-//                                          contentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter
-//                                            contentVerticalAlignment:UIControlContentVerticalAlignmentCenter
-//                                                       contentInsets:jobsSameDirectionalEdgeInsets(0)
-//                                                   cornerRadiusValue:JobsWidth(0)
-//                                                     roundingCorners:UIRectCornerAllCorners
-//                                                roundingCornersRadii:CGSizeZero
-//                                                      layerBorderCor:nil
-//                                                         borderWidth:JobsWidth(0)
-//                                                       primaryAction:nil
-//                                                longPressGestureEventBlock:nil
-//                                                     clickEventBlock:^id(BaseButton *x) {
-//           @jobs_strongify(self)
-//           x.selected = !x.selected;
-//           if (self.objectBlock) self.objectBlock(x);
-//            [self adDidFinish];
-//           return nil;
-//       }];
-//       [self.adView addSubview:_countDownBtn];
-////       [_countDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-////           make.height.mas_equalTo(JobsWidth(72));
-////           make.top.equalTo(self).offset(JobsWidth(20));
-////           make.centerX.equalTo(self);
-////       }];
-////       [_countDownBtn makeBtnLabelByShowingType:UILabelShowingType_03];
-//        
-//        if (CGRectEqualToRect(self.buttonFrame, CGRectZero)) {
-//            _countDownBtn.frame = CGRectMake(_adView.bounds.size.width - 60, 40, 50, 30);
-//        } else {
-//            _countDownBtn.frame = self.buttonFrame;
-//        }
-//    }return _countDownBtn;
-//}
 
 -(NSString *)buttonTitle{
     if(!_buttonTitle){

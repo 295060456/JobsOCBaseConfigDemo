@@ -9,13 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIBezierPath+Extras.h"
 #import "UIView+Extras.h"
-#import "NSObject+RACTimer.h"
-
-#if __has_include(<ReactiveObjC/ReactiveObjC.h>)
-#import <ReactiveObjC/ReactiveObjC.h>
-#else
-#import "ReactiveObjC.h"
-#endif
+#import "JobsTimer.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 用UIBezierPath实现果冻效果

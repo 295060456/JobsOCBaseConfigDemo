@@ -6,6 +6,7 @@
 //
 
 #import "BaseViewProtocol.h"
+#import "TimerProtocol.h"
 #import "JobsDoorInputViewProtocol.h"
 #import "JobsAppDoorInputViewBaseStyleModel.h"
 #import "JobsAppDoorInputViewBaseStyle.h"

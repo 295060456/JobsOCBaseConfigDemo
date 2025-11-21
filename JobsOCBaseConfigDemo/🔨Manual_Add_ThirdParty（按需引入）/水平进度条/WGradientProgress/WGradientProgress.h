@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
 #import "WGradientProgressModel.h"
+#import "JobsTimer.h"
 
 @interface WGradientProgress : UIView
 

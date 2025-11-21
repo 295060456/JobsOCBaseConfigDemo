@@ -14,7 +14,6 @@ Prop_strong()UILabel *titleLab;
 Prop_copy()NSString *titleStr_1;
 Prop_copy()NSString *titleStr_2;
 Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
-Prop_strong()ButtonTimerConfigModel *btnTimerConfigModel;
 
 @end
 

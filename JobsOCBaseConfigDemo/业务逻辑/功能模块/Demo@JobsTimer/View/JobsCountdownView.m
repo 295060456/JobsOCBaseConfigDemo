@@ -12,7 +12,6 @@
 Prop_strong()UILabel *titleLab;
 Prop_strong()UILabel *countdownTimeLab;
 /// Data
-Prop_strong()NSTimerManager *nsTimerManager;
 Prop_strong()JobsTimeModel *formatTime;
 Prop_strong()UIButtonModel *timerProcessModel;
 Prop_copy()NSString *minutesStr;
@@ -28,7 +27,7 @@ Prop_strong()NSMutableParagraphStyle *paragraphStyle;
 @synthesize viewModel = _viewModel;
 -(void)dealloc{
     JobsLog(@"%@",JobsLocalFunc);
-    [self.nsTimerManager nsTimeDestroy];
+    [self.timer stop];
 }
 #pragma mark —— BaseProtocol
 /// 单例化和销毁
@@ -77,7 +76,7 @@ static dispatch_once_t static_countdownViewOnceToken;
         @jobs_strongify(self)
         self.viewModel = model ? : UIViewModel.new;
         MakeDataNull
-        self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
+        [self.timer start];
         self.titleLab.alpha = 1;
         self.countdownTimeLab.alpha = 1;
     };
@@ -89,27 +88,43 @@ static dispatch_once_t static_countdownViewOnceToken;
     };
 }
 #pragma mark —— lazyLoad
--(NSTimerManager *)nsTimerManager{
-    if (!_nsTimerManager) {
+@synthesize timer = _timer;
+-(JobsTimer *)timer{
+    if (!_timer) {
         @jobs_weakify(self)
-        _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager *_Nullable data) {
-            data.timerStyle = TimerStyle_anticlockwise;
-            data.anticlockwiseTime = 30 * 60;
-            data.timeInterval = 1;
-            [data actionObjBlock:^(id data) {
+        _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
+            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
+            timer.timeInterval             = 1;                        // 语义字段
+            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
+            timer.repeats                  = NO;
+            timer.queue                    = dispatch_get_main_queue();
+            timer.timerState               = JobsTimerStateIdle;
+
+            timer.startTime                = 30 * 60;                  // ✅ 总时长
+            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
+
+            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
                 @jobs_strongify(self)
-                if ([data isKindOfClass:UIButtonModel.class]) {
-                    self.timerProcessModel = (UIButtonModel *)data;
-                    NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",self.timerProcessModel.timerManager.anticlockwiseTime] formatTime:self.formatTime] componentsSeparatedByString:JobsInternationalization(@"分")];
-                    self.minutesStr = strArr1[0];
-                    NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
-                    self.secondStr = strArr2[0];
-                    self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
-                                                                               paragraphStyle:self.paragraphStyle];
-                }
-            }];
+                JobsLog(@"正在倒计时...");
+                NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",timer.time] formatTime:self.formatTime] componentsSeparatedByString:JobsInternationalization(@"分")];
+                self.minutesStr = strArr1[0];
+                NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
+                self.secondStr = strArr2[0];
+                self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
+                                                                           paragraphStyle:self.paragraphStyle];
+                if (self.objBlock) self.objBlock(timer);
+            };
+            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"倒计时结束...");
+                if (self.objBlock) self.objBlock(timer);
+            };
+
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
         });
-    }return _nsTimerManager;
+    }return _timer;
 }
 
 -(JobsTimeModel *)formatTime{

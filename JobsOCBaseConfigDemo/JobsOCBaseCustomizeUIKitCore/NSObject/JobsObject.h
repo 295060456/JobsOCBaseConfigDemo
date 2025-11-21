@@ -22,8 +22,6 @@
 #import "JobsLanguageManager.h"
 /// 文件夹操作
 #import "FileFolderHandleTool.h"
-/// 时间管理
-#import "JobsTimerManager.h"
 /// 网络监控
 #import "JobsMonitorNetwoking.h"
 /// SockeIO

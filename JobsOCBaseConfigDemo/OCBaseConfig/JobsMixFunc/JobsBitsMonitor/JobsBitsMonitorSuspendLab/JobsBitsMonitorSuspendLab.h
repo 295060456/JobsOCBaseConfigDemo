@@ -11,6 +11,7 @@
 #import "ZWPullMenuView.h"
 #endif
 
+#import "JobsBlock.h"
 #import "JobsSuspendLab.h"
 #import "JobsNetWorkTools.h"
 #import "NSObject+WHToast.h" /// 提示
@@ -26,17 +27,13 @@ typedef NS_ENUM(NSUInteger, JobsBitsMonitorDisplayStyle) {
 
 @interface JobsBitsMonitorSuspendLab : JobsSuspendLab
 
-Prop_assign()JobsBitsMonitorDisplayStyle displayStyle;
-
 -(JobsRetLabelByText _Nonnull)byText;
 -(JobsRetLabelByAttributedString _Nonnull)byAttributedString;
+
++(instancetype)new NS_UNAVAILABLE; // 禁止用 +new
+-(instancetype)init NS_UNAVAILABLE; // 禁止用 -init
+-(instancetype)initBy:(JobsBitsMonitorDisplayStyle)style;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-NS_INLINE __kindof JobsBitsMonitorSuspendLab *_Nonnull jobsMakeBitsMonitorSuspendLab(jobsByBitsMonitorSuspendLabBlock _Nonnull block){
-    JobsBitsMonitorSuspendLab *data = JobsBitsMonitorSuspendLab.alloc.init;
-    if (block) block(data);
-    return data;
-}

@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MovieCountDown : NSObject
+@interface MovieCountDown : NSObject<BaseProtocol>
 
-@property(nonatomic,weak)UIView *effectView;
+Prop_weak()UIView *effectView;
 Prop_strong()UIColor *countDownTextColor;
 Prop_strong()UIColor *aphViewBackgroundColor;
 Prop_assign()CGFloat countDownTime;

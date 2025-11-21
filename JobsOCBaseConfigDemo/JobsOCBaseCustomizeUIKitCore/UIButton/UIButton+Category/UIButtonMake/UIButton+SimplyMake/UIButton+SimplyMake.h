@@ -16,7 +16,6 @@
 NS_ASSUME_NONNULL_BEGIN
 /// 对按钮创建方法的二次封装
 @interface UIButton (SimplyMake)<BaseProtocol>
-Prop_copy(nullable)jobsByTimerManagerBlock heartBeatBlock;/// 用于计时器
 Prop_copy(nullable)jobsByBtnBlock clickBlock;
 Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 #pragma mark —— 对老Api进行二次封装
@@ -75,7 +74,6 @@ Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 #pragma mark —— 一些公有方法
 -(JobsReturnButtonByClickBlocks _Nonnull)onClickBy;
 -(JobsReturnButtonByClickBlocks _Nonnull)onLongPressGestureBy;
--(JobsReturnButtonByTimerManagerBlocks _Nonnull)heartBeatBy;
 -(JobsRetBtnByCorBlock _Nonnull)bgColorBy;
 -(JobsRetBtnByCGFloatBlock _Nonnull)cornerRadiusValueBy;
 #pragma mark —— 依据数据源进行按钮的统一重设

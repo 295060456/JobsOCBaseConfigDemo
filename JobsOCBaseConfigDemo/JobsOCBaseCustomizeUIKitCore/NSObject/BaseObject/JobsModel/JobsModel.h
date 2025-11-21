@@ -14,7 +14,6 @@
 #import "JobsFileModel.h"
 #import "JobsDecorationModel.h"
 #import "DynamicInvoke.h"
-#import "ButtonTimerConfigModel.h"
 #import "FileNameModel.h"
 #import "JobsAppDoorModel.h"
 #pragma mark —— 输入框样式基类

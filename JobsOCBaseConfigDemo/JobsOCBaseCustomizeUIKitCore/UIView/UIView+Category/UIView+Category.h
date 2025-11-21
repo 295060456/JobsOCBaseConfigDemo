@@ -26,7 +26,6 @@
 #import "UIView+Masonry.h"
 #import "UIView+Navigator.h"
 #import "UIView+DSL.h"
-#import "UIView+JobsNetworkListener.h"
 
 #import "UIView+Gesture.h"
 #import "UIView+JHGestureBlock.h"

@@ -15,7 +15,7 @@
         @jobs_strongify(self)
         if (!cfg) return self;
         // 基础与通用（iOS16 起你已做可用性标注，保持一致）
-        self.byBackground(cfg.background)                                   // UIBackgroundConfiguration
+        self.byBackground(cfg.background)                                    // UIBackgroundConfiguration
             .byCornerStyle(cfg.cornerStyle)                                  // UIButtonConfigurationCornerStyle
             .byButtonSize(cfg.buttonSize)                                    // UIButtonConfigurationSize
             .byMacIdiomStyle(cfg.macIdiomStyle)                              // Mac idiom style

@@ -12,8 +12,6 @@
 /// UI
 Prop_strong()UILabel *countDown;
 Prop_strong()UIView *aphView;
-/// Data
-Prop_strong()NSTimerManager *nsTimerManager;
 
 @end
 
@@ -25,17 +23,10 @@ Prop_strong()NSTimerManager *nsTimerManager;
 }
 #pragma mark —— 一些私有方法
 -(void)倒计时放大特效{
-    [self makeTimer];
+    [self.timer start];
     [self secountDown];
 }
 
--(void)makeTimer{
-    self.nsTimerManager.anticlockwiseTime = self.countDownTime;
-    //启动方式——1
-    self.nsTimerManager.nsTimeStartWithRunLoop(nil);
-    //启动方式——2
-//    self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
-}
 
 -(void)secountDown{
     if (!self.effectView) {
@@ -62,29 +53,6 @@ Prop_strong()NSTimerManager *nsTimerManager;
     }];
 }
 #pragma mark —— lazyLoad
--(NSTimerManager *)nsTimerManager{
-    if (!_nsTimerManager) {
-        @jobs_weakify(self)
-        _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
-            @jobs_strongify(self)
-            data.timerStyle = TimerStyle_anticlockwise;
-            data.anticlockwiseTime = self.countDownTime;
-            [data actionObjBlock:^(id data) {
-                @jobs_strongify(self)
-                if ([data isKindOfClass:NSTimerManager.class]) {
-                    NSTimerManager *timerManager = (NSTimerManager *)data;
-                    [self getCuntDown:(NSInteger)timerManager.anticlockwiseTime];
-                }else if ([data isKindOfClass:UIButtonModel.class]){
-                    UIButtonModel *model = (UIButtonModel *)data;
-                    if (model.timerProcessType == TimerProcessType_Stop) {
-                        if (self.objBlock) self.objBlock(data);
-                    }
-                }else{}
-            }];
-        });
-    }return _nsTimerManager;
-}
-
 -(UILabel *)countDown{
     if (!_countDown) {
         @jobs_weakify(self)
@@ -120,7 +88,6 @@ Prop_strong()NSTimerManager *nsTimerManager;
     }return _aphView;
 }
 
-
 -(UIColor *)countDownTextColor{
     if (!_countDownTextColor) {
         _countDownTextColor = JobsRedColor;
@@ -137,6 +104,39 @@ Prop_strong()NSTimerManager *nsTimerManager;
     if (_countDownTime == 0) {
         _countDownTime = 5;
     }return _countDownTime;
+}
+@synthesize timer = _timer;
+-(JobsTimer *)timer{
+    if (!_timer) {
+        @jobs_weakify(self)
+        _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
+            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
+            timer.timeInterval             = 1;                        // 语义字段
+            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
+            timer.repeats                  = NO;
+            timer.queue                    = dispatch_get_main_queue();
+            timer.timerState               = JobsTimerStateIdle;
+
+            timer.startTime                = 10;               // ✅ 总时长
+            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
+
+            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"正在倒计时...");
+                [self getCuntDown:timer.time];
+                if (self.objBlock) self.objBlock(timer);
+            };
+            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"倒计时结束...");
+                if (self.objBlock) self.objBlock(timer);
+            };
+
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
+        });
+    }return _timer;
 }
 
 @end

@@ -17,8 +17,6 @@ Prop_strong()UIView *backView;
 Prop_strong()UIView *shapLayerView;
 Prop_strong()CAShapeLayer *shapLayer;
 Prop_strong()CAKeyframeAnimation *anim;
-/// Data
-Prop_strong()NSTimerManager *nsTimerManager;
 
 @end
 
@@ -57,11 +55,7 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
     self.hidden = NO;
     self.backView.hidden = NO;
     self.subrefreshLabel.text = progressText;
-    if (self.nsTimerManager.timerCurrentStatus == NSTimerCurrentStatusPause) {
-        [self.nsTimerManager nsTimecontinue];
-    }else{
-        self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
-    }[self starAnimation];
+    [self starAnimation];
 }
 #pragma mark —— 一些私有方法
 /// 创建动画
@@ -74,25 +68,42 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
     self.hidden = YES;
     self.backView.hidden = YES;
     [self.shapLayer removeAnimationForKey:@"CLAnimation"];
-    [self.nsTimerManager nsTimePause];
-    [self.nsTimerManager nsTimeDestroy];
+    [self.timer stop];
 
     self.anim = nil;
 }
 #pragma mark —— lazyLoad
--(NSTimerManager *)nsTimerManager{
-    if (!_nsTimerManager) {
+@synthesize timer = _timer;
+-(JobsTimer *)timer{
+    if (!_timer) {
         @jobs_weakify(self)
-        _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
-            /// 顺时针:每一个时间间隔为 1 秒
-            data.timerStyle = TimerStyle_clockwise;
-            data.timeInterval = .5f;
-            [data actionObjBlock:^(id data) {
+        _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
+            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
+            timer.timeInterval             = 1;                        // 语义字段
+            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
+            timer.repeats                  = NO;
+            timer.queue                    = dispatch_get_main_queue();
+            timer.timerState               = JobsTimerStateIdle;
+
+            timer.startTime                = 0;               // ✅ 总时长
+            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
+
+            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
                 @jobs_strongify(self)
-                self.refreshLabel.text = self.refreshLabel.text.isEqualToString(JobsInternationalization(@"正在上传...")) ? JobsInternationalization(@"正在上传") : self.refreshLabel.text.add(JobsDot);
-            }];
+                self.refreshLabel.byText(JobsInternationalization(@"正在上传..."));
+                if (self.objBlock) self.objBlock(timer);
+            };
+            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"倒计时结束...");
+                if (self.objBlock) self.objBlock(timer);
+            };
+
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
         });
-    }return _nsTimerManager;
+    }return _timer;
 }
 
 - (CAShapeLayer *)shapLayer{

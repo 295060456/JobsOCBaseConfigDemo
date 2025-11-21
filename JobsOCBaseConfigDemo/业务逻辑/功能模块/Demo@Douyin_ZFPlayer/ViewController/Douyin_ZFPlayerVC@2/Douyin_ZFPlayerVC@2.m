@@ -12,7 +12,7 @@
 Prop_strong()ZFPlayerController *player;
 Prop_strong()ZFDouYinControlView *controlView;
 Prop_strong()ZFCustomControlView *fullControlView;
-//Prop_strong()JobsBitsMonitorSuspendLab *bitsMonitorSuspendLab;
+Prop_strong()JobsBitsMonitorSuspendLab *bitsMonitorSuspendLab;
 /// Data
 Prop_strong()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
 
@@ -22,7 +22,6 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
 
 -(void)dealloc {
     JobsLog(@"%@",JobsLocalFunc);
-    [JobsNetworkTrafficMonitor.shared byStop];
 }
 #pragma mark —— Lifecycle
 -(instancetype)init{
@@ -65,36 +64,12 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
     self.tableView.reloadDatas();
-//    self.bitsMonitorSuspendLab.alpha = 1;
-
-    // 普通文本版
-//       JobsNetworkNormalListenerBy(self.view);
-
-       // 或富文本版（二选一）
-       // JobsNetworkRichListenerBy(self.view);
-
-    [JobsNetworkTrafficMonitor.shared
-     byOnUpdate:^(JobsNetworkSource *source,
-                  uint64_t uploadBytesPerSec,
-                  uint64_t downloadBytesPerSec){
-        NSString *upStr   = JobsFormatSpeed(uploadBytesPerSec);
-        NSString *downStr = JobsFormatSpeed(downloadBytesPerSec);
-
-        NSString *text = [NSString stringWithFormat:
-                          @"源: %@\n⬆︎ %@  ⬇︎ %@",
-                          source.displayName, upStr, downStr];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.view.makeNetworkListener.byText(text);
-        });
-    }].byStartWithInterval(1.0);
-
+    self.bitsMonitorSuspendLab.byVisible(YES);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.tableView.mj_header beginRefreshing];
-//    JobsBitsMonitorCore.sharedManager.bitsMonitorRunMode = BitsMonitorManualRun;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -103,12 +78,15 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    [JobsBitsMonitorCore.sharedManager stop];
     [self.player.currentPlayerManager stop];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    /// 销毁流程
+    [self.bitsMonitorSuspendLab removeFromSuperview];
+    JobsNetworkTrafficMonitor.shared.byStop();
+    [JobsNetworkTrafficMonitor destroyShared];
 }
 
 -(void)viewWillLayoutSubviews{
@@ -155,7 +133,7 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
     VideoModel_Core *data = (VideoModel_Core *)self.dataMutArr[indexPath.row];
     
     {
-        NSString *URLString = [data.videoIdcUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        NSString *URLString = [data.videoIdcUrl stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet];
         NSURL *URL = [KTVHTTPCache proxyURLWithOriginalURL:URLString.jobsUrl];
         [self.player playTheIndexPath:indexPath assetURL:URL];
     }
@@ -264,21 +242,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     return 1;
 }
 #pragma mark —— lazyLoad
-//-(JobsBitsMonitorSuspendLab *)bitsMonitorSuspendLab{
-//    if (!_bitsMonitorSuspendLab) {
-//        @jobs_weakify(self)
-//        _bitsMonitorSuspendLab = jobsMakeBitsMonitorSuspendLab(^(__kindof JobsBitsMonitorSuspendLab * _Nullable label) {
-//            @jobs_strongify(self)
-//            label.font = UIFontWeightBoldSize(10);
-//            label.backgroundColor = JobsLightGrayColor;
-//            label.textColor = JobsRedColor;
-//            label.vc = weak_self;
-//            label.isAllowDrag = YES;/// 悬浮效果必须要的参数
-//            label.frame = JobsBitsMonitorSuspendLab.viewFrameByModel(nil);
-//            self.view.addSubview(label);
-//        });
-//    }return _bitsMonitorSuspendLab;
-//}
+-(JobsBitsMonitorSuspendLab *)bitsMonitorSuspendLab{
+    if (!_bitsMonitorSuspendLab) {
+        @jobs_weakify(self)
+        _bitsMonitorSuspendLab = [JobsBitsMonitorSuspendLab.alloc initBy:JobsBitsMonitorDisplayStyleRichText];
+        _bitsMonitorSuspendLab.font = UIFontWeightBoldSize(10);
+        _bitsMonitorSuspendLab.backgroundColor = JobsLightGrayColor;
+        _bitsMonitorSuspendLab.textColor = JobsRedColor;
+        _bitsMonitorSuspendLab.vc = weak_self;
+        _bitsMonitorSuspendLab.isAllowDrag = YES;/// 悬浮效果必须要的参数
+        _bitsMonitorSuspendLab.frame = JobsBitsMonitorSuspendLab.viewFrameByModel(nil);
+        self.view.addSubview(_bitsMonitorSuspendLab);
+    }return _bitsMonitorSuspendLab;
+}
 /// BaseViewProtocol
 @synthesize tableView = _tableView;
 - (UITableView *)tableView{

@@ -31,7 +31,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
 -(void)dealloc{
     if (self.registerDoorInputViewBaseStyleMutArr.count) {
         JobsAppDoorInputViewBaseStyle_1 *手机验证码 = (JobsAppDoorInputViewBaseStyle_1 *)self.registerDoorInputViewBaseStyleMutArr[4];
-        手机验证码.getCountDownBtn.timerDestroy();
+        [手机验证码.getCountDownBtn.timer stop];
     }
 }
 

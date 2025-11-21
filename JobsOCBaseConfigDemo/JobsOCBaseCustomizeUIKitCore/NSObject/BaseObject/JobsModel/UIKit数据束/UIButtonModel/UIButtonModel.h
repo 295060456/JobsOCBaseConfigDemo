@@ -61,8 +61,6 @@ Prop_copy(nullable)jobsByBtnBlock onClickBlock;
 Prop_copy(nullable)jobsByBtnBlock onLongPressGestureEventBlock;
 #pragma mark —— UI约束（Masonry）
 Prop_copy(nullable)jobsByMASConstraintMakerBlock masonryBlock;
-#pragma mark —— 计时器
-Prop_strong(nullable)NSTimerManager *timerManager;
 #pragma mark —— 按钮挂载的对象 <BaseViewProtocol>
 Prop_strong(nullable)id data;
 Prop_strong(nullable)__kindof UIView *view;

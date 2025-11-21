@@ -12,7 +12,7 @@
 Prop_strong()UILabel *valueLab;
 Prop_strong()NSMutableArray <__kindof UIButton *>*btnMutArr;
 /// Data
-Prop_strong()NSTimerManager *nsTimerManager;
+Prop_strong()JobsTimer *timer;
 Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 // SEL是不可以保存到array数组中去的
 @end
@@ -60,29 +60,28 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
     [self.btnMutArr[0] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
         [self reloadBtn:data];
-        self.nsTimerManager.nsTimeStartSysAutoInRunLoop();
+        [self.timer start];
         return nil;
     }];
     /// 暂停
     [self.btnMutArr[1] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
         [self reloadBtn:data];
-        self.nsTimerManager.nsTimePause();
+        [self.timer pause];
         return nil;
     }];
     /// 继续
     [self.btnMutArr[2] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
         [self reloadBtn:data];
-        self.nsTimerManager.nsTimecontinue();
+        [self.timer resume];
         return nil;
     }];
     /// 结束
     [self.btnMutArr[3] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
         [self reloadBtn:data];
-        self.nsTimerManager.nsTimeDestroy();
-        self.nsTimerManager = nil;
+        [self.timer stop];
         self.valueLab.text = JobsInternationalization(@"");
         return nil;
     }];
@@ -127,31 +126,37 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
     }];
 }
 #pragma mark —— LazyLoad
--(NSTimerManager *)nsTimerManager{
-    if (!_nsTimerManager) {
-        _nsTimerManager = jobsMakeTimerManager(^(NSTimerManager * _Nullable data) {
-            /// 以下2种模式任选一种
-            {/// 顺时针模式
-                data.timerStyle = TimerStyle_clockwise;
-            }
-            
-    //        {/// 逆时针模式
-    //            _nsTimerManager.timerStyle = TimerStyle_anticlockwise;
-    //            _nsTimerManager.anticlockwiseTime = 100;
-    //        }
-            
-            data.timeInterval = .5f;
-            @jobs_weakify(self)
-            [data actionObjBlock:^(id data) {
+-(JobsTimer *)timer{
+    if (!_timer) {
+        @jobs_weakify(self)
+        _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
+            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
+            timer.timeInterval             = 1;                        // 语义字段
+            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
+            timer.repeats                  = NO;
+            timer.queue                    = dispatch_get_main_queue();
+            timer.timerState               = JobsTimerStateIdle;
+
+            timer.startTime                = 10;                       // ✅ 总时长
+            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
+
+            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
                 @jobs_strongify(self)
-                if ([data isKindOfClass:UIButtonModel.class]) {
-                    UIButtonModel *model = (UIButtonModel *)data;
-                    JobsLog(@"❤️❤️❤️❤️❤️%f",model.timerManager.anticlockwiseTime);
-                    self.valueLab.text = [NSString stringWithFormat:@"%.2f",model.timerManager.anticlockwiseTime];
-                }
-            }];
+                JobsLog(@"正在倒计时...");
+                self.valueLab.byText([NSString stringWithFormat:@"%f",timer.time]);
+                if (self.objBlock) self.objBlock(timer);
+            };
+            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"倒计时结束...");
+                if (self.objBlock) self.objBlock(timer);
+            };
+
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
         });
-    }return _nsTimerManager;
+    }return _timer;
 }
 
 -(UILabel *)valueLab{
