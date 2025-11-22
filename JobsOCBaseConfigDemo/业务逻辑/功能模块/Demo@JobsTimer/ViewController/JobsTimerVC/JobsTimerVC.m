@@ -62,25 +62,25 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
     /// 开始
     [self.btnMutArr[0] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
-        [self.countDownBtn.timer start];
+        [self.countdownView.timer start];
         return nil;
     }];
     /// 暂停
     [self.btnMutArr[1] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
-        [self.countDownBtn.timer pause];
+        [self.countdownView.timer pause];
         return nil;
     }];
     /// 继续
     [self.btnMutArr[2] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
-        [self.countDownBtn.timer resume];
+        [self.countdownView.timer resume];
         return nil;
     }];
     /// 结束
     [self.btnMutArr[3] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
-        [self.countDownBtn.timer stop];
+        [self.countdownView.timer stop];
         return nil;
     }];
 }
@@ -118,35 +118,15 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
         _countDownBtn = (UIButton<TimerProtocol> *)UIButton.jobsInit()
             .onClickBy(^(__kindof UIButton *x){
                 @jobs_strongify(self)
-                x.timer.timerType                = JobsTimerTypeDispatchAfter;
-                x.timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
-                x.timer.timeInterval             = 1;                        // 语义字段
-                x.timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
-                x.timer.repeats                  = NO;
-                x.timer.queue                    = dispatch_get_main_queue();
-                x.timer.timerState               = JobsTimerStateIdle;
-
-                x.timer.startTime                = 10;               // ✅ 总时长
-                x.timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
-
-                x.timer.accumulatedElapsed       = 0;
-                x.timer.lastStartDate            = nil;
-            if (self.objBlock) self.objBlock(x);
-        }).onLongPressGestureBy(^(id data){
-            JobsLog(@"");
-        })
-        .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-            data.layerCor = HEXCOLOR(0xAE8330);
-            data.jobsWidth = 0.5f;
-            data.cornerRadiusValue = 25 / 2;
-        })).onTick(^(JobsTimer * _Nullable timer) {
-            // 每 tick 一次
-            NSLog(@"剩余: %.0f", timer.time);
-        })
-        .onFinish(^ (JobsTimer * _Nullable timer) {
-            // 倒计时完成
-            NSLog(@"倒计时结束");
-        });
+                if (self.objBlock) self.objBlock(x);
+            }).onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            })
+            .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+                data.layerCor = HEXCOLOR(0xAE8330);
+                data.jobsWidth = 0.5f;
+                data.cornerRadiusValue = 25 / 2;
+            }));
         [self.view.addSubview(_countDownBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(JobsWidth(25));
             make.center.equalTo(self.view);

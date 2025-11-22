@@ -19,6 +19,35 @@ typedef NS_ENUM(NSInteger, JobsNetworkingEnvir) {
     JobsNetworkingEnvir_Product,/// 生产环境
 };
 #endif /* JOBS_NETWORKING_ENVIR_ENUM_DEFINED */
+/// iOS系统基本的3大定时器类型@其他类型的定时器均由此二次封装而成（NSTimer / GCD / CADisplayLink）
+#ifndef JOBS_TIMER_TYPE_ENUM_DEFINED
+#define JOBS_TIMER_TYPE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, JobsTimerType) {
+    JobsTimerTypeNSTimer = 0,        // RunLoop 驱动
+    JobsTimerTypeGCD,                // dispatch_source_t 定时器
+    JobsTimerTypeDisplayLink         // CADisplayLink（帧驱动）
+};
+#endif /* JOBS_TIMER_TYPE_ENUM_DEFINED */
+/// 定时器@当前状态
+#ifndef JOBS_TIMER_STATE_ENUM_DEFINED
+#define JOBS_TIMER_STATE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, JobsTimerState) {
+    JobsTimerStateIdle = 0,          // 初始
+    JobsTimerStateRunning,           // 运行中
+    JobsTimerStatePaused,            // 暂停
+    JobsTimerStateResume,            // 恢复运行状态
+    JobsTimerStateFinished,          // 正常结束（非重复模式）
+    JobsTimerStateCanceled           // 手动取消或者结束
+};
+#endif /* JOBS_TIMER_STATE_ENUM_DEFINED */
+/// 定时器@模式
+#ifndef JOBS_TIMER_STYLE_ENUM_DEFINED
+#define JOBS_TIMER_STYLE_ENUM_DEFINED
+typedef NS_ENUM(NSUInteger, TimerStyle) {
+    TimerStyle_clockwise = 0,        /// 顺时针模式
+    TimerStyle_anticlockwise         /// 逆时针模式（倒计时模式）
+};
+#endif /* JOBS_TIMER_STYLE_ENUM_DEFINED */
 /// 文件类型枚举定义
 #ifndef FILE_TYPE_ENUM_DEFINED
 #define FILE_TYPE_ENUM_DEFINED

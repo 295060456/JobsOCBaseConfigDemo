@@ -10,14 +10,18 @@
 #import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
-/// iOS系统基本的4大定时器类型@其他类型的定时器均由此二次封装而成（NSTimer / GCD / CADisplayLink / dispatch_after）
+/// iOS系统基本的3大定时器类型@其他类型的定时器均由此二次封装而成（NSTimer / GCD / CADisplayLink）
+#ifndef JOBS_TIMER_TYPE_ENUM_DEFINED
+#define JOBS_TIMER_TYPE_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, JobsTimerType) {
     JobsTimerTypeNSTimer = 0,        // RunLoop 驱动
     JobsTimerTypeGCD,                // dispatch_source_t 定时器
-    JobsTimerTypeDisplayLink,        // CADisplayLink（帧驱动）
-    JobsTimerTypeDispatchAfter       // dispatch_after 一次性延迟
+    JobsTimerTypeDisplayLink         // CADisplayLink（帧驱动）
 };
+#endif /* JOBS_TIMER_TYPE_ENUM_DEFINED */
 /// 定时器@当前状态
+#ifndef JOBS_TIMER_STATE_ENUM_DEFINED
+#define JOBS_TIMER_STATE_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, JobsTimerState) {
     JobsTimerStateIdle = 0,          // 初始
     JobsTimerStateRunning,           // 运行中
@@ -26,14 +30,15 @@ typedef NS_ENUM(NSUInteger, JobsTimerState) {
     JobsTimerStateFinished,          // 正常结束（非重复模式）
     JobsTimerStateCanceled           // 手动取消或者结束
 };
+#endif /* JOBS_TIMER_STATE_ENUM_DEFINED */
 /// 定时器@模式
-#ifndef TimerStyle_h
-#define TimerStyle_h
+#ifndef JOBS_TIMER_STYLE_ENUM_DEFINED
+#define JOBS_TIMER_STYLE_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, TimerStyle) {
-    TimerStyle_clockwise = 0,/// 顺时针模式
-    TimerStyle_anticlockwise///  逆时针模式（倒计时模式）
+    TimerStyle_clockwise = 0,        /// 顺时针模式
+    TimerStyle_anticlockwise         /// 逆时针模式（倒计时模式）
 };
-#endif /* TimerStyle_h */
+#endif /* JOBS_TIMER_STYLE_ENUM_DEFINED */
 /// 计时器协议：只关心“状态 + 控制 + 回调”
 @protocol TimerProtocol <NSObject>
 @optional
@@ -67,8 +72,8 @@ Prop_strong(nullable)NSDate *lastStartDate;
 Prop_retain(nullable)NSTimer *nsTimer;           // NSTimer
 Prop_retain(nullable)dispatch_source_t gcdTimer; // GCD 定时器使用的队列（若为 nil，则默认 global queue）
 Prop_retain(nullable)CADisplayLink *displayLink; // CADisplayLink
-/// GCD ➡️ dispatch_after dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-///dispatch_after ➡️ dispatch_get_main_queue();
+/// GCD ➡️ dispatch_after dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0); 用于重计算 / IO
+///dispatch_after ➡️ dispatch_get_main_queue(); 用于UI修改
 Prop_retain(nullable)dispatch_queue_t queue;     //
 #pragma mark —— 定时器状态
 /// 定时器@当前状态

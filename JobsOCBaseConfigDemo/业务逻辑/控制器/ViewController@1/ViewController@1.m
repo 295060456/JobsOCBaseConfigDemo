@@ -285,11 +285,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
+        @jobs_weakify(self)
         _dataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
+            @jobs_strongify(self)
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"JobsScrollLabelVC");
                 model.subTitle = JobsInternationalization(@"当文本超出的时候，滚动展现文字的Label");
                 model.cls = JobsScrollLabelVC.class;
+            })));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"JobsTimer");
+                model.subTitle = JobsInternationalization(@"☀️时间模块");
+                model.cls = JobsTimerVC.class;
             })));
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"CalendarVC");
@@ -457,11 +464,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 model.title = JobsInternationalization(@"IrregularView");
                 model.subTitle = JobsInternationalization(@"不规则的按钮");
                 model.cls = TestIrregularViewTestVC.class;
-            })));
-            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"JobsTimer");
-                model.subTitle = JobsInternationalization(@"☀️时间模块");
-                model.cls = JobsTimerVC.class;
             })));
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"JobsTimerTestVC");

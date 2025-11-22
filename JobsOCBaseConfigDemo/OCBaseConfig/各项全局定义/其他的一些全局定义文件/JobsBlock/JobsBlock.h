@@ -436,6 +436,22 @@ typedef void(^jobsByNavigationTransitionManagerBlock)(__kindof JobsNavigationTra
 typedef void(^JobsTimerBlock)(JobsTimer *_Nullable timer);
 typedef id<TimerProtocol> _Nonnull(^JobsRetTimerProtocolIDByTimerBlocks)(JobsTimerBlock _Nullable block);
 
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByTime)(CGFloat time);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByStartTime)(NSTimeInterval startTime);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByDelay)(NSTimeInterval timeSecIntervalSinceDate);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByTimeInterval)(NSTimeInterval timeInterval);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByRepeats)(BOOL repeats);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByRunLoopMode)(NSRunLoopMode _Nullable mode);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByUserInfo)(id _Nullable userInfo);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByTimerStyle)(TimerStyle style);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByType)(JobsTimerType type);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByQueue)(dispatch_queue_t _Nullable queue);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByTimerState)(JobsTimerState state);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByOnTicker)(JobsTimerBlock _Nullable block);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByOnFinisher)(JobsTimerBlock _Nullable block);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByOnTick)(JobsRetTimerProtocolIDByTimerBlocks _Nullable block);
+typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByOnFinish)(JobsRetTimerProtocolIDByTimerBlocks _Nullable block);
+
 @class JobsNetworkSource;
 typedef void(^JobsNetworkUpdateBlock)(JobsNetworkSource * _Nullable source,
                                       uint64_t uploadBytesPerSec,

@@ -66,7 +66,7 @@ static JobsNetworkTrafficMonitor *_sharedInstance = nil;
     if(!_timer){
         @jobs_weakify(self)
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerType                = JobsTimerTypeNSTimer;
             timer.timerStyle               = TimerStyle_clockwise;     // 倒计时模式
             timer.timeInterval             = 1;                        // 语义字段
             timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟

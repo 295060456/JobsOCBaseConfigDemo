@@ -63,9 +63,6 @@ TimerProtocol_synthesize_lock
         case JobsTimerTypeDisplayLink:
             [self startDisplayLink];
             break;
-        case JobsTimerTypeDispatchAfter:
-            [self startDispatchAfter];
-            break;
     }
 }
 /// 暂停计时器
@@ -88,10 +85,6 @@ TimerProtocol_synthesize_lock
         case JobsTimerTypeDisplayLink:
             self.displayLink.paused = YES;
             break;
-        case JobsTimerTypeDispatchAfter:
-            // dispatch_after 本身无法暂停，只能当作取消
-            [self stop];
-            return;
     }
     self.timerState = JobsTimerStatePaused;
 }
@@ -117,9 +110,6 @@ TimerProtocol_synthesize_lock
         case JobsTimerTypeDisplayLink:
             self.displayLink.paused = NO;
             break;
-        case JobsTimerTypeDispatchAfter:
-            // dispatch_after 无法恢复，忽略
-            return;
     }
     self.timerState = JobsTimerStateRunning;
 }
@@ -263,7 +253,7 @@ TimerProtocol_synthesize_lock
         @jobs_strongify(self)
         BOOL countdownFinished = [self updateCountdownOnTickIfNeeded];
         if (self.onTicker) self.onTicker(self);
-        if (countdownFinished || !self.repeats) {
+        if (countdownFinished) {
             self.invalidateInternal(NO);
             self.timerState = JobsTimerStateFinished;
             if (self.onFinisher) self.onFinisher(self);
@@ -301,7 +291,6 @@ TimerProtocol_synthesize_lock
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(delay * NSEC_PER_SEC)),
                    queue, ^{
         @jobs_strongify(self)
-        if (!self) return;
         if (!self.dispatchAfterPending) return; // 已经被取消
 
         self.dispatchAfterPending = NO;
@@ -321,7 +310,7 @@ TimerProtocol_synthesize_lock
 -(void)handleTick{
     BOOL countdownFinished = [self updateCountdownOnTickIfNeeded];// 在每次 tick 时更新倒计时剩余时间，返回 YES 表示已经归零，应结束
     if (self.onTicker) self.onTicker(self);
-    if (countdownFinished || !self.repeats) {
+    if (countdownFinished) {
         self.invalidateInternal(NO);
         self.timerState = JobsTimerStateFinished;
         if (self.onFinisher) self.onFinisher(self);
@@ -346,6 +335,142 @@ JobsKey(_onFinisher)
 
 -(void)setOnFinisher:(JobsTimerBlock)onFinisher{
     Jobs_setAssociatedCOPY_NONATOMIC(_onFinisher, onFinisher)
+}
+
+#pragma mark - DSL 配置链式语法
+-(JobsRetTimerByType _Nonnull)timerTypeBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(JobsTimerType timerType){
+        @jobs_strongify(self)
+        self.timerType = timerType;
+        return self;
+    };
+}
+
+-(JobsRetTimerByTimerStyle _Nonnull)timerStyleBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(TimerStyle style){
+        @jobs_strongify(self)
+        self.timerStyle = style;
+        return self;
+    };
+}
+
+-(JobsRetTimerByTimeInterval _Nonnull)timeIntervalBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(NSTimeInterval interval){
+        @jobs_strongify(self)
+        self.timeInterval = interval;
+        return self;
+    };
+}
+
+-(JobsRetTimerByStartTime _Nonnull)startTimeBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(NSTimeInterval startTime){
+        @jobs_strongify(self)
+        self.startTime = startTime;
+        return self;
+    };
+}
+
+-(JobsRetTimerByTime _Nonnull)timeBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(CGFloat time){
+        @jobs_strongify(self)
+        self.time = time;
+        return self;
+    };
+}
+
+-(JobsRetTimerByDelay _Nonnull)timeSecIntervalSinceDateBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(NSTimeInterval delay){
+        @jobs_strongify(self)
+        self.timeSecIntervalSinceDate = delay;
+        return self;
+    };
+}
+
+-(JobsRetTimerByRepeats _Nonnull)repeatsBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(BOOL repeats){
+        @jobs_strongify(self)
+        self.repeats = repeats;
+        return self;
+    };
+}
+
+-(JobsRetTimerByRunLoopMode _Nonnull)runLoopModeBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(NSRunLoopMode mode){
+        @jobs_strongify(self)
+        self.runLoopMode = mode;
+        return self;
+    };
+}
+
+-(JobsRetTimerByUserInfo _Nonnull)userInfoBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(id userInfo){
+        @jobs_strongify(self)
+        self.userInfo = userInfo;
+        return self;
+    };
+}
+
+-(JobsRetTimerByQueue _Nonnull)queueBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(dispatch_queue_t queue){
+        @jobs_strongify(self)
+        self.queue = queue;
+        return self;
+    };
+}
+
+-(JobsRetTimerByTimerState _Nonnull)timerStateBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(JobsTimerState state){
+        @jobs_strongify(self)
+        self.timerState = state;
+        return self;
+    };
+}
+
+-(JobsRetTimerByOnTicker _Nonnull)onTickerBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(JobsTimerBlock block){
+        @jobs_strongify(self)
+        self.onTicker = block;
+        return self;
+    };
+}
+
+-(JobsRetTimerByOnFinisher _Nonnull)onFinisherBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(JobsTimerBlock block){
+        @jobs_strongify(self)
+        self.onFinisher = block;
+        return self;
+    };
+}
+
+-(JobsRetTimerByOnTick _Nonnull)onTickBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(JobsRetTimerProtocolIDByTimerBlocks block){
+        @jobs_strongify(self)
+        self.onTick = block;
+        return self;
+    };
+}
+
+-(JobsRetTimerByOnFinish _Nonnull)onFinishBy{
+    @jobs_weakify(self)
+    return ^__kindof JobsTimer *_Nullable(JobsRetTimerProtocolIDByTimerBlocks block){
+        @jobs_strongify(self)
+        self.onFinish = block;
+        return self;
+    };
 }
 
 @end

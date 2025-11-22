@@ -119,7 +119,7 @@ Prop_strong()NSMutableArray *colors;
     if (!_timer_color) {
         @jobs_weakify(self)
         _timer_color = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerType                = JobsTimerTypeNSTimer;
             timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
             timer.timeInterval             = self.color_timeInterval;                        // 语义字段
             timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
@@ -158,7 +158,7 @@ Prop_strong()NSMutableArray *colors;
     if (!_timer_length) {
         @jobs_weakify(self)
         _timer_length = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerType                = JobsTimerTypeNSTimer;
             timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
             timer.timeInterval             = self.length_timeInterval;                        // 语义字段
             timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟

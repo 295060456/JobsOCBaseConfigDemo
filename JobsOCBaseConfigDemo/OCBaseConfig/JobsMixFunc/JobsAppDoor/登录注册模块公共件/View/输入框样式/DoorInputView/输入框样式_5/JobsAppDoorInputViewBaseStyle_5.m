@@ -189,7 +189,7 @@ Prop_strong()UIViewModel *chooseBtnViewModel;
         _authCodeBtn = (UIButton<TimerProtocol> *)UIButton.jobsInit()
             .onClickBy(^(__kindof UIButton *x){
             @jobs_strongify(self)
-                x.timer.timerType                = JobsTimerTypeDispatchAfter;
+                x.timer.timerType                = JobsTimerTypeNSTimer;
                 x.timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
                 x.timer.timeInterval             = 1;                        // 语义字段
                 x.timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟

@@ -93,38 +93,49 @@ static dispatch_once_t static_countdownViewOnceToken;
     if (!_timer) {
         @jobs_weakify(self)
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer.timerType                = JobsTimerTypeDispatchAfter;
-            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
-            timer.timeInterval             = 1;                        // 语义字段
-            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
-            timer.repeats                  = NO;
-            timer.queue                    = dispatch_get_main_queue();
-            timer.timerState               = JobsTimerStateIdle;
-
-            timer.startTime                = 30 * 60;                  // ✅ 总时长
-            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
-
-            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
+            timer
+            .timerTypeBy(JobsTimerTypeNSTimer)
+            .timerStyleBy(TimerStyle_clockwise)      // 倒计时模式
+            .timeIntervalBy(1)                           // 语义字段
+            .timeSecIntervalSinceDateBy(0)               // dispatch_after 延迟（这里等价 0）
+            .repeatsBy(YES)
+            .queueBy(dispatch_get_main_queue())
+            .timerStateBy(JobsTimerStateIdle)
+            .startTimeBy(30 * 60)                        // ✅ 总时长
+            .timeBy(0)                                   // ✅ 当前剩余时间（初始 = 总时长）
+            .onTickerBy(^(__kindof JobsTimer * _Nullable t){
                 @jobs_strongify(self)
                 JobsLog(@"正在倒计时...");
-                NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",timer.time] formatTime:self.formatTime] componentsSeparatedByString:JobsInternationalization(@"分")];
+
+                NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
+                NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
+
+                NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",t.time]
+                                               formatTime:self.formatTime]
+                                    componentsSeparatedByString:JobsInternationalization(@"分")];
                 self.minutesStr = strArr1[0];
+
                 NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
                 self.secondStr = strArr2[0];
-                self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
-                                                                           paragraphStyle:self.paragraphStyle];
-                if (self.objBlock) self.objBlock(timer);
-            };
-            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
+
+                self.countdownTimeLab.attributedText =
+                [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
+                                     paragraphStyle:self.paragraphStyle];
+
+                if (self.objBlock) self.objBlock(t);
+            })
+            .onFinisherBy(^(__kindof JobsTimer * _Nullable t){
                 @jobs_strongify(self)
                 JobsLog(@"倒计时结束...");
-                if (self.objBlock) self.objBlock(timer);
-            };
+                if (self.objBlock) self.objBlock(t);
+            });
 
-            timer.accumulatedElapsed       = 0;
-            timer.lastStartDate            = nil;
+            // 这些是内部状态初始化，不暴露成 DSL 也可以
+            timer.accumulatedElapsed = 0;
+            timer.lastStartDate      = nil;
         });
-    }return _timer;
+    }
+    return _timer;
 }
 
 -(JobsTimeModel *)formatTime{

@@ -30,7 +30,7 @@ JobsKey(_timer)
     if (!Timer) {
         @jobs_weakify(self)
         Timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer.timerType                = JobsTimerTypeDispatchAfter;
+            timer.timerType                = JobsTimerTypeNSTimer;
             timer.timerStyle               = self.timerStyle;          // 计时模式
             timer.timeInterval             = self.timeInterval;        // 跳动步长（频率间距）
             timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
