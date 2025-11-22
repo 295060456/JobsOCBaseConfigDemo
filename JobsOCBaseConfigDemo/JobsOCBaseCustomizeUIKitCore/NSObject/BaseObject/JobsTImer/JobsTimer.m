@@ -34,25 +34,24 @@ TimerProtocol_synthesize_lock
 -(BOOL)isRunning{ return _running;}
 -(BOOL)isPaused{ return _paused;}
 -(BOOL)isStop{ return _stop;}
-
 #pragma mark —— TimerProtocol
 /// 启动计时器
 -(void)start{
-    // 重复调用 start：先清理旧的底层定时器
+    /// 重复调用 start：先清理旧的底层定时器
     self.invalidateInternal(NO);
 
     self.accumulatedElapsed = 0; // 已经流逝的时间（总 elapsed，单位秒）
     self.lastStartDate      = NSDate.date;
 
-    // 倒计时模式：startTime > 0 时，time 表示剩余时间，初始化为 startTime
-    if (self.startTime > 0) {
+    /// 倒计时模式：startTime > 0 时，time 表示剩余时间，初始化为 startTime
+    if (self.isCountdownMode) {
         self.time = self.startTime;
     } else {
-        // 非倒计时模式：time 表示已流逝时间
+        /// 非倒计时模式：time 表示已流逝时间
         self.time = 0;
     }
     @jobs_weakify(self)
-    [self delayByMainQueue:self.timeSecIntervalSinceDate block:^(uint64_t data) {
+    [self delayByMainQueue:self.timeSecIntervalSinceDate block:^{
         @jobs_strongify(self)
         switch (self.timerType) {
             case JobsTimerTypeNSTimer:      [self startNSTimer];      break;
@@ -64,7 +63,7 @@ TimerProtocol_synthesize_lock
 /// 暂停计时器
 -(void)pause{
     if (!self.isRunning) return;
-    // 更新一次时间，并冻结基准时间
+    /// 更新一次时间，并冻结基准时间
     [self updateElapsedAndMaybeRemaining];
     self.lastStartDate = nil;
 
@@ -88,8 +87,9 @@ TimerProtocol_synthesize_lock
 -(void)resume{
     if (!self.isPaused) return;
     // 恢复时间基准：倒计时模式 & 剩余时间 > 0，或者普通模式
+    BOOL isCountdown = self.isCountdownMode;
     if (!self.lastStartDate &&
-        (self.startTime <= 0 || self.time > 0)) {
+        (!isCountdown || self.time > 0)) {
         self.lastStartDate = NSDate.date;
     }
 
@@ -118,7 +118,25 @@ TimerProtocol_synthesize_lock
     // 对外统一销毁入口（TimerProtocol 的 stop）
     self.invalidateInternal(YES);
 }
-#pragma mark —— 时间推进 & 倒计时辅助
+#pragma mark —— 一些私有方法
+-(BOOL)repeats{
+    return YES;
+}
+/// 统一 Tick 入口
+-(void)handleTick{
+    BOOL countdownFinished = [self updateCountdownOnTickIfNeeded];// 在每次 tick 时更新倒计时剩余时间，返回 YES 表示已经归零，应结束
+    if (self.onTicker) self.onTicker(self);
+    if (countdownFinished) {
+        self.invalidateInternal(NO);
+        self.timerState = JobsTimerStateFinished;
+        if (self.onFinisher) self.onFinisher(self);
+    }
+}
+/// 当前是否为倒计时模式
+-(BOOL)isCountdownMode{
+    // 你可以根据自己的枚举调整条件，比如还有 TimerStyle_auto 等
+    return (self.timerStyle == TimerStyle_anticlockwise && self.startTime > 0);
+}
 /// 根据当前时间推进一次 elapsed，并根据模式更新 time：
 /// - 倒计时模式：startTime > 0、time = 剩余时间
 /// - 普通模式：   startTime = 0、time = 已流逝时间
@@ -132,13 +150,13 @@ TimerProtocol_synthesize_lock
     self.lastStartDate      = now;
     self.accumulatedElapsed += delta;
 
-    if (self.startTime > 0) {
+    if (self.isCountdownMode) {
         // 倒计时模式：time 表示剩余时间
         NSTimeInterval remaining = self.startTime - self.accumulatedElapsed;
         if (remaining < 0) remaining = 0;
         self.time = remaining;
     } else {
-        // 普通模式：time 表示已流逝时间
+        // 正向模式：time 表示已流逝时间
         self.time = self.accumulatedElapsed;
     }
 }
@@ -147,14 +165,13 @@ TimerProtocol_synthesize_lock
     // 推进一次时间
     [self updateElapsedAndMaybeRemaining];
     // 非倒计时模式
-    if (self.startTime <= 0) return NO;
+    if (!self.isCountdownMode) return NO;
     return self.time <= 0;
 }
 
 -(double)countdownTimerProgress{
-    // 只有倒计时模式才有 progress 语义
-    if (self.startTime <= 0) return 0;
-
+    // 只有“倒计时样式 + startTime > 0”才有进度语义
+    if (!self.isCountdownMode) return 0;
     double remaining = self.time;
     if (remaining < 0) remaining = 0;
     if (remaining > self.startTime) remaining = self.startTime;
@@ -162,9 +179,9 @@ TimerProtocol_synthesize_lock
     double done = self.startTime - remaining; // 已完成时长
     return self.startTime > 0 ? (done / self.startTime) : 0;
 }
-#pragma mark —— 内部销毁逻辑
-/// 这里不用弱化self，因为是销毁阶段，不存在循环引用
+/// 内部销毁逻辑
 - (jobsByBOOLBlock _Nonnull)invalidateInternal {
+    /// 这里不用弱化self，因为是销毁阶段，不存在循环引用
     return ^(BOOL markCanceled){
         // NSTimer
         if (self->_nsTimer) {
@@ -284,20 +301,6 @@ TimerProtocol_synthesize_lock
     if(!_queue){
         _queue = dispatch_get_main_queue();
     }return _queue;
-}
-
--(BOOL)repeats{
-    return YES;
-}
-#pragma mark —— 统一 Tick 入口
--(void)handleTick{
-    BOOL countdownFinished = [self updateCountdownOnTickIfNeeded];// 在每次 tick 时更新倒计时剩余时间，返回 YES 表示已经归零，应结束
-    if (self.onTicker) self.onTicker(self);
-    if (countdownFinished) {
-        self.invalidateInternal(NO);
-        self.timerState = JobsTimerStateFinished;
-        if (self.onFinisher) self.onFinisher(self);
-    }
 }
 #pragma mark —— TimerProtocol
 JobsKey(_onTicker)

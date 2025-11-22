@@ -11969,7 +11969,103 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 }];
 ```
 
-### 79、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 79、JobsTimer <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+#### 79.1、倒计时 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+```objective-c
+@synthesize timer = _timer;
+-(JobsTimer *)timer{
+    if (!_timer) {
+        @jobs_weakify(self)
+        _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
+            timer
+            /// 必须配置的项
+                .timerTypeBy(JobsTimerTypeNSTimer)           // 计时器核心选择
+                .timerStyleBy(TimerStyle_anticlockwise)      // 倒计时模式
+                .timeIntervalBy(1)                           // 跳动步长（频率间距）
+                .startTimeBy(30 * 60)                        // ✅ 总时长
+                .timeSecIntervalSinceDateBy(3)               // dispatch_after 延迟（这里等价 0）
+                .queueBy(dispatch_get_main_queue())
+                .onTickerBy(^(__kindof JobsTimer * _Nullable t){
+                    @jobs_strongify(self)
+                    JobsLog(@"正在倒计时...");
+                    NSLog(@"time = %f",t.time);
+                    NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
+                    NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
+
+                    NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",t.time] formatTime:self.formatTime]
+                                        componentsSeparatedByString:JobsInternationalization(@"分")];
+                    self.minutesStr = strArr1[0];
+
+                    NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
+                    self.secondStr = strArr2[0];
+
+                    self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr paragraphStyle:self.paragraphStyle];
+                    if (self.objBlock) self.objBlock(t);
+                })
+                .onFinisherBy(^(__kindof JobsTimer * _Nullable t){
+                    @jobs_strongify(self)
+                    JobsLog(@"倒计时结束...");
+                    if (self.objBlock) self.objBlock(t);
+                });
+
+            /// 这些是内部状态初始化，不暴露成 DSL 也可以
+            timer.accumulatedElapsed = 0;   // 已经流逝的时间（总 elapsed，单位秒）
+            timer.lastStartDate      = nil; // 最近一次 start/resume 的时间点（支持 pause/resume）
+        });
+    }return _timer;
+}
+```
+
+#### 79.2、正计时 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+```objective-c
+@synthesize timer = _timer;
+-(JobsTimer *)timer{
+    if (!_timer) {
+        @jobs_weakify(self)
+        _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
+            timer
+            /// 必须配置的项
+                .timerTypeBy(JobsTimerTypeNSTimer)           // 计时器核心选择
+                .timerStyleBy(TimerStyle_clockwise)          // 正计时模式
+                .timeIntervalBy(1)                           // 跳动步长（频率间距）
+                .startTimeBy(30 * 60)                        // ✅ 总时长
+                .timeSecIntervalSinceDateBy(3)               // dispatch_after 延迟（这里等价 0）
+                .queueBy(dispatch_get_main_queue())
+                .onTickerBy(^(__kindof JobsTimer * _Nullable t){
+                    @jobs_strongify(self)
+                    JobsLog(@"正在倒计时...");
+                    NSLog(@"time = %f",t.time);
+                    NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
+                    NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
+
+                    NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",t.time] formatTime:self.formatTime]
+                                        componentsSeparatedByString:JobsInternationalization(@"分")];
+                    self.minutesStr = strArr1[0];
+
+                    NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
+                    self.secondStr = strArr2[0];
+
+                    self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr paragraphStyle:self.paragraphStyle];
+                    if (self.objBlock) self.objBlock(t);
+                })
+                .onFinisherBy(^(__kindof JobsTimer * _Nullable t){
+                    @jobs_strongify(self)
+                    JobsLog(@"倒计时结束...");
+                    if (self.objBlock) self.objBlock(t);
+                });
+
+            /// 这些是内部状态初始化，不暴露成 DSL 也可以
+            timer.accumulatedElapsed = 0;   // 已经流逝的时间（总 elapsed，单位秒）
+            timer.lastStartDate      = nil; // 最近一次 start/resume 的时间点（支持 pause/resume）
+        });
+    }return _timer;
+}
+```
+
+### 80、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 

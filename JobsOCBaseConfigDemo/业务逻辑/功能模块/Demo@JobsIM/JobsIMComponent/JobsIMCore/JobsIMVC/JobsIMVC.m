@@ -354,14 +354,14 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                             .add(toStringByNSInteger(timeModel.currentMin))
                             .add(@":")
                             .add(toStringByNSInteger(timeModel.currentSec));
-                        data.userIconIMG = JobsBuddleIMG(@"bundle", @"头像", nil, @"头像_1");//我自己的头像
+                        data.userIconIMG = JobsBuddleIMG(@"bundle", @"头像", nil, @"头像_1"); // 我自己的头像
                         data.identification = @"我是我自己";
                         data.userNameStr = @"Jobs";
                     }));self.tableView.reloadDatas();
                 }
                 /// 模拟服务器请求对方数据
                 @jobs_weakify(self)
-                [self delay:1 doSth:^(id data) {
+                [self delayByMainQueue:1 block:^{
                     @jobs_strongify(self)
                     [self simulateServer];
                 }];

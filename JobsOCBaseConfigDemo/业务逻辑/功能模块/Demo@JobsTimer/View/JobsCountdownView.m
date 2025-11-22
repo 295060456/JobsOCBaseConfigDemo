@@ -103,10 +103,10 @@ static dispatch_once_t static_countdownViewOnceToken;
             timer
             /// 必须配置的项
                 .timerTypeBy(JobsTimerTypeNSTimer)           // 计时器核心选择
-                .timerStyleBy(TimerStyle_clockwise)          // 倒计时模式
+                .timerStyleBy(TimerStyle_clockwise)          // 正计时模式
                 .timeIntervalBy(1)                           // 跳动步长（频率间距）
                 .startTimeBy(30 * 60)                        // ✅ 总时长
-                .timeSecIntervalSinceDateBy(10)               // dispatch_after 延迟（这里等价 0）
+                .timeSecIntervalSinceDateBy(3)               // dispatch_after 延迟（这里等价 0）
                 .queueBy(dispatch_get_main_queue())
                 .onTickerBy(^(__kindof JobsTimer * _Nullable t){
                     @jobs_strongify(self)

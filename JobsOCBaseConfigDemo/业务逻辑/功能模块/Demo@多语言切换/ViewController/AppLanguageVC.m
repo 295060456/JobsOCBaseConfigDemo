@@ -215,12 +215,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     }
                     /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
                     @jobs_weakify(self)
-                    [self getMainQueue:^{
+                    dispatch_async(dispatch_get_main_queue(), ^(){
                         @jobs_strongify(self)
                         [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
                                                   animationBlock:nil
                                                  completionBlock:nil];
-                    }];return nil;
+                    });return nil;
                 }]);
                 tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
                     self->_tableView.endRefreshing(YES);

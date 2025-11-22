@@ -21,7 +21,7 @@
 #import "JobsCommentConfig.h"
 #pragma mark —— 3rd
 #import "NSString+Conversion.h"
-#import "NSObject+DefConfig.h"
+#import "NSObject+Queue.h"
 #if __has_include(<MJExtension/MJExtension.h>)
 #import <MJExtension/MJExtension.h>
 #else

@@ -88,7 +88,7 @@
 /// 测量数据
 #import "NSObject+Measure.h"
 /// 线程定义
-#import "NSObject+DefConfig.h"
+#import "NSObject+Queue.h"
 /// 全局的通知定义
 #import "NSObject+Notification.h"
 /// 万物回调

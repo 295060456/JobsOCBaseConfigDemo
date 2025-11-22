@@ -699,7 +699,7 @@
 		C55C8C562E167B6C00B56985 /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C83532E167B6300B56985 /* NSObject+Class.m */; };
 		C55C8C572E167B6C00B56985 /* NSObject+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C83562E167B6300B56985 /* NSObject+UserInfo.m */; };
 		C55C8C582E167B6C00B56985 /* NSObject+UNUserNotificationCenterDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C83592E167B6300B56985 /* NSObject+UNUserNotificationCenterDelegate.m */; };
-		C55C8C592E167B6C00B56985 /* NSObject+DefConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C835B2E167B6300B56985 /* NSObject+DefConfig.m */; };
+		C55C8C592E167B6C00B56985 /* NSObject+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C835B2E167B6300B56985 /* NSObject+Queue.m */; };
 		C55C8C5A2E167B6C00B56985 /* NSObject+CallBackInfoByBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C835F2E167B6300B56985 /* NSObject+CallBackInfoByBlock.m */; };
 		C55C8C5B2E167B6C00B56985 /* This+URLManager_Base.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C83612E167B6300B56985 /* This+URLManager_Base.m */; };
 		C55C8C5C2E167B6C00B56985 /* UISlider+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C83692E167B6300B56985 /* UISlider+Extra.m */; };
@@ -2785,8 +2785,8 @@
 		C55C83562E167B6300B56985 /* NSObject+UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UserInfo.m"; sourceTree = "<group>"; };
 		C55C83582E167B6300B56985 /* NSObject+UNUserNotificationCenterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UNUserNotificationCenterDelegate.h"; sourceTree = "<group>"; };
 		C55C83592E167B6300B56985 /* NSObject+UNUserNotificationCenterDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UNUserNotificationCenterDelegate.m"; sourceTree = "<group>"; };
-		C55C835B2E167B6300B56985 /* NSObject+DefConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DefConfig.m"; sourceTree = "<group>"; };
-		C55C835C2E167B6300B56985 /* NSObject+DefConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DefConfig.h"; sourceTree = "<group>"; };
+		C55C835B2E167B6300B56985 /* NSObject+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Queue.m"; sourceTree = "<group>"; };
+		C55C835C2E167B6300B56985 /* NSObject+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Queue.h"; sourceTree = "<group>"; };
 		C55C835E2E167B6300B56985 /* NSObject+CallBackInfoByBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CallBackInfoByBlock.h"; sourceTree = "<group>"; };
 		C55C835F2E167B6300B56985 /* NSObject+CallBackInfoByBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CallBackInfoByBlock.m"; sourceTree = "<group>"; };
 		C55C83612E167B6300B56985 /* This+URLManager_Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "This+URLManager_Base.m"; sourceTree = "<group>"; };
@@ -12323,7 +12323,7 @@
 				C55C83512E167B6300B56985 /* NSObject+Class */,
 				C55C83542E167B6300B56985 /* NSObject+UserInfo */,
 				C55C83572E167B6300B56985 /* NSObject+UNUserNotificationCenterDelegate */,
-				C55C835A2E167B6300B56985 /* NSObject+DefConfig */,
+				C55C835A2E167B6300B56985 /* NSObject+Queue */,
 				C55C835D2E167B6300B56985 /* NSObject+CallBackInfoByBlock */,
 			);
 			path = "NSObject+Category";
@@ -12856,13 +12856,13 @@
 			path = "NSObject+UNUserNotificationCenterDelegate";
 			sourceTree = "<group>";
 		};
-		C55C835A2E167B6300B56985 /* NSObject+DefConfig */ = {
+		C55C835A2E167B6300B56985 /* NSObject+Queue */ = {
 			isa = PBXGroup;
 			children = (
-				C55C835C2E167B6300B56985 /* NSObject+DefConfig.h */,
-				C55C835B2E167B6300B56985 /* NSObject+DefConfig.m */,
+				C55C835C2E167B6300B56985 /* NSObject+Queue.h */,
+				C55C835B2E167B6300B56985 /* NSObject+Queue.m */,
 			);
-			path = "NSObject+DefConfig";
+			path = "NSObject+Queue";
 			sourceTree = "<group>";
 		};
 		C55C835D2E167B6300B56985 /* NSObject+CallBackInfoByBlock */ = {
@@ -18771,7 +18771,7 @@
 				C55C8B122E167B6A00B56985 /* UIButton+UIControlState.m in Sources */,
 				C55C8BD12E167B6B00B56985 /* UICollectionViewFlowLayout+Extra.m in Sources */,
 				C55C8B832E167B6B00B56985 /* NSString+Check.m in Sources */,
-				C55C8C592E167B6C00B56985 /* NSObject+DefConfig.m in Sources */,
+				C55C8C592E167B6C00B56985 /* NSObject+Queue.m in Sources */,
 				C55C8A5F2E167B6900B56985 /* WeakTarget.m in Sources */,
 				C55C89632E167B6900B56985 /* JobsGetiOSNewestVersionModel.m in Sources */,
 				C55C8DF82E167B6E00B56985 /* FSCalendarSeparatorDecorationView.m in Sources */,
