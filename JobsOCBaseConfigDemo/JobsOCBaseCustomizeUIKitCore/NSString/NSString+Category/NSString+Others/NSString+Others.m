@@ -93,6 +93,13 @@
     return [CIFilter filterWithName:self];
 }
 #pragma mark —— 一些功能性的
+-(jobsByVoidBlock _Nonnull)toast{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        NSObject.jobsToastMsg(JobsInternationalization(self));
+    };
+}
 /// 输入单词的首字母大写（适用于拼接set方法）
 -(NSString *_Nonnull)capitalizeFirstLetter{
     if(self.length){

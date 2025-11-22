@@ -7,19 +7,15 @@
 
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
+#import "NSString+Others.h"
 
 NS_ASSUME_NONNULL_BEGIN
 // https://www.jianshu.com/p/564b5da57ea1
 @interface NSObject (DefConfig)
-// 回到主线程
--(void)getMainQueue:(jobsByVoidBlock _Nullable)block;
-// 开启一个子线程
--(void)getGlobalQueue:(jobsByVoidBlock _Nullable)block;
-/// 从现在开始，等待一段时间，去做一件事情
-/// @param delay 从现在开始，等待的时间
-/// @param doSthBlock 去做的一件事情
--(void)delay:(CGFloat)delay
-       doSth:(jobsByIDBlock _Nullable)doSthBlock;
+/// 用于：UI刷新（高频需求）
+-(void)delayByMainQueue:(int64_t)time block:(jobsByUInt64_tBlock)block;
+/// 用于：重计算 / IO
+-(void)delayByGlobalQueue:(int64_t)time block:(jobsByUInt64_tBlock)block;
 
 @end
 

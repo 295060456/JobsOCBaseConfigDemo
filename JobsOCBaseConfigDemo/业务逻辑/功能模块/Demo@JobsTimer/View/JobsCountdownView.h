@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JobsCountdownView : BaseView
 
+-(void)refreshData;
+
 @end
 
 NS_ASSUME_NONNULL_END

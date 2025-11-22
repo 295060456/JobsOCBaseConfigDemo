@@ -124,6 +124,7 @@ typedef void(^jobsByIndexPathBlock)(NSIndexPath *_Nullable indexPath);
 #pragma mark —— 关于数据类型
 typedef void(^jobsByNSIntegerBlock)(NSInteger data);
 typedef void(^jobsByNSUIntegerBlock)(NSUInteger data);
+typedef void(^jobsByUInt64_tBlock)(uint64_t data);
 typedef void(^jobsByCGFloatBlock)(CGFloat data);
 typedef void(^jobsByBOOLBlock)(BOOL data);
 typedef void(^jobsByIntBlock)(int data);

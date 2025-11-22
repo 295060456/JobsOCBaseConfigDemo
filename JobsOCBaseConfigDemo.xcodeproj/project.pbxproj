@@ -12859,8 +12859,8 @@
 		C55C835A2E167B6300B56985 /* NSObject+DefConfig */ = {
 			isa = PBXGroup;
 			children = (
-				C55C835B2E167B6300B56985 /* NSObject+DefConfig.m */,
 				C55C835C2E167B6300B56985 /* NSObject+DefConfig.h */,
+				C55C835B2E167B6300B56985 /* NSObject+DefConfig.m */,
 			);
 			path = "NSObject+DefConfig";
 			sourceTree = "<group>";

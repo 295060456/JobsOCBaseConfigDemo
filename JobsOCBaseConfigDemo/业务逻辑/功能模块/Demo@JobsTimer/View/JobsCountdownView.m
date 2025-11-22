@@ -87,6 +87,13 @@ static dispatch_once_t static_countdownViewOnceToken;
         return CGSizeMake(JobsWidth(343), JobsWidth(184));
     };
 }
+#pragma mark —— 公共方法
+-(void)refreshData{
+    self.minutesStr = nil;
+    self.secondStr = nil;
+    self.richTextConfigMutArr = nil;
+    self.countdownTimeLab.attributedText = nil;
+}
 #pragma mark —— lazyLoad
 @synthesize timer = _timer;
 -(JobsTimer *)timer{
@@ -94,48 +101,41 @@ static dispatch_once_t static_countdownViewOnceToken;
         @jobs_weakify(self)
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
             timer
-            .timerTypeBy(JobsTimerTypeNSTimer)
-            .timerStyleBy(TimerStyle_clockwise)      // 倒计时模式
-            .timeIntervalBy(1)                           // 语义字段
-            .timeSecIntervalSinceDateBy(0)               // dispatch_after 延迟（这里等价 0）
-            .repeatsBy(YES)
-            .queueBy(dispatch_get_main_queue())
-            .timerStateBy(JobsTimerStateIdle)
-            .startTimeBy(30 * 60)                        // ✅ 总时长
-            .timeBy(0)                                   // ✅ 当前剩余时间（初始 = 总时长）
-            .onTickerBy(^(__kindof JobsTimer * _Nullable t){
-                @jobs_strongify(self)
-                JobsLog(@"正在倒计时...");
+            /// 必须配置的项
+                .timerTypeBy(JobsTimerTypeNSTimer)           // 计时器核心选择
+                .timerStyleBy(TimerStyle_clockwise)          // 倒计时模式
+                .timeIntervalBy(1)                           // 跳动步长（频率间距）
+                .startTimeBy(30 * 60)                        // ✅ 总时长
+                .timeSecIntervalSinceDateBy(0)               // dispatch_after 延迟（这里等价 0）
+                .queueBy(dispatch_get_main_queue())
+                .onTickerBy(^(__kindof JobsTimer * _Nullable t){
+                    @jobs_strongify(self)
+                    JobsLog(@"正在倒计时...");
+                    NSLog(@"time = %f",t.time);
+                    NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
+                    NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
 
-                NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
-                NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
+                    NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",t.time] formatTime:self.formatTime]
+                                        componentsSeparatedByString:JobsInternationalization(@"分")];
+                    self.minutesStr = strArr1[0];
 
-                NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",t.time]
-                                               formatTime:self.formatTime]
-                                    componentsSeparatedByString:JobsInternationalization(@"分")];
-                self.minutesStr = strArr1[0];
+                    NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
+                    self.secondStr = strArr2[0];
 
-                NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
-                self.secondStr = strArr2[0];
-
-                self.countdownTimeLab.attributedText =
-                [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
-                                     paragraphStyle:self.paragraphStyle];
-
-                if (self.objBlock) self.objBlock(t);
-            })
-            .onFinisherBy(^(__kindof JobsTimer * _Nullable t){
-                @jobs_strongify(self)
-                JobsLog(@"倒计时结束...");
-                if (self.objBlock) self.objBlock(t);
-            });
+                    self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr paragraphStyle:self.paragraphStyle];
+                    if (self.objBlock) self.objBlock(t);
+                })
+                .onFinisherBy(^(__kindof JobsTimer * _Nullable t){
+                    @jobs_strongify(self)
+                    JobsLog(@"倒计时结束...");
+                    if (self.objBlock) self.objBlock(t);
+                });
 
             // 这些是内部状态初始化，不暴露成 DSL 也可以
             timer.accumulatedElapsed = 0;
             timer.lastStartDate      = nil;
         });
-    }
-    return _timer;
+    }return _timer;
 }
 
 -(JobsTimeModel *)formatTime{

@@ -81,6 +81,7 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
     [self.btnMutArr[3] jobsBtnClickEventBlock:^id(UIButton *data) {
         @jobs_strongify(self)
         [self.countdownView.timer stop];
+        [self.countdownView refreshData];
         return nil;
     }];
 }
@@ -88,6 +89,7 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.countDownBtn.timer start];
+    [self updateTimerControlButtons];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -110,6 +112,41 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
         make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(JobsWidth(10));
         make.height.mas_equalTo(JobsWidth(30));
     }];
+}
+/// Timer UI 状态同步
+-(void)updateTimerControlButtons {
+    id<TimerProtocol> timer = self.countdownView.timer;
+    if (!timer || self.btnMutArr.count < 4) return;
+
+    UIButton *startBtn  = self.btnMutArr[0];
+    UIButton *pauseBtn  = self.btnMutArr[1];
+    UIButton *resumeBtn = self.btnMutArr[2];
+    UIButton *stopBtn   = self.btnMutArr[3];
+
+    BOOL isRunning = timer.isRunning;
+    BOOL isPaused  = timer.isPaused;
+    BOOL isStop    = timer.isStop || (!isRunning && !isPaused); // Idle / Finished / Canceled 都算“非运行”
+
+    // 规则：
+    // - Idle / Finished / Canceled：只允许“开始”
+    // - Running：允许“暂停 / 结束”，禁止“开始 / 继续”
+    // - Paused：允许“继续 / 结束”，禁止“开始 / 暂停”
+
+    // 开始按钮：只有在非运行、非暂停（Idle / Finished / Canceled）时可点
+    startBtn.userInteractionEnabled = isStop;
+    startBtn.alpha = startBtn.userInteractionEnabled ? 1.0 : 0.5;
+
+    // 暂停按钮：只有 Running 时可点
+    pauseBtn.userInteractionEnabled = isRunning;
+    pauseBtn.alpha = pauseBtn.userInteractionEnabled ? 1.0 : 0.5;
+
+    // 继续按钮：只有 Paused 时可点
+    resumeBtn.userInteractionEnabled = isPaused;
+    resumeBtn.alpha = resumeBtn.userInteractionEnabled ? 1.0 : 0.5;
+
+    // 结束按钮：Running / Paused 都可点
+    stopBtn.userInteractionEnabled = (isRunning || isPaused);
+    stopBtn.alpha = stopBtn.userInteractionEnabled ? 1.0 : 0.5;
 }
 #pragma mark —— lazyLoad
 -(UIButton<TimerProtocol> *)countDownBtn{
@@ -136,7 +173,9 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 
 -(NSMutableArray<__kindof UIButton *>*)btnMutArr{
     if (!_btnMutArr) {
+        @jobs_weakify(self)
         _btnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButton *>*_Nullable data) {
+            @jobs_strongify(self)
             for (NSString *title in self.btnTitleMutArr) {
                 UIButton *btn = BaseButton
                     .initByStyle3(title,
@@ -145,13 +184,9 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
                                   @"弹窗取消按钮背景图".img)
                 .bgColorBy(JobsWhiteColor)
                 .onClickBy(^(UIButton *btn){
-                    btn.selected = !btn.selected;
-                    btn.jobsResetBtnBgImage(btn.selected ? @"弹窗取消按钮背景图".img : @"弹窗取消按钮背景图".img);
-                    
-                    btn.jobsResetBtnLayerBorderCor(HEXCOLOR(0xAE8330));/// 重设Btn的描边线段的颜色
-                    btn.jobsResetBtnLayerBorderWidth(0.5f);/// 重设Btn的描边线段的宽度
-                    btn.jobsResetBtnCornerRadiusValue(JobsWidth(8));/// 重设Btn的圆切角
-                    
+                    @jobs_strongify(self)
+//                    btn.selected = !btn.selected;
+                    [self updateTimerControlButtons];
                 }).onLongPressGestureBy(^(id data){
                     JobsLog(@"");
                 })

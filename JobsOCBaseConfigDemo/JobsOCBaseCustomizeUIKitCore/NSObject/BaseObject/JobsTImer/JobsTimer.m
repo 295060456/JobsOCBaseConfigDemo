@@ -8,8 +8,6 @@
 #import "JobsTimer.h"
 
 @interface JobsTimer ()
-/// dispatch_after 用的标记（无法真正 pause/resume，只能 cancel）
-Prop_assign()BOOL dispatchAfterPending;
 /// YES  = 已经 suspend 了
 /// NO   = 正在运行 / 已经 resume
 Prop_assign()BOOL gcdTimerSuspended;
@@ -36,6 +34,7 @@ TimerProtocol_synthesize_lock
 -(BOOL)isRunning{ return _running;}
 -(BOOL)isPaused{ return _paused;}
 -(BOOL)isStop{ return _stop;}
+
 #pragma mark —— TimerProtocol
 /// 启动计时器
 -(void)start{
@@ -52,18 +51,15 @@ TimerProtocol_synthesize_lock
         // 非倒计时模式：time 表示已流逝时间
         self.time = 0;
     }
-
-    switch (self.timerType) {
-        case JobsTimerTypeNSTimer:
-            [self startNSTimer];
-            break;
-        case JobsTimerTypeGCD:
-            [self startGCDTimer];
-            break;
-        case JobsTimerTypeDisplayLink:
-            [self startDisplayLink];
-            break;
-    }
+    @jobs_weakify(self)
+    [self delayByMainQueue:self.timeSecIntervalSinceDate block:^(uint64_t data) {
+        @jobs_strongify(self)
+        switch (self.timerType) {
+            case JobsTimerTypeNSTimer:      [self startNSTimer];      break;
+            case JobsTimerTypeGCD:          [self startGCDTimer];     break;
+            case JobsTimerTypeDisplayLink:  [self startDisplayLink];  break;
+        }
+    }];
 }
 /// 暂停计时器
 -(void)pause{
@@ -195,9 +191,6 @@ TimerProtocol_synthesize_lock
             [self->_displayLink invalidate];
             self->_displayLink = nil;
         }
-        // dispatch_after：只用 flag 来判断是否有效
-        self.dispatchAfterPending = NO;
-
         // 内部时间清理
         self.lastStartDate      = nil;
         self.accumulatedElapsed = 0;
@@ -216,29 +209,12 @@ TimerProtocol_synthesize_lock
     };
 }
 #pragma mark —— NSTimer
--(NSTimer *)nsTimer{
-    if(!_nsTimer){
-        _nsTimer = [NSTimer scheduledTimerWithTimeInterval:self.timeInterval
-                                                    target:self
-                                                  selector:@selector(handleTick)
-                                                  userInfo:nil
-                                                   repeats:self.repeats];
-    }return _nsTimer;
-}
-
-- (void)startNSTimer {
-    if (self.timeInterval <= 0) self.timeInterval = 1.0;
+-(void)startNSTimer{
     // 默认加到当前 RunLoop 的 common modes
     [NSRunLoop.currentRunLoop addTimer:self.nsTimer forMode:self.runLoopMode];
     self.timerState = JobsTimerStateRunning;
 }
 #pragma mark —— GCD timer
--(dispatch_source_t)gcdTimer{
-    if(!_gcdTimer){
-        _gcdTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue);
-    }return _gcdTimer;
-}
-
 - (void)startGCDTimer {
     if (self.timeInterval <= 0) self.timeInterval = 1.0;
     uint64_t intervalNSEC = (uint64_t)(self.timeInterval * NSEC_PER_SEC);
@@ -264,47 +240,54 @@ TimerProtocol_synthesize_lock
     self.timerState = JobsTimerStateRunning;
 }
 #pragma mark —— CADisplayLink
+-(void)startDisplayLink{
+    [self.displayLink addToRunLoop:NSRunLoop.mainRunLoop forMode:self.runLoopMode];
+    self.timerState = JobsTimerStateRunning;
+}
+#pragma mark —— LazyLoad
+-(NSTimer *)nsTimer{
+    if(!_nsTimer){
+        _nsTimer = [NSTimer scheduledTimerWithTimeInterval:self.timeInterval
+                                                    target:self
+                                                  selector:@selector(handleTick)
+                                                  userInfo:nil
+                                                   repeats:self.repeats];
+    }return _nsTimer;
+}
+
+-(dispatch_source_t)gcdTimer{
+    if(!_gcdTimer){
+        _gcdTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue);
+    }return _gcdTimer;
+}
+
 -(CADisplayLink *)displayLink{
     if(!_displayLink){
         _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(handleTick)];
     }return _displayLink;
 }
 
--(void)startDisplayLink{
-    [self.displayLink addToRunLoop:NSRunLoop.mainRunLoop forMode:self.runLoopMode];
-    self.timerState = JobsTimerStateRunning;
-}
-#pragma mark —— dispatch_after
-- (void)startDispatchAfter {
-    NSTimeInterval delay = self.timeSecIntervalSinceDate > 0
-                           ? self.timeSecIntervalSinceDate
-                           : self.timeInterval;
-    if (delay < 0) delay = 0;
-
-    dispatch_queue_t queue = self.queue;
-    if (!queue) queue = dispatch_get_main_queue();
-
-    self.dispatchAfterPending = YES;
-    self.timerState = JobsTimerStateRunning;
-
-    @jobs_weakify(self)
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(delay * NSEC_PER_SEC)),
-                   queue, ^{
-        @jobs_strongify(self)
-        if (!self.dispatchAfterPending) return; // 已经被取消
-
-        self.dispatchAfterPending = NO;
-        self.timerState = JobsTimerStateFinished;
-
-        if (self.onTicker)   self.onTicker(self);
-        if (self.onFinisher) self.onFinisher(self);
-    });
-}
-
 -(NSRunLoopMode)runLoopMode{
     if(!_runLoopMode){
         _runLoopMode = NSRunLoopCommonModes;
     }return _runLoopMode;
+}
+
+-(NSTimeInterval)timeInterval{
+    if(_timeInterval <= 0){
+        _timeInterval = 1.0;
+    }return _timeInterval;
+}
+/// 如果用于：UI刷新（高频需求）👉 dispatch_get_main_queue();
+/// 如果用于：重计算 / IO 👉 dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+-(dispatch_queue_t)queue{
+    if(!_queue){
+        _queue = dispatch_get_main_queue();
+    }return _queue;
+}
+
+-(BOOL)repeats{
+    return YES;
 }
 #pragma mark —— 统一 Tick 入口
 -(void)handleTick{
@@ -316,7 +299,7 @@ TimerProtocol_synthesize_lock
         if (self.onFinisher) self.onFinisher(self);
     }
 }
-
+#pragma mark —— TimerProtocol
 JobsKey(_onTicker)
 @dynamic onTicker;
 -(JobsTimerBlock)onTicker{
@@ -336,8 +319,7 @@ JobsKey(_onFinisher)
 -(void)setOnFinisher:(JobsTimerBlock)onFinisher{
     Jobs_setAssociatedCOPY_NONATOMIC(_onFinisher, onFinisher)
 }
-
-#pragma mark - DSL 配置链式语法
+#pragma mark —— DSL 配置链式语法
 -(JobsRetTimerByType _Nonnull)timerTypeBy{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(JobsTimerType timerType){
@@ -388,15 +370,6 @@ JobsKey(_onFinisher)
     return ^__kindof JobsTimer *_Nullable(NSTimeInterval delay){
         @jobs_strongify(self)
         self.timeSecIntervalSinceDate = delay;
-        return self;
-    };
-}
-
--(JobsRetTimerByRepeats _Nonnull)repeatsBy{
-    @jobs_weakify(self)
-    return ^__kindof JobsTimer *_Nullable(BOOL repeats){
-        @jobs_strongify(self)
-        self.repeats = repeats;
         return self;
     };
 }

@@ -5545,14 +5545,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 * 本质是对[**`WHToast`**](https://github.com/remember17/WHToast)的二次封装。其实[**TFPopup**](https://github.com/shmxybfq/TFPopup)也有同样的功能
 
-* 接入方式：
-
   * `Podfile`
-  
+
     ```ruby
     pod 'WHToast' # https://github.com/remember17/WHToast 一个轻量级的提示控件，没有任何依赖 NO_SMP
     ```
-    
+
   * ```objective-c
     #if __has_include(<WHToast/WHToast.h>)
     #import <WHToast/WHToast.h>
@@ -5560,35 +5558,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     #import "WHToast.h"
     #endif
     ```
-    
-  * 关注实现类：[<font color=blue>**`@implementation NSObject (WHToast)`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject+Category/NSObject+WHToast)
-  
-    ```objective-c
-    #pragma mark —— 仅文字，展示在屏幕中间
-    +(jobsByStringBlock _Nonnull)jobsToastMsg;
-    -(jobsByStringBlock _Nonnull)jobsToastMsg;
-    #pragma mark —— 成功图标和文字，展示在屏幕中间
-    +(jobsByStringBlock _Nonnull)jobsToastSuccessMsg;
-    -(jobsByStringBlock _Nonnull)jobsToastSuccessMsg;
-    #pragma mark —— 失败图标和文字，展示在屏幕中间
-    +(jobsByStringBlock _Nonnull)jobsToastErrMsg;
-    -(jobsByStringBlock _Nonnull)jobsToastErrMsg;
-    #pragma mark —— 延时操作
-    +(jobsByStringBlock _Nonnull)jobsToastLoadingMsg;
-    -(jobsByStringBlock _Nonnull)jobsToastLoadingMsg;
-    #pragma mark —— 手动关闭WHToast，在主线程
-    +(jobsByVoidBlock _Nonnull)jobsToastHide;
-    -(jobsByVoidBlock _Nonnull)jobsToastHide;
-    ```
-    
-    关注实现类：[<font color=blue>**`MacroDef_Func.h`**</font>](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/OCBaseConfig/%E5%90%84%E9%A1%B9%E5%85%A8%E5%B1%80%E5%AE%9A%E4%B9%89/%E5%90%84%E9%A1%B9%E5%AE%8F%E5%AE%9A%E4%B9%89/MacroDef_Func/MacroDef_Func.h)
-    
-    ```objective-c
-    NS_INLINE void toast(NSString *_Nullable msg){
-        if(!msg || ![msg isKindOfClass:NSString.class]){
-            msg = JobsInternationalization(@"数据错误");
-        }NSObject.jobsToastMsg(JobsInternationalization(msg));
-    }
+
+* 使用方式：
+
+  * ```objective-c
+    @"您好".toast();
     ```
 
 #### 36.2、[**`TFPopup`**](https://github.com/shmxybfq/TFPopup)  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
@@ -11974,7 +11948,28 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
   * 需要 **WebP**/**AVIF** 等，**别忘装对应 coder 插件并注册**。
   * 超大、超长动图仍会吃 CPU，必要时**限制尺寸/帧率或懒加载**。
 
-### 78、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 78、延迟一段时间后去做事 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+```objective-c
+/// 用于：UI刷新（高频需求）
+-(void)delayByMainQueue:(int64_t)time block:(jobsByUInt64_tBlock)block;
+/// 用于：重计算 / IO
+-(void)delayByGlobalQueue:(int64_t)time block:(jobsByUInt64_tBlock)block;
+```
+
+```objective-c
+@jobs_weakify(self)
+[self delayByMainQueue:self.timeSecIntervalSinceDate block:^(uint64_t data) {
+    @jobs_strongify(self)
+    switch (self.timerType) {
+        case JobsTimerTypeNSTimer:      [self startNSTimer];      break;
+        case JobsTimerTypeGCD:          [self startGCDTimer];     break;
+        case JobsTimerTypeDisplayLink:  [self startDisplayLink];  break;
+    }
+}];
+```
+
+### 79、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 

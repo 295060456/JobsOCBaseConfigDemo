@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsRetTimerByStartTime _Nonnull)startTimeBy;
 -(JobsRetTimerByTime _Nonnull)timeBy;
 -(JobsRetTimerByDelay _Nonnull)timeSecIntervalSinceDateBy;
--(JobsRetTimerByRepeats _Nonnull)repeatsBy;
 -(JobsRetTimerByRunLoopMode _Nonnull)runLoopModeBy;
 -(JobsRetTimerByUserInfo _Nonnull)userInfoBy;
 -(JobsRetTimerByQueue _Nonnull)queueBy;

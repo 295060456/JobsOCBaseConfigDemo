@@ -72,8 +72,8 @@ Prop_strong(nullable)NSDate *lastStartDate;
 Prop_retain(nullable)NSTimer *nsTimer;           // NSTimer
 Prop_retain(nullable)dispatch_source_t gcdTimer; // GCD 定时器使用的队列（若为 nil，则默认 global queue）
 Prop_retain(nullable)CADisplayLink *displayLink; // CADisplayLink
-/// GCD ➡️ dispatch_after dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0); 用于重计算 / IO
-///dispatch_after ➡️ dispatch_get_main_queue(); 用于UI修改
+/// 如果用于：UI刷新（高频需求）👉 dispatch_get_main_queue();
+/// 如果用于：重计算 / IO 👉 dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 Prop_retain(nullable)dispatch_queue_t queue;     //
 #pragma mark —— 定时器状态
 /// 定时器@当前状态
