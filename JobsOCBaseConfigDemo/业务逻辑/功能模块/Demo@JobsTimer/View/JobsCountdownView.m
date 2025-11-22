@@ -106,7 +106,7 @@ static dispatch_once_t static_countdownViewOnceToken;
                 .timerStyleBy(TimerStyle_clockwise)          // 倒计时模式
                 .timeIntervalBy(1)                           // 跳动步长（频率间距）
                 .startTimeBy(30 * 60)                        // ✅ 总时长
-                .timeSecIntervalSinceDateBy(0)               // dispatch_after 延迟（这里等价 0）
+                .timeSecIntervalSinceDateBy(10)               // dispatch_after 延迟（这里等价 0）
                 .queueBy(dispatch_get_main_queue())
                 .onTickerBy(^(__kindof JobsTimer * _Nullable t){
                     @jobs_strongify(self)
@@ -131,9 +131,9 @@ static dispatch_once_t static_countdownViewOnceToken;
                     if (self.objBlock) self.objBlock(t);
                 });
 
-            // 这些是内部状态初始化，不暴露成 DSL 也可以
-            timer.accumulatedElapsed = 0;
-            timer.lastStartDate      = nil;
+            /// 这些是内部状态初始化，不暴露成 DSL 也可以
+            timer.accumulatedElapsed = 0;   // 已经流逝的时间（总 elapsed，单位秒）
+            timer.lastStartDate      = nil; // 最近一次 start/resume 的时间点（支持 pause/resume）
         });
     }return _timer;
 }

@@ -12087,6 +12087,13 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 
   > **运行时调用时，会执行分类的方法，覆盖主类的实现**
 
+* 那么如果在两个分类文件里面都写了同一个名方法，在实际调用的时候，执行谁 ❓
+
+  * 最终在运行时注册类方法表时，**后加载的分类会覆盖前面的**；（后编译进二进制的分类实现）
+  * 所以在大型项目中，如果多个模块都给同一个类写了相同方法名的分类，会导致：
+    - 调用结果 **不确定**；
+    - 甚至不同环境下结果会不一样。
+  
 * 为什么在[**Masonry**](https://github.com/SnapKit/Masonry)/[**SnapKit**](https://github.com/SnapKit/SnapKit)里面可以不用**weak**化的`self`❓
 
   * 因为 [**Masonry**](https://github.com/SnapKit/Masonry)/[**SnapKit**](https://github.com/SnapKit/SnapKit) 的约束闭包是**同步执行、不会被保存（non-escaping）**的
@@ -12105,13 +12112,6 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 * 在**Objc**里面**NSMutableArray**做属性用<font color=red>**copy**</font>还是<font color=red>**strong**</font>来修饰❓
 
   * `NSMutableArray` 当属性，正常情况下用 `strong`，不要用 `copy`。因为，如果用<font color=red>**copy**</font>，**setter** 会做的是：对一个 `NSMutableArray` 调用 `copy`，**返回的是不可变的 `NSArray` 对象**（类簇行为）。此时调用`addObject`会崩溃！
-  
-* 那么如果在两个分类文件里面都写了同一个名方法，在实际调用的时候，执行谁 ❓
-
-  * 最终在运行时注册类方法表时，**后加载的分类会覆盖前面的**；（后编译进二进制的分类实现）
-  * 所以在大型项目中，如果多个模块都给同一个类写了相同方法名的分类，会导致：
-    - 调用结果 **不确定**；
-    - 甚至不同环境下结果会不一样。
 
 ## 七、TODO <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
