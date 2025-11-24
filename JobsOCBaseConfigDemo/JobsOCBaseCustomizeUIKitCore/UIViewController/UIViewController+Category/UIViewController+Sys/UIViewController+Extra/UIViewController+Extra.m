@@ -17,6 +17,14 @@
         return self;
     };
 }
+/// 将自身用导航控制器进行包裹（如果自身就是导航控制器就什么也不做的返回）
+-(UINavigationController *_Nonnull)navCtrl{
+    if([self isKindOfClass:UINavigationController.class]){
+        return (UINavigationController *)self;
+    }else{
+        return UINavigationController.initByRootVC(self);
+    }
+}
 /// 关闭系统自带的右滑关闭手势
 -(jobsByVoidBlock _Nonnull)clzPopGesture{
     @jobs_weakify(self)

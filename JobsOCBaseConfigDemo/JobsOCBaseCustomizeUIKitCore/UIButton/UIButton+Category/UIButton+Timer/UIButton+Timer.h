@@ -12,6 +12,7 @@
 #import "TimerProtocol.h"
 #import "MacroDef_Func.h"
 #import "JobsAttributedString.h"
+#import "JobsDefineAllEnumHeader.h"
 
 #import "NSObject+Time.h"
 #import "NSObject+RichText.h"/// 富文本
@@ -36,31 +37,41 @@
 #endif
 
 NS_ASSUME_NONNULL_BEGIN
-/// 文本显示类型
-typedef enum : NSUInteger {
-    CequenceForShowTitleRuningStrType_front = 0,// TitleRuningStr（固定值） 相对于 currentTime（浮动值）在前面 | 首在前
-    CequenceForShowTitleRuningStrType_tail      // TitleRuningStr（固定值） 相对于 currentTime（浮动值）在后面 | 首在后
-} CequenceForShowTitleRuningStrType;
+///（时间）文本@显示类型
+#ifndef CEQUENCE_FOR_SHOW_TITLE_RUNING_STR_TYPE_DEFINED
+#define CEQUENCE_FOR_SHOW_TITLE_RUNING_STR_TYPE_DEFINED
+typedef NS_ENUM(NSUInteger, CequenceForShowTitleRuningStrType) {
+    CequenceForShowTitleRuningStrType_front = 0, // TitleRuningStr 在前 | 首在前
+    CequenceForShowTitleRuningStrType_tail       // TitleRuningStr 在后 | 首在后
+};
+#endif /* CEQUENCE_FOR_SHOW_TITLE_RUNING_STR_TYPE_DEFINED */
 
 @interface UIButton (Timer)<BaseProtocol,BaseButtonProtocol,TimerProtocol>
-
--(UIButtonModel *_Nonnull)readyPlayValue;
--(UIButtonModel *_Nonnull)runningValue;
--(UIButtonModel *_Nonnull)endValue;
 /// ❤️如果配置了富文本，则优先显示富文本属性
 #pragma mark —— 一些通用的设置
-Prop_assign()CequenceForShowTitleRuningStrType cequenceForShowTitleRuningStrType;// 文本显示类型
+Prop_assign()ShowTimeType showTimeType;                                             // 时间@显示风格
+Prop_assign()CequenceForShowTitleRuningStrType cequenceForShowTitleRuningStrType;   //（时间）文本@显示类型
 Prop_assign()UILabelShowingType labelShowingType;
-Prop_assign()CGFloat widthCompensationValue;      // 因为有圆角的时候需要有补偿值否则UI很难看
-#pragma mark —— 计时器未开始【静态值】Ready
-Prop_strong()UIButtonModel *readyPlayValue;
-#pragma mark —— 计时器进行中【动态值】Running
-Prop_strong()UIButtonModel *runningValue;
-#pragma mark —— 计时器结束【静态值】End
-Prop_strong()UIButtonModel *endValue;
-#pragma mark —— 其他
-Prop_copy()NSString *formatTimeStr;               // 根据ShowTimeType格式化以后的时间【内部使用】
-Prop_copy()NSString *secondStr;
+Prop_assign()CGFloat widthCompensationValue;                                        // 因为有圆角的时候需要有补偿值否则UI很难看
+/// 计时器运行期间，按钮是否允许点击
+Prop_assign()BOOL isCanBeClickWhenTimerCycle;
+
+#pragma mark —— 时间相关方法【开启定时器】
+/// 1、开启计时【用初始化时间】
+- (JobsRetBtnByVoidBlock _Nonnull)startTimer;
+/// 2、开启计时【从某个时间】
+- (JobsRetBtnByNSIntegerBlock _Nonnull)startTimerBy;
+#pragma mark —— 时间相关方法【定时器暂停】
+- (JobsRetBtnByVoidBlock _Nonnull)timerSuspend;
+#pragma mark —— 时间相关方法【定时器继续】
+- (JobsRetBtnByVoidBlock _Nonnull)timerContinue;
+#pragma mark —— 时间相关方法【定时器销毁】
+- (JobsRetBtnByVoidBlock _Nonnull)timerDestroy;
+
+-(JobsRetBtnByTimerStyleBlock _Nonnull)byTimerStyle;
+-(JobsRetBtnByDoubleBlock _Nonnull)byTimeInterval;
+-(JobsRetBtnByDoubleBlock _Nonnull)byStartTime;
+-(JobsRetBtnByBOOLBlock _Nonnull)byClickWhenTimerCycle;
 
 @end
 

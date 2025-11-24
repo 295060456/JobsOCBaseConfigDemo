@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
-#import <WebKit/WebKit.h>                    /// 用于嵌入和管理网页内容，例如加载和显示网页。
-#import <Photos/Photos.h>                    /// 用于访问和管理设备的照片和视频资源。
-#import <sys/sysctl.h>                       /// 允许查询系统信息和配置，如设备硬件详细信息。
-#import <mach/mach.h>                        /// 提供对底层内存和CPU信息的访问，如内存使用情况和CPU负载。
-#import <ImageIO/CGImageSource.h>            /// 读取和处理图像文件中的图像数据，包括但不限于 PNG、JPEG、TIFF、GIF、HEIC 等格式。
+#import <WebKit/WebKit.h>                    // 用于嵌入和管理网页内容，例如加载和显示网页。
+#import <Photos/Photos.h>                    // 用于访问和管理设备的照片和视频资源。
+#import <sys/sysctl.h>                       // 允许查询系统信息和配置，如设备硬件详细信息。
+#import <mach/mach.h>                        // 提供对底层内存和CPU信息的访问，如内存使用情况和CPU负载。
+#import <ImageIO/CGImageSource.h>            // 读取和处理图像文件中的图像数据，包括但不限于 PNG、JPEG、TIFF、GIF、HEIC 等格式。
 
 #import "NSObject+Class.h"
 #import "NSObject+Algorithm.h"
@@ -29,8 +29,9 @@
 #import "MacroDef_SysWarning.h"
 
 #import "FileFolderHandleTool.h"
-#import "JobsDefineAllEnumHeader.h"            /// 此文件用来存储记录全局的一些枚举
-#import "DefineConstString.h"                  /// 常量字符串的定义
+#import "JobsDefineAllStructHeader.h"          // 此文件用来存储记录全局的一些结构体
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
+#import "DefineConstString.h"                  // 常量字符串的定义
 #import "JobsAppTools.h"
 #import "JobsSnowflake.h"
 #import "JobsModel.h"
@@ -86,10 +87,6 @@
 #ifndef JobsMakeNavCtrlByCls
 #define JobsMakeNavCtrlByCls(cls) self.makeNavigationControllerByCls(cls.class)
 #endif /* JobsMakeNavCtrlByCls */
-
-#ifndef JobsMakeNavCtrlBy
-#define JobsMakeNavCtrlBy(instance) self.makeNavigationControllerBy(instance)
-#endif /* JobsMakeNavCtrlBy */
 
 NS_INLINE NSObject *_Nullable idToObject(id _Nullable data){
     if ([data isKindOfClass:NSObject.class]) {
@@ -216,14 +213,6 @@ AppToolsProtocol
 -(JobsRetWKWebViewByURLBlock _Nonnull)makeWebViewByURL;
 /// 在导航栏堆栈里面，是否存在同样类型的控制器
 -(JobsRetBOOLByVCBlock _Nonnull)isSameVCBy;
-/// 根控制器 => 导航控制器（普通控制器）
--(JobsRetVCByVCBlock _Nonnull)rootViewControllerBy;
-/// 依据传入的普通控制器，创建导航控制器
-+(JobsRetNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
--(JobsRetNavCtrByVCBlock _Nonnull)makeNavigationControllerBy;
-/// 依据传入的类名，创建导航控制器
-+(JobsRetNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls;
--(JobsRetNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls;
 /// 可以组合使用
 -(SDWebImageOptions)makeSDWebImageOptions;
 -(URLManagerModel *_Nonnull)url:(NSString *_Nonnull)url funcName:(NSString *_Nonnull)funcName;

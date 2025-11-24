@@ -12,6 +12,7 @@
 Prop_strong()UIButton <TimerProtocol>*countDownBtn;
 Prop_strong()JobsCountdownView *countdownView;
 Prop_strong()NSMutableArray <UIButton *>*btnMutArr;
+Prop_strong()UIButton *countdownBtn;   // ★ 新增：倒计时按钮
 /// Data
 Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 
@@ -55,9 +56,8 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
     self.makeNavByAlpha(1);
     
     [self test_masonry_horizontal_fixSpace];
-    self.countDownBtn.alpha = 1;
-    self.countdownView.alpha = 1;
-    
+    self.countdownView.byVisible(YES);
+    self.countdownBtn.byVisible(YES);
     @jobs_weakify(self)
     /// 开始
     [self.btnMutArr[0] jobsBtnClickEventBlock:^id(UIButton *data) {
@@ -88,7 +88,6 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.countDownBtn.timer start];
     [self updateTimerControlButtons];
 }
 
@@ -149,28 +148,6 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
     stopBtn.alpha = stopBtn.userInteractionEnabled ? 1.0 : 0.5;
 }
 #pragma mark —— lazyLoad
--(UIButton<TimerProtocol> *)countDownBtn{
-    if (!_countDownBtn) {
-        @jobs_weakify(self)
-        _countDownBtn = (UIButton<TimerProtocol> *)UIButton.jobsInit()
-            .onClickBy(^(__kindof UIButton *x){
-                @jobs_strongify(self)
-                if (self.objBlock) self.objBlock(x);
-            }).onLongPressGestureBy(^(id data){
-                JobsLog(@"");
-            })
-            .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-                data.layerCor = HEXCOLOR(0xAE8330);
-                data.jobsWidth = 0.5f;
-                data.cornerRadiusValue = 25 / 2;
-            }));
-        [self.view.addSubview(_countDownBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(JobsWidth(25));
-            make.center.equalTo(self.view);
-        }];
-    }return _countDownBtn;
-}
-
 -(NSMutableArray<__kindof UIButton *>*)btnMutArr{
     if (!_btnMutArr) {
         @jobs_weakify(self)
@@ -211,16 +188,56 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
         });
     }return _btnTitleMutArr;
 }
-
+/// 内含定时器
 -(JobsCountdownView *)countdownView{
     if (!_countdownView) {
         _countdownView = JobsCountdownView.new;
-        _countdownView.jobsRichViewByModel(nil);
+        _countdownView.jobsRichViewByModel(nil);// 启动定时器
         [self.view.addSubview(_countdownView) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.view);
             make.size.mas_equalTo(JobsCountdownView.viewSizeByModel(nil));
         }];
     }return _countdownView;
+}
+/// ★ 新增：倒计时按钮，使用 UIButton+Timer 的封装
+/// 内含定时器
+-(UIButton *)countdownBtn{
+    if (!_countdownBtn) {
+        @jobs_weakify(self)
+        _countdownBtn = jobsMakeButton(^(__kindof UIButton * _Nullable btn) {//
+            @jobs_strongify(self)
+            self.view.addSubview
+            (
+             /// 基础 UI
+             btn.jobsResetBtnBgCor(HEXCOLOR(0xAE8330))
+                .jobsResetBtnTitle(JobsInternationalization(@"获取验证码"))
+                .jobsResetBtnTitleCor(JobsWhiteColor)
+                .jobsResetBtnTitleFont(UIFontWeightRegularSize(24))
+                /// Timer 配置（UIButton+Timer 提供的属性）
+                .byTimerStyle(TimerStyle_anticlockwise)  // 倒计时模式
+                .byStartTime(8)                          // 总时长 8 秒
+                .byTimeInterval(1)
+                .byClickWhenTimerCycle(YES)               // 计时器运行期间：禁止点击
+                .byOnTick(^(CGFloat time){
+                    NSLog(@"");
+                })
+                .byOnFinish(^(JobsTimer *_Nullable timer){
+                    NSLog(@"");
+                })
+                /// 点击开始倒计时
+                .onClickBy(^(UIButton *x){
+                    x.startTimer();
+                })
+                .jobsResetBtnCornerRadiusValue(JobsWidth(18))
+             )
+            .byAdd(^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.view);
+                make.top.equalTo(self.countdownView.mas_bottom).offset(JobsWidth(12));
+                make.height.mas_equalTo(JobsWidth(80));
+                make.width.mas_equalTo(JobsWidth(180));
+            });
+        });
+    }return _countdownBtn;
 }
 
 @end

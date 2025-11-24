@@ -70,7 +70,7 @@ static LZTabBarController *_lZTabBarCtrl = nil;
 static UINavigationController *_tabBarNavCtrl = nil;
 +(UINavigationController *)tabBarNavCtrl{
     if(!_tabBarNavCtrl){
-        _tabBarNavCtrl = JobsMakeNavCtrlBy(self.tabBarVC);
+        _tabBarNavCtrl = self.tabBarVC.navCtrl;
         _tabBarNavCtrl.hidesBottomBarWhenPushed = YES;
     }return _tabBarNavCtrl;
 }
@@ -82,7 +82,7 @@ static UINavigationController *_tabBarNavCtrl = nil;
 static UINavigationController *_jobsCustomTabBarNavCtrl = nil;
 +(UINavigationController *)jobsCustomTabBarNavCtrl{
     if(!_jobsCustomTabBarNavCtrl){
-        _jobsCustomTabBarNavCtrl = JobsMakeNavCtrlBy(self.jobsCustomTabBarVC);
+        _jobsCustomTabBarNavCtrl = self.jobsCustomTabBarVC.navCtrl;
         _jobsCustomTabBarNavCtrl.hidesBottomBarWhenPushed = YES;
     }return _jobsCustomTabBarNavCtrl;
 }
@@ -94,7 +94,7 @@ static UINavigationController *_jobsCustomTabBarNavCtrl = nil;
 static UINavigationController *_lZTabBarNavCtrl = nil;
 +(UINavigationController *)lZTabBarNavCtrl{
     if(!_lZTabBarNavCtrl){
-        _lZTabBarNavCtrl = JobsMakeNavCtrlBy(self.lZTabBarCtrl);
+        _lZTabBarNavCtrl = self.lZTabBarCtrl.navCtrl;
         _lZTabBarNavCtrl.hidesBottomBarWhenPushed = YES;
     }return _lZTabBarNavCtrl;
 }
@@ -500,7 +500,7 @@ static NSMutableArray <__kindof UINavigationController *>*_navCtrMutArr = nil;
         _navCtrMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UINavigationController *>*_Nullable data) {
             @jobs_strongify(self)
             for (UIViewController *vc in self.viewCtrlMutArr) {
-                data.add(JobsMakeNavCtrlBy(vc));
+                data.add(vc.navCtrl);
             }
         });
     }return _navCtrMutArr;

@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
 #import "DefineProperty.h"
-
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
 NS_ASSUME_NONNULL_BEGIN
 /// iOS系统基本的3大定时器类型@其他类型的定时器均由此二次封装而成（NSTimer / GCD / CADisplayLink）
 #ifndef JOBS_TIMER_TYPE_ENUM_DEFINED
@@ -39,6 +39,15 @@ typedef NS_ENUM(NSUInteger, TimerStyle) {
     TimerStyle_anticlockwise         /// 逆时针模式（倒计时模式）
 };
 #endif /* JOBS_TIMER_STYLE_ENUM_DEFINED */
+/// 时间@显示风格
+#ifndef SHOW_TIME_TYPE_ENUM_DEFINED
+#define SHOW_TIME_TYPE_ENUM_DEFINED
+typedef enum : NSUInteger {
+    ShowTimeType_SS = 0, // 秒
+    ShowTimeType_MMSS,   // 分秒
+    ShowTimeType_HHMMSS, // 时分秒
+} ShowTimeType;
+#endif /* SHOW_TIME_TYPE_ENUM_DEFINED */
 /// 计时器协议：只关心“状态 + 控制 + 回调”
 @protocol TimerProtocol <NSObject>
 @optional
@@ -56,6 +65,7 @@ Prop_assign()BOOL repeats;                     // for NSTimer
 Prop_strong(nullable)NSInvocation *invocation; // for NSTimer
 Prop_assign()NSRunLoopMode runLoopMode;
 Prop_strong(nullable)id userInfo;
+Prop_assign()ShowTimeType showTimeType;
 /// 倒计时进度（0~100%。未启用倒计时模式时为 0）
 /// - 倒计时模式：countdownTimerProgress = (startTime - time) / startTime
 /// - 普通模式：startTime <= 0 时 progress 固定为 0
@@ -85,7 +95,7 @@ Prop_assign(getter=isPaused)BOOL paused;
 /// 当前是否处于停止（不可恢复）
 Prop_assign(getter=isStop)BOOL stop;
 #pragma mark —— 定时器方法
-/// 启动计时器
+/// 启动计时器（自动启动无非是找准一个时机进行启动）
 -(void)start;
 /// 暂停计时器
 -(void)pause;
@@ -97,11 +107,12 @@ Prop_assign(getter=isStop)BOOL stop;
 -(void)stop;
 #pragma mark —— 定时器回调
 /// 注册回调（每 tick 执行一次）
-Prop_copy(nullable)JobsRetTimerProtocolIDByTimerBlocks onTick;
-Prop_copy(nullable)JobsTimerBlock onTicker;
+Prop_copy(nullable)jobsByCGFloatBlock onTick;
 /// 注册完成回调（用于一次性定时器或倒计时）
-Prop_copy(nullable)JobsRetTimerProtocolIDByTimerBlocks onFinish;
-Prop_copy(nullable)JobsTimerBlock onFinisher;
+Prop_copy(nullable)JobsTimerBlock onFinish;
+
+-(JobsRetBtnByCGFloatBlocks)byOnTick;
+-(JobsRetBtnByJTimerBlocks)byOnFinish;
 
 @end
 

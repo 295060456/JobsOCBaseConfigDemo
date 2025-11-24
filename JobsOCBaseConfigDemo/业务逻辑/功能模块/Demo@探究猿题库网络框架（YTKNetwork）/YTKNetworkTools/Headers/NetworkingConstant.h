@@ -5,7 +5,7 @@
 //  Created by Jobs on 2020/9/24.
 //
 #import "DefineConstString.h" /// 常量字符串的定义
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
 /// 服务器相关
 #ifndef NetworkingConstant_h
 #define NetworkingConstant_h

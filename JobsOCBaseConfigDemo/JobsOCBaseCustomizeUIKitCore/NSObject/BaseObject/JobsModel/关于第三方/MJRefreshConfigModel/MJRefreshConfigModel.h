@@ -14,7 +14,7 @@
 #import "NSString+Conversion.h"
 #import "NSString+Others.h"
 #import "NSMutableArray+Extra.h"
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
 /// 刷新阶段
 #ifndef REFRESHING_TYPE_ENUM_DEFINED
 #define REFRESHING_TYPE_ENUM_DEFINED

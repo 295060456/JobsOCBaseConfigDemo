@@ -130,31 +130,28 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
     if (!_timer) {
         @jobs_weakify(self)
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer.timerType                = JobsTimerTypeNSTimer;
-            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
-            timer.timeInterval             = 1;                        // 语义字段
-            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
-            timer.repeats                  = NO;
-            timer.queue                    = dispatch_get_main_queue();
-            timer.timerState               = JobsTimerStateIdle;
-
-            timer.startTime                = 10;                       // ✅ 总时长
-            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
-
-            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
-                @jobs_strongify(self)
-                JobsLog(@"正在倒计时...");
-                self.valueLab.byText([NSString stringWithFormat:@"%f",timer.time]);
-                if (self.objBlock) self.objBlock(timer);
-            };
-            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
-                @jobs_strongify(self)
-                JobsLog(@"倒计时结束...");
-                if (self.objBlock) self.objBlock(timer);
-            };
-
-            timer.accumulatedElapsed       = 0;
-            timer.lastStartDate            = nil;
+            timer
+            /// 必须配置的项
+                .byTimerType(JobsTimerTypeNSTimer)           // 计时器核心选择
+                .byTimerStyle(TimerStyle_anticlockwise)          // 正计时模式
+                .byTimeInterval(1)                           // 跳动步长（频率间距）
+                .byStartTime(10)                        // ✅ 总时长
+                .byTimeSecIntervalSinceDate(3)               // dispatch_after 延迟（这里等价 0）
+                .byQueue(dispatch_get_main_queue())
+                .byOnTick(^(CGFloat time){
+                    @jobs_strongify(self)
+                    JobsLog(@"正在倒计时...");
+                    self.valueLab.byText([NSString stringWithFormat:@"%f",time]);
+                    if (self.objBlock) self.objBlock(timer);
+                })
+                .byOnFinish(^(__kindof JobsTimer * _Nullable t){
+                    @jobs_strongify(self)
+                    JobsLog(@"倒计时结束...");
+                    if (self.objBlock) self.objBlock(timer);
+                });
+            /// 这些是内部状态初始化，不暴露成 DSL 也可以
+            timer.accumulatedElapsed = 0;   // 已经流逝的时间（总 elapsed，单位秒）
+            timer.lastStartDate      = nil; // 最近一次 start/resume 的时间点（支持 pause/resume）
         });
     }return _timer;
 }

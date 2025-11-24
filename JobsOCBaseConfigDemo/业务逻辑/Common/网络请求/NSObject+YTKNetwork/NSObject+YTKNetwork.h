@@ -9,7 +9,7 @@
 #import "JobsBlock.h"
 #import "DefineConstString.h" /// 常量字符串的定义
 #import "MacroDef_Func.h"
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
 
 #import "URLManager.h"
 #import "NSObject+Data.h"

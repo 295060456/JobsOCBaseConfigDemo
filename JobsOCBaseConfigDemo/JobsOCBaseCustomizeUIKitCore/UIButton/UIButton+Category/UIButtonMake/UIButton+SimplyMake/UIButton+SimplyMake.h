@@ -19,58 +19,58 @@ NS_ASSUME_NONNULL_BEGIN
 Prop_copy(nullable)jobsByBtnBlock clickBlock;
 Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 #pragma mark —— 对老Api进行二次封装
-+(JobsRetBtnByNSIntegerBlock _Nonnull)initByType;
-+(__kindof UIButton *)initByCustomType;
-+(__kindof UIButton *)initBySysType API_AVAILABLE(ios(7.0));
-+(__kindof UIButton *)initByDetailDisclosureType;
-+(__kindof UIButton *)initByInfoLightType;
-+(__kindof UIButton *)initByInfoDarkType;
-+(__kindof UIButton *)initByContactAddType;
++(JobsRetBtnByNSIntegerBlock _Nonnull)initByType API_AVAILABLE(ios(16.0));
++(__kindof UIButton *)initByCustomType API_AVAILABLE(ios(16.0));
++(__kindof UIButton *)initBySysType API_AVAILABLE(ios(16.0));
++(__kindof UIButton *)initByDetailDisclosureType API_AVAILABLE(ios(16.0));
++(__kindof UIButton *)initByInfoLightType API_AVAILABLE(ios(16.0));
++(__kindof UIButton *)initByInfoDarkType API_AVAILABLE(ios(16.0));
++(__kindof UIButton *)initByContactAddType API_AVAILABLE(ios(16.0));
 +(__kindof UIButton *)initByPlainType API_AVAILABLE(tvos(11.0)) API_UNAVAILABLE(ios, watchos);
-+(__kindof UIButton *)initByCloseType API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos, watchos);
++(__kindof UIButton *)initByCloseType API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos);
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠主标题内容（普通文本）进行创建
-+(JobsRetBtnByStringBlock _Nonnull)initByTitle;
++(JobsRetBtnByStringBlock _Nonnull)initByTitle API_AVAILABLE(ios(16.0));
 /// 仅仅依靠主标题富文本内容进行创建
-+(JobsRetBtnByAttributedStringBlock _Nonnull)initByAttributedString;
++(JobsRetBtnByAttributedStringBlock _Nonnull)initByAttributedString API_AVAILABLE(ios(16.0));
 /// 仅仅靠按钮图片进行创建
-+(JobsRetBtnByImageBlock _Nonnull)initByNormalImage;
++(JobsRetBtnByImageBlock _Nonnull)initByNormalImage API_AVAILABLE(ios(16.0));
 /// 仅仅依靠按钮背景图进行创建
-+(JobsRetBtnByImageBlock _Nonnull)initByBackgroundImage;
++(JobsRetBtnByImageBlock _Nonnull)initByBackgroundImage API_AVAILABLE(ios(16.0));
 #pragma mark —— 对副标题进行创建
 /// 仅仅依靠（主/副）标题内容（普通文本）进行创建
-+(JobsRetBtnByTitlesBlock _Nonnull)initByTitles;
++(JobsRetBtnByTitlesBlock _Nonnull)initByTitles API_AVAILABLE(ios(16.0));
 /// 仅仅依靠（主标题+副标题）富文本内容进行创建
 +(JobsRetBtnByAttributedStringsBlock _Nonnull)initByAttributedStrings;
 #pragma mark —— 依靠多数据进行较为复杂的创建
 /// 依靠标题内容和字体大小进行创建
-+(JobsRetBtnByStyle1Block _Nonnull)initByTitle_font;
++(JobsRetBtnByStyle1Block _Nonnull)initByTitle_font API_AVAILABLE(ios(16.0));
 /// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
-+(JobsRetBtnByStyle2Block _Nonnull)initByStyle1;
++(JobsRetBtnByStyle2Block _Nonnull)initByStyle1 API_AVAILABLE(ios(16.0));
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
-+(JobsRetBtnByStyle3Block _Nonnull)initByStyle2;
++(JobsRetBtnByStyle3Block _Nonnull)initByStyle2 API_AVAILABLE(ios(16.0));
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
-+(JobsRetBtnByStyle4Block _Nonnull)initByStyle3;
++(JobsRetBtnByStyle4Block _Nonnull)initByStyle3 API_AVAILABLE(ios(16.0));
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
-+(JobsRetBtnByStyle5Block _Nonnull)initByStyle4;
++(JobsRetBtnByStyle5Block _Nonnull)initByStyle4 API_AVAILABLE(ios(16.0));
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
-+(JobsRetBtnByStyle3Block _Nonnull)initByStyle5;
++(JobsRetBtnByStyle3Block _Nonnull)initByStyle5 API_AVAILABLE(ios(16.0));
 /// 图文混排（图片在上边 ）
-+(JobsRetBtnByStyle7Block _Nonnull)initByStyleTop;
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleTop API_AVAILABLE(ios(16.0));
 /// 图文混排（图片在左边 ）
-+(JobsRetBtnByStyle7Block _Nonnull)initByStyleLeft;
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleLeft API_AVAILABLE(ios(16.0));
 /// 图文混排（图片在下边 ）
-+(JobsRetBtnByStyle7Block _Nonnull)initByStyleBottom;
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleBottom API_AVAILABLE(ios(16.0));
 /// 图文混排（图片在右边 ）
-+(JobsRetBtnByStyle7Block _Nonnull)initByStyleRight;
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleRight API_AVAILABLE(ios(16.0));
 #pragma mark —— 依靠数据束进行创建
 +(JobsRetBtnByVoidBlock _Nonnull)jobsInit;
 /// 依靠UIViewModel进行创建
-+(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel;
++(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel API_AVAILABLE(ios(16.0));
 /// 依靠UIButtonModel进行创建
-+(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel;
++(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel API_AVAILABLE(ios(16.0));
 /// 依靠UITextModel进行创建
-+(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel;
++(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel API_AVAILABLE(ios(15.0));
 #pragma mark —— 一些公有方法
 -(JobsReturnButtonByClickBlocks _Nonnull)onClickBy;
 -(JobsReturnButtonByClickBlocks _Nonnull)onLongPressGestureBy;
@@ -84,8 +84,14 @@ Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 
 NS_ASSUME_NONNULL_END
 #pragma mark —— UIButton
-NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull block){
+NS_INLINE __kindof UIButton *_Nonnull jobsMakeButton(jobsByBtnBlock _Nonnull block) {
     UIButton *data = UIButton.jobsInit();
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UIButton *_Nonnull jobsMakeBaseButton(jobsByBtnBlock _Nonnull block) {
+    BaseButton *data = BaseButton.jobsInit();
     if (block) block(data);
     return data;
 }

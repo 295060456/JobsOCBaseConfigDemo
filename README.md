@@ -6071,7 +6071,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 ####  37.6、<font color=blue>**防止过多的`presented`模态推出`UIViewController`**</font>  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
   * 关注实现类：[**@interface UIViewController (SafeTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BOthers/UIViewController%2BSafeTransition)
 
-#### 37.7、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 37.7、给当前控制器包裹一层导航控制器（使其具备Push其他控制器的能力）<a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+```objective-c
+/// 如果当前的控制器本身就是导航控制器，则不包裹
+vc.navCtrl
+```
+
+#### 37.8、<font color=red id=寻找当前控制器>**寻找当前控制器**</font>  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注实现类：[**@interface NSObject (Extras)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/NSObject/NSObject%2BCategory/NSObject%2BExtras)
 
@@ -11979,40 +11986,27 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
     if (!_timer) {
         @jobs_weakify(self)
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer
-            /// 必须配置的项
-                .timerTypeBy(JobsTimerTypeNSTimer)           // 计时器核心选择
-                .timerStyleBy(TimerStyle_anticlockwise)      // 倒计时模式
-                .timeIntervalBy(1)                           // 跳动步长（频率间距）
-                .startTimeBy(30 * 60)                        // ✅ 总时长
-                .timeSecIntervalSinceDateBy(3)               // dispatch_after 延迟（这里等价 0）
-                .queueBy(dispatch_get_main_queue())
-                .onTickerBy(^(__kindof JobsTimer * _Nullable t){
-                    @jobs_strongify(self)
-                    JobsLog(@"正在倒计时...");
-                    NSLog(@"time = %f",t.time);
-                    NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
-                    NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
+            timer.byTimerType(JobsTimerTypeNSTimer)
+            .byTimerStyle(TimerStyle_anticlockwise) // 倒计时模式
+            .byTimeInterval(1)
+            .byTimeSecIntervalSinceDate(0)
+            .byQueue(dispatch_get_main_queue())
+            .byTimerState(JobsTimerStateIdle)
+            .byStartTime(10)
+            .byTime(0)
+            .byOnTick(^(CGFloat time){
+                @jobs_strongify(self)
+                JobsLog(@"正在倒计时...");
+                if (self.objBlock) self.objBlock(timer);
+            })
+            .byOnFinish(^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"倒计时结束...");
+                if (self.objBlock) self.objBlock(timer);
+            });
 
-                    NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",t.time] formatTime:self.formatTime]
-                                        componentsSeparatedByString:JobsInternationalization(@"分")];
-                    self.minutesStr = strArr1[0];
-
-                    NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
-                    self.secondStr = strArr2[0];
-
-                    self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr paragraphStyle:self.paragraphStyle];
-                    if (self.objBlock) self.objBlock(t);
-                })
-                .onFinisherBy(^(__kindof JobsTimer * _Nullable t){
-                    @jobs_strongify(self)
-                    JobsLog(@"倒计时结束...");
-                    if (self.objBlock) self.objBlock(t);
-                });
-
-            /// 这些是内部状态初始化，不暴露成 DSL 也可以
-            timer.accumulatedElapsed = 0;   // 已经流逝的时间（总 elapsed，单位秒）
-            timer.lastStartDate      = nil; // 最近一次 start/resume 的时间点（支持 pause/resume）
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
         });
     }return _timer;
 }
@@ -12026,40 +12020,27 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
     if (!_timer) {
         @jobs_weakify(self)
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer
-            /// 必须配置的项
-                .timerTypeBy(JobsTimerTypeNSTimer)           // 计时器核心选择
-                .timerStyleBy(TimerStyle_clockwise)          // 正计时模式
-                .timeIntervalBy(1)                           // 跳动步长（频率间距）
-                .startTimeBy(30 * 60)                        // ✅ 总时长
-                .timeSecIntervalSinceDateBy(3)               // dispatch_after 延迟（这里等价 0）
-                .queueBy(dispatch_get_main_queue())
-                .onTickerBy(^(__kindof JobsTimer * _Nullable t){
-                    @jobs_strongify(self)
-                    JobsLog(@"正在倒计时...");
-                    NSLog(@"time = %f",t.time);
-                    NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
-                    NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
+            timer.byTimerType(JobsTimerTypeNSTimer)
+            .byTimerStyle(TimerStyle_clockwise) // 正计时模式
+            .byTimeInterval(1)
+            .byTimeSecIntervalSinceDate(0)
+            .byQueue(dispatch_get_main_queue())
+            .byTimerState(JobsTimerStateIdle)
+            .byStartTime(10)
+            .byTime(0)
+            .byOnTick(^(CGFloat time){
+                @jobs_strongify(self)
+                JobsLog(@"正在倒计时...");
+                if (self.objBlock) self.objBlock(timer);
+            })
+            .byOnFinish(^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"倒计时结束...");
+                if (self.objBlock) self.objBlock(timer);
+            });
 
-                    NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",t.time] formatTime:self.formatTime]
-                                        componentsSeparatedByString:JobsInternationalization(@"分")];
-                    self.minutesStr = strArr1[0];
-
-                    NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
-                    self.secondStr = strArr2[0];
-
-                    self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr paragraphStyle:self.paragraphStyle];
-                    if (self.objBlock) self.objBlock(t);
-                })
-                .onFinisherBy(^(__kindof JobsTimer * _Nullable t){
-                    @jobs_strongify(self)
-                    JobsLog(@"倒计时结束...");
-                    if (self.objBlock) self.objBlock(t);
-                });
-
-            /// 这些是内部状态初始化，不暴露成 DSL 也可以
-            timer.accumulatedElapsed = 0;   // 已经流逝的时间（总 elapsed，单位秒）
-            timer.lastStartDate      = nil; // 最近一次 start/resume 的时间点（支持 pause/resume）
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
         });
     }return _timer;
 }

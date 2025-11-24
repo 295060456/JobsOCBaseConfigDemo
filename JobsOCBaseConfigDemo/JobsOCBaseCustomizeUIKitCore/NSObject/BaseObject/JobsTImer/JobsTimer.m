@@ -125,11 +125,11 @@ TimerProtocol_synthesize_lock
 /// 统一 Tick 入口
 -(void)handleTick{
     BOOL countdownFinished = [self updateCountdownOnTickIfNeeded];// 在每次 tick 时更新倒计时剩余时间，返回 YES 表示已经归零，应结束
-    if (self.onTicker) self.onTicker(self);
+    if (self.onTick) self.onTick(self.time);
     if (countdownFinished) {
         self.invalidateInternal(NO);
         self.timerState = JobsTimerStateFinished;
-        if (self.onFinisher) self.onFinisher(self);
+        if (self.onFinish) self.onFinish(self);
     }
 }
 /// 当前是否为倒计时模式
@@ -245,11 +245,11 @@ TimerProtocol_synthesize_lock
     dispatch_source_set_event_handler(self.gcdTimer, ^{
         @jobs_strongify(self)
         BOOL countdownFinished = [self updateCountdownOnTickIfNeeded];
-        if (self.onTicker) self.onTicker(self);
+        if (self.onTick) self.onTick(self.time);
         if (countdownFinished) {
             self.invalidateInternal(NO);
             self.timerState = JobsTimerStateFinished;
-            if (self.onFinisher) self.onFinisher(self);
+            if (self.onFinish) self.onFinish(self);
         }
     });
     dispatch_resume(self.gcdTimer);
@@ -302,28 +302,27 @@ TimerProtocol_synthesize_lock
         _queue = dispatch_get_main_queue();
     }return _queue;
 }
-#pragma mark —— TimerProtocol
-JobsKey(_onTicker)
-@dynamic onTicker;
--(JobsTimerBlock)onTicker{
-    return Jobs_getAssociatedObject(_onTicker);
+#pragma mark —— TimerProtocol.onTick
+JobsKey(_onTick)
+//@dynamic onTick;
+-(jobsByCGFloatBlock)onTick{
+    return Jobs_getAssociatedObject(_onTick);
 }
 
--(void)setOnTicker:(JobsTimerBlock)onTicker{
-    Jobs_setAssociatedCOPY_NONATOMIC(_onTicker, onTicker)
+-(void)setOnTick:(jobsByCGFloatBlock)onTick{
+    Jobs_setAssociatedCOPY_NONATOMIC(_onTick, onTick)
+}
+JobsKey(_onFinish)
+//@dynamic onFinish;
+-(JobsTimerBlock)onFinish{
+    return Jobs_getAssociatedObject(_onFinish);
 }
 
-JobsKey(_onFinisher)
-@dynamic onFinisher;
--(JobsTimerBlock)onFinisher{
-    return Jobs_getAssociatedObject(_onFinisher);
-}
-
--(void)setOnFinisher:(JobsTimerBlock)onFinisher{
-    Jobs_setAssociatedCOPY_NONATOMIC(_onFinisher, onFinisher)
+-(void)setOnFinish:(JobsTimerBlock)onFinish{
+    Jobs_setAssociatedCOPY_NONATOMIC(_onFinish, onFinish)
 }
 #pragma mark —— DSL 配置链式语法
--(JobsRetTimerByType _Nonnull)timerTypeBy{
+-(JobsRetTimerByNSUInteger _Nonnull)byTimerType{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(JobsTimerType timerType){
         @jobs_strongify(self)
@@ -332,7 +331,7 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByTimerStyle _Nonnull)timerStyleBy{
+-(JobsRetTimerByNSUInteger _Nonnull)byTimerStyle{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(TimerStyle style){
         @jobs_strongify(self)
@@ -341,7 +340,7 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByTimeInterval _Nonnull)timeIntervalBy{
+-(JobsRetTimerByDoubleBlock _Nonnull)byTimeInterval{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(NSTimeInterval interval){
         @jobs_strongify(self)
@@ -350,7 +349,7 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByStartTime _Nonnull)startTimeBy{
+-(JobsRetTimerByDoubleBlock _Nonnull)byStartTime{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(NSTimeInterval startTime){
         @jobs_strongify(self)
@@ -359,7 +358,7 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByTime _Nonnull)timeBy{
+-(JobsRetTimerByCGFloatBlock _Nonnull)byTime{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(CGFloat time){
         @jobs_strongify(self)
@@ -368,7 +367,7 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByDelay _Nonnull)timeSecIntervalSinceDateBy{
+-(JobsRetTimerByDoubleBlock _Nonnull)byTimeSecIntervalSinceDate{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(NSTimeInterval delay){
         @jobs_strongify(self)
@@ -377,7 +376,7 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByRunLoopMode _Nonnull)runLoopModeBy{
+-(JobsRetTimerByStringBlock _Nonnull)byRunLoopMode{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(NSRunLoopMode mode){
         @jobs_strongify(self)
@@ -386,7 +385,7 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByUserInfo _Nonnull)userInfoBy{
+-(JobsRetTimerByUserInfo _Nonnull)byUserInfo{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(id userInfo){
         @jobs_strongify(self)
@@ -395,7 +394,7 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByQueue _Nonnull)queueBy{
+-(JobsRetTimerByQueue _Nonnull)byQueue{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(dispatch_queue_t queue){
         @jobs_strongify(self)
@@ -404,7 +403,7 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByTimerState _Nonnull)timerStateBy{
+-(JobsRetTimerByNSUInteger _Nonnull)byTimerState{
     @jobs_weakify(self)
     return ^__kindof JobsTimer *_Nullable(JobsTimerState state){
         @jobs_strongify(self)
@@ -413,36 +412,18 @@ JobsKey(_onFinisher)
     };
 }
 
--(JobsRetTimerByOnTicker _Nonnull)onTickerBy{
+-(JobsRetTimerByCGFloatBlocks _Nonnull)byOnTick{
     @jobs_weakify(self)
-    return ^__kindof JobsTimer *_Nullable(JobsTimerBlock block){
-        @jobs_strongify(self)
-        self.onTicker = block;
-        return self;
-    };
-}
-
--(JobsRetTimerByOnFinisher _Nonnull)onFinisherBy{
-    @jobs_weakify(self)
-    return ^__kindof JobsTimer *_Nullable(JobsTimerBlock block){
-        @jobs_strongify(self)
-        self.onFinisher = block;
-        return self;
-    };
-}
-
--(JobsRetTimerByOnTick _Nonnull)onTickBy{
-    @jobs_weakify(self)
-    return ^__kindof JobsTimer *_Nullable(JobsRetTimerProtocolIDByTimerBlocks block){
+    return ^__kindof JobsTimer *_Nullable(jobsByCGFloatBlock _Nullable block){
         @jobs_strongify(self)
         self.onTick = block;
         return self;
     };
 }
 
--(JobsRetTimerByOnFinish _Nonnull)onFinishBy{
+-(JobsRetTimerByJTimerBlocks _Nonnull)byOnFinish{
     @jobs_weakify(self)
-    return ^__kindof JobsTimer *_Nullable(JobsRetTimerProtocolIDByTimerBlocks block){
+    return ^__kindof JobsTimer *_Nullable(JobsTimerBlock block){
         @jobs_strongify(self)
         self.onFinish = block;
         return self;

@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, JobsNetworkingEnvir) {
     JobsNetworkingEnvir_Product,/// 生产环境
 };
 #endif /* JOBS_NETWORKING_ENVIR_ENUM_DEFINED */
+#pragma mark —— 时间相关
 /// iOS系统基本的3大定时器类型@其他类型的定时器均由此二次封装而成（NSTimer / GCD / CADisplayLink）
 #ifndef JOBS_TIMER_TYPE_ENUM_DEFINED
 #define JOBS_TIMER_TYPE_ENUM_DEFINED
@@ -48,6 +49,33 @@ typedef NS_ENUM(NSUInteger, TimerStyle) {
     TimerStyle_anticlockwise         /// 逆时针模式（倒计时模式）
 };
 #endif /* JOBS_TIMER_STYLE_ENUM_DEFINED */
+/// 时间@显示风格
+#ifndef SHOW_TIME_TYPE_ENUM_DEFINED
+#define SHOW_TIME_TYPE_ENUM_DEFINED
+typedef enum : NSUInteger {
+    ShowTimeType_SS = 0, // 秒
+    ShowTimeType_MMSS,   // 分秒
+    ShowTimeType_HHMMSS, // 时分秒
+} ShowTimeType;
+#endif /* SHOW_TIME_TYPE_ENUM_DEFINED */
+///（时间）文本@显示类型
+#ifndef CEQUENCE_FOR_SHOW_TITLE_RUNING_STR_TYPE_DEFINED
+#define CEQUENCE_FOR_SHOW_TITLE_RUNING_STR_TYPE_DEFINED
+typedef NS_ENUM(NSUInteger, CequenceForShowTitleRuningStrType) {
+    CequenceForShowTitleRuningStrType_front = 0, // TitleRuningStr 在前 | 首在前
+    CequenceForShowTitleRuningStrType_tail       // TitleRuningStr 在后 | 首在后
+};
+#endif /* CEQUENCE_FOR_SHOW_TITLE_RUNING_STR_TYPE_DEFINED */
+#pragma mark ——
+/// 网络数据来源
+#ifndef JOBS_NETWORK_SOURCE_TYPE_DEFINED
+#define JOBS_NETWORK_SOURCE_TYPE_DEFINED
+typedef NS_ENUM(NSUInteger, JobsNetworkSourceType) {
+    JobsNetworkSourceTypeUnknown = 0,
+    JobsNetworkSourceTypeWiFi,
+    JobsNetworkSourceTypeCellular
+};
+#endif /* JOBS_NETWORK_SOURCE_TYPE_DEFINED */
 /// 文件类型枚举定义
 #ifndef FILE_TYPE_ENUM_DEFINED
 #define FILE_TYPE_ENUM_DEFINED
@@ -124,7 +152,6 @@ typedef NS_ENUM(NSInteger, JobsAppStatus) {
     JobsAppStatus_All
 };
 #endif /* JOBS_APP_STATUS_ENUM_DEFINED */
-
 /// 终端类型
 #ifndef JOBS_OPERATION_TYPE_ENUM_DEFINED
 #define JOBS_OPERATION_TYPE_ENUM_DEFINED
@@ -1092,13 +1119,5 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
     UIBorderSideTypeRight = 1 << 3,
 };
 #endif /* UIBorderSideType_h */
-///
-#ifndef JOBS_INDEX_PATH_STRUCT_DEFINED
-#define JOBS_INDEX_PATH_STRUCT_DEFINED
-typedef struct {
-    NSInteger section;
-    NSInteger rowOrItem;
-} JobsIndexPath; /// 这样写的话，外面可以JobsIndexPath.section 进行调用
-#endif /* JOBS_INDEX_PATH_STRUCT_DEFINED */
 
 #endif /* JobsDefineAllEnumHeader_h */

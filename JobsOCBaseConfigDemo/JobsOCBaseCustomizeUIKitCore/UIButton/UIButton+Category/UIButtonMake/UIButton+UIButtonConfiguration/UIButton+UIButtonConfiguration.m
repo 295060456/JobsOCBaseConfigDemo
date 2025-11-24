@@ -6,7 +6,8 @@
 //
 
 #import "UIButton+UIButtonConfiguration.h"
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
 @implementation UIButton (UIButtonConfiguration)
 
 -(jobsByVoidBlock _Nonnull)updateConfigBy{
@@ -33,7 +34,14 @@
 /// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
 -(__kindof UIButton *)jobsUpdateButtonConfiguration:(jobsByBtnConfigBlock _Nullable)configurationBlock {
     if (@available(iOS 16.0, *)) {
-        UIButtonConfiguration *config = self.configuration.copy;
+        UIButtonConfiguration *config = nil;
+        if(self.configuration){
+            config = self.configuration.copy;
+        }else{
+            config = jobsMakePlainBtnConfig(^(__kindof UIButtonConfiguration * _Nullable config) {
+
+            });
+        }
         if (configurationBlock) configurationBlock(config);
         self.configuration = config;
         self.updateConfigBy();
@@ -444,3 +452,4 @@
 }
 
 @end
+#pragma clang diagnostic pop

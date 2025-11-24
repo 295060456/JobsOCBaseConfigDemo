@@ -72,7 +72,7 @@ RACProtocol_synthesize
     }return _titleWidth;
 }
 
--(CGFloat)subTitleWidth{
+-(CGFloat)subTitleWidth API_AVAILABLE(ios(16.0)){
     if(!_subTitleWidth){
         if(isValue(self.subTitle)) _subTitleWidth = self.subTitle.widthBy(self.subTitleFont);
     }return _subTitleWidth;
@@ -96,20 +96,22 @@ RACProtocol_synthesize
     _normalBgImageURL = JobsUrl(self.normalBgImageURLString);
 }
 
-//-(NSString *)title{
-//    if (!_title) {
-//#ifdef DEBUG
+-(NSString *)title{
+    if (!_title) {
+#ifdef DEBUG
 //        _title = JobsInternationalization(TextModelDataString);
-//#endif
-//    }return _title;
-//}
-//
-//-(NSString *)subTitle{
-//    if(!_subTitle){
-//#ifdef DEBUG
+        _title = @"";
+#endif
+    }return _title;
+}
+
+-(NSString *)subTitle{
+    if(!_subTitle){
+#ifdef DEBUG
 //        _subTitle = JobsInternationalization(TextModelDataString2);
-//#endif
-//    }return _subTitle;
-//}
+        _subTitle = @"";
+#endif
+    }return _subTitle;
+}
 
 @end

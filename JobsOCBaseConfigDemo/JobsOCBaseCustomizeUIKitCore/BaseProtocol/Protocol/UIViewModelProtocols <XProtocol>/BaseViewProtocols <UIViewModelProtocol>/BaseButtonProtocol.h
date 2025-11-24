@@ -8,15 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "JobsBlock.h"
 #import "DefineProperty.h"
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
-
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
 NS_ASSUME_NONNULL_BEGIN
-/// 时间显示风格
-typedef enum : NSUInteger {
-    ShowTimeType_SS = 0,// 秒
-    ShowTimeType_MMSS,  // 分秒
-    ShowTimeType_HHMMSS,// 时分秒
-} ShowTimeType;
 @protocol BaseButtonProtocol <NSObject>
 @optional
 /// 为了迎合点语法而故意把下列方法属性化
@@ -45,8 +38,6 @@ Prop_assign()UILabelShowingType titleShowingType;/// 主标题的显示方式
 Prop_assign()UILabelShowingType subTitleShowingType;/// 副标题的显示方式
 Prop_assign()BOOL jobsSelected; /// 避免与系统方法冲突
 Prop_assign()BOOL jobsEnabled; /// 避免与系统方法冲突
-Prop_assign()BOOL isCanBeClickWhenTimerCycle;
-Prop_assign()ShowTimeType showTimeType;
 Prop_assign()CGSize imageSize;
 Prop_assign()CGFloat contentSpacing;
 Prop_assign()CGFloat btnWidth; /// 预设值，父视图的宽度不能大于这个值
@@ -190,7 +181,6 @@ NS_ASSUME_NONNULL_END
 @synthesize titleShowingType = _titleShowingType;\
 @synthesize subTitleShowingType = _subTitleShowingType;\
 @synthesize imageSize = _imageSize;\
-@synthesize showTimeType = _showTimeType;\
 @synthesize contentSpacing = _contentSpacing;\
 @synthesize btnWidth = _btnWidth;\
 @synthesize title = _title;\
@@ -285,7 +275,6 @@ BaseButtonProtocol_synthesize_part2
 @dynamic titleShowingType;\
 @dynamic subTitleShowingType;\
 @dynamic imageSize;\
-@dynamic showTimeType;\
 @dynamic contentSpacing;\
 @dynamic btnWidth;\
 @dynamic title;\

@@ -185,20 +185,16 @@ Prop_strong() JobsTimer *displayTimer;
     if (!_displayTimer) {
         @jobs_weakify(self)
         _displayTimer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            // 使用 CADisplayLink 模式，和屏幕刷新同步
-            timer.timerType    = JobsTimerTypeDisplayLink;
-            timer.timeInterval = 1.0 / 60.0;               // 语义字段（DisplayLink 内部按屏幕 FPS）
-            timer.repeats      = YES;
-            timer.queue        = dispatch_get_main_queue(); // 虽然 DisplayLink 不用 queue，但语义保持统一
-
-            timer.startTime    = 0;   // 非倒计时模式
-            timer.time         = 0;
-
-            // 每一帧，从 presentationLayer 读取 r5 的真实位置，驱动 curveX / curveY
-            timer.onTicker = ^(JobsTimer * _Nullable t) {
+            timer.byTimerType(JobsTimerTypeDisplayLink)
+            .byTimerStyle(TimerStyle_clockwise) // 倒计时模式
+            .byTimeInterval(1)
+            .byTimeSecIntervalSinceDate(0)
+            .byQueue(dispatch_get_main_queue())
+            .byTimerState(JobsTimerStateIdle)
+            .byStartTime(0)
+            .byTime(0)
+            .byOnTick(^(CGFloat time){
                 @jobs_strongify(self)
-                if (!self) return;
-
                 CALayer *presentation = (CALayer *)self.curveView.layer.presentationLayer;
                 if (!presentation) {
                     // 理论上动画结束后 presentationLayer 可能为 nil，防御性结束一次
@@ -209,10 +205,15 @@ Prop_strong() JobsTimer *displayTimer;
 
                 self.curveX = presentation.position.x;
                 self.curveY = presentation.position.y;
-            };
+            })
+            .byOnFinish(^(JobsTimer *_Nullable timer){
+                @jobs_strongify(self)
+                JobsLog(@"倒计时结束...");
+                if (self.objBlock) self.objBlock(timer);
+            });
 
-            // 这里不需要 onFinish，结束逻辑在 UIView 动画 completion 里处理
-            timer.onFinish = nil;
+            timer.accumulatedElapsed       = 0;
+            timer.lastStartDate            = nil;
         });
     }return _displayTimer;
 }

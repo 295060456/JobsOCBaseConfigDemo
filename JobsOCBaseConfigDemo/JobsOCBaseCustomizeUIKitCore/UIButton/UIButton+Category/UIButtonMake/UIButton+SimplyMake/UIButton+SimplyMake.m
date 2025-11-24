@@ -59,23 +59,23 @@
     return self.class.initByType(UIButtonTypeCustom);
 }
 
-+(__kindof UIButton *)initBySysType API_AVAILABLE(ios(7.0)){
++(__kindof UIButton *)initBySysType API_AVAILABLE(ios(16.0)){
     return self.class.initByType(UIButtonTypeSystem);
 }
 
-+(__kindof UIButton *)initByDetailDisclosureType{
++(__kindof UIButton *)initByDetailDisclosureType API_AVAILABLE(ios(16.0)){
     return self.class.initByType(UIButtonTypeDetailDisclosure);
 }
 
-+(__kindof UIButton *)initByInfoLightType{
++(__kindof UIButton *)initByInfoLightType API_AVAILABLE(ios(16.0)){
     return self.class.initByType(UIButtonTypeInfoLight);
 }
 
-+(__kindof UIButton *)initByInfoDarkType{
++(__kindof UIButton *)initByInfoDarkType API_AVAILABLE(ios(16.0)){
     return self.class.initByType(UIButtonTypeInfoDark);
 }
 
-+(__kindof UIButton *)initByContactAddType{
++(__kindof UIButton *)initByContactAddType API_AVAILABLE(ios(16.0)){
     return self.class.initByType(UIButtonTypeContactAdd);
 }
 
@@ -83,12 +83,12 @@
     return self.class.initByType(UIButtonTypePlain);
 }
 
-+(__kindof UIButton *)initByCloseType API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos, watchos){
++(__kindof UIButton *)initByCloseType API_AVAILABLE(ios(16.0)) API_UNAVAILABLE(tvos, watchos){
     return self.class.initByType(UIButtonTypeClose);
 }
 #pragma mark —— 依靠单一数据进行简单创建
 /// 仅仅依靠主标题内容（普通文本）进行创建
-+(JobsRetBtnByStringBlock _Nonnull)initByTitle{
++(JobsRetBtnByStringBlock _Nonnull)initByTitle API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title){
         @jobs_strongify(self)
@@ -98,7 +98,7 @@
     };
 }
 /// 仅仅依靠主标题富文本内容进行创建
-+(JobsRetBtnByAttributedStringBlock _Nonnull)initByAttributedString{
++(JobsRetBtnByAttributedStringBlock _Nonnull)initByAttributedString API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSAttributedString *_Nonnull title){
         @jobs_strongify(self)
@@ -108,7 +108,7 @@
     };
 }
 /// 仅仅靠按钮图片进行创建
-+(JobsRetBtnByImageBlock _Nonnull)initByNormalImage{
++(JobsRetBtnByImageBlock _Nonnull)initByNormalImage API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         @jobs_strongify(self)
@@ -118,7 +118,7 @@
     };
 }
 /// 仅仅依靠按钮背景图进行创建
-+(JobsRetBtnByImageBlock _Nonnull)initByBackgroundImage{
++(JobsRetBtnByImageBlock _Nonnull)initByBackgroundImage API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIImage *_Nonnull image){
         @jobs_strongify(self)
@@ -129,7 +129,7 @@
 }
 #pragma mark —— 对副标题进行创建
 /// 仅仅依靠（主/副）标题内容（普通文本）进行创建
-+(JobsRetBtnByTitlesBlock _Nonnull)initByTitles{
++(JobsRetBtnByTitlesBlock _Nonnull)initByTitles API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
                                          NSString *_Nonnull subTitle){
@@ -141,7 +141,7 @@
     };
 }
 /// 仅仅依靠（主标题+副标题）富文本内容进行创建
-+(JobsRetBtnByAttributedStringsBlock _Nonnull)initByAttributedStrings{
++(JobsRetBtnByAttributedStringsBlock _Nonnull)initByAttributedStrings API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSAttributedString *_Nonnull title,
                                          NSAttributedString *_Nonnull subTitle){
@@ -154,7 +154,7 @@
 }
 #pragma mark —— 依靠多数据进行较为复杂的创建
 /// 依靠标题内容和字体大小进行创建
-+(JobsRetBtnByStyle1Block _Nonnull)initByTitle_font{
++(JobsRetBtnByStyle1Block _Nonnull)initByTitle_font API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
                                          UIFont *_Nullable font){
@@ -166,7 +166,7 @@
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色进行创建
-+(JobsRetBtnByStyle2Block _Nonnull)initByStyle1{
++(JobsRetBtnByStyle2Block _Nonnull)initByStyle1 API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
                                          UIFont *_Nullable font,
@@ -180,7 +180,7 @@
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片进行创建
-+(JobsRetBtnByStyle3Block _Nonnull)initByStyle2{
++(JobsRetBtnByStyle3Block _Nonnull)initByStyle2 API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
                                          UIFont *_Nullable font,
@@ -200,7 +200,7 @@
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮背景图片进行创建
-+(JobsRetBtnByStyle4Block _Nonnull)initByStyle3{
++(JobsRetBtnByStyle4Block _Nonnull)initByStyle3 API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
                                          UIFont *_Nullable font,
@@ -216,7 +216,7 @@
     };
 }
 /// 依靠标题内容（普通文本）、字体大小、文字颜色、按钮图片、按钮背景图片进行创建
-+(JobsRetBtnByStyle5Block _Nonnull)initByStyle4{
++(JobsRetBtnByStyle5Block _Nonnull)initByStyle4 API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,
                                          UIFont *_Nullable font,
@@ -236,7 +236,7 @@
     };
 }
 /// 依靠文字内容、字体大小、文字颜色、按钮图片、图文距离进行创建
-+(JobsRetBtnByStyle3Block _Nonnull)initByStyle5{
++(JobsRetBtnByStyle3Block _Nonnull)initByStyle5 API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nullable font,/// 字体大小
@@ -256,7 +256,7 @@
     };
 }
 /// 图文混排（图片在上边 ）
-+(JobsRetBtnByStyle7Block _Nonnull)initByStyleTop{
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleTop API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
@@ -268,7 +268,7 @@
     };
 }
 /// 图文混排（图片在左边 ）
-+(JobsRetBtnByStyle7Block _Nonnull)initByStyleLeft{
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleLeft API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
@@ -280,7 +280,7 @@
     };
 }
 /// 图文混排（图片在下边 ）
-+(JobsRetBtnByStyle7Block _Nonnull)initByStyleBottom{
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleBottom API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
@@ -292,7 +292,7 @@
     };
 }
 /// 图文混排（图片在右边 ）
-+(JobsRetBtnByStyle7Block _Nonnull)initByStyleRight{
++(JobsRetBtnByStyle7Block _Nonnull)initByStyleRight API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(NSString *_Nonnull title,/// 主文字内容
                                          UIFont *_Nonnull font,/// 字体大小
@@ -305,14 +305,15 @@
 }
 #pragma mark —— 依靠数据束进行创建
 +(JobsRetBtnByVoidBlock _Nonnull)jobsInit{
+    @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(){
-        return BaseButton
-            .initByButtonModel(nil)
-            .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
+        @jobs_strongify(self)
+        UIButton *btn = (__kindof UIButton *)[self.class.alloc init];
+        return btn.bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }
 /// 依靠UIViewModel进行创建
-+(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel{
++(JobsReturnButtonByViewModelBlock _Nonnull)initByViewModel API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIViewModel *_Nullable data){
         @jobs_strongify(self)
@@ -356,7 +357,7 @@
     };
 }
 /// 依靠UIButtonModel进行创建
-+(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel{
++(JobsReturnButtonByButtonModelBlock _Nonnull)initByButtonModel API_AVAILABLE(ios(16.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UIButtonModel *_Nullable data){
         @jobs_strongify(self)
@@ -400,7 +401,7 @@
     };
 }
 /// 依靠UITextModel进行创建
-+(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel{
++(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel API_AVAILABLE(ios(15.0)){
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(UITextModel *_Nullable data){
         @jobs_strongify(self)
@@ -500,9 +501,11 @@
         if(viewModel.attributedSubTitle){/// 副标题（富文本）
             self.jobsResetBtnNormalAttributedTitle(selected ? viewModel.selectedAttributedSubTitle : viewModel.attributedSubTitle);
         }else{/// 副标题（普通文本）
-            self.jobsResetBtnSubTitle(selected ? viewModel.subTextModel.selectedSubText : viewModel.subTextModel.subText);
-            self.jobsResetBtnSubTitleCor(selected ? viewModel.subTextModel.selectedSubTextCor : viewModel.subTextModel.subTextCor);
-            self.jobsResetBtnSubTitleFont(selected ? viewModel.subTextModel.selectedSubFont : viewModel.subTextModel.subFont);
+            if (@available(iOS 16.0, *)) {
+                self.jobsResetBtnSubTitle(selected ? viewModel.subTextModel.selectedSubText : viewModel.subTextModel.subText);
+                self.jobsResetBtnSubTitleCor(selected ? viewModel.subTextModel.selectedSubTextCor : viewModel.subTextModel.subTextCor);
+                self.jobsResetBtnSubTitleFont(selected ? viewModel.subTextModel.selectedSubFont : viewModel.subTextModel.subFont);
+            }
         }return self;
     };
 }
@@ -527,9 +530,11 @@
         if(buttonModel.attributedSubTitle){/// 副标题（富文本）
             self.jobsResetBtnNormalAttributedTitle(selected ? buttonModel.selectedAttributedSubTitle : buttonModel.attributedSubTitle);
         }else{/// 副标题（普通文本）
-            self.jobsResetBtnSubTitle(selected ? buttonModel.selectedSubTitle : buttonModel.subTitle);
-            self.jobsResetBtnSubTitleCor(selected ? buttonModel.selectedSubTitleCor : buttonModel.subTitleCor);
-            self.jobsResetBtnSubTitleFont(selected ? buttonModel.selectedSubTitleFont : buttonModel.subTitleFont);
+            if (@available(iOS 16.0, *)) {
+                self.jobsResetBtnSubTitle(selected ? buttonModel.selectedSubTitle : buttonModel.subTitle);
+                self.jobsResetBtnSubTitleCor(selected ? buttonModel.selectedSubTitleCor : buttonModel.subTitleCor);
+                self.jobsResetBtnSubTitleFont(selected ? buttonModel.selectedSubTitleFont : buttonModel.subTitleFont);
+            }
         }return self;
     };
 }

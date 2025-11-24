@@ -9,7 +9,7 @@
   * 基本数据类型尽量的用NSNumber进行二次封装成对象对外输出
  */
 #import "JobsBlockDef.h"
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
 /// 定义确定参数的Block
 #import "ReturnByCertainParametersBlock.h"
 #import "VoidByCertainParametersBlock.h"
@@ -434,36 +434,27 @@ typedef void(^jobsByNavigationTransitionManagerBlock)(__kindof JobsNavigationTra
 @class JobsTimer;
 @protocol TimerProtocol;
 typedef void(^JobsTimerBlock)(JobsTimer *_Nullable timer);
-typedef id<TimerProtocol> _Nonnull(^JobsRetTimerProtocolIDByTimerBlocks)(JobsTimerBlock _Nullable block);
+typedef void(^jobsByCGFloatBlocks)(jobsByCGFloatBlock _Nullable timer);
 
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByTime)(CGFloat time);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByStartTime)(NSTimeInterval startTime);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByDelay)(NSTimeInterval timeSecIntervalSinceDate);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByTimeInterval)(NSTimeInterval timeInterval);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByRepeats)(BOOL repeats);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByRunLoopMode)(NSRunLoopMode _Nullable mode);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByUserInfo)(id _Nullable userInfo);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByTimerStyle)(TimerStyle style);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByType)(JobsTimerType type);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByQueue)(dispatch_queue_t _Nullable queue);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByTimerState)(JobsTimerState state);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByOnTicker)(JobsTimerBlock _Nullable block);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByOnFinisher)(JobsTimerBlock _Nullable block);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByOnTick)(JobsRetTimerProtocolIDByTimerBlocks _Nullable block);
-typedef __kindof JobsTimer *_Nullable (^JobsRetTimerByOnFinish)(JobsRetTimerProtocolIDByTimerBlocks _Nullable block);
+typedef __kindof JobsTimer *_Nullable(^JobsRetJTimerByJTimerBlock)(__kindof JobsTimer * _Nullable timer);
+typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByCGFloatBlock)(CGFloat time);
+typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByDoubleBlock)(double time);
+typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByStringBlock)(NSString * _Nullable mode);
+typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByUserInfo)(id _Nullable userInfo);
+typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByQueue)(dispatch_queue_t _Nullable queue);
+typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByNSUInteger)(NSUInteger state);
 
 @class JobsNetworkSource;
+typedef void(^jobsByNetworkSourceBlock)(__kindof JobsNetworkSource *_Nullable source);
 typedef void(^JobsNetworkUpdateBlock)(JobsNetworkSource * _Nullable source,
                                       uint64_t uploadBytesPerSec,
                                       uint64_t downloadBytesPerSec);
-
 @class JobsNetworkTrafficMonitor;
 typedef __kindof JobsNetworkTrafficMonitor *_Nullable(^JobsRetTNetworkTrafficMonitorByUpdateBlock)(JobsNetworkUpdateBlock _Nullable block);
 
-@protocol TimerProtocol;
 /// 返回 self 的 DSL block：传入一个 void 回调，返回实现该协议的对象（方便链式）
-typedef id<TimerProtocol> _Nonnull (^JobsRetTimerProtocolIDByVoidBlocks)(jobsByVoidBlock _Nullable block);
-typedef id<TimerProtocol> _Nonnull (^JobsRetTimerProtocolIDByTimerBlocks)(JobsTimerBlock _Nullable block);
+typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByCGFloatBlocks)(jobsByCGFloatBlock _Nullable block);
+typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByJTimerBlocks)(JobsTimerBlock _Nullable block);
 
 @class WMZBannerView;
 @class WMZBannerParam;
@@ -640,6 +631,8 @@ typedef __kindof UIView *_Nullable(^JobsReturnViewByViewAndMasonryConstraintsBlo
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByButtonModel2Blocks)(jobsByButtonModelBlock _Nullable block);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByClickBlocks)(jobsByBtnBlock _Nullable block);
 typedef __kindof UIButton *_Nullable(^JobsReturnButtonByIDBlocks)(jobsByIDBlock _Nullable block);
+typedef __kindof UIButton *_Nullable(^JobsRetBtnByCGFloatBlocks)(jobsByCGFloatBlock _Nullable block);
+typedef __kindof UIButton *_Nullable(^JobsRetBtnByJTimerBlocks)(JobsTimerBlock _Nullable block);
 
 typedef __kindof UICollectionView *_Nullable(^JobsReturnCollectionViewByBlock1)(jobsByIDBlock _Nullable block);
 

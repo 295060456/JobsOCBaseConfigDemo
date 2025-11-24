@@ -15,6 +15,7 @@
 #import "BaiShaETProjChoiceStadiumView.h"
 
 #import "BaseViewController.h"
+#import "JobsDefineAllStructHeader.h"          // 此文件用来存储记录全局的一些结构体
 
 NS_ASSUME_NONNULL_BEGIN
 

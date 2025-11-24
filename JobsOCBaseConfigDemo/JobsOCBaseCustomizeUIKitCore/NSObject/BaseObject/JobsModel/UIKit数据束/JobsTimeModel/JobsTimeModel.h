@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
 #import "DefineProperty.h"
 #import "NSTimeZone+Extra.h"
 #import "NSString+Conversion.h"

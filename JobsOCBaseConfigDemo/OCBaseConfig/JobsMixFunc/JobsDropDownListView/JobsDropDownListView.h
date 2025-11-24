@@ -8,7 +8,7 @@
 #import "BaseView.h"
 #import "JobsBlock.h"
 #import "UITableViewCellProtocol.h"
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
 #import "JobsDropDownListTBVCell.h"
 
 NS_ASSUME_NONNULL_BEGIN

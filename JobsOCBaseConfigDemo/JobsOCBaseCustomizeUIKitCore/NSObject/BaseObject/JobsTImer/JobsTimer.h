@@ -15,21 +15,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// 统一的 OC 版计时器实现：基于 TimerProtocol，只额外提供进度语义
 @interface JobsTimer : NSObject<TimerProtocol>
 
--(JobsRetTimerByType _Nonnull)timerTypeBy;
--(JobsRetTimerByTimerStyle _Nonnull)timerStyleBy;
--(JobsRetTimerByTimeInterval _Nonnull)timeIntervalBy;
--(JobsRetTimerByStartTime _Nonnull)startTimeBy;
--(JobsRetTimerByTime _Nonnull)timeBy;
--(JobsRetTimerByDelay _Nonnull)timeSecIntervalSinceDateBy;
--(JobsRetTimerByRunLoopMode _Nonnull)runLoopModeBy;
--(JobsRetTimerByUserInfo _Nonnull)userInfoBy;
--(JobsRetTimerByQueue _Nonnull)queueBy;
--(JobsRetTimerByTimerState _Nonnull)timerStateBy;
+-(JobsRetTimerByNSUInteger _Nonnull)byTimerType;
+-(JobsRetTimerByNSUInteger _Nonnull)byTimerStyle;
+-(JobsRetTimerByDoubleBlock _Nonnull)byTimeInterval;
+-(JobsRetTimerByDoubleBlock _Nonnull)byStartTime;
+-(JobsRetTimerByCGFloatBlock _Nonnull)byTime;
+-(JobsRetTimerByDoubleBlock _Nonnull)byTimeSecIntervalSinceDate;
+-(JobsRetTimerByStringBlock _Nonnull)byRunLoopMode;
+-(JobsRetTimerByUserInfo _Nonnull)byUserInfo;
+-(JobsRetTimerByQueue _Nonnull)byQueue;
+-(JobsRetTimerByNSUInteger _Nonnull)byTimerState;
 /// 回调链式 DSL
--(JobsRetTimerByOnTicker _Nonnull)onTickerBy;
--(JobsRetTimerByOnFinisher _Nonnull)onFinisherBy;
--(JobsRetTimerByOnTick _Nonnull)onTickBy;
--(JobsRetTimerByOnFinish _Nonnull)onFinishBy;
+-(JobsRetTimerByCGFloatBlocks _Nonnull)byOnTick;
+-(JobsRetTimerByJTimerBlocks _Nonnull)byOnFinish;
 
 @end
 
@@ -49,49 +47,29 @@ jobsMakeTimer(JobsTimerBlock _Nonnull block){
      if (!_timer) {
          @jobs_weakify(self)
          _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-             timer
-             .timerTypeBy(JobsTimerTypeNSTimer)
-             .timerStyleBy(TimerStyle_anticlockwise)      // 倒计时模式
-             .timeIntervalBy(1)                           // 语义字段
-             .timeSecIntervalSinceDateBy(0)               // dispatch_after 延迟（这里等价 0）
-             .repeatsBy(YES)
-             .queueBy(dispatch_get_main_queue())
-             .timerStateBy(JobsTimerStateIdle)
-             .startTimeBy(30 * 60)                        // ✅ 总时长
-             .timeBy(0)                                   // ✅ 当前剩余时间（初始 = 总时长）
-             .onTickerBy(^(__kindof JobsTimer * _Nullable t){
+             timer.byTimerType(JobsTimerTypeNSTimer)
+             .byTimerStyle(TimerStyle_anticlockwise) // 倒计时模式
+             .byTimeInterval(1)
+             .byTimeSecIntervalSinceDate(0)
+             .byQueue(dispatch_get_main_queue())
+             .byTimerState(JobsTimerStateIdle)
+             .byStartTime(10)
+             .byTime(0)
+             .byOnTick(^(CGFloat time){
                  @jobs_strongify(self)
                  JobsLog(@"正在倒计时...");
-
-                 NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
-                 NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
-
-                 NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",t.time]
-                                                formatTime:self.formatTime]
-                                     componentsSeparatedByString:JobsInternationalization(@"分")];
-                 self.minutesStr = strArr1[0];
-
-                 NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
-                 self.secondStr = strArr2[0];
-
-                 self.countdownTimeLab.attributedText =
-                 [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
-                                      paragraphStyle:self.paragraphStyle];
-
-                 if (self.objBlock) self.objBlock(t);
+                 [self getCuntDown:timer.time];
+                 if (self.objBlock) self.objBlock(timer);
              })
-             .onFinisherBy(^(__kindof JobsTimer * _Nullable t){
+             .byOnFinish(^(JobsTimer *_Nullable timer){
                  @jobs_strongify(self)
                  JobsLog(@"倒计时结束...");
-                 if (self.objBlock) self.objBlock(t);
+                 if (self.objBlock) self.objBlock(timer);
              });
 
-             // 这些是内部状态初始化，不暴露成 DSL 也可以
-             timer.accumulatedElapsed = 0;
-             timer.lastStartDate      = nil;
+             timer.accumulatedElapsed       = 0;
+             timer.lastStartDate            = nil;
          });
-     }
-     return _timer;
+     }return _timer;
  }
-
  */

@@ -11,7 +11,7 @@
 #import "NSObject+Extras.h"
 #import "NSObject+WHToast.h"//提示
 #import "JobsString.h"
-#import "JobsDefineAllEnumHeader.h" /// 此文件用来存储记录全局的一些枚举
+#import "JobsDefineAllEnumHeader.h"            // 此文件用来存储记录全局的一些枚举
 #import "SPAlertControllerConfig.h"
 
 #if __has_include(<SPAlertController/SPAlertController.h>)

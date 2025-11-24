@@ -133,11 +133,11 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
             if (self.objBlock) self.objBlock(x);
         }).onLongPressGestureBy(^(id data){
             JobsLog(@"");
-        }).onTick(^(JobsTimer * _Nullable timer) {
+        }).byOnTick(^(CGFloat time) {
             // 每 tick 一次
-            NSLog(@"剩余: %.0f", timer.time);
+            NSLog(@"剩余: %.0f", time);
         })
-        .onFinish(^ (JobsTimer * _Nullable timer) {
+        .byOnFinish(^ (JobsTimer * _Nullable timer) {
             // 倒计时完成
             NSLog(@"倒计时结束");
         });

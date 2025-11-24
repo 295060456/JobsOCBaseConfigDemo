@@ -28,14 +28,14 @@ typedef NS_ENUM(NSInteger, DeviceOrientation) {
 #ifndef ROOT_VIEW_CONTROLLER_H
 #define ROOT_VIEW_CONTROLLER_H
 //
-//#define RootViewController self.rootViewControllerBy(AppDelegate.tabBarNavCtrl)
-//#define RootViewController self.rootViewControllerBy(AppDelegate.tabBarVC)
+//#define RootViewController AppDelegate.tabBarNavCtrl
+//#define RootViewController AppDelegate.tabBarVC
 //
-#define RootViewController self.rootViewControllerBy(AppDelegate.jobsCustomTabBarNavCtrl)
-//#define RootViewController self.rootViewControllerBy(AppDelegate.jobsCustomTabBarVC)
+#define RootViewController AppDelegate.jobsCustomTabBarNavCtrl
+//#define RootViewController AppDelegate.jobsCustomTabBarVC
 //
-//#define RootViewController self.rootViewControllerBy(AppDelegate.lZTabBarNavCtrl)
-//#define RootViewController self.rootViewControllerBy(AppDelegate.lZTabBarCtrl)
+//#define RootViewController AppDelegate.lZTabBarNavCtrl
+//#define RootViewController AppDelegate.lZTabBarCtrl
 #endif // ROOT_VIEW_CONTROLLER_H
 
 NS_ASSUME_NONNULL_BEGIN

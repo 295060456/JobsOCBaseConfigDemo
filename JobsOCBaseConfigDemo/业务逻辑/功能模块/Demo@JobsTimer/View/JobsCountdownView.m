@@ -77,8 +77,8 @@ static dispatch_once_t static_countdownViewOnceToken;
         self.viewModel = model ? : UIViewModel.new;
         MakeDataNull
         [self.timer start];
-        self.titleLab.alpha = 1;
-        self.countdownTimeLab.alpha = 1;
+        self.titleLab.byVisible(YES);
+        self.countdownTimeLab.byVisible(YES);
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -102,20 +102,20 @@ static dispatch_once_t static_countdownViewOnceToken;
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
             timer
             /// 必须配置的项
-                .timerTypeBy(JobsTimerTypeNSTimer)           // 计时器核心选择
-                .timerStyleBy(TimerStyle_clockwise)          // 正计时模式
-                .timeIntervalBy(1)                           // 跳动步长（频率间距）
-                .startTimeBy(30 * 60)                        // ✅ 总时长
-                .timeSecIntervalSinceDateBy(3)               // dispatch_after 延迟（这里等价 0）
-                .queueBy(dispatch_get_main_queue())
-                .onTickerBy(^(__kindof JobsTimer * _Nullable t){
+                .byTimerType(JobsTimerTypeNSTimer)           // 计时器核心选择
+                .byTimerStyle(TimerStyle_clockwise)          // 正计时模式
+                .byTimeInterval(1)                           // 跳动步长（频率间距）
+                .byStartTime(30 * 60)                        // ✅ 总时长
+                .byTimeSecIntervalSinceDate(3)               // dispatch_after 延迟（这里等价 0）
+                .byQueue(dispatch_get_main_queue())
+                .byOnTick(^(CGFloat time){
                     @jobs_strongify(self)
-                    JobsLog(@"正在倒计时...");
-                    NSLog(@"time = %f",t.time);
-                    NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
-                    NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
+//                    JobsLog(@"正在倒计时...");
+//                    NSLog(@"time = %f",t.time);
+//                    NSLog(@"timer.timerType = %lu",(unsigned long)t.timerType);
+//                    NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
 
-                    NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",t.time] formatTime:self.formatTime]
+                    NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",time] formatTime:self.formatTime]
                                         componentsSeparatedByString:JobsInternationalization(@"分")];
                     self.minutesStr = strArr1[0];
 
@@ -123,14 +123,13 @@ static dispatch_once_t static_countdownViewOnceToken;
                     self.secondStr = strArr2[0];
 
                     self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr paragraphStyle:self.paragraphStyle];
-                    if (self.objBlock) self.objBlock(t);
+                    if (self.objBlock) self.objBlock(@(time));
                 })
-                .onFinisherBy(^(__kindof JobsTimer * _Nullable t){
+                .byOnFinish(^(__kindof JobsTimer * _Nullable t){
                     @jobs_strongify(self)
-                    JobsLog(@"倒计时结束...");
+//                    JobsLog(@"倒计时结束...");
                     if (self.objBlock) self.objBlock(t);
                 });
-
             /// 这些是内部状态初始化，不暴露成 DSL 也可以
             timer.accumulatedElapsed = 0;   // 已经流逝的时间（总 elapsed，单位秒）
             timer.lastStartDate      = nil; // 最近一次 start/resume 的时间点（支持 pause/resume）
@@ -156,9 +155,7 @@ static dispatch_once_t static_countdownViewOnceToken;
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"支付時間還有");
-            label.font = UIFontWeightRegularSize(14);
-            label.textColor = HEXCOLOR(0x757575);
+            label.byText(JobsInternationalization(@"支付時間還有")).byFont(UIFontWeightRegularSize(14)).byTextCor(HEXCOLOR(0x757575));
             [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self);
                 make.top.equalTo(self).offset(JobsWidth(28));
@@ -173,9 +170,9 @@ static dispatch_once_t static_countdownViewOnceToken;
         @jobs_weakify(self)
         _countdownTimeLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr
-                                                       paragraphStyle:self.paragraphStyle];
-            label.textAlignment = NSTextAlignmentCenter;
+            label
+                .byAttributedString([self richTextWithDataConfigMutArr:self.richTextConfigMutArr paragraphStyle:self.paragraphStyle])
+                .byTextAlignment(NSTextAlignmentCenter);
             [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self);
                 make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(16));

@@ -386,42 +386,6 @@ UITextFieldProtocol_dynamic
         }return OK;
     };
 }
-/// 根控制器 => 导航控制器（普通控制器）
--(JobsRetVCByVCBlock _Nonnull)rootViewControllerBy{
-    return ^__kindof UIViewController *_Nullable(__kindof UIViewController *_Nonnull vc){
-        if([vc isKindOfClass:UINavigationController.class]){
-            return vc;
-        }else return NSObject.makeNavigationControllerBy(vc);
-    };
-}
-/// 依据传入的普通控制器，创建导航控制器
-+(JobsRetNavCtrByVCBlock _Nonnull)makeNavigationControllerBy{
-    return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
-        return UINavigationController.initByRootVC(vc);
-    };
-}
-
--(JobsRetNavCtrByVCBlock _Nonnull)makeNavigationControllerBy{
-    return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
-        return NSObject.makeNavigationControllerBy(vc);
-    };
-}
-/// 依据传入的类名，创建导航控制器
-+(JobsRetNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls{
-    return ^__kindof UINavigationController *_Nullable(Class _Nonnull cls){
-        NSObject *instance = cls.new;
-        if(instance.isKindOfClass(UIViewController.class)){
-            UIViewController *vc = (UIViewController *)instance;
-            return UINavigationController.initByRootVC(vc);
-        }else return nil;
-    };
-}
-
--(JobsRetNavCtrByClassBlock _Nonnull)makeNavigationControllerByCls{
-    return ^__kindof UINavigationController *_Nullable(Class _Nonnull cls){
-        return NSObject.makeNavigationControllerByCls(cls);
-    };
-}
 /// 可以组合使用
 -(SDWebImageOptions)makeSDWebImageOptions{
     return

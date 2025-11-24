@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 #warning 富文本兼容一切
 /// ⚠️当font描绘的文字,或者文字大于UIButton的frame,UIButton的Title将不会显现⚠️
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
 @interface UIButton (UI)<BaseButtonProtocol,BaseProtocol>
 #pragma mark —— 一些功能性
 /// 为了兼容新的Api，批量设定UIButton
@@ -156,7 +158,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///【最新的Api】重设Btn副标题的文字颜色
 -(JobsRetBtnByCorBlock _Nonnull)jobsResetBtnSubTitleCor API_AVAILABLE(ios(16.0));
 ///【兼容】重设Btn的副标题字体
--(JobsRetBtnByFontBlock _Nonnull)jobsResetBtnSubTitleFont;
+-(JobsRetBtnByFontBlock _Nonnull)jobsResetBtnSubTitleFont API_AVAILABLE(ios(16.0));
 #pragma mark —— 一些通用修改.按钮图片
 ///【兼容】重设Btn.Image
 -(JobsRetBtnByImageBlock _Nonnull)jobsResetBtnImage;
@@ -203,7 +205,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(UIColor *_Nullable)titleColorForNormalState;
 
 @end
-
+#pragma clang diagnostic pop
 NS_ASSUME_NONNULL_END
 /**
  UIControlContentHorizontalAlignment 是一个枚举类型，用于定义控件中内容（例如文字或图像）在水平方向上的对齐方式。

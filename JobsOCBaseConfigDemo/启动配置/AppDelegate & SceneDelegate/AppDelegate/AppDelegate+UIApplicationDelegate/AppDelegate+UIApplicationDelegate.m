@@ -21,7 +21,6 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.localNotifications();
     self.launchFunc2();
     AppDelegate.launchFunc1();          // 如遇“重复副作用”，可改到 SceneDelegate，或在此加 @available 保护
-    AppDelegate.tabBarVC.ppBadge(YES);  // 同上
 
     if (@available(iOS 13.0, *)) {
         // 👉 iOS 13+ 由 SceneDelegate 负责挂窗，这里不再创建 window
@@ -31,9 +30,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = jobsMakeAppDelegateWindow(^(__kindof UIWindow * _Nullable window) {
         window.rootViewController = RootViewController;
         [window makeKeyAndVisible];
-    });
-
-    return YES;
+    }); return YES;
 }
 /// 一进入App就横屏 【此方法会执行多次】
 - (UIInterfaceOrientationMask)application:(UIApplication *)application
@@ -42,12 +39,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidEnterBackground:(UIApplication *)application{
-    JobsLog(@"---applicationDidEnterBackground----");//进入后台
+    JobsLog(@"---applicationDidEnterBackground----");// 进入后台
     JobsPostNotification(退到后台停止播放ZFPlayer, nil);
 }
 /// 系统版本低于iOS13.0的设备
 -(void)applicationDidBecomeActive:(UIApplication *)application{
-    JobsLog(@"---applicationDidBecomeActive----");//进入前台
+    JobsLog(@"---applicationDidBecomeActive----");// 进入前台
 }
 
 - (void)application:(UIApplication *)application

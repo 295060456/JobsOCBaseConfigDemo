@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (JobsRetViewByBOOLBlock _Nonnull)byMultipleTouchEnabled API_UNAVAILABLE(tvos);
 - (JobsRetViewByBOOLBlock _Nonnull)byExclusiveTouch API_UNAVAILABLE(tvos);
 #pragma mark —— Rendering
+- (JobsRetViewByCGFloatBlock _Nonnull)byCornerRadius;
 - (JobsRetViewByBOOLBlock _Nonnull)byClipsToBounds;
 - (JobsRetViewByCorBlock _Nonnull)byBgColor;
 - (JobsRetViewByCGFloatBlock _Nonnull)byAlpha;

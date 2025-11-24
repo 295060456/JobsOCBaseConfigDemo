@@ -12,12 +12,28 @@
 #import "JobsBlock.h"
 #import "DefineProperty.h"
 #import "JobsTimer.h"
-#import "JobsBitsMonitorSuspendLab.h"
+#import "BaseProtocol.h"
+#import "JobsDefineAllEnumHeader.h"     // 此文件用来存储记录全局的一些枚举
+#import "JobsDefineAllStructHeader.h"   // 此文件用来存储记录全局的一些结构体
 
+#import "JobsBitsMonitorSuspendLab.h"
+/// 网络数据来源
+#ifndef JOBS_NETWORK_SOURCE_TYPE_DEFINED
+#define JOBS_NETWORK_SOURCE_TYPE_DEFINED
+typedef NS_ENUM(NSUInteger, JobsNetworkSourceType) {
+    JobsNetworkSourceTypeUnknown = 0,
+    JobsNetworkSourceTypeWiFi,
+    JobsNetworkSourceTypeCellular
+};
+#endif /* JOBS_NETWORK_SOURCE_TYPE_DEFINED */
+
+#ifndef JOBS_NETWORK_BYTES_DEFINED
+#define JOBS_NETWORK_BYTES_DEFINED
 typedef struct {
     uint64_t download;   // 下行总字节
     uint64_t upload;     // 上行总字节
 } JobsNetworkBytes;
+#endif /* JOBS_NETWORK_BYTES_DEFINED */
 
 static inline JobsNetworkBytes JobsNetworkBytesMake(uint64_t download, uint64_t upload) {
     JobsNetworkBytes b;
@@ -29,11 +45,7 @@ static inline JobsNetworkBytes JobsNetworkBytesMake(uint64_t download, uint64_t 
 static JobsNetworkBytes JobsCurrentNetworkBytes(void) {
     struct ifaddrs *addrs = NULL;
     JobsNetworkBytes result = JobsNetworkBytesMake(0, 0);
-
-    if (getifaddrs(&addrs) != 0 || !addrs) {
-        return result;
-    }
-
+    if (getifaddrs(&addrs) != 0 || !addrs) return result;
     for (struct ifaddrs *ifa = addrs; ifa != NULL; ifa = ifa->ifa_next) {
         if (!ifa->ifa_data) {
             continue;
@@ -58,13 +70,7 @@ static JobsNetworkBytes JobsCurrentNetworkBytes(void) {
     return result;
 }
 
-typedef NS_ENUM(NSUInteger, JobsNetworkSourceType) {
-    JobsNetworkSourceTypeUnknown = 0,
-    JobsNetworkSourceTypeWiFi,
-    JobsNetworkSourceTypeCellular
-};
-
-@interface JobsNetworkSource : NSObject
+@interface JobsNetworkSource : NSObject<BaseProtocol>
 
 Prop_assign()JobsNetworkSourceType type;
 Prop_copy(nullable)NSString *displayName;
@@ -83,3 +89,10 @@ Prop_copy(nullable)NSString *displayName;
 -(jobsByVoidBlock _Nonnull)byStop;
 
 @end
+
+NS_INLINE __kindof JobsNetworkSource *_Nonnull
+jobsMakeNetworkSource(jobsByNetworkSourceBlock _Nonnull block){
+    JobsNetworkSource *data = JobsNetworkSource.alloc.init;
+    if (block) block(data);
+    return data;
+}

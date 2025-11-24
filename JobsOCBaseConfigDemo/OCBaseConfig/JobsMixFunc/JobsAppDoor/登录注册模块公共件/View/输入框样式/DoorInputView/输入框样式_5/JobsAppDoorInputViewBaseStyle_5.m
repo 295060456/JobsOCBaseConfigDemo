@@ -187,34 +187,14 @@ Prop_strong()UIViewModel *chooseBtnViewModel;
     if (!_authCodeBtn) {
         @jobs_weakify(self)
         _authCodeBtn = (UIButton<TimerProtocol> *)UIButton.jobsInit()
-            .onClickBy(^(__kindof UIButton *x){
-            @jobs_strongify(self)
-                x.timer.timerType                = JobsTimerTypeNSTimer;
-                x.timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
-                x.timer.timeInterval             = 1;                        // 语义字段
-                x.timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
-                x.timer.repeats                  = NO;
-                x.timer.queue                    = dispatch_get_main_queue();
-                x.timer.timerState               = JobsTimerStateIdle;
-
-                x.timer.startTime                = 10;               // ✅ 总时长
-                x.timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
-
-                x.timer.accumulatedElapsed       = 0;
-                x.timer.lastStartDate            = nil;
-            if (self.objBlock) self.objBlock(x);
-        }).onLongPressGestureBy(^(id data){
-            JobsLog(@"");
-        })
-        .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-            data.layerCor = HEXCOLOR(0xAE8330);
-            data.jobsWidth = 0.5f;
-            data.cornerRadiusValue = 25 / 2;
-        })).onTick(^(JobsTimer * _Nullable timer) {
-            // 每 tick 一次
-            NSLog(@"剩余: %.0f", timer.time);
-        })
-        .onFinish(^ (JobsTimer * _Nullable timer) {
+            .onLongPressGestureBy(^(id data){
+                JobsLog(@"");
+            })
+            .byOnTick(^(CGFloat time) {
+                // 每 tick 一次
+                NSLog(@"剩余: %.0f", time);
+            })
+            .byOnFinish(^ (JobsTimer * _Nullable timer) {
             // 倒计时完成
             NSLog(@"倒计时结束");
         });

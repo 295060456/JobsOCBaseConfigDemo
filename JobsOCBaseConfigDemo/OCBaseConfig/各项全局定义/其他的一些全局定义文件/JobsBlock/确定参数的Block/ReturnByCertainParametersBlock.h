@@ -268,6 +268,7 @@ typedef __kindof UIButton *_Nullable(^JobsRetBtnByControlStateBlock)(UIControlSt
 typedef __kindof UIButton *_Nonnull(^JobsRetBtnByBOOLBlock)(BOOL data);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByCGFloatBlock)(CGFloat data);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByFloatBlock)(float data);
+typedef __kindof UIButton *_Nullable(^JobsRetBtnByDoubleBlock)(double interva);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByLongBlock)(long data);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByNSIntegerBlock)(NSInteger data);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByNSUIntegerBlock)(NSUInteger data);
@@ -283,6 +284,9 @@ typedef __kindof UIButton *_Nullable(^JobsRetBtnByFontBlock)(UIFont *_Nullable d
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByCorBlock)(UIColor *_Nonnull cor);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByStringBlock)(__kindof NSString *_Nullable data);/// 主文字内容
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByAttributedStringBlock)(NSAttributedString *_Nullable title);/// 富文本内容
+typedef __kindof UIButton *_Nullable(^JobsRetBtnByTimerStyleBlock)(TimerStyle timerStyle);
+@class UIButtonModel;
+typedef __kindof UIButton *_Nullable(^JobsRetBtnByButtonModelBlock)(UIButtonModel *_Nullable buttonModel);
 #pragma mark —— 关于 UIActivityIndicatorView
 typedef __kindof UIActivityIndicatorView *_Nullable(^JobsRetActivityIndicatorViewByNSInteger)(NSInteger data);
 #pragma mark —— 关于 UITableViewHeaderFooterView
@@ -370,6 +374,7 @@ typedef __kindof UIViewController *_Nullable(^JobsRetVCByVCBlock)(__kindof UIVie
 typedef __kindof UIViewController *_Nullable(^JobsRetVCByWebViewBlock)(__kindof WKWebView *_Nonnull webView);
 /// UINavigationController
 typedef __kindof UINavigationController *_Nullable(^JobsRetNavCtrByDelegateBlock)(id <UINavigationControllerDelegate>_Nullable delegate);
+typedef __kindof UINavigationController *_Nullable(^JobsRetNavCtrByVoidBlock)();
 typedef __kindof UINavigationController *_Nullable(^JobsRetNavCtrByVCBlock)(__kindof UIViewController *_Nonnull vc);
 typedef __kindof UINavigationController *_Nullable(^JobsRetNavCtrByClassBlock)(Class _Nonnull cls);
 /// UIAlertController

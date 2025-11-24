@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 Prop_assign()CGFloat leftViewWidth;
 Prop_assign()CGFloat rightViewWidth;
 Prop_assign()CGFloat titleWidth;
-Prop_assign()CGFloat subTitleWidth;
+Prop_assign()CGFloat subTitleWidth API_AVAILABLE(ios(16.0));
 #pragma mark —— 针对批量设置的UIButton的数据源
 /// 未选择状态的数据源
 Prop_copy(nullable)NSArray <NSString *>*normal_titles;// title

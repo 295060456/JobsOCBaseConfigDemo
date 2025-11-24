@@ -110,28 +110,25 @@ Prop_strong()UIView *aphView;
     if (!_timer) {
         @jobs_weakify(self)
         _timer = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer.timerType                = JobsTimerTypeNSTimer;
-            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
-            timer.timeInterval             = 1;                        // 语义字段
-            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
-            timer.repeats                  = NO;
-            timer.queue                    = dispatch_get_main_queue();
-            timer.timerState               = JobsTimerStateIdle;
-
-            timer.startTime                = 10;                       // ✅ 总时长
-            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
-
-            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
+            timer.byTimerType(JobsTimerTypeNSTimer)
+            .byTimerStyle(TimerStyle_anticlockwise) // 倒计时模式
+            .byTimeInterval(1)
+            .byTimeSecIntervalSinceDate(0)
+            .byQueue(dispatch_get_main_queue())
+            .byTimerState(JobsTimerStateIdle)
+            .byStartTime(10)
+            .byTime(0)
+            .byOnTick(^(CGFloat time){
                 @jobs_strongify(self)
                 JobsLog(@"正在倒计时...");
                 [self getCuntDown:timer.time];
                 if (self.objBlock) self.objBlock(timer);
-            };
-            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
+            })
+            .byOnFinish(^(JobsTimer *_Nullable timer){
                 @jobs_strongify(self)
                 JobsLog(@"倒计时结束...");
                 if (self.objBlock) self.objBlock(timer);
-            };
+            });
 
             timer.accumulatedElapsed       = 0;
             timer.lastStartDate            = nil;

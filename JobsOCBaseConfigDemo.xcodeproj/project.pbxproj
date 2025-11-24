@@ -1325,6 +1325,7 @@
 		0438A7192E840034008F763B /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
 		044273842E8148680084B25C /* JobsScale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsScale.h; sourceTree = "<group>"; };
 		044273852E8148680084B25C /* JobsScale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsScale.m; sourceTree = "<group>"; };
+		045211E32ED3FCCB0097F55E /* JobsDefineAllStructHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsDefineAllStructHeader.h; sourceTree = "<group>"; };
 		045B58E72EBB364E00CFBE3B /* TDButtonCellNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDButtonCellNode.h; sourceTree = "<group>"; };
 		045B58E82EBB364E00CFBE3B /* TDButtonCellNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDButtonCellNode.m; sourceTree = "<group>"; };
 		045B58EA2EBB364E00CFBE3B /* TDDrawCellNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDDrawCellNode.h; sourceTree = "<group>"; };
@@ -10811,8 +10812,8 @@
 		C55C80F62E167B6300B56985 /* UIViewController+Extra */ = {
 			isa = PBXGroup;
 			children = (
-				C55C80F72E167B6300B56985 /* UIViewController+Extra.m */,
 				C55C80F82E167B6300B56985 /* UIViewController+Extra.h */,
+				C55C80F72E167B6300B56985 /* UIViewController+Extra.m */,
 			);
 			path = "UIViewController+Extra";
 			sourceTree = "<group>";
@@ -15621,8 +15622,9 @@
 		C55C86B72E167B6500B56985 /* 其他的一些全局定义文件 */ = {
 			isa = PBXGroup;
 			children = (
-				C55C86B82E167B6500B56985 /* APIKey.h */,
 				C55C86B92E167B6500B56985 /* JobsDefineAllEnumHeader.h */,
+				045211E32ED3FCCB0097F55E /* JobsDefineAllStructHeader.h */,
+				C55C86B82E167B6500B56985 /* APIKey.h */,
 				C55C86BA2E167B6500B56985 /* JobsBlock */,
 			);
 			path = "其他的一些全局定义文件";

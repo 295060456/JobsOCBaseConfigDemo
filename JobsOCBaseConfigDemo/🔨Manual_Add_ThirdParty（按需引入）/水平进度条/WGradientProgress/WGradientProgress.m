@@ -119,18 +119,15 @@ Prop_strong()NSMutableArray *colors;
     if (!_timer_color) {
         @jobs_weakify(self)
         _timer_color = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer.timerType                = JobsTimerTypeNSTimer;
-            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
-            timer.timeInterval             = self.color_timeInterval;                        // 语义字段
-            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
-            timer.repeats                  = NO;
-            timer.queue                    = dispatch_get_main_queue();
-            timer.timerState               = JobsTimerStateIdle;
-
-            timer.startTime                = 0;                          // ✅ 总时长
-            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
-
-            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
+            timer.byTimerType(JobsTimerTypeNSTimer)
+            .byTimerStyle(TimerStyle_anticlockwise) // 倒计时模式
+            .byTimeInterval(self.color_timeInterval)
+            .byTimeSecIntervalSinceDate(0)
+            .byQueue(dispatch_get_main_queue())
+            .byTimerState(JobsTimerStateIdle)
+            .byStartTime(0)
+            .byTime(0)
+            .byOnTick(^(CGFloat time){
                 @jobs_strongify(self)
                 if (self.progress < 1) {
                     [self start];
@@ -142,11 +139,11 @@ Prop_strong()NSMutableArray *colors;
 
                     self.progress += self.increment;
                 }else [self->_timer_length stop];/// 销毁
-            };
-            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
-                @jobs_strongify(self)
+            })
+            .byOnFinish(^(JobsTimer *_Nullable timer){
+//                @jobs_strongify(self)
                 JobsLog(@"我死球了");
-            };
+            });
 
             timer.accumulatedElapsed       = 0;
             timer.lastStartDate            = nil;
@@ -158,18 +155,15 @@ Prop_strong()NSMutableArray *colors;
     if (!_timer_length) {
         @jobs_weakify(self)
         _timer_length = jobsMakeTimer(^(JobsTimer * _Nullable timer) {
-            timer.timerType                = JobsTimerTypeNSTimer;
-            timer.timerStyle               = TimerStyle_anticlockwise; // 倒计时模式
-            timer.timeInterval             = self.length_timeInterval;                        // 语义字段
-            timer.timeSecIntervalSinceDate = 0;                        // 真正控制 dispatch_after 的延迟
-            timer.repeats                  = NO;
-            timer.queue                    = dispatch_get_main_queue();
-            timer.timerState               = JobsTimerStateIdle;
-
-            timer.startTime                = 0;                          // ✅ 总时长
-            timer.time                     = 0;                        // ✅ 当前剩余时间（初始 = 总时长）
-
-            timer.onTicker                 = ^(JobsTimer *_Nullable timer){
+            timer.byTimerType(JobsTimerTypeNSTimer)
+            .byTimerStyle(TimerStyle_anticlockwise) // 倒计时模式
+            .byTimeInterval(self.color_timeInterval)
+            .byTimeSecIntervalSinceDate(0)
+            .byQueue(dispatch_get_main_queue())
+            .byTimerState(JobsTimerStateIdle)
+            .byStartTime(0)
+            .byTime(0)
+            .byOnTick(^(CGFloat time){
                 @jobs_strongify(self)
                 if (self.progress < 1) {
                     [self start];
@@ -181,11 +175,11 @@ Prop_strong()NSMutableArray *colors;
 
                     self.progress += self.increment;
                 }else [self->_timer_length stop];/// 销毁
-            };
-            timer.onFinisher               = ^(JobsTimer *_Nullable timer){
-                @jobs_strongify(self)
+            })
+            .byOnFinish(^(JobsTimer *_Nullable timer){
+//                @jobs_strongify(self)
                 JobsLog(@"我死球了");
-            };
+            });
 
             timer.accumulatedElapsed       = 0;
             timer.lastStartDate            = nil;

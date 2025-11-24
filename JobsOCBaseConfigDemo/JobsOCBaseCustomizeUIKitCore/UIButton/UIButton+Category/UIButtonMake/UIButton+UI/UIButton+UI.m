@@ -10,6 +10,8 @@
  NSLineBreakByWordWrapping：这是默认的换行模式，会在单词边界换行。适用于希望保留单词完整性的场合。例如，如果单词太长而无法放入当前行，那么该单词将移动到下一行。
  NSLineBreakByCharWrapping：在字符边界处换行，而不是单词边界。适用于需要最大限度地利用行宽的场合，即使这意味着单词会被拆分。
  */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunguarded-availability"
 @implementation UIButton (UI)
 #pragma mark —— 一些功能性
 /// 为了兼容新的Api，批量设定UIButton
@@ -338,6 +340,7 @@
             @jobs_weakify(self)
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 @jobs_strongify(self)
+                if(!config) return;
                 config.byTitleTextAttributesTransformer([self jobsSetConfigTextAttributesTransformerByTitleFont:font btnTitleCor:self.titleColorForNormalState]);
             }];
         } else self.titleLabel.font = font;
@@ -351,6 +354,7 @@
             @jobs_weakify(self)
             return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
                 @jobs_strongify(self)
+                if(!config) return;
                 config.byAttributedTitle(JobsAttributedStringByAttributes(self.titleForNormalState, jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable data) {
                     @jobs_strongify(self)
                     data.add(NSForegroundColorAttributeName,self.titleColorByNormalState);
@@ -382,7 +386,7 @@
     };
 }
 ///【兼容】重设Btn的副标题字体
--(JobsRetBtnByFontBlock _Nonnull)jobsResetBtnSubTitleFont{
+-(JobsRetBtnByFontBlock _Nonnull)jobsResetBtnSubTitleFont API_AVAILABLE(ios(16.0)){
     return ^__kindof UIButton *(UIFont *_Nonnull font) {
         @jobs_weakify(self)
         return [self jobsUpdateButtonConfiguration:^(UIButtonConfiguration * _Nullable config) {
@@ -436,10 +440,9 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(__kindof JobsLocationModel *_Nullable data){
         @jobs_strongify(self)
-        self.jobsResetBtnLayerBorderCor(data.layerCor);
-        self.jobsResetBtnLayerBorderWidth(data.jobsWidth);
-        self.jobsResetBtnCornerRadiusValue(data.cornerRadiusValue);
-        return self;
+        return self.jobsResetBtnLayerBorderCor(data.layerCor)
+            .jobsResetBtnLayerBorderWidth(data.jobsWidth)
+            .jobsResetBtnCornerRadiusValue(data.cornerRadiusValue);;
     };
 }
 ///【兼容】重设Btn的圆切角
@@ -536,8 +539,7 @@
             if (@available(iOS 15.0, *)) {
                 self.subtitleTextView.byFrame(self.subtitleLabel.frame);
                 self.subtitleTextView.byAttributedText(title);
-            }
-            self.jobsResetBtnNormalAttributedSubTitle(nil);
+            }self.jobsResetBtnNormalAttributedSubTitle(nil);
         }return self;
     };
 }
@@ -596,7 +598,7 @@
         return self.configuration.baseForegroundColor ? : self.titleColorByNormalState;
     } else return self.titleColorByNormalState;
 }
-#pragma mark —— <BaseProtocol> Prop_strong()RACDisposable *racDisposable;
+#pragma mark —— BaseProtocol.racDisposable
 JobsKey(_racDisposable)
 @dynamic racDisposable;
 -(RACDisposable *)racDisposable{
@@ -606,7 +608,7 @@ JobsKey(_racDisposable)
 -(void)setRacDisposable:(RACDisposable *)racDisposable{
     Jobs_setAssociatedRETAIN_NONATOMIC(_racDisposable, racDisposable)
 }
-#pragma mark —— <BaseButtonProtocol> Prop_strong()UIFont *titleFont;
+#pragma mark —— BaseButtonProtocol.titleFont
 JobsKey(_titleFont)
 @dynamic titleFont;
 -(UIFont *_Nullable)titleFont{
@@ -616,7 +618,7 @@ JobsKey(_titleFont)
 -(void)setTitleFont:(UIFont *)titleFont{
     Jobs_setAssociatedRETAIN_NONATOMIC(_titleFont, titleFont)
 }
-#pragma mark —— <BaseButtonProtocol> Prop_strong()UIFont *subTitleFont;
+#pragma mark —— BaseButtonProtocol.subTitleFont
 JobsKey(_subTitleFont)
 @dynamic subTitleFont;
 -(UIFont *_Nullable)subTitleFont API_AVAILABLE(ios(16.0)){
@@ -628,3 +630,4 @@ JobsKey(_subTitleFont)
 }
 
 @end
+#pragma clang diagnostic pop
