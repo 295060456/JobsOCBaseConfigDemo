@@ -191,8 +191,8 @@ AppToolsProtocol
 -(jobsByVCBlock _Nonnull)switchToMainVC;
 /// 销毁视图
 -(jobsByViewBlock _Nonnull)removeView;
-/// 定时器的销毁
--(jobsByTimerBlock _Nonnull)destroyTimer;
+/// NSTimer定时器的销毁
+-(jobsByTimerBlock _Nonnull)destroyNSTimer;
 /// runtime方法交换
 +(void)exchangeMethodForClass:(NSString *_Nonnull)className
                   originalSel:(SEL _Nonnull)originalSelector

@@ -333,7 +333,7 @@ JobsKey(_onFinish)
 
 -(JobsRetTimerByNSUInteger _Nonnull)byTimerStyle{
     @jobs_weakify(self)
-    return ^__kindof JobsTimer *_Nullable(TimerStyle style){
+    return ^__kindof JobsTimer *_Nullable(JobsTimerStyle style){
         @jobs_strongify(self)
         self.timerStyle = style;
         return self;

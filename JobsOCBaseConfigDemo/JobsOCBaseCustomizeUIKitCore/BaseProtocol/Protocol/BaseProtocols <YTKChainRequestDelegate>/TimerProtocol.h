@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, JobsTimerState) {
 /// 定时器@模式
 #ifndef JOBS_TIMER_STYLE_ENUM_DEFINED
 #define JOBS_TIMER_STYLE_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, TimerStyle) {
+typedef NS_ENUM(NSUInteger, JobsTimerStyle) {
     TimerStyle_clockwise = 0,        /// 顺时针模式
     TimerStyle_anticlockwise         /// 逆时针模式（倒计时模式）
 };
@@ -71,7 +71,7 @@ Prop_assign()ShowTimeType showTimeType;
 /// - 普通模式：startTime <= 0 时 progress 固定为 0
 Prop_assign(readonly)double countdownTimerProgress;
 /// 定时器方向@逆时针？顺时针？
-Prop_assign()TimerStyle timerStyle;
+Prop_assign()JobsTimerStyle timerStyle;
 /// iOS系统基本的4大定时器类型@其他类型的定时器均由此二次封装而成（NSTimer / GCD / CADisplayLink / dispatch_after）
 Prop_assign()JobsTimerType timerType;
 /// 已经流逝的时间（总 elapsed，单位秒）

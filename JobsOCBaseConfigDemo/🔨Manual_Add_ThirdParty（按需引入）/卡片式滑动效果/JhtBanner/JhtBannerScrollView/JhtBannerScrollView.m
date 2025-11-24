@@ -30,7 +30,7 @@ Prop_strong()UIScrollView *insideScrollView;
 
 - (void)dealloc {
     JobsLog(@"%@",JobsLocalFunc);
-    self.destroyTimer(_bannerTimer);
+    self.destroyNSTimer(_bannerTimer);
     JobsRemoveNotification(self);
 }
 
@@ -50,7 +50,7 @@ Prop_strong()UIScrollView *insideScrollView;
 /// 在父控件中移除后销毁定时器
 - (void)removeFromSuperview {
     [super removeFromSuperview];
-    self.destroyTimer(_bannerTimer);
+    self.destroyNSTimer(_bannerTimer);
 }
 /// recursively calls -pointInside:withEvent:. point is in the receiver's coordinate system
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
@@ -444,7 +444,7 @@ Prop_strong()UIScrollView *insideScrollView;
         if (NSStringFromClass(view.class).isEqualToString(subviewClassName)) [view removeFromSuperview];
     }
     /// 销毁定时器，防止手势误触碰
-    self.destroyTimer(_bannerTimer);
+    self.destroyNSTimer(_bannerTimer);
     /// 重置pageCount
     if (_dataSource &&
         [_dataSource respondsToSelector:@selector(numberOfCardViewInBannerView)]) {
@@ -551,7 +551,7 @@ Prop_strong()UIScrollView *insideScrollView;
     return ^(NSUInteger pageNumber){
         @jobs_strongify(self)
         if (pageNumber < self->_pageCount) {
-            self.destroyTimer(self->_bannerTimer);/// 销毁定时器，防止手势误触碰
+            self.destroyNSTimer(self->_bannerTimer);/// 销毁定时器，防止手势误触碰
             if (self.isCarousel) {
                 /// 更新定时器用到的页数索引
                 self->_timerPageIndex = pageNumber + self->_orginPageCount;
@@ -652,7 +652,7 @@ Prop_strong()UIScrollView *insideScrollView;
 /// 开始拖拽
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     /// 销毁定时器
-    self.destroyTimer(_bannerTimer);;
+    self.destroyNSTimer(_bannerTimer);;
 }
 /// 结束拖拽
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
@@ -664,7 +664,7 @@ Prop_strong()UIScrollView *insideScrollView;
         self.isOpenAutoScroll &&
         self.isCarousel) {
         /// 销毁定时器，防止手势误触碰
-        self.destroyTimer(_bannerTimer);;
+        self.destroyNSTimer(_bannerTimer);;
         // 重新初始化定时器
         _bannerTimer = NSRunLoop.addTimerAtMainRunLoopByCommonModes([NSTimer scheduledTimerWithTimeInterval:self.autoTime
                                                                                                      target:self

@@ -284,7 +284,6 @@ typedef __kindof UIButton *_Nullable(^JobsRetBtnByFontBlock)(UIFont *_Nullable d
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByCorBlock)(UIColor *_Nonnull cor);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByStringBlock)(__kindof NSString *_Nullable data);/// 主文字内容
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByAttributedStringBlock)(NSAttributedString *_Nullable title);/// 富文本内容
-typedef __kindof UIButton *_Nullable(^JobsRetBtnByTimerStyleBlock)(TimerStyle timerStyle);
 @class UIButtonModel;
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByButtonModelBlock)(UIButtonModel *_Nullable buttonModel);
 #pragma mark —— 关于 UIActivityIndicatorView

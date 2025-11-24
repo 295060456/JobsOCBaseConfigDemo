@@ -2,7 +2,7 @@
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
 # ⚠️ 与 post_install 保持一致
-platform :ios, '15.6'
+platform :ios, '16.6'
 
 source 'https://cdn.cocoapods.org/'
 

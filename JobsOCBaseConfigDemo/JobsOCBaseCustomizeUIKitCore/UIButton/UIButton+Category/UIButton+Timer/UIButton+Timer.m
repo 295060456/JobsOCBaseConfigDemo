@@ -6,24 +6,20 @@
 //
 
 #import "UIButton+Timer.h"
-
-@implementation UIButton (Timer)
-
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
 #pragma clang diagnostic ignored "-Wunguarded-availability"
-
+@implementation UIButton (Timer)
 BaseButtonProtocol_dynamic_part2
 TimerProtocol_dynamic
-
 #pragma mark —— TimerProtocol.timerStyle
 JobsKey(_timerStyle)
 //@dynamic timerStyle;
-- (TimerStyle)timerStyle{
+- (JobsTimerStyle)timerStyle{
     return [Jobs_getAssociatedObject(_timerStyle) unsignedIntegerValue];
 }
 
-- (void)setTimerStyle:(TimerStyle)timerStyle{
+- (void)setTimerStyle:(JobsTimerStyle)timerStyle{
     Jobs_setAssociatedRETAIN_NONATOMIC(_timerStyle, @(timerStyle))
 }
 #pragma mark —— BaseProtocol.timer（使用新版 JobsTimer 驱动按钮）
@@ -37,7 +33,7 @@ JobsKey(_timer)
             @jobs_strongify(self)
             // 初始化 JobsTimer：核心配置从 UIButton 当前属性读取
             t
-                .byTimerType(JobsTimerTypeNSTimer)                 // 用 NSTimer 驱动
+                .byTimerType(self.timerType)                       // 默认用 NSTimer 驱动
                 .byTimerStyle(self.timerStyle)                     // 正计时 / 倒计时 模式
                 .byTimeInterval(self.timeInterval)                 // 跳动步长（频率）
                 .byTimeSecIntervalSinceDate(0)                     // 首跳延迟（如需可开放成属性）
@@ -288,10 +284,29 @@ JobsKey(_labelShowingType)
 -(void)setLabelShowingType:(UILabelShowingType)labelShowingType{
     Jobs_setAssociatedRETAIN_NONATOMIC(_labelShowingType, @(labelShowingType))
 }
+#pragma mark —— TimerProtocol.timerType
+JobsKey(_timerType)
+//@dynamic timerType;
+-(JobsTimerType)timerType{
+    return [Jobs_getAssociatedObject(_timerType) unsignedIntegerValue];
+}
+
+-(void)setTimerType:(JobsTimerType)timerType{
+    Jobs_setAssociatedRETAIN_NONATOMIC(_timerType, @(timerType))
+}
 #pragma mark —— DSL
--(JobsRetBtnByTimerStyleBlock _Nonnull)byTimerStyle{
+-(JobsRetBtnByNSUIntegerBlock _Nonnull)byTimerType{
     @jobs_weakify(self)
-    return ^__kindof UIButton *_Nullable(TimerStyle timerStyle){
+    return ^__kindof UIButton *_Nullable(JobsTimerType timerType){
+        @jobs_strongify(self)
+        self.timerType = timerType;
+        return self;
+    };
+}
+
+-(JobsRetBtnByNSUIntegerBlock _Nonnull)byTimerStyle{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(JobsTimerStyle timerStyle){
         @jobs_strongify(self)
         self.timerStyle = timerStyle;
         return self;
@@ -326,3 +341,4 @@ JobsKey(_labelShowingType)
 }
 
 @end
+#pragma clang diagnostic pop

@@ -277,8 +277,8 @@ UITextFieldProtocol_dynamic
         }
     };
 }
-/// 定时器的销毁
--(jobsByTimerBlock _Nonnull)destroyTimer{
+/// NSTimer定时器的销毁
+-(jobsByTimerBlock _Nonnull)destroyNSTimer{
     return ^(NSTimer *_Nullable timer){
         if (timer) {
             [timer invalidate];

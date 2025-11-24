@@ -308,7 +308,7 @@
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(){
         @jobs_strongify(self)
-        UIButton *btn = (__kindof UIButton *)[self.class.alloc init];
+        UIButton *btn = (__kindof UIButton *)self.class.initByViewModel(nil); // 用工厂方法注册点击事件
         return btn.bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0));
     };
 }

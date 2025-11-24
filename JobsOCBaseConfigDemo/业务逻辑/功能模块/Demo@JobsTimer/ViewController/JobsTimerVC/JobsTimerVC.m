@@ -9,10 +9,9 @@
 
 @interface JobsTimerVC ()
 /// UI
-Prop_strong()UIButton <TimerProtocol>*countDownBtn;
-Prop_strong()JobsCountdownView *countdownView;
 Prop_strong()NSMutableArray <UIButton *>*btnMutArr;
-Prop_strong()UIButton *countdownBtn;   // ★ 新增：倒计时按钮
+Prop_strong()JobsCountdownView *countdownView;
+Prop_strong()UIButton *countdownBtn;   // 倒计时按钮
 /// Data
 Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 
@@ -21,9 +20,9 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 @implementation JobsTimerVC
 
 - (void)dealloc{
+    /// 定时器完全移除以后，才会走dealloc方法
     JobsLog(@"%@",JobsLocalFunc);
 //    JobsRemoveNotification(self);
-    [self.countDownBtn.timer stop];
 }
 
 -(void)loadView{
@@ -97,7 +96,8 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.countDownBtn.timer stop];
+    [self.countdownView.timer stop];
+    self.countdownBtn.timerDestroy();
 }
 #pragma mark —— 一些私有方法
 -(void)test_masonry_horizontal_fixSpace {
@@ -167,10 +167,9 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
                 }).onLongPressGestureBy(^(id data){
                     JobsLog(@"");
                 })
-                .layerByBorderCor(HEXCOLOR(0xAE8330))
-                .layerByBorderWidth(0.5f)
-                .cornerCutToCircleWithCornerRadius(JobsWidth(8));
-
+                .jobsResetBtnCornerRadiusValue(JobsWidth(18))
+                .jobsResetBtnLayerBorderCor(HEXCOLOR(0xAE8330))
+                .jobsResetBtnLayerBorderWidth(0.5f);
                 [self.view addSubview:btn];
                 data.add(btn);
             }
@@ -199,7 +198,7 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
         }];
     }return _countdownView;
 }
-/// ★ 新增：倒计时按钮，使用 UIButton+Timer 的封装
+/// ★ 倒计时按钮，使用 UIButton+JobsTimer 的封装
 /// 内含定时器
 -(UIButton *)countdownBtn{
     if (!_countdownBtn) {
@@ -219,10 +218,10 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
                 .byTimeInterval(1)
                 .byClickWhenTimerCycle(YES)               // 计时器运行期间：禁止点击
                 .byOnTick(^(CGFloat time){
-                    NSLog(@"");
+                    btn.jobsResetBtnTitle([NSString stringWithFormat:@"%d",(int)ceil(time)].add(JobsSpace).add(@"秒"));
                 })
                 .byOnFinish(^(JobsTimer *_Nullable timer){
-                    NSLog(@"");
+                    btn.jobsResetBtnTitle(JobsInternationalization(@"获取验证码"));
                 })
                 /// 点击开始倒计时
                 .onClickBy(^(UIButton *x){
@@ -231,6 +230,7 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
                 .jobsResetBtnCornerRadiusValue(JobsWidth(18))
              )
             .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
                 make.centerX.equalTo(self.view);
                 make.top.equalTo(self.countdownView.mas_bottom).offset(JobsWidth(12));
                 make.height.mas_equalTo(JobsWidth(80));

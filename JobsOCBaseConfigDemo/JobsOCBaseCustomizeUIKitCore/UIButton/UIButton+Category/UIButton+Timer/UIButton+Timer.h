@@ -58,17 +58,18 @@ Prop_assign()BOOL isCanBeClickWhenTimerCycle;
 
 #pragma mark —— 时间相关方法【开启定时器】
 /// 1、开启计时【用初始化时间】
-- (JobsRetBtnByVoidBlock _Nonnull)startTimer;
+-(JobsRetBtnByVoidBlock _Nonnull)startTimer;
 /// 2、开启计时【从某个时间】
-- (JobsRetBtnByNSIntegerBlock _Nonnull)startTimerBy;
+-(JobsRetBtnByNSIntegerBlock _Nonnull)startTimerBy;
 #pragma mark —— 时间相关方法【定时器暂停】
-- (JobsRetBtnByVoidBlock _Nonnull)timerSuspend;
+-(JobsRetBtnByVoidBlock _Nonnull)timerSuspend;
 #pragma mark —— 时间相关方法【定时器继续】
-- (JobsRetBtnByVoidBlock _Nonnull)timerContinue;
+-(JobsRetBtnByVoidBlock _Nonnull)timerContinue;
 #pragma mark —— 时间相关方法【定时器销毁】
-- (JobsRetBtnByVoidBlock _Nonnull)timerDestroy;
+-(JobsRetBtnByVoidBlock _Nonnull)timerDestroy;
 
--(JobsRetBtnByTimerStyleBlock _Nonnull)byTimerStyle;
+-(JobsRetBtnByNSUIntegerBlock _Nonnull)byTimerType;
+-(JobsRetBtnByNSUIntegerBlock _Nonnull)byTimerStyle;
 -(JobsRetBtnByDoubleBlock _Nonnull)byTimeInterval;
 -(JobsRetBtnByDoubleBlock _Nonnull)byStartTime;
 -(JobsRetBtnByBOOLBlock _Nonnull)byClickWhenTimerCycle;

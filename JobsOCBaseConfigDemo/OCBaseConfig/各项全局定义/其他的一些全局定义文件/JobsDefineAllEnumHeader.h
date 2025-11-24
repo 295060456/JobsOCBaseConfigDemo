@@ -24,9 +24,9 @@ typedef NS_ENUM(NSInteger, JobsNetworkingEnvir) {
 #ifndef JOBS_TIMER_TYPE_ENUM_DEFINED
 #define JOBS_TIMER_TYPE_ENUM_DEFINED
 typedef NS_ENUM(NSUInteger, JobsTimerType) {
-    JobsTimerTypeNSTimer = 0,        // RunLoop 驱动
-    JobsTimerTypeGCD,                // dispatch_source_t 定时器
-    JobsTimerTypeDisplayLink         // CADisplayLink（帧驱动）
+    JobsTimerTypeNSTimer = 0,        // NSTimer@RunLoop
+    JobsTimerTypeGCD,                // GCD@dispatch_source_t
+    JobsTimerTypeDisplayLink         // CAD@displayLink（帧驱动）
 };
 #endif /* JOBS_TIMER_TYPE_ENUM_DEFINED */
 /// 定时器@当前状态
@@ -44,9 +44,9 @@ typedef NS_ENUM(NSUInteger, JobsTimerState) {
 /// 定时器@模式
 #ifndef JOBS_TIMER_STYLE_ENUM_DEFINED
 #define JOBS_TIMER_STYLE_ENUM_DEFINED
-typedef NS_ENUM(NSUInteger, TimerStyle) {
-    TimerStyle_clockwise = 0,        /// 顺时针模式
-    TimerStyle_anticlockwise         /// 逆时针模式（倒计时模式）
+typedef NS_ENUM(NSUInteger, JobsTimerStyle) {
+    TimerStyle_clockwise = 0,        // 顺时针模式
+    TimerStyle_anticlockwise         // 逆时针模式（倒计时模式）
 };
 #endif /* JOBS_TIMER_STYLE_ENUM_DEFINED */
 /// 时间@显示风格

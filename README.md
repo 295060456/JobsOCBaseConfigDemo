@@ -4798,59 +4798,53 @@ static const uint32_t kSequenceBits = 12;
 
  </details>
 
-### 29、⏰ 倒计时按钮的封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 29、⏰ [**倒计时**](#JobsTimer)按钮的封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 关注实现类 [**@interface UIButton (Timer)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIButton/UIButton+Category/UIButton+Timer)
 
 * 调用示例
 
   ```objective-c
-  -(__kindof UIButton *)makeSendSMSCodeBtnByClickBlock:(jobsByBtnBlock _Nullable)clickBlock{
-      return UIButton.initByConfig(jobsMakeButtonTimerConfigModel(^(__kindof ButtonTimerConfigModel * _Nullable data) {
-          /// 一些通用的设置
-          data.count = 10;
-          data.showTimeType = ShowTimeType_SS;// 时间显示风格
-          data.countDownBtnType = TimerStyle_anticlockwise;// 时间方向
-          data.cequenceForShowTitleRuningStrType = CequenceForShowTitleRuningStrType_tail;//
-          data.labelShowingType = UILabelShowingType_01;//【换行模式】
-          data.secondStr = @" ".add(JobsInternationalization(@"S"));
-          /// 计时器未开始【静态值】
-          data.readyPlayValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-              model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
-              model.bgCor = JobsClearColor;
-              model.layerBorderCor = JobsClearColor;
-              model.titleCor = JobsWhiteColor;
-              model.title = JobsInternationalization(@"GET CODE");
-              model.titleFont = bayonRegular(JobsWidth(12));
-              model.backgroundImage = @"获取验证码背景图".img;
+  /// ★ 倒计时按钮，使用 UIButton+JobsTimer 的封装
+  /// 内含定时器
+  -(UIButton *)countdownBtn{
+      if (!_countdownBtn) {
+          @jobs_weakify(self)
+          _countdownBtn = jobsMakeButton(^(__kindof UIButton * _Nullable btn) {//
+              @jobs_strongify(self)
+              self.view.addSubview
+              (
+               /// 基础 UI
+               btn.jobsResetBtnBgCor(HEXCOLOR(0xAE8330))
+                  .jobsResetBtnTitle(JobsInternationalization(@"获取验证码"))
+                  .jobsResetBtnTitleCor(JobsWhiteColor)
+                  .jobsResetBtnTitleFont(UIFontWeightRegularSize(24))
+                  /// Timer 配置（UIButton+Timer 提供的属性）
+                  .byTimerStyle(TimerStyle_anticlockwise)  // 倒计时模式
+                  .byStartTime(8)                          // 总时长 8 秒
+                  .byTimeInterval(1)
+                  .byClickWhenTimerCycle(YES)               // 计时器运行期间：禁止点击
+                  .byOnTick(^(CGFloat time){
+                      btn.jobsResetBtnTitle([NSString stringWithFormat:@"%d",(int)ceil(time)].add(JobsSpace).add(@"秒"));
+                  })
+                  .byOnFinish(^(JobsTimer *_Nullable timer){
+                      btn.jobsResetBtnTitle(JobsInternationalization(@"获取验证码"));
+                  })
+                  /// 点击开始倒计时
+                  .onClickBy(^(UIButton *x){
+                      x.startTimer();
+                  })
+                  .jobsResetBtnCornerRadiusValue(JobsWidth(18))
+               )
+              .byAdd(^(MASConstraintMaker *make) {
+                  @jobs_strongify(self)
+                  make.centerX.equalTo(self.view);
+                  make.top.equalTo(self.countdownView.mas_bottom).offset(JobsWidth(12));
+                  make.height.mas_equalTo(JobsWidth(80));
+                  make.width.mas_equalTo(JobsWidth(180));
+              });
           });
-          /// 计时器进行中【动态值】
-          data.runningValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-              model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
-              model.bgCor = JobsClearColor;
-              model.title = @"  ";
-              model.layerBorderCor = JobsClearColor;
-              model.titleCor = JobsWhiteColor;
-              model.titleFont = bayonRegular(JobsWidth(12));
-              model.backgroundImage = @"获取验证码背景图".img;
-          });
-          /// 计时器结束【静态值】
-          data.endValue = jobsMakeButtonModel(^(UIButtonModel * _Nullable model) {
-              model.jobsSize = CGSizeMake(JobsWidth(80), JobsWidth(28));
-              model.bgCor = JobsClearColor;
-              model.titleCor = JobsWhiteColor;
-              model.title = JobsInternationalization(@"GET CODE");
-              model.titleFont = bayonRegular(JobsWidth(12));
-              model.backgroundImage = @"获取验证码背景图".img;
-          });
-      })).onClickBy(^(__kindof UIButton *x){
-          /// 回调到外层取值，以满足后续业务需要
-          if(clickBlock) clickBlock(x);
-      }).onLongPressGestureBy(^(id data){
-          JobsLog(@"");
-      }).heartBeatBy(^(NSTimerManager *_Nullable data){
-          JobsLog(@"❤️❤️❤️❤️❤️%f",data.anticlockwiseTime);
-      });
+      }return _countdownBtn;
   }
   ```
   
@@ -4879,7 +4873,9 @@ static const uint32_t kSequenceBits = 12;
     * **结束**
 
       ```objective-c
-      self.countDownBtn.timerDestroy();
+      [self.countdownBtn.timer stop];
+      /// 或者
+      self.countdownBtn.timerDestroy();
       ```
     
   * **正常的按钮点击事件**
@@ -11976,7 +11972,7 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 }];
 ```
 
-### 79、JobsTimer <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 79、<font id=JobsTimer>JobsTimer</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 #### 79.1、倒计时 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
