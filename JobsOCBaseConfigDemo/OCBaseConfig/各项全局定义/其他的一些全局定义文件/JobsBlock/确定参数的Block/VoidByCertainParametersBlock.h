@@ -46,6 +46,8 @@ typedef void(^jobsByScrollViewBlock)(__kindof UIScrollView *_Nullable scrollView
 typedef void(^jobsByBtnBlock)(__kindof UIButton *_Nullable btn);
 typedef void(^jobsByWindowBlock)(__kindof UIWindow *_Nullable window);
 typedef void(^jobsByLabelBlock)(__kindof UILabel *_Nullable label);
+typedef void(^jobsByNavigationBarAppearanceBlock)(__kindof UINavigationBarAppearance *_Nullable appearance);
+typedef void(^jobsByNavigationBarBlock)(__kindof UINavigationBar *_Nullable bar);
 typedef void(^jobsByRefreshCtrlBlock)(__kindof UIRefreshControl *_Nullable refreshCtrl);
 typedef void(^jobsByPDFViewBlock)(__kindof PDFView *_Nullable view);
 typedef void(^jobsByTabBarItemBlock)(__kindof UITabBarItem *_Nullable tabBarItem);

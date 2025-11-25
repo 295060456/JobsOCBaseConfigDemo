@@ -28,6 +28,8 @@
 		046CFA7A2E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA792E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m */; };
 		046CFA7E2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */; };
 		047E48F92EB4537700881898 /* NSObject+image.m in Sources */ = {isa = PBXBuildFile; fileRef = 047E48F82EB4537700881898 /* NSObject+image.m */; };
+		048B79602ED5460B00A6FEF1 /* JobsTabBarCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 048B795F2ED5460B00A6FEF1 /* JobsTabBarCtrl.m */; };
+		048B79642ED5471F00A6FEF1 /* JobsNavigationDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 048B79632ED5471F00A6FEF1 /* JobsNavigationDemoVC.m */; };
 		04A245C92ECDBC19009649E8 /* BRTextPickerView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A245C82ECDBC19009649E8 /* BRTextPickerView+Extra.m */; };
 		04C442142EB86BFD008E0F09 /* Terms of Use.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04C442132EB86BFD008E0F09 /* Terms of Use.pdf */; };
 		04C442982EB89493008E0F09 /* UIView+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C442972EB89493008E0F09 /* UIView+DSL.m */; };
@@ -1362,6 +1364,10 @@
 		046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButtonConfiguration+Extra.m"; sourceTree = "<group>"; };
 		047E48F72EB4537700881898 /* NSObject+image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+image.h"; sourceTree = "<group>"; };
 		047E48F82EB4537700881898 /* NSObject+image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+image.m"; sourceTree = "<group>"; };
+		048B795E2ED5460B00A6FEF1 /* JobsTabBarCtrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTabBarCtrl.h; sourceTree = "<group>"; };
+		048B795F2ED5460B00A6FEF1 /* JobsTabBarCtrl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTabBarCtrl.m; sourceTree = "<group>"; };
+		048B79622ED5471F00A6FEF1 /* JobsNavigationDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsNavigationDemoVC.h; sourceTree = "<group>"; };
+		048B79632ED5471F00A6FEF1 /* JobsNavigationDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsNavigationDemoVC.m; sourceTree = "<group>"; };
 		04A245C72ECDBC19009649E8 /* BRTextPickerView+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BRTextPickerView+Extra.h"; sourceTree = "<group>"; };
 		04A245C82ECDBC19009649E8 /* BRTextPickerView+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BRTextPickerView+Extra.m"; sourceTree = "<group>"; };
 		04C442132EB86BFD008E0F09 /* Terms of Use.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Terms of Use.pdf"; sourceTree = "<group>"; };
@@ -4126,6 +4132,24 @@
 			path = "NSObject+image";
 			sourceTree = "<group>";
 		};
+		048B795D2ED545AF00A6FEF1 /* JobsTabBarCtrl */ = {
+			isa = PBXGroup;
+			children = (
+				048B795E2ED5460B00A6FEF1 /* JobsTabBarCtrl.h */,
+				048B795F2ED5460B00A6FEF1 /* JobsTabBarCtrl.m */,
+			);
+			path = JobsTabBarCtrl;
+			sourceTree = "<group>";
+		};
+		048B79612ED546F300A6FEF1 /* Demo@系统导航栏 */ = {
+			isa = PBXGroup;
+			children = (
+				048B79622ED5471F00A6FEF1 /* JobsNavigationDemoVC.h */,
+				048B79632ED5471F00A6FEF1 /* JobsNavigationDemoVC.m */,
+			);
+			path = "Demo@系统导航栏";
+			sourceTree = "<group>";
+		};
 		04A245C52ECDBBDF009649E8 /* BRPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -4976,6 +5000,7 @@
 		C55C7AB92E167B5D00B56985 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				048B79612ED546F300A6FEF1 /* Demo@系统导航栏 */,
 				045B59092EBB364E00CFBE3B /* Demo@Texture */,
 				C53BE3B62E265E1F004A72BE /* Demo@Flutter */,
 				C55C7B6D2E167B5E00B56985 /* Demo@本地通知 */,
@@ -13212,6 +13237,7 @@
 		C55C83C92E167B6400B56985 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				048B795D2ED545AF00A6FEF1 /* JobsTabBarCtrl */,
 				C55C83CA2E167B6400B56985 /* XLSphereView */,
 				C55C83CF2E167B6400B56985 /* GXCardView */,
 				C55C83D72E167B6400B56985 /* 扫一扫组件（空缺） */,
@@ -15525,11 +15551,11 @@
 		C55C86942E167B6500B56985 /* 手势滑动返回 */ = {
 			isa = PBXGroup;
 			children = (
-				C55C86952E167B6500B56985 /* UIScrollView+FDFullscreenPopGesture.m */,
-				C55C86962E167B6500B56985 /* UINavigationController+FDFullscreenPopGesture.h */,
 				C55C86972E167B6500B56985 /* README.md */,
-				C55C86982E167B6500B56985 /* UIScrollView+FDFullscreenPopGesture.h */,
+				C55C86962E167B6500B56985 /* UINavigationController+FDFullscreenPopGesture.h */,
 				C55C86992E167B6500B56985 /* UINavigationController+FDFullscreenPopGesture.m */,
+				C55C86982E167B6500B56985 /* UIScrollView+FDFullscreenPopGesture.h */,
+				C55C86952E167B6500B56985 /* UIScrollView+FDFullscreenPopGesture.m */,
 			);
 			path = "手势滑动返回";
 			sourceTree = "<group>";
@@ -18005,6 +18031,7 @@
 				C55C8C5B2E167B6C00B56985 /* This+URLManager_Base.m in Sources */,
 				C55C8B282E167B6A00B56985 /* BaseView.m in Sources */,
 				C55C8A372E167B6900B56985 /* UICollectionView+EmptyData.m in Sources */,
+				048B79602ED5460B00A6FEF1 /* JobsTabBarCtrl.m in Sources */,
 				C55C8B602E167B6A00B56985 /* UNCalendarNotificationTrigger+Extra.m in Sources */,
 				046CFA7A2E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m in Sources */,
 				C55C8DE42E167B6E00B56985 /* DDNumber.m in Sources */,
@@ -18539,6 +18566,7 @@
 				C55C8A552E167B6900B56985 /* UITBVCellFoldVC.m in Sources */,
 				C55C8DBD2E167B6E00B56985 /* KTVHCPathTool.m in Sources */,
 				C55C8B1F2E167B6A00B56985 /* JobsShakeBtn.m in Sources */,
+				048B79642ED5471F00A6FEF1 /* JobsNavigationDemoVC.m in Sources */,
 				C55C89912E167B6900B56985 /* ProtocolKitVC.m in Sources */,
 				C55C89862E167B6900B56985 /* JobsSearchResultDataListTBVCell.m in Sources */,
 				C55C8B1B2E167B6A00B56985 /* RBCLikeButton.m in Sources */,
@@ -19220,7 +19248,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -19238,7 +19266,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -19255,7 +19283,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -19272,7 +19300,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jobs.JobsOCBaseConfigDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

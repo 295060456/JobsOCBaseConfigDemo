@@ -12,7 +12,7 @@
 @end
 
 @implementation JobsMonitorVC
-
+@synthesize jobsBackBlock = _jobsBackBlock;
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

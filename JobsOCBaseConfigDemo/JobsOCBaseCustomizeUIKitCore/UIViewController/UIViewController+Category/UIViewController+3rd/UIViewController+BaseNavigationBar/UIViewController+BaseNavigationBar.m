@@ -9,12 +9,16 @@
 
 @implementation UIViewController (BaseNavigationBar)
 
-- (void)gotoback{
-    if (self.navigationController) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }else{
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+-(jobsByVoidBlock _Nonnull)gotoBack{
+    @jobs_weakify(self)
+    return ^(){
+        @jobs_strongify(self)
+        if (self.navigationController) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    };
 }
 #pragma mark —— Prop_strong()NavigationBar *navigationBar;
 JobsKey(_navigationBar)
@@ -23,7 +27,7 @@ JobsKey(_navigationBar)
     BaseNavigationBar *NavBar = Jobs_getAssociatedObject(_navigationBar);
     if (!NavBar) {
         @jobs_weakify(self)
-        NavBar = jobsMakeNavigationBar(^(__kindof BaseNavigationBar * _Nullable navBar) {
+        NavBar = jobsMakeBaseNavigationBar(^(__kindof BaseNavigationBar * _Nullable navBar) {
             @jobs_strongify(self)
             /// 优先级:背景图 > 背景色
             navBar.backgroundColor = self.bgCor;
@@ -64,11 +68,17 @@ JobsKey(_leftBarButtonItem_back)
                                             @"Frameworks/GKNavigationBar.framework/GKNavigationBar",
                                             nil,
                                             imageName);
+            @jobs_weakify(self)
             LeftBarButtonItem_back = [UIBarButtonItem.alloc initWithImage:[backImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                     style:UIBarButtonItemStyleDone
                                                                    target:self
-                                                                   action:@selector(gotoback)];
-            
+                                                                   action:nil]
+                .byRacCommand([RACCommand.alloc initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+                    @jobs_strongify(self)
+                    self.gotoBack();
+                    return [RACSignal empty];
+                }]);
+
             [self setLeftBarButtonItem_back:LeftBarButtonItem_back];
         }
     }return LeftBarButtonItem_back;

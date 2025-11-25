@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UINavigationController (Extra)
 
-+(JobsRetNavCtrByVCBlock _Nonnull)initByRootVC;
 -(UIViewController *)rootViewController;
 -(jobsByNSUIntegerBlock _Nonnull)navDirectionBy;
 

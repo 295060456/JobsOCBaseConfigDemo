@@ -373,6 +373,20 @@ jobsMakeLabel(jobsByLabelBlock _Nonnull block){
     return data;
 }
 
+NS_INLINE __kindof UINavigationBarAppearance *_Nonnull
+jobsMakeNavigationBarAppearance(jobsByNavigationBarAppearanceBlock _Nonnull block){
+    UINavigationBarAppearance *data = UINavigationBarAppearance.alloc.init;
+    if (block) block(data);
+    return data;
+}
+
+NS_INLINE __kindof UINavigationBar *_Nonnull
+jobsMakeNavigationBar(jobsByNavigationBarBlock _Nonnull block){
+    UINavigationBar *data = UINavigationBar.appearance;
+    if (block) block(data);
+    return data;
+}
+
 NS_INLINE __kindof UIRefreshControl *_Nonnull
 jobsMakeRefreshControl(jobsByRefreshCtrlBlock _Nonnull block){
     UIRefreshControl *data = UIRefreshControl.alloc.init;

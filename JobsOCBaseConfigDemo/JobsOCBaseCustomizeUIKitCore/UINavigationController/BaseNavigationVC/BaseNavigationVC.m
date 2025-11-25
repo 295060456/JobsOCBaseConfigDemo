@@ -22,28 +22,7 @@ Prop_strong()NSShadow *shadow;
 
 - (instancetype)initWithRootViewController:(UIViewController *)rootViewController {
     if (self = [super initWithRootViewController:rootViewController]) {
-        //如果用系统的navigationBar，而并非自定义👇
-//        {
-//            self.navigationBar.translucent = NO;
-//            [self.navigationBar setBackgroundImage:@"启动页SLOGAN".img
-//                                     forBarMetrics:UIBarMetricsDefault];//仅仅是 navigationBar 背景
-//        //    [self.navigationBar setShadowImage:@"启动页SLOGAN".img];// 图片大了会全屏
-//        }
-//
-//        {
-//            if ([self.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {//设置NavgationBar的背景图片
-//                [self.navigationBar setBarTintColor:JobsRedColor];//一般的业务是全局设置，因为一个App里面只有一个主题
-//                self.navigationBar.tintColor = JobsBlackColor;//系统的组件着色（返回按钮——箭头图标 和 上面的字）
-//            }
-//        }
-//
-//        {
-//            self.navigationBar.titleTextAttributes = @{
-//                NSForegroundColorAttributeName:JobsBlackColor,
-//                NSShadowAttributeName:self.shadow,
-//                NSFontAttributeName:JobsFontRegular(18)
-//            };//设置导航上的title显示样式
-//        }
+        // [self 自定义navigationBar];
     }return self;
 }
 
@@ -102,13 +81,12 @@ Prop_strong()NSShadow *shadow;
     for(NSInteger index = 1; index < viewControllers.count; index ++){
         viewControllers[index].hidesBottomBarWhenPushed = YES;
     }
-    [super setViewControllers:viewControllers
-                     animated:animated];
+    [super setViewControllers:viewControllers animated:animated];
 }
 
 - (void)pushViewController:(UIViewController *)viewController
                   animated:(BOOL)animated{
-    viewController.hidesBottomBarWhenPushed = self.viewControllers.count;//push 的时候把 tabBar 隐藏了
+    viewController.hidesBottomBarWhenPushed = self.viewControllers.count;// push 的时候把 tabBar 隐藏了
     [super pushViewController:viewController animated:animated];
 }
 #pragma clang diagnostic push
@@ -125,7 +103,7 @@ Prop_strong()NSShadow *shadow;
 - (void)navigationController:(UINavigationController *)navigationController
       willShowViewController:(UIViewController *)viewController
                     animated:(BOOL)animated{
-    self.navigationBar.hidden = YES;//全局隐藏系统的导航栏，这一句是手势返回的时候，再次隐藏
+    self.navigationBar.hidden = self.isHiddenNavigationBar;// 全局隐藏系统的导航栏，这一句是手势返回的时候，再次隐藏
 }
 
 - (void)navigationController:(UINavigationController *)navigationController
@@ -133,50 +111,32 @@ Prop_strong()NSShadow *shadow;
                     animated:(BOOL)animated{
     self.interactivePopGestureRecognizer.delegate = (id)viewController;
 }
+#pragma mark —— 一些私有方法
+/// 如果用系统的navigationBar，而并非自定义👇
+-(void)自定义navigationBar{
+    self.navigationBar.translucent = NO;
+    [self.navigationBar setBackgroundImage:@"启动页SLOGAN".img forBarMetrics:UIBarMetricsDefault]; // 仅仅是 navigationBar 背景
+//    [self.navigationBar setShadowImage:@"启动页SLOGAN".img];// 图片大了会全屏
 
--(void)setupBarButtonItem:(UIViewController * __nonnull)vc
-                    title:(NSString * __nullable)title
-                 selector:(SEL __nonnull)selector{
-    if (vc && selector) {
-        UIBarButtonItem *editBarBtnItems = [[UIBarButtonItem alloc] initWithTitle:title
-                                                                            style:UIBarButtonItemStylePlain
-                                                                           target:self
-                                                                           action:@selector(selector)];
-        vc.navigationItem.rightBarButtonItem = editBarBtnItems;
+    if ([self.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) { // 设置NavgationBar的背景图片
+        [self.navigationBar setBarTintColor:JobsRedColor]; // 一般的业务是全局设置，因为一个App里面只有一个主题
+        self.navigationBar.tintColor = JobsBlackColor;     // 系统的组件着色（返回按钮——箭头图标 和 上面的字）
     }
+    /// 设置导航上的title显示样式
+    self.navigationBar.titleTextAttributes = jobsMakeMutDic(^(__kindof NSMutableDictionary * _Nullable dic) {
+        dic[NSForegroundColorAttributeName] = JobsBlackColor;
+        dic[NSShadowAttributeName] = self.shadow;
+        dic[NSFontAttributeName] = JobsFontRegular(18);
+    });
 }
 #pragma mark —— lazyLoad
 -(NSShadow *)shadow{
     if (!_shadow) {
-        _shadow = NSShadow.new;
-        _shadow.shadowColor = RGBA_COLOR(0,
-                                         0,
-                                         0,
-                                         0.8);
-        _shadow.shadowOffset = CGSizeZero;
+        _shadow = jobsMakeShadow(^(__kindof NSShadow * _Nullable shadow) {
+            shadow.shadowColor = RGBA_COLOR(0,0,0,0.8);
+            shadow.shadowOffset = CGSizeZero;
+        });
     }return _shadow;
 }
 
 @end
-
-/*
- 
- -(void)setSYSNavigationBar{
-     //1.设置导航栏背景颜色
-     [[UINavigationBar appearance] setBarTintColor:[UIColor orangeColor]];
-     //2.设置导航栏背景图片
-     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationBarImg"]
-                                        forBarMetrics:UIBarMetricsDefault];
-     //3.设置导航栏标题样式
-     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                [UIColor purpleColor], NSForegroundColorAttributeName,
-                                                                [UIFont boldSystemFontOfSize:25], NSFontAttributeName, nil]];
-
- //    //4.设置导航栏返回按钮的颜色
-     [[UINavigationBar appearance] setTintColor:[UIColor greenColor]];
-     //5.设置导航栏隐藏
-     [[UINavigationBar appearance] setHidden:YES];
- }
- 
- 
- */

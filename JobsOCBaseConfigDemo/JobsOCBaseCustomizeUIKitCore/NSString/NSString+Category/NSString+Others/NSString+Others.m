@@ -100,6 +100,10 @@
         NSObject.jobsToastMsg(JobsInternationalization(self));
     };
 }
+/// 国际化
+-(NSString *_Nullable)tr{
+    return [JobsLanguageManager localStringWithKey:self];
+}
 /// 输入单词的首字母大写（适用于拼接set方法）
 -(NSString *_Nonnull)capitalizeFirstLetter{
     if(self.length){

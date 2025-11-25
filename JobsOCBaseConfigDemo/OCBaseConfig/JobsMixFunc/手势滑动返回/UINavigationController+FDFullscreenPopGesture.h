@@ -20,11 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#import <objc/runtime.h>
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 #import "UIScrollView+FDFullscreenPopGesture.h"
 #import "NSObject+Extras.h"
-
+#import "DefineProperty.h"
+/// https://github.com/forkingdog/FDFullscreenPopGesture/issues/177
 /// "UINavigation+FDFullscreenPopGesture" extends UINavigationController's swipe-
 /// to-pop behavior in iOS 7+ by supporting fullscreen pan gesture. Instead of
 /// screen edge, you can now swipe from any place on the screen and the onboard
@@ -35,31 +36,22 @@
 @interface UINavigationController (FDFullscreenPopGesture)<UIGestureRecognizerDelegate>
 
 /// The gesture recognizer that actually handles interactive pop.
-@property (nonatomic, strong, readonly) UIPanGestureRecognizer *fd_fullscreenPopGestureRecognizer;
-
+Prop_strong(readonly)UIPanGestureRecognizer *fd_fullscreenPopGestureRecognizer;
 /// A view controller is able to control navigation bar's appearance by itself,
 /// rather than a global way, checking "fd_prefersNavigationBarHidden" property.
 /// Default to YES, disable it if you don't want so.
-@property (nonatomic, assign) BOOL fd_viewControllerBasedNavigationBarAppearanceEnabled;
+Prop_assign()BOOL fd_viewControllerBasedNavigationBarAppearanceEnabled;
 
 @end
-
 /// Allows any view controller to disable interactive pop gesture, which might
 /// be necessary when the view controller itself handles pan gesture in some
 /// cases.
 @interface UIViewController (FDFullscreenPopGesture)
-
 /// Whether the interactive pop gesture is disabled when contained in a navigation
 /// stack.
-@property (nonatomic, assign) BOOL fd_interactivePopDisabled;
-
-/// Indicate this view controller prefers its navigation bar hidden or not,
-/// checked when view controller based navigation bar's appearance is enabled.
-/// Default to NO, bars are more likely to show.
-@property (nonatomic, assign) BOOL fd_prefersNavigationBarHidden;
-
+Prop_assign()BOOL fd_interactivePopDisabled;
 /// Max allowed initial distance to left edge when you begin the interactive pop
 /// gesture. 0 by default, which means it will ignore this limit.
-@property (nonatomic, assign) CGFloat fd_interactivePopMaxAllowedInitialDistanceToLeftEdge;
+Prop_assign()CGFloat fd_interactivePopMaxAllowedInitialDistanceToLeftEdge;
 
 @end

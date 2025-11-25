@@ -289,6 +289,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = JobsInternationalization(@"JobsNavigationDemoVC");
+                model.subTitle = JobsInternationalization(@"系统导航栏");
+                model.cls = JobsNavigationDemoVC.class;
+            })));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = JobsInternationalization(@"JobsScrollLabelVC");
                 model.subTitle = JobsInternationalization(@"当文本超出的时候，滚动展现文字的Label");
                 model.cls = JobsScrollLabelVC.class;

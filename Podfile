@@ -36,7 +36,7 @@ post_install do |installer|
     user_project.native_targets.each do |t|
       t.build_configurations.each do |config|
         config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.6'
       end
     end
     user_project.save
@@ -46,7 +46,7 @@ post_install do |installer|
   pods_project = installer.pods_project
   pods_project.targets.each do |t|
     t.build_configurations.each do |config|
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.6'
     end
   end
 

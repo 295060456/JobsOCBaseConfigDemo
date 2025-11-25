@@ -15,4 +15,13 @@
     };
 }
 
+-(JobsRetBarButtonItemByRACCommandBlock _Nonnull)byRacCommand{
+    @jobs_weakify(self)
+    return ^__kindof UIBarButtonItem *_Nullable(__kindof RACCommand *_Nullable command){
+        @jobs_strongify(self)
+        self.rac_command = command;
+        return self;
+    };
+}
+
 @end

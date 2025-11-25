@@ -45,6 +45,8 @@ Prop_strong()UIColor *shadowCor;
 Prop_strong()UIColor *foregroundColorAttributeNameCor;
 Prop_strong()UIFont *fontAttributeName;
 
+-(jobsByVoidBlock _Nonnull)gotoBack;
+
 @end
 
 NS_ASSUME_NONNULL_END

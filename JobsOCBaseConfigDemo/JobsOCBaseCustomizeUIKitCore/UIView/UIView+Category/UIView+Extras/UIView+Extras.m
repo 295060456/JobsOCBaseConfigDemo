@@ -15,6 +15,10 @@
         return [UIView.alloc initWithFrame:data];
     };
 }
+
+-(UIBarButtonItem *_Nonnull)barBtnItem{
+    return [UIBarButtonItem.alloc initWithCustomView:self];
+}
 #pragma mark —— BaseViewProtocol
 /// 用于类
 +(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel{
@@ -701,14 +705,6 @@ JobsKey(_cornerRadii)
         @jobs_strongify(self)
         if(gesture) [self addGestureRecognizer:gesture];
         return gesture;
-    };
-}
-
--(JobsRetBarButtonItemByVoidBlock _Nonnull)barButtonItem{
-    @jobs_weakify(self)
-    return ^__kindof UIBarButtonItem *_Nullable(){
-        @jobs_strongify(self)
-        return UIBarButtonItem.initBy(self);
     };
 }
 

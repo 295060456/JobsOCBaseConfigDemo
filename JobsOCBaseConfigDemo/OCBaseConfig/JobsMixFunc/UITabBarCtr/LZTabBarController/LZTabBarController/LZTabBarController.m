@@ -96,7 +96,7 @@ Prop_strong()LZTabBarConfig *config;
         NSMutableArray *vcs = [NSMutableArray arrayWithCapacity:_config.viewControllers.count];
         for (UIViewController *vc in _config.viewControllers) {
             if (![vc isKindOfClass:UINavigationController.class]) {
-                vcs.add(UINavigationController.initByRootVC(vc));
+                vcs.add(vc.navCtrl);
             } else vcs.add(vc);
         }self.viewControllers = vcs.copy;
     } else {

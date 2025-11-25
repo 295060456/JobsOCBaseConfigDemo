@@ -42,6 +42,7 @@ NS_INLINE void destroyView(__strong __kindof UIView *_Nonnull *_Nonnull view) {
 @interface UIView (Extras) <BaseViewProtocol,BaseCellProtocol>
 #pragma mark —— init
 +(JobsRetViewByFrameBlock _Nonnull)initByFrame;
+-(UIBarButtonItem *_Nonnull)barBtnItem;
 Prop_assign()CGFloat jobsVisible;
 -(JobsRetViewByCGFloatBlock _Nonnull)byVisible;
 #pragma mark —— 打印
@@ -118,7 +119,6 @@ Prop_assign()CGFloat jobsVisible;
 -(JobsRetViewByNSIntegerBlock _Nonnull)viewByID;
 -(JobsRetViewByGestureRecognizer _Nonnull)addGesture;
 -(JobsReturnGestureByGesture _Nonnull)addGestureRecognizer;
--(JobsRetBarButtonItemByVoidBlock _Nonnull)barButtonItem;
 -(JobsRetViewByNSIntegerBlock _Nonnull)viewWithTag;
 -(JobsRetViewByInteractionBlock _Nonnull)addInteraction;
 -(JobsRetViewByInteractionBlock _Nonnull)removeInteraction;

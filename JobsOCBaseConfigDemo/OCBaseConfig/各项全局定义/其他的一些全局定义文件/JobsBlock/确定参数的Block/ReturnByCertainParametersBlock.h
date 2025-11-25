@@ -162,6 +162,7 @@ typedef __kindof CAShapeLayer *_Nullable(^JobsRetCAShapeLayerByCGCorRefBlock)(CG
 #pragma mark —— 关于 View
 /// UIView
 typedef __kindof UIView *_Nullable(^JobsRetViewByVoidBlock)(void);
+typedef __kindof UIView *_Nullable(^JobsRetViewByBarButtonItemBlock)(__kindof UIBarButtonItem *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsRetViewByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsRetViewByViewBlock)(UIView *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsRetViewByInteractionBlock)(id <UIInteraction>_Nullable data);
@@ -197,6 +198,8 @@ typedef __kindof UIView *_Nullable(^JobsRetViewByPinchGestureBlock)(UIPinchGestu
 typedef __kindof UIView *_Nullable(^JobsRetViewByRotationGestureBlock)(UIRotationGestureRecognizer *_Nullable gesture);
 /// UIBarButtonItem
 typedef __kindof UIBarButtonItem *_Nullable(^JobsRetBarButtonItemByViewBlock)(__kindof UIView *_Nullable view);
+#import <ReactiveObjC/RACCommand.h>
+typedef __kindof UIBarButtonItem *_Nullable(^JobsRetBarButtonItemByRACCommandBlock)(__kindof RACCommand *_Nullable command);
 typedef __kindof UIBarButtonItem *_Nullable(^JobsRetBarButtonItemByVoidBlock)(void);
 /// UIImageView
 typedef __kindof UIImageView *_Nonnull(^JobsRetImageViewByImageBlock)(UIImage *_Nullable data);

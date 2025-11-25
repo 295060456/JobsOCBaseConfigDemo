@@ -24,7 +24,7 @@
 
 @interface _FDFullscreenPopGestureRecognizerDelegate : NSObject<UIGestureRecognizerDelegate>
 
-@property(nonatomic,weak)UINavigationController *navigationController;
+Prop_weak()UINavigationController *navigationController;
 
 @end
 
@@ -62,7 +62,6 @@
 @end
 
 typedef void (^_FDViewControllerWillAppearInjectBlock)(UIViewController *viewController, BOOL animated);
-
 @interface UIViewController (FDFullscreenPopGesturePrivate)
 
 Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
@@ -87,24 +86,12 @@ Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
 - (void)fd_viewWillAppear:(BOOL)animated{
     // Forward to primary implementation.
     [self fd_viewWillAppear:animated];
-    
-    if (self.fd_willAppearInjectBlock) {
-        self.fd_willAppearInjectBlock(self, animated);
-    }
+    if (self.fd_willAppearInjectBlock) self.fd_willAppearInjectBlock(self, animated);
 }
 
 - (void)fd_viewWillDisappear:(BOOL)animated{
     // Forward to primary implementation.
     [self fd_viewWillDisappear:animated];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
-                                 (int64_t)(0 * NSEC_PER_SEC)),
-                   dispatch_get_main_queue(), ^{
-        UIViewController *viewController = self.navigationController.viewControllers.lastObject;
-        if (viewController && !viewController.fd_prefersNavigationBarHidden) {
-            [self.navigationController setNavigationBarHidden:YES animated:NO];
-        }
-    });
 }
 
 - (_FDViewControllerWillAppearInjectBlock)fd_willAppearInjectBlock{
@@ -177,21 +164,13 @@ Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
 }
 
 - (void)fd_setupViewControllerBasedNavigationBarAppearanceIfNeeded:(UIViewController *)appearingViewController{
-    if (!self.fd_viewControllerBasedNavigationBarAppearanceEnabled) {
-        return;
-    }
-    
-    __weak typeof(self) weakSelf = self;
+    if (!self.fd_viewControllerBasedNavigationBarAppearanceEnabled) return;
+    @jobs_weakify(self)
     _FDViewControllerWillAppearInjectBlock block = ^(UIViewController *viewController,
                                                      BOOL animated) {
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        if (strongSelf) {
-            JobsLog(@"viewController.fd_prefersNavigationBarHidden = %d",viewController.fd_prefersNavigationBarHidden);
-            [strongSelf setNavigationBarHidden:YES//viewController.fd_prefersNavigationBarHidden
-                                      animated:animated];
-        }
+        @jobs_strongify(self)
+        [self setNavigationBarHidden:viewController.isHiddenNavigationBar animated:animated];
     };
-    
     // Setup will appear inject block to appearing view controller.
     // Setup disappearing view controller as well, because not every view controller is added into
     // stack by pushing, maybe by "-setViewControllers:".
@@ -228,9 +207,7 @@ Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
 
 - (BOOL)fd_viewControllerBasedNavigationBarAppearanceEnabled{
     NSNumber *number = objc_getAssociatedObject(self, _cmd);
-    if (number) {
-        return number.boolValue;
-    }
+    if (number) return number.boolValue;
     self.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
     return YES;
 }
@@ -258,17 +235,6 @@ Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)fd_prefersNavigationBarHidden{
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
-}
-
-- (void)setFd_prefersNavigationBarHidden:(BOOL)hidden{
-    objc_setAssociatedObject(self,
-                             @selector(fd_prefersNavigationBarHidden),
-                             @(hidden),
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 - (CGFloat)fd_interactivePopMaxAllowedInitialDistanceToLeftEdge{
 #if CGFLOAT_IS_DOUBLE
     return [objc_getAssociatedObject(self, _cmd) doubleValue];
@@ -284,5 +250,7 @@ Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
                              @(MAX(0, distance)),
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
+
 
 @end

@@ -10,32 +10,22 @@
 #define Other_h
 
 #import "JobsBlock.h"
-
 #import "JobsTabBarVC.h"
-
 #import "JobsNoticePopupView.h"
-
 #import "AppDelegate.h"
-
 #import "NSObject+UserInfo.h"
 #import "NSObject+AppTools.h"
-
-#import "JobsAppDoorVC.h"/// 登录、注册、忘记密码
-
+#import "JobsAppDoorVC.h"                   // 登录、注册、忘记密码
 #import "ViewController@1.h"
 #import "ViewController@2.h"
 #import "ViewController@3.h"
 #import "ViewController@4.h"
 #import "ViewController@5.h"
-
-#import "JobsOCBaseConfigPopupViewHeader.h"/// 本App相关的自定义弹出框
-
+#import "JobsOCBaseConfigPopupViewHeader.h" // 本App相关的自定义弹出框
 /// 测试专用
-#import "JobsShowObjInfoVC.h"/// 查看对象
-
+#import "JobsShowObjInfoVC.h"               // 查看对象
 /// App 的所有网络请求Api
 #import "JobsNetworkingHeader.h"
-
 /// 相关功能模块组测试控制器
 #import "JobsProgressVC.h"
 #import "A_VC.h"
@@ -89,14 +79,15 @@
 #import "LandscapeSwitchVC.h"
 #import "WidgetVC.h"
 #import "HotRefreshVC.h"
-#import "AppLanguageVC.h"/// 国际化
+#import "AppLanguageVC.h"                  // 国际化
 #import "FMDB_VC.h"
 #import "Realm_VC.h"
 #import "LotteryVC.h"
 #import "PointLabTestVC.h"
-#import "CalendarVC.h"/// 日历功能
-#import "JobsScrollLabelVC.h" /// 当文本超出的时候，滚动展现文字的Label
+#import "CalendarVC.h"                     // 日历功能
+#import "JobsScrollLabelVC.h"              // 当文本超出的时候，滚动展现文字的Label
 #import "NSProxyDemoVC.h"
+#import "JobsNavigationDemoVC.h"
 /// 公共图
 #import "CommonViews.h"
 

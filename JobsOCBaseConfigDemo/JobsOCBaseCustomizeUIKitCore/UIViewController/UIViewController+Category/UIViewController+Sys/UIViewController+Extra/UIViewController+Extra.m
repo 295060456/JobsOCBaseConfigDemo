@@ -22,7 +22,7 @@
     if([self isKindOfClass:UINavigationController.class]){
         return (UINavigationController *)self;
     }else{
-        return UINavigationController.initByRootVC(self);
+        return [UINavigationController.alloc initWithRootViewController:self];
     }
 }
 /// 关闭系统自带的右滑关闭手势
