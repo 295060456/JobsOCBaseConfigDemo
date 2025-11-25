@@ -32,31 +32,21 @@ Prop_weak()UINavigationController *navigationController;
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
     // Ignore when no view controller is pushed into the navigation stack.
-    if (self.navigationController.viewControllers.count <= 1) {
-        return NO;
-    }
+    if (self.navigationController.viewControllers.count <= 1) return NO;
     // Ignore when the active view controller doesn't allow interactive pop.
     UIViewController *topViewController = self.navigationController.viewControllers.lastObject;
-    if (topViewController.fd_interactivePopDisabled) {
-        return NO;
-    }
+    if (topViewController.fd_interactivePopDisabled) return NO;
     // Ignore when the beginning location is beyond max allowed initial distance to left edge.
     CGPoint beginningLocation = [gestureRecognizer locationInView:gestureRecognizer.view];
     CGFloat maxAllowedInitialDistance = topViewController.fd_interactivePopMaxAllowedInitialDistanceToLeftEdge;
-    if (maxAllowedInitialDistance > 0 && beginningLocation.x > maxAllowedInitialDistance) {
-        return NO;
-    }
+    if (maxAllowedInitialDistance > 0 && beginningLocation.x > maxAllowedInitialDistance) return NO;
     // Ignore pan gesture when the navigation controller is currently in transition.
-    if ([self.navigationController.valueForKey(@"_isTransitioning") boolValue]) {
-        return NO;
-    }
+    if ([self.navigationController.valueForKey(@"_isTransitioning") boolValue]) return NO;
     // Prevent calling the handler when the gesture begins in an opposite direction.
     CGPoint translation = [gestureRecognizer translationInView:gestureRecognizer.view];
     BOOL isLeftToRight = [UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionLeftToRight;
     CGFloat multiplier = isLeftToRight ? 1 : - 1;
-    if ((translation.x * multiplier) <= 0) {
-        return NO;
-    }return YES;
+    return (translation.x * multiplier) > 0;
 }
 
 @end
@@ -138,10 +128,8 @@ Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
 
 - (void)fd_pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     if (![self.interactivePopGestureRecognizer.view.gestureRecognizers containsObject:self.fd_fullscreenPopGestureRecognizer]) {
-        
         // Add our own gesture recognizer to where the onboard screen edge pan gesture recognizer is attached to.
         [self.interactivePopGestureRecognizer.view addGestureRecognizer:self.fd_fullscreenPopGestureRecognizer];
-        
         // Forward the gesture events to the private handler of the onboard gesture recognizer.
         NSArray *internalTargets = [self.interactivePopGestureRecognizer valueForKey:@"targets"];
         id internalTarget = [internalTargets.firstObject valueForKey:@"target"];
@@ -149,14 +137,11 @@ Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
         self.fd_fullscreenPopGestureRecognizer.delegate = self.fd_popGestureRecognizerDelegate;
         [self.fd_fullscreenPopGestureRecognizer addTarget:internalTarget
                                                    action:internalAction];
-        
         // Disable the onboard gesture recognizer.
         self.interactivePopGestureRecognizer.enabled = NO;
     }
-    
     // Handle perferred navigation bar appearance.
     [self fd_setupViewControllerBasedNavigationBarAppearanceIfNeeded:viewController];
-    
     // Forward to primary implementation.
     if (![self.viewControllers containsObject:viewController]) {
         [self fd_pushViewController:viewController animated:animated];
@@ -193,18 +178,6 @@ Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
     }return delegate;
 }
 
-- (UIPanGestureRecognizer *)fd_fullscreenPopGestureRecognizer{
-    UIPanGestureRecognizer *panGestureRecognizer = objc_getAssociatedObject(self, _cmd);
-    if (!panGestureRecognizer) {
-        panGestureRecognizer = UIPanGestureRecognizer.new;
-        panGestureRecognizer.maximumNumberOfTouches = 1;
-        objc_setAssociatedObject(self,
-                                 _cmd,
-                                 panGestureRecognizer,
-                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }return panGestureRecognizer;
-}
-
 - (BOOL)fd_viewControllerBasedNavigationBarAppearanceEnabled{
     NSNumber *number = objc_getAssociatedObject(self, _cmd);
     if (number) return number.boolValue;
@@ -220,37 +193,20 @@ Prop_copy()_FDViewControllerWillAppearInjectBlock fd_willAppearInjectBlock;
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+PROP_STRONG_OBJECT_LAZY(UIPanGestureRecognizer,
+                        fd_fullscreenPopGestureRecognizer,
+                        Fd_fullscreenPopGestureRecognizer,
+                        {
+                            obj.maximumNumberOfTouches = 1;
+                        })
+
 @end
 
 @implementation UIViewController (FDFullscreenPopGesture)
-
-- (BOOL)fd_interactivePopDisabled{
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
-}
-
-- (void)setFd_interactivePopDisabled:(BOOL)disabled{
-    objc_setAssociatedObject(self,
-                             @selector(fd_interactivePopDisabled),
-                             @(disabled),
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (CGFloat)fd_interactivePopMaxAllowedInitialDistanceToLeftEdge{
-#if CGFLOAT_IS_DOUBLE
-    return [objc_getAssociatedObject(self, _cmd) doubleValue];
-#else
-    return [objc_getAssociatedObject(self, _cmd) floatValue];
-#endif
-}
-
-- (void)setFd_interactivePopMaxAllowedInitialDistanceToLeftEdge:(CGFloat)distance{
-    SEL key = @selector(fd_interactivePopMaxAllowedInitialDistanceToLeftEdge);
-    objc_setAssociatedObject(self,
-                             key,
-                             @(MAX(0, distance)),
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-
+/// BOOL —— 使用 PROP_BOOL
+PROP_BOOL(fd_interactivePopDisabled, Fd_interactivePopDisabled)
+/// CGFloat —— 使用 PROP_CGFloat
+PROP_CGFloat(fd_interactivePopMaxAllowedInitialDistanceToLeftEdge,
+             Fd_interactivePopMaxAllowedInitialDistanceToLeftEdge)
 
 @end

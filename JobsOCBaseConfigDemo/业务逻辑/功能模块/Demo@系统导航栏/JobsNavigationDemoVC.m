@@ -75,22 +75,22 @@
                     dic[NSForegroundColorAttributeName] = UIColor.cyanColor;
                     dic[NSFontAttributeName] = [UIFont boldSystemFontOfSize:30];
                 });
-                // （可选）隐藏底部那条黑线
+                /// （可选）隐藏底部那条黑线
                 appearance.shadowColor = UIColor.clearColor;
                 // 或者：appearance.shadowImage = [UIImage new];
-                // 应用到当前导航栏
+                /// 应用到当前导航栏
                 navBar.standardAppearance = appearance;
                 navBar.scrollEdgeAppearance = appearance;
                 navBar.compactAppearance = appearance;
                 if (@available(iOS 15.0, *)) {
                     navBar.compactScrollEdgeAppearance = appearance;
                 }
-                // （可选）启用大标题
+                /// （可选）启用大标题
                 // self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeAutomatic;
                 // navBar.prefersLargeTitles = YES;
             });
         } else {
-            // iOS 12 及以前的写法
+            /// iOS 12 及以前的写法
             [navBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];
             navBar.barTintColor = UIColor.yellowColor;
 
@@ -99,7 +99,7 @@
                 dic[NSForegroundColorAttributeName] = UIColor.redColor;
                 dic[NSFontAttributeName] = [UIFont boldSystemFontOfSize:18];
             });
-            // 隐藏底部那条线（可选）
+            /// 隐藏底部那条线（可选）
             [navBar setShadowImage:UIImage.new];
         }
     };
@@ -213,7 +213,6 @@
              .onClickBy(^(UIButton *x){
                  @jobs_strongify(self)
                  NSLog(@"👉 点击了右侧『铃铛』按钮");
-                 self.comingToPushVC(ViewController_2.new);
              })
              .onLongPressGestureBy(^(id data){
                  NSLog(@"👉 长按了右侧『铃铛』按钮");

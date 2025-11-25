@@ -8,7 +8,6 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "UIBarButtonItem+Extra.h"
-#import "ViewController@2.h"
 
 #if __has_include(<ReactiveObjC/ReactiveObjC.h>)
 #import <ReactiveObjC/ReactiveObjC.h>

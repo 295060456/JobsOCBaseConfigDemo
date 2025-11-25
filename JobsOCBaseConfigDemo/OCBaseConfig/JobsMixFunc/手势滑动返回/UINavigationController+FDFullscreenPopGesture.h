@@ -25,6 +25,7 @@
 #import "UIScrollView+FDFullscreenPopGesture.h"
 #import "NSObject+Extras.h"
 #import "DefineProperty.h"
+#import "MacroDef_Sys.h"
 /// https://github.com/forkingdog/FDFullscreenPopGesture/issues/177
 /// "UINavigation+FDFullscreenPopGesture" extends UINavigationController's swipe-
 /// to-pop behavior in iOS 7+ by supporting fullscreen pan gesture. Instead of

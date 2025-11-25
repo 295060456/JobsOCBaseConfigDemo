@@ -95,6 +95,35 @@
 #endif /* Jobs_setAssociatedCOPY */
 /// 二次封装分类挂载属性的set/get方法
 /// 对象
+#ifndef PROP_STRONG_OBJECT_LAZY
+/// 分类挂载对象属性，懒加载 + 自定义初始化逻辑
+/// type    : 对象类型
+/// varName : 属性名（小写开头）
+/// VarName : 属性名（首字母大写，用于 setter）
+/// INIT    : 自定义初始化代码块，里边可以用 obj / self
+#define PROP_STRONG_OBJECT_LAZY(type, varName, VarName, INIT) \
+static void * _##varName = &_##varName; \
+@dynamic varName; \
+- (type *)varName { \
+    type *obj = objc_getAssociatedObject(self, &_##varName); \
+    if (!obj) { \
+        obj = type.alloc.init; \
+        do { INIT } while (0); \
+        objc_setAssociatedObject(self, \
+                                 &_##varName, \
+                                 obj, \
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+    } \
+    return obj; \
+} \
+- (void)set##VarName:(type *)varName { \
+    objc_setAssociatedObject(self, \
+                             &_##varName, \
+                             varName, \
+                             OBJC_ASSOCIATION_RETAIN_NONATOMIC); \
+}
+#endif /* PROP_STRONG_OBJECT_LAZY */
+
 #ifndef PROP_STRONG_OBJECT_TYPE
 #define PROP_STRONG_OBJECT_TYPE(type, varName, VarName) \
 static void * _##varName = &_##varName; \
