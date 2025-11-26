@@ -99,9 +99,9 @@ Prop_assign()CGFloat jobsVisible;
 -(void)setBorderWithColor:(UIColor *_Nullable)color
               borderWidth:(CGFloat)borderWidth
                borderType:(UIBorderSideType)borderType;
-/// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
+/// 调用方式：view.layerByBorderCor(@"#FFD8D8".cor).layerByBorderWidth(1);
 -(JobsRetViewByCorBlock _Nonnull)layerByBorderCor;
-/// 调用方式：view.layerByBorderCor(JobsCor(@"#FFD8D8")).layerByBorderWidth(1);
+/// 调用方式：view.layerByBorderCor(@"#FFD8D8".cor).layerByBorderWidth(1);
 -(JobsRetViewByFloatBlock _Nonnull)layerByBorderWidth;
 #pragma mark —— 切角
 /// 切整个View的4个角为统一的切角参数
@@ -175,7 +175,7 @@ Prop_assign()CGFloat jobsVisible;
 @end
 /**
  // 最外层的UI-描边
- _textField_phone.layerByBorderCor(JobsCor(@"#FFC700")).layerByBorderWidth(1);
+ _textField_phone.layerByBorderCor(@"#FFC700".cor).layerByBorderWidth(1);
  // 最外层的UI-切全角
  _textField_phone.cornerCutToCircleWithCornerRadius(JobsWidth(8));
  

@@ -315,8 +315,4 @@ alpha:1]
                     alpha:al]
 #endif
 
-#ifndef JobsCor
-#define JobsCor(带井号的十六进制的颜色) UIColor.jobsCor(带井号的十六进制的颜色)
-#endif
-
 #endif /* MacroDef_Cor_h */

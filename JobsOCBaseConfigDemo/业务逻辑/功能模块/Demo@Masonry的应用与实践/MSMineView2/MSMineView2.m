@@ -70,7 +70,7 @@ static dispatch_once_t static_mineView2OnceToken;
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        self.backgroundColor = JobsCor(@"#F0F0EF");
+        self.backgroundColor = @"#F0F0EF".cor;
         self.btn1.alpha = 1;
         self.btn2.alpha = 1;
     };
@@ -113,7 +113,7 @@ static dispatch_once_t static_mineView2OnceToken;
         _btn2 = BaseButton.initByStyle1(@"立即进入".tr,
                                                      UIFontWeightRegularSize(14),
                                                      JobsWhiteColor)
-            .bgColorBy(JobsCor(@"#EA2918"))
+            .bgColorBy(@"#EA2918".cor)
             .cornerRadiusValueBy(JobsWidth(14))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)

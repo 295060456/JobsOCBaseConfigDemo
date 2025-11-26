@@ -200,7 +200,7 @@ AppToolsProtocol_synthesize
             textView.placeholder = @"请输入充值金额".tr;
             textView.font = UIFontWeightMediumSize(18);
             textView.placeholderFont = textView.font;
-            textView.placeholderColor = JobsCor(@"#AAAAAA");
+            textView.placeholderColor = @"#AAAAAA".cor;
             [textView jobsTextViewFilterBlock:^BOOL(id  _Nullable data) {
 //                @jobs_strongify(self)
                 return YES;
@@ -226,7 +226,7 @@ AppToolsProtocol_synthesize
             textView.placeholder = @"请输入充值金额".tr;
             textView.font = UIFontWeightMediumSize(18);
             textView.placeholderFont = textView.font;
-            textView.placeholderColor = JobsCor(@"#AAAAAA");
+            textView.placeholderColor = @"#AAAAAA".cor;
             [textView.szTextView jobsTextViewFilterBlock:^BOOL(id _Nullable data) {
 //                @jobs_strongify(self)
                 return YES;

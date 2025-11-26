@@ -84,7 +84,7 @@ UIPictureAndBackGroundCorProtocol_synthesize
 
 -(UIColor *)textCor{
     if(!_textCor){
-        _textCor = JobsCor(@"#FFC700");
+        _textCor = @"#FFC700".cor;
     }return _textCor;
 }
 

@@ -104,7 +104,7 @@ Prop_copy()NSString *dot;
             }))
             /// 设置文本颜色
             .addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
-                data1.value = JobsCor(@"#D0D0D0");
+                data1.value = @"#D0D0D0".cor;
                 data1.range = NSMakeRange(1, data.length - 1);
             }))
             .addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data1) {
@@ -139,7 +139,7 @@ Prop_copy()NSString *dot;
                 data.range = NSMakeRange(0, text.length);
             }));
             text.addForegroundColorAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
-                data.value = JobsCor(@"#D0D0D0");
+                data.value = @"#D0D0D0".cor;
                 data.range = NSMakeRange(0, text.length);
             }));
             _attributedString2.add(text);

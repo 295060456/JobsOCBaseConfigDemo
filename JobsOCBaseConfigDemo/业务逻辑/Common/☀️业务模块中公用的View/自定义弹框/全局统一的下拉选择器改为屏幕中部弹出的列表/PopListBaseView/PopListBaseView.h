@@ -52,10 +52,10 @@ NS_INLINE __kindof PopListBaseView *_Nonnull jobsMakePopListBaseView(jobsByPopLi
              UIViewModel *viewModel = UIViewModel.new;
              viewModel.text = model.chinese;
              viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
-             viewModel.textCor = JobsCor(@"#5D5D5D");
+             viewModel.textCor = @"#5D5D5D".cor;
              viewModel.selectedTextCor = JobsWhiteColor;
-             viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
-             viewModel.bgCor = JobsCor(@"#1F1F1F");
+             viewModel.bgSelectedCor = @"#5D5D5D".cor;
+             viewModel.bgCor = @"#1F1F1F".cor;
              viewModel.textAlignment = NSTextAlignmentCenter;
              _nationalPopList_dataMutArr.add(viewModel);
              

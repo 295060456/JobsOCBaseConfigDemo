@@ -63,7 +63,7 @@ NS_INLINE __kindof ZYTextField *_Nonnull jobsMakeZYTextField(jobsByZYTextFieldBl
          _textField.rightView = self.titleLab;
          _textField.rightViewMode = UITextFieldViewModeAlways;
          _textField.placeholder = @"打赏的Mata值".tr;
-         _textField.placeholderColor = JobsCor(@"#333333");
+         _textField.placeholderColor = @"#333333".cor;
          _textField.placeholderFont = UIFontWeightRegularSize(12);
 
          _textField.drawPlaceholderInRect = CGRectMake(0, 0, JobsWidth(255 - 20 - 40 - 5), JobsWidth(32));
@@ -101,7 +101,7 @@ NS_INLINE __kindof ZYTextField *_Nonnull jobsMakeZYTextField(jobsByZYTextFieldBl
          _textField = ZYTextField.new;
          _textField.delegate = self;
          _textField.textColor = JobsBlackColor;
-         _textField.backgroundColor = JobsCor(@"#F9F9F9");
+         _textField.backgroundColor = @"#F9F9F9".cor;
          _textField.returnKeyType = UIReturnKeyDefault;
          _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
          _textField.keyboardType = UIKeyboardTypeDefault;
@@ -139,7 +139,7 @@ NS_INLINE __kindof ZYTextField *_Nonnull jobsMakeZYTextField(jobsByZYTextFieldBl
          _textField = ZYTextField.new;
          _textField.delegate = self;
          _textField.textColor = JobsBlackColor;
-         _textField.backgroundColor = JobsCor(@"#F9F9F9");
+         _textField.backgroundColor = @"#F9F9F9".cor;
          _textField.returnKeyType = UIReturnKeyDefault;
          _textField.keyboardAppearance = UIKeyboardAppearanceDefault;
          _textField.keyboardType = UIKeyboardTypeDefault;

@@ -214,7 +214,7 @@ insetForSectionAtIndex:(NSInteger)section {
         _cancelBtn = BaseButton
             .initByStyle1(@"取消".tr,
                                        UIFontWeightMediumSize(16),
-                                       JobsCor(@"#333333"))
+                                       @"#333333".cor)
             .bgColorBy(JobsWhiteColor)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
@@ -236,7 +236,7 @@ insetForSectionAtIndex:(NSInteger)section {
         @jobs_weakify(self)
         _collectionView = BaseCollectionView.initByLayout(self.verticalLayout);
         _collectionView.dataLink(self);
-        _collectionView.backgroundColor = JobsCor(@"#FFFFFF");
+        _collectionView.backgroundColor = @"#FFFFFF".cor;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.bounces = NO;

@@ -153,7 +153,7 @@ static SourceType _sourceType;
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
 //            .jobsResetBtnImage(self.viewModel.image)
-            .jobsResetBtnBgCor(JobsCor(@"#FF0000"))
+            .jobsResetBtnBgCor(@"#FF0000".cor)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(bayonRegular(JobsWidth(12)))
 //            .jobsResetBtnTitle(self.viewModel.text)

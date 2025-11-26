@@ -106,7 +106,7 @@ Prop_strong()BaseButton *switchBtn;
             .jobsResetBtnCornerRadiusValue(JobsWidth(8))
             .jobsResetBtnImage(@"APPLY NOW".img)
             .jobsResetBtnBgImage(@"APPLY NOW".img)
-            .jobsResetBtnTitleCor(JobsCor(@"#333333"))
+            .jobsResetBtnTitleCor(@"#333333".cor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .jobsResetBtnTitle(@"点击".tr)
             .jobsResetBtnSubTitle(@"切换App图标".tr)

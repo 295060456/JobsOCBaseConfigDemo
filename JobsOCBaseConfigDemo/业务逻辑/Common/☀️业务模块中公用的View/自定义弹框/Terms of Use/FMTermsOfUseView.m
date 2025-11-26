@@ -90,7 +90,7 @@ static dispatch_once_t static_termsOfUseViewOnceToken;
             @jobs_strongify(self)
             label.byText(@"Terms Of USE".tr)
                 .byFont(bayonRegular(JobsWidth(20)))
-                .byTextCor(JobsCor(@"#8A93A1E5"))
+                .byTextCor(@"#8A93A1E5".cor)
                 .byTextAlignment(NSTextAlignmentCenter);
             [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self);

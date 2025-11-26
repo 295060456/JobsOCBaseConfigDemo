@@ -175,21 +175,21 @@ NS_INLINE __kindof UIButton *_Nonnull jobsMakeBaseButton(jobsByBtnBlock _Nonnull
              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(14);
-                 data1.textCor = JobsCor(@"#666666");
+                 data1.textCor = @"#666666".cor;
                  data1.targetString = self.richTextMutArr[0];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
              }))
              .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(14);
-                 data1.textCor = JobsCor(@"#BA9B77");
+                 data1.textCor = @"#BA9B77".cor;
                  data1.targetString = self.richTextMutArr[1];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
              }))
              .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(14);
-                 data1.textCor = JobsCor(@"#666666");
+                 data1.textCor = @"#666666".cor;
                  data1.targetString = self.richTextMutArr[2];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
              }));
@@ -215,7 +215,7 @@ NS_INLINE __kindof UIButton *_Nonnull jobsMakeBaseButton(jobsByBtnBlock _Nonnull
      if(!_registerBtn){
          _registerBtn = BaseButton.initByTextModel(jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
              data.text = @"REGISTER".tr;
-             data.textCor = JobsCor(@"#C90000");
+             data.textCor = @"#C90000".cor;
              data.font = bayonRegular(JobsWidth(15));
          }))
          .bgColorBy(JobsWhiteColor)
@@ -224,7 +224,7 @@ NS_INLINE __kindof UIButton *_Nonnull jobsMakeBaseButton(jobsByBtnBlock _Nonnull
          }).onLongPressGestureBy(^(id data){
              JobsLog(@"");
          }).setLayerBy((jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-             data.layerCor = JobsCor(@"#C90000");
+             data.layerCor = @"#C90000".cor;
              data.jobsWidth = 1;
              data.cornerRadiusValue = JobsWidth(8);
          })));

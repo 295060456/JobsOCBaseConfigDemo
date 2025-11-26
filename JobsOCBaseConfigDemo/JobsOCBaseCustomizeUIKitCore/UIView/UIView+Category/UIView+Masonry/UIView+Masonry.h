@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_END
          @jobs_weakify(self)
          _forgotten_code_btn = self.addSubview(BaseButton.jobsInit()
                                                .bgColorBy(JobsClearColor)
-                                               .jobsResetBtnTitleCor(JobsCor(@"#FF0000"))
+                                               .jobsResetBtnTitleCor(@"#FF0000".cor)
                                                .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(13)))
                                                .jobsResetBtnTitle(@"Forgot Password?".tr)
                                                .onClickBy(^(UIButton *x){
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_END
              .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
              .jobsResetImagePadding(1)
              .jobsResetBtnImage(@"Betslip".img))
-             .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+             .jobsResetBtnTitleCor(@"#666666".cor)
              .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
              .jobsResetBtnTitle(@"Betslip".tr)
              .onClickBy(^(UIButton *x){
@@ -111,7 +111,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
          .jobsResetBtnImage(@"Statement".img))
-         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleCor(@"#666666".cor)
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Statement".tr)
          .onClickBy(^(UIButton *x){
@@ -124,7 +124,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
          .jobsResetBtnImage(@"Promo".img))
-         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleCor(@"#666666".cor)
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Promo".tr)
          .onClickBy(^(UIButton *x){
@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
          .jobsResetBtnImage(@"Security".img))
-         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleCor(@"#666666".cor)
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Security".tr)
          .onClickBy(^(UIButton *x){
@@ -150,7 +150,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
          .jobsResetBtnImage(@"Help Center".img))
-         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleCor(@"#666666".cor)
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Help Center".tr)
          .onClickBy(^(UIButton *x){
@@ -163,7 +163,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
          .jobsResetImagePadding(1)
          .jobsResetBtnImage(@"Feedback".img))
-         .jobsResetBtnTitleCor(JobsCor(@"#666666"))
+         .jobsResetBtnTitleCor(@"#666666".cor)
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Feedback".tr)
          .onClickBy(^(UIButton *x){

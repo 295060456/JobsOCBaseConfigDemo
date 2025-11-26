@@ -11,9 +11,9 @@
 
 +(__kindof NSDictionary <NSAttributedStringKey,id>*)linkTextAttributes{
     return @{
-        NSForegroundColorAttributeName: JobsCor(@"#FFCC00"),
+        NSForegroundColorAttributeName: @"#FFCC00".cor,
         NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
-        NSUnderlineColorAttributeName: JobsCor(@"#FFCC00"),
+        NSUnderlineColorAttributeName: @"#FFCC00".cor,
     };
 }
 /// 超链接的文字以及下划线的颜色设置

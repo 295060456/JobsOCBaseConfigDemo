@@ -102,14 +102,14 @@ BaseViewProtocol_synthesize
             @jobs_strongify(self)
             textView.delegate = self;
             textView.textColor = JobsBlackColor;
-            textView.backgroundColor = JobsCor(@"#F9F9F9");
+            textView.backgroundColor = @"#F9F9F9".cor;
             textView.returnKeyType = UIReturnKeyDefault;
             textView.keyboardAppearance = UIKeyboardAppearanceDefault;
             textView.keyboardType = UIKeyboardTypeNumberPad;
             textView.placeholder = @"请输入充值金额".tr;
             textView.font = UIFontWeightMediumSize(18);
             textView.placeholderFont = textView.font;
-            textView.placeholderColor = JobsCor(@"#AAAAAA");
+            textView.placeholderColor = @"#AAAAAA".cor;
             textView.linkTextAttributes = self.makeLinkTextAttributes; /// Style for links
             [textView jobsTextViewFilterBlock:^BOOL(id  _Nullable data) {
 //                @jobs_strongify(self)
@@ -128,14 +128,14 @@ BaseViewProtocol_synthesize
             @jobs_strongify(self)
             textView.szTextView.delegate = self;
             textView.szTextView.textColor = JobsBlackColor;
-            textView.backgroundColor = JobsCor(@"#F9F9F9");
+            textView.backgroundColor = @"#F9F9F9".cor;
             textView.returnKeyType_ = UIReturnKeyDefault;
             textView.keyboardAppearance_ = UIKeyboardAppearanceDefault;
             textView.keyboardType_ = UIKeyboardTypeNumberPad;
             textView.placeholder = @"请输入充值金额".tr;
             textView.font = UIFontWeightMediumSize(18);
             textView.placeholderFont = textView.font;
-            textView.placeholderColor = JobsCor(@"#AAAAAA");
+            textView.placeholderColor = @"#AAAAAA".cor;
             textView.szTextView.linkTextAttributes = self.makeLinkTextAttributes; /// Style for links
             [textView.szTextView jobsTextViewFilterBlock:^BOOL(id _Nullable data) {
 //                @jobs_strongify(self)

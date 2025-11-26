@@ -45,7 +45,7 @@ Prop_strong()UIButton *cancelBtn;
     if (!_titleLab) {
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             label.text = @"评论".tr;
-            label.textColor = JobsCor(@"#999999");
+            label.textColor = @"#999999".cor;
             label.font = UIFontWeightRegularSize(18);
             label.labelAutoWidthByFont();
             self.addSubview(label);

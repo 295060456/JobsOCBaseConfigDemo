@@ -253,7 +253,7 @@ JobsToggleNavViewProtocolSynthesize
             model.subTitle = nil;
             model.titleFont = bayonRegular(JobsWidth(16));
             model.subTitleFont = nil;
-            model.titleCor = JobsCor(@"#ABABAB");
+            model.titleCor = @"#ABABAB".cor;
             model.subTitleCor = nil;
             model.titleLineBreakMode = NSLineBreakByWordWrapping;
             model.subtitleLineBreakMode = NSLineBreakByWordWrapping;

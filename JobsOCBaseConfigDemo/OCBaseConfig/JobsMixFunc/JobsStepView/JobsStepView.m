@@ -168,7 +168,7 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
         return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
             model.title = title;
             model.titleCor = JobsGrayColor;
-            model.selectedTitleCor = JobsCor(@"#111111");
+            model.selectedTitleCor = @"#111111".cor;
             model.titleFont = pingFangHKRegular(JobsWidth(14));
             model.normalImage = image;
             model.highlightImage = highlightImage;

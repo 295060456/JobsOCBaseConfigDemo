@@ -112,7 +112,7 @@ resuableFooterViewHeightForIndexPath:(NSIndexPath *)indexPath {
         JobsBtnStyleCVCell *cell = [collectionView collectionViewCellClass:JobsBtnStyleCVCell.class forIndexPath:indexPath];
         cell.jobsRichElementsCollectionViewCellBy(self.dataSourceMutArr[indexPath.section][indexPath.item]);
         cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
-            data.layerCor = JobsCor(@"#6E5600");
+            data.layerCor = @"#6E5600".cor;
             data.jobsWidth = JobsWidth(1);
             data.cornerRadiusValue = JobsWidth(8);
         }));return cell;
@@ -120,7 +120,7 @@ resuableFooterViewHeightForIndexPath:(NSIndexPath *)indexPath {
         BaiShaETProjBankAccMgmtCVCell *cell = [collectionView collectionViewCellClass:BaiShaETProjBankAccMgmtCVCell.class forIndexPath:indexPath];
         cell.jobsRichElementsCollectionViewCellBy(self.dataSourceMutArr[indexPath.section][indexPath.item]);
         cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
-            data.layerCor = JobsCor(@"#6E5600");
+            data.layerCor = @"#6E5600".cor;
             data.jobsWidth = JobsWidth(1);
             data.cornerRadiusValue = JobsWidth(8);
         }));return cell;

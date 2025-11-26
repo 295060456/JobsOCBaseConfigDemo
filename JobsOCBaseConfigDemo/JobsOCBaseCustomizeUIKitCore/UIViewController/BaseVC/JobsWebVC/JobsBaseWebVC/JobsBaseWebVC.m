@@ -53,7 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = JobsCor(@"#FF0000");
+    self.view.backgroundColor = @"#FF0000".cor;
     self.makeNavByConfig(self.makeNav0ByTitle(self.viewModel.textModel.text));
 }
 

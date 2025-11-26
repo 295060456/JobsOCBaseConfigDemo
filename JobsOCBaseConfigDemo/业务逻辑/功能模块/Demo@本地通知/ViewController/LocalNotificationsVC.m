@@ -84,7 +84,7 @@ Prop_strong()BaseButton *btn;
         @jobs_weakify(self)
         _btn = BaseButton.jobsInit()
             .bgColorBy(JobsWhiteColor)
-            .jobsResetBtnTitleCor(JobsCor(@"#333333"))
+            .jobsResetBtnTitleCor(@"#333333".cor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(18)))
             .jobsResetBtnTitle(@"点我".tr)
             .jobsResetBtnSubTitle(@"出推送通知".tr)

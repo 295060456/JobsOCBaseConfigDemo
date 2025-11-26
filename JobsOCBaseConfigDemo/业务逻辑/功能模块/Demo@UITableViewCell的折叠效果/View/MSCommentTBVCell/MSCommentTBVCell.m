@@ -71,8 +71,8 @@ BaseLayerProtocol_synthesize_part3
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
             @jobs_strongify(self)
-            label.textColor = JobsCor(@"#666666");
-            label.backgroundColor = JobsCor(@"#F7F7F7");
+            label.textColor = @"#666666".cor;
+            label.backgroundColor = @"#F7F7F7".cor;
             label.font = UIFontWeightRegularSize(14);
             [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(self.contentView).with.insets(UIEdgeInsetsMake(JobsWidth(5),

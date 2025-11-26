@@ -65,8 +65,8 @@ NS_INLINE __kindof JobsToggleBaseView *_Nonnull jobsMakeToggleBaseView(jobsByTog
                      data1.titleFont = bayonRegular(JobsWidth(20));
                      data1.title = @"PHONE NO.".tr;
                      data1.jobsWidth = JobsWidth(90);
-                     data1.titleCor = JobsCor(@"#8A93A1");
-                     data1.selectedTitleCor = JobsCor(@"#C90000");
+                     data1.titleCor = @"#8A93A1".cor;
+                     data1.selectedTitleCor = @"#C90000".cor;
                      data1.roundingCorners = UIRectCornerAllCorners;
                      data1.view = FMLoginByPhoneView
                          .BySize(FMLoginByPhoneView.viewSizeByModel(nil))
@@ -87,8 +87,8 @@ NS_INLINE __kindof JobsToggleBaseView *_Nonnull jobsMakeToggleBaseView(jobsByTog
                      data1.titleFont = bayonRegular(JobsWidth(20));
                      data1.title = @"ACCOUNT NAME".tr;
                      data1.jobsWidth = JobsWidth(130);
-                     data1.titleCor = JobsCor(@"#8A93A1");
-                     data1.selectedTitleCor = JobsCor(@"#C90000");
+                     data1.titleCor = @"#8A93A1".cor;
+                     data1.selectedTitleCor = @"#C90000".cor;
                      data1.roundingCorners = UIRectCornerAllCorners;
                      data1.view = FMLoginByUsrNameView
                          .BySize(FMLoginByUsrNameView.viewSizeByModel(nil))

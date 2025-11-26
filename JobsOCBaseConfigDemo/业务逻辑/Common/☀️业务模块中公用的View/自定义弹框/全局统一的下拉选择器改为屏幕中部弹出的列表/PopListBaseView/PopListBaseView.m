@@ -121,7 +121,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _tableView = self.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             tableView
                 .bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
-                .bySeparatorColor(JobsCor(@"#1E1E1E"))
+                .bySeparatorColor(@"#1E1E1E".cor)
                 .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
                 .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
                     /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview

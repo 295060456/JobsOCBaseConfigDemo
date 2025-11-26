@@ -42,7 +42,7 @@ Prop_copy()NSString *URL;
     
     {
         self.viewModel.backBtnTitleModel.text = @"     ".tr;
-        self.viewModel.textModel.textCor = JobsCor(@"333333");
+        self.viewModel.textModel.textCor = @"333333".cor;
         self.viewModel.textModel.text = @"".tr;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         // 使用原则：底图有 + 底色有 = 优先使用底图数据

@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_END
                  .byPlaceholderColor(JobsGrayColor)
                  .byPlaceholderFont(pingFangHKRegular(JobsWidth(14)));
          })).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-             data.layerCor = JobsCor(@"#DEDEDE");
+             data.layerCor = @"#DEDEDE".cor;
              data.jobsWidth = 1;
              data.cornerRadiusValue = JobsWidth(32 / 2);
          })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){

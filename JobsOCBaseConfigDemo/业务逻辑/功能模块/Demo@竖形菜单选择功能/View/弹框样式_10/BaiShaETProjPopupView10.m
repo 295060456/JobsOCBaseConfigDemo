@@ -98,7 +98,7 @@ static dispatch_once_t static_popupView10OnceToken;
         cell.button.jobsResetBtnTitleCor(HEXCOLOR(0x757575));
     }
     cell.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel *_Nullable data) {
-        data.layerCor = JobsCor(@"#6E5600");
+        data.layerCor = @"#6E5600".cor;
         data.jobsWidth = JobsWidth(1);
         data.cornerRadiusValue = JobsBtnStyleCVCell.cellSizeByModel(nil).height / 2;
     }));return cell;

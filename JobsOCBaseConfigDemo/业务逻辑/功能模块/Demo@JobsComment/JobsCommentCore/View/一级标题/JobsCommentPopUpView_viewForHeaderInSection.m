@@ -61,7 +61,7 @@ Prop_strong()JobsFirstCommentModel *firstCommentModel;
             .bgColorBy(JobsWhiteColor)
             .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
             .jobsResetImagePadding(1)
-            .jobsResetBtnTitleCor(JobsCor(@"#EA2918"))
+            .jobsResetBtnTitleCor(@"#EA2918".cor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)

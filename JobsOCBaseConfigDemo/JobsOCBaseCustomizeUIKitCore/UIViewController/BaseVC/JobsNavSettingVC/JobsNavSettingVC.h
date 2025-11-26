@@ -49,7 +49,7 @@ NS_ASSUME_NONNULL_END
          buttonModel.highlightImage = @"全局返回箭头".img;
          buttonModel.title = @"".tr;
          buttonModel.titleFont = bayonRegular(18);
-         buttonModel.titleCor = JobsCor(@"#8A93A1");
+         buttonModel.titleCor = @"#8A93A1".cor;
          buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
          buttonModel.textAlignment = NSTextAlignmentCenter;
          buttonModel.subTextAlignment = NSTextAlignmentCenter;

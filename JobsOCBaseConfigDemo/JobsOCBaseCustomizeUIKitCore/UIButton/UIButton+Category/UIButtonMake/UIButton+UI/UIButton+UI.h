@@ -270,21 +270,21 @@ NS_ASSUME_NONNULL_END
              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(14);
-                 data1.textCor = JobsCor(@"#666666");
+                 data1.textCor = @"#666666".cor;
                  data1.targetString = self.richTextMutArr[0];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
              }));
              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(14);
-                 data1.textCor = JobsCor(@"#BA9B77");
+                 data1.textCor = @"#BA9B77".cor;
                  data1.targetString = self.richTextMutArr[1];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
              }));
              data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(14);
-                 data1.textCor = JobsCor(@"#666666");
+                 data1.textCor = @"#666666".cor;
                  data1.targetString = self.richTextMutArr[2];
                  data1.paragraphStyle = self.jobsParagraphStyleCenter;
              }));

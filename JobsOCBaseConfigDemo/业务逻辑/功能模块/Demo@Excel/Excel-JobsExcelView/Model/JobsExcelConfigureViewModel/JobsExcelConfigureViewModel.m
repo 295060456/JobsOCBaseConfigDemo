@@ -204,13 +204,13 @@ Prop_assign()NSInteger colNumber;/// 列数
 /// 奇数行的背景颜色
 -(UIColor *)cor1{
     if(!_cor1){
-        _cor1 = JobsCor(@"#7900B2");
+        _cor1 = @"#7900B2".cor;
     }return _cor1;
 }
 /// 偶数行的背景颜色
 -(UIColor *)cor2{
     if(!_cor2){
-        _cor2 = JobsCor(@"#4B00AB");
+        _cor2 = @"#4B00AB".cor;
     }return _cor2;
 }
 /// 第一行的背景颜色

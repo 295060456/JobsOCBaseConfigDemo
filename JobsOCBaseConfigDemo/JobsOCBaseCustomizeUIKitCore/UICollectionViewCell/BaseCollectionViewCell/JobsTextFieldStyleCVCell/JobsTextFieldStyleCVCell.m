@@ -80,14 +80,14 @@
             @jobs_strongify(self)
             textField.delegate = self;
             textField.textColor = JobsBlackColor;
-            textField.backgroundColor = JobsCor(@"#F9F9F9");
+            textField.backgroundColor = @"#F9F9F9".cor;
             textField.returnKeyType = UIReturnKeyDefault;
             textField.keyboardAppearance = UIKeyboardAppearanceDefault;
             textField.keyboardType = UIKeyboardTypeNumberPad;
             textField.placeholder = @"请输入充值金额".tr;
             textField.font = UIFontWeightMediumSize(18);
             textField.placeholderFont = textField.font;
-            textField.placeholderColor = JobsCor(@"#AAAAAA");
+            textField.placeholderColor = @"#AAAAAA".cor;
             [textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
     //            @jobs_strongify(self)
                 return YES;

@@ -128,7 +128,7 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
                  .byPlaceholderColor(@"#BBBBBB".cor)
                  .byPlaceholderFont(pingFangTCRegular(15))
                  .byAttributedPlaceholder(nil)
-                 .byTextCor(JobsCor(@"#788190"))
+                 .byTextCor(@"#788190".cor)
                  .bySecureTextEntry(NO);
          })
          .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {

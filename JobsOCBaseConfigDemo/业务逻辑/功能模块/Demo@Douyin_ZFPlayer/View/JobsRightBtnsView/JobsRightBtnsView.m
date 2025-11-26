@@ -128,7 +128,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         @jobs_weakify(self)
         _loveBtn = RBCLikeButton.initByStyleTop(self.viewModel ? self.viewModel.textModel.text.replace(@"点赞".tr):@"点赞".tr,
                                                 UIFontWeightRegularSize(12),
-                                                JobsCor(@"#EA2918"),
+                                                @"#EA2918".cor,
                                                 @"视频未点赞".img,
                                                 JobsWidth(5))
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
@@ -157,7 +157,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         @jobs_weakify(self)
         _commentBtn = BaseButton.initByStyleTop(self.viewModel ? self.viewModel.textModel.text.replace(@"评论".tr) : @"评论".tr,
                                                 UIFontWeightRegularSize(12),
-                                                JobsCor(@"#EA2918"),
+                                                @"#EA2918".cor,
                                                 @"视频评论".img,
                                                 JobsWidth(5))
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
@@ -196,7 +196,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
         @jobs_weakify(self)
         _shareBtn = RBCLikeButton.initByStyleTop(self.viewModel ? self.viewModel.textModel.text.replace(@"分享".tr): @"分享".tr,
                                                  UIFontWeightRegularSize(12),
-                                                 JobsCor(@"#EA2918"),
+                                                 @"#EA2918".cor,
                                                  @"分享".img,
                                                  JobsWidth(5))
             .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))

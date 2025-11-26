@@ -71,7 +71,7 @@ static dispatch_once_t static_commentViewOnceToken;
         @jobs_strongify(self)
         viewModel.textModel.text = self.dataMutArr[section].sectionTitle;
         viewModel.textModel.font = UIFontWeightBoldSize(16);
-        viewModel.textModel.textCor = JobsCor(@"#333333");
+        viewModel.textModel.textCor = @"#333333".cor;
     }));
 }
 #pragma mark —— BaseViewProtocol
@@ -186,7 +186,7 @@ willDisplayHeaderView:(UIView *)view
         _tableView = jobsMakeBaseTableViewByGrouped(^(__kindof BaseTableView * _Nullable tableView) {
             tableView.ww_foldable = YES;
             tableView.dataLink(self);
-            tableView.backgroundColor = JobsCor(@"#FFFFFF");
+            tableView.backgroundColor = @"#FFFFFF".cor;
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             tableView.separatorColor = HEXCOLOR(0xEEE2C8);
             tableView.showsVerticalScrollIndicator = NO;

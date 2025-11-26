@@ -122,7 +122,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                 buttonModel.highlightImage = @"全局返回箭头".img;
                 buttonModel.title = string;
                 buttonModel.titleFont = bayonRegular(18);
-                buttonModel.titleCor = JobsCor(@"#E20808");
+                buttonModel.titleCor = @"#E20808".cor;
                 buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
                 buttonModel.textAlignment = NSTextAlignmentCenter;
                 buttonModel.subTextAlignment = NSTextAlignmentCenter;
@@ -156,7 +156,7 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
                 buttonModel.highlightImage = @"全局返回箭头".img;
                 buttonModel.title = backTitle;
                 buttonModel.titleFont = bayonRegular(18);
-                buttonModel.titleCor = JobsCor(@"#E20808");
+                buttonModel.titleCor = @"#E20808".cor;
                 buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;
                 buttonModel.textAlignment = NSTextAlignmentCenter;
                 buttonModel.subTextAlignment = NSTextAlignmentCenter;
@@ -267,10 +267,10 @@ languageSwitchNotificationWithSelector:(SEL)aSelector{
         return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
             viewModel.text = data;
             viewModel.font = UIFontWeightRegularSize(JobsWidth(16));
-            viewModel.textCor = JobsCor(@"#5D5D5D");
+            viewModel.textCor = @"#5D5D5D".cor;
             viewModel.selectedTextCor = JobsWhiteColor;
-            viewModel.bgSelectedCor = JobsCor(@"#5D5D5D");
-            viewModel.bgCor = JobsCor(@"#1F1F1F");
+            viewModel.bgSelectedCor = @"#5D5D5D".cor;
+            viewModel.bgCor = @"#1F1F1F".cor;
             viewModel.textAlignment = NSTextAlignmentCenter;
         });
     };
@@ -786,7 +786,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
             model.title = @"HOT Games".tr;
             model.subTitle = @"".tr;
-            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleCor = @"#3D3D3D".cor;
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
             model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
@@ -797,7 +797,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
             model.title = @"SPORTS".tr;
             model.subTitle = @"".tr;
-            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleCor = @"#3D3D3D".cor;
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
             model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
@@ -808,7 +808,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
             model.title = @"SLOT GAMES".tr;
             model.subTitle = @"".tr;
-            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleCor = @"#3D3D3D".cor;
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
             model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
@@ -819,7 +819,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
             model.title = @"LIVE GAMES".tr;
             model.subTitle = @"".tr;
-            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleCor = @"#3D3D3D".cor;
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
             model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
@@ -830,7 +830,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
             model.title = @"TABLE GAMES".tr;
             model.subTitle = @"".tr;
-            model.titleCor = JobsCor(@"#3D3D3D");
+            model.titleCor = @"#3D3D3D".cor;
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
             model.highlightBackgroundImage = @"首页切换游戏种类按钮背景图（已选择）".img;
