@@ -371,12 +371,14 @@ typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByURLBlock)(NSURL *_Nulla
 typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByViewModelBlock)(__kindof UIViewModel *_Nullable viewModel);
 #pragma mark —— 关于 控制器
 /// UIViewController
+typedef __kindof UIViewController *_Nullable(^JobsRetVCByVoidBlock)(void);
+typedef __kindof UIViewController *_Nullable(^JobsRetVCByIDBlock)(id data);
 typedef __kindof UIViewController *_Nullable(^JobsRetVCByViewBlock)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsRetVCByVCBlock)(__kindof UIViewController *_Nonnull vc);
 typedef __kindof UIViewController *_Nullable(^JobsRetVCByWebViewBlock)(__kindof WKWebView *_Nonnull webView);
 /// UINavigationController
 typedef __kindof UINavigationController *_Nullable(^JobsRetNavCtrByDelegateBlock)(id <UINavigationControllerDelegate>_Nullable delegate);
-typedef __kindof UINavigationController *_Nullable(^JobsRetNavCtrByVoidBlock)();
+typedef __kindof UINavigationController *_Nullable(^JobsRetNavCtrByVoidBlock)(void);
 typedef __kindof UINavigationController *_Nullable(^JobsRetNavCtrByVCBlock)(__kindof UIViewController *_Nonnull vc);
 typedef __kindof UINavigationController *_Nullable(^JobsRetNavCtrByClassBlock)(Class _Nonnull cls);
 /// UIAlertController

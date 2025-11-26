@@ -9,15 +9,16 @@
 
 @implementation UIViewController (BaseNavigationBar)
 
--(jobsByVoidBlock _Nonnull)gotoBack{
+-(JobsRetVCByIDBlock _Nonnull)goBack{
     @jobs_weakify(self)
-    return ^(){
+    return ^__kindof UIViewController *_Nullable(id data){
         @jobs_strongify(self)
+        if(self.objBlock) self.objBlock(data);
         if (self.navigationController) {
             [self.navigationController popViewControllerAnimated:YES];
         }else{
             [self dismissViewControllerAnimated:YES completion:nil];
-        }
+        }return self;
     };
 }
 #pragma mark —— Prop_strong()NavigationBar *navigationBar;
@@ -65,17 +66,17 @@ JobsKey(_leftBarButtonItem_back)
         if(self.navigationController.viewControllers.count > 1){
             NSString *imageName = self.gk_backStyle == GKNavigationBarBackStyleBlack ? @"btn_back_black" : @"btn_back_white";
             UIImage *backImage = JobsBuddleIMG(nil,
-                                            @"Frameworks/GKNavigationBar.framework/GKNavigationBar",
-                                            nil,
-                                            imageName);
+                                               @"Frameworks/GKNavigationBar.framework/GKNavigationBar",
+                                               nil,
+                                               imageName);
             @jobs_weakify(self)
             LeftBarButtonItem_back = [UIBarButtonItem.alloc initWithImage:[backImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                     style:UIBarButtonItemStyleDone
-                                                                   target:self
+                                                                   target:nil
                                                                    action:nil]
-                .byRacCommand([RACCommand.alloc initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+                .byRacCommand([RACCommand.alloc initWithSignalBlock:^RACSignal * _Nonnull(id _Nullable input) {
                     @jobs_strongify(self)
-                    self.gotoBack();
+                    self.goBack(input);
                     return [RACSignal empty];
                 }]);
 

@@ -109,11 +109,12 @@
     /// 普通标题（会走 titleTextAttributes 的样式）
     self.title = @"系统导航栏 Demo";
     /// 如果你要用富文本标题，就用自定义 titleView 覆盖系统标题
+    @jobs_weakify(self)
     self.navigationItem.titleView = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-        label.textAlignment = NSTextAlignmentCenter;
-        label.backgroundColor = UIColor.clearColor;
-        @jobs_weakify(self)
-        label.attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
+        label
+            .byTextAlignment(NSTextAlignmentCenter)
+            .byBgCor(UIColor.clearColor)
+        .byAttributedString(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 data1.font = UIFontWeightRegularSize(JobsWidth(12));
                 data1.textCor = JobsBlueColor;
@@ -144,8 +145,7 @@
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = self.defaultParagraphStyle;
             }));
-        }));
-        [label sizeToFit];
+        }))).labelAutoWidthByFont();
     });
 }
 #pragma mark —— 左边：自定义返回键
@@ -182,9 +182,9 @@
 //                                                                           style:UIBarButtonItemStylePlain
 //                                                                          target:nil
 //                                                                          action:nil]
-//        .byRacCommand([RACCommand.alloc initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+//        .byRacCommand([RACCommand.alloc initWithSignalBlock:^RACSignal * _Nonnull(id _Nullable input) {
 //            @jobs_strongify(self)
-//            self.gotoBack();
+//            self.goBack(input);
 //            return [RACSignal empty];
 //    }]);
 }

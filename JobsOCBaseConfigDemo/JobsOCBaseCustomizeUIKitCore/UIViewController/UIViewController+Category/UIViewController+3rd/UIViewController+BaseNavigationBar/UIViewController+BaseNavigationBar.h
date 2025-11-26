@@ -45,7 +45,7 @@ Prop_strong()UIColor *shadowCor;
 Prop_strong()UIColor *foregroundColorAttributeNameCor;
 Prop_strong()UIFont *fontAttributeName;
 
--(jobsByVoidBlock _Nonnull)gotoBack;
+-(JobsRetVCByIDBlock _Nonnull)goBack;
 
 @end
 

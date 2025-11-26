@@ -2246,7 +2246,7 @@ classDiagram
 
 * 一般`View`不会独立存在，会依附于`ViewController`。<font color=red>就要求`ViewController`需要观察是否正常销毁</font>（即，退出页面是否执行`-(void)dealloc`方法）。<font color=blue>如果对象没有成功销毁，会影响数据的写入，且下一次新建对象的时候，会优先执行上一个对象的`-(void)dealloc`方法</font>
 
-#### 14.1、`ViewController`的生命周期
+#### 14.1、`UIViewController`的生命周期 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **初始化方法**`-(instancetype)init`：最早装载本页面数据的时机
     * `- (void)loadView`：**一般在此方法里面装载**本页面的固定数据和刷新的数据（比如网络请求的数据）
@@ -2255,12 +2255,38 @@ classDiagram
     * `-(void)viewDidAppear:(BOOL)animated`：同上
     * `-(void)viewWillLayoutSubviews`：页面UI进行调整的时候，都会执行（多次运行，直到UI布局）稳定。**这里取值可能是过程值，有可能不准确**
     * `-(void)viewDidLayoutSubviews `：同上
+    
 * 销毁流程
     * `-(void)viewWillDisappear:(BOOL)animated`
     * `-(void)viewDidDisappear:(BOOL)animated`
     * `-(void)dealloc`
+    
+* Push 和 Pop
+  
+    * A Push B 
+    
+      ```objective-c
+      loadView@B
+      viewDidLoad@B
+      viewWillDisappear@A
+      viewWillAppear@B
+      出现界面B
+      viewDidDisappear@1
+      viewDidAppear@B
+      ```
+    
+    * B Pop A 
 
-#### 14.2、`View`的生命周期  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+      ```objective-c
+      viewWillDisappear@B
+      viewWillAppear@A
+      出现界面A
+      viewDidDisappear@B
+      viewDidAppear@A
+      ```
+     
+
+#### 14.2、`UIView`的生命周期 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * **初始化方法**`-(instancetype)init`：最根本的初始化方法
 
@@ -4494,29 +4520,19 @@ self.countDownBtn.timerContinue();
 [self.countdownBtn.timer stop];// 或者 self.countdownBtn.timerDestroy();
 ```
 
-### 29、**`UIViewController`**生命周期 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 29、系统的导航控制器 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-#### 29.1、A Push B <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+* 将任意的`UIViewController`用系统的`UINavigationController`进行包裹
 
-```objective-c
-loadView@B
-viewDidLoad@B
-viewWillDisappear@A
-viewWillAppear@B
-出现界面B
-viewDidDisappear@1
-viewDidAppear@B
-```
+  ```objective-c
+  self.tabBarVC.navCtrl
+  ```
 
-#### 29.2、B Pop A <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+* 将任意的`UIViewController`用封装自系统的`BaseNavigationVC`进行包裹
 
-```objective-c
-viewWillDisappear@B
-viewWillAppear@A
-出现界面A
-viewDidDisappear@B
-viewDidAppear@A
-```
+  ```objective-c
+  BaseNavigationVC.initBy(self);
+  ```
 
 ### 30、[**`Masonry`**](https://github.com/SnapKit/Masonry) 的一些使用技巧 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 

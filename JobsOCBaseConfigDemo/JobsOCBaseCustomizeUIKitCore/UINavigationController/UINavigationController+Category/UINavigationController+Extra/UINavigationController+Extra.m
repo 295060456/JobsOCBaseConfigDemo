@@ -9,6 +9,18 @@
 
 @implementation UINavigationController (Extra)
 
++(JobsRetNavCtrByVCBlock _Nonnull)initBy{
+    @jobs_weakify(self)
+    return ^__kindof UINavigationController *_Nullable(__kindof UIViewController *_Nonnull vc){
+        @jobs_strongify(self)
+        if([vc isKindOfClass:UINavigationController.class]){
+            return (UINavigationController *)vc;
+        }else{
+            return [self.class.alloc initWithRootViewController:vc];
+        }
+    };
+}
+
 -(UIViewController *)rootViewController{
     return self.viewControllers.firstObject;
 }
