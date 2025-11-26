@@ -20,7 +20,7 @@
 -(void)dealloc{
     JobsRemoveNotification(self);
     if (JobsDebug) {
-        toast(JobsInternationalization(@"成功销毁了控制器").add(NSStringFromClass(self.class)));
+        toast(@"成功销毁了控制器".tr.add(NSStringFromClass(self.class)));
         JobsLog(@"%@",JobsLocalFunc);
         PrintRetainCount(self)
     }

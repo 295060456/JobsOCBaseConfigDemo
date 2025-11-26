@@ -32,7 +32,7 @@ Prop_strong()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -93,28 +93,28 @@ Prop_strong()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
 +(NSMutableArray<UIViewModel *> *)createDataMutArr{
     NSMutableArray <UIViewModel *>*dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
         data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG體育");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG體育".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG真人");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG真人".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG電子");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG電子".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG彩票");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG彩票".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG棋牌".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DA電子");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DA電子".tr;
+            viewModel.subTextModel.text = @"".tr;
         }));
     });return dataMutArr;
 }
@@ -145,14 +145,14 @@ Prop_strong()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
             return previewVC;
         } actionProvider:^UIMenu * _Nullable(NSArray<UIMenuElement *> *suggestedActions) {
             /// 创建菜单项并返回菜单
-            return [UIMenu menuWithTitle:JobsInternationalization(@"") children:jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
-                arr.add([UIAction actionWithTitle:JobsInternationalization(@"Action 1")
+            return [UIMenu menuWithTitle:@"".tr children:jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+                arr.add([UIAction actionWithTitle:@"Action 1".tr
                                             image:nil
                                        identifier:nil
                                           handler:^(__kindof UIAction * _Nonnull action) {
                     JobsLog(@"Action 1 selected for row %ld", (long)indexPath.row);
                 }])
-                .add([UIAction actionWithTitle:JobsInternationalization(@"Action 2")
+                .add([UIAction actionWithTitle:@"Action 2".tr
                                             image:nil
                                        identifier:nil
                                           handler:^(__kindof UIAction * _Nonnull action) {
@@ -326,7 +326,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_tbvHeaderView) {
         _tbvHeaderView = BaiShaETProjChoiceStadiumTBVHeaderView.new;
         _tbvHeaderView.sizer = BaiShaETProjChoiceStadiumTBVHeaderView.viewSizeByModel(nil);
-        _tbvHeaderView.text = JobsInternationalization(@"選擇場館");
+        _tbvHeaderView.text = @"選擇場館".tr;
         _tbvHeaderView.textColor = HEXCOLOR(0x3D4A58);
         _tbvHeaderView.font = UIFontWeightBoldSize(16);
         _tbvHeaderView.textAlignment = NSTextAlignmentCenter;

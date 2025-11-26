@@ -144,25 +144,25 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     UIViewModel *viewModel = self.dataMutArr[indexPath.item];
     self.jobsToastMsg(viewModel.textModel.text);
     {
-        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"个人资料"))){
+        if(viewModel.textModel.text.isEqualToString(@"个人资料".tr)){
             
         }
-        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"意见反馈"))){
+        if(viewModel.textModel.text.isEqualToString(@"意见反馈".tr)){
             
         }
-        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"消息通知"))){
+        if(viewModel.textModel.text.isEqualToString(@"消息通知".tr)){
             
         }
-        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"收货地址"))){
+        if(viewModel.textModel.text.isEqualToString(@"收货地址".tr)){
             
         }
-        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"修改密码"))){
+        if(viewModel.textModel.text.isEqualToString(@"修改密码".tr)){
             
         }
-        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"设置"))){
+        if(viewModel.textModel.text.isEqualToString(@"设置".tr)){
             
         }
-        if(viewModel.textModel.text.isEqualToString(JobsInternationalization(@"购物车"))){
+        if(viewModel.textModel.text.isEqualToString(@"购物车".tr)){
             
         }
     }
@@ -212,7 +212,7 @@ insetForSectionAtIndex:(NSInteger)section {
     if(!_cancelBtn){
         @jobs_weakify(self)
         _cancelBtn = BaseButton
-            .initByStyle1(JobsInternationalization(@"取消"),
+            .initByStyle1(@"取消".tr,
                                        UIFontWeightMediumSize(16),
                                        JobsCor(@"#333333"))
             .bgColorBy(JobsWhiteColor)
@@ -268,19 +268,19 @@ insetForSectionAtIndex:(NSInteger)section {
     if (!_dataMutArr) {
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"钱包");
+                data1.textModel.text = @"钱包".tr;
                 data1.image = @"钱包".img;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"我的店铺");
+                data1.textModel.text = @"我的店铺".tr;
                 data1.image = @"我的店铺".img;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"我的团队");
+                data1.textModel.text = @"我的团队".tr;
                 data1.image = @"我的团队".img;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"信用分数");
+                data1.textModel.text = @"信用分数".tr;
                 data1.image = @"信用分数".img;
             }));
         });

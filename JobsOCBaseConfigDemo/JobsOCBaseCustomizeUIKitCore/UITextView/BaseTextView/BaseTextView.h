@@ -37,14 +37,14 @@ NS_INLINE __kindof BaseTextView *_Nonnull jobsMakeBaseTextView(jobsByBaseTextVie
                  data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable config) {
                      config.font = UIFontWeightRegularSize(JobsWidth(12));
                      config.textCor = JobsWhiteColor;
-                     config.targetString = JobsInternationalization(@"Already have account?");
+                     config.targetString = @"Already have account?".tr;
              //        config.textBgCor = UIColor.clearColor;
                      config.paragraphStyle = self.defaultParagraphStyle;
                  }));
                  data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable config) {
                      config.font = UIFontWeightRegularSize(JobsWidth(12));
                      config.textCor = JobsCor(@"#FFC700");
-                     config.targetString = @" ".add(JobsInternationalization(@"Login Here"));
+                     config.targetString = @" ".add(@"Login Here".tr);
              //        config.textBgCor = UIColor.clearColor;
                      config.paragraphStyle = self.defaultParagraphStyle;
                      config.urlStr = @"www.google.com";

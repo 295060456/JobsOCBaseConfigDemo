@@ -54,7 +54,7 @@
             }];
             [alertController addAction:okAction];
         }
-    }else self.jobsToastMsg(JobsInternationalization(@"参数配置错误，请检查"));
+    }else self.jobsToastMsg(@"参数配置错误，请检查".tr);
     if (alertVCBlock) alertVCBlock(alertController);
     [config.targetVC presentViewController:alertController
                                   animated:config.animated
@@ -100,7 +100,7 @@
             }];
             [alertController addAction:okAction];
         }
-    }else self.jobsToastMsg(JobsInternationalization(@"参数配置错误，请检查"));
+    }else self.jobsToastMsg(@"参数配置错误，请检查".tr);
     if (alertVCBlock) alertVCBlock(alertController);
     UIPopoverPresentationController *popover = alertController.popoverPresentationController;
     if (popover){
@@ -114,32 +114,32 @@
 }
 
 +(void)showLoginAlertViewWithTargetVC:(UIViewController *)targetVC{
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:JobsInternationalization(@"Login")
-                                                                             message:JobsInternationalization(@"Enter Your Account Info Below")
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Login".tr
+                                                                             message:@"Enter Your Account Info Below".tr
                                                                       preferredStyle:UIAlertControllerStyleAlert];
     @jobs_weakify(self)
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         @jobs_strongify(self)
-        textField.placeholder = JobsInternationalization(@"username");
+        textField.placeholder = @"username".tr;
         [textField addTarget:self
                       action:@selector(alertUserAccountInfoDidChange:targetVC:)
             forControlEvents:UIControlEventEditingChanged];
     }];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         @jobs_strongify(self)
-        textField.placeholder = JobsInternationalization(@"password");
+        textField.placeholder = @"password".tr;
         textField.secureTextEntry = YES;
         [textField addTarget:self
                       action:@selector(alertUserAccountInfoDidChange:targetVC:)
             forControlEvents:UIControlEventEditingChanged];
     }];
 
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:JobsInternationalization(@"Cancel")
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel".tr
                                                            style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * _Nonnull action) {
                                                              JobsLog(@"Cancel Action");
                                                          }];
-    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:JobsInternationalization(@"Login")
+    UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"Login".tr
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction * _Nonnull action) {
                                                             UITextField *userName = alertController.textFields.firstObject;

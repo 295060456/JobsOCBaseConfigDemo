@@ -79,15 +79,15 @@ successCompletionHandlerBlock:^(id data) {
 }
 /// 简单弹窗，没有action事件
 +(void)alertTips:(NSString *)msg{
-    [self alertActionTitle:JobsInternationalization(@"提示")
+    [self alertActionTitle:@"提示".tr
                        msg:msg
-               actionTitle:JobsInternationalization(@"知道了")];
+               actionTitle:@"知道了".tr];
 }
 /// 权限提示alert
 +(void)alertPromptTips:(NSString *)msg{
-    [self alertTitle:JobsInternationalization(@"权限提示") msg:msg
-           leftTitle:JobsInternationalization(@"设置")
-          rightTitle:JobsInternationalization(@"取消")];
+    [self alertTitle:@"权限提示".tr msg:msg
+           leftTitle:@"设置".tr
+          rightTitle:@"取消".tr];
 }
 #pragma mark —— 一些私有方法
 /// TKPermissionKit Bundle Path
@@ -111,7 +111,7 @@ successCompletionHandlerBlock:^(id data) {
         return [evaluatedObject hasSuffix:@".lproj"];
     }]];
     for (NSString *dirName in subPaths) {
-        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:JobsInternationalization(@"")];
+        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@"".tr];
         NSString *lowerName = [name lowercaseString];
         if ([lowerName containsString:systemLanguage] || [systemLanguage containsString:lowerName]) {
             selectedLanguage = name;
@@ -119,7 +119,7 @@ successCompletionHandlerBlock:^(id data) {
         }
     }
     for (NSString *dirName in subPaths) {
-        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:JobsInternationalization(@"")];
+        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@"".tr];
         NSString *lowerName = [name lowercaseString];
         if ([lowerName isEqualToString:systemLanguage]) {
             selectedLanguage = name;
@@ -148,7 +148,7 @@ successCompletionHandlerBlock:^(id data) {
           NSArray *ary = [NSFileManager.defaultManager contentsOfDirectoryAtPath:path error:nil];
           for (NSString *dirName in ary) {
               if ([dirName hasSuffix:@"lproj"]) {
-                  [lproj addObject:[dirName stringByReplacingOccurrencesOfString:@".lproj" withString:JobsInternationalization(@"")]];
+                  [lproj addObject:[dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@"".tr]];
               }
           }
           NSString *language = NSLocale.preferredLanguages.firstObject;

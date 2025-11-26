@@ -88,7 +88,7 @@ static dispatch_once_t static_termsOfUseViewOnceToken;
         @jobs_weakify(self)
         _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.byText(JobsInternationalization(@"Terms Of USE"))
+            label.byText(@"Terms Of USE".tr)
                 .byFont(bayonRegular(JobsWidth(20)))
                 .byTextCor(JobsCor(@"#8A93A1E5"))
                 .byTextAlignment(NSTextAlignmentCenter);
@@ -126,7 +126,7 @@ static dispatch_once_t static_termsOfUseViewOnceToken;
             .jobsResetBtnBgImage(@"小弹窗确认按钮背景图".img)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(bayonRegular(JobsWidth(18)))
-            .jobsResetBtnTitle(JobsInternationalization(@"Agree"))
+            .jobsResetBtnTitle(@"Agree".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if(self.objBlock) self.objBlock(@"");

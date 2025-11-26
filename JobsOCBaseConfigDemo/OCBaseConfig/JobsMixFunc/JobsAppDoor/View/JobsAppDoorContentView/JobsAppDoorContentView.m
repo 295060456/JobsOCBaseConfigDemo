@@ -75,14 +75,14 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
 //                         parameters:parameters
 //                       successBlock:^(JobsResponseModel *data) {
 //            JobsLog(@"用户获取短信验证码成功");
-//            self.jobsToastSuccessMsg(JobsInternationalization(@"Verification send success"));
+//            self.jobsToastSuccessMsg(@"Verification send success".tr);
 //        } failureBlock:^(id data) {
 //            JobsNetworkingAPI.handleError(data);
 //            JobsAppDoorInputViewBaseStyle_1 *手机验证码 = (JobsAppDoorInputViewBaseStyle_1 *)self.registerDoorInputViewBaseStyleMutArr[4];
 //            手机验证码.getCountDownBtn.timerDestroy();
 //        }];
 //    }else{
-//        self.jobsToastErrMsg(JobsInternationalization(@"TelePhone Number Error"));
+//        self.jobsToastErrMsg(@"TelePhone Number Error".tr);
 //        JobsAppDoorInputViewBaseStyle_1 *手机验证码 = (JobsAppDoorInputViewBaseStyle_1 *)self.registerDoorInputViewBaseStyleMutArr[4];
 //        手机验证码.getCountDownBtn.timerDestroy();
 //    }
@@ -148,9 +148,9 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
         [inputView actionObjBlock:^(UITextField *data) {
             @jobs_strongify(self)
             JobsAppDoorInputViewTFModel *textFieldInputModel = (JobsAppDoorInputViewTFModel *)data.requestParams;
-            if ([textFieldInputModel.PlaceHolder isEqualToString:JobsInternationalization(@"User")]) {
+            if ([textFieldInputModel.PlaceHolder isEqualToString:@"User".tr]) {
                 self.appDoorModel.userName = data.text;
-            }else if ([textFieldInputModel.PlaceHolder isEqualToString:JobsInternationalization(@"Code")]){
+            }else if ([textFieldInputModel.PlaceHolder isEqualToString:@"Code".tr]){
                 self.appDoorModel.password = data.text;
             }else{}
             if (self.objBlock) self.objBlock(self.appDoorModel);
@@ -538,7 +538,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
         _loginDoorInputViewBaseStyleModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 用户名) {
                 用户名.leftViewIMG = @"用户名称".img;
-                用户名.placeholder = JobsInternationalization(@"User");
+                用户名.placeholder = @"User".tr;
                 用户名.isShowDelBtn = YES;
                 用户名.isShowSecurityBtn = NO;
                 用户名.useCustomClearButton = YES;
@@ -555,7 +555,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 密码) {
                 密码.leftViewIMG = @"Lock".img;
-                密码.placeholder = JobsInternationalization(@"Code");
+                密码.placeholder = @"Code".tr;
                 密码.isShowDelBtn = YES;
                 密码.isShowSecurityBtn = YES;
                 密码.useCustomClearButton = YES;
@@ -578,7 +578,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
         _registerDoorInputViewBaseStyleModelMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 用户名) {
                 用户名.leftViewIMG = @"用户名称".img;
-                用户名.placeholder = JobsInternationalization(@"User");
+                用户名.placeholder = @"User".tr;
                 用户名.isShowDelBtn = YES;
                 用户名.isShowSecurityBtn = NO;
                 用户名.useCustomClearButton = YES;
@@ -593,7 +593,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 密码) {
                 密码.leftViewIMG = @"Lock".img;
-                密码.placeholder = JobsInternationalization(@"Code");
+                密码.placeholder = @"Code".tr;
                 密码.isShowDelBtn = YES;
                 密码.isShowSecurityBtn = YES;
                 密码.useCustomClearButton = YES;
@@ -609,7 +609,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 确认密码) {
                 确认密码.leftViewIMG = @"Lock".img;
-                确认密码.placeholder = JobsInternationalization(@"Confirm");
+                确认密码.placeholder = @"Confirm".tr;
                 确认密码.isShowDelBtn = YES;
                 确认密码.isShowSecurityBtn = YES;
                 确认密码.useCustomClearButton = YES;
@@ -625,7 +625,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 手机号码) {
                 手机号码.leftViewIMG = @"手机号码".img;
-                手机号码.placeholder = JobsInternationalization(@"Telephone");
+                手机号码.placeholder = @"Telephone".tr;
                 手机号码.isShowDelBtn = YES;
                 手机号码.isShowSecurityBtn = NO;
                 手机号码.useCustomClearButton = YES;
@@ -639,7 +639,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*inputViewMutArr;
             }));
             data.add(jobsMakeAppDoorInputViewBaseStyleModel(^(JobsAppDoorInputViewBaseStyleModel * _Nullable 手机验证码) {
                 手机验证码.leftViewIMG = @"验证ICON".img;
-                手机验证码.placeholder = JobsInternationalization(@"Auth code");
+                手机验证码.placeholder = @"Auth code".tr;
                 手机验证码.isShowDelBtn = YES;
                 手机验证码.isShowSecurityBtn = NO;
                 手机验证码.useCustomClearButton = YES;

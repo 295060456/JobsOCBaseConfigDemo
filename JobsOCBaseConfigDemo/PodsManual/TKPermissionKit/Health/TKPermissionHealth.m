@@ -99,12 +99,12 @@ static TKPermissionHealth * _shared = nil;
 }
 
 -(void)jumpSetting{
-    NSString *msg = JobsInternationalization(@"您可以稍后在\"健康\"App中打开健康数据类别。");
+    NSString *msg = @"您可以稍后在\"健康\"App中打开健康数据类别。".tr;
     [TKPermissionPublic alertTips:msg];
 }
 
 -(void)alertAction{
-    [TKPermissionPublic alertTips:JobsInternationalization(@"当前设备不支持HealthKit")];
+    [TKPermissionPublic alertTips:@"当前设备不支持HealthKit".tr];
 }
 
 +(NSSet *)allTypes{

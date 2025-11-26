@@ -78,7 +78,7 @@ Prop_strong()UILabel *titleLab;
         @jobs_weakify(self)
         _titleLab = self.contentView.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.byText(isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"请设置标题") : self.viewModel.textModel.text)
+            label.byText(isNull(self.viewModel.textModel.text) ? @"请设置标题".tr : self.viewModel.textModel.text)
                 .byTextCor(self.viewModel.textModel.textCor)
                 .byFont(self.viewModel.textModel.font)
                 .byTextAlignment(NSTextAlignmentCenter);

@@ -234,62 +234,62 @@ willDisplayHeaderView:(UIView *)view
     if(!_dataMutArr){
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeMSCommentModel(^(MSCommentModel * _Nullable commentModel) {
-                commentModel.sectionTitle = JobsInternationalization(@"张山的歌");
+                commentModel.sectionTitle = @"张山的歌".tr;
                 commentModel.commentDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <MSCommentDetailModel *>*_Nullable data2) {
                     data2.add(jobsMakeMSCommentDetailModel(^(MSCommentDetailModel * _Nullable model) {
-                        model.rowTitle = JobsInternationalization(@"张山的歌")
+                        model.rowTitle = @"张山的歌".tr
                             .add(@",")
-                            .add(JobsInternationalization(@"第1条评论"));
+                            .add(@"第1条评论".tr);
                     }))
                     .add(jobsMakeMSCommentDetailModel(^(MSCommentDetailModel * _Nullable model) {
-                        model.rowTitle = JobsInternationalization(@"张山的歌")
+                        model.rowTitle = @"张山的歌".tr
                             .add(@",")
-                            .add(JobsInternationalization(@"第2条评论"));
+                            .add(@"第2条评论".tr);
                     }))
                     .add(jobsMakeMSCommentDetailModel(^(MSCommentDetailModel * _Nullable model) {
-                        model.rowTitle = JobsInternationalization(@"张山的歌")
+                        model.rowTitle = @"张山的歌".tr
                             .add(@",")
-                            .add(JobsInternationalization(@"第3条评论"));
+                            .add(@"第3条评论".tr);
                     }));
                 });;
             }))
             .add(jobsMakeMSCommentModel(^(MSCommentModel * _Nullable commentModel) {
-                commentModel.sectionTitle = JobsInternationalization(@"赵四的歌");
+                commentModel.sectionTitle = @"赵四的歌".tr;
                 commentModel.commentDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <MSCommentDetailModel *>*_Nullable data2) {
                     data2.add(jobsMakeMSCommentDetailModel(^(MSCommentDetailModel * _Nullable model) {
-                        model.rowTitle = JobsInternationalization(@"赵四的歌")
+                        model.rowTitle = @"赵四的歌".tr
                             .add(@",")
-                            .add(JobsInternationalization(@"第1条评论"));
+                            .add(@"第1条评论".tr);
                     }))
                     .add(jobsMakeMSCommentDetailModel(^(MSCommentDetailModel * _Nullable model) {
-                        model.rowTitle = JobsInternationalization(@"赵四的歌")
+                        model.rowTitle = @"赵四的歌".tr
                             .add(@",")
-                            .add(JobsInternationalization(@"第2条评论"));
+                            .add(@"第2条评论".tr);
                     }))
                     .add(jobsMakeMSCommentDetailModel(^(MSCommentDetailModel * _Nullable model) {
-                        model.rowTitle = JobsInternationalization(@"赵四的歌")
+                        model.rowTitle = @"赵四的歌".tr
                             .add(@",")
-                            .add(JobsInternationalization(@"第3条评论"));
+                            .add(@"第3条评论".tr);
                     }));
                 });;
             }))
             .add(jobsMakeMSCommentModel(^(MSCommentModel * _Nullable commentModel) {
-                commentModel.sectionTitle = JobsInternationalization(@"王五的歌");
+                commentModel.sectionTitle = @"王五的歌".tr;
                 commentModel.commentDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <MSCommentDetailModel *>*_Nullable data2) {
                     data2.add(jobsMakeMSCommentDetailModel(^(MSCommentDetailModel * _Nullable model) {
-                        model.rowTitle = JobsInternationalization(@"王五的歌")
+                        model.rowTitle = @"王五的歌".tr
                             .add(@",")
-                            .add(JobsInternationalization(@"第1条评论"));
+                            .add(@"第1条评论".tr);
                     }))
                     .add(jobsMakeMSCommentDetailModel(^(MSCommentDetailModel * _Nullable model) {
-                        model.rowTitle = JobsInternationalization(@"王五的歌")
+                        model.rowTitle = @"王五的歌".tr
                             .add(@",")
-                            .add(JobsInternationalization(@"第2条评论"));
+                            .add(@"第2条评论".tr);
                     }))
                     .add(jobsMakeMSCommentDetailModel(^(MSCommentDetailModel * _Nullable model) {
-                        model.rowTitle = JobsInternationalization(@"王五的歌")
+                        model.rowTitle = @"王五的歌".tr
                             .add(@",")
-                            .add(JobsInternationalization(@"第3条评论"));
+                            .add(@"第3条评论".tr);
                     }));
                 });;
             }));

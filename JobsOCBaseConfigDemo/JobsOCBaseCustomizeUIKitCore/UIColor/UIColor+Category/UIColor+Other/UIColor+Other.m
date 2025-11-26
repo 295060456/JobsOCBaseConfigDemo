@@ -213,13 +213,13 @@
         /// 获取蓝色值
         int b = [[RGBArr objectAtIndex:3] floatValue] * 255;
         NSString *blueStr = toStringByInt(b);
-        return JobsInternationalization(@"红色")
+        return @"红色".tr
             .add(@":")
             .add(redStr)
-            .add(JobsInternationalization(@"绿色"))
+            .add(@"绿色".tr)
             .add(@":")
             .add(greenStr)
-            .add(JobsInternationalization(@"蓝色"))
+            .add(@"蓝色".tr)
             .add(@":")
             .add(blueStr);
     };

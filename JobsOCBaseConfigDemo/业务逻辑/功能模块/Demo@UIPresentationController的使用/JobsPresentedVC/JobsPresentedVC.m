@@ -17,7 +17,7 @@
     JobsRemoveNotification(self);
     [self.view endEditing:YES];
     if (JobsDebug) {
-        toast([NSString stringWithFormat:@"%@%@",JobsInternationalization(@"成功销毁了控制器"),NSStringFromClass(self.class)]);
+        toast([NSString stringWithFormat:@"%@%@",@"成功销毁了控制器".tr,NSStringFromClass(self.class)]);
         JobsLog(@"%@",JobsLocalFunc);
         PrintRetainCount(self)
     }

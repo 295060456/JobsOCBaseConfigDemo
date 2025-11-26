@@ -191,7 +191,7 @@ Prop_assign()NSUInteger thisIndex;
 //            @jobs_strongify(self)
             model.idField = toStringByInt(iflag);
             model.pid = @"0";
-            model.name = JobsInternationalization(@"一级目录").add(toStringByInt(iflag));
+            model.name = @"一级目录".tr.add(toStringByInt(iflag));
             model.textModel.text = @"";
         });
     };
@@ -204,14 +204,14 @@ Prop_assign()NSUInteger thisIndex;
             @jobs_strongify(self)
             model.idField = toStringByInt(iFlag);
             model.pid = toStringByInt(iFlag);
-            model.name = JobsInternationalization(@"随机").add(JobsDash).add(toStringByInt(iFlag));
+            model.name = @"随机".tr.add(JobsDash).add(toStringByInt(iFlag));
             model.textModel.text = @"1234";
-            model.subTextModel.text = toStringByInt(iFlag).add(JobsInternationalization(@"球桌球"));
+            model.subTextModel.text = toStringByInt(iFlag).add(@"球桌球".tr);
             model.bgImage = self.cellDataMutArr[iFlag].backgroundImage;
             model.title = self.cellTitleMutArr[data1];
             /// ViewModel
             model.imageUrl = @"https://zh.wikipedia.org/wiki/File:Jiang_Zemin_2002.jpg".jobsUrl;
-            model.text = JobsInternationalization(@"FlementalLinkFire");
+            model.text = @"FlementalLinkFire".tr;
             model.image = @"点赞".img;
             JobsLog(@"%@",model.bgImage);
             model.childrenList = jobsMakeMutArr(^(__kindof NSMutableArray <GoodsClassModel *>*_Nullable arr) {
@@ -231,7 +231,7 @@ Prop_assign()NSUInteger thisIndex;
             model.idField = toStringByInt(iflag);
             model.pid = toStringByInt(iflag);
             model.name = string.add(JobsDot)
-                .add(JobsInternationalization(@"三级目录")).add(JobsDot)
+                .add(@"三级目录".tr).add(JobsDot)
                 .add(toStringByInt(iflag));
         });
     };
@@ -308,7 +308,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         GoodsClassModel *rightModel = self.rightDataArray.objectAt(indexPath.section);
-        label.text = rightModel.name ? : JobsInternationalization(@"");
+        label.text = rightModel.name ? : @"".tr;
         
         return headerView;
     }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)){

@@ -115,9 +115,9 @@ static dispatch_once_t static_textViewOnceToken;
             /// 超过直接截取
             if(x.length > self.textModel.maxWordCount) {
                 x = x.substringToIndex(self.textModel.maxWordCount);
-                self.jobsToastMsg(JobsInternationalization(@"最多只能输入")
+                self.jobsToastMsg(@"最多只能输入".tr
                                   .add(toStringByLong(self.textModel.maxWordCount)
-                                       .add(JobsInternationalization(@"个字"))));
+                                       .add(@"个字".tr)));
             }
             self.textView.text = x;
             self.textModel.curWordCount = x.length;

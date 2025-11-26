@@ -85,7 +85,7 @@ static dispatch_once_t static_mineView2OnceToken;
 -(BaseButton *)btn1{
     @jobs_weakify(self)
     if(!_btn1){
-        _btn1 = BaseButton.initByStyleLeft(JobsInternationalization(@"入职Mata"),
+        _btn1 = BaseButton.initByStyleLeft(@"入职Mata".tr,
                                            UIFontWeightRegularSize(14),
                                            JobsBlackColor,
                                            @"入职Mata".img,
@@ -110,7 +110,7 @@ static dispatch_once_t static_mineView2OnceToken;
 -(UIButton *)btn2{
     if(!_btn2){
         @jobs_weakify(self)
-        _btn2 = BaseButton.initByStyle1(JobsInternationalization(@"立即进入"),
+        _btn2 = BaseButton.initByStyle1(@"立即进入".tr,
                                                      UIFontWeightRegularSize(14),
                                                      JobsWhiteColor)
             .bgColorBy(JobsCor(@"#EA2918"))

@@ -32,9 +32,9 @@ Prop_strong()NSMutableArray <UIViewModel *>*sectionFooterDataSource;/// sectionF
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-//        self.viewModel.textModel.text = JobsInternationalization(@"JobsWallet");
+//        self.viewModel.textModel.text = @"JobsWallet".tr;
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
@@ -211,24 +211,24 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         _dataSourceMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSMutableArray<UIViewModel *>*>* _Nullable data) {
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data1) {
                 data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
-                    data2.textModel.text = JobsInternationalization(@"上海银行");
-                    data2.subTextModel.text = JobsInternationalization(@"**** 7895");
+                    data2.textModel.text = @"上海银行".tr;
+                    data2.subTextModel.text = @"**** 7895".tr;
                     data2.image = @"第一银行".img;
                 }));
                 data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
-                    data2.textModel.text = JobsInternationalization(@"国泰世华");
-                    data2.subTextModel.text = JobsInternationalization(@"**** 2345");
+                    data2.textModel.text = @"国泰世华".tr;
+                    data2.subTextModel.text = @"**** 2345".tr;
                     data2.image = @"国泰世华".img;
                 }));
                 data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
-                    data2.textModel.text = JobsInternationalization(@"台湾银行");
-                    data2.subTextModel.text = JobsInternationalization(@"**** 7654");
+                    data2.textModel.text = @"台湾银行".tr;
+                    data2.subTextModel.text = @"**** 7654".tr;
                     data2.image = @"台湾银行".img;
                 }));
             }));
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data1) {
                 data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
-                    data1.textModel.text = JobsInternationalization(@"＋添加新的銀行卡");
+                    data1.textModel.text = @"＋添加新的銀行卡".tr;
                     data1.textModel.font = UIFontWeightRegularSize(16);
                     data1.textModel.textCor = HEXCOLOR(0x757575);
                 }));
@@ -241,7 +241,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!_sectionHeaderDataSource) {
         _sectionHeaderDataSource = jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"我是头部");
+                data1.textModel.text = @"我是头部".tr;
             }));
         });
     }return _sectionHeaderDataSource;
@@ -251,7 +251,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!_sectionFooterDataSource) {
         _sectionFooterDataSource = jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"我是尾部");
+                data1.textModel.text = @"我是尾部".tr;
             }));
         });
     }return _sectionFooterDataSource;

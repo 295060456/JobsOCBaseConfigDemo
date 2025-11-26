@@ -16,7 +16,7 @@
         [self.jobsGetCurrentViewController forceComingToPresentVC:mailComposeVC
                                                     requestParams:nil
                                                        completion:completionHandlerBlock];
-    }else self.jobsToastMsg(JobsInternationalization(@"打开邮件失败,请确保设备上至少启用了一个电子邮件帐户！"));
+    }else self.jobsToastMsg(@"打开邮件失败,请确保设备上至少启用了一个电子邮件帐户！".tr);
 }
 #pragma mark —— MFMessageComposeViewControllerDelegate
 /// 推出页面的方式用presentViewController，pushViewController可能会崩溃
@@ -112,11 +112,11 @@ failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock
     if ([URL isKindOfClass:NSString.class]) {
         NSString *url = (NSString *)URL;
         if (isNull(url)) {
-            self.jobsToastMsg(JobsInternationalization(@"URL为空，请检查！"));
+            self.jobsToastMsg(@"URL为空，请检查！".tr);
             return NO;
         }else{
             if (!url.jobsCanOpenUrl) {
-                self.jobsToastMsg(JobsInternationalization(@"打开").add(url).add(@"失败，请检查"));
+                self.jobsToastMsg(@"打开".tr.add(url).add(@"失败，请检查"));
                 return url.jobsCanOpenUrl;
             }
         }
@@ -127,7 +127,7 @@ failCompletionHandlerBlock:(jobsByVoidBlock _Nullable)failCompletionHandlerBlock
             return url.jobsCanOpenUrl;
         }
     }else{
-        self.jobsToastMsg(JobsInternationalization(@"URL类型不匹配，请检查"));
+        self.jobsToastMsg(@"URL类型不匹配，请检查".tr);
         return NO;
     }
 
@@ -173,7 +173,7 @@ JobsKey(_messageComposeVC)
     if (!MessageComposeVC) {
         MessageComposeVC = MFMessageComposeViewController.new;
         //设置短信内容
-        MessageComposeVC.body = JobsInternationalization(@"吃饭了没");
+        MessageComposeVC.body = @"吃饭了没".tr;
         //设置收件人列表
         MessageComposeVC.recipients = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
             data.add(@"10010");
@@ -196,9 +196,9 @@ JobsKey(_mailComposeVC)
     if (!MailComposeVC) {
         MailComposeVC = MFMailComposeViewController.new;
         //设置邮件主题
-        MailComposeVC.subject = JobsInternationalization(@"测试邮件");
+        MailComposeVC.subject = @"测试邮件".tr;
         //设置邮件内容
-        [MailComposeVC setMessageBody:JobsInternationalization(@"测试内容") isHTML:NO];
+        [MailComposeVC setMessageBody:@"测试内容".tr isHTML:NO];
         //设置收件人列表
         MailComposeVC.toRecipients = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
             data.add(@"test@qq.com");

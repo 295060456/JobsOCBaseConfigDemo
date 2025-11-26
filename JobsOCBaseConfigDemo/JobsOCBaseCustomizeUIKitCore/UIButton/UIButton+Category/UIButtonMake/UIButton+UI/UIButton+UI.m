@@ -317,7 +317,7 @@
     return ^__kindof UIButton *(NSString *_Nullable data) {
         @jobs_strongify(self)
         if (@available(iOS 16.0, *)) {
-            self.jobsResetTitle(data ? : JobsInternationalization(@"暂无数据"));
+            self.jobsResetTitle(data ? : @"暂无数据".tr);
         } else self.normalStateTitleBy(data);
         return self;
     };
@@ -372,7 +372,7 @@
     @jobs_weakify(self)
     return ^__kindof UIButton *(NSString *_Nullable data) {
         @jobs_strongify(self)
-        self.jobsResetSubTitle(data ? : JobsInternationalization(@"暂无数据"));
+        self.jobsResetSubTitle(data ? : @"暂无数据".tr);
         return self;
     };
 }

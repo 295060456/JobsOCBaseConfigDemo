@@ -53,16 +53,16 @@ Prop_assign()NSInteger colNumber;/// 列数
         });
         /// 头部标题
         self.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable arr) {
-            arr.add(JobsInternationalization(@"数字/标题"));
-            arr.add(JobsInternationalization(@"标题一"));
-            arr.add(JobsInternationalization(@"标题二"));
-            arr.add(JobsInternationalization(@"标题三"));
-            arr.add(JobsInternationalization(@"标题四"));
-            arr.add(JobsInternationalization(@"标题五"));
-            arr.add(JobsInternationalization(@"标题六"));
-            arr.add(JobsInternationalization(@"标题七"));
-            arr.add(JobsInternationalization(@"标题八"));
-            arr.add(JobsInternationalization(@"标题九"));
+            arr.add(@"数字/标题".tr);
+            arr.add(@"标题一".tr);
+            arr.add(@"标题二".tr);
+            arr.add(@"标题三".tr);
+            arr.add(@"标题四".tr);
+            arr.add(@"标题五".tr);
+            arr.add(@"标题六".tr);
+            arr.add(@"标题七".tr);
+            arr.add(@"标题八".tr);
+            arr.add(@"标题九".tr);
         });
         /// 第一个元素
         self.data_00 = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
@@ -132,7 +132,7 @@ Prop_assign()NSInteger colNumber;/// 列数
         @jobs_weakify(self)
         _data_00 = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
             @jobs_strongify(self)
-            data.title = self.topHeaderTitles.count ? self.topHeaderTitles[0] : JobsInternationalization(@"楼层");
+            data.title = self.topHeaderTitles.count ? self.topHeaderTitles[0] : @"楼层".tr;
             data.titleCor = self.cor4;
             data.baseBackgroundColor = self.cor0;
             data.backgroundImage = self.image0;
@@ -148,7 +148,7 @@ Prop_assign()NSInteger colNumber;/// 列数
             for (int y = 1; y <= self.contentArr[0].count ; y++) {
                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
                     @jobs_strongify(self)
-                    data1.title = self.topHeaderTitles[y] ? : toStringByInt(y).add(JobsInternationalization(@"层"));
+                    data1.title = self.topHeaderTitles[y] ? : toStringByInt(y).add(@"层".tr);
                     data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                     data1.titleCor = self.cor4;
                     data1.baseBackgroundColor = self.cor3;
@@ -167,7 +167,7 @@ Prop_assign()NSInteger colNumber;/// 列数
 //            for (int y = 1; y <= self.contentArr.count ; y++) {
 //                data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
 //                    @jobs_strongify(self)
-//                    data1.title = toStringByInt(y).add(JobsInternationalization(@"楼"));
+//                    data1.title = toStringByInt(y).add(@"楼".tr);
 //                    data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
 //                    data1.titleCor = JobsWhiteColor;
 //                    data1.baseBackgroundColor = y % 2 ? self.cor2 : self.cor1;

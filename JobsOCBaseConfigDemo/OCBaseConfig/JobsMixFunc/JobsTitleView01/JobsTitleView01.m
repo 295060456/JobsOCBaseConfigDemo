@@ -84,7 +84,7 @@ static dispatch_once_t static_titleView01OnceToken;
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"我是标题") : self.viewModel.textModel.text;
+            label.text = isNull(self.viewModel.textModel.text) ? @"我是标题".tr : self.viewModel.textModel.text;
             label.font = [UIFont systemFontOfSize:JobsWidth(12) weight:UIFontWeightRegular];
             label.textColor = HEXCOLOR(0xAE8330);
             label.textAlignment = NSTextAlignmentCenter;

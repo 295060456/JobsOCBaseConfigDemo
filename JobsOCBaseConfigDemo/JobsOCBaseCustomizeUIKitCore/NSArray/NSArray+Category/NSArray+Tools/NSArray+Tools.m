@@ -36,7 +36,7 @@
 }
 /// 数组转字符串
 -(NSString *_Nonnull)string{
-    if(!self ||self.count == 0) return JobsInternationalization(@"");
+    if(!self ||self.count == 0) return @"".tr;
     NSMutableString *str = NSMutableString.string;
     [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx,
                                        BOOL *stop) {

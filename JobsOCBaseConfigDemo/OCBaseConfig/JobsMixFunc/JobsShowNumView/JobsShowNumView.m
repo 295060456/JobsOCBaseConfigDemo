@@ -73,7 +73,7 @@ static dispatch_once_t static_showNumViewOnceToken;
         for (NSString *string in temp) {
             UIButton *btn = UIButton.jobsInit()
             .jobsResetBtnBgImage(@"JobsShowNum".img)
-            .jobsResetBtnTitle(JobsInternationalization(string))
+            .jobsResetBtnTitle(string.tr)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(40))
             .jobsResetBtnTitleCor(HEXCOLOR(0xAE8330))
             .onClickBy(^(UIButton *x){

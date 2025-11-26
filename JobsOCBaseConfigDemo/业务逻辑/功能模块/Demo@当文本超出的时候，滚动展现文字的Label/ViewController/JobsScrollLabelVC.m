@@ -36,9 +36,9 @@ Prop_strong()RACDisposable *timerDisposable;
     }
     self.setupNavigationBarHidden = YES;
     {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = @"返回".tr;
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = JobsInternationalization(@"滚动的Label");
+        self.viewModel.textModel.text = @"滚动的Label".tr;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -76,7 +76,7 @@ Prop_strong()RACDisposable *timerDisposable;
         @jobs_strongify(self)
         self.timerDisposable = [jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"-这是测试数据-");
+            label.text = @"-这是测试数据-".tr;
             label.textColor = JobsRandomCor(1);
             label.backgroundColor = JobsCyanColor;
             self.view.addSubview(label);
@@ -99,7 +99,7 @@ Prop_strong()RACDisposable *timerDisposable;
         @jobs_strongify(self)
         jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据");
+            label.text = @"-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据-这是测试数据".tr;
             label.textColor = JobsRandomCor(1);
             label.backgroundColor = JobsCyanColor;
             self.view.addSubview(label);

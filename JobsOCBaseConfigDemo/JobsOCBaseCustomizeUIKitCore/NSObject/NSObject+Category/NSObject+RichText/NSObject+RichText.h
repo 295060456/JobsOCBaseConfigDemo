@@ -122,8 +122,8 @@ NS_ASSUME_NONNULL_END
      NSMutableArray <NSString *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextMutArr);
      if (!RichTextMutArr) {
          RichTextMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-             data.add(JobsInternationalization(@"如需帮助，请联系"));
-             data.add(JobsInternationalization(@"专属客服"));
+             data.add(@"如需帮助，请联系".tr);
+             data.add(@"专属客服".tr);
          });
          [self setRichTextMutArr:RichTextMutArr];
          Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, RichTextMutArr)
@@ -157,7 +157,7 @@ NS_ASSUME_NONNULL_END
  shouldInteractWithURL:(NSURL *)URL
           inRange:(NSRange)characterRange
       interaction:(UITextItemInteraction)interaction{
-     self.jobsToastMsg(JobsInternationalization(@"专属客服"));
+     self.jobsToastMsg(@"专属客服".tr);
      return YES;
  }
  

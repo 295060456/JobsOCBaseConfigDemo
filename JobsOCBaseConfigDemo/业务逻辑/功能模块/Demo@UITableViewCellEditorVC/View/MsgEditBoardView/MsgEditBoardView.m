@@ -138,8 +138,8 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
         .selectedStateImageBy(@"按钮已选中".img)
         .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
         .jobsResetBtnTitleFont(UIFontWeightBoldSize(14))
-        .jobsResetBtnTitle(JobsInternationalization(@"全選"))
-        .selectedStateTitleBy(JobsInternationalization(@"取消"))
+        .jobsResetBtnTitle(@"全選".tr)
+        .selectedStateTitleBy(@"取消".tr)
         .jobsResetImagePlacement_Padding(NSDirectionalRectEdgeLeading,JobsWidth(12))
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
@@ -160,7 +160,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
         _markToReadBtn = UIButton.jobsInit()
         .jobsResetBtnTitleCor(HEXCOLOR(0xAE8330))
         .jobsResetBtnTitleFont(UIFontWeightBoldSize(14))
-        .jobsResetBtnTitle(JobsInternationalization(@"標記為已讀"))
+        .jobsResetBtnTitle(@"標記為已讀".tr)
         .onClickBy(^(UIButton *x){
             @jobs_strongify(self)
             x.selected = !x.selected;
@@ -179,7 +179,7 @@ static dispatch_once_t static_msgEditBoardViewOnceToken;
     if (!_deleteBtn) {
         @jobs_weakify(self)
         _deleteBtn = UIButton.jobsInit()
-        .jobsResetBtnTitle(JobsInternationalization(@"删除"))
+        .jobsResetBtnTitle(@"删除".tr)
         .jobsResetBtnTitleCor(HEXCOLOR(0xEB677F))
         .jobsResetBtnTitleFont(UIFontWeightBoldSize(14))\
         .onClickBy(^(UIButton *x){

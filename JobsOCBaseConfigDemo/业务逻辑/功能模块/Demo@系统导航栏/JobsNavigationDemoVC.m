@@ -118,7 +118,7 @@
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 data1.font = UIFontWeightRegularSize(JobsWidth(12));
                 data1.textCor = JobsBlueColor;
-                data1.targetString = JobsInternationalization(@"合理");
+                data1.targetString = @"合理".tr;
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data2) {
                     data2.alignment = NSTextAlignmentJustified;
@@ -133,7 +133,7 @@
                 @jobs_strongify(self)
                 data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
                 data1.textCor = JobsWhiteColor;
-                data1.targetString = JobsInternationalization(@"的");
+                data1.targetString = @"的".tr;
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = self.defaultParagraphStyle;
             }));
@@ -141,7 +141,7 @@
                 @jobs_strongify(self)
                 data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
                 data1.textCor = JobsRedColor;
-                data1.targetString = JobsInternationalization(@"语法糖");
+                data1.targetString = @"语法糖".tr;
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = self.defaultParagraphStyle;
             }));

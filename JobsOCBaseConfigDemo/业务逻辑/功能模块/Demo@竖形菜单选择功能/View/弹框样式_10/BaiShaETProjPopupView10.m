@@ -116,8 +116,8 @@ numberOfItemsInSection:(NSInteger)section {
         JobsHeaderFooterView *headerView = [collectionView UICollectionElementKindSectionHeaderClass:JobsHeaderFooterView.class
                                                                                         forIndexPath:indexPath];
         headerView.jobsRichViewByModel(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"拖動按鈕迸行位置調整");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"拖動按鈕迸行位置調整".tr;
+            viewModel.subTextModel.text = @"".tr;
         }));
         headerView.backgroundColor = HEXCOLOR(0xFFFCF7);
         [headerView.getTitleBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -320,7 +320,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
             @jobs_strongify(self)
             label.userInteractionEnabled = YES;
             label.backgroundColor = self.cor;
-            label.byText(JobsInternationalization(@"全部分類"))
+            label.byText(@"全部分類".tr)
             .byTextAlignment(NSTextAlignmentCenter)
             .byTextCor(JobsBlueColor);
             [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -359,7 +359,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!_cancelBtn) {
         @jobs_weakify(self)
         _cancelBtn = BaseButton
-            .initByStyle3(JobsInternationalization(@"恢复默认"),
+            .initByStyle3(@"恢复默认".tr,
                           UIFontWeightRegularSize(18)
                           ,HEXCOLOR(0xB0B0B0)
                           ,@"弹窗取消按钮".img)
@@ -384,7 +384,7 @@ sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!_sureBtn) {
         @jobs_weakify(self)
         _sureBtn = BaseButton
-            .initByStyle3(JobsInternationalization(@"完成")
+            .initByStyle3(@"完成".tr
                           ,UIFontWeightRegularSize(18)
                           ,JobsBlackColor
                           ,@"弹窗提交按钮".img)

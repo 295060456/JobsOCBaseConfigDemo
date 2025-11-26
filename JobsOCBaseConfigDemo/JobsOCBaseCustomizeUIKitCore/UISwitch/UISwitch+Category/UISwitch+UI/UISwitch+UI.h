@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_END
              }));
              [Switch jobsSwitchClickEventBlock:^(UISwitch *x) {
                  x.selected = !x.selected;
-                 self.jobsToastMsg(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
+                 self.jobsToastMsg(x.selected ? @"打开解锁".tr:@"关闭解锁".tr);
                  x.thumbTintColor = x.selected ? self.cor : HEXCOLOR(0xB0B0B0);
                  x.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
                      data.layerCor = Switch.selected ? self.cor : HEXCOLOR(0xB0B0B0)

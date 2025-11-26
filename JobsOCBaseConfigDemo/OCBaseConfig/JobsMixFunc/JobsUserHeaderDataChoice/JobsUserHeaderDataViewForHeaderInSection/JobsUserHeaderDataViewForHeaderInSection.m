@@ -59,7 +59,7 @@ Prop_strong()UILabel *titleLab;
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = HEXCOLOR(0xFFFFFF);
-            label.text = isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"请设置大标题") : self.viewModel.textModel.text;
+            label.text = isNull(self.viewModel.textModel.text) ? @"请设置大标题".tr : self.viewModel.textModel.text;
             label.textColor = self.viewModel.textModel.textCor;
             label.font = [UIFont systemFontOfSize:JobsWidth(20) weight:UIFontWeightRegular];
             label.textAlignment = NSTextAlignmentCenter;

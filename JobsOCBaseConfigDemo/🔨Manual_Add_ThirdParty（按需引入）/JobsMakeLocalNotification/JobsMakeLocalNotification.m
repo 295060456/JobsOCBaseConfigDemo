@@ -46,13 +46,13 @@
 
 -(NSString *)title{
     if (!_title) {
-        _title = JobsInternationalization(@"本地通知");
+        _title = @"本地通知".tr;
     }return _title;
 }
 
 -(NSString *)body{
     if (!_body) {
-        _body = JobsInternationalization(@"这是一个示例本地通知");
+        _body = @"这是一个示例本地通知".tr;
     }return _body;
 }
 

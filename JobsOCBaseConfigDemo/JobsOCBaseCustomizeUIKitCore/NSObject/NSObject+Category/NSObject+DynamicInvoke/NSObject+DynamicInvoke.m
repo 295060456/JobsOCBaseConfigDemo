@@ -63,7 +63,7 @@ callingMethodWithName:(NSString *_Nullable)methodName{
     if (!signature) {
         // 处理方式一：
         {
-            self.jobsToastErrMsg(JobsInternationalization(@"方法不存在,请检查参数"));
+            self.jobsToastErrMsg(@"方法不存在,请检查参数".tr);
             return nil;
         }
         // 处理方式二：【经常崩溃损伤硬件】
@@ -72,8 +72,8 @@ callingMethodWithName:(NSString *_Nullable)methodName{
 //            NSString *info = toStringByID(self.class)
 //                                .add(@":")
 //                                .add(toStringByID(NSStringFromSelector(selector)))
-//                                .add(JobsInternationalization(@"unrecognized selector sent to instance"));
-//            @throw [NSException.alloc initWithName:JobsInternationalization(@"方法不存在")
+//                                .add(@"unrecognized selector sent to instance".tr);
+//            @throw [NSException.alloc initWithName:@"方法不存在".tr
 //                                              reason:info
 //                                            userInfo:nil];
 //        }
@@ -179,7 +179,7 @@ SEL _Nullable selectorBlocks(JobsRetIDByTwoIDBlock _Nullable block,
                              NSString *_Nullable selectorName,// MethodName(self)
                              NSObject *_Nonnull target) {
     if (!block) {
-        toastErr(JobsInternationalization(@"方法不存在,请检查参数"));
+        toastErr(@"方法不存在,请检查参数".tr);
         return NULL;
     }
     NSString *selName = @"selector"
@@ -218,7 +218,7 @@ SEL _Nullable selectorBlocks(JobsRetIDByTwoIDBlock _Nullable block,
             objc_setAssociatedObject(target, sel, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
             methodCache[selName] = NSValue.byPointer(sel);
         } else {
-            [NSException raise:JobsInternationalization(@"添加方法失败")
+            [NSException raise:@"添加方法失败".tr
                         format:@"%@ selectorBlock error", target];
         }
     }return sel;

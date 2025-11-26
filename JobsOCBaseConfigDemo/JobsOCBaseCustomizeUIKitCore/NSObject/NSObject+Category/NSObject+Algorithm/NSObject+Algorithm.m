@@ -148,29 +148,29 @@
 
         switch (resResWeekDay) {
             case 0:{
-                return JobsInternationalization(@"星期六");
+                return @"星期六".tr;
             }break;
             case 1:{
-                return JobsInternationalization(@"星期日");
+                return @"星期日".tr;
             }break;
             case 2:{
-                return JobsInternationalization(@"星期一");
+                return @"星期一".tr;
             }break;
             case 3:{
-                return JobsInternationalization(@"星期二");
+                return @"星期二".tr;
             }break;
             case 4:{
-                return JobsInternationalization(@"星期三");
+                return @"星期三".tr;
             }break;
             case 5:{
-                return JobsInternationalization(@"星期四");
+                return @"星期四".tr;
             }break;
             case 6:{
-                return JobsInternationalization(@"星期五");
+                return @"星期五".tr;
             }break;
                 
             default:
-                return JobsInternationalization(@"异常数据");
+                return @"异常数据".tr;
                 break;
         }
     };

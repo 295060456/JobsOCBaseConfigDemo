@@ -118,7 +118,7 @@
         /// 服务器异常
         case HTTPResponseCodeServeError:{
             JobsLog(@"服务器异常");
-            toast(JobsInternationalization(@"服务器异常"));
+            toast(@"服务器异常".tr);
         }break;
         /// 令牌不能为空
         case HTTPResponseCodeNoToken:{
@@ -127,32 +127,32 @@
         /// 登录失败：账密错误
         case HTTPResponseCodeLoginFailed:{
             JobsLog(@"登录失败：账密错误");
-            toast(JobsInternationalization(@"登录失败：账密错误"));
+            toast(@"登录失败：账密错误".tr);
         }break;
         /// 授权失败
         case HTTPResponseCodeAuthorizationFailure:{
             JobsLog(@"授权失败");
-            toast(JobsInternationalization(@"授权失败"));
+            toast(@"授权失败".tr);
         }break;
         /// 限定时间内超过请求次数
         case HTTPResponseCodeLeakTime:{
             JobsLog(@"限定时间内超过请求次数");
-            toast(JobsInternationalization(@"限定时间内超过请求次数"));
+            toast(@"限定时间内超过请求次数".tr);
         }break;
         /// 风险操作
         case HTTPResponseCodeRiskOperation:{
             JobsLog(@"风险操作");
-            toast(JobsInternationalization(@"风险操作"));
+            toast(@"风险操作".tr);
         }break;
         /// 未设置交易密码
         case HTTPResponseCodeNoSettingTransactionPassword:{
             JobsLog(@"未设置交易密码");
-            toast(JobsInternationalization(@"未设置交易密码"));
+            toast(@"未设置交易密码".tr);
         }break;
         /// 账号已在其他设备登录
         case HTTPResponseCodeOffline:{
             JobsLog(@"账号已在其他设备登录");
-            toast(JobsInternationalization(@"账号已在其他设备登录"));
+            toast(@"账号已在其他设备登录".tr);
         }break;
         /// Token 过期：登录已过期，请重新登录
         case HTTPResponseCodeTokenExpire:{
@@ -162,11 +162,11 @@
         /// 手机号码不存在
         case HTTPResponseCodePhoneNumberNotExist:{
             JobsLog(@"手机号码不存在");
-            toast(JobsInternationalization(@"手机号码不存在"));
+            toast(@"手机号码不存在".tr);
         }break;
         case HTTPResponseCodeAccountLocked:{
             JobsLog(@"账户被锁");
-            toast(JobsInternationalization(@"账户被锁，请联系系统管理员"));
+            toast(@"账户被锁，请联系系统管理员".tr);
         }break;
         /// 服务器返500可能会有很多其他的业务场景定义
         case HTTPResponseCodeNoOK:{
@@ -215,7 +215,7 @@
     @jobs_weakify(self)
     return ^(JobsBaseApi *_Nullable api){
         @jobs_strongify(self)
-        api.animatingText = JobsInternationalization(JobsInternationalization(@"正在加载"));
+        api.animatingText = @"正在加载".tr.tr;
         if([self isKindOfClass:UIView.class]){
             UIView *view = (UIView *)self;
             api.animatingView = view;

@@ -15,7 +15,7 @@
 
 -(void)dealloc{
     JobsLog(@"%@",JobsLocalFunc);
-    self.jobsToastMsg(JobsInternationalization(@"检查者出栈"));
+    self.jobsToastMsg(@"检查者出栈".tr);
 }
 
 -(void)loadView{
@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.jobsToastMsg(JobsInternationalization(@"检查者进栈"));
+    self.jobsToastMsg(@"检查者进栈".tr);
     self.view.backgroundColor = JobsRandomColor;
     JobsLog(@"%@",JobsLocalFunc);
 }

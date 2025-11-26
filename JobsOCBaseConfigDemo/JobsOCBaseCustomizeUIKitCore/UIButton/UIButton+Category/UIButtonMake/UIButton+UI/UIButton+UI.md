@@ -43,7 +43,7 @@
                           .jobsResetBtnBgImage(@"APPLY NOW".img)
                           .jobsResetBtnTitleCor(JobsWhiteColor)
                           .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                          .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+                          .jobsResetBtnTitle(@"APPLY NOW".tr)
                           .onClickBy(^(UIButton *x){
                               JobsLog(@"");
                           }).onLongPressGestureBy(^(id data){
@@ -65,7 +65,7 @@
                                        .jobsResetBtnBgImage(@"APPLY NOW".img)
                                        .jobsResetBtnTitleCor(JobsWhiteColor)
                                        .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                                       .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+                                       .jobsResetBtnTitle(@"APPLY NOW".tr)
                                        .onClickBy(^(UIButton *x){
                                            JobsLog(@"");
                                        }).onLongPressGestureBy(^(id data){
@@ -114,7 +114,7 @@
              .jobsResetBtnBgImage(@"APPLY NOW".img)
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-             .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+             .jobsResetBtnTitle(@"APPLY NOW".tr)
              .onClickBy(^(UIButton *x){
                  @jobs_strongify(self)
                  x.selected = !x.selected;
@@ -130,7 +130,7 @@
  -(BaseButton *)registerBtn{
      if(!_registerBtn){
          _registerBtn = BaseButton.initByTextModel(jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
-             data.text = JobsInternationalization(@"REGISTER");
+             data.text = @"REGISTER".tr;
              data.textCor = JobsCor(@"#C90000");
              data.font = bayonRegular(JobsWidth(15));
          }))

@@ -80,7 +80,7 @@ static dispatch_once_t static_filtrationViewOnceToken;
             data.bgCor = HEXCOLOR(0xFDFCF9);
             data.footerViewModel = jobsMakeViewModel(^(JobsHeaderFooterViewModel * _Nullable data) {
                 data.useFooterView = NO;
-                data.textModel.text = JobsInternationalization(@"查看详情");
+                data.textModel.text = @"查看详情".tr;
                 data.textModel.textAlignment = NSTextAlignmentLeft;
                 data.textModel.textCor = HEXCOLOR(0x3D4A58);
                 data.textModel.font = UIFontWeightBoldSize(14);
@@ -89,14 +89,14 @@ static dispatch_once_t static_filtrationViewOnceToken;
             });
             data.viewModels = jobsMakeMutArr(^(__kindof NSMutableArray<NSString *> * _Nullable data) {
                 for (NSString *str in jobsMakeMutArr(^(__kindof NSMutableArray<NSString *> * _Nullable arr) {
-                    arr.add(JobsInternationalization(@"全部"))
-                    .add(JobsInternationalization(@"充值"))
-                    .add(JobsInternationalization(@"取款"))
-                    .add(JobsInternationalization(@"转账"))
-                    .add(JobsInternationalization(@"返水"))
-                    .add(JobsInternationalization((@"会员活动")))
-                    .add(JobsInternationalization(@"VIP福利"))
-                    .add(JobsInternationalization(@"其他"));
+                    arr.add(@"全部".tr)
+                    .add(@"充值".tr)
+                    .add(@"取款".tr)
+                    .add(@"转账".tr)
+                    .add(@"返水".tr)
+                    .add((@"会员活动".tr))
+                    .add(@"VIP福利".tr)
+                    .add(@"其他".tr);
                 })) {
                     data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable vm) {
                         vm.textModel.text = str;
@@ -109,7 +109,7 @@ static dispatch_once_t static_filtrationViewOnceToken;
             });
             data.headerViewModel = jobsMakeViewModel(^(JobsHeaderFooterViewModel * _Nullable data) {
                 data.useHeaderView = YES;
-                data.textModel.text = JobsInternationalization(@"交易类型");
+                data.textModel.text = @"交易类型".tr;
                 data.textModel.textCor = HEXCOLOR(0x3D4A58);
                 data.textModel.font = UIFontWeightBoldSize(14);
                 data.textModel.textAlignment = NSTextAlignmentLeft;

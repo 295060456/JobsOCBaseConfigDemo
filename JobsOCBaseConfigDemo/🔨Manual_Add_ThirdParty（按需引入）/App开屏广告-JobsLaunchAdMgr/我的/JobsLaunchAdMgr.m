@@ -325,7 +325,7 @@ static dispatch_once_t JobsLaunchAdMgrOnceToken;
 
 -(NSString *)buttonTitle{
     if(!_buttonTitle){
-        _buttonTitle = JobsInternationalization(@"跳过");
+        _buttonTitle = @"跳过".tr;
     }return _buttonTitle;
 }
 

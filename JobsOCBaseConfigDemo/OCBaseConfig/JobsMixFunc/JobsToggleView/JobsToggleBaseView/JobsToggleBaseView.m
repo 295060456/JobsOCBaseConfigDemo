@@ -269,9 +269,9 @@ JobsToggleNavViewProtocolSynthesize
             @jobs_strongify(self)
             for (int y = 0; y < self.tempTitles.count; y++) {
                 data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                    data.title = JobsInternationalization(@"第")
+                    data.title = @"第".tr
                         .add(toStringByInt(y))
-                        .add(JobsInternationalization(@"个"));
+                        .add(@"个".tr);
                 }));
             }
         });
@@ -346,10 +346,10 @@ JobsToggleNavViewProtocolSynthesize
 -(NSMutableArray<NSString *>*)tempTitles{
     if(!_tempTitles){
         _tempTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"人生到处知何似，恰似飞鸿踏雪泥；"))
-            .add(JobsInternationalization(@"泥上偶然留指爪，鸿飞那复计东西。"))
-            .add(JobsInternationalization(@"老僧已死成新塔，坏壁无由见旧题；"))
-            .add(JobsInternationalization(@"往日崎岖还记否，路长人困蹇驴嘶。"));
+            data.add(@"人生到处知何似，恰似飞鸿踏雪泥；".tr)
+            .add(@"泥上偶然留指爪，鸿飞那复计东西。".tr)
+            .add(@"老僧已死成新塔，坏壁无由见旧题；".tr)
+            .add(@"往日崎岖还记否，路长人困蹇驴嘶。".tr);
         });
     }return _tempTitles;
 }

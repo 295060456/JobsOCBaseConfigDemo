@@ -33,7 +33,7 @@ Prop_copy()NSString *textData2;/// 来自于剪切板存储的数据
         }
     }
     
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -80,7 +80,7 @@ Prop_copy()NSString *textData2;/// 来自于剪切板存储的数据
     [super viewWillDisappear:animated];
 //    /self.restoreStatusBarCor(nil);
     IQKeyboardManager.sharedManager.enable = YES;
-    UIPasteboard.generalPasteboard.string = JobsInternationalization(@"");
+    UIPasteboard.generalPasteboard.string = @"".tr;
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -132,7 +132,7 @@ Prop_copy()NSString *textData2;/// 来自于剪切板存储的数据
         _label = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = JobsLightGrayColor;
-            label.text = JobsInternationalization(@"请点击复制：").add(self.textData1);
+            label.text = @"请点击复制：".tr.add(self.textData1);
             label.textColor = JobsRedColor;
             label.font = UIFontSystemFontOfSize(20);
             label.textAlignment = NSTextAlignmentCenter;
@@ -164,7 +164,7 @@ Prop_copy()NSString *textData2;/// 来自于剪切板存储的数据
             @jobs_strongify(self)
             textView.delegate = self;
             textView.backgroundColor = JobsLightTextColor;
-            textView.placeholder = JobsInternationalization(@"请粘贴！！！");
+            textView.placeholder = @"请粘贴！！！".tr;
             textView.textColor = JobsBlackColor;
             textView.font = UIFontSystemFontOfSize(14);
             [self.view.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -183,7 +183,7 @@ Prop_copy()NSString *textData2;/// 来自于剪切板存储的数据
 
 -(NSString *)textData1{
     if(!_textData1){
-        _textData1 = JobsInternationalization(@"财神到，四季发财！！！！");
+        _textData1 = @"财神到，四季发财！！！！".tr;
     }return _textData1;
 }
 

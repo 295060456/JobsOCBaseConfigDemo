@@ -31,7 +31,7 @@ Prop_strong()JobsIMListView *listView;
         }
     }
     
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -123,7 +123,7 @@ Prop_strong()JobsIMListView *listView;
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(JobsInternationalization(@"正在研发中...敬请期待"));
+                toast(@"正在研发中...敬请期待".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

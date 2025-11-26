@@ -29,7 +29,7 @@ Prop_strong()UIButton *contactCustomerServiceBtn;// 联系客服按钮
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -68,7 +68,7 @@ Prop_strong()UIButton *contactCustomerServiceBtn;// 联系客服按钮
 //            @jobs_strongify(self)
         JobsLog(@"您点击了关注");
     }];
-    self.comingToPresentVCByRequestParams(jobsCommentCoreVC,JobsInternationalization(@""));
+    self.comingToPresentVCByRequestParams(jobsCommentCoreVC,@"".tr);
 }
 #pragma mark —— lazyLoad
 -(UIButton *)contactCustomerServiceBtn{

@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_END
                                                .bgColorBy(JobsClearColor)
                                                .jobsResetBtnTitleCor(JobsCor(@"#FF0000"))
                                                .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(13)))
-                                               .jobsResetBtnTitle(JobsInternationalization(@"Forgot Password?"))
+                                               .jobsResetBtnTitle(@"Forgot Password?".tr)
                                                .onClickBy(^(UIButton *x){
                                                    @jobs_strongify(self)
                                                    self.getCurrentViewController.comingToPushVC(FMForgotPwdVC.new);
@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_END
              .jobsResetBtnImage(@"Betslip".img))
              .jobsResetBtnTitleCor(JobsCor(@"#666666"))
              .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
-             .jobsResetBtnTitle(JobsInternationalization(@"Betslip"))
+             .jobsResetBtnTitle(@"Betslip".tr)
              .onClickBy(^(UIButton *x){
                  toast(@"Betslip");
              }).onLongPressGestureBy(^(id data){
@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnImage(@"Statement".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
-         .jobsResetBtnTitle(JobsInternationalization(@"Statement"))
+         .jobsResetBtnTitle(@"Statement".tr)
          .onClickBy(^(UIButton *x){
              toast(@"Statement");
          }).onLongPressGestureBy(^(id data){
@@ -126,7 +126,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnImage(@"Promo".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
-         .jobsResetBtnTitle(JobsInternationalization(@"Promo"))
+         .jobsResetBtnTitle(@"Promo".tr)
          .onClickBy(^(UIButton *x){
              toast(@"Promo");
          }).onLongPressGestureBy(^(id data){
@@ -139,7 +139,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnImage(@"Security".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
-         .jobsResetBtnTitle(JobsInternationalization(@"Security"))
+         .jobsResetBtnTitle(@"Security".tr)
          .onClickBy(^(UIButton *x){
              toast(@"Security");
          }).onLongPressGestureBy(^(id data){
@@ -152,7 +152,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnImage(@"Help Center".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
-         .jobsResetBtnTitle(JobsInternationalization(@"Help Center"))
+         .jobsResetBtnTitle(@"Help Center".tr)
          .onClickBy(^(UIButton *x){
              toast(@"Help Center");
          }).onLongPressGestureBy(^(id data){
@@ -165,7 +165,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnImage(@"Feedback".img))
          .jobsResetBtnTitleCor(JobsCor(@"#666666"))
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
-         .jobsResetBtnTitle(JobsInternationalization(@"Feedback"))
+         .jobsResetBtnTitle(@"Feedback".tr)
          .onClickBy(^(UIButton *x){
              toast(@"Feedback");
          }).onLongPressGestureBy(^(id data){

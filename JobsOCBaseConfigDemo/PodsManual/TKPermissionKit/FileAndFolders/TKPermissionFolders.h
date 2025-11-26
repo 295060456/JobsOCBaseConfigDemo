@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
      return YES;
  }
 
- UIDocumentPickerViewController * controller = [[UIDocumentPickerViewController alloc]initWithDocumentTypes:[JobsInternationalization(@"")] inMode:UIDocumentPickerModeOpen];
+ UIDocumentPickerViewController * controller = [[UIDocumentPickerViewController alloc]initWithDocumentTypes:[@"".tr] inMode:UIDocumentPickerModeOpen];
  controller.delegate = self;
  [self presentViewController:controller animated:YES completion:nil];
 

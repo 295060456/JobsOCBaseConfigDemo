@@ -96,11 +96,11 @@ Prop_strong()JobsCommentModel *yyModel;
 }
 #pragma mark —— 一些私有方法
 -(void)一级标题点击事件{
-    self.jobsToastMsg(JobsInternationalization(@"一级标题点击事件"));
+    self.jobsToastMsg(@"一级标题点击事件".tr);
 }
 
 -(void)二级标题点击事件{
-    self.jobsToastMsg(JobsInternationalization(@"二级标题点击事件"));
+    self.jobsToastMsg(@"二级标题点击事件".tr);
 }
 #pragma mark —————————— UITableViewDelegate,UITableViewDataSource ——————————
 -(CGFloat)tableView:(UITableView *)tableView
@@ -230,8 +230,8 @@ heightForHeaderInSection:(NSInteger)section{///  👌
             
             {
                 tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                    data.title = JobsInternationalization(@"没有评论");
-                    data.subTitle = JobsInternationalization(@"来发布第一条吧");
+                    data.title = @"没有评论".tr;
+                    data.subTitle = @"来发布第一条吧".tr;
                     data.titleCor = JobsWhiteColor;
                     data.titleFont = bayonRegular(JobsWidth(30));
                     data.normalImage = @"暂无数据".img;
@@ -241,11 +241,11 @@ heightForHeaderInSection:(NSInteger)section{///  👌
             {
                 // 用值
                 tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-                    data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-                    data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                    data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.stateIdleTitle = @"下拉刷新数据".tr;
+                    data.pullingTitle = @"下拉刷新数据".tr;
+                    data.refreshingTitle = @"正在刷新数据".tr;
+                    data.willRefreshTitle = @"刷新数据中".tr;
+                    data.noMoreDataTitle = @"下拉刷新数据".tr;
                     data.loadBlock = ^id _Nullable(id _Nullable data) {
                         @jobs_strongify(self)
                         /// 装载本地假数据
@@ -264,11 +264,11 @@ heightForHeaderInSection:(NSInteger)section{///  👌
                     };
                 }));
                 tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"");
-                    data.pullingTitle = JobsInternationalization(@"");
-                    data.refreshingTitle = JobsInternationalization(@"");
-                    data.willRefreshTitle = JobsInternationalization(@"");
-                    data.noMoreDataTitle = JobsInternationalization(@"");
+                    data.stateIdleTitle = @"".tr;
+                    data.pullingTitle = @"".tr;
+                    data.refreshingTitle = @"".tr;
+                    data.willRefreshTitle = @"".tr;
+                    data.noMoreDataTitle = @"".tr;
                     data.loadBlock = ^id _Nullable(id _Nullable data) {
                         @jobs_strongify(self)
                         JobsLog(@"上拉加载更多");

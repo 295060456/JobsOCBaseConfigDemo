@@ -63,7 +63,7 @@ static TKPermissionHome * _shared = nil;
 }
 #pragma mark —— 一些私有方法
 -(void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"访问住宅数据时需要您提供权限，去设置！")];
+    [TKPermissionPublic alertPromptTips:@"访问住宅数据时需要您提供权限，去设置！".tr];
 }
 
 -(void)returnBlock:(BOOL)isAuth{

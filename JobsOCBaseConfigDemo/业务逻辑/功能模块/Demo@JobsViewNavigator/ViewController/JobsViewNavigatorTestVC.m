@@ -31,9 +31,9 @@ Prop_strong()BaseButton *btn;
         }
     }
     
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"让 UIView 像 UINavigationController 一样支持 push 和 pop");
+    self.viewModel.textModel.text = @"让 UIView 像 UINavigationController 一样支持 push 和 pop".tr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -101,7 +101,7 @@ Prop_strong()BaseButton *btn;
             .bgColorBy(JobsOrangeColor)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightRegularSize(12))
-            .jobsResetBtnTitle(JobsInternationalization(@"点击按钮push出view"))
+            .jobsResetBtnTitle(@"点击按钮push出view".tr)
             .jobsResetBtnCornerRadiusValue(JobsWidth(8))
             .jobsResetBtnLayerBorderWidth(JobsWidth(1))
             .onClickBy(^(UIButton *x){

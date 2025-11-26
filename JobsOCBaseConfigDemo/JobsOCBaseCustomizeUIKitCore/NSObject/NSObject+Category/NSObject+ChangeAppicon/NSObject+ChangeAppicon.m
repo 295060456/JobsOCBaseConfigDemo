@@ -11,10 +11,10 @@
 /// 测试App更改图标
 -(void)testChangeAppicon{
     NSArray <NSString *>*weathers = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-        data.add(JobsInternationalization(@"晴"));
-        data.add(JobsInternationalization(@"多云"));
-        data.add(JobsInternationalization(@"大雨"));
-        data.add(JobsInternationalization(@"雪"));
+        data.add(@"晴".tr);
+        data.add(@"多云".tr);
+        data.add(@"大雨".tr);
+        data.add(@"雪".tr);
     });
     NSString *weather = weathers[arc4random() % (weathers.count)];
     [self setAppIconWithName:weather];
@@ -26,12 +26,12 @@
             [UIApplication.sharedApplication setAlternateIconName:iconName
                                                 completionHandler:^(NSError * _Nullable error) {
                 if (error) {
-                    self.jobsToastErrMsg(JobsInternationalization(@"更换app图标发生错误了 ：").add(error.description));
+                    self.jobsToastErrMsg(@"更换app图标发生错误了 ：".tr.add(error.description));
                     JobsLog(@"更换app图标发生错误了 ： %@",error);
                 }
             }];
         }
-    }else self.jobsToastErrMsg(JobsInternationalization(@"请升级系统到10.3以上版本,方可支持切换App图标"));
+    }else self.jobsToastErrMsg(@"请升级系统到10.3以上版本,方可支持切换App图标".tr);
 }
 
 @end

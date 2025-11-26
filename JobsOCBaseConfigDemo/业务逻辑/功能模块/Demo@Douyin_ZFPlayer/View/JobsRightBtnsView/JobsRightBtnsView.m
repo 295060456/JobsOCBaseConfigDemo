@@ -119,14 +119,14 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(void)setIsSelected:(BOOL)isSelected{
     _isSelected = isSelected;
     self.loveBtn.selected = _isSelected;
-    self.loveBtn.jobsResetBtnTitle(self.viewModel.textModel.text.replace(JobsInternationalization(@"点赞")));
+    self.loveBtn.jobsResetBtnTitle(self.viewModel.textModel.text.replace(@"点赞".tr));
     self.loveBtn.jobsResetImagePlacement_Padding(NSDirectionalRectEdgeTop,JobsWidth(5));
 }
 #pragma mark —— lazyLoad
 -(RBCLikeButton *)loveBtn{
     if(!_loveBtn){
         @jobs_weakify(self)
-        _loveBtn = RBCLikeButton.initByStyleTop(self.viewModel ? self.viewModel.textModel.text.replace(JobsInternationalization(@"点赞")):JobsInternationalization(@"点赞"),
+        _loveBtn = RBCLikeButton.initByStyleTop(self.viewModel ? self.viewModel.textModel.text.replace(@"点赞".tr):@"点赞".tr,
                                                 UIFontWeightRegularSize(12),
                                                 JobsCor(@"#EA2918"),
                                                 @"视频未点赞".img,
@@ -155,7 +155,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(BaseButton *)commentBtn{
     if(!_commentBtn){
         @jobs_weakify(self)
-        _commentBtn = BaseButton.initByStyleTop(self.viewModel ? self.viewModel.textModel.text.replace(JobsInternationalization(@"评论")) : JobsInternationalization(@"评论"),
+        _commentBtn = BaseButton.initByStyleTop(self.viewModel ? self.viewModel.textModel.text.replace(@"评论".tr) : @"评论".tr,
                                                 UIFontWeightRegularSize(12),
                                                 JobsCor(@"#EA2918"),
                                                 @"视频评论".img,
@@ -178,7 +178,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
                     /// jobsCommentCoreVC.view.backgroundColor = JobsRedColor;
                     jobsCommentCoreVC.transitioningDelegate = presentationController;
                     
-                    [self forceComingToPushVC:jobsCommentCoreVC requestParams:JobsInternationalization(@"")];
+                    [self forceComingToPushVC:jobsCommentCoreVC requestParams:@"".tr];
                     [jobsCommentCoreVC actionObjBlock:^(id data) {
                         JobsLog(@"您点击了评论");
                     }];
@@ -194,7 +194,7 @@ static dispatch_once_t static_rightBtnsViewOnceToken;
 -(BaseButton *)shareBtn{
     if(!_shareBtn){
         @jobs_weakify(self)
-        _shareBtn = RBCLikeButton.initByStyleTop(self.viewModel ? self.viewModel.textModel.text.replace(JobsInternationalization(@"分享")): JobsInternationalization(@"分享"),
+        _shareBtn = RBCLikeButton.initByStyleTop(self.viewModel ? self.viewModel.textModel.text.replace(@"分享".tr): @"分享".tr,
                                                  UIFontWeightRegularSize(12),
                                                  JobsCor(@"#EA2918"),
                                                  @"分享".img,

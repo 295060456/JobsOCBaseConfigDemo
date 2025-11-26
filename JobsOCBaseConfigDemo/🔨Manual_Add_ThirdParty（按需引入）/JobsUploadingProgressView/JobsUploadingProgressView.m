@@ -88,7 +88,7 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
             .byTime(0)
             .byOnTick(^(CGFloat time){
                 @jobs_strongify(self)
-                self.refreshLabel.byText(JobsInternationalization(@"正在上传..."));
+                self.refreshLabel.byText(@"正在上传...".tr);
                 if (self.objBlock) self.objBlock(timer);
             })
             .byOnFinish(^(JobsTimer *_Nullable timer){
@@ -189,7 +189,7 @@ static JobsUploadingProgressView *static_uploadingProgressView = nil;
         _refreshLabel = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.textColor = JobsWhiteColor;
-            label.text = JobsInternationalization(@"正在上传...");
+            label.text = @"正在上传...".tr;
             [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.shapLayerView.mas_right).offset(JobsWidth(12));
                 make.centerY.equalTo(self);

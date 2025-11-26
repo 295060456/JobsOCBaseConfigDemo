@@ -29,7 +29,7 @@ Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -113,14 +113,14 @@ Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
             return previewVC;
         } actionProvider:^UIMenu * _Nullable(NSArray<UIMenuElement *> *suggestedActions) {
             // 创建菜单项并返回菜单
-            return [UIMenu menuWithTitle:JobsInternationalization(@"") children:jobsMakeMutArr(^(__kindof NSMutableArray<UIAction *> * _Nullable arr) {
-                arr.add([UIAction actionWithTitle:JobsInternationalization(@"Action 1")
+            return [UIMenu menuWithTitle:@"".tr children:jobsMakeMutArr(^(__kindof NSMutableArray<UIAction *> * _Nullable arr) {
+                arr.add([UIAction actionWithTitle:@"Action 1".tr
                                             image:nil
                                        identifier:nil
                                           handler:^(__kindof UIAction *_Nonnull action) {
                     JobsLog(@"Action 1 selected for item %ld", (long)indexPath.item);
                 }])
-                .add([UIAction actionWithTitle:JobsInternationalization(@"Action 2")
+                .add([UIAction actionWithTitle:@"Action 2".tr
                                          image:nil
                                     identifier:nil
                                        handler:^(__kindof UIAction *_Nonnull action) {
@@ -300,28 +300,28 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.jobsDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable mutArr) {
                     mutArr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                        viewModel.textModel.text = JobsInternationalization(@"存款金额");
-                        viewModel.subTextModel.text = JobsInternationalization(@"10,000.00");
+                        viewModel.textModel.text = @"存款金额".tr;
+                        viewModel.subTextModel.text = @"10,000.00".tr;
                     }))
                     .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                        viewModel.textModel.text = JobsInternationalization(@"存款方式");
-                        viewModel.subTextModel.text = JobsInternationalization(@"虛擬幣充值");
+                        viewModel.textModel.text = @"存款方式".tr;
+                        viewModel.subTextModel.text = @"虛擬幣充值".tr;
                     }))
                     .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                        viewModel.textModel.text = JobsInternationalization(@"訂單編號");
+                        viewModel.textModel.text = @"訂單編號".tr;
                         viewModel.subTextModel.text = @"YSF2025022302644565964";
                     }))
                     .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                        viewModel.textModel.text = JobsInternationalization(@"轉賬姓名");
-                        viewModel.subTextModel.text = JobsInternationalization(@"張三 ");
+                        viewModel.textModel.text = @"轉賬姓名".tr;
+                        viewModel.subTextModel.text = @"張三 ".tr;
                     }))
                     .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                        viewModel.textModel.text = JobsInternationalization(@"銀行賬號");
-                        viewModel.subTextModel.text = JobsInternationalization(@"6230 5822 0031 5762 430");
+                        viewModel.textModel.text = @"銀行賬號".tr;
+                        viewModel.subTextModel.text = @"6230 5822 0031 5762 430".tr;
                     }))
                     .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                        viewModel.textModel.text = JobsInternationalization(@"轉賬地址");
-                        viewModel.subTextModel.text = JobsInternationalization(@"中國平安銀行");
+                        viewModel.textModel.text = @"轉賬地址".tr;
+                        viewModel.subTextModel.text = @"中國平安銀行".tr;
                     }));
                 });
             }));

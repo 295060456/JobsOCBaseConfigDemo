@@ -116,10 +116,10 @@ static dispatch_once_t static_countdownViewOnceToken;
 //                    NSLog(@"timer.timerStyle = %lu",(unsigned long)t.timerStyle);
 
                     NSArray *strArr1 = [[self getMMSSFromStr:[NSString stringWithFormat:@"%f",time] formatTime:self.formatTime]
-                                        componentsSeparatedByString:JobsInternationalization(@"分")];
+                                        componentsSeparatedByString:@"分".tr];
                     self.minutesStr = strArr1[0];
 
-                    NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:JobsInternationalization(@"秒")];
+                    NSArray *strArr2 = [strArr1[1] componentsSeparatedByString:@"秒".tr];
                     self.secondStr = strArr2[0];
 
                     self.countdownTimeLab.attributedText = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr paragraphStyle:self.paragraphStyle];
@@ -140,12 +140,12 @@ static dispatch_once_t static_countdownViewOnceToken;
 -(JobsTimeModel *)formatTime{
     if (!_formatTime) {
         _formatTime = jobsMakeTimeModel(^(__kindof JobsTimeModel * _Nullable data) {
-            data.year = JobsInternationalization(@"");
-            data.month = JobsInternationalization(@"");
-            data.day = JobsInternationalization(@"");
-            data.hour = JobsInternationalization(@"");
-            data.minute = JobsInternationalization(@"分");
-            data.second = JobsInternationalization(@"秒");
+            data.year = @"".tr;
+            data.month = @"".tr;
+            data.day = @"".tr;
+            data.hour = @"".tr;
+            data.minute = @"分".tr;
+            data.second = @"秒".tr;
         });
     }return _formatTime;
 }
@@ -155,7 +155,7 @@ static dispatch_once_t static_countdownViewOnceToken;
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.byText(JobsInternationalization(@"支付時間還有")).byFont(UIFontWeightRegularSize(14)).byTextCor(HEXCOLOR(0x757575));
+            label.byText(@"支付時間還有".tr).byFont(UIFontWeightRegularSize(14)).byTextCor(HEXCOLOR(0x757575));
             [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self);
                 make.top.equalTo(self).offset(JobsWidth(28));
@@ -195,7 +195,7 @@ static dispatch_once_t static_countdownViewOnceToken;
     .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
         data.font = UIFontWeightRegularSize(12);
         data.textCor = HEXCOLOR(0x757575);
-        data.targetString = JobsInternationalization(@"分");
+        data.targetString = @"分".tr;
     }))
     .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
         data.font = UIFontWeightBoldSize(48);
@@ -205,16 +205,16 @@ static dispatch_once_t static_countdownViewOnceToken;
     .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data) {
         data.font = UIFontWeightRegularSize(12);
         data.textCor = HEXCOLOR(0x757575);
-        data.targetString = JobsInternationalization(@"秒");
+        data.targetString = @"秒".tr;
     }));return _richTextConfigMutArr;
 }
 
 -(NSMutableArray<NSString *> *)richTextMutArr{
     JobsMutableArray(_richTextMutArr);
     _richTextMutArr.add(self.minutesStr)
-    .add(JobsInternationalization(@"分"))
+    .add(@"分".tr)
     .add(self.secondStr)
-    .add(JobsInternationalization(@"秒"));
+    .add(@"秒".tr);
     return _richTextMutArr;
 }
 
@@ -228,13 +228,13 @@ static dispatch_once_t static_countdownViewOnceToken;
 
 -(NSString *)minutesStr{
     if (!_minutesStr) {
-        _minutesStr = JobsInternationalization(@"30");
+        _minutesStr = @"30".tr;
     }return _minutesStr;
 }
 
 -(NSString *)secondStr{
     if (!_secondStr) {
-        _secondStr = JobsInternationalization(@"0");
+        _secondStr = @"0".tr;
     }return _secondStr;
 }
 

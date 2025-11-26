@@ -146,7 +146,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
             JobsLog(@"输入的字符为 = %@",x);
             self.securityModelBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
             if (x.isContainsSpecialSymbolsString(nil)) {
-                self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));
+                self.jobsToastMsg(@"Do not enter special characters".tr);
             }else{
                 JobsLog(@"输入的字符为 = %@",x);
                 [self block:self->_zyTextField

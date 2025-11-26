@@ -61,7 +61,7 @@
     URLString = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSUInteger length = [URLString length];
     const char *c = [URLString UTF8String];
-    NSString *resultString = JobsInternationalization(@"");
+    NSString *resultString = @"".tr;
     for(int i = 0; i < length; i++) {
         @autoreleasepool {
             switch (*c) {
@@ -147,7 +147,7 @@
         NSString *value = nil;
         [scanner scanUpToString:@"&" intoString:&value];
         if (value == nil) {
-            value = JobsInternationalization(@"");
+            value = @"".tr;
         }
         key = [key stringByReplacingOccurrencesOfString:@"+" withString:@" "];
         NSString *unescapedKey = key ? [self URLDecode:key] : nil;

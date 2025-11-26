@@ -123,8 +123,8 @@ Prop_strong()NSMutableArray <NSString *>*operationEnvironMutArr;
                     JobsLog(@"action----->%ld",(long)menuRow);
                     networkingEnvir(menuRow);
                     if (menuRow + 1 <= self.operationEnvironMutArr.count) {
-                        self.jobsToastMsg(JobsInternationalization(@"当前环境").add(self.operationEnvironMutArr[menuRow]));
-                    }else self.jobsToastErrMsg(JobsInternationalization(@"切换环境出现错误"));
+                        self.jobsToastMsg(@"当前环境".tr.add(self.operationEnvironMutArr[menuRow]));
+                    }else self.jobsToastErrMsg(@"切换环境出现错误".tr);
                 };return nil;
             }];self.tapGR.enabled = YES;/// 必须在设置完Target和selector以后方可开启执行
         }
@@ -194,13 +194,13 @@ static NSString * _Nonnull JobsFormatSpeed(uint64_t bytesPerSec) {
 -(NSMutableArray<NSString *> *)operationEnvironMutArr{
     if (!_operationEnvironMutArr) {
         _operationEnvironMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable data) {
-            data.add(JobsInternationalization(@"开发环境_01"))
-            .add(JobsInternationalization(@"开发环境_02"))
-            .add(JobsInternationalization(@"开发环境_03"))
-            .add(JobsInternationalization(@"开发环境_04"))
-            .add(JobsInternationalization(@"测试环境"))
-            .add(JobsInternationalization(@"UAT环境"))
-            .add(JobsInternationalization(@"生产环境"));
+            data.add(@"开发环境_01".tr)
+            .add(@"开发环境_02".tr)
+            .add(@"开发环境_03".tr)
+            .add(@"开发环境_04".tr)
+            .add(@"测试环境".tr)
+            .add(@"UAT环境".tr)
+            .add(@"生产环境".tr);
         });
     }return _operationEnvironMutArr;
 }

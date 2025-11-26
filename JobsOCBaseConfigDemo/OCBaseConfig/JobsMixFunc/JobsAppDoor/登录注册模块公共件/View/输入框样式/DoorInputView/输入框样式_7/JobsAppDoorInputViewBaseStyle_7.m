@@ -134,7 +134,7 @@ Prop_assign()CGSize chooseBtnSize;
     if (!_jobsPageViewDataMutArr) {
         _jobsPageViewDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable arr) {
             arr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
-                data.textModel.text = JobsInternationalization(@"請選擇區號");
+                data.textModel.text = @"請選擇區號".tr;
                 data.textModel.textCor = HEXCOLOR(0xC4C4C4);
                 data.bgCor = JobsClearColor;
                 data.textModel.font = UIFontWeightRegularSize(16);
@@ -199,13 +199,13 @@ Prop_assign()CGSize chooseBtnSize;
         @jobs_weakify(self)
         _chooseBtnViewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             @jobs_strongify(self)
-            data.textModel.text = JobsInternationalization(@"請選擇區號");
+            data.textModel.text = @"請選擇區號".tr;
             data.textModel.textCor = HEXCOLOR(0xC4C4C4);
             data.textModel.textLineSpacing = 0;
             data.textModel.font = UIFontWeightRegularSize(14);
             data.bgCor = JobsClearColor;
             data.jobsWidth = self.chooseBtnSize.width;
-            data.subTextModel.text = JobsInternationalization(@"");
+            data.subTextModel.text = @"".tr;
             data.image = @"向下的箭头".img;
         });
     }return _chooseBtnViewModel;

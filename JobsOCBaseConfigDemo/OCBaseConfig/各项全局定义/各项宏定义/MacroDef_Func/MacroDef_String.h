@@ -12,10 +12,6 @@
 #import "MacroDef_Size.h"
 #import "JobsLanguageManager.h"
 
-#pragma mark —— 国际化
-NS_INLINE NSString *_Nonnull JobsInternationalization(NSString *_Nonnull text){
-    return [JobsLanguageManager localStringWithKey:text];
-}
 #pragma mark —— 字体定义
 NS_INLINE UIFont *_Nonnull JobsFontUltraLight(NSInteger fontSize){
     return [UIFont systemFontOfSize:JobsWidth(fontSize) weight:UIFontWeightUltraLight];

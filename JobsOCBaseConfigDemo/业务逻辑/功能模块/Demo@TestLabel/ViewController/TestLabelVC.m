@@ -43,7 +43,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -118,14 +118,14 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
                 @jobs_strongify(self)
                 data1.font = UIFontWeightRegularSize(JobsWidth(12));
                 data1.textCor = JobsBlueColor;
-                data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(JobsNewline);
+                data1.targetString = @"编译器自动管理内存地址".tr.add(JobsNewline);
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = self.defaultParagraphStyle;
             }))
             .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
                 data1.textCor = JobsWhiteColor;
-                data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(JobsNewline);
+                data1.targetString = @"让程序员更加专注于".tr.add(JobsNewline);
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = self.defaultParagraphStyle;
             }))
@@ -133,7 +133,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
                 @jobs_strongify(self)
                 data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
                 data1.textCor = JobsGreenColor;
-                data1.targetString = JobsInternationalization(@"APP的业务。");
+                data1.targetString = @"APP的业务。".tr;
                 data1.textBgCor = JobsBrownColor;
                 data1.paragraphStyle = self.defaultParagraphStyle;
             }));
@@ -148,7 +148,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
         _lab1 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = JobsRedColor;
-            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            label.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr;
             [self.scrollView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(100, 20));
                 make.top.equalTo(self.scrollView).offset(20);
@@ -164,7 +164,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
         _lab2 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = JobsRedColor;
-            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            label.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr;
             [self.scrollView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(100, 20));
                 make.top.equalTo(self.lab1.mas_bottom).offset(20);
@@ -180,7 +180,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
         _lab3 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = JobsRedColor;
-            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            label.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr;
             [self.scrollView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(20);
                 make.top.equalTo(self.lab2.mas_bottom).offset(20);
@@ -196,7 +196,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
         _lab4 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = JobsRedColor;
-            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            label.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr;
             [self.scrollView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.size.mas_equalTo(CGSizeMake(100, 20));
                 make.top.equalTo(self.lab3.mas_bottom).offset(20);
@@ -212,7 +212,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
         _lab5 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = JobsRedColor;
-            label.text = JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。");
+            label.text = @"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr;
             [self.scrollView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(100);
                 make.top.equalTo(self.lab4.mas_bottom).offset(20);
@@ -228,11 +228,11 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
         _lab6 = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = JobsRedColor;
-            label.text = JobsInternationalization(@"编译器自动管理内存地址")
+            label.text = @"编译器自动管理内存地址".tr
                 .add(JobsComma.add(JobsNewline))
-                .add(JobsInternationalization(@"让程序员更加专注于"))
+                .add(@"让程序员更加专注于".tr)
                 .add(JobsNewline)
-                .add(JobsInternationalization(@"APP的业务"))
+                .add(@"APP的业务".tr)
                 .add(JobsDot);
             [self.scrollView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(JobsMainScreen_WIDTH());
@@ -264,7 +264,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
     if (!_btn1) {
         _btn1 = BaseButton.jobsInit();
         _btn1.backgroundColor = JobsBrownColor;
-        _btn1.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn1.jobsResetBtnTitle(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr);
         [self.scrollView.addSubview(_btn1) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
             make.top.equalTo(self.lab7.mas_bottom).offset(20);
@@ -277,7 +277,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
     if (!_btn2) {
         _btn2 = BaseButton.jobsInit();
         _btn2.backgroundColor = JobsBrownColor;
-        _btn2.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn2.jobsResetBtnTitle(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr);
         [self.scrollView.addSubview(_btn2) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
             make.top.equalTo(self.btn1.mas_bottom).offset(20);
@@ -290,7 +290,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
     if (!_btn3) {
         _btn3 = BaseButton.jobsInit();
         _btn3.backgroundColor = JobsBrownColor;
-        _btn3.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn3.jobsResetBtnTitle(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr);
         [self.scrollView.addSubview(_btn3) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
             make.top.equalTo(self.btn2.mas_bottom).offset(20);
@@ -303,7 +303,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
     if (!_btn4) {
         _btn4 = BaseButton.jobsInit();
         _btn4.backgroundColor = JobsBrownColor;
-        _btn4.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn4.jobsResetBtnTitle(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr);
         [self.scrollView.addSubview(_btn4) mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(100, 20));
             make.top.equalTo(self.btn3.mas_bottom).offset(20);
@@ -316,7 +316,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
     if (!_btn5) {
         _btn5 = BaseButton.jobsInit();
         _btn5.backgroundColor = JobsBrownColor;
-        _btn5.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。"));
+        _btn5.jobsResetBtnTitle(@"编译器自动管理内存地址，让程序员更加专注于APP的业务。".tr);
         _btn5.titleLabel.numberOfLines = 0;
         _btn5.labelAutoWidthByFont();
         [self.scrollView.addSubview(_btn5) mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -331,7 +331,7 @@ Prop_strong()BaseButton *btn7;///【UILabelShowingType_05】 多行显示富文�
     if (!_btn6) {
         _btn6 = BaseButton.jobsInit();
         _btn6.backgroundColor = JobsBrownColor;
-        _btn6.jobsResetBtnTitle(JobsInternationalization(@"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。"));
+        _btn6.jobsResetBtnTitle(@"编译器自动管理内存地址，\n让程序员更加专注于\nAPP的业务。".tr);
         _btn6.titleLabel.numberOfLines = 0;
         _btn6.labelAutoWidthByFont();
         [self.scrollView.addSubview(_btn6) mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -66,7 +66,7 @@ Prop_strong()UILabel *placeholderAnimationLbl;
                     self.placeholderAnimationLbl.text = self.placeholder;
                 }
                 
-                self.placeholder = JobsInternationalization(@"");
+                self.placeholder = @"".tr;
             }
         }];
     }
@@ -90,7 +90,7 @@ Prop_strong()UILabel *placeholderAnimationLbl;
                 self.placeholderAnimationLbl.attributedText = self.attributedPlaceholder;
             }else{
                 self.placeholder = self.placeholderAnimationLbl.text;
-                self.placeholderAnimationLbl.text = JobsInternationalization(@"");
+                self.placeholderAnimationLbl.text = @"".tr;
                 self.placeholderAnimationLbl.textColor = self.placeholderColor;
                 self.placeholderAnimationLbl.font = self.placeholderFont;
             }

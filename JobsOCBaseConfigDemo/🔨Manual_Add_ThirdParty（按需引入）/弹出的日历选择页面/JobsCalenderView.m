@@ -79,31 +79,31 @@ Prop_strong()FSCalendar *calendar;
         dateFormatter.dateFormat = @"dd/MM";
     }) stringFromDate:date];
     if (dateString.containsString(@"01/01")) {
-        return JobsInternationalization(@"新年"); // 元旦
+        return @"新年".tr; // 元旦
     } else if (dateString.containsString(@"22/01")) {
-        return JobsInternationalization(@"春节"); // 春节（需要农历日期处理，这里使用2024年的示例日期）
+        return @"春节".tr; // 春节（需要农历日期处理，这里使用2024年的示例日期）
     } else if (dateString.containsString(@"05/04")) {
-        return JobsInternationalization(@"清明节"); // 清明节
+        return @"清明节".tr; // 清明节
     } else if (dateString.containsString(@"01/05")) {
-        return JobsInternationalization(@"劳动节"); // 劳动节
+        return @"劳动节".tr; // 劳动节
     } else if (dateString.containsString(@"04/06")) {
-        return JobsInternationalization(@"端午节"); // 端午节（需要农历日期处理）
+        return @"端午节".tr; // 端午节（需要农历日期处理）
     } else if (dateString.containsString(@"13/09")) {
-        return JobsInternationalization(@"中秋节"); // 中秋节（需要农历日期处理）
+        return @"中秋节".tr; // 中秋节（需要农历日期处理）
     } else if (dateString.containsString(@"01/10")) {
-        return JobsInternationalization(@"国庆节"); // 国庆节
+        return @"国庆节".tr; // 国庆节
     } else if (dateString.containsString(@"25/12")) {
-        return JobsInternationalization(@"圣诞节"); // 圣诞节
+        return @"圣诞节".tr; // 圣诞节
     } else if (dateString.containsString(@"30/11")) {
-        return JobsInternationalization(@"博尼法西奥日"); // 博尼法西奥日
+        return @"博尼法西奥日".tr; // 博尼法西奥日
     } else if (dateString.containsString(@"12/06")) {
-        return JobsInternationalization(@"独立日"); // 独立日
+        return @"独立日".tr; // 独立日
     } else if (dateString.containsString(@"09/04")) {
-        return JobsInternationalization(@"勇士日"); // 勇士日
+        return @"勇士日".tr; // 勇士日
     } else if (dateString.containsString(@"01/11")) {
-        return JobsInternationalization(@"万灵节"); // 万灵节
+        return @"万灵节".tr; // 万灵节
     } else if (dateString.containsString(@"30/12")) {
-        return JobsInternationalization(@"黎刹日"); // 黎刹日
+        return @"黎刹日".tr; // 黎刹日
     } else return nil; // 其他日期没有副标题
 }
 

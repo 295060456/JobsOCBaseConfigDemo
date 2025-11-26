@@ -39,7 +39,7 @@ Prop_strong()JobsIMChatInfoModel *chatInfoModel;
         self.chatInfoModelMutArr.add(self.chatInfoModel);
         
         self.viewModel.textModel.text = self.chatInfoModel.userNameStr;
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"聊天列表");
+        self.viewModel.backBtnTitleModel.text = @"聊天列表".tr;
     }
 }
 
@@ -402,11 +402,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             
             {
                 tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-                    data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-                    data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                    data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.stateIdleTitle = @"下拉刷新数据".tr;
+                    data.pullingTitle = @"下拉刷新数据".tr;
+                    data.refreshingTitle = @"正在刷新数据".tr;
+                    data.willRefreshTitle = @"刷新数据中".tr;
+                    data.noMoreDataTitle = @"下拉刷新数据".tr;
                     data.loadBlock = ^id _Nullable(id _Nullable data) {
                         @jobs_strongify(self)
                         self.tableView.endRefreshing(self.chatInfoModelMutArr.count);
@@ -414,11 +414,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                     };
                 }));
                 tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"");
-                    data.pullingTitle = JobsInternationalization(@"");
-                    data.refreshingTitle = JobsInternationalization(@"");
-                    data.willRefreshTitle = JobsInternationalization(@"");
-                    data.noMoreDataTitle = JobsInternationalization(@"");
+                    data.stateIdleTitle = @"".tr;
+                    data.pullingTitle = @"".tr;
+                    data.refreshingTitle = @"".tr;
+                    data.willRefreshTitle = @"".tr;
+                    data.noMoreDataTitle = @"".tr;
                     data.loadBlock = ^id _Nullable(id  _Nullable data) {
                         @jobs_strongify(self)
                         JobsLog(@"上拉加载更多");
@@ -449,7 +449,7 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(JobsInternationalization(@"正在研发中...敬请期待"));
+                toast(@"正在研发中...敬请期待".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

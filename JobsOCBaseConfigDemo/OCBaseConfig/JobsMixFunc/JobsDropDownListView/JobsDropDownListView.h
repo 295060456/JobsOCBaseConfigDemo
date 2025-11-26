@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_END
  if(!_btn){
      @jobs_weakify(self)
      _btn = BaseButton
-         .initByStyle1(JobsInternationalization(@"点击按钮弹出下拉列表"),UIFontWeightRegularSize(12),JobsWhiteColor)
+         .initByStyle1(@"点击按钮弹出下拉列表".tr,UIFontWeightRegularSize(12),JobsWhiteColor)
          .bgColorBy(JobsWhiteColor)
          .cornerRadiusValueBy(JobsWidth(8))
          .onClickBy(^(UIButton *x){

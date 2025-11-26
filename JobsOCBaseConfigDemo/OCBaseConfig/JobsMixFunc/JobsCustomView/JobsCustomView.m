@@ -171,7 +171,7 @@ static dispatch_once_t static_customViewOnceToken;
         @jobs_weakify(self)
         _tipsLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"當前支持查詢最近30天的投注記錄");
+            label.text = @"當前支持查詢最近30天的投注記錄".tr;
             label.font = UIFontWeightRegularSize(12);
             label.textColor = HEXCOLOR(0x757575);
             [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -197,7 +197,7 @@ static dispatch_once_t static_customViewOnceToken;
                                                                  0,
                                                                  self.btnSize.width,
                                                                  self.btnSize.height)])
-            .jobsResetBtnTitle(JobsInternationalization(@"取消"))
+            .jobsResetBtnTitle(@"取消".tr)
             .jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
@@ -232,7 +232,7 @@ static dispatch_once_t static_customViewOnceToken;
                                                                  0,
                                                                  self.btnSize.width,
                                                                  self.btnSize.height)])
-            .jobsResetBtnTitle(JobsInternationalization(@"确定"))
+            .jobsResetBtnTitle(@"确定".tr)
             .jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)

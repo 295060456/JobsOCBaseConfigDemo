@@ -199,7 +199,7 @@ static dispatch_once_t onceToken;
             self.isOpenPPBadge = open;
             if (open) {
                 for (UITabBarItem *item in self.tabBar.items) {
-                    if (item.title.isEqualToString(JobsInternationalization(@"首页"))) {
+                    if (item.title.isEqualToString(@"首页".tr)) {
                         [item pp_addBadgeWithText:@"919+"];
 #pragma mark —— 动画
                         item.badgeView.图片从小放大();
@@ -484,16 +484,16 @@ shouldSelectViewController:(UIViewController *)viewController {
     if (!_pullListAutoSizeViewMutArr) {
         _pullListAutoSizeViewMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.image = JobsInternationalization(@"".img);
-                viewModel.textModel.text = JobsInternationalization(@"111");
+                viewModel.image = @"".tr.img;
+                viewModel.textModel.text = @"111".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.image = JobsInternationalization(@"".img);
-                viewModel.textModel.text = JobsInternationalization(@"222");
+                viewModel.image = @"".tr.img;
+                viewModel.textModel.text = @"222".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                viewModel.image = JobsInternationalization(@"".img);
-                viewModel.textModel.text = JobsInternationalization(@"333");
+                viewModel.image = @"".tr.img;
+                viewModel.textModel.text = @"333".tr;
             }));
         });
     }return _pullListAutoSizeViewMutArr;
@@ -501,7 +501,9 @@ shouldSelectViewController:(UIViewController *)viewController {
 
 -(NSMutableArray <UIView *>*)UITabBarButtonMutArr{
     if (!_UITabBarButtonMutArr) {
-        _UITabBarButtonMutArr = NSMutableArray.array;
+        _UITabBarButtonMutArr = jobsMakeMutArr(^(__kindof NSMutableArray<UIView *> * _Nullable arr) {
+
+        });
     }return _UITabBarButtonMutArr;
 }
 

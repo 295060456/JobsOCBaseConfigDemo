@@ -44,7 +44,7 @@ Prop_strong()UIButton *cancelBtn;
 -(UILabel *)titleLab{
     if (!_titleLab) {
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-            label.text = JobsInternationalization(@"评论");
+            label.text = @"评论".tr;
             label.textColor = JobsCor(@"#999999");
             label.font = UIFontWeightRegularSize(18);
             label.labelAutoWidthByFont();

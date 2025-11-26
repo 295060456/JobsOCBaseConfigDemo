@@ -36,7 +36,7 @@ Prop_strong()NSMutableArray <NSString *>*titleMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -219,12 +219,12 @@ ratio:(CGFloat)ratio {
 -(NSMutableArray<NSString *> *)titleMutArr{
     if (!_titleMutArr) {
         _titleMutArr = NSMutableArray.array;
-        _titleMutArr.add(JobsInternationalization(@"豆花"));
-        _titleMutArr.add(JobsInternationalization(@"莲子羹"));
-        _titleMutArr.add(JobsInternationalization(@"蒸肉"));
-        _titleMutArr.add(JobsInternationalization(@"排骨"));
-        _titleMutArr.add(JobsInternationalization(@"美女"));
-        _titleMutArr.add(JobsInternationalization(@"豪车"));
+        _titleMutArr.add(@"豆花".tr);
+        _titleMutArr.add(@"莲子羹".tr);
+        _titleMutArr.add(@"蒸肉".tr);
+        _titleMutArr.add(@"排骨".tr);
+        _titleMutArr.add(@"美女".tr);
+        _titleMutArr.add(@"豪车".tr);
     }return _titleMutArr;
 }
 

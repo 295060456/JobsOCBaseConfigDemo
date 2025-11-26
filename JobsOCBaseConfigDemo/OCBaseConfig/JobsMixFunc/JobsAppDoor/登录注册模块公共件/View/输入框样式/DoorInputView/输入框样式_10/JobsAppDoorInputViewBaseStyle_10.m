@@ -24,8 +24,8 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;
         self.thisViewSize = thisViewSize;
-        self.titleStr_1 = JobsInternationalization(@"請輸入金額");
-        self.titleStr_2 = JobsInternationalization(@"全部金額");
+        self.titleStr_1 = @"請輸入金額".tr;
+        self.titleStr_2 = @"全部金額".tr;
         
     }return self;
 }

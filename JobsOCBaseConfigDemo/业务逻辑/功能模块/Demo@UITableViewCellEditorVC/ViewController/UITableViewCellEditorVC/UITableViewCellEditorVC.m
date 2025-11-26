@@ -33,7 +33,7 @@ Prop_strong()NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -98,7 +98,7 @@ Prop_strong()NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
     self.msgEditBoardView.getDeleteBtn.enabledBlock(self.selectedDataMutArr.count);
     self.msgEditBoardView.getMarkToReadBtn.enabledBlock(self.selectedDataMutArr.count);
     self.editBtn.selected = NO;
-    self.editBtn.jobsResetBtnTitle(JobsInternationalization(@"編輯"));
+    self.editBtn.jobsResetBtnTitle(@"編輯".tr);
     [self.msgEditBoardView disappearByView:self.view];
 }
 /// 全选的实现
@@ -218,13 +218,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(12))
-            .jobsResetBtnTitle(JobsInternationalization(@"編輯"))
+            .jobsResetBtnTitle(@"編輯".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
     //            toast(x.titleForNormalState);
                 x.selected = !x.selected;
-                x.jobsResetBtnTitle(x.selected ? JobsInternationalization(@"完成") : JobsInternationalization(@"編輯"));
+                x.jobsResetBtnTitle(x.selected ? @"完成".tr : @"編輯".tr);
                 [self.tableView setEditing:x.selected animated:YES];
                 x.selected ? [self.getMsgEditBoardView appearByView:self.view] : [self.getMsgEditBoardView disappearByView:self.view];
             }).onLongPressGestureBy(^(id data){
@@ -288,16 +288,16 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             @jobs_strongify(self)
             if ([data isKindOfClass:UIButton.class]) {
                 UIButton *btn = (UIButton *)data;
-                if ([btn.jobsResetBtnTitle isEqualToString:JobsInternationalization(@"全選")]) {
+                if ([btn.jobsResetBtnTitle isEqualToString:@"全選".tr]) {
                     btn.selected ? [self allChoose] : [self allCancelChoose];
-                }else if ([btn.jobsResetBtnTitle isEqualToString:JobsInternationalization(@"標記為已讀")]){
+                }else if ([btn.jobsResetBtnTitle isEqualToString:@"標記為已讀".tr]){
                     for (JobsMsgDataModel *model in self.selectedDataMutArr) {//dataMutArr
                         model.isRead = YES;
                         NSUInteger index = [self.dataMutArr indexOfObject:model];
                         [self.dataMutArr replaceObjectAtIndex:index withObject:model];
                     }
                     [self dataForUI];
-                }else if ([btn.jobsResetBtnTitle isEqualToString:JobsInternationalization(@"删除")]){
+                }else if ([btn.jobsResetBtnTitle isEqualToString:@"删除".tr]){
                     JobsLog(@"%@",self.selectedDataMutArr);
                     [self.dataMutArr removeObjectsInArray:self.selectedDataMutArr];
                     [self dataForUI];
@@ -312,33 +312,33 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
                 viewModel.msgStyle = JobsMsgType_Notify;/// 通知
-                viewModel.textModel.text = JobsInternationalization(@"6月1日13:00點整，英超焦點賽月1日13:00點整，英超焦點賽");
-                viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...夏季聯賽火熱來襲，全體會員虛擬幣存");
-                viewModel.time = JobsInternationalization(@"05-13 18:20");
+                viewModel.textModel.text = @"6月1日13:00點整，英超焦點賽月1日13:00點整，英超焦點賽".tr;
+                viewModel.subTextModel.text = @"夏季聯賽火熱來襲，全體會員虛擬幣存...夏季聯賽火熱來襲，全體會員虛擬幣存".tr;
+                viewModel.time = @"05-13 18:20".tr;
                 viewModel.isDraw = NO;
                 viewModel.isRead = NO;
             }))
             .add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
                 viewModel.msgStyle = JobsMsgType_Activity;/// 活动
-                viewModel.textModel.text = JobsInternationalization(@"6月1日13:00點");
-                viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
-                viewModel.time = JobsInternationalization(@"05-13 18:20");
+                viewModel.textModel.text = @"6月1日13:00點".tr;
+                viewModel.subTextModel.text = @"夏季聯賽火熱來襲，全體會員虛擬幣存...".tr;
+                viewModel.time = @"05-13 18:20".tr;
                 viewModel.isDraw = YES;
                 viewModel.isRead = YES;
             }))
             .add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
                 viewModel.msgStyle = JobsMsgType_Notice;/// 公告
-                viewModel.textModel.text = JobsInternationalization(@"6月1日");
-                viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
-                viewModel.time = JobsInternationalization(@"05-13 18:20");
+                viewModel.textModel.text = @"6月1日".tr;
+                viewModel.subTextModel.text = @"夏季聯賽火熱來襲，全體會員虛擬幣存...".tr;
+                viewModel.time = @"05-13 18:20".tr;
                 viewModel.isDraw = NO;
                 viewModel.isRead = NO;
             }))
             .add(jobsMakeMsgDataModel(^(__kindof JobsMsgDataModel * _Nullable viewModel) {
                 viewModel.msgStyle = JobsMsgType_Bonus;/// 红利
-                viewModel.textModel.text = JobsInternationalization(@"wowowowowo");
-                viewModel.subTextModel.text = JobsInternationalization(@"夏季聯賽火熱來襲，全體會員虛擬幣存...");
-                viewModel.time = JobsInternationalization(@"05-13 18:20");
+                viewModel.textModel.text = @"wowowowowo".tr;
+                viewModel.subTextModel.text = @"夏季聯賽火熱來襲，全體會員虛擬幣存...".tr;
+                viewModel.time = @"05-13 18:20".tr;
                 viewModel.isDraw = YES;
                 viewModel.isRead = YES;
             }));

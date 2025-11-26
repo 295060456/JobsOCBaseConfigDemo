@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_END
  jobsCommentCoreVC.transitioningDelegate = presentationController;
  
  [self forceComingToPresentVC:jobsCommentCoreVC
-                requestParams:JobsInternationalization(@"")
+                requestParams:@"".tr
                    completion:nil];
  
  */

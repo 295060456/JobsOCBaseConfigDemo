@@ -28,9 +28,9 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"App国际化之应用内部切换语言");
+    self.viewModel.textModel.text = @"App国际化之应用内部切换语言".tr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -97,7 +97,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
         [SDImageCache.sharedImageCache clearMemory];
         [SDImageCache.sharedImageCache clearDiskOnCompletion:nil];
         return jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
-            imageView.image = JobsInternationalization(@"6.59".img);
+            imageView.image = @"6.59".tr.img;
             headerFooterView.addSubview(imageView);
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.center.equalTo(headerFooterView);
@@ -126,7 +126,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         acell.accessoryType = acell == cell ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     self.appLanguageAtAppLanguageBy(self.dataMutArr[indexPath.row].appLanguage);/// 设置App语言环境并发送全局通知JobsLanguageSwitchNotification
-    self.changeTabBarItemTitleBy(indexPath);///【App语言国际化】更改UITabBarItem的标题
+    self.changeTabBarItemTitleBy(indexPath); //【App语言国际化】更改UITabBarItem的标题
     /// 重塑数据源
     [self.dataMutArr removeAllObjects];
     _dataMutArr = nil;
@@ -240,19 +240,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.appLanguage = AppLanguageBySys;
-                data1.text = JobsInternationalization(@"跟随系统");
+                data1.text = @"跟随系统".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.appLanguage = AppLanguageBySys;
-                data1.text = JobsInternationalization(@"中文");
+                data1.text = @"中文".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.appLanguage = AppLanguageBySys;
-                data1.text = JobsInternationalization(@"英文");
+                data1.text = @"英文".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 data1.appLanguage = AppLanguageBySys;
-                data1.text = JobsInternationalization(@"他加禄语");
+                data1.text = @"他加禄语".tr;
             }));
         });
     }return _dataMutArr;

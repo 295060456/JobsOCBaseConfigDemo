@@ -43,13 +43,13 @@ NS_ASSUME_NONNULL_END
          @jobs_weakify(self)
          [_hl actionObjBlock:^(UIButton *btn) {
              @jobs_strongify(self)
-             if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"Top-up check in progress")]) {
+             if ([btn.titleForNormalState isEqualToString:@"Top-up check in progress".tr]) {
                  self.chargeOrderType = ChargeOrderType_processing;
-             }else if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"Top-up success")]){
+             }else if ([btn.titleForNormalState isEqualToString:@"Top-up success".tr]){
                  self.chargeOrderType = ChargeOrderType_success;
-             }else if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"Top-up cancel")]){
+             }else if ([btn.titleForNormalState isEqualToString:@"Top-up cancel".tr]){
                  self.chargeOrderType = ChargeOrderType_cancel;
-             }else if ([btn.titleForNormalState isEqualToString:JobsInternationalization(@"All")]){
+             }else if ([btn.titleForNormalState isEqualToString:@"All".tr]){
                  self.chargeOrderType = ChargeOrderType_all;//ChargeOrderType_all;
              }else{}
              
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = @"service_skype".img;
-             vm.text = JobsInternationalization(@"");
+             vm.text = @"".tr;
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -95,7 +95,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = @"service_qq".img;
-             vm.text = JobsInternationalization(@"");
+             vm.text = @"".tr;
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -105,7 +105,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = @"service_telegram".img;
-             vm.text = JobsInternationalization(@"");
+             vm.text = @"".tr;
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = @"service_wechat".img;
-             vm.text = JobsInternationalization(@"");
+             vm.text = @"".tr;
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -125,7 +125,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = @"login_skype".img;
-             vm.text = JobsInternationalization(@"");
+             vm.text = @"".tr;
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);
@@ -135,7 +135,7 @@ NS_ASSUME_NONNULL_END
          {
              UIViewModel *vm = UIViewModel.new;
              vm.bgImage = @"service_meiqia".img;
-             vm.text = JobsInternationalization(@"");
+             vm.text = @"".tr;
              vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
              vm.offsetXForEach = JobsWidth(46);
              vm.offsetYForEach = JobsWidth(46);

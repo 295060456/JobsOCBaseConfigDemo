@@ -83,9 +83,9 @@ UITextFieldProtocol_synthesize_part2
         @jobs_strongify(self)
         if ([model isKindOfClass:JobsIMChatInfoModel.class]) {
             JobsIMChatInfoModel *chatInfoModel = (JobsIMChatInfoModel *)model;
-            if (chatInfoModel.identification.isEqualToString(JobsInternationalization(@"我是服务器"))) {/// 对方发的消息
+            if (chatInfoModel.identification.isEqualToString(@"我是服务器".tr)) {/// 对方发的消息
                 self.infoLocation = InfoLocation_Left;
-            }else if (chatInfoModel.identification.isEqualToString(JobsInternationalization(@"我是我自己"))){/// 自己发的消息
+            }else if (chatInfoModel.identification.isEqualToString(@"我是我自己".tr)){/// 自己发的消息
                 self.infoLocation = InfoLocation_Right;
             }else{
                 self.infoLocation = InfoLocation_Unknown;
@@ -401,8 +401,8 @@ UITextFieldProtocol_synthesize_part2
 -(NSMutableArray<UIMenuItem *> *)menuItemMutArr{
     if (!_menuItemMutArr) {
         _menuItemMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <UIMenuItem *>* _Nullable arr) {
-            arr.add(JobsInternationalization(@"置顶").initMenuItemBy(@selector(menuTopBtnPressed:)))
-            .add(JobsInternationalization(@"删除").initMenuItemBy(@selector(menuDelBtnPressed:)));
+            arr.add(@"置顶".tr.initMenuItemBy(@selector(menuTopBtnPressed:)))
+            .add(@"删除".tr.initMenuItemBy(@selector(menuDelBtnPressed:)));
         });
     }return _menuItemMutArr;
 }
@@ -411,17 +411,17 @@ UITextFieldProtocol_synthesize_part2
     if (!_leftBtnMutArr) {
         _leftBtnMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
             arr.add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
-                model.titleStr = JobsInternationalization(@"L1");
+                model.titleStr = @"L1".tr;
                 model.IconIMG = @"Check".img;
                 model.bgCor = JobsGreenColor;
             }))
             .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
-                model.titleStr = JobsInternationalization(@"L2");
+                model.titleStr = @"L2".tr;
                 model.IconIMG = @"Fav".img;
                 model.bgCor = RGBA_COLOR(0, 0x99, 0xcc, 1);
             }))
             .add(jobsMakeMGSwipeButtonModel(^(__kindof MGSwipeButtonModel * _Nullable model) {
-                model.titleStr = JobsInternationalization(@"L3");
+                model.titleStr = @"L3".tr;
                 model.IconIMG = @"Menu".img;
                 model.bgCor = RGBA_COLOR(0.59, 0.29, 0.08, 1);
             }));

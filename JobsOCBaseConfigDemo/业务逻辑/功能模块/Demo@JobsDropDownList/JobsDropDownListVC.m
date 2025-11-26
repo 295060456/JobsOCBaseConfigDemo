@@ -36,7 +36,7 @@ Prop_assign()JobsDropDownListViewDirection dropDownListViewDirection;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -88,7 +88,7 @@ Prop_assign()JobsDropDownListViewDirection dropDownListViewDirection;
     if(!_btn){
         @jobs_weakify(self)
         _btn = BaseButton
-            .initByStyle1(JobsInternationalization(@"点击按钮弹出下拉列表"),
+            .initByStyle1(@"点击按钮弹出下拉列表".tr,
                           UIFontWeightRegularSize(12),
                           JobsWhiteColor)
             .bgColorBy(JobsWhiteColor)
@@ -159,9 +159,9 @@ Prop_assign()JobsDropDownListViewDirection dropDownListViewDirection;
                 data.layerCor = HEXCOLOR(0xB0B0B0);
                 data.jobsWidth = 1;
             }));
-            toast(x.selected ? JobsInternationalization(@"打开解锁"):JobsInternationalization(@"关闭解锁"));
+            toast(x.selected ? @"打开解锁".tr:@"关闭解锁".tr);
             self.dropDownListViewDirection = x.selected;
-            self.btn.jobsResetBtnTitle(x.selected ? JobsInternationalization(@"点击按钮弹出上拉列表") : JobsInternationalization(@"点击按钮弹出下拉列表"));
+            self.btn.jobsResetBtnTitle(x.selected ? @"点击按钮弹出上拉列表".tr : @"点击按钮弹出下拉列表".tr);
         }];
     }return _switcher;
 }

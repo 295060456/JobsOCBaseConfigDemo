@@ -50,7 +50,7 @@ Prop_strong()CABasicAnimation *animation;
 }
 #pragma mark —— SET 方法
 -(void)setStr:(NSString *)str{
-    self.label.text = str ? : JobsInternationalization(@"跳过");
+    self.label.text = str ? : @"跳过".tr;
     [self.label sizeToFit];/// 刷新视图，否则label.frame为0
 }
 

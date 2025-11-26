@@ -136,7 +136,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _userHeaderBtn = UIButton.jobsInit()
         .jobsResetBtnTitle(self.readUserInfo.userName
                                          .add(JobsSpace)
-                                         .add(JobsInternationalization(@"VIP").add(JobsSpace).add(@"0")))
+                                         .add(@"VIP".tr.add(JobsSpace).add(@"0")))
         .jobsResetBtnImage(@"默认头像".img)
         .jobsResetBtnTitleCor(HEXCOLOR(0xAE8330))
         .jobsResetBtnTitleFont(UIFontWeightBoldSize(16));
@@ -229,7 +229,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _leftLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"Lv").add(@" ").add(@"0");
+            label.text = @"Lv".tr.add(@" ").add(@"0");
             label.textColor = HEXCOLOR(0x757575);
             label.font = UIFontWeightRegularSize(12);
             label.textAlignment = NSTextAlignmentCenter;
@@ -247,7 +247,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _rightLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"Lv").add(@" ").add(@"1");
+            label.text = @"Lv".tr.add(@" ").add(@"1");
             label.textColor = HEXCOLOR(0x757575);
             label.textAlignment = NSTextAlignmentCenter;
             label.font = UIFontWeightRegularSize(12);
@@ -294,7 +294,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(NSMutableArray<NSString *> *)richTextMutArr{
     if (!_richTextMutArr) {
         _richTextMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(JobsInternationalization(@"當前晉級進度"))
+            data.add(@"當前晉級進度".tr)
             .add(JobsSpace.add(JobsPercent));
         });
     }return _richTextMutArr;
@@ -306,13 +306,13 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 @jobs_strongify(self)
-                data1.textModel.text = JobsInternationalization(@"當前存款");
+                data1.textModel.text = @"當前存款".tr;
                 data1.subTextModel.attributedTitle = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[0]
                                                                         paragraphStyle:nil];
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
                 @jobs_strongify(self)
-                data1.textModel.text = JobsInternationalization(@"當前流水");
+                data1.textModel.text = @"當前流水".tr;
                 data1.subTextModel.attributedTitle = [self richTextWithDataConfigMutArr:self.richTextConfigMutArr2[1]
                                                                         paragraphStyle:nil];
             }));

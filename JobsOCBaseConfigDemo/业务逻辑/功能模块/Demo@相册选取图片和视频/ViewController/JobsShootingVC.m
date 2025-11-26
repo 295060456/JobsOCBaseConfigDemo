@@ -32,7 +32,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -70,7 +70,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnBgCor(JobsGreenColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"调取系统相机"))
+            .jobsResetBtnTitle(@"调取系统相机".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 JobsLog(@"");
@@ -101,7 +101,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnBgCor(JobsBlueColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"调取系统相机"))
+            .jobsResetBtnTitle(@"调取系统相机".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 JobsLog(@"");

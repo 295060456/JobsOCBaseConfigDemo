@@ -565,7 +565,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         @jobs_strongify(self)
         self.cleanUserData();
         JobsPostNotification(退出登录成功, @(YES));
-        toast(JobsInternationalization(@"退出登录成功"));
+        toast(@"退出登录成功".tr);
         self.popToRootVCBy(YES);
     };
 }
@@ -710,15 +710,15 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
                                 subTitle:(NSString *_Nullable)subTitle{
     return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
         viewModel.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
-            textModel.text = JobsInternationalization(title);
+            textModel.text = title.tr;
         });
         
         viewModel.subTextModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
-            textModel.text = JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle);
+            textModel.text = (isNull(subTitle) ? @"点击查看" : subTitle).tr;
         });
         
         viewModel.backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
-            textModel.text = JobsInternationalization(@"返回首页");
+            textModel.text = @"返回首页".tr;
         });
     });
 }
@@ -727,10 +727,10 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
                                 attributeSubTitle:(NSString *_Nullable)subTitle{
     return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
         {
-            NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(title));
+            NSMutableAttributedString *attributedText = JobsMutAttributedString(title.tr);
             attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
                 data.value = UITextModel.new.font;
-                data.range = NSMakeRange(0, JobsInternationalization(title).length);
+                data.range = NSMakeRange(0, title.tr.length);
             }))
             .addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
                 data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
@@ -738,16 +738,16 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
                     data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
                     data.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
                 });
-                data.range = NSMakeRange(0, JobsInternationalization(title).length);
+                data.range = NSMakeRange(0, title.tr.length);
             }));
             viewModel.textModel.attributedTitle = attributedText;
         }
         
         {
-            NSMutableAttributedString *attributedText = JobsMutAttributedString(JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle));
+            NSMutableAttributedString *attributedText = JobsMutAttributedString((isNull(subTitle) ? @"点击查看" : subTitle).tr);
             attributedText.addFontAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
                 data.value = UITextModel.new.font;
-                data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
+                data.range = NSMakeRange(0, (isNull(subTitle) ? @"点击查看" : subTitle).tr.length);
             }))
             .addAttributeNameByParagraphStyleModel(jobsMakeParagraphStyleModel(^(__kindof JobsParagraphStyleModel * _Nullable data) {
                 data.value = jobsMakeParagraphStyle(^(NSMutableParagraphStyle * _Nullable data) {
@@ -755,13 +755,13 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
                     data.alignment = NSTextAlignmentLeft; // 设置对齐方式为左对齐
                     data.lineBreakMode = NSLineBreakByWordWrapping; // 设置换行模式为单词换行
                 });
-                data.range = NSMakeRange(0, JobsInternationalization(isNull(subTitle) ? @"点击查看" : subTitle).length);
+                data.range = NSMakeRange(0, (isNull(subTitle) ? @"点击查看" : subTitle).tr.length);
             }));
             viewModel.subTextModel.attributedTitle = attributedText;
         }
         
         viewModel.backBtnTitleModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable data) {
-            data.text = JobsInternationalization(@"返回首页");
+            data.text = @"返回首页".tr;
         });
     });
 }
@@ -784,8 +784,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 -(NSMutableArray <__kindof UIButtonModel *>*)gameDataMutArr{
     return jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>* _Nullable data) {
         data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.title = JobsInternationalization(@"HOT Games");
-            model.subTitle = JobsInternationalization(@"");
+            model.title = @"HOT Games".tr;
+            model.subTitle = @"".tr;
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
@@ -795,8 +795,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.title = JobsInternationalization(@"SPORTS");
-            model.subTitle = JobsInternationalization(@"");
+            model.title = @"SPORTS".tr;
+            model.subTitle = @"".tr;
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
@@ -806,8 +806,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.title = JobsInternationalization(@"SLOT GAMES");
-            model.subTitle = JobsInternationalization(@"");
+            model.title = @"SLOT GAMES".tr;
+            model.subTitle = @"".tr;
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
@@ -817,8 +817,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.title = JobsInternationalization(@"LIVE GAMES");
-            model.subTitle = JobsInternationalization(@"");
+            model.title = @"LIVE GAMES".tr;
+            model.subTitle = @"".tr;
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
@@ -828,8 +828,8 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             model.imagePlacement = NSDirectionalRectEdgeTop;
             model.baseBackgroundColor = JobsClearColor;
         })).add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.title = JobsInternationalization(@"TABLE GAMES");
-            model.subTitle = JobsInternationalization(@"");
+            model.title = @"TABLE GAMES".tr;
+            model.subTitle = @"".tr;
             model.titleCor = JobsCor(@"#3D3D3D");
             model.titleFont = bayonRegular(JobsWidth(10));
             model.backgroundImage = @"首页切换游戏种类按钮背景图（未选择）".img;
@@ -848,17 +848,17 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
             data.bgImage = @"FlementalLinkFire".img;
             data.imageUrl = @"https://zh.wikipedia.org/wiki/File:Jiang_Zemin_2002.jpg".jobsUrl;
             data.image = @"点赞".img;
-            data.text = JobsInternationalization(@"FlementalLinkFire");
+            data.text = @"FlementalLinkFire".tr;
         })).add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.bgImage = @"DragonSoar".img;
             data.imageUrl = @"https://zh.wikipedia.org/wiki/File:Deng_Xiaoping_at_the_arrival_ceremony_for_the_Vice_Premier_of_China_(cropped).jpg".jobsUrl;
             data.image = @"点赞".img;
-            data.text = JobsInternationalization(@"DragonSoar");
+            data.text = @"DragonSoar".tr;
         })).add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             data.bgImage = @"StreetFighter".img;
             data.imageUrl = @"https://zh.wikipedia.org/wiki/File:Zhu_Rongji_in_2000.jpg".jobsUrl;
             data.image = @"点赞".img;
-            data.text = JobsInternationalization(@"ELEMENTAL LINK");
+            data.text = @"ELEMENTAL LINK".tr;
         }));
     });
 }
@@ -902,10 +902,10 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 -(UIViewModel *)testPopViewData{
     return jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
         viewModel.textModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
-            textModel.text = JobsInternationalization(@"主标题");
+            textModel.text = @"主标题".tr;
         });
         viewModel.subTextModel = jobsMakeTextModel(^(__kindof UITextModel * _Nullable textModel) {
-            textModel.text = JobsInternationalization(@"副标题");
+            textModel.text = @"副标题".tr;
         });
     });
 }
@@ -923,9 +923,9 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
     [popupView actionObjBlock:^(__kindof UIButton *data) {
         @jobs_strongify(popupView)
         if([data.titleForNormalState isKindOfClass:NSString.class]){
-            if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"取消"))) {
+            if (data.titleForNormalState.isEqualToString(@"取消".tr)) {
 
-            }else if (data.titleForNormalState.isEqualToString(JobsInternationalization(@"确认"))){
+            }else if (data.titleForNormalState.isEqualToString(@"确认".tr)){
                 
             }else{}
         }
@@ -938,7 +938,7 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 //-(JobsOCBaseConfigTestPopupView *)JobsTestPopView:(NSString *)string{
 //    UIViewModel *viewModel = UIViewModel.new;
 //    UITextModel *textModel = UITextModel.new;
-//    textModel.text = isNull(string) ? JobsInternationalization(@"登入按钮") : string;
+//    textModel.text = isNull(string) ? @"登入按钮".tr : string;
 //    viewModel.textModel = textModel;
 //    return [self jobsTestPopView:viewModel];
 //}
@@ -951,9 +951,9 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
 //    @jobs_weakify(popupView)
 //    [testPopupView actionObjBlock:^(UIButton *data) {
 //        @jobs_strongify(popupView)
-//        if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Cancel")]) {
+//        if ([[data titleForNormalState] isEqualToString:@"Cancel".tr]) {
 //
-//        }else if ([[data titleForNormalState] isEqualToString:JobsInternationalization(@"Sure")]){
+//        }else if ([[data titleForNormalState] isEqualToString:@"Sure".tr]){
 //
 //        }else{}
 //        [testPopupView tf_hide];
@@ -1008,15 +1008,15 @@ static JobsCustomTabBar *sharedCustomTabBar = nil;
         }else{
             if (isNull(model.userName) &&
                 isNull(model.password)) {
-                self.jobsToastErrMsg(JobsInternationalization(@"Please complete the login information"));
+                self.jobsToastErrMsg(@"Please complete the login information".tr);
             }else if (isValue(model.userName) &&
                       isNull(model.password)){
-                self.jobsToastErrMsg(JobsInternationalization(@"Please enter your password"));
+                self.jobsToastErrMsg(@"Please enter your password".tr);
             }else if (isNull(model.userName) &&
                       isValue(model.password)){
-                self.jobsToastErrMsg(JobsInternationalization(@"Please enter a user name"));
+                self.jobsToastErrMsg(@"Please enter a user name".tr);
             }else{
-                self.jobsToastErrMsg(JobsInternationalization(@"The password consists of 6 to 15 characters and can only be letters and numbers"));
+                self.jobsToastErrMsg(@"The password consists of 6 to 15 characters and can only be letters and numbers".tr);
             }return NO;
         }
     };
@@ -1093,8 +1093,8 @@ JobsKey(_hotLabelDataMutArr)
 //            UIViewModel *vm = UIViewModel.new;
 //
 //            vm.requestParams = element;
-//            vm.bgImageURLString = JobsInternationalization(@"");//[This.BaseUrl stringByAppendingString:element.appIconUrl];
-//            vm.textModel.text = JobsInternationalization(@"");
+//            vm.bgImageURLString = @"".tr;//[This.BaseUrl stringByAppendingString:element.appIconUrl];
+//            vm.textModel.text = @"".tr;
 //            vm.jobsSize = CGSizeMake(JobsWidth(46), JobsWidth(46));
 //            vm.offsetXForEach = JobsWidth(46);
 //            vm.offsetYForEach = JobsWidth(46);
@@ -1139,7 +1139,7 @@ JobsKey(__立即注册)
     if ([self isKindOfClass:UIViewController.class] && !_立即注册 ) {
         @jobs_weakify(self)
         _立即注册 = BaseButton
-            .initByStyle1(JobsInternationalization(@"立即注册"),
+            .initByStyle1(@"立即注册".tr,
                           UIFontWeightRegularSize(14),
                           HEXCOLOR(0x757575))
             .onClickBy(^(UIButton *x){
@@ -1172,7 +1172,7 @@ JobsKey(__联系客服)
     if ([self isKindOfClass:UIViewController.class] && !_联系客服) {
         @jobs_weakify(self)
         _联系客服 = BaseButton
-            .initByStyle1(JobsInternationalization(@"联系客服"),
+            .initByStyle1(@"联系客服".tr,
                           UIFontWeightRegularSize(14),
                           HEXCOLOR(0x757575))
             .onClickBy(^(UIButton *x){
@@ -1218,8 +1218,8 @@ JobsKey(_richTextMutArr)
     NSMutableArray <NSString *>*RichTextMutArr = Jobs_getAssociatedObject(_richTextMutArr);
     if (!RichTextMutArr) {
         RichTextMutArr = jobsMakeMutArr(^(NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"如需帮助，请联系"))
-            .add(JobsInternationalization(@"专属客服"));
+            data.add(@"如需帮助，请联系".tr)
+            .add(@"专属客服".tr);
         });[self setRichTextMutArr:RichTextMutArr];
         Jobs_setAssociatedRETAIN_NONATOMIC(_richTextMutArr, RichTextMutArr)
     }return RichTextMutArr;
@@ -1301,10 +1301,10 @@ JobsKey(_jxCategoryViewTitleMutArr)
     NSMutableArray *JXCategoryViewTitleMutArr = Jobs_getAssociatedObject(_jxCategoryViewTitleMutArr);
     if (!JXCategoryViewTitleMutArr) {
         JXCategoryViewTitleMutArr = jobsMakeMutArr(^(NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"今日"))
-            .add(JobsInternationalization(@"昨日"))
-            .add(JobsInternationalization(@"近7日"))
-            .add(JobsInternationalization(@"近30日"));
+            data.add(@"今日".tr)
+            .add(@"昨日".tr)
+            .add(@"近7日".tr)
+            .add(@"近30日".tr);
         });
         Jobs_setAssociatedRETAIN_NONATOMIC(_jxCategoryViewTitleMutArr, JXCategoryViewTitleMutArr)
     }return JXCategoryViewTitleMutArr;

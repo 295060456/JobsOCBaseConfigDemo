@@ -76,7 +76,7 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
     self.jobsAppDoorContentViewY = 0;
     self.customerServiceBtnY = 0;
     
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -312,8 +312,8 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
             if ([data isKindOfClass:UIButton.class]) {
                 [self.view endEditing:YES];
                 UIButton *btn = (UIButton *)data;
-                if (btn.titleForNormalState.isEqualToString(Title2) ||// Title2 JobsInternationalization(@"L\no\ng\ni\nn")
-                    btn.titleForNormalState.isEqualToString(Title1)) {// Title1 JobsInternationalization(@"B\na\nc\nk\nT\no\nL\no\ng\ni\nn")
+                if (btn.titleForNormalState.isEqualToString(Title2) ||// Title2 @"L\no\ng\ni\nn".tr
+                    btn.titleForNormalState.isEqualToString(Title1)) {// Title1 @"B\na\nc\nk\nT\no\nL\no\ng\ni\nn".tr
                     self->toRegisterBtn = (UIButton *)data;
                     //状态置空
                     self.currentActivateTFIndex = 0;
@@ -327,21 +327,21 @@ static dispatch_once_t static_jobsAppDoorOnceToken;
                     self.customerServiceBtn.top = self.jobsAppDoorContentView.top + self.jobsAppDoorContentView.height + JobsWidth(20);
                     self.customerServiceBtnY =  self.customerServiceBtn.y;
                 }
-                else if (btn.titleForNormalState.isEqualToString(Title6)){// Title6 JobsInternationalization(@"Register")
+                else if (btn.titleForNormalState.isEqualToString(Title6)){// Title6 @"Register".tr
 
                 }
-                else if (btn.titleForNormalState.isEqualToString(Title7)){// JobsInternationalization(@"Login")
+                else if (btn.titleForNormalState.isEqualToString(Title7)){// @"Login".tr
 
                 }
-                else if (btn.titleForNormalState.isEqualToString(Title4)){// Title4 JobsInternationalization(@"Back to HomePage")
+                else if (btn.titleForNormalState.isEqualToString(Title4)){// Title4 @"Back to HomePage".tr
                     UIButton *abandonLoginBtn = (UIButton *)data;
                     self.backBtnClickEvent(abandonLoginBtn);
                     [JobsAppDoorVC destroySingleton];
                 }
-                else if (btn.titleForNormalState.isEqualToString(Title5)){// Title5 JobsInternationalization(@"Save the user name")
+                else if (btn.titleForNormalState.isEqualToString(Title5)){// Title5 @"Save the user name".tr
                     
                 }
-                else if (btn.titleForNormalState.isEqualToString(Title3)){// Title3 JobsInternationalization(@"Forgot code")
+                else if (btn.titleForNormalState.isEqualToString(Title3)){// Title3 @"Forgot code".tr
                     
                     {//本页动效实现的
                         self.currentPage = @(CurrentPage_ForgotCode);

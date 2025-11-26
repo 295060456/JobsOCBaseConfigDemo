@@ -63,7 +63,7 @@ static bool isOptions = NO;
 }
 #pragma mark —— 一些私有方法
 +(void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"使用通知时需要您提供权限，去设置！")];
+    [TKPermissionPublic alertPromptTips:@"使用通知时需要您提供权限，去设置！".tr];
 }
 
 @end

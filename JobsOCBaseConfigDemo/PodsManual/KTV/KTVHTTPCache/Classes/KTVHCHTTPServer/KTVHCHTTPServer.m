@@ -90,7 +90,7 @@
     }
     NSString *original = [[KTVHCURLTool tool] URLEncode:URL.absoluteString];
     NSString *server = [NSString stringWithFormat:@"http://localhost:%d/", self.server.listeningPort];
-    NSString *extension = URL.pathExtension ? [NSString stringWithFormat:@".%@", URL.pathExtension] : JobsInternationalization(@"");
+    NSString *extension = URL.pathExtension ? [NSString stringWithFormat:@".%@", URL.pathExtension] : @"".tr;
     NSString *URLString = [NSString stringWithFormat:@"%@request%@?url=%@", server, extension, original];
     URL = [NSURL URLWithString:URLString];
     KTVHCLogHTTPServer(@"%p, Return URL\nURL : %@", self, URL);

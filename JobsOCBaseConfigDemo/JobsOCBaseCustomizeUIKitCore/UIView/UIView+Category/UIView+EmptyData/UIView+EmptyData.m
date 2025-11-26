@@ -77,7 +77,7 @@ JobsKey(_tipsTitle)
 -(NSString *)tipsTitle{
     NSString *TipsTitle = Jobs_getAssociatedObject(_tipsTitle);
     if (isNull(TipsTitle)) {
-        TipsTitle = JobsInternationalization(@"快来将我填满吧");
+        TipsTitle = @"快来将我填满吧".tr;
         Jobs_setAssociatedCOPY_NONATOMIC(_tipsTitle, TipsTitle)
     }return TipsTitle;
 }

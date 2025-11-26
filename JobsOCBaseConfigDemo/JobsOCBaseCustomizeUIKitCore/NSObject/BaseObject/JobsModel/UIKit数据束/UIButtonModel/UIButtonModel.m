@@ -99,7 +99,7 @@ RACProtocol_synthesize
 -(NSString *)title{
     if (!_title) {
 #ifdef DEBUG
-//        _title = JobsInternationalization(TextModelDataString);
+//        _title = TextModelDataString.tr;
         _title = @"";
 #endif
     }return _title;
@@ -108,7 +108,7 @@ RACProtocol_synthesize
 -(NSString *)subTitle{
     if(!_subTitle){
 #ifdef DEBUG
-//        _subTitle = JobsInternationalization(TextModelDataString2);
+//        _subTitle = TextModelDataString2.tr;
         _subTitle = @"";
 #endif
     }return _subTitle;

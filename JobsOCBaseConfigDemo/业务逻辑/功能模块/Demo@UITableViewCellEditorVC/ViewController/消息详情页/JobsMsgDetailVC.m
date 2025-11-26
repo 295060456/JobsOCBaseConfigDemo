@@ -33,9 +33,9 @@ Prop_strong()JobsMsgDataModel *msgDataModel;
         self.viewModel = (UIViewModel *)self.requestParams;
         self.msgDataModel = self.viewModel.data;
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"消息详情页");
+    self.viewModel.textModel.text = @"消息详情页".tr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -132,7 +132,7 @@ Prop_strong()JobsMsgDataModel *msgDataModel;
 -(UIButton *)drawBtn{
     if (!_drawBtn) {
         _drawBtn = UIButton.jobsInit()
-        .jobsResetBtnTitle(self.msgDataModel.isDraw ? JobsSpace.add(JobsInternationalization(@"已领取")).add(JobsSpace) : JobsSpace.add(JobsInternationalization(@"领取")).add(JobsSpace))
+        .jobsResetBtnTitle(self.msgDataModel.isDraw ? JobsSpace.add(@"已领取".tr).add(JobsSpace) : JobsSpace.add(@"领取".tr).add(JobsSpace))
         .jobsResetBtnTitleCor(HEXCOLOR(0xAE8330))
         .selectedStateTitleColorBy(HEXCOLOR(0x757575))
         .bgColorBy( HEXCOLOR(0xFFEABA))
@@ -188,7 +188,7 @@ Prop_strong()JobsMsgDataModel *msgDataModel;
             .jobsResetBtnBgImage(@"APPLY NOW".img)
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"删除"))
+            .jobsResetBtnTitle(@"删除".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 self.backBtnClickEvent(x);

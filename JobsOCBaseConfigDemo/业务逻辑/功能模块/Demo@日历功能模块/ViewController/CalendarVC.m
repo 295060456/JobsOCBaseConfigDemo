@@ -36,9 +36,9 @@ Prop_strong()FSCalendar *calendar;
     }
     self.setupNavigationBarHidden = YES;
     {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = @"返回".tr;
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = JobsInternationalization(@"日历功能");
+        self.viewModel.textModel.text = @"日历功能".tr;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -88,20 +88,20 @@ Prop_strong()FSCalendar *calendar;
     // 节假日字典，key为日期，value为节日名称
     NSDictionary<NSString *, NSString *> *holidays = @{
         // 中国节假日
-        @"01/01": JobsInternationalization(@"新年"),     // 元旦
-        @"22/01": JobsInternationalization(@"春节"),     // 春节 (农历日期需特殊处理)
-        @"05/04": JobsInternationalization(@"清明节"),   // 清明节
-        @"01/05": JobsInternationalization(@"劳动节"),   // 劳动节
-        @"04/06": JobsInternationalization(@"端午节"),   // 端午节 (农历日期需特殊处理)
-        @"01/10": JobsInternationalization(@"国庆节"),   // 国庆节
-        @"13/09": JobsInternationalization(@"中秋节"),   // 中秋节 (农历日期需特殊处理)
+        @"01/01": @"新年".tr,     // 元旦
+        @"22/01": @"春节".tr,     // 春节 (农历日期需特殊处理)
+        @"05/04": @"清明节".tr,   // 清明节
+        @"01/05": @"劳动节".tr,   // 劳动节
+        @"04/06": @"端午节".tr,   // 端午节 (农历日期需特殊处理)
+        @"01/10": @"国庆节".tr,   // 国庆节
+        @"13/09": @"中秋节".tr,   // 中秋节 (农历日期需特殊处理)
         // 菲律宾节假日
-        @"25/12": JobsInternationalization(@"圣诞节"),   // 圣诞节
-        @"30/11": JobsInternationalization(@"博尼法西奥日"), // 博尼法西奥日
-        @"12/06": JobsInternationalization(@"独立日"),   // 独立日
-        @"09/04": JobsInternationalization(@"勇士日"),   // 勇士日
-        @"01/11": JobsInternationalization(@"万灵节"),   // 万灵节
-        @"30/12": JobsInternationalization(@"黎刹日")    // 黎刹日
+        @"25/12": @"圣诞节".tr,   // 圣诞节
+        @"30/11": @"博尼法西奥日".tr, // 博尼法西奥日
+        @"12/06": @"独立日".tr,   // 独立日
+        @"09/04": @"勇士日".tr,   // 勇士日
+        @"01/11": @"万灵节".tr,   // 万灵节
+        @"30/12": @"黎刹日".tr    // 黎刹日
     };return holidays[dateString];// 根据日期字符串查找节假日名称
 }
 
@@ -183,9 +183,9 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
         _calendar.calendarHeaderView.backgroundColor = JobsLightGrayColor.colorWithAlphaComponentBy(.1f);
         _calendar.appearance.headerMinimumDissolvedAlpha = 1;
         _calendar.appearance.headerDateFormat = @"yyyy"
-            .add(JobsInternationalization(@"年"))
+            .add(@"年".tr)
             .add(@"MM")
-            .add(JobsInternationalization(@"月"));
+            .add(@"月".tr);
         _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
         _calendar.appearance.headerTitleFont = UIFontSystemFontOfSize(JobsWidth(20));
         _calendar.appearance.headerTitleColor = JobsBlackColor;

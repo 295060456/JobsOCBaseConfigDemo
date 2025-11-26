@@ -41,7 +41,7 @@ Prop_assign()HotSearchStyle hotSearchStyle;
         }
     }
     
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -473,7 +473,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(JobsInternationalization(@"此功能尚未开发"));
+                toast(@"此功能尚未开发".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -491,9 +491,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         _sectionTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
-            data.add(self.makeViewModelBy(JobsInternationalization(@"热门搜索")));
+            data.add(self.makeViewModelBy(@"热门搜索".tr));
             if (self.listViewData.count) {
-                data.add(self.makeViewModelBy(JobsInternationalization(@"搜索历史")));
+                data.add(self.makeViewModelBy(@"搜索历史".tr));
             }
         });
     }return _sectionTitleMutArr;
@@ -504,20 +504,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         _hotSearchMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
-            data.add(self.makeViewModelBy(JobsInternationalization(@"Java")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"Python")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"Objective-C")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"Swift")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"C")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"C++")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"C#")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"PHP")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"Perl")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"Go")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"JavaScript")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"Ruby")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"R")))
-                .add(self.makeViewModelBy(JobsInternationalization(@"MATLAB")));
+            data.add(self.makeViewModelBy(@"Java".tr))
+                .add(self.makeViewModelBy(@"Python".tr))
+                .add(self.makeViewModelBy(@"Objective-C".tr))
+                .add(self.makeViewModelBy(@"Swift".tr))
+                .add(self.makeViewModelBy(@"C".tr))
+                .add(self.makeViewModelBy(@"C++".tr))
+                .add(self.makeViewModelBy(@"C#".tr))
+                .add(self.makeViewModelBy(@"PHP".tr))
+                .add(self.makeViewModelBy(@"Perl".tr))
+                .add(self.makeViewModelBy(@"Go".tr))
+                .add(self.makeViewModelBy(@"JavaScript".tr))
+                .add(self.makeViewModelBy(@"Ruby".tr))
+                .add(self.makeViewModelBy(@"R".tr))
+                .add(self.makeViewModelBy(@"MATLAB".tr));
         });
     }return _hotSearchMutArr;
 }

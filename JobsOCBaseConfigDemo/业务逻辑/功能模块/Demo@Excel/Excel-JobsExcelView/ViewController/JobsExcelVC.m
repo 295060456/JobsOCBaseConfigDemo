@@ -37,9 +37,9 @@ Prop_strong()JobsExcelView *excelView;
         }
     }
     
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"相关功能列表");
+    self.viewModel.textModel.text = @"相关功能列表".tr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
@@ -97,12 +97,12 @@ Prop_strong()JobsExcelView *excelView;
                 data.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
                 data.itemW = JobsWidth(80);
                 data.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable arr) {
-                    arr.add(JobsInternationalization(@"Order Time"));
-                    arr.add(JobsInternationalization(@"Order No."));
-                    arr.add(JobsInternationalization(@"Transaction Type"));
-                    arr.add(JobsInternationalization(@"Amount"));
-                    arr.add(JobsInternationalization(@"Method"));
-                    arr.add(JobsInternationalization(@"Status"));
+                    arr.add(@"Order Time".tr);
+                    arr.add(@"Order No.".tr);
+                    arr.add(@"Transaction Type".tr);
+                    arr.add(@"Amount".tr);
+                    arr.add(@"Method".tr);
+                    arr.add(@"Status".tr);
                 });
                 data.configureDataBy(nil);
             }));

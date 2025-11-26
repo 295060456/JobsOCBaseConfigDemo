@@ -59,7 +59,7 @@
 ////            @jobs_strongify(self)
 //            buttonModel.normalImage = @"全局返回箭头".img;
 //            buttonModel.highlightImage = @"全局返回箭头".img
-//            buttonModel.title = JobsInternationalization(@"");
+//            buttonModel.title = @"".tr;
 //            buttonModel.titleFont = bayonRegular(14);
 //            buttonModel.titleCor = JobsCor(@"#8A93A1");
 //            buttonModel.imagePlacement = NSDirectionalRectEdgeLeading;

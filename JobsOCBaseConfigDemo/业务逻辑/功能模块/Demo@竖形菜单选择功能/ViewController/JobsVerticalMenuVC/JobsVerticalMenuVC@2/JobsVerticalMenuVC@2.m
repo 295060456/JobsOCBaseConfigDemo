@@ -41,7 +41,7 @@ Prop_assign()NSUInteger thisIndex;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -161,7 +161,7 @@ Prop_assign()NSUInteger thisIndex;
     return jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
         @jobs_strongify(self)
         data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-            data1.textModel.text = JobsInternationalization(@"收藏");
+            data1.textModel.text = @"收藏".tr;
         }))
         .addBy(self.makePopViewDataMutArr);
     });;
@@ -170,22 +170,22 @@ Prop_assign()NSUInteger thisIndex;
 -(NSMutableArray<UIViewModel *> *)makePopViewDataMutArr{
    return jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIViewModel *>* _Nullable data) {
        data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-           data1.textModel.text = JobsInternationalization(@"收藏");
+           data1.textModel.text = @"收藏".tr;
        }))
        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-           data1.textModel.text = JobsInternationalization(@"真人");
+           data1.textModel.text = @"真人".tr;
        }))
        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-           data1.textModel.text = JobsInternationalization(@"体育");
+           data1.textModel.text = @"体育".tr;
        }))
        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-           data1.textModel.text = JobsInternationalization(@"电子");
+           data1.textModel.text = @"电子".tr;
        }))
        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-           data1.textModel.text = JobsInternationalization(@"棋牌");
+           data1.textModel.text = @"棋牌".tr;
        }))
        .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-           data1.textModel.text = JobsInternationalization(@"彩票");
+           data1.textModel.text = @"彩票".tr;
        }));
    });
 }
@@ -260,7 +260,7 @@ Prop_assign()NSUInteger thisIndex;
 //            @jobs_strongify(self)
             model.idField = toStringByInt(iflag);
             model.pid = @"0";
-            model.name = JobsInternationalization(@"一级目录").add(toStringByInt(iflag));
+            model.name = @"一级目录".tr.add(toStringByInt(iflag));
             model.textModel.text = @"";
         });
     };
@@ -273,9 +273,9 @@ Prop_assign()NSUInteger thisIndex;
             @jobs_strongify(self)
             model.idField = toStringByInt(iFlag);
             model.pid = toStringByInt(iFlag);
-            model.name = JobsInternationalization(@"随机").add(JobsDash).add(toStringByInt(iFlag));
+            model.name = @"随机".tr.add(JobsDash).add(toStringByInt(iFlag));
             model.textModel.text = @"1234";
-            model.subTextModel.text = toStringByInt(iFlag).add(JobsInternationalization(@"球桌球"));
+            model.subTextModel.text = toStringByInt(iFlag).add(@"球桌球".tr);
             model.bgImage = self.cellDataMutArr[iFlag].backgroundImage;
             model.title = self.cellTitleMutArr[data1];
             JobsLog(@"%@",model.bgImage);
@@ -295,7 +295,7 @@ Prop_assign()NSUInteger thisIndex;
         return jobsMakeGoodsClassModel(^(GoodsClassModel * _Nullable model) {
             model.idField = toStringByInt(iflag);
             model.pid = toStringByInt(iflag);
-            model.name = JobsInternationalization(@"三级目录").add(toStringByInt(iflag));
+            model.name = @"三级目录".tr.add(toStringByInt(iflag));
         });
     };
 }
@@ -367,7 +367,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         }
         
         GoodsClassModel *rightModel = self.rightDataArray.objectAt(indexPath.section);
-        label.text = rightModel.name ? : JobsInternationalization(@"");
+        label.text = rightModel.name ? : @"".tr;
         
         return headerView;
     }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)){
@@ -501,11 +501,11 @@ referenceSizeForFooterInSection:(NSInteger)section{
             .jobsResetBtnBgImage(@"编辑".img)
             .jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"编辑"))
+            .jobsResetBtnTitle(@"编辑".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-    //            toast(JobsInternationalization(@"编辑"));
+    //            toast(@"编辑".tr);
                 self.popupParameter.dragEnable = YES;
                 self.popupParameter.disuseBackgroundTouchHide = NO;
                 [self.popupView tf_showSlide:MainWindow
@@ -556,7 +556,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                     self.titleMutArr = dataMutArr;
                 }else if ([data isKindOfClass:UIButton.class]){
                     UIButton *btn = (UIButton *)data;
-                    if (btn.titleForNormalState.isEqualToString(JobsInternationalization(@"恢复默认"))) {
+                    if (btn.titleForNormalState.isEqualToString(@"恢复默认".tr)) {
                         self.titleMutArr = self.makeTitleMutArr;
                     }
                 }else{}

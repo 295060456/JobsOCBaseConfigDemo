@@ -44,7 +44,7 @@ Prop_assign()ZLUnlockType unlockType;
     JobsRemoveNotification(self);
     [self.view endEditing:YES];
     if (JobsDebug) {
-        self.jobsToastMsg(JobsInternationalization(@"成功销毁了控制器:").add(NSStringFromClass(self.class)));
+        self.jobsToastMsg(@"成功销毁了控制器:".tr.add(NSStringFromClass(self.class)));
         JobsLog(@"%@",JobsLocalFunc);
         PrintRetainCount(self);
     }
@@ -97,7 +97,7 @@ Prop_assign()ZLUnlockType unlockType;
     if (self.lastGesturePsw.length == 0) {
         
         if (gesturesPassword.length < 4) {
-            self.statusLabel.text = JobsInternationalization(@"至少连接四个点，请重新输入");
+            self.statusLabel.text = @"至少连接四个点，请重新输入".tr;
             [self shakeAnimationForView:self.statusLabel];
             return;
         }
@@ -108,7 +108,7 @@ Prop_assign()ZLUnlockType unlockType;
         
         self.lastGesturePsw = gesturesPassword;
         [self.gestureLockIndicator setGesturePassword:gesturesPassword];
-        self.statusLabel.text = JobsInternationalization(@"请再次绘制手势密码");
+        self.statusLabel.text = @"请再次绘制手势密码".tr;
         [self.gestureLockView clearLockView];
         return;
     }
@@ -120,7 +120,7 @@ Prop_assign()ZLUnlockType unlockType;
             [ZLGestureLockViewController addGesturesPassword:gesturesPassword];
         }];
     }else {
-        self.statusLabel.text = JobsInternationalization(@"与上一次绘制不一致，请重新绘制");
+        self.statusLabel.text = @"与上一次绘制不一致，请重新绘制".tr;
         [self shakeAnimationForView:self.statusLabel];
         [self.gestureLockView clearLockView];
     }
@@ -135,17 +135,17 @@ Prop_assign()ZLUnlockType unlockType;
         }];
     } else {
         if (errorCount - 1 == 0) { // 你已经输错五次了！ 退出重新登陆！
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:JobsInternationalization(@"手势密码已失效")
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"手势密码已失效".tr
                                                                 message:@"请重新登陆"
                                                                delegate:self
                                                       cancelButtonTitle:nil
-                                                      otherButtonTitles:JobsInternationalization(@"重新登陆"), nil];
+                                                      otherButtonTitles:@"重新登陆".tr, nil];
             [alertView show];
             errorCount = 5;
             return;
         }
         
-        self.statusLabel.text = [NSString stringWithFormat:JobsInternationalization(@"密码错误，还可以再输入%ld次"),--errorCount];
+        self.statusLabel.text = [NSString stringWithFormat:@"密码错误，还可以再输入%ld次".tr,--errorCount];
         [self shakeAnimationForView:self.statusLabel];
         [self.gestureLockView clearLockView];
     }
@@ -229,7 +229,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                      JobsWidth(100),
                                      JobsWidth(20));
             label.textAlignment = NSTextAlignmentCenter;
-            label.text = JobsInternationalization(@"smile丽");
+            label.text = @"smile丽".tr;
             label.font = UIFontWeightBoldSize(JobsWidth(12));
             label.textColor = JobsOrangeColor;
             self.view.addSubview(label);
@@ -243,7 +243,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         _statusLabel = self.view.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.byTextAlignment(NSTextAlignmentCenter)
-                .byText(JobsInternationalization(@"请绘制手势密码"))
+                .byText(@"请绘制手势密码".tr)
                 .byFont(UIFontSystemFontOfSize(JobsWidth(12)))
                 .byTextCor(JobsRedColor)
                 .byFrame(CGRectMake((self.view.frame.size.width - JobsWidth(200)) * 0.5,
@@ -279,7 +279,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (!_otherAcountBtn) {
         @jobs_weakify(self)
         _otherAcountBtn = self.view.addSubview(UIButton.jobsInit()
-                                               .jobsResetBtnTitle(JobsInternationalization(@"其他账户"))
+                                               .jobsResetBtnTitle(@"其他账户".tr)
                                                .jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)])
                                                .jobsResetBtnTitleCor(RGBA_COLOR(102, 102, 102, 1))
                                                .onClickBy(^(UIButton *x){
@@ -302,7 +302,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (!_resetPswBtn) {
         @jobs_weakify(self)
         _resetPswBtn = self.view.addSubview(UIButton.jobsInit()
-                                            .jobsResetBtnTitle(JobsInternationalization(@"重新绘制"))
+                                            .jobsResetBtnTitle(@"重新绘制".tr)
                                             .jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)])
                                             .jobsResetBtnTitleCor(RGBA_COLOR(102, 102, 102, 1))
                                             .onClickBy(^(UIButton *x){
@@ -310,9 +310,9 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
                                                 x.selected = !x.selected;
                                                 if (self.objBlock) self.objBlock(x);
                                                 self.lastGesturePsw = nil;
-                                                self.statusLabel.text = JobsInternationalization(@"请绘制手势密码");
+                                                self.statusLabel.text = @"请绘制手势密码".tr;
                                                 self.resetPswBtn.hidden = YES;
-                                                [self.gestureLockIndicator setGesturePassword:JobsInternationalization(@"")];
+                                                [self.gestureLockIndicator setGesturePassword:@"".tr];
                                              }).onLongPressGestureBy(^(id data){
                                                  JobsLog(@"");
                                              })
@@ -328,7 +328,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (!_forgetPswBtn) {
         @jobs_weakify(self)
         _forgetPswBtn = self.view.addSubview(UIButton.jobsInit()
-                                             .jobsResetBtnTitle(JobsInternationalization(@"重新绘制"))
+                                             .jobsResetBtnTitle(@"重新绘制".tr)
                                              .jobsResetBtnTitleFont([UIFont systemFontOfSize:JobsWidth(12)])
                                              .jobsResetBtnTitleCor(RGBA_COLOR(102, 102, 102, 1))
                                              .onClickBy(^(UIButton *x){

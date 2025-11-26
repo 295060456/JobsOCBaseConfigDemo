@@ -29,9 +29,9 @@ Prop_strong()MSMineView2 *view2;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-//    self.viewModel.textModel.text = JobsInternationalization(@"消息详情页");
+//    self.viewModel.textModel.text = @"消息详情页".tr;
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
@@ -96,16 +96,16 @@ Prop_strong()MSMineView2 *view2;
     __block CGSize tagSize = CGSizeZero;
     // 遍历标签名称并创建标签
     for (NSString *tagName in jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-        arr.add(JobsInternationalization(@"标签1"))
-        .add(JobsInternationalization(@"标签2"))
-        .add(JobsInternationalization(@"标签3"))
-        .add(JobsInternationalization(@"标签4"))
-        .add(JobsInternationalization(@"标签5"))
-        .add(JobsInternationalization(@"标签6"))
-        .add(JobsInternationalization(@"标签7"))
-        .add(JobsInternationalization(@"标签8"))
-        .add(JobsInternationalization(@"标签9"))
-        .add(JobsInternationalization(@"标签10"));
+        arr.add(@"标签1".tr)
+        .add(@"标签2".tr)
+        .add(@"标签3".tr)
+        .add(@"标签4".tr)
+        .add(@"标签5".tr)
+        .add(@"标签6".tr)
+        .add(@"标签7".tr)
+        .add(@"标签8".tr)
+        .add(@"标签9".tr)
+        .add(@"标签10".tr);
     })) {
         self.view.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             label.text = tagName;

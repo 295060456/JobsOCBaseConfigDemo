@@ -41,19 +41,19 @@
     @jobs_weakify(self)
     return ^__kindof UIAlertController *_Nullable(NSString *_Nullable string){
         UIAlertController *alertVC = JobsMakeAlertControllerBy(jobsMakeAlertModel(^(JobsAlertModel * _Nullable data) {
-            data.alertControllerTitle = JobsInternationalization(@"Support");
+            data.alertControllerTitle = @"Support".tr;
             data.message = string;
             data.preferredStyle = UIAlertControllerStyleAlert;
         }));
         alertVC.add(JobsMakeAlertActionBy(jobsMakeAlertModel(^(JobsAlertModel *_Nullable data) {
-            data.alertActionTitle = JobsInternationalization(@"Go to Chat");
+            data.alertActionTitle = @"Go to Chat".tr;
             data.alertActionStyle = UIAlertActionStyleDefault;
             data.alertActionBlock = ^(__kindof UIAlertAction * _Nullable action) {
                 if (!LiveChat.isChatPresented) [LiveChat presentChatWithAnimated:YES completion:nil];
             };
         })));
         alertVC.add(JobsMakeAlertActionBy(jobsMakeAlertModel(^(JobsAlertModel *_Nullable data) {
-            data.cancelAlertActionTitle = JobsInternationalization(@"Cancel");
+            data.cancelAlertActionTitle = @"Cancel".tr;
             data.alertActionStyle = UIAlertActionStyleCancel;
             data.alertActionBlock = ^(__kindof UIAlertAction *_Nullable action) {
                 @jobs_strongify(self)

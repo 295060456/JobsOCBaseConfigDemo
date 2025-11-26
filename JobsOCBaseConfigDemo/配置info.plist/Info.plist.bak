@@ -248,7 +248,7 @@
         <key>NSNetworkLogsEnabled</key>
         <true/>
         <!--❤️各种系统权限索取❤️-->
-        <!-- 如果要做多语言，这里必须是静态字符串。即，JobsInternationalization映射的桥接字符串 -->
+        <!-- 如果要做多语言，这里必须是静态字符串。即，.tr 映射的桥接字符串 -->
         <key>NSFaceIDUsageDescription</key>
         <string>$(NSFaceIDUsageDescription)</string><!-- App需要您的同意，才能访问您的面容识别功能，用于安全验证 -->
         <key>NSAppleMusicUsageDescription</key>

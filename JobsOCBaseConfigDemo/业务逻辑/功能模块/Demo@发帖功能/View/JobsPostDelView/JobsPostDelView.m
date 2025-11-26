@@ -76,7 +76,7 @@ static dispatch_once_t static_postDelViewOnceToken;
         self.backgroundColor = JobsRedColor;
         self.imageView.highlighted = model;
         self.imageView.image = model.boolValue ? @"hx_photo_edit_trash_open".img : @"hx_photo_edit_trash_close".img;
-        self.titleLab.text = model.boolValue ? JobsInternationalization(@"松手即可删除") : JobsInternationalization(@"拖动到此处删除");
+        self.titleLab.text = model.boolValue ? @"松手即可删除".tr : @"拖动到此处删除".tr;
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -117,7 +117,7 @@ static dispatch_once_t static_postDelViewOnceToken;
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.backgroundColor = JobsRedColor;
-            label.text = JobsInternationalization(@"拖动到此处删除");
+            label.text = @"拖动到此处删除".tr;
             label.textColor = JobsWhiteColor;
             label.textAlignment = NSTextAlignmentCenter;
             [label sizeToFit];

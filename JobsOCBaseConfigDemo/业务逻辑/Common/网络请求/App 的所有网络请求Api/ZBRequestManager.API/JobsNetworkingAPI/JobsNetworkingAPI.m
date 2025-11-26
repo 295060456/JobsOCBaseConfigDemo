@@ -92,32 +92,32 @@ uploadVideosParamArr:(NSArray *_Nullable)uploadVideosParamArr
             JobsLog(@"code = %lu",(unsigned long)responseModel.code);
             switch (responseModel.code) {
                 case HTTPResponseCodeServeError:{// 服务器异常
-                    self.jobsToastErrMsg(JobsInternationalization(@"服务器异常"));
+                    self.jobsToastErrMsg(@"服务器异常".tr);
                 }break;
                 case HTTPResponseCodeNoToken:{// 令牌不能为空
-                    self.jobsToastErrMsg(JobsInternationalization(@"令牌不能为空"));
+                    self.jobsToastErrMsg(@"令牌不能为空".tr);
                 }break;
                 case HTTPResponseCodeLoginFailed:{// 登录失败：账密错误
-                    self.jobsToastErrMsg(JobsInternationalization(@"登录失败：账密错误"));
+                    self.jobsToastErrMsg(@"登录失败：账密错误".tr);
                 }break;
                 case HTTPResponseCodeTokenExpire:{// 登录已过期，请重新登录
                     JobsPostNotification(退出登录成功,@(NO));
-                    self.jobsToastErrMsg(JobsInternationalization(@"登录已过期，请重新登录"));
+                    self.jobsToastErrMsg(@"登录已过期，请重新登录".tr);
                 }break;
                 case HTTPResponseCodeAuthorizationFailure:{// 授权失败
-                    self.jobsToastErrMsg(JobsInternationalization(@"授权失败"));
+                    self.jobsToastErrMsg(@"授权失败".tr);
                 }break;
                 case HTTPResponseCodeLeakTime:{// 限定时间内超过请求次数
-                    self.jobsToastErrMsg(JobsInternationalization(@"限定时间内超过请求次数"));
+                    self.jobsToastErrMsg(@"限定时间内超过请求次数".tr);
                 }break;
                 case HTTPResponseCodeRiskOperation:{// 风险操作
-                    self.jobsToastErrMsg(JobsInternationalization(@"风险操作"));
+                    self.jobsToastErrMsg(@"风险操作".tr);
                 }break;
                 case HTTPResponseCodeNoSettingTransactionPassword:{// 未设置交易密码
-                    self.jobsToastErrMsg(JobsInternationalization(@"未设置交易密码"));
+                    self.jobsToastErrMsg(@"未设置交易密码".tr);
                 }break;
                 case HTTPResponseCodeOffline:{// 账号已在其他设备登录
-                    self.jobsToastErrMsg(JobsInternationalization(@"账号已在其他设备登录t"));
+                    self.jobsToastErrMsg(@"账号已在其他设备登录t".tr);
                 }break;
                     
                 default:{

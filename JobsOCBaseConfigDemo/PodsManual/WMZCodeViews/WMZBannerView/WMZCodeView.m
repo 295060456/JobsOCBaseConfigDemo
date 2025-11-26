@@ -89,7 +89,7 @@ static dispatch_once_t static_codeViewOnceToken;
 /// CodeTypeImage
 - (void)CodeTypeImageView{
     [self addSubview:({
-        self.tipLabel.text = JobsInternationalization(@"拖动下方滑块完成拼图");
+        self.tipLabel.text = @"拖动下方滑块完成拼图".tr;
         self.tipLabel.frame = CGRectMake(WMZmargin,
                                          WMZmargin,
                                          self.width - WMZmargin * 2,
@@ -263,7 +263,7 @@ static dispatch_once_t static_codeViewOnceToken;
         return seed ? [str1 compare:str2] : [str2 compare:str1];
     }];
     
-    NSMutableString *string = [NSMutableString.alloc initWithString:JobsInternationalization(@"")];
+    NSMutableString *string = [NSMutableString.alloc initWithString:@"".tr];
     for (int i = 0; i< arr.count; i++) {
         [string appendString:arr[i]];
     }
@@ -339,7 +339,7 @@ static dispatch_once_t static_codeViewOnceToken;
         dispatch_resume(timer);
     }
     self.tapCount += 1;
-    self.selectChinese = [NSString stringWithFormat:@"%@%@",self.selectChinese?:JobsInternationalization(@""),btn.titleLabel.text];
+    self.selectChinese = [NSString stringWithFormat:@"%@%@",self.selectChinese?:@"".tr,btn.titleLabel.text];
     btn.backgroundColor = JobsRedColor;
     if (self.tapCount == self.factChinese.length) {
         if (timer) {
@@ -401,7 +401,7 @@ static dispatch_once_t static_codeViewOnceToken;
 }
 /// 恢复默认数据（CodeTypeLabel,CodeTypeNineLabel ）
 -(void)defaultBtnAndData{
-    self.selectChinese = JobsInternationalization(@"");
+    self.selectChinese = @"".tr;
     self.tapCount = 0;
     for (int i = 0; i < self.btnArr.count; i++) {
         UIButton *btn = self.btnArr[i];
@@ -623,7 +623,7 @@ NS_INLINE UIBezierPath *getCodePath(void){
         _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             label.center = self.center;
-            label.text = JobsInternationalization(@"按住滑块拖动到最右边");
+            label.text = @"按住滑块拖动到最右边".tr;
             label.font = [UIFont systemFontOfSize:WMZfont];
             label.textAlignment = NSTextAlignmentCenter;
             label.textColor = RGBA_COLOR(193, 193, 193, 1);

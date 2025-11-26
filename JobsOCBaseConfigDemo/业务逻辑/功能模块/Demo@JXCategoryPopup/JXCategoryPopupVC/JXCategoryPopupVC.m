@@ -37,7 +37,7 @@ Prop_strong()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
         self.viewModel = (UIViewModel *)self.requestParams;
         self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     }
-//    self.viewModel.textModel.text = JobsInternationalization(@"JXCategoryPopupVC");
+//    self.viewModel.textModel.text = @"JXCategoryPopupVC".tr;
     self.bgImage = nil;
 }
 
@@ -195,12 +195,12 @@ ratio:(CGFloat)ratio {
 -(NSMutableArray<NSString *> *)titleMutArr{
     if (!_titleMutArr) {
         _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"全部游戏"));
-            data.add(JobsInternationalization(@"真人"));
-            data.add(JobsInternationalization(@"体育"));
-            data.add(JobsInternationalization(@"电子"));
-            data.add(JobsInternationalization(@"棋牌"));
-            data.add(JobsInternationalization(@"彩票"));
+            data.add(@"全部游戏".tr);
+            data.add(@"真人".tr);
+            data.add(@"体育".tr);
+            data.add(@"电子".tr);
+            data.add(@"棋牌".tr);
+            data.add(@"彩票".tr);
         });
     }return _titleMutArr;
 }
@@ -227,12 +227,12 @@ ratio:(CGFloat)ratio {
             .jobsResetBtnImage(@"筛选箭头（向下）".img)
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(fontName(@"NotoSans-Bold", 12))
-            .jobsResetBtnTitle(JobsInternationalization(@"篩選"))
+            .jobsResetBtnTitle(@"篩選".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
                 x.selected = !x.selected;
-                self.jobsToastMsg(JobsInternationalization(@"篩選"));
+                self.jobsToastMsg(@"篩選".tr);
                 [x changeAction:x.selected];
                 self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
                 JobsLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
@@ -264,13 +264,13 @@ ratio:(CGFloat)ratio {
             .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(fontName(@"NotoSans-Bold", 12))
-            .jobsResetBtnTitle(JobsInternationalization(@"自定义"))
+            .jobsResetBtnTitle(@"自定义".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
                 x.selected = !x.selected;
                 x.jobsResetBtnTitleCor(x.selected ? HEXCOLOR(0xAE8330) : HEXCOLOR(0x3D4A58));
-                self.jobsToastMsg(JobsInternationalization(@"自定义"));
+                self.jobsToastMsg(@"自定义".tr);
                 self.currentIndex = self.listContainerView.valueForKey(@"currentIndex");
                 JobsLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
                 self.vc = (JXCategoryPopupSubVC *)self.childVCMutArr[self.currentIndex.intValue];

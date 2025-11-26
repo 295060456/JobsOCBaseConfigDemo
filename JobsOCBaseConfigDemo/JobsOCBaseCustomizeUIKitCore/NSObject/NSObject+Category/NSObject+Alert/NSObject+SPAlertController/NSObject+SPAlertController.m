@@ -75,7 +75,7 @@
                                                                   animationType:config.animationType];
         }break;
         default:
-            self.jobsToastErrMsg(JobsInternationalization(@"参数配置错误，请检查"));
+            self.jobsToastErrMsg(@"参数配置错误，请检查".tr);
             return nil;
             break;
     }
@@ -116,7 +116,7 @@
             mutArr.add(action);
         }if (alertVCBlock) alertVCBlock(vc,mutArr);
     }else{
-        self.jobsToastErrMsg(JobsInternationalization(@"参数配置错误，请检查"));
+        self.jobsToastErrMsg(@"参数配置错误，请检查".tr);
         return nil;
     }
     

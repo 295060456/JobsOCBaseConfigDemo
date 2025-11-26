@@ -86,9 +86,9 @@
                         }));
                     }];
                 }
-            }else self.jobsToastMsg(JobsInternationalization(@"授权失败,无法使用相机.请在设置-隐私-相机中允许访问相机"));
+            }else self.jobsToastMsg(@"授权失败,无法使用相机.请在设置-隐私-相机中允许访问相机".tr);
         }];
-    }else self.jobsToastMsg(JobsInternationalization(@"此设备不支持相机!"));
+    }else self.jobsToastMsg(@"此设备不支持相机!".tr);
 }
 /// 完全意义上的调用系统的相机拍照功能
 -(jobsByVoidBlock _Nonnull)invokeSysCamera{
@@ -104,7 +104,7 @@
                 imagePickerController.delegate = self;
                 imagePickerController.allowsEditing = YES; /// 如果需要用户可以编辑照片，设为YES
             }));
-        } else self.jobsToastMsg(JobsInternationalization(@"此设备不支持相机!"));
+        } else self.jobsToastMsg(@"此设备不支持相机!".tr);
     };
 }
 #pragma mark —— UIImagePickerControllerDelegate

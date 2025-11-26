@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_END
      if (!_配置选择区号并输入手机号) {
          _配置选择区号并输入手机号 = JobsAppDoorInputViewBaseStyleModel.new;
          _配置选择区号并输入手机号.leftViewIMG = @"小手机图标".img;
-         _配置选择区号并输入手机号.placeHolderStr = JobsInternationalization(@"请输入您的手机号");
+         _配置选择区号并输入手机号.placeHolderStr = @"请输入您的手机号".tr;
  //        配置选择区号并输入手机号.placeholderColor = HEXCOLOR(0xC4C4C4);
          _配置选择区号并输入手机号.placeholderFont = UIFontWeightRegularSize(JobsWidth(16));
          _配置选择区号并输入手机号.isShowDelBtn = YES;

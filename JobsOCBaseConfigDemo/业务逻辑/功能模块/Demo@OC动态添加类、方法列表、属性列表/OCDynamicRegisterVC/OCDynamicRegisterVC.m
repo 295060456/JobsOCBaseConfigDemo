@@ -36,7 +36,7 @@
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -161,7 +161,7 @@ NSString *jobsName(){
 /// 动态创建类并添加：成员变量、属性、方法、协议
 -(Class)createClass:(NSString *)className {
     if (!NSClassFromString(className)) {
-        /// ❤️添加一个集成NSObject的类  类名是className；注意：调用的c语言的方法  所以不要使用JobsInternationalization(@"")表示字符串 应该使用""❤️
+        /// ❤️添加一个集成NSObject的类  类名是className；注意：调用的c语言的方法  所以不要使用@"".tr表示字符串 应该使用""❤️
         /// 我们如果使用objc_allocateClassPair函数来创建一个类对象失败了，那么objc_allocateClassPair就会返回Nil。如果所要创建的类已经存在了，那么就会返回Nil.
         newClass = objc_allocateClassPair(OCDynamic.class,/// 第一个参数是父类对象，如果传nil那么新创建的类就是跟NSObject同等级别的根类对象;
                                           className.UTF8String,/// 第二个参数是本类类名;

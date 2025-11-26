@@ -240,7 +240,7 @@ Prop_strong()UIImageView *coverImageView;
     self.totalTimeLabel.text         = @"00:00";
     self.backgroundColor             = [UIColor clearColor];
     self.playOrPauseBtn.selected     = YES;
-    self.titleLabel.text             = JobsInternationalization(@"");
+    self.titleLabel.text             = @"".tr;
 }
 
 - (void)showControlView {

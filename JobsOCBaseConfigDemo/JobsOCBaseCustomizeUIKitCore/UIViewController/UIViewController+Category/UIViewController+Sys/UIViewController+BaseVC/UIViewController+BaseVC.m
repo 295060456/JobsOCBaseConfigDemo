@@ -22,7 +22,7 @@
 
 -(void)showUserInfo{
     if (JobsDebug) {
-        UIViewModel *viewModel = [self configViewModelWithTitle:JobsInternationalization(@"用户信息展示(开发测试专用)") subTitle:nil];
+        UIViewModel *viewModel = [self configViewModelWithTitle:@"用户信息展示(开发测试专用)".tr subTitle:nil];
         viewModel.cls = JobsShowObjInfoVC.class;
         viewModel.requestParams = self.readUserInfo;
         [self forceComingToPushVC:viewModel.cls.new

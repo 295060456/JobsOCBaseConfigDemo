@@ -24,7 +24,7 @@
         @jobs_weakify(self)
         _label = jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"输入的内容");
+            label.text = @"输入的内容".tr;
             label.font = UIFontWeightBoldSize(20);
             label.textColor = JobsBlueColor;
             label.frame = jobsMakeFrameByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {

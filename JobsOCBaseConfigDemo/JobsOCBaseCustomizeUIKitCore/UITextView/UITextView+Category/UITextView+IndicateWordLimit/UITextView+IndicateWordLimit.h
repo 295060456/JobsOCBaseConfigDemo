@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_END
      //textField.text 有值 && string无值 ————> 删除操作
      if (isValue(textView.text) && isNull(text)) {
          if (textView.text.length == 1) {
-             resString = JobsInternationalization(@"");
+             resString = @"".tr;
          }else{
              resString = [textView.text substringToIndex:(textView.text.length - 1)];//去掉最后一个
          }

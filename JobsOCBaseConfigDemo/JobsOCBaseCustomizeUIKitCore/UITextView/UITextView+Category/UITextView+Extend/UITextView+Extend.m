@@ -244,7 +244,7 @@
          获取需要操作的字符，最后2位，如果是emoji则删除2个字符，否则删除一个字符
          截取 textView.text 最后2位
          */
-        NSString *res = JobsInternationalization(JobsEmpty);
+        NSString *res = JobsEmpty.tr;
         JobsLog(@"MMM = %@",self.text);
         if (self.text.length >= 2) {
             // 这里的emoji判断有点问题，不识别新版本系统的emoji，以前的旧的emoji是可以识别的，我已经给apple提了单让他们给我们写一个api
@@ -259,7 +259,7 @@
             res = [self.text substringWithRange:NSMakeRange(0, self.text.length - 1)];
             JobsLog(@"res = %@",res);
         }else{
-            res = JobsInternationalization(JobsEmpty);
+            res = JobsEmpty.tr;
             JobsLog(@"res = %@",res);
         }
         self.currentWordNum = res.length;

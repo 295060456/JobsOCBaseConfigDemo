@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_END
                               toVC:popUpVC
                        comingStyle:ComingStyle_PUSH
                  presentationStyle:UIModalPresentationAutomatic
-                     requestParams:JobsInternationalization(@"")
+                     requestParams:@"".tr
                            success:^(id data) {}
                           animated:YES];
 

@@ -29,9 +29,9 @@ Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"幸运轮盘");
+    self.viewModel.textModel.text = @"幸运轮盘".tr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
@@ -93,7 +93,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataMutArr[indexPath.row].cls) {
         self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.row].cls.new,
                                            self.dataMutArr[indexPath.row]);
-    }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
+    }else self.jobsToastMsg(@"尚未接入此功能".tr);
 }
 /// 编辑模式下，点击取消左边已选中的cell的按钮
 - (void)tableView:(UITableView *)tableView
@@ -218,7 +218,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
                 }))
                 .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                    data.title = JobsInternationalization(@"NO MESSAGES FOUND");
+                    data.title = @"NO MESSAGES FOUND".tr;
                     data.titleCor = JobsWhiteColor;
                     data.titleFont = bayonRegular(JobsWidth(30));
                     data.normalImage = @"小狮子".img;
@@ -297,13 +297,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_dataMutArr) {
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"方形转盘抽奖");
-                model.subTitle = JobsInternationalization(@"中间有抽奖按钮");
+                model.title = @"方形转盘抽奖".tr;
+                model.subTitle = @"中间有抽奖按钮".tr;
                 model.cls = LuckyDiskVC.class;
             })))
             .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"圆形抽奖轮盘");
-                model.subTitle = JobsInternationalization(@"中间有抽奖按钮");
+                model.title = @"圆形抽奖轮盘".tr;
+                model.subTitle = @"中间有抽奖按钮".tr;
                 model.cls = LuckyRollVC.class;
             })));
         });

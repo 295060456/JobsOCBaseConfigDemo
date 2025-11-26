@@ -191,7 +191,7 @@ pod 'PPBadgeView' # https://github.com/jkpang/PPBadgeView iOS自定义Badge组�
             self.isOpenPPBadge = open;
             if (open) {
                 for (UITabBarItem *item in self.tabBar.items) {
-                    if ([item.title isEqualToString:JobsInternationalization(@"首页")]) {
+                    if ([item.title isEqualToString:@"首页".tr]) {
                         [item pp_addBadgeWithText:@"919+"];
 #pragma mark —— 动画
                         item.badgeView.图片从小放大();
@@ -408,7 +408,7 @@ Prop_assign()BOOL isNeedjump;/// 跳开处理，即不切控制器，而是做�
   //            .jobsResetBtnBgImage(@"APPLY NOW".img)
   //            .jobsResetBtnTitleCor(JobsWhiteColor)
   //            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-  //            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+  //            .jobsResetBtnTitle(@"APPLY NOW".tr)
               .onClickBy(^(UIButton *x){
                   @jobs_strongify(self)
                   x.selected = !x.selected;

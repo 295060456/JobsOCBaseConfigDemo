@@ -186,7 +186,7 @@ AppToolsProtocol_synthesize
             textView.returnKeyType = UIReturnKeyDefault;
             textView.keyboardAppearance = UIKeyboardAppearanceDefault;
             textView.keyboardType = UIKeyboardTypeNumberPad;
-            textView.placeholder = JobsInternationalization(@"请输入充值金额");
+            textView.placeholder = @"请输入充值金额".tr;
             textView.font = UIFontWeightMediumSize(18);
             textView.placeholderFont = textView.font;
             textView.placeholderColor = JobsCor(@"#AAAAAA");
@@ -211,7 +211,7 @@ AppToolsProtocol_synthesize
             textView.returnKeyType_ = UIReturnKeyDefault;
             textView.keyboardAppearance_ = UIKeyboardAppearanceDefault;
             textView.keyboardType_ = UIKeyboardTypeNumberPad;
-            textView.placeholder = JobsInternationalization(@"请输入充值金额");
+            textView.placeholder = @"请输入充值金额".tr;
             textView.font = UIFontWeightMediumSize(18);
             textView.placeholderFont = textView.font;
             textView.placeholderColor = JobsCor(@"#AAAAAA");

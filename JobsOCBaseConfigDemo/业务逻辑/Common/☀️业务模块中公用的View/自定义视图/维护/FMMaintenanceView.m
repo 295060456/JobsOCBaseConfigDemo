@@ -78,7 +78,7 @@ Prop_strong()UILabel *timeLab;
     if(!_label){
         @jobs_weakify(self)
         _label = self.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-            label.byText(JobsInternationalization(@"UNDER MAINTENANCE"))
+            label.byText(@"UNDER MAINTENANCE".tr)
                 .byTextCor(JobsCor(@"#8A93A1"))
                 .byFont(pingFangHKSemibold(JobsWidth(20)));
         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
@@ -94,9 +94,9 @@ Prop_strong()UILabel *timeLab;
     if(!_subLabel){
         @jobs_weakify(self)
         _subLabel = self.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-            label.byText(JobsInternationalization(@"Dear Valued Customers:")
+            label.byText(@"Dear Valued Customers:".tr
                          .add(JobsNewline)
-                         .add(JobsInternationalization(@"We are currently performing maintenance on our services. We apologize for any inconvenience this may cause and appreciate your understanding.")))
+                         .add(@"We are currently performing maintenance on our services. We apologize for any inconvenience this may cause and appreciate your understanding.".tr))
                 .byTextCor(JobsCor(@"#8A93A1"))
                 .byFont(pingFangHKSemibold(JobsWidth(11)));
         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
@@ -113,11 +113,11 @@ Prop_strong()UILabel *timeLab;
     if(!_timeLab){
         @jobs_weakify(self)
         _timeLab = self.addSubview(jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-            label.byText(JobsInternationalization(@"Maintenance Time:")
+            label.byText(@"Maintenance Time:".tr
                          .add(JobsNewline)
                          .add(self.currentTimeStringByStyle1)
                          .add(JobsSpace)
-                         .add(JobsInternationalization(@"TO"))
+                         .add(@"TO".tr)
                          .add(JobsSpace)
                          .add(self.currentTimeStringByStyle1))
                 .byTextCor(JobsCor(@"#8A93A1"))

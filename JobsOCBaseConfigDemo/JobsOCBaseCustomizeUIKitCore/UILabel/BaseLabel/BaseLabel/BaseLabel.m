@@ -50,7 +50,7 @@ UILocationProtocol_synthesize
 -(jobsByStrBlock _Nonnull)copyText{
     return ^(NSString *_Nullable text){
         text.pasteboard();
-        JobsLog(@"%@%@",JobsInternationalization(@"复制的文字："),text);
+        JobsLog(@"%@%@",@"复制的文字：".tr,text);
     };
 }
 /// 弹出系统菜单控件
@@ -65,7 +65,7 @@ UILocationProtocol_synthesize
             // 定义菜单项
             UIMenu *menu = [UIMenu menuWithTitle:@""
                                         children:@[
-                [UIAction actionWithTitle:JobsInternationalization(@"请复制")
+                [UIAction actionWithTitle:@"请复制".tr
                                    image:nil
                               identifier:nil
                                  handler:^(__kindof UIAction * _Nonnull action) {
@@ -85,7 +85,7 @@ UILocationProtocol_synthesize
             UIMenuController.sharedMenuController.menuItems = nil;
             UIMenuController *menu = jobsMakeMenuController(^(__kindof UIMenuController * _Nullable menu) {
                 menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-                    data.add(JobsInternationalization(@"请复制").initMenuItemBy(selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                    data.add(@"请复制".tr.initMenuItemBy(selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                                                           id _Nullable arg) {
                         @jobs_strongify(self)
                         if (self.retIDBySelectorBlock) self.retIDBySelectorBlock(weakSelf, arg);

@@ -43,7 +43,7 @@ Prop_strong()UILabel *titleLab;
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"点击加载更多").add(@"...");
+            label.text = @"点击加载更多".tr.add(@"...");
             label.textAlignment = NSTextAlignmentCenter;
             label.backgroundColor = JobsSystemYellowColor;
             [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {

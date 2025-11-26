@@ -30,9 +30,9 @@ Prop_strong()NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutAr
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"JobsVerticalMenuMainVC");
+    self.viewModel.textModel.text = @"JobsVerticalMenuMainVC".tr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
@@ -94,7 +94,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataMutArr[indexPath.section][indexPath.row].cls) {
         self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.section][indexPath.row].cls.new,
                                            self.dataMutArr[indexPath.section][indexPath.row]);
-    }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
+    }else self.jobsToastMsg(@"尚未接入此功能".tr);
 }
 /// 编辑模式下，点击取消左边已选中的cell的按钮
 - (void)tableView:(UITableView *)tableView
@@ -280,21 +280,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                    model.title = JobsInternationalization(@"右边的架构是UIViewController");
-                    model.subTitle = JobsInternationalization(@"正常");
+                    model.title = @"右边的架构是UIViewController".tr;
+                    model.subTitle = @"正常".tr;
                     model.cls = JobsVerticalMenuVC_1.class;
                 })))
                 .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                    model.title = JobsInternationalization(@"右边的架构是UICollectionView");
-                    model.subTitle = JobsInternationalization(@"正常");
+                    model.title = @"右边的架构是UICollectionView".tr;
+                    model.subTitle = @"正常".tr;
                     model.cls = JobsVerticalMenuVC_2.class;
                 })));
             }));
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data1) {
                 @jobs_strongify(self)
                 data1.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                    model.title = JobsInternationalization(@"右边的架构是JobsVerticalMenuVC_0");
-                    model.subTitle = JobsInternationalization(@"JobsVerticalMenuVC_0");
+                    model.title = @"右边的架构是JobsVerticalMenuVC_0".tr;
+                    model.subTitle = @"JobsVerticalMenuVC_0".tr;
                     model.cls = JobsVerticalMenuVC_0.class;
                 })));
             }));

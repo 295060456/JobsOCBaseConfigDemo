@@ -17,7 +17,7 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.backgroundColor = self.backgroundColor ? :JobsBlackColor;
-        self.text = JobsNonnullString(self.text, JobsInternationalization(@"No Data"));
+        self.text = JobsNonnullString(self.text, @"No Data".tr);
         self.internationalizationKEY = @"No Data";
         self.textAlignment = NSTextAlignmentCenter;
     }return self;

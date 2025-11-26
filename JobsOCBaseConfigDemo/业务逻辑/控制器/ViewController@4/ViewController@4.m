@@ -36,9 +36,9 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+        self.viewModel.backBtnTitleModel.text = @"返回".tr;
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = JobsInternationalization(@"相关功能列表");
+        self.viewModel.textModel.text = @"相关功能列表".tr;
         self.viewModel.textModel.font = UIFontWeightRegularSize(16);
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据

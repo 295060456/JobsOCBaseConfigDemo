@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_END
          };//与公共配置 UserInfo 不兼容 优先级大于 公共配置
          
          {
- //            request.filtrationCacheKey = @[JobsInternationalization(@"")];//与公共配置 filtrationCacheKey 兼容
+ //            request.filtrationCacheKey = @[@"".tr];//与公共配置 filtrationCacheKey 兼容
  //            request.requestSerializer = ZBJSONRequestSerializer; //单次请求设置 请求格式 默认JSON，优先级大于 公共配置，不影响其他请求设置
  //            request.responseSerializer = ZBJSONResponseSerializer; //单次请求设置 响应格式 默认JSON，优先级大于 公共配置,不影响其他请求设置
             
@@ -296,7 +296,7 @@ NS_ASSUME_NONNULL_END
 //        }
 //    }
 //}else{
-//        self.jobsToastMsg(JobsInternationalization(@"异常接口").add(NSObject.userInfoSelectVideoCountPOST.funcName));
+//        self.jobsToastMsg(@"异常接口".tr.add(NSObject.userInfoSelectVideoCountPOST.funcName));
 //}
 
 /**

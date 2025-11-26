@@ -30,7 +30,7 @@ Prop_strong()BaseButton *btn;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -86,8 +86,8 @@ Prop_strong()BaseButton *btn;
             .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(JobsCor(@"#333333"))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(18)))
-            .jobsResetBtnTitle(JobsInternationalization(@"点我"))
-            .jobsResetBtnSubTitle(JobsInternationalization(@"出推送通知"))
+            .jobsResetBtnTitle(@"点我".tr)
+            .jobsResetBtnSubTitle(@"出推送通知".tr)
             .jobsResetTitlePadding(JobsWidth(10))
             .jobsResetBtnCornerRadiusValue(JobsWidth(8))
             .onClickBy(^(UIButton *x){

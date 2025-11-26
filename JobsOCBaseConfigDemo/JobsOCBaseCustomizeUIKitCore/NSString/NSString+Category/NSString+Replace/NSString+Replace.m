@@ -104,7 +104,7 @@
 +(NSString *)nullableString:(id)nullableString
               replaceString:(NSString *)replaceString{
     
-    if (isNull(replaceString)) replaceString = JobsInternationalization(@"No Data");
+    if (isNull(replaceString)) replaceString = @"No Data".tr;
     if (isNull(nullableString)) nullableString = replaceString;
     
     /// 只有NSNumber 和 NSString 这两种情况

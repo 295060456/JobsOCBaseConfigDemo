@@ -72,7 +72,7 @@ UIPictureAndBackGroundCorProtocol_synthesize
 
 -(NSString *)text{
     if(!_text){
-        _text = JobsInternationalization(@"JobsNavBar");
+        _text = @"JobsNavBar".tr;
     }return _text;
 }
 

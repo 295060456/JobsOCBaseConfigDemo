@@ -31,7 +31,7 @@ Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
         }
     }
 
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -105,7 +105,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.dataMutArr[indexPath.row].requestParams isKindOfClass:NSNumber.class]) {
         self.comingToPushVCByRequestParams(PicToStrStoreSubVC.new,
                                            self.dataMutArr[indexPath.row]);
-    }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
+    }else self.jobsToastMsg(@"尚未接入此功能".tr);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -140,7 +140,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
             });
             tableView.tableFooterView = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-                label.byText(JobsInternationalization(@"- 没有更多的内容了 -"))
+                label.byText(@"- 没有更多的内容了 -".tr)
                     .byFont(UIFontWeightRegularSize(12))
                     .byTextCor(HEXCOLOR(0xB0B0B0))
                     .byTextAlignment(NSTextAlignmentCenter);
@@ -200,33 +200,33 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"利用十六进制字符串进行存取");
-                model.subTitle = JobsInternationalization(@"");
+                model.title = @"利用十六进制字符串进行存取".tr;
+                model.subTitle = @"".tr;
                 model.requestParams = @(PicToStrStyle_Hexadecimal);
             })))
             .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"利用Base16编码进行存取");
-                model.subTitle = JobsInternationalization(@"");
+                model.title = @"利用Base16编码进行存取".tr;
+                model.subTitle = @"".tr;
                 model.requestParams = @(PicToStrStyle_Base16);
             })))
             .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"利用Base32编码进行存取");
-                model.subTitle = JobsInternationalization(@"");
+                model.title = @"利用Base32编码进行存取".tr;
+                model.subTitle = @"".tr;
                 model.requestParams = @(PicToStrStyle_Base32);
             })))
             .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"利用Base64编码进行存取");
-                model.subTitle = JobsInternationalization(@"");
+                model.title = @"利用Base64编码进行存取".tr;
+                model.subTitle = @"".tr;
                 model.requestParams = @(PicToStrStyle_Base64);
             })))
             .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"利用Base85编码进行存取");
-                model.subTitle = JobsInternationalization(@"");
+                model.title = @"利用Base85编码进行存取".tr;
+                model.subTitle = @"".tr;
                 model.requestParams = @(PicToStrStyle_Base85);
             })))
             .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"利用MIME编码进行存取");
-                model.subTitle = JobsInternationalization(@"");
+                model.title = @"利用MIME编码进行存取".tr;
+                model.subTitle = @"".tr;
                 model.requestParams = @(PicToStrStyle_MIME);
             })));
         });

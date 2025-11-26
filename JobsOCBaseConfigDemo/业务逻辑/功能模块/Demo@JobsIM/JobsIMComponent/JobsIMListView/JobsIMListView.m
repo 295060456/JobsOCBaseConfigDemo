@@ -102,11 +102,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
             
             {
                 tableView.mj_header = self.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-                    data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-                    data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                    data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.stateIdleTitle = @"下拉刷新数据".tr;
+                    data.pullingTitle = @"下拉刷新数据".tr;
+                    data.refreshingTitle = @"正在刷新数据".tr;
+                    data.willRefreshTitle = @"刷新数据中".tr;
+                    data.noMoreDataTitle = @"下拉刷新数据".tr;
                     data.loadBlock = ^id _Nullable(id  _Nullable data) {
                         @jobs_strongify(self)
                         JobsLog(@"下拉刷新");
@@ -115,11 +115,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                     };
                 }));
                 tableView.mj_footer = self.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"");
-                    data.pullingTitle = JobsInternationalization(@"");
-                    data.refreshingTitle = JobsInternationalization(@"");
-                    data.willRefreshTitle = JobsInternationalization(@"");
-                    data.noMoreDataTitle = JobsInternationalization(@"");
+                    data.stateIdleTitle = @"".tr;
+                    data.pullingTitle = @"".tr;
+                    data.refreshingTitle = @"".tr;
+                    data.willRefreshTitle = @"".tr;
+                    data.noMoreDataTitle = @"".tr;
                     data.loadBlock = ^id _Nullable(id  _Nullable data) {
                         @jobs_strongify(self)
                         JobsLog(@"上拉加载更多");

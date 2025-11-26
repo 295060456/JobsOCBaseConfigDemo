@@ -44,7 +44,7 @@
         components = [NSURLComponents componentsWithString:dummyUrl];
     }
 
-    NSString *queryString = components.query ?: JobsInternationalization(@"");
+    NSString *queryString = components.query ?: @"".tr;
     NSString *newQueryString = [queryString stringByAppendingFormat:queryString.length > 0 ? @"&%@" : @"%@", paraUrlString];
 
     components.query = newQueryString;

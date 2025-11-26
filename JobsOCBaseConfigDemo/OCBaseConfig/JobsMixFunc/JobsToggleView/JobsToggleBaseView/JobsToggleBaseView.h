@@ -63,7 +63,7 @@ NS_INLINE __kindof JobsToggleBaseView *_Nonnull jobsMakeToggleBaseView(jobsByTog
                      @jobs_strongify(self)
                      data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                      data1.titleFont = bayonRegular(JobsWidth(20));
-                     data1.title = JobsInternationalization(@"PHONE NO.");
+                     data1.title = @"PHONE NO.".tr;
                      data1.jobsWidth = JobsWidth(90);
                      data1.titleCor = JobsCor(@"#8A93A1");
                      data1.selectedTitleCor = JobsCor(@"#C90000");
@@ -85,7 +85,7 @@ NS_INLINE __kindof JobsToggleBaseView *_Nonnull jobsMakeToggleBaseView(jobsByTog
                      @jobs_strongify(self)
                      data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
                      data1.titleFont = bayonRegular(JobsWidth(20));
-                     data1.title = JobsInternationalization(@"ACCOUNT NAME");
+                     data1.title = @"ACCOUNT NAME".tr;
                      data1.jobsWidth = JobsWidth(130);
                      data1.titleCor = JobsCor(@"#8A93A1");
                      data1.selectedTitleCor = JobsCor(@"#C90000");

@@ -33,7 +33,7 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -142,22 +142,22 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
         /// 最初默认的数据
         _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"收藏");
+                data1.textModel.text = @"收藏".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"真人");
+                data1.textModel.text = @"真人".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"体育");
+                data1.textModel.text = @"体育".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"电子");
+                data1.textModel.text = @"电子".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"棋牌");
+                data1.textModel.text = @"棋牌".tr;
             }))
             .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data1) {
-                data1.textModel.text = JobsInternationalization(@"彩票");
+                data1.textModel.text = @"彩票".tr;
             }));
         });
     }return _titleMutArr;
@@ -281,11 +281,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             .jobsResetBtnBgImage(@"编辑".img)
             .jobsResetBtnTitleCor(HEXCOLOR(0xB0B0B0))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"编辑"))
+            .jobsResetBtnTitle(@"编辑".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(JobsInternationalization(@"编辑"));
+                toast(@"编辑".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

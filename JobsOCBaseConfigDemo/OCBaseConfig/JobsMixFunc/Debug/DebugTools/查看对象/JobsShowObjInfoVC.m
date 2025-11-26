@@ -28,10 +28,10 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.backBtnTitleModel.textCor = JobsRedColor;
     self.viewModel.textModel.textCor = JobsGreenColor;
-    self.viewModel.textModel.text = JobsInternationalization(@"用户信息展示(开发测试专用)");
+    self.viewModel.textModel.text = @"用户信息展示(开发测试专用)".tr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -78,9 +78,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIPasteboard.generalPasteboard.string = self.dataMutArr[indexPath.row].subTextModel.text;
-    self.jobsToastMsg(JobsInternationalization(@"复制")
+    self.jobsToastMsg(@"复制".tr
                       .add(self.dataMutArr[indexPath.row].textModel.text)
-                      .add(JobsInternationalization(@"成功")));
+                      .add(@"成功".tr));
 }
 
 - (NSInteger)tableView:(UITableView *)tableView

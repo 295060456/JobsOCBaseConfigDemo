@@ -107,7 +107,7 @@ Prop_assign()CGPoint contentOffenset;
             tableView.rowHeight = self.excelConfigureData.itemH;
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                data.title = JobsInternationalization(@"No Datas");
+                data.title = @"No Datas".tr;
                 data.titleCor = JobsWhiteColor;
                 data.titleFont = bayonRegular(JobsWidth(30));
                 data.normalImage = @"暂无数据".img;

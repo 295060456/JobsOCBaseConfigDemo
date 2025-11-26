@@ -34,7 +34,7 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*__block dataMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -269,11 +269,11 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
             {
                 // 用值
                 tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-                    data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-                    data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-                    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-                    data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+                    data.stateIdleTitle = @"下拉刷新数据".tr;
+                    data.pullingTitle = @"下拉刷新数据".tr;
+                    data.refreshingTitle = @"正在刷新数据".tr;
+                    data.willRefreshTitle = @"刷新数据中".tr;
+                    data.noMoreDataTitle = @"下拉刷新数据".tr;
                     data.loadBlock = ^id _Nullable(id  _Nullable data) {
                         @jobs_strongify(self)
                         JobsLog(@"下拉刷新");
@@ -284,11 +284,11 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
                     };
                 }));
                 tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = JobsInternationalization(@"");
-                    data.pullingTitle = JobsInternationalization(@"");
-                    data.refreshingTitle = JobsInternationalization(@"");
-                    data.willRefreshTitle = JobsInternationalization(@"");
-                    data.noMoreDataTitle = JobsInternationalization(@"");
+                    data.stateIdleTitle = @"".tr;
+                    data.pullingTitle = @"".tr;
+                    data.refreshingTitle = @"".tr;
+                    data.willRefreshTitle = @"".tr;
+                    data.noMoreDataTitle = @"".tr;
                     data.loadBlock = ^id _Nullable(id _Nullable data1) {
                         @jobs_strongify(self)
                         JobsLog(@"上拉加载更多");
@@ -311,8 +311,8 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
             
             {
                 tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                    data.title = JobsInternationalization(@"暂无数据");
-                    data.subTitle = JobsInternationalization(@"骚等片刻");
+                    data.title = @"暂无数据".tr;
+                    data.subTitle = @"骚等片刻".tr;
                     data.titleCor = JobsWhiteColor;
                     data.titleFont = bayonRegular(JobsWidth(30));
                     data.normalImage = @"暂无数据".img;
@@ -359,7 +359,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_2mb.mp4";
-                data.videoTitle = JobsInternationalization(@"第1条视频");
+                data.videoTitle = @"第1条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第1条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
@@ -379,7 +379,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4";
-                data.videoTitle = JobsInternationalization(@"第2条视频");
+                data.videoTitle = @"第2条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第2条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
@@ -399,7 +399,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/peter/mac-peter-tpl-cc-us-2018_1280x720h.mp4";
-                data.videoTitle = JobsInternationalization(@"第3条视频");
+                data.videoTitle = @"第3条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第3条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
@@ -419,7 +419,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/grimes/mac-grimes-tpl-cc-us-2018_1280x720h.mp4";
-                data.videoTitle = JobsInternationalization(@"第4条视频");
+                data.videoTitle = @"第4条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第4条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
@@ -439,7 +439,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7194236f31b2e1e3da0fe06cfed4ba2b.mp4";
-                data.videoTitle = JobsInternationalization(@"第5条视频");
+                data.videoTitle = @"第5条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第5条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
@@ -459,7 +459,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
-                data.videoTitle = JobsInternationalization(@"第6条视频");
+                data.videoTitle = @"第6条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第6条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
@@ -479,7 +479,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"http://vjs.zencdn.net/v/oceans.mp4";
-                data.videoTitle = JobsInternationalization(@"第7条视频");
+                data.videoTitle = @"第7条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第7条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
@@ -499,7 +499,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
-                data.videoTitle = JobsInternationalization(@"第8条视频");
+                data.videoTitle = @"第8条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第8条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
@@ -519,7 +519,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4";
-                data.videoTitle = JobsInternationalization(@"第9条视频");
+                data.videoTitle = @"第9条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第9条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data) {
@@ -539,7 +539,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
 //                data.playNum;
 //                data.videoTime;
                 data.videoIdcUrl = @"https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_2mb.mp4";
-                data.videoTitle = JobsInternationalization(@"第10条视频");
+                data.videoTitle = @"第10条视频".tr;
                 data.videoImg = @"视频封面";
             }));/// 第10条视频
         });

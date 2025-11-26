@@ -64,7 +64,7 @@ Prop_strong()JobsGetiOSNewestVersionModel *iOSNewestVersionModel;
             @jobs_strongify(self)
             label.font = UIFontWeightMediumSize(14);
             label.textColor = HEXCOLOR(0x524740);
-            label.text = JobsInternationalization(@"The existing new version needs to be updated. Are you sure to download it?");
+            label.text = @"The existing new version needs to be updated. Are you sure to download it?".tr;
             label.numberOfLines = 0;
             label.textAlignment = NSTextAlignmentCenter;
             label.makeLabelByShowingType(UILabelShowingType_03);
@@ -82,7 +82,7 @@ Prop_strong()JobsGetiOSNewestVersionModel *iOSNewestVersionModel;
 -(UIButton *)cancelBtn{
     if (!_cancelBtn) {
         _cancelBtn = UIButton.new;
-        _cancelBtn.jobsResetBtnTitle(JobsInternationalization(@"Cancel"));
+        _cancelBtn.jobsResetBtnTitle(@"Cancel".tr);
         _cancelBtn.jobsResetBtnTitleCor(HEXCOLOR(0x502600));
         _cancelBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
         _cancelBtn.jobsResetBtnBgImage(@"弹窗取消按钮背景图".img);
@@ -104,7 +104,7 @@ Prop_strong()JobsGetiOSNewestVersionModel *iOSNewestVersionModel;
 -(UIButton *)sureBtn{
     if (!_sureBtn) {
         _sureBtn = UIButton.new;
-        _sureBtn.jobsResetBtnTitle(JobsInternationalization(@"Sure"));
+        _sureBtn.jobsResetBtnTitle(@"Sure".tr);
         _sureBtn.jobsResetBtnTitleCor(HEXCOLOR(0x502600));
         _sureBtn.jobsResetBtnBgImage(@"弹窗确定按钮背景图".img);
         _sureBtn.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));

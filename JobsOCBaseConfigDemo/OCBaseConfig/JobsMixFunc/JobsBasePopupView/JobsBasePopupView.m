@@ -95,7 +95,7 @@ Prop_strong()BaseButton *btn2;
 -(BaseButton *)btn1{
     if (!_btn1) {
         _btn1 = BaseButton
-            .initByStyle4(JobsInternationalization(@"Cancel"),
+            .initByStyle4(@"Cancel".tr,
                           UIFontWeightRegularSize(14),
                           HEXCOLOR(0x502600),
                           self.viewModel.image,
@@ -119,7 +119,7 @@ Prop_strong()BaseButton *btn2;
     if (!_btn2) {
         @jobs_weakify(self)
         _btn2 = BaseButton
-            .initByStyle4(JobsInternationalization(@"Sure"),
+            .initByStyle4(@"Sure".tr,
                           UIFontWeightRegularSize(14),
                           HEXCOLOR(0x502600),
                           self.viewModel.image,

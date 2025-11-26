@@ -47,7 +47,7 @@ Prop_strong()BaseButton *cancelBtn;
     if (!_textField) {
         @jobs_weakify(self)
         _textField = jobsMakeZYTextField(^(ZYTextField * _Nullable textField) {
-            textField.placeholder = JobsInternationalization(@"请输入搜索内容");
+            textField.placeholder = @"请输入搜索内容".tr;
             textField.delegate = self;
             textField.leftView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
                 imageView.image = @"放大镜".img;
@@ -99,7 +99,7 @@ Prop_strong()BaseButton *cancelBtn;
             .bgColorBy(JobsLightGrayColor)
             .jobsResetBtnTitleCor(HEXCOLOR(0x0F81FE))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"取消"))
+            .jobsResetBtnTitle(@"取消".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);

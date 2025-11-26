@@ -38,7 +38,7 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.bgCor = JobsClearColor;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -140,7 +140,7 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
 
     [self.controlView resetControlView];
     [self.controlView showCoverViewWithUrl:data.thumbnail_url];
-    [self.fullControlView showTitle:JobsInternationalization(@"custom landscape controlView")
+    [self.fullControlView showTitle:@"custom landscape controlView".tr
                      coverURLString:data.thumbnail_url /// data.videoImg
                      fullScreenMode:ZFFullScreenModeLandscape];
 }
@@ -402,61 +402,61 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             /// 第1条视频
             data.add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4";
-                data1.videoTitle = JobsInternationalization(@"第1条视频");
+                data1.videoTitle = @"第1条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }))
             /// 第2条视频
             .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://www.apple.com/105/media/cn/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/bruce/mac-bruce-tpl-cn-2018_1280x720h.mp4";
-                data1.videoTitle = JobsInternationalization(@"第2条视频");
+                data1.videoTitle = @"第2条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }))
             /// 第3条视频
             .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/peter/mac-peter-tpl-cc-us-2018_1280x720h.mp4";
-                data1.videoTitle = JobsInternationalization(@"第3条视频");
+                data1.videoTitle = @"第3条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }))
             /// 第4条视频
             .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://www.apple.com/105/media/us/mac/family/2018/46c4b917_abfd_45a3_9b51_4e3054191797/films/grimes/mac-grimes-tpl-cc-us-2018_1280x720h.mp4";
-                data1.videoTitle = JobsInternationalization(@"第4条视频");
+                data1.videoTitle = @"第4条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }))
             /// 第5条视频
             .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7194236f31b2e1e3da0fe06cfed4ba2b.mp4";
-                data1.videoTitle = JobsInternationalization(@"第5条视频");
+                data1.videoTitle = @"第5条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }))
             /// 第6条视频
             .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
-                data1.videoTitle = JobsInternationalization(@"第6条视频");
+                data1.videoTitle = @"第6条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }))
             /// 第7条视频
             .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"http://vjs.zencdn.net/v/oceans.mp4";
-                data1.videoTitle = JobsInternationalization(@"第7条视频");
+                data1.videoTitle = @"第7条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }))
             /// 第8条视频
             .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://media.w3.org/2010/05/sintel/trailer.mp4";
-                data1.videoTitle = JobsInternationalization(@"第8条视频");
+                data1.videoTitle = @"第8条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }))
             /// 第9条视频
             .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4";
-                data1.videoTitle = JobsInternationalization(@"第9条视频");
+                data1.videoTitle = @"第9条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }))
             /// 第10条视频
             .add(jobsMakeVideoModelCore(^(__kindof VideoModel_Core * _Nullable data1) {
                 data1.videoIdcUrl = @"https://sample-videos.com/video123/mp4/480/big_buck_bunny_480p_2mb.mp4";
-                data1.videoTitle = JobsInternationalization(@"第10条视频");
+                data1.videoTitle = @"第10条视频".tr;
                 data1.videoImg = @"视频封面.jpg";
             }));
         });

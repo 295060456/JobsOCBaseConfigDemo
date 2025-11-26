@@ -73,7 +73,7 @@ Prop_strong()BaseButton *sendBtn;
             .jobsResetBtnBgImage(JobsCyanColor.image)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"发送"))
+            .jobsResetBtnTitle(@"发送".tr)
             .jobsResetBtnCornerRadiusValue(JobsWidth(3))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
@@ -85,7 +85,7 @@ Prop_strong()BaseButton *sendBtn;
                     self.playSoundEffect(@"Sound.wav");
                     if (self.objBlock) self.objBlock(self.inputTextField);
                 }
-                self.inputTextField.text = JobsInternationalization(@"");
+                self.inputTextField.text = @"".tr;
                 x.enabled = NO;
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
@@ -108,7 +108,7 @@ Prop_strong()BaseButton *sendBtn;
         _inputTextField = jobsMakeZYTextField(^(ZYTextField * _Nullable textField) {
             @jobs_strongify(self)
             textField.placeHolderAlignment = NSTextAlignmentCenter;
-            textField.placeholder = JobsInternationalization(@"在此输入需要发送的信息");
+            textField.placeholder = @"在此输入需要发送的信息".tr;
             textField.delegate = self;
             textField.leftView = self.imgView;
             textField.leftViewOffsetX = 20;

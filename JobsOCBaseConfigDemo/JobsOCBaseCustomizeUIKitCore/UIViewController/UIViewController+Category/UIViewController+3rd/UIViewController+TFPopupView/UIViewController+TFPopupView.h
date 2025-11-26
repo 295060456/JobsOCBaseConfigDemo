@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_END
  -(UIButton *)filterBtn{
      if (!_filterBtn) {
          _filterBtn = UIButton.new;
-         _filterBtn.jobsResetBtnTitle = JobsInternationalization(@"篩選");
+         _filterBtn.jobsResetBtnTitle = @"篩選".tr;
          _filterBtn.jobsResetBtnImage = @"向下的箭头".img);
          _filterBtn.titleFont = fontName(@"NotoSans-Bold", 12);
          _filterBtn.jobsResetBtnTitleCor = HEXCOLOR(0x3D4A58);
@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_END
 
          BtnClickEvent(_filterBtn, {
              x.selected = !x.selected;
-             // self.jobsToastMsg(JobsInternationalization(@"篩選"));
+             // self.jobsToastMsg(@"篩選".tr);
              [x changeAction:x.selected];
              self.currentIndex = [self->listContainerView valueForKey:@"currentIndex"];
              JobsLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_END
  -(UIButton *)customBtn{
      if (!_customBtn) {
          _customBtn = UIButton.new;
-         _customBtn.jobsResetBtnTitle = JobsInternationalization(@"自定义");
+         _customBtn.jobsResetBtnTitle = @"自定义".tr;
          _customBtn.titleFont = fontName(@"NotoSans-Bold", 12);
          _customBtn.jobsResetBtnTitleCor = HEXCOLOR(0x3D4A58);
          _customBtn.selectedStateTitleColorBy = HEXCOLOR(0xAE8330);
@@ -106,7 +106,7 @@ NS_ASSUME_NONNULL_END
 
          BtnClickEvent(_customBtn, {
              x.selected = !x.selected;
-             /// self.jobsToastMsg(JobsInternationalization(@"自定义"));
+             /// self.jobsToastMsg(@"自定义".tr);
              self.currentIndex = [self->listContainerView valueForKey:@"currentIndex"];
              JobsLog(@"滑动或者点击以后，改变控制器，得到的目前最新的index = %d",self.currentIndex.intValue);
              self.vc = (BaiShaETProjAlreadySettledSubBaseVC *)self.childVCMutArr[self.currentIndex.intValue];

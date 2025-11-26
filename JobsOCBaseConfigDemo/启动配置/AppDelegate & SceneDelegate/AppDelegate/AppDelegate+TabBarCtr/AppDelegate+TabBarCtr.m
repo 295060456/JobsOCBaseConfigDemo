@@ -374,11 +374,11 @@ static NSMutableArray <__kindof NSString *>*_tabBarItemTitleMutArr = nil;
 +(NSMutableArray <__kindof NSString *>*)tabBarItemTitleMutArr{
     if(!_tabBarItemTitleMutArr){
         _tabBarItemTitleMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"MY FAV"));
-            data.add(JobsInternationalization(@"BANK"));
-            data.add(JobsInternationalization(@"INCENTIVE"));
-            data.add(JobsInternationalization(@"INVITE"));
-            data.add(JobsInternationalization(@"CONTACT US"));
+            data.add(@"MY FAV".tr);
+            data.add(@"BANK".tr);
+            data.add(@"INCENTIVE".tr);
+            data.add(@"INVITE".tr);
+            data.add(@"CONTACT US".tr);
         });
     }return _tabBarItemTitleMutArr;
 }

@@ -52,18 +52,18 @@ typedef NS_ENUM(NSInteger, JobsAppDoorBgType) {
 #define RegisterBtnWidth JobsWidth(64) /// 竖形按钮的宽度
 #define InputViewOffset JobsWidth(20) /// 输入框承接控件之间的上下间距
 
-#define Title1 JobsInternationalization(@"返回登录").addNewlines
-#define Title2 JobsInternationalization(@"新用户注册").addNewlines
-#define Title3 JobsInternationalization(@"忘记密码")
-#define Title4 JobsInternationalization(@"返回首页")
-#define Title5 JobsInternationalization(@"保存用户名")
-#define Title6 JobsInternationalization(@"注册")
-#define Title7 JobsInternationalization(@"登录")
-#define Title8 JobsInternationalization(@"人工客服")
-#define Title9 JobsInternationalization(@"获取验证码")
-#define Title10 JobsInternationalization(@"人工客服")
-#define Title11 JobsInternationalization(@"您也可以通过以下方式联系客服")
-#define Title12 JobsInternationalization(@"以后")
+#define Title1 @"返回登录".tr.addNewlines
+#define Title2 @"新用户注册".tr.addNewlines
+#define Title3 @"忘记密码".tr
+#define Title4 @"返回首页".tr
+#define Title5 @"保存用户名".tr
+#define Title6 @"注册".tr
+#define Title7 @"登录".tr
+#define Title8 @"人工客服".tr
+#define Title9 @"获取验证码".tr
+#define Title10 @"人工客服".tr
+#define Title11 @"您也可以通过以下方式联系客服".tr
+#define Title12 @"以后".tr
 /**
  
  1、账号密码长度提示为默认固定存在。

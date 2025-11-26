@@ -13,7 +13,7 @@
 +(JobsRetStrByDataBlock _Nonnull)hexStringByData{
     return ^__kindof NSString *_Nullable(__kindof NSData *_Nullable data){
         const unsigned char *dataBuffer = (const unsigned char *)data.bytes;
-        if (!dataBuffer) return JobsInternationalization(@"");
+        if (!dataBuffer) return @"".tr;
         NSUInteger dataLength = data.length;
         NSMutableString *hexString = NSMutableString.initByCapacity(dataLength * 2);
         for (int i = 0; i < dataLength; ++i) {

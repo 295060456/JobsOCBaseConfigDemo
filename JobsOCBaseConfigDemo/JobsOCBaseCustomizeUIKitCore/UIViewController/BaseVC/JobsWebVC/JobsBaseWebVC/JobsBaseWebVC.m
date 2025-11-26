@@ -36,9 +36,9 @@
     self.setupNavigationBarHidden = YES;
     
     {
-        self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"");
+        self.viewModel.backBtnTitleModel.text = @"".tr;
         self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-        self.viewModel.textModel.text = JobsInternationalization(@"");
+        self.viewModel.textModel.text = @"".tr;
         self.viewModel.textModel.font = UIFontWeightRegularSize(JobsWidth(18));
         
         // 使用原则：底图有 + 底色有 = 优先使用底图数据

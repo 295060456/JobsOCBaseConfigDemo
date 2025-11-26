@@ -53,14 +53,14 @@ NS_INLINE __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsByRic
                  @jobs_strongify(self)
                  data1.font = UIFontWeightRegularSize(JobsWidth(12));
                  data1.textCor = JobsBlueColor;
-                 data1.targetString = JobsInternationalization(@"编译器自动管理内存地址").add(JobsNewline);
+                 data1.targetString = @"编译器自动管理内存地址".tr.add(JobsNewline);
                  data1.textBgCor = JobsBrownColor;
                  data1.paragraphStyle = self.defaultParagraphStyle;
              }))
              .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                  data1.font = UIFontWeightSemiboldSize(JobsWidth(13));
                  data1.textCor = JobsWhiteColor;
-                 data1.targetString = JobsInternationalization(@"让程序员更加专注于").add(JobsNewline);
+                 data1.targetString = @"让程序员更加专注于".tr.add(JobsNewline);
                  data1.textBgCor = JobsBrownColor;
                  data1.paragraphStyle = self.defaultParagraphStyle;
              }))
@@ -68,7 +68,7 @@ NS_INLINE __kindof JobsRichTextConfig *_Nonnull jobsMakeRichTextConfig(jobsByRic
                  @jobs_strongify(self)
                  data1.font = UIFontWeightUltraLightSize(JobsWidth(14));
                  data1.textCor = JobsGreenColor;
-                 data1.targetString = JobsInternationalization(@"APP的业务。");
+                 data1.targetString = @"APP的业务。".tr;
                  data1.textBgCor = JobsBrownColor;
                  data1.paragraphStyle = self.defaultParagraphStyle;
              }));

@@ -34,7 +34,7 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -180,10 +180,10 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"开始"))
-            .add(JobsInternationalization(@"暂停"))
-            .add(JobsInternationalization(@"继续"))
-            .add(JobsInternationalization(@"结束"));
+            data.add(@"开始".tr)
+            .add(@"暂停".tr)
+            .add(@"继续".tr)
+            .add(@"结束".tr);
         });
     }return _btnTitleMutArr;
 }
@@ -209,7 +209,7 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
             (
              /// 基础 UI
              btn.jobsResetBtnBgCor(HEXCOLOR(0xAE8330))
-                .jobsResetBtnTitle(JobsInternationalization(@"获取验证码"))
+                .jobsResetBtnTitle(@"获取验证码".tr)
                 .jobsResetBtnTitleCor(JobsWhiteColor)
                 .jobsResetBtnTitleFont(UIFontWeightRegularSize(24))
                 /// Timer 配置（UIButton+Timer 提供的属性）
@@ -221,7 +221,7 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
                     btn.jobsResetBtnTitle([NSString stringWithFormat:@"%d",(int)ceil(time)].add(JobsSpace).add(@"秒"));
                 })
                 .byOnFinish(^(JobsTimer *_Nullable timer){
-                    btn.jobsResetBtnTitle(JobsInternationalization(@"获取验证码"));
+                    btn.jobsResetBtnTitle(@"获取验证码".tr);
                 })
                 /// 点击开始倒计时
                 .onClickBy(^(UIButton *x){

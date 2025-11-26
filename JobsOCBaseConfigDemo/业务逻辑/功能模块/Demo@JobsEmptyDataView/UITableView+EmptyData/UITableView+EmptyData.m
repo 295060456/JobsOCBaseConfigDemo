@@ -48,7 +48,7 @@
                 view.cleanSubviewBy(BaseView.class);
                 self.addSubview(view)
                     .addSubview(UIButton.initByButtonModel(model ? : jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                        data.title = JobsInternationalization(@"No Datas");
+                        data.title = @"No Datas".tr;
                         data.titleCor = JobsWhiteColor;
                         data.titleFont = bayonRegular(JobsWidth(30));
                         data.normalImage = @"暂无数据".img;
@@ -80,7 +80,7 @@
                 view.addSubview(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
                     label.textAlignment = model.textAlignment ? : NSTextAlignmentCenter;
                     label.textColor = model.textCor ? : JobsRedColor;
-                    label.text = isValue(model.text) ? model.text : JobsInternationalization(@"No Datas");
+                    label.text = isValue(model.text) ? model.text : @"No Datas".tr;
                     label.makeLabelByShowingType(UILabelShowingType_05);
                     label.setMasonryBy(^(MASConstraintMaker *make){
                         @jobs_strongify(self)

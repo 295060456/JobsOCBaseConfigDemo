@@ -30,7 +30,7 @@ Prop_strong()BaseButton *switchBtn;
         }
     }
 
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -92,8 +92,8 @@ Prop_strong()BaseButton *switchBtn;
             .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(18))
-            .jobsResetBtnTitle(JobsInternationalization(@"点击"))
-            .jobsResetBtnSubTitle(JobsInternationalization(@"跳转Collection控制器"))
+            .jobsResetBtnTitle(@"点击".tr)
+            .jobsResetBtnSubTitle(@"跳转Collection控制器".tr)
             .jobsResetTitlePadding(JobsWidth(10))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)

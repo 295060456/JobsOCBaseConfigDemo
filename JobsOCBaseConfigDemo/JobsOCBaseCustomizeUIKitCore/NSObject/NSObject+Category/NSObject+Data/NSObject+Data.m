@@ -50,7 +50,7 @@
                          error:(NSError *__autoreleasing *)error{
     /// 文件夹路径
     if (isNull(documentsChildDir)) {
-        documentsChildDir = JobsInternationalization(@"");
+        documentsChildDir = @"".tr;
     }
     NSString *folderPath = NSString.documentsDir.add(@"/").add(documentsChildDir);
     /// 创建文件夹

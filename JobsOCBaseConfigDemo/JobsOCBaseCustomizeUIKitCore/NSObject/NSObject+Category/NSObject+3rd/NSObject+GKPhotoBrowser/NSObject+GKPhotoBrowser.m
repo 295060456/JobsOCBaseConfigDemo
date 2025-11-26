@@ -183,12 +183,12 @@ didDisappearAtIndex:(NSInteger)index{
 /// 自定义单个图片的加载失败文字，优先级高于failureText
 -(NSString *)photoBrowser:(GKPhotoBrowser *)browser
         failedTextAtIndex:(NSInteger)index{
-    return JobsInternationalization(@"图片加载失败");
+    return @"图片加载失败".tr;
 }
 /// 自定义单个图片的加载失败图片，优先级高于failureImage
 -(UIImage *)photoBrowser:(GKPhotoBrowser *)browser
       failedImageAtIndex:(NSInteger)index{
-    return JobsInternationalization(@"".img);
+    return @"".tr.img;
 }
 /// 视频播放状态回调
 -(void)photoBrowser:(GKPhotoBrowser *)browser

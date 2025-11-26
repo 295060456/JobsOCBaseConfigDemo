@@ -70,8 +70,8 @@ static dispatch_once_t static_testPopupViewOnceToken;
             .jobsResetTitlePadding(JobsWidth(8))
             .jobsResetBtnTitleCor(JobsRedColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(20))
-            .jobsResetBtnTitle(isNull(self.viewModel.textModel.text) ? JobsInternationalization(@"测试弹窗"): self.viewModel.textModel.text)
-            .jobsResetBtnSubTitle(isNull(self.viewModel.subTextModel.text) ? JobsInternationalization(@"相关信息"): self.viewModel.textModel.text)
+            .jobsResetBtnTitle(isNull(self.viewModel.textModel.text) ? @"测试弹窗".tr: self.viewModel.textModel.text)
+            .jobsResetBtnSubTitle(isNull(self.viewModel.subTextModel.text) ? @"相关信息".tr: self.viewModel.textModel.text)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
@@ -92,7 +92,7 @@ static dispatch_once_t static_testPopupViewOnceToken;
         _testPopupViewSureBtn = UIButton.jobsInit()
         .jobsResetBtnBgImage(@"测试弹窗的确定按钮".img)
         .selectedStateBackgroundImageBy(@"测试弹窗的确定按钮".img)
-        .jobsResetBtnTitle(JobsInternationalization(@"确定"))
+        .jobsResetBtnTitle(@"确定".tr)
         .jobsResetBtnTitleCor(JobsBlackColor)
         .jobsResetBtnTitleFont(UIFontWeightRegularSize(18))
         .onClickBy(^(UIButton *x){

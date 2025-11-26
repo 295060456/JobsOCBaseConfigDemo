@@ -27,7 +27,7 @@
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -103,7 +103,7 @@
         @jobs_weakify(self)
         _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"iOS-UIView设置阴影效果");
+            label.text = @"iOS-UIView设置阴影效果".tr;
             label.frame = CGRectMake(100, 400, 200, 200);
             label.backgroundColor = JobsYellowColor;
             label.layer.shadowColor = JobsBlueColor.CGColor;/// 阴影颜色

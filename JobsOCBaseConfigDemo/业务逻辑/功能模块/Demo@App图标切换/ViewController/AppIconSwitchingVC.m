@@ -30,7 +30,7 @@ Prop_strong()BaseButton *switchBtn;
         }
     }
     self.setupNavigationBarHidden = YES;
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -108,8 +108,8 @@ Prop_strong()BaseButton *switchBtn;
             .jobsResetBtnBgImage(@"APPLY NOW".img)
             .jobsResetBtnTitleCor(JobsCor(@"#333333"))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"点击"))
-            .jobsResetBtnSubTitle(JobsInternationalization(@"切换App图标"))
+            .jobsResetBtnTitle(@"点击".tr)
+            .jobsResetBtnSubTitle(@"切换App图标".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);

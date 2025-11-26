@@ -159,7 +159,7 @@ UITextFieldProtocol_dynamic
         viewController.comingToPushVCByRequestParams(toPushVC,requestParams);
     }else{
         JobsLog(@"%@强制展现页面%@失败,携带的参数%@",viewController,toPushVC,requestParams);
-        self.jobsToastErrMsg(JobsInternationalization(@"强制展现页面失败,请检查控制台"));
+        self.jobsToastErrMsg(@"强制展现页面失败,请检查控制台".tr);
     }
 }
 /// 强制以Present的方式展现页面
@@ -228,11 +228,11 @@ UITextFieldProtocol_dynamic
 /// 刷新控件的头部数据
 -(MJRefreshConfigModel *_Nullable)mjHeaderDefaultConfig{
     return jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-        data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-        data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-        data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-        data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-        data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+        data.stateIdleTitle = @"下拉可以刷新".tr;
+        data.pullingTitle = @"下拉可以刷新".tr;
+        data.refreshingTitle = @"松开立即刷新".tr;
+        data.willRefreshTitle = @"刷新数据中".tr;
+        data.noMoreDataTitle = @"下拉可以刷新".tr;
         data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
     });
 }
@@ -243,11 +243,11 @@ UITextFieldProtocol_dynamic
 /// 刷新控件的尾部数据
 -(MJRefreshConfigModel *_Nullable)mjFooterDefaultConfig{
     return jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-        data.stateIdleTitle = JobsInternationalization(@"");
-        data.pullingTitle = JobsInternationalization(@"");
-        data.refreshingTitle = JobsInternationalization(@"");
-        data.willRefreshTitle = JobsInternationalization(@"");
-        data.noMoreDataTitle = JobsInternationalization(@"");
+        data.stateIdleTitle = @"".tr;
+        data.pullingTitle = @"".tr;
+        data.refreshingTitle = @"".tr;
+        data.willRefreshTitle = @"".tr;
+        data.noMoreDataTitle = @"".tr;
         data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
     });
 }
@@ -965,15 +965,15 @@ UITextFieldProtocol_dynamic
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.textModel.font = UIFontWeightRegularSize(14);
                 viewModel.jobsWidth = f.size.width;
-                viewModel.textModel.text = JobsInternationalization(@"111111111");
-                viewModel.subTextModel.text = JobsInternationalization(@"eeeeeeeee");
+                viewModel.textModel.text = @"111111111".tr;
+                viewModel.subTextModel.text = @"eeeeeeeee".tr;
                 viewModel.textModel.textLineSpacing = 0;
             }));
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 viewModel.textModel.font = UIFontWeightRegularSize(14);
                 viewModel.jobsWidth = f.size.width;
-                viewModel.textModel.text = JobsInternationalization(@"222222222");
-                viewModel.subTextModel.text = JobsInternationalization(@"wwwwwwwww");
+                viewModel.textModel.text = @"222222222".tr;
+                viewModel.subTextModel.text = @"wwwwwwwww".tr;
                 viewModel.textModel.textLineSpacing = 0;
             }));
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
@@ -1023,10 +1023,10 @@ UITextFieldProtocol_dynamic
             if (isValue(view.internationalizationKEY)) {
                 if ([view isKindOfClass:UILabel.class]) {
                     UILabel *lab = (UILabel *)view;
-                    lab.text = JobsInternationalization(view.internationalizationKEY);
+                    lab.text = view.internationalizationKEY.tr;
                 }else if ([view isKindOfClass:UIButton.class]){
                     UIButton *btn = (UIButton *)view;
-                    btn.jobsResetBtnTitle(JobsInternationalization(view.internationalizationKEY));
+                    btn.jobsResetBtnTitle(view.internationalizationKEY.tr);
                 }else{}
             }
         }
@@ -1158,10 +1158,10 @@ UITextFieldProtocol_dynamic
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (success) {
                         JobsLog(@"保存照片成功");
-                        toast(JobsInternationalization(@"图片保存成功"));
+                        toast(@"图片保存成功".tr);
                     } else if (error) {
                         JobsLog(@"保存照片出错:%@",error.localizedDescription);
-                        toastErr(JobsInternationalization(@"保存保存失败"));
+                        toastErr(@"保存保存失败".tr);
                     }
                 });
             }];

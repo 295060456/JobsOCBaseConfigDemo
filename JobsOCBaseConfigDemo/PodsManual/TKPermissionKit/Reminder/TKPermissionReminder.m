@@ -64,7 +64,7 @@ requestFullAccessToRemindersWithCompletion:(JobsEKEventStoreRequestAccessComplet
 }
 #pragma mark —— 一些私有方法
 +(void)jumpSetting{
-   [TKPermissionPublic alertPromptTips:JobsInternationalization(@"使用提醒事项时需要您提供权限，去设置!")];
+   [TKPermissionPublic alertPromptTips:@"使用提醒事项时需要您提供权限，去设置!".tr];
 }
 
 @end

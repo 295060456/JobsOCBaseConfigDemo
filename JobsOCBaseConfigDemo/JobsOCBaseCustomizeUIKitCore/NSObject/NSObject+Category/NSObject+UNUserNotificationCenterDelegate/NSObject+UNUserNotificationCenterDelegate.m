@@ -34,12 +34,12 @@
             NSString *text = ((UNTextInputNotificationResponse *)response).userText;
             if (isValue(text)) {
                 MainWindow.rootViewController.comingToPresentVC(self.makeAlertControllerByAlertModel(jobsMakeAlertModel(^(JobsAlertModel * _Nullable data) {
-                    data.alertControllerTitle = JobsInternationalization(@"Comment");
-                    data.message = JobsInternationalization(@"You just said")
+                    data.alertControllerTitle = @"Comment".tr;
+                    data.message = @"You just said".tr
                         .add(@":")
-                        .add(JobsInternationalization(text));
+                        .add(text.tr);
                     data.preferredStyle = UIAlertControllerStyleAlert;
-                    data.alertActionTitle = JobsInternationalization(@"OK");
+                    data.alertActionTitle = @"OK".tr;
                     data.alertActionStyle = UIAlertActionStyleDefault;
                     data.alertActionBlock = ^(__kindof UIAlertAction * _Nullable action) {
                         JobsLog(@"OK");
@@ -63,10 +63,10 @@
         UNNotificationRequest.initBy(jobsMakeUNNotificationRequestModel(^(UNNotificationRequestModel * _Nullable data) {
             data.identifier = @"calendar";
             data.content = jobsMakeUNMutableNotificationContent(^(__kindof UNMutableNotificationContent * _Nullable content) {
-                content.title = JobsInternationalization(@"Calendar Reminder");
+                content.title = @"Calendar Reminder".tr;
                 content.body = @"github.com/pro648";
                 content.sound = UNNotificationSound.defaultSound;
-                content.categoryIdentifier = JobsInternationalization(@"calendarCategory");
+                content.categoryIdentifier = @"calendarCategory".tr;
             });
             data.trigger = UNCalendarNotificationTrigger.initByNORepeats(jobsMakeDateComponents(^(NSDateComponents * _Nullable dateComponents) {
                 dateComponents.calendar = calendar;

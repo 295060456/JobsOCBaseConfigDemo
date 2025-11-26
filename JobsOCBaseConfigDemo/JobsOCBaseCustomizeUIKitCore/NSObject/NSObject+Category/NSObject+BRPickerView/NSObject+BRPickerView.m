@@ -14,8 +14,8 @@
         pickerStyle.pickerColor = JobsWhiteColor;
         pickerStyle.pickerTextColor = HEXCOLOR(0x3D4A58);
         pickerStyle.separatorColor = HEXCOLOR(0xEAEBED);
-        pickerStyle.cancelBtnTitle = JobsInternationalization(@"取消");
-        pickerStyle.doneBtnTitle = JobsInternationalization(@"确定");
+        pickerStyle.cancelBtnTitle = @"取消".tr;
+        pickerStyle.doneBtnTitle = @"确定".tr;
     });
 }
 
@@ -28,11 +28,11 @@
              BRAddressPickerModeProvince/// 显示【省】
              */
             addressPickerView.pickerMode = BRAddressPickerModeArea;
-            addressPickerView.title = JobsInternationalization(@"请选择地区");
+            addressPickerView.title = @"请选择地区".tr;
         //    addressPickerView.selectValues = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-        //        data.add(JobsInternationalization(@"浙江省"));
-        //        data.add(JobsInternationalization(@"杭州市"));
-        //        data.add(JobsInternationalization(@"西湖区"));
+        //        data.add(@"浙江省".tr);
+        //        data.add(@"杭州市".tr);
+        //        data.add(@"西湖区".tr);
         //    });
             addressPickerView.selectIndexs = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
                 data.add(@10);
@@ -59,7 +59,7 @@
         if (!customStyle) customStyle = self.makeCustomStyle;
         return jobsMakeBRDatePickerView(^(__kindof BRDatePickerView * _Nullable datePickerView) {
             datePickerView.pickerMode = BRDatePickerModeYMD;
-            datePickerView.title = JobsInternationalization(@"选择年月日");
+            datePickerView.title = @"选择年月日".tr;
             // datePickerView.selectValue = @"2019-10-30";
             datePickerView.selectDate = [NSDate br_setYear:2019
                                                       month:10
@@ -118,13 +118,13 @@
 //    if (!stringPickerViewModel) {
 //        stringPickerViewModel = BRStringPickerViewModel.new;
 //        stringPickerViewModel.pickerMode = BRStringPickerComponentSingle;
-//        stringPickerViewModel.title = JobsInternationalization(@"学历");
-//        stringPickerViewModel.dataSourceArr = @[JobsInternationalization(@"大专以下"),
-//                                                JobsInternationalization(@"大专"),
-//                                                JobsInternationalization(@"本科"),
-//                                                JobsInternationalization(@"硕士"),
-//                                                JobsInternationalization(@"博士"),
-//                                                JobsInternationalization(@"博士后")];
+//        stringPickerViewModel.title = @"学历".tr;
+//        stringPickerViewModel.dataSourceArr = @[@"大专以下".tr,
+//                                                @"大专".tr,
+//                                                @"本科".tr,
+//                                                @"硕士".tr,
+//                                                @"博士".tr,
+//                                                @"博士后".tr];
 //        stringPickerViewModel.selectIndex = 2;
 //    }
 //

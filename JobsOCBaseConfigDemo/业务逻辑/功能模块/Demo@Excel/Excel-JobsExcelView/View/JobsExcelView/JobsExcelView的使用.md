@@ -48,15 +48,15 @@ Prop_strong()JobsExcelView *excelView;
             data.scrollOffsetX = 0;
             // data.scrollOffsetY;
             data.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                arr.add(JobsInternationalization(@"Bet Time"));
-                arr.add(JobsInternationalization(@"Order No."));
-                arr.add(JobsInternationalization(@"Game Content"));
-                arr.add(JobsInternationalization(@"Bet Amount"));
-                arr.add(JobsInternationalization(@"Valid Bet Amount"));
-                arr.add(JobsInternationalization(@"Previous Balance"));
-                arr.add(JobsInternationalization(@"Current Balance"));
-                arr.add(JobsInternationalization(@"Win/Loss"));
-                arr.add(JobsInternationalization(@"Bet Statuse"));
+                arr.add(@"Bet Time".tr);
+                arr.add(@"Order No.".tr);
+                arr.add(@"Game Content".tr);
+                arr.add(@"Bet Amount".tr);
+                arr.add(@"Valid Bet Amount".tr);
+                arr.add(@"Previous Balance".tr);
+                arr.add(@"Current Balance".tr);
+                arr.add(@"Win/Loss".tr);
+                arr.add(@"Bet Statuse".tr);
             });
             data.data_00 = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
                 model.title = data.topHeaderTitles[0];

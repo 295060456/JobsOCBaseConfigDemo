@@ -70,9 +70,9 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
         .JobsRichViewByModel2(nil)
         .JobsBlock1(^(JobsUserHeaderDataViewTBVCell *cell) {
             @jobs_strongify(self)
-            if (cell.getTitleValue.isEqualToString(JobsInternationalization(拍照))) {
+            if (cell.getTitleValue.isEqualToString(拍照.tr)) {
                 self.invokeSysCamera();/// 完全意义上的调用系统的相机拍照功能
-            }else if (cell.getTitleValue.isEqualToString(JobsInternationalization(从相册中选取))){
+            }else if (cell.getTitleValue.isEqualToString(从相册中选取.tr)){
                 [self hx_invokeSysPhotoAlbumSuccessBlock:^(HXPhotoPickerModel *data) {
                     @jobs_strongify(self)
                     self.photoManager = data.photoManager;
@@ -85,7 +85,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
                 } failBlock:^(HXPhotoPickerModel *data) {
     //                @jobs_strongify(self)
                 }];
-            }else if (cell.getTitleValue.isEqualToString(JobsInternationalization(取消))){
+            }else if (cell.getTitleValue.isEqualToString(取消.tr)){
 //                    @jobs_strongify(self)
             }else{}
             if(finishBlock) finishBlock();
@@ -95,9 +95,9 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
 #pragma mark —— 一些私有方法
 +(NSMutableArray<UIViewModel *> *)createDataMutArr{
     return jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable arr) {
-        arr.add(JobsUserHeaderDataView.makeViewModelBy(JobsInternationalization(@"拍照")))
-        .add(JobsUserHeaderDataView.makeViewModelBy(JobsInternationalization(@"从相册中选取")))
-        .add(JobsUserHeaderDataView.makeViewModelBy(JobsInternationalization(@"取消")));
+        arr.add(JobsUserHeaderDataView.makeViewModelBy(@"拍照".tr))
+        .add(JobsUserHeaderDataView.makeViewModelBy(@"从相册中选取".tr))
+        .add(JobsUserHeaderDataView.makeViewModelBy(@"取消".tr));
     });
 }
 

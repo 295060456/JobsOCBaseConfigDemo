@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_END
          [SuspendBtn jobsBtnClickEventBlock:^id(UIButton *x) {
              @jobs_strongify(self)
              x.selected = !x.selected;
-             JobsLog(@"%@",x.selected ? JobsInternationalization(@"开始旋转") : JobsInternationalization(@"停止旋转"));
+             JobsLog(@"%@",x.selected ? @"开始旋转".tr : @"停止旋转".tr);
              // x.旋转动画(x.selected);
              if (self.objBlock) self.objBlock(x);
              return nil;

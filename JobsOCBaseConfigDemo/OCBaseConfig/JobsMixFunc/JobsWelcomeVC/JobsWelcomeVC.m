@@ -30,9 +30,9 @@ Prop_strong()NSMutableArray <NSString *>*dataMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"");
+    self.viewModel.textModel.text = @"".tr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -71,7 +71,7 @@ Prop_strong()NSMutableArray <NSString *>*dataMutArr;
         UIImageView * imageView = UIImageView.new;
         imageView.frame = CGRectMake(JobsMainScreen_WIDTH() * i, 0, JobsMainScreen_WIDTH(), JobsMainScreen_HEIGHT());
         //用SDWebImage下载图片
-        NSString *imageName = JobsInternationalization(@"");
+        NSString *imageName = @"".tr;
         if (i < 10) {
             imageName = [NSString stringWithFormat:@"启动页_0%lu",(unsigned long)i];
         }else{

@@ -39,7 +39,7 @@ Prop_strong()JobsPushView *pushView;
             .bgColorBy(JobsOrangeColor)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"点击按钮push出view"))
+            .jobsResetBtnTitle(@"点击按钮push出view".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
@@ -79,7 +79,7 @@ Prop_strong()JobsPushView *pushView;
             .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"点我pop当前view"))
+            .jobsResetBtnTitle(@"点我pop当前view".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);

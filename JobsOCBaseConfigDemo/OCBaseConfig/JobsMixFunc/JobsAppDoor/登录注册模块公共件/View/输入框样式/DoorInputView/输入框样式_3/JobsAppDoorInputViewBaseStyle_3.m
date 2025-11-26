@@ -166,7 +166,7 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
                 self.securityModeBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
                 if(!x) return;
                 if (x.isContainsSpecialSymbolsString(nil)) {
-                    self.jobsToastMsg(JobsInternationalization(@"Do not enter special characters"));
+                    self.jobsToastMsg(@"Do not enter special characters".tr);
                 }else{
                     [self block:textField value:x];
                 }

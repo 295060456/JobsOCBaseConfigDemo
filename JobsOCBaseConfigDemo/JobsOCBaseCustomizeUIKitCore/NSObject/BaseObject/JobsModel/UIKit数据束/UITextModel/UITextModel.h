@@ -13,20 +13,20 @@
 #import "BaseModel.h"
 
 #ifndef TextModelDataString
-#define TextModelDataString JobsInternationalization(主标题文字默认占位内容)
+#define TextModelDataString 主标题文字默认占位内容.tr
 #endif /* TextModelDataString */
 
 #ifndef TextModelDataString2
-#define TextModelDataString2 JobsInternationalization(副标题文字默认占位内容)
+#define TextModelDataString2 副标题文字默认占位内容.tr
 #endif /* TextModelDataString2 */
 /// 数据归位
 #ifndef MakeDataNull // 如果未定义 MakeDataNull
 #define MakeDataNull \
-if ([self.viewModel.textModel.text isEqualToString:JobsInternationalization(TextModelDataString)]) {\
-    self.viewModel.textModel.text = JobsInternationalization(@"");\
+if ([self.viewModel.textModel.text isEqualToString:TextModelDataString.tr]) {\
+    self.viewModel.textModel.text = @"".tr;\
 }\
-if ([self.viewModel.subTextModel.text isEqualToString:JobsInternationalization(TextModelDataString)]) {\
-    self.viewModel.subTextModel.text = JobsInternationalization(@"");\
+if ([self.viewModel.subTextModel.text isEqualToString:TextModelDataString.tr]) {\
+    self.viewModel.subTextModel.text = @"".tr;\
 }
 #endif /* MakeDataNull */
 

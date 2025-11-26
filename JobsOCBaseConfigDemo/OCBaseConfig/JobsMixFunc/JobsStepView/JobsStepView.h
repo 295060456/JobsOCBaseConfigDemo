@@ -63,9 +63,9 @@ NS_INLINE __kindof JobsStepView *_Nonnull jobsMakeStepView(jobsByStepViewBlock _
              .byRightLabNormalBgCor(JobsGrayColor)
              .byStatus(VerificationStatusVerifying)
              .jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButtonModel *>* _Nullable data) {
-                 data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),@"正在进行第一步".img,@"正在进行第一步".img))
-                     .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),@"还未进行第二步".img,@"正在进行第二步".img))
-                     .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verified"),@"还未进行第三步".img,@"正在进行第三步".img));
+                 data.add(JobsStepView.makeButtonModelBy(@"Unverified".tr,@"正在进行第一步".img,@"正在进行第一步".img))
+                     .add(JobsStepView.makeButtonModelBy(@"Verifiying".tr,@"还未进行第二步".img,@"正在进行第二步".img))
+                     .add(JobsStepView.makeButtonModelBy(@"Verified".tr,@"还未进行第三步".img,@"正在进行第三步".img));
              }));
          })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
              make.top.equalTo(self.gk_navigationBar.mas_bottom);

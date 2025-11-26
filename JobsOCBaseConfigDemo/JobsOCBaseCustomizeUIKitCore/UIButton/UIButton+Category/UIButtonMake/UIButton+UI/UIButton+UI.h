@@ -236,7 +236,7 @@ NS_ASSUME_NONNULL_END
      .jobsResetBtnBgImage(@"APPLY NOW".img)
      .jobsResetBtnTitleCor(JobsWhiteColor)
      .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-     .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+     .jobsResetBtnTitle(@"APPLY NOW".tr)
      .onClickBy(^(UIButton *x){
          JobsLog(@"");
      }).onLongPressGestureBy(^(id data){
@@ -295,7 +295,7 @@ NS_ASSUME_NONNULL_END
              .jobsResetBtnBgImage(@"APPLY NOW".img))
              .jobsResetBtnTitleCor(JobsWhiteColor)
              .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-             .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+             .jobsResetBtnTitle(@"APPLY NOW".tr)
              .onClickBy(^(UIButton *x){
                  @jobs_strongify(self)
                  x.selected = !x.selected;

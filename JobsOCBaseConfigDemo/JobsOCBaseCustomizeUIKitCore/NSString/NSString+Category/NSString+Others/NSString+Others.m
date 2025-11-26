@@ -97,7 +97,7 @@
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
-        NSObject.jobsToastMsg(JobsInternationalization(self));
+        NSObject.jobsToastMsg(self.tr);
     };
 }
 /// 国际化
@@ -123,7 +123,7 @@
         return jobsMakePasteboard(^(__kindof UIPasteboard * _Nullable pasteboard) {
             @jobs_strongify(self)
             pasteboard.string = self;
-            self.jobsToastSuccessMsg(JobsInternationalization(@"复制成功"));
+            self.jobsToastSuccessMsg(@"复制成功".tr);
         }).string;
     };
 }
@@ -224,7 +224,7 @@
 #pragma mark —— 其他
 /// 该文字是否是Debug定义的文字
 -(BOOL)isDebugText{
-    return self.isEqualToString(JobsInternationalization(TextModelDataString));
+    return self.isEqualToString(TextModelDataString.tr);
 }
 #pragma mark —— 对系统方法的二次封装
 /// 对系统方法 substringFromIndex 的二次封装

@@ -25,8 +25,8 @@
          }
          
          {// 一般的文字
-             _btnConfig.title = JobsInternationalization(@"入职Mata");
-             _btnConfig.subtitle = JobsInternationalization(@"");
+             _btnConfig.title = @"入职Mata".tr;
+             _btnConfig.subtitle = @"".tr;
              _btnConfig.baseForegroundColor = JobsBlackColor;// 前景颜色（= 文字颜色）
          }
          
@@ -40,7 +40,7 @@
                  }];
                  return newTextAttributes.copy;
              };
-             _btnConfig.attributedTitle = [NSAttributedString.alloc initWithString:JobsInternationalization(@"入职Mata") attributes:@{NSForegroundColorAttributeName:JobsBlackColor}];
+             _btnConfig.attributedTitle = [NSAttributedString.alloc initWithString:@"入职Mata".tr attributes:@{NSForegroundColorAttributeName:JobsBlackColor}];
          }
          
          {// 其他
@@ -58,7 +58,7 @@
              _btn1 = UIButton.new;
              _btn1.jobsResetBtnImage = @"入职Mata".img;
              _btn1.titleFont = UIFontWeightRegularSize(14);
-             _btn1.jobsResetBtnTitle = JobsInternationalization(@"入职Mata");
+             _btn1.jobsResetBtnTitle = @"入职Mata".tr;
              _btn1.jobsResetBtnTitleCor = JobsBlackColor;
          }
          // 添加按钮到视图中

@@ -39,7 +39,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
@@ -53,8 +53,8 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
     
     _picBefore = nil;
     _picAfter = nil;
-    _resultStr = JobsInternationalization(@"");
-    _showStr = JobsInternationalization(@"");
+    _resultStr = @"".tr;
+    _showStr = @"".tr;
 }
 
 - (void)viewDidLoad {
@@ -128,11 +128,11 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
         @jobs_strongify(self)
         if(data){
     #warning 不可能全部显示完全这个字符串，太长了。渲染到UI会撑爆内存，最终致程序崩溃
-            self->_showStr = JobsInternationalization(@"目标图片对应的字符串编码为（只列举一部分）前面几位都是一样的：")
+            self->_showStr = @"目标图片对应的字符串编码为（只列举一部分）前面几位都是一样的：".tr
                 .add([data substringToIndex:1000])
-                .add(JobsInternationalization(@"...后面还有很多，就不一一列举了（渲染UI会撑爆内存，最终导致程序崩溃）"));
+                .add(@"...后面还有很多，就不一一列举了（渲染UI会撑爆内存，最终导致程序崩溃）".tr);
             self.textView.text = self->_showStr;
-        }else self.jobsToastMsg(JobsInternationalization(@"暂无编码数据！！！"));
+        }else self.jobsToastMsg(@"暂无编码数据！！！".tr);
         return data;
     };
 }
@@ -144,7 +144,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
         if(image){
             self->_picBefore = image;
             self.btn_1.jobsResetBtnImage(self->_picBefore);
-        }else self.jobsToastMsg(JobsInternationalization(@"字符串解码转换失败"));
+        }else self.jobsToastMsg(@"字符串解码转换失败".tr);
     };
 }
 /// 输出图片到Btn_2
@@ -155,7 +155,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
         if(image){
             self->_picAfter = image;
             self.btn_2.jobsResetBtnImage(image);
-        }else self.jobsToastMsg(JobsInternationalization(@"字符串解码转换失败"));
+        }else self.jobsToastMsg(@"字符串解码转换失败".tr);
         return self->_picAfter;
     };
 }
@@ -234,8 +234,8 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
             .jobsResetBtnTitleCor(JobsCor(@"#333333"))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(25))
             .jobsResetBtnSubTitleFont(UIFontWeightBoldSize(18))
-            .jobsResetBtnTitle(JobsInternationalization(@"点击按钮"))
-            .jobsResetBtnSubTitle(JobsInternationalization(@"选取相册图片"))
+            .jobsResetBtnTitle(@"点击按钮".tr)
+            .jobsResetBtnSubTitle(@"选取相册图片".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
@@ -283,8 +283,8 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
             .jobsResetBtnTitleCor(JobsCor(@"#333333"))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(25))
             .jobsResetBtnSubTitleFont(UIFontWeightBoldSize(18))
-            .jobsResetBtnTitle(JobsInternationalization(@"点击按钮"))
-            .jobsResetBtnSubTitle(JobsInternationalization(@"编码转译成图片"))
+            .jobsResetBtnTitle(@"点击按钮".tr)
+            .jobsResetBtnSubTitle(@"编码转译成图片".tr)
             .jobsResetBtnCornerRadiusValue(JobsWidth(8))
             .jobsResetBtnLayerBorderWidth(JobsWidth(.5f))
             .onClickBy(^(UIButton *x){
@@ -294,7 +294,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
                 if(isNull(self->_resultStr)){
                     /// 存在于内存里面的编码，转变成图像对外进行输出
                     self.picForStr(self->_resultStr);
-                }else self.jobsToastMsg(JobsInternationalization(@"请先编码图片"));
+                }else self.jobsToastMsg(@"请先编码图片".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -314,7 +314,7 @@ Prop_strong()NSMutableArray <UIImage *>*photosImageMutArr;
         _textView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
             @jobs_strongify(self)
             textView.backgroundColor = JobsLightTextColor;
-            textView.text = JobsInternationalization(@"暂无编码数据！！！");
+            textView.text = @"暂无编码数据！！！".tr;
             textView.textColor = HEXCOLOR(0xB0B0B0);
             textView.font = UIFontSystemFontOfSize(14);
             [self.view.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {

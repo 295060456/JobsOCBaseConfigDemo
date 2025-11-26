@@ -30,9 +30,9 @@ Prop_strong()MSCommentView *commentView;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-//    self.viewModel.textModel.text = JobsInternationalization(@"消息详情页");
+//    self.viewModel.textModel.text = @"消息详情页".tr;
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
@@ -82,7 +82,7 @@ Prop_strong()MSCommentView *commentView;
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"评论");
+            label.text = @"评论".tr;
             label.textColor = JobsCor(@"#333333");
             label.font = UIFontWeightBoldSize(18);
             [self.view addSubview:label];

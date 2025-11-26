@@ -68,7 +68,7 @@ Prop_strong()JobsHotLabelBySingleLine *hl;
         @jobs_weakify(self)
         _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(Title10);
+            label.text = Title10.tr;
             label.textColor = JobsWhiteColor;
             label.font = UIFontWeightRegularSize(20);
             label.makeLabelByShowingType(UILabelShowingType_03);
@@ -90,7 +90,7 @@ Prop_strong()JobsHotLabelBySingleLine *hl;
             .jobsResetBtnBgImage(@"APPLY NOW".img)
             .jobsResetBtnTitleCor(Cor4)
             .jobsResetBtnTitleFont(UIFontWeightMediumSize(13))
-            .jobsResetBtnTitle(JobsInternationalization(@"APPLY NOW"))
+            .jobsResetBtnTitle(@"APPLY NOW".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 [self endEditing:YES];
@@ -137,7 +137,7 @@ Prop_strong()JobsHotLabelBySingleLine *hl;
         @jobs_weakify(self)
         _subTitleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(Title11);
+            label.text = Title11.tr;
             label.textAlignment = NSTextAlignmentCenter;
             label.numberOfLines = 0;
             label.textColor = JobsWhiteColor;
@@ -185,7 +185,7 @@ Prop_strong()JobsHotLabelBySingleLine *hl;
 //
 //            vm.requestParams = element;
 //            vm.bgImageURLString = [This.BaseUrl stringByAppendingString:element.appIconUrl];
-//            vm.text = JobsInternationalization(@"");
+//            vm.text = @"".tr;
 //            vm.size = CGSizeMake(JobsWidth(46), JobsWidth(46));
 //            vm.offsetXForEach = JobsWidth(46);
 //            vm.offsetYForEach = JobsWidth(46);

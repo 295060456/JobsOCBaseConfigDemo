@@ -137,7 +137,7 @@ heightForFooterInSectionByModel:(NSInteger)section{
 -(UIButton *)jobsCopyBtn{
     if (!_jobsCopyBtn) {
         _jobsCopyBtn = UIButton.jobsInit()
-            .jobsResetBtnTitle(JobsSpace.add(JobsInternationalization(@"複製")).add(JobsSpace))
+            .jobsResetBtnTitle(JobsSpace.add(@"複製".tr).add(JobsSpace))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(12))
             .jobsResetBtnTitleCor(HEXCOLOR(0x757575))
             .bgColorBy(HEXCOLOR(0xEAEBED));

@@ -73,7 +73,7 @@
 //        }
 //        {
 //            JobsLaunchAdMgr *adManager = JobsLaunchAdMgr.sharedManager;
-//            adManager.buttonTitle = JobsInternationalization(@"跳过广告");
+//            adManager.buttonTitle = @"跳过广告".tr;
 //            adManager.buttonModel = SkipButtonModeCountdown;
 //            adManager.countdownDuration = 5;
 //            adManager.redirectURL = @"https://www.google.com";

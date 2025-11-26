@@ -132,28 +132,28 @@ static dispatch_once_t static_choiceStadiumViewOnceToken;
 +(NSMutableArray<UIViewModel *> *)createDataMutArr{
     NSMutableArray <UIViewModel *>*dataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
         data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG體育");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG體育".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG真人");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG真人".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG電子");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG電子".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG彩票");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG彩票".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DG棋牌");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DG棋牌".tr;
+            viewModel.subTextModel.text = @"".tr;
         }))
         .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-            viewModel.textModel.text = JobsInternationalization(@"DA電子");
-            viewModel.subTextModel.text = JobsInternationalization(@"");
+            viewModel.textModel.text = @"DA電子".tr;
+            viewModel.subTextModel.text = @"".tr;
         }));
     });return dataMutArr;
 }
@@ -253,7 +253,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(BaiShaETProjChoiceStadiumTBVHeaderView *)tbvHeaderView{
     if (!_tbvHeaderView) {
         _tbvHeaderView = BaiShaETProjChoiceStadiumTBVHeaderView.new;
-        _tbvHeaderView.text = JobsInternationalization(@"選擇場館");
+        _tbvHeaderView.text = @"選擇場館".tr;
         _tbvHeaderView.textColor = HEXCOLOR(0x3D4A58);
         _tbvHeaderView.font = UIFontWeightBoldSize(16);
         _tbvHeaderView.textAlignment = NSTextAlignmentCenter;

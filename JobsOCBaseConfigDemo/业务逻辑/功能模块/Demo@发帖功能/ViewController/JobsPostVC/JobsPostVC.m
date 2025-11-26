@@ -51,7 +51,7 @@ Prop_strong()UITextModel *postTextModel;
         }
     }
     
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -166,7 +166,7 @@ Prop_strong()UITextModel *postTextModel;
     if (isValue(self.inputDataString)) {
         NSError *err;
         JobsUserModel.sharedManager.postDraftURLStr = [NSObject saveData:self.inputDataString
-                                                    withDocumentsChildDir:JobsInternationalization(@"发帖草稿数据临时文件夹")
+                                                    withDocumentsChildDir:@"发帖草稿数据临时文件夹".tr
                                                              fileFullname:@"发帖草稿数据.txt"
                                                                     error:&err];
         if(err) JobsLog(@"%@",err.description);
@@ -180,7 +180,7 @@ Prop_strong()UITextModel *postTextModel;
             [self.view hx_handleLoading];
             if (success) {
                 self.back(nil);
-            }else [self.view hx_showImageHUDText:JobsInternationalization(@"保存失败")];
+            }else [self.view hx_showImageHUDText:@"保存失败".tr];
         });
     });
 }
@@ -196,21 +196,21 @@ Prop_strong()UITextModel *postTextModel;
     [NSObject showSPAlertControllerConfig:jobsMakeSPAlertControllerConfig(^(__kindof SPAlertControllerConfig * _Nullable config) {
         @jobs_strongify(self)
         config.SPAlertControllerInitType = NSObject_SPAlertControllerInitType_2;
-        config.title = JobsInternationalization(@"提示");
-        config.message = JobsInternationalization(@"是否将当前内容保存为草稿？");
+        config.title = @"提示".tr;
+        config.message = @"是否将当前内容保存为草稿？".tr;
         config.preferredStyle = SPAlertControllerStyleAlert;
         config.animationType = SPAlertAnimationTypeDefault;
         config.alertActionTitleArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable data) {
-            data.add(JobsInternationalization(@"不保存"));
-            data.add(JobsInternationalization(@"保存"));
+            data.add(@"不保存".tr);
+            data.add(@"保存".tr);
         });
         config.alertActionStyleArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable data) {
             data.add(@(SPAlertActionStyleDestructive));
             data.add(@(SPAlertActionStyleDefault));
         });
         config.alertBtnActionArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable data) {
-            data.add(JobsInternationalization(@"不保留文字"));
-            data.add(JobsInternationalization(@"保留文字"));
+            data.add(@"不保留文字".tr);
+            data.add(@"保留文字".tr);
         });
         config.targetVC = self;
         config.funcInWhere = self;
@@ -358,7 +358,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
             .jobsResetBtnBgImage(@"未发布".img)
             .jobsResetBtnTitleCor(JobsWhiteColor)
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"发布"))
+            .jobsResetBtnTitle(@"发布".tr)
             .jobsResetBtnCornerRadiusValue(JobsWidth(23 / 2))
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
@@ -452,9 +452,9 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
             label.textColor = RGB_SAMECOLOR(173);
             label.font = UIFontWeightBoldSize(12);
             label.numberOfLines = 0;
-            label.text = JobsInternationalization(@"1、内容不允许出现纯数字，英文字母；")
+            label.text = @"1、内容不允许出现纯数字，英文字母；".tr
                 .add(JobsNewline)
-                .add(JobsInternationalization(@"2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。"));
+                .add(@"2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。".tr);
             [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.view).offset(JobsWidth(14));
                 make.top.equalTo(self.textView.mas_bottom).offset(JobsWidth(11));
@@ -470,7 +470,7 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
             @jobs_strongify(self)
             data.text = self.inputDataHistoryString;
             data.textCor = JobsBlackColor;
-            data.placeholder = JobsInternationalization(@"撩骚内容，写在这里哦~");
+            data.placeholder = @"撩骚内容，写在这里哦~".tr;
             data.placeholderColor = RGB_SAMECOLOR(173);
             data.font = UIFontWeightRegularSize(14);
             data.maxWordCount = 10;

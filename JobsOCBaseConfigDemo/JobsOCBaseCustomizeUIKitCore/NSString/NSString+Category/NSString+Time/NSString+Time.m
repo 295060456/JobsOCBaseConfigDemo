@@ -31,7 +31,7 @@
             sec = self.doubleValue / 1000.0;/// 毫秒级时间戳（13位）
         }else{
             JobsLog(@"不是正确的时间戳，请检查");
-            toast(JobsInternationalization(@"不是正确的时间戳，请检查"));
+            toast(@"不是正确的时间戳，请检查".tr);
             return nil;
         }return jobsMakeDateFormatter(^(__kindof NSDateFormatter *_Nullable dateFormatter) {
             dateFormatter.dateFormat = timeFormat;

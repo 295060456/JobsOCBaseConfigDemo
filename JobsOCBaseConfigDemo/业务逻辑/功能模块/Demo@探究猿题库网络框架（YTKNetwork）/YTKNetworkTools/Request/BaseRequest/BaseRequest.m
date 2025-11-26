@@ -113,7 +113,7 @@
 }
 #pragma mark —— 在链式请求中，下一个请求的参数来源于上一个请求的结果
 //-(NSString *_Nonnull)userId{
-//    return [[self.responseJSONObject objectForKey:@"userId"] stringValue] ? : JobsInternationalization(@"");
+//    return [[self.responseJSONObject objectForKey:@"userId"] stringValue] ? : @"".tr;
 //}
 #pragma mark ——  复写 YTKBaseRequest 方法
 /// 设置自定义的 HTTP Header

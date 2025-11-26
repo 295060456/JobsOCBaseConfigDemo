@@ -28,7 +28,7 @@ UIViewControllerAnimatedTransitioning
  jobsCommentCoreVC.transitioningDelegate = presentationController;
  
  [self forceComingToPresentVC:jobsCommentCoreVC
-                requestParams:JobsInternationalization(@"")
+                requestParams:@"".tr
                    completion:nil];
  
  */

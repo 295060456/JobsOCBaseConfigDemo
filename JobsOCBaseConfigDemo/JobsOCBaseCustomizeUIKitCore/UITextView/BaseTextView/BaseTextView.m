@@ -31,7 +31,7 @@
         @jobs_weakify(self)
         UIMenuController *menu = jobsMakeMenuController(^(__kindof UIMenuController * _Nullable menu) {
             menu.menuItems = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
-                data.add(JobsInternationalization(@"响应事件").initMenuItemBy(selectorBlocks(^id _Nullable(id _Nullable weakSelf,
+                data.add(@"响应事件".tr.initMenuItemBy(selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                                                        id _Nullable arg) {
                     @jobs_strongify(self)
                     if (self.retIDBySelectorBlock) self.retIDBySelectorBlock(weakSelf,arg);
@@ -103,7 +103,7 @@
             action == @selector(_accessibilityPauseSpeaking:) || /// 暂停语音
             action == @selector(_share:)) {/// 共享
             return NO;
-        }else if ([NSStringFromSelector(action) containsString:JobsInternationalization(@"")]){
+        }else if ([NSStringFromSelector(action) containsString:@"".tr]){
             return YES;
         }else return NO;
     }else return YES;

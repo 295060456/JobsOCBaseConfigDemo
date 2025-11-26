@@ -29,7 +29,7 @@ Prop_strong()BaseLabel *baseLabel;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
@@ -96,7 +96,7 @@ Prop_strong()BaseLabel *baseLabel;
             return @1;
         }];
     }
-    _titleLab.getLabel.text = JobsInternationalization(@" 真人           ");
+    _titleLab.getLabel.text = @" 真人           ".tr;
     _titleLab.getBgImageView.image = @"优惠活动背景图_真人".img;
     
     _titleLab.getLabel.makeLabelByShowingType(UILabelShowingType_03);
@@ -110,7 +110,7 @@ Prop_strong()BaseLabel *baseLabel;
         _baseLabel = jobsMakeBaseLabel(^(__kindof BaseLabel * _Nullable label) {
             @jobs_strongify(self)
             label.jobsOffsetX = JobsWidth(10);
-            label.text = JobsInternationalization(@"测试 -BaseLabel-");
+            label.text = @"测试 -BaseLabel-".tr;
             label.backgroundColor = JobsCyanColor;
             [self.view addSubview:label];
             [label mas_makeConstraints:^(MASConstraintMaker *make) {

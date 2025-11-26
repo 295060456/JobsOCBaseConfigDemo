@@ -35,9 +35,9 @@ Prop_strong()NSMutableArray <__kindof UIViewController *>*childVCMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-//        self.viewModel.textModel.text = JobsInternationalization(@"VIP俱乐部");
+//        self.viewModel.textModel.text = @"VIP俱乐部".tr;
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
@@ -208,11 +208,11 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
             .bgColorBy(JobsWhiteColor)
             .jobsResetBtnTitleCor(HEXCOLOR(0x3D4A58))
             .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-            .jobsResetBtnTitle(JobsInternationalization(@"VIP規則"))
+            .jobsResetBtnTitle(@"VIP規則".tr)
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(JobsInternationalization(@"VIP規則"));
+                toast(@"VIP規則".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });
@@ -223,7 +223,7 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
     if (!_titleMutArr) {
         _titleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
             for (int i = 0; i <= 5; i++) {
-                data.add(JobsInternationalization(@"Lv".add(toStringByInt(i))));
+                data.add(@"Lv".add(toStringByInt(i)).tr);
             }
         });
     }return _titleMutArr;

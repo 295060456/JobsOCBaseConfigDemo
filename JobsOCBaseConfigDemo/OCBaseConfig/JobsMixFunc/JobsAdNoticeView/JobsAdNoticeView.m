@@ -45,7 +45,7 @@ Prop_strong()UILabel *adNoticeLab;
         @jobs_weakify(self)
         _adNoticeLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = JobsInternationalization(@"Jobs安全聊天，为您的聊天加密护航");
+            label.text = @"Jobs安全聊天，为您的聊天加密护航".tr;
             label.textColor = JobsRedColor;
             label.textAlignment = NSTextAlignmentCenter;
             label.font = UIFontWeightRegularSize(JobsWidth(12));

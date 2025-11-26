@@ -32,9 +32,9 @@ Prop_strong()UIButton *btn4;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-//        self.viewModel.textModel.text = JobsInternationalization(@"UIButton子控件的排布");
+//        self.viewModel.textModel.text = @"UIButton子控件的排布".tr;
     self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
@@ -61,7 +61,7 @@ Prop_strong()UIButton *btn4;
 -(UIButton *)btn1{
     if (!_btn1) {
         _btn1 = UIButton.new;
-        _btn1.jobsResetBtnTitle(JobsInternationalization(@"image左、label右【系统默认状态】"));
+        _btn1.jobsResetBtnTitle(@"image左、label右【系统默认状态】".tr);
         _btn1.jobsResetBtnImage(@"Lock".img);
         _btn1.jobsResetBtnTitleCor(JobsWhiteColor);
         _btn1.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
@@ -87,7 +87,7 @@ Prop_strong()UIButton *btn4;
 -(UIButton *)btn2{
     if (!_btn2) {
         _btn2 = UIButton.new;
-        _btn2.jobsResetBtnTitle(JobsInternationalization(@"image右、label左"));
+        _btn2.jobsResetBtnTitle(@"image右、label左".tr);
         _btn2.jobsResetBtnImage(@"Lock".img);
         _btn2.jobsResetBtnTitleCor(JobsWhiteColor);
         _btn2.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
@@ -113,7 +113,7 @@ Prop_strong()UIButton *btn4;
 -(UIButton *)btn3{
     if (!_btn3) {
         _btn3 = UIButton.new;
-        _btn3.jobsResetBtnTitle(JobsInternationalization(@"image上，label下"));
+        _btn3.jobsResetBtnTitle(@"image上，label下".tr);
         _btn3.jobsResetBtnImage(@"Lock".img);
         _btn3.jobsResetBtnTitleCor(JobsWhiteColor);
         _btn3.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));
@@ -139,7 +139,7 @@ Prop_strong()UIButton *btn4;
 -(UIButton *)btn4{
     if (!_btn4) {
         _btn4 = UIButton.new;
-        _btn4.jobsResetBtnTitle(JobsInternationalization(@"image下，label上"));
+        _btn4.jobsResetBtnTitle(@"image下，label上".tr);
         _btn4.jobsResetBtnImage(@"Lock".img);
         _btn4.jobsResetBtnTitleCor(JobsWhiteColor);
         _btn4.jobsResetBtnTitleFont(UIFontWeightRegularSize(14));

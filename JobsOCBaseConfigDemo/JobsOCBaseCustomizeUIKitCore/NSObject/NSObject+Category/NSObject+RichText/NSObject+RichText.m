@@ -14,7 +14,7 @@
         data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
             data1.font = UIFontWeightRegularSize(10.6);
             data1.textCor = RGB_SAMECOLOR(115);
-            data1.targetString = JobsInternationalization(@"我是第一段文字");
+            data1.targetString = @"我是第一段文字".tr;
         }));
         data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
             data1.font = UIFontWeightRegularSize(10.6);;
@@ -29,7 +29,7 @@
                 model.jobsWidth = JobsWidth(400);
                 model.jobsHeight = JobsWidth(1);
             })];
-            data1.targetString = JobsInternationalization(@"我是第二段文字");
+            data1.targetString = @"我是第二段文字".tr;
         }));
     });;
 }

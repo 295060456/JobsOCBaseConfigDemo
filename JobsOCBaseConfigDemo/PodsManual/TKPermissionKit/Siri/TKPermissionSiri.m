@@ -44,11 +44,11 @@
 }
 #pragma mark —— 一些私有方法
 +(void)jumpSetting{
-    [TKPermissionPublic alertPromptTips:JobsInternationalization(@"访问Siri时需要您提供权限，去设置!")];
+    [TKPermissionPublic alertPromptTips:@"访问Siri时需要您提供权限，去设置!".tr];
 }
 
 +(void)alertAction{
-    [TKPermissionPublic alertTips:JobsInternationalization(@"当前系统不支持Siri")];
+    [TKPermissionPublic alertTips:@"当前系统不支持Siri".tr];
 }
 
 @end

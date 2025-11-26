@@ -148,7 +148,7 @@
          证书设置：
          ZBRequestEngine 继承AFHTTPSessionManager，所需其他设置 可以使用[ZBRequestEngine defaultEngine] 自行设置
          */
-        NSString *name = JobsInternationalization(@"");
+        NSString *name = @"".tr;
         if (name.length > 0) {
             // 先导入证书
             NSString *cerPath = name.add(@"cer").pathForResourceWithFullName;//证书的路径

@@ -41,7 +41,7 @@ NS_INLINE __kindof PointLabBaseView *_Nonnull jobsMakePointLabView(jobsByPointLa
              @jobs_strongify(self)
              view.pointView.backgroundColor = JobsCor(@"#D0D0D0");
              view.pointView.cornerCutToCircleWithCornerRadius(JobsWidth(4));
-             view.label.text = JobsInternationalization(@"Your deposit will be successfully credited to your wallet once the transaction completed.");
+             view.label.text = @"Your deposit will be successfully credited to your wallet once the transaction completed.".tr;
              view.label.textColor = JobsCor(@"#D0D0D0");
              view.label.font = UIFontWeightRegularSize(JobsWidth(12));
              view.label.textAlignment = NSTextAlignmentLeft;

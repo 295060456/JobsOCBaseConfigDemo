@@ -72,10 +72,10 @@ UITextFieldProtocol_synthesize_part2
             self.userHeaderIMG = listDataModel.userHeaderIMG;
             self.timeStr = listDataModel.timeStr;
         }else{
-            self.usernameStr = JobsInternationalization(@"数据异常");
-            self.contentStr = JobsInternationalization(@"数据异常");
+            self.usernameStr = @"数据异常".tr;
+            self.contentStr = @"数据异常".tr;
             self.userHeaderIMG = nil;
-            self.timeStr = JobsInternationalization(@"数据异常");
+            self.timeStr = @"数据异常".tr;
         }
         
         self.textLabel.text = self.usernameStr;

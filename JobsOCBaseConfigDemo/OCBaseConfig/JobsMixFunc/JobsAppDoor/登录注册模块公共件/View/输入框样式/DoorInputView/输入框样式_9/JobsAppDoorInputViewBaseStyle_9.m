@@ -24,8 +24,8 @@ Prop_strong()JobsAppDoorInputViewBaseStyleModel *doorInputViewBaseStyleModel;
     if (self = [super init]) {
 //        self.backgroundColor = JobsRedColor;
         self.thisViewSize = thisViewSize;
-        self.titleStr_1 = JobsInternationalization(@"点击");
-        self.titleStr_2 = JobsInternationalization(@"发送验证码");
+        self.titleStr_1 = @"点击".tr;
+        self.titleStr_2 = @"发送验证码".tr;
         self.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
             data.layerCor = JobsWhiteColor;
             data.cornerRadiusValue = 1;

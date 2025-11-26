@@ -31,9 +31,9 @@ Prop_strong()NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutAr
         }
     }
     
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"Excel");
+    self.viewModel.textModel.text = @"Excel".tr;
     self.viewModel.textModel.font = UIFontWeightRegularSize(18);
     
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
@@ -96,7 +96,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.dataMutArr[indexPath.section][indexPath.row].cls) {
         self.comingToPushVCByRequestParams(self.dataMutArr[indexPath.section][indexPath.row].cls.new,
                                            self.dataMutArr[indexPath.section][indexPath.row]);
-    }else self.jobsToastMsg(JobsInternationalization(@"尚未接入此功能"));
+    }else self.jobsToastMsg(@"尚未接入此功能".tr);
 }
 /// 编辑模式下，点击取消左边已选中的cell的按钮
 - (void)tableView:(UITableView *)tableView
@@ -287,29 +287,29 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIViewModel *>* _Nullable data1) {
                 @jobs_strongify(self)
                 data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                    model.title = JobsInternationalization(@"ZMJClassData");
-                    model.subTitle = JobsInternationalization(@"正常");
+                    model.title = @"ZMJClassData".tr;
+                    model.subTitle = @"正常".tr;
                     model.cls = ZMJClassDataVC.class;
                 })))
                 .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                    model.title = JobsInternationalization(@"ZMJTimeable");
-                    model.subTitle = JobsInternationalization(@"正常");
+                    model.title = @"ZMJTimeable".tr;
+                    model.subTitle = @"正常".tr;
                     model.cls = ZMJTimeableVC.class;
                 })))
                 .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                    model.title = JobsInternationalization(@"ZMJSchedule");
-                    model.subTitle = JobsInternationalization(@"正常");
+                    model.title = @"ZMJSchedule".tr;
+                    model.subTitle = @"正常".tr;
                     model.cls = ZMJScheduleVC.class;
                 })))
                 .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                    model.title = JobsInternationalization(@"ZMJGanttList");
-                    model.subTitle = JobsInternationalization(@"有崩溃，需要修复");
+                    model.title = @"ZMJGanttList".tr;
+                    model.subTitle = @"有崩溃，需要修复".tr;
                     model.cls = ZMJGanttListVC.class;
                 })));
             }));
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
-                model.title = JobsInternationalization(@"JobsExcel");
-                model.subTitle = JobsInternationalization(@"JobsExcel");
+                model.title = @"JobsExcel".tr;
+                model.subTitle = @"JobsExcel".tr;
                 model.cls = JobsExcelVC.class;
             })));
         });

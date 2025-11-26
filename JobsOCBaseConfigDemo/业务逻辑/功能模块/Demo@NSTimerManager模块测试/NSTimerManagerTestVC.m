@@ -32,9 +32,9 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
             self.pushOrPresent = self.viewModel.pushOrPresent;
         }
     }
-    self.viewModel.backBtnTitleModel.text = JobsInternationalization(@"返回");
+    self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = JobsInternationalization(@"NSTimerManager模块测试");
+    self.viewModel.textModel.text = @"NSTimerManager模块测试".tr;
 //        self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     
@@ -82,7 +82,7 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
         @jobs_strongify(self)
         [self reloadBtn:data];
         [self.timer stop];
-        self.valueLab.text = JobsInternationalization(@"");
+        self.valueLab.text = @"".tr;
         return nil;
     }];
 }
@@ -197,10 +197,10 @@ Prop_strong()NSMutableArray <NSString *>*btnTitleMutArr;
 -(NSMutableArray<NSString *> *)btnTitleMutArr{
     if (!_btnTitleMutArr) {
         _btnTitleMutArr = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data) {
-            data.add(JobsInternationalization(@"开始"));
-            data.add(JobsInternationalization(@"暂停"));
-            data.add(JobsInternationalization(@"继续"));
-            data.add(JobsInternationalization(@"结束"));
+            data.add(@"开始".tr);
+            data.add(@"暂停".tr);
+            data.add(@"继续".tr);
+            data.add(@"结束".tr);
         });
     }return _btnTitleMutArr;
 }

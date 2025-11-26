@@ -264,7 +264,7 @@ Prop_strong()UIViewModel *chooseBtnViewModel;
             @jobs_strongify(self)
             self.securityModeBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
             if (x.isContainsSpecialSymbolsString(nil)) {
-                toast(JobsInternationalization(@"Do not enter special characters"));
+                toast(@"Do not enter special characters".tr);
             }else{
                 if (self.objBlock) self.objBlock(self->_zyTextField);
             }
@@ -285,7 +285,7 @@ Prop_strong()UIViewModel *chooseBtnViewModel;
         }];
     }
     if (self.doorInputViewBaseStyleModel.textModel.text.isDebugText) {
-        _zyTextField.text = JobsInternationalization(@"");
+        _zyTextField.text = @"".tr;
     }return _zyTextField;
 }
 
@@ -294,13 +294,13 @@ Prop_strong()UIViewModel *chooseBtnViewModel;
         @jobs_weakify(self)
         _chooseBtnViewModel = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data) {
             @jobs_strongify(self)
-            data.textModel.text = JobsInternationalization(@"請選擇區號");
+            data.textModel.text = @"請選擇區號".tr;
             data.textModel.textCor = HEXCOLOR(0xC4C4C4);
             data.textModel.textLineSpacing = 0;
             data.textModel.font = UIFontWeightRegularSize(14);
             data.bgCor = JobsClearColor;
             data.jobsWidth = self.chooseBtnSize.width;
-            data.subTextModel.text = JobsInternationalization(@"");
+            data.subTextModel.text = @"".tr;
             data.image = @"向下的箭头".img;
         });
     }return _chooseBtnViewModel;
@@ -312,23 +312,23 @@ Prop_strong()UIViewModel *chooseBtnViewModel;
         _jobsPageViewDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 @jobs_strongify(self)
-                viewModel.textModel.text = JobsInternationalization(@"+87");
+                viewModel.textModel.text = @"+87".tr;
                 viewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
                 viewModel.textModel.textLineSpacing = 0;
                 viewModel.textModel.font = UIFontWeightRegularSize(14);
                 viewModel.bgCor = JobsClearColor;
                 viewModel.jobsWidth = self.chooseBtnSize.width;
-                viewModel.subTextModel.text = JobsInternationalization(@"");
+                viewModel.subTextModel.text = @"".tr;
             }));
             data.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
                 @jobs_strongify(self)
-                viewModel.textModel.text = JobsInternationalization(@"+88");
+                viewModel.textModel.text = @"+88".tr;
                 viewModel.textModel.textCor = HEXCOLOR(0xC4C4C4);
                 viewModel.textModel.textLineSpacing = 0;
                 viewModel.textModel.font = UIFontWeightRegularSize(14);
                 viewModel.bgCor = JobsClearColor;
                 viewModel.jobsWidth = self.chooseBtnSize.width;
-                viewModel.subTextModel.text = JobsInternationalization(@"");
+                viewModel.subTextModel.text = @"".tr;
             }));
         });
     }return _jobsPageViewDataMutArr;
