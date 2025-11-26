@@ -111,7 +111,7 @@
     };
 }
 
--(JobsRetScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy{
+-(JobsRetScrollViewByBOOLBlock _Nonnull)byShowsVerticalScrollIndicator{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(BOOL data){
         @jobs_strongify(self)
@@ -120,7 +120,7 @@
     };
 }
 
--(JobsRetScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy{
+-(JobsRetScrollViewByBOOLBlock _Nonnull)byShowsHorizontalScrollIndicator{
     @jobs_weakify(self)
     return ^__kindof UIScrollView *_Nullable(BOOL data){
         @jobs_strongify(self)

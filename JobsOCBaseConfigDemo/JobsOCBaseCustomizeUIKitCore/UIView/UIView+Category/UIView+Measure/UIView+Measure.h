@@ -57,7 +57,7 @@ Prop_assign()CGPoint Origin;
 /// 当控件相对于整个设备屏幕居中的时候，控件的Y值
 -(JobsRetCGFloatByVoidBlock _Nonnull)yWhenViewInScreenCenter;
 #pragma mark —— 刷新UI
--(jobsByVoidBlock _Nonnull)jobsRefreshUI;
+-(JobsRetViewByVoidBlock _Nonnull)jobsRefreshUI;
 #pragma mark —— 交换宽高
 /// 仅在横屏情况下交换Size宽高的值
 -(JobsRetFrameByVoidBlock _Nonnull)fitSize;
@@ -112,47 +112,47 @@ Prop_assign()CGPoint Origin;
 -(JobsRetFrameByCGSizeBlock _Nonnull)resetSizeByOffset;
 #pragma mark —— UIView对齐方法扩充 https://github.com/MisterZhouZhou/ZWUIViewExtension
 /// 设置水平方向对齐
--(jobsByViewBlock _Nonnull)centerxEqualToView;
+-(JobsRetViewByViewBlock _Nonnull)centerxEqualToView;
 /// 设置垂平方向对齐
--(jobsByViewBlock _Nonnull)centeryEqualToView;
+-(JobsRetViewByViewBlock _Nonnull)centeryEqualToView;
 /// 设置中心方向对齐
--(jobsByViewBlock _Nonnull)centerEqualToView;
+-(JobsRetViewByViewBlock _Nonnull)centerEqualToView;
 /// 设置左对齐
--(jobsByViewBlock _Nonnull)leftEqualToView;
+-(JobsRetViewByViewBlock _Nonnull)leftEqualToView;
 /// 设置右对齐
--(jobsByViewBlock _Nonnull)rightEqualToView;
+-(JobsRetViewByViewBlock _Nonnull)rightEqualToView;
 /// 设置顶部对齐
--(jobsByViewBlock _Nonnull)topEqualToView;
+-(JobsRetViewByViewBlock _Nonnull)topEqualToView;
 /// 设置底部对齐
--(jobsByViewBlock _Nonnull)bottomEqualToView;
+-(JobsRetViewByViewBlock _Nonnull)bottomEqualToView;
 #pragma mark —— UIScrollView.contentSize
--(jobsBySizeBlock _Nonnull)resetContentSize;
--(jobsByCGFloatBlock _Nonnull)resetContentSizeWidth;
--(jobsByCGFloatBlock _Nonnull)resetContentSizeHeight;
--(jobsByCGFloatBlock _Nonnull)resetContentSizeOffsetWidth;
--(jobsByCGFloatBlock _Nonnull)resetContentSizeOffsetHeight;
+-(JobsRetViewByCGSizeBlock _Nonnull)resetContentSize;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentSizeWidth;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentSizeHeight;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentSizeOffsetWidth;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentSizeOffsetHeight;
 #pragma mark —— UIScrollView.contentOffset
--(jobsByPointBlock _Nonnull)resetContentOffset;
--(jobsByCGFloatBlock _Nonnull)resetContentOffsetX;
--(jobsByCGFloatBlock _Nonnull)resetContentOffsetY;
--(jobsByCGFloatBlock _Nonnull)resetContentOffsetX_offset;
--(jobsByCGFloatBlock _Nonnull)resetContentOffsetY_offset;
+-(JobsRetViewByCGPointBlock _Nonnull)resetContentOffset;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentOffsetX;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentOffsetY;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentOffsetX_offset;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentOffsetY_offset;
 #pragma mark —— UIScrollView.contentInset
--(jobsByEdgeInsetBlock _Nonnull)resetContentInset;
--(jobsByCGFloatBlock _Nonnull)resetContentInsetTop;
--(jobsByCGFloatBlock _Nonnull)resetContentInsetLeft;
--(jobsByCGFloatBlock _Nonnull)resetContentInsetBottom;
--(jobsByCGFloatBlock _Nonnull)resetContentInsetRight;
--(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetTop;
--(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetLeft;
--(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetBottom;
--(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetRight;
+-(JobsRetViewByUIEdgeInsetBlock _Nonnull)resetContentInset;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetTop;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetLeft;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetBottom;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetRight;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetOffsetTop;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetOffsetLeft;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetOffsetBottom;
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetOffsetRight;
 #pragma mark —— 依据UIViewModel所携带的偏移量重塑Frame
--(jobsByViewModelBlock)offsetForView;
+-(JobsRetViewByViewModelBlock)offsetForView;
 #pragma mark —— 拉升和平移
-@property(nonatomic,readonly)CGFloat maxX;
-@property(nonatomic,readonly)CGFloat maxY;
-@property(nonatomic,readonly)CGPoint boundCenter;
+Prop(readonly)CGFloat maxX;
+Prop(readonly)CGFloat maxY;
+Prop(readonly)CGPoint boundCenter;
 /// [平移]这个view, 让view.maxX = maxX
 -(void)setMaxXByShift:(CGFloat)maxX;
 /// [拉伸]这个view, 让view.maxX = maxX

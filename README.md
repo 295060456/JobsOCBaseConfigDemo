@@ -4273,18 +4273,7 @@ static const uint32_t kSequenceBits = 12;
       object_setIvar(self.datePickerView,
                      class_getInstanceVariable([BRDatePickerView class], "_monthNames"),/// 必须是下划线接属性
                      jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
-          arr.add(JobsInternationalization(@"一月份"))
-              .add(JobsInternationalization(@"二月份"))
-              .add(JobsInternationalization(@"三月份"))
-              .add(JobsInternationalization(@"四月份"))
-              .add(JobsInternationalization(@"五月份"))
-              .add(JobsInternationalization(@"六月份"))
-              .add(JobsInternationalization(@"七月份"))
-              .add(JobsInternationalization(@"八月份"))
-              .add(JobsInternationalization(@"九月份"))
-              .add(JobsInternationalization(@"十月份"))
-              .add(JobsInternationalization(@"十一月份"))
-              .add(JobsInternationalization(@"十二月份"));
+          arr.add(@"一月份".tr).add(@"二月份".tr);
       }));
   }
   ```
@@ -4318,13 +4307,25 @@ static const uint32_t kSequenceBits = 12;
   ```objective-c
   - (BOOL)application:(UIApplication *)application
   didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-      self.window = [UIWindow.alloc initWithFrame:UIScreen.mainScreen.bounds];
-      // 创建并设置初始视图控制器为登录界面
-      self.window.rootViewController = ViewController_1.new;
-      [self.window makeKeyAndVisible];
-      self.window.backgroundColor = UIColor.cyanColor;
-      NSLog(@"qwer");
-      return YES;
+      JXScaleSetup(375.0, 812.0);
+  //    JobsAppTool.currentInterfaceOrientation = UIInterfaceOrientationLandscapeLeft | UIInterfaceOrientationLandscapeRight;
+  //    JobsAppTool.currentDeviceOrientation = UIDeviceOrientationLandscapeLeft | UIDeviceOrientationLandscapeRight;
+  //    JobsAppTool.currentInterfaceOrientationMask = UIInterfaceOrientationMaskLandscapeRight;
+  //    JobsAppTool.jobsDeviceOrientation = DeviceOrientationLandscape;
+  
+      self.localNotifications();
+      self.launchFunc2();
+      AppDelegate.launchFunc1();          // 如遇“重复副作用”，可改到 SceneDelegate，或在此加 @available 保护
+  
+      if (@available(iOS 13.0, *)) {
+          // 👉 iOS 13+ 由 SceneDelegate 负责挂窗，这里不再创建 window
+          return YES;
+      }
+      // 👉 iOS 12 及以下，沿用原有逻辑创建 window
+      self.window = jobsMakeAppDelegateWindow(^(__kindof UIWindow * _Nullable window) {
+          window.rootViewController = RootViewController;
+          [window makeKeyAndVisible];
+      }); return YES;
   }
   ```
 
@@ -4628,26 +4629,28 @@ self.countDownBtn.timerContinue();
 * 对<font size=5>[**`Masonry`**](https://github.com/SnapKit/Masonry) </font>约束Block进行存储，一般一个**View**对应一个约束。先`addSubview`，再利用存储的约束进行绘制UI
 
   ```objective-c
-   -(BaseButton *)forgotten_code_btn{
-       if(!_forgotten_code_btn){
-           @jobs_weakify(self)
-           _forgotten_code_btn = self.addSubview(BaseButton.jobsInit()
-                                                 .bgColorBy(JobsClearColor)
-                                                 .jobsResetBtnTitleCor(JobsCor(@"#FF0000"))
-                                                 .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(13)))
-                                                 .jobsResetBtnTitle(JobsInternationalization(@"Forgot Password?"))
-                                                 .onClickBy(^(UIButton *x){
-                                                     @jobs_strongify(self)
-                                                     self.getCurrentViewController.comingToPushVC(FMForgotPwdVC.new);
-                                                 }).onLongPressGestureBy(^(id data){
-                                                     JobsLog(@"");
-                                                 })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-                                                     make.top.equalTo(self.textField_code.mas_bottom).offset(JobsWidth(5));
-                                                     make.right.equalTo(self.textField_code);
-                                                     make.size.mas_equalTo(CGSizeMake(JobsWidth(130), JobsWidth(15)));
-                                                 }).on();
-       }return _forgotten_code_btn;
-   }
+  -(BaseButton *)forgotten_code_btn{
+      if(!_forgotten_code_btn){
+          @jobs_weakify(self)
+          _forgotten_code_btn = BaseButton.jobsInit()
+              .bgColorBy(JobsClearColor)
+              .jobsResetBtnTitleCor(JobsCor(@"#FF0000"))
+              .jobsResetBtnTitleFont(pingFangHKRegular(JobsWidth(13)))
+              .jobsResetBtnTitle(JobsInternationalization(@"Forgot Password?"))
+              .onClickBy(^(UIButton *x){
+                  @jobs_strongify(self)
+                  self.getCurrentViewController.comingToPushVC(FMForgotPwdVC.new);
+              })
+              .onLongPressGestureBy(^(id data){
+                  JobsLog(@"");
+              })
+              .addOn(self.bgImageView)
+              .byAdd(^(MASConstraintMaker *make) {
+                  @jobs_strongify(self)
+                  /// TODO
+              });
+      }return _forgotten_code_btn;
+  }
   ```
   
 * 将以前的约束全部清除，用最新的`mas_remakeConstraints`
@@ -4942,7 +4945,7 @@ self.countDownBtn.timerContinue();
  ```
 </details>
 
-### 33、**使用block，对`@selector`的替代封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 33、**使用block，对<font color=red>`@selector`</font>的替代封装，避免方法割裂** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 <details id="使用block，对selector的封装，避免方法割裂">
  <summary><strong>点我了解详情</strong></summary>
@@ -5158,7 +5161,7 @@ self.countDownBtn.timerContinue();
 
 ### 34、`UIViewModel`的使用 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 将数据束`UIViewModel`绑定到UI中，包括一些UI交互事件
+* 将数据束<font size=5>`UIViewModel`</font>绑定到UI中，包括一些UI交互事件
 
 <details id="UIViewModel的使用">
  <summary><strong>对 UICollectionView 点击事件的封UIViewModel+block</strong></summary>
@@ -5681,7 +5684,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
   #### 37.4、[**`UIViewController`转场动画的使用方法**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition/UIViewController%2BXLBubbleTransition.md/UIViewController%2BXLBubbleTransition.md)  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-  * 关注实现类：[**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
+> 关注实现类：[**@interface UIViewController (XLBubbleTransition)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController%2BCategory/UIViewController%2BXLBubbleTransition)
 
   * ```objective-c
     /// 设置控制器的转场方向
@@ -5691,17 +5694,18 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 #### 37.5、<font color=red>**悬浮视图**</font>  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-  * 以分类的方式，定义在`view`层，针对全局所有的`UIView *`
+> 关注实现类：[**@interface UIViewController (SuspendBtn)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+SuspendBtn)
+>
+> 关注实现类：[**@interface UIView (SuspendView)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+SuspendView)
 
-    * 关注实现类：[**@interface UIViewController (SuspendBtn)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIViewController/UIViewController+Category/UIViewController+Others/UIViewController+SuspendBtn)
-    * 关注实现类：[**@interface UIView (SuspendView)**](https://github.com/295060456/JobsOCBaseConfigDemo/tree/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIView/UIView+Category/UIView+SuspendView)
+  * 以分类的方式，定义在`view`层，针对全局所有的`UIView *`
 
   * 使用方法
 
-    * **在需要作用的UIView的子类**
+    * **在需要作用的`UIView`的子类**
 
-      * 关键代码（外界传进来的，父承接的VC）：<font color=red>self.vc = self.vcer;</font>
-      * 关键代码（是否允许拖动手势 <font color=red>= isAllowDrag</font>）：<font color=red>self.panRcognize.enabled = YES;</font>
+      * 关键代码（外界传进来的，父承接的VC）：<font color=red size=5>`self.vc = self.vcer;`</font>
+      * 关键代码（是否允许拖动手势 <font color=red size=5>= isAllowDrag</font>）：<font color=red size=5>`self.panRcognize.enabled = YES;`</font>
 
       ```objective-c
       -(void)drawRect:(CGRect)rect{
@@ -5718,8 +5722,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
     * 在某个控制器上添加某个悬浮视图（按钮为例）
 
-      * 关键代码：<font color=red>self.view.vc = weak_self;</font>
-      * 关键代码（悬浮效果必须要的参数）：<font color=red>SuspendBtn.isAllowDrag = YES;</font>
+      * 关键代码：<font color=red size=5>`self.view.vc = weak_self;`</font>
+      * 关键代码（悬浮效果必须要的参数）：<font color=red size=5>`SuspendBtn.isAllowDrag = YES;`</font>
 
       ```objective-c
       #pragma mark —— Prop_strong()JobsSuspendBtn *suspendBtn;
@@ -6069,7 +6073,7 @@ vc.navCtrl
 
   * 因为是小型化的一些临时数据，所以数据本地化方案选用的是`NSUserDefaults.standardUserDefaults`
 
-  * 数据来源`JobsUserModel`。用key = 用户信息进行存取
+  * 数据来源 <font size=5>`JobsUserModel`</font>。用key = 用户信息进行存取
 
     ```objective-c
     /// 读取用户信息【用户信息】/【JobsUserModel】
@@ -6105,7 +6109,7 @@ vc.navCtrl
 
 ### 45、👋手势封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 封装方式1：所有的手势都是在View上添加以及触发的
+* 封装方式1：所有的手势都是在 **View**上添加以及触发的
 
   ```objective-c
   self.addGesture([jobsMakeTapGesture(^(UITapGestureRecognizer * _Nullable gesture) {
@@ -6277,20 +6281,23 @@ vc.navCtrl
             @jobs_weakify(self)
             _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
                 @jobs_strongify(self)
-                label.backgroundColor = JobsRandomColor;
-                label.attributedText = jobsMakeParagraphStyle(^(__kindof NSMutableParagraphStyle * _Nullable data) {
-                data.alignment = NSTextAlignmentJustified;
-                data.paragraphSpacing = 0;//段距，取值 float
-                data.paragraphSpacingBefore = 0;//段首空间，取值 float
-                data.firstLineHeadIndent = 0.0;//首行缩进，取值 float
-                data.headIndent = 0.0;//整体缩进(首行除外)，取值 float
-                data.lineSpacing = 0;//行距，取值 float
-            });
-                label.numberOfLines = 0;
-                [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.width.mas_equalTo(200);
-                    make.center.equalTo(self.view);
-                }];label.makeLabelByShowingType(UILabelShowingType_05);
+                label
+                    .byNumberOfLines(0)
+                    .byAttributedString(jobsMakeParagraphStyle(^(__kindof NSMutableParagraphStyle * _Nullable data) {
+                        data.alignment = NSTextAlignmentJustified;
+                        data.paragraphSpacing = 0;       // 段距，取值 float
+                        data.paragraphSpacingBefore = 0; // 段首空间，取值 float
+                        data.firstLineHeadIndent = 0.0;  // 首行缩进，取值 float
+                        data.headIndent = 0.0;           // 整体缩进(首行除外)，取值 float
+                        data.lineSpacing = 0;            // 行距，取值 float
+                    }))
+                    .byBgColor(JobsRandomColor)
+                    .addOn(self.bgImageView)
+                    .byAdd(^(MASConstraintMaker *make) {
+                        @jobs_strongify(self)
+                        /// TODO
+                    })
+                    .makeLabelByShowingType(UILabelShowingType_05);
             });
         }return _label;
     }
@@ -6421,26 +6428,25 @@ vc.navCtrl
     ```
     
     ```objective-c
-     -(UITextView *)tipsTextView{
-         if (!_tipsTextView) {
-             @jobs_weakify(self)
-             _tipsTextView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
-                 @jobs_strongify(self)
-                 textView.delegate = self;
-                 textView.editable = NO;/// 必须禁止输入，否则点击将会弹出输入键盘
-                 textView.scrollEnabled = NO;/// 可选的，视具体情况而定
-                 textView.linkTextAttributes = @{NSForegroundColorAttributeName:HEXCOLOR(0xCCB17E)};/// 链接文字颜色
-                 textView.attributedText = self.attributedStringData;
-                 textView.userInteractionEnabled = YES;
-                 self.contentView.addSubview(textView);
-                 [textView mas_makeConstraints:^(MASConstraintMaker *make) {
-                     make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(30)));
-                     make.centerX.equalTo(self.contentView);
-                     make.bottom.equalTo(self.contentView).offset(-JobsWidth(38));
-                 }];
-             });
-         }return _tipsTextView;
-     }
+    -(UITextView *)tipsTextView{
+        if (!_tipsTextView) {
+            @jobs_weakify(self)
+            _tipsTextView = jobsMakeTextView(^(__kindof UITextView * _Nullable textView) {
+                @jobs_strongify(self)
+                textView.byDelegate(self)
+                    .byEditable(NO) // 必须禁止输入，否则点击将会弹出输入键盘
+                    .byScrollEnabled(NO)
+                    .byLinkTextAttributes(@{NSForegroundColorAttributeName:HEXCOLOR(0xCCB17E)}) // 链接文字颜色
+                    .byAttributedText(self.attributedStringData)
+                    .byUserInteractionEnabled(YES)
+                    .addOn(self.contentView)
+                    .byAdd(^(MASConstraintMaker *make) {
+                        @jobs_strongify(self)
+                        /// TODO
+                    });
+            });
+        }return _tipsTextView;
+    }
     ```
     
   * <font color=red>**对富文本里面超链接的自定义设定问题**</font>
@@ -6463,32 +6469,32 @@ vc.navCtrl
       ```
     
       ```objective-c
-                  textView.attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray *_Nullable data) {
-                      data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
-                          @jobs_strongify(self)
-                          data1.font = UIFontWeightBoldSize(JobsWidth(14));
-                          data1.textCor = JobsCor(@"#6B6B6B");
-                          data1.targetString = JobsInternationalization(@"Please read our ").uppercaseString;
-                          data1.paragraphStyle = self.defaultParagraphStyle;
-                      }));
-                      data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
-                          @jobs_strongify(self)
-                          data1.font = UIFontWeightBoldSize(JobsWidth(14));
-                          data1.textCor = JobsCor(@"#FFCC00");
-                          data1.targetString = JobsInternationalization(@"RESPONSIBLE GAMING");
-                          data1.underlineCor = JobsCor(@"#FFCC00");
-                          data1.underlineStyle = NSUnderlineStyleSingle;
-                          data1.paragraphStyle = self.defaultParagraphStyle;
-                          data1.urlStr = @"myapp://responsible_gaming";/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
-                      }));
-                      data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
-                          @jobs_strongify(self)
-                          data1.font = UIFontWeightBoldSize(JobsWidth(14));
-                          data1.textCor = JobsCor(@"#6B6B6B");;
-                          data1.targetString = JobsInternationalization(@" carefully:").uppercaseString;
-                          data1.paragraphStyle = self.defaultParagraphStyle;
-                      }));
-                  }));
+      textView.attributedText = self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray *_Nullable data) {
+          data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
+              @jobs_strongify(self)
+              data1.font = UIFontWeightBoldSize(JobsWidth(14));
+              data1.textCor = JobsCor(@"#6B6B6B");
+              data1.targetString = JobsInternationalization(@"Please read our ").uppercaseString;
+              data1.paragraphStyle = self.defaultParagraphStyle;
+          }));
+          data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
+              @jobs_strongify(self)
+              data1.font = UIFontWeightBoldSize(JobsWidth(14));
+              data1.textCor = JobsCor(@"#FFCC00");
+              data1.targetString = JobsInternationalization(@"RESPONSIBLE GAMING");
+              data1.underlineCor = JobsCor(@"#FFCC00");
+              data1.underlineStyle = NSUnderlineStyleSingle;
+              data1.paragraphStyle = self.defaultParagraphStyle;
+              data1.urlStr = @"myapp://responsible_gaming";/// 这里必须是一个URL形式的字符串，SDK框架内部才能识别处理，并执行协议方法
+          }));
+          data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig *_Nullable data1) {
+              @jobs_strongify(self)
+              data1.font = UIFontWeightBoldSize(JobsWidth(14));
+              data1.textCor = JobsCor(@"#6B6B6B");;
+              data1.targetString = JobsInternationalization(@" carefully:").uppercaseString;
+              data1.paragraphStyle = self.defaultParagraphStyle;
+          }));
+      }));
       ```
     
   * **UITextViewDelegate**
@@ -6633,7 +6639,7 @@ vc.navCtrl
     }
     ```
 
-### 50、📷系统相机相册调取 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 50、📷 系统相机相册调取 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 借助第三方[**`HXPhotoPicker`**](https://github.com/SilenceLove/HXPhotoPicker)
 
@@ -6741,20 +6747,21 @@ vc.navCtrl
                                 }
                             });
                     }));
-                }).onLongPressGestureBy(^(id data){
+    					})
+              .onLongPressGestureBy(^(id data){
                     JobsLog(@"");
-                });
-            [self.scrollView.addSubview(_frontPicBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.frontPicLab.mas_bottom).offset(JobsWidth(10));
-                make.centerX.equalTo(self.scrollView);
-                make.size.mas_equalTo(CGSizeMake(JobsWidth(345), JobsWidth(166)));
-            }];
+              })              
+              .addOn(self.bgImageView)
+              .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    /// TODO
+              });
         }return _frontPicBtn;
     }
     ```
-
+    
   * 从屏幕底部弹出菜单进行选择
-
+  
     ```objective-c
     -(BaseButton *)holdOnIDBtn{
         if(!_holdOnIDBtn){
@@ -6768,12 +6775,12 @@ vc.navCtrl
                                                popupParam:self.popupParameter];
                 }).onLongPressGestureBy(^(id data){
                     JobsLog(@"");
-                });
-            [self.scrollView.addSubview(_holdOnIDBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.holdOnIDLab.mas_bottom).offset(JobsWidth(10));
-                make.centerX.equalTo(self.scrollView);
-                make.size.mas_equalTo(CGSizeMake(JobsWidth(345), JobsWidth(166)));
-            }];
+                })
+              .addOn(self.scrollView)
+              .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    /// TODO
+              });
         }return _holdOnIDBtn;
     }
     
@@ -7324,17 +7331,19 @@ NSLog(@"%p %p %p %p" %p", m1, m2, m3, m4, m5);
 * 如果需要将**`UIScrollView`**拖动到某个地方，就不能拖动了，需要配置其**contentSize**属性
 
   ```objective-c
+  @synthesize scrollView = _scrollView;
   -(UIScrollView *)scrollView{
       if (!_scrollView) {
           @jobs_weakify(self)
-          _scrollView = self.addSubview(jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
+          _scrollView = jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
               @jobs_strongify(self)
-              scrollView.delegate = self;
-              scrollView.frame = self.bounds;
-              scrollView.resetContentSizeWidth(1000);
-              scrollView.showsVerticalScrollIndicator = NO;
-              scrollView.showsHorizontalScrollIndicator = NO;
-          }));
+              scrollView
+                  .byDelegate(self)
+                  .byShowsVerticalScrollIndicator(NO)
+                  .byShowsHorizontalScrollIndicator(NO)
+                  .byFrame(self.bounds)
+                  .resetContentSizeWidth(1000);
+          });
       }return _scrollView;
   }
   ```
@@ -7429,11 +7438,11 @@ NSLog(@"%p %p %p %p" %p", m1, m2, m3, m4, m5);
 
   ```objective-c
   _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-      data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-      data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-      data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-      data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-      data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+  		data.stateIdleTitle = @"下拉可以刷新".tr;
+  		data.pullingTitle = @"下拉可以刷新".tr;
+  		data.refreshingTitle = @"松开立即刷新".tr;
+  		data.willRefreshTitle = @"刷新数据中".tr;
+  		data.noMoreDataTitle = @"下拉可以刷新".tr;
       data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
       data.loadBlock = ^id _Nullable(id _Nullable data) {
           @jobs_strongify(self)
@@ -7447,11 +7456,11 @@ NSLog(@"%p %p %p %p" %p", m1, m2, m3, m4, m5);
   
   ```objective-c
   _tableView.mj_footer = self.view.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-      data.stateIdleTitle = JobsInternationalization(@"");
-      data.pullingTitle = JobsInternationalization(@"");
-      data.refreshingTitle = JobsInternationalization(@"");
-      data.willRefreshTitle = JobsInternationalization(@"");
-      data.noMoreDataTitle = JobsInternationalization(@"");
+      data.stateIdleTitle = @"".tr;
+      data.pullingTitle = @"".tr;
+      data.refreshingTitle = @"".tr;
+      data.willRefreshTitle = @"".tr;
+      data.noMoreDataTitle = @"".tr;
       data.loadBlock = ^id _Nullable(id _Nullable data){
           @jobs_strongify(self)
           self->_tableView.endRefreshing(YES);
@@ -7476,11 +7485,11 @@ NSLog(@"%p %p %p %p" %p", m1, m2, m3, m4, m5);
 
   ```objective-c
   _tableView.mj_header = self.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-    data.stateIdleTitle = JobsInternationalization(@"下拉刷新数据");
-    data.pullingTitle = JobsInternationalization(@"下拉刷新数据");
-    data.refreshingTitle = JobsInternationalization(@"正在刷新数据");
-    data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-    data.noMoreDataTitle = JobsInternationalization(@"下拉刷新数据");
+    data.stateIdleTitle = @"下拉可以刷新".tr;
+    data.pullingTitle = @"下拉可以刷新".tr;
+    data.refreshingTitle = @"松开立即刷新".tr;
+    data.willRefreshTitle = @"刷新数据中".tr;
+    data.noMoreDataTitle = @"下拉可以刷新".tr;
     data.loadBlock = ^id _Nullable(id  _Nullable data) {
         @jobs_strongify(self)
         NSLog(@"下拉刷新");
@@ -7507,9 +7516,9 @@ NSLog(@"%p %p %p %p" %p", m1, m2, m3, m4, m5);
     ```
 
     ```objective-c
-    _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:JobsInternationalization(@"暂无数据")
-                                                             titleStr:JobsInternationalization(@"暂无数据")
-                                                            detailStr:JobsInternationalization(@"")];
+    _collectionView.ly_emptyView = [LYEmptyView emptyViewWithImageStr:@"暂无数据".tr
+                                                             titleStr:@"暂无数据".tr
+                                                            detailStr:@"".tr];
     
     _collectionView.ly_emptyView.titleLabTextColor = JobsLightGrayColor;
     _collectionView.ly_emptyView.contentViewOffset = JobsWidth(-180);
@@ -7812,10 +7821,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
            @jobs_weakify(self)
            _textIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
                @jobs_strongify(self)
-               self.contentView.addSubview(imageView);
-               [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                   make.edges.equalTo(self.contentView);
-               }];
+               imageView.addOn(self.contentView)
+                   .byAdd(^(MASConstraintMaker *make) {
+                       @jobs_strongify(self)
+                       make.edges.equalTo(self.contentView);
+                   });
            });
        }return _textIMGV;
    }
@@ -7834,58 +7844,58 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    -(BaseCollectionView *)collectionView{
        if (!_collectionView) {
            @jobs_weakify(self)
-           _collectionView = self.addSubview(BaseCollectionView
-                                             .initByLayout(self.horizontalLayout)
-                                             .registerCollectionViewClass()
-                                             .registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@"")
-                                             .registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@"")
-                                             .registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"")
-                                             .byEdgeInsets(UIEdgeInsetsMake(0, 0, 0, 0))
-                                             /// 普通的MJRefreshHeader（触发事件）（二选一）
-                                             .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
-                                                 @jobs_strongify(self)
-                                                 /// TODO
-                                                 NSObject.feedbackGenerator(nil);/// 震动反馈
-                                                 self->_collectionView.endRefreshing(YES);
-                                             }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
-                                             /// MJRefreshHeader的拓展：下拉刷新Lottie动画（二选一）
-                                             .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
-                                                 
-                                             })))
-                                             /// 普通的MJRefreshFooter（触发事件）
-                                             .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-                                                 @jobs_strongify(self)
-                                                 /// TODO
-                                                 NSObject.feedbackGenerator(nil);/// 震动反馈
-                                                 self->_collectionView.endRefreshing(YES);
-                                             }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
-                                             .byBounces(NO)///设置为NO，使得collectionView只能上拉，不能下拉
-                                             .showsVerticalScrollIndicatorBy(NO)
-                                             .showsHorizontalScrollIndicatorBy(NO)
-                                             /// 无数据占位：用默认的图文占位表达（二选一）
-                                             .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                                                 data.title = JobsInternationalization(@"NO BANK CARD FOUND");
-                                                 data.titleCor = JobsWhiteColor;
-                                                 data.titleFont = bayonRegular(JobsWidth(30));
-                                                 data.normalImage = @"用户默认头像".img;
-                                             }))
-                                             /// 无数据占位：用自定义的视图表达（二选一）
-                                             .showEmptyViewBy(FMMaintenanceView
-                                                              .BySize(FMMaintenanceView.viewSizeByModel(nil))
-                                                              .JobsRichViewByModel2(nil)
-                                                              .JobsBlock1(^(id  _Nullable data) {
-                                                                  
-                                                              }))
-                                             )
-           .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-               @jobs_strongify(self)
-               make.centerX.equalTo(self);
-               make.top.equalTo(self.jobsTextField.mas_bottom).offset(JobsWidth(5));
-               make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() - JobsWidth(30), JobsWidth(72)));
-           }).on().byBgCor(JobsClearColor).dataLink(self);
-           
+           _collectionView = BaseCollectionView
+               .initByLayout(self.horizontalLayout)
+               .registerCollectionViewClass()
+               .registerCollectionViewCellClass(JobsBtnStyleCVCell.class,@"")
+               .registerCollectionElementKindSectionHeaderClass(BaseCollectionReusableView.class,@"")
+               .registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"")
+               .byEdgeInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+               /// 普通的MJRefreshHeader（触发事件）（二选一）
+               .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                   @jobs_strongify(self)
+                   /// TODO
+                   NSObject.feedbackGenerator(nil);/// 震动反馈
+                   self->_collectionView.endRefreshing(YES);
+               }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
+               /// MJRefreshHeader的拓展：下拉刷新Lottie动画（二选一）
+               .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
+   
+               })))
+               /// 普通的MJRefreshFooter（触发事件）
+               .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                   @jobs_strongify(self)
+                   /// TODO
+                   NSObject.feedbackGenerator(nil);/// 震动反馈
+                   self->_collectionView.endRefreshing(YES);
+               }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+               .byBounces(NO)///设置为NO，使得collectionView只能上拉，不能下拉
+               .showsVerticalScrollIndicatorBy(NO)
+               .showsHorizontalScrollIndicatorBy(NO)
+               /// 无数据占位：用默认的图文占位表达（二选一）
+               .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                   data.title = @"NO BANK CARD FOUND".tr;
+                   data.titleCor = JobsWhiteColor;
+                   data.titleFont = bayonRegular(JobsWidth(30));
+                   data.normalImage = @"用户默认头像".img;
+               }))
+               /// 无数据占位：用自定义的视图表达（二选一）
+               .showEmptyViewBy(FMMaintenanceView
+                                .BySize(FMMaintenanceView.viewSizeByModel(nil))
+                                .JobsRichViewByModel2(nil)
+                                .JobsBlock1(^(id  _Nullable data) {
+   
+                                }))
+               .addOn(self.bgImageView)
+               .byAdd(^(MASConstraintMaker *make) {
+                   @jobs_strongify(self)
+                   /// TODO
+               })
+               .byBgCor(JobsClearColor)
+               .dataLink(self);
+   
            _collectionView.setContentOffsetByYES(CGPointMake(0, 0));// 这句最快在 viewWillLayoutSubviews 有效
-           
+   
            {/// 水平刷新控件
                [_collectionView xzm_addNormalHeaderWithTarget:self
                                                        action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
@@ -7896,7 +7906,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                    /// _collectionView.endRefreshing();
                    return nil;
                }, MethodName(self), self)];
-               
+   
                [_collectionView xzm_addNormalFooterWithTarget:self
                                                        action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
                                                                                            id _Nullable arg) {
@@ -7910,7 +7920,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                _collectionView.xzm_header.updatedTimeHidden = YES;
                [_collectionView.xzm_header beginRefreshing];
            }
-           
+   
    //        {
    //            _collectionView.tabAnimated = [TABCollectionAnimated animatedWithCellClassArray:jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
    //                arr.add(DDCollectionViewCell_Style2.class)
@@ -8306,11 +8316,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
   ```objective-c
   _tableView.mj_header = self.view.MJRefreshNormalHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-      data.stateIdleTitle = JobsInternationalization(@"下拉可以刷新");
-      data.pullingTitle = JobsInternationalization(@"下拉可以刷新");
-      data.refreshingTitle = JobsInternationalization(@"松开立即刷新");
-      data.willRefreshTitle = JobsInternationalization(@"刷新数据中");
-      data.noMoreDataTitle = JobsInternationalization(@"下拉可以刷新");
+      data.stateIdleTitle = @"下拉可以刷新".tr;
+      data.pullingTitle = @"下拉可以刷新".tr;
+      data.refreshingTitle = @"松开立即刷新".tr;
+      data.willRefreshTitle = @"刷新数据中".tr;
+      data.noMoreDataTitle = @"下拉可以刷新".tr;
       data.automaticallyChangeAlpha = YES;/// 根据拖拽比例自动切换透明度
       data.loadBlock = ^id _Nullable(id _Nullable data) {
           @jobs_strongify(self)
@@ -8322,11 +8332,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
   }));
   
   _tableView.mj_footer = self.view.MJRefreshFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-      data.stateIdleTitle = JobsInternationalization(@"");
-      data.pullingTitle = JobsInternationalization(@"");
-      data.refreshingTitle = JobsInternationalization(@"");
-      data.willRefreshTitle = JobsInternationalization(@"");
-      data.noMoreDataTitle = JobsInternationalization(@"");
+      data.stateIdleTitle = @"".tr;
+      data.pullingTitle = @"".tr;
+      data.refreshingTitle = @"".tr;
+      data.willRefreshTitle = @"".tr;
+      data.noMoreDataTitle = @"".tr;
       data.loadBlock = ^id _Nullable(id _Nullable data){
           @jobs_strongify(self)
           self->_tableView.endRefreshing(YES);
@@ -8422,7 +8432,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     
   * 自定义**`UITableViewCell`**的箭头
   
-    <font color=red>**使用前提：必须`UITableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; `打开后才可以启用**</font>
+    <font color=red size=5>**使用前提：必须`UITableViewCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; `打开后才可以启用**</font>
   
     作用于：`- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath`
   
@@ -8471,7 +8481,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        if (!_tableView) {
            /// 一般用 initWithStylePlain。initWithStyleGrouped会自己预留一块空间
            @jobs_weakify(self)
-           _tableView = self.view.addSubview(jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView) {
+           _tableView = jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView) {
                @jobs_strongify(self)
                tableView.bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
                    .bySeparatorColor(HEXCOLOR(0xEEE2C8))
@@ -8484,7 +8494,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                        /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
                    }))
                    .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
-                       data.title = JobsInternationalization(@"NO MESSAGES FOUND");
+                       data.title = @"NO MESSAGES FOUND".tr;
                        data.titleCor = JobsWhiteColor;
                        data.titleFont = bayonRegular(JobsWidth(30));
                        data.normalImage = @"小狮子".img;
@@ -8498,7 +8508,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                    }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
                    /// MJRefreshHeader的拓展：下拉刷新Lottie动画（二选一）
                    .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
-                       
+   
                    })))
                    /// 普通的MJRefreshFooter（触发事件）
                    .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -8507,8 +8517,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                        NSObject.feedbackGenerator(nil);/// 震动反馈
                        self->_collectionView.endRefreshing(YES);
                    }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
-                   .showsVerticalScrollIndicatorBy(NO)
-                   .showsHorizontalScrollIndicatorBy(NO)
+                   .byShowsVerticalScrollIndicator(NO)
+                   .byShowsHorizontalScrollIndicator(NO)
                    .byScrollEnabled(YES)
                    .byBgCor(JobsClearColor);
    
@@ -8517,7 +8527,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                }else{
                    SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
                }
-               
+   
    //            {
    //                tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
    //                    @jobs_strongify(self)
@@ -8527,7 +8537,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    //                }]);
    //                tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
    //            }
-               
+   
    //            {/// 设置tabAnimated相关属性
    //                // 可以不进行手动初始化，将使用默认属性
    //                tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
@@ -8535,7 +8545,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    //                tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
    //                [tableView tab_startAnimation];   // 开启动画
    //            }
-               
+   
    //            {
    //              [tableView xzm_addNormalHeaderWithTarget:self
    //                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
@@ -8558,10 +8568,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    //              }, MethodName(self), self)];
    //              [tableView.xzm_header beginRefreshing];
    //          }
-           })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+           })
+           .addOn(self.bgImageView)
+           .byAdd(^(MASConstraintMaker *make) {
                @jobs_strongify(self)
                /// TODO
-           }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
+           })
+           .dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
        }return _tableView;
    }
    ```
@@ -8637,67 +8650,67 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
            _dataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable dataMutArr) {
                dataMutArr.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>*_Nullable temp) {
                    temp.data = jobsMakeViewModel(^(__kindof UIViewModel *_Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Please fill out your Personal Information completely");
-                       viewModel.textCor = JobsCor(@"#FFC700");
+                       viewModel.text = @"Please fill out your Personal Information completely".tr;
+                       viewModel.textCor = @"#FFC700".cor;
                        viewModel.font = bayonRegular(JobsWidth(20));
                        viewModel.indexPath = JobsIndexPathForRow(0, 0);
                    });
                    temp.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Full Name");
-                       viewModel.textCor = JobsCor(@"#FFFFFF");
+                       viewModel.text = @"Full Name".tr;
+                       viewModel.textCor = @"#FFFFFF".cor;
                        viewModel.font = UIFontWeightRegularSize(14);
-                       viewModel.placeholder = JobsInternationalization(@"This Name must match the name on any IDs or any bank accounts");
+                       viewModel.placeholder = @"This Name must match the name on any IDs or any bank accounts".tr;
                        viewModel.indexPath = JobsIndexPathForRow(0, 1);
                        viewModel.jobsEnabled = YES;
                    }));
                    temp.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Nationality");
-                       viewModel.textCor = JobsCor(@"#FFFFFF");
+                       viewModel.text = @"Nationality".tr;
+                       viewModel.textCor = @"#FFFFFF".cor;
                        viewModel.font = UIFontWeightRegularSize(14);
                        /// 这里可以加入地理位置的判断
-                       viewModel.placeholder = JobsInternationalization(@"Philippines");
-                       viewModel.placeholderColor = JobsCor(@"#FFC700");
+                       viewModel.placeholder = @"Philippines".tr;
+                       viewModel.placeholderColor = @"#FFC700".cor;
                        viewModel.placeholderFont = UIFontWeightRegularSize(18);
                        viewModel.indexPath = JobsIndexPathForRow(0, 2);
                    }));
                    temp.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Date of Birth");
-                       viewModel.textCor = JobsCor(@"#FFFFFF");
+                       viewModel.text = @"Date of Birth".tr;
+                       viewModel.textCor = @"#FFFFFF".cor;
                        viewModel.font = UIFontWeightRegularSize(14);
-                       viewModel.subText = JobsInternationalization(@"21 / 09 / 2021");
-                       viewModel.subTextCor = JobsCor(@"#FFC700");
+                       viewModel.subText = @"21 / 09 / 2021".tr;
+                       viewModel.subTextCor = @"#FFC700".cor;
                        viewModel.subFont = UIFontWeightRegularSize(18);
                        viewModel.indexPath = JobsIndexPathForRow(0, 3);
                    }));
                    temp.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Place of Birth");
-                       viewModel.textCor = JobsCor(@"#FFFFFF");
+                       viewModel.text = @"Place of Birth".tr;
+                       viewModel.textCor = @"#FFFFFF".cor;
                        viewModel.font = UIFontWeightRegularSize(14);
                        viewModel.indexPath = JobsIndexPathForRow(0, 4);
                    }));
                    temp.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Nature of Work");
-                       viewModel.textCor = JobsCor(@"#FFFFFF");
+                       viewModel.text = @"Nature of Work".tr;
+                       viewModel.textCor = @"#FFFFFF".cor;
                        viewModel.font = UIFontWeightRegularSize(14);
                        viewModel.indexPath = JobsIndexPathForRow(0, 5);
                    }));
                    temp.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Source of Income");
-                       viewModel.textCor = JobsCor(@"#FFFFFF");
+                       viewModel.text = @"Source of Income".tr;
+                       viewModel.textCor = @"#FFFFFF".cor;
                        viewModel.font = UIFontWeightRegularSize(14);
                        viewModel.indexPath = JobsIndexPathForRow(0, 6);
                    }));
                }));
                dataMutArr.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>*_Nullable temp) {
                    temp.data = jobsMakeViewModel(^(__kindof UIViewModel *_Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Current Address");
-                       viewModel.textCor = JobsCor(@"#FFC700");
+                       viewModel.text = @"Current Address".tr;
+                       viewModel.textCor = @"#FFC700".cor;
                        viewModel.font = bayonRegular(JobsWidth(20));
                        viewModel.indexPath = JobsIndexPathForRow(1, 0);
                    });
                    temp.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Province/City");
-                       viewModel.textCor = JobsCor(@"#FFFFFF");
+                       viewModel.text = @"Province/City".tr;
+                       viewModel.textCor = @"#FFFFFF".cor;
                        viewModel.font = UIFontWeightRegularSize(14);
                        viewModel.indexPath = JobsIndexPathForRow(1, 1);
                    }));
@@ -8708,14 +8721,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                }));
                dataMutArr.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>*_Nullable temp) {
                    temp.data = jobsMakeViewModel(^(__kindof UIViewModel *_Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Permanent Address");
-                       viewModel.textCor = JobsCor(@"#FFC700");
+                       viewModel.text = @"Permanent Address".tr;
+                       viewModel.textCor = @"#FFC700".cor;
                        viewModel.font = bayonRegular(JobsWidth(20));
                        viewModel.indexPath = JobsIndexPathForRow(2, 0);
                    });
                    temp.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                       viewModel.text = JobsInternationalization(@"Province/City");
-                       viewModel.textCor = JobsCor(@"#FFFFFF");
+                       viewModel.text = @"Province/City".tr;
+                       viewModel.textCor = @"#FFFFFF".cor;
                        viewModel.font = UIFontWeightRegularSize(14);
                        viewModel.indexPath = JobsIndexPathForRow(2, 1);
                    }));
@@ -8732,24 +8745,24 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        if(!_rowDataMutArr){
            _rowDataMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
                arr.data = jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                   viewModel.text = JobsInternationalization(@"Please fill out your Personal Information completely");
-                   viewModel.textCor = JobsCor(@"#FFC700");
+                   viewModel.text = @"Please fill out your Personal Information completely".tr;
+                   viewModel.textCor = @"#FFC700".cor;
                    viewModel.font = bayonRegular(JobsWidth(20));
                });
                arr.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                   viewModel.text = JobsInternationalization(@"Nationality");
-                   viewModel.textCor = JobsCor(@"#FFFFFF");
+                   viewModel.text = @"Nationality".tr;
+                   viewModel.textCor = @"#FFFFFF".cor;
                    viewModel.font = UIFontWeightRegularSize(14);
-                   viewModel.placeholder = JobsInternationalization(@"Philippines");
+                   viewModel.placeholder = @"Philippines".tr;
                }))
                .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable viewModel) {
-                   viewModel.text = JobsInternationalization(@"Nationality");
-                   viewModel.textCor = JobsCor(@"#FFFFFF");
+                   viewModel.text = @"Nationality".tr;
+                   viewModel.textCor = @"#FFFFFF".cor;
                    viewModel.font = UIFontWeightRegularSize(14);
-                   viewModel.placeholder = JobsInternationalization(@"Philippines");
+                   viewModel.placeholder = @"Philippines".tr;
                }));
            });
-     }return _rowDataMutArr;
+       }return _rowDataMutArr;
    }
    ```
    
@@ -9152,12 +9165,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
            @jobs_weakify(self)
            _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
                @jobs_strongify(self)
-               label.text = self.viewModel.text;
-               label.font = self.viewModel.font;
-               label.textColor = self.viewModel.textCor;
-               [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                   make.edges.equalTo(self.contentView);
-               }];
+               label.byText(self.viewModel.text)
+               .byFont(self.viewModel.font)
+               .byTextCor(self.viewModel.textCor)
+               .addOn(self.contentView)
+               .byAdd(^(MASConstraintMaker *make) {
+                   @jobs_strongify(self)
+                   /// TODO
+               });
            });
        }return _titleLab;
    }
@@ -9219,19 +9234,20 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
               }
           }).onLongPressGestureBy(^(id data){
               JobsLog(@"按钮的长按事件触发");
-          });
-          [self.view.addSubview(_btn) mas_makeConstraints:^(MASConstraintMaker *make) {
-              make.center.equalTo(self.view);
-  //            make.size.mas_equalTo(CGSizeMake(JobsWidth(120), JobsWidth(25)));
-              make.height.mas_equalTo(JobsWidth(30));
-          }];_btn.makeBtnLabelByShowingType(UILabelShowingType_03);
+          })
+          .addOn(self.view)
+          .byAdd(^(MASConstraintMaker *make) {
+              @jobs_strongify(self)
+              /// TODO
+          })
+          .makeBtnLabelByShowingType(UILabelShowingType_03);
       }return _btn;
   }
   ```
 
 ### 58、**`UITableViewCell`** <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* **`UITableViewCell`**的自带样式。关注实现类：[**@implementation UITableViewCell (UITableViewCellProtocol)**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UITableViewCell/UITableViewCell%2BCategory/UITableViewCell%2BUITableViewCellProtocol/UITableViewCell%2BUITableViewCellProtocoll.m)
+* **`UITableViewCell`** 的自带样式。关注实现类：[**@implementation UITableViewCell (UITableViewCellProtocol)**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UITableViewCell/UITableViewCell%2BCategory/UITableViewCell%2BUITableViewCellProtocol/UITableViewCell%2BUITableViewCellProtocoll.m)
 
   * <font color=blue>**UITableViewCellStyleDefault**</font>
 
@@ -9336,7 +9352,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
       ```objective-c
       UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier"];
       if (cell == nil) {
-          cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellIdentifier"];
+          cell = [UITableViewCell.alloc initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellIdentifier"];
       ```
 
       - 在 `tableView:cellForRowAtIndexPath:` 方法中，当需要显示某一行时，调用 `dequeueReusableCellWithIdentifier:` 方法
@@ -9357,7 +9373,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
 * 示例代码
 
-  * 使用 **registerClass** 注册 **`UITableViewCell`**
+  * 使用 **`registerClass`** 注册 **`UITableViewCell`**
 
     ```objective-c
     - (void)viewDidLoad {
@@ -9424,31 +9440,33 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 <img src="./assets/Xnip2024-08-01_15-38-18.jpg" alt="Xnip2024-08-01_15-38-18" style="zoom:50%;" />
 
   ```objective-c
-   -(JobsStepView *)stepView{
-       if(!_stepView){
-           _stepView = self.view.addSubview(jobsMakeStepView(^(__kindof JobsStepView * _Nullable stepView) {
-               stepView.byOffset(JobsWidth(10))
-               .byLeftViewWidth(JobsWidth(60))
-               .byRightViewWidth(JobsWidth(60))
-               .byBtnOffset(JobsWidth(60))
-               .byFirstBtnLeftOffset(JobsWidth(24))
-               .byLeftLabHighlightBgCor(JobsCor(@"#C71A1A"))
-               .byRightLabHighlightBgCor(JobsCor(@"#C71A1A"))
-               .byLeftLabNormalBgCor(JobsGrayColor)
-               .byRightLabNormalBgCor(JobsGrayColor)
-               .byStatus(VerificationStatusVerifying)
-               .jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButtonModel *>* _Nullable data) {
-                   data.add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Unverified"),@"正在进行第一步".img,@"正在进行第一步".img))
-                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verifiying"),@"还未进行第二步".img,@"正在进行第二步".img))
-                       .add(JobsStepView.makeButtonModelBy(JobsInternationalization(@"Verified"),@"还未进行第三步".img,@"正在进行第三步".img));
-               }));
-           })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-               make.top.equalTo(self.gk_navigationBar.mas_bottom);
-               make.centerX.equalTo(self.view);
-               make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(100)));
-           }).on().byBgCor(JobsWhiteColor);
-       }return _stepView;
-   }
+  -(JobsStepView *)stepView{
+      if(!_stepView){
+          _stepView = jobsMakeStepView(^(__kindof JobsStepView * _Nullable stepView) {
+              stepView.byOffset(JobsWidth(10))
+              .byLeftViewWidth(JobsWidth(60))
+              .byRightViewWidth(JobsWidth(60))
+              .byBtnOffset(JobsWidth(60))
+              .byFirstBtnLeftOffset(JobsWidth(24))
+              .byLeftLabHighlightBgCor(@"#C71A1A".cor)
+              .byRightLabHighlightBgCor(@"#C71A1A".cor)
+              .byLeftLabNormalBgCor(JobsGrayColor)
+              .byRightLabNormalBgCor(JobsGrayColor)
+              .byStatus(VerificationStatusVerifying)
+              .jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <__kindof UIButtonModel *>* _Nullable data) {
+                  data.add(JobsStepView.makeButtonModelBy(@"Unverified".tr,@"正在进行第一步".img,@"正在进行第一步".img))
+                      .add(JobsStepView.makeButtonModelBy(@"Verifiying".tr,@"还未进行第二步".img,@"正在进行第二步".img))
+                      .add(JobsStepView.makeButtonModelBy(@"Verified".tr,@"还未进行第三步".img,@"正在进行第三步".img));
+              }));
+          })
+          .addOn(self.view)
+          .byAdd(^(MASConstraintMaker *make) {
+              @jobs_strongify(self)
+              /// TODO
+          })
+          .byBgCor(JobsWhiteColor);
+      }return _stepView;
+  }
   ```
 
 ```objective-c
@@ -9478,7 +9496,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
 #### 60.1、架构说明 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* <font color=red>`JobsTabBarVC`</font>：**`UITabBarController`**
+* <font color=red size=5>`JobsTabBarVC`</font>：**`UITabBarController`**
   * `JobsTabBarItemConfig`：**`NSObject`**
   * **UITabBarItem**
     * `JobsTabBarItem`：**`UITabBarItem`**
@@ -9487,11 +9505,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     * `UITabBar+Ex`
     * `UITabBar+TLAnimation`
     * `JobsTabBar`：**`UITabBar`**
-* <font color =red>`JobsCustomTabBarVC`</font>：**`UITabBarController`**
+* <font color=red size=5>`JobsCustomTabBarVC`</font>：**`UITabBarController`**
   * `JobsCustomTabBarConfig`：**`NSObject`**
   * `JobsCustomTabBar`：**`UIView`**
   * `JobsCustomTabBarButton`：**`UIButton`**
-* <font color=red>`LZTabBarController`</font>：**`UITabBarController`**
+* <font color=red size=5>`LZTabBarController`</font>：**`UITabBarController`**
   * `LZTabBar`：**`UIView`**
   * `LZTabBarConfig` ：**`NSObject`**
   * `LZTabBarItem`：**`UIView`**
@@ -9500,7 +9518,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
 
 ### 61、🔪切角 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 切整个View的4个角为统一的切角参数
+* 切整个**View**的4个角为统一的切角参数
 
   ```objective-c
   -(JobsReturnViewByFloatBlock _Nonnull)cornerCutToCircleWithCornerRadius{
@@ -10477,7 +10495,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                         successBlock:(jobsByIDBlock _Nullable)successBlock{
      //    NSDictionary *parameterss = @{};
      //    NSDictionary *headers = @{};
-         
          [ZBRequestManager requestWithConfig:^(ZBURLRequest * _Nullable request) {
     
              request.server = NSObject.BaseUrl;
@@ -10520,11 +10537,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
          }];
     }
     ```
-
+    
   * 特殊的网络请求：可以body里面携带参数，也可以自定义header，并且表单模式post传输data数据
-
+  
     * **传输图片**
-
+  
       ```objective-c
       -(void)networking_postUploadImagePOST{
        NSLog(@"当前是否有网：%d 状态：%ld",[ZBRequestManager isNetworkReachable],(long)[ZBRequestManager networkReachability]);
@@ -10546,7 +10563,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        }];
       }
       ```
-
+  
       ```objective-c
       +(void)postUploadImagePOST:(id)parameters
              uploadImageDatas:(NSMutableArray<UIImage *> *)uploadImageDatas
@@ -10595,9 +10612,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        }];
       }
       ```
-
+  
     * **传输视频**
-
+  
       ```objective-c
       /// 帖子视频上传 POST
       -(void)networking_postuploadVideoPOST{
@@ -10624,7 +10641,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
        }];
       }
       ```
-
+  
       ```objective-c
        NSString *postuploadVideoPOST;
        +(void)postuploadVideoPOST:(id)parameters
@@ -11110,16 +11127,16 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
     -(FMLoginByPhoneView *)phoneView{
         if(!_phoneView){
             @jobs_weakify(self)
-            _phoneView = self.view.addSubview(FMLoginByPhoneView
-                                              .JobsRichViewByModel(nil)
-                                              .JobsBlock1(^(id _Nullable data) {
-                                             
-                                         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-                                             @jobs_strongify(self)
-                                             make.top.equalTo(self.titleLab.mas_bottom).offset(JobsWidth(5));
-                                             make.left.equalTo(self.view).offset(JobsWidth(10));
-                                             make.size.mas_equalTo(FMLoginByPhoneView.viewSizeByModel(nil));
-                                         }).on();
+            _phoneView = FMLoginByPhoneView
+                          .JobsRichViewByModel(nil)
+                          .JobsBlock1(^(id _Nullable data) {
+    
+                          })
+                          .addOn(self.bgImageView)
+                          .byAdd(^(MASConstraintMaker *make) {
+                              @jobs_strongify(self)
+                              /// TODO
+                          });
         }return _phoneView;
     }
     ```
@@ -11265,17 +11282,17 @@ FMHomeMenuVC *vc = [self viewController:FMHomeMenuVC.new transitionDirection:Job
 -(FMAnnouncementView *)announcementView{
     if(!_announcementView){
         @jobs_weakify(self)
-        _announcementView = self.addSubview(FMAnnouncementView
-                                            .JobsRichViewByModel(nil)
-                                            .JobsBlock1(^(id _Nullable data) {
-                                           
-                                       })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-                                           @jobs_strongify(self)
-                                           make.size.mas_equalTo(CGSizeMake(JobsWidth(345), JobsWidth(28)));
-                                           make.centerX.equalTo(self);
-                                           make.top.equalTo(self).offset(JobsWidth(8));
-                                       }).on()
-            .layerByBorderCor(JobsCor(@"#FFD8D8"))
+        _announcementView = FMAnnouncementView
+            .JobsRichViewByModel(nil)
+            .JobsBlock1(^(id _Nullable data) {
+
+            })
+            .addOn(self.bgImageView)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                /// TODO
+            })
+            .layerByBorderCor(@"#FFD8D8".cor)
             .layerByBorderWidth(1)
             .cornerCutToCircleWithCornerRadius(JobsWidth(8));
     }return _announcementView;
@@ -11334,12 +11351,12 @@ FMHomeMenuVC *vc = [self viewController:FMHomeMenuVC.new transitionDirection:Job
              data.layerCor = JobsCor(@"#BBBBBB");
              data.jobsWidth = 1;
              data.cornerRadiusValue = JobsWidth(8);
-         })).setMasonryBy(^(MASConstraintMaker *make){
-             @jobs_strongify(self)
-             make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(40)));
-             make.top.equalTo(self.birthDayTitleLab.mas_bottom).offset(JobsWidth(10));
-             make.left.equalTo(self.scrollView).offset(JobsWidth(19));
-         }).on();
+         }))
+           .addOn(self.bgImageView)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    /// TODO
+                });
      }return _textField_birthDay;
  }
 ```

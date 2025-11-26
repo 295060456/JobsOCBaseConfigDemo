@@ -223,7 +223,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                     data.titleFont = bayonRegular(JobsWidth(30));
                     data.normalImage = @"小狮子".img;
                 }))
-                .showsVerticalScrollIndicatorBy(NO)
+                .byShowsVerticalScrollIndicator(NO)
                 .byScrollEnabled(YES)
                 .byBgCor(JobsClearColor);
 

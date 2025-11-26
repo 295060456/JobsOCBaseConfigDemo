@@ -215,6 +215,8 @@ typedef __kindof UIView *_Nullable(^JobsRetViewByCenterBlock)(CGFloat x,CGFloat 
 typedef __kindof UIView *_Nullable(^JobsRetViewByClassBlock)(Class _Nonnull cls);
 typedef __kindof UIView *_Nullable(^JobsRetViewByTableViewHeaderFooterViewBlock)(__kindof UITableViewHeaderFooterView *_Nonnull headerFooterView);
 typedef __kindof UIView *_Nullable(^JobsRetViewByTimeIntervalBlock)(NSTimeInterval data);
+@class UIViewModel;
+typedef __kindof UIView *_Nullable(^JobsRetViewByViewModelBlock)(UIViewModel * _Nullable data);
 /// UIView + UIGestureRecognizer
 typedef __kindof UIView *_Nullable(^JobsRetViewByGestureRecognizer)(__kindof UIGestureRecognizer *_Nullable data);
 typedef __kindof UIView *_Nullable(^JobsRetViewByTapGestureBlock)(UITapGestureRecognizer *_Nullable gesture);
@@ -401,7 +403,7 @@ typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByViewModelBlock)(__kindo
 #pragma mark —— 关于 控制器
 /// UIViewController
 typedef __kindof UIViewController *_Nullable(^JobsRetVCByVoidBlock)(void);
-typedef __kindof UIViewController *_Nullable(^JobsRetVCByIDBlock)(id data);
+typedef __kindof UIViewController *_Nullable(^JobsRetVCByIDBlock)(id _Nullable data);
 typedef __kindof UIViewController *_Nullable(^JobsRetVCByViewBlock)(__kindof UIView *_Nonnull view);
 typedef __kindof UIViewController *_Nullable(^JobsRetVCByVCBlock)(__kindof UIViewController *_Nonnull vc);
 typedef __kindof UIViewController *_Nullable(^JobsRetVCByWebViewBlock)(__kindof WKWebView *_Nonnull webView);

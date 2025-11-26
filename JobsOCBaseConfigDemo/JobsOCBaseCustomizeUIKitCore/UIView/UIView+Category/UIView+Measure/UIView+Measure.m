@@ -66,12 +66,13 @@
     };
 }
 #pragma mark —— 刷新UI
--(jobsByVoidBlock _Nonnull)jobsRefreshUI{
+-(JobsRetViewByVoidBlock _Nonnull)jobsRefreshUI{
     @jobs_weakify(self)
     return ^(){
         @jobs_strongify(self)
         [self setNeedsLayout];
         [self layoutIfNeeded];
+        return self;
     };
 }
 #pragma mark —— 交换宽高
@@ -422,48 +423,48 @@
     };
 }
 /// 设置水平方向对齐
--(jobsByViewBlock _Nonnull)centerxEqualToView{
+-(JobsRetViewByViewBlock _Nonnull)centerxEqualToView{
     @jobs_weakify(self);
-    return ^(UIView *view){
+    return ^__kindof UIView *_Nullable(UIView *view){
         @jobs_strongify(self);
         /// 如果是子父关系
         if ([self.superview isKindOfClass:view.class]) {
             self.center = CGPointMake(view.center.x - view.x, self.center.y);
         }else{
             self.center = CGPointMake(view.center.x, self.center.y);
-        }
+        }return self;
     };
 }
 /// 设置垂平方向对齐
--(jobsByViewBlock _Nonnull)centeryEqualToView{
+-(JobsRetViewByViewBlock _Nonnull)centeryEqualToView{
     @jobs_weakify(self);
-    return ^(UIView *view){
+    return ^__kindof UIView *_Nullable(UIView *view){
         @jobs_strongify(self);
         /// 如果是子父关系
          if ([self.superview isKindOfClass:view.class]) {
              self.center = CGPointMake(self.center.x, view.center.y - view.y);
          }else{
              self.center = CGPointMake(self.center.x, view.center.y);
-         }
+         }return self;
     };
 }
 /// 设置中心方向对齐
--(jobsByViewBlock _Nonnull)centerEqualToView{
+-(JobsRetViewByViewBlock _Nonnull)centerEqualToView{
     @jobs_weakify(self);
-    return ^(UIView *view){
+    return ^__kindof UIView *_Nullable(UIView *view){
         @jobs_strongify(self);
         /// 如果是子父关系
         if ([self.superview isKindOfClass:view.class]) {
             self.center = CGPointMake(view.center.x - view.x , view.center.y - view.y);
         }else{
             self.center = view.center;
-        }
+        }return self;
     };
 }
 /// 设置左对齐
--(jobsByViewBlock _Nonnull)leftEqualToView{
+-(JobsRetViewByViewBlock _Nonnull)leftEqualToView{
     @jobs_weakify(self);
-    return ^(UIView *view){
+    return ^__kindof UIView *_Nullable(UIView *view){
         @jobs_strongify(self);
         //如果是子父关系
         if ([self.superview isKindOfClass:view.class]) {
@@ -471,13 +472,13 @@
             self.x =  self.centerX - view.width/2;
         }else{
             self.x = view.x;
-        }
+        }return self;
     };
 }
 /// 设置右对齐
--(jobsByViewBlock _Nonnull)rightEqualToView{
+-(JobsRetViewByViewBlock _Nonnull)rightEqualToView{
     @jobs_weakify(self);
-    return ^(UIView *view){
+    return ^__kindof UIView *_Nullable(UIView *view){
         @jobs_strongify(self);
         //如果是子父关系
         if ([self.superview isKindOfClass:view.class]) {
@@ -485,13 +486,13 @@
             self.right =  self.centerX + view.width/2;
         }else{
             self.right = view.right;
-        }
+        }return self;
     };
 }
 /// 设置顶部对齐
--(jobsByViewBlock _Nonnull)topEqualToView{
+-(JobsRetViewByViewBlock _Nonnull)topEqualToView{
     @jobs_weakify(self);
-    return ^(UIView *view){
+    return ^__kindof UIView *_Nullable(UIView *view){
         @jobs_strongify(self);
         //如果是子父关系
         if ([self.superview isKindOfClass:view.class]) {
@@ -499,13 +500,13 @@
             self.y =  self.centerY - view.height/2;
         }else{
             self.y = view.y;
-        }
+        }return self;
     };
 }
 /// 设置底部对齐
--(jobsByViewBlock _Nonnull)bottomEqualToView{
+-(JobsRetViewByViewBlock _Nonnull)bottomEqualToView{
     @jobs_weakify(self);
-    return ^(UIView *view){
+    return ^__kindof UIView *_Nullable(UIView *view){
         @jobs_strongify(self);
         //如果是子父关系
         if ([self.superview isKindOfClass:view.class]) {
@@ -513,138 +514,138 @@
             self.height = self.centerY + view.height/2;
         }else{
             self.height = view.height;
-        }
+        }return self;
     };
 }
 #pragma mark —— UIScrollView.contentSize
--(jobsBySizeBlock _Nonnull)resetContentSize{
+-(JobsRetViewByCGSizeBlock _Nonnull)resetContentSize{
     @jobs_weakify(self)
-    return ^(CGSize data) {
+    return ^__kindof UIView *_Nullable(CGSize data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentSize = data;
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentSizeWidth{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentSizeWidth{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentSize = CGSizeMake(data,scrollView.contentSize.height);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentSizeHeight{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentSizeHeight{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentSize = CGSizeMake(scrollView.contentSize.width,data);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentSizeOffsetWidth{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentSizeOffsetWidth{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentSize = CGSizeMake(scrollView.contentSize.width + data,
                                                 scrollView.contentSize.height);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentSizeOffsetHeight{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentSizeOffsetHeight{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentSize = CGSizeMake(scrollView.contentSize.width,
                                                 scrollView.contentSize.height + data);
-        }
+        }return self;
     };
 }
 #pragma mark —— UIScrollView.contentOffset
--(jobsByPointBlock _Nonnull)resetContentOffset{
+-(JobsRetViewByCGPointBlock _Nonnull)resetContentOffset{
     @jobs_weakify(self)
-    return ^(CGPoint data) {
+    return ^__kindof UIView *_Nullable(CGPoint data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentOffset = data;
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentOffsetX{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentOffsetX{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentOffset = CGPointMake(data, scrollView.contentOffset.y);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentOffsetY{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentOffsetY{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, data);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentOffsetX_offset{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentOffsetX_offset{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x + data,
                                                 scrollView.contentOffset.y);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentOffsetY_offset{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentOffsetY_offset{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x,
                                                 scrollView.contentOffset.y + data);
-        }
+        }return self;
     };
 }
 #pragma mark —— UIScrollView.contentInset
--(jobsByEdgeInsetBlock _Nonnull)resetContentInset{
+-(JobsRetViewByUIEdgeInsetBlock _Nonnull)resetContentInset{
     @jobs_weakify(self)
-    return ^(UIEdgeInsets data) {
+    return ^__kindof UIView *_Nullable(UIEdgeInsets data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
             scrollView.contentInset = data;
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentInsetTop{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetTop{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
@@ -652,13 +653,13 @@
                                                        scrollView.contentInset.left,
                                                        scrollView.contentInset.bottom,
                                                        scrollView.contentInset.right);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentInsetLeft{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetLeft{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
@@ -666,13 +667,13 @@
                                                        data,
                                                        scrollView.contentInset.bottom,
                                                        scrollView.contentInset.right);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentInsetBottom{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetBottom{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
@@ -680,13 +681,13 @@
                                                        scrollView.contentInset.left,
                                                        data,
                                                        scrollView.contentInset.right);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentInsetRight{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetRight{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
@@ -694,13 +695,13 @@
                                                        scrollView.contentInset.left,
                                                        scrollView.contentInset.bottom,
                                                        data);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetTop{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetOffsetTop{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
@@ -708,13 +709,13 @@
                                                        scrollView.contentInset.left,
                                                        scrollView.contentInset.bottom,
                                                        scrollView.contentInset.right);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetLeft{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetOffsetLeft{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
@@ -722,13 +723,13 @@
                                                        scrollView.contentInset.left + data,
                                                        scrollView.contentInset.bottom,
                                                        scrollView.contentInset.right);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetBottom{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetOffsetBottom{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
@@ -736,13 +737,13 @@
                                                        scrollView.contentInset.left,
                                                        scrollView.contentInset.bottom + data,
                                                        scrollView.contentInset.right);
-        }
+        }return self;
     };
 }
 
--(jobsByCGFloatBlock _Nonnull)resetContentInsetOffsetRight{
+-(JobsRetViewByCGFloatBlock _Nonnull)resetContentInsetOffsetRight{
     @jobs_weakify(self)
-    return ^(CGFloat data) {
+    return ^__kindof UIView *_Nullable(CGFloat data) {
         @jobs_strongify(self)
         if([self isKindOfClass:UIScrollView.class]){
             UIScrollView *scrollView = (UIScrollView *)self;
@@ -750,26 +751,19 @@
                                                        scrollView.contentInset.left,
                                                        scrollView.contentInset.bottom,
                                                        scrollView.contentInset.right + data);
-        }
+        }return self;
     };
 }
 /// 依据偏移量重塑Frame
--(jobsByViewModelBlock)offsetForView{
+-(JobsRetViewByViewModelBlock _Nonnull)offsetForView{
     @jobs_weakify(self)
-    return ^(UIViewModel *_Nonnull viewModel) {
+    return ^__kindof UIView *_Nullable(UIViewModel *_Nonnull viewModel) {
         @jobs_strongify(self)
-        if(viewModel.offsetXForEach){
-            self.resetOriginXByOffset(viewModel.offsetXForEach);
-        }
-        if(viewModel.offsetYForEach){
-            self.resetOriginYByOffset(viewModel.offsetYForEach);
-        }
-        if(viewModel.offsetWidth){
-            self.resetWidthByOffset(viewModel.offsetWidth);
-        }
-        if(viewModel.offsetHeight){
-            self.resetHeightByOffset(viewModel.offsetHeight);
-        }
+        if(viewModel.offsetXForEach) self.resetOriginXByOffset(viewModel.offsetXForEach);
+        if(viewModel.offsetYForEach) self.resetOriginYByOffset(viewModel.offsetYForEach);
+        if(viewModel.offsetWidth) self.resetWidthByOffset(viewModel.offsetWidth);
+        if(viewModel.offsetHeight) self.resetHeightByOffset(viewModel.offsetHeight);
+        return self;
     };
 }
 

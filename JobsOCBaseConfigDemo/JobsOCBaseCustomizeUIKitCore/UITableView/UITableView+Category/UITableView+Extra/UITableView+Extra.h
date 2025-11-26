@@ -104,8 +104,8 @@ NS_INLINE __kindof UITableView *_Nonnull jobsMakeTableViewByInsetGrouped(jobsByT
                      data.titleFont = bayonRegular(JobsWidth(30));
                      data.normalImage = @"小狮子".img;
                  }))
-                 .showsVerticalScrollIndicatorBy(NO)
-                 .showsHorizontalScrollIndicatorBy(NO)
+                 .byShowsVerticalScrollIndicator(NO)
+                 .byShowsHorizontalScrollIndicator(NO)
                  .byScrollEnabled(YES)
                  .byBgCor(JobsClearColor);
 

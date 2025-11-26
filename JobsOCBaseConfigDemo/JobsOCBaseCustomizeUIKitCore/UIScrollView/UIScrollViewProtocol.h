@@ -45,8 +45,8 @@ Prop_assign()ScrollDirection direction;
 -(JobsRetScrollViewByFrameBlock _Nonnull)scrollRectToVisibleByNO;
 ///
 -(JobsRetScrollViewByDelegateBlock _Nonnull)byDelegate;
--(JobsRetScrollViewByBOOLBlock _Nonnull)showsVerticalScrollIndicatorBy;
--(JobsRetScrollViewByBOOLBlock _Nonnull)showsHorizontalScrollIndicatorBy;
+-(JobsRetScrollViewByBOOLBlock _Nonnull)byShowsVerticalScrollIndicator;
+-(JobsRetScrollViewByBOOLBlock _Nonnull)byShowsHorizontalScrollIndicator;
 -(JobsRetScrollViewBySizeBlock _Nonnull)byContentSize;
 -(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentWidth;
 -(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentHeight;
