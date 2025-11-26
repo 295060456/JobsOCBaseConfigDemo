@@ -276,8 +276,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
             @jobs_strongify(self)
             make.left.right.bottom.equalTo(self.view);
-            make.top.equalTo(self.navBar.mas_bottom);
-        }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
+            [self make:make topOffset:10];
+        }).on().dataLink(self);// dataLink(self)不能写在Block里面，会出问题
     }return _tableView;
 }
 

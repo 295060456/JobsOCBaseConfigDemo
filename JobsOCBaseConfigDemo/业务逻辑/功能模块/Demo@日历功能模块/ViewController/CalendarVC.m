@@ -195,8 +195,7 @@ atMonthPosition:(FSCalendarMonthPosition)monthPosition{
         [self.view addSubview:_calendar];
         [_calendar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            if(self.navBar) make.top.equalTo(self.navBar.mas_bottom);
-            if(self.gk_navigationBar) make.top.equalTo(self.gk_navigationBar.mas_bottom);
+            [self make:make topOffset:10];
             make.size.mas_equalTo(CGSizeMake(JobsWidth(450), JobsWidth(340)));
         }];
         [_calendar setNeedsLayout];

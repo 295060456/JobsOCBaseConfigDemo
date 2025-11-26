@@ -287,18 +287,18 @@
     [self addNotificationName:UIKeyboardWillShowNotification
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
-//        @jobs_strongify(self)
+        //        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
             JobsLog(@"SSS = %d",b.boolValue);
         }JobsLog(@"通知传递过来的 = %@",notification.object);
     }];
-    
+
     [self addNotificationName:UIKeyboardWillHideNotification
                         block:^(id _Nullable weakSelf,
                                 id _Nullable arg) {
-//        @jobs_strongify(self)
+        //        @jobs_strongify(self)
         NSNotification *notification = (NSNotification *)arg;
         if([notification.object isKindOfClass:NSNumber.class]){
             NSNumber *b = notification.object;
@@ -426,7 +426,7 @@ JobsKey(_leftBorderLayer)
     CALayer *layer = Jobs_getAssociatedObject(_leftBorderLayer);
     if (!layer) {
         layer = self.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
-            
+
         }));Jobs_setAssociatedRETAIN_NONATOMIC(_leftBorderLayer, layer);
     }return layer;
 }
@@ -435,7 +435,7 @@ JobsKey(_rightBorderLayer)
     CALayer *layer = Jobs_getAssociatedObject(_rightBorderLayer);
     if (!layer) {
         layer = self.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
-            
+
         }));Jobs_setAssociatedRETAIN_NONATOMIC(_rightBorderLayer, layer);
     }return layer;
 }
@@ -444,7 +444,7 @@ JobsKey(_topBorderLayer)
     CALayer *layer = Jobs_getAssociatedObject(_topBorderLayer);
     if (!layer) {
         layer = self.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
-            
+
         }));Jobs_setAssociatedRETAIN_NONATOMIC(_topBorderLayer, layer);
     }return layer;
 }
@@ -453,7 +453,7 @@ JobsKey(_bottomBorderLayer)
     CALayer *layer = Jobs_getAssociatedObject(_bottomBorderLayer);
     if (!layer) {
         layer = self.layer.addSublayer(jobsMakeCALayer(^(__kindof CALayer * _Nullable layer) {
-            
+
         }));Jobs_setAssociatedRETAIN_NONATOMIC(_bottomBorderLayer, layer);
     }return layer;
 }
@@ -673,6 +673,17 @@ JobsKey(_cornerRadii)
     });
 }
 #pragma mark —— 其他
+-(JobsRetViewByNSUIntegerBlock _Nonnull)makeLabelByShowingType{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(UILabelShowingType labelShowingType) {
+        @jobs_strongify(self)
+        if([self isKindOfClass:UILabel.class]){
+            UILabel *label = (UILabel *)self;
+            label.makeLabelByShowingType(labelShowingType);
+        }return self;
+    };
+}
+
 -(JobsRetViewByCorBlock _Nonnull)byBgCor{
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(UIColor *_Nullable cor){
@@ -730,6 +741,15 @@ JobsKey(_cornerRadii)
     return ^__kindof UIView *_Nullable(id <UIInteraction>_Nullable data){
         @jobs_strongify(self)
         [self removeInteraction:data];
+        return self;
+    };
+}
+
+-(JobsRetViewByViewBlock _Nonnull)addOn{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(__kindof UIView *_Nullable subView) {
+        @jobs_strongify(self)
+        [self addSubview:subView];
         return self;
     };
 }

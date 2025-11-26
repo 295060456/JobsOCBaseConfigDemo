@@ -166,7 +166,7 @@ Prop_copy()NSString *content;
         [self.view addSubview:_spreadsheetView];
         [_spreadsheetView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.view);
-            make.top.equalTo(self.navBar.mas_bottom);
+            [self make:make topOffset:10];
         }];
 //        if (@available(iOS 11.0, *)) {
 //            _spreadsheetView.frame = self.view.safeAreaLayoutGuide.layoutFrame;

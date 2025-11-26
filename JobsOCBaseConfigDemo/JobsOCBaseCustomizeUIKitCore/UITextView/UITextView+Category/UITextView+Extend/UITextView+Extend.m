@@ -42,6 +42,24 @@
     }];
 }
 
+-(JobsRetTextViewByBOOLBlock _Nonnull)bySelectable{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(BOOL selectable){
+        @jobs_strongify(self)
+        self.selectable = selectable;
+        return self;
+    };
+}
+
+-(JobsRetTextViewByNSUIntegerBlock _Nonnull)byDataDetectorTypes{
+    @jobs_weakify(self)
+    return ^__kindof UITextView *_Nullable(UIDataDetectorTypes type){
+        @jobs_strongify(self)
+        self.dataDetectorTypes = type;
+        return self;
+    };
+}
+
 -(JobsRetTextViewByDelegateBlock _Nonnull)byDelegate{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(id <UITextViewDelegate>_Nullable delegate){
@@ -114,7 +132,7 @@
     };
 }
 
--(JobsRetTextViewByTextAlignmentBlock _Nonnull)byTextAlignment{
+-(JobsRetTextViewByNSIntegerBlock _Nonnull)byTextAlignment{
     @jobs_weakify(self)
     return ^__kindof UITextView *_Nullable(NSTextAlignment data){
         @jobs_strongify(self)

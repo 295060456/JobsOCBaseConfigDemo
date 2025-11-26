@@ -228,7 +228,7 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
     };
 }
 
--(JobsRetLabelByBtn _Nonnull)makeRightLabBy{
+-(JobsRetLabelByBtnBlock _Nonnull)makeRightLabBy{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIButton *_Nullable btn){
         return jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
@@ -244,7 +244,7 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
     };
 }
 
--(JobsRetLabelByBtn _Nonnull)makeLeftLabBy{
+-(JobsRetLabelByBtnBlock _Nonnull)makeLeftLabBy{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIButton *_Nullable btn){
         return jobsMakeLabel(^(__kindof UILabel * _Nullable label) {

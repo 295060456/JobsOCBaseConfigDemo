@@ -13,7 +13,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (CGRect frame) {
         @jobs_strongify(self)
-        
         self.frame = frame;
         return self;
     };
@@ -23,7 +22,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (CGRect bounds) {
         @jobs_strongify(self)
-        
         self.bounds = bounds;
         return self;
     };
@@ -33,7 +31,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (CGPoint pt) {
         @jobs_strongify(self)
-        
         self.center = pt;
         return self;
     };
@@ -43,7 +40,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (CGAffineTransform t) {
         @jobs_strongify(self)
-        
         self.transform = t;
         return self;
     };
@@ -53,7 +49,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (CATransform3D t3d) {
         @jobs_strongify(self)
-        
         self.transform3D = t3d;
         return self;
     };
@@ -63,7 +58,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (CGFloat scale) {
         @jobs_strongify(self)
-        
         self.contentScaleFactor = scale;
         return self;
     };
@@ -73,11 +67,9 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (CGPoint pt) {
         @jobs_strongify(self)
-        
         if (@available(iOS 16.0, *)) {
             self.anchorPoint = pt;
-        }
-        return self;
+        }return self;
     };
 }
 #pragma mark —— Identity
@@ -85,7 +77,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (NSInteger tag) {
         @jobs_strongify(self)
-        
         self.tag = tag;
         return self;
     };
@@ -95,7 +86,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL enabled) {
         @jobs_strongify(self)
-        
         self.userInteractionEnabled = enabled;
         return self;
     };
@@ -105,7 +95,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL on) {
         @jobs_strongify(self)
-        
         self.multipleTouchEnabled = on;
         return self;
     };
@@ -115,7 +104,6 @@
     @jobs_weakify(self)
     return ^__kindof UIView * (BOOL on) {
         @jobs_strongify(self)
-        
         self.exclusiveTouch = on;
         return self;
     };

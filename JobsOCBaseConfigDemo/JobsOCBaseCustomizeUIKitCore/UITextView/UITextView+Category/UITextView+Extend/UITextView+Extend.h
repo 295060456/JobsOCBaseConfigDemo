@@ -32,6 +32,8 @@ Prop_copy()NSString *resStr;
 -(RACDisposable *)jobsTextViewSubscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock;
 -(RACDisposable *)jobsTextViewFilterBlock:(JobsRetBOOLByIDBlock _Nullable)filterBlock
                        subscribeNextBlock:(jobsByIDBlock _Nullable)subscribeNextBlock;
+-(JobsRetTextViewByBOOLBlock _Nonnull)bySelectable;
+-(JobsRetTextViewByNSUIntegerBlock _Nonnull)byDataDetectorTypes;
 -(JobsRetTextViewByDelegateBlock _Nonnull)byDelegate;
 -(JobsRetTextViewByStringBlock _Nonnull)byText;
 -(JobsRetTextViewByCor _Nonnull)byTextCor;
@@ -40,7 +42,7 @@ Prop_copy()NSString *resStr;
 -(JobsRetTextViewByBOOLBlock _Nonnull)byEditable;
 -(JobsRetTextViewByDicBlock _Nonnull)byLinkTextAttributes;
 -(JobsRetTextViewByAttributedTextBlock _Nonnull)byAttributedText;
--(JobsRetTextViewByTextAlignmentBlock _Nonnull)byTextAlignment;
+-(JobsRetTextViewByNSIntegerBlock _Nonnull)byTextAlignment;
 -(JobsRetTextViewByEdgeInsetsBlock _Nonnull)byTextContainerInset;
 -(JobsRetTextViewByEdgeInsetsBlock _Nonnull)byContentInset;
 -(JobsRetTextViewByPointBlock _Nonnull)byContentOffset;

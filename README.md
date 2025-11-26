@@ -1117,14 +1117,18 @@ classDiagram
           @jobs_weakify(self)
           _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
               @jobs_strongify(self)
-              if(NavBarConfig.attributedTitle) label.attributedText = NavBarConfig.attributedTitle;
-              label.text = NavBarConfig.title;
-              label.font = NavBarConfig.font;
-              label.textColor = NavBarConfig.titleCor;
-              [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                  make.center.equalTo(self);
-                  make.height.mas_equalTo(self.height);
-              }];label.makeLabelByShowingType(UILabelShowingType_03);
+              label
+                  .byNextAttributedText(NavBarConfig.attributedTitle)
+                  .byText(NavBarConfig.title)
+                  .byFont(NavBarConfig.font)
+                  .byTextCor(NavBarConfig.titleCor)
+                  .addOn(self.view)
+                  .byAdd(^(MASConstraintMaker *make) {
+                      @jobs_strongify(self)
+                      make.center.equalTo(self);
+                      make.height.mas_equalTo(self.height);
+                  })
+                  .makeLabelByShowingType(UILabelShowingType_03);
               self.refresh();
           });
       }return _titleLab;
@@ -1343,13 +1347,16 @@ classDiagram
           @jobs_weakify(self)
           _titleLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
               @jobs_strongify(self)
-              label.text = JobsInternationalization(@"LOGIN");
-              label.font = bayonRegular(20);
-              label.textColor = JobsCor(@"FFC700");
-              [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                  make.centerX.equalTo(self);
-                  make.top.equalTo(self).offset(JobsWidth(13));
-              }];label.makeLabelByShowingType(UILabelShowingType_03);
+              label.byText(@"LOGIN".tr)
+                  .byFont(bayonRegular(20))
+                  .byTextCor(JobsCor(@"FFC700"))
+                  .addOn(self.view)
+                  .byAdd(^(MASConstraintMaker *make) {
+                      @jobs_strongify(self)
+                      make.centerX.equalTo(self);
+                      make.top.equalTo(self).offset(JobsWidth(13));
+                  })
+         		     .makeLabelByShowingType(UILabelShowingType_03);
           });
       }return _titleLab;
   }
@@ -1633,63 +1640,66 @@ classDiagram
 * <font color=red>`JobsTextField`</font>：**`BaseView`**
 
   ```objective-c
-   -(JobsTextField *)textField_birthDay{
-       if(!_textField_birthDay){
-           @jobs_weakify(self)
-           _textField_birthDay = self.scrollView.addSubview(makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
-               @jobs_strongify(self)
-               data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
-               data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
-               data.byLeftViewByOutLineOffset(JobsWidth(4))
-                   .byLeftViewByTextFieldOffset(JobsWidth(4))
-                   .byRightViewByTextFieldOffset(JobsWidth(4))
-                   .byRightViewByOutLineOffset(JobsWidth(14))
-                   .byLeftView(BaseButton.jobsInit()
-                               .jobsResetBtnBgImage(@"📅".img)
+  -(JobsTextField *)textField_birthDay{
+      if(!_textField_birthDay){
+          @jobs_weakify(self)
+          _textField_birthDay = makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
+              @jobs_strongify(self)
+              data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
+              data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
+              data.byLeftViewByOutLineOffset(JobsWidth(4))
+                  .byLeftViewByTextFieldOffset(JobsWidth(4))
+                  .byRightViewByTextFieldOffset(JobsWidth(4))
+                  .byRightViewByOutLineOffset(JobsWidth(14))
+                  .byLeftView(BaseButton.jobsInit()
+                              .jobsResetBtnBgImage(@"📅".img)
+                              .onClickBy(^(UIButton *x){
+                                  JobsLog(@"");
+                              }).onLongPressGestureBy(^(id data){
+                                  JobsLog(@"");
+                              }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
+                  .byRightView(BaseButton.jobsInit()
+                               .jobsResetBtnBgImage(@"向下的箭头".img)
                                .onClickBy(^(UIButton *x){
-                                   JobsLog(@"");
+                                   @jobs_strongify(self)
+                                   self.popupParameter = nil;
+                                   ShowView(self.calenderView);
                                }).onLongPressGestureBy(^(id data){
                                    JobsLog(@"");
                                }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
-                   .byRightView(BaseButton.jobsInit()
-                                .jobsResetBtnBgImage(@"向下的箭头".img)
-                                .onClickBy(^(UIButton *x){
-                                    @jobs_strongify(self)
-                                    self.popupParameter = nil;
-                                    ShowView(self.calenderView);
-                                }).onLongPressGestureBy(^(id data){
-                                    JobsLog(@"");
-                                }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
-                   .byBgCor(JobsCor(@"#f7f7f7"))
-                   .JobsRichViewByModel2(nil)
-                   // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
-                   .JobsBlock1(^(id _Nullable data) {
-                       JobsLog(@"ddf = %@",data);
-                   });
-               data.realTextField
-                   .byReturnKeyType(UIReturnKeyDefault)
-                   .byKeyboardAppearance(UIKeyboardAppearanceDefault)
-                   .byKeyboardType(UIKeyboardTypePhonePad)
-                   .byLeftViewMode(UITextFieldViewModeNever)
-                   .byRightViewMode(UITextFieldViewModeNever)
-                   .byPlaceholder(JobsInternationalization(@"Pick a Date"))
-                   .byPlaceholderColor(JobsCor(@"#BBBBBB"))
-                   .byPlaceholderFont(pingFangTCRegular(15))
-                   .byAttributedPlaceholder(nil)
-                   .byTextCor(JobsCor(@"#788190"))
-                   .bySecureTextEntry(NO);
-           })).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-               data.layerCor = JobsCor(@"#BBBBBB");
-               data.jobsWidth = 1;
-               data.cornerRadiusValue = JobsWidth(8);
-           })).setMasonryBy(^(MASConstraintMaker *make){
-               @jobs_strongify(self)
-               make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(40)));
-               make.top.equalTo(self.birthDayTitleLab.mas_bottom).offset(JobsWidth(10));
-               make.left.equalTo(self.scrollView).offset(JobsWidth(19));
-           }).on();
-       }return _textField_birthDay;
-   }
+                  .byBgCor(@"#f7f7f7".cor)
+                  .JobsRichViewByModel2(nil)
+                  // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
+                  .JobsBlock1(^(id _Nullable data) {
+                      JobsLog(@"ddf = %@",data);
+                  });
+              data.realTextField
+                  .byReturnKeyType(UIReturnKeyDefault)
+                  .byKeyboardAppearance(UIKeyboardAppearanceDefault)
+                  .byKeyboardType(UIKeyboardTypePhonePad)
+                  .byLeftViewMode(UITextFieldViewModeNever)
+                  .byRightViewMode(UITextFieldViewModeNever)
+                  .byPlaceholder(@"Pick a Date".tr)
+                  .byPlaceholderColor(@"#BBBBBB".cor)
+                  .byPlaceholderFont(pingFangTCRegular(15))
+                  .byAttributedPlaceholder(nil)
+                  .byTextCor(JobsCor(@"#788190"))
+                  .bySecureTextEntry(NO);
+          })
+          .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+              data.layerCor = @"#BBBBBB".cor;
+              data.jobsWidth = 1;
+              data.cornerRadiusValue = JobsWidth(8);
+          }))
+          .addOn(self.scrollView)
+          .byAdd(^(MASConstraintMaker *make) {
+              @jobs_strongify(self)
+              make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(40)));
+              make.top.equalTo(self.birthDayTitleLab.mas_bottom).offset(JobsWidth(10));
+              make.left.equalTo(self.scrollView).offset(JobsWidth(19));
+          });
+      }return _textField_birthDay;
+  }
   ```
   
   ```objective-c
@@ -1734,20 +1744,21 @@ classDiagram
           @jobs_weakify(self)
           _textField = jobsMakeMagicTextField(^(__kindof JobsMagicTextField * _Nullable textField) {
               @jobs_strongify(self)
-              textField.delegate = self;
-              [textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
-                  @jobs_strongify(self)
-                  return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
-              } subscribeNextBlock:^(id _Nullable x) {
-                  @jobs_strongify(self)
-                  JobsLog(@"MMM = %@",x);
-                  [self block:textField value:x];
-              }];
-              [self.addSubview(textField) mas_makeConstraints:^(MASConstraintMaker *make) {
-                  make.top.left.bottom.equalTo(self);
-      //            make.right.equalTo(self.countDownBtn.mas_left);
-              }];
+              textField.byDelegate(self)
+                  .addOn(self.view)
+                  .byAdd(^(MASConstraintMaker *make) {
+                      @jobs_strongify(self)
+                      make.top.left.bottom.equalTo(self);
+                  });
           });
+          [_textField jobsTextFieldEventFilterBlock:^BOOL(id _Nullable data) {
+              @jobs_strongify(self)
+              return self.retBoolByIDBlock ? self.retBoolByIDBlock(data) : YES;
+          } subscribeNextBlock:^(id _Nullable x) {
+              @jobs_strongify(self)
+              JobsLog(@"MMM = %@",x);
+              [self block:textField value:x];
+          }];
       }return _textField;
   }
   ```
@@ -1779,52 +1790,63 @@ classDiagram
 * `ZYTextField`： **UITextField**
 
   ```objective-c
+  @synthesize textField = _textField;
   -(ZYTextField *)textField{
-     if (!_textField) {
-         _textField = jobsMakeZYTextField(^(ZYTextField * _Nullable textField) {
-             textField.delegate = self;
-             textField.textColor = JobsBlackColor;
-             textField.backgroundColor = RGBA_COLOR(245, 245, 245, 1);
-             textField.returnKeyType = UIReturnKeyDefault;
-             textField.keyboardAppearance = UIKeyboardAppearanceDefault;
-             textField.keyboardType = UIKeyboardTypeDefault;
-             textField.rightView = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-                 ///TODO
-             });
-             textField.rightViewMode = UITextFieldViewModeAlways;
-             textField.placeholder = JobsInternationalization(@"打赏的Mata值");
-             textField.placeholderColor = JobsCor(@"#333333");
-             textField.placeholderFont = UIFontWeightRegularSize(12);
+      if (!_textField) {
+          @jobs_weakify(self)
+          CGFloat TextFieldWidth = self.mj_w - JobsWidth(80);
+          _textField = jobsMakeZYTextField(^(ZYTextField *_Nullable textField) {
+              textField
+                  .byPlaceholder(@"请输入搜索内容".tr)
+                  .byDelegate(self)
+                  .byLeftView(jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
+                      imageView.byImage(@"放大镜".img);
+                  }))
+                  .byTextCor(JobsPurpleColor)
+                  .byInputAccessoryView(JobsAdNoticeView
+                                        .BySize(JobsAdNoticeView.viewSizeByModel(nil))
+                                        .JobsRichViewByModel2(nil)
+                                        .JobsBlock1(^(id _Nullable data) {
   
-             textField.drawPlaceholderInRect = CGRectMake(0, 0, JobsWidth(255 - 20 - 40 - 5), JobsWidth(32));
-             textField.rightViewRectForBounds = CGRectMake(JobsWidth(255 - 20 - 40), JobsWidth(10), JobsWidth(40), JobsWidth(12));
-             textField.placeholderRectForBounds = CGRectMake(JobsWidth(10), JobsWidth(10), JobsWidth(255 - 20 - 40 - 5), JobsWidth(12));
-             textField.textRectForBounds = CGRectMake(JobsWidth(10), 0, JobsWidth(255 - 20 - 40 - 10), 100);
-             textField.editingRectForBounds = CGRectMake(JobsWidth(10), 0, JobsWidth(255 - 20 - 40 - 10), 100);
-             @jobs_weakify(self)
-             [textField jobsTextFieldEventFilterBlock:^BOOL(id data) {
-      //            @jobs_strongify(self)
-                 return YES;
-             } subscribeNextBlock:^(NSString * _Nullable x) {
-                 @jobs_strongify(self)
-                 self.textField.text = x;
-             }];
-             [self.addSubview(textField) mas_makeConstraints:^(MASConstraintMaker *make) {
-                 make.size.mas_equalTo(CGSizeMake(JobsWidth(255), JobsWidth(32)));
-                 make.centerX.equalTo(self);
-                 make.top.equalTo(self.titleView.mas_bottom).offset(JobsWidth(10));
-             }];
-             textField.setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
-                 model.jobsWidth = .05f;
-                 model.layerCor = JobsBlueColor;
-                 model.cornerRadiusValue = JobsWidth(8);
-             }));
-         });
-     }return _textField;
+                                        }))
+                  .byLeftViewMode(UITextFieldViewModeAlways)
+                  .byKeyboardAppearance(UIKeyboardAppearanceAlert)
+                  .byReturnKeyType(UIReturnKeySearch)
+                  .byPlaceHolderAlignment(NSTextAlignmentCenter)
+                  .byLeftViewOffsetX(JobsWidth(5))
+                  .byRightViewOffsetX(JobsWidth(3))
+                  .addOn(self)
+                  .byAdd(^(MASConstraintMaker *make) {
+                      @jobs_strongify(self)
+                      make.centerY.equalTo(self);
+                      make.left.equalTo(self);
+                      make.right.equalTo(self.cancelBtn.mas_left);
+                      make.height.mas_equalTo(self.mj_h - JobsWidth(15));
+                  })
+                  .byBgColor(HEXCOLOR(0xFFFFFF))
+                  .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable model) {
+                      model.jobsWidth = .05f;
+                      model.layerCor = JobsBlueColor;
+                      model.cornerRadiusValue = JobsWidth(8);
+              }));
+          });
+          /// 不能写在 jobsMakeZYTextField 里面，否则会崩溃
+          [[_textField.rac_textSignal filter:^BOOL(NSString *_Nullable value) {
+              @jobs_strongify(self)
+              if (isValue(self.textField.text)) {
+                  self.cancelBtn.alpha = 1;
+                  self.textField.width = TextFieldWidth - (self.cancelBtn.sizer.width + JobsWidth(5));
+              }return isValue(value);
+          }] subscribeNext:^(NSString * _Nullable x) {
+              @jobs_strongify(self)
+              JobsLog(@"输入的字符为 = %@",x);
+              if (self.objBlock) self.objBlock(x);
+          }];
+      }return _textField;
   }
   ```
 
-#### 9.4、字符过滤  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 9.4、字符过滤 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 一般情况下，如果要监控输入字符，需要实现相应的`UITextFieldDelegate`方法，某些情况下会比较繁琐，包括但不仅限于下列：
 
@@ -1888,11 +1910,11 @@ classDiagram
   }
   ```
 
-#### 9.7、RAC监控输入框  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 9.7、[**RAC**](https://github.com/ReactiveCocoa/ReactiveObjC)监控输入框  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 制作信号
 
-  * 如果UITextField不可用
+  * 如果**UITextField**不可用
 
     ```objective-c
     /// 则监控UITextField.text
@@ -1912,7 +1934,7 @@ classDiagram
     }
     ```
 
-  * 如果UITextField可用
+  * 如果**UITextField**可用
 
     ```objective-c
     /// 创建每个输入框的信号：结合 `rac_textSignal` 和 KVO 信号
@@ -2232,19 +2254,19 @@ classDiagram
 
 * [**`JobsLoadingImage`**](https://github.com/295060456/JobsOCBaseConfigDemo/blob/main/JobsOCBaseConfigDemo/JobsOCBaseCustomizeUIKitCore/UIImage/JobsLoadingImage)：**图片存取**
 
-### 14、<font color=red>`View` 和 `ViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 14、<font color=red>`UIView` 和 `UIViewController`</font> <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 两者都是属于UI层
 
-* 因为`ViewController`里面也包含了一部分数据层，不利于解耦。所以在Flutter中对UI层和数据层进行完全的剥离，即一个UI层带一个状态（State）
+* 因为`UIViewController`里面也包含了一部分数据层，不利于解耦。所以在[**Flutter**](https://flutter.dev)中对UI层和数据层进行完全的剥离，即一个UI层带一个状态（State）
 
-* `View`层可以允许初始化方法带参（Frame）。而`ViewController`是控制器，通常铺满整个屏幕，所以不需要带参（Frame）初始化
+* `View`层可以允许初始化方法带参（Frame）。而`UIViewController`是控制器，通常铺满整个屏幕，所以不需要带参（Frame）初始化
 
 * 两者的生命周期有很大区别。主要关系到UI布局和进数据
 
 * <font color=red>**因为是继承，所以创建和销毁必须调用父类，否则异常**</font>。<font size=2>因为是ARC模式，所以`-(void)dealloc`方法不需要调用父类</font>
 
-* 一般`View`不会独立存在，会依附于`ViewController`。<font color=red>就要求`ViewController`需要观察是否正常销毁</font>（即，退出页面是否执行`-(void)dealloc`方法）。<font color=blue>如果对象没有成功销毁，会影响数据的写入，且下一次新建对象的时候，会优先执行上一个对象的`-(void)dealloc`方法</font>
+* 一般`View`不会独立存在，会依附于`UIViewController`。<font color=red>就要求`ViewController`需要观察是否正常销毁</font>（即，退出页面是否执行`-(void)dealloc`方法）。<font color=blue>如果对象没有成功销毁，会影响数据的写入，且下一次新建对象的时候，会优先执行上一个对象的`-(void)dealloc`方法</font>
 
 #### 14.1、`UIViewController`的生命周期 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
@@ -2288,7 +2310,7 @@ classDiagram
 
 #### 14.2、`UIView`的生命周期 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* **初始化方法**`-(instancetype)init`：最根本的初始化方法
+* **初始化方法** `-(instancetype)init`：最根本的初始化方法
 
   * **初始化方法（带参Frame）**`-(instancetype)initWithFrame:(CGRect)frame`
   * `- (void)layoutSubviews`：只要布局UI，此方法会执行多次，直到UI布局稳定。**这里取值可能是过程值，有可能不准确**
@@ -2360,7 +2382,7 @@ classDiagram
   }
   ```
 
-* 关于 **UIWindow ***
+* 关于 **`UIWindow *`**
 
   * 每个`SceneDelegate`实例都有自己的`UIWindow`，而不再是通过`AppDelegate`共享一个单独的`UIWindow`实例
   * 即便是单场景App， `SceneDelegate`和 `AppDelegate`都有各自的`UIWindow`
@@ -2461,7 +2483,7 @@ classDiagram
   
   * 容易造成代码割裂。<u>如果修改协议方法的定义，对应的协议方法的实现不会有警告或者报错，会降格为普通方法，会造成代码业务逻辑的变更</u>
 
-#### 17.3、总结  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 17.3、总结 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 一般建议系统级别的，使用通知。例如：检测键盘、横竖屏...
 * 对象间传值一般的业务场景是：需要传值的对象之间至多有一个中间对象。此时建议用**Block**
@@ -2469,7 +2491,7 @@ classDiagram
 
 ### 18、数据解析 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-#### 18.1、对`json`数据的解析  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+#### 18.1、对 `json`数据的解析  <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * 对待data是数组
 
@@ -2628,7 +2650,7 @@ classDiagram
 
 ### 19、水平菜单切换 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
-* 对于子菜单是视图控制器的：推荐使用`JXCategoryView`
+* 对于子菜单是视图控制器的：推荐使用[<font size=5>**`JXCategoryView`**</font>](https://github.com/pujiaxin33/JXCategoryView)
 
   ```objective-c
   #if __has_include(<JXCategoryView/JXCategoryView.h>)
@@ -2759,9 +2781,9 @@ classDiagram
      -(JXCategoryTitleView *)categoryView{
          if(!_categoryView){
              @jobs_weakify(self)
-             _categoryView = self.view.addSubview(jobsMakeCategoryTitleView(^(JXCategoryTitleView * _Nullable view) {
+             _categoryView = jobsMakeCategoryTitleView(^(JXCategoryTitleView * _Nullable view) {
                  @jobs_strongify(self)
-                 view.byTitleSelectedColor(JobsRedColor)
+                 view.byTitleSelectedColor(JobsRedColor)¡
                      .byTitleColor(JobsGrayColor)
                      .byTitleFont(UIFontWeightRegularSize(JobsWidth(10)))
                      .byTitleSelectedFont(UIFontWeightRegularSize(JobsWidth(11)))
@@ -2788,12 +2810,15 @@ classDiagram
                      .byContentScrollView(self.listContainerView.scrollView)/// 关联cotentScrollView，关联之后才可以互相联动！！！
                      .byDelegate(self)
                      .byBgCor(JobsClearColor);
-             })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+             })
+             .addOn(self)
+             .byAdd(^(MASConstraintMaker *make) {
                  @jobs_strongify(self)
-                 make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
-                 make.left.right.equalTo(self.view);
-                 make.height.mas_equalTo(listContainerViewDefaultOffset);
-             }).on();
+                 make.centerY.equalTo(self);
+                 make.left.equalTo(self);
+                 make.right.equalTo(self.cancelBtn.mas_left);
+                 make.height.mas_equalTo(self.mj_h - JobsWidth(15));
+             })
          }return _categoryView;
      }
     ```
@@ -2803,7 +2828,7 @@ classDiagram
      -(JXCategoryImageView *)categoryView{
          if (!_categoryView) {
              @jobs_weakify(self)
-             _categoryView = self.view.addSubview(jobsMakeCategoryImageView(^(JXCategoryImageView * _Nullable view) {
+             _categoryView = jobsMakeCategoryImageView(^(JXCategoryImageView * _Nullable view) {
                  view.byImageNames(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>* _Nullable arr) {
                      arr.add(@"彩票_已选择")
                          .add(@"电子_已选择")
@@ -2861,13 +2886,14 @@ classDiagram
                  }))/// 二选一
                  .byDelegate(self)
                  .byBgCor(JobsClearColor);
-             }))
-             .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+             })
+             .addOn(self)
+             .byAdd(^(MASConstraintMaker *make) {
                  @jobs_strongify(self)
                  make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);
                  make.left.right.equalTo(self.view);
                  make.height.mas_equalTo(listContainerViewDefaultOffset);
-             }).on();
+             });
          }return _categoryView;
      }
     ```
@@ -2877,7 +2903,7 @@ classDiagram
      -(JXCategoryDotView *)categoryView{
          if (!_categoryView) {
              @jobs_weakify(self)
-             _categoryView = self.view.addSubview(jobsMakeCategoryDotView(^(JXCategoryDotView * _Nullable view) {
+             _categoryView = jobsMakeCategoryDotView(^(JXCategoryDotView * _Nullable view) {
                  view.byDotStates(jobsMakeMutArr(^(__kindof NSMutableArray <NSNumber *>* _Nullable arr) {
                      arr.add(@YES)
                          .add(@NO)
@@ -2915,12 +2941,14 @@ classDiagram
                  .reloadDatasWithoutListContainer()
                  .byDelegate(self)
                  .byBgCor(HEXCOLOR(0xFCFBFB));
-             })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+             })
+             .addOn(self)
+             .byAdd(^(MASConstraintMaker *make) {
                  @jobs_strongify(self)
                  make.top.equalTo(self.gk_navigationBar.mas_bottom);
                  make.left.right.equalTo(self.view);
                  make.height.mas_equalTo(listContainerViewDefaultOffset);
-             }).on();
+             });
          }return _categoryView;
      }
     
@@ -2943,131 +2971,135 @@ classDiagram
     ```
     
   * ```objective-c
-    Prop_strong()JXCategoryNumberView *categoryView;/// 右上角带文字
     -(JXCategoryNumberView *)categoryView{
-         if (!_categoryView) {
-             @jobs_weakify(self)
-             _categoryView = self.view.addSubview(jobsMakeCategoryNumberView(^(JXCategoryNumberView * _Nullable view) {
-                 view.byNumberLabelOffset(CGPointMake(JobsWidth(5), JobsWidth(2)))
-                     .byCounts(jobsMakeMutArr(^(__kindof NSMutableArray <NSNumber *>* _Nullable arr) {
-                         arr.add(@1)
-                             .add(@1)
-                             .add(@1)
-                             .add(@1)
-                             .add(@1)
-                             .add(@1);
-                     }))
-                     /// 内部默认不会格式化数字，直接转成字符串显示。比如业务需要数字超过999显示999+，可以通过该block实现。
-                     .byNumberStringFormatterBlock(^NSString *(NSInteger number) {
-                         if (number > 999) {
-                             return @"999+";
-                         }return [NSString stringWithFormat:@"%ld", (long)number];
-                     })
-                     .byTitles(self.titles)
-                     .byTitleSelectedColor(HEXCOLOR(0xAE8330))
-                     .byTitleColor(HEXCOLOR(0xC4C4C4))
-                     .byTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                     .byTitleSelectedFont(UIFontWeightBoldSize(JobsWidth(14)))
-                     .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
-                     .byTitleColorGradientEnabled(YES)
-                     .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                         arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
-                             view.indicatorColor = HEXCOLOR(0xFFEABA);
-                             view.indicatorHeight = JobsWidth(4);
-                             view.indicatorWidthIncrement = JobsWidth(10);
-                             view.verticalMargin = 0;
-                         }));
-                     }))/// 二选一
-                     .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
-                         arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
-                             view.indicatorHeight = JobsWidth(30);
-                             view.indicatorWidth = JobsWidth(76);
-                             view.indicatorColor = HEXCOLOR(0xFFEABA);
-                             view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
-                         }));
-                     }))/// 二选一：BackgroundView 椭圆形
-                     .byContentScrollView(self.listContainerView.scrollView) /// 关联cotentScrollView，关联之后才可以互相联动！！！
-                     .byListContainer(self.listContainerView)
-                     .reloadDatasWithoutListContainer()
-                     .byDelegate(self)
-                     .byBgCor(HEXCOLOR(0xFCFBFB));
-             })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
-                 @jobs_strongify(self)
-                 make.top.equalTo(self.gk_navigationBar.mas_bottom);
-                 make.left.right.equalTo(self.view);
-                 make.height.mas_equalTo(listContainerViewDefaultOffset);
-             }).on();
-         }return _categoryView;
-     }
+        if (!_categoryView) {
+            @jobs_weakify(self)
+            _categoryView = jobsMakeCategoryNumberView(^(JXCategoryNumberView * _Nullable view) {
+                view.byNumberLabelOffset(CGPointMake(JobsWidth(5), JobsWidth(2)))
+                    .byCounts(jobsMakeMutArr(^(__kindof NSMutableArray <NSNumber *>* _Nullable arr) {
+                        arr.add(@1)
+                            .add(@1)
+                            .add(@1)
+                            .add(@1)
+                            .add(@1)
+                            .add(@1);
+                    }))
+                    /// 内部默认不会格式化数字，直接转成字符串显示。比如业务需要数字超过999显示999+，可以通过该block实现。
+                    .byNumberStringFormatterBlock(^NSString *(NSInteger number) {
+                        if (number > 999) {
+                            return @"999+";
+                        }return [NSString stringWithFormat:@"%ld", (long)number];
+                    })
+                    .byTitles(self.titles)
+                    .byTitleSelectedColor(HEXCOLOR(0xAE8330))
+                    .byTitleColor(HEXCOLOR(0xC4C4C4))
+                    .byTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                    .byTitleSelectedFont(UIFontWeightBoldSize(JobsWidth(14)))
+                    .byDefaultSelectedIndex(1)/// 默认从第二个开始显示
+                    .byTitleColorGradientEnabled(YES)
+                    .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                        arr.add(jobsMakeCategoryIndicatorLineView(^(JXCategoryIndicatorLineView * _Nullable view) {
+                            view.indicatorColor = HEXCOLOR(0xFFEABA);
+                            view.indicatorHeight = JobsWidth(4);
+                            view.indicatorWidthIncrement = JobsWidth(10);
+                            view.verticalMargin = 0;
+                        }));
+                    }))/// 二选一
+                    .byIndicators(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable arr) {
+                        arr.add(jobsMakeCategoryIndicatorBackgroundView(^(JXCategoryIndicatorBackgroundView * _Nullable view) {
+                            view.indicatorHeight = JobsWidth(30);
+                            view.indicatorWidth = JobsWidth(76);
+                            view.indicatorColor = HEXCOLOR(0xFFEABA);
+                            view.indicatorCornerRadius = JXCategoryViewAutomaticDimension;
+                        }));
+                    }))/// 二选一：BackgroundView 椭圆形
+                    .byContentScrollView(self.listContainerView.scrollView) /// 关联cotentScrollView，关联之后才可以互相联动！！！
+                    .byListContainer(self.listContainerView)
+                    .reloadDatasWithoutListContainer()
+                    .byDelegate(self)
+                    .byBgCor(HEXCOLOR(0xFCFBFB));
+            })
+            .addOn(self)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                make.left.right.equalTo(self.view);
+                make.height.mas_equalTo(listContainerViewDefaultOffset);
+            });
+        }return _categoryView;
+    }
     ```
   
 * 对于子菜单是视图控制器的：推荐使用`JobsToggleBaseView`
 
   ```objective-c
-   -(JobsToggleBaseView *)toggleBaseView{
-       if(!_toggleBaseView){
-           @jobs_weakify(self)
-           _toggleBaseView = jobsMakeToggleBaseView(^(JobsToggleBaseView * _Nullable toggleBaseView) {
-               @jobs_strongify(self)
-               toggleBaseView.btn_each_offset = JobsWidth(0);
-               toggleBaseView.taggedNavView_width = JobsWidth(230);
-               toggleBaseView.taggedNavView_height = JobsWidth(24);
-               toggleBaseView.taggedNavViewBgColor = JobsClearColor.colorWithAlphaComponentBy(0);
-               toggleBaseView.bySize(CGSizeMake(JobsWidth(346), JobsWidth(216)));
-               toggleBaseView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
-                   data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                       @jobs_strongify(self)
-                       data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-                       data1.titleFont = bayonRegular(JobsWidth(20));
-                       data1.title = JobsInternationalization(@"PHONE NO.");
-                       data1.jobsWidth = JobsWidth(90);
-                       data1.titleCor = JobsCor(@"#8A93A1");
-                       data1.selectedTitleCor = JobsCor(@"#C90000");
-                       data1.roundingCorners = UIRectCornerAllCorners;
-                       data1.view = FMLoginByPhoneView
-                           .BySize(FMLoginByPhoneView.viewSizeByModel(nil))
-                           .JobsRichViewByModel2(nil)
-                           .JobsBlock1(^(id  _Nullable data) {
-                               
-                           });/// 手机验证码登陆
-                       data1.clickEventBlock = ^id _Nullable(__kindof UIButton *_Nullable x){
-                           @jobs_strongify(self)
-                           if(KindOfBaseButtonCls(x)){
-                               self.toggleBaseView.switchViewsBy(x.index);
-                           }return nil;
-                       };
-                   }));
-                   data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
-                       @jobs_strongify(self)
-                       data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-                       data1.titleFont = bayonRegular(JobsWidth(20));
-                       data1.title = JobsInternationalization(@"ACCOUNT NAME");
-                       data1.jobsWidth = JobsWidth(130);
-                       data1.titleCor = JobsCor(@"#8A93A1");
-                       data1.selectedTitleCor = JobsCor(@"#C90000");
-                       data1.roundingCorners = UIRectCornerAllCorners;
-                       data1.view = FMLoginByUsrNameView
-                           .BySize(FMLoginByUsrNameView.viewSizeByModel(nil))
-                           .JobsRichViewByModel2(nil)
-                           .JobsBlock1(^(id  _Nullable data) {
-                               
-                           });/// 用户名密码
-                       data1.clickEventBlock = ^id _Nullable(__kindof UIButton *_Nullable x){
-                           @jobs_strongify(self)
-                           if(KindOfBaseButtonCls(x)){
-                               self.toggleBaseView.switchViewsBy(x.index);
-                           }return nil;
-                       };
-                   }));
-               }));
-               [self.view.addSubview(toggleBaseView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                   make.size.mas_equalTo(toggleBaseView.sizer);
-                   make.top.equalTo(self.titleLab.mas_bottom);
-                   make.centerX.equalTo(self.view);
-               }];self.view.refresh();
-           });
-       }return _toggleBaseView;
-   }
+  -(JobsToggleBaseView *)toggleBaseView{
+      if(!_toggleBaseView){
+          @jobs_weakify(self)
+          _toggleBaseView = jobsMakeToggleBaseView(^(JobsToggleBaseView * _Nullable toggleBaseView) {
+              @jobs_strongify(self)
+              toggleBaseView.btn_each_offset = JobsWidth(0);
+              toggleBaseView.taggedNavView_width = JobsWidth(230);
+              toggleBaseView.taggedNavView_height = JobsWidth(24);
+              toggleBaseView.taggedNavViewBgColor = JobsClearColor.colorWithAlphaComponentBy(0);
+              toggleBaseView.bySize(CGSizeMake(JobsWidth(346), JobsWidth(216)));
+              toggleBaseView.jobsRichViewByModel(jobsMakeMutArr(^(__kindof NSMutableArray <UIButtonModel *>*_Nullable data) {
+                  data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                      @jobs_strongify(self)
+                      data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+                      data1.titleFont = bayonRegular(JobsWidth(20));
+                      data1.title = JobsInternationalization(@"PHONE NO.");
+                      data1.jobsWidth = JobsWidth(90);
+                      data1.titleCor = JobsCor(@"#8A93A1");
+                      data1.selectedTitleCor = JobsCor(@"#C90000");
+                      data1.roundingCorners = UIRectCornerAllCorners;
+                      data1.view = FMLoginByPhoneView
+                          .BySize(FMLoginByPhoneView.viewSizeByModel(nil))
+                          .JobsRichViewByModel2(nil)
+                          .JobsBlock1(^(id  _Nullable data) {
+  
+                          });/// 手机验证码登陆
+                      data1.clickEventBlock = ^id _Nullable(__kindof UIButton *_Nullable x){
+                          @jobs_strongify(self)
+                          if(KindOfBaseButtonCls(x)){
+                              self.toggleBaseView.switchViewsBy(x.index);
+                          }return nil;
+                      };
+                  }));
+                  data.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data1) {
+                      @jobs_strongify(self)
+                      data1.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+                      data1.titleFont = bayonRegular(JobsWidth(20));
+                      data1.title = JobsInternationalization(@"ACCOUNT NAME");
+                      data1.jobsWidth = JobsWidth(130);
+                      data1.titleCor = JobsCor(@"#8A93A1");
+                      data1.selectedTitleCor = JobsCor(@"#C90000");
+                      data1.roundingCorners = UIRectCornerAllCorners;
+                      data1.view = FMLoginByUsrNameView
+                          .BySize(FMLoginByUsrNameView.viewSizeByModel(nil))
+                          .JobsRichViewByModel2(nil)
+                          .JobsBlock1(^(id  _Nullable data) {
+  
+                          });/// 用户名密码
+                      data1.clickEventBlock = ^id _Nullable(__kindof UIButton *_Nullable x){
+                          @jobs_strongify(self)
+                          if(KindOfBaseButtonCls(x)){
+                              self.toggleBaseView.switchViewsBy(x.index);
+                          }return nil;
+                      };
+                  }));
+              }));
+              toggleBaseView.addOn(self.view)
+                  .byAdd(^(MASConstraintMaker *make) {
+                      @jobs_strongify(self)
+                      make.size.mas_equalTo(toggleBaseView.sizer);
+                      make.top.equalTo(self.titleLab.mas_bottom);
+                      make.centerX.equalTo(self.view);
+                  });
+              self.view.refresh();
+          });
+      }return _toggleBaseView;
+  }
   ```
 
 ### 20、<font color=blue>**竖形菜单**</font>方案 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
@@ -3426,10 +3458,15 @@ classDiagram
   //              }, MethodName(self), self)];
   //              [tableView.xzm_header beginRefreshing];
   //          }
-          })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+          }))
+  				.addOn(self.view)
+          .byAdd(^(MASConstraintMaker *make) {
               @jobs_strongify(self)
-              /// TODO
-          }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
+  //                make.edges.equalTo(self.view);
+              make.top.equalTo(self.balanceView.mas_bottom).offset(listContainerViewDefaultOffset);
+              make.left.right.bottom.equalTo(self.view);
+          })
+          .dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
       }return _tableView;
   }
   
@@ -3438,12 +3475,14 @@ classDiagram
           @jobs_weakify(self)
           _topImageView = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
               @jobs_strongify(self)
-              imageView.image = self.bgImageMutArr2[0];
-              [self.bgImageView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                  make.top.equalTo(self.view);
-                  make.centerX.equalTo(self.view);
-                  make.size.mas_equalTo(CGSizeMake(JobsWidth(182), JobsWidth(65)));
-              }];
+              imageView.byImage(self.bgImageMutArr2[0])
+                  .addOn(self.bgImageView)
+                  .byAdd(^(MASConstraintMaker *make) {
+                      @jobs_strongify(self)
+                      make.top.equalTo(self.view);
+                      make.centerX.equalTo(self.view);
+                      make.size.mas_equalTo(CGSizeMake(JobsWidth(182), JobsWidth(65)));
+                  });
           });
       }return _topImageView;
   }
@@ -3646,26 +3685,27 @@ classDiagram
           @jobs_weakify(self)
           _excelView = jobsMakeExcelView(^(__kindof JobsExcelView * _Nullable view) {
               @jobs_strongify(self)
-              view.backgroundColor = JobsRedColor;
-              [self.view addSubview:view];
-              [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                  make.center.equalTo(self.view);
-                  make.size.mas_equalTo(JobsExcelView.viewSizeByModel(nil));
-              }];
-              view.jobsRichViewByModel(jobsMakeExcelConfigureViewModel(^(JobsExcelConfigureViewModel * _Nullable data) {
-                  data.XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
-                  data.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
-                  data.itemW = JobsWidth(80);
-                  data.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable arr) {
-                      arr.add(JobsInternationalization(@"Order Time"));
-                      arr.add(JobsInternationalization(@"Order No."));
-                      arr.add(JobsInternationalization(@"Transaction Type"));
-                      arr.add(JobsInternationalization(@"Amount"));
-                      arr.add(JobsInternationalization(@"Method"));
-                      arr.add(JobsInternationalization(@"Status"));
-                  });
-                  data.configureDataBy(nil);
-              }));
+              view.addOn(self.view)
+                  .byAdd(^(MASConstraintMaker *make) {
+                      @jobs_strongify(self)
+                      make.center.equalTo(self.view);
+                      make.size.mas_equalTo(JobsExcelView.viewSizeByModel(nil));
+                  })
+                  .JobsRichViewByModel(jobsMakeExcelConfigureViewModel(^(JobsExcelConfigureViewModel * _Nullable data) {
+                      data.XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
+                      data.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
+                      data.itemW = JobsWidth(80);
+                      data.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable arr) {
+                          arr.add(@"Order Time".tr);
+                          arr.add(@"Order No.".tr);
+                          arr.add(@"Transaction Type".tr);
+                          arr.add(@"Amount".tr);
+                          arr.add(@"Method".tr);
+                          arr.add(@"Status".tr);
+                      });
+                      data.configureDataBy(nil);
+                  }))
+                  .byBgColor(JobsRedColor);
           });
       }return _excelView;
   }
@@ -4395,6 +4435,13 @@ UIButton
           NSLog(@"👉 长按了左侧『返回』按钮");
       })
       .bySize(CGSizeMake(30, 30))
+      .addOn(self.view)
+      .byAdd(^(MASConstraintMaker *make) {
+          @jobs_strongify(self)
+          make.left.equalTo(self.view);
+          make.top.equalTo(self.tableView.mas_bottom);
+          make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
+      });
   ```
 
 * 富文本（字体大小、字体颜色）/ 短按 / 长按 / 按钮图 / 图文位置 / 图文距离 / 按钮尺寸 <font color=blue>**富文本的优先级 > 普通文本的优先级**</font>
@@ -4438,31 +4485,51 @@ UIButton
       .onLongPressGestureBy(^(id data){
           JobsLog(@"");
       })
-      .bySize(CGSizeMake(30, 30));
+      .bySize(CGSizeMake(30, 30))
+      .addOn(self.view)
+      .byAdd(^(MASConstraintMaker *make) {
+          @jobs_strongify(self)
+          make.left.equalTo(self.view);
+          make.top.equalTo(self.tableView.mas_bottom);
+          make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
+      });
   ```
 
 * <font color=red size=5>`UIButtonConfiguration`</font> + <font color=red size=5>`SDWebImage`</font>
 
   ```objective-c
-  _headBtn = BaseButton.jobsInit()
-     .imageURL(@"".jobsUrl)
-     .placeholderImage(@"小狮子".img)
-     .options(SDWebImageRefreshCached)/// 强制刷新缓存
-     .completed(^(UIImage * _Nullable image,
-                  NSError * _Nullable error,
-                  SDImageCacheType cacheType,
-                  NSURL * _Nullable imageURL) {
-         if (error) {
-             NSLog(@"图片加载失败: %@-%@", error,imageURL);
-         } else {
-             NSLog(@"图片加载成功");
-         }
-     }).onClick(^(UIButton *x){
-         @jobs_strongify(self)
-         if (self.objectBlock) self.objectBlock(x);
-     }).onLongPressGesture(^(id data){
-     NSLog(@"");
-  }).bgNormalLoad();
+  -(UIButton *)mailBtn{
+       if(!_mailBtn){
+           @jobs_weakify(self)
+           _mailBtn = BaseButton.jobsInit()
+               .imageURL(@"".jobsUrl)
+               .placeholderImage(JobsIMG(@"小狮子"))
+               .options(SDWebImageRefreshCached)/// 强制刷新缓存
+               .completed(^(UIImage * _Nullable image,
+                            NSError * _Nullable error,
+                            SDImageCacheType cacheType,
+                            NSURL * _Nullable imageURL) {
+                   if (error) {
+                       JobsLog(@"图片加载失败: %@-%@", error,imageURL);
+                   } else {
+                       JobsLog(@"图片加载成功");
+                   }
+               })
+               .onClickBy(^(UIButton *x){
+                   @jobs_strongify(self)
+                   if (self.objBlock) self.objBlock(x);
+               })
+               .onLongPressGestureBy(^(id data){
+                   JobsLog(@"");
+               })
+               .addOn(self.view)
+               .byAdd(^(MASConstraintMaker *make) {
+                   @jobs_strongify(self)
+                   // TODO
+               });
+               .bgNormalLoad();
+       }return _mailBtn;
+   }
   ```
 
 #### 28.4、⏰ [**倒计时**](#JobsTimer)按钮的封装 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
@@ -4475,37 +4542,36 @@ UIButton
         @jobs_weakify(self)
         _countdownBtn = jobsMakeButton(^(__kindof UIButton * _Nullable btn) {//
             @jobs_strongify(self)
-            self.view.addSubview
-            (
-             /// 基础 UI
-             btn.jobsResetBtnBgCor(HEXCOLOR(0xAE8330))
-                .jobsResetBtnTitle(JobsInternationalization(@"获取验证码"))
-                .jobsResetBtnTitleCor(JobsWhiteColor)
-                .jobsResetBtnTitleFont(UIFontWeightRegularSize(24))
-                /// Timer 配置（UIButton+Timer 提供的属性）
-                .byTimerStyle(TimerStyle_anticlockwise)  // 倒计时模式
-                .byStartTime(8)                          // 总时长 8 秒
-                .byTimeInterval(1)
-                .byClickWhenTimerCycle(YES)               // 计时器运行期间：禁止点击
-                .byOnTick(^(CGFloat time){
-                    btn.jobsResetBtnTitle([NSString stringWithFormat:@"%d",(int)ceil(time)].add(JobsSpace).add(@"秒"));
-                })
-                .byOnFinish(^(JobsTimer *_Nullable timer){
-                    btn.jobsResetBtnTitle(JobsInternationalization(@"获取验证码"));
-                })
-                /// 点击开始倒计时
-                .onClickBy(^(UIButton *x){
-                    x.startTimer();
-                })
-                .jobsResetBtnCornerRadiusValue(JobsWidth(18))
-             )
-            .byAdd(^(MASConstraintMaker *make) {
-                @jobs_strongify(self)
-                make.centerX.equalTo(self.view);
-                make.top.equalTo(self.countdownView.mas_bottom).offset(JobsWidth(12));
-                make.height.mas_equalTo(JobsWidth(80));
-                make.width.mas_equalTo(JobsWidth(180));
-            });
+            /// 基础 UI
+            btn.jobsResetBtnBgCor(HEXCOLOR(0xAE8330))
+               .jobsResetBtnTitle(JobsInternationalization(@"获取验证码"))
+               .jobsResetBtnTitleCor(JobsWhiteColor)
+               .jobsResetBtnTitleFont(UIFontWeightRegularSize(24))
+               /// Timer 配置（UIButton+Timer 提供的属性）
+               .byTimerType(JobsTimerTypeGCD)
+               .byTimerStyle(TimerStyle_anticlockwise)  // 倒计时模式
+               .byStartTime(8)                          // 总时长 8 秒
+               .byTimeInterval(1)
+               .byClickWhenTimerCycle(YES)              // 计时器运行期间：禁止点击
+               .byOnTick(^(CGFloat time){
+                   btn.jobsResetBtnTitle([NSString stringWithFormat:@"%f",ceil(time)].add(JobsSpace).add(@"秒"));
+               })
+               .byOnFinish(^(JobsTimer *_Nullable timer){
+                   NSLog(@"");
+               })
+               /// 点击开始倒计时
+               .onClickBy(^(UIButton *x){
+                   x.startTimer();
+               })
+               .jobsResetBtnCornerRadiusValue(JobsWidth(18))
+               .addOn(self.view)
+               .byAdd(^(MASConstraintMaker *make) {
+                   @jobs_strongify(self)
+                   make.centerX.equalTo(self.view);
+                   make.top.equalTo(self.countdownView.mas_bottom).offset(JobsWidth(12));
+                   make.height.mas_equalTo(JobsWidth(80));
+                   make.width.mas_equalTo(JobsWidth(180));
+               });
         });
     }return _countdownBtn;
 }

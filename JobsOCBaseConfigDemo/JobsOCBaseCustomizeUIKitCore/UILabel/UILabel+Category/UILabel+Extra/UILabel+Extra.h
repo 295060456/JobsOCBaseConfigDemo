@@ -31,19 +31,21 @@ Prop_assign()TransformLayerDirectionType transformLayerDirectionType;
 /// UILabel文字旋转
 -(JobsRetLabelByNSUIntegerBlock _Nonnull)transformLayer;
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
--(JobsRetLabelByImage _Nonnull)bgImage;
+-(JobsRetLabelByImageBlock _Nonnull)bgImage;
+/// 行数
+-(JobsRetLabelByNSIntegerBlock _Nonnull)byNumberOfLines;
 /// 设置UILabel的显示样式 【在Masonry以后拿到了frame】
 -(JobsRetLabelByNSUIntegerBlock _Nonnull)makeLabelByShowingType;
 #pragma mark —— 系统方法链式语法封装
--(JobsRetLabelByAttributedString _Nonnull)byAttributedString;
--(JobsRetLabelByCor _Nonnull)byBgCor;
--(JobsRetLabelByText _Nonnull)byText;
--(JobsRetLabelByText _Nonnull)byNextText;
--(JobsRetLabelByAttributedString _Nonnull)byNextAttributedText;
--(JobsRetLabelByAttributedString _Nonnull)byNextAttributedTextWithvalue;
--(JobsRetLabelByCor _Nonnull)byTextCor;
--(JobsRetLabelByFont _Nonnull)byFont;
--(JobsRetLabelByTextAlignment _Nonnull)byTextAlignment;
+-(JobsRetLabelByAttributedStringBlock _Nonnull)byAttributedString;
+-(JobsRetLabelByCorBlock _Nonnull)byBgCor;
+-(JobsRetLabelByTextBlock _Nonnull)byText;
+-(JobsRetLabelByTextBlock _Nonnull)byNextText;
+-(JobsRetLabelByAttributedStringBlock _Nonnull)byNextAttributedText;
+-(JobsRetLabelByAttributedStringBlock _Nonnull)byNextAttributedTextWithvalue;
+-(JobsRetLabelByCorBlock _Nonnull)byTextCor;
+-(JobsRetLabelByFontBlock _Nonnull)byFont;
+-(JobsRetLabelByTextAlignmentBlock _Nonnull)byTextAlignment;
 
 @end
 

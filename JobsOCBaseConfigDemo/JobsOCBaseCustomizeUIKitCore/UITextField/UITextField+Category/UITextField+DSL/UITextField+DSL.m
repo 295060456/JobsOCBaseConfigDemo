@@ -209,6 +209,7 @@
     return ^__kindof UITextField * (UITextFieldViewMode mode) {
         @jobs_strongify(self)
         self.leftViewMode = mode;
+        NSTextAlignment d;
         return self;
     };
 }
@@ -290,6 +291,33 @@
     return ^__kindof UITextField *_Nullable(BOOL data){
         @jobs_strongify(self)
         self.secureTextEntry = data;
+        return self;
+    };
+}
+
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byPlaceHolderAlignment {
+    @jobs_weakify(self)
+    return ^__kindof UITextField * (NSTextAlignment alignment) {
+        @jobs_strongify(self)
+        self.placeHolderAlignment  = alignment;
+        return self;
+    };
+}
+
+-(JobsRetTextFieldByCGFloatrBlock _Nonnull)byLeftViewOffsetX {
+    @jobs_weakify(self)
+    return ^__kindof UITextField * (CGFloat offsetX) {
+        @jobs_strongify(self)
+        self.leftViewOffsetX = offsetX;
+        return self;
+    };
+}
+
+-(JobsRetTextFieldByCGFloatrBlock _Nonnull)byRightViewOffsetX {
+    @jobs_weakify(self)
+    return ^__kindof UITextField * (CGFloat offsetX) {
+        @jobs_strongify(self)
+        self.rightViewOffsetX = offsetX;
         return self;
     };
 }

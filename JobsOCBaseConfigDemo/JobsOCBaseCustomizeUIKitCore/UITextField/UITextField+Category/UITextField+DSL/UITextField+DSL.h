@@ -52,6 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 -(JobsRetTextFieldByReturnKeyTypeBlock _Nonnull)byReturnKeyType;
 #pragma mark —— 其他
 -(JobsRetTextFieldByBOOLBlock _Nonnull)bySecureTextEntry;
+-(JobsRetTextFieldByNSIntegerBlock _Nonnull)byPlaceHolderAlignment;
+-(JobsRetTextFieldByCGFloatrBlock _Nonnull)byLeftViewOffsetX;
+-(JobsRetTextFieldByCGFloatrBlock _Nonnull)byRightViewOffsetX;
 
 @end
 

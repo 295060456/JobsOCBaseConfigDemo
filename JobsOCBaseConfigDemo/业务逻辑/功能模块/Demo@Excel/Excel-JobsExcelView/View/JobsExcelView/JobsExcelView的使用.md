@@ -15,16 +15,27 @@ Prop_strong()JobsExcelView *excelView;
         @jobs_weakify(self)
         _excelView = jobsMakeExcelView(^(__kindof JobsExcelView * _Nullable view) {
             @jobs_strongify(self)
-            view.backgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
-            [self addSubview:view];
-            [view mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self);
-                make.height.mas_equalTo(JobsWidth(240));
-                make.right.equalTo(self.settled_textField);
-                make.top.equalTo(self.today_btn.mas_bottom).offset(JobsWidth(10));
-            }];
-            [self layoutIfNeeded];
-            view.jobsRichViewByModel(self.excelData);
+            view.addOn(self.view)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.center.equalTo(self.view);
+                    make.size.mas_equalTo(JobsExcelView.viewSizeByModel(nil));
+                })
+                .JobsRichViewByModel(jobsMakeExcelConfigureViewModel(^(JobsExcelConfigureViewModel * _Nullable data) {
+                    data.XZExcelH = JobsExcelView.viewSizeByModel(nil).height;
+                    data.XZExcelW = JobsExcelView.viewSizeByModel(nil).width;
+                    data.itemW = JobsWidth(80);
+                    data.topHeaderTitles = jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable arr) {
+                        arr.add(@"Order Time".tr);
+                        arr.add(@"Order No.".tr);
+                        arr.add(@"Transaction Type".tr);
+                        arr.add(@"Amount".tr);
+                        arr.add(@"Method".tr);
+                        arr.add(@"Status".tr);
+                    });
+                    data.configureDataBy(nil);
+                }))
+                .byBgColor(JobsRedColor);
         });
     }return _excelView;
 }

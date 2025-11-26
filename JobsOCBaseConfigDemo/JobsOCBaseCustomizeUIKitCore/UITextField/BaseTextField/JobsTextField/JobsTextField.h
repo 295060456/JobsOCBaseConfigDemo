@@ -88,7 +88,7 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
  -(JobsTextField *)textField_birthDay{
      if(!_textField_birthDay){
          @jobs_weakify(self)
-         _textField_birthDay = self.scrollView.addSubview(makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
+         _textField_birthDay = makeJobsTextField(^(__kindof JobsTextField * _Nullable data) {
              @jobs_strongify(self)
              data.layoutSubviewsRectCorner = UIRectCornerAllCorners;
              data.layoutSubviewsRectCornerSize = CGSizeMake(JobsWidth(8), JobsWidth(8));
@@ -112,7 +112,7 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
                               }).onLongPressGestureBy(^(id data){
                                   JobsLog(@"");
                               }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
-                 .byBgCor(JobsCor(@"#f7f7f7"))
+                 .byBgCor(@"#f7f7f7".cor)
                  .JobsRichViewByModel2(nil)
                  // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
                  .JobsBlock1(^(id _Nullable data) {
@@ -125,22 +125,25 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
                  .byLeftViewMode(UITextFieldViewModeNever)
                  .byRightViewMode(UITextFieldViewModeNever)
                  .byPlaceholder(@"Pick a Date".tr)
-                 .byPlaceholderColor(JobsCor(@"#BBBBBB"))
+                 .byPlaceholderColor(@"#BBBBBB".cor)
                  .byPlaceholderFont(pingFangTCRegular(15))
                  .byAttributedPlaceholder(nil)
                  .byTextCor(JobsCor(@"#788190"))
                  .bySecureTextEntry(NO);
-         })).setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
-             data.layerCor = JobsCor(@"#BBBBBB");
+         })
+         .setLayerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _Nullable data) {
+             data.layerCor = @"#BBBBBB".cor;
              data.jobsWidth = 1;
              data.cornerRadiusValue = JobsWidth(8);
-         })).setMasonryBy(^(MASConstraintMaker *make){
+         }))
+         .addOn(self.scrollView)
+         .byAdd(^(MASConstraintMaker *make) {
              @jobs_strongify(self)
              make.size.mas_equalTo(CGSizeMake(JobsWidth(346), JobsWidth(40)));
              make.top.equalTo(self.birthDayTitleLab.mas_bottom).offset(JobsWidth(10));
              make.left.equalTo(self.scrollView).offset(JobsWidth(19));
-         }).on();
+         });
      }return _textField_birthDay;
  }
- 
+
  */

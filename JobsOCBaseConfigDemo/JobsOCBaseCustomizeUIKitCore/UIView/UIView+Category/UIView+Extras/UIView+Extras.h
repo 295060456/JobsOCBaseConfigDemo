@@ -115,6 +115,7 @@ Prop_assign()CGFloat jobsVisible;
 -(void)appointCornerCutToCircleByRoundingCorners:(UIRectCorner)corners
                                      cornerRadii:(CGSize)cornerRadii;
 #pragma mark —— 其他
+-(JobsRetViewByNSUIntegerBlock _Nonnull)makeLabelByShowingType;
 -(JobsRetViewByCorBlock _Nonnull)byBgCor;
 -(JobsRetViewByNSIntegerBlock _Nonnull)viewByID;
 -(JobsRetViewByGestureRecognizer _Nonnull)addGesture;
@@ -122,6 +123,7 @@ Prop_assign()CGFloat jobsVisible;
 -(JobsRetViewByNSIntegerBlock _Nonnull)viewWithTag;
 -(JobsRetViewByInteractionBlock _Nonnull)addInteraction;
 -(JobsRetViewByInteractionBlock _Nonnull)removeInteraction;
+-(JobsRetViewByViewBlock _Nonnull)addOn;
 -(JobsRetViewByViewBlock _Nonnull)addSubview;
 -(JobsRetViewByViewBlock _Nonnull)bringSubviewToFront;
 -(JobsRetViewByViewBlock _Nonnull)sendSubviewToBack;

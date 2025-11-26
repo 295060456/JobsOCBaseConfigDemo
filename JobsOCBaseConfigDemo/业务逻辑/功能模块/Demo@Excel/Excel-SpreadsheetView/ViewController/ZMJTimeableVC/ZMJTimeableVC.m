@@ -255,7 +255,7 @@ Prop_strong()NSDateFormatter *twelveHourFormatter;
         [self.view addSubview:_spreadsheetView];
         [_spreadsheetView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.view);
-            make.top.equalTo(self.navBar.mas_bottom);
+            [self make:make topOffset:10];
         }];[_spreadsheetView flashScrollIndicators];
     }return _spreadsheetView;
 }

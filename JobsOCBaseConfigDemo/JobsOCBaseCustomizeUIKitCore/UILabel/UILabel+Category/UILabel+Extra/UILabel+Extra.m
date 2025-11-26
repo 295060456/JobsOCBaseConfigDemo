@@ -35,11 +35,20 @@
     };
 }
 /// 通过传入的(UIImage *)bgImage 来设置背景颜色
--(JobsRetLabelByImage _Nonnull)bgImage{
+-(JobsRetLabelByImageBlock _Nonnull)bgImage{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(UIImage *_Nullable data){
         @jobs_strongify(self)
         self.backgroundColor = self.byPatternImage(data);
+        return self;
+    };
+}
+/// 行数
+-(JobsRetLabelByNSIntegerBlock _Nonnull)byNumberOfLines{
+    @jobs_weakify(self)
+    return ^__kindof UILabel *_Nullable(NSInteger data){
+        @jobs_strongify(self)
+        self.numberOfLines = data;
         return self;
     };
 }
@@ -84,7 +93,7 @@
     };
 }
 #pragma mark —— 系统方法链式语法封装
--(JobsRetLabelByAttributedString _Nonnull)byAttributedString{
+-(JobsRetLabelByAttributedStringBlock _Nonnull)byAttributedString{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
         @jobs_strongify(self)
@@ -93,7 +102,7 @@
     };
 }
 
--(JobsRetLabelByCor _Nonnull)byBgCor{
+-(JobsRetLabelByCorBlock _Nonnull)byBgCor{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIColor *_Nullable cor){
         @jobs_strongify(self)
@@ -102,7 +111,7 @@
     };
 }
 
--(JobsRetLabelByText _Nonnull)byText{
+-(JobsRetLabelByTextBlock _Nonnull)byText{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSString *_Nullable str){
         @jobs_strongify(self)
@@ -111,7 +120,7 @@
     };
 }
 
--(JobsRetLabelByText _Nonnull)byNextText{
+-(JobsRetLabelByTextBlock _Nonnull)byNextText{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSString *_Nullable str){
         @jobs_strongify(self)
@@ -120,7 +129,7 @@
     };
 }
 
--(JobsRetLabelByAttributedString _Nonnull)byNextAttributedText{
+-(JobsRetLabelByAttributedStringBlock _Nonnull)byNextAttributedText{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
         @jobs_strongify(self)
@@ -129,7 +138,7 @@
     };
 }
 
--(JobsRetLabelByAttributedString _Nonnull)byNextAttributedTextWithvalue{
+-(JobsRetLabelByAttributedStringBlock _Nonnull)byNextAttributedTextWithvalue{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
         @jobs_strongify(self)
@@ -138,7 +147,7 @@
     };
 }
 
--(JobsRetLabelByCor _Nonnull)byTextCor{
+-(JobsRetLabelByCorBlock _Nonnull)byTextCor{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIColor *_Nullable cor){
         @jobs_strongify(self)
@@ -147,7 +156,7 @@
     };
 }
 
--(JobsRetLabelByFont _Nonnull)byFont{
+-(JobsRetLabelByFontBlock _Nonnull)byFont{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIFont *_Nullable font){
         @jobs_strongify(self)
@@ -156,7 +165,7 @@
     };
 }
 
--(JobsRetLabelByTextAlignment _Nonnull)byTextAlignment{
+-(JobsRetLabelByTextAlignmentBlock _Nonnull)byTextAlignment{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(NSTextAlignment textAlignment){
         @jobs_strongify(self)

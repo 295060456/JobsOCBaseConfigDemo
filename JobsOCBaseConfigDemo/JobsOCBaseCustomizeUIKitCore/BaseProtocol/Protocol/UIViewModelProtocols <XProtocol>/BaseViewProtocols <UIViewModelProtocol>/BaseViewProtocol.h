@@ -132,6 +132,7 @@ Prop_copy(nullable)jobsByBtnBlock closeBtnClickAction;
 +(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel;
 -(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel2;
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel;
+-(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel;
 -(jobsByViewModelBlock _Nonnull)jobsRichViewByViewModel;
 -(JobsRetScrollViewByIDBlock _Nonnull)dataLink; /// 用于 UIScrollView/UITableView/UICollectionView 的数据源绑定
 -(jobsByIDBlock _Nonnull)update;

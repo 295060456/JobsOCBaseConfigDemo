@@ -254,7 +254,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     //        }
             [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.equalTo(self.view);
-                make.top.equalTo(self.navBar.mas_bottom);
+                [self make:make topOffset:10];
             }];
         });
     }return _tableView;

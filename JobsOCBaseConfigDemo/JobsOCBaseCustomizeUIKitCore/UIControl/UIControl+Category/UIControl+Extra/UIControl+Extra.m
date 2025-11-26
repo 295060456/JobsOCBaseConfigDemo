@@ -21,7 +21,7 @@ static inline NSArray<NSNumber *> *jobs_splitEvents(UIControlEvents events) {
     if (events == UIControlEventAllEvents) {
         return @[ @(UIControlEventAllEvents) ];
     }
-    NSMutableArray<NSNumber *> *arr = [NSMutableArray array];
+    NSMutableArray<NSNumber *> *arr = NSMutableArray.array;
     // 遍历 64 位足够覆盖
     for (NSUInteger bit = 0; bit < sizeof(UIControlEvents) * 8; bit++) {
         UIControlEvents mask = ((UIControlEvents)1) << bit;
@@ -60,8 +60,7 @@ _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
                  block:(jobsByCtrlBlock _Nonnull)block{
     for (NSNumber *n in jobs_splitEvents(events)) {
         _jobs_bind(self, n.unsignedIntegerValue, _JobsInvokePolicyNone, 0, block);
-    }
-    return self;
+    }return self;
 }
 /// 节流：间隔 seconds 内只执行一次（适合重复点击/拖动频繁场景）
 -(instancetype)jobs_on:(UIControlEvents)events
@@ -69,8 +68,7 @@ _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
                  block:(jobsByCtrlBlock _Nonnull)block{
     for (NSNumber *n in jobs_splitEvents(events)) {
         _jobs_bind(self, n.unsignedIntegerValue, _JobsInvokePolicyThrottle, seconds, block);
-    }
-    return self;
+    }return self;
 }
 /// 防抖：停止触发后等待 seconds 再执行（适合搜索框等输入联想）
 -(instancetype)jobs_on:(UIControlEvents)events
@@ -78,16 +76,14 @@ _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
                  block:(jobsByCtrlBlock _Nonnull)block{
     for (NSNumber *n in jobs_splitEvents(events)) {
         _jobs_bind(self, n.unsignedIntegerValue, _JobsInvokePolicyDebounce, seconds, block);
-    }
-    return self;
+    }return self;
 }
 /// 只执行一次：触发后即自动解绑
 -(instancetype)jobs_once:(UIControlEvents)events
                    block:(jobsByCtrlBlock _Nonnull)block{
     for (NSNumber *n in jobs_splitEvents(events)) {
         _jobs_bind(self, n.unsignedIntegerValue, _JobsInvokePolicyOnce, 0, block);
-    }
-    return self;
+    }return self;
 }
 /// 便捷：点击（.touchUpInside）
 -(instancetype)jobs_onTap:(jobsByCtrlBlock _Nonnull)block{
@@ -105,15 +101,13 @@ _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
 -(void)jobs_removeHandlersFor:(UIControlEvents)events{
     NSMutableDictionary *map = _jobs_targetsMap(self, NO);
     if (!map) return;
-
     // AllEvents：直接针对该键移除
     if (events == UIControlEventAllEvents) {
         JobsControlTarget *t = map[@(UIControlEventAllEvents)];
         if (t) {
             [self removeTarget:t action:@selector(invoke:) forControlEvents:UIControlEventAllEvents];
             [map removeObjectForKey:@(UIControlEventAllEvents)];
-        }
-        return;
+        }return;
     }
 
     for (NSNumber *n in jobs_splitEvents(events)) {
@@ -131,8 +125,16 @@ _jobs_bind(UIControl *ctl, UIControlEvents singleEvent,
     if (!map) return;
     [map enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, JobsControlTarget *obj, BOOL *stop) {
         [self removeTarget:obj action:@selector(invoke:) forControlEvents:key.unsignedIntegerValue];
-    }];
-    [map removeAllObjects];
+    }];[map removeAllObjects];
+}
+
+-(JobsRetControlByBOOLBlock _Nonnull)byEnabled{
+    @jobs_weakify(self)
+    return ^__kindof UIControl *_Nullable(BOOL data){
+        @jobs_strongify(self)
+        self.enabled = data;
+        return self;
+    };
 }
 
 @end

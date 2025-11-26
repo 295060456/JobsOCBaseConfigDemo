@@ -27,8 +27,8 @@ typedef NS_ENUM(NSUInteger, JobsBitsMonitorDisplayStyle) {
 
 @interface JobsBitsMonitorSuspendLab : JobsSuspendLab
 
--(JobsRetLabelByText _Nonnull)byText;
--(JobsRetLabelByAttributedString _Nonnull)byAttributedString;
+-(JobsRetLabelByTextBlock _Nonnull)byText;
+-(JobsRetLabelByAttributedStringBlock _Nonnull)byAttributedString;
 
 +(instancetype)new NS_UNAVAILABLE; // 禁止用 +new
 -(instancetype)init NS_UNAVAILABLE; // 禁止用 -init

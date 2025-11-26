@@ -68,8 +68,9 @@ typedef __kindof NSArray *_Nullable(^JobsRetArrByIDBlock)(id _Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsRetArrByStrBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsRetArrByArrBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSArray *_Nullable(^JobsRetArrByIntegerBlock)(NSInteger data);
-typedef NSMutableArray <NSObject *>*_Nullable(^JobsRetMutableArrayByVoidBlock)(void);
-typedef NSMutableArray <NSObject *>*_Nullable(^JobsRetMutableArrayByIDBlock)(id _Nullable data);
+typedef NSMutableArray <__kindof NSObject *>*_Nullable(^JobsRetMutableArrayByVoidBlock)(void);
+typedef NSMutableArray <__kindof NSObject *>*_Nullable(^JobsRetMutableArrayByIDBlock)(id _Nullable data);
+typedef NSMutableArray <__kindof NSObject *>*_Nullable(^JobsRetMutableArrayByObjBlock)(__kindof NSObject *_Nullable data);
 /// 字典
 typedef __kindof NSDictionary *_Nullable(^JobsRetDicByStringBlock)(__kindof NSString *_Nullable data);
 typedef __kindof NSDictionary *_Nullable(^JobsRetDicByDataBlock)(NSData *_Nullable data);
@@ -80,6 +81,32 @@ typedef NSMutableDictionary *_Nonnull(^JobsRetMutableDicByDicBlock)(__kindof NSD
 typedef __kindof NSSet *_Nullable(^JobsRetSetByIDBlock)(id _Nullable data);
 typedef __kindof NSSet *_Nullable(^JobsRetSetByArrBlock)(__kindof NSArray *_Nullable data);
 typedef __kindof NSMutableSet *_Nullable(^JobsRetMutableSetByIDBlock)(id _Nullable data);
+#pragma mark —— 关于 UIControl
+typedef void(^JobsControlHandler)(__kindof UIControl *_Nonnull control);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByBOOLBlock)(BOOL data);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByBOOLBlock)(BOOL value);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByEventsHandlerBlock)(UIControlEvents events,
+                                                                           JobsControlHandler _Nullable handler);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByHandlerBlock)(JobsControlHandler _Nullable handler);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByAlignBlock)(UIControlContentHorizontalAlignment horizontal,
+                                                                    UIControlContentVerticalAlignment vertical);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByHorizontalAlignBlock)(UIControlContentHorizontalAlignment horizontal);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByVerticalAlignBlock)(UIControlContentVerticalAlignment vertical);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByTargetActionEventsBlock)(__kindof id _Nullable target,
+                                                                                SEL _Nullable action,
+                                                                                UIControlEvents events);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByEventsBlock)(UIControlEvents events);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByActionEventsBlock)(UIAction *_Nonnull action,
+                                                                          UIControlEvents events);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByIdentifierEventsBlock)(UIActionIdentifier _Nonnull identifier,
+                                                                              UIControlEvents events);
+typedef __kindof UIControl *_Nullable(^JobsRetControlByEventsIdentifierActionHandlerBlock)(UIControlEvents events,
+                                                                                           UIActionIdentifier _Nullable identifier,
+                                                                                           void(^ _Nonnull handler)(UIAction *_Nullable action));
+/// 无参数（比如 performPrimaryAction）
+typedef __kindof UIControl *_Nullable(^JobsRetControlByVoidBlock)(void);
+/// 字符串（比如 toolTip）
+typedef __kindof UIControl *_Nullable(^JobsRetControlByStringBlock)(NSString *_Nullable text);
 #pragma mark —— 关于 NSBundle
 typedef NSBundle *_Nullable(^JobsRetBundleByStrBlock)(__kindof NSString *_Nullable data);
 typedef NSBundle *_Nullable(^JobsRetBundleByURLBlock)(NSURL *_Nullable data);
@@ -213,7 +240,8 @@ typedef __kindof UIMenuItem *_Nullable(^JobsRetMenuItemByIDBlock)(id _Nullable d
 typedef __kindof UIMenuItem *_Nullable(^JobsRetMenuItemBySELBlock)(SEL _Nullable data);
 #pragma mark —— 关于 UITextView
 typedef __kindof UITextView *_Nullable(^JobsRetTextViewByBOOLBlock)(BOOL data);
-typedef __kindof UITextView *_Nullable(^JobsRetTextViewByTextAlignmentBlock)(NSTextAlignment data);
+typedef __kindof UITextView *_Nullable(^JobsRetTextViewByNSIntegerBlock)(NSInteger data);
+typedef __kindof UITextView *_Nullable(^JobsRetTextViewByNSUIntegerBlock)(NSUInteger data);
 typedef __kindof UITextView *_Nullable(^JobsRetTextViewByEdgeInsetsBlock)(UIEdgeInsets insets);
 typedef __kindof UITextView *_Nullable(^JobsRetTextViewByPointBlock)(CGPoint point);
 typedef __kindof UITextView *_Nullable(^JobsRetTextViewByAttributedTextBlock)(__kindof NSAttributedString * _Nullable attributedText);
@@ -257,14 +285,15 @@ typedef __kindof UITextField *_Nullable(^JobsRetTextFieldByCorBlock)(__kindof UI
 typedef __kindof UITextField *_Nullable(^JobsRetTextFieldByImageBlock)(__kindof UIImage *_Nullable image);
 typedef __kindof UITextField *_Nullable(^JobsRetTextFieldByViewBlock)(__kindof UIView *_Nullable view);
 #pragma mark —— 关于 Label
-typedef __kindof UILabel *_Nullable(^JobsRetLabelByImage)(__kindof UIImage *_Nullable image);
-typedef __kindof UILabel *_Nullable(^JobsRetLabelByCor)(__kindof UIColor *_Nullable cor);
-typedef __kindof UILabel *_Nullable(^JobsRetLabelByBtn)(__kindof UIButton *_Nullable btn);
-typedef __kindof UILabel *_Nullable(^JobsRetLabelByText)(__kindof NSString *_Nullable str);
-typedef __kindof UILabel *_Nullable(^JobsRetLabelByFont)(__kindof UIFont *_Nullable font);
-typedef __kindof UILabel *_Nullable(^JobsRetLabelByAttributedString)(__kindof NSAttributedString *_Nullable attributedString);
-typedef __kindof UILabel *_Nullable(^JobsRetLabelByTextAlignment)(NSTextAlignment textAlignment);
+typedef __kindof UILabel *_Nullable(^JobsRetLabelByImageBlock)(__kindof UIImage *_Nullable image);
+typedef __kindof UILabel *_Nullable(^JobsRetLabelByCorBlock)(__kindof UIColor *_Nullable cor);
+typedef __kindof UILabel *_Nullable(^JobsRetLabelByBtnBlock)(__kindof UIButton *_Nullable btn);
+typedef __kindof UILabel *_Nullable(^JobsRetLabelByTextBlock)(__kindof NSString *_Nullable str);
+typedef __kindof UILabel *_Nullable(^JobsRetLabelByFontBlock)(__kindof UIFont *_Nullable font);
+typedef __kindof UILabel *_Nullable(^JobsRetLabelByAttributedStringBlock)(__kindof NSAttributedString *_Nullable attributedString);
+typedef __kindof UILabel *_Nullable(^JobsRetLabelByTextAlignmentBlock)(NSTextAlignment textAlignment);
 typedef __kindof UILabel *_Nullable(^JobsRetLabelByNSUIntegerBlock)(NSUInteger data);
+typedef __kindof UILabel *_Nullable(^JobsRetLabelByNSIntegerBlock)(NSInteger data);
 #pragma mark —— 关于按钮
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByVoidBlock)(void);
 typedef __kindof UIButton *_Nullable(^JobsRetBtnByControlStateBlock)(UIControlState data);

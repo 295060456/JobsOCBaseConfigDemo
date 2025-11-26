@@ -11,13 +11,13 @@
     CGFloat JobsPostDelViewHeight;
 }
 /// UI
-Prop_strong()HXPhotoView *postPhotoView;/// 展示选择的图片
-Prop_strong()HXPhotoManager *photoManager;/// 选取图片的数据管理类
-Prop_strong()JobsPostDelView *postDelView;/// 长按拖动的删除区域
+Prop_strong()HXPhotoView *postPhotoView; // 展示选择的图片
+Prop_strong()HXPhotoManager *photoManager; // 选取图片的数据管理类
+Prop_strong()JobsPostDelView *postDelView; // 长按拖动的删除区域
 Prop_strong()BaseButton *releaseBtn;
 Prop_strong()UILabel *tipsLab;
 /// Data
-Prop_copy()NSArray <HXPhotoModel *>*historyPhotoDataArr;/// 与之相对应的是self.photoManager.afterSelectedArray
+Prop_copy()NSArray <HXPhotoModel *>*historyPhotoDataArr; // 与之相对应的是self.photoManager.afterSelectedArray
 Prop_copy()NSArray <HXPhotoModel *>*photosDataArr;
 Prop_copy()NSArray <HXPhotoModel *>*videosDataArr;
 Prop_copy()NSString *inputDataString;
@@ -89,12 +89,11 @@ Prop_strong()UITextModel *postTextModel;
     });
     self.makeNavByAlpha(1);
     
-    self.textView.alpha = 1;
+    self.jobsTextView.alpha = 1;
     self.tipsLab.alpha = 1;
     self.postPhotoView.alpha = 1;
     self.postDelView.alpha = 1;
-    [self releaseBtnState:self.historyPhotoDataArr
-          inputDataString:self.inputDataHistoryString];
+    [self releaseBtnState:self.historyPhotoDataArr inputDataString:self.inputDataHistoryString];
     self.fd_interactivePopDisabled = YES;
 }
 
@@ -365,23 +364,24 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
                 if (self.objBlock) self.objBlock(x);
                 [self.view endEditing:YES];
                 [self networking_checkHadRoleGET];
-            }).onLongPressGestureBy(^(id data){
+            })
+            .onLongPressGestureBy(^(id data){
                 JobsLog(@"");
-            });
-        _releaseBtn.enabled = NO;
+            })
+            .byEnabled(NO);
         _releaseBtn.width = JobsWidth(38);
         _releaseBtn.height = JobsWidth(23);
         self.view.addSubview(_releaseBtn);
     }return _releaseBtn;
 }
 @synthesize jobsTextView = _jobsTextView;
--(JobsTextView *)jobsTextView{
+-(__kindof JobsTextView *)jobsTextView{
     if (!_jobsTextView) {
         @jobs_weakify(self)
         _jobsTextView = makeJobsTextView(^(__kindof JobsTextView * _Nullable textView) {
             @jobs_strongify(self)
             textView.backgroundColor = JobsWhiteColor;
-            textView.JobsRichViewByModel2(self.textModel)
+            textView.JobsRichViewByModel2(self.viewModel.textModel)
                 .JobsBlock1(^(id  _Nullable data) {
                     @jobs_strongify(self)
                     NSString *x = (NSString *)data;
@@ -449,15 +449,16 @@ gestureRecognizerEnded:(UILongPressGestureRecognizer *)longPgr
         @jobs_weakify(self)
         _tipsLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.textColor = RGB_SAMECOLOR(173);
-            label.font = UIFontWeightBoldSize(12);
-            label.numberOfLines = 0;
-            label.text = @"1、内容不允许出现纯数字，英文字母；".tr
-                .add(JobsNewline)
-                .add(@"2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。".tr);
+            label
+                .byTextCor(RGB_SAMECOLOR(173))
+                .byFont(UIFontWeightBoldSize(1))
+                .byNumberOfLines(0)
+                .byText(@"1、内容不允许出现纯数字，英文字母；".tr
+                        .add(JobsNewline)
+                        .add(@"2、图片/视频(图片最多9张/仅上传一段视频，大小不超100M)。".tr));
             [self.view.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.view).offset(JobsWidth(14));
-                make.top.equalTo(self.textView.mas_bottom).offset(JobsWidth(11));
+                make.top.equalTo(self.jobsTextView.mas_bottom).offset(JobsWidth(11));
             }];label.makeLabelByShowingType(UILabelShowingType_03);
         });
     }return _tipsLab;

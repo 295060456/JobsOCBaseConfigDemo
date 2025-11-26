@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (Extra)
 
+-(void)make:(MASConstraintMaker *)make topOffset:(CGFloat)topOffset;
+
 -(JobsRetVCByVCBlock _Nonnull)addChildViewController;
 /// 将自身用导航控制器进行包裹（如果自身就是导航控制器就什么也不做的返回）
 -(UINavigationController *_Nonnull)navCtrl;

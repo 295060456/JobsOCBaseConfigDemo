@@ -35,7 +35,7 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
     }
     self.viewModel.backBtnTitleModel.text = @"返回".tr;
     self.viewModel.textModel.textCor = HEXCOLOR(0x3D4A58);
-    self.viewModel.textModel.text = self.viewModel.textModel.attributedTitle.string;
+    self.viewModel.textModel.text = @"右边的架构是VC";
     self.viewModel.textModel.font = UIFontWeightRegularSize(16);
     // 使用原则：底图有 + 底色有 = 优先使用底图数据
     // 以下2个属性的设置，涉及到的UI结论 请参阅父类（BaseViewController）的私有方法：-(void)setBackGround
@@ -46,6 +46,8 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
     self.viewModel.navBgImage = @"导航栏左侧底图".img;
     self.makeSubVC();
 }
+
+//
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -225,7 +227,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                                          JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
             tableView.showsVerticalScrollIndicator = NO;
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        })).dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
+        })).dataLink(self); // dataLink(self)不能写在Block里面，会出问题
     }return _tableView;
 }
 
@@ -237,36 +239,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
             searchBar
                 .bySize(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)))
                 .JobsRichViewByModel2(nil)
-                .JobsBlock1(^(id  _Nullable data) {
-                    
+                .JobsBlock1(^(id _Nullable data) {
+
+                })
+                .addOn(self.gk_navigationBar)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
+                    make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
+                    make.centerY.equalTo(self.gk_navigationBar);
                 });
-            [self.gk_navigationBar.addSubview(searchBar) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
-                make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
-                make.centerY.equalTo(self.gk_navigationBar);
-            }];
-            
-//            [searchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
-//                @jobs_strongify(self)
-//                switch (data) {
-//                    case UITextFieldGetFocus:{/// 输入框获得焦点
-//                        if (self.listViewData.count) {
-//                            /// 必须先移除，否则反复添加无法正常移除
-//                            self.dropDownListView = [self motivateFromView:weak_self.jobsSearchBar
-//                                                                      data:self.listViewData
-//                                                        motivateViewOffset:JobsWidth(5)
-//                                                               finishBlock:^(UIViewModel *data) {
-//                                JobsLog(@"data = %@",data);
-//                            }];
-//                        }
-//                    }break;
-//                    case UITextFieldLoseFocus:{/// 输入框失去焦点
-//                        [self endDropDownListView];
-//                    }break;
-//                    default:
-//                        break;
-//                }
-//            }];
         });
     }return _searchView;
 }
@@ -288,19 +270,31 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                 toast(@"编辑".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
+            })
+            .addOn(self.view)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                make.left.equalTo(self.view);
+                make.top.equalTo(self.tableView.mas_bottom);
+                make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
             });
-        [self.view.addSubview(_editBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view);
-            make.top.equalTo(self.tableView.mas_bottom);
-            make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
-        }];
     }return _editBtn;
 }
 
 -(NSMutableArray<UIViewModel *> *)leftDataArray{
     if (!_leftDataArray) {
-        _leftDataArray = NSMutableArray.array;
+        _leftDataArray = jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+
+        });
     }return _leftDataArray;
+}
+@synthesize vcs = _vcs;
+-(__kindof NSMutableArray<__kindof UIViewController *> *)vcs{
+    if(!_vcs){
+        _vcs = jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+
+        });
+    }return _vcs;
 }
 
 @end

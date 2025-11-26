@@ -18,7 +18,7 @@ UITextFieldProtocol_dynamic
 }
 
 -(NSBundle *_Nullable)mainBundle{
-    return self.mainBundle;
+    return NSBundle.mainBundle;
 }
 /// NSLocale
 +(NSLocale *_Nullable)currentLocale{
@@ -26,7 +26,7 @@ UITextFieldProtocol_dynamic
 }
 
 -(NSLocale *_Nullable)currentLocale{
-    return self.currentLocale;
+    return NSLocale.currentLocale;
 }
 
 +(NSLocale *_Nullable)systemLocale{
@@ -34,7 +34,7 @@ UITextFieldProtocol_dynamic
 }
 
 -(NSLocale *_Nullable)systemLocale{
-    return self.systemLocale;
+    return NSLocale.systemLocale;
 }
 
 +(NSLocale *_Nullable)autoupdatingCurrentLocale API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) {
@@ -42,7 +42,7 @@ UITextFieldProtocol_dynamic
 }
 
 -(NSLocale *_Nullable)autoupdatingCurrentLocale API_AVAILABLE(macos(10.5), ios(2.0), watchos(2.0), tvos(9.0)) {
-    return self.autoupdatingCurrentLocale;
+    return NSLocale.autoupdatingCurrentLocale;
 }
 /// UIDevice
 +(UIDevice *_Nullable)currentDevice{
@@ -50,7 +50,7 @@ UITextFieldProtocol_dynamic
 }
 
 -(UIDevice *_Nullable)currentDevice{
-    return self.currentDevice;
+    return UIDevice.currentDevice;
 }
 #pragma mark —— 宏
 /// App 国际化相关系统宏二次封装 + 设置缺省值
@@ -70,7 +70,7 @@ UITextFieldProtocol_dynamic
                              inBundle:(nullable NSBundle *)bundle{
     return NSLocalizedStringFromTableInBundle(key,
                                               tableName,
-                                              bundle ? : self.mainBundle,
+                                              bundle ? : NSBundle.mainBundle,
                                               nil);
 }
 
@@ -80,7 +80,7 @@ UITextFieldProtocol_dynamic
                          defaultValue:(nullable NSString *)defaultValue{
     return NSLocalizedStringWithDefaultValue(key,
                                              tableName,
-                                             bundle ? : self.mainBundle,
+                                             bundle ? : NSBundle.mainBundle,
                                              defaultValue,
                                              nil);
 }
@@ -1330,7 +1330,7 @@ UITextFieldProtocol_dynamic
 /// CGPoint
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                        addCGPoint:(CGPoint)point{
-    return mutArr.add(NSValue.byPoint(point));
+    return (NSMutableArray <NSValue *>*)mutArr.add(NSValue.byPoint(point));
 }
 
 -(CGPoint)jobsGetPoint:(NSValue *_Nullable)value{
@@ -1339,7 +1339,7 @@ UITextFieldProtocol_dynamic
 /// CGVector
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                       addCGVector:(CGVector)vector{
-    return mutArr.add(NSValue.byVector(vector));
+    return (NSMutableArray <NSValue *>*)mutArr.add(NSValue.byVector(vector));
 }
 
 -(CGVector)jobsGetVector:(NSValue *_Nullable)value{
@@ -1348,7 +1348,7 @@ UITextFieldProtocol_dynamic
 /// CGSize
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                         addCGSize:(CGSize)size{
-    return mutArr.add(NSValue.bySize(size));
+    return (NSMutableArray <NSValue *>*)mutArr.add(NSValue.bySize(size));
 }
 
 -(CGSize)jobsGetSize:(NSValue *_Nullable)value{
@@ -1357,7 +1357,7 @@ UITextFieldProtocol_dynamic
 /// CGRect
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                         addCGRect:(CGRect)frame{
-    return mutArr.add(NSValue.byRect(frame));
+    return (NSMutableArray <NSValue *>*)mutArr.add(NSValue.byRect(frame));
 }
 
 -(CGRect)jobsGetFrame:(NSValue *_Nullable)value{
@@ -1366,7 +1366,7 @@ UITextFieldProtocol_dynamic
 /// CGAffineTransform
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                              addCGAffineTransform:(CGAffineTransform)affineTransform{
-    return mutArr.add(NSValue.byAffineTransform(affineTransform));
+    return (NSMutableArray <NSValue *>*)mutArr.add(NSValue.byAffineTransform(affineTransform));
 }
 
 -(CGAffineTransform)jobsGetCGAffineTransform:(NSValue *_Nullable)value{
@@ -1375,7 +1375,7 @@ UITextFieldProtocol_dynamic
 /// UIEdgeInsets
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                   addUIEdgeInsets:(UIEdgeInsets)edgeInsets{
-    return mutArr.add(NSValue.byEdgeInsets(edgeInsets));
+    return (NSMutableArray <NSValue *>*)mutArr.add(NSValue.byEdgeInsets(edgeInsets));
 }
 
 -(UIEdgeInsets)jobsGetUIEdgeInsets:(NSValue *_Nullable)value{
@@ -1384,7 +1384,7 @@ UITextFieldProtocol_dynamic
 /// NSDirectionalEdgeInsets
 -(NSMutableArray <NSValue *>*)jobsMutArr:(NSMutableArray <NSValue *>*)mutArr
               addNSDirectionalEdgeInsets:(NSDirectionalEdgeInsets)directionalEdgeInsets{
-    return mutArr.add(NSValue.byDirectionalEdgeInsets(directionalEdgeInsets));
+    return (NSMutableArray <NSValue *>*)mutArr.add(NSValue.byDirectionalEdgeInsets(directionalEdgeInsets));
 }
 
 -(NSDirectionalEdgeInsets)jobsGetNSDirectionalEdgeInsets:(NSValue *_Nullable)value{
@@ -1393,7 +1393,7 @@ UITextFieldProtocol_dynamic
 /// UIOffset
 -(NSMutableArray <NSValue *>*_Nullable)jobsMutArr:(NSMutableArray <NSValue *>*_Nullable)mutArr
                                       addUIOffset:(UIOffset)offset{
-    return mutArr.add(NSValue.byOffset(offset));
+    return (NSMutableArray <NSValue *>*)mutArr.add(NSValue.byOffset(offset));
 }
 
 -(UIOffset)jobsGetValueWithUIOffset:(NSValue *_Nullable)value{

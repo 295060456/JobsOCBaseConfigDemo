@@ -93,6 +93,10 @@
     return [CIFilter filterWithName:self];
 }
 #pragma mark —— 一些功能性的
+-(UIColor *)cor{
+    return UIColor.jobsCor(self);
+}
+
 -(jobsByVoidBlock _Nonnull)toast{
     @jobs_weakify(self)
     return ^(){

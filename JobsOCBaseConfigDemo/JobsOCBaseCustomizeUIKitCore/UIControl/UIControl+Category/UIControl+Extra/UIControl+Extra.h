@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 移除全部回调
 -(void)jobs_removeAllHandlers;
 
+-(JobsRetControlByBOOLBlock _Nonnull)byEnabled;
+
 @end
 
 NS_ASSUME_NONNULL_END

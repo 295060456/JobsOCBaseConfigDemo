@@ -44,6 +44,15 @@ Prop_strong()JobsExcelConfigureViewModel *excelConfigureDatas;
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
+-(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel{
+    @jobs_weakify(self)
+    return ^__kindof UIView *_Nullable(JobsExcelConfigureViewModel *_Nullable data){
+        @jobs_strongify(self)
+        self.jobsRichViewByModel(data);
+        return self;
+    };
+}
+/// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     @jobs_weakify(self)
     return ^(JobsExcelConfigureViewModel *_Nullable data) {
@@ -177,3 +186,5 @@ Prop_strong()JobsExcelConfigureViewModel *excelConfigureDatas;
 }
 
 @end
+
+

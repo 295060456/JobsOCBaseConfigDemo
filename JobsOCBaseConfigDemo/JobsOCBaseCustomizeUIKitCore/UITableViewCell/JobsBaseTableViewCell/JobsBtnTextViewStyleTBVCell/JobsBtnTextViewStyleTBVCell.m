@@ -193,7 +193,7 @@ AppToolsProtocol_synthesize
             @jobs_strongify(self)
             textView.delegate = self;
             textView.textColor = JobsBlackColor;
-            textView.backgroundColor = JobsCor(@"#F9F9F9");
+            textView.backgroundColor = @"#F9F9F9".cor;
             textView.returnKeyType = UIReturnKeyDefault;
             textView.keyboardAppearance = UIKeyboardAppearanceDefault;
             textView.keyboardType = UIKeyboardTypeNumberPad;

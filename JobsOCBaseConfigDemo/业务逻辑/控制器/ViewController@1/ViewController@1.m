@@ -248,21 +248,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             }
             [self.view addSubview:tableView];
             [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                if(JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape){
-                    make.top.equalTo(self.navBar.mas_bottom);
-                    make.left.right.bottom.equalTo(self.view);
-                }else{
-                    if (self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 系统、GK均隐藏
-                        make.edges.equalTo(self.view);
-                    }else{
-                        if (!self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 用系统的导航栏
-                            make.top.equalTo(self.view).offset(JobsNavigationBarAndStatusBarHeight(nil));
-                        }
-                        if (self.setupNavigationBarHidden && !self.gk_statusBarHidden) {// 用GK的导航栏
-                            make.top.equalTo(self.gk_navigationBar.mas_bottom);
-                        }make.left.right.bottom.equalTo(self.view);
-                    }
-                }
+                make.left.right.bottom.equalTo(self.view);
+                make.top.equalTo(self.navBar.mas_bottom);
+                [self make:make topOffset:10];
             }];
         });
     }return _tableView;

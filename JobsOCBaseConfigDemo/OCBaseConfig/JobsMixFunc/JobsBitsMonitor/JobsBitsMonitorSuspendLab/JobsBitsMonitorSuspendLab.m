@@ -144,7 +144,7 @@ Prop_strong()NSMutableArray <NSString *>*operationEnvironMutArr;
     self.font      = [UIFont monospacedDigitSystemFontOfSize:11 weight:UIFontWeightMedium];
 }
 
--(JobsRetLabelByText _Nonnull)byText{
+-(JobsRetLabelByTextBlock _Nonnull)byText{
     @jobs_weakify(self)
     return ^__kindof JobsBitsMonitorSuspendLab *_Nullable(__kindof NSString *_Nullable text){
         @jobs_strongify(self)
@@ -157,7 +157,7 @@ Prop_strong()NSMutableArray <NSString *>*operationEnvironMutArr;
     };
 }
 
--(JobsRetLabelByAttributedString _Nonnull)byAttributedString{
+-(JobsRetLabelByAttributedStringBlock _Nonnull)byAttributedString{
     @jobs_weakify(self)
     return ^__kindof JobsBitsMonitorSuspendLab *_Nullable(__kindof NSAttributedString *_Nullable attributedString){
         @jobs_strongify(self)

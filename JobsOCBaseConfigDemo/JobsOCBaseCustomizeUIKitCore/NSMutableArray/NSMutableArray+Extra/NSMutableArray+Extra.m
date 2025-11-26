@@ -25,7 +25,7 @@
 /// 阻止向可变数组添加空元素
 -(JobsRetMutableArrayByIDBlock _Nonnull)add{
     @jobs_weakify(self)
-    return ^NSMutableArray *_Nullable(id _Nullable data) {
+    return ^NSMutableArray <__kindof NSObject *>*_Nullable(__kindof NSObject *_Nullable data) {
         @jobs_strongify(self)
         if(data){
             [self addObject:data];/// 向数组加入nil会崩

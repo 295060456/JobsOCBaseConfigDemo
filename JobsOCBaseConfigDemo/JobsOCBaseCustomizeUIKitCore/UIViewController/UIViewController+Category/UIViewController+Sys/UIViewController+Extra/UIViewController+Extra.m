@@ -9,6 +9,17 @@
 
 @implementation UIViewController (Extra)
 
+-(void)make:(MASConstraintMaker *)make topOffset:(CGFloat)topOffset{
+//    JobsAppTool.jobsDeviceOrientation == DeviceOrientationLandscape
+    if(self.navBar && !self.setupNavigationBarHidden) {
+        make.top.equalTo(self.navBar.mas_bottom).offset(topOffset);
+    }else if (self.gk_navigationBar && !self.gk_statusBarHidden && !self.setupNavigationBarHidden){
+        make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(topOffset);
+    }else{
+        make.top.equalTo(self.view).offset(JobsNavigationBarAndStatusBarHeight(nil) + topOffset);
+    }
+}
+
 -(JobsRetVCByVCBlock _Nonnull)addChildViewController{
     @jobs_weakify(self)
     return ^__kindof UIViewController *_Nullable(__kindof UIViewController *_Nonnull vc){
