@@ -19,6 +19,8 @@
   <a><img src="https://img.shields.io/github/languages/code-size/295060456/JobsOCBaseConfigDemo" alt="Code Size"/></a>
 </p>
 
+![Jobs倾情奉献](https://picsum.photos/1500/400 "Jobs出品，必属精品")
+
 [toc]
 
 当前总行数：9066 行
@@ -2306,7 +2308,7 @@ classDiagram
       viewDidDisappear@B
       viewDidAppear@A
       ```
-     
+    
 
 #### 14.2、`UIView`的生命周期 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
