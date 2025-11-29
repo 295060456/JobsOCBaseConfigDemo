@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0414A9B82ED063EC009E5B42 /* RYCuteView.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C84F32E167B6400B56985 /* RYCuteView.m */; };
+		041AE5A62EDA8D3B00ED03A3 /* SlideToUnlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041AE5A52EDA8D3B00ED03A3 /* SlideToUnlockView.m */; };
+		041AE5A92EDA8D7D00ED03A3 /* SlideToUnlockDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 041AE5A82EDA8D7D00ED03A3 /* SlideToUnlockDemoVC.m */; };
 		0438A71A2E840034008F763B /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0438A7192E840034008F763B /* ColorAssets.xcassets */; };
 		044273872E8148680084B25C /* JobsScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 044273852E8148680084B25C /* JobsScale.m */; };
 		045B590A2EBB364E00CFBE3B /* TDHorizontalItemNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B58F42EBB364E00CFBE3B /* TDHorizontalItemNode.m */; };
@@ -1325,6 +1327,10 @@
 
 /* Begin PBXFileReference section */
 		01AB4270099E283E07A84FF5 /* Pods-JobsOCBaseConfigDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.release.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.release.xcconfig"; sourceTree = "<group>"; };
+		041AE5A42EDA8D3B00ED03A3 /* SlideToUnlockView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideToUnlockView.h; sourceTree = "<group>"; };
+		041AE5A52EDA8D3B00ED03A3 /* SlideToUnlockView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideToUnlockView.m; sourceTree = "<group>"; };
+		041AE5A72EDA8D7D00ED03A3 /* SlideToUnlockDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideToUnlockDemoVC.h; sourceTree = "<group>"; };
+		041AE5A82EDA8D7D00ED03A3 /* SlideToUnlockDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideToUnlockDemoVC.m; sourceTree = "<group>"; };
 		0438A7192E840034008F763B /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
 		044273842E8148680084B25C /* JobsScale.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsScale.h; sourceTree = "<group>"; };
 		044273852E8148680084B25C /* JobsScale.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsScale.m; sourceTree = "<group>"; };
@@ -3930,6 +3936,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		041AE5A32EDA8C9F00ED03A3 /* Demo@苹果滑动开锁 */ = {
+			isa = PBXGroup;
+			children = (
+				041AE5A72EDA8D7D00ED03A3 /* SlideToUnlockDemoVC.h */,
+				041AE5A82EDA8D7D00ED03A3 /* SlideToUnlockDemoVC.m */,
+			);
+			path = "Demo@苹果滑动开锁";
+			sourceTree = "<group>";
+		};
+		041AE5AA2EDA963F00ED03A3 /* SlideToUnlockView */ = {
+			isa = PBXGroup;
+			children = (
+				041AE5A42EDA8D3B00ED03A3 /* SlideToUnlockView.h */,
+				041AE5A52EDA8D3B00ED03A3 /* SlideToUnlockView.m */,
+			);
+			path = SlideToUnlockView;
+			sourceTree = "<group>";
+		};
 		0438A7182E840025008F763B /* 颜色资源 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5012,6 +5036,7 @@
 		C55C7AB92E167B5D00B56985 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				041AE5A32EDA8C9F00ED03A3 /* Demo@苹果滑动开锁 */,
 				048B79612ED546F300A6FEF1 /* Demo@系统导航栏 */,
 				045B59092EBB364E00CFBE3B /* Demo@Texture */,
 				C53BE3B62E265E1F004A72BE /* Demo@Flutter */,
@@ -13250,6 +13275,7 @@
 		C55C83C92E167B6400B56985 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				041AE5AA2EDA963F00ED03A3 /* SlideToUnlockView */,
 				048B795D2ED545AF00A6FEF1 /* JobsTabBarCtrl */,
 				C55C83CA2E167B6400B56985 /* XLSphereView */,
 				C55C83CF2E167B6400B56985 /* GXCardView */,
@@ -18388,6 +18414,7 @@
 				C55C8D822E167B6D00B56985 /* ZLGestureLockView.m in Sources */,
 				C55C8ADF2E167B6A00B56985 /* UIImage+Overlay.m in Sources */,
 				C55C8B4F2E167B6A00B56985 /* NSData+Other.m in Sources */,
+				041AE5A92EDA8D7D00ED03A3 /* SlideToUnlockDemoVC.m in Sources */,
 				C55C8C562E167B6C00B56985 /* NSObject+Class.m in Sources */,
 				C55C8AC72E167B6A00B56985 /* NotifiViewFactory.m in Sources */,
 				C55C89CC2E167B6900B56985 /* BaiShaETProjCollectionHeaderView.m in Sources */,
@@ -18705,6 +18732,7 @@
 				C55C8BF52E167B6B00B56985 /* FileNameModel.m in Sources */,
 				04D49C102EBC3B7C00BCD6F1 /* ASButtonNode+DSL.m in Sources */,
 				C55C8CA12E167B6C00B56985 /* NSString+Base32.m in Sources */,
+				041AE5A62EDA8D3B00ED03A3 /* SlideToUnlockView.m in Sources */,
 				C55C8DF22E167B6E00B56985 /* FSCalendarDelegationFactory.m in Sources */,
 				C55C8B2E2E167B6A00B56985 /* UIView+Measure.m in Sources */,
 				C55C8BC02E167B6B00B56985 /* NSArray+Safety.m in Sources */,

@@ -88,6 +88,7 @@
 #import "JobsScrollLabelVC.h"              // 当文本超出的时候，滚动展现文字的Label
 #import "NSProxyDemoVC.h"
 #import "JobsNavigationDemoVC.h"
+#import "SlideToUnlockDemoVC.h"
 /// 公共图
 #import "CommonViews.h"
 

@@ -277,6 +277,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         _dataMutArr = jobsMakeMutArr(^(NSMutableArray * _Nullable data) {
             @jobs_strongify(self)
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = @"苹果滑动开锁".tr;
+                model.subTitle = @"苹果滑动开锁".tr;
+                model.cls = SlideToUnlockDemoVC.class;
+            })));
+            data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = @"JobsNavigationDemoVC".tr;
                 model.subTitle = @"系统导航栏".tr;
                 model.cls = JobsNavigationDemoVC.class;

@@ -85,6 +85,9 @@ typedef CGRect(^JobsReturnCGRectByViewModelBlock)(__kindof UIViewModel *_Nullabl
 typedef CGFloat(^JobsReturnCGFloatByViewModelBlock)(__kindof UIViewModel *_Nullable model);
 typedef __kindof NSArray <UIViewModel *>*_Nullable(^JobsReturnViewModelInArrByArrBlock)(__kindof NSArray *_Nullable arr);
 
+@class SlideToUnlockView;
+typedef void(^jobsBySlideToUnlockViewBlock)(__kindof SlideToUnlockView *_Nullable view);
+
 @class BaseTableView;
 typedef void(^jobsByBaseTableViewBlock)(__kindof BaseTableView *_Nullable tableView);
 

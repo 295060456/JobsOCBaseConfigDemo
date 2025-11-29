@@ -6115,7 +6115,7 @@ vc.navCtrl
 
   ```objective-c
   self.addGesture([jobsMakeTapGesture(^(UITapGestureRecognizer * _Nullable gesture) {
-      ///  这里写手势的配置
+      /// 这里写手势的配置
   }) gestureActionBy:^{
       /// 这里写手势的触发
   }]);
