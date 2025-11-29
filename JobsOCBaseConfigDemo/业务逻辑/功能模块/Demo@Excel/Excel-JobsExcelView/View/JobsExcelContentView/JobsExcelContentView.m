@@ -19,13 +19,13 @@ Prop_assign()CGPoint contentOffenset;
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.tableView.reloadDatas();
+        self.tableView.byShow(self);
     }return self;
 }
 /// 在某些情况下，当UITableView加载到一个子UIView上的时候，只有在layoutSubviews刷新页面的时候，UITableView才会有Frame
 -(void)layoutSubviews{
     [super layoutSubviews];
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
 }
 #pragma mark —— BaseViewProtocol
 - (jobsByIDBlock _Nonnull)jobsRichViewByModel {
@@ -34,7 +34,7 @@ Prop_assign()CGPoint contentOffenset;
         @jobs_strongify(self)
         self.excelConfigureData = model;
         self.tableView.rowHeight = self.excelConfigureData.itemH;
-        self.tableView.reloadDatas();
+        self.tableView.byShow(self);
     };
 }
 #pragma mark —— UITableViewDelegate
@@ -55,7 +55,7 @@ Prop_assign()CGPoint contentOffenset;
             vm.buttonModels = self.excelConfigureData.contentArr[indexPath.row];
         }))
     
-        .byBgCor(indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2)
+        .byBgColor(indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2)
         .JobsBlock1(^(id _Nullable data) {
              
         });

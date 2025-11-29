@@ -43,18 +43,6 @@ Prop_assign()ScrollDirection direction;
 -(JobsRetScrollViewByFrameBlock _Nonnull)scrollRectToVisibleByYES;
 /// 对系统方法 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;  的二次封装
 -(JobsRetScrollViewByFrameBlock _Nonnull)scrollRectToVisibleByNO;
-///
--(JobsRetScrollViewByDelegateBlock _Nonnull)byDelegate;
--(JobsRetScrollViewByBOOLBlock _Nonnull)byShowsVerticalScrollIndicator;
--(JobsRetScrollViewByBOOLBlock _Nonnull)byShowsHorizontalScrollIndicator;
--(JobsRetScrollViewBySizeBlock _Nonnull)byContentSize;
--(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentWidth;
--(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentHeight;
--(JobsRetScrollViewByBOOLBlock _Nonnull)byScrollEnabled;
--(JobsRetScrollViewByBOOLBlock _Nonnull)byBounces;
--(JobsRetScrollViewByUIEdgeInsetsBlock _Nonnull)byEdgeInsets;
--(JobsReturnScrollViewByMJRefreshHeaderBlock _Nonnull)byMJRefreshHeader;
--(JobsReturnScrollViewByMJRefreshFooterBlock _Nonnull)byMJRefreshFooter;
 #pragma mark —— AnimationKit
 -(void)moveAnimWithSortingType:(SortingType)sortingType
                 animationBlock:(jobsByVoidBlock _Nullable)animationBlock

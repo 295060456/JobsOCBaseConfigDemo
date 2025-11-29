@@ -14,8 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 资料来源：https://www.jianshu.com/p/14a93c6dd929
 /// @param duration 持续时间
 /// @param progress 当前值
--(void)animateWithDuration:(CGFloat)duration
-                  progress:(CGFloat)progress;
+-(UIProgressView *)animateWithDuration:(CGFloat)duration progress:(CGFloat)progress;
 
 @end
 

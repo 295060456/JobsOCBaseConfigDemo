@@ -35,7 +35,7 @@
     return ^(){
         @jobs_strongify(self)
         JobsCustomTabBarConfig *config = AppDelegate.jobsCustomTabBarConfig;/// 此时还没有初始化 JobsCustomTabBarConfig.sharedManager;
-        self.byBgCor(config.tabBarBackgroundImage ? self.byPatternImage(config.tabBarBackgroundImage) :config.tabBarBackgroundColor);
+        self.byBgColor(config.tabBarBackgroundImage ? self.byPatternImage(config.tabBarBackgroundImage) :config.tabBarBackgroundColor);
         NSInteger itemCount = config.tabBarItems.count;
         CGFloat itemWidth = (config.tabBarWidth ? : JobsRealWidth()) / itemCount;
         for (NSInteger index = 0; index < itemCount; index++) {

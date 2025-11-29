@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIScrollView+Extra.h"
+#import "UIScrollView+UIScrollViewProtocol.h"
 #import "NSMutableArray+Extra.h"
 #import "JobsDefineAllEnumHeader.h"
 

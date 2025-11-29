@@ -77,7 +77,7 @@ Prop_assign()HotSearchStyle hotSearchStyle;
 //    self.makeNavByAlpha(1);
     
     self.getTabBar.hidden = YES;
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
 }
 
 -(void)viewWillAppear:(BOOL)animated{

@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_END
                  .byCellSpacing(JobsWidth(-20))
                  .byContentScrollView(self.listContainerView.scrollView)/// 关联cotentScrollView，关联之后才可以互相联动！！！
                  .byDelegate(self)
-                 .byBgCor(JobsClearColor);
+                 .byBgColor(JobsClearColor);
          })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
              @jobs_strongify(self)
              make.top.equalTo(self.gk_navigationBar.mas_bottom).offset(0);

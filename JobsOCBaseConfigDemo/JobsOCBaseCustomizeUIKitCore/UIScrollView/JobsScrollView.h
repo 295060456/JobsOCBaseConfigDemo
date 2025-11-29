@@ -11,7 +11,8 @@
 #pragma mark —— Base
 #import "BaseScrollView.h"
 #pragma mark —— Category
-#import "UIScrollView+Extra.h"
+#import "UIScrollView+UIScrollViewProtocol.h"
 #import "UIScrollView+AnimationKit.h"
+#import "UIScrollView+DSL.h"
 
 #endif /* JobsScrollView_h */

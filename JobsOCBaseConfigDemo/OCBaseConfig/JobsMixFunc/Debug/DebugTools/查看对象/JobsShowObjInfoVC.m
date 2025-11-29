@@ -46,7 +46,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.makeNavByAlpha(1);
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
 }
 
 -(void)viewWillAppear:(BOOL)animated{

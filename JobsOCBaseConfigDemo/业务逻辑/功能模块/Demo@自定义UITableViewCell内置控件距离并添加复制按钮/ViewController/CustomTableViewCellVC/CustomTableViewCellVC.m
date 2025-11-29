@@ -47,7 +47,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
     [super viewDidLoad];
     
     self.makeNavByAlpha(1);
-    self.collectionView.reloadDatas();
+    self.collectionView.byShow(self);
 }
 #pragma mark —— UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

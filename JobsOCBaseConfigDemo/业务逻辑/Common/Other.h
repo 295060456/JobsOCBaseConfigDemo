@@ -89,6 +89,7 @@
 #import "NSProxyDemoVC.h"
 #import "JobsNavigationDemoVC.h"
 #import "SlideToUnlockDemoVC.h"
+#import "JobsClockDemoVC.h"
 /// 公共图
 #import "CommonViews.h"
 

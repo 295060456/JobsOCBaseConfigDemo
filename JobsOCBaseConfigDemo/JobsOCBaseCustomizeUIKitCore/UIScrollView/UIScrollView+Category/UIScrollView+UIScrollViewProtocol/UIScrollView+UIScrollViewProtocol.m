@@ -1,11 +1,11 @@
 //
-//  UIScrollView+Extra.m
+//  UIScrollView+UIScrollViewProtocol.m
 //  Casino
 //
 //  Created by Jobs on 2021/12/22.
 //
 
-#import "UIScrollView+Extra.h"
+#import "UIScrollView+UIScrollViewProtocol.h"
 /**
  XZMRefresh 的相关继承关系
  
@@ -15,12 +15,11 @@
  XZMRefreshNormalFooter : XZMRefreshFooter : XZMBaseRefreshView : UIView
  XZMRefreshGifFooter : XZMRefreshNormalFooter : XZMRefreshFooter : XZMBaseRefreshView : UIView
  */
-@implementation UIScrollView (Extra)
+@implementation UIScrollView (UIScrollViewProtocol)
 /// 在 UIScrollViewDelegate协议方法 -(void)scrollViewDidScroll:(UIScrollView *)scrollView里进行调用
 -(ScrollDirection)scrolldirectionWhenScrollViewDidScroll{
     return self.judgementScrollDirectionByPoint(self.contentOffset);
 }
-#pragma mark —— 一些公共方法
 /// 如果使用：dispatch_async + dispatch_get_main_queue()进行主线程上的调用，会执行2次刷新的协议方法
 -(JobsRetViewByVoidBlock _Nonnull)reloadDatas{
     @jobs_weakify(self)
@@ -98,107 +97,6 @@
     return ^__kindof UIScrollView *_Nullable(CGRect data){
         @jobs_strongify(self)
         [self scrollRectToVisible:data animated:NO];
-        return self;
-    };
-}
-#pragma mark —— UIScrollViewProtocol
--(JobsRetScrollViewByDelegateBlock _Nonnull)byDelegate{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(id <UIScrollViewDelegate>_Nullable delegate){
-        @jobs_strongify(self)
-        self.delegate = delegate;
-        return self;
-    };
-}
-
--(JobsRetScrollViewByBOOLBlock _Nonnull)byShowsVerticalScrollIndicator{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(BOOL data){
-        @jobs_strongify(self)
-        self.showsVerticalScrollIndicator = data;
-        return self;
-    };
-}
-
--(JobsRetScrollViewByBOOLBlock _Nonnull)byShowsHorizontalScrollIndicator{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(BOOL data){
-        @jobs_strongify(self)
-        self.showsHorizontalScrollIndicator = data;
-        return self;
-    };
-}
-
--(JobsRetScrollViewBySizeBlock _Nonnull)byContentSize{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(CGSize size){
-        @jobs_strongify(self)
-        self.contentSize = size;
-        return self;
-    };
-}
-
--(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentWidth{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(CGFloat data){
-        @jobs_strongify(self)
-        self.contentSize = CGSizeMake(data ? : self.width, self.contentSize.height ? : self.height);
-        return self;
-    };
-}
-
--(JobsRetScrollViewByCGFloatBlock _Nonnull)byContentHeight{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(CGFloat data){
-        @jobs_strongify(self)
-        self.contentSize = CGSizeMake(self.contentSize.width ? : self.width, data ? : self.height);
-        return self;
-    };
-}
-
--(JobsRetScrollViewByBOOLBlock _Nonnull)byScrollEnabled{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(BOOL data){
-        @jobs_strongify(self)
-        self.scrollEnabled = data;
-        return self;
-    };
-}
-
--(JobsRetScrollViewByBOOLBlock _Nonnull)byBounces{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(BOOL data){
-        @jobs_strongify(self)
-        self.bounces = data;
-        return self;
-    };
-}
-
--(JobsRetScrollViewByUIEdgeInsetsBlock _Nonnull)byEdgeInsets{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(UIEdgeInsets insets){
-        @jobs_strongify(self)
-        self.contentInset = insets;
-        return self;
-    };
-}
-
--(JobsReturnScrollViewByMJRefreshHeaderBlock _Nonnull)byMJRefreshHeader{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(__kindof MJRefreshHeader * _Nullable header){
-        @jobs_strongify(self)
-        self.mj_header = header;
-        self.mj_header.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
-        return self;
-    };
-}
-
--(JobsReturnScrollViewByMJRefreshFooterBlock _Nonnull)byMJRefreshFooter{
-    @jobs_weakify(self)
-    return ^__kindof UIScrollView *_Nullable(__kindof MJRefreshFooter * _Nullable header){
-        @jobs_strongify(self)
-        self.mj_footer = header;
-        self.mj_footer.automaticallyChangeAlpha = YES; /// 根据拖拽比例自动切换透明度
         return self;
     };
 }

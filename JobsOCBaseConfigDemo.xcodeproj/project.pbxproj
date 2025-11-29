@@ -24,6 +24,11 @@
 		045B59132EBB364E00CFBE3B /* TDTextCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B59002EBB364E00CFBE3B /* TDTextCellNode.m */; };
 		045B59142EBB364E00CFBE3B /* TDImageCellNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B58F72EBB364E00CFBE3B /* TDImageCellNode.m */; };
 		045B59182EBB387B00CFBE3B /* TDDrawingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 045B59172EBB387B00CFBE3B /* TDDrawingNode.m */; };
+		045F7ADF2EDAAB8700AD6356 /* JobsClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F7ADE2EDAAB8700AD6356 /* JobsClockView.m */; };
+		045F7AE22EDAABBB00AD6356 /* JobsClockDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F7AE12EDAABBB00AD6356 /* JobsClockDemoVC.m */; };
+		045F7AE72EDAE3E500AD6356 /* UIScrollView+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F7AE62EDAE3E500AD6356 /* UIScrollView+DSL.m */; };
+		045F7AEE2EDAE99B00AD6356 /* UICollectionView+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F7AED2EDAE99B00AD6356 /* UICollectionView+DSL.m */; };
+		045F7AF72EDB048E00AD6356 /* UIProgressView+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 045F7AF62EDB048E00AD6356 /* UIProgressView+DSL.m */; };
 		045FC5272EBB4F5B00C582C4 /* JobsControlTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FC5262EBB4F5B00C582C4 /* JobsControlTarget.m */; };
 		045FED752ECDCB3000444E01 /* JobsTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FED742ECDCB3000444E01 /* JobsTimer.m */; };
 		045FED7B2ECDCF4F00444E01 /* JobsNetWorkTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FED7A2ECDCF4F00444E01 /* JobsNetWorkTools.m */; };
@@ -355,7 +360,7 @@
 		C55C8AE32E167B6A00B56985 /* NSXMLParser+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7EB32E167B6200B56985 /* NSXMLParser+Extra.m */; };
 		C55C8AE42E167B6A00B56985 /* BaseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7EB92E167B6200B56985 /* BaseScrollView.m */; };
 		C55C8AE52E167B6A00B56985 /* UIScrollView+EmptyData.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7EBC2E167B6200B56985 /* UIScrollView+EmptyData.m */; };
-		C55C8AE62E167B6A00B56985 /* UIScrollView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7EC02E167B6200B56985 /* UIScrollView+Extra.m */; };
+		C55C8AE62E167B6A00B56985 /* UIScrollView+UIScrollViewProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7EC02E167B6200B56985 /* UIScrollView+UIScrollViewProtocol.m */; };
 		C55C8AE72E167B6A00B56985 /* UIScrollView+AnimationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7EC32E167B6200B56985 /* UIScrollView+AnimationKit.m */; };
 		C55C8AE82E167B6A00B56985 /* UNNotificationRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7EC62E167B6200B56985 /* UNNotificationRequest+Extra.m */; };
 		C55C8AE92E167B6A00B56985 /* UIActivityIndicatorView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7EC82E167B6200B56985 /* UIActivityIndicatorView+Extra.m */; };
@@ -463,7 +468,6 @@
 		C55C8B572E167B6A00B56985 /* NSURL+Others.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C80212E167B6200B56985 /* NSURL+Others.m */; };
 		C55C8B582E167B6A00B56985 /* UICollectionView+Func.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C80282E167B6200B56985 /* UICollectionView+Func.m */; };
 		C55C8B592E167B6A00B56985 /* UICollectionView+JobsRegisterClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C802A2E167B6200B56985 /* UICollectionView+JobsRegisterClass.m */; };
-		C55C8B5A2E167B6A00B56985 /* UICollectionView+JobsRegisterClass.md in Resources */ = {isa = PBXBuildFile; fileRef = C55C802B2E167B6200B56985 /* UICollectionView+JobsRegisterClass.md */; };
 		C55C8B5B2E167B6A00B56985 /* UICollectionView+RegistrationTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C802E2E167B6200B56985 /* UICollectionView+RegistrationTracking.m */; };
 		C55C8B5C2E167B6A00B56985 /* BaseCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C80322E167B6200B56985 /* BaseCollectionView.m */; };
 		C55C8B5D2E167B6A00B56985 /* UIEditMenuInteraction+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C80342E167B6200B56985 /* UIEditMenuInteraction+Extra.m */; };
@@ -1359,6 +1363,18 @@
 		045B59072EBB364E00CFBE3B /* TextureDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextureDemoVC.m; sourceTree = "<group>"; };
 		045B59162EBB387B00CFBE3B /* TDDrawingNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDDrawingNode.h; sourceTree = "<group>"; };
 		045B59172EBB387B00CFBE3B /* TDDrawingNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TDDrawingNode.m; sourceTree = "<group>"; };
+		045F7ADD2EDAAB8700AD6356 /* JobsClockView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsClockView.h; sourceTree = "<group>"; };
+		045F7ADE2EDAAB8700AD6356 /* JobsClockView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsClockView.m; sourceTree = "<group>"; };
+		045F7AE02EDAABBB00AD6356 /* JobsClockDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsClockDemoVC.h; sourceTree = "<group>"; };
+		045F7AE12EDAABBB00AD6356 /* JobsClockDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsClockDemoVC.m; sourceTree = "<group>"; };
+		045F7AE52EDAE3E500AD6356 /* UIScrollView+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+DSL.h"; sourceTree = "<group>"; };
+		045F7AE62EDAE3E500AD6356 /* UIScrollView+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+DSL.m"; sourceTree = "<group>"; };
+		045F7AE82EDAE4D600AD6356 /* UIScrollViewDSLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIScrollViewDSLProtocol.h; sourceTree = "<group>"; };
+		045F7AEC2EDAE99B00AD6356 /* UICollectionView+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+DSL.h"; sourceTree = "<group>"; };
+		045F7AED2EDAE99B00AD6356 /* UICollectionView+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+DSL.m"; sourceTree = "<group>"; };
+		045F7AEF2EDAE9EE00AD6356 /* UICollectionViewDSLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UICollectionViewDSLProtocol.h; sourceTree = "<group>"; };
+		045F7AF52EDB048E00AD6356 /* UIProgressView+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIProgressView+DSL.h"; sourceTree = "<group>"; };
+		045F7AF62EDB048E00AD6356 /* UIProgressView+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIProgressView+DSL.m"; sourceTree = "<group>"; };
 		045FC5252EBB4F5B00C582C4 /* JobsControlTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsControlTarget.h; sourceTree = "<group>"; };
 		045FC5262EBB4F5B00C582C4 /* JobsControlTarget.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsControlTarget.m; sourceTree = "<group>"; };
 		045FED732ECDCB3000444E01 /* JobsTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTimer.h; sourceTree = "<group>"; };
@@ -2061,8 +2077,8 @@
 		C55C7EB92E167B6200B56985 /* BaseScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseScrollView.m; sourceTree = "<group>"; };
 		C55C7EBC2E167B6200B56985 /* UIScrollView+EmptyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyData.m"; sourceTree = "<group>"; };
 		C55C7EBD2E167B6200B56985 /* UIScrollView+EmptyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyData.h"; sourceTree = "<group>"; };
-		C55C7EBF2E167B6200B56985 /* UIScrollView+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Extra.h"; sourceTree = "<group>"; };
-		C55C7EC02E167B6200B56985 /* UIScrollView+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Extra.m"; sourceTree = "<group>"; };
+		C55C7EBF2E167B6200B56985 /* UIScrollView+UIScrollViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+UIScrollViewProtocol.h"; sourceTree = "<group>"; };
+		C55C7EC02E167B6200B56985 /* UIScrollView+UIScrollViewProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+UIScrollViewProtocol.m"; sourceTree = "<group>"; };
 		C55C7EC22E167B6200B56985 /* UIScrollView+AnimationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+AnimationKit.h"; sourceTree = "<group>"; };
 		C55C7EC32E167B6200B56985 /* UIScrollView+AnimationKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+AnimationKit.m"; sourceTree = "<group>"; };
 		C55C7EC52E167B6200B56985 /* UNNotificationRequest+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UNNotificationRequest+Extra.h"; sourceTree = "<group>"; };
@@ -4114,6 +4130,51 @@
 			path = TDDrawingNode;
 			sourceTree = "<group>";
 		};
+		045F7ADC2EDAAB5F00AD6356 /* Demo@钟 */ = {
+			isa = PBXGroup;
+			children = (
+				045F7AE02EDAABBB00AD6356 /* JobsClockDemoVC.h */,
+				045F7AE12EDAABBB00AD6356 /* JobsClockDemoVC.m */,
+			);
+			path = "Demo@钟";
+			sourceTree = "<group>";
+		};
+		045F7AE32EDAAC4300AD6356 /* JobsClockView */ = {
+			isa = PBXGroup;
+			children = (
+				045F7ADD2EDAAB8700AD6356 /* JobsClockView.h */,
+				045F7ADE2EDAAB8700AD6356 /* JobsClockView.m */,
+			);
+			path = JobsClockView;
+			sourceTree = "<group>";
+		};
+		045F7AE42EDAE3D300AD6356 /* UIScrollView+DSL */ = {
+			isa = PBXGroup;
+			children = (
+				045F7AE52EDAE3E500AD6356 /* UIScrollView+DSL.h */,
+				045F7AE62EDAE3E500AD6356 /* UIScrollView+DSL.m */,
+			);
+			path = "UIScrollView+DSL";
+			sourceTree = "<group>";
+		};
+		045F7AE92EDAE97B00AD6356 /* UICollectionView+DSL */ = {
+			isa = PBXGroup;
+			children = (
+				045F7AEC2EDAE99B00AD6356 /* UICollectionView+DSL.h */,
+				045F7AED2EDAE99B00AD6356 /* UICollectionView+DSL.m */,
+			);
+			path = "UICollectionView+DSL";
+			sourceTree = "<group>";
+		};
+		045F7AF12EDB046E00AD6356 /* UIProgressView+DSL */ = {
+			isa = PBXGroup;
+			children = (
+				045F7AF52EDB048E00AD6356 /* UIProgressView+DSL.h */,
+				045F7AF62EDB048E00AD6356 /* UIProgressView+DSL.m */,
+			);
+			path = "UIProgressView+DSL";
+			sourceTree = "<group>";
+		};
 		045FED722ECDCB1500444E01 /* JobsTImer */ = {
 			isa = PBXGroup;
 			children = (
@@ -4144,6 +4205,7 @@
 		046CFA7B2E978DE9005A88B4 /* UIButtonConfiguration */ = {
 			isa = PBXGroup;
 			children = (
+				046CFA742E97897A005A88B4 /* UIBackgroundConfiguration */,
 				046CFA7C2E978DF4005A88B4 /* UIButtonConfiguration+Extra.h */,
 				046CFA7D2E978DF4005A88B4 /* UIButtonConfiguration+Extra.m */,
 			);
@@ -5036,6 +5098,7 @@
 		C55C7AB92E167B5D00B56985 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				045F7ADC2EDAAB5F00AD6356 /* Demo@钟 */,
 				041AE5A32EDA8C9F00ED03A3 /* Demo@苹果滑动开锁 */,
 				048B79612ED546F300A6FEF1 /* Demo@系统导航栏 */,
 				045B59092EBB364E00CFBE3B /* Demo@Texture */,
@@ -8621,109 +8684,108 @@
 		C55C7E8A2E167B6200B56985 /* JobsOCBaseCustomizeUIKitCore */ = {
 			isa = PBXGroup;
 			children = (
-				C55C7FD52E167B6200B56985 /* JobsMakes.h */,
 				C55C7FDF2E167B6200B56985 /* JobsBaseCustomizeUIKitCoreHeader.h */,
-				04C4429D2EB8A30B008E0F09 /* NSMutableParagraphStyle */,
-				046CFA7B2E978DE9005A88B4 /* UIButtonConfiguration */,
-				046CFA742E97897A005A88B4 /* UIBackgroundConfiguration */,
-				C55C7E8B2E167B6200B56985 /* NSTextCheckingResult */,
-				C55C7E8E2E167B6200B56985 /* PDFDocument */,
-				C55C7E912E167B6200B56985 /* UIImage */,
-				C55C7EA42E167B6200B56985 /* UIMenuItem */,
-				C55C7EA72E167B6200B56985 /* NSDictionary */,
-				C55C7EAB2E167B6200B56985 /* UISwitch */,
-				C55C7EB12E167B6200B56985 /* NSXMLParser */,
-				C55C7EB42E167B6200B56985 /* UIScrollView */,
-				C55C7EC42E167B6200B56985 /* UNNotificationRequest */,
-				C55C7EC72E167B6200B56985 /* UIActivityIndicatorView */,
-				C55C7ECA2E167B6200B56985 /* NSCalendar */,
-				C55C7ECD2E167B6200B56985 /* PHAsset */,
-				C55C7ED02E167B6200B56985 /* UIWindow */,
-				C55C7ED32E167B6200B56985 /* NSTimeZone */,
-				C55C7ED62E167B6200B56985 /* UILabel */,
-				C55C7EF42E167B6200B56985 /* UITableViewCell */,
-				C55C7F282E167B6200B56985 /* NSBundle */,
-				C55C7F2D2E167B6200B56985 /* UIButton */,
-				C55C7F692E167B6200B56985 /* UIColor */,
-				C55C7F6F2E167B6200B56985 /* NSNotificationCenter */,
-				C55C7F742E167B6200B56985 /* UIAlertController */,
-				C55C7F772E167B6200B56985 /* UIAlertAction */,
-				C55C7F7A2E167B6200B56985 /* NSFormatter */,
-				C55C7F7F2E167B6200B56985 /* UIView */,
-				C55C7FC32E167B6200B56985 /* UITabBarItem */,
-				C55C7FC62E167B6200B56985 /* NSCoder */,
-				C55C7FC92E167B6200B56985 /* UIFont */,
-				C55C7FCF2E167B6200B56985 /* NSDateFormatter */,
-				C55C7FD22E167B6200B56985 /* AVURLAsset */,
-				C55C7FD62E167B6200B56985 /* PHAssetChangeRequest */,
-				C55C7FD92E167B6200B56985 /* PHAssetResource */,
-				C55C7FDC2E167B6200B56985 /* NSJSONSerialization */,
-				C55C7FE02E167B6200B56985 /* UITextItem */,
-				C55C7FE32E167B6200B56985 /* NSLocale */,
-				C55C7FE82E167B6200B56985 /* AVAssetImageGenerator */,
-				C55C7FEB2E167B6200B56985 /* UICollectionViewLayoutAttributes */,
-				C55C7FEE2E167B6200B56985 /* UITabBarController */,
-				C55C7FF12E167B6200B56985 /* NSMutableDictionary */,
-				C55C7FFB2E167B6200B56985 /* WKWebView */,
-				C55C7FFF2E167B6200B56985 /* NSKeyedArchiver */,
-				C55C80022E167B6200B56985 /* NSData */,
-				C55C80072E167B6200B56985 /* UITextView */,
-				C55C80172E167B6200B56985 /* UIDevice */,
-				C55C801E2E167B6200B56985 /* NSURL */,
-				C55C80232E167B6200B56985 /* UICollectionView */,
-				C55C80332E167B6200B56985 /* UIEditMenuInteraction */,
-				C55C80362E167B6200B56985 /* PHAssetCollectionChangeRequest */,
-				C55C80392E167B6200B56985 /* NSURLSessionDataTask */,
-				C55C803C2E167B6200B56985 /* UNCalendarNotificationTrigger */,
-				C55C803F2E167B6200B56985 /* UIBarButtonItem */,
-				C55C80442E167B6200B56985 /* UICollectionViewCell */,
-				C55C806C2E167B6200B56985 /* UIBezierPath */,
-				C55C80722E167B6200B56985 /* CABasicAnimation */,
-				C55C80752E167B6200B56985 /* UIImageView */,
-				C55C80872E167B6200B56985 /* UINavigationBar */,
-				C55C808C2E167B6200B56985 /* NSString */,
-				C55C80C02E167B6200B56985 /* UIViewController */,
-				C55C812A2E167B6300B56985 /* NSLayoutConstraint */,
-				C55C812D2E167B6300B56985 /* UINavigationController */,
-				C55C81392E167B6300B56985 /* UITableView */,
-				C55C814A2E167B6300B56985 /* NSPointerArray */,
-				C55C814D2E167B6300B56985 /* PHFetchResult */,
-				C55C81502E167B6300B56985 /* UIControl */,
-				C55C815A2E167B6300B56985 /* CAAnimation */,
-				C55C815D2E167B6300B56985 /* UIGestureRecognizer */,
-				C55C816C2E167B6300B56985 /* UIProgressView */,
-				C55C81722E167B6300B56985 /* CAPropertyAnimation */,
-				C55C81752E167B6300B56985 /* WKWebViewConfiguration */,
-				C55C81782E167B6300B56985 /* NSArray */,
-				C55C81812E167B6300B56985 /* NSURLRequest */,
-				C55C81842E167B6300B56985 /* NSRegularExpression */,
+				C55C7FD52E167B6200B56985 /* JobsMakes.h */,
 				C55C81872E167B6300B56985 /* AVAsset */,
-				C55C818A2E167B6300B56985 /* UITableViewHeaderFooterView */,
-				C55C819A2E167B6300B56985 /* NSMutableArray */,
-				C55C819E2E167B6300B56985 /* UICollectionViewFlowLayout */,
-				C55C81B42E167B6300B56985 /* NSUserDefaults */,
-				C55C81BE2E167B6300B56985 /* NSCache */,
-				C55C81C42E167B6300B56985 /* UICollectionReusableView */,
-				C55C81CC2E167B6300B56985 /* NSValue */,
-				C55C81D12E167B6300B56985 /* CALayer */,
-				C55C81DB2E167B6300B56985 /* NSNumber */,
-				C55C81E02E167B6300B56985 /* WKWebsiteDataStore */,
-				C55C81E32E167B6300B56985 /* NSSet */,
-				C55C81E62E167B6300B56985 /* NSAttributedString */,
-				C55C81EE2E167B6300B56985 /* NSObject */,
-				C55C83642E167B6300B56985 /* UISlider */,
-				C55C836A2E167B6300B56985 /* UIImpactFeedbackGenerator */,
-				C55C836D2E167B6300B56985 /* UIStackView */,
+				C55C7FE82E167B6200B56985 /* AVAssetImageGenerator */,
+				C55C7FD22E167B6200B56985 /* AVURLAsset */,
 				C55C83702E167B6300B56985 /* BaseProtocol */,
-				C55C83922E167B6300B56985 /* UNUserNotificationCenter */,
-				C55C83962E167B6300B56985 /* UIContextMenuInteraction */,
-				C55C83992E167B6300B56985 /* NSURLSession */,
-				C55C839C2E167B6300B56985 /* PHCollectionList */,
-				C55C839F2E167B6300B56985 /* NSRunLoop */,
-				C55C83A22E167B6300B56985 /* UITextField */,
-				C55C83BF2E167B6300B56985 /* NSDate */,
+				C55C815A2E167B6300B56985 /* CAAnimation */,
+				C55C80722E167B6200B56985 /* CABasicAnimation */,
+				C55C81D12E167B6300B56985 /* CALayer */,
+				C55C81722E167B6300B56985 /* CAPropertyAnimation */,
 				C55C83C22E167B6300B56985 /* JSValue */,
+				C55C81782E167B6300B56985 /* NSArray */,
+				C55C81E62E167B6300B56985 /* NSAttributedString */,
+				C55C7F282E167B6200B56985 /* NSBundle */,
+				C55C81BE2E167B6300B56985 /* NSCache */,
+				C55C7ECA2E167B6200B56985 /* NSCalendar */,
+				C55C7FC62E167B6200B56985 /* NSCoder */,
+				C55C80022E167B6200B56985 /* NSData */,
+				C55C83BF2E167B6300B56985 /* NSDate */,
+				C55C7FCF2E167B6200B56985 /* NSDateFormatter */,
+				C55C7EA72E167B6200B56985 /* NSDictionary */,
+				C55C7F7A2E167B6200B56985 /* NSFormatter */,
+				C55C7FDC2E167B6200B56985 /* NSJSONSerialization */,
+				C55C7FFF2E167B6200B56985 /* NSKeyedArchiver */,
+				C55C812A2E167B6300B56985 /* NSLayoutConstraint */,
+				C55C7FE32E167B6200B56985 /* NSLocale */,
+				C55C819A2E167B6300B56985 /* NSMutableArray */,
+				C55C7FF12E167B6200B56985 /* NSMutableDictionary */,
+				04C4429D2EB8A30B008E0F09 /* NSMutableParagraphStyle */,
 				C55C83C52E167B6400B56985 /* NSMutableSet */,
+				C55C7F6F2E167B6200B56985 /* NSNotificationCenter */,
+				C55C81DB2E167B6300B56985 /* NSNumber */,
+				C55C81EE2E167B6300B56985 /* NSObject */,
+				C55C814A2E167B6300B56985 /* NSPointerArray */,
+				C55C81842E167B6300B56985 /* NSRegularExpression */,
+				C55C839F2E167B6300B56985 /* NSRunLoop */,
+				C55C81E32E167B6300B56985 /* NSSet */,
+				C55C808C2E167B6200B56985 /* NSString */,
+				C55C7E8B2E167B6200B56985 /* NSTextCheckingResult */,
+				C55C7ED32E167B6200B56985 /* NSTimeZone */,
+				C55C801E2E167B6200B56985 /* NSURL */,
+				C55C81812E167B6300B56985 /* NSURLRequest */,
+				C55C83992E167B6300B56985 /* NSURLSession */,
+				C55C80392E167B6200B56985 /* NSURLSessionDataTask */,
+				C55C81B42E167B6300B56985 /* NSUserDefaults */,
+				C55C81CC2E167B6300B56985 /* NSValue */,
+				C55C7EB12E167B6200B56985 /* NSXMLParser */,
+				C55C7E8E2E167B6200B56985 /* PDFDocument */,
+				C55C7ECD2E167B6200B56985 /* PHAsset */,
+				C55C7FD62E167B6200B56985 /* PHAssetChangeRequest */,
+				C55C80362E167B6200B56985 /* PHAssetCollectionChangeRequest */,
+				C55C7FD92E167B6200B56985 /* PHAssetResource */,
+				C55C839C2E167B6300B56985 /* PHCollectionList */,
+				C55C814D2E167B6300B56985 /* PHFetchResult */,
+				C55C7EC72E167B6200B56985 /* UIActivityIndicatorView */,
+				C55C7F772E167B6200B56985 /* UIAlertAction */,
+				C55C7F742E167B6200B56985 /* UIAlertController */,
+				C55C803F2E167B6200B56985 /* UIBarButtonItem */,
+				C55C806C2E167B6200B56985 /* UIBezierPath */,
+				C55C7F2D2E167B6200B56985 /* UIButton */,
+				046CFA7B2E978DE9005A88B4 /* UIButtonConfiguration */,
+				C55C81C42E167B6300B56985 /* UICollectionReusableView */,
+				C55C80232E167B6200B56985 /* UICollectionView */,
+				C55C80442E167B6200B56985 /* UICollectionViewCell */,
+				C55C819E2E167B6300B56985 /* UICollectionViewFlowLayout */,
+				C55C7FEB2E167B6200B56985 /* UICollectionViewLayoutAttributes */,
+				C55C7F692E167B6200B56985 /* UIColor */,
+				C55C83962E167B6300B56985 /* UIContextMenuInteraction */,
+				C55C81502E167B6300B56985 /* UIControl */,
+				C55C80172E167B6200B56985 /* UIDevice */,
+				C55C80332E167B6200B56985 /* UIEditMenuInteraction */,
+				C55C7FC92E167B6200B56985 /* UIFont */,
+				C55C815D2E167B6300B56985 /* UIGestureRecognizer */,
+				C55C7E912E167B6200B56985 /* UIImage */,
+				C55C80752E167B6200B56985 /* UIImageView */,
+				C55C836A2E167B6300B56985 /* UIImpactFeedbackGenerator */,
+				C55C7ED62E167B6200B56985 /* UILabel */,
+				C55C7EA42E167B6200B56985 /* UIMenuItem */,
+				C55C80872E167B6200B56985 /* UINavigationBar */,
+				C55C812D2E167B6300B56985 /* UINavigationController */,
+				C55C816C2E167B6300B56985 /* UIProgressView */,
+				C55C7EB42E167B6200B56985 /* UIScrollView */,
+				C55C83642E167B6300B56985 /* UISlider */,
+				C55C836D2E167B6300B56985 /* UIStackView */,
+				C55C7EAB2E167B6200B56985 /* UISwitch */,
+				C55C7FEE2E167B6200B56985 /* UITabBarController */,
+				C55C7FC32E167B6200B56985 /* UITabBarItem */,
+				C55C81392E167B6300B56985 /* UITableView */,
+				C55C7EF42E167B6200B56985 /* UITableViewCell */,
+				C55C818A2E167B6300B56985 /* UITableViewHeaderFooterView */,
+				C55C83A22E167B6300B56985 /* UITextField */,
+				C55C7FE02E167B6200B56985 /* UITextItem */,
+				C55C80072E167B6200B56985 /* UITextView */,
+				C55C7F7F2E167B6200B56985 /* UIView */,
+				C55C80C02E167B6200B56985 /* UIViewController */,
+				C55C7ED02E167B6200B56985 /* UIWindow */,
+				C55C803C2E167B6200B56985 /* UNCalendarNotificationTrigger */,
+				C55C7EC42E167B6200B56985 /* UNNotificationRequest */,
+				C55C83922E167B6300B56985 /* UNUserNotificationCenter */,
+				C55C81E02E167B6300B56985 /* WKWebsiteDataStore */,
+				C55C7FFB2E167B6200B56985 /* WKWebView */,
+				C55C81752E167B6300B56985 /* WKWebViewConfiguration */,
 			);
 			path = JobsOCBaseCustomizeUIKitCore;
 			sourceTree = "<group>";
@@ -8872,6 +8934,7 @@
 			children = (
 				C55C7EB62E167B6200B56985 /* JobsScrollView.h */,
 				C55C7EB52E167B6200B56985 /* UIScrollViewProtocol.h */,
+				045F7AE82EDAE4D600AD6356 /* UIScrollViewDSLProtocol.h */,
 				C55C7EB72E167B6200B56985 /* BaseScrollView */,
 				C55C7EBA2E167B6200B56985 /* UIScrollView+Category */,
 			);
@@ -8890,8 +8953,9 @@
 		C55C7EBA2E167B6200B56985 /* UIScrollView+Category */ = {
 			isa = PBXGroup;
 			children = (
+				045F7AE42EDAE3D300AD6356 /* UIScrollView+DSL */,
 				C55C7EBB2E167B6200B56985 /* UIScrollView+EmptyData */,
-				C55C7EBE2E167B6200B56985 /* UIScrollView+Extra */,
+				C55C7EBE2E167B6200B56985 /* UIScrollView+UIScrollViewProtocol */,
 				C55C7EC12E167B6200B56985 /* UIScrollView+AnimationKit */,
 			);
 			path = "UIScrollView+Category";
@@ -8900,19 +8964,19 @@
 		C55C7EBB2E167B6200B56985 /* UIScrollView+EmptyData */ = {
 			isa = PBXGroup;
 			children = (
-				C55C7EBC2E167B6200B56985 /* UIScrollView+EmptyData.m */,
 				C55C7EBD2E167B6200B56985 /* UIScrollView+EmptyData.h */,
+				C55C7EBC2E167B6200B56985 /* UIScrollView+EmptyData.m */,
 			);
 			path = "UIScrollView+EmptyData";
 			sourceTree = "<group>";
 		};
-		C55C7EBE2E167B6200B56985 /* UIScrollView+Extra */ = {
+		C55C7EBE2E167B6200B56985 /* UIScrollView+UIScrollViewProtocol */ = {
 			isa = PBXGroup;
 			children = (
-				C55C7EBF2E167B6200B56985 /* UIScrollView+Extra.h */,
-				C55C7EC02E167B6200B56985 /* UIScrollView+Extra.m */,
+				C55C7EBF2E167B6200B56985 /* UIScrollView+UIScrollViewProtocol.h */,
+				C55C7EC02E167B6200B56985 /* UIScrollView+UIScrollViewProtocol.m */,
 			);
-			path = "UIScrollView+Extra";
+			path = "UIScrollView+UIScrollViewProtocol";
 			sourceTree = "<group>";
 		};
 		C55C7EC12E167B6200B56985 /* UIScrollView+AnimationKit */ = {
@@ -10123,6 +10187,7 @@
 			isa = PBXGroup;
 			children = (
 				C55C80242E167B6200B56985 /* JobsCollectionView.h */,
+				045F7AEF2EDAE9EE00AD6356 /* UICollectionViewDSLProtocol.h */,
 				C55C80252E167B6200B56985 /* UICollectionView+Category */,
 				C55C80302E167B6200B56985 /* BaseCollectionView */,
 			);
@@ -10132,6 +10197,7 @@
 		C55C80252E167B6200B56985 /* UICollectionView+Category */ = {
 			isa = PBXGroup;
 			children = (
+				045F7AE92EDAE97B00AD6356 /* UICollectionView+DSL */,
 				C55C80262E167B6200B56985 /* UICollectionView+Func */,
 				C55C80292E167B6200B56985 /* UICollectionView+JobsRegisterClass */,
 				C55C802D2E167B6200B56985 /* UICollectionView+RegistrationTracking */,
@@ -10151,9 +10217,9 @@
 		C55C80292E167B6200B56985 /* UICollectionView+JobsRegisterClass */ = {
 			isa = PBXGroup;
 			children = (
+				C55C802C2E167B6200B56985 /* UICollectionView+JobsRegisterClass.h */,
 				C55C802A2E167B6200B56985 /* UICollectionView+JobsRegisterClass.m */,
 				C55C802B2E167B6200B56985 /* UICollectionView+JobsRegisterClass.md */,
-				C55C802C2E167B6200B56985 /* UICollectionView+JobsRegisterClass.h */,
 			);
 			path = "UICollectionView+JobsRegisterClass";
 			sourceTree = "<group>";
@@ -10161,8 +10227,8 @@
 		C55C802D2E167B6200B56985 /* UICollectionView+RegistrationTracking */ = {
 			isa = PBXGroup;
 			children = (
-				C55C802E2E167B6200B56985 /* UICollectionView+RegistrationTracking.m */,
 				C55C802F2E167B6200B56985 /* UICollectionView+RegistrationTracking.h */,
+				C55C802E2E167B6200B56985 /* UICollectionView+RegistrationTracking.m */,
 			);
 			path = "UICollectionView+RegistrationTracking";
 			sourceTree = "<group>";
@@ -11279,8 +11345,8 @@
 		C55C816C2E167B6300B56985 /* UIProgressView */ = {
 			isa = PBXGroup;
 			children = (
-				C55C816D2E167B6300B56985 /* UIProgressView+Category */,
 				C55C81712E167B6300B56985 /* JobsProgressView.h */,
+				C55C816D2E167B6300B56985 /* UIProgressView+Category */,
 			);
 			path = UIProgressView;
 			sourceTree = "<group>";
@@ -11288,6 +11354,7 @@
 		C55C816D2E167B6300B56985 /* UIProgressView+Category */ = {
 			isa = PBXGroup;
 			children = (
+				045F7AF12EDB046E00AD6356 /* UIProgressView+DSL */,
 				C55C816E2E167B6300B56985 /* UIProgressView+Extra */,
 			);
 			path = "UIProgressView+Category";
@@ -11296,8 +11363,8 @@
 		C55C816E2E167B6300B56985 /* UIProgressView+Extra */ = {
 			isa = PBXGroup;
 			children = (
-				C55C816F2E167B6300B56985 /* UIProgressView+Extra.m */,
 				C55C81702E167B6300B56985 /* UIProgressView+Extra.h */,
+				C55C816F2E167B6300B56985 /* UIProgressView+Extra.m */,
 			);
 			path = "UIProgressView+Extra";
 			sourceTree = "<group>";
@@ -13275,6 +13342,7 @@
 		C55C83C92E167B6400B56985 /* 🔨Manual_Add_ThirdParty（按需引入） */ = {
 			isa = PBXGroup;
 			children = (
+				045F7AE32EDAAC4300AD6356 /* JobsClockView */,
 				041AE5AA2EDA963F00ED03A3 /* SlideToUnlockView */,
 				048B795D2ED545AF00A6FEF1 /* JobsTabBarCtrl */,
 				C55C83CA2E167B6400B56985 /* XLSphereView */,
@@ -17608,7 +17676,6 @@
 				C55C8D5D2E167B6D00B56985 /* 主页.json in Resources */,
 				C55C8E862E167B6E00B56985 /* NotoSansDisplay_ExtraCondensed-Thin.ttf in Resources */,
 				C55C8D612E167B6D00B56985 /* dingdan.json in Resources */,
-				C55C8B5A2E167B6A00B56985 /* UICollectionView+JobsRegisterClass.md in Resources */,
 				C55C8EAE2E167B6F00B56985 /* NotoSans-ExtraLight.ttf in Resources */,
 				C55C8C282E167B6B00B56985 /* toastLoading.gif in Resources */,
 				C55C8E552E167B6E00B56985 /* 非iph_X.mp4 in Resources */,
@@ -18167,6 +18234,7 @@
 				C55C894D2E167B6900B56985 /* JobsNetworkingAPI+DemoTestApi.m in Sources */,
 				C55C8A322E167B6900B56985 /* JobsVideoTBVCell.m in Sources */,
 				C55C8B442E167B6A00B56985 /* NSJSONSerialization+Extra.m in Sources */,
+				045F7AF72EDB048E00AD6356 /* UIProgressView+DSL.m in Sources */,
 				C55C89DD2E167B6900B56985 /* JobsTestVC.m in Sources */,
 				C55C8B9B2E167B6B00B56985 /* UIViewController+BaseVC.m in Sources */,
 				C55C8EE72E167B6F00B56985 /* HXPhotoManager+Extra.m in Sources */,
@@ -18418,6 +18486,7 @@
 				C55C8C562E167B6C00B56985 /* NSObject+Class.m in Sources */,
 				C55C8AC72E167B6A00B56985 /* NotifiViewFactory.m in Sources */,
 				C55C89CC2E167B6900B56985 /* BaiShaETProjCollectionHeaderView.m in Sources */,
+				045F7AE22EDAABBB00AD6356 /* JobsClockDemoVC.m in Sources */,
 				C55C8D1C2E167B6D00B56985 /* ZFCustomControlView.m in Sources */,
 				C55C8DB92E167B6D00B56985 /* ZWPullMenuModel.m in Sources */,
 				C55C8C3F2E167B6C00B56985 /* NSObject+HTML.m in Sources */,
@@ -18537,6 +18606,7 @@
 				C55C8DCE2E167B6E00B56985 /* KTVHCDataUnitQueue.m in Sources */,
 				C55C8DD02E167B6E00B56985 /* KTVHCDataCallback.m in Sources */,
 				C55C8C772E167B6C00B56985 /* GXCardView.m in Sources */,
+				045F7ADF2EDAAB8700AD6356 /* JobsClockView.m in Sources */,
 				C55C8C102E167B6B00B56985 /* HXPhotoPickerModel.m in Sources */,
 				C55C8A662E167B6A00B56985 /* PicToStrStoreSubVC.m in Sources */,
 				C55C89BD2E167B6900B56985 /* JobsPostDelView.m in Sources */,
@@ -18670,7 +18740,7 @@
 				C55C89CF2E167B6900B56985 /* BaiShaETProjVIPSubCVCell_03.m in Sources */,
 				C55C8D192E167B6D00B56985 /* JobsShareView.m in Sources */,
 				C55C89712E167B6900B56985 /* ViewController@1.m in Sources */,
-				C55C8AE62E167B6A00B56985 /* UIScrollView+Extra.m in Sources */,
+				C55C8AE62E167B6A00B56985 /* UIScrollView+UIScrollViewProtocol.m in Sources */,
 				C55C8B9C2E167B6B00B56985 /* UIViewController+LeakCheck.m in Sources */,
 				C55C8EDE2E167B6F00B56985 /* SRWebSocket+Extra.m in Sources */,
 				C55C8CE82E167B6C00B56985 /* JobsAppDoorContentView.m in Sources */,
@@ -18742,6 +18812,7 @@
 				C55C8A8E2E167B6A00B56985 /* JobsVerticalMenuVC@2.m in Sources */,
 				C55C8B7F2E167B6B00B56985 /* NSString+Statistics.m in Sources */,
 				C55C8A042E167B6900B56985 /* ZMJHeaderCell.m in Sources */,
+				045F7AEE2EDAE99B00AD6356 /* UICollectionView+DSL.m in Sources */,
 				C55C8D412E167B6D00B56985 /* JobsLinkageMenuView.m in Sources */,
 				C55C89552E167B6900B56985 /* JobsBaseApi.m in Sources */,
 				C55C8C9E2E167B6C00B56985 /* MF_Base32Codec.m in Sources */,
@@ -18776,6 +18847,7 @@
 				C55C8DDB2E167B6E00B56985 /* HTTPRedirectResponse.m in Sources */,
 				C55C8D092E167B6D00B56985 /* JobsAppDoorInputViewBaseStyle_3.m in Sources */,
 				C55C8A9C2E167B6A00B56985 /* JobsIMChatInfoModel.m in Sources */,
+				045F7AE72EDAE3E500AD6356 /* UIScrollView+DSL.m in Sources */,
 				C55C8CE72E167B6C00B56985 /* JobsAppDoorForgotCodeContentView.m in Sources */,
 				C55C8B702E167B6B00B56985 /* BaseImageView.m in Sources */,
 				C55C8A382E167B6900B56985 /* UITableView+EmptyData.m in Sources */,

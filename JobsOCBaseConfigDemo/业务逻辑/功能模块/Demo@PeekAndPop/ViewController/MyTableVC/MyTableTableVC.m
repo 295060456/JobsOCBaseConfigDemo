@@ -50,7 +50,7 @@ Prop_strong()NSMutableArray <JobsBaseTableViewCell *>*tbvCellMutArr;
     
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -287,7 +287,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
         .JobsBlock1(^(id _Nullable data) {
              
-        }).byBgCor(HEXCOLOR(0xFFFCF7));
+        }).byBgColor(HEXCOLOR(0xFFFCF7));
     cell.imageView.image = @"红色的对勾".img;
     cell.imageView.jobsVisible = NO;
     return cell;
@@ -300,42 +300,42 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.backgroundColor = JobsWhiteColor;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            tableView.scrollEnabled = NO;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.tableHeaderView = self.tbvHeaderView;/// 这里接入的就是一个UIView的派生类
-            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-            tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-            [tableView registerTableViewClass];
-            if(@available(iOS 11.0, *)) {
-                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            }
-            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.view);
-            }];
+            tableView
+                .byRegisterTableViewClass(nil)
+                .bySeparatorColor(HEXCOLOR(0xEEEEEE))
+                .byTableHeaderView(self.tbvHeaderView) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                .byTableFooterView(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
+                    /// TODO
+                })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                .bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                .byScrollEnabled(NO)
+                .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
+                .byShowsVerticalScrollIndicator(NO)
+                .byContentInsetAdjustmentBehavior(UIScrollViewContentInsetAdjustmentNever)
+                .byBgColor(JobsWhiteColor)
+                .addOn(self.view)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.edges.equalTo(self.view);
+                });
         });
     }return _tableView;
 }
 
 -(BaiShaETProjChoiceStadiumTBVHeaderView *)tbvHeaderView{
     if (!_tbvHeaderView) {
-        _tbvHeaderView = BaiShaETProjChoiceStadiumTBVHeaderView.new;
-        _tbvHeaderView.sizer = BaiShaETProjChoiceStadiumTBVHeaderView.viewSizeByModel(nil);
-        _tbvHeaderView.text = @"選擇場館".tr;
-        _tbvHeaderView.textColor = HEXCOLOR(0x3D4A58);
-        _tbvHeaderView.font = UIFontWeightBoldSize(16);
-        _tbvHeaderView.textAlignment = NSTextAlignmentCenter;
+        _tbvHeaderView = BaiShaETProjChoiceStadiumTBVHeaderView.new
+            .byText(@"選擇場館".tr)
+            .byTextCor(HEXCOLOR(0x3D4A58))
+            .byFont(UIFontWeightBoldSize(16))
+            .byTextAlignment(NSTextAlignmentCenter)
+            .bySize(BaiShaETProjChoiceStadiumTBVHeaderView.viewSizeByModel(nil));
     }return _tbvHeaderView;
 }
 
 -(NSMutableArray<UIViewModel *> *)dataMutArr{
     if (!_dataMutArr) {
-        _dataMutArr = [MyTableTableVC createDataMutArr];
+        _dataMutArr = MyTableTableVC.createDataMutArr;
     }return _dataMutArr;
 }
 

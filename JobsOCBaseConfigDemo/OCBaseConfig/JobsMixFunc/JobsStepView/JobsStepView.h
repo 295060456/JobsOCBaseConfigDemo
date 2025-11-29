@@ -71,7 +71,7 @@ NS_INLINE __kindof JobsStepView *_Nonnull jobsMakeStepView(jobsByStepViewBlock _
              make.top.equalTo(self.gk_navigationBar.mas_bottom);
              make.centerX.equalTo(self.view);
              make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(100)));
-         }).on().byBgCor(JobsWhiteColor);
+         }).on().byBgColor(JobsWhiteColor);
      }return _stepView;
  }
  

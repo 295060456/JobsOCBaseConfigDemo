@@ -58,7 +58,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
     [MainWindow addSubview:self];
     self.frame = MainWindow.frame;
     [MainWindow bringSubviewToFront:self];
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches
@@ -92,7 +92,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         .JobsBlock1(^(id _Nullable data) {
              
         })
-        .byBgCor(self.bgColorListTBV);;
+        .byBgColor(self.bgColorListTBV);;
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
@@ -100,19 +100,20 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 -(UITableView *)tableView{
     if (!_tableView) {
         @jobs_weakify(self)
-        _tableView = self.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.scrollEnabled = NO;
-            tableView.cornerCutToCircleWithCornerRadius(JobsWidth(3)); /// 圆润
             CGRect d = [self.targetView convertRect:self.targetView.bounds toView:MainWindow];
             CGFloat tableviewHeight = self.listTbVCellHeight * self.dataMutArr.count;
             CGFloat tableviewY = d.origin.y - tableviewHeight - self.listTbVOffset;
-            /// 做了适配
-            tableView.frame = CGRectMake(self.targetView.centerX + self.listTbVWidth < UIScreen.mainScreen.bounds.size.width ? self.targetView.centerX : self.targetView.centerX - self.listTbVWidth,
-                                         tableviewY < 0 ? tableviewY += tableviewHeight : tableviewY,
-                                         self.listTbVWidth, /// 相对固定
-                                         tableviewHeight); /// 相对固定
-        })).dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
+            tableView
+                .byScrollEnabled(NO)
+                .addOn(self)
+                .cornerCutToCircleWithCornerRadius(JobsWidth(3)) // 圆润
+                .byFrame(CGRectMake(self.targetView.centerX + self.listTbVWidth < UIScreen.mainScreen.bounds.size.width ? self.targetView.centerX : self.targetView.centerX - self.listTbVWidth,
+                                tableviewY < 0 ? tableviewY += tableviewHeight : tableviewY,
+                                self.listTbVWidth, // 相对固定
+                                    tableviewHeight));  // 相对固定
+        });
     }return _tableView;
 }
 

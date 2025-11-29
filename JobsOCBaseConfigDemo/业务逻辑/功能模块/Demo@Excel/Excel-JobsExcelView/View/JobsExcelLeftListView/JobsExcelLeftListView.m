@@ -33,7 +33,7 @@ Prop_strong(nonnull)JobsExcelConfigureViewModel *excelConfigureData;
         @jobs_strongify(self)
         self.excelConfigureData = model;
         self.tableView.rowHeight = model.itemH;
-        self.tableView.reloadDatas();
+        self.tableView.byShow(self);
     };
 }
 #pragma mark —— UITableView 数据源
@@ -64,7 +64,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         }))
         .JobsBlock1(^(id _Nullable data) {
              
-        }).byBgCor(indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2);
+        }).byBgColor(indexPath.row % 2 ? self.excelConfigureData.cor1 : self.excelConfigureData.cor2);
 }
 #pragma mark —— UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -96,12 +96,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 .bySeparatorColor(HEXCOLOR(0xEEE2C8))
 //                .registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil)
                 .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
-                .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
-                    /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-                }))
-                .byTableFooterView(jobsMakeView(^(__kindof UIView * _Nullable view) {
-                    /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-                }))
                 .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
                     data.title = @"NO MESSAGES FOUND".tr;
                     data.titleCor = JobsWhiteColor;
@@ -111,56 +105,17 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 .byShowsVerticalScrollIndicator(NO)
                 .byShowsHorizontalScrollIndicator(NO)
                 .byScrollEnabled(YES)
-                .byBgCor(JobsClearColor);
+                .byBgColor(JobsClearColor);
 
             if(@available(iOS 11.0, *)) {
                 tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             }
-            
-//            {
-//                tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
-//                    @jobs_strongify(self)
-//                    NSObject.feedbackGenerator(nil);//震动反馈
-//                    self->_tableView.endRefreshing(YES);
-//                    return nil;
-//                }]);
-//                tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-//            }
-            
-//            {/// 设置tabAnimated相关属性
-//                // 可以不进行手动初始化，将使用默认属性
-//                tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-//                                                                      cellHeight:[JobsBaseTableViewCell cellHeightWithModel:nil]];
-//                tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
-//                [tableView tab_startAnimation];   // 开启动画
-//            }
-            
-//            {
-//              [tableView xzm_addNormalHeaderWithTarget:self
-//                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-//                                                                                     id _Nullable arg) {
-//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
-//                  @jobs_strongify(self)
-//                  /// 在需要结束刷新的时候调用（只能调用一次）
-//                  /// _tableView.endRefreshing();
-//                  return nil;
-//              }, MethodName(self), self)];
-//
-//              [tableView xzm_addNormalFooterWithTarget:self
-//                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-//                                                                                     id _Nullable arg) {
-//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
-//                  @jobs_strongify(self)
-//                  /// 在需要结束刷新的时候调用（只能调用一次）
-//                  /// _tableView.endRefreshing();
-//                  return nil;
-//              }, MethodName(self), self)];
-//              [tableView.xzm_header beginRefreshing];
-//          }
-        })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+        }))
+        .addOn(self)
+        .byAdd(^(MASConstraintMaker *make) {
             @jobs_strongify(self)
             make.edges.equalTo(self).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        }).on().dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
+        });
     }return _tableView;
 }
 

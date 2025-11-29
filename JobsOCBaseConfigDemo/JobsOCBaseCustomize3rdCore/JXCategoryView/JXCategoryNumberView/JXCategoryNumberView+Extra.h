@@ -72,7 +72,7 @@ NS_ASSUME_NONNULL_END
                  .byListContainer(self.listContainerView)
                  .reloadDatasWithoutListContainer()
                  .byDelegate(self)
-                 .byBgCor(HEXCOLOR(0xFCFBFB));
+                 .byBgColor(HEXCOLOR(0xFCFBFB));
          })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
              @jobs_strongify(self)
              make.top.equalTo(self.gk_navigationBar.mas_bottom);

@@ -49,7 +49,7 @@ NS_INLINE __kindof BaseTextView *_Nonnull jobsMakeBaseTextView(jobsByBaseTextVie
                      config.paragraphStyle = self.defaultParagraphStyle;
                      config.urlStr = @"www.google.com";
                  }));
-             }))).byBgCor(JobsClearColor);
+             }))).byBgColor(JobsClearColor);
              
              textView.textContainer.lineFragmentPadding = 0;
              textView.layoutManager.allowsNonContiguousLayout = YES;

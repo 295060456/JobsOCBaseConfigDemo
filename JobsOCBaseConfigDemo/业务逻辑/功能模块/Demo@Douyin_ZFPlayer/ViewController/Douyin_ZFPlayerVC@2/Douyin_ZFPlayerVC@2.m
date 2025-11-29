@@ -63,7 +63,7 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*dataMutArr;/// 我的数据源
     [super viewDidLoad];
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
     self.bitsMonitorSuspendLab.byVisible(YES);
 }
 

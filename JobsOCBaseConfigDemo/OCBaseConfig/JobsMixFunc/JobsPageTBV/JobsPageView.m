@@ -34,7 +34,7 @@ Prop_strong()NSArray <UIViewModel *>*dataArr;
     return ^(NSArray <UIViewModel *>*_Nullable model) {
         @jobs_strongify(self)
         self.dataArr = model;
-        self.tableView.reloadDatas();
+        self.tableView.byShow(self);
     //    self.backgroundImageView.image = @"抖动钱包抖币用途".img;
     //    self.imageView_1.alpha = 1;
     //    self.imageView_2.alpha = 1;
@@ -84,20 +84,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.backgroundColor = JobsClearColor;
-            tableView.pagingEnabled = YES;
-    //        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            tableView.scrollEnabled = NO;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.showsHorizontalScrollIndicator = NO;
-            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
-            }];
+            tableView.bySeparatorColor(HEXCOLOR(0xEEEEEE))
+            .byPagingEnabled(YES)
+            .addOn(self)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.edges.equalTo(self);
+                });
         });
     }return _tableView;
 }

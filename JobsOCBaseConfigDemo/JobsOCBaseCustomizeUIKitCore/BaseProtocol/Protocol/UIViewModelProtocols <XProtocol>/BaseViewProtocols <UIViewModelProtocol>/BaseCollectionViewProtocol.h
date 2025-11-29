@@ -23,7 +23,8 @@ Prop_strong()__kindof NSMutableSet <__kindof NSString *>*registeredIdentifiers;/
 -(JobsRetCollectionViewCellByIndexPathBlock _Nonnull)cellBy;
 -(JobsReturnCollectionViewByMJRefreshHeaderBlock _Nonnull)byMJRefreshHeader;
 -(JobsReturnCollectionViewByMJRefreshFooterBlock _Nonnull)byMJRefreshFooter;
--(JobsRetScrollViewByIDBlock _Nonnull)dataLink;
+-(JobsRetScrollViewByIDBlock _Nonnull)dataLink; // 用于显示 UICollectionView
+-(JobsRetScrollViewByIDBlock _Nonnull)byShow;
 -(JobsRetCollectionViewByDelegateBlock _Nonnull)byDelegate;
 -(JobsRetCollectionViewByDataSourceBlock _Nonnull)byDataSource;
 -(JobsRetCollectionViewByDragDelegateBlock _Nonnull)byDragDelegate;

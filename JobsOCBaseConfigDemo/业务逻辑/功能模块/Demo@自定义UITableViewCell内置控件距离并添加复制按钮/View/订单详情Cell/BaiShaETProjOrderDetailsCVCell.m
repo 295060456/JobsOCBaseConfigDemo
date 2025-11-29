@@ -44,7 +44,7 @@ Prop_strong()UIButton *jobsCopyBtn;
     return ^__kindof UICollectionViewCell *_Nullable(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.viewModel = model ? : UIViewModel.new;
-        self.tableView.reloadDatas();
+        self.tableView.byShow(self);
         return self;
     };
 }
@@ -114,7 +114,7 @@ heightForFooterInSectionByModel:(NSInteger)section{
 - (nullable __kindof UIView *)tableView:(UITableView *)tableView
                  viewForFooterInSection:(NSInteger)section{
     if(self.viewModel.usesTableViewFooterView){
-        @jobs_weakify(self)
+//        @jobs_weakify(self)
         /// 什么不配置就是悬浮
         /// JobsHeaderFooterViewStyleNone 还是悬浮
         /// JobsHeaderViewStyle 不是悬浮
@@ -125,11 +125,11 @@ heightForFooterInSectionByModel:(NSInteger)section{
             .JobsBlock1(^(id _Nullable data) {
                 
             });
-        tbvFooterView.byBgCor(HEXCOLOR(0xEAEBED));
-        tbvFooterView.backgroundView.byBgCor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.byBgColor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.backgroundView.byBgColor(HEXCOLOR(0xEAEBED));
         /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
         /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
-        tbvFooterView.contentView.byBgCor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.contentView.byBgColor(HEXCOLOR(0xEAEBED));
         return tbvFooterView;
     }return nil;
 }
@@ -152,21 +152,27 @@ heightForFooterInSectionByModel:(NSInteger)section{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.scrollEnabled = NO;
-            tableView.backgroundColor = JobsWhiteColor;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-            [self.contentView.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(self.contentView).insets(UIEdgeInsetsMake(JobsWidth(20), 0, JobsWidth(20), 0));
-            }];
+            tableView
+                .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                    /// TODO
+                })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                .byTableFooterView(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
+                    label.byText(@"- 没有更多的内容了 -".tr)
+                        .byFont(UIFontWeightRegularSize(12))
+                        .byTextAlignment(NSTextAlignmentCenter)
+                        .byTextCor(HEXCOLOR(0xB0B0B0))
+                        .makeLabelByShowingType(UILabelShowingType_03);
+                })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                .bySeparatorColor(HEXCOLOR(0xEEEEEE))
+                .bySeparatorStyle(UITableViewCellSeparatorStyleNone)
+                .byScrollEnabled(NO)
+                .byShowsVerticalScrollIndicator(NO)
+                .byBgColor(JobsWhiteColor)
+                .addOn(self.contentView)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.edges.mas_equalTo(self.contentView).insets(UIEdgeInsetsMake(JobsWidth(20), 0, JobsWidth(20), 0));
+                });
         });
     }return _tableView;
 }

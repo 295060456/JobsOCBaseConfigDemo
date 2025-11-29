@@ -9,5 +9,6 @@
 #define JobsProgressView_h
 
 #import "UIProgressView+Extra.h"
+#import "UIProgressView+DSL.h"
 
 #endif /* JobsProgressView_h */

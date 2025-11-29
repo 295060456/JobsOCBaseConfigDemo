@@ -13,6 +13,14 @@
     [self registerClass:UITableViewCell.class forCellReuseIdentifier:UITableViewCell.class.description.add(@"")];
     /// 以此类推
 }
+
+-(JobsRetTableViewByStringBlock _Nonnull)byRegisterTableViewClass{
+    return ^__kindof UITableView *_Nullable(NSString *_Nullable ID){
+        if(!ID) ID = @"";
+        [self registerClass:UITableViewCell.class forCellReuseIdentifier:UITableViewCell.class.description.add(ID)];
+        return self;
+    };
+}
 /// 不加盐注册
 -(jobsByClsBlock _Nonnull)registerTableViewClassBy{
     @jobs_weakify(self)

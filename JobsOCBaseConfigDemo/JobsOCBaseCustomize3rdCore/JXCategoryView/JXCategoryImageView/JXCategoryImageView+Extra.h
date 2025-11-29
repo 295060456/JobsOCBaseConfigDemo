@@ -91,7 +91,7 @@ NS_ASSUME_NONNULL_END
                  }));
              }))/// 二选一
              .byDelegate(self)
-             .byBgCor(JobsClearColor);
+             .byBgColor(JobsClearColor);
          }))
          .setMasonryBy(^(MASConstraintMaker *_Nonnull make){
              @jobs_strongify(self)

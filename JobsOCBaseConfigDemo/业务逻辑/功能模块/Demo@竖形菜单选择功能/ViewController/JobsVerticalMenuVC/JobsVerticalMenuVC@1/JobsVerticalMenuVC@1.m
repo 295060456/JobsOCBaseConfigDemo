@@ -80,7 +80,7 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
     self.makeNavByAlpha(1);
     
     self.searchView.alpha = 1;
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
     self.editBtn.alpha = 1;
     self.refreshLeftView();
     
@@ -220,14 +220,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
-            tableView.frame = CGRectMake(0,
-                                         JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
-                                         TableViewWidth,
-                                         JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        })).dataLink(self); // dataLink(self)不能写在Block里面，会出问题
+            tableView
+                .bySeparatorStyle(UITableViewCellSeparatorStyleNone)
+                .byShowsVerticalScrollIndicator(NO)
+                .byBgColor(HEXCOLOR(0xFCFBFB))
+                .byFrame(CGRectMake(0,JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
+                                    TableViewWidth,JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight));
+        }));
     }return _tableView;
 }
 

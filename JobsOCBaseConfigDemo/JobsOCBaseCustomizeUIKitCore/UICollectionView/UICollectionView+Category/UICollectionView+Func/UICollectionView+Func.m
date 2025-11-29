@@ -54,6 +54,16 @@
         return self;
     };
 }
+/// 用于显示 UICollectionView
+-(JobsRetScrollViewByIDBlock _Nonnull)byShow{
+    @jobs_weakify(self)
+    return ^__kindof UICollectionView *_Nullable(id _Nonnull target) {
+        @jobs_strongify(self)
+        self.dataLink(target);
+        self.reloadDatas();
+        return self;
+    };
+}
 
 -(JobsRetCollectionViewByDelegateBlock _Nonnull)byDelegate{
     @jobs_weakify(self)

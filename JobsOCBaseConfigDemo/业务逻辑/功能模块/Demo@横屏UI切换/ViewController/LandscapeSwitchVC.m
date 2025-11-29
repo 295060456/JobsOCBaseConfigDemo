@@ -48,7 +48,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
     @jobs_weakify(self)
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
-    self.collectionView.reloadDatas();
+    self.collectionView.byShow(self);
     self.jobsBackBlock = ^id _Nullable(id _Nullable data) {
         @jobs_strongify(self)
         JobsLog(@"退出页面的逻辑");

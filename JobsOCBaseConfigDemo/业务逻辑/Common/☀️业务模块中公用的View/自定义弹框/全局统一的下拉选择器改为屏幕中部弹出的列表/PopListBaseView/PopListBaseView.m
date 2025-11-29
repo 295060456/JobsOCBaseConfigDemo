@@ -22,7 +22,7 @@ Prop_strong()NSMutableArray <__kindof NSString *>*datas;
 #pragma mark —— SysMethod
 -(instancetype)init{
     if (self = [super init]) {
-        self.byBgCor(JobsClearColor.colorWithAlphaComponentBy(0));
+        self.byBgColor(JobsClearColor.colorWithAlphaComponentBy(0));
     }return self;
 }
 
@@ -39,7 +39,7 @@ Prop_strong()NSMutableArray <__kindof NSString *>*datas;
 #pragma mark —— BaseViewProtocol
 - (instancetype)initWithSize:(CGSize)thisViewSize{
     if (self = [super init]) {
-        self.byBgCor(JobsClearColor.colorWithAlphaComponentBy(0));
+        self.byBgColor(JobsClearColor.colorWithAlphaComponentBy(0));
     }return self;
 }
 /// 具体由子类进行复写【数据定UI】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -47,9 +47,9 @@ Prop_strong()NSMutableArray <__kindof NSString *>*datas;
     @jobs_weakify(self)
     return ^(NSMutableArray <__kindof UIViewModel *>* model) {
         @jobs_strongify(self)
-        self.byBgCor(JobsClearColor.colorWithAlphaComponentBy(0));
+        self.byBgColor(JobsClearColor.colorWithAlphaComponentBy(0));
         self.dataMutArr = model;
-        self.tableView.reloadDatas();
+        self.tableView.byShow(self);
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -76,13 +76,13 @@ Prop_strong()NSMutableArray <__kindof NSString *>*datas;
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIViewModel *viewModel = self.dataMutArr[indexPath.row];
     for (JobsTextLabStyleTBVCell *visibleCell in tableView.visibleCells) {
-        visibleCell.byBgCor(viewModel.bgCor);
-        visibleCell.contentView.byBgCor(viewModel.bgCor);
+        visibleCell.byBgColor(viewModel.bgCor);
+        visibleCell.contentView.byBgColor(viewModel.bgCor);
         visibleCell.label.byTextCor(viewModel.textCor);
     }
     JobsTextLabStyleTBVCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.byBgCor(viewModel.bgSelectedCor);
-    cell.contentView.byBgCor(viewModel.bgSelectedCor);
+    cell.byBgColor(viewModel.bgSelectedCor);
+    cell.contentView.byBgColor(viewModel.bgSelectedCor);
     cell.label.byTextCor(viewModel.selectedTextCor);
     if (self.objBlock) self.objBlock(cell);/// 数据在cell.viewModel
     [self tf_hide:nil];
@@ -108,9 +108,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         .byAccessoryType(UITableViewCellAccessoryNone)
         .byIndexPath(indexPath)
         .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
-            .JobsBlock1(^(id _Nullable data) {
+        .JobsBlock1(^(id _Nullable data) {
 
-            });
+        });
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
@@ -138,7 +138,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                 .byShowsVerticalScrollIndicator(NO)
                 .byShowsHorizontalScrollIndicator(NO)
                 .byScrollEnabled(YES)
-                .byBgCor(JobsClearColor);
+                .byBgColor(JobsClearColor);
             if(@available(iOS 11.0, *)) {
                 tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             }

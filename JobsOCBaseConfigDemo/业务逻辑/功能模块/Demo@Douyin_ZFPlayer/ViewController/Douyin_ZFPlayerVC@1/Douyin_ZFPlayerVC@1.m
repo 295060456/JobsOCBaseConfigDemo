@@ -54,7 +54,7 @@ Prop_strong()NSMutableArray <VideoModel_Core *>*__block dataMutArr;
     self.view.backgroundColor = JobsYellowColor;
     self.makeNavByAlpha(1);
     
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
     
 //    [self monitorScrollView];
 //    [self requestData:NO];
@@ -257,84 +257,57 @@ forRowAtIndexPath:(NSIndexPath*)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.backgroundColor = JobsWhiteColor;
-            tableView.pagingEnabled = YES;
-            tableView.dataLink(self);
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            
-            {
-                // 用值
-                tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = @"下拉刷新数据".tr;
-                    data.pullingTitle = @"下拉刷新数据".tr;
-                    data.refreshingTitle = @"正在刷新数据".tr;
-                    data.willRefreshTitle = @"刷新数据中".tr;
-                    data.noMoreDataTitle = @"下拉刷新数据".tr;
-                    data.loadBlock = ^id _Nullable(id  _Nullable data) {
-                        @jobs_strongify(self)
-                        JobsLog(@"下拉刷新");
-                        self.currentPage = @(1);
-                        @"data".readLocalFileWithName;/// 获取本地的数据
-                        self->_tableView.endRefreshing(self.dataMutArr.count);
-                        return nil;
-                    };
-                }));
-                tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = @"".tr;
-                    data.pullingTitle = @"".tr;
-                    data.refreshingTitle = @"".tr;
-                    data.willRefreshTitle = @"".tr;
-                    data.noMoreDataTitle = @"".tr;
-                    data.loadBlock = ^id _Nullable(id _Nullable data1) {
-                        @jobs_strongify(self)
-                        JobsLog(@"上拉加载更多");
-                        self.currentPage = @(self.currentPage.integerValue + 1);
-                    //    JobsLog(@"%@",self.tableView.mj_footer);
-                    //    [self.tableView.mj_footer endRefreshing];
-                    //    [self.tableView reloadData];
-                    //    //特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
-                    //    self.tableView.pagingEnabled = NO;
-                    //    [self performSelector:@selector(delayMethods) withObject:nil afterDelay:2];
-                        
-                        @"data".readLocalFileWithName;/// 获取本地的数据
-                        self->_tableView.endRefreshing(self.dataMutArr.count);
-                        return nil;
-                    };
-                }));
-                tableView.mj_footer.backgroundColor = JobsRedColor;
-                self.view.mjRefreshTargetView = tableView;
-            }
-            
-            {
-                tableView.buttonModelEmptyData = jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+
+            tableView
+                .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                    @jobs_strongify(self)
+                    JobsLog(@"下拉刷新");
+                    self.currentPage = @(1);
+                    // @"data".readLocalFileWithName;/// 获取本地的数据
+                    self->_tableView.endRefreshing(self.dataMutArr.count);
+                }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
+                .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    @jobs_strongify(self)
+                    JobsLog(@"上拉加载更多");
+                    self.currentPage = @(self.currentPage.integerValue + 1);
+                //    JobsLog(@"%@",self.tableView.mj_footer);
+                //    [self.tableView.mj_footer endRefreshing];
+                //    [self.tableView reloadData];
+                //    //特别说明：pagingEnabled = YES 在此会影响Cell的偏移量，原作者希望我们在这里临时关闭一下，刷新完成以后再打开
+                //    self.tableView.pagingEnabled = NO;
+                //    [self performSelector:@selector(delayMethods) withObject:nil afterDelay:2];
+                    // @"data".readLocalFileWithName;/// 获取本地的数据
+                    self->_tableView.endRefreshing(self.dataMutArr.count);
+                }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+                .bySeparatorStyle(UITableViewCellSeparatorStyleNone)
+                .byPagingEnabled(YES)
+                .byShowsVerticalScrollIndicator(NO)
+                .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
                     data.title = @"暂无数据".tr;
                     data.subTitle = @"骚等片刻".tr;
                     data.titleCor = JobsWhiteColor;
                     data.titleFont = bayonRegular(JobsWidth(30));
                     data.normalImage = @"暂无数据".img;
                     data.baseBackgroundColor = JobsClearColor.colorWithAlphaComponentBy(0);
+                }))
+                .byBgColor(JobsWhiteColor)
+                .addOn(self.view)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.left.right.equalTo(self.view);
+                    if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
+                        make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                    }else{
+                        make.top.equalTo(self.view.mas_top);
+                    }
+                    make.bottom.equalTo(self.view.mas_bottom).offset(AppDelegate.tabBarVC.tabBar.isHidden ? 0 : -JobsTabBarHeightByBottomSafeArea(AppDelegate.tabBarVC));
                 });
-            }
-            
+            self.view.mjRefreshTargetView = tableView;
             if(@available(iOS 11.0, *)) {
                 tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             }else{
                 SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
             }
-
-            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.equalTo(self.view);
-                if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
-                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
-                }else{
-                    make.top.equalTo(self.view.mas_top);
-                }
-                make.bottom.equalTo(self.view.mas_bottom).offset(AppDelegate.tabBarVC.tabBar.isHidden ? 0 : -JobsTabBarHeightByBottomSafeArea(AppDelegate.tabBarVC));
-            }];
         });
     }return _tableView;
 }

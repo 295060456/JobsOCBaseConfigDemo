@@ -59,8 +59,8 @@ Prop_strong()JobsIMChatInfoModel *chatInfoModel;
         self.makeNavByAlpha(1);
     }
 
-    self.inputview.alpha = 1;
-    self.tableView.reloadDatas();
+    self.inputview.byVisible(YES);
+    self.tableView.byShow(self);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -367,12 +367,14 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 }];
             }else{}
         }];
-        [self.view.addSubview(_inputview) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(JobsIMInputviewHeight());
-            make.left.right.equalTo(self.view);
-            JobsLog(@"%f",JobsBottomSafeAreaHeight());
-            make.bottom.equalTo(self.view).offset(-JobsBottomSafeAreaHeight());
-        }];
+        _inputview.addOn(self.view)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                make.height.mas_equalTo(JobsIMInputviewHeight());
+                make.left.right.equalTo(self.view);
+                JobsLog(@"%f",JobsBottomSafeAreaHeight());
+                make.bottom.equalTo(self.view).offset(-JobsBottomSafeAreaHeight());
+            });
         _inputview.jobsRichViewByModel(nil);
     }return _inputview;
 }
@@ -383,37 +385,20 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.backgroundColor = self.bgColour;
-            tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.dataLink(self);
-            [self.view insertSubview:tableView belowSubview:self.inputview];
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
-                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
-                }else{
-                    make.top.equalTo(self.view.mas_top);
-                }
-                make.left.right.equalTo(self.view);
-                make.bottom.equalTo(self.inputview.mas_top);
-            }];self.view.refresh();
-            tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            
-            {
-                tableView.mj_header = self.view.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = @"下拉刷新数据".tr;
-                    data.pullingTitle = @"下拉刷新数据".tr;
-                    data.refreshingTitle = @"正在刷新数据".tr;
-                    data.willRefreshTitle = @"刷新数据中".tr;
-                    data.noMoreDataTitle = @"下拉刷新数据".tr;
-                    data.loadBlock = ^id _Nullable(id _Nullable data) {
+            tableView
+                .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
+                    model.stateIdleTitle = @"下拉刷新数据".tr;
+                    model.pullingTitle = @"下拉刷新数据".tr;
+                    model.refreshingTitle = @"正在刷新数据".tr;
+                    model.willRefreshTitle = @"刷新数据中".tr;
+                    model.noMoreDataTitle = @"下拉刷新数据".tr;
+                    model.loadBlock = ^id _Nullable(id _Nullable data) {
                         @jobs_strongify(self)
                         self.tableView.endRefreshing(self.chatInfoModelMutArr.count);
                         return nil;
                     };
-                }));
-                tableView.mj_footer = self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                })))
+                .byMJRefreshFooter(self.view.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                     data.stateIdleTitle = @"".tr;
                     data.pullingTitle = @"".tr;
                     data.refreshingTitle = @"".tr;
@@ -430,11 +415,28 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                         self->_tableView.endRefreshingWithNoMoreData(self.chatInfoModelMutArr.count);
                         return nil;
                     };
-                }));
-                tableView.mj_footer.backgroundColor = JobsRedColor;
-                tableView.mj_footer.hidden = NO;
-                self.view.mjRefreshTargetView = tableView;
-            }
+                })))
+                .byContentInsetAdjustmentBehavior(UIScrollViewContentInsetAdjustmentNever)
+                .bySeparatorStyle(UITableViewCellSeparatorStyleNone)
+                .byShowsVerticalScrollIndicator(NO)
+                .byPagingEnabled(YES) // 这个属性为YES会使得Tableview一格一格的翻动
+                .byBgColor(self.bgColour);
+
+            [self.view insertSubview:tableView belowSubview:self.inputview];
+            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+                if (self.gk_navBarAlpha && !self.gk_navigationBar.hidden) {//显示
+                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                }else{
+                    make.top.equalTo(self.view.mas_top);
+                }
+                make.left.right.equalTo(self.view);
+                make.bottom.equalTo(self.inputview.mas_top);
+            }];
+            self.view.refresh();
+
+            tableView.mj_footer.backgroundColor = JobsRedColor;
+            tableView.mj_footer.hidden = NO;
+            self.view.mjRefreshTargetView = tableView;
         });
     }return _tableView;
 }
@@ -450,11 +452,11 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
                 toast(@"正在研发中...敬请期待".tr);
-            }).onLongPressGestureBy(^(id data){
+            })
+            .onLongPressGestureBy(^(id data){
                 JobsLog(@"");
-            });
-        _shareBtn.width = JobsWidth(23);
-        _shareBtn.height = JobsWidth(23);
+            })
+            .bySize(CGSizeMake(JobsWidth(23), JobsWidth(23)));
     }return _shareBtn;
 }
 

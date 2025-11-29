@@ -30,7 +30,7 @@ typedef id _Nullable(^JobsReturnIDByObjWithBaseViewProtocolBlock)(id<BaseViewPro
 @optional
 Prop_strong(nullable)__kindof UIActivityIndicatorView *activityIndicatorView;
 Prop_strong(nullable)__kindof UIStackView *stackView;
-Prop_strong(nullable)__kindof UIView *viewer; /// 和系统字段进行区分
+Prop_strong(nullable)__kindof UIView *viewer; // 和系统字段进行区分
 Prop_strong(nullable)__kindof UICollectionView *collectionView;
 Prop_strong(nullable)__kindof UITableView *tableView;
 Prop_strong(nullable)__kindof UIScrollView *scrollView;
@@ -47,7 +47,7 @@ Prop_strong(nullable)__kindof JobsTextView *jobsTextView;
 Prop_strong(nullable)__kindof JobsMagicTextField *magicTextField;
 Prop_strong(nullable)__kindof ZYTextField *zyTextField;
 Prop_strong(nullable)__kindof HQTextField *hqTextField;
-Prop_strong(nullable)__kindof CJTextField *cjTextField; /// iOS监听键盘删除事件
+Prop_strong(nullable)__kindof CJTextField *cjTextField; // iOS监听键盘删除事件
 Prop_strong(nullable)__kindof JobsTextField *jobsTextField;
 /// 是否允许托拽手势
 Prop_assign()BOOL isAllowDrag;
@@ -134,15 +134,16 @@ Prop_copy(nullable)jobsByBtnBlock closeBtnClickAction;
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel;
 -(JobsRetViewByIDBlock _Nonnull)JobsRichViewByModel;
 -(jobsByViewModelBlock _Nonnull)jobsRichViewByViewModel;
--(JobsRetScrollViewByIDBlock _Nonnull)dataLink; /// 用于 UIScrollView/UITableView/UICollectionView 的数据源绑定
+-(JobsRetScrollViewByIDBlock _Nonnull)dataLink; // 用于 UIScrollView/UITableView/UICollectionView 的数据源绑定
+-(JobsRetScrollViewByIDBlock _Nonnull)byShow; // 用于显示 UICollectionView / UITableView
 -(jobsByIDBlock _Nonnull)update;
--(JobsReturnNavBarByVoidBtnBlocks _Nullable)JobsNavBarBackBtnClickBlock; /// 返回按钮的回调
--(JobsReturnNavBarByVoidBtnBlocks _Nullable)JobsNavBarCloseBtnClickBlock; /// 关闭按钮的回调
+-(JobsReturnNavBarByVoidBtnBlocks _Nullable)JobsNavBarBackBtnClickBlock; // 返回按钮的回调
+-(JobsReturnNavBarByVoidBtnBlocks _Nullable)JobsNavBarCloseBtnClickBlock; // 关闭按钮的回调
 #pragma mark —— 关于 UITableViewHeaderFooterView
 +(JobsRetTableViewHeaderFooterViewByTableViewAndSaltBlock _Nonnull)initByReuseIdentifier;
 -(JobsRetTableViewHeaderFooterViewByNSIntegerBlock _Nonnull)bySection;
--(JobsRetTableViewHeaderFooterViewByNSIntegerBlock _Nonnull)byStyle; /// 标记是TableView.HeaderView 还是 TableView.FooterView
--(JobsRetTableViewHeaderFooterViewByTableViewBlock _Nonnull)byTableView; /// @implementation UITableViewHeaderFooterView (Attribute)
+-(JobsRetTableViewHeaderFooterViewByNSIntegerBlock _Nonnull)byStyle; // 标记是TableView.HeaderView 还是 TableView.FooterView
+-(JobsRetTableViewHeaderFooterViewByTableViewBlock _Nonnull)byTableView; // @implementation UITableViewHeaderFooterView (Attribute)
 #pragma mark —— 关于 TextField
 /// 清除数据
 -(JobsRetViewByVoidBlock _Nonnull)cleanTextFieldValue;

@@ -62,8 +62,8 @@ Prop_assign()NSUInteger thisIndex;
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        self.tableView.reloadDatas();
-        self.collectionView.reloadDatas();
+        self.tableView.byShow(self);
+        self.collectionView.byShow(self);
         self.refreshLeftView();
         [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionMiddle animated:YES];
         self.actionBy(0);
@@ -83,7 +83,7 @@ Prop_assign()NSUInteger thisIndex;
         @jobs_strongify(self)
         for (int i = 0; i < self.thisIndex + 1; i++) {
             arr.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-                model.backgroundImage = self.cellTitleMutArr[self.thisIndex].add(已点击.img);
+                model.backgroundImage = self.cellTitleMutArr[self.thisIndex].add(已点击).img;
                 model.titleCor = HEXCOLOR(0xC4C4C4);
                 model.titleFont = UIFontWeightRegularSize(12);
                 model.baseBackgroundColor = JobsRedColor;
@@ -98,7 +98,7 @@ Prop_assign()NSUInteger thisIndex;
     return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable data){
 //        @jobs_strongify(self)
         return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.backgroundImage = data.add(未点击.img);
+            model.backgroundImage = data.add(未点击).img;
             model.title = @"";
             model.subTitle = @"";
             model.baseBackgroundColor = JobsClearColor;
@@ -116,9 +116,9 @@ Prop_assign()NSUInteger thisIndex;
         if (self.leftDataArray.count) self.leftViewCurrentSelectModel = self.leftDataArray.objectAt(index);
         self.collectionView.setContentOffsetByYES(CGPointMake(0, JobsWidth(-5)));
         for (int i = 0; i < self.leftCellDataMutArr.count; i++) {
-            self.leftCellDataMutArr[i].backgroundImage = self.cellTitleMutArr[i].add(未点击.img);
+            self.leftCellDataMutArr[i].backgroundImage = self.cellTitleMutArr[i].add(未点击).img;
         }
-        self.leftCellDataMutArr[index].backgroundImage = self.cellTitleMutArr[index].add(已点击.img);
+        self.leftCellDataMutArr[index].backgroundImage = self.cellTitleMutArr[index].add(已点击).img;
         self.tableView.reloadDatas();
     };
 }
@@ -147,7 +147,7 @@ Prop_assign()NSUInteger thisIndex;
 /// 预算高度
 -(JobsRetCGFloatByArrBlock _Nonnull)getCellHeight{
     @jobs_weakify(self)
-    return ^(NSMutableArray *_Nullable data){
+    return ^CGFloat(NSMutableArray *_Nullable data){
         @jobs_strongify(self)
         /// 获取cell 的高度
         return self.tempCell.getCollectionHeight(data);
@@ -335,7 +335,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(self.collectionView.width,
-                      self.getCellHeight([self.rightDataArray objectAtIndex:indexPath.section].childrenList));
+                      self.getCellHeight((NSMutableArray *)[self.rightDataArray objectAtIndex:indexPath.section].childrenList));
 }
 #pragma mark —— lazyLoad
 /// BaseViewProtocol
@@ -345,15 +345,13 @@ referenceSizeForFooterInSection:(NSInteger)section{
         @jobs_weakify(self)
         _tableView = self.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.bounces = NO;
-            tableView.backgroundColor = JobsClearColor;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.frame = CGRectMake(0,
-                                          0,
-                                          TableViewWidth,
-                                          JobsWidth(300));
+            tableView
+                .bySeparatorStyle(UITableViewCellSeparatorStyleNone)
+                .byBounces(NO)
+                .byShowsVerticalScrollIndicator(NO)
+                .byBgColor(JobsClearColor)
+                .byFrame(CGRectMake(0,0,
+                                    TableViewWidth,JobsWidth(300)));
         }));
     }return _tableView;
 }
@@ -361,19 +359,17 @@ referenceSizeForFooterInSection:(NSInteger)section{
 @synthesize collectionView = _collectionView;
 -(UICollectionView *)collectionView{
     if (!_collectionView){
-        _collectionView = UICollectionView.initByLayout(jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {}));
-        _collectionView.dataLink(self);
-        _collectionView.frame = CGRectMake(self.tableView.right,
-                                           self.tableView.top,
-                                           JobsMainScreen_WIDTH() - self.tableView.width,
-                                           JobsWidth(300));
-        _collectionView.backgroundColor = ThreeClassCellBgCor;
-        _collectionView.alwaysBounceVertical = YES;
-        _collectionView.registerCollectionViewClass();
-//        collectionView.registerCollectionViewCellClass(ThreeClassCell.class);
-//        collectionView.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class);
-//        collectionView.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
-        self.addSubview(_collectionView);
+        _collectionView = UICollectionView
+            .initByLayout(jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {}))
+            .registerCollectionViewClass()
+//            .registerCollectionViewCellClass(ThreeClassCell.class,@"")
+//            .registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class,@"")
+//            .registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class,@"")
+            .byAlwaysBounceVertical(YES)
+            .byFrame(CGRectMake(self.tableView.right,self.tableView.top,
+                                JobsMainScreen_WIDTH() - self.tableView.width,JobsWidth(300)))
+            .byBgColor(ThreeClassCellBgCor)
+            .addOn(self);
     }return _collectionView;
 }
 
@@ -383,10 +379,8 @@ referenceSizeForFooterInSection:(NSInteger)section{
             cell.cellCls = FMGameCVCell.class;
             cell.data = @(SourceType_Home);
             cell.minimumInteritemSpacing = JobsWidth(3);
-            cell.frame = CGRectMake(0,
-                                    0,
-                                    ThreeClassCell.cellSizeByModel(nil).width,
-                                    ThreeClassCell.cellSizeByModel(nil).height);
+            cell.frame = CGRectMake(0,0,
+                                    ThreeClassCell.cellSizeByModel(nil).width,ThreeClassCell.cellSizeByModel(nil).height);
         });
     }return _tempCell;
 }

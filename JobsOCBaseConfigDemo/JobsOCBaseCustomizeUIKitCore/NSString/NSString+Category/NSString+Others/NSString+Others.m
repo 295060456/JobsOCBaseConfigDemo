@@ -97,6 +97,10 @@
     return UIColor.jobsCor(self);
 }
 
+-(UIColor *)namedCor{
+    return [UIColor colorNamed:self];
+}
+
 -(jobsByVoidBlock _Nonnull)toast{
     @jobs_weakify(self)
     return ^(){

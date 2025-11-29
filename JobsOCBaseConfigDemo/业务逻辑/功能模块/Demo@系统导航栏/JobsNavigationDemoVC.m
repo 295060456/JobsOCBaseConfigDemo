@@ -113,7 +113,7 @@
     self.navigationItem.titleView = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
         label
             .byTextAlignment(NSTextAlignmentCenter)
-            .byBgCor(UIColor.clearColor)
+            .byBgColor(UIColor.clearColor)
         .byAttributedString(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray <JobsRichTextConfig *>*_Nullable data) {
             data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                 data1.font = UIFontWeightRegularSize(JobsWidth(12));

@@ -51,7 +51,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*sectionFooterDataSource;/// sectionF
     [super viewDidLoad];
     self.makeNavByAlpha(1);
     self.view.backgroundColor = JobsOrangeColor;
-    self.collectionView.reloadDatas();
+    self.collectionView.byShow(self);
 }
 
 -(void)viewWillAppear:(BOOL)animated{

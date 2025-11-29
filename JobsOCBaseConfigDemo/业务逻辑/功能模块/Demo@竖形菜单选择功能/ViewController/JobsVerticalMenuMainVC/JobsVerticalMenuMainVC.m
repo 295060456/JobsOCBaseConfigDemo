@@ -48,7 +48,7 @@ Prop_strong()NSMutableArray <NSMutableArray <__kindof UIViewModel *>*>*dataMutAr
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
 //    [self.bgImageView removeFromSuperview];
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -165,11 +165,11 @@ viewForHeaderInSection:(NSInteger)section{
             .JobsBlock1(^(id _Nullable data) {
                 
             });
-        tbvFooterView.byBgCor(HEXCOLOR(0xEAEBED));
-        tbvFooterView.backgroundView.byBgCor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.byBgColor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.backgroundView.byBgColor(HEXCOLOR(0xEAEBED));
         /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
         /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
-        tbvFooterView.contentView.byBgCor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.contentView.byBgColor(HEXCOLOR(0xEAEBED));
         return tbvFooterView;
     }return nil;
 }
@@ -203,52 +203,35 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.backgroundColor = JobsBlueColor;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            tableView.separatorColor = HEXCOLOR(0xEEE2C8);
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.scrollEnabled = YES;
-            tableView.dataLink(self);
-            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-            [tableView registerTableViewClass];
+            tableView
+                .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                    @jobs_strongify(self)
+                    NSObject.feedbackGenerator(nil);/// 震动反馈
+                    self->_tableView.endRefreshing(YES);
+                }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
+                .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    @jobs_strongify(self)
+                    NSObject.feedbackGenerator(nil);/// 震动反馈
+                    self->_tableView.endRefreshing(YES);
+                }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+                .byRegisterTableViewClass(nil)
+                .bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                .bySeparatorColor(HEXCOLOR(0xEEE2C8))
+                .byShowsVerticalScrollIndicator(NO)
+                .byScrollEnabled(YES)
+                .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
+                .byBgColor(JobsBlueColor)
+                .addOn(self.view)
+                    .byAdd(^(MASConstraintMaker *make) {
+                        @jobs_strongify(self)
+                        make.left.right.bottom.equalTo(self.view);
+                        [self make:make topOffset:10];
+                    });
             if(@available(iOS 11.0, *)) {
                 tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             }else{
                 SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
             }
-            
-            {
-                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
-                    tableView.endRefreshing(YES);
-                    return nil;
-                }]);
-                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
-                    tableView.endRefreshing(YES);
-                    return nil;
-                }]);
-            }
-
-    //        {// 设置tabAnimated相关属性
-    //            tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-    //                                                                  cellHeight:JobsBaseTableViewCell.cellHeightByModel(nil)];
-    //            tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeBinAnimation;
-    //            tableView.tabAnimated.canLoadAgain = YES;
-    ////            _tableView.tabAnimated.animatedBackViewCornerRadius = JobsWidth(8);
-    ////            _tableView.tabAnimated.animatedBackgroundColor = JobsRedColor;
-    //            [tableView tab_startAnimation];   // 开启动画
-    //        }
-    
-            self.view.addSubview(tableView);
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.right.bottom.equalTo(self.view);
-                [self make:make topOffset:10];
-            }];
         });
     }return _tableView;
 }

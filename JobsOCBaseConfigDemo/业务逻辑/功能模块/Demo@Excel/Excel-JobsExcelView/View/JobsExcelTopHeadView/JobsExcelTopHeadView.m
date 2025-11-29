@@ -32,7 +32,7 @@ Prop_strong(nonnull)JobsExcelConfigureViewModel *excelConfigureData;
     return ^(JobsExcelConfigureViewModel *_Nullable model) {
         @jobs_strongify(self)
         self.excelConfigureData = model;
-        self.collectionView.reloadDatas();
+        self.collectionView.byShow(self);
     };
 }
 #pragma mark —— UICollectionView 代理和数据源

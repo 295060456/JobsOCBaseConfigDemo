@@ -1,5 +1,5 @@
 //
-//  UIScrollView+Extra.h
+//  UIScrollView+UIScrollViewProtocol.h
 //  Casino
 //
 //  Created by Jobs on 2021/12/22.
@@ -19,7 +19,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIScrollView (Extra)<UIScrollViewProtocol>
+@interface UIScrollView (UIScrollViewProtocol)<UIScrollViewProtocol>
 
 @end
 

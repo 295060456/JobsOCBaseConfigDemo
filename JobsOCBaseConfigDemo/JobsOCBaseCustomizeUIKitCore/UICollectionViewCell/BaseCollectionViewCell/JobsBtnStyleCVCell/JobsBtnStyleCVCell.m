@@ -262,7 +262,7 @@ AppToolsProtocol_synthesize
     if(self.buttonModel){
         _webView = self.makeWebViewByString(isValue(self.buttonModel.title) ? self.buttonModel.title : self.buttonModel.subTitle);
     }
-    _webView.byBgCor(JobsClearColor);
+    _webView.byBgColor(JobsClearColor);
     _webView.opaque = NO; // 设置不透明为 NO，确保背景透明
     self.contentView
         .addSubview(_webView)

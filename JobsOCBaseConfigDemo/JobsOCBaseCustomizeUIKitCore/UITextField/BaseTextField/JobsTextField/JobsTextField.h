@@ -112,7 +112,7 @@ NS_INLINE __kindof JobsTextField *_Nonnull makeJobsTextField(jobsByJobsTextField
                               }).onLongPressGestureBy(^(id data){
                                   JobsLog(@"");
                               }).bySize(CGSizeMake(JobsWidth(16), JobsWidth(16))))
-                 .byBgCor(@"#f7f7f7".cor)
+                 .byBgColor(@"#f7f7f7".cor)
                  .JobsRichViewByModel2(nil)
                  // 真实的textField，输入回调（每次输入的字符），如果要当前textField的字符，请取值textField.text
                  .JobsBlock1(^(id _Nullable data) {

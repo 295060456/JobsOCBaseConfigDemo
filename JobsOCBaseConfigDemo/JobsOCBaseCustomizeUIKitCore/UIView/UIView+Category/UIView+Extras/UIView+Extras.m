@@ -62,6 +62,25 @@
         }return (UIScrollView *)self;
     };
 }
+/// 用于显示 UICollectionView / UITableView
+-(JobsRetScrollViewByIDBlock _Nonnull)byShow{
+    @jobs_weakify(self)
+    return ^__kindof UIScrollView *_Nullable(id _Nonnull target) {
+        @jobs_strongify(self)
+        if(self.isKindOfClass(UICollectionView.class)){
+            UICollectionView *view = (UICollectionView *)self;
+            view.byDelegate(target);
+            view.byDataSource(target);
+            view.reloadDatas();
+        }
+        if(self.isKindOfClass(UITableView.class)){
+            UITableView *view = (UITableView *)self;
+            view.byDelegate(target);
+            view.byDataSource(target);
+            view.reloadDatas();
+        }return (UIScrollView *)self;
+    };
+}
 
 -(jobsByIDBlock _Nonnull)jobsRichViewByModel{
     return ^(id _Nullable data) {};
@@ -681,15 +700,6 @@ JobsKey(_cornerRadii)
             UILabel *label = (UILabel *)self;
             label.makeLabelByShowingType(labelShowingType);
         }return self;
-    };
-}
-
--(JobsRetViewByCorBlock _Nonnull)byBgCor{
-    @jobs_weakify(self)
-    return ^__kindof UIView *_Nullable(UIColor *_Nullable cor){
-        @jobs_strongify(self)
-        self.backgroundColor = cor;
-        return self;
     };
 }
 

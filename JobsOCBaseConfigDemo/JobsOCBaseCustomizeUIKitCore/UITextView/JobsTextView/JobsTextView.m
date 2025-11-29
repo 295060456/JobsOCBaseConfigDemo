@@ -100,7 +100,7 @@ static dispatch_once_t static_textViewOnceToken;
         @jobs_weakify(self)
         _szTextView = jobsMakeSZTextView(^(SZTextView * _Nonnull textView) {
             @jobs_strongify(self)
-            textView.byBgCor(JobsClearColor);
+            textView.byBgColor(JobsClearColor);
             textView.editable = YES;
             [self.addSubview(textView) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self).offset(JobsWidth(5));

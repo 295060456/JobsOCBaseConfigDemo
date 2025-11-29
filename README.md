@@ -8477,48 +8477,59 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    ```
    
    ```objective-c
+   /// self.tableView.dataLink(self);不要写在Block里面，会引起循环调用。用它进行唤起
    /// BaseViewProtocol
-   @synthesize tableView = _tableView;
+   @synthesize tableView = _tableView; 
    -(UITableView *)tableView{
        if (!_tableView) {
            /// 一般用 initWithStylePlain。initWithStyleGrouped会自己预留一块空间
            @jobs_weakify(self)
-           _tableView = jobsMakeTableViewByGrouped(^(__kindof UITableView * _Nullable tableView) {
+           _tableView = jobsMakeTableViewByInsetGrouped(^(__kindof UITableView * _Nullable tableView) {
                @jobs_strongify(self)
                tableView.bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
                    .bySeparatorColor(HEXCOLOR(0xEEE2C8))
                    .registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil)
                    .byContentInset(UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0))
                    .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
-                       /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-                   }))
-                   .byTableFooterView(jobsMakeView(^(__kindof UIView * _Nullable view) {
-                       /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-                   }))
+                       /// TODO
+                   })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                   .byTableFooterView(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
+                       label.byText(@"- 没有更多的内容了 -".tr)
+                           .byFont(UIFontWeightRegularSize(12))
+                           .byTextAlignment(NSTextAlignmentCenter)
+                           .byTextCor(HEXCOLOR(0xB0B0B0))
+                           .makeLabelByShowingType(UILabelShowingType_03);
+                   })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
                    .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
                        data.title = @"NO MESSAGES FOUND".tr;
                        data.titleCor = JobsWhiteColor;
                        data.titleFont = bayonRegular(JobsWidth(30));
                        data.normalImage = @"小狮子".img;
                    }))
-                   /// 普通的MJRefreshHeader（触发事件）（二选一）
+                   /// 普通的MJRefreshHeader（触发事件）@二选一
                    .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
                        @jobs_strongify(self)
-                       /// TODO
                        NSObject.feedbackGenerator(nil);/// 震动反馈
-                       self->_collectionView.endRefreshing(YES);
+                       self->_tableView.endRefreshing(YES);
                    }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
-                   /// MJRefreshHeader的拓展：下拉刷新Lottie动画（二选一）
-                   .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
-   
-                   })))
+   //                {/// 配置封装在内部
+   //                    tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+   //                        @jobs_strongify(self)
+   //                        NSObject.feedbackGenerator(nil);//震动反馈
+   //                        self->_tableView.endRefreshing(YES);
+   //                        return nil;
+   //                    }]);
+   //                    tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
+   //                }
+                   /// MJRefreshHeader的拓展：下拉刷新Lottie动画@二选一
+                   //.byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {})))
                    /// 普通的MJRefreshFooter（触发事件）
                    .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
                        @jobs_strongify(self)
-                       /// TODO
                        NSObject.feedbackGenerator(nil);/// 震动反馈
-                       self->_collectionView.endRefreshing(YES);
+                       self->_tableView.endRefreshing(YES);
                    }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+   
                    .byShowsVerticalScrollIndicator(NO)
                    .byShowsHorizontalScrollIndicator(NO)
                    .byScrollEnabled(YES)
@@ -8529,17 +8540,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
                }else{
                    SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
                }
-   
-   //            {
-   //                tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
-   //                    @jobs_strongify(self)
-   //                    self.feedbackGenerator(nil);//震动反馈
-   //                    self->_tableView.endRefreshing(YES);
-   //                    return nil;
-   //                }]);
-   //                tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-   //            }
-   
    //            {/// 设置tabAnimated相关属性
    //                // 可以不进行手动初始化，将使用默认属性
    //                tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
@@ -8571,12 +8571,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {//@@6
    //              [tableView.xzm_header beginRefreshing];
    //          }
            })
-           .addOn(self.bgImageView)
+           .addOn(self.view)
            .byAdd(^(MASConstraintMaker *make) {
                @jobs_strongify(self)
-               /// TODO
-           })
-           .dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
+               make.left.right.bottom.equalTo(self.view);
+               [self make:make topOffset:10];
+           });
        }return _tableView;
    }
    ```

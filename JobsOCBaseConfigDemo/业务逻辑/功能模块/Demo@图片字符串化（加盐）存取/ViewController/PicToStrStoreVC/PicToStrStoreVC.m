@@ -49,7 +49,7 @@ Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
     
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
 //    [self.bgImageView removeFromSuperview];
 }
 
@@ -132,49 +132,50 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self )
-            tableView.dataLink(self);
-            tableView.backgroundColor = JobsWhiteColor;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.tableFooterView = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-                label.byText(@"- 没有更多的内容了 -".tr)
-                    .byFont(UIFontWeightRegularSize(12))
-                    .byTextCor(HEXCOLOR(0xB0B0B0))
-                    .byTextAlignment(NSTextAlignmentCenter);
-//                label.size = CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48));
-                label.makeLabelByShowingType(UILabelShowingType_03);
-            });/// 这里接入的就是一个UIView的派生类
-            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-            tableView.contentInset = UIEdgeInsetsMake(JobsWidth(0),
-                                                      JobsWidth(0),
-                                                      JobsWidth(100),
-                                                      JobsWidth(0));
-            {
-                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+            tableView
+                .bySeparatorColor(HEXCOLOR(0xEEEEEE))
+                .byContentInset(UIEdgeInsetsMake(JobsWidth(0),
+                                                 JobsWidth(0),
+                                                 JobsWidth(100),
+                                                 JobsWidth(0)))
+                .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                    /// TODO
+                })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                .byTableFooterView(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
+                    label.byText(@"- 没有更多的内容了 -".tr)
+                        .byFont(UIFontWeightRegularSize(12))
+                        .byTextCor(HEXCOLOR(0xB0B0B0))
+                        .byTextAlignment(NSTextAlignmentCenter)
+    //                    .bySize(CGSizeMake(JobsMainScreen_WIDTH(), JobsWidth(48)))
+                        .makeLabelByShowingType(UILabelShowingType_03);
+                })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                    @jobs_strongify(self)
                     NSObject.feedbackGenerator(nil);/// 震动反馈
-                    tableView.endRefreshing(YES);
-                    return nil;
-                }]);
-                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
-                    tableView.endRefreshing(YES);
-                    return nil;
-                }]);
-            }
-            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                if (self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 系统、GK均隐藏
-                    make.edges.equalTo(self.view);
-                }else{
-                    if (!self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 用系统的导航栏
-                        make.top.equalTo(self.view).offset(JobsNavigationBarAndStatusBarHeight(nil));
+                    self->_tableView.endRefreshing(YES);
+                }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
+                .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    @jobs_strongify(self)
+                    NSObject.feedbackGenerator(nil);/// 震动反馈
+                    self->_tableView.endRefreshing(YES);
+                }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+                .bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                .byShowsVerticalScrollIndicator(NO)
+                .byBgColor(JobsWhiteColor)
+                .addOn(self.view)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    if (self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 系统、GK均隐藏
+                        make.edges.equalTo(self.view);
+                    }else{
+                        if (!self.setupNavigationBarHidden && self.gk_statusBarHidden) {// 用系统的导航栏
+                            make.top.equalTo(self.view).offset(JobsNavigationBarAndStatusBarHeight(nil));
+                        }
+                        if (self.setupNavigationBarHidden && !self.gk_statusBarHidden) {// 用GK的导航栏
+                            make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                        }make.left.right.bottom.equalTo(self.view);
                     }
-                    if (self.setupNavigationBarHidden && !self.gk_statusBarHidden) {// 用GK的导航栏
-                        make.top.equalTo(self.gk_navigationBar.mas_bottom);
-                    }make.left.right.bottom.equalTo(self.view);
-                }
-            }];
+                });
         });
     }return _tableView;
 }

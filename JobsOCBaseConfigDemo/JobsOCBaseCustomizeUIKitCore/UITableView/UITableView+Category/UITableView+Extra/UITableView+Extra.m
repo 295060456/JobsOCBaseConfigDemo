@@ -18,6 +18,16 @@
         return self;
     };
 }
+/// 用于显示 UITableView
+-(JobsRetScrollViewByIDBlock _Nonnull)byShow{
+    @jobs_weakify(self)
+    return ^__kindof UITableView *(id _Nonnull target) {
+        @jobs_strongify(self)
+        self.dataLink(target);
+        self.reloadDatas();
+        return self;
+    };
+}
 #pragma mark —— UITableView
 +(instancetype)initWithStylePlain{
     return [UITableView.alloc initWithFrame:CGRectZero style:UITableViewStylePlain];

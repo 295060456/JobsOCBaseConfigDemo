@@ -9,10 +9,10 @@
 
 @interface ThreeClassCell()
 /// Data
-Prop_assign()CGFloat itemHeight;/// 一个cell 的高度
-Prop_assign()NSInteger columns;/// 一行有多少列
-Prop_assign()NSInteger rowCount;/// 一共有都是行
-Prop_strong()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个cell
+Prop_assign()CGFloat itemHeight; // 一个cell 的高度
+Prop_assign()NSInteger columns; // 一行有多少列
+Prop_assign()NSInteger rowCount; // 一共有都是行
+Prop_strong()NSMutableArray <GoodsClassModel *>*dataArray; // 总共有多少个cell
 
 @end
 
@@ -66,8 +66,7 @@ Prop_strong()NSMutableArray <GoodsClassModel *>*dataArray;/// 总共有多少个
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable(){
         @jobs_strongify(self)
-        self.collectionView.reloadDatas();
-        return self.collectionView;
+        return self.collectionView.byShow(self);
     };
 }
 #pragma mark —— UICollectionViewDelegate,UICollectionViewDataSource

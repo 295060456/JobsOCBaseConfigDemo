@@ -55,7 +55,7 @@ static dispatch_once_t JobsCustomTabBarVCOnceToken;
     [super viewDidLoad];
     self.tabBar.hidden = YES;
     self.delegate = self;
-//    self.view.byBgCor(JobsGreenColor);
+//    self.view.byBgColor(JobsGreenColor);
     self.customTabBar.alpha = 1;
     extern NSUInteger DefaultIndex;
     self.selectedIndex = DefaultIndex;

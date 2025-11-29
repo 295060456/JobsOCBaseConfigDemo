@@ -119,7 +119,7 @@ static dispatch_once_t static_choiceUserHeaderDataViewOnceToken;
         self.viewModel = model ? : UIViewModel.new;
     //    self.viewModel.usesTableViewHeaderView = YES;// 这个属性在外面设置
         MakeDataNull
-        self.tableView.reloadDatas();
+        self.tableView.byShow(self);
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -199,40 +199,51 @@ viewForHeaderInSection:(NSInteger)section{
 @synthesize tableView = _tableView;
 -(UITableView *)tableView{
     if (!_tableView) {
+        /// 一般用 initWithStylePlain。initWithStyleGrouped会自己预留一块空间
         @jobs_weakify(self)
-        _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
+        _tableView = jobsMakeTableViewByInsetGrouped(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.backgroundColor = JobsClearColor;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.scrollEnabled = NO;
-            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-    //        _tableView.contentInset = UIEdgeInsetsMake(JobsWidth(20), 0, 0, 0);
-    //        [_tableView registerTableViewClass];
-            tableView.registerHeaderFooterViewClass(JobsUserHeaderDataViewForHeaderInSection.class,@"");
-            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
-            }];
-            
-            {
-                tableView.mj_header = self.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+            tableView.registerHeaderFooterViewClass(JobsUserHeaderDataViewForHeaderInSection.class,@"")
+                .bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                .bySeparatorColor(HEXCOLOR(0xEEE2C8))
+                .registerHeaderFooterViewClass(MSCommentTableHeaderFooterView.class,nil)
+                .byTableHeaderView(jobsMakeView(^(__kindof UIView * _Nullable view) {
+                    /// TODO
+                })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                .byTableFooterView(jobsMakeLabel(^(__kindof UILabel *_Nullable label) {
+                    label.byText(@"- 没有更多的内容了 -".tr)
+                        .byFont(UIFontWeightRegularSize(12))
+                        .byTextAlignment(NSTextAlignmentCenter)
+                        .byTextCor(HEXCOLOR(0xB0B0B0))
+                        .makeLabelByShowingType(UILabelShowingType_03);
+                })) // 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
+                .emptyDataByButtonModel(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable data) {
+                    data.title = @"NO MESSAGES FOUND".tr;
+                    data.titleCor = JobsWhiteColor;
+                    data.titleFont = bayonRegular(JobsWidth(30));
+                    data.normalImage = @"小狮子".img;
+                }))
+                /// 普通的MJRefreshHeader（触发事件）
+                .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
                     @jobs_strongify(self)
                     NSObject.feedbackGenerator(nil);/// 震动反馈
-                    return nil;
-                }]);
-                tableView.mj_footer = self.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
+                    self->_tableView.endRefreshing(YES);
+                }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
+                /// 普通的MJRefreshFooter（触发事件）
+                .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
                     @jobs_strongify(self)
+                    NSObject.feedbackGenerator(nil);// 震动反馈
                     self->_tableView.endRefreshing(self.dataMutArr.count);
-                    return nil;
-                }]);
-            }
+                }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+                .byShowsVerticalScrollIndicator(NO)
+                .byShowsHorizontalScrollIndicator(NO)
+                .byScrollEnabled(YES)
+                .byBgColor(JobsClearColor);
+        })
+        .addOn(self)
+        .byAdd(^(MASConstraintMaker *make) {
+            @jobs_strongify(self)
+            make.edges.equalTo(self);
         });
     }return _tableView;
 }

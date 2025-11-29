@@ -63,7 +63,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.makeNavByAlpha(1);
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
     UIDeviceOrientation f =  UIDevice.currentDevice.orientation;
     UIInterfaceOrientation s = self.getInterfaceOrientation;
     DeviceOrientation d = self.getDeviceOrientation;
@@ -188,49 +188,41 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.backgroundColor = JobsWhiteColor;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-            {
-                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
+            /// 普通的MJRefreshHeader（触发事件）@二选一
+            tableView.byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                @jobs_strongify(self)
+                NSObject.feedbackGenerator(nil); // 震动反馈
+                // 刷新本界面
+                if (self.dataMutArr.count) {
+                    [self.dataMutArr remove];
+                    self->_dataMutArr = nil;
+                }
+                self.isVisible = YES;
+                if (self.dataMutArr.count) {
+                    self->_tableView.endRefreshing(self.dataMutArr);
+                }else{
+                    self->_tableView.endRefreshingWithNoMoreData(self.dataMutArr);
+                }
+                /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
+                @jobs_weakify(self)
+                dispatch_async(dispatch_get_main_queue(), ^(){
                     @jobs_strongify(self)
-                    // 刷新本界面
-                    if (self.dataMutArr.count) {
-                        [self.dataMutArr remove];
-                        self->_dataMutArr = nil;
-                    }
-                    self.isVisible = YES;
-                    if (self.dataMutArr.count) {
-                        self->_tableView.endRefreshing(self.dataMutArr);
-                    }else{
-                        self->_tableView.endRefreshingWithNoMoreData(self.dataMutArr);
-                    }
-                    /// 在reloadData后做的操作，因为reloadData刷新UI是在主线程上，那么就在主线程上等待
-                    @jobs_weakify(self)
-                    dispatch_async(dispatch_get_main_queue(), ^(){
-                        @jobs_strongify(self)
-                        [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
-                                                  animationBlock:nil
-                                                 completionBlock:nil];
-                    });return nil;
-                }]);
-                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
-                    self->_tableView.endRefreshing(YES);
-                    return nil;
-                }]);
-            }
-            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
+                    [self.tableView alphaAnimWithSortingType:(SortingType)SortingType_Positive
+                                              animationBlock:nil
+                                             completionBlock:nil];
+                });
+            }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
+            .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                @jobs_strongify(self)
+                NSObject.feedbackGenerator(nil); // 震动反馈
+                self->_tableView.endRefreshing(YES);
+            }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+            .addOn(self.view)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
                 make.top.equalTo(self.gk_navigationBar.mas_bottom);
                 make.left.right.bottom.equalTo(self.view);
-            }];
+            });
         });
     }return _tableView;
 }

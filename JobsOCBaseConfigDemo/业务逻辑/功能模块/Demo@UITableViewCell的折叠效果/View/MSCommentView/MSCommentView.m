@@ -85,7 +85,7 @@ static dispatch_once_t static_commentViewOnceToken;
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        self.tableView.reloadDatas();
+        self.tableView.byShow(self);
     };
 }
 #pragma mark —— UITableViewDelegate,UITableViewDataSource

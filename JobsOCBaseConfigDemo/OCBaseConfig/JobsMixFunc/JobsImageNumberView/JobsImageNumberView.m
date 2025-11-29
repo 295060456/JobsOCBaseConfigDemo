@@ -30,7 +30,7 @@ Prop_strong()NSArray <UIImage *>*dataMutArr;
     return ^(NSArray <UIImage *>*_Nullable model) {
         @jobs_strongify(self)
         self.dataMutArr = model;
-        self.collectionView.reloadDatas();
+        self.collectionView.byShow(self);
     };
 }
 #pragma mark - UICollectionViewDataSource

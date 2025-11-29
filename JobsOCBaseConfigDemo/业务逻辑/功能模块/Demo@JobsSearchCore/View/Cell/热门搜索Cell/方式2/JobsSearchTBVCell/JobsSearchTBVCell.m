@@ -41,7 +41,7 @@ BaseLayerProtocol_synthesize_part3
         self->_collectionView = nil;
         if (model) {
             self.viewModels = (NSMutableArray *)model;
-            self.collectionView.reloadDatas();
+            self.collectionView.byShow(self);
         } return self;
     };
 }

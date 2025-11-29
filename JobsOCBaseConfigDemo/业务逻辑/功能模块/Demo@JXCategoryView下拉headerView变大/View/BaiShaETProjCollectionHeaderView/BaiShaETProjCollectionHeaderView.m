@@ -84,13 +84,12 @@ static dispatch_once_t static_collectionHeaderViewOnceToken;
         @jobs_strongify(self)
         self.viewModel = model;
         MakeDataNull
-        self.userHeaderBtn.alpha = 1;
-        self.progressView.alpha = 1;
-        self.animationLab.alpha = 1;
-        self.leftLab.alpha = 1;
-        self.rightLab.alpha = 1;
-        
-        self.tableView.reloadDatas();
+        self.userHeaderBtn.byVisible(YES);
+        self.progressView.byVisible(YES);
+        self.animationLab.byVisible(YES);
+        self.leftLab.byVisible(YES);
+        self.rightLab.byVisible(YES);
+        self.tableView.byShow(self);
     };
 }
 /// 具体由子类进行复写【数据尺寸】【如果所传参数为基本数据类型，那么包装成对象NSNumber进行转化承接】
@@ -127,7 +126,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         .jobsRichElementsTableViewCellBy(self.dataMutArr[indexPath.row])
         .JobsBlock1(^(id _Nullable data) {
              
-        }).byBgCor(HEXCOLOR(0xFFFCF7));
+        }).byBgColor(HEXCOLOR(0xFFFCF7));
 }
 #pragma mark —— lazyLoad
 -(UIButton *)userHeaderBtn{
@@ -162,24 +161,25 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         jobsMakeProgressView(^(__kindof UIProgressView * _Nullable progressView) {
             @jobs_strongify(self)
-            progressView.progressTintColor = HEXCOLOR(0xAE8330);
-            progressView.trackTintColor = HEXCOLOR(0xEEE2C8);
-            progressView.progressViewStyle = UIProgressViewStyleDefault;
-            [self.addSubview(progressView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(JobsWidth(4));
-                make.width.mas_equalTo(JobsWidth(343));
-                make.centerX.equalTo(self);
-                make.top.equalTo(self.userHeaderBtn.mas_bottom).offset(JobsWidth(58));
-            }];[progressView animateWithDuration:1 progress:0.8];
+            [progressView
+                .byProgressTintColor(HEXCOLOR(0xAE8330))
+                .byTrackTintColor(HEXCOLOR(0xEEE2C8))
+                .byProgressViewStyle(UIProgressViewStyleDefault)
+                .addOn(self)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.height.mas_equalTo(JobsWidth(4));
+                    make.width.mas_equalTo(JobsWidth(343));
+                    make.centerX.equalTo(self);
+                    make.top.equalTo(self.userHeaderBtn.mas_bottom).offset(JobsWidth(58));
+                }) animateWithDuration:1 progress:0.8];
         });
     }return _progressView;
 }
 
 -(JobsAnimationLabel *)animationLab{
     if (!_animationLab) {
-        _animationLab = JobsAnimationLabel.new;
-        _animationLab.textColor = JobsBlackColor;
-
+        _animationLab = JobsAnimationLabel.new.byTextCor(JobsBlackColor);
         _animationLab.value = 12;
         _animationLab.lastValue = 19.93;
         @jobs_weakify(self)
@@ -188,11 +188,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
                                       duration:1.0
                                       complete:^(UILabel *label, CGFloat value) {
             @jobs_strongify(self)
-            if (self.richTextMutArr.count > 2) {
-                [self.richTextMutArr removeObjectAtIndex:1];
-            }
+            if (self.richTextMutArr.count > 2) [self.richTextMutArr removeObjectAtIndex:1];
             [self.richTextMutArr insertObject:[NSString stringWithFormat:@"%f", value] atIndex:1];
-            
             label.attributedText = [self richTextWithDataConfigMutArr:jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
                 data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
                     @jobs_strongify(self)
@@ -217,10 +214,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             label.value = value;
             label.lastValue = (label.value * 3);
         }];
-        [self.addSubview(_animationLab) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.progressView).offset(JobsWidth(-12));
-            make.left.equalTo(self.progressView);
-        }];
+        _animationLab.addOn(self)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                make.bottom.equalTo(self.progressView).offset(JobsWidth(-12));
+                make.left.equalTo(self.progressView);
+            });
     }return _animationLab;
 }
 
@@ -229,15 +228,18 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _leftLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = @"Lv".tr.add(@" ").add(@"0");
-            label.textColor = HEXCOLOR(0x757575);
-            label.font = UIFontWeightRegularSize(12);
-            label.textAlignment = NSTextAlignmentCenter;
-            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
+            label.byText(@"Lv".tr.add(@" ").add(@"0"))
+            .byTextCor(HEXCOLOR(0x757575))
+            .byFont(UIFontWeightRegularSize(12))
+            .byTextAlignment(NSTextAlignmentCenter)
+            .addOn(self)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
                 make.left.equalTo(self.animationLab);
                 make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
                 make.height.mas_equalTo(JobsWidth(12));
-            }];label.makeLabelByShowingType(UILabelShowingType_03);
+            })
+            .makeLabelByShowingType(UILabelShowingType_03);
         });
     }return _leftLab;
 }
@@ -247,15 +249,19 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _rightLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.text = @"Lv".tr.add(@" ").add(@"1");
-            label.textColor = HEXCOLOR(0x757575);
-            label.textAlignment = NSTextAlignmentCenter;
-            label.font = UIFontWeightRegularSize(12);
-            [self.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(self).offset(JobsWidth(-16));
-                make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
-                make.height.mas_equalTo(JobsWidth(12));
-            }];label.makeLabelByShowingType(UILabelShowingType_03);
+            label
+                .byText(@"Lv".tr.add(@" ").add(@"1"))
+                .byTextCor(HEXCOLOR(0x757575))
+                .byTextAlignment(NSTextAlignmentCenter)
+                .byFont(UIFontWeightRegularSize(12))
+                .addOn(self)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.right.equalTo(self).offset(JobsWidth(-16));
+                    make.top.equalTo(self.animationLab.mas_bottom).offset(JobsWidth(22));
+                    make.height.mas_equalTo(JobsWidth(12));
+                })
+                .makeLabelByShowingType(UILabelShowingType_03);
         });
     }return _rightLab;
 }
@@ -266,27 +272,21 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.backgroundColor = JobsWhiteColor;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.scrollEnabled = YES;
-            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-            [tableView registerTableViewClass];
-            if(@available(iOS 11.0, *)) {
-                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            }
-            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(self);
-                make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(58)));
-                make.bottom.equalTo(self).offset(JobsWidth(-24));
-            }];
+            tableView
+                .byRegisterTableViewClass(nil)
+                .bySeparatorColor(HEXCOLOR(0xEEEEEE))
+                .bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                .byShowsVerticalScrollIndicator(NO)
+                .byScrollEnabled(YES)
+                .byContentInsetAdjustmentBehavior(UIScrollViewContentInsetAdjustmentNever)
+                .byBgColor(JobsWhiteColor)
+                .addOn(self)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.centerX.equalTo(self);
+                    make.size.mas_equalTo(CGSizeMake(JobsWidth(343), JobsWidth(58)));
+                    make.bottom.equalTo(self).offset(JobsWidth(-24));
+                });
         });
     }return _tableView;
 }
@@ -294,8 +294,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 -(NSMutableArray<NSString *> *)richTextMutArr{
     if (!_richTextMutArr) {
         _richTextMutArr = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(@"當前晉級進度".tr)
-            .add(JobsSpace.add(JobsPercent));
+            data.add(@"當前晉級進度".tr).add(JobsSpace.add(JobsPercent));
         });
     }return _richTextMutArr;
 }
@@ -324,12 +323,10 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_richTextMutArr2) {
         _richTextMutArr2 = jobsMakeMutArr(^(__kindof NSMutableArray <NSMutableArray<NSString *>*>*_Nullable data) {
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data1) {
-                data1.add(@"7.00 ")
-                .add(@"/ ".add(@"40,000.00"));
+                data1.add(@"7.00 ").add(@"/ ".add(@"40,000.00"));
             }))
             .add(jobsMakeMutArr(^(__kindof NSMutableArray <NSString *>*_Nullable data1) {
-                data1.add(@"1.00 ")
-                .add(@"/ ".add(@"20,000.00"));
+                data1.add(@"1.00 ").add(@"/ ".add(@"20,000.00"));
             }));
         });
     }return _richTextMutArr2;

@@ -258,6 +258,7 @@ typedef __kindof UITableView *_Nullable(^JobsRetTableViewByBOOLBlock)(BOOL data)
 typedef __kindof UITableView *_Nullable(^JobsRetTableViewByNSIntegerBlock)(NSInteger data);
 typedef __kindof UITableView *_Nullable(^JobsRetTableViewByCGFloatBlock)(CGFloat data);
 typedef __kindof UITableView *_Nullable(^JobsRetTableViewByEdgeInsetsBlock)(UIEdgeInsets inset);
+typedef __kindof UITableView *_Nullable(^JobsRetTableViewByStringBlock)(NSString *_Nullable data);
 typedef __kindof UITableView *_Nullable(^JobsRetTableViewByCorBlock)(UIColor *_Nullable cor);
 typedef __kindof UITableView *_Nullable(^JobsRetTableViewByVisualEffectBlock)(UIVisualEffect *_Nullable effect);
 typedef __kindof UITableView *_Nullable(^JobsRetTableViewByUIScrollViewContentInsetAdjustmentBehaviorBlock)(UIScrollViewContentInsetAdjustmentBehavior behavior);
@@ -353,11 +354,14 @@ typedef __kindof UITableViewCell *_Nullable(^JobsRetTableViewCellByCls_SaltStr_I
 #pragma mark —— 关于 UICollectionView
 typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByVoidBlock)(void);
 typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByBOOLBlock)(BOOL data);
+typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByNSIntegerBlock)(NSInteger data);
+typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByNSUIntegerBlock)(NSUInteger data);
 typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByDelegateBlock)(id <UICollectionViewDelegate>_Nullable delegate);
 typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByDataSourceBlock)(id <UICollectionViewDataSource>_Nullable dataSource);
 typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByDragDelegateBlock)(id <UICollectionViewDragDelegate>_Nullable delegate);
 typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByDropDelegateBlock)(id <UICollectionViewDropDelegate>_Nullable delegate);
 typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByDataSourcePrefetchingBlock)(id <UICollectionViewDataSourcePrefetching>_Nullable dataSourcePrefetching);
+typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByViewBlock)(__kindof UIView *_Nullable view);
 typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByLayoutBlock)(__kindof UICollectionViewLayout *_Nullable layout);
 typedef __kindof UICollectionView *_Nullable(^JobsRetCollectionViewByFlowLayoutBlock)(__kindof UICollectionViewFlowLayout *_Nullable layout);
 @class MJRefreshConfigModel;
@@ -375,12 +379,15 @@ typedef __kindof UICollectionViewCell *_Nullable(^JobsRetCollectionViewCellByDel
 #pragma mark —— 关于 UIScrollView
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByVoidBlock)(void);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByIDBlock)(id _Nullable data);
-typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByBOOLBlock)(BOOL data);
+typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByUIRefreshControlBlock)(UIRefreshControl * _Nullable data);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByDelegateBlock)(id <UIScrollViewDelegate>_Nullable delegate);
+typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByNSIntegerBlock)(NSInteger data);
+typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByNSUIntegerBlock)(NSUInteger data);
+typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByCGFloatBlock)(CGFloat data);
+typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByBOOLBlock)(BOOL data);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByPointBlock)(CGPoint data);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByFrameBlock)(CGRect frame);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewBySizeBlock)(CGSize size);
-typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByCGFloatBlock)(CGFloat data);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByUIEdgeInsetsBlock)(UIEdgeInsets insets);
 typedef __kindof UIScrollView *_Nullable(^JobsRetScrollViewByMutArrBlock)(NSMutableArray <NSObject *>*_Nullable data);
 @class MJRefreshConfigModel;
@@ -400,6 +407,13 @@ typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByURLRequestBlock)(__kind
 typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByStrBlock)(NSString *_Nullable data);
 typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByURLBlock)(NSURL *_Nullable URL);
 typedef __kindof WKWebView *_Nullable(^JobsRetWKWebViewByViewModelBlock)(__kindof UIViewModel *_Nullable viewModel);
+#pragma mark —— 关于 UIProgressView
+typedef __kindof UIProgressView *_Nullable(^JobsRetProgressViewByStyleBlock)(UIProgressViewStyle style);
+typedef __kindof UIProgressView *_Nullable(^JobsRetProgressViewByFloatBlock)(float progress);
+typedef __kindof UIProgressView *_Nullable(^JobsRetProgressViewByFloatAnimatedBlock)(float progress, BOOL animated);
+typedef __kindof UIProgressView *_Nullable(^JobsRetProgressViewByColorBlock)(UIColor *_Nullable color);
+typedef __kindof UIProgressView *_Nullable(^JobsRetProgressViewByImageBlock)(UIImage *_Nullable image);
+typedef __kindof UIProgressView *_Nullable(^JobsRetProgressViewByNSProgressBlock)(NSProgress *_Nullable progress);
 #pragma mark —— 关于 控制器
 /// UIViewController
 typedef __kindof UIViewController *_Nullable(^JobsRetVCByVoidBlock)(void);

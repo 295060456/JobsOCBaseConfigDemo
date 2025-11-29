@@ -79,6 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(CIFilter *_Nonnull)filter;
 #pragma mark —— 一些功能性的
 -(UIColor *)cor;
+-(UIColor *)namedCor;
 -(jobsByVoidBlock _Nonnull)toast;
 -(NSString *_Nullable)tr;
 /// 输入单词的首字母大写（适用于拼接set方法）

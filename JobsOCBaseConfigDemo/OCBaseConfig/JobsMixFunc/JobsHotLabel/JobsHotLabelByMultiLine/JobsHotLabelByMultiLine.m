@@ -54,7 +54,7 @@ static dispatch_once_t static_hotLabelWithMultiLineOnceToken;
         self.dataModel = model;
         self.backgroundColor = self.dataModel.bgCor;
         if (self.dataModel.viewModels.count) {
-            self.collectionView.reloadDatas();
+            self.collectionView.byShow(self);
         }
     };
 }

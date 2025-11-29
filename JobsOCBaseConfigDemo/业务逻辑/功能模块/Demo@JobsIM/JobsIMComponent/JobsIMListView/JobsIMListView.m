@@ -32,7 +32,7 @@ Prop_strong()NSMutableArray <JobsIMListDataModel *>*jobsIMListMutArr;
     @jobs_weakify(self)
     return ^(UIViewModel *_Nullable model) {
         @jobs_strongify(self)
-        self.tableView.reloadDatas();
+        self.tableView.byShow(self);
     };
 }
 #pragma mark —— 一些私有方法
@@ -90,31 +90,21 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.backgroundColor = self.bgColour;
-            tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.showsVerticalScrollIndicator = NO;
-            [self.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self);
-            }];
-            tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            
-            {
-                tableView.mj_header = self.LOTAnimationMJRefreshHeaderBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
-                    data.stateIdleTitle = @"下拉刷新数据".tr;
-                    data.pullingTitle = @"下拉刷新数据".tr;
-                    data.refreshingTitle = @"正在刷新数据".tr;
-                    data.willRefreshTitle = @"刷新数据中".tr;
-                    data.noMoreDataTitle = @"下拉刷新数据".tr;
-                    data.loadBlock = ^id _Nullable(id  _Nullable data) {
+            tableView
+                .byMJRefreshHeader(self.lotAnimMJRefreshHeader.byRefreshConfigModel(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable model) {
+                    model.stateIdleTitle = @"下拉刷新数据".tr;
+                    model.pullingTitle = @"下拉刷新数据".tr;
+                    model.refreshingTitle = @"正在刷新数据".tr;
+                    model.willRefreshTitle = @"刷新数据中".tr;
+                    model.noMoreDataTitle = @"下拉刷新数据".tr;
+                    model.loadBlock = ^id _Nullable(id  _Nullable data) {
                         @jobs_strongify(self)
                         JobsLog(@"下拉刷新");
                         self.tableView.endRefreshing(self.jobsIMListMutArr.count);
                         return nil;
                     };
-                }));
-                tableView.mj_footer = self.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
+                })))
+                .byMJRefreshFooter(self.MJRefreshAutoGifFooterBy(jobsMakeRefreshConfigModel(^(__kindof MJRefreshConfigModel * _Nullable data) {
                     data.stateIdleTitle = @"".tr;
                     data.pullingTitle = @"".tr;
                     data.refreshingTitle = @"".tr;
@@ -131,10 +121,19 @@ accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
                         tableView.endRefreshing(self.jobsIMListMutArr.count);
                         return nil;
                     };
-                }));
-                tableView.mj_footer.backgroundColor = JobsRedColor;
-                tableView.mj_footer.hidden = NO;
-            }
+                })))
+                .bySeparatorStyle(UITableViewCellSeparatorStyleNone)
+                .byPagingEnabled(YES) // 这个属性为YES会使得Tableview一格一格的翻动
+                .byShowsVerticalScrollIndicator(NO)
+                .byContentInsetAdjustmentBehavior(UIScrollViewContentInsetAdjustmentNever)
+                .byBgColor(self.bgColour)
+                .addOn(self)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.edges.equalTo(self);
+                });
+            tableView.mj_footer.backgroundColor = JobsRedColor;
+            tableView.mj_footer.hidden = NO;
         });
     }return _tableView;
 }

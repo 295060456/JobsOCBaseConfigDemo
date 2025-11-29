@@ -47,7 +47,7 @@ Prop_strong()NSMutableArray <__kindof UIViewModel *>*dataMutArr;
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(1);
 //    [self.bgImageView removeFromSuperview];
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -169,11 +169,11 @@ viewForHeaderInSection:(NSInteger)section{
             .JobsBlock1(^(id _Nullable data) {
                 
             });
-        tbvFooterView.byBgCor(HEXCOLOR(0xEAEBED));
-        tbvFooterView.backgroundView.byBgCor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.byBgColor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.backgroundView.byBgColor(HEXCOLOR(0xEAEBED));
         /// tbvFooterView.backgroundColor 和  tbvFooterView.contentView.backgroundColor 均是无效操作❌
         /// 只有 tbvFooterView.backgroundView.backgroundColor 是有效操作✅
-        tbvFooterView.contentView.byBgCor(HEXCOLOR(0xEAEBED));
+        tbvFooterView.contentView.byBgColor(HEXCOLOR(0xEAEBED));
         return tbvFooterView;
     }return nil;
 }
@@ -225,59 +225,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 }))
                 .byShowsVerticalScrollIndicator(NO)
                 .byScrollEnabled(YES)
-                .byBgCor(JobsClearColor);
+                .byBgColor(JobsClearColor);
 
             if(@available(iOS 11.0, *)) {
                 tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             }else{
                 SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
             }
-            
-//            {
-//                tableView.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
-//                    @jobs_strongify(self)
-//                    NSObject.feedbackGenerator(nil);//震动反馈
-//                    self->_tableView.endRefreshing(YES);
-//                    return nil;
-//                }]);
-//                tableView.mj_header.automaticallyChangeAlpha = YES;//根据拖拽比例自动切换透明度
-//            }
-            
-//            {/// 设置tabAnimated相关属性
-//                // 可以不进行手动初始化，将使用默认属性
-//                tableView.tabAnimated = [TABTableAnimated animatedWithCellClass:JobsBaseTableViewCell.class
-//                                                                      cellHeight:[JobsBaseTableViewCell cellHeightWithModel:nil]];
-//                tableView.tabAnimated.superAnimationType = TABViewSuperAnimationTypeShimmer;
-//                [tableView tab_startAnimation];   // 开启动画
-//            }
-            
-//            {
-//              [tableView xzm_addNormalHeaderWithTarget:self
-//                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-//                                                                                     id _Nullable arg) {
-//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
-//                  @jobs_strongify(self)
-//                  /// 在需要结束刷新的时候调用（只能调用一次）
-//                  /// _tableView.endRefreshing();
-//                  return nil;
-//              }, MethodName(self), self)];
-//
-//              [tableView xzm_addNormalFooterWithTarget:self
-//                                                 action:selectorBlocks(^id _Nullable(id _Nullable weakSelf,
-//                                                                                     id _Nullable arg) {
-//                  NSLog(@"SSSS加载新的数据，参数: %@", arg);
-//                  @jobs_strongify(self)
-//                  /// 在需要结束刷新的时候调用（只能调用一次）
-//                  /// _tableView.endRefreshing();
-//                  return nil;
-//              }, MethodName(self), self)];
-//              [tableView.xzm_header beginRefreshing];
-//          }
-        })).setMasonryBy(^(MASConstraintMaker *_Nonnull make){
+        }))
+        .addOn(self.view)
+        .byAdd(^(MASConstraintMaker *make) {
             @jobs_strongify(self)
             make.left.right.bottom.equalTo(self.view);
             [self make:make topOffset:10];
-        }).on().dataLink(self);// dataLink(self)不能写在Block里面，会出问题
+        });
     }return _tableView;
 }
 

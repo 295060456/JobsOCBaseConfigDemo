@@ -14,5 +14,6 @@
 #import "UICollectionView+JobsRegisterClass.h"
 #import "UICollectionView+RegistrationTracking.h"
 #import "UICollectionView+Func.h"
+#import "UICollectionView+DSL.h"
 
 #endif /* JobsCollectionView_h */

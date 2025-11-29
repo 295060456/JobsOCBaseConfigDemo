@@ -116,7 +116,6 @@ Prop_assign()CGFloat jobsVisible;
                                      cornerRadii:(CGSize)cornerRadii;
 #pragma mark —— 其他
 -(JobsRetViewByNSUIntegerBlock _Nonnull)makeLabelByShowingType;
--(JobsRetViewByCorBlock _Nonnull)byBgCor;
 -(JobsRetViewByNSIntegerBlock _Nonnull)viewByID;
 -(JobsRetViewByGestureRecognizer _Nonnull)addGesture;
 -(JobsReturnGestureByGesture _Nonnull)addGestureRecognizer;

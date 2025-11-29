@@ -162,18 +162,18 @@ UITextFieldProtocol_synthesize_part2
     });;
 }
 
--(JobsRetTableViewCellByBOOLBlock _Nonnull)byAllowsMultipleSwipe{
+-(JobsReturnMGSwipeTableCellByBOOLBlock _Nonnull)byAllowsMultipleSwipe{
     @jobs_weakify(self)
-    return ^__kindof UITableViewCell *_Nullable(BOOL data){
+    return ^__kindof MGSwipeTableCell *_Nullable(BOOL data){
         @jobs_strongify(self)
         self.allowsMultipleSwipe = YES;
         return self;
     };
 }
 
--(JobsRetTableViewCellByBOOLBlock _Nonnull)byShowChatUserName{
+-(JobsReturnMGSwipeTableCellByBOOLBlock _Nonnull)byShowChatUserName{
     @jobs_weakify(self)
-    return ^__kindof UITableViewCell *_Nullable(BOOL data){
+    return ^__kindof MGSwipeTableCell *_Nullable(BOOL data){
         @jobs_strongify(self)
         self.isShowChatUserName = YES;
         return self;
@@ -242,34 +242,26 @@ UITextFieldProtocol_synthesize_part2
         @jobs_weakify(self)
         _chatBubbleIMGV = jobsMakeImageView(^(__kindof UIImageView * _Nullable imageView) {
             @jobs_strongify(self)
-            switch (self.infoLocation) {
-                case InfoLocation_Left:{
-                    imageView.image = self.chatBubbleMutArr[0];
-                }break;
-                case InfoLocation_Right:{
-                    imageView.image = self.chatBubbleMutArr[1];
-                }break;
-                default:
-                    break;
-            }
-            [self.contentView.addSubview(imageView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                
-                make.top.equalTo(self.iconIMGV.mas_centerY);
-                make.bottom.equalTo(self.contentView).offset(-5);
-                make.width.mas_equalTo(self.contentWidth);
-                
-                switch (self.infoLocation) {
-                    case InfoLocation_Left:{
-                        make.left.equalTo(self.iconIMGV.mas_right).offset(5);
-                        
-                    }break;
-                    case InfoLocation_Right:{
-                        make.right.equalTo(self.iconIMGV.mas_left).offset(-5);
-                    }break;
-                    default:
-                        break;
-                }
-            }];
+            imageView.byImage(self.infoLocation == InfoLocation_Left ? self.chatBubbleMutArr[0] : self.chatBubbleMutArr[1])
+                .addOn(self.contentView)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.top.equalTo(self.iconIMGV.mas_centerY);
+                    make.bottom.equalTo(self.contentView).offset(-5);
+                    make.width.mas_equalTo(self.contentWidth);
+
+                    switch (self.infoLocation) {
+                        case InfoLocation_Left:{
+                            make.left.equalTo(self.iconIMGV.mas_right).offset(5);
+
+                        }break;
+                        case InfoLocation_Right:{
+                            make.right.equalTo(self.iconIMGV.mas_left).offset(-5);
+                        }break;
+                        default:
+                            break;
+                    }
+                });
         });
     }return _chatBubbleIMGV;
 }
@@ -279,11 +271,13 @@ UITextFieldProtocol_synthesize_part2
         @jobs_weakify(self)
         _chatUserNameLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.textColor = JobsBlackColor;
-            label.font = UIFontWeightRegularSize(JobsWidth(10));
-            label.textAlignment = NSTextAlignmentCenter;
-            label.text = self.senderUserNameStr;
-            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
+            label.byTextCor(JobsBlackColor)
+            .byFont(UIFontWeightRegularSize(JobsWidth(10)))
+            .byTextAlignment(NSTextAlignmentCenter)
+            .byText(self.senderUserNameStr)
+            .addOn(self.contentView)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
                 make.top.equalTo(self.iconIMGV);
                 make.bottom.equalTo(self.iconIMGV.mas_centerY).offset(-3);
                 switch (self.infoLocation) {
@@ -296,7 +290,8 @@ UITextFieldProtocol_synthesize_part2
                     default:
                         break;
                 }
-            }];label.makeLabelByShowingType(UILabelShowingType_03);
+            })
+            .makeLabelByShowingType(UILabelShowingType_03);
         });
     }return _chatUserNameLab;
 }
@@ -306,25 +301,17 @@ UITextFieldProtocol_synthesize_part2
         @jobs_weakify(self)
         _chatContentLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.numberOfLines = 0;
-            label.textColor = JobsBlackColor;
-            label.font = UIFontWeightRegularSize(JobsWidth(10));
-            
-            switch (self.infoLocation) {
-                case InfoLocation_Left:{
-                    label.textAlignment = NSTextAlignmentRight;
-                }break;
-                case InfoLocation_Right:{
-                    label.textAlignment = NSTextAlignmentLeft;
-                }break;
-                default:
-                    break;
-            }
-    
-            label.text = self.senderChatTextStr;
-            [self.chatBubbleIMGV.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.chatBubbleIMGV).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
-            }];
+            label
+                .byNumberOfLines(0)
+                .byText(self.senderChatTextStr)
+                .byTextCor(JobsBlackColor)
+                .byTextAlignment(self.infoLocation == InfoLocation_Left ? NSTextAlignmentRight : NSTextAlignmentLeft)
+                .byFont(UIFontWeightRegularSize(JobsWidth(10)))
+                .addOn(self.chatBubbleIMGV)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.edges.equalTo(self.chatBubbleIMGV).with.insets(UIEdgeInsetsMake(5, 5, 5, 5));
+                });
         });
     }return _chatContentLab;
 }
@@ -334,27 +321,30 @@ UITextFieldProtocol_synthesize_part2
         @jobs_weakify(self)
         _timeLab = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.font = UIFontWeightRegularSize(JobsWidth(10));
-            label.textAlignment = NSTextAlignmentCenter;
-            label.text = self.senderChatTextTimeStr;
-            label.textColor = JobsWhiteColor;
-            label.backgroundColor = JobsLightGrayColor;
-            [self.contentView.addSubview(label) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self.chatBubbleIMGV);
-                make.size.mas_equalTo(CGSizeMake(JobsIMChatInfoTimeLabWidth(), 20));
-                switch (self.infoLocation) {
-                    case InfoLocation_Left:{
-                        make.left.equalTo(self.chatBubbleIMGV.mas_right).offset(5);
-                    }break;
-                    case InfoLocation_Right:{
-                        make.right.equalTo(self.chatBubbleIMGV.mas_left).offset(-5);
-                    }break;
-                    default:
-                        break;
-                }
-            }];
-            label.makeLabelByShowingType(UILabelShowingType_03);
-            label.cornerCutToCircleWithCornerRadius(20 / 2);
+            label
+                .byTextCor(JobsWhiteColor)
+                .byText(self.senderChatTextTimeStr)
+                .byTextAlignment(NSTextAlignmentCenter)
+                .byFont(UIFontWeightRegularSize(JobsWidth(10)))
+                .byBgColor(JobsLightGrayColor)
+                .addOn(self.contentView)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.bottom.equalTo(self.chatBubbleIMGV);
+                    make.size.mas_equalTo(CGSizeMake(JobsIMChatInfoTimeLabWidth(), 20));
+                    switch (self.infoLocation) {
+                        case InfoLocation_Left:{
+                            make.left.equalTo(self.chatBubbleIMGV.mas_right).offset(5);
+                        }break;
+                        case InfoLocation_Right:{
+                            make.right.equalTo(self.chatBubbleIMGV.mas_left).offset(-5);
+                        }break;
+                        default:
+                            break;
+                    }
+                })
+                .makeLabelByShowingType(UILabelShowingType_03)
+                .cornerCutToCircleWithCornerRadius(20 / 2);
         });
     }return _timeLab;
 }

@@ -221,8 +221,8 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
             if (i < self.btnMutArr.count) {
                 self.btnMutArr[i].jobsResetImage(self.btnModelMutArr[i].highlightImage);
                 self.btnMutArr[i].jobsResetBtnTitleCor(self.btnModelMutArr[i].selectedTitleCor);
-                if(self.btnMutArr[i].leftLab) self.btnMutArr[i].leftLab.byBgCor(self.leftLabHighlightBgCor);
-                if(self.btnMutArr[i].rightLab) self.btnMutArr[i].rightLab.byBgCor(self.rightLabHighlightBgCor);
+                if(self.btnMutArr[i].leftLab) self.btnMutArr[i].leftLab.byBgColor(self.leftLabHighlightBgCor);
+                if(self.btnMutArr[i].rightLab) self.btnMutArr[i].rightLab.byBgColor(self.rightLabHighlightBgCor);
             }
         }
     };
@@ -234,7 +234,7 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
         return jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             btn.rightLab = label;
-            [self.addSubview(label.byBgCor(self.rightLabNormalBgCor)) mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label.byBgColor(self.rightLabNormalBgCor)) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(btn.imageView);
                 make.left.equalTo(btn.mas_right);
                 make.height.mas_equalTo(1);
@@ -250,7 +250,7 @@ Prop_strong()NSMutableArray <__kindof UIButtonModel *>*btnModelMutArr;
         return jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
             btn.leftLab = label;
-            [self.addSubview(label.byBgCor(self.leftLabNormalBgCor)) mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self.addSubview(label.byBgColor(self.leftLabNormalBgCor)) mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(btn.imageView);
                 make.right.equalTo(btn.mas_left);
                 make.height.mas_equalTo(1);

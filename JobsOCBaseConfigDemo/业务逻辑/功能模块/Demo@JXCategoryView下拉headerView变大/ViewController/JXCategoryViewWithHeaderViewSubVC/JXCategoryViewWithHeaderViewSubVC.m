@@ -57,7 +57,7 @@ Prop_strong()NSMutableArray <NSMutableArray <__kindof UICollectionViewCell *>*>*
     self.view.backgroundColor = JobsRandomColor;
     self.makeNavByAlpha(0);
     
-    self.collectionView.reloadDatas();
+    self.collectionView.byShow(self);
 }
 
 -(void)viewWillAppear:(BOOL)animated{

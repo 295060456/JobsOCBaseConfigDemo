@@ -49,7 +49,6 @@ Prop_strong()NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     @jobs_weakify(self)
     self.leftBarButtonItems = jobsMakeMutArr(^(NSMutableArray <UIBarButtonItem *>* _Nullable data) {
 //        @jobs_strongify(self)
@@ -60,8 +59,7 @@ Prop_strong()NSMutableArray <JobsMsgDataModel *>*selectedDataMutArr;
         data.add(UIBarButtonItem.initBy(self.editBtn));
     });
     self.makeNavByAlpha(1);
-    
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
     self.msgEditBoardView.jobsVisible = YES;
 }
 
@@ -239,40 +237,25 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.backgroundColor = JobsWhiteColor;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.delegate = self;
-            tableView.dataSource = self;
-            tableView.tableHeaderView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.tableFooterView = jobsMakeView(^(__kindof UIView * _Nullable view) {
-                /// 这里接入的就是一个UIView的派生类。只需要赋值Frame，不需要addSubview
-            });
-            tableView.separatorColor = HEXCOLOR(0xEEEEEE);
-    //        _tableView.contentInset = UIEdgeInsetsMake(0, 0, JobsBottomSafeAreaHeight(), 0);
-            [tableView registerTableViewClass];
-            if(@available(iOS 11.0, *)) {
-                tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            }else{
-                SuppressWdeprecatedDeclarationsWarning(self.automaticallyAdjustsScrollViewInsets = NO);
-            }
-            
-            {
-                tableView.mj_header = self.view.MJRefreshNormalHeaderBy([self refreshHeaderDataBy:^id _Nullable(id  _Nullable data) {
-                    tableView.endRefreshing(YES);
-                    return nil;
-                }]);
-                tableView.mj_footer = self.view.MJRefreshFooterBy([self refreshFooterDataBy:^id _Nullable(id  _Nullable data) {
-                    tableView.endRefreshing(YES);
-                    return nil;
-                }]);
-            }
-            self.view.addSubview(tableView);
-            [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.view);
-            }];
+            tableView
+                .byMJRefreshHeader([MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                    @jobs_strongify(self)
+                    NSObject.feedbackGenerator(nil);/// 震动反馈
+                    self->_tableView.endRefreshing(YES);
+                }].byMJRefreshHeaderConfigModel(self.mjHeaderDefaultConfig))
+                .byMJRefreshFooter([MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    @jobs_strongify(self)
+                    NSObject.feedbackGenerator(nil);/// 震动反馈
+                    self->_tableView.endRefreshing(YES);
+                }].byMJRefreshFooterConfigModel(self.mjFooterDefaultConfig))
+                .bySeparatorStyle(UITableViewCellSeparatorStyleSingleLine)
+                .byShowsVerticalScrollIndicator(NO)
+                .byBgColor(JobsWhiteColor)
+                .addOn(self.view)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.edges.equalTo(self.view);
+                });
         });
     }return _tableView;
 }

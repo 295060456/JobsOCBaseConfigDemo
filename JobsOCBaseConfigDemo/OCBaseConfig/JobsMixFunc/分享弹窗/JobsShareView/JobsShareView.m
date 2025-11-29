@@ -79,7 +79,7 @@ static dispatch_once_t static_shareViewOnceToken;
         @jobs_strongify(self)
         self.viewModel = model;
         self.sizer = JobsShareView.viewSizeByModel(nil);
-        self.collectionView.reloadDatas();
+        self.collectionView.byShow(self);
         self.cancelBtn.alpha = 1;
     };
 }

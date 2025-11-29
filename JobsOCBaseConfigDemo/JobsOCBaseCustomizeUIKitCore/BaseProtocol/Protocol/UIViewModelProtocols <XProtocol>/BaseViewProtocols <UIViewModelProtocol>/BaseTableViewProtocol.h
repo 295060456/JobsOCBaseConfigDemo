@@ -15,9 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 #pragma mark —— 数据源
 -(JobsRetScrollViewByIDBlock _Nonnull)dataLink;
+-(JobsRetScrollViewByIDBlock _Nonnull)byShow; // 用于显示 UITableView
 #pragma mark —— UITableView
-+(instancetype)initWithStylePlain;/// 一般用这个
-+(instancetype)initWithStyleGrouped;/// 会在section之间自己预留一块空间
++(instancetype)initWithStylePlain; // 一般用这个
++(instancetype)initWithStyleGrouped; // 会在section之间自己预留一块空间
 +(instancetype)initWithStyleInsetGrouped API_AVAILABLE(ios(13.0)) API_UNAVAILABLE(tvos);
 -(JobsRetTableViewByDelegateBlock _Nonnull)byDelegate;
 -(JobsRetTableViewByDataSourceBlock _Nonnull)byDataSource;
@@ -61,6 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)hideSeparatorLineAtLast:(NSIndexPath *)indexPath cell:(__kindof UITableViewCell *)cell;
 #pragma mark —— RegisterClass
 -(void)registerTableViewClass;
+-(JobsRetTableViewByStringBlock _Nonnull)byRegisterTableViewClass;
 /// 不加盐注册
 -(jobsByClsBlock _Nonnull)registerTableViewClassBy;
 /// 加盐注册

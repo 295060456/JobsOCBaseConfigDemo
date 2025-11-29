@@ -78,7 +78,7 @@ Prop_strong()UIViewModel *leftViewCurrentSelectModel;
     self.makeNavByAlpha(1);
     
     self.searchView.alpha = 1;
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
     self.editBtn.alpha = 1;
     self.refreshLeftView();
 
@@ -207,32 +207,37 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
         @jobs_weakify(self)
         _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.backgroundColor = HEXCOLOR(0xFCFBFB);
-            tableView.frame = jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
-                data.jobsX = 0;
-                data.jobsY = JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h;
-                data.jobsWidth = TableViewWidth;
-                data.jobsHeight = JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight;
-            });
-        })).dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
+            tableView
+                .bySeparatorStyle(UITableViewCellSeparatorStyleNone)
+                .byShowsVerticalScrollIndicator(NO)
+                .byBgColor(HEXCOLOR(0xFCFBFB))
+                .byFrame(jobsMakeCGRectByLocationModelBlock(^(__kindof JobsLocationModel * _Nullable data) {
+                    @jobs_strongify(self)
+                    data.jobsX = 0;
+                    data.jobsY = JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h;
+                    data.jobsWidth = TableViewWidth;
+                    data.jobsHeight = JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight;
+                }));
+        }));
     }return _tableView;
 }
 
 - (JobsSearchBar *)searchView {
     if (!_searchView) {
+        @jobs_weakify(self)
         _searchView = JobsSearchBar
             .BySize(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)))
             .JobsRichViewByModel2(nil)
             .JobsBlock1(^(id  _Nullable data) {
                 
+            })
+            .addOn(self.gk_navigationBar)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
+                make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
+                make.centerY.equalTo(self.gk_navigationBar);
             });
-        [self.gk_navigationBar.addSubview(_searchView) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
-            make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
-            make.centerY.equalTo(self.gk_navigationBar);
-        }];
         
 //        [_jobsSearchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
 //            @jobs_strongify(self)
@@ -273,14 +278,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
                 toast(@"编辑".tr);
-            }).onLongPressGestureBy(^(id data){
+            })
+            .onLongPressGestureBy(^(id data){
                 JobsLog(@"");
+            })
+            .addOn(self.view)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                make.left.equalTo(self.view);
+                make.top.equalTo(self.tableView.mas_bottom);
+                make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
             });
-        [self.view.addSubview(_editBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view);
-            make.top.equalTo(self.tableView.mas_bottom);
-            make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
-        }];
     }return _editBtn;
 }
 

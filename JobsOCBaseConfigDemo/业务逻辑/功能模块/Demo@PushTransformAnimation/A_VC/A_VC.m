@@ -44,10 +44,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = JobsYellowColor;
-    
     self.makeNavByAlpha(1);
-    
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -123,22 +121,25 @@ didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
         @jobs_weakify(self)
         _tableView = jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.dataLink(self);
-            tableView.backgroundColor = JobsWhiteColor;
-            tableView.pagingEnabled = YES;//这个属性为YES会使得Tableview一格一格的翻动
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            tableView.estimatedRowHeight = 0;
-            tableView.estimatedSectionFooterHeight = 0;
-            tableView.estimatedSectionHeaderHeight = 0 ;
-            tableView.mj_header = self.mjRefreshGifHeader;
-            tableView.mj_footer = self.mjRefreshAutoGifFooter;
+            tableView
+                .byMJRefreshHeader(self.mjRefreshGifHeader)
+                .byMJRefreshFooter(self.mjRefreshAutoGifFooter)
+                .byEstimatedRowHeight(0)
+                .byEstimatedSectionFooterHeight(0)
+                .byEstimatedSectionHeaderHeight(0)
+                .bySeparatorStyle(UITableViewCellSeparatorStyleNone)
+                .byPagingEnabled(YES)
+                .byShowsVerticalScrollIndicator(NO)
+                .byContentInsetAdjustmentBehavior(UIScrollViewContentInsetAdjustmentNever)
+                .byBgColor(JobsWhiteColor)
+                .addOn(self.view)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.top.equalTo(self.gk_navigationBar.mas_bottom);
+                    make.left.right.bottom.equalTo(self.view);
+                });
             tableView.mj_footer.hidden = NO;
-            [self.view.addSubview(tableView) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.gk_navigationBar.mas_bottom);
-                make.left.right.bottom.equalTo(self.view);
-            }];self.view.refresh();
+            self.view.refresh();
         });
     }return _tableView;
 }

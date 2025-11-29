@@ -38,7 +38,7 @@ Prop_strong()NSMutableArray <UIButtonModel *>*datas;
         @jobs_strongify(self)
         self.excelConfigureData = viewModel.data;
         self.datas = viewModel.buttonModels;
-        self.collectionView.reloadDatas();
+        self.collectionView.byShow(self);
         return self;
     };
 }

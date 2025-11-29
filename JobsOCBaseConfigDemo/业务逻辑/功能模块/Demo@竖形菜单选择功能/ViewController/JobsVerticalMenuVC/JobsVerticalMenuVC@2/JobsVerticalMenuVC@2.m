@@ -86,9 +86,9 @@ Prop_assign()NSUInteger thisIndex;
     self.makeNavByAlpha(1);
     
     self.searchView.alpha = 1;
-    self.tableView.reloadDatas();
+    self.tableView.byShow(self);
     self.editBtn.alpha = 1;
-    self.collectionView.reloadDatas();
+    self.collectionView.byShow(self);
     self.refreshLeftView();
     [self.tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     self.actionBy(0);
@@ -121,7 +121,7 @@ Prop_assign()NSUInteger thisIndex;
         @jobs_strongify(self)
         for (int i = 0; i < self.thisIndex + 1; i++) {
             arr.add(jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-                model.backgroundImage = self.cellTitleMutArr[self.thisIndex].add(已点击.img);
+                model.backgroundImage = self.cellTitleMutArr[self.thisIndex].add(已点击).img;
                 model.titleCor = HEXCOLOR(0xC4C4C4);
                 model.titleFont = UIFontWeightRegularSize(12);
                 model.baseBackgroundColor = JobsRedColor;
@@ -136,7 +136,7 @@ Prop_assign()NSUInteger thisIndex;
     return ^__kindof UIButtonModel *_Nullable(__kindof NSString *_Nullable data){
 //        @jobs_strongify(self)
         return jobsMakeButtonModel(^(__kindof UIButtonModel * _Nullable model) {
-            model.backgroundImage = data.add(未点击.img);
+            model.backgroundImage = data.add(未点击).img;
             model.title = @"";
             model.subTitle = @"";
             model.baseBackgroundColor = JobsClearColor;
@@ -355,26 +355,25 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
                                                                                             forIndexPath:indexPath];
         UILabel *label = headerView.viewWithTag(666);
         if (!label){
+            @jobs_weakify(self)
             label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
-                label.frame = CGRectMake(10,
-                                         20,
-                                         headerView.width - 20.f,
-                                         17.f);
-                label.font = JobsFontBold(JobsWidth(12));
-                label.textColor = JobsGrayColor;
-                label.tag = 666;
-            });headerView.addSubview(label);
+                @jobs_strongify(self)
+                label
+                    .byTextCor(JobsGrayColor)
+                    .byFont(JobsFontBold(JobsWidth(12)))
+                    .byFrame(CGRectMake(10,20,headerView.width - 20.f,17.f))
+                    .byTag(666)
+                    .addOn(headerView);
+            });
         }
-        
+
         GoodsClassModel *rightModel = self.rightDataArray.objectAt(indexPath.section);
         label.text = rightModel.name ? : @"".tr;
         
         return headerView;
     }else if (kind.isEqualToString(UICollectionElementKindSectionFooter)){
-        // 底部视图
-        UICollectionReusableView *footView = [collectionView UICollectionElementKindSectionFooterClass:UICollectionReusableView.class
-                                                                                          forIndexPath:indexPath];
-        return footView;
+        /// 底部视图
+        return [collectionView UICollectionElementKindSectionFooterClass:UICollectionReusableView.class forIndexPath:indexPath];
     }return nil;
 }
 
@@ -404,36 +403,31 @@ referenceSizeForFooterInSection:(NSInteger)section{
         @jobs_weakify(self)
         _tableView = self.view.addSubview(jobsMakeTableViewByPlain(^(__kindof UITableView * _Nullable tableView) {
             @jobs_strongify(self)
-            tableView.bounces = NO;
-            tableView.backgroundColor = JobsClearColor;
-            tableView.showsVerticalScrollIndicator = NO;
-            tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-            tableView.frame = CGRectMake(0,
-                                         JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
-                                         TableViewWidth,
-                                         JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight);
-        })).dataLink(self);/// dataLink(self)不能写在Block里面，会出问题
+            tableView
+                .bySeparatorStyle(UITableViewCellSeparatorStyleNone)
+                .byShowsVerticalScrollIndicator(NO)
+                .byBounces(NO)
+                .byBgColor(JobsClearColor)
+                .byFrame(CGRectMake(0,JobsTopSafeAreaHeight() + JobsStatusBarHeight() + self.gk_navigationBar.mj_h,
+                                    TableViewWidth,JobsMainScreen_HEIGHT() - JobsTopSafeAreaHeight() - JobsStatusBarHeight() - JobsTabBarHeight(AppDelegate.tabBarVC) - EditBtnHeight));
+        }));
     }return _tableView;
 }
 /// BaseViewProtocol
 @synthesize collectionView = _collectionView;
 -(UICollectionView *)collectionView{
     if (!_collectionView){
-        _collectionView = UICollectionView.initByLayout(jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {
-            
-        }));
-        _collectionView.dataLink(self);
-        _collectionView.frame = CGRectMake(self.tableView.right,
-                                           self.tableView.top,
-                                           JobsMainScreen_WIDTH() - self.tableView.width,
-                                           self.tableView.height + EditBtnHeight);
-        _collectionView.backgroundColor = JobsRandomColor;// ThreeClassCellBgCor;
-        _collectionView.alwaysBounceVertical = YES;
-        _collectionView.registerCollectionViewClass();
-//        collectionView.registerCollectionViewCellClass(ThreeClassCell.class);
-//        collectionView.registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class);
-//        collectionView.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class);
-        [self.view addSubview:_collectionView];
+        _collectionView = UICollectionView
+            .initByLayout(jobsMakeVerticalCollectionViewFlowLayout(^(UICollectionViewFlowLayout * _Nullable data) {}))
+            .registerCollectionViewClass()
+//            .registerCollectionViewCellClass(ThreeClassCell.class,@"")
+//            .registerCollectionElementKindSectionHeaderClass(UICollectionReusableView.class,@"")
+//            .registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class,@"")
+            .byAlwaysBounceVertical(YES)
+            .byFrame(CGRectMake(self.tableView.right,self.tableView.top,
+                                JobsMainScreen_WIDTH() - self.tableView.width,self.tableView.height + EditBtnHeight))
+            .byBgColor(JobsRandomColor)
+            .addOn(self.view);
     }return _collectionView;
 }
 
@@ -459,12 +453,14 @@ referenceSizeForFooterInSection:(NSInteger)section{
                 .JobsRichViewByModel2(nil)
                 .JobsBlock1(^(id  _Nullable data) {
                     
+                })
+                .addOn(self.gk_navigationBar)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
+                    make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
+                    make.centerY.equalTo(self.gk_navigationBar);
                 });
-            [self.gk_navigationBar.addSubview(searchBar) mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(JobsMainScreen_WIDTH() / 3, JobsWidth(40)));
-                make.right.equalTo(self.gk_navigationBar).offset(JobsWidth(0));
-                make.centerY.equalTo(self.gk_navigationBar);
-            }];
             
 //            [searchBar actionNSIntegerBlock:^(UITextFieldFocusType data) {
 //                @jobs_strongify(self)
@@ -511,14 +507,17 @@ referenceSizeForFooterInSection:(NSInteger)section{
                 [self.popupView tf_showSlide:MainWindow
                                    direction:PopupDirectionBottom
                                   popupParam:self.popupParameter];
-            }).onLongPressGestureBy(^(id data){
+            })
+            .onLongPressGestureBy(^(id data){
                 JobsLog(@"");
+            })
+            .addOn(self.view)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                make.left.equalTo(self.view);
+                make.top.equalTo(self.tableView.mas_bottom);
+                make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
             });
-        [self.view.addSubview(_editBtn) mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view);
-            make.top.equalTo(self.tableView.mas_bottom);
-            make.size.mas_equalTo(CGSizeMake(TableViewWidth, EditBtnHeight));
-        }];
     }return _editBtn;
 }
 

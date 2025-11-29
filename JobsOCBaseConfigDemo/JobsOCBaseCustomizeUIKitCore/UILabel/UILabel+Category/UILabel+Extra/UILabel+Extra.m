@@ -102,7 +102,7 @@
     };
 }
 
--(JobsRetLabelByCorBlock _Nonnull)byBgCor{
+-(JobsRetLabelByCorBlock _Nonnull)byBgColor{
     @jobs_weakify(self)
     return ^__kindof UILabel *_Nullable(__kindof UIColor *_Nullable cor){
         @jobs_strongify(self)
