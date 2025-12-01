@@ -236,7 +236,19 @@
 
 * [**过期的模拟器配件**](https://github.com/295060456/Xcode_Sys_lib)
 
-* [**quicktype**](https://app.quicktype.io/)：从 **JSON** / **GraphQL** /其它数据格式 自动生成对应语言的类型定义
+* [**quicktype**](https://app.quicktype.io/)：从 **JSON** / **GraphQL** /其它数据格式 自动生成对应语言的类型定义👉[**Github@quicktype**](https://github.com/glideapps/quicktype?utm_source=chatgpt.com)
+
+  * ```shell
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    ```
+
+  * ```shell
+    brew install npm
+    ```
+
+  * ```shell
+    npm install -g quicktype
+    ```
 
 * [**snipaste**](https://www.snipaste.com/)：截图工具
 
