@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class JobsTabBarCtrl;
 
-typedef void (^JobsTabBarButtonsCallback)(NSArray<UIButton *> *buttons);
-
 @interface JobsTabBarCtrl : BaseViewController <UIScrollViewDelegate>
 /// 是否允许内容区域左右滑动
 Prop_assign()BOOL swipeEnabled;
@@ -52,9 +50,9 @@ Prop_assign(readonly)NSInteger selectedIndex;
 Prop_strong(readonly)UIScrollView *tabBar;
 Prop_strong(readonly)UIScrollView *contentScrollView;
 /// 首次构建完按钮回调（只调一次）
-Prop_copy(nullable)JobsTabBarButtonsCallback onButtonsBuilt;
+Prop_copy(nullable)jobsByArrBlock onButtonsBuilt;
 /// 每次布局完按钮 frame 的回调（包括旋转后）
-Prop_copy(nullable)JobsTabBarButtonsCallback onButtonsLayouted;
+Prop_copy(nullable)jobsByArrBlock onButtonsLayouted;
 /// 配置数据源
 -(void)setDataSourceWithButtons:(NSArray<UIButton *> *)buttons
                     controllers:(NSArray<UIViewController *> *)controllers;
@@ -68,32 +66,31 @@ Prop_copy(nullable)JobsTabBarButtonsCallback onButtonsLayouted;
 #pragma mark - 链式配置（和 Swift 版保持风格）
 @interface JobsTabBarCtrl (Chainable)
 
--(instancetype)bySwipeEnabled:(BOOL)flag;
--(instancetype)byHorizontalOnly:(BOOL)flag;
--(instancetype)bySuppressChildVerticalScrolls:(BOOL)flag;
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)bySwipeEnabled;
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)byHorizontalOnly;
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)bySuppressChildVerticalScrolls;
+-(JobsRetTabBarCtrlByColorBlock _Nonnull)byBarBackgroundColor;
+-(JobsRetTabBarCtrlByNumberBlock _Nonnull)byCustomBarHeight;
+-(JobsRetTabBarCtrlByCGFloatBlock _Nonnull)byBarBottomOffset;
+-(JobsRetTabBarCtrlByImageBlock _Nonnull)byBarBackgroundImage;
+-(JobsRetTabBarCtrlByInsetsBlock _Nonnull)byContentInset;
+-(JobsRetTabBarCtrlByCGFloatBlock _Nonnull)byEqualSpacing;
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)byLockUnitToMaxEqualCount;
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)byAutoRelayoutForBoundsChange;
+-(JobsRetTabBarCtrlByArrBlocks _Nullable)onButtonsBuilt;
+-(JobsRetTabBarCtrlByArrBlocks _Nullable)onButtonsLayouted;
 
--(instancetype)byBarBackgroundColor:(UIColor *)color;
--(instancetype)byCustomBarHeight:(nullable NSNumber *)height;   // nil == 默认高度
--(instancetype)byBarBottomOffset:(CGFloat)offset;
--(instancetype)byBarBackgroundImage:(nullable UIImage *)img;
-
--(instancetype)byContentInset:(UIEdgeInsets)inset;
--(instancetype)byEqualSpacing:(CGFloat)spacing;
--(instancetype)byEqualVisibleRangeFrom:(NSInteger)min
-                                    to:(NSInteger)max;
--(instancetype)byLockUnitToMaxEqualCount:(BOOL)flag;
--(instancetype)byAutoRelayoutForBoundsChange:(BOOL)flag;
-
--(instancetype)onButtonsBuilt:(JobsTabBarButtonsCallback)block;
--(instancetype)onButtonsLayouted:(JobsTabBarButtonsCallback)block;
-
--(instancetype)byDataSourceWithButtons:(__kindof NSArray<__kindof UIButton *> *)buttons
-                           controllers:(__kindof NSArray<__kindof UIViewController *> *)controllers;
-
-/// 安全弱持有 owner 的包装
--(instancetype)onButtonsLayoutedWeakOwner:(void(^)(JobsTabBarCtrl *owner,
-                                                   NSArray<UIButton *> *buttons))block;
+-(instancetype)byEqualVisibleRangeFrom:(NSInteger)min to:(NSInteger)max ;
+-(instancetype)byDataSourceWithButtons:(NSArray<UIButton *> *)buttons controllers:(NSArray<UIViewController *> *)controllers ;
+-(instancetype)onButtonsLayoutedWeakOwner:(void(^)(JobsTabBarCtrl *owner, NSArray<UIButton *> *buttons))block ;
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+NS_INLINE __kindof JobsTabBarCtrl *_Nonnull
+jobsMakeTabBarCtrl(jobsByJobsTabBarCtrlBlock _Nonnull block){
+    JobsTabBarCtrl *data = JobsTabBarCtrl.alloc.init;
+    if (block) block(data);
+    return data;
+}

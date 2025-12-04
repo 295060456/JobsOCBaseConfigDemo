@@ -12,7 +12,7 @@ BOOL ISLogin;
 /// UI
 Prop_strong()BaseButton *userHeadBtn;
 /// Data
-Prop_strong()NSMutableArray <UITableViewCell *>*tbvCellMutArr;
+Prop_strong()NSMutableArray <__kindof UITableViewCell *>*tbvCellMutArr;
 Prop_strong()NSMutableArray <UIViewModel *>*dataMutArr;
 
 @end
@@ -300,10 +300,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tableView;
 }
 
--(NSMutableArray<UITableViewCell *> *)tbvCellMutArr{
+-(NSMutableArray<__kindof UITableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
         @jobs_weakify(self)
-        _tbvCellMutArr = jobsMakeMutArr(^(NSMutableArray <UITableViewCell *>*_Nullable data) {
+        _tbvCellMutArr = jobsMakeMutArr(^(NSMutableArray <__kindof UITableViewCell *>*_Nullable data) {
             @jobs_strongify(self)
             [self.dataMutArr enumerateObjectsUsingBlock:^(UIViewModel * _Nonnull obj,
                                                           NSUInteger idx,

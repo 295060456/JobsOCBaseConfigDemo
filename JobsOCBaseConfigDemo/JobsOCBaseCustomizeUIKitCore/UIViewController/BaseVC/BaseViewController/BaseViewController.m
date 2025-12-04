@@ -38,6 +38,11 @@ BaseViewControllerProtocol_synthesize
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (@available(iOS 13.0, *)) {
+        self.view.backgroundColor = JobsSystemBackgroundColor;
+    } else {
+        self.view.backgroundColor = JobsWhiteColor;
+    }
     self.ViewDidLoad = YES;
     /// 在loadView或者之前的生命周期中定义背景图片或者底色
     self.setBackGround();

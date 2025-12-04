@@ -62,7 +62,6 @@ Prop_assign(readwrite)BOOL builtOnce;
     self.tabBar.frame = CGRectMake(0,CGRectGetHeight(self.view.bounds) - barH - self.barBottomOffset,
                                    CGRectGetWidth(self.view.bounds),barH);
     self.bgImageView.frame = self.tabBar.bounds;
-
     self.contentScrollView.frame = CGRectMake(0,0,
                                               CGRectGetWidth(self.view.bounds),CGRectGetHeight(self.view.bounds) - barH - self.barBottomOffset);
     // 布局按钮
@@ -391,96 +390,144 @@ Prop_assign(readwrite)BOOL builtOnce;
 
 @end
 
-#pragma mark - 链式扩展实现
-
+#pragma mark —— DSL
 @implementation JobsTabBarCtrl (Chainable)
 
-- (instancetype)bySwipeEnabled:(BOOL)flag {
-    self.swipeEnabled = flag;
-    return self;
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)bySwipeEnabled{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(BOOL flag){
+        @jobs_strongify(self)
+        self.swipeEnabled = flag;
+        return self;
+    };
 }
 
-- (instancetype)byHorizontalOnly:(BOOL)flag {
-    self.horizontalOnly = flag;
-    return self;
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)byHorizontalOnly{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(BOOL flag){
+        @jobs_strongify(self)
+        self.horizontalOnly = flag;
+        return self;
+    };
 }
 
-- (instancetype)bySuppressChildVerticalScrolls:(BOOL)flag {
-    self.suppressChildVerticalScrolls = flag;
-    return self;
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)bySuppressChildVerticalScrolls{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(BOOL flag){
+        @jobs_strongify(self)
+        self.suppressChildVerticalScrolls = flag;
+        return self;
+    };
 }
 
-- (instancetype)byBarBackgroundColor:(UIColor *)color {
-    self.barBackgroundColor = color;
-    return self;
+-(JobsRetTabBarCtrlByColorBlock _Nonnull)byBarBackgroundColor{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(UIColor * _Nonnull color){
+        @jobs_strongify(self)
+        self.barBackgroundColor = color;
+        return self;
+    };
 }
 
-- (instancetype)byCustomBarHeight:(NSNumber *)height {
-    self.customBarHeight = height;
-    return self;
+-(JobsRetTabBarCtrlByNumberBlock _Nonnull)byCustomBarHeight{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(NSNumber * _Nullable height){
+        @jobs_strongify(self)
+        self.customBarHeight = height;
+        return self;
+    };
 }
 
-- (instancetype)byBarBottomOffset:(CGFloat)offset {
-    self.barBottomOffset = offset;
-    return self;
+-(JobsRetTabBarCtrlByCGFloatBlock _Nonnull)byBarBottomOffset{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(CGFloat offset){
+        @jobs_strongify(self)
+        self.barBottomOffset = offset;
+        return self;
+    };
 }
 
-- (instancetype)byBarBackgroundImage:(UIImage *)img {
-    self.barBackgroundImage = img;
-    return self;
+-(JobsRetTabBarCtrlByImageBlock _Nonnull)byBarBackgroundImage{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(UIImage * _Nullable img){
+        @jobs_strongify(self)
+        self.barBackgroundImage = img;
+        return self;
+    };
 }
 
-- (instancetype)byContentInset:(UIEdgeInsets)inset {
-    self.contentInset = inset;
-    return self;
+-(JobsRetTabBarCtrlByInsetsBlock _Nonnull)byContentInset{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(UIEdgeInsets inset){
+        @jobs_strongify(self)
+        self.contentInset = inset;
+        return self;
+    };
 }
 
-- (instancetype)byEqualSpacing:(CGFloat)spacing {
-    self.equalSpacing = spacing;
-    return self;
+-(JobsRetTabBarCtrlByCGFloatBlock _Nonnull)byEqualSpacing{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(CGFloat spacing){
+        @jobs_strongify(self)
+        self.equalSpacing = spacing;
+        return self;
+    };
 }
 
-- (instancetype)byEqualVisibleRangeFrom:(NSInteger)min to:(NSInteger)max {
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)byLockUnitToMaxEqualCount{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(BOOL flag){
+        @jobs_strongify(self)
+        self.lockUnitToMaxEqualCount = flag;
+        return self;
+    };
+}
+
+-(JobsRetTabBarCtrlByBOOLBlock _Nonnull)byAutoRelayoutForBoundsChange{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(BOOL flag){
+        @jobs_strongify(self)
+        self.autoRelayoutForBoundsChange = flag;
+        return self;
+    };
+}
+
+-(JobsRetTabBarCtrlByArrBlocks _Nullable)onButtonsBuilt{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(jobsByArrBlock _Nullable block){
+        @jobs_strongify(self)
+        self.onButtonsBuilt = block;
+        return self;
+    };
+}
+
+-(JobsRetTabBarCtrlByArrBlocks _Nullable)onButtonsLayouted{
+    @jobs_weakify(self)
+    return ^__kindof JobsTabBarCtrl *_Nullable(jobsByArrBlock _Nullable block){
+        @jobs_strongify(self)
+        self.onButtonsLayouted = block;
+        return self;
+    };
+}
+
+-(instancetype)byEqualVisibleRangeFrom:(NSInteger)min to:(NSInteger)max {
     self.equalVisibleMin = min;
     self.equalVisibleMax = max;
     return self;
 }
 
-- (instancetype)byLockUnitToMaxEqualCount:(BOOL)flag {
-    self.lockUnitToMaxEqualCount = flag;
-    return self;
-}
-
-- (instancetype)byAutoRelayoutForBoundsChange:(BOOL)flag {
-    self.autoRelayoutForBoundsChange = flag;
-    return self;
-}
-
-- (instancetype)onButtonsBuilt:(JobsTabBarButtonsCallback)block {
-    self.onButtonsBuilt = block;
-    return self;
-}
-
-- (instancetype)onButtonsLayouted:(JobsTabBarButtonsCallback)block {
-    self.onButtonsLayouted = block;
-    return self;
-}
-
-- (instancetype)byDataSourceWithButtons:(NSArray<UIButton *> *)buttons
-                             controllers:(NSArray<UIViewController *> *)controllers {
+-(instancetype)byDataSourceWithButtons:(NSArray<UIButton *> *)buttons controllers:(NSArray<UIViewController *> *)controllers {
     [self setDataSourceWithButtons:buttons controllers:controllers];
     return self;
 }
 
-- (instancetype)onButtonsLayoutedWeakOwner:(void(^)(JobsTabBarCtrl *owner,
-                                                    NSArray<UIButton *> *buttons))block {
-    __weak typeof(self) weakSelf = self;
+-(instancetype)onButtonsLayoutedWeakOwner:(void(^)(JobsTabBarCtrl *owner, NSArray<UIButton *> *buttons))block {
+    @jobs_weakify(self)
     self.onButtonsLayouted = ^(NSArray<UIButton *> *btns) {
-        __strong typeof(self) strongSelf = weakSelf;
-        if (!strongSelf) return;
-        block(strongSelf, btns);
-    };
-    return self;
+        @jobs_strongify(self)
+        if (!self) return;
+        block(self, btns);
+    };return self;
 }
 
 @end

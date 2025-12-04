@@ -439,6 +439,19 @@ typedef void(^jobsByNavigationTransitionManagerBlock)(__kindof JobsNavigationTra
 typedef void(^JobsTimerBlock)(JobsTimer *_Nullable timer);
 typedef void(^jobsByCGFloatBlocks)(jobsByCGFloatBlock _Nullable timer);
 
+@class JobsTabBarCtrl;
+typedef void(^jobsByJobsTabBarCtrlBlock)(__kindof JobsTabBarCtrl *_Nullable ctrl);
+typedef __kindof JobsTabBarCtrl *_Nullable(^JobsRetTabBarCtrlByBOOLBlock)(BOOL flag);
+typedef __kindof JobsTabBarCtrl *_Nonnull(^JobsRetTabBarCtrlByCGFloatBlock)(CGFloat value);
+typedef __kindof JobsTabBarCtrl *_Nonnull(^JobsRetTabBarCtrlByNumberBlock)(NSNumber *_Nullable num);
+typedef __kindof JobsTabBarCtrl *_Nonnull(^JobsRetTabBarCtrlByColorBlock)(UIColor *_Nonnull color);
+typedef __kindof JobsTabBarCtrl *_Nonnull(^JobsRetTabBarCtrlByImageBlock)(UIImage *_Nullable image);
+typedef __kindof JobsTabBarCtrl *_Nonnull(^JobsRetTabBarCtrlByInsetsBlock)(UIEdgeInsets inset);
+typedef __kindof JobsTabBarCtrl *_Nonnull(^JobsRetTabBarCtrlByMinMaxBlock)(NSInteger min, NSInteger max);
+typedef __kindof JobsTabBarCtrl *_Nonnull(^JobsRetTabBarCtrlByArrBlocks)(jobsByArrBlock _Nullable data);
+
+
+
 typedef __kindof JobsTimer *_Nullable(^JobsRetJTimerByJTimerBlock)(__kindof JobsTimer * _Nullable timer);
 typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByCGFloatBlock)(CGFloat time);
 typedef __kindof JobsTimer *_Nullable(^JobsRetTimerByDoubleBlock)(double time);
