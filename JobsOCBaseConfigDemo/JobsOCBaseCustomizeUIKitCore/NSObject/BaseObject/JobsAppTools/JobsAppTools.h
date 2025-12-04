@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "BaseProtocol.h"
+#import "DefineProperty.h"
 
 @class AppDelegate;
 /// 单例工具箱
@@ -39,7 +40,7 @@ typedef NS_ENUM(NSInteger, DeviceOrientation) {
 #endif // ROOT_VIEW_CONTROLLER_H
 
 NS_ASSUME_NONNULL_BEGIN
-/// 本类结合 NSObject+AppTools 是对整个App作用于全局的工具箱🧰
+/// 本类结合 NSObject+AppTools 是对整个App作用于全局的工具箱 🧰
 @interface JobsAppTools : NSObject<BaseProtocol>
 #pragma mark —— 屏幕方向
 #warning 以下属性，如果用分类集成，即写在NSObject层，可能出现存取值异常

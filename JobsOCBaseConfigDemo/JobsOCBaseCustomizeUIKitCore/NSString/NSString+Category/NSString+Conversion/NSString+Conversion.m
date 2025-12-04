@@ -49,7 +49,7 @@
         // 对数据进行JSON格式化并返回字典形式
         return self.JSONkNilOptions(data);
     }else{
-        toast(@"本地没有找到此Json文件，请检查".tr);
+        toastBy(@"本地没有找到此Json文件，请检查".tr);
         return nil;
     }
 }

@@ -15,7 +15,7 @@
     [self jobsHandelHTTPResponseCode:code
                          actionBlock:^(HTTPResponseCode data) {
         @jobs_strongify(self)
-        if(data == HTTPResponseCodeNoOK) toast(self.msg);
+        if(data == HTTPResponseCodeNoOK) toastBy(self.msg);
     }];
 }
 

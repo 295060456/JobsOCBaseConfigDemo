@@ -552,6 +552,8 @@ typedef void(^jobsByYTKNetworkConfigBlock)(__kindof YTKNetworkConfig *_Nullable 
 
 @class YTKRequest;
 typedef void(^jobsByYTKRequestBlock)(__kindof YTKRequest *_Nullable request);
+typedef __kindof YTKRequest *_Nullable(^JobsRetYTKRequestByYTKRequestBlock)(__kindof YTKRequest *_Nullable request);
+typedef __kindof YTKRequest *_Nullable(^JobsRetYTKRequestByVoidBlock)(void);
 
 @class YTKChainRequest;
 typedef void(^jobsByYTKChainRequestBlock)(YTKChainRequest *_Nullable chainRequest);
@@ -561,12 +563,16 @@ typedef void(^jobsByYTKBatchRequestBlock)(__kindof YTKBatchRequest *_Nullable da
 typedef __kindof YTKBatchRequest *_Nullable(^JobsReturnBatchRequestByArrBlock)(__kindof NSArray <YTKRequest *>*_Nullable requests);
 
 @class YTKBaseRequest;
-typedef void(^jobsByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
+typedef void(^jobsByYTKBaseRequestBlock)(__kindof YTKBaseRequest *_Nonnull request);
 typedef JobsResponseModel *_Nullable(^JobsReturnResponseModelByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
-typedef void(^JobsHandelNoSuccessBlock)(__kindof YTKBaseRequest *_Nonnull request);
-typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByVoidBlock)(void);
-typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByIDBlock)(id _Nullable data);
-typedef __kindof YTKBaseRequest *_Nonnull(^JobsReturnYTKRequestByDictionaryBlock)(NSDictionary *_Nullable dic);
+typedef __kindof YTKBaseRequest *_Nonnull(^JobsRetYTKBaseRequestByVoidBlock)(void);
+typedef __kindof YTKBaseRequest *_Nonnull(^JobsRetYTKBaseRequestByYTKBaseRequestBlock)(YTKBaseRequest *_Nonnull request);
+typedef __kindof YTKBaseRequest *_Nonnull(^JobsRetYTKRequestByDictionaryBlock)(NSDictionary *_Nullable dic);
+typedef __kindof YTKBaseRequest *_Nonnull(^JobsRetYTKBaseRequestByIDBlock)(id _Nullable data);
+
+@class BaseRequest;
+typedef __kindof BaseRequest *_Nonnull(^JobsRetBaseRequestByDictionaryBlock)(NSDictionary *_Nullable dic);
+typedef __kindof BaseRequest *_Nonnull(^JobsRetBaseRequestByIDBlock)(id _Nullable data);
 
 #if __has_include(<JXCategoryView/JXCategoryView.h>)
 #import <JXCategoryView/JXCategoryView.h>

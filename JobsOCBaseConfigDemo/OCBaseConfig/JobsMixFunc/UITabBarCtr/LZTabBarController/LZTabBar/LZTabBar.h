@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "JobsBlock.h"
 #import "LZTabBarItem.h"
+#import "DefineProperty.h"
 
 @protocol LZTabBarDelegate;
 
 @interface LZTabBar : UIView<LZTabBarItemDelegate>
 
-Prop_copy()NSArray<LZTabBarItem *>* _Nullable items;
+Prop_strong()NSArray<LZTabBarItem *>* _Nullable items;
 Prop_assign()id <LZTabBarDelegate> _Nullable delegate;
 
 @end

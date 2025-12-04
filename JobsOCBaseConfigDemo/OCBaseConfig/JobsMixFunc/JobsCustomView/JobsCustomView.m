@@ -202,7 +202,7 @@ static dispatch_once_t static_customViewOnceToken;
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                toast(x.titleForNormalState);
+                toastBy(x.titleForNormalState);
                 if (self.objBlock) self.objBlock(x);
             })
             .onLongPressGestureBy(^(id data){
@@ -237,7 +237,7 @@ static dispatch_once_t static_customViewOnceToken;
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 x.selected = !x.selected;
-                toast(x.titleForNormalState);
+                toastBy(x.titleForNormalState);
                 if (self.objBlock) self.objBlock(x);
             })
             .onLongPressGestureBy(^(id data){

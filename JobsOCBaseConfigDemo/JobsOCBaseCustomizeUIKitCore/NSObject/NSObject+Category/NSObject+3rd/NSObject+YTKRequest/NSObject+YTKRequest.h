@@ -14,7 +14,7 @@
 #endif
 
 #import "NSObject+YTKNetwork.h"
-#import "YTKBaseRequest+Extra.h"
+#import "YTKRequest+Extra.h"
 
 #import "JobsResponseModel.h"
 

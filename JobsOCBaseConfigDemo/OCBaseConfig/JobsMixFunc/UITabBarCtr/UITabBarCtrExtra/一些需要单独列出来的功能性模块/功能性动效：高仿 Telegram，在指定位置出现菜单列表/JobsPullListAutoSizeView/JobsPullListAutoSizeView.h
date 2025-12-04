@@ -10,6 +10,7 @@
 #import "BaseView.h"
 #import "JobsPullListTBVCell.h"
 #import "UIView+Extras.h"
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,8 +25,8 @@ Prop_assign()CGFloat listTbVCellHeight;
 Prop_assign()CGFloat listTbVOffset;
 Prop_strong()UIColor *bgColorListTBV;
 
-+ (instancetype)initWithTargetView:(UIView *__nonnull)targetView
-                        dataMutArr:(NSArray <UIViewModel *>*__nonnull)dataMutArr;
++(instancetype)initWithTargetView:(UIView *__nonnull)targetView
+                       dataMutArr:(NSArray <UIViewModel *>*__nonnull)dataMutArr;
 
 @end
 

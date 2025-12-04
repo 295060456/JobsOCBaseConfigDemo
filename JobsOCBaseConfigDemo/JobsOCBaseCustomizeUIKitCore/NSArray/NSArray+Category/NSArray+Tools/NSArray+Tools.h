@@ -56,7 +56,7 @@
                       .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
                       .jobsResetBtnBgImage(@"纸飞机账户绑定".img)
                       .onClickBy(^(UIButton *x){
-                          toast(@"纸飞机");
+                          toastBy(@"纸飞机");
                       }).onLongPressGestureBy(^(id data){
                           JobsLog(@"");
                       }));
@@ -64,7 +64,7 @@
                       .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
                       .jobsResetBtnBgImage(@"脸书账户绑定".img)
                       .onClickBy(^(UIButton *x){
-                          toast(@"脸书");
+                          toastBy(@"脸书");
                       }).onLongPressGestureBy(^(id data){
                           JobsLog(@"");
                       }));
@@ -72,7 +72,7 @@
                       .bgColorBy(JobsClearColor.colorWithAlphaComponentBy(0))
                       .jobsResetBtnBgImage(@"Viber账户绑定".img)
                       .onClickBy(^(UIButton *x){
-                          toast(@"Viber");
+                          toastBy(@"Viber");
                       }).onLongPressGestureBy(^(id data){
                           JobsLog(@"");
                       }));

@@ -473,7 +473,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(@"此功能尚未开发".tr);
+                toastBy(@"此功能尚未开发".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

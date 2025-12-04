@@ -8,6 +8,7 @@
 
 
 #import "TLAnimationProtocol.h"
+#import "DefineProperty.h"
 
 #define  kDuration  0.5f
 #define  kAnimationKeyPathScale @"transform.scale"
@@ -17,24 +18,20 @@
 #define  kAnimationKeyPathOpacity @"opacity"
 
 NS_ASSUME_NONNULL_BEGIN
-
 /** 弹性动画 */
 @interface TLBounceAnimation : NSObject <TLAnimationProtocol>
 /// 是否需要播放烟花效果，默认NO
-@property(nonatomic, assign) BOOL isPlayFireworksAnimation;
+Prop_assign()BOOL isPlayFireworksAnimation;
 
 @end
-
 /** 仿烟动画 */
 @interface TLFumeAnimation : NSObject <TLAnimationProtocol>
 
 @end
-
 /** 旋转动画 */
 @interface TLRotationAnimation : NSObject <TLAnimationProtocol>
 
 @end
-
 /** 贞动画 */
 @interface TLFrameAnimation : NSObject <TLAnimationProtocol>
 
@@ -43,7 +40,6 @@ Prop_strong()NSArray <CIImage *>*images;
 Prop_assign()BOOL isPlayFireworksAnimation;
 
 @end
-
 /** 转场动画 */
 @interface TLTransitionAniamtion : NSObject <TLAnimationProtocol>
 /** direction 翻转方向, 取值1-6，默认1

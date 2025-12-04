@@ -277,7 +277,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(@"编辑".tr);
+                toastBy(@"编辑".tr);
             })
             .onLongPressGestureBy(^(id data){
                 JobsLog(@"");

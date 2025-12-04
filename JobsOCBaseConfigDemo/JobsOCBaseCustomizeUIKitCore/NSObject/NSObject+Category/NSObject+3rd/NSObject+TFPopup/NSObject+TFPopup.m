@@ -13,7 +13,7 @@
     if (view) {
         if (action) action(); // 执行传入的操作
     } else {
-        toast(@"请初始化视图");
+        toastBy(@"请初始化视图");
     }return view;
 }
 #pragma mark —— 关闭所有的弹出提示框

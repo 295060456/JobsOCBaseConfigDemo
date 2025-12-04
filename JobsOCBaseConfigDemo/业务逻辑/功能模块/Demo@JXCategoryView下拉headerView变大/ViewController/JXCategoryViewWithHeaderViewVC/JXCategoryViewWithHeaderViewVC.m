@@ -212,7 +212,7 @@ mainTableViewDidScroll:(UIScrollView *)scrollView{
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(@"VIP規則".tr);
+                toastBy(@"VIP規則".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

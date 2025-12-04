@@ -159,7 +159,7 @@ Prop_assign()JobsDropDownListViewDirection dropDownListViewDirection;
                 data.layerCor = HEXCOLOR(0xB0B0B0);
                 data.jobsWidth = 1;
             }));
-            toast(x.selected ? @"打开解锁".tr:@"关闭解锁".tr);
+            toastBy(x.selected ? @"打开解锁".tr:@"关闭解锁".tr);
             self.dropDownListViewDirection = x.selected;
             self.btn.jobsResetBtnTitle(x.selected ? @"点击按钮弹出上拉列表".tr : @"点击按钮弹出下拉列表".tr);
         }];

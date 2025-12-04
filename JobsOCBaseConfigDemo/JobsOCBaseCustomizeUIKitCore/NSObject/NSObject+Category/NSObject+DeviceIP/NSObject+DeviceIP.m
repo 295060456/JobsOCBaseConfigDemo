@@ -80,27 +80,27 @@
 }
 /// 用于获取设备的所有 IP 地址（包括 IPv4 和 IPv6 地址），并以字典形式返回。通过查询网络接口获取这些信息。
 -(NSDictionary *)getIPAddresses{
-    // 创建一个可变字典，用于存储网络接口的 IP 地址信息
+    /// 创建一个可变字典，用于存储网络接口的 IP 地址信息
     NSMutableDictionary *addresses = [NSMutableDictionary dictionaryWithCapacity:8];
     struct ifaddrs *interfaces; // 定义一个指针，用于存储获取到的网络接口信息
-    // 调用系统函数获取当前设备的所有网络接口信息，返回值为 0 表示成功
+    /// 调用系统函数获取当前设备的所有网络接口信息，返回值为 0 表示成功
     if(!getifaddrs(&interfaces)) {
         struct ifaddrs *interface; // 遍历链表的指针
-        // 遍历获取到的网络接口链表
+        /// 遍历获取到的网络接口链表
         for(interface = interfaces; interface; interface = interface->ifa_next) {
             // 如果接口未激活（IFF_UP 未设置），跳过该接口
             if(!(interface->ifa_flags & IFF_UP)) {
                 continue;
             }
-            // 获取接口的地址信息
+            /// 获取接口的地址信息
             const struct sockaddr_in *addr = (const struct sockaddr_in*)interface->ifa_addr;
             char addrBuf[MAX(INET_ADDRSTRLEN, INET6_ADDRSTRLEN)]; // 定义缓冲区，用于存储 IP 地址字符串
-            // 判断地址类型是否为 IPv4 或 IPv6
+            /// 判断地址类型是否为 IPv4 或 IPv6
             if(addr && (addr->sin_family == AF_INET || addr->sin_family == AF_INET6)) {
-                // 获取接口名称
+                /// 获取接口名称
                 NSString *name = StringWithUTF8String(interface->ifa_name);
                 NSString *type; // 用于标识 IP 地址类型
-                // 如果是 IPv4 地址
+                /// 如果是 IPv4 地址
                 if(addr->sin_family == AF_INET) {
                     // 将网络字节序地址转换为字符串
                     if(inet_ntop(AF_INET, &addr->sin_addr, addrBuf, INET_ADDRSTRLEN)) {
@@ -113,7 +113,7 @@
                         type = IP_ADDR_IPv6;
                     }
                 }
-                // 如果 IP 地址类型存在，则将接口名称和地址存入字典
+                /// 如果 IP 地址类型存在，则将接口名称和地址存入字典
                 if(type) {
                     NSString *key = [NSString stringWithFormat:@"%@/%@", name, type];
                     addresses[key] = StringWithUTF8String(addrBuf);
@@ -125,14 +125,14 @@
 #pragma mark —— 简单可靠，只返回设备的公网 IP 地址【GET】
 /// https://api.ipify.org?format=json
 -(void)getIpify:(jobsByIpifyModelBlock _Nullable)successBlock{
-    Ipify_api *api = Ipify_api
-        .ByURLParameters(nil) /// 添加URL参数
-        .byBodyParameters(nil) /// 添加Body参数
-        .byHeaderParameters(nil); /// 添加Header参数
-    self.handleErr(api);
     // self.tipsByApi(self);
     @jobs_weakify(self)
-    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+    [Ipify_api.new
+        .byURLParameters(nil)
+        .byBodyParameters(nil)
+        .byHeaderParameters(nil)
+        .handleErr()
+     startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
         if(successBlock) successBlock(IpifyModel.byData(request.responseObject));
     } failure:^(YTKBaseRequest *request) {
         @jobs_strongify(self)
@@ -142,14 +142,14 @@
 #pragma mark —— 提供丰富的地理位置信息【GET】
 /// http://ip-api.com/json/
 -(void)getIP:(jobsByIPApiModelBlock _Nullable)successBlock{
-    IP_api *api = IP_api
-        .ByURLParameters(nil) /// 添加URL参数
-        .byBodyParameters(nil) /// 添加Body参数
-        .byHeaderParameters(nil); /// 添加Header参数
-    self.handleErr(api);
     // self.tipsByApi(self);
     @jobs_weakify(self)
-    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+    [IP_api.new
+        .byURLParameters(nil)
+        .byBodyParameters(nil)
+        .byHeaderParameters(nil)
+        .handleErr()
+     startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
         if(successBlock) successBlock(IPApiModel.byData(request.responseObject));
     } failure:^(YTKBaseRequest *request) {
         @jobs_strongify(self)
@@ -159,14 +159,14 @@
 #pragma mark —— 提供详细的 IP 信息【GET】
 /// https://ipinfo.io/json
 -(void)getIPInfo:(jobsByIpinfoModelBlock _Nullable)successBlock{
-    Ipinfo_api *api = Ipinfo_api
-        .ByURLParameters(nil) /// 添加URL参数
-        .byBodyParameters(nil) /// 添加Body参数
-        .byHeaderParameters(nil); /// 添加Header参数
-    self.handleErr(api);
     // self.tipsByApi(self);
     @jobs_weakify(self)
-    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+    [Ipinfo_api.new
+        .byURLParameters(nil)
+        .byBodyParameters(nil)
+        .byHeaderParameters(nil)
+        .handleErr()
+     startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
         if(successBlock) successBlock(IpinfoModel.byData(request.responseObject));
     } failure:^(YTKBaseRequest *request) {
         @jobs_strongify(self)
@@ -177,15 +177,15 @@
 /// https://api.ipdata.co/?api-key=YOUR_API_KEY
 -(void)getIPDataByKey:(NSString *)key
          successBlock:(jobsByIDBlock _Nullable)successBlock{
-    Ipdata_api *api = Ipdata_api
-        .ByURLParameters(key) /// 添加URL参数
-        .byBodyParameters(nil) /// 添加Body参数
-        .byHeaderParameters(nil); /// 添加Header参数
-    self.handleErr(api);
     // self.tipsByApi(self);
     @jobs_weakify(self)
-    [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-        @jobs_strongify(self)
+    [Ipdata_api.new
+        .byURLParameters(key)
+        .byBodyParameters(nil)
+        .byHeaderParameters(nil)
+        .handleErr()
+     startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+//        @jobs_strongify(self)
         if(successBlock) successBlock(IpinfoModel.byData(request.responseObject));
     } failure:^(YTKBaseRequest *request) {
         @jobs_strongify(self)

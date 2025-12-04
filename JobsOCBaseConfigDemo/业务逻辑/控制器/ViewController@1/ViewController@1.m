@@ -300,7 +300,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     }return _tableView;
 }
 
-
 -(NSMutableArray<UITableViewCell *> *)tbvCellMutArr{
     if (!_tbvCellMutArr) {
         @jobs_weakify(self)
@@ -325,6 +324,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                 model.title = @"模拟时钟".tr;
                 model.subTitle = @"模拟时钟".tr;
                 model.cls = JobsClockDemoVC.class;
+            })))
+            .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
+                model.title = @"JobsTabBarCtr".tr;
+                model.subTitle = @"JobsTabBarCtr".tr;
+                model.cls = JobsTabBarCtrlDemoVC.class;
             })))
             .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = @"苹果滑动开锁".tr;

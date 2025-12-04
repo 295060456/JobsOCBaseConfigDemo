@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DefineProperty.h"
 
 @interface TransitionAnimation : NSObject<UIViewControllerAnimatedTransitioning>
 
-- (instancetype)initWithTargetEdge:(UIRectEdge)targetEdge;
+-(instancetype)initWithTargetEdge:(UIRectEdge)targetEdge;
 
-@property (nonatomic, readwrite) UIRectEdge targetEdge;
+Prop(readwrite)UIRectEdge targetEdge;
 
 @end

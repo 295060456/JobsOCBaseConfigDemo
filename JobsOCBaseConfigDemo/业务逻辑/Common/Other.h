@@ -90,6 +90,7 @@
 #import "JobsNavigationDemoVC.h"
 #import "SlideToUnlockDemoVC.h"
 #import "JobsClockDemoVC.h"
+#import "JobsTabBarCtrlDemoVC.h"
 /// 公共图
 #import "CommonViews.h"
 

@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_END
                                                            @jobs_strongify(self)
                                                            self->_rightMenuView.resetUI(x);
                                                            x.selected = !x.selected;
- //                                                          toast(@"人工客服");
+ //                                                          toastBy(@"人工客服");
                                                            self.唤起人工客服();
  //                                                          if (self.objBlock) self.objBlock(x);
                                                        }).onLongPressGestureBy(^(id data){
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_END
                                                           @jobs_strongify(self)
                                                           self->_rightMenuView.resetUI(x);
                                                           x.selected = !x.selected;
-                                                          toast(@"Telegram");
+                                                          toastBy(@"Telegram");
                                                           self.jobsOpenURL(@"https://t.me/bsports_ph");
  //                                                         if (self.objBlock) self.objBlock(x);
                                                       }).onLongPressGestureBy(^(id data){
@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_END
                                                           @jobs_strongify(self)
                                                           self->_rightMenuView.resetUI(x);
                                                           x.selected = !x.selected;
-                                                          toast(@"FaceBook");
+                                                          toastBy(@"FaceBook");
                                                           self.jobsOpenURL(@"https://www.facebook.com/profile.php?id=61569306594235");
                                                           if (self.objBlock) self.objBlock(x);
                                                       }).onLongPressGestureBy(^(id data){

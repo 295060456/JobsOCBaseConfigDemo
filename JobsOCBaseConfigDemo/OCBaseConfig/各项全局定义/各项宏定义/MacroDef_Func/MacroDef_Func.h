@@ -160,7 +160,7 @@ NS_INLINE id<UIWindowSceneDelegate> _Nullable getSysSceneDelegate(void){
     }return sceneDelegate;
 }
 #pragma mark —— 弹出提示
-NS_INLINE void toast(NSString *_Nullable msg){
+NS_INLINE void toastBy(NSString *_Nullable msg){
     if(!msg || ![msg isKindOfClass:NSString.class]){
         msg = @"数据错误".tr;
     }NSObject.jobsToastMsg(msg.tr);

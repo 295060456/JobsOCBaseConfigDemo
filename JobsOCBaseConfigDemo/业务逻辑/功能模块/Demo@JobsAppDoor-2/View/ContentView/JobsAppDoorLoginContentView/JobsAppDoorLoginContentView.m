@@ -175,7 +175,7 @@ Prop_strong()NSMutableArray <JobsAppDoorInputViewBaseStyle *>*loginDoorInputView
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(x.titleForNormalState);
+                toastBy(x.titleForNormalState);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

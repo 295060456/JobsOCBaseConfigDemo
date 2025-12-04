@@ -1158,7 +1158,7 @@ UITextFieldProtocol_dynamic
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (success) {
                         JobsLog(@"保存照片成功");
-                        toast(@"图片保存成功".tr);
+                        toastBy(@"图片保存成功".tr);
                     } else if (error) {
                         JobsLog(@"保存照片出错:%@",error.localizedDescription);
                         toastErr(@"保存保存失败".tr);

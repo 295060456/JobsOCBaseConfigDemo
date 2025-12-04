@@ -55,7 +55,7 @@
                 data1.targetView = (UIView *)(self.data_weak ? : self);
             });
         }));
-    }else toast(@"未通过图形验证，请重试");
+    }else toastBy(@"未通过图形验证，请重试");
 }
 /// 通知验证界面将要展现
 /// @param captchaSession 验证会话

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "TLAnimationProtocol.h"
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

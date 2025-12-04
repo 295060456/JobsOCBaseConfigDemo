@@ -16,6 +16,7 @@
 #import "LZTabBarConfig.h"
 #import "LZTabBar.h"
 #import "MacroDef_Size.h"
+#import "DefineProperty.h"
 
 typedef LZTabBarConfig *_Nullable(^tabBarBlock)(LZTabBarConfig * _Nonnull config);
 

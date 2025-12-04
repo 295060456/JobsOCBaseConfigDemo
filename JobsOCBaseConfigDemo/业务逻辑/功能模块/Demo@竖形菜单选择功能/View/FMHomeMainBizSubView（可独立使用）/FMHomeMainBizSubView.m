@@ -274,7 +274,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    @jobs_weakify(self)
     [cell actionObjBlock:^(GoodsClassModel *model) {
 //        @jobs_strongify(self)
-        toast(model.name);
+        toastBy(model.name);
         JobsLog(@"选中的id : %@", model.idField);
     }];return cell;
 }

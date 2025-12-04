@@ -470,7 +470,7 @@ NS_INLINE CABasicAnimation *failAnimal(void){
                                  (int64_t)(0.2 * NSEC_PER_SEC)),
                    dispatch_get_main_queue(), ^{
         if (self.seconds > 0) {
-            toast([NSString stringWithFormat:@"耗时%.1fs",self.seconds]);
+            toastBy([NSString stringWithFormat:@"耗时%.1fs",self.seconds]);
             self.bOOLBlock(YES);
         }
     });

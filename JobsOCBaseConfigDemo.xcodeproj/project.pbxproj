@@ -49,6 +49,8 @@
 		04D49C192EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C182EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.m */; };
 		04D49C1D2EBC619B00BCD6F1 /* ASCollectionNode+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C1C2EBC619B00BCD6F1 /* ASCollectionNode+DSL.m */; };
 		04D49C212EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C202EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.m */; };
+		04E822542EE1237F00570A4C /* JobsTabBarCtrlDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E822532EE1237F00570A4C /* JobsTabBarCtrlDemoVC.m */; };
+		04E8225D2EE13A4C00570A4C /* YTKRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8225C2EE13A4C00570A4C /* YTKRequest+Extra.m */; };
 		43917030A0D447B86356D237 /* Pods_JobsOCBaseConfigDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460E2EA4D64083928DDC32D5 /* Pods_JobsOCBaseConfigDemo.framework */; };
 		C53BE3BD2E265E54004A72BE /* NativeWebViewPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3BC2E265E54004A72BE /* NativeWebViewPlugin.m */; };
 		C53BE3C12E265EAC004A72BE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C53BE3C02E265EAC004A72BE /* WebViewController.m */; };
@@ -946,12 +948,9 @@
 		C55C8D702E167B6D00B56985 /* tab_message_animate.json in Resources */ = {isa = PBXBuildFile; fileRef = C55C86272E167B6500B56985 /* tab_message_animate.json */; };
 		C55C8D712E167B6D00B56985 /* JobsTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C862C2E167B6500B56985 /* JobsTabBarVC.m */; };
 		C55C8D722E167B6D00B56985 /* TransitionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C86302E167B6500B56985 /* TransitionAnimation.m */; };
-		C55C8D732E167B6D00B56985 /* 功能性动效：手势横向滚动子VC联动Tabbar切换.md in Resources */ = {isa = PBXBuildFile; fileRef = C55C86322E167B6500B56985 /* 功能性动效：手势横向滚动子VC联动Tabbar切换.md */; };
 		C55C8D742E167B6D00B56985 /* TransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C86352E167B6500B56985 /* TransitionController.m */; };
 		C55C8D752E167B6D00B56985 /* JobsPullListAutoSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C86392E167B6500B56985 /* JobsPullListAutoSizeView.m */; };
-		C55C8D762E167B6D00B56985 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表.md in Resources */ = {isa = PBXBuildFile; fileRef = C55C863A2E167B6500B56985 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表.md */; };
 		C55C8D772E167B6D00B56985 /* JobsPullListTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C863C2E167B6500B56985 /* JobsPullListTBVCell.m */; };
-		C55C8D782E167B6D00B56985 /* 功能性动效：Tabbaritem的点击动效.md in Resources */ = {isa = PBXBuildFile; fileRef = C55C86402E167B6500B56985 /* 功能性动效：Tabbaritem的点击动效.md */; };
 		C55C8D792E167B6D00B56985 /* TLTabBarAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C86432E167B6500B56985 /* TLTabBarAnimation.m */; };
 		C55C8D7A2E167B6D00B56985 /* UITabBar+TLAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C86472E167B6500B56985 /* UITabBar+TLAnimation.m */; };
 		C55C8D7B2E167B6D00B56985 /* UITabBar+Ex.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C864A2E167B6500B56985 /* UITabBar+Ex.m */; };
@@ -960,7 +959,6 @@
 		C55C8D7E2E167B6D00B56985 /* LZTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C86552E167B6500B56985 /* LZTabBarItem.m */; };
 		C55C8D7F2E167B6D00B56985 /* LZTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C86582E167B6500B56985 /* LZTabBar.m */; };
 		C55C8D802E167B6D00B56985 /* LZTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C865B2E167B6500B56985 /* LZTabBarController.m */; };
-		C55C8D812E167B6D00B56985 /* 自定义 UITabBarController.md in Resources */ = {isa = PBXBuildFile; fileRef = C55C865D2E167B6500B56985 /* 自定义 UITabBarController.md */; };
 		C55C8D822E167B6D00B56985 /* ZLGestureLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C865F2E167B6500B56985 /* ZLGestureLockView.m */; };
 		C55C8D832E167B6D00B56985 /* gesture_headIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C55C86612E167B6500B56985 /* gesture_headIcon@2x.png */; };
 		C55C8D842E167B6D00B56985 /* gesture_indicator_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C55C86622E167B6500B56985 /* gesture_indicator_normal@2x.png */; };
@@ -1415,6 +1413,10 @@
 		04D49C1F2EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASNetworkImageNode+DSL.h"; sourceTree = "<group>"; };
 		04D49C202EBC7E6800BCD6F1 /* ASNetworkImageNode+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASNetworkImageNode+DSL.m"; sourceTree = "<group>"; };
 		04D731DB2ECEC1DE00AB4153 /* TimerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerProtocol.h; sourceTree = "<group>"; };
+		04E822522EE1237F00570A4C /* JobsTabBarCtrlDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobsTabBarCtrlDemoVC.h; sourceTree = "<group>"; };
+		04E822532EE1237F00570A4C /* JobsTabBarCtrlDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JobsTabBarCtrlDemoVC.m; sourceTree = "<group>"; };
+		04E8225B2EE13A4C00570A4C /* YTKRequest+Extra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YTKRequest+Extra.h"; sourceTree = "<group>"; };
+		04E8225C2EE13A4C00570A4C /* YTKRequest+Extra.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YTKRequest+Extra.m"; sourceTree = "<group>"; };
 		04FD2AAB2EB5BEDB00CDB5D5 /* JobsConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = JobsConfig.xcconfig; sourceTree = "<group>"; };
 		281F3C7B7F0D3D9956BE037B /* Pods-JobsOCBaseConfigDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JobsOCBaseConfigDemo.debug.xcconfig"; path = "Target Support Files/Pods-JobsOCBaseConfigDemo/Pods-JobsOCBaseConfigDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		460E2EA4D64083928DDC32D5 /* Pods_JobsOCBaseConfigDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JobsOCBaseConfigDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1846,7 +1848,7 @@
 		C55C7D152E167B5F00B56985 /* YTKBaseRequest+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YTKBaseRequest+Extra.m"; sourceTree = "<group>"; };
 		C55C7D172E167B5F00B56985 /* NetworkingConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingConstant.h; sourceTree = "<group>"; };
 		C55C7D182E167B5F00B56985 /* YTKNetworkToolsHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKNetworkToolsHeader.h; sourceTree = "<group>"; };
-		C55C7D192E167B5F00B56985 /* YTKCustomBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKCustomBaseRequest.h; sourceTree = "<group>"; };
+		C55C7D192E167B5F00B56985 /* YTKCustomBaseRequestProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTKCustomBaseRequestProtocol.h; sourceTree = "<group>"; };
 		C55C7D1C2E167B5F00B56985 /* BaseUploadFileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseUploadFileRequest.m; sourceTree = "<group>"; };
 		C55C7D1D2E167B5F00B56985 /* BaseUploadFileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUploadFileRequest.h; sourceTree = "<group>"; };
 		C55C7D1F2E167B5F00B56985 /* BaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
@@ -4395,6 +4397,79 @@
 			path = BaseViewModelProtocol;
 			sourceTree = "<group>";
 		};
+		04E822512EE1234500570A4C /* Demo@JobsTabBarCtrl */ = {
+			isa = PBXGroup;
+			children = (
+				04E822522EE1237F00570A4C /* JobsTabBarCtrlDemoVC.h */,
+				04E822532EE1237F00570A4C /* JobsTabBarCtrlDemoVC.m */,
+			);
+			path = "Demo@JobsTabBarCtrl";
+			sourceTree = "<group>";
+		};
+		04E822552EE1351B00570A4C /* YTKNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				04E8225E2EE13C6B00570A4C /* YTKNetwork+Category */,
+				C55C7CFF2E167B5F00B56985 /* YTKNetworkTools */,
+			);
+			path = YTKNetwork;
+			sourceTree = "<group>";
+		};
+		04E8225A2EE13A3A00570A4C /* YTKRequest+Category */ = {
+			isa = PBXGroup;
+			children = (
+				04E822602EE15DB700570A4C /* YTKRequest+Extra */,
+			);
+			path = "YTKRequest+Category";
+			sourceTree = "<group>";
+		};
+		04E8225E2EE13C6B00570A4C /* YTKNetwork+Category */ = {
+			isa = PBXGroup;
+			children = (
+				04E8225A2EE13A3A00570A4C /* YTKRequest+Category */,
+				C55C7D132E167B5F00B56985 /* YTKBaseRequest+Category */,
+				C55C7D102E167B5F00B56985 /* YTKBatchRequest+Category */,
+				C55C7D212E167B5F00B56985 /* YTKChainRequest+Category */,
+			);
+			path = "YTKNetwork+Category";
+			sourceTree = "<group>";
+		};
+		04E822602EE15DB700570A4C /* YTKRequest+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				04E8225B2EE13A4C00570A4C /* YTKRequest+Extra.h */,
+				04E8225C2EE13A4C00570A4C /* YTKRequest+Extra.m */,
+			);
+			path = "YTKRequest+Extra";
+			sourceTree = "<group>";
+		};
+		04E822612EE15DD100570A4C /* YTKBaseRequest+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				C55C7D142E167B5F00B56985 /* YTKBaseRequest+Extra.h */,
+				C55C7D152E167B5F00B56985 /* YTKBaseRequest+Extra.m */,
+			);
+			path = "YTKBaseRequest+Extra";
+			sourceTree = "<group>";
+		};
+		04E822622EE15DDD00570A4C /* YTKBatchRequest+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				C55C7D122E167B5F00B56985 /* YTKBatchRequest+Extra.h */,
+				C55C7D112E167B5F00B56985 /* YTKBatchRequest+Extra.m */,
+			);
+			path = "YTKBatchRequest+Extra";
+			sourceTree = "<group>";
+		};
+		04E822632EE15DE800570A4C /* YTKChainRequest+Extra */ = {
+			isa = PBXGroup;
+			children = (
+				C55C7D222E167B5F00B56985 /* YTKChainRequest+Extra.h */,
+				C55C7D232E167B5F00B56985 /* YTKChainRequest+Extra.m */,
+			);
+			path = "YTKChainRequest+Extra";
+			sourceTree = "<group>";
+		};
 		3F9C019B7B6949F5AC2FA87C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -5098,6 +5173,7 @@
 		C55C7AB92E167B5D00B56985 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				04E822512EE1234500570A4C /* Demo@JobsTabBarCtrl */,
 				045F7ADC2EDAAB5F00AD6356 /* Demo@钟 */,
 				041AE5A32EDA8C9F00ED03A3 /* Demo@苹果滑动开锁 */,
 				048B79612ED546F300A6FEF1 /* Demo@系统导航栏 */,
@@ -7241,7 +7317,6 @@
 			children = (
 				C55C7CEF2E167B5F00B56985 /* Api */,
 				C55C7CEC2E167B5F00B56985 /* YTKNetworkDemo */,
-				C55C7CFF2E167B5F00B56985 /* YTKNetworkTools */,
 			);
 			path = "Demo@探究猿题库网络框架（YTKNetwork）";
 			sourceTree = "<group>";
@@ -7317,10 +7392,7 @@
 			children = (
 				C55C7D162E167B5F00B56985 /* Headers */,
 				C55C7D1A2E167B5F00B56985 /* Request */,
-				C55C7D132E167B5F00B56985 /* YTKBaseRequest+Extra */,
-				C55C7D102E167B5F00B56985 /* YTKBatchRequest+Extra */,
-				C55C7D212E167B5F00B56985 /* YTKChainRequest+Extra */,
-				C55C7D032E167B5F00B56985 /* YTKNetworkAccessory */,
+				C55C7D0D2E167B5F00B56985 /* YTKAnimatingRequestAccessory */,
 				C55C7D002E167B5F00B56985 /* YTKUrlArgumentsFilter */,
 			);
 			path = YTKNetworkTools;
@@ -7333,17 +7405,6 @@
 				C55C7D012E167B5F00B56985 /* YTKUrlArgumentsFilter.m */,
 			);
 			path = YTKUrlArgumentsFilter;
-			sourceTree = "<group>";
-		};
-		C55C7D032E167B5F00B56985 /* YTKNetworkAccessory */ = {
-			isa = PBXGroup;
-			children = (
-				C55C7D0D2E167B5F00B56985 /* YTKAnimatingRequestAccessory */,
-				C55C7D042E167B5F00B56985 /* YTKBaseRequest+AnimatingAccessory */,
-				C55C7D072E167B5F00B56985 /* YTKBatchRequest+AnimatingAccessory */,
-				C55C7D0A2E167B5F00B56985 /* YTKChainRequest+AnimatingAccessory */,
-			);
-			path = YTKNetworkAccessory;
 			sourceTree = "<group>";
 		};
 		C55C7D042E167B5F00B56985 /* YTKBaseRequest+AnimatingAccessory */ = {
@@ -7382,29 +7443,29 @@
 			path = YTKAnimatingRequestAccessory;
 			sourceTree = "<group>";
 		};
-		C55C7D102E167B5F00B56985 /* YTKBatchRequest+Extra */ = {
+		C55C7D102E167B5F00B56985 /* YTKBatchRequest+Category */ = {
 			isa = PBXGroup;
 			children = (
-				C55C7D122E167B5F00B56985 /* YTKBatchRequest+Extra.h */,
-				C55C7D112E167B5F00B56985 /* YTKBatchRequest+Extra.m */,
+				C55C7D072E167B5F00B56985 /* YTKBatchRequest+AnimatingAccessory */,
+				04E822622EE15DDD00570A4C /* YTKBatchRequest+Extra */,
 			);
-			path = "YTKBatchRequest+Extra";
+			path = "YTKBatchRequest+Category";
 			sourceTree = "<group>";
 		};
-		C55C7D132E167B5F00B56985 /* YTKBaseRequest+Extra */ = {
+		C55C7D132E167B5F00B56985 /* YTKBaseRequest+Category */ = {
 			isa = PBXGroup;
 			children = (
-				C55C7D142E167B5F00B56985 /* YTKBaseRequest+Extra.h */,
-				C55C7D152E167B5F00B56985 /* YTKBaseRequest+Extra.m */,
+				C55C7D042E167B5F00B56985 /* YTKBaseRequest+AnimatingAccessory */,
+				04E822612EE15DD100570A4C /* YTKBaseRequest+Extra */,
 			);
-			path = "YTKBaseRequest+Extra";
+			path = "YTKBaseRequest+Category";
 			sourceTree = "<group>";
 		};
 		C55C7D162E167B5F00B56985 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
 				C55C7D172E167B5F00B56985 /* NetworkingConstant.h */,
-				C55C7D192E167B5F00B56985 /* YTKCustomBaseRequest.h */,
+				C55C7D192E167B5F00B56985 /* YTKCustomBaseRequestProtocol.h */,
 				C55C7D182E167B5F00B56985 /* YTKNetworkToolsHeader.h */,
 			);
 			path = Headers;
@@ -7437,13 +7498,13 @@
 			path = BaseRequest;
 			sourceTree = "<group>";
 		};
-		C55C7D212E167B5F00B56985 /* YTKChainRequest+Extra */ = {
+		C55C7D212E167B5F00B56985 /* YTKChainRequest+Category */ = {
 			isa = PBXGroup;
 			children = (
-				C55C7D222E167B5F00B56985 /* YTKChainRequest+Extra.h */,
-				C55C7D232E167B5F00B56985 /* YTKChainRequest+Extra.m */,
+				C55C7D0A2E167B5F00B56985 /* YTKChainRequest+AnimatingAccessory */,
+				04E822632EE15DE800570A4C /* YTKChainRequest+Extra */,
 			);
-			path = "YTKChainRequest+Extra";
+			path = "YTKChainRequest+Category";
 			sourceTree = "<group>";
 		};
 		C55C7D242E167B5F00B56985 /* Demo@抽奖轮盘 */ = {
@@ -13344,7 +13405,6 @@
 			children = (
 				045F7AE32EDAAC4300AD6356 /* JobsClockView */,
 				041AE5AA2EDA963F00ED03A3 /* SlideToUnlockView */,
-				048B795D2ED545AF00A6FEF1 /* JobsTabBarCtrl */,
 				C55C83CA2E167B6400B56985 /* XLSphereView */,
 				C55C83CF2E167B6400B56985 /* GXCardView */,
 				C55C83D72E167B6400B56985 /* 扫一扫组件（空缺） */,
@@ -15140,6 +15200,7 @@
 		C55C85F32E167B6500B56985 /* UITabBarCtr */ = {
 			isa = PBXGroup;
 			children = (
+				048B795D2ED545AF00A6FEF1 /* JobsTabBarCtrl */,
 				C55C85F42E167B6500B56985 /* JobsCustomTabBarCtr */,
 				C55C86012E167B6500B56985 /* UITabBarCtrExtra */,
 				C55C864F2E167B6500B56985 /* LZTabBarController */,
@@ -15162,8 +15223,8 @@
 		C55C85F52E167B6500B56985 /* JobsCustomTabBarConfig */ = {
 			isa = PBXGroup;
 			children = (
-				C55C85F62E167B6500B56985 /* JobsCustomTabBarConfig.m */,
 				C55C85F72E167B6500B56985 /* JobsCustomTabBarConfig.h */,
+				C55C85F62E167B6500B56985 /* JobsCustomTabBarConfig.m */,
 			);
 			path = JobsCustomTabBarConfig;
 			sourceTree = "<group>";
@@ -15180,8 +15241,8 @@
 		C55C85FB2E167B6500B56985 /* JobsCustomTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				C55C85FC2E167B6500B56985 /* JobsCustomTabBar.m */,
 				C55C85FD2E167B6500B56985 /* JobsCustomTabBar.h */,
+				C55C85FC2E167B6500B56985 /* JobsCustomTabBar.m */,
 			);
 			path = JobsCustomTabBar;
 			sourceTree = "<group>";
@@ -15221,8 +15282,8 @@
 		C55C86042E167B6500B56985 /* BaseTabBarItem */ = {
 			isa = PBXGroup;
 			children = (
-				C55C86052E167B6500B56985 /* JobsTabBarItem.m */,
 				C55C86062E167B6500B56985 /* JobsTabBarItem.h */,
+				C55C86052E167B6500B56985 /* JobsTabBarItem.m */,
 			);
 			path = BaseTabBarItem;
 			sourceTree = "<group>";
@@ -15238,8 +15299,8 @@
 		C55C86082E167B6500B56985 /* UITabBarItem+TLAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				C55C86092E167B6500B56985 /* UITabBarItem+TLAnimation.m */,
 				C55C860A2E167B6500B56985 /* UITabBarItem+TLAnimation.h */,
+				C55C86092E167B6500B56985 /* UITabBarItem+TLAnimation.m */,
 			);
 			path = "UITabBarItem+TLAnimation";
 			sourceTree = "<group>";
@@ -15337,8 +15398,8 @@
 		C55C862E2E167B6500B56985 /* 功能性动效：手势横向滚动子VC联动Tabbar切换 */ = {
 			isa = PBXGroup;
 			children = (
-				C55C862F2E167B6500B56985 /* TransitionAnimation */,
 				C55C86322E167B6500B56985 /* 功能性动效：手势横向滚动子VC联动Tabbar切换.md */,
+				C55C862F2E167B6500B56985 /* TransitionAnimation */,
 				C55C86332E167B6500B56985 /* TransitionController */,
 			);
 			path = "功能性动效：手势横向滚动子VC联动Tabbar切换";
@@ -15347,8 +15408,8 @@
 		C55C862F2E167B6500B56985 /* TransitionAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				C55C86302E167B6500B56985 /* TransitionAnimation.m */,
 				C55C86312E167B6500B56985 /* TransitionAnimation.h */,
+				C55C86302E167B6500B56985 /* TransitionAnimation.m */,
 			);
 			path = TransitionAnimation;
 			sourceTree = "<group>";
@@ -15365,8 +15426,8 @@
 		C55C86362E167B6500B56985 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表 */ = {
 			isa = PBXGroup;
 			children = (
-				C55C86372E167B6500B56985 /* JobsPullListAutoSizeView */,
 				C55C863A2E167B6500B56985 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表.md */,
+				C55C86372E167B6500B56985 /* JobsPullListAutoSizeView */,
 				C55C863B2E167B6500B56985 /* JobsPullListTBVCell */,
 			);
 			path = "功能性动效：高仿 Telegram，在指定位置出现菜单列表";
@@ -15384,8 +15445,8 @@
 		C55C863B2E167B6500B56985 /* JobsPullListTBVCell */ = {
 			isa = PBXGroup;
 			children = (
-				C55C863C2E167B6500B56985 /* JobsPullListTBVCell.m */,
 				C55C863D2E167B6500B56985 /* JobsPullListTBVCell.h */,
+				C55C863C2E167B6500B56985 /* JobsPullListTBVCell.m */,
 			);
 			path = JobsPullListTBVCell;
 			sourceTree = "<group>";
@@ -15393,8 +15454,8 @@
 		C55C863E2E167B6500B56985 /* 功能性动效：Tabbaritem的点击动效 */ = {
 			isa = PBXGroup;
 			children = (
-				C55C863F2E167B6500B56985 /* TLAnimationProtocol.h */,
 				C55C86402E167B6500B56985 /* 功能性动效：Tabbaritem的点击动效.md */,
+				C55C863F2E167B6500B56985 /* TLAnimationProtocol.h */,
 				C55C86412E167B6500B56985 /* TLTabBarAnimation */,
 			);
 			path = "功能性动效：Tabbaritem的点击动效";
@@ -15430,8 +15491,8 @@
 		C55C86462E167B6500B56985 /* UITabBar+TLAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				C55C86472E167B6500B56985 /* UITabBar+TLAnimation.m */,
 				C55C86482E167B6500B56985 /* UITabBar+TLAnimation.h */,
+				C55C86472E167B6500B56985 /* UITabBar+TLAnimation.m */,
 			);
 			path = "UITabBar+TLAnimation";
 			sourceTree = "<group>";
@@ -15439,8 +15500,8 @@
 		C55C86492E167B6500B56985 /* UITabBar+Ex */ = {
 			isa = PBXGroup;
 			children = (
-				C55C864A2E167B6500B56985 /* UITabBar+Ex.m */,
 				C55C864B2E167B6500B56985 /* UITabBar+Ex.h */,
+				C55C864A2E167B6500B56985 /* UITabBar+Ex.m */,
 			);
 			path = "UITabBar+Ex";
 			sourceTree = "<group>";
@@ -15468,8 +15529,8 @@
 		C55C86502E167B6500B56985 /* LZTabBarConfig */ = {
 			isa = PBXGroup;
 			children = (
-				C55C86512E167B6500B56985 /* LZTabBarConfig.m */,
 				C55C86522E167B6500B56985 /* LZTabBarConfig.h */,
+				C55C86512E167B6500B56985 /* LZTabBarConfig.m */,
 			);
 			path = LZTabBarConfig;
 			sourceTree = "<group>";
@@ -16995,6 +17056,7 @@
 			isa = PBXGroup;
 			children = (
 				C55C89232E167B6800B56985 /* JobsOCBaseCustomize3rdCore.h */,
+				04E822552EE1351B00570A4C /* YTKNetwork */,
 				04A245C52ECDBBDF009649E8 /* BRPickerView */,
 				04D49C122EBC525300BCD6F1 /* Texture */,
 				C55C88F82E167B6800B56985 /* MGSwipeTableCell */,
@@ -17720,7 +17782,6 @@
 				C55C8CF92E167B6D00B56985 /* 输入框样式_9.png in Resources */,
 				C55C8D232E167B6D00B56985 /* JobsShowNum@3x.png in Resources */,
 				C55C8AB02E167B6A00B56985 /* 输入框有值@2x.png in Resources */,
-				C55C8D732E167B6D00B56985 /* 功能性动效：手势横向滚动子VC联动Tabbar切换.md in Resources */,
 				C55C8E912E167B6F00B56985 /* NotoSansDisplay_SemiCondensed-ExtraLightItalic.ttf in Resources */,
 				C55C8E3E2E167B6E00B56985 /* 热度.gif in Resources */,
 				C55C8E702E167B6E00B56985 /* NotoSansDisplay_Condensed-ExtraLight.ttf in Resources */,
@@ -17742,7 +17803,6 @@
 				C55C8AA82E167B6A00B56985 /* Check@2x.png in Resources */,
 				C55C8EB02E167B6F00B56985 /* NotoSans-ExtraLightItalic.ttf in Resources */,
 				C55C8D852E167B6D00B56985 /* gesture_indicator_selected@2x.png in Resources */,
-				C55C8D762E167B6D00B56985 /* 功能性动效：高仿 Telegram，在指定位置出现菜单列表.md in Resources */,
 				C55C8D342E167B6D00B56985 /* 1@3x.png in Resources */,
 				C55C8D0A2E167B6D00B56985 /* 输入框样式_3.png in Resources */,
 				C55C8EA62E167B6F00B56985 /* NotoSansDisplay-VariableFont_wdth,wght.ttf in Resources */,
@@ -17826,7 +17886,6 @@
 				C55C8D5E2E167B6D00B56985 /* wode.json in Resources */,
 				C55C8EB32E167B6F00B56985 /* IncomeSource.json in Resources */,
 				C55C8BCE2E167B6B00B56985 /* KFZShopCatoryFlowLayput.md in Resources */,
-				C55C8D812E167B6D00B56985 /* 自定义 UITabBarController.md in Resources */,
 				C55C8D602E167B6D00B56985 /* green_lottie_tab_news.json in Resources */,
 				C55C8D532E167B6D00B56985 /* JobsCustomView.png in Resources */,
 				C55C8EA42E167B6F00B56985 /* NotoSans-Thin.ttf in Resources */,
@@ -17903,7 +17962,6 @@
 				C55C8AF22E167B6A00B56985 /* PointLabBaseView.jpg in Resources */,
 				C55C79732E16749000B56985 /* LaunchScreen.storyboard in Resources */,
 				C55C8E7D2E167B6E00B56985 /* NotoSansDisplay_ExtraCondensed-Italic.ttf in Resources */,
-				C55C8D782E167B6D00B56985 /* 功能性动效：Tabbaritem的点击动效.md in Resources */,
 				C55C8E9F2E167B6F00B56985 /* NotoSans-Regular.ttf in Resources */,
 				C55C8E8C2E167B6E00B56985 /* NotoSansDisplay_SemiCondensed-Bold.ttf in Resources */,
 				C55C8E292E167B6E00B56985 /* 幸运转盘.xcassets in Resources */,
@@ -18203,6 +18261,7 @@
 				C55C89652E167B6900B56985 /* JobsUserModel.m in Sources */,
 				C55C8E152E167B6E00B56985 /* TKPermissionSpeech.m in Sources */,
 				C55C89512E167B6900B56985 /* FM_kyc_image_upload_api.m in Sources */,
+				04E822542EE1237F00570A4C /* JobsTabBarCtrlDemoVC.m in Sources */,
 				C55C8CD72E167B6C00B56985 /* TMSCollectionViewLayout.m in Sources */,
 				C55C8C612E167B6C00B56985 /* UNUserNotificationCenter+Extra.m in Sources */,
 				C55C8D9D2E167B6D00B56985 /* DefineConstString.m in Sources */,
@@ -18254,6 +18313,7 @@
 				C55C8C382E167B6C00B56985 /* NSObject+Time.m in Sources */,
 				C55C8BAA2E167B6B00B56985 /* UINavigationController+Extra.m in Sources */,
 				C55C8C942E167B6C00B56985 /* NSString+Base64.m in Sources */,
+				04E8225D2EE13A4C00570A4C /* YTKRequest+Extra.m in Sources */,
 				C55C897B2E167B6900B56985 /* MasonryVC.m in Sources */,
 				C55C8ED92E167B6F00B56985 /* JXCategoryImageView+Extra.m in Sources */,
 				C55C89432E167B6800B56985 /* NSObject+URLManager_4.m in Sources */,

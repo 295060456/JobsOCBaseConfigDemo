@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_END
              .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
              .jobsResetBtnTitle(@"Betslip".tr)
              .onClickBy(^(UIButton *x){
-                 toast(@"Betslip");
+                 toastBy(@"Betslip");
              }).onLongPressGestureBy(^(id data){
                  JobsLog(@"");
              }))
@@ -115,7 +115,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Statement".tr)
          .onClickBy(^(UIButton *x){
-             toast(@"Statement");
+             toastBy(@"Statement");
          }).onLongPressGestureBy(^(id data){
              JobsLog(@"");
          }))
@@ -128,7 +128,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Promo".tr)
          .onClickBy(^(UIButton *x){
-             toast(@"Promo");
+             toastBy(@"Promo");
          }).onLongPressGestureBy(^(id data){
              JobsLog(@"");
          }))
@@ -141,7 +141,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Security".tr)
          .onClickBy(^(UIButton *x){
-             toast(@"Security");
+             toastBy(@"Security");
          }).onLongPressGestureBy(^(id data){
              JobsLog(@"");
          }))
@@ -154,7 +154,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Help Center".tr)
          .onClickBy(^(UIButton *x){
-             toast(@"Help Center");
+             toastBy(@"Help Center");
          }).onLongPressGestureBy(^(id data){
              JobsLog(@"");
          }))
@@ -167,7 +167,7 @@ NS_ASSUME_NONNULL_END
          .jobsResetBtnTitleFont(pingFangHKLight(JobsWidth(12)))
          .jobsResetBtnTitle(@"Feedback".tr)
          .onClickBy(^(UIButton *x){
-             toast(@"Feedback");
+             toastBy(@"Feedback");
          }).onLongPressGestureBy(^(id data){
              JobsLog(@"");
          }));

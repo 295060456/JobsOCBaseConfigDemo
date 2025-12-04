@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,8 +32,7 @@ Prop_assign()id <LZTabBarItemDelegate> delegate;
 
 @protocol LZTabBarItemDelegate <NSObject>
 
--(void)tabBarItem:(LZTabBarItem *)item
-   didSelectIndex:(NSInteger)index;
+-(void)tabBarItem:(LZTabBarItem *)item didSelectIndex:(NSInteger)index;
 
 @end
 

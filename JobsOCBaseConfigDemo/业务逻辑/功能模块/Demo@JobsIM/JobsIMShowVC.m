@@ -123,7 +123,7 @@ Prop_strong()JobsIMListView *listView;
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-                toast(@"正在研发中...敬请期待".tr);
+                toastBy(@"正在研发中...敬请期待".tr);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

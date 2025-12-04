@@ -331,7 +331,7 @@ static dispatch_once_t static_jobsAppDoor_Style2OnceToken;
             .bgColorBy(JobsWhiteColor)
             .cornerRadiusValueBy(_customerServiceBtn.height / 2)
             .onClickBy(^(UIButton *x){
-                toast(x.titleForNormalState);
+                toastBy(x.titleForNormalState);
             }).onLongPressGestureBy(^(id data){
                 JobsLog(@"");
             });

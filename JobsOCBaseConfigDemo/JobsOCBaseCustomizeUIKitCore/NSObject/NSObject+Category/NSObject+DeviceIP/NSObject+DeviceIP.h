@@ -6,12 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ifaddrs.h> /// 提供网络接口的相关信息
-#import <arpa/inet.h> /// 提供 IP 地址和网络字节序相关的工具函数
-#import <net/if.h> /// 定义网络接口的标志和常量
+#import <ifaddrs.h>     // 提供网络接口的相关信息
+#import <arpa/inet.h>   // 提供 IP 地址和网络字节序相关的工具函数
+#import <net/if.h>      // 定义网络接口的标志和常量
 #import "JobsBlock.h"
 
-#import "JobsNetworkingHeader.h" /// Api
+#import "JobsNetworkingHeader.h" // Api
 
 #if __has_include(<YTKNetwork/YTKNetwork.h>)
 #import <YTKNetwork/YTKNetwork.h>
@@ -31,16 +31,30 @@
 #import "MJExtension.h"
 #endif
 
-#import "Ipify_api.h" /// 简单可靠，只返回设备的公网 IP 地址【GET】
-#import "IP_api.h" /// 提供丰富的地理位置信息【GET】
-#import "Ipinfo_api.h" /// 提供详细的 IP 信息【GET】
-#import "Ipdata_api.h"/// 提供免费和付费选项的地理位置和 IP 查询服务【GET】
+#import "Ipify_api.h"   // 简单可靠，只返回设备的公网 IP 地址【GET】
+#import "IP_api.h"      // 提供丰富的地理位置信息【GET】
+#import "Ipinfo_api.h"  // 提供详细的 IP 信息【GET】
+#import "Ipdata_api.h"  // 提供免费和付费选项的地理位置和 IP 查询服务【GET】
 
+#ifndef IOS_CELLULAR
 #define IOS_CELLULAR    @"pdp_ip0"
+#endif
+
+#ifndef IOS_WIFI
 #define IOS_WIFI        @"en0"
+#endif
+
+#ifndef IOS_VPN
 #define IOS_VPN         @"utun0"
+#endif
+
+#ifndef IP_ADDR_IPv4
 #define IP_ADDR_IPv4    @"ipv4"
+#endif
+
+#ifndef IP_ADDR_IPv6
 #define IP_ADDR_IPv6    @"ipv6"
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

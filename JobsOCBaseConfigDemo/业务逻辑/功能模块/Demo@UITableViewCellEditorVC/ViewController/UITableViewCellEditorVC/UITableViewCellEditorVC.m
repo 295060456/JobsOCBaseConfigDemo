@@ -220,7 +220,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-    //            toast(x.titleForNormalState);
+    //            toastBy(x.titleForNormalState);
                 x.selected = !x.selected;
                 x.jobsResetBtnTitle(x.selected ? @"完成".tr : @"編輯".tr);
                 [self.tableView setEditing:x.selected animated:YES];

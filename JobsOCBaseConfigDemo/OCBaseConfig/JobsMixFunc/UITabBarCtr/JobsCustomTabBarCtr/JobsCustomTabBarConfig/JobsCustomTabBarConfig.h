@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseProtocol.h"
 #import "BaseButtonProtocol.h"
+#import "DefineProperty.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /// 对整个TabBar的配置
@@ -24,7 +25,7 @@ Prop_strong(nullable)UIColor *tabBarBackgroundColor;
 Prop_strong(nullable)UIImage *tabBarBackgroundImage;
 Prop_strong()NSMutableArray <__kindof UIButton *>*tabBarItems;
 Prop_strong()NSMutableArray <__kindof UIViewController *>*viewControllers;
-Prop_copy(null_resettable)NSMutableArray <__kindof NSNumber *>*tabBarItemYOffsets;
+Prop_strong(null_resettable)NSMutableArray <__kindof NSNumber *>*tabBarItemYOffsets;
 
 @end
 

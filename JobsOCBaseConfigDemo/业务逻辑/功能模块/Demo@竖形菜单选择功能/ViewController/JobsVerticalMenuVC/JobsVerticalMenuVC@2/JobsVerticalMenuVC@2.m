@@ -501,7 +501,7 @@ referenceSizeForFooterInSection:(NSInteger)section{
             .onClickBy(^(UIButton *x){
                 @jobs_strongify(self)
                 if (self.objBlock) self.objBlock(x);
-    //            toast(@"编辑".tr);
+    //            toastBy(@"编辑".tr);
                 self.popupParameter.dragEnable = YES;
                 self.popupParameter.disuseBackgroundTouchHide = NO;
                 [self.popupView tf_showSlide:MainWindow

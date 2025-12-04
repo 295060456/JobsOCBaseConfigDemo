@@ -26,7 +26,7 @@ static JobsTabBarVC *_tabBarVC = nil;
                 @jobs_strongify(self)
                 for (JobsTabBarItemConfig *tabBarItemConfig in self.tabBarItemConfigMutArr) {
                     if(tabBarItemConfig.isNeedjump){
-                        toast(@"这个跳开");
+                        toastBy(@"这个跳开");
                         return NO;
                     }
                 }return YES;

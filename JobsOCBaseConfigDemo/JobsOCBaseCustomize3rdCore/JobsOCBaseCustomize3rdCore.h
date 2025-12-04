@@ -90,6 +90,12 @@
 #import "MGSwipeTableCell.h"
 #endif
 
+#if __has_include(<YTKNetwork/YTKNetwork.h>)
+#import <YTKNetwork/YTKNetwork.h>
+#else
+#import "YTKNetwork.h"
+#endif
+
 #import "AFSecurityPolicy+Extra.h"
 #import "IQKeyboardManager+Extra.h"
 #import "Reachability+Extra.h"
@@ -108,6 +114,8 @@
 #import "ASEditableTextNode+DSL.h"
 #import "ASCollectionNode+DSL.h"
 #import "ASNetworkImageNode+DSL.h"
+
+#import "YTKRequest+Extra.h"
 
 #import "JXCategoryExtra.h"
 #import "ZFPlayerExtras.h"

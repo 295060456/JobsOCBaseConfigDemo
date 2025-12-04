@@ -264,7 +264,7 @@ Prop_strong()UIViewModel *chooseBtnViewModel;
             @jobs_strongify(self)
             self.securityModeBtn.jobsVisible = isValue(x) && self.doorInputViewBaseStyleModel.isShowSecurityBtn;/// 👁
             if (x.isContainsSpecialSymbolsString(nil)) {
-                toast(@"Do not enter special characters".tr);
+                toastBy(@"Do not enter special characters".tr);
             }else{
                 if (self.objBlock) self.objBlock(self->_zyTextField);
             }
