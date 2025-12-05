@@ -13,11 +13,9 @@ UIKIT_EXTERN API_AVAILABLE(ios(15.0), tvos(15.0)) API_UNAVAILABLE(watchos) NS_SW
 @interface UIButton (UIButtonConfiguration)
 /// UIButtonConfiguration 创建的UIbutton修改字体以及颜色的方法
 /// 注意⚠️因为UIConfigurationTextAttributesTransformer是没有办法直接获取到里面的字体的，只能从外面生成以后直接赋值，也就是每次修改需要给一个完整的UIConfigurationTextAttributesTransformer对象进UIButtonConfiguration
--(void)jobsSetBtnTitleFont:(UIFont *_Nullable)titleFont
-               btnTitleCor:(UIColor *_Nullable)titleCor;
+-(void)jobsSetBtnTitleFont:(UIFont *_Nullable)titleFont btnTitleCor:(UIColor *_Nullable)titleCor;
 
--(void)jobsSetBtnSubTitleFont:(UIFont *_Nullable)subTitleFont
-               btnSubTitleCor:(UIColor *_Nullable)subTitleCor;
+-(void)jobsSetBtnSubTitleFont:(UIFont *_Nullable)subTitleFont btnSubTitleCor:(UIColor *_Nullable)subTitleCor;
 /// 重设UIButtonConfiguration并使之生效  JobsReturnButtonConfigurationByButtonConfigurationBlock
 -(__kindof UIButton *)jobsUpdateButtonConfiguration:(jobsByBtnConfigBlock _Nullable)configurationBlock;
 

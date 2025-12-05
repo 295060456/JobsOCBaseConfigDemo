@@ -60,158 +60,164 @@ Prop_strong()NSMutableArray <__kindof UIButton*>*buttons;
         _tabCtrl = jobsMakeTabBarCtrl(^(__kindof JobsTabBarCtrl * _Nullable ctrl) {
             @jobs_strongify(self)
             ctrl
-                .bySwipeEnabled(YES)
-                .byHorizontalOnly(YES)
-                .bySuppressChildVerticalScrolls(YES)
+                .bySwipeEnabled(YES)                            // 是否允许内容区域左右滑动
+                .byHorizontalOnly(YES)                          // 只允许横向翻页（默认 YES）
+                .bySuppressChildVerticalScrolls(YES)            // 可选：对子 VC 内滚动视图禁用纵向滚动
                 .byBarBackgroundColor(JobsLightGrayColor)
-                .byCustomBarHeight(nil)
-                .byBarBottomOffset(0)
-                .byBarBackgroundImage(nil)
+                .byCustomBarHeight(nil)                         // TabBar 高度；nil 表示用默认：49 + safeAreaBottom
+                .byBarBottomOffset(0)                           // 距底部上移量（>0 上移）
+                .byBarBackgroundImage(nil)                      // TabBar 背景图
                 .byContentInset(UIEdgeInsetsMake(6, 12, 6, 12))
-                .byEqualSpacing(10)
-                .byLockUnitToMaxEqualCount(YES)
-                .byAutoRelayoutForBoundsChange(YES);
-            [ctrl byEqualVisibleRangeFrom:2 to:5];
+                .byEqualSpacing(10)                             // 按钮间距（2~5 等分时）
+                .byLockUnitToMaxEqualCount(YES)                 // >max(默认5) 时是否仍按“max 等分”的单元宽度布局
+                .byAutoRelayoutForBoundsChange(YES);            // 旋转 / 尺寸变化时是否自动重排按钮
+            [ctrl byEqualVisibleRangeFrom:2 to:5];              // 2 ~ 5 个按钮时，一屏内等分，不滚动；超过 5 个按钮时，每个按钮宽度算成“5 等分的宽度”，多出来的靠 UIScrollView 滚动解决
+            /// 安全监听点“按钮布局完成后”的回调@解决设定某个按钮的垂直凸起
             [ctrl onButtonsLayoutedWeakOwner:^(JobsTabBarCtrl *owner,
                                                NSArray<UIButton *> *btns) {
                 if (btns.count > 2) {
-                    UIButton *centerBtn = btns[2];
-                    CGRect f = centerBtn.frame;
-                    f.origin.y -= 24.0;
-                    centerBtn.frame = f;
-                    centerBtn.layer.cornerRadius = 14.0;
-                    centerBtn.layer.masksToBounds = YES;
+                    btns[2].jobsResetBtnCornerRadiusValue(14).resetOriginYByOffset(-24.0);
                 }
             }];
-            [ctrl setDataSourceWithButtons:self.buttons controllers:self.buildControllers];
+            [ctrl setDataSourceByButtons:jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+                @jobs_strongify(self)
+                arr.add(UIButton.jobsInit()
+                        .bgColorBy(JobsClearColor)
+                        .jobsResetImagePlacement(NSDirectionalRectEdgeBottom)
+                        .jobsResetImagePadding(5)
+                        .jobsResetBtnImage(@"house".sys_img)
+    //                    .jobsResetBtnBgImage(@"house.fill".sys_img)
+                        .jobsResetBtnTitleCor(JobsRandomCor(1))
+                        .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                        .jobsResetBtnTitle(@"首页".tr)
+                        .onClickBy(^(UIButton *x){
+                            JobsLog(@"");
+                        })
+                        .onLongPressGestureBy(^(id data){
+                            JobsLog(@"");
+                        }))
+                .add(UIButton.jobsInit()
+                        .bgColorBy(JobsClearColor)
+                        .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                        .jobsResetImagePadding(5)
+                        .jobsResetBtnImage(@"tag".sys_img)
+    //                    .jobsResetBtnBgImage(@"tag.fill".sys_img)
+                        .jobsResetBtnTitleCor(JobsRandomCor(1))
+                        .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                        .jobsResetBtnTitle(@"优惠".tr)
+                        .onClickBy(^(UIButton *x){
+                            JobsLog(@"");
+                        })
+                        .onLongPressGestureBy(^(id data){
+                            JobsLog(@"");
+                        }))
+                .add(UIButton.jobsInit()
+                        .bgColorBy(JobsClearColor)
+                        .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                        .jobsResetImagePadding(5)
+                        .jobsResetBtnImage(@"creditcard".sys_img)
+    //                    .jobsResetBtnBgImage(@"creditcard.fill".sys_img)
+                        .jobsResetBtnTitleCor(JobsRandomCor(1))
+    //                    .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+    //                    .jobsResetBtnTitle(@"钱包".tr)
+                        .jobsResetBtnNormalAttributedTitle(self.richTextWithDataConfigMutArr(jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
+                            data.add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                                @jobs_strongify(self)
+                                data1.font = UIFontWeightRegularSize(14);
+                                data1.textCor = @"#666666".cor;
+                                data1.targetString = @"您".tr;
+                                data1.paragraphStyle = self.jobsParagraphStyleCenter;
+                            }))
+                            .add(jobsMakeRichTextConfig(^(__kindof JobsRichTextConfig * _Nullable data1) {
+                                @jobs_strongify(self)
+                                data1.font = UIFontWeightRegularSize(14);
+                                data1.textCor = @"#BA9B77".cor;
+                                data1.targetString = @"好".tr;
+                                data1.paragraphStyle = self.jobsParagraphStyleCenter;
+                            }));
+                        })))
+                        .onClickBy(^(UIButton *x){
+                            JobsLog(@"");
+                            [x pp_addBadgeWithText:@"11"];
+                        })
+                        .onLongPressGestureBy(^(id data){
+                            JobsLog(@"");
+                        }))
+                .add(UIButton.jobsInit()
+                        .bgColorBy(JobsClearColor)
+                        .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                        .jobsResetImagePadding(5)
+                        .jobsResetBtnImage(@"person.2".sys_img)
+    //                    .jobsResetBtnBgImage(@"person.2.fill".sys_img)
+                        .jobsResetBtnTitleCor(JobsRandomCor(1))
+                        .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                        .jobsResetBtnTitle(@"APPLY NOW".tr)
+                        .onClickBy(^(UIButton *x){
+                            JobsLog(@"");
+                        })
+                        .onLongPressGestureBy(^(id data){
+                            JobsLog(@"");
+                        }))
+                .add(UIButton.jobsInit()
+                        .bgColorBy(JobsClearColor)
+                        .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                        .jobsResetImagePadding(5)
+                        .jobsResetBtnImage(@"sparkles".sys_img)
+    //                    .jobsResetBtnBgImage(@"sparkles".sys_img)
+                        .jobsResetBtnTitleCor(JobsRandomCor(1))
+                        .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                        .jobsResetBtnTitle(@"我的".tr)
+                        .onClickBy(^(UIButton *x){
+                            JobsLog(@"");
+                        })
+                        .onLongPressGestureBy(^(id data){
+                            JobsLog(@"");
+                        }))
+                .add(UIButton.jobsInit()
+                        .bgColorBy(JobsClearColor)
+                        .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                        .jobsResetImagePadding(5)
+                        .jobsResetBtnImage(@"message".sys_img)
+    //                    .jobsResetBtnBgImage(@"message.fill".sys_img)
+                        .jobsResetBtnTitleCor(JobsRandomCor(1))
+                        .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                        .jobsResetBtnTitle(@"信息".tr)
+                        .onClickBy(^(UIButton *x){
+                            JobsLog(@"");
+                        })
+                        .onLongPressGestureBy(^(id data){
+                            JobsLog(@"");
+                        }))
+                .add(UIButton.jobsInit()
+                        .bgColorBy(JobsClearColor)
+                        .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
+                        .jobsResetImagePadding(5)
+                        .jobsResetBtnImage(@"person.crop.circle".sys_img)
+    //                    .jobsResetBtnBgImage(@"person.crop.circle.fill".sys_img)
+                        .jobsResetBtnTitleCor(JobsRandomCor(1))
+                        .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+                        .jobsResetBtnTitle(@"游戏".tr)
+                        .onClickBy(^(UIButton *x){
+                            JobsLog(@"");
+                        })
+                        .onLongPressGestureBy(^(id data){
+                            JobsLog(@"");
+                        }));
+            })
+                             controllers:jobsMakeMutArr(^(__kindof NSMutableArray<UIViewController *> * _Nullable arr) {
+                arr.add(ViewController_1.new.navCtrl)
+                .add(ViewController_2.new.navCtrl)
+                .add(ViewController_3.new.navCtrl)
+                .add(ViewController_4.new.navCtrl)
+                .add(ViewController_5.new.navCtrl);
+            })];
+
             [self addChildViewController:ctrl];
             [self.view addSubview:ctrl.view];
             ctrl.view.frame = self.view.bounds;
             [ctrl didMoveToParentViewController:self];
         });
     }return _tabCtrl;
-}
-#pragma mark - 构建按钮 / 控制器
--(NSMutableArray<__kindof UIButton *> *)buttons{
-    if(!_buttons){
-        _buttons = jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
-            arr.add(UIButton.jobsInit()
-                    .bgColorBy(JobsWhiteColor)
-                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
-                    .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(@"house".img)
-                    .jobsResetBtnBgImage(@"house.fill".img)
-                    .jobsResetBtnTitleCor(JobsWhiteColor)
-                    .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                    .jobsResetBtnTitle(@"APPLY NOW".tr)
-                    .onClickBy(^(UIButton *x){
-                        JobsLog(@"");
-                    })
-                    .onLongPressGestureBy(^(id data){
-                        JobsLog(@"");
-                    }))
-            .add(UIButton.jobsInit()
-                    .bgColorBy(JobsWhiteColor)
-                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
-                    .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(@"tag".img)
-                    .jobsResetBtnBgImage(@"tag.fill".img)
-                    .jobsResetBtnTitleCor(JobsWhiteColor)
-                    .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                    .jobsResetBtnTitle(@"APPLY NOW".tr)
-                    .onClickBy(^(UIButton *x){
-                        JobsLog(@"");
-                    })
-                    .onLongPressGestureBy(^(id data){
-                        JobsLog(@"");
-                    }))
-            .add(UIButton.jobsInit()
-                    .bgColorBy(JobsWhiteColor)
-                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
-                    .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(@"creditcard".img)
-                    .jobsResetBtnBgImage(@"creditcard.fill".img)
-                    .jobsResetBtnTitleCor(JobsWhiteColor)
-                    .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                    .jobsResetBtnTitle(@"APPLY NOW".tr)
-                    .onClickBy(^(UIButton *x){
-                        JobsLog(@"");
-                    })
-                    .onLongPressGestureBy(^(id data){
-                        JobsLog(@"");
-                    }))
-            .add(UIButton.jobsInit()
-                    .bgColorBy(JobsWhiteColor)
-                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
-                    .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(@"person.2".img)
-                    .jobsResetBtnBgImage(@"person.2.fill".img)
-                    .jobsResetBtnTitleCor(JobsWhiteColor)
-                    .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                    .jobsResetBtnTitle(@"APPLY NOW".tr)
-                    .onClickBy(^(UIButton *x){
-                        JobsLog(@"");
-                    })
-                    .onLongPressGestureBy(^(id data){
-                        JobsLog(@"");
-                    }))
-            .add(UIButton.jobsInit()
-                    .bgColorBy(JobsWhiteColor)
-                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
-                    .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(@"sparkles".img)
-                    .jobsResetBtnBgImage(@"sparkles".img)
-                    .jobsResetBtnTitleCor(JobsWhiteColor)
-                    .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                    .jobsResetBtnTitle(@"APPLY NOW".tr)
-                    .onClickBy(^(UIButton *x){
-                        JobsLog(@"");
-                    })
-                    .onLongPressGestureBy(^(id data){
-                        JobsLog(@"");
-                    }))
-            .add(UIButton.jobsInit()
-                    .bgColorBy(JobsWhiteColor)
-                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
-                    .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(@"message".img)
-                    .jobsResetBtnBgImage(@"message.fill".img)
-                    .jobsResetBtnTitleCor(JobsWhiteColor)
-                    .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                    .jobsResetBtnTitle(@"APPLY NOW".tr)
-                    .onClickBy(^(UIButton *x){
-                        JobsLog(@"");
-                    })
-                    .onLongPressGestureBy(^(id data){
-                        JobsLog(@"");
-                    }))
-            .add(UIButton.jobsInit()
-                    .bgColorBy(JobsWhiteColor)
-                    .jobsResetImagePlacement(NSDirectionalRectEdgeTop)
-                    .jobsResetImagePadding(1)
-                    .jobsResetBtnImage(@"person.crop.circle".img)
-                    .jobsResetBtnBgImage(@"person.crop.circle.fill".img)
-                    .jobsResetBtnTitleCor(JobsWhiteColor)
-                    .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
-                    .jobsResetBtnTitle(@"APPLY NOW".tr)
-                    .onClickBy(^(UIButton *x){
-                        JobsLog(@"");
-                    })
-                    .onLongPressGestureBy(^(id data){
-                        JobsLog(@"");
-                    }));
-        });
-    }return _buttons;
-}
-
--(NSArray<UIViewController *> *)buildControllers {
-    return @[
-        ViewController_1.new,
-        ViewController_2.new,
-        ViewController_3.new,
-        ViewController_4.new,
-        ViewController_5.new,
-    ];
 }
 
 @end

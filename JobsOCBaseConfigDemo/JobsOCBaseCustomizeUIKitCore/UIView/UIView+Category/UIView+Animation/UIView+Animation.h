@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import <QuartzCore/QuartzCore.h>
 #import "JobsBlock.h"
+#import "NSString+Others.h"
 
 #if __has_include(<ReactiveObjC/RACmetamacros.h>)
 #import <ReactiveObjC/RACmetamacros.h>

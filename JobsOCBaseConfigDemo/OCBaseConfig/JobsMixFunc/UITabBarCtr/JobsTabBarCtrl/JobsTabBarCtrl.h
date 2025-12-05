@@ -54,8 +54,8 @@ Prop_copy(nullable)jobsByArrBlock onButtonsBuilt;
 /// 每次布局完按钮 frame 的回调（包括旋转后）
 Prop_copy(nullable)jobsByArrBlock onButtonsLayouted;
 /// 配置数据源
--(void)setDataSourceWithButtons:(NSArray<UIButton *> *)buttons
-                    controllers:(NSArray<UIViewController *> *)controllers;
+-(void)setDataSourceByButtons:(NSArray<UIButton *> *)buttons
+                  controllers:(NSArray<UIViewController *> *)controllers;
 /// 主动选中某个 index
 -(void)selectIndex:(NSInteger)index animated:(BOOL)animated;
 /// 手动触发布局重排

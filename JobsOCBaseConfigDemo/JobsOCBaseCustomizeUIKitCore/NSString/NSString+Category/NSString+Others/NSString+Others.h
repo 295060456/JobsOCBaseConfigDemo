@@ -52,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(CABasicAnimation *)basicAnimation;
 /// 创建CAKeyframeAnimation（关键帧动画）
 -(CAKeyframeAnimation *)keyframeAnimation;
+-(CAMediaTimingFunction *)makeCAMediaTimingFunction;
 
 -(CAKeyframeAnimation *)makeCAKeyframeAnimationByBlock:(jobsByCAKeyframeAnimationBlock _Nonnull)block;
 -(CABasicAnimation *)makeCABasicAnimationByBlock:(jobsByCABasicAnimationBlock _Nonnull)block;

@@ -8,6 +8,7 @@
 #import "NSString+Others.h"
 
 @implementation NSString (Others)
+
 #pragma mark —— 动画相关
 /// 创建CABasicAnimation
 -(CABasicAnimation *)basicAnimation{
@@ -16,6 +17,10 @@
 /// 创建CAKeyframeAnimation（关键帧动画）
 -(CAKeyframeAnimation *)keyframeAnimation{
     return [CAKeyframeAnimation animationWithKeyPath:self];
+}
+
+-(CAMediaTimingFunction *)makeCAMediaTimingFunction{
+    return [CAMediaTimingFunction functionWithName:self];
 }
 
 -(CAKeyframeAnimation *)makeCAKeyframeAnimationByBlock:(jobsByCAKeyframeAnimationBlock _Nonnull)block{

@@ -57,7 +57,7 @@
         // 设置目标角度（例如：旋转360度）
         CGFloat angleInRadians = self.currentAngle * (M_PI / 180.0f);
         CGAffineTransform endTransform = CGAffineTransformMakeRotation(angleInRadians);
-        [UIView animateWithDuration:data /// 只旋转data秒
+        [UIView animateWithDuration:data // 只旋转data秒
                               delay:0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
@@ -73,27 +73,24 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable() {
         @jobs_strongify(self)
-        CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+        CAKeyframeAnimation *popAnimation = @"transform".keyframeAnimation;
         popAnimation.duration = 1;
         popAnimation.values = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add([NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f,
-                                                                            0.01f,
-                                                                            1.0f)]);
-            data.add([NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1f,
-                                                                            1.1f,
-                                                                            1.0f)]);
-            data.add([NSValue valueWithCATransform3D:CATransform3DIdentity]);
+            data.add([NSValue valueWithCATransform3D:CATransform3DMakeScale(0.01f,0.01f,1.0f)])
+            .add([NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1f,1.1f,1.0f)])
+            .add([NSValue valueWithCATransform3D:CATransform3DIdentity]);
         });
         popAnimation.keyTimes = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add(@0.0f);
-            data.add(@0.5f);
-            data.add(@0.75f);
-            data.add(@1.0f);
+            data.add(@0.0f)
+            .add(@0.5f)
+            .add(@0.75f)
+            .add(@1.0f);
         });
+
         popAnimation.timingFunctions = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-            data.add([CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]);
-            data.add([CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]);
-            data.add([CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]);
+            data.add(kCAMediaTimingFunctionEaseInEaseOut.makeCAMediaTimingFunction)
+            .add(kCAMediaTimingFunctionEaseInEaseOut.makeCAMediaTimingFunction)
+            .add(kCAMediaTimingFunctionEaseInEaseOut.makeCAMediaTimingFunction);
         });
         [self.layer addAnimation:popAnimation forKey:nil];
         return self;
@@ -104,7 +101,7 @@
     @jobs_weakify(self)
     return ^__kindof UIView *_Nullable() {
         @jobs_strongify(self)
-        CABasicAnimation *hover = [CABasicAnimation animationWithKeyPath:@"position"];
+        CABasicAnimation *hover = @"position".basicAnimation;
         hover.additive = YES; // fromValue and toValue will be relative instead of absolute values
         hover.fromValue = [NSValue valueWithCGPoint:CGPointZero];
         hover.toValue = [NSValue valueWithCGPoint:CGPointMake(0.0, -10.0)]; // y increases downwards on iOS
@@ -184,22 +181,22 @@
     CGFloat currentTx = self.transform.ty;
     animation.duration = duration;
     animation.values = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-        data.add(@(currentTx));
-        data.add(@(currentTx + height));
-        data.add(@(currentTx - height / 3 * 2));
-        data.add(@(currentTx + height / 3 * 2));
-        data.add(@(currentTx - height / 3));
-        data.add(@(currentTx + height / 3));
-        data.add(@(currentTx));
+        data.add(@(currentTx))
+        .add(@(currentTx + height))
+        .add(@(currentTx - height / 3 * 2))
+        .add(@(currentTx + height / 3 * 2))
+        .add(@(currentTx - height / 3))
+        .add(@(currentTx + height / 3))
+        .add(@(currentTx));
     });
     animation.keyTimes = jobsMakeMutArr(^(__kindof NSMutableArray * _Nullable data) {
-        data.add(@(0));
-        data.add(@(0.225));
-        data.add(@(0.425));
-        data.add(@(0.6));
-        data.add(@(0.75));
-        data.add(@(0.875));
-        data.add(@(1));
+        data.add(@(0))
+        .add(@(0.225))
+        .add(@(0.425))
+        .add(@(0.6))
+        .add(@(0.75))
+        .add(@(0.875))
+        .add(@(1));
     });
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [self.layer addAnimation:animation forKey:@"kViewShakerAnimationKey"];
@@ -272,15 +269,18 @@ JobsKey(_shakeAnim)
     CAKeyframeAnimation *ShakeAnim = Jobs_getAssociatedObject(_shakeAnim);
     if (!ShakeAnim) {
         #define Angle2Radian(angle) ((angle) / 180.0 * M_PI)
-        ShakeAnim = CAKeyframeAnimation.animation;
-        ShakeAnim.keyPath = @"transform.rotation";
-        ShakeAnim.values = @[@(Angle2Radian(-baseRandomContainBorderValue(7))),
-                             @(Angle2Radian(baseRandomContainBorderValue(7))),
-                             @(Angle2Radian(-baseRandomContainBorderValue(7)))];
-        ShakeAnim.duration = 0.25;
-        ShakeAnim.repeatCount = MAXFLOAT;// 动画次数设置为最大
-        ShakeAnim.removedOnCompletion = NO;// 保持动画执行完毕后的状态
-        ShakeAnim.fillMode = kCAFillModeForwards;
+        jobsMakeCAKeyframeAnimation(^(__kindof CAKeyframeAnimation * _Nullable animation) {
+            animation.keyPath = @"transform.rotation";
+            animation.duration = 0.25;
+            animation.repeatCount = MAXFLOAT;// 动画次数设置为最大
+            animation.removedOnCompletion = NO;// 保持动画执行完毕后的状态
+            animation.fillMode = kCAFillModeForwards;
+            animation.values = jobsMakeMutArr(^(__kindof NSMutableArray<NSObject *> * _Nullable arr) {
+                arr.add(@(Angle2Radian(-baseRandomContainBorderValue(7))))
+                .add(@(Angle2Radian(baseRandomContainBorderValue(7))))
+                .add(@(Angle2Radian(-baseRandomContainBorderValue(7))));
+            });
+        });
         Jobs_setAssociatedRETAIN_NONATOMIC(_shakeAnim, ShakeAnim)
     }return ShakeAnim;
 }

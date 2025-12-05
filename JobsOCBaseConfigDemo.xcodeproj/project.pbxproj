@@ -9461,9 +9461,9 @@
 		C55C7F372E167B6200B56985 /* UIButton+UI */ = {
 			isa = PBXGroup;
 			children = (
+				C55C7F382E167B6200B56985 /* UIButton+UI.md */,
 				C55C7F3A2E167B6200B56985 /* UIButton+UI.h */,
 				C55C7F392E167B6200B56985 /* UIButton+UI.m */,
-				C55C7F382E167B6200B56985 /* UIButton+UI.md */,
 			);
 			path = "UIButton+UI";
 			sourceTree = "<group>";

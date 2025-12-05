@@ -246,13 +246,15 @@ Prop_assign(readwrite)BOOL builtOnce;
     };
 }
 #pragma mark —— 一些公共方法
-- (void)setDataSourceWithButtons:(__kindof NSArray<__kindof UIButton *> *)buttons
-                     controllers:(__kindof NSArray<__kindof UIViewController *> *)controllers {
-    /// 清理旧的按钮
-    for (UIButton *b in self.buttons) {
-        [b removeFromSuperview];
+- (void)setDataSourceByButtons:(NSArray<UIButton *> *)buttons
+                   controllers:(NSArray<UIViewController *> *)controllers {
+    /// 1. 清理旧的按钮
+    if(self.buttons.count){
+        for (UIButton *b in self.buttons) {
+            [b removeFromSuperview];
+        }
     }
-    /// 清理旧的子控制器
+    /// 2. 清理旧的子控制器
     for (UIViewController *vc in self.controllers) {
         if (vc.parentViewController == self) {
             [vc willMoveToParentViewController:nil];
@@ -260,34 +262,46 @@ Prop_assign(readwrite)BOOL builtOnce;
             [vc removeFromParentViewController];
         }
     }
+    /// 3. 覆盖数据源
+    [self.buttons removeAllObjects];
+    [self.buttons addObjectsFromArray:buttons];
+
+    [self.controllers removeAllObjects];
+    [self.controllers addObjectsFromArray:controllers];
+
     self.builtOnce = NO;
-    /// 添加按钮
+    /// 4. 添加按钮到 tabBar，上点击事件
     [self.buttons enumerateObjectsUsingBlock:^(UIButton *b,
                                                NSUInteger idx,
                                                BOOL *stop) {
-        b.onClickBy(^(UIButton *x){
-            NSInteger index = x.tag;
-            if (index >= MIN(self.buttons.count, self.controllers.count)) {
-                toastBy(@"请配置子控制器");
-                return;
-            }[self selectIndex:index animated:YES];
-        })
-        .byTag(idx)
+//        b.onClickAppendBy(^(UIButton *x){
+//            NSInteger index = x.tag;
+//            if (index >= MIN(self.buttons.count, self.controllers.count)) {
+//                toastBy(@"请配置子控制器");
+//                return;
+//            }[self selectIndex:index animated:YES];
+//        })
+        b.byTag(idx)
         .addOn(self.tabBar);
     }];
-    /// 添加子控制器（只取 min(buttons, controllers)）
+    /// 5. 添加子控制器（只取 min(buttons, controllers)）
     NSInteger pageCount = MIN(self.buttons.count, self.controllers.count);
     for (NSInteger i = 0; i < pageCount; i++) {
         UIViewController *vc = self.controllers[i].navCtrl;
         [self addChildViewController:vc];
         [self.contentScrollView addSubview:vc.view];
         [vc didMoveToParentViewController:self];
-        if (self.suppressChildVerticalScrolls) self.suppressVerticalInView(vc.view);
+
+        if (self.suppressChildVerticalScrolls) {
+            self.suppressVerticalInView(vc.view);
+        }
     }
+    /// 6. 初始选中第 0 个
     self.selectedIndex = 0;
     self.applySelectionStateAnimated(NO);
-    if (self.onButtonsBuilt) self.onButtonsBuilt(self.buttons);
-    [self.view setNeedsLayout];
+    if (self.onButtonsBuilt) {
+        self.onButtonsBuilt(self.buttons);
+    }[self.view setNeedsLayout];
 }
 
 - (void)selectIndex:(NSInteger)index animated:(BOOL)animated {
@@ -336,7 +350,9 @@ Prop_assign(readwrite)BOOL builtOnce;
 #pragma mark —— LazyLoad
 -(UIScrollView *)tabBar {
     if (!_tabBar) {
+        @jobs_weakify(self)
         _tabBar = jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
+            @jobs_strongify(self)
             scrollView
                 .byShowsHorizontalScrollIndicator(NO)
                 .byAlwaysBounceHorizontal(YES)
@@ -348,7 +364,9 @@ Prop_assign(readwrite)BOOL builtOnce;
 
 -(UIScrollView *)contentScrollView {
     if (!_contentScrollView) {
+        @jobs_weakify(self)
         _contentScrollView = jobsMakeScrollView(^(__kindof UIScrollView * _Nullable scrollView) {
+            @jobs_strongify(self)
             scrollView
                 .byPagingEnabled(YES)
                 .byBounces(NO)
@@ -517,7 +535,7 @@ Prop_assign(readwrite)BOOL builtOnce;
 }
 
 -(instancetype)byDataSourceWithButtons:(NSArray<UIButton *> *)buttons controllers:(NSArray<UIViewController *> *)controllers {
-    [self setDataSourceWithButtons:buttons controllers:controllers];
+    [self setDataSourceByButtons:buttons controllers:controllers];
     return self;
 }
 
