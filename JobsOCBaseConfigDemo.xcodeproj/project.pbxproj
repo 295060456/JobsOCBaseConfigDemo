@@ -5173,6 +5173,8 @@
 		C55C7AB92E167B5D00B56985 /* 功能模块 */ = {
 			isa = PBXGroup;
 			children = (
+				C55C7E002E167B5F00B56985 /* Demo@UICollectionView实现重叠的卡包效果 */,
+				C55C7D352E167B5F00B56985 /* Demo@UITableViewCell的折叠效果 */,
 				04E822512EE1234500570A4C /* Demo@JobsTabBarCtrl */,
 				045F7ADC2EDAAB5F00AD6356 /* Demo@钟 */,
 				041AE5A32EDA8C9F00ED03A3 /* Demo@苹果滑动开锁 */,
@@ -5230,10 +5232,8 @@
 				C55C7E082E167B5F00B56985 /* Demo@TestLabel */,
 				C55C7D932E167B5F00B56985 /* Demo@TransparentRegion */,
 				C55C7B582E167B5D00B56985 /* Demo@UIButton子控件的排布 */,
-				C55C7E002E167B5F00B56985 /* Demo@UICollectionView实现重叠的卡包效果 */,
 				C55C7D8F2E167B5F00B56985 /* Demo@UILabel文字旋转 */,
 				C55C7B142E167B5D00B56985 /* Demo@UIPresentationController的使用 */,
-				C55C7D352E167B5F00B56985 /* Demo@UITableViewCell的折叠效果 */,
 				C55C7C6F2E167B5E00B56985 /* Demo@UITableViewCellEditorVC */,
 				C55C7B412E167B5D00B56985 /* Demo@Widget */,
 			);
