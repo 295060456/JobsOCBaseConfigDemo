@@ -18,9 +18,10 @@
         self.registerCollectionElementKindSectionFooterClass(UICollectionReusableView.class,@"");
         self.registerCollectionElementKindSectionFooterClass(BaseCollectionReusableView.class,@"");
 #pragma mark —— CollectionReusableView-Header
-        self.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class,@"");
+        self.registerCollectionElementKindSectionHeaderClass_(TMSWalletCollectionReusableView.class,TMSCollectionViewSectionHeader);
 #pragma mark —— CollectionReusableView—Footer
         self.registerCollectionElementKindSectionFooterClass(JobsHeaderFooterView.class,@"");
+        self.registerCollectionElementKindSectionFooterClass_(TMSWalletCollectionReusableView.class,TMSCollectionViewSectionFooter);
 #pragma mark —— CollectionViewCell
         self.registerCollectionViewCellClass(UICollectionViewCell.class,@"");
         self.registerCollectionViewCellClass(BaseCollectionViewCell.class,@"");
@@ -67,8 +68,8 @@
     return ^__kindof UICollectionView *_Nullable(Class _Nonnull cls,NSString * _Nullable reuseIdentifier) {
         @jobs_strongify(self)
         [self registerClass:cls
-        forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-        withReuseIdentifier:reuseIdentifier];
+ forSupplementaryViewOfKind:isValue(reuseIdentifier) ? reuseIdentifier : UICollectionElementKindSectionHeader
+        withReuseIdentifier:cls.description];
         return self;
     };
 }
@@ -87,7 +88,7 @@
     return ^__kindof UICollectionView *_Nullable(Class _Nonnull cls,NSString * _Nullable reuseIdentifier) {
         @jobs_strongify(self)
         [self registerClass:cls
-        forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+        forSupplementaryViewOfKind:isValue(reuseIdentifier) ? reuseIdentifier : UICollectionElementKindSectionFooter
         withReuseIdentifier:reuseIdentifier];
         return self;
     };

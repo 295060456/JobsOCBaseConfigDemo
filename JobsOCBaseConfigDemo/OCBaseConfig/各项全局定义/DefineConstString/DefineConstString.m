@@ -158,8 +158,8 @@ NSString *const 汉语拼音 = @"āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚ�
 NSString *const 中文字符 = @"零壹贰叁肆伍陆柒捌玖拾佰仟万亿吉太拍艾分厘毫微卍卐卄巜弍弎弐朤氺曱甴囍兀々〆のぁ〡〢〣〤〥〦〧〨〩㊎㊍㊌㊋㊏㊚㊛㊐㊊㊣㊤㊥㊦㊧㊨㊒㊫㊑㊓㊔㊕㊖㊗㊘㊜㊝㊞㊟㊠㊡㊢㊩㊪㊬㊭㊮㊯㊰㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉";
 NSString *const 日文平假名和片假名 = @"ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾヿ゠ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ";
 /// TMSCollectionView
-NSString * const TMSCollectionViewSectionHeader = @"NTCollectionViewSectionHeader";
-NSString * const TMSCollectionViewSectionFooter = @"NTCollectionViewSectionFooter";
+NSString * const TMSCollectionViewSectionHeader = @"TMSCollectionViewSectionHeader";
+NSString * const TMSCollectionViewSectionFooter = @"TMSCollectionViewSectionFooter";
 /// WebSocket
 NSString * const kNeedPayOrderNote               = @"kNeedPayOrderNote";
 NSString * const kWebSocketDidOpenNote           = @"kWebSocketDidOpenNote";

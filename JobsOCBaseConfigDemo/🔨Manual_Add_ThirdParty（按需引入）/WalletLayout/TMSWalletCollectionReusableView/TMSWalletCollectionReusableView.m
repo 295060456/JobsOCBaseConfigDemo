@@ -38,14 +38,15 @@
         @jobs_weakify(self)
         _label = jobsMakeLabel(^(__kindof UILabel * _Nullable label) {
             @jobs_strongify(self)
-            label.font = UIFontWeightRegularSize(14);
-            self.addSubview(label);
-            [label mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self).offset(JobsWidth(15));
-                make.centerY.equalTo(self);
-            }];
+            label.byFont(UIFontWeightRegularSize(14))
+                .addOn(self)
+                .byAdd(^(MASConstraintMaker *make) {
+                    @jobs_strongify(self)
+                    make.left.equalTo(self).offset(JobsWidth(15));
+                    make.centerY.equalTo(self);
+                });
         });
-    }_label.text = self.viewModel.textModel.text;
+    }_label.byText(self.viewModel.textModel.text);
     return _label;
 }
 

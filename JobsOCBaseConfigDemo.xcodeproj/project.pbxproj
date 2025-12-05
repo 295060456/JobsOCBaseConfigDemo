@@ -14364,8 +14364,8 @@
 		C55C84DF2E167B6400B56985 /* TMSWalletCollectionReusableView */ = {
 			isa = PBXGroup;
 			children = (
-				C55C84E02E167B6400B56985 /* TMSWalletCollectionReusableView.m */,
 				C55C84E12E167B6400B56985 /* TMSWalletCollectionReusableView.h */,
+				C55C84E02E167B6400B56985 /* TMSWalletCollectionReusableView.m */,
 			);
 			path = TMSWalletCollectionReusableView;
 			sourceTree = "<group>";

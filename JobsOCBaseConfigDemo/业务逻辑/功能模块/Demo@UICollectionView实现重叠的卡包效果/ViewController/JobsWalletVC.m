@@ -10,9 +10,9 @@
 @interface JobsWalletVC ()
 /// Data
 Prop_strong()TMSCollectionViewLayout *tms_layout;
-Prop_strong()NSMutableArray <NSMutableArray <UIViewModel *>*>*dataSourceMutArr;/// Cell的数据源
-Prop_strong()NSMutableArray <UIViewModel *>*sectionHeaderDataSource;/// sectionHeader的数据源
-Prop_strong()NSMutableArray <UIViewModel *>*sectionFooterDataSource;/// sectionFooter的数据源
+Prop_strong()NSMutableArray <NSMutableArray <UIViewModel *>*>*dataSourceMutArr; // Cell的数据源
+Prop_strong()NSMutableArray <UIViewModel *>*sectionHeaderDataSource;            // sectionHeader的数据源
+Prop_strong()NSMutableArray <UIViewModel *>*sectionFooterDataSource;            // sectionFooter的数据源
 
 @end
 
@@ -86,7 +86,7 @@ Prop_strong()NSMutableArray <UIViewModel *>*sectionFooterDataSource;/// sectionF
 resuableHeaderViewHeightForIndexPath:(NSIndexPath *)indexPath {
 //    return indexPath.section == 0 ? 30 : 0;
     if (indexPath.section == self.dataSourceMutArr.count - 1) {
-        JobsWidth(45);
+        return JobsWidth(45);
     }return JobsWidth(30);
 }
 
@@ -129,25 +129,26 @@ resuableFooterViewHeightForIndexPath:(NSIndexPath *)indexPath {
 
 - (void)collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.dataSourceMutArr enumerateObjectsUsingBlock:^(NSArray *sectionArray,
-                                                        NSUInteger idx,
-                                                        BOOL * _Nonnull stop) {
+    [self.dataSourceMutArr enumerateObjectsUsingBlock:^(NSArray<UIViewModel *> *sectionArray,
+                                                        NSUInteger section,
+                                                        BOOL * _Nonnull stopSection) {
         [sectionArray enumerateObjectsUsingBlock:^(UIViewModel *model,
-                                                   NSUInteger idx,
-                                                   BOOL * _Nonnull stop) {
-            if (indexPath.item != idx) {
+                                                   NSUInteger item,
+                                                   BOOL * _Nonnull stopItem) {
+            // 只要不是当前点击的那个 indexPath，全部置为未选中
+            if (section != indexPath.section || item != indexPath.item) {
                 model.jobsSelected = NO;
-            } else {
-                model.jobsSelected = !model.jobsSelected;
-                if (indexPath.item != sectionArray.count - 1) {
-                    [self.tms_layout didClickWithIndexPath:indexPath isExpand:model.jobsSelected];
-                } else {
-                    [self.tms_layout didClickWithIndexPath:indexPath isExpand:NO];
-                }
+                return;
             }
+            // 命中当前点击的 cell（section 和 item 都相等）
+            model.jobsSelected = !model.jobsSelected;
+
+            BOOL isLastItemInSection = (item == sectionArray.count - 1);
+            BOOL shouldExpand = !isLastItemInSection && model.jobsSelected;
+
+            [self.tms_layout didClickWithIndexPath:indexPath isExpand:shouldExpand];
         }];
-    }];
-    [collectionView reloadData];
+    }]; [collectionView reloadData];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
@@ -156,15 +157,19 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     TMSWalletCollectionReusableView *reusableView = nil;
     reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(TMSWalletCollectionReusableView.class) forIndexPath:indexPath];
     if (kind == TMSCollectionViewSectionHeader) {
-        UIViewModel *viewModel = self.sectionHeaderDataSource[indexPath.section];
-        viewModel.textModel.text = [NSString stringWithFormat:@"Section Header:%zd-%zd", indexPath.section, indexPath.item];
-        reusableView.jobsRichViewByModel(viewModel);
+        if(indexPath.section < self.sectionHeaderDataSource.count){
+            UIViewModel *viewModel = self.sectionHeaderDataSource[indexPath.section];
+            viewModel.textModel.text = [NSString stringWithFormat:@"Section Header:%zd-%zd", indexPath.section, indexPath.item];
+            reusableView.jobsRichViewByModel(viewModel);
+        }
     }
 
     if (kind == TMSCollectionViewSectionFooter) {
-        UIViewModel *viewModel = self.sectionFooterDataSource[indexPath.section];
-        viewModel.textModel.text = [NSString stringWithFormat:@"Section Header:%zd-%zd", indexPath.section, indexPath.item];
-        reusableView.jobsRichViewByModel(viewModel);
+        if(indexPath.section < self.sectionFooterDataSource.count){
+            UIViewModel *viewModel = self.sectionFooterDataSource[indexPath.section];
+            viewModel.textModel.text = [NSString stringWithFormat:@"Section Header:%zd-%zd", indexPath.section, indexPath.item];
+            reusableView.jobsRichViewByModel(viewModel);
+        }
     }return reusableView;
 }
 #pragma mark —— lazyLoad
@@ -177,13 +182,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         
         {
             _collectionView.registerCollectionViewClass();
-            
-            _collectionView.registerCollectionElementKindSectionHeaderClass(TMSWalletCollectionReusableView.class,@"");
-            _collectionView.registerCollectionElementKindSectionFooterClass(TMSWalletCollectionReusableView.class,@"");
+
+            _collectionView.registerCollectionElementKindSectionHeaderClass_(TMSWalletCollectionReusableView.class,TMSCollectionViewSectionHeader);
+            _collectionView.registerCollectionElementKindSectionHeaderClass_(TMSWalletCollectionReusableView.class,TMSCollectionViewSectionFooter);
             
             _collectionView.registerCollectionViewCellClass(TMSWalletCollectionViewCell.class,@"");
             _collectionView.registerCollectionViewCellClass(BaiShaETProjBankAccMgmtCVCell.class,@"");
-            
         }
 
         _collectionView.dataLink(self);
@@ -214,23 +218,43 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                     data2.textModel.text = @"上海银行".tr;
                     data2.subTextModel.text = @"**** 7895".tr;
                     data2.image = @"第一银行".img;
-                }));
-                data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                }))
+                .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
                     data2.textModel.text = @"国泰世华".tr;
                     data2.subTextModel.text = @"**** 2345".tr;
                     data2.image = @"国泰世华".img;
-                }));
-                data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                }))
+                .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
                     data2.textModel.text = @"台湾银行".tr;
                     data2.subTextModel.text = @"**** 7654".tr;
                     data2.image = @"台湾银行".img;
+                }))
+                .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                    data2.textModel.text = @"嘉华银行".tr;
+                    data2.subTextModel.text = @"**** 2345".tr;
+                    data2.image = @"嘉华银行".img;
+                }))
+                .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                    data2.textModel.text = @"包头银行".tr;
+                    data2.subTextModel.text = @"**** 7654".tr;
+                    data2.image = @"包头银行".img;
+                }))
+                .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                    data2.textModel.text = @"成都银行".tr;
+                    data2.subTextModel.text = @"**** 2345".tr;
+                    data2.image = @"成都银行".img;
+                }))
+                .add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
+                    data2.textModel.text = @"南充商业银行".tr;
+                    data2.subTextModel.text = @"**** 7654".tr;
+                    data2.image = @"南充商业银行".img;
                 }));
             }));
             data.add(jobsMakeMutArr(^(__kindof NSMutableArray <UIViewModel *>* _Nullable data1) {
                 data1.add(jobsMakeViewModel(^(__kindof UIViewModel * _Nullable data2) {
-                    data1.textModel.text = @"＋添加新的銀行卡".tr;
-                    data1.textModel.font = UIFontWeightRegularSize(16);
-                    data1.textModel.textCor = HEXCOLOR(0x757575);
+                    data2.textModel.text = @"＋添加新的銀行卡".tr;
+                    data2.textModel.font = UIFontWeightRegularSize(16);
+                    data2.textModel.textCor = HEXCOLOR(0x757575);
                 }));
             }));
         });
