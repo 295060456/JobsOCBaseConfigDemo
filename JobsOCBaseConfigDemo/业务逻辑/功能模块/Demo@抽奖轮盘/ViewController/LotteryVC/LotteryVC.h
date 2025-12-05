@@ -7,8 +7,8 @@
 
 #import "BaseViewController.h"
 
-#import "LuckyDiskVC.h"
-#import "LuckyRollVC.h"
+#import "LuckyDiskDemoVC.h"
+#import "LuckyWheelDemoVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

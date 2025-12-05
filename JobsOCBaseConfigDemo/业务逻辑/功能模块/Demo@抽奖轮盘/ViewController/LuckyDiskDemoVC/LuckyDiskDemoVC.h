@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 //https://github.com/xiaolongLee/XLLuckyDraw
-@interface LuckyDiskVC : UIViewController
-
+@interface LuckyDiskDemoVC : UIViewController
 
 @end
 

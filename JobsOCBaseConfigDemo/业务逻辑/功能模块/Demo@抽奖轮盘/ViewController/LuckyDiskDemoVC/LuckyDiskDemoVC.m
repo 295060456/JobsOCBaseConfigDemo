@@ -1,12 +1,12 @@
 //
-//  LuckyDiskVC.m
+//  LuckyDiskDemoVC.m
 //  XLLuckyDrawDemo
 //
 //  Created by Mac-Qke on 2019/2/11.
 //  Copyright © 2019 Mac-Qke. All rights reserved.
 //
 
-#import "LuckyDiskVC.h"
+#import "LuckyDiskDemoVC.h"
 //屏幕宽
 #define kScreenWidth [[UIScreen mainScreen] bounds].size.width
 //屏幕高
@@ -16,7 +16,7 @@
 //RGB
 #define XDXColor(r, g, b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1]
 
-@interface LuckyDiskVC ()
+@interface LuckyDiskDemoVC ()
 @property (nonatomic, strong) NSURL *videoURL;
 @property (nonatomic, strong) NSString *result;
 @property (nonatomic, strong) NSArray *itemTitleArray;
@@ -35,7 +35,7 @@
 @property (nonatomic, strong) UIView *alertView;
 @end
 
-@implementation LuckyDiskVC
+@implementation LuckyDiskDemoVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

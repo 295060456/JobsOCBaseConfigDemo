@@ -260,12 +260,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
             data.add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = @"方形转盘抽奖".tr;
                 model.subTitle = @"中间有抽奖按钮".tr;
-                model.cls = LuckyDiskVC.class;
+                model.cls = LuckyDiskDemoVC.class;
             })))
             .add(self.makeDatas(jobsMakeDecorationModel(^(__kindof JobsDecorationModel * _Nullable model) {
                 model.title = @"圆形抽奖轮盘".tr;
                 model.subTitle = @"中间有抽奖按钮".tr;
-                model.cls = LuckyRollVC.class;
+                model.cls = LuckyWheelDemoVC.class;
             })));
         });
     }return _dataMutArr;

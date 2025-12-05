@@ -1,15 +1,15 @@
 //
-//  LuckyRollVC.h
+//  LuckyWheelDemoVC.h
 //  JobsOCBaseConfigDemo
 //
-//  Created by User on 8/13/24.
+//  Created by Jobs on 12/5/25.
 //
 
 #import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LuckyRollVC : BaseViewController
+@interface LuckyWheelDemoVC : BaseViewController
 
 @end
 

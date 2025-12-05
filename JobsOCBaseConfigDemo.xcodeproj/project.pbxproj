@@ -44,6 +44,10 @@
 		04C4429C2EB899FE008E0F09 /* UITextField+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4429B2EB899FE008E0F09 /* UITextField+DSL.m */; };
 		04C442A02EB8A317008E0F09 /* NSMutableParagraphStyle+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4429F2EB8A317008E0F09 /* NSMutableParagraphStyle+DSL.m */; };
 		04C442A42EB8AD82008E0F09 /* UITableView+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C442A32EB8AD82008E0F09 /* UITableView+DSL.m */; };
+		04CF9B022EE2E6BC00E630E0 /* LuckyWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CF9B012EE2E6BC00E630E0 /* LuckyWheelView.m */; };
+		04CF9B082EE2E71800E630E0 /* LuckyWheelDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CF9B072EE2E71800E630E0 /* LuckyWheelDemoVC.m */; };
+		04CF9B0B2EE2E78E00E630E0 /* ScrollDecelerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CF9B0A2EE2E78E00E630E0 /* ScrollDecelerator.m */; };
+		04CF9B0E2EE2E7AD00E630E0 /* LuckyWheelSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CF9B0D2EE2E7AD00E630E0 /* LuckyWheelSegment.m */; };
 		04D49C102EBC3B7C00BCD6F1 /* ASButtonNode+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C0F2EBC3B7C00BCD6F1 /* ASButtonNode+DSL.m */; };
 		04D49C152EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C142EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.m */; };
 		04D49C192EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D49C182EBC5CD500BCD6F1 /* ASEditableTextNode+DSL.m */; };
@@ -254,8 +258,7 @@
 		C55C8A472E167B6900B56985 /* BaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7D202E167B5F00B56985 /* BaseRequest.m */; };
 		C55C8A482E167B6900B56985 /* YTKChainRequest+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7D232E167B5F00B56985 /* YTKChainRequest+Extra.m */; };
 		C55C8A4B2E167B6900B56985 /* LotteryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7D2B2E167B5F00B56985 /* LotteryVC.m */; };
-		C55C8A4D2E167B6900B56985 /* LuckyRollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7D302E167B5F00B56985 /* LuckyRollVC.m */; };
-		C55C8A4F2E167B6900B56985 /* LuckyDiskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7D342E167B5F00B56985 /* LuckyDiskVC.m */; };
+		C55C8A4F2E167B6900B56985 /* LuckyDiskDemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7D342E167B5F00B56985 /* LuckyDiskDemoVC.m */; };
 		C55C8A502E167B6900B56985 /* MSCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7D392E167B5F00B56985 /* MSCommentModel.m */; };
 		C55C8A512E167B6900B56985 /* MSCommentTBVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7D3D2E167B5F00B56985 /* MSCommentTBVCell.m */; };
 		C55C8A522E167B6900B56985 /* MSCommentTableHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C55C7D402E167B5F00B56985 /* MSCommentTableHeaderFooterView.m */; };
@@ -1402,6 +1405,14 @@
 		04C4429F2EB8A317008E0F09 /* NSMutableParagraphStyle+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableParagraphStyle+DSL.m"; sourceTree = "<group>"; };
 		04C442A22EB8AD82008E0F09 /* UITableView+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableView+DSL.h"; sourceTree = "<group>"; };
 		04C442A32EB8AD82008E0F09 /* UITableView+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableView+DSL.m"; sourceTree = "<group>"; };
+		04CF9B002EE2E6BC00E630E0 /* LuckyWheelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyWheelView.h; sourceTree = "<group>"; };
+		04CF9B012EE2E6BC00E630E0 /* LuckyWheelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyWheelView.m; sourceTree = "<group>"; };
+		04CF9B062EE2E71800E630E0 /* LuckyWheelDemoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyWheelDemoVC.h; sourceTree = "<group>"; };
+		04CF9B072EE2E71800E630E0 /* LuckyWheelDemoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyWheelDemoVC.m; sourceTree = "<group>"; };
+		04CF9B092EE2E78E00E630E0 /* ScrollDecelerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollDecelerator.h; sourceTree = "<group>"; };
+		04CF9B0A2EE2E78E00E630E0 /* ScrollDecelerator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollDecelerator.m; sourceTree = "<group>"; };
+		04CF9B0C2EE2E7AD00E630E0 /* LuckyWheelSegment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuckyWheelSegment.h; sourceTree = "<group>"; };
+		04CF9B0D2EE2E7AD00E630E0 /* LuckyWheelSegment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LuckyWheelSegment.m; sourceTree = "<group>"; };
 		04D49C0E2EBC3B7C00BCD6F1 /* ASButtonNode+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASButtonNode+DSL.h"; sourceTree = "<group>"; };
 		04D49C0F2EBC3B7C00BCD6F1 /* ASButtonNode+DSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ASButtonNode+DSL.m"; sourceTree = "<group>"; };
 		04D49C132EBC526700BCD6F1 /* ASStackLayoutSpec+DSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ASStackLayoutSpec+DSL.h"; sourceTree = "<group>"; };
@@ -1856,12 +1867,10 @@
 		C55C7D222E167B5F00B56985 /* YTKChainRequest+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YTKChainRequest+Extra.h"; sourceTree = "<group>"; };
 		C55C7D232E167B5F00B56985 /* YTKChainRequest+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YTKChainRequest+Extra.m"; sourceTree = "<group>"; };
 		C55C7D2B2E167B5F00B56985 /* LotteryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LotteryVC.m; sourceTree = "<group>"; };
-		C55C7D2C2E167B5F00B56985 /* 转盘.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "转盘.PNG"; sourceTree = "<group>"; };
+		C55C7D2C2E167B5F00B56985 /* LuckyDiskDemoVC.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LuckyDiskDemoVC.PNG; sourceTree = "<group>"; };
 		C55C7D2D2E167B5F00B56985 /* LotteryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LotteryVC.h; sourceTree = "<group>"; };
-		C55C7D2F2E167B5F00B56985 /* LuckyRollVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyRollVC.h; sourceTree = "<group>"; };
-		C55C7D302E167B5F00B56985 /* LuckyRollVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyRollVC.m; sourceTree = "<group>"; };
-		C55C7D332E167B5F00B56985 /* LuckyDiskVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyDiskVC.h; sourceTree = "<group>"; };
-		C55C7D342E167B5F00B56985 /* LuckyDiskVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyDiskVC.m; sourceTree = "<group>"; };
+		C55C7D332E167B5F00B56985 /* LuckyDiskDemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckyDiskDemoVC.h; sourceTree = "<group>"; };
+		C55C7D342E167B5F00B56985 /* LuckyDiskDemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckyDiskDemoVC.m; sourceTree = "<group>"; };
 		C55C7D382E167B5F00B56985 /* MSCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCommentModel.h; sourceTree = "<group>"; };
 		C55C7D392E167B5F00B56985 /* MSCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCommentModel.m; sourceTree = "<group>"; };
 		C55C7D3C2E167B5F00B56985 /* MSCommentTBVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCommentTBVCell.h; sourceTree = "<group>"; };
@@ -4319,6 +4328,15 @@
 				04C442A32EB8AD82008E0F09 /* UITableView+DSL.m */,
 			);
 			path = "UITableView+DSL";
+			sourceTree = "<group>";
+		};
+		04CF9B052EE2E6FE00E630E0 /* LuckyWheelDemoVC */ = {
+			isa = PBXGroup;
+			children = (
+				04CF9B062EE2E71800E630E0 /* LuckyWheelDemoVC.h */,
+				04CF9B072EE2E71800E630E0 /* LuckyWheelDemoVC.m */,
+			);
+			path = LuckyWheelDemoVC;
 			sourceTree = "<group>";
 		};
 		04D49C0C2EBB555400BCD6F1 /* JobsControlTarget */ = {
@@ -7520,6 +7538,10 @@
 		C55C7D252E167B5F00B56985 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04CF9B092EE2E78E00E630E0 /* ScrollDecelerator.h */,
+				04CF9B0A2EE2E78E00E630E0 /* ScrollDecelerator.m */,
+				04CF9B0C2EE2E7AD00E630E0 /* LuckyWheelSegment.h */,
+				04CF9B0D2EE2E7AD00E630E0 /* LuckyWheelSegment.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7527,6 +7549,8 @@
 		C55C7D272E167B5F00B56985 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04CF9B002EE2E6BC00E630E0 /* LuckyWheelView.h */,
+				04CF9B012EE2E6BC00E630E0 /* LuckyWheelView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7535,8 +7559,8 @@
 			isa = PBXGroup;
 			children = (
 				C55C7D2A2E167B5F00B56985 /* LotteryVC */,
-				C55C7D322E167B5F00B56985 /* LuckyDiskVC */,
-				C55C7D2E2E167B5F00B56985 /* LuckyRollVC */,
+				04CF9B052EE2E6FE00E630E0 /* LuckyWheelDemoVC */,
+				C55C7D322E167B5F00B56985 /* LuckyDiskDemoVC */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -7544,29 +7568,20 @@
 		C55C7D2A2E167B5F00B56985 /* LotteryVC */ = {
 			isa = PBXGroup;
 			children = (
-				C55C7D2C2E167B5F00B56985 /* 转盘.PNG */,
 				C55C7D2D2E167B5F00B56985 /* LotteryVC.h */,
 				C55C7D2B2E167B5F00B56985 /* LotteryVC.m */,
 			);
 			path = LotteryVC;
 			sourceTree = "<group>";
 		};
-		C55C7D2E2E167B5F00B56985 /* LuckyRollVC */ = {
+		C55C7D322E167B5F00B56985 /* LuckyDiskDemoVC */ = {
 			isa = PBXGroup;
 			children = (
-				C55C7D2F2E167B5F00B56985 /* LuckyRollVC.h */,
-				C55C7D302E167B5F00B56985 /* LuckyRollVC.m */,
+				C55C7D2C2E167B5F00B56985 /* LuckyDiskDemoVC.PNG */,
+				C55C7D332E167B5F00B56985 /* LuckyDiskDemoVC.h */,
+				C55C7D342E167B5F00B56985 /* LuckyDiskDemoVC.m */,
 			);
-			path = LuckyRollVC;
-			sourceTree = "<group>";
-		};
-		C55C7D322E167B5F00B56985 /* LuckyDiskVC */ = {
-			isa = PBXGroup;
-			children = (
-				C55C7D332E167B5F00B56985 /* LuckyDiskVC.h */,
-				C55C7D342E167B5F00B56985 /* LuckyDiskVC.m */,
-			);
-			path = LuckyDiskVC;
+			path = LuckyDiskDemoVC;
 			sourceTree = "<group>";
 		};
 		C55C7D352E167B5F00B56985 /* Demo@UITableViewCell的折叠效果 */ = {
@@ -18196,6 +18211,7 @@
 				C55C8B282E167B6A00B56985 /* BaseView.m in Sources */,
 				C55C8A372E167B6900B56985 /* UICollectionView+EmptyData.m in Sources */,
 				048B79602ED5460B00A6FEF1 /* JobsTabBarCtrl.m in Sources */,
+				04CF9B0B2EE2E78E00E630E0 /* ScrollDecelerator.m in Sources */,
 				C55C8B602E167B6A00B56985 /* UNCalendarNotificationTrigger+Extra.m in Sources */,
 				046CFA7A2E9789AD005A88B4 /* UIBackgroundConfiguration+Extra.m in Sources */,
 				04B460C32ED6A9A7006DAC75 /* UIControl+DSL.m in Sources */,
@@ -18376,7 +18392,6 @@
 				C55C8AEF2E167B6A00B56985 /* BaseLabel.m in Sources */,
 				C55C89412E167B6800B56985 /* NSObject+URLManager_6.m in Sources */,
 				C55C8B5C2E167B6A00B56985 /* BaseCollectionView.m in Sources */,
-				C55C8A4D2E167B6900B56985 /* LuckyRollVC.m in Sources */,
 				C55C8EC02E167B6F00B56985 /* JobsOCBaseConfigDemo.xcdatamodeld in Sources */,
 				C55C8AE72E167B6A00B56985 /* UIScrollView+AnimationKit.m in Sources */,
 				C55C8C2A2E167B6B00B56985 /* NSObject+GTCaptcha4.m in Sources */,
@@ -18597,7 +18612,7 @@
 				C55C8C332E167B6B00B56985 /* NSObject+UserNotifications.m in Sources */,
 				C55C8BC62E167B6B00B56985 /* BaseTableViewHeaderFooterView.m in Sources */,
 				C55C8C0E2E167B6B00B56985 /* NotificationModel.m in Sources */,
-				C55C8A4F2E167B6900B56985 /* LuckyDiskVC.m in Sources */,
+				C55C8A4F2E167B6900B56985 /* LuckyDiskDemoVC.m in Sources */,
 				C55C8BF02E167B6B00B56985 /* TouchID.m in Sources */,
 				C55C8A742E167B6A00B56985 /* JobsCommentPopUpView_viewForHeaderInSection.m in Sources */,
 				C55C896F2E167B6900B56985 /* ViewController@3.m in Sources */,
@@ -18699,6 +18714,7 @@
 				C55C8A952E167B6A00B56985 /* CustomTableViewCellVC.m in Sources */,
 				C55C8A1D2E167B6900B56985 /* JobsScrollLabelVC.m in Sources */,
 				C55C8A602E167B6A00B56985 /* RealServiceB.m in Sources */,
+				04CF9B0E2EE2E7AD00E630E0 /* LuckyWheelSegment.m in Sources */,
 				C55C8AD42E167B6A00B56985 /* AppDelegate+Func.m in Sources */,
 				C55C89782E167B6900B56985 /* MyCollectionVC.m in Sources */,
 				C55C8C1E2E167B6B00B56985 /* JobsOnceExecutor.m in Sources */,
@@ -18748,6 +18764,7 @@
 				C55C8B462E167B6A00B56985 /* NSLocale+Extra.m in Sources */,
 				C55C8CA82E167B6C00B56985 /* NSData+CommonCrypto.m in Sources */,
 				C55C89FC2E167B6900B56985 /* HeaderCell.m in Sources */,
+				04CF9B082EE2E71800E630E0 /* LuckyWheelDemoVC.m in Sources */,
 				C55C8CAC2E167B6C00B56985 /* GifLoopPlayView.m in Sources */,
 				C55C89EE2E167B6900B56985 /* JobsExcelConfigureViewModel.m in Sources */,
 				C55C8D482E167B6D00B56985 /* JobsMenuSubView@2.m in Sources */,
@@ -18772,6 +18789,7 @@
 				C55C8A622E167B6A00B56985 /* NSProxyDemoVC.m in Sources */,
 				C55C8C492E167B6C00B56985 /* NSObject+Extras.m in Sources */,
 				C55C8B8B2E167B6B00B56985 /* UIViewController+JPImageresizerView.m in Sources */,
+				04CF9B022EE2E6BC00E630E0 /* LuckyWheelView.m in Sources */,
 				C55C8D712E167B6D00B56985 /* JobsTabBarVC.m in Sources */,
 				C55C8C132E167B6B00B56985 /* GTCaptcha4Model.m in Sources */,
 				C55C8D1A2E167B6D00B56985 /* JobsViewNavigator.m in Sources */,
