@@ -11760,7 +11760,45 @@ cell.contentView.layerBy(jobsMakeLocationModel(^(__kindof JobsLocationModel * _N
 }
 ```
 
-### 80、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+### 80、按钮的点击事件追加 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
+
+```objective-c
+/// 普通按钮
+-(UIButton *)usrNameBtn{
+    if(!_usrNameBtn){
+        @jobs_weakify(self)
+        _usrNameBtn = UIButton.jobsInit()
+            .bgColorBy(JobsWhiteColor)
+            .jobsResetImagePlacement(NSDirectionalRectEdgeLeading)
+            .jobsResetImagePadding(1)
+            .jobsResetBtnImage(@"APPLY NOW".img)
+            .jobsResetBtnBgImage(@"APPLY NOW".img)
+            .jobsResetBtnTitleCor(JobsWhiteColor)
+            .jobsResetBtnTitleFont(UIFontWeightBoldSize(JobsWidth(12)))
+            .jobsResetBtnTitle(@"APPLY NOW".tr)
+            .onClickBy(^(UIButton *x){
+                JobsLog(@"普通的点击事件");
+            })
+            .onClickAppendBy(^(UIButton *x){
+                JobsLog(@"追加的点击事件");
+            })
+            .onLongPressGestureBy(^(id data){
+                JobsLog(@"普通的长按事件");
+            })
+            .onLongPressGestureAppendBy(^(id data){
+                JobsLog(@"追加的长按事件");
+            })
+            .addOn(self.view)
+            .byAdd(^(MASConstraintMaker *make) {
+                @jobs_strongify(self)
+                // TODO
+            });
+        _usrNameBtn.makeBtnTitleByShowingType(UILabelShowingType_03);
+    }return _usrNameBtn;
+}
+```
+
+### 81、其他 <a href="#前言" style="font-size:17px; color:green;"><b>🔼</b></a> <a href="#🔚" style="font-size:17px; color:green;"><b>🔽</b></a>
 
 * <font color=red>属性化的block可以用**assign**修饰，但是最好用**copy**</font>
 

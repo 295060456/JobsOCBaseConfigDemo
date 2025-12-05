@@ -72,8 +72,14 @@ Prop_copy(nullable)jobsByBtnBlock longPressGestureBlock;
 /// 依靠UITextModel进行创建
 +(JobsReturnButtonByTextModelBlock _Nonnull)initByTextModel API_AVAILABLE(ios(15.0));
 #pragma mark —— 一些公有方法
+/// 点击方法@普通
 -(JobsReturnButtonByClickBlocks _Nonnull)onClickBy;
+/// 点击方法@叠加
+-(JobsReturnButtonByClickBlocks _Nonnull)onClickAppendBy;
+/// 长按方法@普通
 -(JobsReturnButtonByClickBlocks _Nonnull)onLongPressGestureBy;
+/// 长按方法@叠加
+-(JobsReturnButtonByClickBlocks _Nonnull)onLongPressGestureAppendBy;
 -(JobsRetBtnByCorBlock _Nonnull)bgColorBy;
 -(JobsRetBtnByCGFloatBlock _Nonnull)cornerRadiusValueBy;
 #pragma mark —— 依据数据源进行按钮的统一重设

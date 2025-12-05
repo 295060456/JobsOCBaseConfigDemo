@@ -445,6 +445,7 @@
     };
 }
 #pragma mark —— 一些公有方法
+/// 点击方法@普通
 -(JobsReturnButtonByClickBlocks _Nonnull)onClickBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
@@ -453,13 +454,47 @@
         return self;
     };
 }
-
+/// 点击方法@叠加
+-(JobsReturnButtonByClickBlocks _Nonnull)onClickAppendBy{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
+        @jobs_strongify(self)
+        jobsByBtnBlock oldBlock = self.clickBlock;
+        if (oldBlock) {
+            jobsByBtnBlock mergedBlock = ^(__kindof UIButton * _Nullable btn) {
+                oldBlock(btn);
+                if (block) block(btn);
+            };
+            self.clickBlock = mergedBlock;
+        } else {
+            self.clickBlock = block;
+        }return self;
+    };
+}
+/// 长按方法@普通
 -(JobsReturnButtonByClickBlocks _Nonnull)onLongPressGestureBy{
     @jobs_weakify(self)
     return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
         @jobs_strongify(self)
         self.longPressGestureBlock = block;
         return self;
+    };
+}
+/// 长按方法@叠加
+-(JobsReturnButtonByClickBlocks _Nonnull)onLongPressGestureAppendBy{
+    @jobs_weakify(self)
+    return ^__kindof UIButton *_Nullable(jobsByBtnBlock block) {
+        @jobs_strongify(self)
+        jobsByBtnBlock oldBlock = self.longPressGestureBlock;
+        if (oldBlock) {
+            jobsByBtnBlock mergedBlock = ^(__kindof UIButton * _Nullable btn) {
+                oldBlock(btn);
+                if (block) block(btn);
+            };
+            self.longPressGestureBlock = mergedBlock;
+        } else {
+            self.longPressGestureBlock = block;
+        }return self;
     };
 }
 

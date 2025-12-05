@@ -274,14 +274,14 @@ Prop_assign(readwrite)BOOL builtOnce;
     [self.buttons enumerateObjectsUsingBlock:^(UIButton *b,
                                                NSUInteger idx,
                                                BOOL *stop) {
-//        b.onClickAppendBy(^(UIButton *x){
-//            NSInteger index = x.tag;
-//            if (index >= MIN(self.buttons.count, self.controllers.count)) {
-//                toastBy(@"请配置子控制器");
-//                return;
-//            }[self selectIndex:index animated:YES];
-//        })
-        b.byTag(idx)
+        b.onClickAppendBy(^(UIButton *x){
+            NSInteger index = x.tag;
+            if (index >= MIN(self.buttons.count, self.controllers.count)) {
+                toastBy(@"请配置子控制器");
+                return;
+            }[self selectIndex:index animated:YES];
+        })
+        .byTag(idx)
         .addOn(self.tabBar);
     }];
     /// 5. 添加子控制器（只取 min(buttons, controllers)）
